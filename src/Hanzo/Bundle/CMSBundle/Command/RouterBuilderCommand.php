@@ -38,17 +38,23 @@ class RouterBuilderCommand extends ContainerAwareCommand
 
       $buffer = array();
       $counter = 1;
+      $processed = array();
       foreach ($result as $record) {
         foreach ($record->getCmsI18ns() as $item){
-          if ('' == $item->getTitle()) {
+          $id = $item->getId();
+          $path = trim($item->getPath());
+          $locale = trim($item->getLocale());
+          $type = trim($record->getType());
+          $title = trim($record->getTitle());
+
+          if ('' == $title) {
             continue;
           }
 
-
-          $id = $item->getId();
-          $path = $item->getPath();
-          $locale = $item->getLocale();
-          $type = $record->getType();
+          if (isset($processed[$path])) {
+            continue;
+          }
+          $processed[$path] = $path;
 
           if (!isset($buffer[$locale])) {
             $buffer[$locale] = '';
@@ -61,7 +67,7 @@ class RouterBuilderCommand extends ContainerAwareCommand
 
           switch ($type) {
             case 'category':
-              $buffer[$locale] .= "category_link_{$id}:
+              $buffer[$locale] .= "category_link_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}/{pager}
     defaults: { _controller: HanzoCategoryBundle:Default:view, id: {$id}, cid: {$settings['category_id']}, pager: 0, locale: {$locale} }
     requirements:
@@ -78,7 +84,7 @@ product_link_{$id}:
 ";
               break;
             case 'page':
-              $buffer[$locale] .= "page_link_{$id}:
+              $buffer[$locale] .= "page_link_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults: { _controller: HanzoCMSBundle:Default:view, id: {$id}, locale: {$locale} }
     # type: {$type}
@@ -88,7 +94,7 @@ product_link_{$id}:
             case 'system':
               switch ($settings['view']) {
                 case 'mannequin':
-                  $buffer[$locale] .= "system_link_{$id}:
+                  $buffer[$locale] .= "system_link_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults: { _controller: HanzoMannequinBundle:Default:view, id: {$id}, locale: {$locale} }
     # type: {$type}.{$settings['view']}
@@ -96,7 +102,7 @@ product_link_{$id}:
 ";
                   break;
                 case 'newsletter':
-                  $buffer[$locale] .= "newsletter_link_{$id}:
+                  $buffer[$locale] .= "newsletter_link_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults: { _controller: HanzoNewsletterBundle:Default:view, id: {$id}, locale: {$locale} }
     # type: {$type}.{$settings['view']}
@@ -107,7 +113,7 @@ product_link_{$id}:
                 case 'advanced_search':
                   $method = explode('_', $settings['view']);
                   $method = array_shift($method);
-                  $buffer[$locale] .= "search_link_{$id}:
+                  $buffer[$locale] .= "search_link_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults: { _controller: HanzoSearchBundle:Default:{$method}, id: {$id}, locale: {$locale} }
     # type: {$type}.{$settings['view']}
