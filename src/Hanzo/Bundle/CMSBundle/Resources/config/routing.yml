@@ -1,0 +1,8 @@
+HanzoCMSBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: HanzoCMSBundle:Default:index }
+
+product_listing:
+    pattern: /ssss/{category}/{page}
+    defaults: { _controller: HanzoProductsBundle:Default:list, category: '', page: 1 }
+

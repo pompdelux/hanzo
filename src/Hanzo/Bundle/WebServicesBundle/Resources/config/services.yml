@@ -1,0 +1,7 @@
+parameters:
+#    web_services.example.class: Hanzo\Bundle\WebServicesBundle\Example
+
+services:
+#    web_services.example:
+#        class: %web_services.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

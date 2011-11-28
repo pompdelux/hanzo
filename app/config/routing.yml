@@ -1,0 +1,36 @@
+SearchBundle:
+    resource: "@SearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
+NewsletterBundle:
+    resource: "@NewsletterBundle/Resources/config/routing.yml"
+    prefix:   /
+
+MannequinBundle:
+    resource: "@MannequinBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ProductBundle:
+    resource: "@ProductBundle/Resources/config/routing.yml"
+    prefix:   /
+
+CategoryBundle:
+    resource: "@CategoryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+WebServicesBundle:
+    resource: "@WebServicesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+HanzoCMSBundle:
+    resource: "@HanzoCMSBundle/Resources/config/routing.yml"
+    prefix:   /
+
+HanzoCMSBundle:
+    resource: "@HanzoCMSBundle/Resources/config/cms_routing.yml"
+    prefix:   /
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal

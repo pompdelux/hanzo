@@ -1,0 +1,18 @@
+WebServicesBundle_homepage:
+    pattern:  /wolla/{name}
+    defaults: { _controller: WebServicesBundle:Default:index }
+
+WebServicesBundle_soap:
+    pattern:  /soap/{version}/{service_name}
+    defaults: { _controller: WebServicesBundle:Soap:index, version: v1 }
+    requirements:
+      service_name: "[a-zA-Z0-9_]+"
+
+WebServicesBundle_rest:
+    pattern:  /rest/{version}/{service_name}
+    defaults: { _controller: WebServicesBundle:Rest:index, version: v1 }
+    requirements:
+      service_name: "[a-zA-Z0-9_]+"
+      version: "v[0-9]+"
+      _method:  GET|POST
+      _format: JSON

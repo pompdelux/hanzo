@@ -1,0 +1,7 @@
+parameters:
+#    mannequin.example.class: Hanzo\Bundle\MannequinBundle\Example
+
+services:
+#    mannequin.example:
+#        class: %mannequin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
