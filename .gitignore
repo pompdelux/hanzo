@@ -5,4 +5,5 @@
 /tmp/*
 /vendor/
 /app/config/parameters.ini
+/app/config/config.yml
 /src/Hanzo/Bundle/CMSBundle/Resources/config/cms_routing.yml
