@@ -18,7 +18,7 @@ use Hanzo\Model\map\SettingsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseSettingsPeer {
 
@@ -32,7 +32,7 @@ abstract class BaseSettingsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Settings';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.Settings';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Settings';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'SettingsTableMap';

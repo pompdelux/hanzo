@@ -23,7 +23,7 @@ use Hanzo\Model\GroupsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseGroups extends BaseObject  implements Persistent
 {

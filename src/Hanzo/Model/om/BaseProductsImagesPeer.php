@@ -21,7 +21,7 @@ use Hanzo\Model\map\ProductsImagesTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsImagesPeer {
 
@@ -35,7 +35,7 @@ abstract class BaseProductsImagesPeer {
 	const OM_CLASS = 'Hanzo\\Model\\ProductsImages';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.ProductsImages';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.ProductsImages';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsImagesTableMap';

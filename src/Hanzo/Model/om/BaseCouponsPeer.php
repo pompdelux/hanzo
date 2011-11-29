@@ -19,7 +19,7 @@ use Hanzo\Model\map\CouponsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCouponsPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseCouponsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Coupons';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.Coupons';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Coupons';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CouponsTableMap';

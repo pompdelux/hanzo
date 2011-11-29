@@ -443,9 +443,9 @@ CREATE TABLE `products_domains_prices`
 	`price` DECIMAL(15,4) NOT NULL,
 	`vat` DECIMAL(4,2) NOT NULL,
 	`currency_code` VARCHAR(3),
-	`from_date` DATE,
-	`to_date` DATE,
-	PRIMARY KEY (`products_id`,`domains_id`),
+	`from_date` DATETIME NOT NULL,
+	`to_date` DATETIME,
+	PRIMARY KEY (`products_id`,`domains_id`,`from_date`),
 	INDEX `FI_products_domains_prices_2` (`domains_id`),
 	CONSTRAINT `fk_products_domains_prices_1`
 		FOREIGN KEY (`products_id`)

@@ -88,7 +88,7 @@ use Hanzo\Model\Products;
  * @method     array findByPrice(string $price) Return OrdersLines objects filtered by the price column
  * @method     array findByQuantity(int $quantity) Return OrdersLines objects filtered by the quantity column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseOrdersLinesQuery extends ModelCriteria
 {

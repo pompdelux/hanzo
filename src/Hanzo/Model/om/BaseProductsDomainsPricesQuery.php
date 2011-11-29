@@ -68,7 +68,7 @@ use Hanzo\Model\ProductsDomainsPricesQuery;
  * @method     array findByFromDate(string $from_date) Return ProductsDomainsPrices objects filtered by the from_date column
  * @method     array findByToDate(string $to_date) Return ProductsDomainsPrices objects filtered by the to_date column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 {
@@ -114,10 +114,10 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 	 * Go fast if the query is untouched.
 	 *
 	 * <code>
-	 * $obj = $c->findPk(array(12, 34), $con);
+	 * $obj = $c->findPk(array(12, 34, 56), $con);
 	 * </code>
 	 *
-	 * @param     array[$products_id, $domains_id] $key Primary key to use for the query
+	 * @param     array[$products_id, $domains_id, $from_date] $key Primary key to use for the query
 	 * @param     PropelPDO $con an optional connection object
 	 *
 	 * @return    ProductsDomainsPrices|array|mixed the result, formatted by the current formatter
@@ -127,7 +127,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 		if ($key === null) {
 			return null;
 		}
-		if ((null !== ($obj = ProductsDomainsPricesPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
+		if ((null !== ($obj = ProductsDomainsPricesPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1], (string) $key[2]))))) && !$this->formatter) {
 			// the object is alredy in the instance pool
 			return $obj;
 		}
@@ -155,11 +155,12 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `PRODUCTS_ID`, `DOMAINS_ID`, `PRICE`, `VAT`, `CURRENCY_CODE`, `FROM_DATE`, `TO_DATE` FROM `products_domains_prices` WHERE `PRODUCTS_ID` = :p0 AND `DOMAINS_ID` = :p1';
+		$sql = 'SELECT `PRODUCTS_ID`, `DOMAINS_ID`, `PRICE`, `VAT`, `CURRENCY_CODE`, `FROM_DATE`, `TO_DATE` FROM `products_domains_prices` WHERE `PRODUCTS_ID` = :p0 AND `DOMAINS_ID` = :p1 AND `FROM_DATE` = :p2';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
 			$stmt->bindValue(':p1', $key[1], PDO::PARAM_INT);
+			$stmt->bindValue(':p2', $key[2], PDO::PARAM_STR);
 			$stmt->execute();
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -169,7 +170,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsDomainsPrices();
 			$obj->hydrate($row);
-			ProductsDomainsPricesPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1])));
+			ProductsDomainsPricesPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1], (string) $row[2])));
 		}
 		$stmt->closeCursor();
 
@@ -228,6 +229,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 	{
 		$this->addUsingAlias(ProductsDomainsPricesPeer::PRODUCTS_ID, $key[0], Criteria::EQUAL);
 		$this->addUsingAlias(ProductsDomainsPricesPeer::DOMAINS_ID, $key[1], Criteria::EQUAL);
+		$this->addUsingAlias(ProductsDomainsPricesPeer::FROM_DATE, $key[2], Criteria::EQUAL);
 
 		return $this;
 	}
@@ -248,6 +250,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 			$cton0 = $this->getNewCriterion(ProductsDomainsPricesPeer::PRODUCTS_ID, $key[0], Criteria::EQUAL);
 			$cton1 = $this->getNewCriterion(ProductsDomainsPricesPeer::DOMAINS_ID, $key[1], Criteria::EQUAL);
 			$cton0->addAnd($cton1);
+			$cton2 = $this->getNewCriterion(ProductsDomainsPricesPeer::FROM_DATE, $key[2], Criteria::EQUAL);
+			$cton0->addAnd($cton2);
 			$this->addOr($cton0);
 		}
 
@@ -662,7 +666,8 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 		if ($productsDomainsPrices) {
 			$this->addCond('pruneCond0', $this->getAliasedColName(ProductsDomainsPricesPeer::PRODUCTS_ID), $productsDomainsPrices->getProductsId(), Criteria::NOT_EQUAL);
 			$this->addCond('pruneCond1', $this->getAliasedColName(ProductsDomainsPricesPeer::DOMAINS_ID), $productsDomainsPrices->getDomainsId(), Criteria::NOT_EQUAL);
-			$this->combine(array('pruneCond0', 'pruneCond1'), Criteria::LOGICAL_OR);
+			$this->addCond('pruneCond2', $this->getAliasedColName(ProductsDomainsPricesPeer::FROM_DATE), $productsDomainsPrices->getFromDate(), Criteria::NOT_EQUAL);
+			$this->combine(array('pruneCond0', 'pruneCond1', 'pruneCond2'), Criteria::LOGICAL_OR);
 		}
 
 		return $this;

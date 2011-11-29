@@ -51,7 +51,7 @@ use Hanzo\Model\ProductsStockQuery;
  * @method     array findByQuantity(int $quantity) Return ProductsStock objects filtered by the quantity column
  * @method     array findByAvailableFrom(string $available_from) Return ProductsStock objects filtered by the available_from column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsStockQuery extends ModelCriteria
 {

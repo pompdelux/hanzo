@@ -19,7 +19,7 @@ use Hanzo\Model\map\ProductsI18nTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsI18nPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseProductsI18nPeer {
 	const OM_CLASS = 'Hanzo\\Model\\ProductsI18n';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.ProductsI18n';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.ProductsI18n';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsI18nTableMap';

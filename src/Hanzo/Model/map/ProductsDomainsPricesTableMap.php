@@ -16,7 +16,7 @@ use \TableMap;
  * ORDER BY clause to know whether it needs to apply SQL to make the ORDER BY case-insensitive
  * (i.e. if it's a text column type).
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.map
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map
  */
 class ProductsDomainsPricesTableMap extends TableMap
 {
@@ -24,7 +24,7 @@ class ProductsDomainsPricesTableMap extends TableMap
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.map.ProductsDomainsPricesTableMap';
+	const CLASS_NAME = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map.ProductsDomainsPricesTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -39,7 +39,7 @@ class ProductsDomainsPricesTableMap extends TableMap
 		$this->setName('products_domains_prices');
 		$this->setPhpName('ProductsDomainsPrices');
 		$this->setClassname('Hanzo\\Model\\ProductsDomainsPrices');
-		$this->setPackage('home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model');
+		$this->setPackage('home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model');
 		$this->setUseIdGenerator(false);
 		// columns
 		$this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
@@ -47,8 +47,8 @@ class ProductsDomainsPricesTableMap extends TableMap
 		$this->addColumn('PRICE', 'Price', 'DECIMAL', true, 15, null);
 		$this->addColumn('VAT', 'Vat', 'DECIMAL', true, 4, null);
 		$this->addColumn('CURRENCY_CODE', 'CurrencyCode', 'VARCHAR', false, 3, null);
-		$this->addColumn('FROM_DATE', 'FromDate', 'DATE', false, null, null);
-		$this->addColumn('TO_DATE', 'ToDate', 'DATE', false, null, null);
+		$this->addPrimaryKey('FROM_DATE', 'FromDate', 'TIMESTAMP', true, null, null);
+		$this->addColumn('TO_DATE', 'ToDate', 'TIMESTAMP', false, null, null);
 		// validators
 	} // initialize()
 

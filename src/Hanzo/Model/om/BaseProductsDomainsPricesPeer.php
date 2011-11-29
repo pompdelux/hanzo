@@ -20,7 +20,7 @@ use Hanzo\Model\map\ProductsDomainsPricesTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsDomainsPricesPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseProductsDomainsPricesPeer {
 	const OM_CLASS = 'Hanzo\\Model\\ProductsDomainsPrices';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.ProductsDomainsPrices';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.ProductsDomainsPrices';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsDomainsPricesTableMap';
@@ -319,7 +319,7 @@ abstract class BaseProductsDomainsPricesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId()));
+				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId(), (string) $obj->getFromDate()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -339,10 +339,10 @@ abstract class BaseProductsDomainsPricesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof ProductsDomainsPrices) {
-				$key = serialize(array((string) $value->getProductsId(), (string) $value->getDomainsId()));
-			} elseif (is_array($value) && count($value) === 2) {
+				$key = serialize(array((string) $value->getProductsId(), (string) $value->getDomainsId(), (string) $value->getFromDate()));
+			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
-				$key = serialize(array((string) $value[0], (string) $value[1]));
+				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));
 			} else {
 				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or ProductsDomainsPrices object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
@@ -403,10 +403,10 @@ abstract class BaseProductsDomainsPricesPeer {
 	public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
 	{
 		// If the PK cannot be derived from the row, return NULL.
-		if ($row[$startcol] === null && $row[$startcol + 1] === null) {
+		if ($row[$startcol] === null && $row[$startcol + 1] === null && $row[$startcol + 5] === null) {
 			return null;
 		}
-		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1]));
+		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1], (string) $row[$startcol + 5]));
 	}
 
 	/**
@@ -420,7 +420,7 @@ abstract class BaseProductsDomainsPricesPeer {
 	 */
 	public static function getPrimaryKeyFromRow($row, $startcol = 0)
 	{
-		return array((int) $row[$startcol], (int) $row[$startcol + 1]);
+		return array((int) $row[$startcol], (int) $row[$startcol + 1], (string) $row[$startcol + 5]);
 	}
 	
 	/**
@@ -1216,6 +1216,14 @@ abstract class BaseProductsDomainsPricesPeer {
 				$selectCriteria->setPrimaryTableName(ProductsDomainsPricesPeer::TABLE_NAME);
 			}
 
+			$comparison = $criteria->getComparison(ProductsDomainsPricesPeer::FROM_DATE);
+			$value = $criteria->remove(ProductsDomainsPricesPeer::FROM_DATE);
+			if ($value) {
+				$selectCriteria->add(ProductsDomainsPricesPeer::FROM_DATE, $value, $comparison);
+			} else {
+				$selectCriteria->setPrimaryTableName(ProductsDomainsPricesPeer::TABLE_NAME);
+			}
+
 		} else { // $values is ProductsDomainsPrices object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
@@ -1297,6 +1305,7 @@ abstract class BaseProductsDomainsPricesPeer {
 			foreach ($values as $value) {
 				$criterion = $criteria->getNewCriterion(ProductsDomainsPricesPeer::PRODUCTS_ID, $value[0]);
 				$criterion->addAnd($criteria->getNewCriterion(ProductsDomainsPricesPeer::DOMAINS_ID, $value[1]));
+				$criterion->addAnd($criteria->getNewCriterion(ProductsDomainsPricesPeer::FROM_DATE, $value[2]));
 				$criteria->addOr($criterion);
 				// we can invalidate the cache for this single PK
 				ProductsDomainsPricesPeer::removeInstanceFromPool($value);
@@ -1364,11 +1373,12 @@ abstract class BaseProductsDomainsPricesPeer {
 	 * Retrieve object using using composite pkey values.
 	 * @param      int $products_id
 	 * @param      int $domains_id
+	 * @param      string $from_date
 	 * @param      PropelPDO $con
 	 * @return     ProductsDomainsPrices
 	 */
-	public static function retrieveByPK($products_id, $domains_id, PropelPDO $con = null) {
-		$_instancePoolKey = serialize(array((string) $products_id, (string) $domains_id));
+	public static function retrieveByPK($products_id, $domains_id, $from_date, PropelPDO $con = null) {
+		$_instancePoolKey = serialize(array((string) $products_id, (string) $domains_id, (string) $from_date));
  		if (null !== ($obj = ProductsDomainsPricesPeer::getInstanceFromPool($_instancePoolKey))) {
  			return $obj;
 		}
@@ -1379,6 +1389,7 @@ abstract class BaseProductsDomainsPricesPeer {
 		$criteria = new Criteria(ProductsDomainsPricesPeer::DATABASE_NAME);
 		$criteria->add(ProductsDomainsPricesPeer::PRODUCTS_ID, $products_id);
 		$criteria->add(ProductsDomainsPricesPeer::DOMAINS_ID, $domains_id);
+		$criteria->add(ProductsDomainsPricesPeer::FROM_DATE, $from_date);
 		$v = ProductsDomainsPricesPeer::doSelect($criteria, $con);
 
 		return !empty($v) ? $v[0] : null;

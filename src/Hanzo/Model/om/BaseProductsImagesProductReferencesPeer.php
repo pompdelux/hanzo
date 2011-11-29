@@ -20,7 +20,7 @@ use Hanzo\Model\map\ProductsImagesProductReferencesTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsImagesProductReferencesPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseProductsImagesProductReferencesPeer {
 	const OM_CLASS = 'Hanzo\\Model\\ProductsImagesProductReferences';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.ProductsImagesProductReferences';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.ProductsImagesProductReferences';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsImagesProductReferencesTableMap';

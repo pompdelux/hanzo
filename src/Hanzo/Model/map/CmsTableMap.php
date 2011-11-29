@@ -16,7 +16,7 @@ use \TableMap;
  * ORDER BY clause to know whether it needs to apply SQL to make the ORDER BY case-insensitive
  * (i.e. if it's a text column type).
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.map
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map
  */
 class CmsTableMap extends TableMap
 {
@@ -24,7 +24,7 @@ class CmsTableMap extends TableMap
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.map.CmsTableMap';
+	const CLASS_NAME = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map.CmsTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -39,7 +39,7 @@ class CmsTableMap extends TableMap
 		$this->setName('cms');
 		$this->setPhpName('Cms');
 		$this->setClassname('Hanzo\\Model\\Cms');
-		$this->setPackage('home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model');
+		$this->setPackage('home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model');
 		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);

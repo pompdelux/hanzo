@@ -20,7 +20,7 @@ use Hanzo\Model\map\OrdersLinesTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseOrdersLinesPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseOrdersLinesPeer {
 	const OM_CLASS = 'Hanzo\\Model\\OrdersLines';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.OrdersLines';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.OrdersLines';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'OrdersLinesTableMap';

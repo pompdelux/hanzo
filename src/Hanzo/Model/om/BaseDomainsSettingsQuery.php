@@ -55,7 +55,7 @@ use Hanzo\Model\DomainsSettingsQuery;
  * @method     array findByNs(string $ns) Return DomainsSettings objects filtered by the ns column
  * @method     array findByCValue(string $c_value) Return DomainsSettings objects filtered by the c_value column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseDomainsSettingsQuery extends ModelCriteria
 {

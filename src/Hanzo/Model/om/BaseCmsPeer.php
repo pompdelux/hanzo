@@ -20,7 +20,7 @@ use Hanzo\Model\map\CmsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCmsPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseCmsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Cms';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.Cms';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Cms';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CmsTableMap';

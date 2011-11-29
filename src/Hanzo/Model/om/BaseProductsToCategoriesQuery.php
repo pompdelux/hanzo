@@ -48,7 +48,7 @@ use Hanzo\Model\ProductsToCategoriesQuery;
  * @method     array findByProductsId(int $products_id) Return ProductsToCategories objects filtered by the products_id column
  * @method     array findByCategoriesId(int $categories_id) Return ProductsToCategories objects filtered by the categories_id column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsToCategoriesQuery extends ModelCriteria
 {

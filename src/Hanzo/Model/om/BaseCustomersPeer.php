@@ -24,7 +24,7 @@ use Hanzo\Model\map\CustomersTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCustomersPeer {
 
@@ -38,7 +38,7 @@ abstract class BaseCustomersPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Customers';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.Customers';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Customers';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CustomersTableMap';

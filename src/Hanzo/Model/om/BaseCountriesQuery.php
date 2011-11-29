@@ -97,7 +97,7 @@ use Hanzo\Model\ZipToCity;
  * @method     array findByCurencyCode(string $curency_code) Return Countries objects filtered by the curency_code column
  * @method     array findByCurerncyName(string $curerncy_name) Return Countries objects filtered by the curerncy_name column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCountriesQuery extends ModelCriteria
 {

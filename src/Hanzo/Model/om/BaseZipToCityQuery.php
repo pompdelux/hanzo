@@ -63,7 +63,7 @@ use Hanzo\Model\ZipToCityQuery;
  * @method     array findByCountyName(string $county_name) Return ZipToCity objects filtered by the county_name column
  * @method     array findByComment(string $comment) Return ZipToCity objects filtered by the comment column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseZipToCityQuery extends ModelCriteria
 {

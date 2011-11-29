@@ -25,7 +25,7 @@ use Hanzo\Model\ProductsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsImagesCategoriesSort extends BaseObject  implements Persistent
 {

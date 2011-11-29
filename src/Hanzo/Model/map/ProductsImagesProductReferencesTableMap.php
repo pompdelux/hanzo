@@ -16,7 +16,7 @@ use \TableMap;
  * ORDER BY clause to know whether it needs to apply SQL to make the ORDER BY case-insensitive
  * (i.e. if it's a text column type).
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.map
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map
  */
 class ProductsImagesProductReferencesTableMap extends TableMap
 {
@@ -24,7 +24,7 @@ class ProductsImagesProductReferencesTableMap extends TableMap
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.map.ProductsImagesProductReferencesTableMap';
+	const CLASS_NAME = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map.ProductsImagesProductReferencesTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -39,7 +39,7 @@ class ProductsImagesProductReferencesTableMap extends TableMap
 		$this->setName('products_images_product_references');
 		$this->setPhpName('ProductsImagesProductReferences');
 		$this->setClassname('Hanzo\\Model\\ProductsImagesProductReferences');
-		$this->setPackage('home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model');
+		$this->setPackage('home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model');
 		$this->setUseIdGenerator(false);
 		// columns
 		$this->addForeignPrimaryKey('PRODUCTS_IMAGES_ID', 'ProductsImagesId', 'INTEGER' , 'products_images', 'ID', true, null, null);

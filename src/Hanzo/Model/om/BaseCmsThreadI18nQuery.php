@@ -47,7 +47,7 @@ use Hanzo\Model\CmsThreadI18nQuery;
  * @method     array findByLocale(string $locale) Return CmsThreadI18n objects filtered by the locale column
  * @method     array findByTitle(string $title) Return CmsThreadI18n objects filtered by the title column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCmsThreadI18nQuery extends ModelCriteria
 {

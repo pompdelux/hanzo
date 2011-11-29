@@ -48,7 +48,7 @@ use Hanzo\Model\Customers;
  * @method     array findByCouponsId(int $coupons_id) Return CouponsToCustomers objects filtered by the coupons_id column
  * @method     array findByCustomersId(int $customers_id) Return CouponsToCustomers objects filtered by the customers_id column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCouponsToCustomersQuery extends ModelCriteria
 {

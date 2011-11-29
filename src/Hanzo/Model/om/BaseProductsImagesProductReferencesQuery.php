@@ -48,7 +48,7 @@ use Hanzo\Model\ProductsImagesProductReferencesQuery;
  * @method     array findByProductsImagesId(int $products_images_id) Return ProductsImagesProductReferences objects filtered by the products_images_id column
  * @method     array findByProductsId(int $products_id) Return ProductsImagesProductReferences objects filtered by the products_id column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
 {

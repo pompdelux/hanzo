@@ -28,7 +28,7 @@ use Hanzo\Model\ProductsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsDomainsPrices extends BaseObject  implements Persistent
 {
@@ -168,7 +168,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	 *
 	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
 	 *							If format is NULL, then the raw DateTime object will be returned.
-	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
 	public function getFromDate($format = NULL)
@@ -178,7 +178,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		}
 
 
-		if ($this->from_date === '0000-00-00') {
+		if ($this->from_date === '0000-00-00 00:00:00') {
 			// while technically this is not a default value of NULL,
 			// this seems to be closest in meaning.
 			return null;
@@ -206,7 +206,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	 *
 	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
 	 *							If format is NULL, then the raw DateTime object will be returned.
-	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
 	public function getToDate($format = NULL)
@@ -216,7 +216,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		}
 
 
-		if ($this->to_date === '0000-00-00') {
+		if ($this->to_date === '0000-00-00 00:00:00') {
 			// while technically this is not a default value of NULL,
 			// this seems to be closest in meaning.
 			return null;
@@ -357,8 +357,8 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	{
 		$dt = PropelDateTime::newInstance($v, null, 'DateTime');
 		if ($this->from_date !== null || $dt !== null) {
-			$currentDateAsString = ($this->from_date !== null && $tmpDt = new DateTime($this->from_date)) ? $tmpDt->format('Y-m-d') : null;
-			$newDateAsString = $dt ? $dt->format('Y-m-d') : null;
+			$currentDateAsString = ($this->from_date !== null && $tmpDt = new DateTime($this->from_date)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
 			if ($currentDateAsString !== $newDateAsString) {
 				$this->from_date = $newDateAsString;
 				$this->modifiedColumns[] = ProductsDomainsPricesPeer::FROM_DATE;
@@ -379,8 +379,8 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	{
 		$dt = PropelDateTime::newInstance($v, null, 'DateTime');
 		if ($this->to_date !== null || $dt !== null) {
-			$currentDateAsString = ($this->to_date !== null && $tmpDt = new DateTime($this->to_date)) ? $tmpDt->format('Y-m-d') : null;
-			$newDateAsString = $dt ? $dt->format('Y-m-d') : null;
+			$currentDateAsString = ($this->to_date !== null && $tmpDt = new DateTime($this->to_date)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
 			if ($currentDateAsString !== $newDateAsString) {
 				$this->to_date = $newDateAsString;
 				$this->modifiedColumns[] = ProductsDomainsPricesPeer::TO_DATE;
@@ -1045,6 +1045,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		$criteria = new Criteria(ProductsDomainsPricesPeer::DATABASE_NAME);
 		$criteria->add(ProductsDomainsPricesPeer::PRODUCTS_ID, $this->products_id);
 		$criteria->add(ProductsDomainsPricesPeer::DOMAINS_ID, $this->domains_id);
+		$criteria->add(ProductsDomainsPricesPeer::FROM_DATE, $this->from_date);
 
 		return $criteria;
 	}
@@ -1059,6 +1060,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		$pks = array();
 		$pks[0] = $this->getProductsId();
 		$pks[1] = $this->getDomainsId();
+		$pks[2] = $this->getFromDate();
 
 		return $pks;
 	}
@@ -1073,6 +1075,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	{
 		$this->setProductsId($keys[0]);
 		$this->setDomainsId($keys[1]);
+		$this->setFromDate($keys[2]);
 	}
 
 	/**
@@ -1081,7 +1084,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	 */
 	public function isPrimaryKeyNull()
 	{
-		return (null === $this->getProductsId()) && (null === $this->getDomainsId());
+		return (null === $this->getProductsId()) && (null === $this->getDomainsId()) && (null === $this->getFromDate());
 	}
 
 	/**

@@ -23,7 +23,7 @@ use Hanzo\Model\CategoriesQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCategoriesI18n extends BaseObject  implements Persistent
 {

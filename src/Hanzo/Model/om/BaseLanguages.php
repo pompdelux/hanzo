@@ -25,7 +25,7 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseLanguages extends BaseObject  implements Persistent
 {

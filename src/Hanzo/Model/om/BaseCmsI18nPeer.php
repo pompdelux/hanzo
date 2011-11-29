@@ -19,7 +19,7 @@ use Hanzo\Model\map\CmsI18nTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseCmsI18nPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseCmsI18nPeer {
 	const OM_CLASS = 'Hanzo\\Model\\CmsI18n';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.CmsI18n';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.CmsI18n';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CmsI18nTableMap';

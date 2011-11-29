@@ -51,7 +51,7 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
  * @method     array findByLanguagesId(int $languages_id) Return ProductsWashingInstructions objects filtered by the languages_id column
  * @method     array findByDescription(string $description) Return ProductsWashingInstructions objects filtered by the description column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
 {

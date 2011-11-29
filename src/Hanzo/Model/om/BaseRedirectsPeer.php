@@ -18,7 +18,7 @@ use Hanzo\Model\map\RedirectsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseRedirectsPeer {
 
@@ -32,7 +32,7 @@ abstract class BaseRedirectsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Redirects';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.Redirects';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Redirects';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'RedirectsTableMap';

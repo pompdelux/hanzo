@@ -19,7 +19,7 @@ use Hanzo\Model\map\EventsParticipantsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseEventsParticipantsPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseEventsParticipantsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\EventsParticipants';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.EventsParticipants';
+	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.EventsParticipants';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'EventsParticipantsTableMap';

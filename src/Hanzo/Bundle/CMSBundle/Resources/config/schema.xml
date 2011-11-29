@@ -332,8 +332,8 @@
     <column name="price" type="DECIMAL" size="15" scale="4" required="true"/>
     <column name="vat" type="DECIMAL" size="4" scale="2" required="true"/>
     <column name="currency_code" type="VARCHAR" size="3" required="false"/>
-    <column name="from_date" type="DATE" required="false"/>
-    <column name="to_date" type="DATE" required="false"/>
+    <column name="from_date" type="TIMESTAMP" primaryKey="true" required="true"/>
+    <column name="to_date" type="TIMESTAMP" required="false"/>
     <foreign-key foreignTable="products" name="fk_products_domains_prices_1" onDelete="CASCADE">
       <reference local="products_id" foreign="id"/>
     </foreign-key>

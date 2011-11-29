@@ -51,7 +51,7 @@ use Hanzo\Model\ProductsI18nQuery;
  * @method     array findByTitle(string $title) Return ProductsI18n objects filtered by the title column
  * @method     array findByContent(string $content) Return ProductsI18n objects filtered by the content column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model.om
+ * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
  */
 abstract class BaseProductsI18nQuery extends ModelCriteria
 {
