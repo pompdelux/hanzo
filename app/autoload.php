@@ -1,9 +1,16 @@
 <?php
 
-use Symfony\Component\ClassLoader\UniversalClassLoader;
+require __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php';
+
+#use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
-$loader = new UniversalClassLoader();
+use Symfony\Component\ClassLoader\ApcUniversalClassLoader;
+
+$loader = new ApcUniversalClassLoader('autoloader.');
+
+
+#$loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
     'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
     'Sensio'           => __DIR__.'/../vendor/bundles',
@@ -12,7 +19,10 @@ $loader->registerNamespaces(array(
     'Monolog'          => __DIR__.'/../vendor/monolog/src',
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
     'Metadata'         => __DIR__.'/../vendor/metadata/src',
-    'Propel' => __DIR__.'/../vendor/bundles',
+
+    'Propel'           => __DIR__.'/../vendor/bundles',
+    'Snc'              => __DIR__.'/../vendor/bundles',
+    'Predis'           => __DIR__.'/../vendor/predis/lib',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
@@ -41,4 +51,3 @@ AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/lib/Doctrine/ORM/M
 // the lazy loading of the init file (which is expensive)
 require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
 Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');
-

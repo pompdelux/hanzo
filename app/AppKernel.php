@@ -18,6 +18,7 @@ class AppKernel extends Kernel
 
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Propel\PropelBundle\PropelBundle(),
+            new Snc\RedisBundle\SncRedisBundle(),
 
             new Hanzo\Bundle\CMSBundle\HanzoCMSBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
@@ -36,6 +37,15 @@ class AppKernel extends Kernel
         }
 
         return $bundles;
+    }
+
+    public function boot()
+    {
+        parent::boot();
+        $twig = $this->container->get('twig'); // ->addGlobal('', '');
+        $session = $this->container->get('session'); // ->getLocale();
+
+        //error_log(print_r(get_class_methods($this->container->get('session')), 1));
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
