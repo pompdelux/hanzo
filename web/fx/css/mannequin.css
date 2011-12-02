@@ -1,0 +1,175 @@
+#body-mannequin #main {
+  padding: 10px;
+}
+
+ul#mannequin-menu.tabs {
+  height: auto;
+}
+
+ul#mannequin-menu.tabs li {
+	float: none;
+  display: block;
+  width: 100%;
+  padding-top: 2px;
+  width: 99%;
+}
+
+ul#mannequin-menu.tabs li a {
+  font-size:11px;
+	font-weight:bold;
+  letter-spacing:1px;
+	padding-left: 5px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	color: #000;
+	background: #CBC3BD;
+	display: block;
+	
+}
+ul#mannequin-menu.tabs li a:hover{
+  color: #000000;
+}
+ul#mannequin-menu.tabs li a.current {
+  color: #000000;
+}
+ul#mannequin-menu.tabs li a.current:hover {
+  color: #000;
+}
+
+#mannequin {
+  background-color: #fff;
+  padding: 10px;
+  color: #000;
+}
+
+#loading {
+  margin: 30px;
+  background: #fff url(/templates/pompdelux/images/loading.gif) left center no-repeat;
+  padding: 10px 0 10px 40px;
+  font-size: 18px;
+}
+
+#mannequin-layers {
+  float: left;
+  min-height: 440px;
+  width: 570px;
+  margin-bottom: 10px;
+}
+#mannequin-layers .pane {
+  padding: 0;
+}
+#mannequin-layers .pane .item {
+  height: 210px;
+  width: 118px;
+  float: left;
+  padding-bottom: 10px;
+}
+#mannequin-layers .pane .item .colors {
+  margin: 5px;
+  height: 15px;
+  text-align: center;
+}
+#mannequin-layers .pane .item h6 {
+  text-align: center;
+  font-weight: normal;
+  margin: 10px 0;
+}
+#mannequin-layers .pane .item .colors .color,
+#mannequin-layers .pane .item .colors .color img {
+  padding: 0;
+  margin: 0;
+  width: 15px;
+  height: 15px;
+}
+
+#mannequin-doll {
+  position: fixed;
+  margin-left: 550px;
+  width: 170px;
+  margin-bottom: 10px;
+}
+#mannequin-doll .layers {
+  position: relative;
+}
+#mannequin-doll .layers .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#mannequin-doll .layers img {
+  height: 415px;
+  width: 170px;
+  behavior: url(/shared-fx/iepngfix/iepngfix.htc);
+}
+
+#mannequin-basket {
+  min-height: 100px;
+  width: 590px;
+}
+#mannequin-basket td {
+  padding: 3px;
+  white-space: nowrap;
+}
+#mannequin-basket thead {
+  background-color: #666665;
+}
+#mannequin-basket th {
+  padding: 3px;
+  color: #fff;
+}
+#mannequin-basket th.name {
+  width: 200px;
+}
+#mannequin-basket th.price {
+  width: 80px;
+}
+#mannequin-basket th.color {
+  width: 100px;
+}
+#mannequin-basket th.size {
+}
+
+#mannequin-basket tr.empty td {
+  font-weight: 900;
+  padding: 5px;
+}
+
+#mannequin-basket tfoot td {
+  border-top: 1px solid #666665;
+  font-weight: 900;
+}
+
+#mannequin-basket td a.edit {
+  background: #ffffff url(http://www.pompdelux.dk/shared-fx/images/famfamfam/pencil.png) no-repeat center left;
+  text-indent: -99999px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  float: left;
+}
+
+#mannequin-basket td a.add {
+  background: #ffffff url(http://www.pompdelux.dk/shared-fx/images/famfamfam/basket_put.png) no-repeat center left;
+  text-indent: -99999px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  float: left;
+}
+
+#mannequin-basket td a.remove {
+  background: #ffffff url(http://www.pompdelux.dk/shared-fx/images/famfamfam/delete.png) no-repeat center left;
+  text-indent: -99999px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  float: left;
+}
+
+#mannequin-basket .in-cart td.actions {
+  background: #ffffff url(http://www.pompdelux.dk/shared-fx/images/famfamfam/bullet_green.png) no-repeat center right;
+  padding-right: 15px;
+}

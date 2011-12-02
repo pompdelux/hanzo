@@ -1,0 +1,35 @@
+body {
+  /* Stops Mobile Safari from auto-adjusting font-sizes */
+	-webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+footer,
+#container {
+  margin: 0 auto;
+  width: 970px;
+  position: relative;
+}
+
+footer {
+ height: 16px;
+}
+
+#main {
+  margin: 75px 0 45px 190px;
+}
+
+#body-index #main {
+  margin-top: 75px;  
+}
+#body-index #main div {
+  height: auto;
+}
+#body-index #main a.button,
+#body-index #main div.btn {
+  display: none;
+}
+#cms-page {
+  overflow: hidden;
+}

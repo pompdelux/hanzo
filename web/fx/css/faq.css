@@ -1,0 +1,40 @@
+.tx-irfaq-pi1 ul { 
+	margin-bottom: 10px; 
+	}
+.tx-irfaq-pi1 ul li a p.bodytext { 
+	margin: 0px; 
+	display: inline; 
+	font-weight: bold; 
+	}
+.tx-irfaq-pi1 ul li a { 
+	color: #000; 
+	text-decoration: none; 
+	}
+.tx-irfaq-pi1 ul li a:hover { 
+	color: #000; 
+	text-decoration: underline; 
+	}
+.tx-irfaq-pi1 dt p { 
+	font-weight: bold; 
+	margin: 0px; display: inline; 
+	}
+.tx-irfaq-pi1 dd { 
+	margin-left: 0px; 
+	}
+.tx-irfaq-pi1 dd p { 
+	margin-top: 0px;
+	}
+.tx-irfaq-pi1 dd div {
+	border-top: 1px solid #4B3A47; 
+	margin-top: 10px;
+	}
+.tx-irfaq-cleaner { 
+	clear: left; 
+	height: 1px; 
+	}
+.tx-irfaq-dynheader { 
+	cursor: pointer;
+	}
+.tx-irfaq-pi1 dd {
+	display: none;
+	}
