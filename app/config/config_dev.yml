@@ -21,12 +21,3 @@ monolog:
 
 assetic:
     use_controller: true
-
-# propel:
-#     dbal:
-#         driver:               mysql
-#         user:                 root
-#         password:             null
-#         dsn:                  mysql:host=localhost;dbname=pdl_new;charset=UTF8
-#         options:              {}
-#         attributes:           {}
