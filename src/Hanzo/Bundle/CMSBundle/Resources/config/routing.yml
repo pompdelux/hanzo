@@ -1,4 +1,4 @@
 HanzoCMSBundle_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: HanzoCMSBundle:Default:index }
 
