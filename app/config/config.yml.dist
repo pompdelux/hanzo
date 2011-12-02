@@ -25,13 +25,13 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    # java: /usr/bin/java
+    java: /usr/bin/java
     filters:
         cssrewrite: ~
-        # closure:
-        #     jar: %kernel.root_dir%/java/compiler.jar
-        # yui_css:
-        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+        yui_css:
+             jar: %kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar
+        yui_js:
+             jar: %kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -60,3 +60,41 @@ propel:
         propel.project: hanzo
         propel.addValidators: all
         propel.namespace.autoPackage: true
+
+# redis configuration
+snc_redis:
+    connections:
+        default:
+            alias: default
+            host: localhost
+            port: 6379
+            database: 0
+            logging: %kernel.debug%
+        cache:
+            alias: cache
+            host: localhost
+            port: 6379
+            database: 1
+            password: secret
+            connection_timeout: 10
+            read_write_timeout: 30
+        session:
+            alias: session
+            host: localhost
+            port: 6379
+            database: 2
+    clients:
+        default:
+            alias: default
+            connection: default
+        cache:
+            alias: cache
+            connection: cache
+            options:
+                profile: 2.2
+        session:
+            alias: session
+            connection: session
+    session:
+        client: session
+        prefix: hanzo.session
