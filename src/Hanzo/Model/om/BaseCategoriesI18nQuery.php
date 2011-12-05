@@ -51,7 +51,7 @@ use Hanzo\Model\CategoriesI18nQuery;
  * @method     array findByTitle(string $title) Return CategoriesI18n objects filtered by the title column
  * @method     array findByContent(string $content) Return CategoriesI18n objects filtered by the content column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCategoriesI18nQuery extends ModelCriteria
 {

@@ -52,7 +52,7 @@ use Hanzo\Model\ProductsDomainsPrices;
  * @method     array findByDomainName(string $domain_name) Return Domains objects filtered by the domain_name column
  * @method     array findByDomainKey(string $domain_key) Return Domains objects filtered by the domain_key column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseDomainsQuery extends ModelCriteria
 {

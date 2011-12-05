@@ -40,7 +40,7 @@ use Hanzo\Model\RedirectsQuery;
  * @method     array findBySource(string $source) Return Redirects objects filtered by the source column
  * @method     array findByTarget(string $target) Return Redirects objects filtered by the target column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseRedirectsQuery extends ModelCriteria
 {

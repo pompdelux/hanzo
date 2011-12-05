@@ -47,7 +47,7 @@ use Hanzo\Model\GroupsQuery;
  * @method     array findByName(string $name) Return Groups objects filtered by the name column
  * @method     array findByDiscount(string $discount) Return Groups objects filtered by the discount column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseGroupsQuery extends ModelCriteria
 {

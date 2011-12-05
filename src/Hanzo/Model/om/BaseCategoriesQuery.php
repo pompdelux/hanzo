@@ -64,7 +64,7 @@ use Hanzo\Model\ProductsToCategories;
  * @method     array findByContext(string $context) Return Categories objects filtered by the context column
  * @method     array findByIsActive(boolean $is_active) Return Categories objects filtered by the is_active column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCategoriesQuery extends ModelCriteria
 {

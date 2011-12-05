@@ -21,7 +21,7 @@ use Hanzo\Model\map\CountriesTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCountriesPeer {
 
@@ -35,7 +35,7 @@ abstract class BaseCountriesPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Countries';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Countries';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.Countries';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CountriesTableMap';

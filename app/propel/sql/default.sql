@@ -250,7 +250,7 @@ CREATE TABLE `domains_settings`
 	`ns` VARCHAR(64) NOT NULL,
 	`c_value` TEXT NOT NULL,
 	PRIMARY KEY (`id`),
-	UNIQUE INDEX `domains_settings_unique` (`c_key`, `ns`),
+	UNIQUE INDEX `domains_settings_unique` (`c_key`, `ns`, `domain_key`),
 	INDEX `FI_domains_settings_1` (`domain_key`),
 	CONSTRAINT `fk_domains_settings_1`
 		FOREIGN KEY (`domain_key`)

@@ -27,7 +27,7 @@ use Hanzo\Model\ProductsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsImages extends BaseObject  implements Persistent
 {
@@ -44,6 +44,12 @@ abstract class BaseProductsImages extends BaseObject  implements Persistent
 	 * @var        ProductsImagesPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the id field.
@@ -888,10 +894,12 @@ abstract class BaseProductsImages extends BaseObject  implements Persistent
 		$copyObj->setProductsId($this->getProductsId());
 		$copyObj->setImage($this->getImage());
 
-		if ($deepCopy) {
+		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
 			// the getter/setter methods for fkey referrer objects.
 			$copyObj->setNew(false);
+			// store object hash to prevent cycle
+			$this->startCopy = true;
 
 			foreach ($this->getProductsImagesCategoriesSorts() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
@@ -905,6 +913,8 @@ abstract class BaseProductsImages extends BaseObject  implements Persistent
 				}
 			}
 
+			//unflag object copy
+			$this->startCopy = false;
 		} // if ($deepCopy)
 
 		if ($makeNew) {

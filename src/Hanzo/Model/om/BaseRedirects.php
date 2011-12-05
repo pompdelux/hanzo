@@ -21,7 +21,7 @@ use Hanzo\Model\RedirectsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseRedirects extends BaseObject  implements Persistent
 {
@@ -38,6 +38,12 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 	 * @var        RedirectsPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the id field.
@@ -743,11 +749,11 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
-		$copyObj->setId($this->getId());
 		$copyObj->setSource($this->getSource());
 		$copyObj->setTarget($this->getTarget());
 		if ($makeNew) {
 			$copyObj->setNew(true);
+			$copyObj->setId(NULL); // this is a auto-increment column, so set to default value
 		}
 	}
 

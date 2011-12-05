@@ -23,7 +23,7 @@ use Hanzo\Model\CategoriesQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCategoriesI18n extends BaseObject  implements Persistent
 {
@@ -40,6 +40,12 @@ abstract class BaseCategoriesI18n extends BaseObject  implements Persistent
 	 * @var        CategoriesI18nPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the id field.
@@ -877,6 +883,18 @@ abstract class BaseCategoriesI18n extends BaseObject  implements Persistent
 		$copyObj->setLocale($this->getLocale());
 		$copyObj->setTitle($this->getTitle());
 		$copyObj->setContent($this->getContent());
+
+		if ($deepCopy && !$this->startCopy) {
+			// important: temporarily setNew(false) because this affects the behavior of
+			// the getter/setter methods for fkey referrer objects.
+			$copyObj->setNew(false);
+			// store object hash to prevent cycle
+			$this->startCopy = true;
+
+			//unflag object copy
+			$this->startCopy = false;
+		} // if ($deepCopy)
+
 		if ($makeNew) {
 			$copyObj->setNew(true);
 		}

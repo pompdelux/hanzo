@@ -24,7 +24,7 @@ use Hanzo\Model\HelpdeskDataLogQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseHelpdeskDataLog extends BaseObject  implements Persistent
 {
@@ -41,6 +41,12 @@ abstract class BaseHelpdeskDataLog extends BaseObject  implements Persistent
 	 * @var        HelpdeskDataLogPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the key field.
@@ -776,11 +782,11 @@ abstract class BaseHelpdeskDataLog extends BaseObject  implements Persistent
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
-		$copyObj->setKey($this->getKey());
 		$copyObj->setData($this->getData());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		if ($makeNew) {
 			$copyObj->setNew(true);
+			$copyObj->setKey(NULL); // this is a auto-increment column, so set to default value
 		}
 	}
 

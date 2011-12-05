@@ -64,7 +64,7 @@ use Hanzo\Model\ProductsWashingInstructions;
  * @method     array findByIso2(string $iso2) Return Languages objects filtered by the iso2 column
  * @method     array findByDirection(string $direction) Return Languages objects filtered by the direction column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseLanguagesQuery extends ModelCriteria
 {

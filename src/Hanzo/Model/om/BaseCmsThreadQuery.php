@@ -48,7 +48,7 @@ use Hanzo\Model\CmsThreadQuery;
  * @method     array findById(int $id) Return CmsThread objects filtered by the id column
  * @method     array findByIsActive(boolean $is_active) Return CmsThread objects filtered by the is_active column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCmsThreadQuery extends ModelCriteria
 {

@@ -19,7 +19,7 @@ use Hanzo\Model\map\ConsultantsInfoTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseConsultantsInfoPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseConsultantsInfoPeer {
 	const OM_CLASS = 'Hanzo\\Model\\ConsultantsInfo';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.ConsultantsInfo';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.ConsultantsInfo';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ConsultantsInfoTableMap';

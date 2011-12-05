@@ -20,7 +20,7 @@ use Hanzo\Model\map\ProductsToCategoriesTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsToCategoriesPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseProductsToCategoriesPeer {
 	const OM_CLASS = 'Hanzo\\Model\\ProductsToCategories';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.ProductsToCategories';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.ProductsToCategories';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsToCategoriesTableMap';

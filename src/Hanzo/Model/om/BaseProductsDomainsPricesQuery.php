@@ -68,7 +68,7 @@ use Hanzo\Model\ProductsDomainsPricesQuery;
  * @method     array findByFromDate(string $from_date) Return ProductsDomainsPrices objects filtered by the from_date column
  * @method     array findByToDate(string $to_date) Return ProductsDomainsPrices objects filtered by the to_date column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 {

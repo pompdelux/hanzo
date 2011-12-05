@@ -20,7 +20,7 @@ use Hanzo\Model\map\ProductsImagesCategoriesSortTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsImagesCategoriesSortPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 	const OM_CLASS = 'Hanzo\\Model\\ProductsImagesCategoriesSort';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.ProductsImagesCategoriesSort';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.ProductsImagesCategoriesSort';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsImagesCategoriesSortTableMap';

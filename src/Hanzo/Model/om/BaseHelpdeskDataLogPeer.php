@@ -18,7 +18,7 @@ use Hanzo\Model\map\HelpdeskDataLogTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseHelpdeskDataLogPeer {
 
@@ -32,7 +32,7 @@ abstract class BaseHelpdeskDataLogPeer {
 	const OM_CLASS = 'Hanzo\\Model\\HelpdeskDataLog';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.HelpdeskDataLog';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.HelpdeskDataLog';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'HelpdeskDataLogTableMap';

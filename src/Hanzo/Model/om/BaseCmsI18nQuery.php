@@ -59,7 +59,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method     array findByContent(string $content) Return CmsI18n objects filtered by the content column
  * @method     array findBySettings(string $settings) Return CmsI18n objects filtered by the settings column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCmsI18nQuery extends ModelCriteria
 {

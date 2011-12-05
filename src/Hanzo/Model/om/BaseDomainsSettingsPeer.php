@@ -19,7 +19,7 @@ use Hanzo\Model\map\DomainsSettingsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseDomainsSettingsPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseDomainsSettingsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\DomainsSettings';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.DomainsSettings';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.DomainsSettings';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'DomainsSettingsTableMap';

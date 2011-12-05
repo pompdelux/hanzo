@@ -19,7 +19,7 @@ use Hanzo\Model\map\OrdersSyncLogTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersSyncLogPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseOrdersSyncLogPeer {
 	const OM_CLASS = 'Hanzo\\Model\\OrdersSyncLog';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.OrdersSyncLog';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.OrdersSyncLog';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'OrdersSyncLogTableMap';

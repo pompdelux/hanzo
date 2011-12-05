@@ -23,7 +23,7 @@ use Hanzo\Model\ProductsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseMannequinImages extends BaseObject  implements Persistent
 {
@@ -40,6 +40,12 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 	 * @var        MannequinImagesPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the master field.
@@ -1036,15 +1042,32 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
-		$copyObj->setMaster($this->getMaster());
 		$copyObj->setColor($this->getColor());
 		$copyObj->setLayer($this->getLayer());
 		$copyObj->setImage($this->getImage());
 		$copyObj->setIcon($this->getIcon());
 		$copyObj->setWeight($this->getWeight());
 		$copyObj->setIsMain($this->getIsMain());
+
+		if ($deepCopy && !$this->startCopy) {
+			// important: temporarily setNew(false) because this affects the behavior of
+			// the getter/setter methods for fkey referrer objects.
+			$copyObj->setNew(false);
+			// store object hash to prevent cycle
+			$this->startCopy = true;
+
+			$relObj = $this->getProducts();
+			if ($relObj) {
+				$copyObj->setProducts($relObj->copy($deepCopy));
+			}
+
+			//unflag object copy
+			$this->startCopy = false;
+		} // if ($deepCopy)
+
 		if ($makeNew) {
 			$copyObj->setNew(true);
+			$copyObj->setMaster(NULL); // this is a auto-increment column, so set to default value
 		}
 	}
 

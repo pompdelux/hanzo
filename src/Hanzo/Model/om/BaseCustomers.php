@@ -36,7 +36,7 @@ use Hanzo\Model\LanguagesQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCustomers extends BaseObject  implements Persistent
 {
@@ -53,6 +53,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        CustomersPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the id field.
@@ -2639,10 +2645,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
 
-		if ($deepCopy) {
+		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
 			// the getter/setter methods for fkey referrer objects.
 			$copyObj->setNew(false);
+			// store object hash to prevent cycle
+			$this->startCopy = true;
 
 			$relObj = $this->getConsultantsInfo();
 			if ($relObj) {
@@ -2667,6 +2675,8 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				}
 			}
 
+			//unflag object copy
+			$this->startCopy = false;
 		} // if ($deepCopy)
 
 		if ($makeNew) {

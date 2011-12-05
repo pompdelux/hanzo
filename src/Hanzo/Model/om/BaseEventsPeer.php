@@ -20,7 +20,7 @@ use Hanzo\Model\map\EventsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseEventsPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseEventsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Events';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Events';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.Events';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'EventsTableMap';

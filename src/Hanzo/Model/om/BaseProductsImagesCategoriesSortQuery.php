@@ -56,7 +56,7 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery;
  * @method     array findByProductsImagesId(int $products_images_id) Return ProductsImagesCategoriesSort objects filtered by the products_images_id column
  * @method     array findBySort(int $sort) Return ProductsImagesCategoriesSort objects filtered by the sort column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 {

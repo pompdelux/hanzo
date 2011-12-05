@@ -23,7 +23,7 @@ use Hanzo\Model\CustomersQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 {
@@ -40,6 +40,12 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 * @var        ConsultantsInfoPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the consultants_id field.
@@ -926,13 +932,30 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
-		$copyObj->setConsultantsId($this->getConsultantsId());
 		$copyObj->setDescription($this->getDescription());
 		$copyObj->setMaxNotified($this->getMaxNotified());
 		$copyObj->setLatitude($this->getLatitude());
 		$copyObj->setLongitude($this->getLongitude());
+
+		if ($deepCopy && !$this->startCopy) {
+			// important: temporarily setNew(false) because this affects the behavior of
+			// the getter/setter methods for fkey referrer objects.
+			$copyObj->setNew(false);
+			// store object hash to prevent cycle
+			$this->startCopy = true;
+
+			$relObj = $this->getCustomers();
+			if ($relObj) {
+				$copyObj->setCustomers($relObj->copy($deepCopy));
+			}
+
+			//unflag object copy
+			$this->startCopy = false;
+		} // if ($deepCopy)
+
 		if ($makeNew) {
 			$copyObj->setNew(true);
+			$copyObj->setConsultantsId(NULL); // this is a auto-increment column, so set to default value
 		}
 	}
 

@@ -28,7 +28,7 @@ use Hanzo\Model\ProductsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsDomainsPrices extends BaseObject  implements Persistent
 {
@@ -45,6 +45,12 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	 * @var        ProductsDomainsPricesPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the products_id field.
@@ -1107,6 +1113,18 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		$copyObj->setCurrencyCode($this->getCurrencyCode());
 		$copyObj->setFromDate($this->getFromDate());
 		$copyObj->setToDate($this->getToDate());
+
+		if ($deepCopy && !$this->startCopy) {
+			// important: temporarily setNew(false) because this affects the behavior of
+			// the getter/setter methods for fkey referrer objects.
+			$copyObj->setNew(false);
+			// store object hash to prevent cycle
+			$this->startCopy = true;
+
+			//unflag object copy
+			$this->startCopy = false;
+		} // if ($deepCopy)
+
 		if ($makeNew) {
 			$copyObj->setNew(true);
 		}

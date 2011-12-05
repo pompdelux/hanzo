@@ -51,7 +51,7 @@ use Hanzo\Model\OrdersAttributesQuery;
  * @method     array findByCValue(string $c_value) Return OrdersAttributes objects filtered by the c_value column
  * @method     array findByOrdersId(int $orders_id) Return OrdersAttributes objects filtered by the orders_id column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersAttributesQuery extends ModelCriteria
 {

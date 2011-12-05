@@ -19,7 +19,7 @@ use Hanzo\Model\map\MannequinImagesTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseMannequinImagesPeer {
 
@@ -33,7 +33,7 @@ abstract class BaseMannequinImagesPeer {
 	const OM_CLASS = 'Hanzo\\Model\\MannequinImages';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.MannequinImages';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.MannequinImages';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'MannequinImagesTableMap';

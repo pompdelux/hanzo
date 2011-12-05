@@ -51,7 +51,7 @@ use Hanzo\Model\OrdersSyncLogQuery;
  * @method     array findByState(string $state) Return OrdersSyncLog objects filtered by the state column
  * @method     array findByContent(string $content) Return OrdersSyncLog objects filtered by the content column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 {

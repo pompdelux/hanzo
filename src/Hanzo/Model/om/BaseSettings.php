@@ -24,7 +24,7 @@ use Hanzo\Model\SettingsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseSettings extends BaseObject  implements Persistent
 {
@@ -41,6 +41,12 @@ abstract class BaseSettings extends BaseObject  implements Persistent
 	 * @var        SettingsPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the c_key field.

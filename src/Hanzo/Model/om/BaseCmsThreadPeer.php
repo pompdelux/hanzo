@@ -20,7 +20,7 @@ use Hanzo\Model\map\CmsThreadTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCmsThreadPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseCmsThreadPeer {
 	const OM_CLASS = 'Hanzo\\Model\\CmsThread';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.CmsThread';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.CmsThread';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CmsThreadTableMap';

@@ -63,7 +63,7 @@ use Hanzo\Model\Products;
  * @method     array findByWeight(int $weight) Return MannequinImages objects filtered by the weight column
  * @method     array findByIsMain(boolean $is_main) Return MannequinImages objects filtered by the is_main column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseMannequinImagesQuery extends ModelCriteria
 {

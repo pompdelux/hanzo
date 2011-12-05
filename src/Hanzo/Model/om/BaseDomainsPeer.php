@@ -20,7 +20,7 @@ use Hanzo\Model\map\DomainsTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseDomainsPeer {
 
@@ -34,7 +34,7 @@ abstract class BaseDomainsPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Domains';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Domains';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.Domains';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'DomainsTableMap';

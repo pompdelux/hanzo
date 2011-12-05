@@ -16,7 +16,7 @@ use \TableMap;
  * ORDER BY clause to know whether it needs to apply SQL to make the ORDER BY case-insensitive
  * (i.e. if it's a text column type).
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map
+ * @package    propel.generator.src.Hanzo.Model.map
  */
 class ProductsWashingInstructionsTableMap extends TableMap
 {
@@ -24,7 +24,7 @@ class ProductsWashingInstructionsTableMap extends TableMap
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.map.ProductsWashingInstructionsTableMap';
+	const CLASS_NAME = 'src.Hanzo.Model.map.ProductsWashingInstructionsTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -39,7 +39,7 @@ class ProductsWashingInstructionsTableMap extends TableMap
 		$this->setName('products_washing_instructions');
 		$this->setPhpName('ProductsWashingInstructions');
 		$this->setClassname('Hanzo\\Model\\ProductsWashingInstructions');
-		$this->setPackage('home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model');
+		$this->setPackage('src.Hanzo.Model');
 		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);

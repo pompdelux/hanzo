@@ -57,7 +57,7 @@ use Hanzo\Model\ProductsImagesQuery;
  * @method     array findByProductsId(int $products_id) Return ProductsImages objects filtered by the products_id column
  * @method     array findByImage(string $image) Return ProductsImages objects filtered by the image column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsImagesQuery extends ModelCriteria
 {

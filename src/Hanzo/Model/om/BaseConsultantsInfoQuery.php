@@ -55,7 +55,7 @@ use Hanzo\Model\Customers;
  * @method     array findByLatitude(double $latitude) Return ConsultantsInfo objects filtered by the latitude column
  * @method     array findByLongitude(double $longitude) Return ConsultantsInfo objects filtered by the longitude column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseConsultantsInfoQuery extends ModelCriteria
 {

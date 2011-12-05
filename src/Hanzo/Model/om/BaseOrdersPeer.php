@@ -22,7 +22,7 @@ use Hanzo\Model\map\OrdersTableMap;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersPeer {
 
@@ -36,7 +36,7 @@ abstract class BaseOrdersPeer {
 	const OM_CLASS = 'Hanzo\\Model\\Orders';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.Orders';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.Orders';
 
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'OrdersTableMap';

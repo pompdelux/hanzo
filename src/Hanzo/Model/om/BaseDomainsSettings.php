@@ -23,7 +23,7 @@ use Hanzo\Model\DomainsSettingsQuery;
  *
  * 
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseDomainsSettings extends BaseObject  implements Persistent
 {
@@ -40,6 +40,12 @@ abstract class BaseDomainsSettings extends BaseObject  implements Persistent
 	 * @var        DomainsSettingsPeer
 	 */
 	protected static $peer;
+
+	/**
+	 * The flag var to prevent infinit loop in deep copy
+	 * @var       boolean
+	 */
+	protected $startCopy = false;
 
 	/**
 	 * The value for the id field.
@@ -907,6 +913,18 @@ abstract class BaseDomainsSettings extends BaseObject  implements Persistent
 		$copyObj->setCKey($this->getCKey());
 		$copyObj->setNs($this->getNs());
 		$copyObj->setCValue($this->getCValue());
+
+		if ($deepCopy && !$this->startCopy) {
+			// important: temporarily setNew(false) because this affects the behavior of
+			// the getter/setter methods for fkey referrer objects.
+			$copyObj->setNew(false);
+			// store object hash to prevent cycle
+			$this->startCopy = true;
+
+			//unflag object copy
+			$this->startCopy = false;
+		} // if ($deepCopy)
+
 		if ($makeNew) {
 			$copyObj->setNew(true);
 			$copyObj->setId(NULL); // this is a auto-increment column, so set to default value

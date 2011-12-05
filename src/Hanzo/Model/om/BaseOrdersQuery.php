@@ -174,7 +174,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     array findByCreatedAt(string $created_at) Return Orders objects filtered by the created_at column
  * @method     array findByUpdatedAt(string $updated_at) Return Orders objects filtered by the updated_at column
  *
- * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/hanzo/src/Hanzo/Model.om
+ * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersQuery extends ModelCriteria
 {
