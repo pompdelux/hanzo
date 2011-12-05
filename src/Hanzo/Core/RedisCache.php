@@ -2,18 +2,18 @@
 
 namespace Hanzo\Core;
 
-class CoreCache
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class RedisCache
 {
     protected $cache = NULL;
-    protected $prefix = 'hanzo.cache:';
+    protected static $prefix = 'hanzo.cache:';
 
-    /**
-     * setup the cache engine - here redis
-     */
     public function __construct($container)
     {
         $this->cache = $container->get('snc_redis.default_client');
     }
+
 
     /**
      * check if a cache key exists
@@ -38,11 +38,11 @@ class CoreCache
     {
         self::checkId($key);
 
-        $data = $this->cache->get($key);
+        $data = stripslashes($this->cache->get($key));
 
         // unserialize the cached data if needed
         if ($data && (substr($data, 0, 5) == ':[S]:')) {
-            $data = unserialize(str_replace(':[S]:', $data));
+            $data = unserialize(substr($data, 5));
         }
 
         return $data;
@@ -99,7 +99,13 @@ class CoreCache
      */
     public function id()
     {
-        return $this->prefix . implode(':', func_get_args());
+        $arguments = func_get_args();
+
+        if (is_array($arguments[0])) {
+            $arguments = $arguments[0];
+        }
+
+        return self::$prefix . implode(':', $arguments);
     }
 
     /**
@@ -111,8 +117,16 @@ class CoreCache
      */
     protected static function checkId($key)
     {
-        if (empty($key) || !is_string($key) || !is_integer($key)) {
+        if (is_array($key)) {
+            $key = self::id($key);
+        }
+
+        if (empty($key) || !is_string($key)) {
           throw new \InvalidArgumentException("Only strings are accepted as cache keys.", 200);
+        }
+
+        if (substr($key, 0, strlen(self::$prefix)) != self::$prefix) {
+          throw new \InvalidArgumentException("Keys must be prefixed - use CoreCache::id() to build a valid key.", 300);
         }
 
         return $key;
