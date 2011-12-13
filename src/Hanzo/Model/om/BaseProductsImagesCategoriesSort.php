@@ -832,6 +832,7 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject  implements P
 		$criteria = new Criteria(ProductsImagesCategoriesSortPeer::DATABASE_NAME);
 		$criteria->add(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $this->products_id);
 		$criteria->add(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $this->categories_id);
+		$criteria->add(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $this->products_images_id);
 
 		return $criteria;
 	}
@@ -846,6 +847,7 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject  implements P
 		$pks = array();
 		$pks[0] = $this->getProductsId();
 		$pks[1] = $this->getCategoriesId();
+		$pks[2] = $this->getProductsImagesId();
 
 		return $pks;
 	}
@@ -860,6 +862,7 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject  implements P
 	{
 		$this->setProductsId($keys[0]);
 		$this->setCategoriesId($keys[1]);
+		$this->setProductsImagesId($keys[2]);
 	}
 
 	/**
@@ -868,7 +871,7 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject  implements P
 	 */
 	public function isPrimaryKeyNull()
 	{
-		return (null === $this->getProductsId()) && (null === $this->getCategoriesId());
+		return (null === $this->getProductsId()) && (null === $this->getCategoriesId()) && (null === $this->getProductsImagesId());
 	}
 
 	/**

@@ -304,7 +304,7 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getCategoriesId()));
+				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getCategoriesId(), (string) $obj->getProductsImagesId()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -324,10 +324,10 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof ProductsImagesCategoriesSort) {
-				$key = serialize(array((string) $value->getProductsId(), (string) $value->getCategoriesId()));
-			} elseif (is_array($value) && count($value) === 2) {
+				$key = serialize(array((string) $value->getProductsId(), (string) $value->getCategoriesId(), (string) $value->getProductsImagesId()));
+			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
-				$key = serialize(array((string) $value[0], (string) $value[1]));
+				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));
 			} else {
 				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or ProductsImagesCategoriesSort object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
@@ -388,10 +388,10 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 	public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
 	{
 		// If the PK cannot be derived from the row, return NULL.
-		if ($row[$startcol] === null && $row[$startcol + 1] === null) {
+		if ($row[$startcol] === null && $row[$startcol + 1] === null && $row[$startcol + 2] === null) {
 			return null;
 		}
-		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1]));
+		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1], (string) $row[$startcol + 2]));
 	}
 
 	/**
@@ -405,7 +405,7 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 	 */
 	public static function getPrimaryKeyFromRow($row, $startcol = 0)
 	{
-		return array((int) $row[$startcol], (int) $row[$startcol + 1]);
+		return array((int) $row[$startcol], (int) $row[$startcol + 1], (int) $row[$startcol + 2]);
 	}
 	
 	/**
@@ -1201,6 +1201,14 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 				$selectCriteria->setPrimaryTableName(ProductsImagesCategoriesSortPeer::TABLE_NAME);
 			}
 
+			$comparison = $criteria->getComparison(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID);
+			$value = $criteria->remove(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID);
+			if ($value) {
+				$selectCriteria->add(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $value, $comparison);
+			} else {
+				$selectCriteria->setPrimaryTableName(ProductsImagesCategoriesSortPeer::TABLE_NAME);
+			}
+
 		} else { // $values is ProductsImagesCategoriesSort object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
@@ -1282,6 +1290,7 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 			foreach ($values as $value) {
 				$criterion = $criteria->getNewCriterion(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $value[0]);
 				$criterion->addAnd($criteria->getNewCriterion(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $value[1]));
+				$criterion->addAnd($criteria->getNewCriterion(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $value[2]));
 				$criteria->addOr($criterion);
 				// we can invalidate the cache for this single PK
 				ProductsImagesCategoriesSortPeer::removeInstanceFromPool($value);
@@ -1349,11 +1358,12 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 	 * Retrieve object using using composite pkey values.
 	 * @param      int $products_id
 	 * @param      int $categories_id
+	 * @param      int $products_images_id
 	 * @param      PropelPDO $con
 	 * @return     ProductsImagesCategoriesSort
 	 */
-	public static function retrieveByPK($products_id, $categories_id, PropelPDO $con = null) {
-		$_instancePoolKey = serialize(array((string) $products_id, (string) $categories_id));
+	public static function retrieveByPK($products_id, $categories_id, $products_images_id, PropelPDO $con = null) {
+		$_instancePoolKey = serialize(array((string) $products_id, (string) $categories_id, (string) $products_images_id));
  		if (null !== ($obj = ProductsImagesCategoriesSortPeer::getInstanceFromPool($_instancePoolKey))) {
  			return $obj;
 		}
@@ -1364,6 +1374,7 @@ abstract class BaseProductsImagesCategoriesSortPeer {
 		$criteria = new Criteria(ProductsImagesCategoriesSortPeer::DATABASE_NAME);
 		$criteria->add(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $products_id);
 		$criteria->add(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $categories_id);
+		$criteria->add(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $products_images_id);
 		$v = ProductsImagesCategoriesSortPeer::doSelect($criteria, $con);
 
 		return !empty($v) ? $v[0] : null;

@@ -430,7 +430,7 @@ abstract class BaseProductsImagesQuery extends ModelCriteria
 	 *
 	 * @return    ProductsImagesQuery The current query, for fluid interface
 	 */
-	public function joinProductsImagesCategoriesSort($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function joinProductsImagesCategoriesSort($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		$tableMap = $this->getTableMap();
 		$relationMap = $tableMap->getRelation('ProductsImagesCategoriesSort');
@@ -465,7 +465,7 @@ abstract class BaseProductsImagesQuery extends ModelCriteria
 	 *
 	 * @return    \Hanzo\Model\ProductsImagesCategoriesSortQuery A secondary query class using the current class as primary query
 	 */
-	public function useProductsImagesCategoriesSortQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function useProductsImagesCategoriesSortQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		return $this
 			->joinProductsImagesCategoriesSort($relationAlias, $joinType)

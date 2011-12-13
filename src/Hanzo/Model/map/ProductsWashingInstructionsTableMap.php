@@ -44,7 +44,7 @@ class ProductsWashingInstructionsTableMap extends TableMap
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addColumn('CODE', 'Code', 'INTEGER', true, null, null);
-		$this->addForeignKey('LANGUAGES_ID', 'LanguagesId', 'INTEGER', 'languages', 'ID', true, null, null);
+		$this->addForeignKey('LOCALE', 'Locale', 'VARCHAR', 'languages', 'LOCALE', true, 5, null);
 		$this->addColumn('DESCRIPTION', 'Description', 'LONGVARCHAR', true, null, null);
 		// validators
 	} // initialize()
@@ -54,7 +54,7 @@ class ProductsWashingInstructionsTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Languages', 'Hanzo\\Model\\Languages', RelationMap::MANY_TO_ONE, array('languages_id' => 'id', ), 'CASCADE', null);
+		$this->addRelation('Languages', 'Hanzo\\Model\\Languages', RelationMap::MANY_TO_ONE, array('locale' => 'locale', ), 'CASCADE', null);
 	} // buildRelations()
 
 } // ProductsWashingInstructionsTableMap

@@ -102,10 +102,10 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 	 * Go fast if the query is untouched.
 	 *
 	 * <code>
-	 * $obj = $c->findPk(array(12, 34), $con);
+	 * $obj = $c->findPk(array(12, 34, 56), $con);
 	 * </code>
 	 *
-	 * @param     array[$products_id, $categories_id] $key Primary key to use for the query
+	 * @param     array[$products_id, $categories_id, $products_images_id] $key Primary key to use for the query
 	 * @param     PropelPDO $con an optional connection object
 	 *
 	 * @return    ProductsImagesCategoriesSort|array|mixed the result, formatted by the current formatter
@@ -115,7 +115,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 		if ($key === null) {
 			return null;
 		}
-		if ((null !== ($obj = ProductsImagesCategoriesSortPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
+		if ((null !== ($obj = ProductsImagesCategoriesSortPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1], (string) $key[2]))))) && !$this->formatter) {
 			// the object is alredy in the instance pool
 			return $obj;
 		}
@@ -143,11 +143,12 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `PRODUCTS_ID`, `CATEGORIES_ID`, `PRODUCTS_IMAGES_ID`, `SORT` FROM `products_images_categories_sort` WHERE `PRODUCTS_ID` = :p0 AND `CATEGORIES_ID` = :p1';
+		$sql = 'SELECT `PRODUCTS_ID`, `CATEGORIES_ID`, `PRODUCTS_IMAGES_ID`, `SORT` FROM `products_images_categories_sort` WHERE `PRODUCTS_ID` = :p0 AND `CATEGORIES_ID` = :p1 AND `PRODUCTS_IMAGES_ID` = :p2';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
 			$stmt->bindValue(':p1', $key[1], PDO::PARAM_INT);
+			$stmt->bindValue(':p2', $key[2], PDO::PARAM_INT);
 			$stmt->execute();
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -157,7 +158,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsImagesCategoriesSort();
 			$obj->hydrate($row);
-			ProductsImagesCategoriesSortPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1])));
+			ProductsImagesCategoriesSortPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1], (string) $row[2])));
 		}
 		$stmt->closeCursor();
 
@@ -216,6 +217,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 	{
 		$this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $key[0], Criteria::EQUAL);
 		$this->addUsingAlias(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $key[1], Criteria::EQUAL);
+		$this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $key[2], Criteria::EQUAL);
 
 		return $this;
 	}
@@ -236,6 +238,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 			$cton0 = $this->getNewCriterion(ProductsImagesCategoriesSortPeer::PRODUCTS_ID, $key[0], Criteria::EQUAL);
 			$cton1 = $this->getNewCriterion(ProductsImagesCategoriesSortPeer::CATEGORIES_ID, $key[1], Criteria::EQUAL);
 			$cton0->addAnd($cton1);
+			$cton2 = $this->getNewCriterion(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $key[2], Criteria::EQUAL);
+			$cton0->addAnd($cton2);
 			$this->addOr($cton0);
 		}
 
@@ -318,22 +322,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 	 */
 	public function filterByProductsImagesId($productsImagesId = null, $comparison = null)
 	{
-		if (is_array($productsImagesId)) {
-			$useMinMax = false;
-			if (isset($productsImagesId['min'])) {
-				$this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $productsImagesId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($productsImagesId['max'])) {
-				$this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $productsImagesId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
+		if (is_array($productsImagesId) && null === $comparison) {
+			$comparison = Criteria::IN;
 		}
 		return $this->addUsingAlias(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID, $productsImagesId, $comparison);
 	}
@@ -484,7 +474,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 	 *
 	 * @return    ProductsImagesCategoriesSortQuery The current query, for fluid interface
 	 */
-	public function joinProductsImages($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function joinProductsImages($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		$tableMap = $this->getTableMap();
 		$relationMap = $tableMap->getRelation('ProductsImages');
@@ -519,7 +509,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 	 *
 	 * @return    \Hanzo\Model\ProductsImagesQuery A secondary query class using the current class as primary query
 	 */
-	public function useProductsImagesQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function useProductsImagesQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		return $this
 			->joinProductsImages($relationAlias, $joinType)
@@ -538,7 +528,8 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 		if ($productsImagesCategoriesSort) {
 			$this->addCond('pruneCond0', $this->getAliasedColName(ProductsImagesCategoriesSortPeer::PRODUCTS_ID), $productsImagesCategoriesSort->getProductsId(), Criteria::NOT_EQUAL);
 			$this->addCond('pruneCond1', $this->getAliasedColName(ProductsImagesCategoriesSortPeer::CATEGORIES_ID), $productsImagesCategoriesSort->getCategoriesId(), Criteria::NOT_EQUAL);
-			$this->combine(array('pruneCond0', 'pruneCond1'), Criteria::LOGICAL_OR);
+			$this->addCond('pruneCond2', $this->getAliasedColName(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID), $productsImagesCategoriesSort->getProductsImagesId(), Criteria::NOT_EQUAL);
+			$this->combine(array('pruneCond0', 'pruneCond1', 'pruneCond2'), Criteria::LOGICAL_OR);
 		}
 
 		return $this;

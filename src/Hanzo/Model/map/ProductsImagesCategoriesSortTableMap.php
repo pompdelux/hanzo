@@ -44,7 +44,7 @@ class ProductsImagesCategoriesSortTableMap extends TableMap
 		// columns
 		$this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
 		$this->addPrimaryKey('CATEGORIES_ID', 'CategoriesId', 'INTEGER', true, null, null);
-		$this->addForeignKey('PRODUCTS_IMAGES_ID', 'ProductsImagesId', 'INTEGER', 'products_images', 'ID', false, null, null);
+		$this->addForeignPrimaryKey('PRODUCTS_IMAGES_ID', 'ProductsImagesId', 'INTEGER' , 'products_images', 'ID', true, null, null);
 		$this->addColumn('SORT', 'Sort', 'INTEGER', false, null, null);
 		// validators
 	} // initialize()

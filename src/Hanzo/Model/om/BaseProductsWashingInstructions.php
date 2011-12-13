@@ -60,10 +60,10 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	protected $code;
 
 	/**
-	 * The value for the languages_id field.
-	 * @var        int
+	 * The value for the locale field.
+	 * @var        string
 	 */
-	protected $languages_id;
+	protected $locale;
 
 	/**
 	 * The value for the description field.
@@ -111,13 +111,13 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	}
 
 	/**
-	 * Get the [languages_id] column value.
+	 * Get the [locale] column value.
 	 * 
-	 * @return     int
+	 * @return     string
 	 */
-	public function getLanguagesId()
+	public function getLocale()
 	{
-		return $this->languages_id;
+		return $this->locale;
 	}
 
 	/**
@@ -171,28 +171,28 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	} // setCode()
 
 	/**
-	 * Set the value of [languages_id] column.
+	 * Set the value of [locale] column.
 	 * 
-	 * @param      int $v new value
+	 * @param      string $v new value
 	 * @return     ProductsWashingInstructions The current object (for fluent API support)
 	 */
-	public function setLanguagesId($v)
+	public function setLocale($v)
 	{
 		if ($v !== null) {
-			$v = (int) $v;
+			$v = (string) $v;
 		}
 
-		if ($this->languages_id !== $v) {
-			$this->languages_id = $v;
-			$this->modifiedColumns[] = ProductsWashingInstructionsPeer::LANGUAGES_ID;
+		if ($this->locale !== $v) {
+			$this->locale = $v;
+			$this->modifiedColumns[] = ProductsWashingInstructionsPeer::LOCALE;
 		}
 
-		if ($this->aLanguages !== null && $this->aLanguages->getId() !== $v) {
+		if ($this->aLanguages !== null && $this->aLanguages->getLocale() !== $v) {
 			$this->aLanguages = null;
 		}
 
 		return $this;
-	} // setLanguagesId()
+	} // setLocale()
 
 	/**
 	 * Set the value of [description] column.
@@ -248,7 +248,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->code = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
-			$this->languages_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
+			$this->locale = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->description = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->resetModified();
 
@@ -281,7 +281,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	public function ensureConsistency()
 	{
 
-		if ($this->aLanguages !== null && $this->languages_id !== $this->aLanguages->getId()) {
+		if ($this->aLanguages !== null && $this->locale !== $this->aLanguages->getLocale()) {
 			$this->aLanguages = null;
 		}
 	} // ensureConsistency
@@ -488,8 +488,8 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 		if ($this->isColumnModified(ProductsWashingInstructionsPeer::CODE)) {
 			$modifiedColumns[':p' . $index++]  = '`CODE`';
 		}
-		if ($this->isColumnModified(ProductsWashingInstructionsPeer::LANGUAGES_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`LANGUAGES_ID`';
+		if ($this->isColumnModified(ProductsWashingInstructionsPeer::LOCALE)) {
+			$modifiedColumns[':p' . $index++]  = '`LOCALE`';
 		}
 		if ($this->isColumnModified(ProductsWashingInstructionsPeer::DESCRIPTION)) {
 			$modifiedColumns[':p' . $index++]  = '`DESCRIPTION`';
@@ -511,8 +511,8 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 					case '`CODE`':
 						$stmt->bindValue($identifier, $this->code, PDO::PARAM_INT);
 						break;
-					case '`LANGUAGES_ID`':
-						$stmt->bindValue($identifier, $this->languages_id, PDO::PARAM_INT);
+					case '`LOCALE`':
+						$stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
 						break;
 					case '`DESCRIPTION`':
 						$stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
@@ -666,7 +666,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 				return $this->getCode();
 				break;
 			case 2:
-				return $this->getLanguagesId();
+				return $this->getLocale();
 				break;
 			case 3:
 				return $this->getDescription();
@@ -702,7 +702,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 		$result = array(
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getCode(),
-			$keys[2] => $this->getLanguagesId(),
+			$keys[2] => $this->getLocale(),
 			$keys[3] => $this->getDescription(),
 		);
 		if ($includeForeignObjects) {
@@ -747,7 +747,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 				$this->setCode($value);
 				break;
 			case 2:
-				$this->setLanguagesId($value);
+				$this->setLocale($value);
 				break;
 			case 3:
 				$this->setDescription($value);
@@ -778,7 +778,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setCode($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setLanguagesId($arr[$keys[2]]);
+		if (array_key_exists($keys[2], $arr)) $this->setLocale($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setDescription($arr[$keys[3]]);
 	}
 
@@ -793,7 +793,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 
 		if ($this->isColumnModified(ProductsWashingInstructionsPeer::ID)) $criteria->add(ProductsWashingInstructionsPeer::ID, $this->id);
 		if ($this->isColumnModified(ProductsWashingInstructionsPeer::CODE)) $criteria->add(ProductsWashingInstructionsPeer::CODE, $this->code);
-		if ($this->isColumnModified(ProductsWashingInstructionsPeer::LANGUAGES_ID)) $criteria->add(ProductsWashingInstructionsPeer::LANGUAGES_ID, $this->languages_id);
+		if ($this->isColumnModified(ProductsWashingInstructionsPeer::LOCALE)) $criteria->add(ProductsWashingInstructionsPeer::LOCALE, $this->locale);
 		if ($this->isColumnModified(ProductsWashingInstructionsPeer::DESCRIPTION)) $criteria->add(ProductsWashingInstructionsPeer::DESCRIPTION, $this->description);
 
 		return $criteria;
@@ -858,7 +858,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
 		$copyObj->setCode($this->getCode());
-		$copyObj->setLanguagesId($this->getLanguagesId());
+		$copyObj->setLocale($this->getLocale());
 		$copyObj->setDescription($this->getDescription());
 
 		if ($deepCopy && !$this->startCopy) {
@@ -926,9 +926,9 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	public function setLanguages(Languages $v = null)
 	{
 		if ($v === null) {
-			$this->setLanguagesId(NULL);
+			$this->setLocale(NULL);
 		} else {
-			$this->setLanguagesId($v->getId());
+			$this->setLocale($v->getLocale());
 		}
 
 		$this->aLanguages = $v;
@@ -952,8 +952,10 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	 */
 	public function getLanguages(PropelPDO $con = null)
 	{
-		if ($this->aLanguages === null && ($this->languages_id !== null)) {
-			$this->aLanguages = LanguagesQuery::create()->findPk($this->languages_id, $con);
+		if ($this->aLanguages === null && (($this->locale !== "" && $this->locale !== null))) {
+			$this->aLanguages = LanguagesQuery::create()
+				->filterByProductsWashingInstructions($this) // here
+				->findOne($con);
 			/* The following can be used additionally to
 				guarantee the related object contains a reference
 				to this object.  This level of coupling may, however, be
@@ -972,7 +974,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	{
 		$this->id = null;
 		$this->code = null;
-		$this->languages_id = null;
+		$this->locale = null;
 		$this->description = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;

@@ -53,8 +53,8 @@ abstract class BaseProductsWashingInstructionsPeer {
 	/** the column name for the CODE field */
 	const CODE = 'products_washing_instructions.CODE';
 
-	/** the column name for the LANGUAGES_ID field */
-	const LANGUAGES_ID = 'products_washing_instructions.LANGUAGES_ID';
+	/** the column name for the LOCALE field */
+	const LOCALE = 'products_washing_instructions.LOCALE';
 
 	/** the column name for the DESCRIPTION field */
 	const DESCRIPTION = 'products_washing_instructions.DESCRIPTION';
@@ -78,11 +78,11 @@ abstract class BaseProductsWashingInstructionsPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'LanguagesId', 'Description', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'languagesId', 'description', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::CODE, self::LANGUAGES_ID, self::DESCRIPTION, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'LANGUAGES_ID', 'DESCRIPTION', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'languages_id', 'description', ),
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Locale', 'Description', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'locale', 'description', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::CODE, self::LOCALE, self::DESCRIPTION, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'LOCALE', 'DESCRIPTION', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'locale', 'description', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
@@ -93,11 +93,11 @@ abstract class BaseProductsWashingInstructionsPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'LanguagesId' => 2, 'Description' => 3, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'languagesId' => 2, 'description' => 3, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::CODE => 1, self::LANGUAGES_ID => 2, self::DESCRIPTION => 3, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'LANGUAGES_ID' => 2, 'DESCRIPTION' => 3, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'languages_id' => 2, 'description' => 3, ),
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Locale' => 2, 'Description' => 3, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'locale' => 2, 'description' => 3, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::CODE => 1, self::LOCALE => 2, self::DESCRIPTION => 3, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'LOCALE' => 2, 'DESCRIPTION' => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'locale' => 2, 'description' => 3, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
@@ -172,12 +172,12 @@ abstract class BaseProductsWashingInstructionsPeer {
 		if (null === $alias) {
 			$criteria->addSelectColumn(ProductsWashingInstructionsPeer::ID);
 			$criteria->addSelectColumn(ProductsWashingInstructionsPeer::CODE);
-			$criteria->addSelectColumn(ProductsWashingInstructionsPeer::LANGUAGES_ID);
+			$criteria->addSelectColumn(ProductsWashingInstructionsPeer::LOCALE);
 			$criteria->addSelectColumn(ProductsWashingInstructionsPeer::DESCRIPTION);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.CODE');
-			$criteria->addSelectColumn($alias . '.LANGUAGES_ID');
+			$criteria->addSelectColumn($alias . '.LOCALE');
 			$criteria->addSelectColumn($alias . '.DESCRIPTION');
 		}
 	}
@@ -501,7 +501,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 			$con = Propel::getConnection(ProductsWashingInstructionsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(ProductsWashingInstructionsPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
+		$criteria->addJoin(ProductsWashingInstructionsPeer::LOCALE, LanguagesPeer::LOCALE, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -537,7 +537,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 		$startcol = ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS;
 		LanguagesPeer::addSelectColumns($criteria);
 
-		$criteria->addJoin(ProductsWashingInstructionsPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
+		$criteria->addJoin(ProductsWashingInstructionsPeer::LOCALE, LanguagesPeer::LOCALE, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
@@ -617,7 +617,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 			$con = Propel::getConnection(ProductsWashingInstructionsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(ProductsWashingInstructionsPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
+		$criteria->addJoin(ProductsWashingInstructionsPeer::LOCALE, LanguagesPeer::LOCALE, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -655,7 +655,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 		LanguagesPeer::addSelectColumns($criteria);
 		$startcol3 = $startcol2 + LanguagesPeer::NUM_HYDRATE_COLUMNS;
 
-		$criteria->addJoin(ProductsWashingInstructionsPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
+		$criteria->addJoin(ProductsWashingInstructionsPeer::LOCALE, LanguagesPeer::LOCALE, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();

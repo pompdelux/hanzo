@@ -22,12 +22,12 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
  *
  * @method     ProductsWashingInstructionsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method     ProductsWashingInstructionsQuery orderByCode($order = Criteria::ASC) Order by the code column
- * @method     ProductsWashingInstructionsQuery orderByLanguagesId($order = Criteria::ASC) Order by the languages_id column
+ * @method     ProductsWashingInstructionsQuery orderByLocale($order = Criteria::ASC) Order by the locale column
  * @method     ProductsWashingInstructionsQuery orderByDescription($order = Criteria::ASC) Order by the description column
  *
  * @method     ProductsWashingInstructionsQuery groupById() Group by the id column
  * @method     ProductsWashingInstructionsQuery groupByCode() Group by the code column
- * @method     ProductsWashingInstructionsQuery groupByLanguagesId() Group by the languages_id column
+ * @method     ProductsWashingInstructionsQuery groupByLocale() Group by the locale column
  * @method     ProductsWashingInstructionsQuery groupByDescription() Group by the description column
  *
  * @method     ProductsWashingInstructionsQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -43,12 +43,12 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
  *
  * @method     ProductsWashingInstructions findOneById(int $id) Return the first ProductsWashingInstructions filtered by the id column
  * @method     ProductsWashingInstructions findOneByCode(int $code) Return the first ProductsWashingInstructions filtered by the code column
- * @method     ProductsWashingInstructions findOneByLanguagesId(int $languages_id) Return the first ProductsWashingInstructions filtered by the languages_id column
+ * @method     ProductsWashingInstructions findOneByLocale(string $locale) Return the first ProductsWashingInstructions filtered by the locale column
  * @method     ProductsWashingInstructions findOneByDescription(string $description) Return the first ProductsWashingInstructions filtered by the description column
  *
  * @method     array findById(int $id) Return ProductsWashingInstructions objects filtered by the id column
  * @method     array findByCode(int $code) Return ProductsWashingInstructions objects filtered by the code column
- * @method     array findByLanguagesId(int $languages_id) Return ProductsWashingInstructions objects filtered by the languages_id column
+ * @method     array findByLocale(string $locale) Return ProductsWashingInstructions objects filtered by the locale column
  * @method     array findByDescription(string $description) Return ProductsWashingInstructions objects filtered by the description column
  *
  * @package    propel.generator.src.Hanzo.Model.om
@@ -138,7 +138,7 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `CODE`, `LANGUAGES_ID`, `DESCRIPTION` FROM `products_washing_instructions` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `CODE`, `LOCALE`, `DESCRIPTION` FROM `products_washing_instructions` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -290,45 +290,31 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the languages_id column
+	 * Filter the query on the locale column
 	 *
 	 * Example usage:
 	 * <code>
-	 * $query->filterByLanguagesId(1234); // WHERE languages_id = 1234
-	 * $query->filterByLanguagesId(array(12, 34)); // WHERE languages_id IN (12, 34)
-	 * $query->filterByLanguagesId(array('min' => 12)); // WHERE languages_id > 12
+	 * $query->filterByLocale('fooValue');   // WHERE locale = 'fooValue'
+	 * $query->filterByLocale('%fooValue%'); // WHERE locale LIKE '%fooValue%'
 	 * </code>
 	 *
-	 * @see       filterByLanguages()
-	 *
-	 * @param     mixed $languagesId The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $locale The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    ProductsWashingInstructionsQuery The current query, for fluid interface
 	 */
-	public function filterByLanguagesId($languagesId = null, $comparison = null)
+	public function filterByLocale($locale = null, $comparison = null)
 	{
-		if (is_array($languagesId)) {
-			$useMinMax = false;
-			if (isset($languagesId['min'])) {
-				$this->addUsingAlias(ProductsWashingInstructionsPeer::LANGUAGES_ID, $languagesId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($languagesId['max'])) {
-				$this->addUsingAlias(ProductsWashingInstructionsPeer::LANGUAGES_ID, $languagesId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
+		if (null === $comparison) {
+			if (is_array($locale)) {
 				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $locale)) {
+				$locale = str_replace('*', '%', $locale);
+				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(ProductsWashingInstructionsPeer::LANGUAGES_ID, $languagesId, $comparison);
+		return $this->addUsingAlias(ProductsWashingInstructionsPeer::LOCALE, $locale, $comparison);
 	}
 
 	/**
@@ -371,13 +357,13 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
 	{
 		if ($languages instanceof Languages) {
 			return $this
-				->addUsingAlias(ProductsWashingInstructionsPeer::LANGUAGES_ID, $languages->getId(), $comparison);
+				->addUsingAlias(ProductsWashingInstructionsPeer::LOCALE, $languages->getLocale(), $comparison);
 		} elseif ($languages instanceof PropelCollection) {
 			if (null === $comparison) {
 				$comparison = Criteria::IN;
 			}
 			return $this
-				->addUsingAlias(ProductsWashingInstructionsPeer::LANGUAGES_ID, $languages->toKeyValue('PrimaryKey', 'Id'), $comparison);
+				->addUsingAlias(ProductsWashingInstructionsPeer::LOCALE, $languages->toKeyValue('PrimaryKey', 'Locale'), $comparison);
 		} else {
 			throw new PropelException('filterByLanguages() only accepts arguments of type Languages or PropelCollection');
 		}

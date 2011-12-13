@@ -191,6 +191,7 @@
     <unique name="domains_settings_unique">
       <unique-column name="c_key"/>
       <unique-column name="ns"/>
+      <unique-column name="domain_key"/>
     </unique>
   </table>
 
@@ -354,7 +355,7 @@
   <table name="products_images_categories_sort">
     <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="categories_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="products_images_id" type="INTEGER" required="false"/>
+    <column name="products_images_id" type="INTEGER" primaryKey="true" required="false"/>
     <column name="sort" type="INTEGER" required="false"/>
     <foreign-key foreignTable="products" name="fk_products_images_categories_sort_1" onDelete="CASCADE">
       <reference local="products_id" foreign="id"/>
@@ -402,10 +403,10 @@
   <table name="products_washing_instructions">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="code" type="INTEGER" required="true"/>
-    <column name="languages_id" type="INTEGER" required="true"/>
+    <column name="locale" type="VARCHAR" size="5" required="true"/>
     <column name="description" type="LONGVARCHAR" required="true"/>
     <foreign-key foreignTable="languages" name="fk_products_washing_instructions_1" onDelete="CASCADE">
-      <reference local="languages_id" foreign="id"/>
+      <reference local="locale" foreign="locale"/>
     </foreign-key>
   </table>
 

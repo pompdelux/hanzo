@@ -487,7 +487,7 @@ abstract class BaseLanguagesQuery extends ModelCriteria
 	{
 		if ($productsWashingInstructions instanceof ProductsWashingInstructions) {
 			return $this
-				->addUsingAlias(LanguagesPeer::ID, $productsWashingInstructions->getLanguagesId(), $comparison);
+				->addUsingAlias(LanguagesPeer::LOCALE, $productsWashingInstructions->getLocale(), $comparison);
 		} elseif ($productsWashingInstructions instanceof PropelCollection) {
 			return $this
 				->useProductsWashingInstructionsQuery()
