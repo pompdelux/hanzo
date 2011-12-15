@@ -1,7 +1,7 @@
 parameters:
-#    category.example.class: Hanzo\Bundle\CategoryBundle\Example
+#    hanzo_category.example.class: Hanzo\Bundle\CategoryBundle\Example
 
 services:
-#    category.example:
-#        class: %category.example.class%
+#    hanzo_category.example:
+#        class: %hanzo_category.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
