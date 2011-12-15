@@ -10,6 +10,6 @@ class DefaultController extends Controller
     
     public function indexAction($name)
     {
-        return $this->render('MannequinBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('HanzoMannequinBundle:Default:index.html.twig', array('name' => $name));
     }
 }

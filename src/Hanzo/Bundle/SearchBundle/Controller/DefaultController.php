@@ -10,6 +10,6 @@ class DefaultController extends Controller
     
     public function indexAction($name)
     {
-        return $this->render('SearchBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('HanzoSearchBundle:Default:index.html.twig', array('name' => $name));
     }
 }

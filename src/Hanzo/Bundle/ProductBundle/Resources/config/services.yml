@@ -1,7 +1,7 @@
 parameters:
-#    product.example.class: Hanzo\Bundle\ProductBundle\Example
+#    hanzo_product.example.class: Hanzo\Bundle\ProductBundle\Example
 
 services:
-#    product.example:
-#        class: %product.example.class%
+#    hanzo_product.example:
+#        class: %hanzo_product.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
