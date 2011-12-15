@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<div class="product-list clearfix">
+
+{% for product in products %}
+
+  <div class="block block-num-{{ loop.index }}">
+    <a href="{{ product.url }}" title="{{ "Click for more information about %name%."|trans({'%name%' : product.name}) }}">
+      {{ image_tag(product.image, '120x240', { 'alt' : product.name }) }}
+      <span class="title">{{ product.name }}</span>
+      <span class="prices">
+        <span class="normal">{# product.normalPrice #}</span>
+        <span class="discount">{# product.discountPrice #}</span>
+      </span>
+    </a>
+  </div>
+
+{% else %}
+
+  <div class="out-of-stock">
+    {% trans %}All products in this category is out of stock.{% endtrans %}
+  </div>
+
+{% endfor %}
+
+
+{% if paginate %}
+  <div class="pager ajax" data-target="product-list">
+
+  {% if paginate.prew %}
+    <a href="{{ paginate.prew }}" title="{{ "Show previous page"|trans }}">{{ "Previous"|trans }}</a>
+  {% endif %}
+
+  {% for page, url in paginate.pages %}
+    <a href="{{ url }}" title="{{ "Show page %page%"|trans({'%page%' : page}) }}"{% if page == paginate.index %} class="active"{% endif %}>{{ page }}</a>
+  {% endfor %}
+
+  {% if paginate.next %}
+    <a href="{{ paginate.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a>
+  {% endif %}
+
+  </div>
+{% endif %}
+
+
+</div>
+{% endblock %}
