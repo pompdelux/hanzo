@@ -34,6 +34,8 @@ class Hanzo
             $session->setLocale($this->settings['core.locale']);
         }
 
+        setLocale(LC_ALL, \Locale::getDefault().'.utf-8');
+
         $this->settings['core.main_menu_thread'] = $main_menu_thread;
     }
 
@@ -55,11 +57,18 @@ class Hanzo
             $this->tld = $dev_map[$this->tld];
         }
 
-        $settings = DomainsSettingsQuery::create()->findByDomainKey($this->tld);
+        $settings = DomainsSettingsQuery::create()
+            ->joinWithDomains()
+            ->findByDomainKey($this->tld)
+        ;
+
         if (0 == $settings->count()) {
             // TODO: should we redirect the user to the default domain ?
             // by dooing this, we just pretend that the user is on .com
-            $result = DomainsSettingsQuery::create()->findByDomainKey($default);
+            $settings = DomainsSettingsQuery::create()
+                ->joinWithDomains()
+                ->findByDomainKey($default)
+            ;
         }
 
         foreach ($settings as $record) {
@@ -67,6 +76,7 @@ class Hanzo
         }
 
         if ($record) {
+            $this->settings['core.domain_id'] = $record->getDomains()->getId();
             $this->settings['core.domain_key'] = $record->getDomainKey();
 
             // handle sales donains

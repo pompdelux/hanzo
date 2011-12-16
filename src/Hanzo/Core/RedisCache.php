@@ -38,7 +38,7 @@ class RedisCache
     {
         self::checkId($key);
 
-        $data = stripslashes($this->cache->get($key));
+        $data = $this->cache->get($key);
 
         // unserialize the cached data if needed
         if ($data && (substr($data, 0, 5) == ':[S]:')) {
@@ -73,8 +73,8 @@ class RedisCache
 
         // store cache and set ttl
         return $this->cache->pipeline(function($pipe) use ($key, $data, $ttl) {
-            $pipe->set($key, $data);
-            $pipe->ttl($key, $ttl);
+            $pipe->set($key, trim($data));
+            $pipe->expire($key, $ttl);
         });
     }
 
