@@ -489,14 +489,6 @@ $(function() {
     }
   } catch (e) {}
 
-  /* hf@bellcom.dk: used for dibs card selection -->>*/
-//  $('.paymentType').click(function () {
-//      $('.paymentClass').each(function () {
-//          this.checked = false;
-//        });
-//      $('#paymentSelected').val('dibs');
-//  });
-
   $('.paymentClass').click(function () {
     $('.paymentType').each(function () {
       this.checked = false;
@@ -751,26 +743,9 @@ $(function() {
     return false;
   });
 
-  // pagination call
-  $('div#main .pager a').live('click', function() {
-    $(this).addClass('loading');
-    var req = this.href.split('?')[1] + '&type=categoryPager';
-    $.get('/ajax.php', req, function(html) {
-      $('div#main .page-browser').remove();
-      $('div#main .product-list').replaceWith(html);
-      window.scroll(0,0);
-    });
-    return false;
-  });
-
   // zoom on product images
   initCloudZoom();
 
-  // change large product image and set zoom effects.
-  // un, 2011.09.13 - removed
-  //if (tld[1] != 'dk' && tld[1] != 'com') {
-  //  $('.style-guide').hide();
-  //}
   $('.style-guide .element').hide();
 
   $('.productimage-small a').click(function(e) {
@@ -826,8 +801,8 @@ $(function() {
 
   // frontpage box
   if ($('html').hasClass('mobile') == false) {
-    $('#body-index #main a.button').wrap('<div class="btn"></div>');
-    $('#body-index #main a.button').click(function(event) {
+    $('#body-frontpage #main a.button').wrap('<div class="btn"></div>');
+    $('#body-frontpage #main a.button').click(function(event) {
       event.preventDefault();
       var $a = $(this);
       var $this = $a.parent();
@@ -1193,11 +1168,6 @@ $(function(){
       (-1 == navigator.userAgent.indexOf('OS 5_'))
   ) {
     $.fn.placeFooter();
-//    $("footer").css({
-//      position : 'absolute',
-//      height: $('footer').height() + 'px',
-//      top : ($.getDocHeight() - $('footer').outerHeight(true)) + 'px'
-//    });
 
     window.onorientationchange = function() {
       $.fn.placeFooter();

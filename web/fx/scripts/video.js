@@ -39,7 +39,7 @@ $(function() {
     $this.load('/video.php', params, function() {
       var $video = $this.find('video');
       var player = VideoJS.setup($video.attr('id'));
-      
+
       // remove the <a> tag to prevent "clicks"
       $video.closest('div.video-js-box').unwrap();
 
@@ -48,9 +48,9 @@ $(function() {
         player.play();
 
         // add tracking to analytics, but only for autoplay
-        if (_gaq != undefined) {
+        if (_gaq !== undefined) {
           var src = $video.find('source').first().attr('src');
-          if (src == undefined) {
+          if (src === undefined) {
             src = 'http://static.pompdelux.dk/video/' +params.src+ '.flv';
           }
           _gaq.push(['_trackPageview', src]);

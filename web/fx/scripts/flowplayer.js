@@ -3,13 +3,13 @@ $(function() {
   if ($('div#flowplayer-container').length) {
     // add pop player button
 
-    $('a#flowplayer').parent().before('<button href="#" rel="div.overlay" id="pop-flowplayer"> <img src="" alt="" class="thumb" /> <img src="/shared-fx/images/famfamfam/control_play.png" alt="" class="play" /> video </button>');
+    $('a#flowplayer').parent().before('<button href="#" rel="div.overlay" id="pop-flowplayer"> <img src="" alt="" class="thumb" /> <img src="/fx/scripts/flowplayer/play.png" alt="" class="play" /> video </button>');
 
     // attach main image as movie teaser image
     $('#pop-flowplayer img.thumb').attr('src', $('.productimage-large a.cloud-zoom').attr('rev'));
 
     // setup player settings
-    var player = $f("flowplayer", '/templates/pompdelux/scripts/flowplayer/flowplayer.commercial-3.2.5.swf', {
+    var player = $f("flowplayer", '/templates/pompdelux/scripts/flowplayer/flowplayer.commercial-3.2.7.swf', {
       wmode: 'opaque',
       key : [ '#@abc69980d87e1bdf4c0', '#@7420e35e69f7d145217', '#@c653c42454bc68842d6', '#@bed07fa279e220368ee' ]
     });
@@ -32,7 +32,7 @@ $(function() {
 
   // catch any flv movies embeded in cms pages
   $('div#cms-page a[href*=".flv"]').each(function() {
-    $f(this, {src : '/templates/pompdelux/scripts/flowplayer/flowplayer.commercial-3.2.5.swf'}, {
+    $f(this, {src : '/templates/pompdelux/scripts/flowplayer/flowplayer.commercial-3.2.7.swf'}, {
       wmode: 'opaque',
       key : [ '#@abc69980d87e1bdf4c0', '#@7420e35e69f7d145217', '#@c653c42454bc68842d6', '#@bed07fa279e220368ee' ],
       clip : {

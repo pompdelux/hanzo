@@ -1,7 +1,7 @@
 $(function(){
   $("#geo-zipcode-form").submit(function(e) {
     e.preventDefault();
-    $("#near-you-container").html("<div class=\"ac_loading\" style=\"height:20px;background-position:top left;padding-left:20px;\">loading...</div>");
+    $("#near-you-container").html("<div class=\"ajax-loading\" style=\"height:20px;background-position:top left;padding-left:20px;\">loading...</div>");
     $.get("/ajax.php", {type : "proxy-gm", q : $("#geo-zipcode-container #geo-zipcode").val(), country : geo_zipcode_params.country }, function(data) {
       var params = {
         type : geo_zipcode_params.type,

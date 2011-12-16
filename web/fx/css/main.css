@@ -48,7 +48,7 @@ p {
 }
 
 blockquote {
-  background-image: url(../images/citat2.png);
+  background-image: url(/fx/images/citat2.png);
   background-position: top left;
   background-repeat: no-repeat;
   padding-left: 60px;
@@ -66,14 +66,14 @@ hr {
 }
 
 .button {
-  background: #000000 url(../images/arrow_dobble_right_white.png) no-repeat center right;
+  background: #000000 url(/fx/images/arrow_dobble_right_white.png) no-repeat center right;
   padding: 2px 20px 3px 5px;
   color: #fff;
   border: none;
   font-weight: normal;
 }
 .button.left {
-  background: #000000 url(../images/arrow_dobble_left_white.png) no-repeat center left;
+  background: #000000 url(/fx/images/arrow_dobble_left_white.png) no-repeat center left;
   padding: 2px 5px 3px 20px;
 }
 .button:hover {
@@ -157,7 +157,7 @@ nav.main li.active a {
 }
 nav.main li.facebook a {
   padding-left: 40px;
-  background-image: url(../images/fb_icon.png);
+  background-image: url(/fx/images/fb_icon.png);
   background-position: 20px 6px;
   background-repeat: no-repeat;
 }
@@ -202,7 +202,7 @@ nav.sub ul {
 nav.sub li {
   float: left;
   padding: 0 10px;
-  background: url(../images/dots_webshop_topmenu.png) no-repeat center right;
+  background: url(/fx/images/dots_webshop_topmenu.png) no-repeat center right;
 }
 nav.sub li:first-child {
   padding-left: 0;
@@ -212,7 +212,7 @@ nav.sub li:last-child {
 }
 nav.sub a {
   font-weight: normal;
-  color: #fff;  
+  color: #fff;
 }
 nav.sub a:hover {
   color: #d3c2a2;
@@ -247,13 +247,13 @@ nav.sub a:hover {
 
 .teaser-box-1,
 .teaser-box-4 {
-  background-image: url(../images/615e5f.png);
+  background-image: url(/fx/images/615e5f.png);
 }
 .teaser-box-2 {
-  background-image: url(../images/997877.png);
+  background-image: url(/fx/images/997877.png);
 }
 .teaser-box-3 {
-  background-image: url(../images/778b9d.png);
+  background-image: url(/fx/images/778b9d.png);
 }
 
 
@@ -261,7 +261,7 @@ nav.sub a:hover {
 #secondary-links {
   right: 0;
   top: 0;
-  background-image: url(../images/ffffff.png);
+  background-image: url(/fx/images/ffffff.png);
   color: #000;
   padding: 5px;
 }
@@ -278,7 +278,7 @@ nav.sub a:hover {
 }
 #body-product-info .buton,
 #secondary-links ul li.basket {
-  background: url(../images/basket.png) no-repeat 10px 0;
+  background: url(/fx/images/basket.png) no-repeat 10px 0;
 }
 #secondary-links ul li.basket a {
   padding-left: 35px;
@@ -298,7 +298,7 @@ nav.sub a:hover {
 #secondary-links #select-domain div {
   position: absolute;
   top: 40px;
-  background-image: url(../images/ffffff.png);
+  background-image: url(/fx/images/ffffff.png);
   padding: 1em 0.5em;
 }
 
@@ -315,7 +315,7 @@ nav.sub a:hover {
   position: relative;
   width: 735px;
   margin: 75px auto 45px;
-  background-image: url(../images/615e5f.png);
+  background-image: url(/fx/images/615e5f.png);
   padding: 20px;
   overflow: hidden;
 }
@@ -350,7 +350,7 @@ nav.sub a:hover {
 /* index */
 
 #body-index #main {
-  background-image: url(../images/citat.png);
+  background-image: url(/fx/images/citat.png);
   background-repeat: no-repeat;
   background-position: 0 20px;
   margin-top: 440px;
@@ -360,7 +360,7 @@ nav.sub a:hover {
   position: relative;
 }
 #body-index #main div {
-  background-image: url(../images/615e5f.png);
+  background-image: url(/fx/images/615e5f.png);
   height: 100px;
   padding: 15px;
   overflow: hidden;
@@ -397,7 +397,7 @@ footer ul {
   padding: 0;
 }
 footer li {
-  background: url(../images/dots_adr_buttom.png) no-repeat center right;
+  background: url(/fx/images/dots_adr_buttom.png) no-repeat center right;
   padding: 0 10px;
   float: left;
 }
@@ -415,7 +415,7 @@ footer img {
   position: fixed;
   top: 45px;
   z-index: 2;
-  background-image: url(../images/ffffff.png);
+  background-image: url(/fx/images/ffffff.png);
   color: #000;
   text-align: center;
   padding: 5px;
@@ -472,11 +472,11 @@ footer img {
   margin-right: 15px;
 }
 #body-product-info ul.tabs li a {
-  background: url(../images/arrow_single_right_white.png) no-repeat center left;
+  background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
   padding-left: 20px;
 }
 #body-product-info ul.tabs li a.current {
-  background: url(../images/arrow_single_down_white.png) no-repeat center left;
+  background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
 }
 
 /* cataloug pages (info menu) */
@@ -492,79 +492,85 @@ nav.main li.out {
   text-align: left;
   width: 100%;
 }
-.product-list-block {
+.product-list .block {
   float: left;
   width: 115px;
-  height: 290px;
+  height: 300px;
   margin-right: 9px;
 }
-.product-list-block.block-num-5 {
+.product-list .block-num-6,
+.product-list .block-num-12 {
   margin-right: 0;
 }
-.product-list-block a {
+
+.product-list .block a {
   display: block;
   width: 115px;
-  height: 290px;
+  height: 300px;
   font-weight: normal;
 }
-.product-list-block a img {
+.product-list .block a img {
   width: 115px;
   height: 230px;
 }
-.product-list-block a img:hover {}
-.product-list-price {
+.product-list .block a img:hover {}
+.product-list .prices {
   color: #fff;
 }
-.product-list-price,
-.product-list-title {
+.product-list .prices,
+.product-list .title {
   font-family: 'Merriweather', Verdana;
   display: block;
   text-align: center;
 }
-.product-list-price .s {
+.product-list .prices span {
+  display: block;
+  text-align: center;
+}
+.product-list .prices .normal.strike {
   text-decoration: line-through;
 }
-.product-list-block a:hover {}
-.product-list-spacing {
+.product-list .block a:hover {}
+.product-list .spacing {
   clear: both;
   line-height: 10px;
 }
 
-.page-browser {
+.pager {
   width: 100%;
   border-top: 1px solid #7b7577;
 }
-ul.pager {
+.pager ul {
   margin: 5px 0 0 0;
   padding: 0;
   float: right;
 }
-ul.pager li {
+.pager ul li {
   color: #d3c2a2;
   list-style: none;
   float: left;
   padding: 0 10px;
   border-right: 1px solid #7b7577;
 }
-ul.pager li:last-child {
+.pager ul li:last-child {
   border-right: none;
 }
-ul.pager li.next a {
-  background: url(../images/arrow_single_right_white.png) no-repeat center right;
+.pager ul li.next a {
+  background: url(/fx/images/arrow_single_right_white.png) no-repeat center right;
   padding-right: 10px;
   text-transform: uppercase;
 }
-ul.pager li.prew a {
-  background: url(../images/arrow_single_left_white.png) no-repeat center left;
+.pager ul li.prew a {
+  background: url(/fx/images/arrow_single_left_white.png) no-repeat center left;
   padding-left: 10px;
   text-transform: uppercase;
 }
-ul.pager a {
+.pager ul a {
   text-decoration: none;
   font-weight: normal;
   color: #fff;
 }
-ul.pager a:hover {}
+.pager ul a:hover {}
 
 /* - product images */
 .productimages {
@@ -605,7 +611,7 @@ a.video-popper,
   display: block;
   width: 124px;
   height: 76px;
-  background-image: url(../images/video_stillpic.jpg);
+  background-image: url(/fx/images/video_stillpic.jpg);
 }
 
 #video-player-container .video-js-box {
@@ -858,7 +864,7 @@ div#near-you-container .entry i {
 }
 
 table {
-  width: 100%;  
+  width: 100%;
   border-spacing: 0;
 }
 
@@ -955,7 +961,7 @@ td.center {
 /* checkout shipping address */
 #body-checkout-shipping-address input[type="text"] {
   border: none;
-  background-color: #ccc;  
+  background-color: #ccc;
 }
 #body-checkout-shipping-address form {
   margin: 10px 0;
@@ -1067,7 +1073,7 @@ td.center {
 }
 
 .message.wait {
-  background-image: url('../images/indicator.gif');
+  background-image: url('/fx/images/indicator.gif');
   background-repeat: no-repeat;
   background-position: 10px center;
 }
