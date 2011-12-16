@@ -37,6 +37,8 @@ use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\ProductsWashingInstructions;
+use Hanzo\Model\ProductsWashingInstructionsQuery;
 
 /**
  * Base class that represents a row from the 'products' table.
@@ -146,6 +148,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @var        Products
 	 */
 	protected $aProductsRelatedBySku;
+
+	/**
+	 * @var        ProductsWashingInstructions
+	 */
+	protected $aProductsWashingInstructions;
 
 	/**
 	 * @var        MannequinImages one-to-one related MannequinImages object
@@ -625,6 +632,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			$this->modifiedColumns[] = ProductsPeer::WASHING;
 		}
 
+		if ($this->aProductsWashingInstructions !== null && $this->aProductsWashingInstructions->getCode() !== $v) {
+			$this->aProductsWashingInstructions = null;
+		}
+
 		return $this;
 	} // setWashing()
 
@@ -846,6 +857,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		if ($this->aProductsRelatedBySku !== null && $this->sku !== $this->aProductsRelatedBySku->getMaster()) {
 			$this->aProductsRelatedBySku = null;
 		}
+		if ($this->aProductsWashingInstructions !== null && $this->washing !== $this->aProductsWashingInstructions->getCode()) {
+			$this->aProductsWashingInstructions = null;
+		}
 	} // ensureConsistency
 
 	/**
@@ -886,6 +900,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		if ($deep) {  // also de-associate any related objects?
 
 			$this->aProductsRelatedBySku = null;
+			$this->aProductsWashingInstructions = null;
 			$this->singleMannequinImages = null;
 
 			$this->collProductssRelatedByMaster = null;
@@ -1037,6 +1052,13 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 					$affectedRows += $this->aProductsRelatedBySku->save($con);
 				}
 				$this->setProductsRelatedBySku($this->aProductsRelatedBySku);
+			}
+
+			if ($this->aProductsWashingInstructions !== null) {
+				if ($this->aProductsWashingInstructions->isModified() || $this->aProductsWashingInstructions->isNew()) {
+					$affectedRows += $this->aProductsWashingInstructions->save($con);
+				}
+				$this->setProductsWashingInstructions($this->aProductsWashingInstructions);
 			}
 
 			if ($this->isNew() || $this->isModified()) {
@@ -1429,6 +1451,12 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 				}
 			}
 
+			if ($this->aProductsWashingInstructions !== null) {
+				if (!$this->aProductsWashingInstructions->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aProductsWashingInstructions->getValidationFailures());
+				}
+			}
+
 
 			if (($retval = ProductsPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -1627,6 +1655,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		if ($includeForeignObjects) {
 			if (null !== $this->aProductsRelatedBySku) {
 				$result['ProductsRelatedBySku'] = $this->aProductsRelatedBySku->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+			}
+			if (null !== $this->aProductsWashingInstructions) {
+				$result['ProductsWashingInstructions'] = $this->aProductsWashingInstructions->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
 			}
 			if (null !== $this->singleMannequinImages) {
 				$result['MannequinImages'] = $this->singleMannequinImages->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
@@ -2023,6 +2054,57 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		return $this->aProductsRelatedBySku;
 	}
 
+	/**
+	 * Declares an association between this object and a ProductsWashingInstructions object.
+	 *
+	 * @param      ProductsWashingInstructions $v
+	 * @return     Products The current object (for fluent API support)
+	 * @throws     PropelException
+	 */
+	public function setProductsWashingInstructions(ProductsWashingInstructions $v = null)
+	{
+		if ($v === null) {
+			$this->setWashing(NULL);
+		} else {
+			$this->setWashing($v->getCode());
+		}
+
+		$this->aProductsWashingInstructions = $v;
+
+		// Add binding for other direction of this n:n relationship.
+		// If this object has already been added to the ProductsWashingInstructions object, it will not be re-added.
+		if ($v !== null) {
+			$v->addProducts($this);
+		}
+
+		return $this;
+	}
+
+
+	/**
+	 * Get the associated ProductsWashingInstructions object
+	 *
+	 * @param      PropelPDO Optional Connection object.
+	 * @return     ProductsWashingInstructions The associated ProductsWashingInstructions object.
+	 * @throws     PropelException
+	 */
+	public function getProductsWashingInstructions(PropelPDO $con = null)
+	{
+		if ($this->aProductsWashingInstructions === null && ($this->washing !== null)) {
+			$this->aProductsWashingInstructions = ProductsWashingInstructionsQuery::create()
+				->filterByProducts($this) // here
+				->findOne($con);
+			/* The following can be used additionally to
+				guarantee the related object contains a reference
+				to this object.  This level of coupling may, however, be
+				undesirable since it could result in an only partially populated collection
+				in the referenced object.
+				$this->aProductsWashingInstructions->addProductss($this);
+			 */
+		}
+		return $this->aProductsWashingInstructions;
+	}
+
 
 	/**
 	 * Initializes a collection based on the name of a relation.
@@ -2245,6 +2327,31 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	{
 		$this->collProductssRelatedByMaster[]= $productsRelatedByMaster;
 		$productsRelatedByMaster->setProductsRelatedBySku($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Products is new, it will return
+	 * an empty collection; or if this Products has previously
+	 * been saved, it will retrieve related ProductssRelatedByMaster from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Products.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Products[] List of Products objects
+	 */
+	public function getProductssRelatedByMasterJoinProductsWashingInstructions($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = ProductsQuery::create(null, $criteria);
+		$query->joinWith('ProductsWashingInstructions', $join_behavior);
+
+		return $this->getProductssRelatedByMaster($query, $con);
 	}
 
 	/**
@@ -3692,6 +3799,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		}
 		$this->collProductsI18ns = null;
 		$this->aProductsRelatedBySku = null;
+		$this->aProductsWashingInstructions = null;
 	}
 
 	/**

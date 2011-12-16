@@ -55,6 +55,7 @@ class ProductsWashingInstructionsTableMap extends TableMap
 	public function buildRelations()
 	{
 		$this->addRelation('Languages', 'Hanzo\\Model\\Languages', RelationMap::MANY_TO_ONE, array('locale' => 'locale', ), 'CASCADE', null);
+		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::ONE_TO_MANY, array('code' => 'washing', ), null, null, 'Productss');
 	} // buildRelations()
 
 } // ProductsWashingInstructionsTableMap

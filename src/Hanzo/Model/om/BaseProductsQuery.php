@@ -22,6 +22,7 @@ use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsToCategories;
+use Hanzo\Model\ProductsWashingInstructions;
 
 /**
  * Base class that represents a query for the 'products' table.
@@ -61,6 +62,10 @@ use Hanzo\Model\ProductsToCategories;
  * @method     ProductsQuery leftJoinProductsRelatedBySku($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsRelatedBySku relation
  * @method     ProductsQuery rightJoinProductsRelatedBySku($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsRelatedBySku relation
  * @method     ProductsQuery innerJoinProductsRelatedBySku($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsRelatedBySku relation
+ *
+ * @method     ProductsQuery leftJoinProductsWashingInstructions($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsWashingInstructions relation
+ * @method     ProductsQuery rightJoinProductsWashingInstructions($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsWashingInstructions relation
+ * @method     ProductsQuery innerJoinProductsWashingInstructions($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsWashingInstructions relation
  *
  * @method     ProductsQuery leftJoinMannequinImages($relationAlias = null) Adds a LEFT JOIN clause to the query using the MannequinImages relation
  * @method     ProductsQuery rightJoinMannequinImages($relationAlias = null) Adds a RIGHT JOIN clause to the query using the MannequinImages relation
@@ -479,6 +484,8 @@ abstract class BaseProductsQuery extends ModelCriteria
 	 * $query->filterByWashing(array('min' => 12)); // WHERE washing > 12
 	 * </code>
 	 *
+	 * @see       filterByProductsWashingInstructions()
+	 *
 	 * @param     mixed $washing The value to use as filter.
 	 *              Use scalar values for equality.
 	 *              Use array values for in_array() equivalent.
@@ -743,6 +750,80 @@ abstract class BaseProductsQuery extends ModelCriteria
 		return $this
 			->joinProductsRelatedBySku($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'ProductsRelatedBySku', '\Hanzo\Model\ProductsQuery');
+	}
+
+	/**
+	 * Filter the query by a related ProductsWashingInstructions object
+	 *
+	 * @param     ProductsWashingInstructions|PropelCollection $productsWashingInstructions The related object(s) to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function filterByProductsWashingInstructions($productsWashingInstructions, $comparison = null)
+	{
+		if ($productsWashingInstructions instanceof ProductsWashingInstructions) {
+			return $this
+				->addUsingAlias(ProductsPeer::WASHING, $productsWashingInstructions->getCode(), $comparison);
+		} elseif ($productsWashingInstructions instanceof PropelCollection) {
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+			return $this
+				->addUsingAlias(ProductsPeer::WASHING, $productsWashingInstructions->toKeyValue('PrimaryKey', 'Code'), $comparison);
+		} else {
+			throw new PropelException('filterByProductsWashingInstructions() only accepts arguments of type ProductsWashingInstructions or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the ProductsWashingInstructions relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function joinProductsWashingInstructions($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('ProductsWashingInstructions');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'ProductsWashingInstructions');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the ProductsWashingInstructions relation ProductsWashingInstructions object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\ProductsWashingInstructionsQuery A secondary query class using the current class as primary query
+	 */
+	public function useProductsWashingInstructionsQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	{
+		return $this
+			->joinProductsWashingInstructions($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'ProductsWashingInstructions', '\Hanzo\Model\ProductsWashingInstructionsQuery');
 	}
 
 	/**

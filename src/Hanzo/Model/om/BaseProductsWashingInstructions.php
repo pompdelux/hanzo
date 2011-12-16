@@ -15,6 +15,8 @@ use \PropelObjectCollection;
 use \PropelPDO;
 use Hanzo\Model\Languages;
 use Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 
@@ -77,6 +79,11 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	protected $aLanguages;
 
 	/**
+	 * @var        array Products[] Collection to store aggregation of Products objects.
+	 */
+	protected $collProductss;
+
+	/**
 	 * Flag to prevent endless save loop, if this object is referenced
 	 * by another object which falls in this transaction.
 	 * @var        boolean
@@ -89,6 +96,12 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	 * @var        boolean
 	 */
 	protected $alreadyInValidation = false;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $productssScheduledForDeletion = null;
 
 	/**
 	 * Get the [id] column value.
@@ -324,6 +337,8 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 		if ($deep) {  // also de-associate any related objects?
 
 			$this->aLanguages = null;
+			$this->collProductss = null;
+
 		} // if (deep)
 	}
 
@@ -455,6 +470,23 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 				}
 				$affectedRows += 1;
 				$this->resetModified();
+			}
+
+			if ($this->productssScheduledForDeletion !== null) {
+				if (!$this->productssScheduledForDeletion->isEmpty()) {
+					ProductsQuery::create()
+						->filterByPrimaryKeys($this->productssScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->productssScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collProductss !== null) {
+				foreach ($this->collProductss as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
 			}
 
 			$this->alreadyInSave = false;
@@ -626,6 +658,14 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 			}
 
 
+				if ($this->collProductss !== null) {
+					foreach ($this->collProductss as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
 
 			$this->alreadyInValidation = false;
 		}
@@ -708,6 +748,9 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 		if ($includeForeignObjects) {
 			if (null !== $this->aLanguages) {
 				$result['Languages'] = $this->aLanguages->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+			}
+			if (null !== $this->collProductss) {
+				$result['Productss'] = $this->collProductss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 		}
 		return $result;
@@ -868,6 +911,12 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 			// store object hash to prevent cycle
 			$this->startCopy = true;
 
+			foreach ($this->getProductss() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addProducts($relObj->copy($deepCopy));
+				}
+			}
+
 			//unflag object copy
 			$this->startCopy = false;
 		} // if ($deepCopy)
@@ -967,6 +1016,195 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 		return $this->aLanguages;
 	}
 
+
+	/**
+	 * Initializes a collection based on the name of a relation.
+	 * Avoids crafting an 'init[$relationName]s' method name
+	 * that wouldn't work when StandardEnglishPluralizer is used.
+	 *
+	 * @param      string $relationName The name of the relation to initialize
+	 * @return     void
+	 */
+	public function initRelation($relationName)
+	{
+		if ('Products' == $relationName) {
+			return $this->initProductss();
+		}
+	}
+
+	/**
+	 * Clears out the collProductss collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addProductss()
+	 */
+	public function clearProductss()
+	{
+		$this->collProductss = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collProductss collection.
+	 *
+	 * By default this just sets the collProductss collection to an empty array (like clearcollProductss());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initProductss($overrideExisting = true)
+	{
+		if (null !== $this->collProductss && !$overrideExisting) {
+			return;
+		}
+		$this->collProductss = new PropelObjectCollection();
+		$this->collProductss->setModel('Products');
+	}
+
+	/**
+	 * Gets an array of Products objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this ProductsWashingInstructions is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array Products[] List of Products objects
+	 * @throws     PropelException
+	 */
+	public function getProductss($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collProductss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collProductss) {
+				// return empty collection
+				$this->initProductss();
+			} else {
+				$collProductss = ProductsQuery::create(null, $criteria)
+					->filterByProductsWashingInstructions($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collProductss;
+				}
+				$this->collProductss = $collProductss;
+			}
+		}
+		return $this->collProductss;
+	}
+
+	/**
+	 * Sets a collection of Products objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $productss A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setProductss(PropelCollection $productss, PropelPDO $con = null)
+	{
+		$this->productssScheduledForDeletion = $this->getProductss(new Criteria(), $con)->diff($productss);
+
+		foreach ($productss as $products) {
+			// Fix issue with collection modified by reference
+			if ($products->isNew()) {
+				$products->setProductsWashingInstructions($this);
+			}
+			$this->addProducts($products);
+		}
+
+		$this->collProductss = $productss;
+	}
+
+	/**
+	 * Returns the number of related Products objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related Products objects.
+	 * @throws     PropelException
+	 */
+	public function countProductss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collProductss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collProductss) {
+				return 0;
+			} else {
+				$query = ProductsQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByProductsWashingInstructions($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collProductss);
+		}
+	}
+
+	/**
+	 * Method called to associate a Products object to this object
+	 * through the Products foreign key attribute.
+	 *
+	 * @param      Products $l Products
+	 * @return     ProductsWashingInstructions The current object (for fluent API support)
+	 */
+	public function addProducts(Products $l)
+	{
+		if ($this->collProductss === null) {
+			$this->initProductss();
+		}
+		if (!$this->collProductss->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddProducts($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	Products $products The products object to add.
+	 */
+	protected function doAddProducts($products)
+	{
+		$this->collProductss[]= $products;
+		$products->setProductsWashingInstructions($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this ProductsWashingInstructions is new, it will return
+	 * an empty collection; or if this ProductsWashingInstructions has previously
+	 * been saved, it will retrieve related Productss from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in ProductsWashingInstructions.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Products[] List of Products objects
+	 */
+	public function getProductssJoinProductsRelatedBySku($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = ProductsQuery::create(null, $criteria);
+		$query->joinWith('ProductsRelatedBySku', $join_behavior);
+
+		return $this->getProductss($query, $con);
+	}
+
 	/**
 	 * Clears the current object and sets all attributes to their default values
 	 */
@@ -996,8 +1234,17 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
+			if ($this->collProductss) {
+				foreach ($this->collProductss as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 		} // if ($deep)
 
+		if ($this->collProductss instanceof PropelCollection) {
+			$this->collProductss->clearIterator();
+		}
+		$this->collProductss = null;
 		$this->aLanguages = null;
 	}
 

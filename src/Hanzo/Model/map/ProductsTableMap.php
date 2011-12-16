@@ -48,7 +48,7 @@ class ProductsTableMap extends TableMap
 		$this->addColumn('SIZE', 'Size', 'VARCHAR', true, 32, null);
 		$this->addColumn('COLOR', 'Color', 'VARCHAR', true, 128, null);
 		$this->addColumn('UNIT', 'Unit', 'VARCHAR', true, 12, null);
-		$this->addColumn('WASHING', 'Washing', 'INTEGER', false, null, null);
+		$this->addForeignKey('WASHING', 'Washing', 'INTEGER', 'products_washing_instructions', 'CODE', false, null, null);
 		$this->addColumn('HAS_VIDEO', 'HasVideo', 'BOOLEAN', true, 1, true);
 		$this->addColumn('IS_OUT_OF_STOCK', 'IsOutOfStock', 'BOOLEAN', true, 1, false);
 		$this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
@@ -63,6 +63,7 @@ class ProductsTableMap extends TableMap
 	public function buildRelations()
 	{
 		$this->addRelation('ProductsRelatedBySku', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('sku' => 'master', ), 'CASCADE', null);
+		$this->addRelation('ProductsWashingInstructions', 'Hanzo\\Model\\ProductsWashingInstructions', RelationMap::MANY_TO_ONE, array('washing' => 'code', ), null, null);
 		$this->addRelation('MannequinImages', 'Hanzo\\Model\\MannequinImages', RelationMap::ONE_TO_ONE, array('master' => 'master', ), null, null);
 		$this->addRelation('ProductsRelatedByMaster', 'Hanzo\\Model\\Products', RelationMap::ONE_TO_MANY, array('master' => 'sku', ), 'CASCADE', null, 'ProductssRelatedByMaster');
 		$this->addRelation('ProductsDomainsPrices', 'Hanzo\\Model\\ProductsDomainsPrices', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsDomainsPricess');

@@ -16,29 +16,40 @@ use Hanzo\Model\om\BaseCmsPeer;
  *
  * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
  */
-class CmsPeer extends BaseCmsPeer {
+class CmsPeer extends BaseCmsPeer
+{
 
-  public static function getByPK($id, $locale)
-  {
+    public static function getByPK($id, $locale)
+    {
 
-    $result = CmsQuery::create()
-      ->joinWithI18n($locale, \Criteria::INNER_JOIN)
-      ->useI18nQuery($locale)
-        ->filterById($id)
-      ->endUse()
-      ->findOne()
-    ;
+        $result = CmsQuery::create()
+            ->joinWithI18n($locale, \Criteria::INNER_JOIN)
+            ->useI18nQuery($locale)
+                ->filterById($id)
+            ->endUse()
+            ->findOne()
+        ;
 
-    if ($result instanceof Cms) {
-      $settings = $result->getSettings();
-      if (substr($settings, 0, 2) == 'a:') {
-        $result->setSettings(unserialize($settings));
-      }
+        if ($result instanceof Cms) {
+            return $result;
+        }
 
-      return $result;
+        return NULL;
     }
 
-    return NULL;
-  }
+    public static function getFrontpage($locale)
+    {
+        $result = CmsQuery::create()
+            ->joinWithI18n($locale, \Criteria::INNER_JOIN)
+            ->filterByType('frontpage')
+            ->findOne()
+        ;
+
+        if ($result instanceof Cms) {
+            return $result;
+        }
+
+        return NULL;
+    }
 
 } // CmsPeer

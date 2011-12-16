@@ -10,6 +10,7 @@ use \Propel;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\LanguagesPeer;
+use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\map\ProductsWashingInstructionsTableMap;
