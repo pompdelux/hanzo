@@ -263,18 +263,19 @@ while ($record = mysql_fetch_object($result)) {
 
 echo "- copying products washing instructions\n"; flush();
 // product washing instructions
+mysql_query("TRUNCATE TABLE hanzo.products_washing_instructions") OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 $query = "
   INSERT INTO
     hanzo.products_washing_instructions
   SELECT
     p.id,
     p.code,
+    p.description,
     CASE p.languages_id
       WHEN 1 THEN 'en_EN'
       WHEN 7 THEN 'da_DK'
       WHEN 8 THEN 'nl_NL'
-    END AS locale,
-    p.description
+    END AS locale
   FROM
     pdl_dk.pdl_washing_instructions AS p
 ";

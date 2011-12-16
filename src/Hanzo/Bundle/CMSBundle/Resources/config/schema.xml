@@ -308,6 +308,9 @@
     <foreign-key foreignTable="products" name="fk_products_1" onDelete="CASCADE">
       <reference local="sku" foreign="master"/>
     </foreign-key>
+    <foreign-key foreignTable="products_washing_instructions">
+      <reference local="washing" foreign="code"/>
+    </foreign-key>
     <unique name="sku_UNIQUE">
       <unique-column name="sku"/>
     </unique>

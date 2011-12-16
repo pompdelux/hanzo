@@ -41,20 +41,21 @@ class RouterBuilderCommand extends ContainerAwareCommand
       $processed = array();
       foreach ($result as $record) {
         foreach ($record->getCmsI18ns() as $item){
+
           $id = $item->getId();
           $path = trim($item->getPath());
           $locale = trim($item->getLocale());
           $type = trim($record->getType());
-          $title = trim($record->getTitle());
+          $title = trim($item->getTitle());
 
           if ('' == $title) {
             continue;
           }
 
-          if (isset($processed[$path])) {
+          if (isset($processed[$path.'.'.$locale])) {
             continue;
           }
-          $processed[$path] = $path;
+          $processed[$path.'.'.$locale] = $path;
 
           if (!isset($buffer[$locale])) {
             $buffer[$locale] = '';
@@ -68,27 +69,26 @@ class RouterBuilderCommand extends ContainerAwareCommand
           switch ($type) {
             case 'category':
               $buffer[$locale] .= trim("
-category_link_" . $id . "_" . strtolower($locale) . ":
+category_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}/{pager}
     defaults:
         _controller: HanzoCategoryBundle:Default:view
         _format: html
-        id: {$id}
-        cid: {$settings['category_id']}
-        pager: 0
-        locale: {$locale}
+        cms_id: {$id}
+        category_id: {$settings['category_id']}
+        pager: 1
     requirements:
         pager: \d+
         _format: html|json
 
-product_link_" . $id . "_" . strtolower($locale) . ":
-    pattern: /{$path}/{id}/{title}
+product_" . $id . "_" . strtolower($locale) . ":
+    pattern: /{$path}/{product_id}/{title}
     defaults:
         _controller: HanzoProductBundle:Default:view
         _format: html
-        id: 0
-        cid: {$settings['category_id']}
-        locale: {$locale}
+        product_id: 0
+        cms_id: {$id}
+        category_id: {$settings['category_id']}
         title: ''
     requirements:
         id: \d+
@@ -97,34 +97,31 @@ product_link_" . $id . "_" . strtolower($locale) . ":
               break;
             case 'page':
               $buffer[$locale] .= trim("
-page_link_" . $id . "_" . strtolower($locale) . ":
+page_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoCMSBundle:Default:view
         id: {$id}
-        locale: {$locale}
 ")."\n";
               break;
             case 'system':
               switch ($settings['view']) {
                 case 'mannequin':
                   $buffer[$locale] .= trim("
-system_link_" . $id . "_" . strtolower($locale) . ":
+system_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoMannequinBundle:Default:view
         id: {$id}
-        locale: {$locale}
 ")."\n";
                   break;
                 case 'newsletter':
                   $buffer[$locale] .= trim("
-newsletter_link_" . $id . "_" . strtolower($locale) . ":
+newsletter_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoNewsletterBundle:Default:view
         id: {$id}
-        locale: {$locale}
 ")."\n";
                   break;
                 case 'category_search':
@@ -132,13 +129,12 @@ newsletter_link_" . $id . "_" . strtolower($locale) . ":
                   $method = explode('_', $settings['view']);
                   $method = array_shift($method);
                   $buffer[$locale] .= trim("
-search_link_" . $id . "_" . strtolower($locale) . ":
+search_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoSearchBundle:Default:{$method}
         _format: html
         id: {$id}
-        locale: {$locale}
     requirements:
         _format: html|json
 ")."\n";
@@ -174,7 +170,8 @@ search_link_" . $id . "_" . strtolower($locale) . ":
       // clear cache after updating routers
       $command = $this->getApplication()->find('cache:clear');
       $arguments = array(
-          'command' => 'cache:clear'
+          'command' => 'cache:clear',
+          '--env' => 'prod'
       );
 
       $input = new ArrayInput($arguments);

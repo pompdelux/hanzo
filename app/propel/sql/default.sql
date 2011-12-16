@@ -424,10 +424,14 @@ CREATE TABLE `products`
 	INDEX `key_size_color` (`size`, `color`),
 	INDEX `key_out_of_stock` (`is_out_of_stock`),
 	INDEX `index5` (`master`),
+	INDEX `products_FI_2` (`washing`),
 	CONSTRAINT `fk_products_1`
 		FOREIGN KEY (`sku`)
 		REFERENCES `products` (`master`)
-		ON DELETE CASCADE
+		ON DELETE CASCADE,
+	CONSTRAINT `products_FK_2`
+		FOREIGN KEY (`washing`)
+		REFERENCES `products_washing_instructions` (`code`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -485,9 +489,9 @@ CREATE TABLE `products_images_categories_sort`
 (
 	`products_id` INTEGER NOT NULL,
 	`categories_id` INTEGER NOT NULL,
-	`products_images_id` INTEGER,
+	`products_images_id` INTEGER NOT NULL,
 	`sort` INTEGER,
-	PRIMARY KEY (`products_id`,`categories_id`),
+	PRIMARY KEY (`products_id`,`categories_id`,`products_images_id`),
 	INDEX `FI_products_images_categories_sort_2` (`products_images_id`),
 	CONSTRAINT `fk_products_images_categories_sort_1`
 		FOREIGN KEY (`products_id`)
@@ -574,13 +578,14 @@ CREATE TABLE `products_washing_instructions`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`code` INTEGER NOT NULL,
-	`languages_id` INTEGER NOT NULL,
+	`locale` VARCHAR(5) NOT NULL,
 	`description` TEXT NOT NULL,
 	PRIMARY KEY (`id`),
-	INDEX `FI_products_washing_instructions_1` (`languages_id`),
+	INDEX `I_referenced_products_FK_2_1` (`code`),
+	INDEX `FI_products_washing_instructions_1` (`locale`),
 	CONSTRAINT `fk_products_washing_instructions_1`
-		FOREIGN KEY (`languages_id`)
-		REFERENCES `languages` (`id`)
+		FOREIGN KEY (`locale`)
+		REFERENCES `languages` (`locale`)
 		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 

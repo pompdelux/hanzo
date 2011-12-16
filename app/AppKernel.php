@@ -22,11 +22,11 @@ class AppKernel extends Kernel
 
             new Hanzo\Bundle\CMSBundle\HanzoCMSBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
-            new Hanzo\Bundle\CategoryBundle\CategoryBundle(),
-            new Hanzo\Bundle\MannequinBundle\MannequinBundle(),
-            new Hanzo\Bundle\NewsletterBundle\NewsletterBundle(),
-            new Hanzo\Bundle\ProductBundle\ProductBundle(),
-            new Hanzo\Bundle\SearchBundle\SearchBundle(),
+            new Hanzo\Bundle\CategoryBundle\HanzoCategoryBundle(),
+            new Hanzo\Bundle\MannequinBundle\HanzoMannequinBundle(),
+            new Hanzo\Bundle\NewsletterBundle\HanzoNewsletterBundle(),
+            new Hanzo\Bundle\ProductBundle\HanzoProductBundle(),
+            new Hanzo\Bundle\SearchBundle\HanzoSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -43,9 +43,7 @@ class AppKernel extends Kernel
     {
         parent::boot();
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
-        $session = $this->container->get('session'); // ->getLocale();
-
-        //error_log(print_r(get_class_methods($this->container->get('session')), 1));
+        $twig->addExtension(new Twig_Extension_Optimizer());
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

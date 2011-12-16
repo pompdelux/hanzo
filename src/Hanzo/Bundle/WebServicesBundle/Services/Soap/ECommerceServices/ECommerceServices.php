@@ -4,6 +4,35 @@ namespace Hanzo\Bundle\WebServicesBundle\Services\Soap\ECommerceServices;
 
 use Hanzo\Bundle\WebServicesBundle\Services\Soap\SoapService;
 
+use Hanzo\Model\ProductsDomainsPricesPeer,
+    Hanzo\Model\ProductsDomainsPrices,
+    Hanzo\Model\ProductsDomainsPricesQuery,
+    Hanzo\Model\ProductsI18nPeer,
+    Hanzo\Model\ProductsI18n,
+    Hanzo\Model\ProductsI18nQuery,
+    Hanzo\Model\ProductsImagesCategoriesSortPeer,
+    Hanzo\Model\ProductsImagesCategoriesSort,
+    Hanzo\Model\ProductsImagesCategoriesSortQuery,
+    Hanzo\Model\ProductsImagesPeer,
+    Hanzo\Model\ProductsImages,
+    Hanzo\Model\ProductsImagesProductReferencesPeer,
+    Hanzo\Model\ProductsImagesProductReferences,
+    Hanzo\Model\ProductsImagesProductReferencesQuery,
+    Hanzo\Model\ProductsImagesQuery,
+    Hanzo\Model\ProductsPeer,
+    Hanzo\Model\Products,
+    Hanzo\Model\ProductsQuery,
+    Hanzo\Model\ProductsStockPeer,
+    Hanzo\Model\ProductsStock,
+    Hanzo\Model\ProductsStockQuery,
+    Hanzo\Model\ProductsToCategoriesPeer,
+    Hanzo\Model\ProductsToCategories,
+    Hanzo\Model\ProductsToCategoriesQuery,
+    Hanzo\Model\ProductsWashingInstructionsPeer,
+    Hanzo\Model\ProductsWashingInstructions,
+    Hanzo\Model\ProductsWashingInstructionsQuery
+;
+
 class ECommerceServices extends SoapService
 {
 
@@ -72,9 +101,17 @@ class ECommerceServices extends SoapService
 
 
     // ....................
-    // ..... ze code ......
+    // .....<ze code>......
     // ....................
 
+
+
+
+
+
+    // ....................
+    // .....</ze code>.....
+    // ....................
 
     if (count($errors)) {
       $this->logger->addCritical('SyncItem failed with the following error(s)', $errors);

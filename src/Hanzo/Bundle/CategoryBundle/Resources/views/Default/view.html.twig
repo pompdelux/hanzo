@@ -2,18 +2,21 @@
 
 {% block content %}
 
-<h1>{{ title }}</h1>
 <div class="product-list clearfix">
 
 {% for product in products %}
 
   <div class="block block-num-{{ loop.index }}">
-    <a href="{{ product.url }}" title="{{ "Click for more information about %name%."|trans({'%name%' : product.name}) }}">
-      {{ image_tag(product.image, '120x240', { 'alt' : product.name }) }}
-      <span class="title">{{ product.name }}</span>
+    <a href="{{ product.url }}" title="{{ "Click for more information about %name%."|trans({'%name%' : product.title}) }}">
+      {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
+      <span class="title">{{ product.title }}</span>
       <span class="prices">
-        <span class="normal">{# product.normalPrice #}</span>
-        <span class="discount">{# product.discountPrice #}</span>
+      {% if product.prices.sales %}
+        <span class="normal strike">{{ product.prices.normal|money }}</span>
+        <span class="discount">{{ product.prices.sales|money }}</span>
+      {% else %}
+        <span class="normal">{{ product.prices.normal|money }}</span>
+      {% endif %}
       </span>
     </a>
   </div>
@@ -26,25 +29,22 @@
 
 {% endfor %}
 
+</div>
 
 {% if paginate %}
-  <div class="pager ajax" data-target="product-list">
-
+<div class="pager ajax" data-target="product-list">
+  <ul>
   {% if paginate.prew %}
-    <a href="{{ paginate.prew }}" title="{{ "Show previous page"|trans }}">{{ "Previous"|trans }}</a>
+    <li><a href="{{ paginate.prew }}" title="{{ "Show previous page"|trans }}">{{ "Previous"|trans }}</a></li>
   {% endif %}
-
   {% for page, url in paginate.pages %}
-    <a href="{{ url }}" title="{{ "Show page %page%"|trans({'%page%' : page}) }}"{% if page == paginate.index %} class="active"{% endif %}>{{ page }}</a>
+    <li><a href="{{ url }}" title="{{ "Show page %page%"|trans({'%page%' : page}) }}"{% if page == paginate.index %} class="active"{% endif %}>{{ page }}</a></li>
   {% endfor %}
-
   {% if paginate.next %}
-    <a href="{{ paginate.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a>
+    <li><a href="{{ paginate.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a></li>
   {% endif %}
-
-  </div>
+  </ul>
+</div>
 {% endif %}
 
-
-</div>
 {% endblock %}

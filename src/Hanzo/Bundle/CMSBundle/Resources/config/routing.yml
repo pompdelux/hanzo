@@ -1,4 +1,3 @@
 HanzoCMSBundle_homepage:
     pattern:  /
     defaults: { _controller: HanzoCMSBundle:Default:index }
-

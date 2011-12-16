@@ -1,21 +1,21 @@
-SearchBundle:
-    resource: "@SearchBundle/Resources/config/routing.yml"
+HanzoSearchBundle:
+    resource: "@HanzoSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
-NewsletterBundle:
-    resource: "@NewsletterBundle/Resources/config/routing.yml"
+HanzoProductBundle:
+    resource: "@HanzoProductBundle/Resources/config/routing.yml"
     prefix:   /
 
-MannequinBundle:
-    resource: "@MannequinBundle/Resources/config/routing.yml"
+HanzoNewsletterBundle:
+    resource: "@HanzoNewsletterBundle/Resources/config/routing.yml"
     prefix:   /
 
-ProductBundle:
-    resource: "@ProductBundle/Resources/config/routing.yml"
+HanzoMannequinBundle:
+    resource: "@HanzoMannequinBundle/Resources/config/routing.yml"
     prefix:   /
 
-CategoryBundle:
-    resource: "@CategoryBundle/Resources/config/routing.yml"
+HanzoCategoryBundle:
+    resource: "@HanzoCategoryBundle/Resources/config/routing.yml"
     prefix:   /
 
 WebServicesBundle:

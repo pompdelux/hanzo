@@ -21,6 +21,7 @@
 <link rel="dns-prefetch" href="//html5shim.googlecode.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 
+<link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
  {% stylesheets
   'fx/css/boilerplate.css'
   'fx/css/faq.css'
@@ -33,14 +34,13 @@
   filter='?yui_css'
   output='fx/cache/all.css'
 %}
-<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{ asset_url }}" media="all">
 {% endstylesheets %}
 
 <script type="text/javascript" src="/fx/scripts/modernizr-2.0.6.min.js"></script>
 
 </head>
-<body id="body-pages" class="">
+<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
 
 <div id="container">
   <a href="/" title="Til forsiden">
@@ -48,30 +48,30 @@
   </a>
 
     <div id="main" role="main">
-      {% render 'HanzoCMSBundle:Helper:menu' with {'type' : 'sub_nav' } %}
+      {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'sub', 'from': 400, 'offset': 482 } %}
       {% block content %}
       {% endblock %}
     </div>
 
   <nav class="main">
-    {% render 'HanzoCMSBundle:Helper:menu' with {'type' : 'main_nav' } %}
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'main', 'from': 20 } %}
   </nav>
 
   <aside id="secondary-links" role="secondary-links">
     <ul>
       <li><a href="/account">Min side</a></li>
-      <li id="select-domain"><a class="open-menu" href="/select_domain">Change Country</a>
+      <li id="select-domain">
+        <a class="open-menu" href="/select_domain">Change Country</a>
         <div style="display: none">
-          <a href="http://test.pompdelux.dk/select_domain.php?domain=dk&amp;redirected_domain=1">Denmark</a><br><br>
-          <a href="http://test.pompdelux.com/select_domain.php?domain=com&amp;redirected_domain=1">International</a><br><br>
-          <a href="http://test.pompdelux.nl/select_domain.php?domain=nl&amp;redirected_domain=1">Netherlands</a><br><br>
-          <a href="http://test.pompdelux.no/select_domain.php?domain=no&amp;redirected_domain=1">Norway</a><br><br>
-          <a href="http://test.pompdelux.se/select_domain.php?domain=se&amp;redirected_domain=1">Sweden</a><br>
+          <a href="http://www.pompdelux.dk/">Denmark</a><br><br>
+          <a href="http://www.pompdelux.com/">International</a><br><br>
+          <a href="http://www.pompdelux.nl/">Netherlands</a><br><br>
+          <a href="http://www.pompdelux.no/">Norway</a><br><br>
+          <a href="http://www.pompdelux.se/">Sweden</a><br>
         </div>
       </li>
       <li id="mini-basket" class="basket">
-        <a href="/basket">
-           (0) DKK&nbsp;0,00        </a>
+        <a href="/basket">(0) DKK&nbsp;0,00</a>
       </li>
       <li><a href="/basket" title="Vis kurv">Vis kurv</a></li>
     </ul>
@@ -130,9 +130,10 @@
 <li>+45 8678 7871</li>
 </ul>
 </footer>
-
 <script type="text/javascript">
 var counter_offset = 1314691200;
+
+{% if page_type|default('page') == 'frontpage' %}
 var vegas_backgrounds = [
  { src: '/fx/images/bg/01.jpg?DKz8', fade:1000, loading: false, valign: 'top' },
  { src: '/fx/images/bg/02.jpg?DKz8', fade:1000, loading: false, valign: 'top' },
@@ -141,13 +142,18 @@ var vegas_backgrounds = [
  { src: '/fx/images/bg/05.jpg?DKz8', fade:1000, loading: false, valign: 'top' },
  { src: '/fx/images/bg/06.jpg?DKz8', fade:1000, loading: false, valign: 'top' }
 ];
+{% else %}
+var vegas_backgrounds = [
+ { src: 'http://static.pompdelux.dk/templates/pompdelux/images/bg/bg_pdl.jpg?DKtB', valign: 'top', loading: false }
+];
+{% endif %}
+
 </script>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 {% javascripts
-  'fx/scripts/jquery.tools.min.js'
-  'fx/scripts/flowplayer/flowplayer-3.2.4.min.js'
+  'fx/scripts/flowplayer/flowplayer-3.2.6.min.js'
   'fx/scripts/colorbox/jquery.colorbox.js'
-  'fx/scripts/cloud-zoom.1.0.2/cloud-zoom.1.0.2.js'
   'fx/scripts/countdown/jquery.countdown.js'
   'fx/scripts/countdown/jquery.countdown-dk.js'
   'fx/scripts/video-js/video.js'
@@ -166,9 +172,8 @@ var vegas_backgrounds = [
   'fx/scripts/gothia.js'
 
   filter='?yui_js'
-  output='fx/caches/all.js'
+  output='fx/cache/all.js'
 %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 

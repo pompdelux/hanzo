@@ -1,3 +1,0 @@
-HanzoProductBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: HanzoProductBundle:Default:index }
