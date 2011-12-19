@@ -87,6 +87,10 @@ hr {
   float: right;
 }
 
+.off {
+  display: none;
+}
+
 #logo {
   position: absolute;
   left: 25px;
@@ -276,7 +280,7 @@ nav.sub a:hover {
   text-transform: uppercase;
   font-size: 11px;
 }
-#body-product-info .buton,
+#body-product .buton,
 #secondary-links ul li.basket {
   background: url(/fx/images/basket.png) no-repeat 10px 0;
 }
@@ -426,24 +430,21 @@ footer img {
 
 /* product info */
 
-#body-product-info .left,
-#body-product-info .right {
+#body-product .left,
+#body-product .right {
   width: 49%;
 }
 
 .buybox {
   margin-top: 15px;
 }
-.buybox .price {
+.buybox .prices {
   font-size: 18px;
   margin-bottom: 20px;
 }
-.buybox .price .s {
+.buybox .prices .strike {
   display: block;
   text-decoration: line-through;
-}
-
-.buybox .price {
 }
 
 .buybox select {
@@ -461,22 +462,39 @@ footer img {
 }
 
 /* - tabs */
-#body-product-info ul.tabs {
+#body-product ul.tabs {
   list-style: none;
   margin: 0;
   padding: 0;
   height: 25px;
 }
-#body-product-info ul.tabs li {
+#body-product ul.tabs li {
   float: left;
   margin-right: 15px;
 }
-#body-product-info ul.tabs li a {
+#body-product ul.tabs li a {
   background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
   padding-left: 20px;
 }
-#body-product-info ul.tabs li a.current {
+#body-product ul.tabs li a.current {
   background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
+}
+
+.style-guide,
+.style-guide .element {
+  display: none;
+}
+
+form.buy label {
+  width: 220px;
+  display: block;
+  margin-bottom: 10px;
+}
+form.buy label select {
+  float: right;
+}
+form.buy .button {
+  margin-top: 10px;
 }
 
 /* cataloug pages (info menu) */
@@ -598,7 +616,7 @@ nav.main li.out {
   padding-right: 10px;
 }
 
-#body-product-info a.video-popper,
+#body-product a.video-popper,
 #video-player-container {
   position: absolute;
   bottom: 0;
@@ -1104,12 +1122,6 @@ td.center {
 
 #colorbox-slideshow {
   margin-bottom: 5px;
-}
-#colorbox-slideshow a {
-  display: none;
-}
-#colorbox-slideshow a.cbi-1 {
-  display: inline;
 }
 
 /* set */
