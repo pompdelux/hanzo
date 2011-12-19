@@ -3,6 +3,21 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+/**
+ * shortcut for logging data to the error log
+ * only requests comming from bellcom ip addresses will be logged.
+ *
+ * @param mixed $data the data to log
+ * @param integer $back how many levels back we dump trace for
+ */
+function bc_log($data, $back = 0) {
+    $bt = debug_backtrace();
+    $line = $bt[$back]['line'];
+    $file = str_replace(realpath(__DIR__ . '/../'), '~', $bt[$back]['file']);
+
+    error_log($file.' +'.$line.' :: '.print_r($data, 1));
+}
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
