@@ -38,8 +38,8 @@ class MenuController extends CoreController
         if (empty($this->path)) {
             $this->path = $request->getPathInfo();
 
-            // TODO this could be done betteerlr, but how ?
-            if (preg_match('~(?:/[0-9]+/?)~', $this->path, $matches)) {
+            // TODO this could be done better, but how ?
+            if (preg_match('~(?:/[0-9]+/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
                 $this->path = str_replace($matches[0], '', $this->path);
             }
 

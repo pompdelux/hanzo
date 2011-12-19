@@ -19,7 +19,7 @@ class DefaultController extends CoreController
         ));
     }
 
-    public function viewAction($id, Cms $page = NULL)
+    public function viewAction($id, $page = NULL)
     {
         $locale = $this->get('hanzo')->get('core.locale');
 
@@ -31,24 +31,23 @@ class DefaultController extends CoreController
             $cache_id = array('cms', $locale, $id);
         }
 
-        // if ($cache = $this->getCache($cache_id)) {
-        //     return $this->response($cache);
-        // }
-
-        if ($page instanceof Cms) {
-            $type = $page->getType();
-        }
-        else {
-            $page = CmsPeer::getByPK($id, $locale);
-            $type = 'pages';
-            if (is_null($page)) {
-                // TODO: 404 handeling...
+        $html = $this->getCache($cache_id);
+        if (!$html) {
+            if ($page instanceof Cms) {
+                $type = $page->getType();
             }
-        }
+            else {
+                $page = CmsPeer::getByPK($id, $locale);
+                $type = 'pages';
+                if (is_null($page)) {
+                    $page = 'implement 404 !';
+                }
+            }
 
-        $this->get('twig')->addGlobal('page_type', $type);
-        $html = $this->renderView('HanzoCMSBundle:Default:view.html.twig', array('page' => $page));
-        $this->setCache($cache_id, $html);
+            $this->get('twig')->addGlobal('page_type', $type);
+            $html = $this->renderView('HanzoCMSBundle:Default:view.html.twig', array('page' => $page));
+            $this->setCache($cache_id, $html);
+        }
 
         return $this->response($html);
     }

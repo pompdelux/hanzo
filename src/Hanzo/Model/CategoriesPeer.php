@@ -58,6 +58,7 @@ class CategoriesPeer extends BaseCategoriesPeer
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
                     'title' => $controller->stripText($product->getMaster()),
+                    'focus' => $record->getProductsImages()->getId()
                 )),
             );
         }

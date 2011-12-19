@@ -4,6 +4,7 @@ namespace Hanzo\Twig\Extension;
 
 use \Twig_Extension,
     \Twig_Function_Method,
+    \Twig_Function_Function,
     \Twig_Filter_Method
 ;
 
@@ -27,8 +28,10 @@ class HanzoTwigExtension extends Twig_Extension
     {
         return array(
             'product_image_tag' => new Twig_Function_Method($this, 'product_image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'product_image_url' => new Twig_Function_Method($this, 'product_image_url'),
             'fx_image_tag' => new Twig_Function_Method($this, 'fx_image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'image_path' => new Twig_Function_Method($this, 'image_path', array()),
+            'print_r' => new Twig_Function_Function('print_r'),
         );
     }
 
@@ -63,6 +66,12 @@ class HanzoTwigExtension extends Twig_Extension
     {
         $src = $this->cdn . 'images/products/thumb/' . $src;
         return $this->image_tag($this->image_path($src, $preset), $params);
+    }
+
+    public function product_image_url($src, $preset = '50x50', array $params = array())
+    {
+        $src = $this->cdn . 'images/products/thumb/' . $src;
+        return $this->image_path($src, $preset);
     }
 
 
@@ -104,7 +113,7 @@ class HanzoTwigExtension extends Twig_Extension
         $file = basename($url['path']);
         $dir  = dirname($url['path']);
         $url['path'] = $dir . '/' . $preset . ',' . $file;
-        $url['query'] = 'z2';
+        $url['query'] = $this->container->get('hanzo')->get('core.cache_key', 'z3');
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
     }
