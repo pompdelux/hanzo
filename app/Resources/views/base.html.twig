@@ -25,10 +25,12 @@
  {% stylesheets
   'fx/css/boilerplate.css'
   'fx/css/faq.css'
-  'fx/scripts/colorbox/colorbox.css'
+  'fx/scripts/colorbox/example4/colorbox.css'
   'fx/scripts/video-js/video-js.css'
   'fx/scripts/vegas/jquery.vegas.css'
+
   'fx/css/main.css'
+  'fx/css/product.css'
 
   filter='?yui_css'
   output='fx/cache/all.css'
@@ -42,8 +44,8 @@
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
 
 <div id="container">
-  <a href="/" title="Til forsiden">
-    <img src="/fx/images/POMPdeLUX_logo.png" id="logo" alt="POMPdeLUX - hjem" title="POMPdeLUX">
+  <a href="/" title="{{ "Home"|trans }}">
+    <img src="/fx/images/POMPdeLUX_logo.png" id="logo" alt="POMPdeLUX" title="POMPdeLUX">
   </a>
 
     <div id="main" role="main">
@@ -58,7 +60,7 @@
 
   <aside id="secondary-links" role="secondary-links">
     <ul>
-      <li><a href="/account">Min side</a></li>
+      <li><a href="/account">{{ "My account"|trans }}</a></li>
       <li id="select-domain">
         <a class="open-menu" href="/select_domain">Change Country</a>
         <div style="display: none">
@@ -72,11 +74,11 @@
       <li id="mini-basket" class="basket">
         <a href="/basket">(0) DKK&nbsp;0,00</a>
       </li>
-      <li><a href="/basket" title="Vis kurv">Vis kurv</a></li>
+      <li><a href="/basket">{{ "Show basket"|trans }}</a></li>
     </ul>
   </aside>
 
-
+{% if page_type == 'frontpage' %}
   <aside id="teasers" role="teasers">
     <ul>
       <li class="teaser-box-1">
@@ -113,22 +115,22 @@
       </li>
     </ul>
   </aside>
-
+{% endif %}
 
 </div>
 
 <footer>
-
-<ul>
-<li><img src="/fx/images/creditcards_dk.png" alt="credit cards"></li>
-<li>POMPdeLUX ApS</li>
-<li>Møgelhøj 8</li>
-<li>DK-8520 Lystrup</li>
-<li>CVR-nr 29622035</li>
-<li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
-<li>+45 8678 7871</li>
-</ul>
+  <ul>
+    <li><img src="/fx/images/creditcards_dk.png" alt="credit cards"></li>
+    <li>POMPdeLUX ApS</li>
+    <li>Møgelhøj 8</li>
+    <li>DK-8520 Lystrup</li>
+    <li>CVR-nr 29622035</li>
+    <li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
+    <li>+45 8678 7871</li>
+  </ul>
 </footer>
+
 <script type="text/javascript">
 var counter_offset = 1314691200;
 
@@ -149,11 +151,13 @@ var vegas_backgrounds = [
 
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="//cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
 {% javascripts
+  'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
+  'fx/scripts/zoom/jquery.zoom.js'
+
   'fx/scripts/flowplayer/flowplayer-3.2.6.min.js'
-  'fx/scripts/colorbox/jquery.colorbox.js'
   'fx/scripts/countdown/jquery.countdown.js'
   'fx/scripts/countdown/jquery.countdown-dk.js'
   'fx/scripts/video-js/video.js'
@@ -162,11 +166,10 @@ var vegas_backgrounds = [
   'fx/scripts/dialoug.js'
   'fx/scripts/colorbox.js'
   'fx/scripts/flowplayer.js'
-  'fx/scripts/googlemaps.js'
   'fx/scripts/video.js'
-  'fx/scripts/faq.js'
   'fx/scripts/vegas.js'
 
+  'fx/scripts/product.js'
   'fx/scripts/main.js'
 
   filter='?yui_js'
