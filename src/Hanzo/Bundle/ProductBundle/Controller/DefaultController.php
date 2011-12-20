@@ -45,8 +45,6 @@ class DefaultController extends CoreController
         ;
 
         $product = $products[0]->getProducts();
-        //error_log(print_r(get_class_methods($product),1));
-
         $prices = ProductsDomainsPricesPeer::getProductsPrices($this, array($product->getId()));
 
         $images = array();
@@ -88,10 +86,10 @@ class DefaultController extends CoreController
                 ), TRUE),
             );
         }
-#bc_log($images_references);
 
         $data = array(
             'id' => $product->getId(),
+            'master' => $product->getMaster(),
             'title' => $product->getTitle(),
             'description' => $product->getContent(),
             'washing' => stripslashes($product->getProductsWashingInstructions()->getDescription()),
@@ -99,14 +97,14 @@ class DefaultController extends CoreController
             'images' => $images,
             'prices' => array_shift($prices),
             'out_of_stock' => $product->getIsOutOfStock(),
-            'references' => $images_references,
         );
 
         $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
 
         $responce = $this->render('HanzoProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
-            'product' => $data
+            'product' => $data,
+            'references' => $images_references,
         ));
         return $responce;
     }

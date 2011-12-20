@@ -6,36 +6,35 @@
 
   <div class="productimages">
     <div class="productimage-large">
-      <a href="{{ product_image_url(product.main_image.name, '0x715') }}" class="cloud-zoom" rel="group1" id="image-id-{{ product.main_image.id }}" rev="{{ product_image_url(product.main_image.name, '38x75') }}">
+      <a href="{{ product_image_url(product.main_image.name, '0x715') }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '38x75') }}">
         {{ product_image_tag(product.main_image.name, '165x330') }}
       </a>
-      <img src="http://static.pompdelux.dk/templates/pompdelux/images/magnifying_glass.png" class="loupe" />
     </div>
 
   {% if product.images is not empty %}
     <div class="productimage-small">
     {% for image in product.images %}
       <div class="productimage-small-padding">
-        <a href="{{ product_image_url(image.name, '0x715') }}" id="image-id-{{ image.id }}" rel="group1" rev="{{ product_image_url(image.name, '165x330') }}">
+        <a href="{{ product_image_url(image.name, '0x715') }}" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '165x330') }}">
           {{ product_image_tag(image.name, '38x75') }}
         </a>
       </div>
     {% endfor %}
-        <br style="clear:both;" />
+      <br style="clear:both;" />
     </div>
   {% endif %}
 
-    <a href="/video.php" data-width="248" data-height="360" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper">&nbsp;</a>
+    <a href="/rest/v1/video" data-width="248" data-height="360" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper">&nbsp;</a>
   </div>
 
   <div id="colorbox-slideshow">
-    <a href="#">» Slideshow</a>
+    <a href="#">» {{ "Slideshow"|trans }}</a>
   </div>
 
     <div class="style-guide">
-      <b>Style tips</b>
+      <b>{{ "Style guide"|trans }}</b>
 
-    {% for id, references in product.references %}
+    {% for id, references in references %}
       <div class="element image-id-{{ id }}">
       {% for item in references.references %}
         <a href="{{ item.url }}">{{ item.title }}</a><br>
@@ -74,7 +73,6 @@
 
       <form action="/add-to-cart/" method="post" class="buy">
         <div class="options">
-
           <label for="size">
             {{ "Size"|trans }}:
             <select id="size" name="size"></select>
@@ -93,17 +91,13 @@
             {% endfor %}
             </select>
           </label>
-
         </div>
-
         <input type="submit" value="{{ "Add to basket"|trans }}" class="button">
-        <input type="hidden" id="product_id" name="product_id" value="{{ product.id }}" />
+        <input type="hidden" id="master" name="master" value="{{ product.master }}">
       </form>
     </div>
   </div>
 </div>
 
-
-
-
 {% endblock %}
+

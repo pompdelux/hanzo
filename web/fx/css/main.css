@@ -428,75 +428,6 @@ footer img {
   display: none;
 }
 
-/* product info */
-
-#body-product .left,
-#body-product .right {
-  width: 49%;
-}
-
-.buybox {
-  margin-top: 15px;
-}
-.buybox .prices {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-.buybox .prices .strike {
-  display: block;
-  text-decoration: line-through;
-}
-
-.buybox select {
-  width: 150px;
-}
-.buybox #btn-submit {
-  margin-top: 10px;
-}
-.f-left {
-  height: 30px;
-}
-.f-left label {
-  float: left;
-  width: 50px;
-}
-
-/* - tabs */
-#body-product ul.tabs {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 25px;
-}
-#body-product ul.tabs li {
-  float: left;
-  margin-right: 15px;
-}
-#body-product ul.tabs li a {
-  background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
-  padding-left: 20px;
-}
-#body-product ul.tabs li a.current {
-  background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
-}
-
-.style-guide,
-.style-guide .element {
-  display: none;
-}
-
-form.buy label {
-  width: 220px;
-  display: block;
-  margin-bottom: 10px;
-}
-form.buy label select {
-  float: right;
-}
-form.buy .button {
-  margin-top: 10px;
-}
-
 /* cataloug pages (info menu) */
 
 nav.main li.out {
@@ -590,31 +521,6 @@ nav.main li.out {
 }
 .pager ul a:hover {}
 
-/* - product images */
-.productimages {
-  position: relative;
-  overflow: hidden;
-}
-.productimages .productimage-large {
-  float: left;
-  padding-right: 10px;
-  position: relative;
-}
-.productimages .productimage-large img.loupe {
-  position: absolute;
-  bottom: 0;
-  right: 10px;
-  z-index: 9999;
-  cursor: pointer;
-}
-.productimages .productimage-small {
-  float: left;
-}
-
-.productimages .productimage-small .productimage-small-padding {
-  float: left;
-  padding-right: 10px;
-}
 
 #body-product a.video-popper,
 #video-player-container {
