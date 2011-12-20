@@ -80,7 +80,6 @@ category_" . $id . "_" . strtolower($locale) . ":
     requirements:
         pager: \d+
         _format: html|json
-
 product_" . $id . "_" . strtolower($locale) . ":
     pattern: /{$path}/{product_id}/{title}
     defaults:
