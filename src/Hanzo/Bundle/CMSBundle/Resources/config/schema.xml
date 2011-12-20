@@ -383,7 +383,7 @@
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="products_id" type="INTEGER" required="true"/>
     <column name="quantity" type="INTEGER" required="true"/>
-    <column name="available_from" type="TIMESTAMP" required="true" defaultValue="2000-01-01 00:00:00" />
+    <column name="available_from" type="DATE" required="true" defaultValue="2000-01-01" />
     <foreign-key foreignTable="products" name="fk_products_stock_1" onDelete="CASCADE">
       <reference local="products_id" foreign="id"/>
     </foreign-key>

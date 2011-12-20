@@ -45,7 +45,7 @@ class ProductsStockTableMap extends TableMap
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addForeignKey('PRODUCTS_ID', 'ProductsId', 'INTEGER', 'products', 'ID', true, null, null);
 		$this->addColumn('QUANTITY', 'Quantity', 'INTEGER', true, null, null);
-		$this->addColumn('AVAILABLE_FROM', 'AvailableFrom', 'TIMESTAMP', true, null, '2000-01-01 00:00:00');
+		$this->addColumn('AVAILABLE_FROM', 'AvailableFrom', 'DATE', true, null, '2000-01-01');
 		// validators
 	} // initialize()
 

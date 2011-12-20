@@ -536,7 +536,7 @@ CREATE TABLE `products_stock`
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`products_id` INTEGER NOT NULL,
 	`quantity` INTEGER NOT NULL,
-	`available_from` DATETIME DEFAULT '2000-01-01 00:00:00' NOT NULL,
+	`available_from` DATE DEFAULT '2000-01-01' NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `key_available_from` (`available_from`),
 	INDEX `FI_products_stock_1` (`products_id`),
