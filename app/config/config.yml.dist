@@ -16,6 +16,25 @@ framework:
         default_locale: %locale%
         auto_start:     true
 
+
+services:
+    hanzo:
+        class: Hanzo\Core\Hanzo
+        arguments:
+            container: @service_container
+            default: com
+            dev_map: { bc: dk }
+            main_menu_thread: 20
+
+    # twig extensions
+    hanzo.twig.extension:
+        class:  Hanzo\Twig\Extension\HanzoTwigExtension
+        arguments:
+            container: @service_container
+            cdn: /
+        tags:
+            -  { name: twig.extension }
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
