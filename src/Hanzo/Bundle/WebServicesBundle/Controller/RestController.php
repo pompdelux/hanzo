@@ -16,11 +16,26 @@ use Monolog;
  */
 class RestController extends Controller
 {
-  protected $request;
+    protected $request;
 
-  public function indexAction($version, $service_name)
-  {
-    $response = array();
-    return new Response(json_encode($response), 200, array(‘Content-type’ => ‘application/json’));
-  }
+    public function indexAction($version, $service_name)
+    {
+
+
+        $response = array();
+        return new Response(json_encode($response), 200, array(‘Content-type’ => ‘application/json’));
+    }
+
+    public function videoAction()
+    {
+        //bc_log($this->get('request'))
+        $request = $this->get('request');
+        $data = array(
+            'video'  => $request->get('src', false),
+            'width'  => $request->get('width', false),
+            'height' => $request->get('height', false),
+            'banner' => $request->get('banner', 'video_bg'),
+            'embed'  => (boolean) $request->get('embed', 0),
+        );
+    }
 }

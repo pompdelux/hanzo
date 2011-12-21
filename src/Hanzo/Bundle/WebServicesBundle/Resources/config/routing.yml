@@ -16,3 +16,6 @@ WebServicesBundle_rest:
       version: "v[0-9]+"
       _method:  GET|POST
       _format: JSON
+
+#http://www.pompdelux.com/video.php?src=Berte_LS_LONG_TSHIRT&height=360&width=248
+
