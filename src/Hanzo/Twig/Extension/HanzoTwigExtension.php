@@ -117,6 +117,7 @@ class HanzoTwigExtension extends Twig_Extension
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
+            $url['host'] = $_SERVER['HTTP_HOST'];
         }
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
