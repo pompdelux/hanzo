@@ -115,6 +115,10 @@ class HanzoTwigExtension extends Twig_Extension
         $url['path'] = $dir . '/' . $preset . ',' . $file;
         $url['query'] = $this->container->get('hanzo')->get('core.cache_key', 'z3');
 
+        if (empty($url['scheme'])) {
+            $url['scheme'] = 'http';
+        }
+
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
     }
 }
