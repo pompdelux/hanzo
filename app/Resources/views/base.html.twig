@@ -15,11 +15,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="all">
-
 <link rel="dns-prefetch" href="//static.pompdelux.dk">
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
 <link rel="dns-prefetch" href="//html5shim.googlecode.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
 
 <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
  {% stylesheets
@@ -45,10 +46,13 @@
 
 <div id="container">
   <a href="/" title="{{ "Home"|trans }}">
-    <img src="/fx/images/POMPdeLUX_logo.png" id="logo" alt="POMPdeLUX" title="POMPdeLUX">
+    {{ fx_image_tag('images/POMPdeLUX_logo.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
   </a>
 
     <div id="main" role="main">
+
+<a href="{{ path('basket_add', { 'master' : 'Silas PULLOVER', 'size' : 104, 'color' : 'Navy', 'quantity' : 10 }) }}">{{ "Add to basket"|trans }}</a>
+
       {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'sub', 'from': 400, 'offset': 482 } %}
       {% block content %}
       {% endblock %}
@@ -121,7 +125,7 @@
 
 <footer>
   <ul>
-    <li><img src="/fx/images/creditcards_dk.png" alt="credit cards"></li>
+    <li>{{ fx_image_tag('images/creditcards_dk.png', '', {'alt':'credit cards'}) }}</li>
     <li>POMPdeLUX ApS</li>
     <li>Møgelhøj 8</li>
     <li>DK-8520 Lystrup</li>
@@ -136,16 +140,16 @@ var counter_offset = 1314691200;
 
 {% if page_type|default('page') == 'frontpage' %}
 var vegas_backgrounds = [
-  { src: '/fx/images/bg/01.jpg', fade:1000, loading: false, valign: 'top' },
-  { src: '/fx/images/bg/02.jpg', fade:1000, loading: false, valign: 'top' },
-  { src: '/fx/images/bg/03.jpg', fade:1000, loading: false, valign: 'top' },
-  { src: '/fx/images/bg/04.jpg', fade:1000, loading: false, valign: 'top' },
-  { src: '/fx/images/bg/05.jpg', fade:1000, loading: false, valign: 'top' },
-  { src: '/fx/images/bg/06.jpg', fade:1000, loading: false, valign: 'top' }
+  { src: '{{ image_path('/fx/images/bg/01.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/02.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/03.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/04.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/05.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/06.jpg') }}', fade:1000, loading: false, valign: 'top' }
 ];
 {% else %}
 var vegas_backgrounds = [
-  { src: '/fx/images/bg/bg_pdl.jpg', valign: 'top', loading: false }
+  { src: '{{ image_path('/fx/images/bg/bg_pdl.jpg') }}', valign: 'top', loading: false }
 ];
 {% endif %}
 

@@ -56,7 +56,7 @@ class HanzoTwigExtension extends Twig_Extension
      * @param array $params
      * @return type
      */
-    public function fx_image_tag($src, $preset = '50x50', array $params = array())
+    public function fx_image_tag($src, $preset = '', array $params = array())
     {
         $src = $this->cdn . 'fx/' . $src;
         return $this->image_tag($this->image_path($src, $preset), $params);
@@ -102,17 +102,20 @@ class HanzoTwigExtension extends Twig_Extension
      * @throws InvalidArgumentException
      * @return string
      */
-    public function image_path($src, $preset)
+    public function image_path($src, $preset = '')
     {
-        if (!preg_match('/[0-9]+x[0-9]+/i', $preset)) {
+        if ($preset && !preg_match('/[0-9]+x[0-9]+/i', $preset)) {
             throw new \InvalidArgumentException("Preset: {$preset} is not valid.");
         }
 
-        $url = parse_url($src);
+        if ($preset) {
+            $preset .= ',';
+        }
 
+        $url = parse_url($src);
         $file = basename($url['path']);
         $dir  = dirname($url['path']);
-        $url['path'] = $dir . '/' . $preset . ',' . $file;
+        $url['path'] = $dir . '/' . $preset . $file;
         $url['query'] = $this->container->get('hanzo')->get('core.cache_key', 'z3');
 
         if (empty($url['scheme'])) {
