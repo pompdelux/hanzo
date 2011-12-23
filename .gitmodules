@@ -1,0 +1,9 @@
+[submodule "web/fx/scripts/zoom"]
+	path = web/fx/scripts/zoom
+	url = https://github.com/jackmoore/zoom.git
+[submodule "web/fx/scripts/colorbox"]
+	path = web/fx/scripts/colorbox
+	url = https://github.com/jackmoore/colorbox.git
+[submodule "web/fx/scripts/vegas"]
+	path = web/fx/scripts/vegas
+	url = https://github.com/jaysalvat/vegas.git
