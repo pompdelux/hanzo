@@ -21,3 +21,11 @@ basket_update:
         _format: rest
     requirements:
         _format: html|json
+
+basket_show:
+    pattern:  /basket
+    defaults: { _controller: BasketBundle:Default:show }
+
+basket_show_mini:
+    pattern:  /miniBasket
+    defaults: { _controller: BasketBundle:Default:miniBasket }

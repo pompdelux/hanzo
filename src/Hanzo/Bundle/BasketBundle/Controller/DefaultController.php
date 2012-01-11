@@ -4,17 +4,25 @@ namespace Hanzo\Bundle\BasketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Hanzo\Core\Stock,
+use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
+    Hanzo\Core\Stock,
     Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsStockQuery;
+    Hanzo\Model\ProductsStockQuery,
+    Hanzo\Model\ProductsDomainsPricesQuery;
+
+use Hanzo\Model\OrdersPeer,
+    Hanzo\Model\OrdersQuery,
+    Hanzo\Model\OrdersLinesQuery;
 
 class DefaultController extends CoreController
 {
     public function addAction()
     {
         $this->get('twig')->addGlobal('page_type', 'basket');
+        $translator = $this->get('translator');
 
         // product_id,master,size,color,quantity
         $request = $this->get('request');
@@ -34,15 +42,24 @@ class DefaultController extends CoreController
                 ->filterBySize($size)
                 ->filterByColor($color)
                 ->filterByIsOutOfStock(0)
+                ->useProductsDomainsPricesQuery()
+                    ->filterByDomainsId(Hanzo::init()->get('core.domain_id'))
+                ->endUse()
                 ->findOne()
             ;
         }
 
         // could not find matching product, throw 404 ?
         if (empty($product)) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => ''
+                ));
+            }
+
             $this->redirect($request->headers->get('referer'));
         }
-
 
         $stock = $this->get('stock')->check($product, $quantity);
 
@@ -51,8 +68,61 @@ class DefaultController extends CoreController
         //     Stock::decrease($product, $quantity);
         // }
 
-        return $this->render('BasketBundle:Default:add.html.twig', array('x' => $stock));
+        if ($stock) {
+            // Stock::decrease($product, $quantity);
+            $order = OrdersPeer::getCurrentOrder($this);
+
+            if ($order->isNew()) {
+                $order->setLanguagesId(Hanzo::init()->get('core.language_id'));
+            }
+
+            $order->setOrderLineQty($product, $quantity);
+
+            if ($order->validate()) {
+                $order->save();
+
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => TRUE,
+                        'message' => $translator->trans('"%product%" just added to your cart', array('%product%' => $product)),
+                        'data' => $this->miniBasketAction(TRUE),
+                    ));
+                }
+            }
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('"%product%" is out of stock', array('%product%' => $product)),
+            ));
+        }
+
+
+        return $this->forward('BasketBundle:Default:view');
     }
+
+
+    public function miniBasketAction($return = FALSE)
+    {
+        $order = OrdersPeer::getCurrentOrder($this);
+        $total = '('.$order->getTotalQuantity().') ' . $order->getTotalPrice();
+
+        if ($return) {
+            return $total;
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => '',
+                'data' => $total,
+            ));
+        }
+
+        return $this->response($total);
+    }
+
 
     public function setAction($product_id, $qyantity)
     {
@@ -67,5 +137,10 @@ class DefaultController extends CoreController
     public function updateAction()
     {
         return $this->response('update basket');
+    }
+
+    public function viewAction()
+    {
+        return $this->response('show basket');
     }
 }

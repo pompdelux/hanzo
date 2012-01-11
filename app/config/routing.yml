@@ -1,3 +1,7 @@
+BasketBundle:
+    resource: "@BasketBundle/Resources/config/routing.yml"
+    prefix:   /
+
 HanzoSearchBundle:
     resource: "@HanzoSearchBundle/Resources/config/routing.yml"
     prefix:   /

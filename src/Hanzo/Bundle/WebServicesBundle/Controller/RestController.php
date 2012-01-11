@@ -7,24 +7,36 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Monolog;
 
+use Hanzo\Core\CoreController;
+
 /**
  * @see
- *  http://symfony.com/doc/2.0/cookbook/web_services/php_soap_extension.html
  *  http://miller.limethinking.co.uk/2011/04/15/symfony2-controller-as-service/
  *  http://speakerdeck.com/u/hhamon/p/silex-meets-soap-rest
  *
  */
-class RestController extends Controller
+class RestController extends CoreController
 {
     protected $request;
 
     public function indexAction($version, $service_name)
     {
+        $service_name = explode('-', $service_name.'-'.'service');
+        array_walk($service_name, function($name, $index) use(&$service_name) {
+            $service_name[$index] = ucfirst($name);
+        });
+        $service_name = implode('', $service_name);
+
+        $service_class = str_replace('Controller', 'Services\Rest', __NAMESPACE__) . "\\{$service_name}\\$service_name";
+        $handler = new $service_class($this);
 
 
         $response = array();
         return new Response(json_encode($response), 200, array(‘Content-type’ => ‘application/json’));
     }
+
+
+    public function checkStockAction(){}
 
     public function videoAction()
     {

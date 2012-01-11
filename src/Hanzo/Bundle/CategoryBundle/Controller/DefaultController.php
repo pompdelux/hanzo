@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Response
 ;
 
-use Hanzo\Core\CoreController;
+use Hanzo\Core\CoreController,
+    Hanzo\Core\Tools;
 
 use Hanzo\Model\ProductsImagesCategoriesSortQuery,
     Hanzo\Model\ProductsImagesCategoriesSortPeer,
@@ -33,11 +34,16 @@ class DefaultController extends CoreController
         if ($this->getFormat() == 'json') {
             $data = $this->getCache($cache_id);
             if (!$data) {
-                $data = CategoriesPeer::getCategpryProductsByCategoryId($this, $category_id, $pager);
+                $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
                 $this->setCache($cache_id, $data, 5);
             }
 
-            return $this->json_responce($data);
+            // for json we need the real image paths
+            foreach ($data['products'] as $k => $product) {
+                $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '120x240');
+            }
+
+            return $this->json_response($data);
         }
 
         // html/normal request
@@ -45,7 +51,7 @@ class DefaultController extends CoreController
         $html = $this->getCache($cache_id);
 
         if (!$html) {
-            $data = CategoriesPeer::getCategpryProductsByCategoryId($this, $category_id, $pager);
+            $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
 
             $this->get('twig')->addGlobal('page_type', 'category');
             $html = $this->renderView('HanzoCategoryBundle:Default:view.html.twig', $data);

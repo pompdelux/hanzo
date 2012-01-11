@@ -7,11 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class RedisCache
 {
     protected $cache = NULL;
-    protected static $prefix = 'hanzo.cache:';
+    protected static $prefix = 'hanzo.cache.';
 
-    public function __construct($container)
+    public function __construct($hanzo)
     {
-        $this->cache = $container->get('snc_redis.default_client');
+        self::$prefix .= $hanzo->get('core.env') . '.' . $hanzo->get('core.tld') . ':';
+        $this->cache = $hanzo->container->get('snc_redis.default_client');
     }
 
 

@@ -28,7 +28,7 @@ $kernel->handle(Request::createFromGlobals())->send();
  * <[ performance numbers ]>
  */
 
-if (!defined('JSON_RESPONCE')) {
+if (!defined('JSON_RESPONSE')) {
 
 function _c($size){
     $unit = array('b','kb','mb','gb','tb','pb');

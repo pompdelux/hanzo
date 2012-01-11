@@ -36,7 +36,7 @@ class CoreController extends Controller
     protected function getCache($key)
     {
         if (empty($this->cache)) {
-            $this->cache = new RedisCache($this->container);
+            $this->cache = Hanzo::init()->cache;
         }
 
         return $this->cache->get($this->cache->id($key));
@@ -45,7 +45,7 @@ class CoreController extends Controller
     protected function setCache($key, $data, $ttl = 3600)
     {
         if (empty($this->cache)) {
-            $this->cache = new RedisCache($this->container);
+            $this->cache = Hanzo::init()->cache;
         }
 
         return $this->cache->set($this->cache->id($key), $data, $ttl);
@@ -57,45 +57,32 @@ class CoreController extends Controller
         if (isset($headers['Content-Type']) &&
             ($headers['Content-Type'] == 'application/json')
         ) {
-            define('JSON_RESPONCE', 1);
+            define('JSON_RESPONSE', 1);
             $headers['Cache-Control'] = 'no-cache';
         }
 
         return new Response($content, $status, $headers);
     }
 
-    public function json_responce($data) {
-        return $this->response(json_encode($data), 200, array('Content-Type' => 'application/json'));
-    }
 
+    /**
+     * returns a json encoded responce - with one exception
+     *
+     * @param mixed $data
+     * @param int $code http status code, defaults to 200
+     * @global $_REQUEST['_xjson'] if set the method will setup and send a x-json response.
+     */
+    public function json_response($data, $code = 200) {
+        /**
+         * this fixes an issue when working with pushState and json data
+         * so to take atvantage of this, be shure to add a _xjson request parameter to your call
+         */
+        if ($this->get('request')->get('_xjson')) {
+            header('Content-Type: application/x-json');
+            header('X-JSON: ' . json_encode(array('status' => TRUE)));
+            die(json_encode($data));
+        }
 
-    public static function stripText($v)
-    {
-        $url_safe_char_map = array(
-            'æ' => 'ae', 'Æ' => 'AE',
-            'ø' => 'oe', 'Ø' => 'OE',
-            'å' => 'aa', 'Å' => 'AA',
-            'é' => 'e',  'É' => 'E', 'è' => 'e', 'È' => 'E',
-            'à' => 'a',  'À' => 'A', 'ä' => 'a', 'Ä' => 'A', 'ã' => 'a', 'Ã' => 'A',
-            'ò' => 'o',  'Ò' => 'O', 'ö' => 'o', 'Ö' => 'O', 'õ' => 'o', 'Õ' => 'O',
-            'ù' => 'u',  'Ù' => 'U', 'ú' => 'u', 'Ú' => 'U', 'ũ' => 'u', 'Ũ' => 'U',
-            'ì' => 'i',  'Ì' => 'I', 'í' => 'i', 'Í' => 'I', 'ĩ' => 'i', 'Ĩ' => 'I',
-            'ß' => 'ss',
-            'ý' => 'y', 'Ý' => 'Y',
-            ' ' => '-',
-            '/' => '-',
-        );
-
-        $search  = array_keys($url_safe_char_map);
-        $replace = array_values($url_safe_char_map);
-
-        $v = str_replace(' ', '-', trim($v));
-        $v = str_replace($search, $replace, $v);
-
-        $v = preg_replace('/[^a-z0-9_-]+/i', '', $v);
-        $v = preg_replace('/[-]+/', '-', $v);
-        $v = preg_replace('/^-|-$/', '-', $v);
-
-        return strtolower($v);
+        return $this->response(json_encode($data), $code, array('Content-Type' => 'application/json'));
     }
 }

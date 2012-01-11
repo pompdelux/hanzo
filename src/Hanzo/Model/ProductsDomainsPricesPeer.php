@@ -2,6 +2,11 @@
 
 namespace Hanzo\Model;
 
+use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools;
+
+use Hanzo\Twig\Extension\HanzoTwigExtension;
+
 use Hanzo\Model\om\BaseProductsDomainsPricesPeer,
     Hanzo\Model\ProductsDomainsPricesQuery
 ;
@@ -22,9 +27,9 @@ use \Criteria;
 class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
 
 
-    public static function getProductsPrices($controller, array $products)
+    public static function getProductsPrices(array $products)
     {
-        $domain_id = $controller->get('hanzo')->get('core.domain_id');
+        $domain_id = Hanzo::init()->get('core.domain_id');
 
         $prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)
@@ -38,7 +43,12 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
         $data = array();
         foreach ($prices as $price) {
             $key = $price->getToDate() ? 'sales' : 'normal';
-            $data[$price->getProductsId()][$key] = $price->getPrice()+ $price->getVat();
+            $data[$price->getProductsId()][$key] = array(
+                'currency' => $price->getCurrencyCode(),
+                'price' => $price->getPrice() + $price->getVat(),
+                'vat' => $price->getVat(),
+                'formattet' => Tools::moneyFormat($price->getPrice() + $price->getVat())
+            );
         }
 
         return $data;

@@ -5,6 +5,8 @@ namespace Hanzo\Bundle\CMSBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\Cms,
@@ -25,57 +27,67 @@ class MenuController extends CoreController
 
     public function menuAction($type, $thread = NULL, $from = NULL, $offset = NULL)
     {
-        $this->locale = $this->get('hanzo')->get('core.locale');
-
         $request = $this->get('request');
-        $this->base_url = $request->getBaseUrl();
 
+        $cache_id = func_get_args();
+        array_unshift($cache_id, 'menu');
+        array_push($cache_id, $request->getPathInfo());
 
-        if ($thread) {
-            $this->cms_thread = $this->get('hanzo')->get('core.main_menu_thread');
-        }
+        $html = $this->getCache($cache_id);
+        if (!$html) {
+            $hanzo = Hanzo::init();
 
-        if (empty($this->path)) {
-            $this->path = $request->getPathInfo();
+            $this->locale = $hanzo->get('core.locale');
+            $this->base_url = $request->getBaseUrl();
 
-            // TODO this could be done better, but how ?
-            if (preg_match('~(?:/[0-9]+/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
-                $this->path = str_replace($matches[0], '', $this->path);
+            if ($thread) {
+                $this->cms_thread = $hanzo->get('core.main_menu_thread');
             }
 
-            // home does not have a trail.
-            if ($this->path != '/') {
-                $this->generateTrail();
-            }
-        }
+            if (empty($this->path)) {
+                $this->path = $request->getPathInfo();
 
-        // now we have a trail to the current page, lets generate the requested menu.
-
-        $return = '';
-        switch($type) {
-            case 'main':
-                if (empty($this->menu['main'])) {
-                    $this->menu['main'] = '';
-                    // generate
-                    $this->generateTree();
+                // TODO this could be done better, but how ?
+                if (preg_match('~(?:/[0-9]+/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
+                    $this->path = str_replace($matches[0], '', $this->path);
                 }
-                $return = $this->menu['main'];
-                break;
 
-            case 'sub':
-                if (empty($this->menu['sub']) && $offset) {
-                    $this->menu['sub'] = '';
-                    // generate
-                    if ($from && !isset($this->trail[$from])) {
-                        break;
+                // home does not have a trail.
+                if ($this->path != '/') {
+                    $this->generateTrail();
+                }
+            }
+
+            // now we have a trail to the current page, lets generate the requested menu.
+
+            $html = '';
+            switch($type) {
+                case 'main':
+                    if (empty($this->menu['main'])) {
+                        $this->menu['main'] = '';
+                        // generate
+                        $this->generateTree();
                     }
-                    $this->generateFlat($offset, 'sub');
-                }
-                $return = $this->menu['sub'];
-                break;
+                    $html = $this->menu['main'];
+                    break;
+
+                case 'sub':
+                    if (empty($this->menu['sub']) && $offset) {
+                        $this->menu['sub'] = '';
+                        // generate
+                        if ($from && !isset($this->trail[$from])) {
+                            break;
+                        }
+                        $this->generateFlat($offset, 'sub');
+                    }
+                    $html = $this->menu['sub'];
+                    break;
+            }
+
+            $this->setCache($cache_id, $html);
         }
 
-        return new Response(($return ?: ''), 200);
+        return new Response(($html ?: ''), 200);
     }
 
 

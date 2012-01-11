@@ -5,18 +5,20 @@ namespace Hanzo\Twig\Extension;
 use \Twig_Extension,
     \Twig_Function_Method,
     \Twig_Function_Function,
-    \Twig_Filter_Method
-;
+    \Twig_Filter_Method;
+
+use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools;
 
 class HanzoTwigExtension extends Twig_Extension
 {
-    protected $container;
+    // protected $container;
 
-    public function __construct($container, $cdn = '')
-    {
-        $this->container = $container;
-        $this->cdn = $cdn;
-    }
+    // public function __construct($container, $cdn = '')
+    // {
+    //     $this->container = $container;
+    //     $this->cdn = $cdn;
+    // }
 
     public function getName()
     {
@@ -41,88 +43,57 @@ class HanzoTwigExtension extends Twig_Extension
         );
     }
 
-
+    /**
+     * @see Hanzo\Core\Tools\Tools::moneyFormat
+     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     */
     public function hanzo_money_format($number, $format = '%i')
     {
-        return money_format($format, $number);
+        return Tools::moneyFormat($number, $format);
     }
 
     /**
-     * generates a formatted image tag.
-     *
-     * @see Functions::image_path()
-     * @param string $src image source
-     * @param string $preset the image preset to use - format heightXwidth
-     * @param array $params
-     * @return type
+     * @see Hanzo\Core\Tools\Tools::fxImageTag
+     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function fx_image_tag($src, $preset = '', array $params = array())
     {
-        $src = $this->cdn . 'fx/' . $src;
-        return $this->image_tag($this->image_path($src, $preset), $params);
+        return Tools::fxImageTag($src, $preset, $params);
     }
-
-    public function product_image_tag($src, $preset = '50x50', array $params = array())
-    {
-        $src = $this->cdn . 'images/products/thumb/' . $src;
-        return $this->image_tag($this->image_path($src, $preset), $params);
-    }
-
-    public function product_image_url($src, $preset = '50x50', array $params = array())
-    {
-        $src = $this->cdn . 'images/products/thumb/' . $src;
-        return $this->image_path($src, $preset);
-    }
-
-
-    protected function image_tag($src, array $params = array())
-    {
-        if (empty($params['title']) && !empty($params['alt'])) {
-            $params['title'] = $params['alt'];
-        }
-        if (empty($params['alt']) && !empty($params['title'])) {
-            $params['alt'] = $params['title'];
-        }
-
-        $extra = '';
-
-        foreach ($params as $key => $value) {
-            $extra .= ' ' . $key . '="'.$value.'"';
-        }
-
-        return '<img src="' . $src . '"' . $extra . '>';
-    }
-
 
     /**
-     * build image path based on source and preset
-     *
-     * @param string $src image source
-     * @param string $preset the image preset to use - format heightXwidth
-     * @throws InvalidArgumentException
-     * @return string
+     * @see Hanzo\Core\Tools\Tools::productImageTag
+     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     */
+    public function product_image_tag($src, $preset = '50x50', array $params = array())
+    {
+        return Tools::productImageTag($src, $preset, $params);
+    }
+
+    /**
+     * @see Hanzo\Core\Tools\Tools::productImageUrl
+     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     */
+    public function product_image_url($src, $preset = '50x50', array $params = array())
+    {
+        return Tools::productImageUrl($src, $preset, $params);
+    }
+
+    /**
+     * @see Hanzo\Core\Tools\Tools::imageTag
+     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     */
+    protected function image_tag($src, array $params = array())
+    {
+        return Tools::imageTag($src, $params);
+    }
+
+    /**
+     * @see Hanzo\Core\Tools\Tools::imagePath
+     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function image_path($src, $preset = '')
     {
-        if ($preset && !preg_match('/[0-9]+x[0-9]+/i', $preset)) {
-            throw new \InvalidArgumentException("Preset: {$preset} is not valid.");
-        }
-
-        if ($preset) {
-            $preset .= ',';
-        }
-
-        $url = parse_url($src);
-        $file = basename($url['path']);
-        $dir  = dirname($url['path']);
-        $url['path'] = $dir . '/' . $preset . $file;
-        $url['query'] = $this->container->get('hanzo')->get('core.cache_key', 'z3');
-
-        if (empty($url['scheme'])) {
-            $url['scheme'] = 'http';
-            $url['host'] = $_SERVER['HTTP_HOST'];
-        }
-
-        return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
+        return Tools::imagePath($src, $preset);
     }
 }

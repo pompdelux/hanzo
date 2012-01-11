@@ -26,7 +26,13 @@ class Stock
 
         $ids = array();
         foreach($products as $product) {
-          $id = $product->getId();
+          if (is_object($product)) {
+            $id = $product->getId();
+          }
+          else {
+            $id = (int) $product;
+          }
+
           if (isset($this->stock[$id])){
             continue;
           }
@@ -67,6 +73,12 @@ class Stock
     }
 
 
+    /**
+     * load a collection of products stock to be testet in a loop or the like.
+     *
+     * @param array $products an array of product objects
+     * @return void
+     */
     public function prime($products)
     {
         $this->load($products);
@@ -76,13 +88,19 @@ class Stock
     /**
      * check wether or not a product is in stock or not.
      *
-     * @param Products $product a product object
+     * @param mixed $product a product object or product id
      * @param int $quantity, the quantity to check agianst
      * @return mixed true if the product is available now, a DateTime object if it is available in the future, false if not in stock
      */
     public function check($product, $quantity = 1)
     {
-        $id = $product->getId();
+        if (is_object($product)) {
+            $id = $product->getId();
+        }
+        else {
+            $id = (int) $product;
+        }
+
 
         if (empty($this->stock[$id])) {
             $this->load($product);
@@ -187,6 +205,7 @@ class Stock
         Propel::setForceMasterConnection(TRUE);
         $this->is_master = 1;
     }
+
     protected function releaseMasterConnection()
     {
         if ($this->is_master > 1) {

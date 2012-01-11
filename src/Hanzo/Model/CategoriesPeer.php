@@ -2,6 +2,9 @@
 
 namespace Hanzo\Model;
 
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+
 use Hanzo\Model\om\BaseCategoriesPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 
@@ -19,11 +22,14 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
  */
 class CategoriesPeer extends BaseCategoriesPeer
 {
-    public static function getCategpryProductsByCategoryId($controller, $category_id, $pager)
+    public static function getCategoryProductsByCategoryId($category_id, $pager)
     {
-        $route = $controller->get('request')->get('_route');
-        $router = $controller->get('router');
-        $domain_id = $controller->get('hanzo')->get('core.domain_id');
+        $hanzo = Hanzo::init();
+        $container = $hanzo->container;
+        $route = $container->get('request')->get('_route');
+        $router = $container->get('router');
+
+        $domain_id = $hanzo->get('core.domain_id');
 
         $result = ProductsImagesCategoriesSortQuery::create()
             ->useProductsQuery()
@@ -57,14 +63,14 @@ class CategoriesPeer extends BaseCategoriesPeer
                 'image' => $record->getProductsImages()->getImage(),
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
-                    'title' => $controller->stripText($product->getMaster()),
+                    'title' => Tools::stripText($product->getMaster()),
                     'focus' => $record->getProductsImages()->getId()
                 )),
             );
         }
 
         // get product prices
-        $prices = ProductsDomainsPricesPeer::getProductsPrices($controller, $product_ids);
+        $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
         // attach the prices to the products
         foreach ($records as $i => $data) {

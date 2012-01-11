@@ -3,48 +3,68 @@
 {% block content %}
 
 <div class="product-list clearfix">
+  <div class="wrapper">
 
-{% for product in products %}
+  {% for product in products %}
 
-  <div class="block block-num-{{ loop.index }}">
-    <a href="{{ product.url }}" title="{{ "Click for more information about %name%."|trans({'%name%' : product.title}) }}">
-      {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
-      <span class="title">{{ product.title }}</span>
-      <span class="prices">
-      {% if product.prices.sales %}
-        <span class="normal strike">{{ product.prices.normal|money }}</span>
-        <span class="discount">{{ product.prices.sales|money }}</span>
-      {% else %}
-        <span class="normal">{{ product.prices.normal|money }}</span>
-      {% endif %}
-      </span>
-    </a>
+    <div class="block block-num-{{ loop.index }}">
+      <a href="{{ product.url }}" title="{{ "Click for more information about %name%."|trans({'%name%' : product.title}) }}">
+        {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
+        <span class="title">{{ product.title }}</span>
+        <span class="prices">
+        {% if product.prices.sales %}
+          <span class="normal strike">{{ product.prices.normal.price|money }}</span>
+          <span class="discount">{{ product.prices.sales.price|money }}</span>
+        {% else %}
+          <span class="normal">{{ product.prices.normal.price|money }}</span>
+        {% endif %}
+        </span>
+      </a>
+    </div>
+
+  {% else %}
+
+    <div class="out-of-stock">
+      {% trans %}All products in this category is out of stock.{% endtrans %}
+    </div>
+
+  {% endfor %}
+
   </div>
-
-{% else %}
-
-  <div class="out-of-stock">
-    {% trans %}All products in this category is out of stock.{% endtrans %}
-  </div>
-
-{% endfor %}
-
 </div>
 
 {% if paginate %}
 <div class="pager ajax" data-target="product-list">
   <ul>
-  {% if paginate.prew %}
-    <li><a href="{{ paginate.prew }}" title="{{ "Show previous page"|trans }}">{{ "Previous"|trans }}</a></li>
-  {% endif %}
+    <li class="prew {% if paginate.prew is empty %}off{% endif %}"><a href="{{ paginate.prew }}" title="{{ "Show previous page"|trans }}">{{ "Previous"|trans }}</a></li>
   {% for page, url in paginate.pages %}
-    <li><a href="{{ url }}" title="{{ "Show page %page%"|trans({'%page%' : page}) }}"{% if page == paginate.index %} class="active"{% endif %}>{{ page }}</a></li>
+    <li{% if page == paginate.index %} class="current"{% endif %}><a href="{{ url }}" title="{{ "Show page %page%"|trans({'%page%' : page}) }}">{{ page }}</a></li>
   {% endfor %}
-  {% if paginate.next %}
-    <li><a href="{{ paginate.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a></li>
-  {% endif %}
+    <li class="next {% if paginate.next is empty %}off{% endif %}"><a href="{{ paginate.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a></li>
   </ul>
+  <div class="loading"><p>{{ "Loading"|trans }}</p> <span></span></div>
 </div>
 {% endif %}
+
+{#  mustache template used by the pager, do not delete ! #}
+{% raw %}
+<script type="text/html" id="productItem">
+  <div class="block block-num-{{ index }}">
+    <a href="{{ url }}" title="">
+      <img src="{{ image }}" alt="{{ title }}">
+      <span class="title">{{ title }}</span>
+      <span class="prices">
+      {{#sales}}
+        <span class="normal strike">{{ normal }}</span>
+        <span class="discount">{{ sales }}</span>
+      {{/sales}}
+      {{^sales}}
+        <span class="normal">{{ normal }}</span>
+      {{/sales}}
+      </span>
+    </a>
+  </div>
+</script>
+{% endraw %}
 
 {% endblock %}

@@ -2,30 +2,67 @@
 
 namespace Hanzo\Core;
 
-use \Hanzo\Model;
-use \Hanzo\Model\SettingsQuery;
-use \Hanzo\Model\DomainsSettingsQuery;
+use Hanzo\Model,
+    Hanzo\Model\SettingsQuery,
+    Hanzo\Model\LanguagesQuery,
+    Hanzo\Model\DomainsSettingsQuery
+;
 
+use Symfony\Component\Yaml\Yaml;
 
 class Hanzo
 {
     protected $domain;
     protected $settings = array();
-    protected $tld;
 
-    protected $cache;
+    public $cache;
+    public $container;
 
-    public function __construct($container, $default = 'com', array $dev_map = array(), $main_menu_thread = NULL)
+    protected static $hanzo;
+
+    public static function init($container = NULL, $environment = NULL)
+    {
+        if (empty(self::$hanzo)) {
+            if (empty($container)) {
+                throw new \InvalidArgumentException('Service Container object needed !', 100);
+            }
+            self::$hanzo = new Hanzo($container, $environment);
+        }
+
+        return self::$hanzo;
+    }
+
+
+    public function __construct($container, $environment = NULL)
     {
         $this->container = $container;
-        $this->cache = new RedisCache($this->container);
+        $this->settings['core.env'] = $environment;
+
+        $this->domain = empty($_SERVER['HTTP_HOST']) ? 'localhost.locale' : $_SERVER['HTTP_HOST'];
+        $this->domain_fragments = explode('.', $this->domain);
+        $this->settings['core.tld'] = array_pop($this->domain_fragments);
+
+        $this->cache = new RedisCache($this);
+
+        $config = Yaml::parse( __DIR__ . '/../../../app/config/hanzo.yml' );
+
+        if (isset($config['cdn'])) {
+           $this->settings['core.cdn'] = $config['cdn'];
+        }
+
+        // translate locale dev tld's
+        if (isset($config['tld_map']) &&
+            isset($config['tld_map'][$this->settings['core.tld']])
+        ) {
+            $this->settings['core.tld'] = $config['tld_map'][$this->settings['core.tld']];
+        }
 
         if ($cache = $this->cache->get($this->cache->id('core.settings'))) {
              $this->settings = $cache;
         }
         else {
             $this->initSettings();
-            $this->initDomain($default, $dev_map);
+            $this->initDomain($config['default_tld'], $config['tld_map']);
             $this->cache->set($this->cache->id('core.settings'), $this->settings);
         }
 
@@ -34,9 +71,8 @@ class Hanzo
             $session->setLocale($this->settings['core.locale']);
         }
 
-        setLocale(LC_ALL, \Locale::getDefault().'.utf-8');
-
-        $this->settings['core.main_menu_thread'] = $main_menu_thread;
+        setLocale(LC_ALL, $session->getLocale().'.utf-8');
+        $this->settings['core.main_menu_thread'] = $config['main_menu_thread'];
     }
 
 
@@ -48,18 +84,9 @@ class Hanzo
      */
     protected function initDomain($default, array $dev_map = array())
     {
-        $this->domain = $this->container->get('request')->getHost();
-        $domain_fragments = explode('.', $this->domain);
-        $this->tld = array_pop($domain_fragments);
-
-        // translate locale dev tld's
-        if (isset($dev_map[$this->tld])) {
-            $this->tld = $dev_map[$this->tld];
-        }
-
         $settings = DomainsSettingsQuery::create()
             ->joinWithDomains()
-            ->findByDomainKey($this->tld)
+            ->findByDomainKey($this->settings['core.tld'])
         ;
 
         if (0 == $settings->count()) {
@@ -76,12 +103,15 @@ class Hanzo
         }
 
         if ($record) {
+            $language = LanguagesQuery::create()->findOneByLocale($this->settings['core.locale']);
+            $this->settings['core.language_id'] = $language->getId();
+
             $this->settings['core.domain_id'] = $record->getDomains()->getId();
             $this->settings['core.domain_key'] = $record->getDomainKey();
 
             // handle sales donains
-            if ((count($domain_fragments) > 1) &&
-                (substr($domain_fragments[0], 0, 4) == 'kons')
+            if ((count($this->domain_fragments) > 1) &&
+                (substr($this->domain_fragments[0], 0, 4) == 'kons')
             ) {
                 $this->settings['core.domain_key'] = 'Sales' . $this->settings['core.domain_key'];
             }

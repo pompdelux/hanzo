@@ -1,21 +1,21 @@
-WebServicesBundle_homepage:
+ws_index:
     pattern:  /wolla/{name}
     defaults: { _controller: WebServicesBundle:Default:index }
 
-WebServicesBundle_soap:
+ws_soap:
     pattern:  /soap/{version}/{service_name}
     defaults: { _controller: WebServicesBundle:Soap:index, version: v1 }
     requirements:
-      service_name: "[a-zA-Z0-9_]+"
+        service_name: "[a-zA-Z0-9_]+"
 
-WebServicesBundle_rest:
-    pattern:  /rest/{version}/{service_name}
-    defaults: { _controller: WebServicesBundle:Rest:index, version: v1 }
+# /rest/v1/stock-check/{10}?master=foo&color=bar&size=baz
+ws_stock:
+    pattern:    /rest/{version}/stock-check/{id}
+    defaults:
+        _controller: WebServicesBundle:RestStock:check
+        version: v1
+        id: 0
     requirements:
-      service_name: "[a-zA-Z0-9_]+"
-      version: "v[0-9]+"
-      _method:  GET|POST
-      _format: JSON
-
-#http://www.pompdelux.com/video.php?src=Berte_LS_LONG_TSHIRT&height=360&width=248
-
+        _method:  GET
+        id: \d+
+        version: "v[0-9]+"

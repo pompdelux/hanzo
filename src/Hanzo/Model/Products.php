@@ -18,4 +18,9 @@ use Hanzo\Model\om\BaseProducts;
  */
 class Products extends BaseProducts {
 
+    public function __toString()
+    {
+        return $this->getMaster().' '.$this->getSize().' '.$this->getColor();
+    }
+
 } // Products

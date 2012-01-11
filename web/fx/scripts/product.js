@@ -7,11 +7,9 @@
     pub.initZoom = function() {
       var e = $('.productimage-large');
       e.zoom({
-        'url' : e.find('a').first().attr('href'),
-        'click' : function(event) {
-          $.colorbox({href: this.src});
-          e.mouseout();
-          event.preventDefault();
+        url : e.find('a').first().attr('href'),
+        callback: function(){
+          $(this).colorbox({href: this.src, close: 'x'});
         }
       });
     };
@@ -68,13 +66,133 @@
       $("ul.tabs").tabs("div.panes > div");
     };
 
+    // make a slideshow out of all product images.
+    pub.initSlideshow = function() {
+      var images = [];
+      $('.productimage-small a').each(function() {
+        images.push(this.href);
+      });
+
+      var contailer = '';
+      for (i=0; i<images.length; i++) {
+        contailer += '<a href="'+images[i]+'" rel="slideshow"></a>';
+      }
+      $('#colorbox-slideshow').append(contailer);
+      $('#colorbox-slideshow a').colorbox({
+        rel:'slideshow',
+        previous: '««',
+        next: '»»',
+        close: 'x',
+        current: '{current} / {total}'
+      });
+    };
+
+    // handle "add to basket"
+    pub.initPurchase = function() {
+      _resetForm(1);
+      $('form.buy select#size, form.buy select#color').on('change', function() {
+        var name = this.name;
+        var value = this.value;
+
+        // make shure the form is updated!
+        if ((name === 'size') && (value !== '')) {
+          _resetForm();
+        }
+
+        var $form = $('form.buy');
+        $.ajax({
+          url: base_url + 'rest/v1/stock-check',
+          dataType: 'json',
+          data: $form.serialize(),
+          async: false,
+          success: function(data, textStatus, jqXHR) {
+            if (false === data.status) {
+              if (data.message) {
+                dialoug.alert(i18n.t('Notice!'), data.message);
+              }
+
+              return;
+            }
+
+            // populate color select with options
+            if (name === 'size') {
+              $.each(data.data.products, function(index, product) {
+                $('form.buy #color').append('<option value="'+product.color+'">'+product.color+'</option>')
+              });
+              $('form.buy #color').closest('label').removeClass('off');
+            }
+
+            if (name == 'color') {
+              var product = data.data.products[0];
+              if (product.date) {
+                dialoug.confirm(i18n.t('Notice!'), data.message, function(c) {
+                  if (c == 'ok') {
+                    $('form.buy #quantity').closest('label').removeClass('off');
+                    $form.find('.button').show();
+                    $form.append('<input type="hidden" name="date" value="' + product.date + '">');
+                  }
+                });
+              }
+              else {
+                $('form.buy #quantity').closest('label').removeClass('off');
+                $form.find('.button').show();
+              }
+            }
+          }
+        });
+      });
+
+      $('form.buy').on('submit', function(event) {
+        event.preventDefault();
+
+        var $form = $(this);
+        $.ajax({
+          url: $form.attr('action'),
+          dataType: 'json',
+          type: 'POST',
+          data: $form.serialize(),
+          async: false,
+          success: function(data, textStatus, jqXHR) {
+            if (false === data.status) {
+              if (data.message) {
+                dialoug.alert(i18n.t('Notice!', data.message));
+              }
+            }
+            else {
+              window.scrollTo(window.scrollMinX, window.scrollMinY);
+              $('#mini-basket a').html(data.data);
+              dialoug.slideNotice(data.message);
+            }
+            _resetForm();
+          }
+        });
+      });
+
+    };
+
+    _resetForm = function(section) {
+      $this = $('form.buy');
+      $this.find('#color option').each(function(index) {
+        if (this.value !== ''){
+          $(this).remove();
+        }
+      });
+      $this.find('label').each(function() {
+        if (this.htmlFor !== 'size') {
+          $(this).addClass('off');
+        }
+      });
+      $this.find('.button').hide();
+    }
+
     return pub;
   })(jQuery);
 
-  // zoom
   product.initZoom();
   product.initStyleGuide();
   product.initTabs();
+  product.initSlideshow();
+  product.initPurchase();
 
   // icon toggler
   $('.productimage-small a').click(function(e) {

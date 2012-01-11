@@ -2,13 +2,16 @@
 
 namespace Hanzo\Model;
 
-use Hanzo\Model\om\BaseOrdersPeer;
+use Hanzo\Model\om\BaseOrdersPeer,
+    Hanzo\Model\Orders,
+    Hanzo\Model\OrdersQuery
+;
 
 
 /**
  * Skeleton subclass for performing query and update operations on the 'orders' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +19,26 @@ use Hanzo\Model\om\BaseOrdersPeer;
  *
  * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
  */
-class OrdersPeer extends BaseOrdersPeer {
+class OrdersPeer extends BaseOrdersPeer
+{
+
+    static $current;
+
+    public static function getCurrentOrder($controller)
+    {
+        if (!empty (self::$current)) {
+            return self::$current;
+        }
+
+        if (!empty($_SESSION['order_id'])) {
+            $query = OrdersQuery::create()
+                ->joinWithOrdersLines()
+            ;
+            self::$current = $query->findPk($_SESSION['order_id']);
+        }
+
+        self::$current = self::$current ?: new Orders;
+        return self::$current;
+    }
 
 } // OrdersPeer

@@ -3,20 +3,7 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-/**
- * shortcut for logging data to the error log
- * only requests comming from bellcom ip addresses will be logged.
- *
- * @param mixed $data the data to log
- * @param integer $back how many levels back we dump trace for
- */
-function bc_log($data, $back = 0) {
-    $bt = debug_backtrace();
-    $line = $bt[$back]['line'];
-    $file = str_replace(realpath(__DIR__ . '/../'), '~', $bt[$back]['file']);
-
-    error_log($file.' +'.$line.' :: '.print_r($data, 1));
-}
+use Hanzo\Core AS C;
 
 class AppKernel extends Kernel
 {
@@ -42,6 +29,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\NewsletterBundle\HanzoNewsletterBundle(),
             new Hanzo\Bundle\ProductBundle\HanzoProductBundle(),
             new Hanzo\Bundle\SearchBundle\HanzoSearchBundle(),
+            new Hanzo\Bundle\BasketBundle\BasketBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -59,6 +47,9 @@ class AppKernel extends Kernel
         parent::boot();
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
         $twig->addExtension(new Twig_Extension_Optimizer());
+
+        C\Hanzo::init($this->container, $this->getEnvironment());
+        $this->container->get('translator')->setLocale(C\Hanzo::init()->get('core.locale'));
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
@@ -66,3 +57,4 @@ class AppKernel extends Kernel
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 }
+

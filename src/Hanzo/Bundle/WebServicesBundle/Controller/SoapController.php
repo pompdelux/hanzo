@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\WebServicesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Hanzo\Core\CoreController;
 
 /**
  * @see
@@ -10,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  *  http://miller.limethinking.co.uk/2011/04/15/symfony2-controller-as-service/
  *
  */
-class SoapController extends Controller
+class SoapController extends CoreController
 {
   protected $request;
 

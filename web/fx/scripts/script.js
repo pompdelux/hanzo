@@ -21,7 +21,7 @@ $(document).ready(function() {
 
   $("#chained a").click(function(e) {
     e.preventDefault();
-    
+
     var src = $(this).find('img').attr('src');
     src = src.replace('120x240', '0x700');
     $.colorbox({
