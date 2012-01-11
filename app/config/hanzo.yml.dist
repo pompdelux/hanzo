@@ -1,0 +1,4 @@
+default_tld: com
+tld_map: { bc : dk }
+main_menu_thread: 20
+cdn: http://cdn.hanzo.bc/

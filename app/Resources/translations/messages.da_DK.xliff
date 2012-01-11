@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+<!-- main -->
+            <trans-unit id="1">
+                <source>Home</source>
+                <target>Til forsiden</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>My account</source>
+                <target>Min side</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Show basket</source>
+                <target>Vis kurv</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Choose</source>
+                <target>Vælg</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Quantity</source>
+                <target>Antal</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Loading</source>
+                <target>Loading</target>
+            </trans-unit>
+
+<!-- category -->
+            <trans-unit id="12">
+                <source>Click for more information about %name%.</source>
+                <target>Klik her for at mere information om %name%.</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>All products in this category is out of stock.</source>
+                <target>Alle varer i denne kategori er udsolgte.</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Show previous page</source>
+                <target>Vis forige side</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Previous</source>
+                <target>Forige</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Show page %page%</source>
+                <target>Vis side %page%</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Show next page</source>
+                <target>Vis næste side</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Next</source>
+                <target>Næste</target>
+            </trans-unit>
+
+<!-- product page -->
+            <trans-unit id="6">
+                <source>Product details</source>
+                <target>Varebeskrivelse</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Care instructions</source>
+                <target>Vaskeanvisning</target>
+            </trans-unit>
+
+
+<!-- basket -->
+            <trans-unit id="8">
+                <source>Add to basket</source>
+                <target>Læg i kurv</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>"%product%" just added to your cart</source>
+                <target>"%product%" er nu lagt i din kurv</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>"%product%" is out of stock</source>
+                <target>"%product%" er desværre udsolgt</target>
+            </trans-unit>
+
+            <trans-unit id="19">
+                <source>Products</source>
+                <target>Produkt(er)</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Latest shipment date</source>
+                <target>Afsendes senest</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Price</source>
+                <target>Pris</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Quantity</source>
+                <target>Antal</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Total</source>
+                <target>Samlet Beløb</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Edit</source>
+                <target>Rediger</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Delete</source>
+                <target>Slet</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Color</source>
+                <target>Color</target>
+            </trans-unit>
+
+<!-- checkout -->
+            <trans-unit id="28">
+                <source>Step 1 of 6 - Basket</source>
+                <target>Trin 1 af 6 - Kurv</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>1. Basket</source>
+                <target>1. Kurv</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>2. Delivery options</source>
+                <target>2. Fragttype</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>3. Payment options</source>
+                <target>3. Betalingsform</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>4. Confirm</source>
+                <target>4. Godkend</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>5. Payment</source>
+                <target>5. Betaling</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>6. Order confirmation</source>
+                <target>6. Ordrebekræftelse</target>
+            </trans-unit>
+<!--             <trans-unit id="">
+                <source></source>
+                <target></target>
+            </trans-unit>
+ -->
+        </body>
+    </file>
+</xliff>

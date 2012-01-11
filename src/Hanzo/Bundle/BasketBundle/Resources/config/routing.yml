@@ -1,0 +1,23 @@
+basket_add:
+    pattern:  /add-to-basket
+    defaults: { _controller: BasketBundle:Default:add }
+
+basket_remove:
+    pattern:  /remove-from-basket/{product_id}/{qyantity}
+    defaults:
+        _controller: BasketBundle:Default:remove
+        _format: rest
+        quantity: all
+        product_id: 0
+    requirements:
+        _format: html|json
+        product_id: \d+
+        quantity: \d+|all
+
+basket_update:
+    pattern:  /update-basket
+    defaults:
+        _controller: BasketBundle:Default:update
+        _format: rest
+    requirements:
+        _format: html|json

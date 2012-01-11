@@ -1,0 +1,10 @@
+#cboxContent .dialoug h2 {}
+#cboxContent .dialoug p.message {}
+
+#cboxContent .dialoug .buttons {
+  padding: 0 10px;
+}
+#cboxContent .dialoug .buttons a {}
+
+#cboxContent .alert {}
+#cboxContent .confirm {}
