@@ -1,6 +1,11 @@
-#body-product .left,
-#body-product .right {
+#body-product #main .left,
+#body-product #main .right {
   width: 49%;
+}
+
+#cboxLoadedContent p.note {
+  color: #000;
+  margin-top: 20px;
 }
 
 .buybox {
@@ -60,6 +65,7 @@
   display: inline-block;
 }
 .productimages .productimage-small {
+  width: 100px;
   float: left;
 }
 
@@ -95,7 +101,11 @@ form.buy label select {
   float: right;
 }
 form.buy .button {
+  display: none;
   margin-top: 10px;
+}
+form.buy label.off {
+  display: none;
 }
 
 /* zoom and colorbox */

@@ -7,4 +7,5 @@
 /vendor/
 /app/config/parameters.ini
 /app/config/config.yml
+/app/config/hanzo.yml
 /src/Hanzo/Bundle/CMSBundle/Resources/config/cms_routing.yml
