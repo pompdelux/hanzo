@@ -29,7 +29,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
 
     public static function getProductsPrices(array $products)
     {
-        $domain_id = Hanzo::init()->get('core.domain_id');
+        $domain_id = Hanzo::getInstance()->get('core.domain_id');
 
         $prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)

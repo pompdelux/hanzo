@@ -102,7 +102,7 @@ class RestStockController extends CoreController
             $query = ProductsQuery::create()
                 ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
-                    ->filterByDomainsId(Hanzo::init()->get('core.domain_id'))
+                    ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
                 ->endUse()
                 ->groupById()
             ;

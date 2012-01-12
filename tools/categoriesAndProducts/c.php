@@ -1,7 +1,7 @@
 <?php
 
 mysql_connect('localhost', 'root', '');
-mysql_query('SET NAMES utf8');
+mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
 $query = "
   INSERT INTO hanzo.categories

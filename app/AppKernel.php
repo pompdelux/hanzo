@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\ProductBundle\HanzoProductBundle(),
             new Hanzo\Bundle\SearchBundle\HanzoSearchBundle(),
             new Hanzo\Bundle\BasketBundle\BasketBundle(),
+            new Hanzo\Bundle\PaymentBundle\PaymentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -48,8 +49,8 @@ class AppKernel extends Kernel
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
         $twig->addExtension(new Twig_Extension_Optimizer());
 
-        C\Hanzo::init($this->container, $this->getEnvironment());
-        $this->container->get('translator')->setLocale(C\Hanzo::init()->get('core.locale'));
+        $hanzo = C\Hanzo::init($this->container, $this->getEnvironment());
+        $this->container->get('translator')->setLocale($hanzo->get('core.locale'));
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

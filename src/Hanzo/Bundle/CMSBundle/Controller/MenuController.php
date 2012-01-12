@@ -35,7 +35,7 @@ class MenuController extends CoreController
 
         $html = $this->getCache($cache_id);
         if (!$html) {
-            $hanzo = Hanzo::init();
+            $hanzo = Hanzo::getInstance();
 
             $this->locale = $hanzo->get('core.locale');
             $this->base_url = $request->getBaseUrl();

@@ -23,7 +23,7 @@ class DefaultController extends CoreController
 {
     public function viewAction($product_id)
     {
-        $hanzo = Hanzo::init();
+        $hanzo = Hanzo::getInstance();
 
         $cache_id = array('product', $product_id);
         $data = $this->getCache($cache_id);

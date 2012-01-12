@@ -15,7 +15,7 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
-        $page = CmsPeer::getFrontpage(Hanzo::init()->get('core.locale'));
+        $page = CmsPeer::getFrontpage(Hanzo::getInstance()->get('core.locale'));
         return $this->forward('HanzoCMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
@@ -24,7 +24,7 @@ class DefaultController extends CoreController
 
     public function viewAction($id, $page = NULL)
     {
-        $locale = Hanzo::init()->get('core.locale');
+        $locale = Hanzo::getInstance()->get('core.locale');
 
         if ($page instanceof Cms) {
             $type = $page->getType();

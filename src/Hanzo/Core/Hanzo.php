@@ -32,8 +32,17 @@ class Hanzo
         return self::$hanzo;
     }
 
+    public function getInstance() 
+    {
+        if (self::$hanzo) {
+            return self::$hanzo;
+        }
 
-    public function __construct($container, $environment = NULL)
+        throw new Exception('Hanzo not initializet', 100);
+    }
+
+
+    private function __construct($container, $environment = NULL)
     {
         $this->container = $container;
         $this->settings['core.env'] = $environment;
