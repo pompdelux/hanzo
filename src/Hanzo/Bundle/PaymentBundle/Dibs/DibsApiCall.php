@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
+use Hanzo\Core\Hanzo;
+
 class DibsApiCall
 {
   /**
@@ -50,11 +52,6 @@ class DibsApiCall
   public function execute( $url, array $params, $useAuthHeaders = false )
   {
     $logger = Hanzo::getInstance()->container->get('logger');
-
-    if ( isset( $params['merchant'] ) && empty( $params['merchant'] ) )
-    {
-      throw new Exception('Missing merchant number');
-    }
 
     $ch = curl_init();
 

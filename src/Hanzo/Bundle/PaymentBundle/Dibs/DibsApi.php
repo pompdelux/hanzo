@@ -54,7 +54,7 @@ class DibsApi
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/
-  protected function call( $url, array $params, $useAuthHeaders = false, $rawResponse )
+  protected function call( $url, array $params, $useAuthHeaders = false, $rawResponse = false )
   {
     $response = DibsApiCall::getInstance($this->settings)->execute( $url, $params, $useAuthHeaders );
   }

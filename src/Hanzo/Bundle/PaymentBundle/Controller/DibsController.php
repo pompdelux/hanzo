@@ -32,8 +32,9 @@ class DibsController extends CoreController
   public function apiTestAction($method)
   {
     $api = new DibsApi();
+    $apiResponse = $api->callAcquirersStatus();
     
-    return new Response($api->doStuff(), 200, array('Content-Type' => 'text/plain'));
+    return new Response('Hey', 200, array('Content-Type' => 'text/plain'));
   }
 
   public function indexAction($name)
