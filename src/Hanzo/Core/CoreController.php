@@ -36,7 +36,7 @@ class CoreController extends Controller
     protected function getCache($key)
     {
         if (empty($this->cache)) {
-            $this->cache = Hanzo::init()->cache;
+            $this->cache = Hanzo::getInstance()->cache;
         }
 
         return $this->cache->get($this->cache->id($key));
@@ -45,7 +45,7 @@ class CoreController extends Controller
     protected function setCache($key, $data, $ttl = 3600)
     {
         if (empty($this->cache)) {
-            $this->cache = Hanzo::init()->cache;
+            $this->cache = Hanzo::getInstance()->cache;
         }
 
         return $this->cache->set($this->cache->id($key), $data, $ttl);

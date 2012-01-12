@@ -16,8 +16,17 @@ SET FOREIGN_KEY_CHECKS = 1;
 */
 
 mysql_connect('localhost', 'root', '');
-mysql_query('SET NAMES utf8');
+mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
+
+mysql_query("TRUNCATE TABLE hanzo.products") or die('Line: '.__LINE__."\n".mysql_error());
+mysql_query("TRUNCATE TABLE hanzo.products_i18n") or die('Line: '.__LINE__."\n".mysql_error());
+mysql_query("TRUNCATE TABLE hanzo.products_stock") or die('Line: '.__LINE__."\n".mysql_error());
+mysql_query("TRUNCATE TABLE hanzo.products_domains_prices") or die('Line: '.__LINE__."\n".mysql_error());
+mysql_query("TRUNCATE TABLE hanzo.products_to_categories") or die('Line: '.__LINE__."\n".mysql_error());
+mysql_query("TRUNCATE TABLE hanzo.products_images") or die('Line: '.__LINE__."\n".mysql_error());
+mysql_query("TRUNCATE TABLE hanzo.products_images_categories_sort") or die('Line: '.__LINE__."\n".mysql_error());
+mysql_query("TRUNCATE TABLE hanzo.products_washing_instructions") or die('Line: '.__LINE__."\n".mysql_error());
 
 
 echo "- copying products\n"; flush();

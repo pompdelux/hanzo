@@ -72,19 +72,19 @@ class Tools
      */
     public static function fxImageTag($src, $preset = '', array $params = array())
     {
-        $src = Hanzo::init()->get('core.cdn') . 'fx/' . $src;
+        $src = Hanzo::getInstance()->get('core.cdn') . 'fx/' . $src;
         return self::imageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {
-        $src = Hanzo::init()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = Hanzo::getInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
         return self::imageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageUrl($src, $preset = '50x50', array $params = array())
     {
-        $src = Hanzo::init()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = Hanzo::getInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
         return self::imagePath($src, $preset);
     }
 
@@ -112,7 +112,7 @@ class Tools
         $dir  = dirname($url['path']);
 
         $url['path'] = $dir . '/' . $preset . $file;
-        $url['query'] = Hanzo::init()->get('core.cache_key', 'z4');
+        $url['query'] = Hanzo::getInstance()->get('core.cache_key', 'z4');
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';

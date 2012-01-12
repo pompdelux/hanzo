@@ -49,8 +49,8 @@ class AppKernel extends Kernel
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
         $twig->addExtension(new Twig_Extension_Optimizer());
 
-        C\Hanzo::init($this->container, $this->getEnvironment());
-        $this->container->get('translator')->setLocale(C\Hanzo::init()->get('core.locale'));
+        $hanzo = C\Hanzo::init($this->container, $this->getEnvironment());
+        $this->container->get('translator')->setLocale($hanzo->get('core.locale'));
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

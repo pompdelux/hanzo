@@ -24,7 +24,7 @@ class CategoriesPeer extends BaseCategoriesPeer
 {
     public static function getCategoryProductsByCategoryId($category_id, $pager)
     {
-        $hanzo = Hanzo::init();
+        $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');

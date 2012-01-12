@@ -43,7 +43,7 @@ class DefaultController extends CoreController
                 ->filterByColor($color)
                 ->filterByIsOutOfStock(0)
                 ->useProductsDomainsPricesQuery()
-                    ->filterByDomainsId(Hanzo::init()->get('core.domain_id'))
+                    ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
                 ->endUse()
                 ->findOne()
             ;
@@ -73,7 +73,7 @@ class DefaultController extends CoreController
             $order = OrdersPeer::getCurrentOrder($this);
 
             if ($order->isNew()) {
-                $order->setLanguagesId(Hanzo::init()->get('core.language_id'));
+                $order->setLanguagesId(Hanzo::getInstance()->get('core.language_id'));
             }
 
             $order->setOrderLineQty($product, $quantity);

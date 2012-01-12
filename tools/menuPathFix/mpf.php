@@ -6,7 +6,7 @@
 
 
 mysql_connect('localhost', 'root', '');
-mysql_select_db('pdl_test');
+mysql_select_db('hanzo');
 
 
 class mpf {
