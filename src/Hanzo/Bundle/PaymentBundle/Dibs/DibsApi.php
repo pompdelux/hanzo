@@ -10,13 +10,6 @@ class DibsApi
   /**
    * undocumented class variable
    *
-   * @var bool
-   **/
-  const USE_AUTH_HEADERS = true;
-
-  /**
-   * undocumented class variable
-   *
    * @var array 
    **/
   protected $settings = array();
@@ -28,25 +21,14 @@ class DibsApi
    **/
   public function __construct()
   {
+    // FIXME: hardcoded settings
     $this->settings = array(
-      'md5key1' => '',
-      'md5key2' => '',
+      'md5key1' => 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp',
+      'md5key2' => 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n[',
+      'merchant_id' => '90057323',
+      'api_user' => 'bellcom_test_api_user',
+      'api_pass' => '7iuTR8EZ',
       );
-  }
-
-  /**
-   * callAcquirersStatus
-   * @return void
-   * @author Henrik Farre <hf@bellcom.dk>
-   **/
-  public function callAcquirersStatus( $acquirer = 'all' )
-  {
-    $params = array(
-      'replytype' => 'html',
-      'acquirer'  => $acquirer,
-      );
-
-    $this->call( 'status.pml', $params );
   }
 
   /**
@@ -54,9 +36,9 @@ class DibsApi
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/
-  protected function call( $url, array $params, $useAuthHeaders = false, $rawResponse = false )
+  public function call()
   {
-    $response = DibsApiCall::getInstance($this->settings)->execute( $url, $params, $useAuthHeaders );
+    return DibsApiCall::getInstance($this->settings);
   }
 
   /**

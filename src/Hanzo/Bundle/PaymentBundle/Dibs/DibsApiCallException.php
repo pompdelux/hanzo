@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
-class DibsApiCallException
+use Exception;
+
+class DibsApiCallException extends Exception
 {
 }
