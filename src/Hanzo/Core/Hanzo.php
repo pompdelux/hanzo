@@ -32,7 +32,7 @@ class Hanzo
         return self::$hanzo;
     }
 
-    public function getInstance() 
+    public static function getInstance() 
     {
         if (self::$hanzo) {
             return self::$hanzo;
