@@ -1,0 +1,7 @@
+parameters:
+#    payment.example.class: Hanzo\Bundle\PaymentBundle\Example
+
+services:
+#    payment.example:
+#        class: %payment.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,9 @@
+PaymentBundle_dibs_callback:
+    pattern:  /dibs/callback
+    defaults: { _controller: PaymentBundle:Dibs:callback }
+    requirements:
+        _method: POST
+
+PaymentBundle_dibs_api_test:
+    pattern:  /dibs/api_test/{method}
+    defaults: { _controller: PaymentBundle:Dibs:apiTest}
