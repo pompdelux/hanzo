@@ -7,3 +7,7 @@ PaymentBundle_dibs_callback:
 PaymentBundle_dibs_api_test:
     pattern:  /dibs/api_test/{method}
     defaults: { _controller: PaymentBundle:Dibs:apiTest}
+
+PaymentBundle_dibs_form_test:
+    pattern:  /dibs/form_test
+    defaults: { _controller: PaymentBundle:Dibs:formTest}
