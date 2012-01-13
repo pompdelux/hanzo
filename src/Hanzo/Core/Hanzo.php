@@ -20,7 +20,7 @@ class Hanzo
 
     protected static $hanzo;
 
-    public static function init($container = NULL, $environment = NULL)
+    public static function initialize($container = NULL, $environment = NULL)
     {
         if (empty(self::$hanzo)) {
             if (empty($container)) {
@@ -32,7 +32,7 @@ class Hanzo
         return self::$hanzo;
     }
 
-    public static function getInstance() 
+    public static function getInstance()
     {
         if (self::$hanzo) {
             return self::$hanzo;

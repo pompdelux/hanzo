@@ -48,8 +48,11 @@ class AppKernel extends Kernel
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
         $twig->addExtension(new Twig_Extension_Optimizer());
 
-        $hanzo = C\Hanzo::init($this->container, $this->getEnvironment());
-        $this->container->get('translator')->setLocale($hanzo->get('core.locale'));
+        // TODO: figure out if this is good or bad..
+        if ('cli' !== php_sapi_name()) {
+            $hanzo = C\Hanzo::initialize($this->container, $this->getEnvironment());
+            $this->container->get('translator')->setLocale($hanzo->get('core.locale'));
+        }
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
