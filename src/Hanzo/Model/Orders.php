@@ -27,94 +27,141 @@ use Hanzo\Model\om\BaseOrders,
  */
 class Orders extends BaseOrders
 {
+  /**
+   * Definition of the different status a order can have
+   *
+   **/
+  const STATUS_PRE_CONFIRM = -3;
+  const STATUS_PRE_PAYMENT = -2;
+  const STATUS_POST_PAYMENT = 1;
+  const STATUS_PAYMENT_OK   = 2;
+  const STATUS_SHIPPED      = 3;
+  const STATUS_ERROR        = 4;
 
+  /**
+   * FIXME: stub
+   * getStatus
+   * @return int The current status of the order
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function getStatus()
+  {
+  }
 
-    /**
-     * set quantity on a product line in the current order
-     *
-     * @param Product $product
-     * @param int $quantity can be positive to increase the quantity of the order or negative to decrease
-     * @param bool $exact if set to true, the quantity send is the quantity used, otherwise the quantity is calculated using the existing as offset.
-     * @return OrdersLines
-     */
-    public function setOrderLineQty($product, $quantity, $exact = FALSE)
+  /**
+   * FIXME: stub
+   * setStatus
+   * @return int Change status for the current order
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function setStatus( $newStatus )
+  {
+    // TODO: verify that $newStatus is one of the const
+  }
+
+  /**
+   * getCurrent
+   * @return Orders object
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public static function getCurrent()
+  {
+    $session = Hanzo::getInstance()->container->get('session');
+
+    if ( $session->has('order_id') )
     {
-        // first update existing product lines, if any
-        $lines = $this->getOrdersLiness();
-        foreach ($lines as $index => $line) {
-            if ($product->getId() == $line->getProductsId()) {
-                $offset = 0;
-                if (FALSE === $exact) {
-                    $offset = $line->getQuantity();
-                }
-
-                $line->setQuantity($offset + $quantity);
-                $lines[$index] = $line;
-                $this->setOrdersLiness($lines);
-
-                return;
-            }
-        }
-
-        // if the product is not already on the order, add it.
-
-        // fetch price information
-        $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
-        $price = array_shift($price);
-        $price = array_shift($price);
-
-        $line = new OrdersLines;
-        $line->setOrdersId($this->getId());
-        $line->setProductsId($product->getId());
-        $line->setProductsName($product->getMaster());
-        $line->setProductsSku($product->getSku());
-        $line->setQuantity($quantity);
-        $line->setPrice($price['price']);
-        $line->setTax($price['vat']);
-        $line->setType('product');
-        $this->addOrdersLines($line);
+      return new Orders( $session->get('order_id') );
     }
 
+    return false;
+  }
 
-    public function preSave(PropelPDO $con = null)
-    {
-        if (!$this->getSessionId()){
-            $this->setSessionId(session_id());
+  /**
+   * set quantity on a product line in the current order
+   *
+   * @param Product $product
+   * @param int $quantity can be positive to increase the quantity of the order or negative to decrease
+   * @param bool $exact if set to true, the quantity send is the quantity used, otherwise the quantity is calculated using the existing as offset.
+   * @return OrdersLines
+   */
+  public function setOrderLineQty($product, $quantity, $exact = FALSE)
+  {
+    // first update existing product lines, if any
+    $lines = $this->getOrdersLiness();
+    foreach ($lines as $index => $line) {
+      if ($product->getId() == $line->getProductsId()) {
+        $offset = 0;
+        if (FALSE === $exact) {
+          $offset = $line->getQuantity();
         }
 
-        return true;
+        $line->setQuantity($offset + $quantity);
+        $lines[$index] = $line;
+        $this->setOrdersLiness($lines);
+
+        return;
+      }
     }
 
-    public function postSave(PropelPDO $con = null)
-    {
-        if(empty($_SESSION['order_id'])) {
-            $_SESSION['order_id'] = $this->getId();
-        }
+    // if the product is not already on the order, add it.
+
+    // fetch price information
+    $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+    $price = array_shift($price);
+    $price = array_shift($price);
+
+    $line = new OrdersLines;
+    $line->setOrdersId($this->getId());
+    $line->setProductsId($product->getId());
+    $line->setProductsName($product->getMaster());
+    $line->setProductsSku($product->getSku());
+    $line->setQuantity($quantity);
+    $line->setPrice($price['price']);
+    $line->setTax($price['vat']);
+    $line->setType('product');
+    $this->addOrdersLines($line);
+  }
+
+
+  public function preSave(PropelPDO $con = null)
+  {
+    if (!$this->getSessionId()){
+      $this->setSessionId(session_id());
     }
 
+    return true;
+  }
 
-    public function getTotalPrice()
-    {
-        $lines = $this->getOrdersLiness();
+  public function postSave(PropelPDO $con = null)
+  {
+    if(empty($_SESSION['order_id'])) {
+      $_SESSION['order_id'] = $this->getId();
+    }
+  }
 
-        $total = 0;
-        foreach ($lines as $line) {
-            $total += ($line->getPrice() * $line->getQuantity());
-        }
 
-        return money_format('%i', $total);
+  public function getTotalPrice()
+  {
+    $lines = $this->getOrdersLiness();
+
+    $total = 0;
+    foreach ($lines as $line) {
+      $total += ($line->getPrice() * $line->getQuantity());
     }
 
-    public function getTotalQuantity()
-    {
-        $lines = $this->getOrdersLiness();
+    return money_format('%i', $total);
+  }
 
-        $total = 0;
-        foreach ($lines as $line) {
-            $total += $line->getQuantity();
-        }
+  public function getTotalQuantity()
+  {
+    $lines = $this->getOrdersLiness();
 
-        return $total;
+    $total = 0;
+    foreach ($lines as $line) {
+      $total += $line->getQuantity();
     }
+
+    return $total;
+  }
 
 } // Orders
