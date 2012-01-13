@@ -23,9 +23,11 @@ First off, the same requirements as [symfony2(http://symfony.com/doc/2.0/referen
   1. Change cdn and/or other settings
 6. `php bin/vendors install`
 7. `php app/console propel:database:create`
-8. `php app/console hanzo:router:builder`
-9. Setup apache, see dosc/vhost.conf for an example
-10. `git submodule update --recursive --init`
+8. `php app/console propel:insert-sql --force`
+9. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures.sql`
+10. `php app/console hanzo:router:builder`
+11. `git submodule update --recursive --init`
+12. Setup apache, see `dosc/vhost.conf` for an example
 
 ## Configuration:
 
