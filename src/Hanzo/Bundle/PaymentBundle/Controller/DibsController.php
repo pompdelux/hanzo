@@ -61,9 +61,12 @@ class DibsController extends CoreController
   {
     $api = new DibsApi();
     //$apiResponse = $api->call()->acquirersStatus();
-    $apiResponse = $api->call()->payinfo( 527221861 );
+    //$apiResponse = $api->call()->payinfo( 527221861 );
 
-    return new Response(print_r($apiResponse->debug(),1), 200, array('Content-Type' => 'text/plain'));
+    $order = OrdersPeer::getCurrent();
+    error_log(__LINE__.':'.__FILE__.' '.print_r($order,1)); // hf@bellcom.dk debugging
+
+    return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
 
   /**

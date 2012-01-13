@@ -38,7 +38,7 @@ class DibsApi
    **/
   public function verifyCallback( Request $callbackRequest )
   {
-    // Get order
+    $order = OrdersPeer::getCurrent();
     return true;
   }
 
