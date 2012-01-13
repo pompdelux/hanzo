@@ -31,50 +31,15 @@ class Orders extends BaseOrders
    * Definition of the different status a order can have
    *
    */
-  const STATUS_PRE_CONFIRM = -3;
-  const STATUS_PRE_PAYMENT = -2;
-  const STATUS_POST_PAYMENT = 1;
-  const STATUS_PAYMENT_OK   = 2;
-  const STATUS_SHIPPED      = 3;
-  const STATUS_ERROR        = 4;
-
-  /**
-   * FIXME: stub
-   * getStatus
-   * @return int The current status of the order
-   * @author Henrik Farre <hf@bellcom.dk>
-   */
-  public function getStatus()
-  {
-  }
-
-  /**
-   * FIXME: stub
-   * setStatus
-   * @return int Change status for the current order
-   * @author Henrik Farre <hf@bellcom.dk>
-   */
-  public function setStatus( $newStatus )
-  {
-    // TODO: verify that $newStatus is one of the const
-  }
-
-  /**
-   * getCurrent
-   * @return Orders object
-   * @author Henrik Farre <hf@bellcom.dk>
-   */
-  public static function getCurrent()
-  {
-    $session = Hanzo::getInstance()->container->get('session');
-
-    if ( $session->has('order_id') )
-    {
-      return new Orders( $session->get('order_id') );
-    }
-
-    return false;
-  }
+  const STATUS_PRE_CONFIRM     = -30;
+  const STATUS_PRE_PAYMENT     = -20;
+  const STATUS_POST_PAYMENT    = 10;
+  const STATUS_PAYMENT_OK      = 20;
+  const STATUS_PENDING         = 30;
+  const STATUS_BEING_PROCESSED = 40;
+  const STATUS_SHIPPED         = 50;
+  const STATUS_ERROR           = 100;
+  const STATUS_ERROR_PAYMENT   = 110;
 
   /**
    * set quantity on a product line in the current order
