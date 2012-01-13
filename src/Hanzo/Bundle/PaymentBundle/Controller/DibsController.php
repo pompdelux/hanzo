@@ -87,9 +87,9 @@ class DibsController extends CoreController
     <input type="text" name="lang" value="da" />
     <input type="text" name="amount" value="'.$amount.'" />
     <input type="text" name="currency" value="208" />
-    <input type="text" name="cancelurl" value="http://hanzo.dk/payment/dibs/cancel" />
-    <input type="text" name="callbackurl" value="http://hanzo.dk/payment/dibs/callback" />
-    <input type="text" name="accepturl" value="http://hanzo.dk/payment/dibs/ok" />
+    <input type="text" name="cancelurl" value="http://hanzo.dk/app_dev.php/payment/dibs/cancel" />
+    <input type="text" name="callbackurl" value="http://hanzo.dk/app_dev.php/payment/dibs/callback" />
+    <input type="text" name="accepturl" value="http://hanzo.dk/app_dev.php/payment/dibs/ok" />
     <input type="text" name="skiplastpage" value="YES" />
     <input type="text" name="uniqueoid" value="YES" />
     <input type="text" name="test" value="YES" />
