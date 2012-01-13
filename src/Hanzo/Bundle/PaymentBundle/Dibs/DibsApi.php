@@ -32,6 +32,17 @@ class DibsApi
   }
 
   /**
+   * verifyCallback
+   * @return void
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function verifyCallback( Request $callbackRequest )
+  {
+    // Get order
+    return true;
+  }
+
+  /**
    * call
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>

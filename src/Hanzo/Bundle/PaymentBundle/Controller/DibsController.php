@@ -20,8 +20,11 @@ class DibsController extends CoreController
    **/
   public function callbackAction()
   {
-    error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
-    error_log(__LINE__.':'.__FILE__.' '.print_r($_GET,1)); // hf@bellcom.dk debugging
+    $api = new DibsApi();
+    if ( $api->verifyCallback( $this->get('request') ) )
+    {
+      // Do stuff
+    }
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
 
