@@ -30,7 +30,7 @@ class Orders extends BaseOrders
   /**
    * Definition of the different status a order can have
    *
-   **/
+   */
   const STATUS_PRE_CONFIRM = -3;
   const STATUS_PRE_PAYMENT = -2;
   const STATUS_POST_PAYMENT = 1;
@@ -43,7 +43,7 @@ class Orders extends BaseOrders
    * getStatus
    * @return int The current status of the order
    * @author Henrik Farre <hf@bellcom.dk>
-   **/
+   */
   public function getStatus()
   {
   }
@@ -53,7 +53,7 @@ class Orders extends BaseOrders
    * setStatus
    * @return int Change status for the current order
    * @author Henrik Farre <hf@bellcom.dk>
-   **/
+   */
   public function setStatus( $newStatus )
   {
     // TODO: verify that $newStatus is one of the const
@@ -63,7 +63,7 @@ class Orders extends BaseOrders
    * getCurrent
    * @return Orders object
    * @author Henrik Farre <hf@bellcom.dk>
-   **/
+   */
   public static function getCurrent()
   {
     $session = Hanzo::getInstance()->container->get('session');

@@ -24,7 +24,7 @@ class OrdersPeer extends BaseOrdersPeer
 
     static $current;
 
-    public static function getCurrentOrder($controller)
+    public static function getCurrent()
     {
         if (!empty (self::$current)) {
             return self::$current;

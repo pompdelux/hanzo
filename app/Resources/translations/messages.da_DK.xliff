@@ -149,11 +149,23 @@
                 <source>6. Order confirmation</source>
                 <target>6. Ordrebekræftelse</target>
             </trans-unit>
+             <trans-unit id="36">
+                <source>Continue shopping</source>
+                <target>Shop videre</target>
+            </trans-unit>
+             <trans-unit id="37">
+                <source>Proceed</source>
+                <target>Fortsæt</target>
+            </trans-unit>
+             <trans-unit id="38">
+                <source></source>
+                <target></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
 <!--             <trans-unit id="">
                 <source></source>
                 <target></target>
             </trans-unit>
  -->
-        </body>
-    </file>
-</xliff>

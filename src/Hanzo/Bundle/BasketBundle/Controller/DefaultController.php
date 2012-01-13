@@ -70,7 +70,7 @@ class DefaultController extends CoreController
 
         if ($stock) {
             // Stock::decrease($product, $quantity);
-            $order = OrdersPeer::getCurrentOrder($this);
+            $order = OrdersPeer::getCurrent();
 
             if ($order->isNew()) {
                 $order->setLanguagesId(Hanzo::getInstance()->get('core.language_id'));
@@ -105,7 +105,7 @@ class DefaultController extends CoreController
 
     public function miniBasketAction($return = FALSE)
     {
-        $order = OrdersPeer::getCurrentOrder($this);
+        $order = OrdersPeer::getCurrent();
         $total = '('.$order->getTotalQuantity().') ' . $order->getTotalPrice();
 
         if ($return) {
@@ -141,6 +141,10 @@ class DefaultController extends CoreController
 
     public function viewAction()
     {
-        return $this->response('show basket');
+        $router = $this->get('router');
+        return $this->render('BasketBundle:Default:view.html.twig', array(
+            'page_type' => 'basket',
+            'continue_shopping' =>  $router->generate('page_400_' . strtolower(Hanzo::getInstance()->get('core.locale'))),
+        ));
     }
 }
