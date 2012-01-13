@@ -71,7 +71,7 @@ class DibsController extends CoreController
   public function formTestAction()
   {
     $api = new DibsApi();
-    $orderID = 'test_01';
+    $orderID = 'test_02';
     $amount = 41500;
 
     $form = '<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
