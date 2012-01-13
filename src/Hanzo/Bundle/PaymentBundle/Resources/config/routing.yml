@@ -6,16 +6,16 @@ PaymentBundle_dibs_callback:
 
 PaymentBundle_dibs_ok:
     pattern:  /payment/dibs/ok
-    defaults: { _controller: PaymentBundle:Dibs:ok}
+    defaults: { _controller: PaymentBundle:Dibs:ok }
 
 PaymentBundle_dibs_cancel:
     pattern:  /payment/dibs/cancel
-    defaults: { _controller: PaymentBundle:Dibs:cancel}
+    defaults: { _controller: PaymentBundle:Dibs:cancel }
 
 PaymentBundle_dibs_api_test:
     pattern:  /payment/dibs/api_test/{method}
-    defaults: { _controller: PaymentBundle:Dibs:apiTest}
+    defaults: { _controller: PaymentBundle:Dibs:apiTest }
 
 PaymentBundle_dibs_form_test:
     pattern:  /payment/dibs/form_test
-    defaults: { _controller: PaymentBundle:Dibs:formTest}
+    defaults: { _controller: PaymentBundle:Dibs:formTest }
