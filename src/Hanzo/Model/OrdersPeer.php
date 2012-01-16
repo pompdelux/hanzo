@@ -21,7 +21,6 @@ use Hanzo\Model\om\BaseOrdersPeer,
  */
 class OrdersPeer extends BaseOrdersPeer
 {
-
     static $current;
 
     public static function getCurrent()

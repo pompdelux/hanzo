@@ -56,7 +56,9 @@ class DibsApi
       throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
     }
 
-    // FIXME: missing currency and amount
+    $currency = $order->getCurrencyId();
+    $amount   = self::formatAmount( $order->getTotalPrice() );
+
     $calculated = $this->md5( $order->getId(), $currency, $amount );
 
     if ( $callbackRequest->get('md5key') != $calculated )
@@ -64,7 +66,6 @@ class DibsApi
       throw new Exception( 'Md5 sum mismatch, got: "'. $callbackRequest->get('md5key') .'" expected: "'. $calculated .'"' );
     }
 
-    // FIXME: missing currency and amount
     $calculated = $this->md5AuthKey( $callbackRequest->get('transact'), $currency, $amount );
 
     if ( $callbackRequest->get('authkey') != $calculated )
@@ -80,15 +81,38 @@ class DibsApi
    **/
   public function updateOrderSuccess( Request $request, Orders $order )
   {
+    $order->setState( Orders::STATE_PAYMENT_OK );
+
+    $fields = array(
+      'paytype',
+      'cardnomask',
+      'cardprefix',
+      'acquirer',
+      'cardexpdate',
+      'currency',
+      'ip',
+      'approvalcode',
+      'transact',
+      );
+
+    foreach ($fields as $field) 
+    {
+      $order->setAttribute( $field , 'payment:gateway', $request->get($field) );
+    }
+
+    $order->save();
   }
 
   /**
    * updateOrdersFailed
+   * @todo Should we save the same attributes as in updateOrderSuccess?
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/
   public function updateOrdersFailed( Request $request, Orders $order)
   {
+    $order->setState( Orders::STATE_ERROR_PAYMENT );
+    $order->save();
   }
 
   /**
@@ -126,10 +150,9 @@ class DibsApi
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/
-  protected function formatAmount( $amount )
+  protected static function formatAmount( $amount )
   {
     $amount = ( number_format( $amount, 2, '.', '') ) * 100 ; 
     return $amount;
   }
-
 }

@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
+use Exception;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Response,
     Symfony\Component\HttpFoundation\Request;
@@ -23,10 +25,37 @@ class DibsController extends CoreController
   public function callbackAction()
   {
     $api = new DibsApi();
-    if ( $api->verifyCallback( $this->get('request') ) )
+
+    $request = $this->get('request');
+    $orderId = $request->get('orderid');
+
+    // FIXME: testing
+    $orderId = 1;
+
+    if ( $orderId === false )
     {
-      // Do stuff
+      throw new Exception( 'Dibs callback did not supply a valid order id' );
     }
+
+    //$order = OrdersPeer::getCurrent();
+    $order = OrdersPeer::retrieveByPK( $orderId );
+
+    if ( !($order instanceof Orders) )
+    {
+      throw new Exception( 'Dibs callback did not supply a valid order id: "'. $orderId .'"' );
+    }
+
+    try
+    {
+      $api->verifyCallback( $request, $order );
+      // TODO: is this the right way todo it? passing request seems wrong
+      $api->updateOrderSuccess( $request, $order );
+    }
+    catch (Exception $e)
+    {
+      $api->updateOrderFailed( $request, $order );
+    }
+
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
 
@@ -37,7 +66,6 @@ class DibsController extends CoreController
    **/
   public function okAction()
   {
-    error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
     error_log(__LINE__.':'.__FILE__.' '.print_r($_GET,1)); // hf@bellcom.dk debugging
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
@@ -64,19 +92,6 @@ class DibsController extends CoreController
     $api = new DibsApi();
     //$apiResponse = $api->call()->acquirersStatus();
     //$apiResponse = $api->call()->payinfo( 527221861 );
-
-    $order = OrdersPeer::getCurrent();
-
-    try
-    {
-      $api->verifyCallback( $this->get('request'), $order );
-      // TODO: is this the right way todo it? parsing request seems wrong
-      $api->updateOrderSuccess( $this->get('request'), $order );
-    }
-    catch (Exception $e)
-    {
-      $api->updateOrderFailed( $this->get('request'), $order );
-    }
 
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
