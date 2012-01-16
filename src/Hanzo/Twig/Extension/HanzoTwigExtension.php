@@ -2,10 +2,10 @@
 
 namespace Hanzo\Twig\Extension;
 
-use \Twig_Extension,
-    \Twig_Function_Method,
-    \Twig_Function_Function,
-    \Twig_Filter_Method;
+use Twig_Extension,
+    Twig_Function_Method,
+    Twig_Function_Function,
+    Twig_Filter_Method;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools;

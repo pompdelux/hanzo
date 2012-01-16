@@ -106,7 +106,7 @@ class DefaultController extends CoreController
     public function miniBasketAction($return = FALSE)
     {
         $order = OrdersPeer::getCurrent();
-        $total = '('.$order->getTotalQuantity().') ' . $order->getTotalPrice();
+        $total = '('.$order->getTotalQuantity().') ' . Tools::moneyFormat( $order->getTotalPrice() );
 
         if ($return) {
             return $total;

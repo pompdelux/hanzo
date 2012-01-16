@@ -114,7 +114,7 @@ class Orders extends BaseOrders
       $total += ($line->getPrice() * $line->getQuantity());
     }
 
-    return money_format('%i', $total);
+    return $total;
   }
 
   public function getTotalQuantity()
