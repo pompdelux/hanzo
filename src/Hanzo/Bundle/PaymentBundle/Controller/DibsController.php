@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo,
+    Hanzo\Model\Orders,
+    Hanzo\Model\OrdersPeer,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
@@ -64,7 +66,17 @@ class DibsController extends CoreController
     //$apiResponse = $api->call()->payinfo( 527221861 );
 
     $order = OrdersPeer::getCurrent();
-    error_log(__LINE__.':'.__FILE__.' '.print_r($order,1)); // hf@bellcom.dk debugging
+
+    try
+    {
+      $api->verifyCallback( $this->get('request'), $order );
+      // TODO: is this the right way todo it? parsing request seems wrong
+      $api->updateOrderSuccess( $this->get('request'), $order );
+    }
+    catch (Exception $e)
+    {
+      $api->updateOrderFailed( $this->get('request'), $order );
+    }
 
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }

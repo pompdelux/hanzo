@@ -33,13 +33,57 @@ class DibsApi
 
   /**
    * verifyCallback
+   * @param Request $callbackRequest
+   * @param Orders $order The current order object
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/
-  public function verifyCallback( Request $callbackRequest )
+  public function verifyCallback( Request $callbackRequest, Orders $order )
   {
-    $order = OrdersPeer::getCurrent();
-    return true;
+    // The order must be in the pre payment state, if not it has not followed the correct flow
+    if ( $order->getState() != Orders::STATE_PRE_PAYMENT )
+    {
+      throw new Exception( 'The order is not in the currect state "'. $order->getState() .'"' );
+    }
+
+    if ( $callbackRequest->get('merchant') != $this->settings['merchant_id'] )
+    {
+      throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
+    }
+
+    // FIXME: missing currency and amount
+    $calculated = $this->md5( $order->getId(), $currency, $amount );
+
+    if ( $callbackRequest->get('md5key') != $calculated )
+    {
+      throw new Exception( 'Md5 sum mismatch, got: "'. $callbackRequest->get('md5key') .'" expected: "'. $calculated .'"' );
+    }
+
+    // FIXME: missing currency and amount
+    $calculated = $this->md5AuthKey( $callbackRequest->get('transact'), $currency, $amount );
+
+    if ( $callbackRequest->get('authkey') != $calculated )
+    {
+      throw new Exception( 'Authkey md5 sum mismatch, got: "'. $callbackRequest->get('authkey') .'" expected: "'. $calculated .'"' );
+    }
+  }
+
+  /**
+   * updateOrderSuccess
+   * @return void
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function updateOrderSuccess( Request $request, Orders $order )
+  {
+  }
+
+  /**
+   * updateOrdersFailed
+   * @return void
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function updateOrdersFailed( Request $request, Orders $order)
+  {
   }
 
   /**
@@ -57,9 +101,9 @@ class DibsApi
    * @return string 
    * @author Henrik Farre <hf@bellcom.dk>
    **/
-  public function md5( $orderID, $currency, $amount )
+  public function md5( $orderId, $currency, $amount )
   {
-    return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'merchant='. $this->settings['merchant_id'] .'&orderid='. $orderID .'&currency='.$currency.'&amount='.$amount));
+    return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'merchant='. $this->settings['merchant_id'] .'&orderid='. $orderId .'&currency='.$currency.'&amount='.$amount));
   }
 
   /**
@@ -67,7 +111,7 @@ class DibsApi
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/
-  public function md5AuthKey( $transact, $amount, $currency )
+  public function md5AuthKey( $transact, $currency, $amount )
   {
     return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'transact='.$transact.'&amount='.$amount.'&currency='.$currency));
   }
