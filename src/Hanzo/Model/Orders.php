@@ -31,15 +31,15 @@ class Orders extends BaseOrders
    * Definition of the different status a order can have
    *
    */
-  const STATUS_PRE_CONFIRM     = -30;
-  const STATUS_PRE_PAYMENT     = -20;
-  const STATUS_POST_PAYMENT    = 10;
-  const STATUS_PAYMENT_OK      = 20;
-  const STATUS_PENDING         = 30;
-  const STATUS_BEING_PROCESSED = 40;
-  const STATUS_SHIPPED         = 50;
-  const STATUS_ERROR           = 100;
-  const STATUS_ERROR_PAYMENT   = 110;
+  const STATE_PRE_CONFIRM     = -30;
+  const STATE_PRE_PAYMENT     = -20;
+  const STATE_POST_PAYMENT    = 10;
+  const STATE_PAYMENT_OK      = 20;
+  const STATE_PENDING         = 30;
+  const STATE_BEING_PROCESSED = 40;
+  const STATE_SHIPPED         = 50;
+  const STATE_ERROR           = 100;
+  const STATE_ERROR_PAYMENT   = 110;
 
   /**
    * set quantity on a product line in the current order
