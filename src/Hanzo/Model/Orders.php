@@ -80,6 +80,8 @@ class Orders extends BaseOrders
     $line->setProductsId($product->getId());
     $line->setProductsName($product->getMaster());
     $line->setProductsSku($product->getSku());
+    $line->setProductsColor($product->getColor());
+    $line->setProductsSize($product->getSize());
     $line->setQuantity($quantity);
     $line->setPrice($price['price']);
     $line->setTax($price['vat']);

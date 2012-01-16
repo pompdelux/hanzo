@@ -141,9 +141,36 @@ class DefaultController extends CoreController
 
     public function viewAction()
     {
+
+        $order = OrdersPeer::getCurrent();
+
+        $lines = array();
+        foreach ($order->getOrdersLiness() as $line) {
+            $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
+
+            if ($line['expected_at']->getTimestamp() > 0) {
+                $line['expected_at'] = $line['expected_at']->getTimestamp();
+            }
+            else {
+                $line['expected_at'] = NULL;
+            }
+
+            $line['basket_image'] =
+                preg_replace('/[^a-z0-9]/i', '', $line['products_name']) .
+                '_basket_' .
+                preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
+                '.jpg'
+            ;
+
+            $lines[] = $line;
+        }
+
+
         $router = $this->get('router');
         return $this->render('BasketBundle:Default:view.html.twig', array(
             'page_type' => 'basket',
+            'lines' => $lines,
+            'total' => $order->getTotalPrice(),
             'continue_shopping' =>  $router->generate('page_400_' . strtolower(Hanzo::getInstance()->get('core.locale'))),
         ));
     }
