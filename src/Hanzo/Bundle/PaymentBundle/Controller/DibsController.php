@@ -3,7 +3,8 @@
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response;
+    Symfony\Component\HttpFoundation\Response,
+    Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Model\Orders,
@@ -11,7 +12,6 @@ use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
-
 
 class DibsController extends CoreController
 {

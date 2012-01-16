@@ -2,7 +2,12 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall,
+use Exception;
+
+use Symfony\Component\HttpFoundation\Request;
+
+use Hanzo\Model\Orders,
+    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
 class DibsApi
@@ -43,7 +48,7 @@ class DibsApi
     // The order must be in the pre payment state, if not it has not followed the correct flow
     if ( $order->getState() != Orders::STATE_PRE_PAYMENT )
     {
-      throw new Exception( 'The order is not in the currect state "'. $order->getState() .'"' );
+      throw new Exception( 'The order is not in the correct state "'. $order->getState() .'"' );
     }
 
     if ( $callbackRequest->get('merchant') != $this->settings['merchant_id'] )
