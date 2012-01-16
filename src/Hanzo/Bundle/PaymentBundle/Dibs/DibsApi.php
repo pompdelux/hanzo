@@ -81,15 +81,38 @@ class DibsApi
    **/
   public function updateOrderSuccess( Request $request, Orders $order )
   {
+    $order->setState( Orders::STATE_PAYMENT_OK );
+
+    $fields = array(
+      'paytype',
+      'cardnomask',
+      'cardprefix',
+      'acquirer',
+      'cardexpdate',
+      'currency',
+      'ip',
+      'approvalcode',
+      'transact',
+      );
+
+    foreach ($fields as $field) 
+    {
+      $order->setAttribute( $field , 'payment:gateway', $request->get($field) );
+    }
+
+    $order->save();
   }
 
   /**
    * updateOrdersFailed
+   * @todo Should we save the same attributes as in updateOrderSuccess?
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/
   public function updateOrdersFailed( Request $request, Orders $order)
   {
+    $order->setState( Orders::STATE_ERROR_PAYMENT );
+    $order->save();
   }
 
   /**

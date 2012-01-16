@@ -129,4 +129,36 @@ class Orders extends BaseOrders
     return $total;
   }
 
+  /**
+   * setAttribute
+   *
+   * Sets an order attribute
+   *
+   * @param string $key Name of the attribute
+   * @param string $ns Namespace of the attribute, e.g. payment
+   * @param string $value The value of the attribute
+   * @return void
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function setAttribute( $key, $ns, $value )
+  {
+    $attributes = $this->getOrdersAttributess();
+
+    // Update existing attributes
+    foreach ($attributes as $index => $attribute) 
+    {
+      if ( $attribute->getCKey() == $key && $attribute->getNs() == $ns )
+      {
+        $attribute->setCValue( $value );
+        return;
+      }
+    }
+
+    $attribute = new OrdersAttributes();
+    $attribute->setCKey( $key );
+    $attribute->setNs( $ns );
+    $attribute->setCValue( $value );
+
+    $this->addOrdersAttributes($attribute);
+  }
 } // Orders

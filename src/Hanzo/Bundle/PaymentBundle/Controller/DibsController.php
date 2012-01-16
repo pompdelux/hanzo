@@ -66,7 +66,6 @@ class DibsController extends CoreController
    **/
   public function okAction()
   {
-    error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
     error_log(__LINE__.':'.__FILE__.' '.print_r($_GET,1)); // hf@bellcom.dk debugging
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
