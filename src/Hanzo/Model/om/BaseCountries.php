@@ -100,16 +100,16 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	protected $currency_id;
 
 	/**
-	 * The value for the curency_code field.
+	 * The value for the currency_code field.
 	 * @var        string
 	 */
-	protected $curency_code;
+	protected $currency_code;
 
 	/**
-	 * The value for the curerncy_name field.
+	 * The value for the currency_name field.
 	 * @var        string
 	 */
-	protected $curerncy_name;
+	protected $currency_name;
 
 	/**
 	 * @var        array Customers[] Collection to store aggregation of Customers objects.
@@ -272,23 +272,23 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [curency_code] column value.
+	 * Get the [currency_code] column value.
 	 * 
 	 * @return     string
 	 */
-	public function getCurencyCode()
+	public function getCurrencyCode()
 	{
-		return $this->curency_code;
+		return $this->currency_code;
 	}
 
 	/**
-	 * Get the [curerncy_name] column value.
+	 * Get the [currency_name] column value.
 	 * 
 	 * @return     string
 	 */
-	public function getCurerncyName()
+	public function getCurrencyName()
 	{
-		return $this->curerncy_name;
+		return $this->currency_name;
 	}
 
 	/**
@@ -452,44 +452,44 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	} // setCurrencyId()
 
 	/**
-	 * Set the value of [curency_code] column.
+	 * Set the value of [currency_code] column.
 	 * 
 	 * @param      string $v new value
 	 * @return     Countries The current object (for fluent API support)
 	 */
-	public function setCurencyCode($v)
+	public function setCurrencyCode($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->curency_code !== $v) {
-			$this->curency_code = $v;
-			$this->modifiedColumns[] = CountriesPeer::CURENCY_CODE;
+		if ($this->currency_code !== $v) {
+			$this->currency_code = $v;
+			$this->modifiedColumns[] = CountriesPeer::CURRENCY_CODE;
 		}
 
 		return $this;
-	} // setCurencyCode()
+	} // setCurrencyCode()
 
 	/**
-	 * Set the value of [curerncy_name] column.
+	 * Set the value of [currency_name] column.
 	 * 
 	 * @param      string $v new value
 	 * @return     Countries The current object (for fluent API support)
 	 */
-	public function setCurerncyName($v)
+	public function setCurrencyName($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->curerncy_name !== $v) {
-			$this->curerncy_name = $v;
-			$this->modifiedColumns[] = CountriesPeer::CURERNCY_NAME;
+		if ($this->currency_name !== $v) {
+			$this->currency_name = $v;
+			$this->modifiedColumns[] = CountriesPeer::CURRENCY_NAME;
 		}
 
 		return $this;
-	} // setCurerncyName()
+	} // setCurrencyName()
 
 	/**
 	 * Indicates whether the columns in this object are only set to default values.
@@ -531,8 +531,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 			$this->iso3 = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
 			$this->continent = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->currency_id = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
-			$this->curency_code = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->curerncy_name = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+			$this->currency_code = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->currency_name = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -887,11 +887,11 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CountriesPeer::CURRENCY_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`CURRENCY_ID`';
 		}
-		if ($this->isColumnModified(CountriesPeer::CURENCY_CODE)) {
-			$modifiedColumns[':p' . $index++]  = '`CURENCY_CODE`';
+		if ($this->isColumnModified(CountriesPeer::CURRENCY_CODE)) {
+			$modifiedColumns[':p' . $index++]  = '`CURRENCY_CODE`';
 		}
-		if ($this->isColumnModified(CountriesPeer::CURERNCY_NAME)) {
-			$modifiedColumns[':p' . $index++]  = '`CURERNCY_NAME`';
+		if ($this->isColumnModified(CountriesPeer::CURRENCY_NAME)) {
+			$modifiedColumns[':p' . $index++]  = '`CURRENCY_NAME`';
 		}
 
 		$sql = sprintf(
@@ -928,11 +928,11 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 					case '`CURRENCY_ID`':
 						$stmt->bindValue($identifier, $this->currency_id, PDO::PARAM_INT);
 						break;
-					case '`CURENCY_CODE`':
-						$stmt->bindValue($identifier, $this->curency_code, PDO::PARAM_STR);
+					case '`CURRENCY_CODE`':
+						$stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
 						break;
-					case '`CURERNCY_NAME`':
-						$stmt->bindValue($identifier, $this->curerncy_name, PDO::PARAM_STR);
+					case '`CURRENCY_NAME`':
+						$stmt->bindValue($identifier, $this->currency_name, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -1137,10 +1137,10 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 				return $this->getCurrencyId();
 				break;
 			case 8:
-				return $this->getCurencyCode();
+				return $this->getCurrencyCode();
 				break;
 			case 9:
-				return $this->getCurerncyName();
+				return $this->getCurrencyName();
 				break;
 			default:
 				return null;
@@ -1179,8 +1179,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 			$keys[5] => $this->getIso3(),
 			$keys[6] => $this->getContinent(),
 			$keys[7] => $this->getCurrencyId(),
-			$keys[8] => $this->getCurencyCode(),
-			$keys[9] => $this->getCurerncyName(),
+			$keys[8] => $this->getCurrencyCode(),
+			$keys[9] => $this->getCurrencyName(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->collCustomerssRelatedByCountriesId) {
@@ -1257,10 +1257,10 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 				$this->setCurrencyId($value);
 				break;
 			case 8:
-				$this->setCurencyCode($value);
+				$this->setCurrencyCode($value);
 				break;
 			case 9:
-				$this->setCurerncyName($value);
+				$this->setCurrencyName($value);
 				break;
 		} // switch()
 	}
@@ -1294,8 +1294,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 		if (array_key_exists($keys[5], $arr)) $this->setIso3($arr[$keys[5]]);
 		if (array_key_exists($keys[6], $arr)) $this->setContinent($arr[$keys[6]]);
 		if (array_key_exists($keys[7], $arr)) $this->setCurrencyId($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setCurencyCode($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setCurerncyName($arr[$keys[9]]);
+		if (array_key_exists($keys[8], $arr)) $this->setCurrencyCode($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setCurrencyName($arr[$keys[9]]);
 	}
 
 	/**
@@ -1315,8 +1315,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CountriesPeer::ISO3)) $criteria->add(CountriesPeer::ISO3, $this->iso3);
 		if ($this->isColumnModified(CountriesPeer::CONTINENT)) $criteria->add(CountriesPeer::CONTINENT, $this->continent);
 		if ($this->isColumnModified(CountriesPeer::CURRENCY_ID)) $criteria->add(CountriesPeer::CURRENCY_ID, $this->currency_id);
-		if ($this->isColumnModified(CountriesPeer::CURENCY_CODE)) $criteria->add(CountriesPeer::CURENCY_CODE, $this->curency_code);
-		if ($this->isColumnModified(CountriesPeer::CURERNCY_NAME)) $criteria->add(CountriesPeer::CURERNCY_NAME, $this->curerncy_name);
+		if ($this->isColumnModified(CountriesPeer::CURRENCY_CODE)) $criteria->add(CountriesPeer::CURRENCY_CODE, $this->currency_code);
+		if ($this->isColumnModified(CountriesPeer::CURRENCY_NAME)) $criteria->add(CountriesPeer::CURRENCY_NAME, $this->currency_name);
 
 		return $criteria;
 	}
@@ -1386,8 +1386,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 		$copyObj->setIso3($this->getIso3());
 		$copyObj->setContinent($this->getContinent());
 		$copyObj->setCurrencyId($this->getCurrencyId());
-		$copyObj->setCurencyCode($this->getCurencyCode());
-		$copyObj->setCurerncyName($this->getCurerncyName());
+		$copyObj->setCurrencyCode($this->getCurrencyCode());
+		$copyObj->setCurrencyName($this->getCurrencyName());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -2562,8 +2562,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 		$this->iso3 = null;
 		$this->continent = null;
 		$this->currency_id = null;
-		$this->curency_code = null;
-		$this->curerncy_name = null;
+		$this->currency_code = null;
+		$this->currency_name = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();

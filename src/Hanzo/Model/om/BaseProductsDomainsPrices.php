@@ -77,10 +77,10 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	protected $vat;
 
 	/**
-	 * The value for the currency_code field.
-	 * @var        string
+	 * The value for the currency_id field.
+	 * @var        int
 	 */
-	protected $currency_code;
+	protected $currency_id;
 
 	/**
 	 * The value for the from_date field.
@@ -159,13 +159,13 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	}
 
 	/**
-	 * Get the [currency_code] column value.
+	 * Get the [currency_id] column value.
 	 * 
-	 * @return     string
+	 * @return     int
 	 */
-	public function getCurrencyCode()
+	public function getCurrencyId()
 	{
-		return $this->currency_code;
+		return $this->currency_id;
 	}
 
 	/**
@@ -333,24 +333,24 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	} // setVat()
 
 	/**
-	 * Set the value of [currency_code] column.
+	 * Set the value of [currency_id] column.
 	 * 
-	 * @param      string $v new value
+	 * @param      int $v new value
 	 * @return     ProductsDomainsPrices The current object (for fluent API support)
 	 */
-	public function setCurrencyCode($v)
+	public function setCurrencyId($v)
 	{
 		if ($v !== null) {
-			$v = (string) $v;
+			$v = (int) $v;
 		}
 
-		if ($this->currency_code !== $v) {
-			$this->currency_code = $v;
-			$this->modifiedColumns[] = ProductsDomainsPricesPeer::CURRENCY_CODE;
+		if ($this->currency_id !== $v) {
+			$this->currency_id = $v;
+			$this->modifiedColumns[] = ProductsDomainsPricesPeer::CURRENCY_ID;
 		}
 
 		return $this;
-	} // setCurrencyCode()
+	} // setCurrencyId()
 
 	/**
 	 * Sets the value of [from_date] column to a normalized version of the date/time value specified.
@@ -432,7 +432,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 			$this->domains_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->price = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->vat = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->currency_code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->currency_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
 			$this->from_date = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
 			$this->to_date = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->resetModified();
@@ -686,8 +686,8 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		if ($this->isColumnModified(ProductsDomainsPricesPeer::VAT)) {
 			$modifiedColumns[':p' . $index++]  = '`VAT`';
 		}
-		if ($this->isColumnModified(ProductsDomainsPricesPeer::CURRENCY_CODE)) {
-			$modifiedColumns[':p' . $index++]  = '`CURRENCY_CODE`';
+		if ($this->isColumnModified(ProductsDomainsPricesPeer::CURRENCY_ID)) {
+			$modifiedColumns[':p' . $index++]  = '`CURRENCY_ID`';
 		}
 		if ($this->isColumnModified(ProductsDomainsPricesPeer::FROM_DATE)) {
 			$modifiedColumns[':p' . $index++]  = '`FROM_DATE`';
@@ -718,8 +718,8 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 					case '`VAT`':
 						$stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
 						break;
-					case '`CURRENCY_CODE`':
-						$stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
+					case '`CURRENCY_ID`':
+						$stmt->bindValue($identifier, $this->currency_id, PDO::PARAM_INT);
 						break;
 					case '`FROM_DATE`':
 						$stmt->bindValue($identifier, $this->from_date, PDO::PARAM_STR);
@@ -881,7 +881,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 				return $this->getVat();
 				break;
 			case 4:
-				return $this->getCurrencyCode();
+				return $this->getCurrencyId();
 				break;
 			case 5:
 				return $this->getFromDate();
@@ -922,7 +922,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 			$keys[1] => $this->getDomainsId(),
 			$keys[2] => $this->getPrice(),
 			$keys[3] => $this->getVat(),
-			$keys[4] => $this->getCurrencyCode(),
+			$keys[4] => $this->getCurrencyId(),
 			$keys[5] => $this->getFromDate(),
 			$keys[6] => $this->getToDate(),
 		);
@@ -977,7 +977,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 				$this->setVat($value);
 				break;
 			case 4:
-				$this->setCurrencyCode($value);
+				$this->setCurrencyId($value);
 				break;
 			case 5:
 				$this->setFromDate($value);
@@ -1013,7 +1013,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		if (array_key_exists($keys[1], $arr)) $this->setDomainsId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setPrice($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setVat($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setCurrencyCode($arr[$keys[4]]);
+		if (array_key_exists($keys[4], $arr)) $this->setCurrencyId($arr[$keys[4]]);
 		if (array_key_exists($keys[5], $arr)) $this->setFromDate($arr[$keys[5]]);
 		if (array_key_exists($keys[6], $arr)) $this->setToDate($arr[$keys[6]]);
 	}
@@ -1031,7 +1031,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		if ($this->isColumnModified(ProductsDomainsPricesPeer::DOMAINS_ID)) $criteria->add(ProductsDomainsPricesPeer::DOMAINS_ID, $this->domains_id);
 		if ($this->isColumnModified(ProductsDomainsPricesPeer::PRICE)) $criteria->add(ProductsDomainsPricesPeer::PRICE, $this->price);
 		if ($this->isColumnModified(ProductsDomainsPricesPeer::VAT)) $criteria->add(ProductsDomainsPricesPeer::VAT, $this->vat);
-		if ($this->isColumnModified(ProductsDomainsPricesPeer::CURRENCY_CODE)) $criteria->add(ProductsDomainsPricesPeer::CURRENCY_CODE, $this->currency_code);
+		if ($this->isColumnModified(ProductsDomainsPricesPeer::CURRENCY_ID)) $criteria->add(ProductsDomainsPricesPeer::CURRENCY_ID, $this->currency_id);
 		if ($this->isColumnModified(ProductsDomainsPricesPeer::FROM_DATE)) $criteria->add(ProductsDomainsPricesPeer::FROM_DATE, $this->from_date);
 		if ($this->isColumnModified(ProductsDomainsPricesPeer::TO_DATE)) $criteria->add(ProductsDomainsPricesPeer::TO_DATE, $this->to_date);
 
@@ -1110,7 +1110,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		$copyObj->setDomainsId($this->getDomainsId());
 		$copyObj->setPrice($this->getPrice());
 		$copyObj->setVat($this->getVat());
-		$copyObj->setCurrencyCode($this->getCurrencyCode());
+		$copyObj->setCurrencyId($this->getCurrencyId());
 		$copyObj->setFromDate($this->getFromDate());
 		$copyObj->setToDate($this->getToDate());
 
@@ -1275,7 +1275,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 		$this->domains_id = null;
 		$this->price = null;
 		$this->vat = null;
-		$this->currency_code = null;
+		$this->currency_id = null;
 		$this->from_date = null;
 		$this->to_date = null;
 		$this->alreadyInSave = false;

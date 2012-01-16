@@ -113,7 +113,7 @@ $query = "
       domains_id,
       price,
       vat,
-      currency_code,
+      currency_id,
       from_date
   )
   SELECT
@@ -126,9 +126,9 @@ $query = "
     p.price,
     (p.price / 100 * 25) vat,
     CASE p.domain_id
-      WHEN 1 THEN 'DKK'
-      WHEN 3 THEN 'EUR'
-      WHEN 7 THEN 'EUR'
+      WHEN 1 THEN 208 
+      WHEN 3 THEN 978
+      WHEN 7 THEN 978
     END AS currency,
     '2011-10-01 00:00:00'
   FROM
@@ -147,7 +147,7 @@ $query = "
       domains_id,
       price,
       vat,
-      currency_code,
+      currency_id,
       from_date,
       to_date
   )
@@ -161,9 +161,9 @@ $query = "
     p.discount_price,
     (p.discount_price / 100 * 25) vat,
     CASE p.domain_id
-      WHEN 1 THEN 'DKK'
-      WHEN 3 THEN 'EUR'
-      WHEN 7 THEN 'EUR'
+      WHEN 1 THEN 208 
+      WHEN 3 THEN 978
+      WHEN 7 THEN 978
     END AS currency,
     p.discount_from_date,
     p.discount_to_date

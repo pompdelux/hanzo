@@ -60,8 +60,8 @@ abstract class BaseProductsDomainsPricesPeer {
 	/** the column name for the VAT field */
 	const VAT = 'products_domains_prices.VAT';
 
-	/** the column name for the CURRENCY_CODE field */
-	const CURRENCY_CODE = 'products_domains_prices.CURRENCY_CODE';
+	/** the column name for the CURRENCY_ID field */
+	const CURRENCY_ID = 'products_domains_prices.CURRENCY_ID';
 
 	/** the column name for the FROM_DATE field */
 	const FROM_DATE = 'products_domains_prices.FROM_DATE';
@@ -88,11 +88,11 @@ abstract class BaseProductsDomainsPricesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('ProductsId', 'DomainsId', 'Price', 'Vat', 'CurrencyCode', 'FromDate', 'ToDate', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('productsId', 'domainsId', 'price', 'vat', 'currencyCode', 'fromDate', 'toDate', ),
-		BasePeer::TYPE_COLNAME => array (self::PRODUCTS_ID, self::DOMAINS_ID, self::PRICE, self::VAT, self::CURRENCY_CODE, self::FROM_DATE, self::TO_DATE, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_ID', 'DOMAINS_ID', 'PRICE', 'VAT', 'CURRENCY_CODE', 'FROM_DATE', 'TO_DATE', ),
-		BasePeer::TYPE_FIELDNAME => array ('products_id', 'domains_id', 'price', 'vat', 'currency_code', 'from_date', 'to_date', ),
+		BasePeer::TYPE_PHPNAME => array ('ProductsId', 'DomainsId', 'Price', 'Vat', 'CurrencyId', 'FromDate', 'ToDate', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('productsId', 'domainsId', 'price', 'vat', 'currencyId', 'fromDate', 'toDate', ),
+		BasePeer::TYPE_COLNAME => array (self::PRODUCTS_ID, self::DOMAINS_ID, self::PRICE, self::VAT, self::CURRENCY_ID, self::FROM_DATE, self::TO_DATE, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_ID', 'DOMAINS_ID', 'PRICE', 'VAT', 'CURRENCY_ID', 'FROM_DATE', 'TO_DATE', ),
+		BasePeer::TYPE_FIELDNAME => array ('products_id', 'domains_id', 'price', 'vat', 'currency_id', 'from_date', 'to_date', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
@@ -103,11 +103,11 @@ abstract class BaseProductsDomainsPricesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('ProductsId' => 0, 'DomainsId' => 1, 'Price' => 2, 'Vat' => 3, 'CurrencyCode' => 4, 'FromDate' => 5, 'ToDate' => 6, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('productsId' => 0, 'domainsId' => 1, 'price' => 2, 'vat' => 3, 'currencyCode' => 4, 'fromDate' => 5, 'toDate' => 6, ),
-		BasePeer::TYPE_COLNAME => array (self::PRODUCTS_ID => 0, self::DOMAINS_ID => 1, self::PRICE => 2, self::VAT => 3, self::CURRENCY_CODE => 4, self::FROM_DATE => 5, self::TO_DATE => 6, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_ID' => 0, 'DOMAINS_ID' => 1, 'PRICE' => 2, 'VAT' => 3, 'CURRENCY_CODE' => 4, 'FROM_DATE' => 5, 'TO_DATE' => 6, ),
-		BasePeer::TYPE_FIELDNAME => array ('products_id' => 0, 'domains_id' => 1, 'price' => 2, 'vat' => 3, 'currency_code' => 4, 'from_date' => 5, 'to_date' => 6, ),
+		BasePeer::TYPE_PHPNAME => array ('ProductsId' => 0, 'DomainsId' => 1, 'Price' => 2, 'Vat' => 3, 'CurrencyId' => 4, 'FromDate' => 5, 'ToDate' => 6, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('productsId' => 0, 'domainsId' => 1, 'price' => 2, 'vat' => 3, 'currencyId' => 4, 'fromDate' => 5, 'toDate' => 6, ),
+		BasePeer::TYPE_COLNAME => array (self::PRODUCTS_ID => 0, self::DOMAINS_ID => 1, self::PRICE => 2, self::VAT => 3, self::CURRENCY_ID => 4, self::FROM_DATE => 5, self::TO_DATE => 6, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('PRODUCTS_ID' => 0, 'DOMAINS_ID' => 1, 'PRICE' => 2, 'VAT' => 3, 'CURRENCY_ID' => 4, 'FROM_DATE' => 5, 'TO_DATE' => 6, ),
+		BasePeer::TYPE_FIELDNAME => array ('products_id' => 0, 'domains_id' => 1, 'price' => 2, 'vat' => 3, 'currency_id' => 4, 'from_date' => 5, 'to_date' => 6, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
@@ -184,7 +184,7 @@ abstract class BaseProductsDomainsPricesPeer {
 			$criteria->addSelectColumn(ProductsDomainsPricesPeer::DOMAINS_ID);
 			$criteria->addSelectColumn(ProductsDomainsPricesPeer::PRICE);
 			$criteria->addSelectColumn(ProductsDomainsPricesPeer::VAT);
-			$criteria->addSelectColumn(ProductsDomainsPricesPeer::CURRENCY_CODE);
+			$criteria->addSelectColumn(ProductsDomainsPricesPeer::CURRENCY_ID);
 			$criteria->addSelectColumn(ProductsDomainsPricesPeer::FROM_DATE);
 			$criteria->addSelectColumn(ProductsDomainsPricesPeer::TO_DATE);
 		} else {
@@ -192,7 +192,7 @@ abstract class BaseProductsDomainsPricesPeer {
 			$criteria->addSelectColumn($alias . '.DOMAINS_ID');
 			$criteria->addSelectColumn($alias . '.PRICE');
 			$criteria->addSelectColumn($alias . '.VAT');
-			$criteria->addSelectColumn($alias . '.CURRENCY_CODE');
+			$criteria->addSelectColumn($alias . '.CURRENCY_ID');
 			$criteria->addSelectColumn($alias . '.FROM_DATE');
 			$criteria->addSelectColumn($alias . '.TO_DATE');
 		}

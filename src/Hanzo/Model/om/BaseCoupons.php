@@ -75,10 +75,10 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	protected $vat;
 
 	/**
-	 * The value for the currency_code field.
-	 * @var        string
+	 * The value for the currency_id field.
+	 * @var        int
 	 */
-	protected $currency_code;
+	protected $currency_id;
 
 	/**
 	 * The value for the uses_pr_coupon field.
@@ -206,13 +206,13 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [currency_code] column value.
+	 * Get the [currency_id] column value.
 	 * 
-	 * @return     string
+	 * @return     int
 	 */
-	public function getCurrencyCode()
+	public function getCurrencyId()
 	{
-		return $this->currency_code;
+		return $this->currency_id;
 	}
 
 	/**
@@ -468,24 +468,24 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	} // setVat()
 
 	/**
-	 * Set the value of [currency_code] column.
+	 * Set the value of [currency_id] column.
 	 * 
-	 * @param      string $v new value
+	 * @param      int $v new value
 	 * @return     Coupons The current object (for fluent API support)
 	 */
-	public function setCurrencyCode($v)
+	public function setCurrencyId($v)
 	{
 		if ($v !== null) {
-			$v = (string) $v;
+			$v = (int) $v;
 		}
 
-		if ($this->currency_code !== $v) {
-			$this->currency_code = $v;
-			$this->modifiedColumns[] = CouponsPeer::CURRENCY_CODE;
+		if ($this->currency_id !== $v) {
+			$this->currency_id = $v;
+			$this->modifiedColumns[] = CouponsPeer::CURRENCY_ID;
 		}
 
 		return $this;
-	} // setCurrencyCode()
+	} // setCurrencyId()
 
 	/**
 	 * Set the value of [uses_pr_coupon] column.
@@ -659,7 +659,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 			$this->code = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->amount = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->vat = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->currency_code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->currency_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
 			$this->uses_pr_coupon = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
 			$this->uses_pr_coustomer = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
 			$this->active_from = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
@@ -924,8 +924,8 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CouponsPeer::VAT)) {
 			$modifiedColumns[':p' . $index++]  = '`VAT`';
 		}
-		if ($this->isColumnModified(CouponsPeer::CURRENCY_CODE)) {
-			$modifiedColumns[':p' . $index++]  = '`CURRENCY_CODE`';
+		if ($this->isColumnModified(CouponsPeer::CURRENCY_ID)) {
+			$modifiedColumns[':p' . $index++]  = '`CURRENCY_ID`';
 		}
 		if ($this->isColumnModified(CouponsPeer::USES_PR_COUPON)) {
 			$modifiedColumns[':p' . $index++]  = '`USES_PR_COUPON`';
@@ -968,8 +968,8 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 					case '`VAT`':
 						$stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
 						break;
-					case '`CURRENCY_CODE`':
-						$stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
+					case '`CURRENCY_ID`':
+						$stmt->bindValue($identifier, $this->currency_id, PDO::PARAM_INT);
 						break;
 					case '`USES_PR_COUPON`':
 						$stmt->bindValue($identifier, $this->uses_pr_coupon, PDO::PARAM_INT);
@@ -1140,7 +1140,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 				return $this->getVat();
 				break;
 			case 4:
-				return $this->getCurrencyCode();
+				return $this->getCurrencyId();
 				break;
 			case 5:
 				return $this->getUsesPrCoupon();
@@ -1193,7 +1193,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 			$keys[1] => $this->getCode(),
 			$keys[2] => $this->getAmount(),
 			$keys[3] => $this->getVat(),
-			$keys[4] => $this->getCurrencyCode(),
+			$keys[4] => $this->getCurrencyId(),
 			$keys[5] => $this->getUsesPrCoupon(),
 			$keys[6] => $this->getUsesPrCoustomer(),
 			$keys[7] => $this->getActiveFrom(),
@@ -1249,7 +1249,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 				$this->setVat($value);
 				break;
 			case 4:
-				$this->setCurrencyCode($value);
+				$this->setCurrencyId($value);
 				break;
 			case 5:
 				$this->setUsesPrCoupon($value);
@@ -1297,7 +1297,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		if (array_key_exists($keys[1], $arr)) $this->setCode($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setAmount($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setVat($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setCurrencyCode($arr[$keys[4]]);
+		if (array_key_exists($keys[4], $arr)) $this->setCurrencyId($arr[$keys[4]]);
 		if (array_key_exists($keys[5], $arr)) $this->setUsesPrCoupon($arr[$keys[5]]);
 		if (array_key_exists($keys[6], $arr)) $this->setUsesPrCoustomer($arr[$keys[6]]);
 		if (array_key_exists($keys[7], $arr)) $this->setActiveFrom($arr[$keys[7]]);
@@ -1319,7 +1319,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CouponsPeer::CODE)) $criteria->add(CouponsPeer::CODE, $this->code);
 		if ($this->isColumnModified(CouponsPeer::AMOUNT)) $criteria->add(CouponsPeer::AMOUNT, $this->amount);
 		if ($this->isColumnModified(CouponsPeer::VAT)) $criteria->add(CouponsPeer::VAT, $this->vat);
-		if ($this->isColumnModified(CouponsPeer::CURRENCY_CODE)) $criteria->add(CouponsPeer::CURRENCY_CODE, $this->currency_code);
+		if ($this->isColumnModified(CouponsPeer::CURRENCY_ID)) $criteria->add(CouponsPeer::CURRENCY_ID, $this->currency_id);
 		if ($this->isColumnModified(CouponsPeer::USES_PR_COUPON)) $criteria->add(CouponsPeer::USES_PR_COUPON, $this->uses_pr_coupon);
 		if ($this->isColumnModified(CouponsPeer::USES_PR_COUSTOMER)) $criteria->add(CouponsPeer::USES_PR_COUSTOMER, $this->uses_pr_coustomer);
 		if ($this->isColumnModified(CouponsPeer::ACTIVE_FROM)) $criteria->add(CouponsPeer::ACTIVE_FROM, $this->active_from);
@@ -1391,7 +1391,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		$copyObj->setCode($this->getCode());
 		$copyObj->setAmount($this->getAmount());
 		$copyObj->setVat($this->getVat());
-		$copyObj->setCurrencyCode($this->getCurrencyCode());
+		$copyObj->setCurrencyId($this->getCurrencyId());
 		$copyObj->setUsesPrCoupon($this->getUsesPrCoupon());
 		$copyObj->setUsesPrCoustomer($this->getUsesPrCoustomer());
 		$copyObj->setActiveFrom($this->getActiveFrom());
@@ -1658,7 +1658,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		$this->code = null;
 		$this->amount = null;
 		$this->vat = null;
-		$this->currency_code = null;
+		$this->currency_id = null;
 		$this->uses_pr_coupon = null;
 		$this->uses_pr_coustomer = null;
 		$this->active_from = null;

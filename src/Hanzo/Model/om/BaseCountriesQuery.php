@@ -30,8 +30,8 @@ use Hanzo\Model\ZipToCity;
  * @method     CountriesQuery orderByIso3($order = Criteria::ASC) Order by the iso3 column
  * @method     CountriesQuery orderByContinent($order = Criteria::ASC) Order by the continent column
  * @method     CountriesQuery orderByCurrencyId($order = Criteria::ASC) Order by the currency_id column
- * @method     CountriesQuery orderByCurencyCode($order = Criteria::ASC) Order by the curency_code column
- * @method     CountriesQuery orderByCurerncyName($order = Criteria::ASC) Order by the curerncy_name column
+ * @method     CountriesQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
+ * @method     CountriesQuery orderByCurrencyName($order = Criteria::ASC) Order by the currency_name column
  *
  * @method     CountriesQuery groupById() Group by the id column
  * @method     CountriesQuery groupByName() Group by the name column
@@ -41,8 +41,8 @@ use Hanzo\Model\ZipToCity;
  * @method     CountriesQuery groupByIso3() Group by the iso3 column
  * @method     CountriesQuery groupByContinent() Group by the continent column
  * @method     CountriesQuery groupByCurrencyId() Group by the currency_id column
- * @method     CountriesQuery groupByCurencyCode() Group by the curency_code column
- * @method     CountriesQuery groupByCurerncyName() Group by the curerncy_name column
+ * @method     CountriesQuery groupByCurrencyCode() Group by the currency_code column
+ * @method     CountriesQuery groupByCurrencyName() Group by the currency_name column
  *
  * @method     CountriesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     CountriesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -83,8 +83,8 @@ use Hanzo\Model\ZipToCity;
  * @method     Countries findOneByIso3(string $iso3) Return the first Countries filtered by the iso3 column
  * @method     Countries findOneByContinent(string $continent) Return the first Countries filtered by the continent column
  * @method     Countries findOneByCurrencyId(int $currency_id) Return the first Countries filtered by the currency_id column
- * @method     Countries findOneByCurencyCode(string $curency_code) Return the first Countries filtered by the curency_code column
- * @method     Countries findOneByCurerncyName(string $curerncy_name) Return the first Countries filtered by the curerncy_name column
+ * @method     Countries findOneByCurrencyCode(string $currency_code) Return the first Countries filtered by the currency_code column
+ * @method     Countries findOneByCurrencyName(string $currency_name) Return the first Countries filtered by the currency_name column
  *
  * @method     array findById(int $id) Return Countries objects filtered by the id column
  * @method     array findByName(string $name) Return Countries objects filtered by the name column
@@ -94,8 +94,8 @@ use Hanzo\Model\ZipToCity;
  * @method     array findByIso3(string $iso3) Return Countries objects filtered by the iso3 column
  * @method     array findByContinent(string $continent) Return Countries objects filtered by the continent column
  * @method     array findByCurrencyId(int $currency_id) Return Countries objects filtered by the currency_id column
- * @method     array findByCurencyCode(string $curency_code) Return Countries objects filtered by the curency_code column
- * @method     array findByCurerncyName(string $curerncy_name) Return Countries objects filtered by the curerncy_name column
+ * @method     array findByCurrencyCode(string $currency_code) Return Countries objects filtered by the currency_code column
+ * @method     array findByCurrencyName(string $currency_name) Return Countries objects filtered by the currency_name column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -184,7 +184,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURENCY_CODE`, `CURERNCY_NAME` FROM `countries` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURRENCY_CODE`, `CURRENCY_NAME` FROM `countries` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -516,59 +516,59 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the curency_code column
+	 * Filter the query on the currency_code column
 	 *
 	 * Example usage:
 	 * <code>
-	 * $query->filterByCurencyCode('fooValue');   // WHERE curency_code = 'fooValue'
-	 * $query->filterByCurencyCode('%fooValue%'); // WHERE curency_code LIKE '%fooValue%'
+	 * $query->filterByCurrencyCode('fooValue');   // WHERE currency_code = 'fooValue'
+	 * $query->filterByCurrencyCode('%fooValue%'); // WHERE currency_code LIKE '%fooValue%'
 	 * </code>
 	 *
-	 * @param     string $curencyCode The value to use as filter.
+	 * @param     string $currencyCode The value to use as filter.
 	 *              Accepts wildcards (* and % trigger a LIKE)
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    CountriesQuery The current query, for fluid interface
 	 */
-	public function filterByCurencyCode($curencyCode = null, $comparison = null)
+	public function filterByCurrencyCode($currencyCode = null, $comparison = null)
 	{
 		if (null === $comparison) {
-			if (is_array($curencyCode)) {
+			if (is_array($currencyCode)) {
 				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $curencyCode)) {
-				$curencyCode = str_replace('*', '%', $curencyCode);
+			} elseif (preg_match('/[\%\*]/', $currencyCode)) {
+				$currencyCode = str_replace('*', '%', $currencyCode);
 				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(CountriesPeer::CURENCY_CODE, $curencyCode, $comparison);
+		return $this->addUsingAlias(CountriesPeer::CURRENCY_CODE, $currencyCode, $comparison);
 	}
 
 	/**
-	 * Filter the query on the curerncy_name column
+	 * Filter the query on the currency_name column
 	 *
 	 * Example usage:
 	 * <code>
-	 * $query->filterByCurerncyName('fooValue');   // WHERE curerncy_name = 'fooValue'
-	 * $query->filterByCurerncyName('%fooValue%'); // WHERE curerncy_name LIKE '%fooValue%'
+	 * $query->filterByCurrencyName('fooValue');   // WHERE currency_name = 'fooValue'
+	 * $query->filterByCurrencyName('%fooValue%'); // WHERE currency_name LIKE '%fooValue%'
 	 * </code>
 	 *
-	 * @param     string $curerncyName The value to use as filter.
+	 * @param     string $currencyName The value to use as filter.
 	 *              Accepts wildcards (* and % trigger a LIKE)
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    CountriesQuery The current query, for fluid interface
 	 */
-	public function filterByCurerncyName($curerncyName = null, $comparison = null)
+	public function filterByCurrencyName($currencyName = null, $comparison = null)
 	{
 		if (null === $comparison) {
-			if (is_array($curerncyName)) {
+			if (is_array($currencyName)) {
 				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $curerncyName)) {
-				$curerncyName = str_replace('*', '%', $curerncyName);
+			} elseif (preg_match('/[\%\*]/', $currencyName)) {
+				$currencyName = str_replace('*', '%', $currencyName);
 				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(CountriesPeer::CURERNCY_NAME, $curerncyName, $comparison);
+		return $this->addUsingAlias(CountriesPeer::CURRENCY_NAME, $currencyName, $comparison);
 	}
 
 	/**

@@ -25,7 +25,7 @@ use Hanzo\Model\ProductsDomainsPricesQuery;
  * @method     ProductsDomainsPricesQuery orderByDomainsId($order = Criteria::ASC) Order by the domains_id column
  * @method     ProductsDomainsPricesQuery orderByPrice($order = Criteria::ASC) Order by the price column
  * @method     ProductsDomainsPricesQuery orderByVat($order = Criteria::ASC) Order by the vat column
- * @method     ProductsDomainsPricesQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
+ * @method     ProductsDomainsPricesQuery orderByCurrencyId($order = Criteria::ASC) Order by the currency_id column
  * @method     ProductsDomainsPricesQuery orderByFromDate($order = Criteria::ASC) Order by the from_date column
  * @method     ProductsDomainsPricesQuery orderByToDate($order = Criteria::ASC) Order by the to_date column
  *
@@ -33,7 +33,7 @@ use Hanzo\Model\ProductsDomainsPricesQuery;
  * @method     ProductsDomainsPricesQuery groupByDomainsId() Group by the domains_id column
  * @method     ProductsDomainsPricesQuery groupByPrice() Group by the price column
  * @method     ProductsDomainsPricesQuery groupByVat() Group by the vat column
- * @method     ProductsDomainsPricesQuery groupByCurrencyCode() Group by the currency_code column
+ * @method     ProductsDomainsPricesQuery groupByCurrencyId() Group by the currency_id column
  * @method     ProductsDomainsPricesQuery groupByFromDate() Group by the from_date column
  * @method     ProductsDomainsPricesQuery groupByToDate() Group by the to_date column
  *
@@ -56,7 +56,7 @@ use Hanzo\Model\ProductsDomainsPricesQuery;
  * @method     ProductsDomainsPrices findOneByDomainsId(int $domains_id) Return the first ProductsDomainsPrices filtered by the domains_id column
  * @method     ProductsDomainsPrices findOneByPrice(string $price) Return the first ProductsDomainsPrices filtered by the price column
  * @method     ProductsDomainsPrices findOneByVat(string $vat) Return the first ProductsDomainsPrices filtered by the vat column
- * @method     ProductsDomainsPrices findOneByCurrencyCode(string $currency_code) Return the first ProductsDomainsPrices filtered by the currency_code column
+ * @method     ProductsDomainsPrices findOneByCurrencyId(int $currency_id) Return the first ProductsDomainsPrices filtered by the currency_id column
  * @method     ProductsDomainsPrices findOneByFromDate(string $from_date) Return the first ProductsDomainsPrices filtered by the from_date column
  * @method     ProductsDomainsPrices findOneByToDate(string $to_date) Return the first ProductsDomainsPrices filtered by the to_date column
  *
@@ -64,7 +64,7 @@ use Hanzo\Model\ProductsDomainsPricesQuery;
  * @method     array findByDomainsId(int $domains_id) Return ProductsDomainsPrices objects filtered by the domains_id column
  * @method     array findByPrice(string $price) Return ProductsDomainsPrices objects filtered by the price column
  * @method     array findByVat(string $vat) Return ProductsDomainsPrices objects filtered by the vat column
- * @method     array findByCurrencyCode(string $currency_code) Return ProductsDomainsPrices objects filtered by the currency_code column
+ * @method     array findByCurrencyId(int $currency_id) Return ProductsDomainsPrices objects filtered by the currency_id column
  * @method     array findByFromDate(string $from_date) Return ProductsDomainsPrices objects filtered by the from_date column
  * @method     array findByToDate(string $to_date) Return ProductsDomainsPrices objects filtered by the to_date column
  *
@@ -155,7 +155,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `PRODUCTS_ID`, `DOMAINS_ID`, `PRICE`, `VAT`, `CURRENCY_CODE`, `FROM_DATE`, `TO_DATE` FROM `products_domains_prices` WHERE `PRODUCTS_ID` = :p0 AND `DOMAINS_ID` = :p1 AND `FROM_DATE` = :p2';
+		$sql = 'SELECT `PRODUCTS_ID`, `DOMAINS_ID`, `PRICE`, `VAT`, `CURRENCY_ID`, `FROM_DATE`, `TO_DATE` FROM `products_domains_prices` WHERE `PRODUCTS_ID` = :p0 AND `DOMAINS_ID` = :p1 AND `FROM_DATE` = :p2';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -395,31 +395,43 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the currency_code column
+	 * Filter the query on the currency_id column
 	 *
 	 * Example usage:
 	 * <code>
-	 * $query->filterByCurrencyCode('fooValue');   // WHERE currency_code = 'fooValue'
-	 * $query->filterByCurrencyCode('%fooValue%'); // WHERE currency_code LIKE '%fooValue%'
+	 * $query->filterByCurrencyId(1234); // WHERE currency_id = 1234
+	 * $query->filterByCurrencyId(array(12, 34)); // WHERE currency_id IN (12, 34)
+	 * $query->filterByCurrencyId(array('min' => 12)); // WHERE currency_id > 12
 	 * </code>
 	 *
-	 * @param     string $currencyCode The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     mixed $currencyId The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    ProductsDomainsPricesQuery The current query, for fluid interface
 	 */
-	public function filterByCurrencyCode($currencyCode = null, $comparison = null)
+	public function filterByCurrencyId($currencyId = null, $comparison = null)
 	{
-		if (null === $comparison) {
-			if (is_array($currencyCode)) {
+		if (is_array($currencyId)) {
+			$useMinMax = false;
+			if (isset($currencyId['min'])) {
+				$this->addUsingAlias(ProductsDomainsPricesPeer::CURRENCY_ID, $currencyId['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($currencyId['max'])) {
+				$this->addUsingAlias(ProductsDomainsPricesPeer::CURRENCY_ID, $currencyId['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
 				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $currencyCode)) {
-				$currencyCode = str_replace('*', '%', $currencyCode);
-				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(ProductsDomainsPricesPeer::CURRENCY_CODE, $currencyCode, $comparison);
+		return $this->addUsingAlias(ProductsDomainsPricesPeer::CURRENCY_ID, $currencyId, $comparison);
 	}
 
 	/**

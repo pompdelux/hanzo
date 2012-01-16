@@ -46,7 +46,7 @@ class CouponsTableMap extends TableMap
 		$this->addColumn('CODE', 'Code', 'VARCHAR', true, 12, null);
 		$this->addColumn('AMOUNT', 'Amount', 'DECIMAL', true, 15, null);
 		$this->addColumn('VAT', 'Vat', 'DECIMAL', false, 2, null);
-		$this->addColumn('CURRENCY_CODE', 'CurrencyCode', 'VARCHAR', true, 3, null);
+		$this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
 		$this->addColumn('USES_PR_COUPON', 'UsesPrCoupon', 'INTEGER', true, null, 1);
 		$this->addColumn('USES_PR_COUSTOMER', 'UsesPrCoustomer', 'INTEGER', true, null, 1);
 		$this->addColumn('ACTIVE_FROM', 'ActiveFrom', 'TIMESTAMP', false, null, null);

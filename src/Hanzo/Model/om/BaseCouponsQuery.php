@@ -24,7 +24,7 @@ use Hanzo\Model\CouponsToCustomers;
  * @method     CouponsQuery orderByCode($order = Criteria::ASC) Order by the code column
  * @method     CouponsQuery orderByAmount($order = Criteria::ASC) Order by the amount column
  * @method     CouponsQuery orderByVat($order = Criteria::ASC) Order by the vat column
- * @method     CouponsQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
+ * @method     CouponsQuery orderByCurrencyId($order = Criteria::ASC) Order by the currency_id column
  * @method     CouponsQuery orderByUsesPrCoupon($order = Criteria::ASC) Order by the uses_pr_coupon column
  * @method     CouponsQuery orderByUsesPrCoustomer($order = Criteria::ASC) Order by the uses_pr_coustomer column
  * @method     CouponsQuery orderByActiveFrom($order = Criteria::ASC) Order by the active_from column
@@ -36,7 +36,7 @@ use Hanzo\Model\CouponsToCustomers;
  * @method     CouponsQuery groupByCode() Group by the code column
  * @method     CouponsQuery groupByAmount() Group by the amount column
  * @method     CouponsQuery groupByVat() Group by the vat column
- * @method     CouponsQuery groupByCurrencyCode() Group by the currency_code column
+ * @method     CouponsQuery groupByCurrencyId() Group by the currency_id column
  * @method     CouponsQuery groupByUsesPrCoupon() Group by the uses_pr_coupon column
  * @method     CouponsQuery groupByUsesPrCoustomer() Group by the uses_pr_coustomer column
  * @method     CouponsQuery groupByActiveFrom() Group by the active_from column
@@ -59,7 +59,7 @@ use Hanzo\Model\CouponsToCustomers;
  * @method     Coupons findOneByCode(string $code) Return the first Coupons filtered by the code column
  * @method     Coupons findOneByAmount(string $amount) Return the first Coupons filtered by the amount column
  * @method     Coupons findOneByVat(string $vat) Return the first Coupons filtered by the vat column
- * @method     Coupons findOneByCurrencyCode(string $currency_code) Return the first Coupons filtered by the currency_code column
+ * @method     Coupons findOneByCurrencyId(int $currency_id) Return the first Coupons filtered by the currency_id column
  * @method     Coupons findOneByUsesPrCoupon(int $uses_pr_coupon) Return the first Coupons filtered by the uses_pr_coupon column
  * @method     Coupons findOneByUsesPrCoustomer(int $uses_pr_coustomer) Return the first Coupons filtered by the uses_pr_coustomer column
  * @method     Coupons findOneByActiveFrom(string $active_from) Return the first Coupons filtered by the active_from column
@@ -71,7 +71,7 @@ use Hanzo\Model\CouponsToCustomers;
  * @method     array findByCode(string $code) Return Coupons objects filtered by the code column
  * @method     array findByAmount(string $amount) Return Coupons objects filtered by the amount column
  * @method     array findByVat(string $vat) Return Coupons objects filtered by the vat column
- * @method     array findByCurrencyCode(string $currency_code) Return Coupons objects filtered by the currency_code column
+ * @method     array findByCurrencyId(int $currency_id) Return Coupons objects filtered by the currency_id column
  * @method     array findByUsesPrCoupon(int $uses_pr_coupon) Return Coupons objects filtered by the uses_pr_coupon column
  * @method     array findByUsesPrCoustomer(int $uses_pr_coustomer) Return Coupons objects filtered by the uses_pr_coustomer column
  * @method     array findByActiveFrom(string $active_from) Return Coupons objects filtered by the active_from column
@@ -166,7 +166,7 @@ abstract class BaseCouponsQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `CODE`, `AMOUNT`, `VAT`, `CURRENCY_CODE`, `USES_PR_COUPON`, `USES_PR_COUSTOMER`, `ACTIVE_FROM`, `ACTIVE_TO`, `CREATED_AT`, `UPDATED_AT` FROM `coupons` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `CODE`, `AMOUNT`, `VAT`, `CURRENCY_ID`, `USES_PR_COUPON`, `USES_PR_COUSTOMER`, `ACTIVE_FROM`, `ACTIVE_TO`, `CREATED_AT`, `UPDATED_AT` FROM `coupons` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -386,31 +386,43 @@ abstract class BaseCouponsQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the currency_code column
+	 * Filter the query on the currency_id column
 	 *
 	 * Example usage:
 	 * <code>
-	 * $query->filterByCurrencyCode('fooValue');   // WHERE currency_code = 'fooValue'
-	 * $query->filterByCurrencyCode('%fooValue%'); // WHERE currency_code LIKE '%fooValue%'
+	 * $query->filterByCurrencyId(1234); // WHERE currency_id = 1234
+	 * $query->filterByCurrencyId(array(12, 34)); // WHERE currency_id IN (12, 34)
+	 * $query->filterByCurrencyId(array('min' => 12)); // WHERE currency_id > 12
 	 * </code>
 	 *
-	 * @param     string $currencyCode The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     mixed $currencyId The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    CouponsQuery The current query, for fluid interface
 	 */
-	public function filterByCurrencyCode($currencyCode = null, $comparison = null)
+	public function filterByCurrencyId($currencyId = null, $comparison = null)
 	{
-		if (null === $comparison) {
-			if (is_array($currencyCode)) {
+		if (is_array($currencyId)) {
+			$useMinMax = false;
+			if (isset($currencyId['min'])) {
+				$this->addUsingAlias(CouponsPeer::CURRENCY_ID, $currencyId['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($currencyId['max'])) {
+				$this->addUsingAlias(CouponsPeer::CURRENCY_ID, $currencyId['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
 				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $currencyCode)) {
-				$currencyCode = str_replace('*', '%', $currencyCode);
-				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(CouponsPeer::CURRENCY_CODE, $currencyCode, $comparison);
+		return $this->addUsingAlias(CouponsPeer::CURRENCY_ID, $currencyId, $comparison);
 	}
 
 	/**

@@ -50,8 +50,8 @@ class CountriesTableMap extends TableMap
 		$this->addColumn('ISO3', 'Iso3', 'VARCHAR', true, 3, null);
 		$this->addColumn('CONTINENT', 'Continent', 'VARCHAR', true, 2, null);
 		$this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
-		$this->addColumn('CURENCY_CODE', 'CurencyCode', 'VARCHAR', true, 3, null);
-		$this->addColumn('CURERNCY_NAME', 'CurerncyName', 'VARCHAR', true, 32, null);
+		$this->addColumn('CURRENCY_CODE', 'CurrencyCode', 'VARCHAR', true, 3, null);
+		$this->addColumn('CURRENCY_NAME', 'CurrencyName', 'VARCHAR', true, 32, null);
 		// validators
 	} // initialize()
 

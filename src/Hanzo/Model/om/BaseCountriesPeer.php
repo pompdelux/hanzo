@@ -73,11 +73,11 @@ abstract class BaseCountriesPeer {
 	/** the column name for the CURRENCY_ID field */
 	const CURRENCY_ID = 'countries.CURRENCY_ID';
 
-	/** the column name for the CURENCY_CODE field */
-	const CURENCY_CODE = 'countries.CURENCY_CODE';
+	/** the column name for the CURRENCY_CODE field */
+	const CURRENCY_CODE = 'countries.CURRENCY_CODE';
 
-	/** the column name for the CURERNCY_NAME field */
-	const CURERNCY_NAME = 'countries.CURERNCY_NAME';
+	/** the column name for the CURRENCY_NAME field */
+	const CURRENCY_NAME = 'countries.CURRENCY_NAME';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
@@ -98,11 +98,11 @@ abstract class BaseCountriesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'LocalName', 'Code', 'Iso2', 'Iso3', 'Continent', 'CurrencyId', 'CurencyCode', 'CurerncyName', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'localName', 'code', 'iso2', 'iso3', 'continent', 'currencyId', 'curencyCode', 'curerncyName', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::NAME, self::LOCAL_NAME, self::CODE, self::ISO2, self::ISO3, self::CONTINENT, self::CURRENCY_ID, self::CURENCY_CODE, self::CURERNCY_NAME, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'LOCAL_NAME', 'CODE', 'ISO2', 'ISO3', 'CONTINENT', 'CURRENCY_ID', 'CURENCY_CODE', 'CURERNCY_NAME', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'local_name', 'code', 'iso2', 'iso3', 'continent', 'currency_id', 'curency_code', 'curerncy_name', ),
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'LocalName', 'Code', 'Iso2', 'Iso3', 'Continent', 'CurrencyId', 'CurrencyCode', 'CurrencyName', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'localName', 'code', 'iso2', 'iso3', 'continent', 'currencyId', 'currencyCode', 'currencyName', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::NAME, self::LOCAL_NAME, self::CODE, self::ISO2, self::ISO3, self::CONTINENT, self::CURRENCY_ID, self::CURRENCY_CODE, self::CURRENCY_NAME, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'LOCAL_NAME', 'CODE', 'ISO2', 'ISO3', 'CONTINENT', 'CURRENCY_ID', 'CURRENCY_CODE', 'CURRENCY_NAME', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'local_name', 'code', 'iso2', 'iso3', 'continent', 'currency_id', 'currency_code', 'currency_name', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
 	);
 
@@ -113,11 +113,11 @@ abstract class BaseCountriesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'LocalName' => 2, 'Code' => 3, 'Iso2' => 4, 'Iso3' => 5, 'Continent' => 6, 'CurrencyId' => 7, 'CurencyCode' => 8, 'CurerncyName' => 9, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'localName' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currencyId' => 7, 'curencyCode' => 8, 'curerncyName' => 9, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NAME => 1, self::LOCAL_NAME => 2, self::CODE => 3, self::ISO2 => 4, self::ISO3 => 5, self::CONTINENT => 6, self::CURRENCY_ID => 7, self::CURENCY_CODE => 8, self::CURERNCY_NAME => 9, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'LOCAL_NAME' => 2, 'CODE' => 3, 'ISO2' => 4, 'ISO3' => 5, 'CONTINENT' => 6, 'CURRENCY_ID' => 7, 'CURENCY_CODE' => 8, 'CURERNCY_NAME' => 9, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'local_name' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currency_id' => 7, 'curency_code' => 8, 'curerncy_name' => 9, ),
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'LocalName' => 2, 'Code' => 3, 'Iso2' => 4, 'Iso3' => 5, 'Continent' => 6, 'CurrencyId' => 7, 'CurrencyCode' => 8, 'CurrencyName' => 9, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'localName' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currencyId' => 7, 'currencyCode' => 8, 'currencyName' => 9, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NAME => 1, self::LOCAL_NAME => 2, self::CODE => 3, self::ISO2 => 4, self::ISO3 => 5, self::CONTINENT => 6, self::CURRENCY_ID => 7, self::CURRENCY_CODE => 8, self::CURRENCY_NAME => 9, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'LOCAL_NAME' => 2, 'CODE' => 3, 'ISO2' => 4, 'ISO3' => 5, 'CONTINENT' => 6, 'CURRENCY_ID' => 7, 'CURRENCY_CODE' => 8, 'CURRENCY_NAME' => 9, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'local_name' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currency_id' => 7, 'currency_code' => 8, 'currency_name' => 9, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
 	);
 
@@ -198,8 +198,8 @@ abstract class BaseCountriesPeer {
 			$criteria->addSelectColumn(CountriesPeer::ISO3);
 			$criteria->addSelectColumn(CountriesPeer::CONTINENT);
 			$criteria->addSelectColumn(CountriesPeer::CURRENCY_ID);
-			$criteria->addSelectColumn(CountriesPeer::CURENCY_CODE);
-			$criteria->addSelectColumn(CountriesPeer::CURERNCY_NAME);
+			$criteria->addSelectColumn(CountriesPeer::CURRENCY_CODE);
+			$criteria->addSelectColumn(CountriesPeer::CURRENCY_NAME);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.NAME');
@@ -209,8 +209,8 @@ abstract class BaseCountriesPeer {
 			$criteria->addSelectColumn($alias . '.ISO3');
 			$criteria->addSelectColumn($alias . '.CONTINENT');
 			$criteria->addSelectColumn($alias . '.CURRENCY_ID');
-			$criteria->addSelectColumn($alias . '.CURENCY_CODE');
-			$criteria->addSelectColumn($alias . '.CURERNCY_NAME');
+			$criteria->addSelectColumn($alias . '.CURRENCY_CODE');
+			$criteria->addSelectColumn($alias . '.CURRENCY_NAME');
 		}
 	}
 

@@ -16,8 +16,8 @@ foreach ($xml->ISO_CURRENCY as $c) {
         countries
       SET
         currency_id = '{$c->NUMERIC_CODE}',
-        curency_code = '{$c->ALPHABETIC_CODE}',
-        curerncy_name = '" . $c->CURRENCY . "'
+        currency_code = '{$c->ALPHABETIC_CODE}',
+        currency_name = '" . $c->CURRENCY . "'
       WHERE
         id = {$record->id}
     ");

@@ -77,8 +77,8 @@
     <column name="iso3" type="VARCHAR" size="3" required="true"/>
     <column name="continent" type="VARCHAR" size="2" required="true"/>
     <column name="currency_id" type="INTEGER" required="true"/>
-    <column name="curency_code" type="VARCHAR" size="3" required="true"/>
-    <column name="curerncy_name" type="VARCHAR" size="32" required="true"/>
+    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
+    <column name="currency_name" type="VARCHAR" size="32" required="true"/>
     <unique name="index2">
       <unique-column name="code"/>
     </unique>
@@ -95,7 +95,7 @@
     <column name="code" type="VARCHAR" size="12" required="true"/>
     <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
     <column name="vat" type="DECIMAL" size="2" scale="2" required="false"/>
-    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
+    <column name="currency_id" type="INTEGER" required="true"/>
     <column name="uses_pr_coupon" type="INTEGER" required="true" defaultValue="1"/>
     <column name="uses_pr_coustomer" type="INTEGER" required="true" defaultValue="1"/>
     <column name="active_from" type="TIMESTAMP" required="false"/>
@@ -104,7 +104,7 @@
       <unique-column name="code"/>
     </unique>
     <index name="index3">
-      <index-column name="currency_code"/>
+      <index-column name="currency_id"/>
     </index>
     <index name="index4">
       <index-column name="code"/>
@@ -335,7 +335,7 @@
     <column name="domains_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="price" type="DECIMAL" size="15" scale="4" required="true"/>
     <column name="vat" type="DECIMAL" size="4" scale="2" required="true"/>
-    <column name="currency_code" type="VARCHAR" size="3" required="false"/>
+    <column name="currency_id" type="INTEGER" required="true"/>
     <column name="from_date" type="TIMESTAMP" primaryKey="true" required="true"/>
     <column name="to_date" type="TIMESTAMP" required="false"/>
     <foreign-key foreignTable="products" name="fk_products_domains_prices_1" onDelete="CASCADE">
@@ -447,7 +447,7 @@
     </index>
   </table>
 
-    <table name="orders">
+  <table name="orders">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="session_id" type="VARCHAR" size="32" required="true"/>
     <column name="payment_gateway_id" type="INTEGER" required="false"/>
@@ -458,6 +458,7 @@
     <column name="email" type="VARCHAR" size="255" required="false"/>
     <column name="phone" type="VARCHAR" size="32" required="false"/>
     <column name="languages_id" type="INTEGER" required="true"/>
+    <column name="currency_id" type="INTEGER" required="true"/>
     <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
     <column name="billing_address_line_2" type="VARCHAR" size="255" required="false"/>
     <column name="billing_postal_code" type="VARCHAR" size="12" required="false"/>

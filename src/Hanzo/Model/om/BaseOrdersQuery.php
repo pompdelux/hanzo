@@ -33,6 +33,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method     OrdersQuery orderByPhone($order = Criteria::ASC) Order by the phone column
  * @method     OrdersQuery orderByLanguagesId($order = Criteria::ASC) Order by the languages_id column
+ * @method     OrdersQuery orderByCurrencyId($order = Criteria::ASC) Order by the currency_id column
  * @method     OrdersQuery orderByBillingAddressLine1($order = Criteria::ASC) Order by the billing_address_line_1 column
  * @method     OrdersQuery orderByBillingAddressLine2($order = Criteria::ASC) Order by the billing_address_line_2 column
  * @method     OrdersQuery orderByBillingPostalCode($order = Criteria::ASC) Order by the billing_postal_code column
@@ -64,6 +65,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery groupByEmail() Group by the email column
  * @method     OrdersQuery groupByPhone() Group by the phone column
  * @method     OrdersQuery groupByLanguagesId() Group by the languages_id column
+ * @method     OrdersQuery groupByCurrencyId() Group by the currency_id column
  * @method     OrdersQuery groupByBillingAddressLine1() Group by the billing_address_line_1 column
  * @method     OrdersQuery groupByBillingAddressLine2() Group by the billing_address_line_2 column
  * @method     OrdersQuery groupByBillingPostalCode() Group by the billing_postal_code column
@@ -122,6 +124,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     Orders findOneByEmail(string $email) Return the first Orders filtered by the email column
  * @method     Orders findOneByPhone(string $phone) Return the first Orders filtered by the phone column
  * @method     Orders findOneByLanguagesId(int $languages_id) Return the first Orders filtered by the languages_id column
+ * @method     Orders findOneByCurrencyId(int $currency_id) Return the first Orders filtered by the currency_id column
  * @method     Orders findOneByBillingAddressLine1(string $billing_address_line_1) Return the first Orders filtered by the billing_address_line_1 column
  * @method     Orders findOneByBillingAddressLine2(string $billing_address_line_2) Return the first Orders filtered by the billing_address_line_2 column
  * @method     Orders findOneByBillingPostalCode(string $billing_postal_code) Return the first Orders filtered by the billing_postal_code column
@@ -153,6 +156,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     array findByEmail(string $email) Return Orders objects filtered by the email column
  * @method     array findByPhone(string $phone) Return Orders objects filtered by the phone column
  * @method     array findByLanguagesId(int $languages_id) Return Orders objects filtered by the languages_id column
+ * @method     array findByCurrencyId(int $currency_id) Return Orders objects filtered by the currency_id column
  * @method     array findByBillingAddressLine1(string $billing_address_line_1) Return Orders objects filtered by the billing_address_line_1 column
  * @method     array findByBillingAddressLine2(string $billing_address_line_2) Return Orders objects filtered by the billing_address_line_2 column
  * @method     array findByBillingPostalCode(string $billing_postal_code) Return Orders objects filtered by the billing_postal_code column
@@ -261,7 +265,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_METHOD`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_ID`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_METHOD`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -670,6 +674,46 @@ abstract class BaseOrdersQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(OrdersPeer::LANGUAGES_ID, $languagesId, $comparison);
+	}
+
+	/**
+	 * Filter the query on the currency_id column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByCurrencyId(1234); // WHERE currency_id = 1234
+	 * $query->filterByCurrencyId(array(12, 34)); // WHERE currency_id IN (12, 34)
+	 * $query->filterByCurrencyId(array('min' => 12)); // WHERE currency_id > 12
+	 * </code>
+	 *
+	 * @param     mixed $currencyId The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByCurrencyId($currencyId = null, $comparison = null)
+	{
+		if (is_array($currencyId)) {
+			$useMinMax = false;
+			if (isset($currencyId['min'])) {
+				$this->addUsingAlias(OrdersPeer::CURRENCY_ID, $currencyId['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($currencyId['max'])) {
+				$this->addUsingAlias(OrdersPeer::CURRENCY_ID, $currencyId['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(OrdersPeer::CURRENCY_ID, $currencyId, $comparison);
 	}
 
 	/**
