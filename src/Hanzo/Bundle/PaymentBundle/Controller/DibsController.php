@@ -93,6 +93,8 @@ class DibsController extends CoreController
     //$apiResponse = $api->call()->acquirersStatus();
     //$apiResponse = $api->call()->payinfo( 527221861 );
 
+    error_log(__LINE__.':'.__FILE__.' '.print_r($_SESSION,1)); // hf@bellcom.dk debugging
+
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
 

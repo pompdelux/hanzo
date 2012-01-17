@@ -773,6 +773,35 @@ CREATE TABLE `orders_sync_log`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- gothia_accounts
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `gothia_accounts`;
+
+CREATE TABLE `gothia_accounts`
+(
+	`customers_id` INTEGER NOT NULL,
+	`first_name` VARCHAR(128) NOT NULL,
+	`last_name` VARCHAR(128) NOT NULL,
+	`address` VARCHAR(255) NOT NULL,
+	`postal_code` VARCHAR(12) NOT NULL,
+	`postal_place` VARCHAR(64) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`phone` VARCHAR(32) NOT NULL,
+	`mobile_phone` VARCHAR(32),
+	`fax` VARCHAR(32),
+	`country_code` VARCHAR(4),
+	`distribution_by` VARCHAR(255),
+	`distribution_type` VARCHAR(255),
+	`social_security_num` VARCHAR(12) NOT NULL,
+	PRIMARY KEY (`customers_id`),
+	CONSTRAINT `fk_gothia_account_to_customer`
+		FOREIGN KEY (`customers_id`)
+		REFERENCES `customers` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- categories_i18n
 -- ---------------------------------------------------------------------
 

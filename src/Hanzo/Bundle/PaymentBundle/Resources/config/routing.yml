@@ -19,3 +19,11 @@ PaymentBundle_dibs_api_test:
 PaymentBundle_dibs_form_test:
     pattern:  /payment/dibs/form_test
     defaults: { _controller: PaymentBundle:Dibs:formTest }
+
+PaymentBundle_gothia_test:
+    pattern:  /payment/gothia/test
+    defaults: { _controller: PaymentBundle:Gothia:test }
+
+PaymentBundle_gothia_payment:
+    pattern:  /payment/gothia/payment
+    defaults: { _controller: PaymentBundle:Gothia:payment }
