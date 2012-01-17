@@ -15,6 +15,7 @@ use Hanzo\Model\CouponsToCustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\EventsPeer;
+use Hanzo\Model\GothiaAccountsPeer;
 use Hanzo\Model\GroupsPeer;
 use Hanzo\Model\LanguagesPeer;
 use Hanzo\Model\map\CustomersTableMap;
@@ -513,6 +514,9 @@ abstract class BaseCustomersPeer {
 		// Invalidate objects in CouponsToCustomersPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		CouponsToCustomersPeer::clearInstancePool();
+		// Invalidate objects in GothiaAccountsPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		GothiaAccountsPeer::clearInstancePool();
 	}
 
 	/**

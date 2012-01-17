@@ -89,6 +89,7 @@ class CustomersTableMap extends TableMap
 		$this->addRelation('CouponsToCustomers', 'Hanzo\\Model\\CouponsToCustomers', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'CouponsToCustomerss');
 		$this->addRelation('EventsRelatedByConsultantsId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'consultants_id', ), null, null, 'EventssRelatedByConsultantsId');
 		$this->addRelation('EventsRelatedByCustomersId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), null, null, 'EventssRelatedByCustomersId');
+		$this->addRelation('GothiaAccounts', 'Hanzo\\Model\\GothiaAccounts', RelationMap::ONE_TO_ONE, array('id' => 'customers_id', ), 'CASCADE', null);
 	} // buildRelations()
 
 	/**
