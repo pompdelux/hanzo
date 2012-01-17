@@ -1,3 +1,7 @@
+NewsletterBundle:
+    resource: "@NewsletterBundle/Resources/config/routing.yml"
+    prefix:   /
+
 PaymentBundle:
     resource: "@PaymentBundle/Resources/config/routing.yml"
     prefix:   /
@@ -12,10 +16,6 @@ HanzoSearchBundle:
 
 HanzoProductBundle:
     resource: "@HanzoProductBundle/Resources/config/routing.yml"
-    prefix:   /
-
-HanzoNewsletterBundle:
-    resource: "@HanzoNewsletterBundle/Resources/config/routing.yml"
     prefix:   /
 
 HanzoMannequinBundle:

@@ -1,7 +1,7 @@
 parameters:
-#    hanzo_newsletter.example.class: Hanzo\Bundle\NewsletterBundle\Example
+#    newsletter.example.class: Hanzo\Bundle\NewsletterBundle\Example
 
 services:
-#    hanzo_newsletter.example:
-#        class: %hanzo_newsletter.example.class%
+#    newsletter.example:
+#        class: %newsletter.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
