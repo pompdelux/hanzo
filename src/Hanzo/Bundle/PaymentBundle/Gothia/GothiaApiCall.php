@@ -7,6 +7,9 @@ use Hanzo\Core\Hanzo,
     Hanzo\Model\GothiaAccounts,
     Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallResponse;
 
+// Great... fucking oldschool crap code:
+require 'AFWS.php';
+
 class GothiaApiCall
 {
     /**
@@ -55,51 +58,28 @@ class GothiaApiCall
     }
 
     /**
-     * execute
-     * @return void
+     * call
+     * @return GothiaApiCallResponse 
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    protected function call( $function, array $params, $useAuthHeaders = false )
+    protected function call( $function, $request )
     {
         $logger = Hanzo::getInstance()->container->get('logger');
 
-        $ch = curl_init();
+        $errorReporting = error_reporting(0);
+        $client = AFSWS_Init( 'test' );
 
-        $url = $this->baseUrl . $function;
+        $response = $client->call( $function, $request);
+        error_log(__LINE__.':'.__FILE__.' '.$callString); // hf@bellcom.dk debugging
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
 
-        curl_setopt($ch, CURLOPT_URL, $url );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        error_reporting($errorReporting);
 
-        $headers = array();
-
-        if ( $useAuthHeaders )
-        {
-            if ( !isset($this->settings['api_user']) || !isset($this->settings['api_pass']) )
-            {
-                throw new GothiaApiCallException( 'DIBS api: Missing api username or/and password' );
-            }
-
-            $headers = array( 'Authorization: Basic '. base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']) );
-
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers );
-        }
-
-        //if ( $this->debug )
-        //{
-        //$msg = 'Calling Gothia api on url: '.$url.PHP_EOL.'Params:'.print_r($headers,1).PHP_EOL.print_r($params,1);
-        //$logger->debug($msg)
-        //}
-        //$this->debugMsg( 'Action: "'. $this->currentAction .'" data: '. print_r($params,1) , __FUNCTION__, __LINE__ );
-
-        $response = curl_exec($ch);
-
-        curl_close($ch);
+        return true;
 
         if ( $response === false )
         {
-            throw new GothiaApiCallException('Kommunikation med DIBS fejlede, fejlen var: "'.curl_error($ch).'"');
+            throw new GothiaApiCallException('Kommunikation med Gothia fejlede');
         }
 
         return new GothiaApiCallResponse( $response, $function );
@@ -108,11 +88,67 @@ class GothiaApiCall
     /**
      * callAcquirersStatus
      * @param GothiaAccount $account
-     * @return void
+     * @return bool
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function checkCustomer( GothiaAccounts $account )
     {
+        // FIXME: hardcoded values
+        $callString = AFSWS_CheckCustomer(
+	        $this->userString(),
+            AFSWS_Customer(
+                $account->getAddress(),
+                $account->getCountryCode(),
+                'SEK',
+                '1000010',
+                'Person',
+                null,
+                null,
+                null,
+                $account->getEmail(),
+                null,
+                $account->getFirstName(),
+                $account->getLastName(),
+                null,
+                $account->getSocialSecurityNum(),
+                $account->getPhone(),
+                $account->getPostalCode(),
+                null,
+                null
+            )
+        );
+
+        $response = $this->call('CheckCustomer', $callString);
+
         return true;
     }
+
+    /**
+     * placeReservation
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function placeReservation( GothiaAccounts $account, Orders $order )
+    {
+    }
+
+    /**
+     * cancelReservation
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function cancelReservation( GothiaAccounts $account, Orders $order )
+    {
+    }
+
+    /**
+     * userString
+     * @return string
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    private function userString()
+    {
+        return AFSWS_User($this->settings['username'], $this->settings['password'], $this->settings['clientID']);
+    }
+
 }

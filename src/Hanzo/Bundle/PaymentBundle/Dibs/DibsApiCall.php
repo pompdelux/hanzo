@@ -53,7 +53,7 @@ class DibsApiCall
     }
 
   /**
-   * execute
+   * call
    * @return void
    * @author Henrik Farre <hf@bellcom.dk>
    **/

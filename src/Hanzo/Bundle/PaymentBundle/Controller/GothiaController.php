@@ -31,19 +31,32 @@ class GothiaController extends CoreController
 
     //$customer = CustomersPeer::getCurrent();
     $customer = CustomersPeer::retrieveByPK(4);
+    $order    = OrdersPeer::getCurrent();
     $gothiaAccount = $customer->getGothiaAccounts();
-
+    
+    // TODO: The data in the gothia account must be validated before it is created, e.g. spaces and dashed stripped from social security num
     if ( is_null($gothiaAccount) )
     {
       $gothiaAccount = new GothiaAccounts();
-
-       
+      $gothiaAccount->setFirstName( 'Sven Anders' )
+      ->setLastName( 'Ström' )
+      ->setAddress( 'Dalagatan' )
+      ->setPostalCode( '28020' )
+      ->setPostalPlace( 'BJÄRNUM' )
+      ->setEmail( 'hf-gothia-28020@bellcom.dk' )
+      ->setPhone( '00000000' )
+      ->setCountryCode( 'SE' )
+      ->setDistributionBy( 'NotSet' )
+      ->setDistributionType( 'NotSet' )
+      ->setSocialSecurityNum( '4409291111' );
 
       $customer->setGothiaAccounts($gothiaAccount);
       $customer->save();
     }
 
     $api->call()->checkCustomer( $gothiaAccount );
+    // TODO: if editing order... see line 149-> in oscom gothiaApi.php
+    $api->call()->placeReservation( $gothiaAccount, $order );
 
     return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
   }
