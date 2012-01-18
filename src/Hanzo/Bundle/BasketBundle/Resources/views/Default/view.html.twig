@@ -1,67 +1,111 @@
-<ul id="checkout-steps">
-  <li class="current">1. Kurv</li>
-  <li>2. Fragttype</li>
-  <li>3. Betalingsform</li>
-  <li>4. Godkend</li>
-  <li>5. Betaling</li>
-  <li>6. Ordrebekræftelse</li>
-</ul>
+{% extends '::base.html.twig' %}
 
-<h1>Trin 1 af 6 - Kurv</h1>
+{% block content %}
 
-<form action="{{ url('basket_update') }}" method="post">
-  <table class="product-table">
-    <thead>
-      <tr>
-        <th class="left">{{ "Products"|trans }}</th>
-        <th class="right">{{ "Latest shipment date"|trans }}</th>
-        <th class="right">{{ "Price"|trans }}</th>
-        <th class="center">{{ "Quantity"|trans }}</th>
-        <th class="right">{{ "Total"|trans }}</th>
-        <th class=""></th>
-      </tr>
-    </thead>
+  <ul id="checkout-steps">
+    <li class="current">{{ "1. Basket"|trans }}</li>
+    <li>{{ "2. Delivery options"|trans }}</li>
+    <li>{{ "3. Payment options"|trans }}</li>
+    <li>{{ "4. Confirm"|trans }}</li>
+    <li>{{ "5. Payment"|trans }}</li>
+    <li>{{ "6. Order confirmation"|trans }}</li>
+  </ul>
 
-    <tbody>
-      <tr>
-        <td class="image">
-          <img src="http://test.static.pompdelux.dk/images/images_extra/thumbnails/66x66,EileenDRESS_basket_Coal.jpg?z8" class="img2ma" title="" alt="" />
-          <input type="hidden" name="products_id[]" value="373" />
-          <div class="info">
-          <a href="http://test.pompdelux.dk/p/webshop-webshop-girl-104-152-cm-dresses/373-eileen-dress">Eileen DRESS</a>
-          <b>{{ "Size"|trans }}: 104</b>
-          <b>{{ "Color"|trans }}: Coal</b>
-          </div>
-        </td>
-        <td class="right date"></td>
-        <td class="right">DKK&nbsp;250,00</td>
-        <td class="right">1</td>
-        <td class="right">DKK&nbsp;250,00</td>
-        <td>
-          <div class="cart_edit_action">
-            <a href="373">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"Edit"|trans }) }}</a>
-          </div>
-          <div class="cart_delete_action">
-            <a href="373">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"Delete"|trans }) }}</a>
-          </div>
-        </td>
-      </tr>
-    </tbody>
+  <h1>{{ "Step 1 of 6 - Basket"|trans }}</h1>
 
-    <tfoot>
-      <tr>
-        <td colspan="4">{{ "Total"|trans }}:</td>
-        <td class="right total">DKK&nbsp;250,00</td>
-        <td></td>
-      </tr>
-    </tfoot>
-  </table>
+  {% if products %}
+  <form action="{{ url('basket_update') }}" method="post">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th class="left">{{ "Products"|trans }}</th>
+          <th class="right">{{ "Latest shipment date"|trans }}</th>
+          <th class="right">{{ "Price"|trans }}</th>
+          <th class="center">{{ "Quantity"|trans }}</th>
+          <th class="right">{{ "Total"|trans }}</th>
+          <th class=""></th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for product in products %}
+        <tr>
+          <td class="image">
+            {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
+            <div class="info">
+              <a href="{{ product.url }}">{{ product.products_name }}</a>
+              <label class="size">{{ "Size"|trans }}: <span>{{ product.products_size }}</span></label>
+              <label class="color">{{ "Color"|trans }}: <span>{{ product.products_color }}</span></label>
+            </div>
+          </td>
+          <td class="right date">
+            {% if product.expected_at %}
+              {{ product.expected_at|date('d-m-Y') }}
+            {% endif %}
+          </td>
+          <td class="right">{{ product.price|money }}</td>
+          <td class="right">{{ product.quantity }}</td>
+          <td class="right">{{ (product.price * product.quantity)|money }}</td>
+          <td class="actions">
+            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"Delete"|trans }) }}</a>
+            <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"Edit"|trans }) }}</a>
+          </td>
+        </tr>
+    {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">{{ "Total"|trans }}:</td>
+          <td class="right total">{{ total|money }}</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
 
-  <p><b>Bemærk:</b> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på lager.</p>
+    {% if delivery_date %}
+      {% trans with { '%date%' : delivery_date|date('d-m-Y') } %}
+        <p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>
+      {% endtrans %}
+    {% else %}
+      <p>
+      {% trans %}
+        <strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.
+      {% endtrans %}
+      </p>
+    {% endif %}
 
-  <div class="buttons">
-    <a class="button left" href="">Shop videre</a>
-    <a class="button right" href="">Fortsæt</a>
-  </div>
+    <div class="buttons">
+      <a class="button left" href="{{ continue_shopping }}">{{ "Continue shopping"|trans }}</a>
+      <a class="button right proceed" href="{{ url('checkout') }}">{{ "Proceed"|trans }}</a>
+    </div>
+  </form>
 
-</form>
+  {% else %}
+    <p>{{ "Your cart is currently empty."|trans }}</p>
+    <div class="buttons">
+      <a class="button left" href="{{ continue_shopping }}">{{ "Continue shopping"|trans }}</a>
+    </div>
+  {% endif %}
+
+{% endblock %}
+
+
+{##
+ # adding javascript trigger to the page, but only if the delivery date is late.
+ # notice the block wraps the if, not the other way around - this is important!
+ #}
+
+{% block javascript %}
+  {% if delivery_date > 0 %}
+  <script type="text/javascript">
+  $(function () {
+    var $button = $(".buttons a.button.proceed");
+    $button.hide();
+    dialoug.confirm('Notice', i18n.t('late delivery notice', { '%date%' : '{{ delivery_date|date('d-m-Y') }}' }), function(choice) {
+      if (choice == 'ok') {
+        $button.show();
+      }
+    });
+  });
+  </script>
+  {% endif %}
+{% endblock javascript %}

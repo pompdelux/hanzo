@@ -8,16 +8,21 @@ var dialoug = (function($) {
     var $callback = callback;
 
     $.colorbox({
-      'top' : '25%',
+      'top' : '20%',
       'close' : '',
-      'html': '<div class="dialoug confirm"><h2>' + title + '</h2><p class="message">' + message + '</p><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">' + i18n.t('Ok') + '</a><a class="button left dialoug-confirm" data-case="cancel" href="">' + i18n.t('Cancel') + '</a></div></div>'
+      'maxWidth' : '400px',
+      'overlayClose' : false,
+      'escKey' : false,
+      'html' : '<div class="dialoug confirm"><h2>' + title + '</h2><div class="message">' + message + '</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">' + i18n.t('Ok') + '</a><a class="button left dialoug-confirm" data-case="cancel" href="">' + i18n.t('Cancel') + '</a></div></div>'
     });
 
     $('#cboxContent .dialoug a').bind('click', function(event) {
       $('#cboxContent .dialoug a').unbind('click');
       event.preventDefault();
+
       $.colorbox.close();
-      if ($callback !== undefined) {
+
+      if (undefined !== $callback) {
         $callback($(this).data('case'));
       }
     });
@@ -30,7 +35,7 @@ var dialoug = (function($) {
       'html': '<div class="dialoug alert"><h2>' + title + '</h2><p class="message">' + message + '</p></div>'
     });
 
-    if ((timeout !== undefined) && (typeof timeout == 'number')) {
+    if ((undefined !== timeout) && (typeof timeout == 'number')) {
       setTimeout(function() {
         $.colorbox.close();
       }, timeout);

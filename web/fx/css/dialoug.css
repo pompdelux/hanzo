@@ -1,5 +1,5 @@
 #cboxContent .dialoug h2 {}
-#cboxContent .dialoug p.message {}
+#cboxContent .dialoug div.message {}
 
 #cboxContent .dialoug .buttons {
   padding: 0 10px;

@@ -105,10 +105,10 @@
           dataType: 'json',
           data: $form.serialize(),
           async: false,
-          success: function(data, textStatus, jqXHR) {
-            if (false === data.status) {
-              if (data.message) {
-                dialoug.alert(i18n.t('Notice!'), data.message);
+          success: function(responce, textStatus, jqXHR) {
+            if (false === responce.status) {
+              if (responce.message) {
+                dialoug.alert(i18n.t('Notice!'), responce.message);
               }
 
               return;
@@ -116,16 +116,16 @@
 
             // populate color select with options
             if (name === 'size') {
-              $.each(data.data.products, function(index, product) {
+              $.each(responce.data.products, function(index, product) {
                 $('form.buy #color').append('<option value="'+product.color+'">'+product.color+'</option>')
               });
               $('form.buy #color').closest('label').removeClass('off');
             }
 
             if (name == 'color') {
-              var product = data.data.products[0];
+              var product = responce.data.products[0];
               if (product.date) {
-                dialoug.confirm(i18n.t('Notice!'), data.message, function(c) {
+                dialoug.confirm(i18n.t('Notice!'), responce.message, function(c) {
                   if (c == 'ok') {
                     $('form.buy #quantity').closest('label').removeClass('off');
                     $form.find('.button').show();
@@ -152,16 +152,16 @@
           type: 'POST',
           data: $form.serialize(),
           async: false,
-          success: function(data, textStatus, jqXHR) {
-            if (false === data.status) {
-              if (data.message) {
-                dialoug.alert(i18n.t('Notice!', data.message));
+          success: function(responce, textStatus, jqXHR) {
+            if (false === responce.status) {
+              if (responce.message) {
+                dialoug.alert(i18n.t('Notice!', responce.message));
               }
             }
             else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
-              $('#mini-basket a').html(data.data);
-              dialoug.slideNotice(data.message);
+              $('#mini-basket a').html(responce.data);
+              dialoug.slideNotice(responce.message);
             }
             _resetForm();
           }
