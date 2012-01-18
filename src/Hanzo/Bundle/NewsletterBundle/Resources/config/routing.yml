@@ -1,3 +1,3 @@
-HanzoNewsletterBundle_homepage:
+NewsletterBundle_homepage:
     pattern:  /hello/{name}
-    defaults: { _controller: HanzoNewsletterBundle:Default:index }
+    defaults: { _controller: NewsletterBundle:Default:index }

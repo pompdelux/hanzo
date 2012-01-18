@@ -26,13 +26,15 @@ class DibsApi
    **/
   public function __construct()
   {
-    // FIXME: hardcoded settings
+    // FIXME: 
+    // - hardcoded settings
+    // - define paytypes avaliable for domain
     $this->settings = array(
-      'md5key1' => 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp',
-      'md5key2' => 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n[',
+      'md5key1'     => 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp',
+      'md5key2'     => 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n[',
       'merchant_id' => '90057323',
-      'api_user' => 'bellcom_test_api_user',
-      'api_pass' => '7iuTR8EZ',
+      'api_user'    => 'bellcom_test_api_user',
+      'api_pass'    => '7iuTR8EZ',
       );
   }
 

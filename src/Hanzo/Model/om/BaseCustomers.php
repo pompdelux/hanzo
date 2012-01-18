@@ -26,6 +26,8 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsQuery;
+use Hanzo\Model\GothiaAccounts;
+use Hanzo\Model\GothiaAccountsQuery;
 use Hanzo\Model\Groups;
 use Hanzo\Model\GroupsQuery;
 use Hanzo\Model\Languages;
@@ -289,6 +291,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $collEventssRelatedByCustomersId;
 
 	/**
+	 * @var        GothiaAccounts one-to-one related GothiaAccounts object
+	 */
+	protected $singleGothiaAccounts;
+
+	/**
 	 * Flag to prevent endless save loop, if this object is referenced
 	 * by another object which falls in this transaction.
 	 * @var        boolean
@@ -325,6 +332,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var		array
 	 */
 	protected $eventssRelatedByCustomersIdScheduledForDeletion = null;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $gothiaAccountssScheduledForDeletion = null;
 
 	/**
 	 * Applies default values to this object.
@@ -1509,6 +1522,8 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			$this->collEventssRelatedByCustomersId = null;
 
+			$this->singleGothiaAccounts = null;
+
 		} // if (deep)
 	}
 
@@ -1744,6 +1759,21 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
+				}
+			}
+
+			if ($this->gothiaAccountssScheduledForDeletion !== null) {
+				if (!$this->gothiaAccountssScheduledForDeletion->isEmpty()) {
+					GothiaAccountsQuery::create()
+						->filterByPrimaryKeys($this->gothiaAccountssScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->gothiaAccountssScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->singleGothiaAccounts !== null) {
+				if (!$this->singleGothiaAccounts->isDeleted()) {
+						$affectedRows += $this->singleGothiaAccounts->save($con);
 				}
 			}
 
@@ -2126,6 +2156,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					}
 				}
 
+				if ($this->singleGothiaAccounts !== null) {
+					if (!$this->singleGothiaAccounts->validate($columns)) {
+						$failureMap = array_merge($failureMap, $this->singleGothiaAccounts->getValidationFailures());
+					}
+				}
+
 
 			$this->alreadyInValidation = false;
 		}
@@ -2336,6 +2372,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 			if (null !== $this->collEventssRelatedByCustomersId) {
 				$result['EventssRelatedByCustomersId'] = $this->collEventssRelatedByCustomersId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			}
+			if (null !== $this->singleGothiaAccounts) {
+				$result['GothiaAccounts'] = $this->singleGothiaAccounts->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
 			}
 		}
 		return $result;
@@ -2673,6 +2712,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
 					$copyObj->addEventsRelatedByCustomersId($relObj->copy($deepCopy));
 				}
+			}
+
+			$relObj = $this->getGothiaAccounts();
+			if ($relObj) {
+				$copyObj->setGothiaAccounts($relObj->copy($deepCopy));
 			}
 
 			//unflag object copy
@@ -3496,6 +3540,42 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Gets a single GothiaAccounts object, which is related to this object by a one-to-one relationship.
+	 *
+	 * @param      PropelPDO $con optional connection object
+	 * @return     GothiaAccounts
+	 * @throws     PropelException
+	 */
+	public function getGothiaAccounts(PropelPDO $con = null)
+	{
+
+		if ($this->singleGothiaAccounts === null && !$this->isNew()) {
+			$this->singleGothiaAccounts = GothiaAccountsQuery::create()->findPk($this->getPrimaryKey(), $con);
+		}
+
+		return $this->singleGothiaAccounts;
+	}
+
+	/**
+	 * Sets a single GothiaAccounts object as related to this object by a one-to-one relationship.
+	 *
+	 * @param      GothiaAccounts $v GothiaAccounts
+	 * @return     Customers The current object (for fluent API support)
+	 * @throws     PropelException
+	 */
+	public function setGothiaAccounts(GothiaAccounts $v = null)
+	{
+		$this->singleGothiaAccounts = $v;
+
+		// Make sure that that the passed-in GothiaAccounts isn't already associated with this object
+		if ($v !== null && $v->getCustomers() === null) {
+			$v->setCustomers($this);
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Clears the current object and sets all attributes to their default values
 	 */
 	public function clear()
@@ -3569,6 +3649,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->singleGothiaAccounts) {
+				$this->singleGothiaAccounts->clearAllReferences($deep);
+			}
 		} // if ($deep)
 
 		if ($this->singleConsultantsInfo instanceof PropelCollection) {
@@ -3587,6 +3670,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->collEventssRelatedByCustomersId->clearIterator();
 		}
 		$this->collEventssRelatedByCustomersId = null;
+		if ($this->singleGothiaAccounts instanceof PropelCollection) {
+			$this->singleGothiaAccounts->clearIterator();
+		}
+		$this->singleGothiaAccounts = null;
 		$this->aGroups = null;
 		$this->aLanguages = null;
 		$this->aCountriesRelatedByCountriesId = null;
