@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %} 
+
+{% block content %} 
+<h1>PHPlist JSONP test</h1>
+<div id="newsletter-lists-container">
+
+<ul></ul>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>$(function () {newsletter.lists.get();});</script>
+{% endblock javascript %}
