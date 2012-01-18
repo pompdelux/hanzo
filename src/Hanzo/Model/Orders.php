@@ -17,8 +17,6 @@ use Hanzo\Model\om\BaseOrders,
 /**
  * Skeleton subclass for representing a row from the 'orders' table.
  *
- *
- *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
@@ -80,6 +78,8 @@ class Orders extends BaseOrders
     $line->setProductsId($product->getId());
     $line->setProductsName($product->getMaster());
     $line->setProductsSku($product->getSku());
+    $line->setProductsColor($product->getColor());
+    $line->setProductsSize($product->getSize());
     $line->setQuantity($quantity);
     $line->setPrice($price['price']);
     $line->setTax($price['vat']);
@@ -145,7 +145,7 @@ class Orders extends BaseOrders
     $attributes = $this->getOrdersAttributess();
 
     // Update existing attributes
-    foreach ($attributes as $index => $attribute) 
+    foreach ($attributes as $index => $attribute)
     {
       if ( $attribute->getCKey() == $key && $attribute->getNs() == $ns )
       {

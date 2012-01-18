@@ -11,7 +11,8 @@ use Hanzo\Core\Hanzo,
 
 use Hanzo\Model\ProductsQuery,
     Hanzo\Model\ProductsStockQuery,
-    Hanzo\Model\ProductsDomainsPricesQuery;
+    Hanzo\Model\ProductsDomainsPricesQuery,
+    Hanzo\Model\ProductsToCategoriesQuery;
 
 use Hanzo\Model\OrdersPeer,
     Hanzo\Model\OrdersQuery,
@@ -124,13 +125,58 @@ class DefaultController extends CoreController
     }
 
 
-    public function setAction($product_id, $qyantity)
+    public function setAction($product_id, $quantity)
     {
         return $this->response('set basket entry');
     }
 
-    public function removeAction($product_id, $qyantity)
+    public function removeAction($product_id, $quantity)
     {
+        $order = OrdersPeer::getCurrent();
+        $order_lines = $order->getOrdersLiness();
+        $product_found = FALSE;
+
+        foreach ($order_lines as $k => $line) {
+            if ($line->getProductsId() == $product_id) {
+                $product_found = TRUE;
+
+                if ($quantity == 'all') {
+                    unset($order_lines[$k]);
+                }
+                else {
+                    $line->setQuantity($line->getQuantity() - $quantity);
+                    $order_lines[$k] = $line;
+                }
+
+                break;
+            }
+        }
+
+        if ($product_found) {
+            $order->setOrdersLiness($order_lines);
+            $order->save();
+
+            $data = array(
+                'total' => Tools::moneyFormat($order->getTotalPrice()),
+                'quantity' => $order->getTotalQuantity()
+            );
+
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => TRUE,
+                    'message' => '',
+                    'data' => $data,
+                ));
+            }
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $this->get('translator')->trans('No such product in your cart.'),
+            ));
+        }
+
         return $this->response('remove from basket');
     }
 
@@ -141,10 +187,61 @@ class DefaultController extends CoreController
 
     public function viewAction()
     {
+        $order = OrdersPeer::getCurrent();
+
         $router = $this->get('router');
+        $router_keys = include __DIR__ . '/../Resources/config/category_map.php';
+        $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
+
+        $products = array();
+        $delivery_date = 0;
+
+        // product lines- if any
+        foreach ($order->getOrdersLiness() as $line) {
+            $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
+
+
+            // find first products2category match
+            $products2category = ProductsToCategoriesQuery::create()->findOneByProductsId($line['products_id']);
+            // find matching router
+
+            if ($line['expected_at']->getTimestamp() > 0) {
+                $line['expected_at'] = $line['expected_at']->getTimestamp();
+                if ($delivery_date < $line['expected_at']) {
+                    $delivery_date = $line['expected_at'];
+                }
+            }
+            else {
+                $line['expected_at'] = NULL;
+            }
+
+            $line['basket_image'] =
+                preg_replace('/[^a-z0-9]/i', '', $line['products_name']) .
+                '_basket_' .
+                preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
+                '.jpg'
+            ;
+
+            $product_route = '';
+            $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+            if (isset($router_keys[$key])) {
+                $product_route = $router_keys[$key];
+            }
+
+            $line['url'] = $router->generate($product_route, array(
+                'product_id' => $line['products_id'],
+                'title' => Tools::stripText($line['products_name']),
+            ));
+
+            $products[] = $line;
+        }
+
         return $this->render('BasketBundle:Default:view.html.twig', array(
             'page_type' => 'basket',
-            'continue_shopping' =>  $router->generate('page_400_' . strtolower(Hanzo::getInstance()->get('core.locale'))),
+            'products' => $products,
+            'total' => $order->getTotalPrice(),
+            'delivery_date' => $delivery_date,
+            'continue_shopping' =>  $router->generate('page_400_' . $locale),
         ));
     }
 }

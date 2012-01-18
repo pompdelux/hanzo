@@ -3,7 +3,7 @@ basket_add:
     defaults: { _controller: BasketBundle:Default:add }
 
 basket_remove:
-    pattern:  /remove-from-basket/{product_id}/{qyantity}
+    pattern:  /remove-from-basket/{product_id}/{quantity}
     defaults:
         _controller: BasketBundle:Default:remove
         _format: rest
@@ -22,10 +22,15 @@ basket_update:
     requirements:
         _format: html|json
 
-basket_show:
+basket_view:
     pattern:  /basket
-    defaults: { _controller: BasketBundle:Default:show }
+    defaults: { _controller: BasketBundle:Default:view }
 
-basket_show_mini:
+basket_view_mini:
     pattern:  /miniBasket
     defaults: { _controller: BasketBundle:Default:miniBasket }
+
+checkout:
+    pattern: /checkout
+    defaults:
+        _controller: BasketBundle:Default:index

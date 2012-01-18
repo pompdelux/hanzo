@@ -33,6 +33,7 @@
   'fx/css/main.css'
   'fx/css/category.css'
   'fx/css/product.css'
+  'fx/css/cart.css'
   'fx/css/dialoug.css'
 
   filter='?yui_css'
@@ -79,9 +80,9 @@ var base_url = '{{ url('_homepage') }}';
         </div>
       </li>
       <li id="mini-basket" class="basket">
-        <a href="{{ path('basket_show') }}" title="{{ "Show basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+        <a href="{{ path('basket_view') }}" title="{{ "Show basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
-      <li><a href="{{ path('basket_show') }}">{{ "Show basket"|trans }}</a></li>
+      <li><a href="{{ path('basket_view') }}">{{ "Show basket"|trans }}</a></li>
     </ul>
   </aside>
 
@@ -183,6 +184,7 @@ var vegas_backgrounds = [
 
   'fx/scripts/category.js'
   'fx/scripts/product.js'
+  'fx/scripts/cart.js'
   'fx/scripts/main.js'
 
   'fx/scripts/newsletter.js'
@@ -192,6 +194,9 @@ var vegas_backgrounds = [
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
+{% block javascript %}
+{% endblock %}
 
 {#
 <script type="text/javascript">

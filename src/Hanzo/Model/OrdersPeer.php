@@ -7,7 +7,6 @@ use Hanzo\Model\om\BaseOrdersPeer,
     Hanzo\Model\OrdersQuery
 ;
 
-
 /**
  * Skeleton subclass for performing query and update operations on the 'orders' table.
  *
@@ -23,15 +22,15 @@ class OrdersPeer extends BaseOrdersPeer
 {
     static $current;
 
-    public static function getCurrent()
+    public static function getCurrent($flush = FALSE)
     {
-        if (!empty (self::$current)) {
+        if ((FALSE === $flush) && (!empty(self::$current))) {
             return self::$current;
         }
 
         if (!empty($_SESSION['order_id'])) {
             $query = OrdersQuery::create()
-                ->joinWithOrdersLines()
+                ->leftJoinWithOrdersLines()
             ;
             self::$current = $query->findPk($_SESSION['order_id']);
         }

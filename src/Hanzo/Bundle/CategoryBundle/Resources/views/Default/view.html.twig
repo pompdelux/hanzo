@@ -12,7 +12,7 @@
         {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
         <span class="title">{{ product.title }}</span>
         <span class="prices">
-        {% if product.prices.sales %}
+        {% if product.prices.sales is defined %}
           <span class="normal strike">{{ product.prices.normal.price|money }}</span>
           <span class="discount">{{ product.prices.sales.price|money }}</span>
         {% else %}
