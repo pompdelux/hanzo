@@ -39,12 +39,13 @@ class RouterBuilderCommand extends ContainerAwareCommand
       $buffer = array();
       $counter = 1;
       $processed = array();
+      $categories = array();
       foreach ($result as $record) {
         foreach ($record->getCmsI18ns() as $item){
 
           $id = $item->getId();
           $path = trim($item->getPath());
-          $locale = trim($item->getLocale());
+          $locale = strtolower(trim($item->getLocale()));
           $type = trim($record->getType());
           $title = trim($item->getTitle());
 
@@ -68,8 +69,15 @@ class RouterBuilderCommand extends ContainerAwareCommand
 
           switch ($type) {
             case 'category':
+
+              $category_key = '_' . $locale . '_' . $settings['category_id'];
+              $category_path = 'category_' . $id . '_' . $locale;
+              $product_path = 'product_' . $id . '_' . $locale ;
+
+              $categories[$category_key] = $product_path;
+
               $buffer[$locale] .= trim("
-category_" . $id . "_" . strtolower($locale) . ":
+{$category_path}:
     pattern: /{$path}/{pager}
     defaults:
         _controller: HanzoCategoryBundle:Default:view
@@ -80,7 +88,7 @@ category_" . $id . "_" . strtolower($locale) . ":
     requirements:
         pager: \d+
         _format: html|json
-product_" . $id . "_" . strtolower($locale) . ":
+{$product_path}:
     pattern: /{$path}/{product_id}/{title}
     defaults:
         _controller: HanzoProductBundle:Default:view
@@ -90,13 +98,13 @@ product_" . $id . "_" . strtolower($locale) . ":
         category_id: {$settings['category_id']}
         title: ''
     requirements:
-        id: \d+
+        product_id: \d+
         _format: html|json
 ")."\n";
               break;
             case 'page':
               $buffer[$locale] .= trim("
-page_" . $id . "_" . strtolower($locale) . ":
+page_" . $id . "_" . $locale . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoCMSBundle:Default:view
@@ -107,7 +115,7 @@ page_" . $id . "_" . strtolower($locale) . ":
               switch ($settings['view']) {
                 case 'mannequin':
                   $buffer[$locale] .= trim("
-system_" . $id . "_" . strtolower($locale) . ":
+system_" . $id . "_" . $locale . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoMannequinBundle:Default:view
@@ -116,7 +124,7 @@ system_" . $id . "_" . strtolower($locale) . ":
                   break;
                 case 'newsletter':
                   $buffer[$locale] .= trim("
-newsletter_" . $id . "_" . strtolower($locale) . ":
+newsletter_" . $id . "_" . $locale . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoNewsletterBundle:Default:view
@@ -128,7 +136,7 @@ newsletter_" . $id . "_" . strtolower($locale) . ":
                   $method = explode('_', $settings['view']);
                   $method = array_shift($method);
                   $buffer[$locale] .= trim("
-search_" . $id . "_" . strtolower($locale) . ":
+search_" . $id . "_" . $locale . ":
     pattern: /{$path}
     defaults:
         _controller: HanzoSearchBundle:Default:{$method}
@@ -153,9 +161,9 @@ search_" . $id . "_" . strtolower($locale) . ":
 
       $file = __DIR__ . '/../Resources/config/cms_routing.yml';
       $out = '';
-      $time = time();
+      $date = date('Y-m-d H:i:s');
       foreach ($buffer as $locale => $routers) {
-        $out .= "# -:[{$locale} : ".date('Y-m-d H:i:s', $time)."]:-
+        $out .= "# -:[{$locale} : {$date}]:-
 
 " . trim($routers) . "
 
@@ -165,6 +173,15 @@ search_" . $id . "_" . strtolower($locale) . ":
       file_put_contents($file, $out);
 
       $output->writeln('Routers saved to: <info>'.$file.'</info>');
+
+      $file = __DIR__ . '/../../BasketBundle/Resources/config/category_map.php';
+      $out = '<?php # -:[' . $date . ']:-
+return '. var_export($categories, 1) . "
+;
+";
+      file_put_contents($file, $out);
+
+      $output->writeln('Category map saved to: <info>'.$file.'</info>');
 
       // clear cache after updating routers
       $command = $this->getApplication()->find('cache:clear');
