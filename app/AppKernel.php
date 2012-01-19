@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\BasketBundle\BasketBundle(),
             new Hanzo\Bundle\PaymentBundle\PaymentBundle(),
             new Hanzo\Bundle\NewsletterBundle\NewsletterBundle(),
+            new Hanzo\Bundle\AccountBundle\AccountBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

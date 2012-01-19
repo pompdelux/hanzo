@@ -1,0 +1,17 @@
+login:
+    pattern: /login
+    defaults:
+        _controller: AccountBundle:Security:login
+
+logout:
+    pattern: /logout
+    defaults:
+        _controller: AccountBundle:Security:logout
+
+login_check:
+    pattern:   /login_check
+
+_account:
+    pattern: /account
+    defaults:
+        _controller: AccountBundle:Default:index
