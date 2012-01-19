@@ -1,14 +1,14 @@
 <?php
 
 // Ange sökvägen till nusoap biblioteket
-require_once(dirname(__FILE__).'/lib/nusoap.php');
+require_once(dirname(__FILE__).'/nusoap/nusoap.php');
 
 // Funktion för att initiera WSDL klienten
-function AFSWS_Init()
+function AFSWS_Init( $mode = 'live' )
 {
 	// Ange sökvägen till webservicen
 	$wsdl = 'http://clienttesthorizon.gothiagroup.com/AFSServices/AFSService.svc?wsdl';
-    if ( bcConfig::get('website-mode','prod') != 'test')
+    if ( $mode != 'test')
     {
 	  $wsdl = 'http://horizon.gothiagroup.com/AFSServices/AFSService.svc?wsdl';
     }

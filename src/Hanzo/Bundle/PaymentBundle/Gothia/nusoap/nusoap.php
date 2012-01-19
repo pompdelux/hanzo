@@ -148,8 +148,8 @@ class nusoap_base {
 	* @var      string
 	* @access   public
 	*/
-    var $soap_defencoding = 'ISO-8859-1';
-	//var $soap_defencoding = 'UTF-8';
+    //var $soap_defencoding = 'ISO-8859-1';
+    var $soap_defencoding = 'UTF-8';
 
 	/**
 	* namespaces in an array of prefix => uri
@@ -273,6 +273,7 @@ class nusoap_base {
 	* @access   private
 	*/
 	function debug($string){
+      //error_log(__LINE__.':'.__FILE__.' '.get_class($this).": $string"); // hf@bellcom.dk debugging
 		if ($this->debugLevel > 0) {
 			$this->appendDebug($this->getmicrotime().' '.get_class($this).": $string\n");
 		}
