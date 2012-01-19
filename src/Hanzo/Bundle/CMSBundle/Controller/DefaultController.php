@@ -11,6 +11,8 @@ use Hanzo\Core\CoreController;
 use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
 
+use Hanzo\Model\CustomersPeer;
+
 class DefaultController extends CoreController
 {
     public function indexAction()

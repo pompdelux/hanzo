@@ -20,6 +20,10 @@ class Customers extends BaseCustomers
 {
     protected $acl;
 
+
+    /**
+     * shortcut for access checks on the customer.
+     */
     public function isGranted($role)
     {
         if (empty($this->acl)) {
