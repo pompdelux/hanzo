@@ -68,7 +68,7 @@ var base_url = '{{ url('_homepage') }}';
 
   <aside id="secondary-links" role="secondary-links">
     <ul>
-      <li><a href="/account">{{ "My account"|trans }}</a></li>
+      <li><a href="{{ path('_account') }}">{{ "My account"|trans }}</a></li>
       <li id="select-domain">
         <a class="open-menu" href="/select_domain">Change Country</a>
         <div style="display: none">
