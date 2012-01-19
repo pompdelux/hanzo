@@ -23,6 +23,8 @@ class Customers extends BaseCustomers
 
     /**
      * shortcut for access checks on the customer.
+     *
+     * @return boolean
      */
     public function isGranted($role)
     {
@@ -31,6 +33,16 @@ class Customers extends BaseCustomers
         }
 
         return $this->acl->isGranted($role);
+    }
+
+    /**
+     * login check
+     *
+     * @return boolean
+     */
+    public function isLoggedIn()
+    {
+        return $this->isGranted('IS_AUTHENTICATED_FULLY');
     }
 
 } // Customers
