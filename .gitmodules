@@ -13,3 +13,6 @@
 [submodule "web/fx/scripts/ICanHaz.js"]
 	path = web/fx/scripts/ICanHaz.js
 	url = https://github.com/andyet/ICanHaz.js.git
+[submodule "vendor/propel-behaviors/GeocodableBehavior"]
+	path = vendor/propel-behaviors/GeocodableBehavior
+	url = http://github.com/willdurand/GeocodableBehavior.git

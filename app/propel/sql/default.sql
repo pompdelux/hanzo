@@ -77,11 +77,7 @@ CREATE TABLE `consultants_info`
 	`consultants_id` INTEGER NOT NULL,
 	`description` TEXT,
 	`max_notified` TINYINT(1) DEFAULT 0 NOT NULL,
-	`latitude` FLOAT(10,6),
-	`longitude` FLOAT(10,6),
 	PRIMARY KEY (`consultants_id`),
-	INDEX `index2` (`consultants_id`),
-	INDEX `index3` (`latitude`, `longitude`),
 	CONSTRAINT `fk_consultants_info_1`
 		FOREIGN KEY (`consultants_id`)
 		REFERENCES `customers` (`id`)
@@ -175,49 +171,52 @@ CREATE TABLE `customers`
 	`email` VARCHAR(255) NOT NULL,
 	`phone` VARCHAR(32),
 	`password_clear` VARCHAR(45),
-	`billing_address_line_1` VARCHAR(255),
-	`billing_address_line_2` VARCHAR(255),
-	`billing_postal_code` VARCHAR(12),
-	`billing_city` VARCHAR(64),
-	`billing_country` VARCHAR(128),
-	`billing_countries_id` INTEGER,
-	`billing_state_province` VARCHAR(64),
-	`delivery_address_line_1` VARCHAR(255),
-	`delivery_address_line_2` VARCHAR(255),
-	`delivery_postal_code` VARCHAR(12),
-	`delivery_city` VARCHAR(64),
-	`delivery_country` VARCHAR(128),
-	`delivery_countries_id` INTEGER,
-	`delivery_state_province` VARCHAR(64),
-	`delivery_company_name` VARCHAR(128),
 	`discount` DECIMAL(8,2) DEFAULT 0.00,
 	`groups_id` INTEGER DEFAULT 1 NOT NULL,
 	`is_active` TINYINT(1) DEFAULT 1 NOT NULL,
 	`languages_id` INTEGER NOT NULL,
-	`countries_id` INTEGER NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
 	INDEX `FI_customers_10` (`groups_id`),
 	INDEX `FI_customers_20` (`languages_id`),
-	INDEX `FI_customers_30` (`countries_id`),
-	INDEX `FI_customers_40` (`billing_countries_id`),
-	INDEX `FI_customers_50` (`delivery_countries_id`),
 	CONSTRAINT `fk_customers_10`
 		FOREIGN KEY (`groups_id`)
 		REFERENCES `groups` (`id`)
 		ON UPDATE CASCADE,
 	CONSTRAINT `fk_customers_20`
 		FOREIGN KEY (`languages_id`)
-		REFERENCES `languages` (`id`),
-	CONSTRAINT `fk_customers_30`
+		REFERENCES `languages` (`id`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- addresses
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `addresses`;
+
+CREATE TABLE `addresses`
+(
+	`customers_id` INTEGER NOT NULL,
+	`type` VARCHAR(10) DEFAULT 'payment' NOT NULL,
+	`address_line_1` VARCHAR(255),
+	`address_line_2` VARCHAR(255),
+	`postal_code` VARCHAR(12),
+	`city` VARCHAR(64),
+	`country` VARCHAR(128),
+	`countries_id` INTEGER,
+	`state_province` VARCHAR(64),
+	`company_name` VARCHAR(128),
+	`latitude` DOUBLE,
+	`longitude` DOUBLE,
+	PRIMARY KEY (`customers_id`,`type`),
+	INDEX `addresses_FI_2` (`countries_id`),
+	CONSTRAINT `addresses_FK_1`
+		FOREIGN KEY (`customers_id`)
+		REFERENCES `customers` (`id`)
+		ON DELETE CASCADE,
+	CONSTRAINT `addresses_FK_2`
 		FOREIGN KEY (`countries_id`)
-		REFERENCES `countries` (`id`),
-	CONSTRAINT `fk_customers_40`
-		FOREIGN KEY (`billing_countries_id`)
-		REFERENCES `countries` (`id`),
-	CONSTRAINT `fk_customers_50`
-		FOREIGN KEY (`delivery_countries_id`)
 		REFERENCES `countries` (`id`)
 ) ENGINE=InnoDB;
 

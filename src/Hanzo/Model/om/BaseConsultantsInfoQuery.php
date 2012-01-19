@@ -23,14 +23,10 @@ use Hanzo\Model\Customers;
  * @method     ConsultantsInfoQuery orderByConsultantsId($order = Criteria::ASC) Order by the consultants_id column
  * @method     ConsultantsInfoQuery orderByDescription($order = Criteria::ASC) Order by the description column
  * @method     ConsultantsInfoQuery orderByMaxNotified($order = Criteria::ASC) Order by the max_notified column
- * @method     ConsultantsInfoQuery orderByLatitude($order = Criteria::ASC) Order by the latitude column
- * @method     ConsultantsInfoQuery orderByLongitude($order = Criteria::ASC) Order by the longitude column
  *
  * @method     ConsultantsInfoQuery groupByConsultantsId() Group by the consultants_id column
  * @method     ConsultantsInfoQuery groupByDescription() Group by the description column
  * @method     ConsultantsInfoQuery groupByMaxNotified() Group by the max_notified column
- * @method     ConsultantsInfoQuery groupByLatitude() Group by the latitude column
- * @method     ConsultantsInfoQuery groupByLongitude() Group by the longitude column
  *
  * @method     ConsultantsInfoQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ConsultantsInfoQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -46,14 +42,10 @@ use Hanzo\Model\Customers;
  * @method     ConsultantsInfo findOneByConsultantsId(int $consultants_id) Return the first ConsultantsInfo filtered by the consultants_id column
  * @method     ConsultantsInfo findOneByDescription(string $description) Return the first ConsultantsInfo filtered by the description column
  * @method     ConsultantsInfo findOneByMaxNotified(boolean $max_notified) Return the first ConsultantsInfo filtered by the max_notified column
- * @method     ConsultantsInfo findOneByLatitude(double $latitude) Return the first ConsultantsInfo filtered by the latitude column
- * @method     ConsultantsInfo findOneByLongitude(double $longitude) Return the first ConsultantsInfo filtered by the longitude column
  *
  * @method     array findByConsultantsId(int $consultants_id) Return ConsultantsInfo objects filtered by the consultants_id column
  * @method     array findByDescription(string $description) Return ConsultantsInfo objects filtered by the description column
  * @method     array findByMaxNotified(boolean $max_notified) Return ConsultantsInfo objects filtered by the max_notified column
- * @method     array findByLatitude(double $latitude) Return ConsultantsInfo objects filtered by the latitude column
- * @method     array findByLongitude(double $longitude) Return ConsultantsInfo objects filtered by the longitude column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -142,7 +134,7 @@ abstract class BaseConsultantsInfoQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `CONSULTANTS_ID`, `DESCRIPTION`, `MAX_NOTIFIED`, `LATITUDE`, `LONGITUDE` FROM `consultants_info` WHERE `CONSULTANTS_ID` = :p0';
+		$sql = 'SELECT `CONSULTANTS_ID`, `DESCRIPTION`, `MAX_NOTIFIED` FROM `consultants_info` WHERE `CONSULTANTS_ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -307,86 +299,6 @@ abstract class BaseConsultantsInfoQuery extends ModelCriteria
 			$max_notified = in_array(strtolower($maxNotified), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
 		}
 		return $this->addUsingAlias(ConsultantsInfoPeer::MAX_NOTIFIED, $maxNotified, $comparison);
-	}
-
-	/**
-	 * Filter the query on the latitude column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByLatitude(1234); // WHERE latitude = 1234
-	 * $query->filterByLatitude(array(12, 34)); // WHERE latitude IN (12, 34)
-	 * $query->filterByLatitude(array('min' => 12)); // WHERE latitude > 12
-	 * </code>
-	 *
-	 * @param     mixed $latitude The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    ConsultantsInfoQuery The current query, for fluid interface
-	 */
-	public function filterByLatitude($latitude = null, $comparison = null)
-	{
-		if (is_array($latitude)) {
-			$useMinMax = false;
-			if (isset($latitude['min'])) {
-				$this->addUsingAlias(ConsultantsInfoPeer::LATITUDE, $latitude['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($latitude['max'])) {
-				$this->addUsingAlias(ConsultantsInfoPeer::LATITUDE, $latitude['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(ConsultantsInfoPeer::LATITUDE, $latitude, $comparison);
-	}
-
-	/**
-	 * Filter the query on the longitude column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByLongitude(1234); // WHERE longitude = 1234
-	 * $query->filterByLongitude(array(12, 34)); // WHERE longitude IN (12, 34)
-	 * $query->filterByLongitude(array('min' => 12)); // WHERE longitude > 12
-	 * </code>
-	 *
-	 * @param     mixed $longitude The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    ConsultantsInfoQuery The current query, for fluid interface
-	 */
-	public function filterByLongitude($longitude = null, $comparison = null)
-	{
-		if (is_array($longitude)) {
-			$useMinMax = false;
-			if (isset($longitude['min'])) {
-				$this->addUsingAlias(ConsultantsInfoPeer::LONGITUDE, $longitude['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($longitude['max'])) {
-				$this->addUsingAlias(ConsultantsInfoPeer::LONGITUDE, $longitude['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(ConsultantsInfoPeer::LONGITUDE, $longitude, $comparison);
 	}
 
 	/**

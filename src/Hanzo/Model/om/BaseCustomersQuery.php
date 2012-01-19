@@ -10,8 +10,8 @@ use \Propel;
 use \PropelCollection;
 use \PropelException;
 use \PropelPDO;
+use Hanzo\Model\Addresses;
 use Hanzo\Model\ConsultantsInfo;
-use Hanzo\Model\Countries;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
@@ -34,26 +34,10 @@ use Hanzo\Model\Languages;
  * @method     CustomersQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method     CustomersQuery orderByPhone($order = Criteria::ASC) Order by the phone column
  * @method     CustomersQuery orderByPasswordClear($order = Criteria::ASC) Order by the password_clear column
- * @method     CustomersQuery orderByBillingAddressLine1($order = Criteria::ASC) Order by the billing_address_line_1 column
- * @method     CustomersQuery orderByBillingAddressLine2($order = Criteria::ASC) Order by the billing_address_line_2 column
- * @method     CustomersQuery orderByBillingPostalCode($order = Criteria::ASC) Order by the billing_postal_code column
- * @method     CustomersQuery orderByBillingCity($order = Criteria::ASC) Order by the billing_city column
- * @method     CustomersQuery orderByBillingCountry($order = Criteria::ASC) Order by the billing_country column
- * @method     CustomersQuery orderByBillingCountriesId($order = Criteria::ASC) Order by the billing_countries_id column
- * @method     CustomersQuery orderByBillingStateProvince($order = Criteria::ASC) Order by the billing_state_province column
- * @method     CustomersQuery orderByDeliveryAddressLine1($order = Criteria::ASC) Order by the delivery_address_line_1 column
- * @method     CustomersQuery orderByDeliveryAddressLine2($order = Criteria::ASC) Order by the delivery_address_line_2 column
- * @method     CustomersQuery orderByDeliveryPostalCode($order = Criteria::ASC) Order by the delivery_postal_code column
- * @method     CustomersQuery orderByDeliveryCity($order = Criteria::ASC) Order by the delivery_city column
- * @method     CustomersQuery orderByDeliveryCountry($order = Criteria::ASC) Order by the delivery_country column
- * @method     CustomersQuery orderByDeliveryCountriesId($order = Criteria::ASC) Order by the delivery_countries_id column
- * @method     CustomersQuery orderByDeliveryStateProvince($order = Criteria::ASC) Order by the delivery_state_province column
- * @method     CustomersQuery orderByDeliveryCompanyName($order = Criteria::ASC) Order by the delivery_company_name column
  * @method     CustomersQuery orderByDiscount($order = Criteria::ASC) Order by the discount column
  * @method     CustomersQuery orderByGroupsId($order = Criteria::ASC) Order by the groups_id column
  * @method     CustomersQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method     CustomersQuery orderByLanguagesId($order = Criteria::ASC) Order by the languages_id column
- * @method     CustomersQuery orderByCountriesId($order = Criteria::ASC) Order by the countries_id column
  * @method     CustomersQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     CustomersQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -65,26 +49,10 @@ use Hanzo\Model\Languages;
  * @method     CustomersQuery groupByEmail() Group by the email column
  * @method     CustomersQuery groupByPhone() Group by the phone column
  * @method     CustomersQuery groupByPasswordClear() Group by the password_clear column
- * @method     CustomersQuery groupByBillingAddressLine1() Group by the billing_address_line_1 column
- * @method     CustomersQuery groupByBillingAddressLine2() Group by the billing_address_line_2 column
- * @method     CustomersQuery groupByBillingPostalCode() Group by the billing_postal_code column
- * @method     CustomersQuery groupByBillingCity() Group by the billing_city column
- * @method     CustomersQuery groupByBillingCountry() Group by the billing_country column
- * @method     CustomersQuery groupByBillingCountriesId() Group by the billing_countries_id column
- * @method     CustomersQuery groupByBillingStateProvince() Group by the billing_state_province column
- * @method     CustomersQuery groupByDeliveryAddressLine1() Group by the delivery_address_line_1 column
- * @method     CustomersQuery groupByDeliveryAddressLine2() Group by the delivery_address_line_2 column
- * @method     CustomersQuery groupByDeliveryPostalCode() Group by the delivery_postal_code column
- * @method     CustomersQuery groupByDeliveryCity() Group by the delivery_city column
- * @method     CustomersQuery groupByDeliveryCountry() Group by the delivery_country column
- * @method     CustomersQuery groupByDeliveryCountriesId() Group by the delivery_countries_id column
- * @method     CustomersQuery groupByDeliveryStateProvince() Group by the delivery_state_province column
- * @method     CustomersQuery groupByDeliveryCompanyName() Group by the delivery_company_name column
  * @method     CustomersQuery groupByDiscount() Group by the discount column
  * @method     CustomersQuery groupByGroupsId() Group by the groups_id column
  * @method     CustomersQuery groupByIsActive() Group by the is_active column
  * @method     CustomersQuery groupByLanguagesId() Group by the languages_id column
- * @method     CustomersQuery groupByCountriesId() Group by the countries_id column
  * @method     CustomersQuery groupByCreatedAt() Group by the created_at column
  * @method     CustomersQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -100,18 +68,6 @@ use Hanzo\Model\Languages;
  * @method     CustomersQuery rightJoinLanguages($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Languages relation
  * @method     CustomersQuery innerJoinLanguages($relationAlias = null) Adds a INNER JOIN clause to the query using the Languages relation
  *
- * @method     CustomersQuery leftJoinCountriesRelatedByCountriesId($relationAlias = null) Adds a LEFT JOIN clause to the query using the CountriesRelatedByCountriesId relation
- * @method     CustomersQuery rightJoinCountriesRelatedByCountriesId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CountriesRelatedByCountriesId relation
- * @method     CustomersQuery innerJoinCountriesRelatedByCountriesId($relationAlias = null) Adds a INNER JOIN clause to the query using the CountriesRelatedByCountriesId relation
- *
- * @method     CustomersQuery leftJoinCountriesRelatedByBillingCountriesId($relationAlias = null) Adds a LEFT JOIN clause to the query using the CountriesRelatedByBillingCountriesId relation
- * @method     CustomersQuery rightJoinCountriesRelatedByBillingCountriesId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CountriesRelatedByBillingCountriesId relation
- * @method     CustomersQuery innerJoinCountriesRelatedByBillingCountriesId($relationAlias = null) Adds a INNER JOIN clause to the query using the CountriesRelatedByBillingCountriesId relation
- *
- * @method     CustomersQuery leftJoinCountriesRelatedByDeliveryCountriesId($relationAlias = null) Adds a LEFT JOIN clause to the query using the CountriesRelatedByDeliveryCountriesId relation
- * @method     CustomersQuery rightJoinCountriesRelatedByDeliveryCountriesId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CountriesRelatedByDeliveryCountriesId relation
- * @method     CustomersQuery innerJoinCountriesRelatedByDeliveryCountriesId($relationAlias = null) Adds a INNER JOIN clause to the query using the CountriesRelatedByDeliveryCountriesId relation
- *
  * @method     CustomersQuery leftJoinConsultantsInfo($relationAlias = null) Adds a LEFT JOIN clause to the query using the ConsultantsInfo relation
  * @method     CustomersQuery rightJoinConsultantsInfo($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ConsultantsInfo relation
  * @method     CustomersQuery innerJoinConsultantsInfo($relationAlias = null) Adds a INNER JOIN clause to the query using the ConsultantsInfo relation
@@ -119,6 +75,10 @@ use Hanzo\Model\Languages;
  * @method     CustomersQuery leftJoinCouponsToCustomers($relationAlias = null) Adds a LEFT JOIN clause to the query using the CouponsToCustomers relation
  * @method     CustomersQuery rightJoinCouponsToCustomers($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CouponsToCustomers relation
  * @method     CustomersQuery innerJoinCouponsToCustomers($relationAlias = null) Adds a INNER JOIN clause to the query using the CouponsToCustomers relation
+ *
+ * @method     CustomersQuery leftJoinAddresses($relationAlias = null) Adds a LEFT JOIN clause to the query using the Addresses relation
+ * @method     CustomersQuery rightJoinAddresses($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Addresses relation
+ * @method     CustomersQuery innerJoinAddresses($relationAlias = null) Adds a INNER JOIN clause to the query using the Addresses relation
  *
  * @method     CustomersQuery leftJoinEventsRelatedByConsultantsId($relationAlias = null) Adds a LEFT JOIN clause to the query using the EventsRelatedByConsultantsId relation
  * @method     CustomersQuery rightJoinEventsRelatedByConsultantsId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the EventsRelatedByConsultantsId relation
@@ -143,26 +103,10 @@ use Hanzo\Model\Languages;
  * @method     Customers findOneByEmail(string $email) Return the first Customers filtered by the email column
  * @method     Customers findOneByPhone(string $phone) Return the first Customers filtered by the phone column
  * @method     Customers findOneByPasswordClear(string $password_clear) Return the first Customers filtered by the password_clear column
- * @method     Customers findOneByBillingAddressLine1(string $billing_address_line_1) Return the first Customers filtered by the billing_address_line_1 column
- * @method     Customers findOneByBillingAddressLine2(string $billing_address_line_2) Return the first Customers filtered by the billing_address_line_2 column
- * @method     Customers findOneByBillingPostalCode(string $billing_postal_code) Return the first Customers filtered by the billing_postal_code column
- * @method     Customers findOneByBillingCity(string $billing_city) Return the first Customers filtered by the billing_city column
- * @method     Customers findOneByBillingCountry(string $billing_country) Return the first Customers filtered by the billing_country column
- * @method     Customers findOneByBillingCountriesId(int $billing_countries_id) Return the first Customers filtered by the billing_countries_id column
- * @method     Customers findOneByBillingStateProvince(string $billing_state_province) Return the first Customers filtered by the billing_state_province column
- * @method     Customers findOneByDeliveryAddressLine1(string $delivery_address_line_1) Return the first Customers filtered by the delivery_address_line_1 column
- * @method     Customers findOneByDeliveryAddressLine2(string $delivery_address_line_2) Return the first Customers filtered by the delivery_address_line_2 column
- * @method     Customers findOneByDeliveryPostalCode(string $delivery_postal_code) Return the first Customers filtered by the delivery_postal_code column
- * @method     Customers findOneByDeliveryCity(string $delivery_city) Return the first Customers filtered by the delivery_city column
- * @method     Customers findOneByDeliveryCountry(string $delivery_country) Return the first Customers filtered by the delivery_country column
- * @method     Customers findOneByDeliveryCountriesId(int $delivery_countries_id) Return the first Customers filtered by the delivery_countries_id column
- * @method     Customers findOneByDeliveryStateProvince(string $delivery_state_province) Return the first Customers filtered by the delivery_state_province column
- * @method     Customers findOneByDeliveryCompanyName(string $delivery_company_name) Return the first Customers filtered by the delivery_company_name column
  * @method     Customers findOneByDiscount(string $discount) Return the first Customers filtered by the discount column
  * @method     Customers findOneByGroupsId(int $groups_id) Return the first Customers filtered by the groups_id column
  * @method     Customers findOneByIsActive(boolean $is_active) Return the first Customers filtered by the is_active column
  * @method     Customers findOneByLanguagesId(int $languages_id) Return the first Customers filtered by the languages_id column
- * @method     Customers findOneByCountriesId(int $countries_id) Return the first Customers filtered by the countries_id column
  * @method     Customers findOneByCreatedAt(string $created_at) Return the first Customers filtered by the created_at column
  * @method     Customers findOneByUpdatedAt(string $updated_at) Return the first Customers filtered by the updated_at column
  *
@@ -174,26 +118,10 @@ use Hanzo\Model\Languages;
  * @method     array findByEmail(string $email) Return Customers objects filtered by the email column
  * @method     array findByPhone(string $phone) Return Customers objects filtered by the phone column
  * @method     array findByPasswordClear(string $password_clear) Return Customers objects filtered by the password_clear column
- * @method     array findByBillingAddressLine1(string $billing_address_line_1) Return Customers objects filtered by the billing_address_line_1 column
- * @method     array findByBillingAddressLine2(string $billing_address_line_2) Return Customers objects filtered by the billing_address_line_2 column
- * @method     array findByBillingPostalCode(string $billing_postal_code) Return Customers objects filtered by the billing_postal_code column
- * @method     array findByBillingCity(string $billing_city) Return Customers objects filtered by the billing_city column
- * @method     array findByBillingCountry(string $billing_country) Return Customers objects filtered by the billing_country column
- * @method     array findByBillingCountriesId(int $billing_countries_id) Return Customers objects filtered by the billing_countries_id column
- * @method     array findByBillingStateProvince(string $billing_state_province) Return Customers objects filtered by the billing_state_province column
- * @method     array findByDeliveryAddressLine1(string $delivery_address_line_1) Return Customers objects filtered by the delivery_address_line_1 column
- * @method     array findByDeliveryAddressLine2(string $delivery_address_line_2) Return Customers objects filtered by the delivery_address_line_2 column
- * @method     array findByDeliveryPostalCode(string $delivery_postal_code) Return Customers objects filtered by the delivery_postal_code column
- * @method     array findByDeliveryCity(string $delivery_city) Return Customers objects filtered by the delivery_city column
- * @method     array findByDeliveryCountry(string $delivery_country) Return Customers objects filtered by the delivery_country column
- * @method     array findByDeliveryCountriesId(int $delivery_countries_id) Return Customers objects filtered by the delivery_countries_id column
- * @method     array findByDeliveryStateProvince(string $delivery_state_province) Return Customers objects filtered by the delivery_state_province column
- * @method     array findByDeliveryCompanyName(string $delivery_company_name) Return Customers objects filtered by the delivery_company_name column
  * @method     array findByDiscount(string $discount) Return Customers objects filtered by the discount column
  * @method     array findByGroupsId(int $groups_id) Return Customers objects filtered by the groups_id column
  * @method     array findByIsActive(boolean $is_active) Return Customers objects filtered by the is_active column
  * @method     array findByLanguagesId(int $languages_id) Return Customers objects filtered by the languages_id column
- * @method     array findByCountriesId(int $countries_id) Return Customers objects filtered by the countries_id column
  * @method     array findByCreatedAt(string $created_at) Return Customers objects filtered by the created_at column
  * @method     array findByUpdatedAt(string $updated_at) Return Customers objects filtered by the updated_at column
  *
@@ -284,7 +212,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `FIRST_NAME`, `LAST_NAME`, `INITIALS`, `PASSWORD`, `EMAIL`, `PHONE`, `PASSWORD_CLEAR`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DISCOUNT`, `GROUPS_ID`, `IS_ACTIVE`, `LANGUAGES_ID`, `COUNTRIES_ID`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `FIRST_NAME`, `LAST_NAME`, `INITIALS`, `PASSWORD`, `EMAIL`, `PHONE`, `PASSWORD_CLEAR`, `DISCOUNT`, `GROUPS_ID`, `IS_ACTIVE`, `LANGUAGES_ID`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -592,454 +520,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the billing_address_line_1 column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByBillingAddressLine1('fooValue');   // WHERE billing_address_line_1 = 'fooValue'
-	 * $query->filterByBillingAddressLine1('%fooValue%'); // WHERE billing_address_line_1 LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $billingAddressLine1 The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByBillingAddressLine1($billingAddressLine1 = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($billingAddressLine1)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $billingAddressLine1)) {
-				$billingAddressLine1 = str_replace('*', '%', $billingAddressLine1);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::BILLING_ADDRESS_LINE_1, $billingAddressLine1, $comparison);
-	}
-
-	/**
-	 * Filter the query on the billing_address_line_2 column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByBillingAddressLine2('fooValue');   // WHERE billing_address_line_2 = 'fooValue'
-	 * $query->filterByBillingAddressLine2('%fooValue%'); // WHERE billing_address_line_2 LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $billingAddressLine2 The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByBillingAddressLine2($billingAddressLine2 = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($billingAddressLine2)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $billingAddressLine2)) {
-				$billingAddressLine2 = str_replace('*', '%', $billingAddressLine2);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::BILLING_ADDRESS_LINE_2, $billingAddressLine2, $comparison);
-	}
-
-	/**
-	 * Filter the query on the billing_postal_code column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByBillingPostalCode('fooValue');   // WHERE billing_postal_code = 'fooValue'
-	 * $query->filterByBillingPostalCode('%fooValue%'); // WHERE billing_postal_code LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $billingPostalCode The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByBillingPostalCode($billingPostalCode = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($billingPostalCode)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $billingPostalCode)) {
-				$billingPostalCode = str_replace('*', '%', $billingPostalCode);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::BILLING_POSTAL_CODE, $billingPostalCode, $comparison);
-	}
-
-	/**
-	 * Filter the query on the billing_city column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByBillingCity('fooValue');   // WHERE billing_city = 'fooValue'
-	 * $query->filterByBillingCity('%fooValue%'); // WHERE billing_city LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $billingCity The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByBillingCity($billingCity = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($billingCity)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $billingCity)) {
-				$billingCity = str_replace('*', '%', $billingCity);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::BILLING_CITY, $billingCity, $comparison);
-	}
-
-	/**
-	 * Filter the query on the billing_country column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByBillingCountry('fooValue');   // WHERE billing_country = 'fooValue'
-	 * $query->filterByBillingCountry('%fooValue%'); // WHERE billing_country LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $billingCountry The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByBillingCountry($billingCountry = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($billingCountry)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $billingCountry)) {
-				$billingCountry = str_replace('*', '%', $billingCountry);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::BILLING_COUNTRY, $billingCountry, $comparison);
-	}
-
-	/**
-	 * Filter the query on the billing_countries_id column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByBillingCountriesId(1234); // WHERE billing_countries_id = 1234
-	 * $query->filterByBillingCountriesId(array(12, 34)); // WHERE billing_countries_id IN (12, 34)
-	 * $query->filterByBillingCountriesId(array('min' => 12)); // WHERE billing_countries_id > 12
-	 * </code>
-	 *
-	 * @see       filterByCountriesRelatedByBillingCountriesId()
-	 *
-	 * @param     mixed $billingCountriesId The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByBillingCountriesId($billingCountriesId = null, $comparison = null)
-	{
-		if (is_array($billingCountriesId)) {
-			$useMinMax = false;
-			if (isset($billingCountriesId['min'])) {
-				$this->addUsingAlias(CustomersPeer::BILLING_COUNTRIES_ID, $billingCountriesId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($billingCountriesId['max'])) {
-				$this->addUsingAlias(CustomersPeer::BILLING_COUNTRIES_ID, $billingCountriesId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::BILLING_COUNTRIES_ID, $billingCountriesId, $comparison);
-	}
-
-	/**
-	 * Filter the query on the billing_state_province column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByBillingStateProvince('fooValue');   // WHERE billing_state_province = 'fooValue'
-	 * $query->filterByBillingStateProvince('%fooValue%'); // WHERE billing_state_province LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $billingStateProvince The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByBillingStateProvince($billingStateProvince = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($billingStateProvince)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $billingStateProvince)) {
-				$billingStateProvince = str_replace('*', '%', $billingStateProvince);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::BILLING_STATE_PROVINCE, $billingStateProvince, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_address_line_1 column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryAddressLine1('fooValue');   // WHERE delivery_address_line_1 = 'fooValue'
-	 * $query->filterByDeliveryAddressLine1('%fooValue%'); // WHERE delivery_address_line_1 LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $deliveryAddressLine1 The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryAddressLine1($deliveryAddressLine1 = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($deliveryAddressLine1)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $deliveryAddressLine1)) {
-				$deliveryAddressLine1 = str_replace('*', '%', $deliveryAddressLine1);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_ADDRESS_LINE_1, $deliveryAddressLine1, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_address_line_2 column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryAddressLine2('fooValue');   // WHERE delivery_address_line_2 = 'fooValue'
-	 * $query->filterByDeliveryAddressLine2('%fooValue%'); // WHERE delivery_address_line_2 LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $deliveryAddressLine2 The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryAddressLine2($deliveryAddressLine2 = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($deliveryAddressLine2)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $deliveryAddressLine2)) {
-				$deliveryAddressLine2 = str_replace('*', '%', $deliveryAddressLine2);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_ADDRESS_LINE_2, $deliveryAddressLine2, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_postal_code column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryPostalCode('fooValue');   // WHERE delivery_postal_code = 'fooValue'
-	 * $query->filterByDeliveryPostalCode('%fooValue%'); // WHERE delivery_postal_code LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $deliveryPostalCode The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryPostalCode($deliveryPostalCode = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($deliveryPostalCode)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $deliveryPostalCode)) {
-				$deliveryPostalCode = str_replace('*', '%', $deliveryPostalCode);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_POSTAL_CODE, $deliveryPostalCode, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_city column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryCity('fooValue');   // WHERE delivery_city = 'fooValue'
-	 * $query->filterByDeliveryCity('%fooValue%'); // WHERE delivery_city LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $deliveryCity The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryCity($deliveryCity = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($deliveryCity)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $deliveryCity)) {
-				$deliveryCity = str_replace('*', '%', $deliveryCity);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_CITY, $deliveryCity, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_country column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryCountry('fooValue');   // WHERE delivery_country = 'fooValue'
-	 * $query->filterByDeliveryCountry('%fooValue%'); // WHERE delivery_country LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $deliveryCountry The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryCountry($deliveryCountry = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($deliveryCountry)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $deliveryCountry)) {
-				$deliveryCountry = str_replace('*', '%', $deliveryCountry);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_COUNTRY, $deliveryCountry, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_countries_id column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryCountriesId(1234); // WHERE delivery_countries_id = 1234
-	 * $query->filterByDeliveryCountriesId(array(12, 34)); // WHERE delivery_countries_id IN (12, 34)
-	 * $query->filterByDeliveryCountriesId(array('min' => 12)); // WHERE delivery_countries_id > 12
-	 * </code>
-	 *
-	 * @see       filterByCountriesRelatedByDeliveryCountriesId()
-	 *
-	 * @param     mixed $deliveryCountriesId The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryCountriesId($deliveryCountriesId = null, $comparison = null)
-	{
-		if (is_array($deliveryCountriesId)) {
-			$useMinMax = false;
-			if (isset($deliveryCountriesId['min'])) {
-				$this->addUsingAlias(CustomersPeer::DELIVERY_COUNTRIES_ID, $deliveryCountriesId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($deliveryCountriesId['max'])) {
-				$this->addUsingAlias(CustomersPeer::DELIVERY_COUNTRIES_ID, $deliveryCountriesId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_COUNTRIES_ID, $deliveryCountriesId, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_state_province column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryStateProvince('fooValue');   // WHERE delivery_state_province = 'fooValue'
-	 * $query->filterByDeliveryStateProvince('%fooValue%'); // WHERE delivery_state_province LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $deliveryStateProvince The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryStateProvince($deliveryStateProvince = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($deliveryStateProvince)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $deliveryStateProvince)) {
-				$deliveryStateProvince = str_replace('*', '%', $deliveryStateProvince);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_STATE_PROVINCE, $deliveryStateProvince, $comparison);
-	}
-
-	/**
-	 * Filter the query on the delivery_company_name column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByDeliveryCompanyName('fooValue');   // WHERE delivery_company_name = 'fooValue'
-	 * $query->filterByDeliveryCompanyName('%fooValue%'); // WHERE delivery_company_name LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $deliveryCompanyName The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByDeliveryCompanyName($deliveryCompanyName = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($deliveryCompanyName)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $deliveryCompanyName)) {
-				$deliveryCompanyName = str_replace('*', '%', $deliveryCompanyName);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::DELIVERY_COMPANY_NAME, $deliveryCompanyName, $comparison);
-	}
-
-	/**
 	 * Filter the query on the discount column
 	 *
 	 * Example usage:
@@ -1187,48 +667,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(CustomersPeer::LANGUAGES_ID, $languagesId, $comparison);
-	}
-
-	/**
-	 * Filter the query on the countries_id column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByCountriesId(1234); // WHERE countries_id = 1234
-	 * $query->filterByCountriesId(array(12, 34)); // WHERE countries_id IN (12, 34)
-	 * $query->filterByCountriesId(array('min' => 12)); // WHERE countries_id > 12
-	 * </code>
-	 *
-	 * @see       filterByCountriesRelatedByCountriesId()
-	 *
-	 * @param     mixed $countriesId The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByCountriesId($countriesId = null, $comparison = null)
-	{
-		if (is_array($countriesId)) {
-			$useMinMax = false;
-			if (isset($countriesId['min'])) {
-				$this->addUsingAlias(CustomersPeer::COUNTRIES_ID, $countriesId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($countriesId['max'])) {
-				$this->addUsingAlias(CustomersPeer::COUNTRIES_ID, $countriesId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::COUNTRIES_ID, $countriesId, $comparison);
 	}
 
 	/**
@@ -1464,228 +902,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query by a related Countries object
-	 *
-	 * @param     Countries|PropelCollection $countries The related object(s) to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByCountriesRelatedByCountriesId($countries, $comparison = null)
-	{
-		if ($countries instanceof Countries) {
-			return $this
-				->addUsingAlias(CustomersPeer::COUNTRIES_ID, $countries->getId(), $comparison);
-		} elseif ($countries instanceof PropelCollection) {
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-			return $this
-				->addUsingAlias(CustomersPeer::COUNTRIES_ID, $countries->toKeyValue('PrimaryKey', 'Id'), $comparison);
-		} else {
-			throw new PropelException('filterByCountriesRelatedByCountriesId() only accepts arguments of type Countries or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the CountriesRelatedByCountriesId relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function joinCountriesRelatedByCountriesId($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CountriesRelatedByCountriesId');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'CountriesRelatedByCountriesId');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the CountriesRelatedByCountriesId relation Countries object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\CountriesQuery A secondary query class using the current class as primary query
-	 */
-	public function useCountriesRelatedByCountriesIdQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		return $this
-			->joinCountriesRelatedByCountriesId($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CountriesRelatedByCountriesId', '\Hanzo\Model\CountriesQuery');
-	}
-
-	/**
-	 * Filter the query by a related Countries object
-	 *
-	 * @param     Countries|PropelCollection $countries The related object(s) to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByCountriesRelatedByBillingCountriesId($countries, $comparison = null)
-	{
-		if ($countries instanceof Countries) {
-			return $this
-				->addUsingAlias(CustomersPeer::BILLING_COUNTRIES_ID, $countries->getId(), $comparison);
-		} elseif ($countries instanceof PropelCollection) {
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-			return $this
-				->addUsingAlias(CustomersPeer::BILLING_COUNTRIES_ID, $countries->toKeyValue('PrimaryKey', 'Id'), $comparison);
-		} else {
-			throw new PropelException('filterByCountriesRelatedByBillingCountriesId() only accepts arguments of type Countries or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the CountriesRelatedByBillingCountriesId relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function joinCountriesRelatedByBillingCountriesId($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CountriesRelatedByBillingCountriesId');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'CountriesRelatedByBillingCountriesId');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the CountriesRelatedByBillingCountriesId relation Countries object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\CountriesQuery A secondary query class using the current class as primary query
-	 */
-	public function useCountriesRelatedByBillingCountriesIdQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		return $this
-			->joinCountriesRelatedByBillingCountriesId($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CountriesRelatedByBillingCountriesId', '\Hanzo\Model\CountriesQuery');
-	}
-
-	/**
-	 * Filter the query by a related Countries object
-	 *
-	 * @param     Countries|PropelCollection $countries The related object(s) to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByCountriesRelatedByDeliveryCountriesId($countries, $comparison = null)
-	{
-		if ($countries instanceof Countries) {
-			return $this
-				->addUsingAlias(CustomersPeer::DELIVERY_COUNTRIES_ID, $countries->getId(), $comparison);
-		} elseif ($countries instanceof PropelCollection) {
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-			return $this
-				->addUsingAlias(CustomersPeer::DELIVERY_COUNTRIES_ID, $countries->toKeyValue('PrimaryKey', 'Id'), $comparison);
-		} else {
-			throw new PropelException('filterByCountriesRelatedByDeliveryCountriesId() only accepts arguments of type Countries or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the CountriesRelatedByDeliveryCountriesId relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function joinCountriesRelatedByDeliveryCountriesId($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CountriesRelatedByDeliveryCountriesId');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'CountriesRelatedByDeliveryCountriesId');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the CountriesRelatedByDeliveryCountriesId relation Countries object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\CountriesQuery A secondary query class using the current class as primary query
-	 */
-	public function useCountriesRelatedByDeliveryCountriesIdQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		return $this
-			->joinCountriesRelatedByDeliveryCountriesId($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CountriesRelatedByDeliveryCountriesId', '\Hanzo\Model\CountriesQuery');
-	}
-
-	/**
 	 * Filter the query by a related ConsultantsInfo object
 	 *
 	 * @param     ConsultantsInfo $consultantsInfo  the related object to use as filter
@@ -1829,6 +1045,79 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinCouponsToCustomers($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'CouponsToCustomers', '\Hanzo\Model\CouponsToCustomersQuery');
+	}
+
+	/**
+	 * Filter the query by a related Addresses object
+	 *
+	 * @param     Addresses $addresses  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByAddresses($addresses, $comparison = null)
+	{
+		if ($addresses instanceof Addresses) {
+			return $this
+				->addUsingAlias(CustomersPeer::ID, $addresses->getCustomersId(), $comparison);
+		} elseif ($addresses instanceof PropelCollection) {
+			return $this
+				->useAddressesQuery()
+				->filterByPrimaryKeys($addresses->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByAddresses() only accepts arguments of type Addresses or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the Addresses relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function joinAddresses($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('Addresses');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'Addresses');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the Addresses relation Addresses object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\AddressesQuery A secondary query class using the current class as primary query
+	 */
+	public function useAddressesQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinAddresses($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'Addresses', '\Hanzo\Model\AddressesQuery');
 	}
 
 	/**

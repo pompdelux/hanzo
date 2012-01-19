@@ -60,9 +60,7 @@ class CountriesTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('CustomersRelatedByCountriesId', 'Hanzo\\Model\\Customers', RelationMap::ONE_TO_MANY, array('id' => 'countries_id', ), null, null, 'CustomerssRelatedByCountriesId');
-		$this->addRelation('CustomersRelatedByBillingCountriesId', 'Hanzo\\Model\\Customers', RelationMap::ONE_TO_MANY, array('id' => 'billing_countries_id', ), null, null, 'CustomerssRelatedByBillingCountriesId');
-		$this->addRelation('CustomersRelatedByDeliveryCountriesId', 'Hanzo\\Model\\Customers', RelationMap::ONE_TO_MANY, array('id' => 'delivery_countries_id', ), null, null, 'CustomerssRelatedByDeliveryCountriesId');
+		$this->addRelation('Addresses', 'Hanzo\\Model\\Addresses', RelationMap::ONE_TO_MANY, array('id' => 'countries_id', ), null, null, 'Addressess');
 		$this->addRelation('ZipToCity', 'Hanzo\\Model\\ZipToCity', RelationMap::ONE_TO_MANY, array('iso2' => 'countries_iso2', ), null, null, 'ZipToCitys');
 		$this->addRelation('OrdersRelatedByBillingCountriesId', 'Hanzo\\Model\\Orders', RelationMap::ONE_TO_MANY, array('id' => 'billing_countries_id', ), null, null, 'OrderssRelatedByBillingCountriesId');
 		$this->addRelation('OrdersRelatedByDeliveryCountriesId', 'Hanzo\\Model\\Orders', RelationMap::ONE_TO_MANY, array('id' => 'delivery_countries_id', ), null, null, 'OrderssRelatedByDeliveryCountriesId');

@@ -54,18 +54,9 @@
     <column name="consultants_id" primaryKey="true" type="INTEGER" required="true"/>
     <column name="description" type="LONGVARCHAR" required="false"/>
     <column name="max_notified" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <column name="latitude" type="FLOAT" size="10" scale="6" required="false"/>
-    <column name="longitude" type="FLOAT" size="10" scale="6" required="false"/>
     <foreign-key foreignTable="customers" name="fk_consultants_info_1" onDelete="CASCADE">
       <reference local="consultants_id" foreign="id"/>
     </foreign-key>
-    <index name="index2">
-      <index-column name="consultants_id"/>
-    </index>
-    <index name="index3">
-      <index-column name="latitude"/>
-      <index-column name="longitude"/>
-    </index>
   </table>
 
   <table name="countries">
@@ -132,42 +123,37 @@
     <column name="email" type="VARCHAR" size="255" required="true"/>
     <column name="phone" type="VARCHAR" size="32" required="false"/>
     <column name="password_clear" type="VARCHAR" size="45" required="false"/>
-    <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
-    <column name="billing_address_line_2" type="VARCHAR" size="255" required="false"/>
-    <column name="billing_postal_code" type="VARCHAR" size="12" required="false"/>
-    <column name="billing_city" type="VARCHAR" size="64" required="false"/>
-    <column name="billing_country" type="VARCHAR" size="128" required="false"/>
-    <column name="billing_countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="billing_state_province" type="VARCHAR" size="64" required="false"/>
-    <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>
-    <column name="delivery_address_line_2" type="VARCHAR" size="255" required="false"/>
-    <column name="delivery_postal_code" type="VARCHAR" size="12" required="false"/>
-    <column name="delivery_city" type="VARCHAR" size="64" required="false"/>
-    <column name="delivery_country" type="VARCHAR" size="128" required="false"/>
-    <column name="delivery_countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="delivery_state_province" type="VARCHAR" size="64" required="false"/>
-    <column name="delivery_company_name" type="VARCHAR" size="128" required="false"/>
     <column name="discount" type="DECIMAL" size="8" scale="2" required="false" defaultValue="0.00"/>
     <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
     <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <column name="languages_id" type="INTEGER" required="true"/>
-    <column name="countries_id" type="INTEGER" required="true"/>
     <foreign-key foreignTable="groups" name="fk_customers_10" onUpdate="CASCADE">
       <reference local="groups_id" foreign="id"/>
     </foreign-key>
     <foreign-key foreignTable="languages" name="fk_customers_20">
       <reference local="languages_id" foreign="id"/>
     </foreign-key>
-    <foreign-key foreignTable="countries" name="fk_customers_30">
+    <behavior name="timestampable" />
+  </table>
+
+  <table name="addresses">
+    <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="type" type="VARCHAR" size="10" primaryKey="true" required="true" defaultValue="payment"/>
+    <column name="address_line_1" type="VARCHAR" size="255" required="false"/>
+    <column name="address_line_2" type="VARCHAR" size="255" required="false"/>
+    <column name="postal_code" type="VARCHAR" size="12" required="false"/>
+    <column name="city" type="VARCHAR" size="64" required="false"/>
+    <column name="country" type="VARCHAR" size="128" required="false"/>
+    <column name="countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
+    <column name="state_province" type="VARCHAR" size="64" required="false"/>
+    <column name="company_name" type="VARCHAR" size="128" required="false"/>
+    <foreign-key foreignTable="customers" onDelete="CASCADE">
+      <reference local="customers_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="countries">
       <reference local="countries_id" foreign="id"/>
     </foreign-key>
-    <foreign-key foreignTable="countries" name="fk_customers_40">
-      <reference local="billing_countries_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="countries" name="fk_customers_50">
-      <reference local="delivery_countries_id" foreign="id"/>
-    </foreign-key>
-    <behavior name="timestampable" />
+    <behavior name="geocodable" />
   </table>
 
   <table name="domains">
