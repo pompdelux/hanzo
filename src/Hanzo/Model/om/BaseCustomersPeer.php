@@ -1,4 +1,4 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Model\om;
 
