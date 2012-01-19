@@ -16,10 +16,10 @@ use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\ConsultantsInfo;
 use Hanzo\Model\ConsultantsInfoQuery;
-use Hanzo\Model\Countries;
-use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\CouponsToCustomersQuery;
 use Hanzo\Model\CustomersPeer;
@@ -111,96 +111,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $password_clear;
 
 	/**
-	 * The value for the billing_address_line_1 field.
-	 * @var        string
-	 */
-	protected $billing_address_line_1;
-
-	/**
-	 * The value for the billing_address_line_2 field.
-	 * @var        string
-	 */
-	protected $billing_address_line_2;
-
-	/**
-	 * The value for the billing_postal_code field.
-	 * @var        string
-	 */
-	protected $billing_postal_code;
-
-	/**
-	 * The value for the billing_city field.
-	 * @var        string
-	 */
-	protected $billing_city;
-
-	/**
-	 * The value for the billing_country field.
-	 * @var        string
-	 */
-	protected $billing_country;
-
-	/**
-	 * The value for the billing_countries_id field.
-	 * @var        int
-	 */
-	protected $billing_countries_id;
-
-	/**
-	 * The value for the billing_state_province field.
-	 * @var        string
-	 */
-	protected $billing_state_province;
-
-	/**
-	 * The value for the delivery_address_line_1 field.
-	 * @var        string
-	 */
-	protected $delivery_address_line_1;
-
-	/**
-	 * The value for the delivery_address_line_2 field.
-	 * @var        string
-	 */
-	protected $delivery_address_line_2;
-
-	/**
-	 * The value for the delivery_postal_code field.
-	 * @var        string
-	 */
-	protected $delivery_postal_code;
-
-	/**
-	 * The value for the delivery_city field.
-	 * @var        string
-	 */
-	protected $delivery_city;
-
-	/**
-	 * The value for the delivery_country field.
-	 * @var        string
-	 */
-	protected $delivery_country;
-
-	/**
-	 * The value for the delivery_countries_id field.
-	 * @var        int
-	 */
-	protected $delivery_countries_id;
-
-	/**
-	 * The value for the delivery_state_province field.
-	 * @var        string
-	 */
-	protected $delivery_state_province;
-
-	/**
-	 * The value for the delivery_company_name field.
-	 * @var        string
-	 */
-	protected $delivery_company_name;
-
-	/**
 	 * The value for the discount field.
 	 * Note: this column has a database default value of: '0.00'
 	 * @var        string
@@ -228,12 +138,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $languages_id;
 
 	/**
-	 * The value for the countries_id field.
-	 * @var        int
-	 */
-	protected $countries_id;
-
-	/**
 	 * The value for the created_at field.
 	 * @var        string
 	 */
@@ -256,21 +160,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $aLanguages;
 
 	/**
-	 * @var        Countries
-	 */
-	protected $aCountriesRelatedByCountriesId;
-
-	/**
-	 * @var        Countries
-	 */
-	protected $aCountriesRelatedByBillingCountriesId;
-
-	/**
-	 * @var        Countries
-	 */
-	protected $aCountriesRelatedByDeliveryCountriesId;
-
-	/**
 	 * @var        ConsultantsInfo one-to-one related ConsultantsInfo object
 	 */
 	protected $singleConsultantsInfo;
@@ -279,6 +168,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        array CouponsToCustomers[] Collection to store aggregation of CouponsToCustomers objects.
 	 */
 	protected $collCouponsToCustomerss;
+
+	/**
+	 * @var        array Addresses[] Collection to store aggregation of Addresses objects.
+	 */
+	protected $collAddressess;
 
 	/**
 	 * @var        array Events[] Collection to store aggregation of Events objects.
@@ -320,6 +214,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var		array
 	 */
 	protected $couponsToCustomerssScheduledForDeletion = null;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $addressessScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -443,156 +343,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [billing_address_line_1] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getBillingAddressLine1()
-	{
-		return $this->billing_address_line_1;
-	}
-
-	/**
-	 * Get the [billing_address_line_2] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getBillingAddressLine2()
-	{
-		return $this->billing_address_line_2;
-	}
-
-	/**
-	 * Get the [billing_postal_code] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getBillingPostalCode()
-	{
-		return $this->billing_postal_code;
-	}
-
-	/**
-	 * Get the [billing_city] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getBillingCity()
-	{
-		return $this->billing_city;
-	}
-
-	/**
-	 * Get the [billing_country] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getBillingCountry()
-	{
-		return $this->billing_country;
-	}
-
-	/**
-	 * Get the [billing_countries_id] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getBillingCountriesId()
-	{
-		return $this->billing_countries_id;
-	}
-
-	/**
-	 * Get the [billing_state_province] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getBillingStateProvince()
-	{
-		return $this->billing_state_province;
-	}
-
-	/**
-	 * Get the [delivery_address_line_1] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getDeliveryAddressLine1()
-	{
-		return $this->delivery_address_line_1;
-	}
-
-	/**
-	 * Get the [delivery_address_line_2] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getDeliveryAddressLine2()
-	{
-		return $this->delivery_address_line_2;
-	}
-
-	/**
-	 * Get the [delivery_postal_code] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getDeliveryPostalCode()
-	{
-		return $this->delivery_postal_code;
-	}
-
-	/**
-	 * Get the [delivery_city] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getDeliveryCity()
-	{
-		return $this->delivery_city;
-	}
-
-	/**
-	 * Get the [delivery_country] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getDeliveryCountry()
-	{
-		return $this->delivery_country;
-	}
-
-	/**
-	 * Get the [delivery_countries_id] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getDeliveryCountriesId()
-	{
-		return $this->delivery_countries_id;
-	}
-
-	/**
-	 * Get the [delivery_state_province] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getDeliveryStateProvince()
-	{
-		return $this->delivery_state_province;
-	}
-
-	/**
-	 * Get the [delivery_company_name] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getDeliveryCompanyName()
-	{
-		return $this->delivery_company_name;
-	}
-
-	/**
 	 * Get the [discount] column value.
 	 * 
 	 * @return     string
@@ -630,16 +380,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	public function getLanguagesId()
 	{
 		return $this->languages_id;
-	}
-
-	/**
-	 * Get the [countries_id] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getCountriesId()
-	{
-		return $this->countries_id;
 	}
 
 	/**
@@ -879,314 +619,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	} // setPasswordClear()
 
 	/**
-	 * Set the value of [billing_address_line_1] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setBillingAddressLine1($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->billing_address_line_1 !== $v) {
-			$this->billing_address_line_1 = $v;
-			$this->modifiedColumns[] = CustomersPeer::BILLING_ADDRESS_LINE_1;
-		}
-
-		return $this;
-	} // setBillingAddressLine1()
-
-	/**
-	 * Set the value of [billing_address_line_2] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setBillingAddressLine2($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->billing_address_line_2 !== $v) {
-			$this->billing_address_line_2 = $v;
-			$this->modifiedColumns[] = CustomersPeer::BILLING_ADDRESS_LINE_2;
-		}
-
-		return $this;
-	} // setBillingAddressLine2()
-
-	/**
-	 * Set the value of [billing_postal_code] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setBillingPostalCode($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->billing_postal_code !== $v) {
-			$this->billing_postal_code = $v;
-			$this->modifiedColumns[] = CustomersPeer::BILLING_POSTAL_CODE;
-		}
-
-		return $this;
-	} // setBillingPostalCode()
-
-	/**
-	 * Set the value of [billing_city] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setBillingCity($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->billing_city !== $v) {
-			$this->billing_city = $v;
-			$this->modifiedColumns[] = CustomersPeer::BILLING_CITY;
-		}
-
-		return $this;
-	} // setBillingCity()
-
-	/**
-	 * Set the value of [billing_country] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setBillingCountry($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->billing_country !== $v) {
-			$this->billing_country = $v;
-			$this->modifiedColumns[] = CustomersPeer::BILLING_COUNTRY;
-		}
-
-		return $this;
-	} // setBillingCountry()
-
-	/**
-	 * Set the value of [billing_countries_id] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setBillingCountriesId($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->billing_countries_id !== $v) {
-			$this->billing_countries_id = $v;
-			$this->modifiedColumns[] = CustomersPeer::BILLING_COUNTRIES_ID;
-		}
-
-		if ($this->aCountriesRelatedByBillingCountriesId !== null && $this->aCountriesRelatedByBillingCountriesId->getId() !== $v) {
-			$this->aCountriesRelatedByBillingCountriesId = null;
-		}
-
-		return $this;
-	} // setBillingCountriesId()
-
-	/**
-	 * Set the value of [billing_state_province] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setBillingStateProvince($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->billing_state_province !== $v) {
-			$this->billing_state_province = $v;
-			$this->modifiedColumns[] = CustomersPeer::BILLING_STATE_PROVINCE;
-		}
-
-		return $this;
-	} // setBillingStateProvince()
-
-	/**
-	 * Set the value of [delivery_address_line_1] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryAddressLine1($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->delivery_address_line_1 !== $v) {
-			$this->delivery_address_line_1 = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_ADDRESS_LINE_1;
-		}
-
-		return $this;
-	} // setDeliveryAddressLine1()
-
-	/**
-	 * Set the value of [delivery_address_line_2] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryAddressLine2($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->delivery_address_line_2 !== $v) {
-			$this->delivery_address_line_2 = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_ADDRESS_LINE_2;
-		}
-
-		return $this;
-	} // setDeliveryAddressLine2()
-
-	/**
-	 * Set the value of [delivery_postal_code] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryPostalCode($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->delivery_postal_code !== $v) {
-			$this->delivery_postal_code = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_POSTAL_CODE;
-		}
-
-		return $this;
-	} // setDeliveryPostalCode()
-
-	/**
-	 * Set the value of [delivery_city] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryCity($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->delivery_city !== $v) {
-			$this->delivery_city = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_CITY;
-		}
-
-		return $this;
-	} // setDeliveryCity()
-
-	/**
-	 * Set the value of [delivery_country] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryCountry($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->delivery_country !== $v) {
-			$this->delivery_country = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_COUNTRY;
-		}
-
-		return $this;
-	} // setDeliveryCountry()
-
-	/**
-	 * Set the value of [delivery_countries_id] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryCountriesId($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->delivery_countries_id !== $v) {
-			$this->delivery_countries_id = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_COUNTRIES_ID;
-		}
-
-		if ($this->aCountriesRelatedByDeliveryCountriesId !== null && $this->aCountriesRelatedByDeliveryCountriesId->getId() !== $v) {
-			$this->aCountriesRelatedByDeliveryCountriesId = null;
-		}
-
-		return $this;
-	} // setDeliveryCountriesId()
-
-	/**
-	 * Set the value of [delivery_state_province] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryStateProvince($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->delivery_state_province !== $v) {
-			$this->delivery_state_province = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_STATE_PROVINCE;
-		}
-
-		return $this;
-	} // setDeliveryStateProvince()
-
-	/**
-	 * Set the value of [delivery_company_name] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setDeliveryCompanyName($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->delivery_company_name !== $v) {
-			$this->delivery_company_name = $v;
-			$this->modifiedColumns[] = CustomersPeer::DELIVERY_COMPANY_NAME;
-		}
-
-		return $this;
-	} // setDeliveryCompanyName()
-
-	/**
 	 * Set the value of [discount] column.
 	 * 
 	 * @param      string $v new value
@@ -1281,30 +713,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 		return $this;
 	} // setLanguagesId()
-
-	/**
-	 * Set the value of [countries_id] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setCountriesId($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->countries_id !== $v) {
-			$this->countries_id = $v;
-			$this->modifiedColumns[] = CustomersPeer::COUNTRIES_ID;
-		}
-
-		if ($this->aCountriesRelatedByCountriesId !== null && $this->aCountriesRelatedByCountriesId->getId() !== $v) {
-			$this->aCountriesRelatedByCountriesId = null;
-		}
-
-		return $this;
-	} // setCountriesId()
 
 	/**
 	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
@@ -1402,28 +810,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->email = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
 			$this->phone = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->password_clear = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-			$this->billing_address_line_1 = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->billing_address_line_2 = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->billing_postal_code = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-			$this->billing_city = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-			$this->billing_country = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-			$this->billing_countries_id = ($row[$startcol + 13] !== null) ? (int) $row[$startcol + 13] : null;
-			$this->billing_state_province = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-			$this->delivery_address_line_1 = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
-			$this->delivery_address_line_2 = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
-			$this->delivery_postal_code = ($row[$startcol + 17] !== null) ? (string) $row[$startcol + 17] : null;
-			$this->delivery_city = ($row[$startcol + 18] !== null) ? (string) $row[$startcol + 18] : null;
-			$this->delivery_country = ($row[$startcol + 19] !== null) ? (string) $row[$startcol + 19] : null;
-			$this->delivery_countries_id = ($row[$startcol + 20] !== null) ? (int) $row[$startcol + 20] : null;
-			$this->delivery_state_province = ($row[$startcol + 21] !== null) ? (string) $row[$startcol + 21] : null;
-			$this->delivery_company_name = ($row[$startcol + 22] !== null) ? (string) $row[$startcol + 22] : null;
-			$this->discount = ($row[$startcol + 23] !== null) ? (string) $row[$startcol + 23] : null;
-			$this->groups_id = ($row[$startcol + 24] !== null) ? (int) $row[$startcol + 24] : null;
-			$this->is_active = ($row[$startcol + 25] !== null) ? (boolean) $row[$startcol + 25] : null;
-			$this->languages_id = ($row[$startcol + 26] !== null) ? (int) $row[$startcol + 26] : null;
-			$this->countries_id = ($row[$startcol + 27] !== null) ? (int) $row[$startcol + 27] : null;
-			$this->created_at = ($row[$startcol + 28] !== null) ? (string) $row[$startcol + 28] : null;
-			$this->updated_at = ($row[$startcol + 29] !== null) ? (string) $row[$startcol + 29] : null;
+			$this->discount = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->groups_id = ($row[$startcol + 9] !== null) ? (int) $row[$startcol + 9] : null;
+			$this->is_active = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
+			$this->languages_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
+			$this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+			$this->updated_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -1432,7 +824,7 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 30; // 30 = CustomersPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 14; // 14 = CustomersPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Customers object", $e);
@@ -1455,20 +847,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	public function ensureConsistency()
 	{
 
-		if ($this->aCountriesRelatedByBillingCountriesId !== null && $this->billing_countries_id !== $this->aCountriesRelatedByBillingCountriesId->getId()) {
-			$this->aCountriesRelatedByBillingCountriesId = null;
-		}
-		if ($this->aCountriesRelatedByDeliveryCountriesId !== null && $this->delivery_countries_id !== $this->aCountriesRelatedByDeliveryCountriesId->getId()) {
-			$this->aCountriesRelatedByDeliveryCountriesId = null;
-		}
 		if ($this->aGroups !== null && $this->groups_id !== $this->aGroups->getId()) {
 			$this->aGroups = null;
 		}
 		if ($this->aLanguages !== null && $this->languages_id !== $this->aLanguages->getId()) {
 			$this->aLanguages = null;
-		}
-		if ($this->aCountriesRelatedByCountriesId !== null && $this->countries_id !== $this->aCountriesRelatedByCountriesId->getId()) {
-			$this->aCountriesRelatedByCountriesId = null;
 		}
 	} // ensureConsistency
 
@@ -1511,12 +894,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			$this->aGroups = null;
 			$this->aLanguages = null;
-			$this->aCountriesRelatedByCountriesId = null;
-			$this->aCountriesRelatedByBillingCountriesId = null;
-			$this->aCountriesRelatedByDeliveryCountriesId = null;
 			$this->singleConsultantsInfo = null;
 
 			$this->collCouponsToCustomerss = null;
+
+			$this->collAddressess = null;
 
 			$this->collEventssRelatedByConsultantsId = null;
 
@@ -1664,27 +1046,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->setLanguages($this->aLanguages);
 			}
 
-			if ($this->aCountriesRelatedByCountriesId !== null) {
-				if ($this->aCountriesRelatedByCountriesId->isModified() || $this->aCountriesRelatedByCountriesId->isNew()) {
-					$affectedRows += $this->aCountriesRelatedByCountriesId->save($con);
-				}
-				$this->setCountriesRelatedByCountriesId($this->aCountriesRelatedByCountriesId);
-			}
-
-			if ($this->aCountriesRelatedByBillingCountriesId !== null) {
-				if ($this->aCountriesRelatedByBillingCountriesId->isModified() || $this->aCountriesRelatedByBillingCountriesId->isNew()) {
-					$affectedRows += $this->aCountriesRelatedByBillingCountriesId->save($con);
-				}
-				$this->setCountriesRelatedByBillingCountriesId($this->aCountriesRelatedByBillingCountriesId);
-			}
-
-			if ($this->aCountriesRelatedByDeliveryCountriesId !== null) {
-				if ($this->aCountriesRelatedByDeliveryCountriesId->isModified() || $this->aCountriesRelatedByDeliveryCountriesId->isNew()) {
-					$affectedRows += $this->aCountriesRelatedByDeliveryCountriesId->save($con);
-				}
-				$this->setCountriesRelatedByDeliveryCountriesId($this->aCountriesRelatedByDeliveryCountriesId);
-			}
-
 			if ($this->isNew() || $this->isModified()) {
 				// persist changes
 				if ($this->isNew()) {
@@ -1722,6 +1083,23 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			if ($this->collCouponsToCustomerss !== null) {
 				foreach ($this->collCouponsToCustomerss as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->addressessScheduledForDeletion !== null) {
+				if (!$this->addressessScheduledForDeletion->isEmpty()) {
+					AddressesQuery::create()
+						->filterByPrimaryKeys($this->addressessScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->addressessScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collAddressess !== null) {
+				foreach ($this->collAddressess as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -1826,51 +1204,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CustomersPeer::PASSWORD_CLEAR)) {
 			$modifiedColumns[':p' . $index++]  = '`PASSWORD_CLEAR`';
 		}
-		if ($this->isColumnModified(CustomersPeer::BILLING_ADDRESS_LINE_1)) {
-			$modifiedColumns[':p' . $index++]  = '`BILLING_ADDRESS_LINE_1`';
-		}
-		if ($this->isColumnModified(CustomersPeer::BILLING_ADDRESS_LINE_2)) {
-			$modifiedColumns[':p' . $index++]  = '`BILLING_ADDRESS_LINE_2`';
-		}
-		if ($this->isColumnModified(CustomersPeer::BILLING_POSTAL_CODE)) {
-			$modifiedColumns[':p' . $index++]  = '`BILLING_POSTAL_CODE`';
-		}
-		if ($this->isColumnModified(CustomersPeer::BILLING_CITY)) {
-			$modifiedColumns[':p' . $index++]  = '`BILLING_CITY`';
-		}
-		if ($this->isColumnModified(CustomersPeer::BILLING_COUNTRY)) {
-			$modifiedColumns[':p' . $index++]  = '`BILLING_COUNTRY`';
-		}
-		if ($this->isColumnModified(CustomersPeer::BILLING_COUNTRIES_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`BILLING_COUNTRIES_ID`';
-		}
-		if ($this->isColumnModified(CustomersPeer::BILLING_STATE_PROVINCE)) {
-			$modifiedColumns[':p' . $index++]  = '`BILLING_STATE_PROVINCE`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_ADDRESS_LINE_1)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_ADDRESS_LINE_1`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_ADDRESS_LINE_2)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_ADDRESS_LINE_2`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_POSTAL_CODE)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_POSTAL_CODE`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_CITY)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_CITY`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_COUNTRY)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_COUNTRY`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_COUNTRIES_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_COUNTRIES_ID`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_STATE_PROVINCE)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_STATE_PROVINCE`';
-		}
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_COMPANY_NAME)) {
-			$modifiedColumns[':p' . $index++]  = '`DELIVERY_COMPANY_NAME`';
-		}
 		if ($this->isColumnModified(CustomersPeer::DISCOUNT)) {
 			$modifiedColumns[':p' . $index++]  = '`DISCOUNT`';
 		}
@@ -1882,9 +1215,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		}
 		if ($this->isColumnModified(CustomersPeer::LANGUAGES_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`LANGUAGES_ID`';
-		}
-		if ($this->isColumnModified(CustomersPeer::COUNTRIES_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`COUNTRIES_ID`';
 		}
 		if ($this->isColumnModified(CustomersPeer::CREATED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
@@ -1927,51 +1257,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					case '`PASSWORD_CLEAR`':
 						$stmt->bindValue($identifier, $this->password_clear, PDO::PARAM_STR);
 						break;
-					case '`BILLING_ADDRESS_LINE_1`':
-						$stmt->bindValue($identifier, $this->billing_address_line_1, PDO::PARAM_STR);
-						break;
-					case '`BILLING_ADDRESS_LINE_2`':
-						$stmt->bindValue($identifier, $this->billing_address_line_2, PDO::PARAM_STR);
-						break;
-					case '`BILLING_POSTAL_CODE`':
-						$stmt->bindValue($identifier, $this->billing_postal_code, PDO::PARAM_STR);
-						break;
-					case '`BILLING_CITY`':
-						$stmt->bindValue($identifier, $this->billing_city, PDO::PARAM_STR);
-						break;
-					case '`BILLING_COUNTRY`':
-						$stmt->bindValue($identifier, $this->billing_country, PDO::PARAM_STR);
-						break;
-					case '`BILLING_COUNTRIES_ID`':
-						$stmt->bindValue($identifier, $this->billing_countries_id, PDO::PARAM_INT);
-						break;
-					case '`BILLING_STATE_PROVINCE`':
-						$stmt->bindValue($identifier, $this->billing_state_province, PDO::PARAM_STR);
-						break;
-					case '`DELIVERY_ADDRESS_LINE_1`':
-						$stmt->bindValue($identifier, $this->delivery_address_line_1, PDO::PARAM_STR);
-						break;
-					case '`DELIVERY_ADDRESS_LINE_2`':
-						$stmt->bindValue($identifier, $this->delivery_address_line_2, PDO::PARAM_STR);
-						break;
-					case '`DELIVERY_POSTAL_CODE`':
-						$stmt->bindValue($identifier, $this->delivery_postal_code, PDO::PARAM_STR);
-						break;
-					case '`DELIVERY_CITY`':
-						$stmt->bindValue($identifier, $this->delivery_city, PDO::PARAM_STR);
-						break;
-					case '`DELIVERY_COUNTRY`':
-						$stmt->bindValue($identifier, $this->delivery_country, PDO::PARAM_STR);
-						break;
-					case '`DELIVERY_COUNTRIES_ID`':
-						$stmt->bindValue($identifier, $this->delivery_countries_id, PDO::PARAM_INT);
-						break;
-					case '`DELIVERY_STATE_PROVINCE`':
-						$stmt->bindValue($identifier, $this->delivery_state_province, PDO::PARAM_STR);
-						break;
-					case '`DELIVERY_COMPANY_NAME`':
-						$stmt->bindValue($identifier, $this->delivery_company_name, PDO::PARAM_STR);
-						break;
 					case '`DISCOUNT`':
 						$stmt->bindValue($identifier, $this->discount, PDO::PARAM_STR);
 						break;
@@ -1983,9 +1268,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 						break;
 					case '`LANGUAGES_ID`':
 						$stmt->bindValue($identifier, $this->languages_id, PDO::PARAM_INT);
-						break;
-					case '`COUNTRIES_ID`':
-						$stmt->bindValue($identifier, $this->countries_id, PDO::PARAM_INT);
 						break;
 					case '`CREATED_AT`':
 						$stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -2102,24 +1384,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				}
 			}
 
-			if ($this->aCountriesRelatedByCountriesId !== null) {
-				if (!$this->aCountriesRelatedByCountriesId->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aCountriesRelatedByCountriesId->getValidationFailures());
-				}
-			}
-
-			if ($this->aCountriesRelatedByBillingCountriesId !== null) {
-				if (!$this->aCountriesRelatedByBillingCountriesId->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aCountriesRelatedByBillingCountriesId->getValidationFailures());
-				}
-			}
-
-			if ($this->aCountriesRelatedByDeliveryCountriesId !== null) {
-				if (!$this->aCountriesRelatedByDeliveryCountriesId->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aCountriesRelatedByDeliveryCountriesId->getValidationFailures());
-				}
-			}
-
 
 			if (($retval = CustomersPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
@@ -2134,6 +1398,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 				if ($this->collCouponsToCustomerss !== null) {
 					foreach ($this->collCouponsToCustomerss as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collAddressess !== null) {
+					foreach ($this->collAddressess as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -2220,69 +1492,21 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				return $this->getPasswordClear();
 				break;
 			case 8:
-				return $this->getBillingAddressLine1();
-				break;
-			case 9:
-				return $this->getBillingAddressLine2();
-				break;
-			case 10:
-				return $this->getBillingPostalCode();
-				break;
-			case 11:
-				return $this->getBillingCity();
-				break;
-			case 12:
-				return $this->getBillingCountry();
-				break;
-			case 13:
-				return $this->getBillingCountriesId();
-				break;
-			case 14:
-				return $this->getBillingStateProvince();
-				break;
-			case 15:
-				return $this->getDeliveryAddressLine1();
-				break;
-			case 16:
-				return $this->getDeliveryAddressLine2();
-				break;
-			case 17:
-				return $this->getDeliveryPostalCode();
-				break;
-			case 18:
-				return $this->getDeliveryCity();
-				break;
-			case 19:
-				return $this->getDeliveryCountry();
-				break;
-			case 20:
-				return $this->getDeliveryCountriesId();
-				break;
-			case 21:
-				return $this->getDeliveryStateProvince();
-				break;
-			case 22:
-				return $this->getDeliveryCompanyName();
-				break;
-			case 23:
 				return $this->getDiscount();
 				break;
-			case 24:
+			case 9:
 				return $this->getGroupsId();
 				break;
-			case 25:
+			case 10:
 				return $this->getIsActive();
 				break;
-			case 26:
+			case 11:
 				return $this->getLanguagesId();
 				break;
-			case 27:
-				return $this->getCountriesId();
-				break;
-			case 28:
+			case 12:
 				return $this->getCreatedAt();
 				break;
-			case 29:
+			case 13:
 				return $this->getUpdatedAt();
 				break;
 			default:
@@ -2322,28 +1546,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$keys[5] => $this->getEmail(),
 			$keys[6] => $this->getPhone(),
 			$keys[7] => $this->getPasswordClear(),
-			$keys[8] => $this->getBillingAddressLine1(),
-			$keys[9] => $this->getBillingAddressLine2(),
-			$keys[10] => $this->getBillingPostalCode(),
-			$keys[11] => $this->getBillingCity(),
-			$keys[12] => $this->getBillingCountry(),
-			$keys[13] => $this->getBillingCountriesId(),
-			$keys[14] => $this->getBillingStateProvince(),
-			$keys[15] => $this->getDeliveryAddressLine1(),
-			$keys[16] => $this->getDeliveryAddressLine2(),
-			$keys[17] => $this->getDeliveryPostalCode(),
-			$keys[18] => $this->getDeliveryCity(),
-			$keys[19] => $this->getDeliveryCountry(),
-			$keys[20] => $this->getDeliveryCountriesId(),
-			$keys[21] => $this->getDeliveryStateProvince(),
-			$keys[22] => $this->getDeliveryCompanyName(),
-			$keys[23] => $this->getDiscount(),
-			$keys[24] => $this->getGroupsId(),
-			$keys[25] => $this->getIsActive(),
-			$keys[26] => $this->getLanguagesId(),
-			$keys[27] => $this->getCountriesId(),
-			$keys[28] => $this->getCreatedAt(),
-			$keys[29] => $this->getUpdatedAt(),
+			$keys[8] => $this->getDiscount(),
+			$keys[9] => $this->getGroupsId(),
+			$keys[10] => $this->getIsActive(),
+			$keys[11] => $this->getLanguagesId(),
+			$keys[12] => $this->getCreatedAt(),
+			$keys[13] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aGroups) {
@@ -2352,20 +1560,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			if (null !== $this->aLanguages) {
 				$result['Languages'] = $this->aLanguages->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
 			}
-			if (null !== $this->aCountriesRelatedByCountriesId) {
-				$result['CountriesRelatedByCountriesId'] = $this->aCountriesRelatedByCountriesId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-			}
-			if (null !== $this->aCountriesRelatedByBillingCountriesId) {
-				$result['CountriesRelatedByBillingCountriesId'] = $this->aCountriesRelatedByBillingCountriesId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-			}
-			if (null !== $this->aCountriesRelatedByDeliveryCountriesId) {
-				$result['CountriesRelatedByDeliveryCountriesId'] = $this->aCountriesRelatedByDeliveryCountriesId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-			}
 			if (null !== $this->singleConsultantsInfo) {
 				$result['ConsultantsInfo'] = $this->singleConsultantsInfo->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
 			}
 			if (null !== $this->collCouponsToCustomerss) {
 				$result['CouponsToCustomerss'] = $this->collCouponsToCustomerss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			}
+			if (null !== $this->collAddressess) {
+				$result['Addressess'] = $this->collAddressess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->collEventssRelatedByConsultantsId) {
 				$result['EventssRelatedByConsultantsId'] = $this->collEventssRelatedByConsultantsId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -2432,69 +1634,21 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->setPasswordClear($value);
 				break;
 			case 8:
-				$this->setBillingAddressLine1($value);
-				break;
-			case 9:
-				$this->setBillingAddressLine2($value);
-				break;
-			case 10:
-				$this->setBillingPostalCode($value);
-				break;
-			case 11:
-				$this->setBillingCity($value);
-				break;
-			case 12:
-				$this->setBillingCountry($value);
-				break;
-			case 13:
-				$this->setBillingCountriesId($value);
-				break;
-			case 14:
-				$this->setBillingStateProvince($value);
-				break;
-			case 15:
-				$this->setDeliveryAddressLine1($value);
-				break;
-			case 16:
-				$this->setDeliveryAddressLine2($value);
-				break;
-			case 17:
-				$this->setDeliveryPostalCode($value);
-				break;
-			case 18:
-				$this->setDeliveryCity($value);
-				break;
-			case 19:
-				$this->setDeliveryCountry($value);
-				break;
-			case 20:
-				$this->setDeliveryCountriesId($value);
-				break;
-			case 21:
-				$this->setDeliveryStateProvince($value);
-				break;
-			case 22:
-				$this->setDeliveryCompanyName($value);
-				break;
-			case 23:
 				$this->setDiscount($value);
 				break;
-			case 24:
+			case 9:
 				$this->setGroupsId($value);
 				break;
-			case 25:
+			case 10:
 				$this->setIsActive($value);
 				break;
-			case 26:
+			case 11:
 				$this->setLanguagesId($value);
 				break;
-			case 27:
-				$this->setCountriesId($value);
-				break;
-			case 28:
+			case 12:
 				$this->setCreatedAt($value);
 				break;
-			case 29:
+			case 13:
 				$this->setUpdatedAt($value);
 				break;
 		} // switch()
@@ -2529,28 +1683,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if (array_key_exists($keys[5], $arr)) $this->setEmail($arr[$keys[5]]);
 		if (array_key_exists($keys[6], $arr)) $this->setPhone($arr[$keys[6]]);
 		if (array_key_exists($keys[7], $arr)) $this->setPasswordClear($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setBillingAddressLine1($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setBillingAddressLine2($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setBillingPostalCode($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setBillingCity($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setBillingCountry($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setBillingCountriesId($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setBillingStateProvince($arr[$keys[14]]);
-		if (array_key_exists($keys[15], $arr)) $this->setDeliveryAddressLine1($arr[$keys[15]]);
-		if (array_key_exists($keys[16], $arr)) $this->setDeliveryAddressLine2($arr[$keys[16]]);
-		if (array_key_exists($keys[17], $arr)) $this->setDeliveryPostalCode($arr[$keys[17]]);
-		if (array_key_exists($keys[18], $arr)) $this->setDeliveryCity($arr[$keys[18]]);
-		if (array_key_exists($keys[19], $arr)) $this->setDeliveryCountry($arr[$keys[19]]);
-		if (array_key_exists($keys[20], $arr)) $this->setDeliveryCountriesId($arr[$keys[20]]);
-		if (array_key_exists($keys[21], $arr)) $this->setDeliveryStateProvince($arr[$keys[21]]);
-		if (array_key_exists($keys[22], $arr)) $this->setDeliveryCompanyName($arr[$keys[22]]);
-		if (array_key_exists($keys[23], $arr)) $this->setDiscount($arr[$keys[23]]);
-		if (array_key_exists($keys[24], $arr)) $this->setGroupsId($arr[$keys[24]]);
-		if (array_key_exists($keys[25], $arr)) $this->setIsActive($arr[$keys[25]]);
-		if (array_key_exists($keys[26], $arr)) $this->setLanguagesId($arr[$keys[26]]);
-		if (array_key_exists($keys[27], $arr)) $this->setCountriesId($arr[$keys[27]]);
-		if (array_key_exists($keys[28], $arr)) $this->setCreatedAt($arr[$keys[28]]);
-		if (array_key_exists($keys[29], $arr)) $this->setUpdatedAt($arr[$keys[29]]);
+		if (array_key_exists($keys[8], $arr)) $this->setDiscount($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setGroupsId($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setIsActive($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setLanguagesId($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setUpdatedAt($arr[$keys[13]]);
 	}
 
 	/**
@@ -2570,26 +1708,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CustomersPeer::EMAIL)) $criteria->add(CustomersPeer::EMAIL, $this->email);
 		if ($this->isColumnModified(CustomersPeer::PHONE)) $criteria->add(CustomersPeer::PHONE, $this->phone);
 		if ($this->isColumnModified(CustomersPeer::PASSWORD_CLEAR)) $criteria->add(CustomersPeer::PASSWORD_CLEAR, $this->password_clear);
-		if ($this->isColumnModified(CustomersPeer::BILLING_ADDRESS_LINE_1)) $criteria->add(CustomersPeer::BILLING_ADDRESS_LINE_1, $this->billing_address_line_1);
-		if ($this->isColumnModified(CustomersPeer::BILLING_ADDRESS_LINE_2)) $criteria->add(CustomersPeer::BILLING_ADDRESS_LINE_2, $this->billing_address_line_2);
-		if ($this->isColumnModified(CustomersPeer::BILLING_POSTAL_CODE)) $criteria->add(CustomersPeer::BILLING_POSTAL_CODE, $this->billing_postal_code);
-		if ($this->isColumnModified(CustomersPeer::BILLING_CITY)) $criteria->add(CustomersPeer::BILLING_CITY, $this->billing_city);
-		if ($this->isColumnModified(CustomersPeer::BILLING_COUNTRY)) $criteria->add(CustomersPeer::BILLING_COUNTRY, $this->billing_country);
-		if ($this->isColumnModified(CustomersPeer::BILLING_COUNTRIES_ID)) $criteria->add(CustomersPeer::BILLING_COUNTRIES_ID, $this->billing_countries_id);
-		if ($this->isColumnModified(CustomersPeer::BILLING_STATE_PROVINCE)) $criteria->add(CustomersPeer::BILLING_STATE_PROVINCE, $this->billing_state_province);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_ADDRESS_LINE_1)) $criteria->add(CustomersPeer::DELIVERY_ADDRESS_LINE_1, $this->delivery_address_line_1);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_ADDRESS_LINE_2)) $criteria->add(CustomersPeer::DELIVERY_ADDRESS_LINE_2, $this->delivery_address_line_2);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_POSTAL_CODE)) $criteria->add(CustomersPeer::DELIVERY_POSTAL_CODE, $this->delivery_postal_code);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_CITY)) $criteria->add(CustomersPeer::DELIVERY_CITY, $this->delivery_city);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_COUNTRY)) $criteria->add(CustomersPeer::DELIVERY_COUNTRY, $this->delivery_country);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_COUNTRIES_ID)) $criteria->add(CustomersPeer::DELIVERY_COUNTRIES_ID, $this->delivery_countries_id);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_STATE_PROVINCE)) $criteria->add(CustomersPeer::DELIVERY_STATE_PROVINCE, $this->delivery_state_province);
-		if ($this->isColumnModified(CustomersPeer::DELIVERY_COMPANY_NAME)) $criteria->add(CustomersPeer::DELIVERY_COMPANY_NAME, $this->delivery_company_name);
 		if ($this->isColumnModified(CustomersPeer::DISCOUNT)) $criteria->add(CustomersPeer::DISCOUNT, $this->discount);
 		if ($this->isColumnModified(CustomersPeer::GROUPS_ID)) $criteria->add(CustomersPeer::GROUPS_ID, $this->groups_id);
 		if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) $criteria->add(CustomersPeer::IS_ACTIVE, $this->is_active);
 		if ($this->isColumnModified(CustomersPeer::LANGUAGES_ID)) $criteria->add(CustomersPeer::LANGUAGES_ID, $this->languages_id);
-		if ($this->isColumnModified(CustomersPeer::COUNTRIES_ID)) $criteria->add(CustomersPeer::COUNTRIES_ID, $this->countries_id);
 		if ($this->isColumnModified(CustomersPeer::CREATED_AT)) $criteria->add(CustomersPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(CustomersPeer::UPDATED_AT)) $criteria->add(CustomersPeer::UPDATED_AT, $this->updated_at);
 
@@ -2661,26 +1783,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$copyObj->setEmail($this->getEmail());
 		$copyObj->setPhone($this->getPhone());
 		$copyObj->setPasswordClear($this->getPasswordClear());
-		$copyObj->setBillingAddressLine1($this->getBillingAddressLine1());
-		$copyObj->setBillingAddressLine2($this->getBillingAddressLine2());
-		$copyObj->setBillingPostalCode($this->getBillingPostalCode());
-		$copyObj->setBillingCity($this->getBillingCity());
-		$copyObj->setBillingCountry($this->getBillingCountry());
-		$copyObj->setBillingCountriesId($this->getBillingCountriesId());
-		$copyObj->setBillingStateProvince($this->getBillingStateProvince());
-		$copyObj->setDeliveryAddressLine1($this->getDeliveryAddressLine1());
-		$copyObj->setDeliveryAddressLine2($this->getDeliveryAddressLine2());
-		$copyObj->setDeliveryPostalCode($this->getDeliveryPostalCode());
-		$copyObj->setDeliveryCity($this->getDeliveryCity());
-		$copyObj->setDeliveryCountry($this->getDeliveryCountry());
-		$copyObj->setDeliveryCountriesId($this->getDeliveryCountriesId());
-		$copyObj->setDeliveryStateProvince($this->getDeliveryStateProvince());
-		$copyObj->setDeliveryCompanyName($this->getDeliveryCompanyName());
 		$copyObj->setDiscount($this->getDiscount());
 		$copyObj->setGroupsId($this->getGroupsId());
 		$copyObj->setIsActive($this->getIsActive());
 		$copyObj->setLanguagesId($this->getLanguagesId());
-		$copyObj->setCountriesId($this->getCountriesId());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -2699,6 +1805,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			foreach ($this->getCouponsToCustomerss() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
 					$copyObj->addCouponsToCustomers($relObj->copy($deepCopy));
+				}
+			}
+
+			foreach ($this->getAddressess() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addAddresses($relObj->copy($deepCopy));
 				}
 			}
 
@@ -2865,153 +1977,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		return $this->aLanguages;
 	}
 
-	/**
-	 * Declares an association between this object and a Countries object.
-	 *
-	 * @param      Countries $v
-	 * @return     Customers The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setCountriesRelatedByCountriesId(Countries $v = null)
-	{
-		if ($v === null) {
-			$this->setCountriesId(NULL);
-		} else {
-			$this->setCountriesId($v->getId());
-		}
-
-		$this->aCountriesRelatedByCountriesId = $v;
-
-		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Countries object, it will not be re-added.
-		if ($v !== null) {
-			$v->addCustomersRelatedByCountriesId($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Countries object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Countries The associated Countries object.
-	 * @throws     PropelException
-	 */
-	public function getCountriesRelatedByCountriesId(PropelPDO $con = null)
-	{
-		if ($this->aCountriesRelatedByCountriesId === null && ($this->countries_id !== null)) {
-			$this->aCountriesRelatedByCountriesId = CountriesQuery::create()->findPk($this->countries_id, $con);
-			/* The following can be used additionally to
-				guarantee the related object contains a reference
-				to this object.  This level of coupling may, however, be
-				undesirable since it could result in an only partially populated collection
-				in the referenced object.
-				$this->aCountriesRelatedByCountriesId->addCustomerssRelatedByCountriesId($this);
-			 */
-		}
-		return $this->aCountriesRelatedByCountriesId;
-	}
-
-	/**
-	 * Declares an association between this object and a Countries object.
-	 *
-	 * @param      Countries $v
-	 * @return     Customers The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setCountriesRelatedByBillingCountriesId(Countries $v = null)
-	{
-		if ($v === null) {
-			$this->setBillingCountriesId(NULL);
-		} else {
-			$this->setBillingCountriesId($v->getId());
-		}
-
-		$this->aCountriesRelatedByBillingCountriesId = $v;
-
-		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Countries object, it will not be re-added.
-		if ($v !== null) {
-			$v->addCustomersRelatedByBillingCountriesId($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Countries object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Countries The associated Countries object.
-	 * @throws     PropelException
-	 */
-	public function getCountriesRelatedByBillingCountriesId(PropelPDO $con = null)
-	{
-		if ($this->aCountriesRelatedByBillingCountriesId === null && ($this->billing_countries_id !== null)) {
-			$this->aCountriesRelatedByBillingCountriesId = CountriesQuery::create()->findPk($this->billing_countries_id, $con);
-			/* The following can be used additionally to
-				guarantee the related object contains a reference
-				to this object.  This level of coupling may, however, be
-				undesirable since it could result in an only partially populated collection
-				in the referenced object.
-				$this->aCountriesRelatedByBillingCountriesId->addCustomerssRelatedByBillingCountriesId($this);
-			 */
-		}
-		return $this->aCountriesRelatedByBillingCountriesId;
-	}
-
-	/**
-	 * Declares an association between this object and a Countries object.
-	 *
-	 * @param      Countries $v
-	 * @return     Customers The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setCountriesRelatedByDeliveryCountriesId(Countries $v = null)
-	{
-		if ($v === null) {
-			$this->setDeliveryCountriesId(NULL);
-		} else {
-			$this->setDeliveryCountriesId($v->getId());
-		}
-
-		$this->aCountriesRelatedByDeliveryCountriesId = $v;
-
-		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Countries object, it will not be re-added.
-		if ($v !== null) {
-			$v->addCustomersRelatedByDeliveryCountriesId($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Countries object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Countries The associated Countries object.
-	 * @throws     PropelException
-	 */
-	public function getCountriesRelatedByDeliveryCountriesId(PropelPDO $con = null)
-	{
-		if ($this->aCountriesRelatedByDeliveryCountriesId === null && ($this->delivery_countries_id !== null)) {
-			$this->aCountriesRelatedByDeliveryCountriesId = CountriesQuery::create()->findPk($this->delivery_countries_id, $con);
-			/* The following can be used additionally to
-				guarantee the related object contains a reference
-				to this object.  This level of coupling may, however, be
-				undesirable since it could result in an only partially populated collection
-				in the referenced object.
-				$this->aCountriesRelatedByDeliveryCountriesId->addCustomerssRelatedByDeliveryCountriesId($this);
-			 */
-		}
-		return $this->aCountriesRelatedByDeliveryCountriesId;
-	}
-
 
 	/**
 	 * Initializes a collection based on the name of a relation.
@@ -3025,6 +1990,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	{
 		if ('CouponsToCustomers' == $relationName) {
 			return $this->initCouponsToCustomerss();
+		}
+		if ('Addresses' == $relationName) {
+			return $this->initAddressess();
 		}
 		if ('EventsRelatedByConsultantsId' == $relationName) {
 			return $this->initEventssRelatedByConsultantsId();
@@ -3241,6 +2209,179 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$query->joinWith('Coupons', $join_behavior);
 
 		return $this->getCouponsToCustomerss($query, $con);
+	}
+
+	/**
+	 * Clears out the collAddressess collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addAddressess()
+	 */
+	public function clearAddressess()
+	{
+		$this->collAddressess = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collAddressess collection.
+	 *
+	 * By default this just sets the collAddressess collection to an empty array (like clearcollAddressess());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initAddressess($overrideExisting = true)
+	{
+		if (null !== $this->collAddressess && !$overrideExisting) {
+			return;
+		}
+		$this->collAddressess = new PropelObjectCollection();
+		$this->collAddressess->setModel('Addresses');
+	}
+
+	/**
+	 * Gets an array of Addresses objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this Customers is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array Addresses[] List of Addresses objects
+	 * @throws     PropelException
+	 */
+	public function getAddressess($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collAddressess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collAddressess) {
+				// return empty collection
+				$this->initAddressess();
+			} else {
+				$collAddressess = AddressesQuery::create(null, $criteria)
+					->filterByCustomers($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collAddressess;
+				}
+				$this->collAddressess = $collAddressess;
+			}
+		}
+		return $this->collAddressess;
+	}
+
+	/**
+	 * Sets a collection of Addresses objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $addressess A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setAddressess(PropelCollection $addressess, PropelPDO $con = null)
+	{
+		$this->addressessScheduledForDeletion = $this->getAddressess(new Criteria(), $con)->diff($addressess);
+
+		foreach ($addressess as $addresses) {
+			// Fix issue with collection modified by reference
+			if ($addresses->isNew()) {
+				$addresses->setCustomers($this);
+			}
+			$this->addAddresses($addresses);
+		}
+
+		$this->collAddressess = $addressess;
+	}
+
+	/**
+	 * Returns the number of related Addresses objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related Addresses objects.
+	 * @throws     PropelException
+	 */
+	public function countAddressess(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collAddressess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collAddressess) {
+				return 0;
+			} else {
+				$query = AddressesQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByCustomers($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collAddressess);
+		}
+	}
+
+	/**
+	 * Method called to associate a Addresses object to this object
+	 * through the Addresses foreign key attribute.
+	 *
+	 * @param      Addresses $l Addresses
+	 * @return     Customers The current object (for fluent API support)
+	 */
+	public function addAddresses(Addresses $l)
+	{
+		if ($this->collAddressess === null) {
+			$this->initAddressess();
+		}
+		if (!$this->collAddressess->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddAddresses($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	Addresses $addresses The addresses object to add.
+	 */
+	protected function doAddAddresses($addresses)
+	{
+		$this->collAddressess[]= $addresses;
+		$addresses->setCustomers($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Customers is new, it will return
+	 * an empty collection; or if this Customers has previously
+	 * been saved, it will retrieve related Addressess from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Customers.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Addresses[] List of Addresses objects
+	 */
+	public function getAddressessJoinCountries($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = AddressesQuery::create(null, $criteria);
+		$query->joinWith('Countries', $join_behavior);
+
+		return $this->getAddressess($query, $con);
 	}
 
 	/**
@@ -3588,26 +2729,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$this->email = null;
 		$this->phone = null;
 		$this->password_clear = null;
-		$this->billing_address_line_1 = null;
-		$this->billing_address_line_2 = null;
-		$this->billing_postal_code = null;
-		$this->billing_city = null;
-		$this->billing_country = null;
-		$this->billing_countries_id = null;
-		$this->billing_state_province = null;
-		$this->delivery_address_line_1 = null;
-		$this->delivery_address_line_2 = null;
-		$this->delivery_postal_code = null;
-		$this->delivery_city = null;
-		$this->delivery_country = null;
-		$this->delivery_countries_id = null;
-		$this->delivery_state_province = null;
-		$this->delivery_company_name = null;
 		$this->discount = null;
 		$this->groups_id = null;
 		$this->is_active = null;
 		$this->languages_id = null;
-		$this->countries_id = null;
 		$this->created_at = null;
 		$this->updated_at = null;
 		$this->alreadyInSave = false;
@@ -3639,6 +2764,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collAddressess) {
+				foreach ($this->collAddressess as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 			if ($this->collEventssRelatedByConsultantsId) {
 				foreach ($this->collEventssRelatedByConsultantsId as $o) {
 					$o->clearAllReferences($deep);
@@ -3662,6 +2792,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->collCouponsToCustomerss->clearIterator();
 		}
 		$this->collCouponsToCustomerss = null;
+		if ($this->collAddressess instanceof PropelCollection) {
+			$this->collAddressess->clearIterator();
+		}
+		$this->collAddressess = null;
 		if ($this->collEventssRelatedByConsultantsId instanceof PropelCollection) {
 			$this->collEventssRelatedByConsultantsId->clearIterator();
 		}
@@ -3676,9 +2810,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$this->singleGothiaAccounts = null;
 		$this->aGroups = null;
 		$this->aLanguages = null;
-		$this->aCountriesRelatedByCountriesId = null;
-		$this->aCountriesRelatedByBillingCountriesId = null;
-		$this->aCountriesRelatedByDeliveryCountriesId = null;
 	}
 
 	/**

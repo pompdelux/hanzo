@@ -10,10 +10,10 @@ use \Propel;
 use \PropelCollection;
 use \PropelException;
 use \PropelPDO;
+use Hanzo\Model\Addresses;
 use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
-use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\ZipToCity;
 
@@ -48,17 +48,9 @@ use Hanzo\Model\ZipToCity;
  * @method     CountriesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method     CountriesQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method     CountriesQuery leftJoinCustomersRelatedByCountriesId($relationAlias = null) Adds a LEFT JOIN clause to the query using the CustomersRelatedByCountriesId relation
- * @method     CountriesQuery rightJoinCustomersRelatedByCountriesId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CustomersRelatedByCountriesId relation
- * @method     CountriesQuery innerJoinCustomersRelatedByCountriesId($relationAlias = null) Adds a INNER JOIN clause to the query using the CustomersRelatedByCountriesId relation
- *
- * @method     CountriesQuery leftJoinCustomersRelatedByBillingCountriesId($relationAlias = null) Adds a LEFT JOIN clause to the query using the CustomersRelatedByBillingCountriesId relation
- * @method     CountriesQuery rightJoinCustomersRelatedByBillingCountriesId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CustomersRelatedByBillingCountriesId relation
- * @method     CountriesQuery innerJoinCustomersRelatedByBillingCountriesId($relationAlias = null) Adds a INNER JOIN clause to the query using the CustomersRelatedByBillingCountriesId relation
- *
- * @method     CountriesQuery leftJoinCustomersRelatedByDeliveryCountriesId($relationAlias = null) Adds a LEFT JOIN clause to the query using the CustomersRelatedByDeliveryCountriesId relation
- * @method     CountriesQuery rightJoinCustomersRelatedByDeliveryCountriesId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CustomersRelatedByDeliveryCountriesId relation
- * @method     CountriesQuery innerJoinCustomersRelatedByDeliveryCountriesId($relationAlias = null) Adds a INNER JOIN clause to the query using the CustomersRelatedByDeliveryCountriesId relation
+ * @method     CountriesQuery leftJoinAddresses($relationAlias = null) Adds a LEFT JOIN clause to the query using the Addresses relation
+ * @method     CountriesQuery rightJoinAddresses($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Addresses relation
+ * @method     CountriesQuery innerJoinAddresses($relationAlias = null) Adds a INNER JOIN clause to the query using the Addresses relation
  *
  * @method     CountriesQuery leftJoinZipToCity($relationAlias = null) Adds a LEFT JOIN clause to the query using the ZipToCity relation
  * @method     CountriesQuery rightJoinZipToCity($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ZipToCity relation
@@ -572,40 +564,40 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query by a related Customers object
+	 * Filter the query by a related Addresses object
 	 *
-	 * @param     Customers $customers  the related object to use as filter
+	 * @param     Addresses $addresses  the related object to use as filter
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    CountriesQuery The current query, for fluid interface
 	 */
-	public function filterByCustomersRelatedByCountriesId($customers, $comparison = null)
+	public function filterByAddresses($addresses, $comparison = null)
 	{
-		if ($customers instanceof Customers) {
+		if ($addresses instanceof Addresses) {
 			return $this
-				->addUsingAlias(CountriesPeer::ID, $customers->getCountriesId(), $comparison);
-		} elseif ($customers instanceof PropelCollection) {
+				->addUsingAlias(CountriesPeer::ID, $addresses->getCountriesId(), $comparison);
+		} elseif ($addresses instanceof PropelCollection) {
 			return $this
-				->useCustomersRelatedByCountriesIdQuery()
-				->filterByPrimaryKeys($customers->getPrimaryKeys())
+				->useAddressesQuery()
+				->filterByPrimaryKeys($addresses->getPrimaryKeys())
 				->endUse();
 		} else {
-			throw new PropelException('filterByCustomersRelatedByCountriesId() only accepts arguments of type Customers or PropelCollection');
+			throw new PropelException('filterByAddresses() only accepts arguments of type Addresses or PropelCollection');
 		}
 	}
 
 	/**
-	 * Adds a JOIN clause to the query using the CustomersRelatedByCountriesId relation
+	 * Adds a JOIN clause to the query using the Addresses relation
 	 *
 	 * @param     string $relationAlias optional alias for the relation
 	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
 	 *
 	 * @return    CountriesQuery The current query, for fluid interface
 	 */
-	public function joinCustomersRelatedByCountriesId($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	public function joinAddresses($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
 	{
 		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CustomersRelatedByCountriesId');
+		$relationMap = $tableMap->getRelation('Addresses');
 
 		// create a ModelJoin object for this join
 		$join = new ModelJoin();
@@ -620,14 +612,14 @@ abstract class BaseCountriesQuery extends ModelCriteria
 			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
 			$this->addJoinObject($join, $relationAlias);
 		} else {
-			$this->addJoinObject($join, 'CustomersRelatedByCountriesId');
+			$this->addJoinObject($join, 'Addresses');
 		}
 
 		return $this;
 	}
 
 	/**
-	 * Use the CustomersRelatedByCountriesId relation Customers object
+	 * Use the Addresses relation Addresses object
 	 *
 	 * @see       useQuery()
 	 *
@@ -635,159 +627,13 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	 *                                   to be used as main alias in the secondary query
 	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
 	 *
-	 * @return    \Hanzo\Model\CustomersQuery A secondary query class using the current class as primary query
+	 * @return    \Hanzo\Model\AddressesQuery A secondary query class using the current class as primary query
 	 */
-	public function useCustomersRelatedByCountriesIdQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	public function useAddressesQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
 	{
 		return $this
-			->joinCustomersRelatedByCountriesId($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CustomersRelatedByCountriesId', '\Hanzo\Model\CustomersQuery');
-	}
-
-	/**
-	 * Filter the query by a related Customers object
-	 *
-	 * @param     Customers $customers  the related object to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CountriesQuery The current query, for fluid interface
-	 */
-	public function filterByCustomersRelatedByBillingCountriesId($customers, $comparison = null)
-	{
-		if ($customers instanceof Customers) {
-			return $this
-				->addUsingAlias(CountriesPeer::ID, $customers->getBillingCountriesId(), $comparison);
-		} elseif ($customers instanceof PropelCollection) {
-			return $this
-				->useCustomersRelatedByBillingCountriesIdQuery()
-				->filterByPrimaryKeys($customers->getPrimaryKeys())
-				->endUse();
-		} else {
-			throw new PropelException('filterByCustomersRelatedByBillingCountriesId() only accepts arguments of type Customers or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the CustomersRelatedByBillingCountriesId relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CountriesQuery The current query, for fluid interface
-	 */
-	public function joinCustomersRelatedByBillingCountriesId($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CustomersRelatedByBillingCountriesId');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'CustomersRelatedByBillingCountriesId');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the CustomersRelatedByBillingCountriesId relation Customers object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\CustomersQuery A secondary query class using the current class as primary query
-	 */
-	public function useCustomersRelatedByBillingCountriesIdQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		return $this
-			->joinCustomersRelatedByBillingCountriesId($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CustomersRelatedByBillingCountriesId', '\Hanzo\Model\CustomersQuery');
-	}
-
-	/**
-	 * Filter the query by a related Customers object
-	 *
-	 * @param     Customers $customers  the related object to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CountriesQuery The current query, for fluid interface
-	 */
-	public function filterByCustomersRelatedByDeliveryCountriesId($customers, $comparison = null)
-	{
-		if ($customers instanceof Customers) {
-			return $this
-				->addUsingAlias(CountriesPeer::ID, $customers->getDeliveryCountriesId(), $comparison);
-		} elseif ($customers instanceof PropelCollection) {
-			return $this
-				->useCustomersRelatedByDeliveryCountriesIdQuery()
-				->filterByPrimaryKeys($customers->getPrimaryKeys())
-				->endUse();
-		} else {
-			throw new PropelException('filterByCustomersRelatedByDeliveryCountriesId() only accepts arguments of type Customers or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the CustomersRelatedByDeliveryCountriesId relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CountriesQuery The current query, for fluid interface
-	 */
-	public function joinCustomersRelatedByDeliveryCountriesId($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CustomersRelatedByDeliveryCountriesId');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'CustomersRelatedByDeliveryCountriesId');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the CustomersRelatedByDeliveryCountriesId relation Customers object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\CustomersQuery A secondary query class using the current class as primary query
-	 */
-	public function useCustomersRelatedByDeliveryCountriesIdQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-	{
-		return $this
-			->joinCustomersRelatedByDeliveryCountriesId($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CustomersRelatedByDeliveryCountriesId', '\Hanzo\Model\CustomersQuery');
+			->joinAddresses($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'Addresses', '\Hanzo\Model\AddressesQuery');
 	}
 
 	/**

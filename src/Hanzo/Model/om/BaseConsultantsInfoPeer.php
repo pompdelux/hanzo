@@ -39,13 +39,13 @@ abstract class BaseConsultantsInfoPeer {
 	const TM_CLASS = 'ConsultantsInfoTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 5;
+	const NUM_COLUMNS = 3;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 5;
+	const NUM_HYDRATE_COLUMNS = 3;
 
 	/** the column name for the CONSULTANTS_ID field */
 	const CONSULTANTS_ID = 'consultants_info.CONSULTANTS_ID';
@@ -55,12 +55,6 @@ abstract class BaseConsultantsInfoPeer {
 
 	/** the column name for the MAX_NOTIFIED field */
 	const MAX_NOTIFIED = 'consultants_info.MAX_NOTIFIED';
-
-	/** the column name for the LATITUDE field */
-	const LATITUDE = 'consultants_info.LATITUDE';
-
-	/** the column name for the LONGITUDE field */
-	const LONGITUDE = 'consultants_info.LONGITUDE';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
@@ -81,12 +75,12 @@ abstract class BaseConsultantsInfoPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('ConsultantsId', 'Description', 'MaxNotified', 'Latitude', 'Longitude', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('consultantsId', 'description', 'maxNotified', 'latitude', 'longitude', ),
-		BasePeer::TYPE_COLNAME => array (self::CONSULTANTS_ID, self::DESCRIPTION, self::MAX_NOTIFIED, self::LATITUDE, self::LONGITUDE, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('CONSULTANTS_ID', 'DESCRIPTION', 'MAX_NOTIFIED', 'LATITUDE', 'LONGITUDE', ),
-		BasePeer::TYPE_FIELDNAME => array ('consultants_id', 'description', 'max_notified', 'latitude', 'longitude', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('ConsultantsId', 'Description', 'MaxNotified', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('consultantsId', 'description', 'maxNotified', ),
+		BasePeer::TYPE_COLNAME => array (self::CONSULTANTS_ID, self::DESCRIPTION, self::MAX_NOTIFIED, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('CONSULTANTS_ID', 'DESCRIPTION', 'MAX_NOTIFIED', ),
+		BasePeer::TYPE_FIELDNAME => array ('consultants_id', 'description', 'max_notified', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	/**
@@ -96,12 +90,12 @@ abstract class BaseConsultantsInfoPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('ConsultantsId' => 0, 'Description' => 1, 'MaxNotified' => 2, 'Latitude' => 3, 'Longitude' => 4, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('consultantsId' => 0, 'description' => 1, 'maxNotified' => 2, 'latitude' => 3, 'longitude' => 4, ),
-		BasePeer::TYPE_COLNAME => array (self::CONSULTANTS_ID => 0, self::DESCRIPTION => 1, self::MAX_NOTIFIED => 2, self::LATITUDE => 3, self::LONGITUDE => 4, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('CONSULTANTS_ID' => 0, 'DESCRIPTION' => 1, 'MAX_NOTIFIED' => 2, 'LATITUDE' => 3, 'LONGITUDE' => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('consultants_id' => 0, 'description' => 1, 'max_notified' => 2, 'latitude' => 3, 'longitude' => 4, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('ConsultantsId' => 0, 'Description' => 1, 'MaxNotified' => 2, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('consultantsId' => 0, 'description' => 1, 'maxNotified' => 2, ),
+		BasePeer::TYPE_COLNAME => array (self::CONSULTANTS_ID => 0, self::DESCRIPTION => 1, self::MAX_NOTIFIED => 2, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('CONSULTANTS_ID' => 0, 'DESCRIPTION' => 1, 'MAX_NOTIFIED' => 2, ),
+		BasePeer::TYPE_FIELDNAME => array ('consultants_id' => 0, 'description' => 1, 'max_notified' => 2, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	/**
@@ -176,14 +170,10 @@ abstract class BaseConsultantsInfoPeer {
 			$criteria->addSelectColumn(ConsultantsInfoPeer::CONSULTANTS_ID);
 			$criteria->addSelectColumn(ConsultantsInfoPeer::DESCRIPTION);
 			$criteria->addSelectColumn(ConsultantsInfoPeer::MAX_NOTIFIED);
-			$criteria->addSelectColumn(ConsultantsInfoPeer::LATITUDE);
-			$criteria->addSelectColumn(ConsultantsInfoPeer::LONGITUDE);
 		} else {
 			$criteria->addSelectColumn($alias . '.CONSULTANTS_ID');
 			$criteria->addSelectColumn($alias . '.DESCRIPTION');
 			$criteria->addSelectColumn($alias . '.MAX_NOTIFIED');
-			$criteria->addSelectColumn($alias . '.LATITUDE');
-			$criteria->addSelectColumn($alias . '.LONGITUDE');
 		}
 	}
 

@@ -45,8 +45,6 @@ class ConsultantsInfoTableMap extends TableMap
 		$this->addForeignPrimaryKey('CONSULTANTS_ID', 'ConsultantsId', 'INTEGER' , 'customers', 'ID', true, null, null);
 		$this->addColumn('DESCRIPTION', 'Description', 'LONGVARCHAR', false, null, null);
 		$this->addColumn('MAX_NOTIFIED', 'MaxNotified', 'BOOLEAN', true, 1, false);
-		$this->addColumn('LATITUDE', 'Latitude', 'FLOAT', false, 10, null);
-		$this->addColumn('LONGITUDE', 'Longitude', 'FLOAT', false, 10, null);
 		// validators
 	} // initialize()
 

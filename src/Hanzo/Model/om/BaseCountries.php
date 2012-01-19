@@ -13,10 +13,10 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
-use Hanzo\Model\Customers;
-use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\ZipToCity;
@@ -112,19 +112,9 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	protected $currency_name;
 
 	/**
-	 * @var        array Customers[] Collection to store aggregation of Customers objects.
+	 * @var        array Addresses[] Collection to store aggregation of Addresses objects.
 	 */
-	protected $collCustomerssRelatedByCountriesId;
-
-	/**
-	 * @var        array Customers[] Collection to store aggregation of Customers objects.
-	 */
-	protected $collCustomerssRelatedByBillingCountriesId;
-
-	/**
-	 * @var        array Customers[] Collection to store aggregation of Customers objects.
-	 */
-	protected $collCustomerssRelatedByDeliveryCountriesId;
+	protected $collAddressess;
 
 	/**
 	 * @var        array ZipToCity[] Collection to store aggregation of ZipToCity objects.
@@ -159,19 +149,7 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	 * An array of objects scheduled for deletion.
 	 * @var		array
 	 */
-	protected $customerssRelatedByCountriesIdScheduledForDeletion = null;
-
-	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $customerssRelatedByBillingCountriesIdScheduledForDeletion = null;
-
-	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $customerssRelatedByDeliveryCountriesIdScheduledForDeletion = null;
+	protected $addressessScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -603,11 +581,7 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 
 		if ($deep) {  // also de-associate any related objects?
 
-			$this->collCustomerssRelatedByCountriesId = null;
-
-			$this->collCustomerssRelatedByBillingCountriesId = null;
-
-			$this->collCustomerssRelatedByDeliveryCountriesId = null;
+			$this->collAddressess = null;
 
 			$this->collZipToCitys = null;
 
@@ -736,51 +710,17 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 				$this->resetModified();
 			}
 
-			if ($this->customerssRelatedByCountriesIdScheduledForDeletion !== null) {
-				if (!$this->customerssRelatedByCountriesIdScheduledForDeletion->isEmpty()) {
-					CustomersQuery::create()
-						->filterByPrimaryKeys($this->customerssRelatedByCountriesIdScheduledForDeletion->getPrimaryKeys(false))
+			if ($this->addressessScheduledForDeletion !== null) {
+				if (!$this->addressessScheduledForDeletion->isEmpty()) {
+					AddressesQuery::create()
+						->filterByPrimaryKeys($this->addressessScheduledForDeletion->getPrimaryKeys(false))
 						->delete($con);
-					$this->customerssRelatedByCountriesIdScheduledForDeletion = null;
+					$this->addressessScheduledForDeletion = null;
 				}
 			}
 
-			if ($this->collCustomerssRelatedByCountriesId !== null) {
-				foreach ($this->collCustomerssRelatedByCountriesId as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
-			if ($this->customerssRelatedByBillingCountriesIdScheduledForDeletion !== null) {
-				if (!$this->customerssRelatedByBillingCountriesIdScheduledForDeletion->isEmpty()) {
-					CustomersQuery::create()
-						->filterByPrimaryKeys($this->customerssRelatedByBillingCountriesIdScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->customerssRelatedByBillingCountriesIdScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->collCustomerssRelatedByBillingCountriesId !== null) {
-				foreach ($this->collCustomerssRelatedByBillingCountriesId as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
-			if ($this->customerssRelatedByDeliveryCountriesIdScheduledForDeletion !== null) {
-				if (!$this->customerssRelatedByDeliveryCountriesIdScheduledForDeletion->isEmpty()) {
-					CustomersQuery::create()
-						->filterByPrimaryKeys($this->customerssRelatedByDeliveryCountriesIdScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->customerssRelatedByDeliveryCountriesIdScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->collCustomerssRelatedByDeliveryCountriesId !== null) {
-				foreach ($this->collCustomerssRelatedByDeliveryCountriesId as $referrerFK) {
+			if ($this->collAddressess !== null) {
+				foreach ($this->collAddressess as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -1031,24 +971,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 			}
 
 
-				if ($this->collCustomerssRelatedByCountriesId !== null) {
-					foreach ($this->collCustomerssRelatedByCountriesId as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
-				if ($this->collCustomerssRelatedByBillingCountriesId !== null) {
-					foreach ($this->collCustomerssRelatedByBillingCountriesId as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
-				if ($this->collCustomerssRelatedByDeliveryCountriesId !== null) {
-					foreach ($this->collCustomerssRelatedByDeliveryCountriesId as $referrerFK) {
+				if ($this->collAddressess !== null) {
+					foreach ($this->collAddressess as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1183,14 +1107,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 			$keys[9] => $this->getCurrencyName(),
 		);
 		if ($includeForeignObjects) {
-			if (null !== $this->collCustomerssRelatedByCountriesId) {
-				$result['CustomerssRelatedByCountriesId'] = $this->collCustomerssRelatedByCountriesId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-			}
-			if (null !== $this->collCustomerssRelatedByBillingCountriesId) {
-				$result['CustomerssRelatedByBillingCountriesId'] = $this->collCustomerssRelatedByBillingCountriesId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-			}
-			if (null !== $this->collCustomerssRelatedByDeliveryCountriesId) {
-				$result['CustomerssRelatedByDeliveryCountriesId'] = $this->collCustomerssRelatedByDeliveryCountriesId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			if (null !== $this->collAddressess) {
+				$result['Addressess'] = $this->collAddressess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->collZipToCitys) {
 				$result['ZipToCitys'] = $this->collZipToCitys->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1396,21 +1314,9 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 			// store object hash to prevent cycle
 			$this->startCopy = true;
 
-			foreach ($this->getCustomerssRelatedByCountriesId() as $relObj) {
+			foreach ($this->getAddressess() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addCustomersRelatedByCountriesId($relObj->copy($deepCopy));
-				}
-			}
-
-			foreach ($this->getCustomerssRelatedByBillingCountriesId() as $relObj) {
-				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addCustomersRelatedByBillingCountriesId($relObj->copy($deepCopy));
-				}
-			}
-
-			foreach ($this->getCustomerssRelatedByDeliveryCountriesId() as $relObj) {
-				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addCustomersRelatedByDeliveryCountriesId($relObj->copy($deepCopy));
+					$copyObj->addAddresses($relObj->copy($deepCopy));
 				}
 			}
 
@@ -1491,14 +1397,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	 */
 	public function initRelation($relationName)
 	{
-		if ('CustomersRelatedByCountriesId' == $relationName) {
-			return $this->initCustomerssRelatedByCountriesId();
-		}
-		if ('CustomersRelatedByBillingCountriesId' == $relationName) {
-			return $this->initCustomerssRelatedByBillingCountriesId();
-		}
-		if ('CustomersRelatedByDeliveryCountriesId' == $relationName) {
-			return $this->initCustomerssRelatedByDeliveryCountriesId();
+		if ('Addresses' == $relationName) {
+			return $this->initAddressess();
 		}
 		if ('ZipToCity' == $relationName) {
 			return $this->initZipToCitys();
@@ -1512,23 +1412,23 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Clears out the collCustomerssRelatedByCountriesId collection
+	 * Clears out the collAddressess collection
 	 *
 	 * This does not modify the database; however, it will remove any associated objects, causing
 	 * them to be refetched by subsequent calls to accessor method.
 	 *
 	 * @return     void
-	 * @see        addCustomerssRelatedByCountriesId()
+	 * @see        addAddressess()
 	 */
-	public function clearCustomerssRelatedByCountriesId()
+	public function clearAddressess()
 	{
-		$this->collCustomerssRelatedByCountriesId = null; // important to set this to NULL since that means it is uninitialized
+		$this->collAddressess = null; // important to set this to NULL since that means it is uninitialized
 	}
 
 	/**
-	 * Initializes the collCustomerssRelatedByCountriesId collection.
+	 * Initializes the collAddressess collection.
 	 *
-	 * By default this just sets the collCustomerssRelatedByCountriesId collection to an empty array (like clearcollCustomerssRelatedByCountriesId());
+	 * By default this just sets the collAddressess collection to an empty array (like clearcollAddressess());
 	 * however, you may wish to override this method in your stub class to provide setting appropriate
 	 * to your application -- for example, setting the initial array to the values stored in database.
 	 *
@@ -1537,17 +1437,17 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	 *
 	 * @return     void
 	 */
-	public function initCustomerssRelatedByCountriesId($overrideExisting = true)
+	public function initAddressess($overrideExisting = true)
 	{
-		if (null !== $this->collCustomerssRelatedByCountriesId && !$overrideExisting) {
+		if (null !== $this->collAddressess && !$overrideExisting) {
 			return;
 		}
-		$this->collCustomerssRelatedByCountriesId = new PropelObjectCollection();
-		$this->collCustomerssRelatedByCountriesId->setModel('Customers');
+		$this->collAddressess = new PropelObjectCollection();
+		$this->collAddressess->setModel('Addresses');
 	}
 
 	/**
-	 * Gets an array of Customers objects which contain a foreign key that references this object.
+	 * Gets an array of Addresses objects which contain a foreign key that references this object.
 	 *
 	 * If the $criteria is not null, it is used to always fetch the results from the database.
 	 * Otherwise the results are fetched from the database the first time, then cached.
@@ -1557,106 +1457,106 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	 *
 	 * @param      Criteria $criteria optional Criteria object to narrow the query
 	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array Customers[] List of Customers objects
+	 * @return     PropelCollection|array Addresses[] List of Addresses objects
 	 * @throws     PropelException
 	 */
-	public function getCustomerssRelatedByCountriesId($criteria = null, PropelPDO $con = null)
+	public function getAddressess($criteria = null, PropelPDO $con = null)
 	{
-		if(null === $this->collCustomerssRelatedByCountriesId || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerssRelatedByCountriesId) {
+		if(null === $this->collAddressess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collAddressess) {
 				// return empty collection
-				$this->initCustomerssRelatedByCountriesId();
+				$this->initAddressess();
 			} else {
-				$collCustomerssRelatedByCountriesId = CustomersQuery::create(null, $criteria)
-					->filterByCountriesRelatedByCountriesId($this)
+				$collAddressess = AddressesQuery::create(null, $criteria)
+					->filterByCountries($this)
 					->find($con);
 				if (null !== $criteria) {
-					return $collCustomerssRelatedByCountriesId;
+					return $collAddressess;
 				}
-				$this->collCustomerssRelatedByCountriesId = $collCustomerssRelatedByCountriesId;
+				$this->collAddressess = $collAddressess;
 			}
 		}
-		return $this->collCustomerssRelatedByCountriesId;
+		return $this->collAddressess;
 	}
 
 	/**
-	 * Sets a collection of CustomersRelatedByCountriesId objects related by a one-to-many relationship
+	 * Sets a collection of Addresses objects related by a one-to-many relationship
 	 * to the current object.
 	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
 	 * and new objects from the given Propel collection.
 	 *
-	 * @param      PropelCollection $customerssRelatedByCountriesId A Propel collection.
+	 * @param      PropelCollection $addressess A Propel collection.
 	 * @param      PropelPDO $con Optional connection object
 	 */
-	public function setCustomerssRelatedByCountriesId(PropelCollection $customerssRelatedByCountriesId, PropelPDO $con = null)
+	public function setAddressess(PropelCollection $addressess, PropelPDO $con = null)
 	{
-		$this->customerssRelatedByCountriesIdScheduledForDeletion = $this->getCustomerssRelatedByCountriesId(new Criteria(), $con)->diff($customerssRelatedByCountriesId);
+		$this->addressessScheduledForDeletion = $this->getAddressess(new Criteria(), $con)->diff($addressess);
 
-		foreach ($customerssRelatedByCountriesId as $customersRelatedByCountriesId) {
+		foreach ($addressess as $addresses) {
 			// Fix issue with collection modified by reference
-			if ($customersRelatedByCountriesId->isNew()) {
-				$customersRelatedByCountriesId->setCountriesRelatedByCountriesId($this);
+			if ($addresses->isNew()) {
+				$addresses->setCountries($this);
 			}
-			$this->addCustomersRelatedByCountriesId($customersRelatedByCountriesId);
+			$this->addAddresses($addresses);
 		}
 
-		$this->collCustomerssRelatedByCountriesId = $customerssRelatedByCountriesId;
+		$this->collAddressess = $addressess;
 	}
 
 	/**
-	 * Returns the number of related Customers objects.
+	 * Returns the number of related Addresses objects.
 	 *
 	 * @param      Criteria $criteria
 	 * @param      boolean $distinct
 	 * @param      PropelPDO $con
-	 * @return     int Count of related Customers objects.
+	 * @return     int Count of related Addresses objects.
 	 * @throws     PropelException
 	 */
-	public function countCustomerssRelatedByCountriesId(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	public function countAddressess(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
 	{
-		if(null === $this->collCustomerssRelatedByCountriesId || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerssRelatedByCountriesId) {
+		if(null === $this->collAddressess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collAddressess) {
 				return 0;
 			} else {
-				$query = CustomersQuery::create(null, $criteria);
+				$query = AddressesQuery::create(null, $criteria);
 				if($distinct) {
 					$query->distinct();
 				}
 				return $query
-					->filterByCountriesRelatedByCountriesId($this)
+					->filterByCountries($this)
 					->count($con);
 			}
 		} else {
-			return count($this->collCustomerssRelatedByCountriesId);
+			return count($this->collAddressess);
 		}
 	}
 
 	/**
-	 * Method called to associate a Customers object to this object
-	 * through the Customers foreign key attribute.
+	 * Method called to associate a Addresses object to this object
+	 * through the Addresses foreign key attribute.
 	 *
-	 * @param      Customers $l Customers
+	 * @param      Addresses $l Addresses
 	 * @return     Countries The current object (for fluent API support)
 	 */
-	public function addCustomersRelatedByCountriesId(Customers $l)
+	public function addAddresses(Addresses $l)
 	{
-		if ($this->collCustomerssRelatedByCountriesId === null) {
-			$this->initCustomerssRelatedByCountriesId();
+		if ($this->collAddressess === null) {
+			$this->initAddressess();
 		}
-		if (!$this->collCustomerssRelatedByCountriesId->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddCustomersRelatedByCountriesId($l);
+		if (!$this->collAddressess->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddAddresses($l);
 		}
 
 		return $this;
 	}
 
 	/**
-	 * @param	CustomersRelatedByCountriesId $customersRelatedByCountriesId The customersRelatedByCountriesId object to add.
+	 * @param	Addresses $addresses The addresses object to add.
 	 */
-	protected function doAddCustomersRelatedByCountriesId($customersRelatedByCountriesId)
+	protected function doAddAddresses($addresses)
 	{
-		$this->collCustomerssRelatedByCountriesId[]= $customersRelatedByCountriesId;
-		$customersRelatedByCountriesId->setCountriesRelatedByCountriesId($this);
+		$this->collAddressess[]= $addresses;
+		$addresses->setCountries($this);
 	}
 
 
@@ -1665,7 +1565,7 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	 * an identical criteria, it returns the collection.
 	 * Otherwise if this Countries is new, it will return
 	 * an empty collection; or if this Countries has previously
-	 * been saved, it will retrieve related CustomerssRelatedByCountriesId from storage.
+	 * been saved, it will retrieve related Addressess from storage.
 	 *
 	 * This method is protected by default in order to keep the public
 	 * api reasonable.  You can provide public methods for those you
@@ -1674,435 +1574,14 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	 * @param      Criteria $criteria optional Criteria object to narrow the query
 	 * @param      PropelPDO $con optional connection object
 	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array Customers[] List of Customers objects
+	 * @return     PropelCollection|array Addresses[] List of Addresses objects
 	 */
-	public function getCustomerssRelatedByCountriesIdJoinGroups($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public function getAddressessJoinCustomers($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
-		$query = CustomersQuery::create(null, $criteria);
-		$query->joinWith('Groups', $join_behavior);
+		$query = AddressesQuery::create(null, $criteria);
+		$query->joinWith('Customers', $join_behavior);
 
-		return $this->getCustomerssRelatedByCountriesId($query, $con);
-	}
-
-
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Countries is new, it will return
-	 * an empty collection; or if this Countries has previously
-	 * been saved, it will retrieve related CustomerssRelatedByCountriesId from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Countries.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 */
-	public function getCustomerssRelatedByCountriesIdJoinLanguages($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$query = CustomersQuery::create(null, $criteria);
-		$query->joinWith('Languages', $join_behavior);
-
-		return $this->getCustomerssRelatedByCountriesId($query, $con);
-	}
-
-	/**
-	 * Clears out the collCustomerssRelatedByBillingCountriesId collection
-	 *
-	 * This does not modify the database; however, it will remove any associated objects, causing
-	 * them to be refetched by subsequent calls to accessor method.
-	 *
-	 * @return     void
-	 * @see        addCustomerssRelatedByBillingCountriesId()
-	 */
-	public function clearCustomerssRelatedByBillingCountriesId()
-	{
-		$this->collCustomerssRelatedByBillingCountriesId = null; // important to set this to NULL since that means it is uninitialized
-	}
-
-	/**
-	 * Initializes the collCustomerssRelatedByBillingCountriesId collection.
-	 *
-	 * By default this just sets the collCustomerssRelatedByBillingCountriesId collection to an empty array (like clearcollCustomerssRelatedByBillingCountriesId());
-	 * however, you may wish to override this method in your stub class to provide setting appropriate
-	 * to your application -- for example, setting the initial array to the values stored in database.
-	 *
-	 * @param      boolean $overrideExisting If set to true, the method call initializes
-	 *                                        the collection even if it is not empty
-	 *
-	 * @return     void
-	 */
-	public function initCustomerssRelatedByBillingCountriesId($overrideExisting = true)
-	{
-		if (null !== $this->collCustomerssRelatedByBillingCountriesId && !$overrideExisting) {
-			return;
-		}
-		$this->collCustomerssRelatedByBillingCountriesId = new PropelObjectCollection();
-		$this->collCustomerssRelatedByBillingCountriesId->setModel('Customers');
-	}
-
-	/**
-	 * Gets an array of Customers objects which contain a foreign key that references this object.
-	 *
-	 * If the $criteria is not null, it is used to always fetch the results from the database.
-	 * Otherwise the results are fetched from the database the first time, then cached.
-	 * Next time the same method is called without $criteria, the cached collection is returned.
-	 * If this Countries is new, it will return
-	 * an empty collection or the current collection; the criteria is ignored on a new object.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 * @throws     PropelException
-	 */
-	public function getCustomerssRelatedByBillingCountriesId($criteria = null, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomerssRelatedByBillingCountriesId || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerssRelatedByBillingCountriesId) {
-				// return empty collection
-				$this->initCustomerssRelatedByBillingCountriesId();
-			} else {
-				$collCustomerssRelatedByBillingCountriesId = CustomersQuery::create(null, $criteria)
-					->filterByCountriesRelatedByBillingCountriesId($this)
-					->find($con);
-				if (null !== $criteria) {
-					return $collCustomerssRelatedByBillingCountriesId;
-				}
-				$this->collCustomerssRelatedByBillingCountriesId = $collCustomerssRelatedByBillingCountriesId;
-			}
-		}
-		return $this->collCustomerssRelatedByBillingCountriesId;
-	}
-
-	/**
-	 * Sets a collection of CustomersRelatedByBillingCountriesId objects related by a one-to-many relationship
-	 * to the current object.
-	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-	 * and new objects from the given Propel collection.
-	 *
-	 * @param      PropelCollection $customerssRelatedByBillingCountriesId A Propel collection.
-	 * @param      PropelPDO $con Optional connection object
-	 */
-	public function setCustomerssRelatedByBillingCountriesId(PropelCollection $customerssRelatedByBillingCountriesId, PropelPDO $con = null)
-	{
-		$this->customerssRelatedByBillingCountriesIdScheduledForDeletion = $this->getCustomerssRelatedByBillingCountriesId(new Criteria(), $con)->diff($customerssRelatedByBillingCountriesId);
-
-		foreach ($customerssRelatedByBillingCountriesId as $customersRelatedByBillingCountriesId) {
-			// Fix issue with collection modified by reference
-			if ($customersRelatedByBillingCountriesId->isNew()) {
-				$customersRelatedByBillingCountriesId->setCountriesRelatedByBillingCountriesId($this);
-			}
-			$this->addCustomersRelatedByBillingCountriesId($customersRelatedByBillingCountriesId);
-		}
-
-		$this->collCustomerssRelatedByBillingCountriesId = $customerssRelatedByBillingCountriesId;
-	}
-
-	/**
-	 * Returns the number of related Customers objects.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct
-	 * @param      PropelPDO $con
-	 * @return     int Count of related Customers objects.
-	 * @throws     PropelException
-	 */
-	public function countCustomerssRelatedByBillingCountriesId(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomerssRelatedByBillingCountriesId || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerssRelatedByBillingCountriesId) {
-				return 0;
-			} else {
-				$query = CustomersQuery::create(null, $criteria);
-				if($distinct) {
-					$query->distinct();
-				}
-				return $query
-					->filterByCountriesRelatedByBillingCountriesId($this)
-					->count($con);
-			}
-		} else {
-			return count($this->collCustomerssRelatedByBillingCountriesId);
-		}
-	}
-
-	/**
-	 * Method called to associate a Customers object to this object
-	 * through the Customers foreign key attribute.
-	 *
-	 * @param      Customers $l Customers
-	 * @return     Countries The current object (for fluent API support)
-	 */
-	public function addCustomersRelatedByBillingCountriesId(Customers $l)
-	{
-		if ($this->collCustomerssRelatedByBillingCountriesId === null) {
-			$this->initCustomerssRelatedByBillingCountriesId();
-		}
-		if (!$this->collCustomerssRelatedByBillingCountriesId->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddCustomersRelatedByBillingCountriesId($l);
-		}
-
-		return $this;
-	}
-
-	/**
-	 * @param	CustomersRelatedByBillingCountriesId $customersRelatedByBillingCountriesId The customersRelatedByBillingCountriesId object to add.
-	 */
-	protected function doAddCustomersRelatedByBillingCountriesId($customersRelatedByBillingCountriesId)
-	{
-		$this->collCustomerssRelatedByBillingCountriesId[]= $customersRelatedByBillingCountriesId;
-		$customersRelatedByBillingCountriesId->setCountriesRelatedByBillingCountriesId($this);
-	}
-
-
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Countries is new, it will return
-	 * an empty collection; or if this Countries has previously
-	 * been saved, it will retrieve related CustomerssRelatedByBillingCountriesId from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Countries.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 */
-	public function getCustomerssRelatedByBillingCountriesIdJoinGroups($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$query = CustomersQuery::create(null, $criteria);
-		$query->joinWith('Groups', $join_behavior);
-
-		return $this->getCustomerssRelatedByBillingCountriesId($query, $con);
-	}
-
-
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Countries is new, it will return
-	 * an empty collection; or if this Countries has previously
-	 * been saved, it will retrieve related CustomerssRelatedByBillingCountriesId from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Countries.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 */
-	public function getCustomerssRelatedByBillingCountriesIdJoinLanguages($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$query = CustomersQuery::create(null, $criteria);
-		$query->joinWith('Languages', $join_behavior);
-
-		return $this->getCustomerssRelatedByBillingCountriesId($query, $con);
-	}
-
-	/**
-	 * Clears out the collCustomerssRelatedByDeliveryCountriesId collection
-	 *
-	 * This does not modify the database; however, it will remove any associated objects, causing
-	 * them to be refetched by subsequent calls to accessor method.
-	 *
-	 * @return     void
-	 * @see        addCustomerssRelatedByDeliveryCountriesId()
-	 */
-	public function clearCustomerssRelatedByDeliveryCountriesId()
-	{
-		$this->collCustomerssRelatedByDeliveryCountriesId = null; // important to set this to NULL since that means it is uninitialized
-	}
-
-	/**
-	 * Initializes the collCustomerssRelatedByDeliveryCountriesId collection.
-	 *
-	 * By default this just sets the collCustomerssRelatedByDeliveryCountriesId collection to an empty array (like clearcollCustomerssRelatedByDeliveryCountriesId());
-	 * however, you may wish to override this method in your stub class to provide setting appropriate
-	 * to your application -- for example, setting the initial array to the values stored in database.
-	 *
-	 * @param      boolean $overrideExisting If set to true, the method call initializes
-	 *                                        the collection even if it is not empty
-	 *
-	 * @return     void
-	 */
-	public function initCustomerssRelatedByDeliveryCountriesId($overrideExisting = true)
-	{
-		if (null !== $this->collCustomerssRelatedByDeliveryCountriesId && !$overrideExisting) {
-			return;
-		}
-		$this->collCustomerssRelatedByDeliveryCountriesId = new PropelObjectCollection();
-		$this->collCustomerssRelatedByDeliveryCountriesId->setModel('Customers');
-	}
-
-	/**
-	 * Gets an array of Customers objects which contain a foreign key that references this object.
-	 *
-	 * If the $criteria is not null, it is used to always fetch the results from the database.
-	 * Otherwise the results are fetched from the database the first time, then cached.
-	 * Next time the same method is called without $criteria, the cached collection is returned.
-	 * If this Countries is new, it will return
-	 * an empty collection or the current collection; the criteria is ignored on a new object.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 * @throws     PropelException
-	 */
-	public function getCustomerssRelatedByDeliveryCountriesId($criteria = null, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomerssRelatedByDeliveryCountriesId || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerssRelatedByDeliveryCountriesId) {
-				// return empty collection
-				$this->initCustomerssRelatedByDeliveryCountriesId();
-			} else {
-				$collCustomerssRelatedByDeliveryCountriesId = CustomersQuery::create(null, $criteria)
-					->filterByCountriesRelatedByDeliveryCountriesId($this)
-					->find($con);
-				if (null !== $criteria) {
-					return $collCustomerssRelatedByDeliveryCountriesId;
-				}
-				$this->collCustomerssRelatedByDeliveryCountriesId = $collCustomerssRelatedByDeliveryCountriesId;
-			}
-		}
-		return $this->collCustomerssRelatedByDeliveryCountriesId;
-	}
-
-	/**
-	 * Sets a collection of CustomersRelatedByDeliveryCountriesId objects related by a one-to-many relationship
-	 * to the current object.
-	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-	 * and new objects from the given Propel collection.
-	 *
-	 * @param      PropelCollection $customerssRelatedByDeliveryCountriesId A Propel collection.
-	 * @param      PropelPDO $con Optional connection object
-	 */
-	public function setCustomerssRelatedByDeliveryCountriesId(PropelCollection $customerssRelatedByDeliveryCountriesId, PropelPDO $con = null)
-	{
-		$this->customerssRelatedByDeliveryCountriesIdScheduledForDeletion = $this->getCustomerssRelatedByDeliveryCountriesId(new Criteria(), $con)->diff($customerssRelatedByDeliveryCountriesId);
-
-		foreach ($customerssRelatedByDeliveryCountriesId as $customersRelatedByDeliveryCountriesId) {
-			// Fix issue with collection modified by reference
-			if ($customersRelatedByDeliveryCountriesId->isNew()) {
-				$customersRelatedByDeliveryCountriesId->setCountriesRelatedByDeliveryCountriesId($this);
-			}
-			$this->addCustomersRelatedByDeliveryCountriesId($customersRelatedByDeliveryCountriesId);
-		}
-
-		$this->collCustomerssRelatedByDeliveryCountriesId = $customerssRelatedByDeliveryCountriesId;
-	}
-
-	/**
-	 * Returns the number of related Customers objects.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct
-	 * @param      PropelPDO $con
-	 * @return     int Count of related Customers objects.
-	 * @throws     PropelException
-	 */
-	public function countCustomerssRelatedByDeliveryCountriesId(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomerssRelatedByDeliveryCountriesId || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerssRelatedByDeliveryCountriesId) {
-				return 0;
-			} else {
-				$query = CustomersQuery::create(null, $criteria);
-				if($distinct) {
-					$query->distinct();
-				}
-				return $query
-					->filterByCountriesRelatedByDeliveryCountriesId($this)
-					->count($con);
-			}
-		} else {
-			return count($this->collCustomerssRelatedByDeliveryCountriesId);
-		}
-	}
-
-	/**
-	 * Method called to associate a Customers object to this object
-	 * through the Customers foreign key attribute.
-	 *
-	 * @param      Customers $l Customers
-	 * @return     Countries The current object (for fluent API support)
-	 */
-	public function addCustomersRelatedByDeliveryCountriesId(Customers $l)
-	{
-		if ($this->collCustomerssRelatedByDeliveryCountriesId === null) {
-			$this->initCustomerssRelatedByDeliveryCountriesId();
-		}
-		if (!$this->collCustomerssRelatedByDeliveryCountriesId->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddCustomersRelatedByDeliveryCountriesId($l);
-		}
-
-		return $this;
-	}
-
-	/**
-	 * @param	CustomersRelatedByDeliveryCountriesId $customersRelatedByDeliveryCountriesId The customersRelatedByDeliveryCountriesId object to add.
-	 */
-	protected function doAddCustomersRelatedByDeliveryCountriesId($customersRelatedByDeliveryCountriesId)
-	{
-		$this->collCustomerssRelatedByDeliveryCountriesId[]= $customersRelatedByDeliveryCountriesId;
-		$customersRelatedByDeliveryCountriesId->setCountriesRelatedByDeliveryCountriesId($this);
-	}
-
-
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Countries is new, it will return
-	 * an empty collection; or if this Countries has previously
-	 * been saved, it will retrieve related CustomerssRelatedByDeliveryCountriesId from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Countries.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 */
-	public function getCustomerssRelatedByDeliveryCountriesIdJoinGroups($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$query = CustomersQuery::create(null, $criteria);
-		$query->joinWith('Groups', $join_behavior);
-
-		return $this->getCustomerssRelatedByDeliveryCountriesId($query, $con);
-	}
-
-
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Countries is new, it will return
-	 * an empty collection; or if this Countries has previously
-	 * been saved, it will retrieve related CustomerssRelatedByDeliveryCountriesId from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Countries.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 */
-	public function getCustomerssRelatedByDeliveryCountriesIdJoinLanguages($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$query = CustomersQuery::create(null, $criteria);
-		$query->joinWith('Languages', $join_behavior);
-
-		return $this->getCustomerssRelatedByDeliveryCountriesId($query, $con);
+		return $this->getAddressess($query, $con);
 	}
 
 	/**
@@ -2584,18 +2063,8 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
-			if ($this->collCustomerssRelatedByCountriesId) {
-				foreach ($this->collCustomerssRelatedByCountriesId as $o) {
-					$o->clearAllReferences($deep);
-				}
-			}
-			if ($this->collCustomerssRelatedByBillingCountriesId) {
-				foreach ($this->collCustomerssRelatedByBillingCountriesId as $o) {
-					$o->clearAllReferences($deep);
-				}
-			}
-			if ($this->collCustomerssRelatedByDeliveryCountriesId) {
-				foreach ($this->collCustomerssRelatedByDeliveryCountriesId as $o) {
+			if ($this->collAddressess) {
+				foreach ($this->collAddressess as $o) {
 					$o->clearAllReferences($deep);
 				}
 			}
@@ -2616,18 +2085,10 @@ abstract class BaseCountries extends BaseObject  implements Persistent
 			}
 		} // if ($deep)
 
-		if ($this->collCustomerssRelatedByCountriesId instanceof PropelCollection) {
-			$this->collCustomerssRelatedByCountriesId->clearIterator();
+		if ($this->collAddressess instanceof PropelCollection) {
+			$this->collAddressess->clearIterator();
 		}
-		$this->collCustomerssRelatedByCountriesId = null;
-		if ($this->collCustomerssRelatedByBillingCountriesId instanceof PropelCollection) {
-			$this->collCustomerssRelatedByBillingCountriesId->clearIterator();
-		}
-		$this->collCustomerssRelatedByBillingCountriesId = null;
-		if ($this->collCustomerssRelatedByDeliveryCountriesId instanceof PropelCollection) {
-			$this->collCustomerssRelatedByDeliveryCountriesId->clearIterator();
-		}
-		$this->collCustomerssRelatedByDeliveryCountriesId = null;
+		$this->collAddressess = null;
 		if ($this->collZipToCitys instanceof PropelCollection) {
 			$this->collZipToCitys->clearIterator();
 		}

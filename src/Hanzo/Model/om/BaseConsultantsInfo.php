@@ -67,18 +67,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	protected $max_notified;
 
 	/**
-	 * The value for the latitude field.
-	 * @var        double
-	 */
-	protected $latitude;
-
-	/**
-	 * The value for the longitude field.
-	 * @var        double
-	 */
-	protected $longitude;
-
-	/**
 	 * @var        Customers
 	 */
 	protected $aCustomers;
@@ -146,26 +134,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	public function getMaxNotified()
 	{
 		return $this->max_notified;
-	}
-
-	/**
-	 * Get the [latitude] column value.
-	 * 
-	 * @return     double
-	 */
-	public function getLatitude()
-	{
-		return $this->latitude;
-	}
-
-	/**
-	 * Get the [longitude] column value.
-	 * 
-	 * @return     double
-	 */
-	public function getLongitude()
-	{
-		return $this->longitude;
 	}
 
 	/**
@@ -241,46 +209,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	} // setMaxNotified()
 
 	/**
-	 * Set the value of [latitude] column.
-	 * 
-	 * @param      double $v new value
-	 * @return     ConsultantsInfo The current object (for fluent API support)
-	 */
-	public function setLatitude($v)
-	{
-		if ($v !== null) {
-			$v = (double) $v;
-		}
-
-		if ($this->latitude !== $v) {
-			$this->latitude = $v;
-			$this->modifiedColumns[] = ConsultantsInfoPeer::LATITUDE;
-		}
-
-		return $this;
-	} // setLatitude()
-
-	/**
-	 * Set the value of [longitude] column.
-	 * 
-	 * @param      double $v new value
-	 * @return     ConsultantsInfo The current object (for fluent API support)
-	 */
-	public function setLongitude($v)
-	{
-		if ($v !== null) {
-			$v = (double) $v;
-		}
-
-		if ($this->longitude !== $v) {
-			$this->longitude = $v;
-			$this->modifiedColumns[] = ConsultantsInfoPeer::LONGITUDE;
-		}
-
-		return $this;
-	} // setLongitude()
-
-	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -319,8 +247,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 			$this->consultants_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->description = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->max_notified = ($row[$startcol + 2] !== null) ? (boolean) $row[$startcol + 2] : null;
-			$this->latitude = ($row[$startcol + 3] !== null) ? (double) $row[$startcol + 3] : null;
-			$this->longitude = ($row[$startcol + 4] !== null) ? (double) $row[$startcol + 4] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -329,7 +255,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 5; // 5 = ConsultantsInfoPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 3; // 3 = ConsultantsInfoPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating ConsultantsInfo object", $e);
@@ -558,12 +484,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 		if ($this->isColumnModified(ConsultantsInfoPeer::MAX_NOTIFIED)) {
 			$modifiedColumns[':p' . $index++]  = '`MAX_NOTIFIED`';
 		}
-		if ($this->isColumnModified(ConsultantsInfoPeer::LATITUDE)) {
-			$modifiedColumns[':p' . $index++]  = '`LATITUDE`';
-		}
-		if ($this->isColumnModified(ConsultantsInfoPeer::LONGITUDE)) {
-			$modifiedColumns[':p' . $index++]  = '`LONGITUDE`';
-		}
 
 		$sql = sprintf(
 			'INSERT INTO `consultants_info` (%s) VALUES (%s)',
@@ -583,12 +503,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 						break;
 					case '`MAX_NOTIFIED`':
 						$stmt->bindValue($identifier, (int) $this->max_notified, PDO::PARAM_INT);
-						break;
-					case '`LATITUDE`':
-						$stmt->bindValue($identifier, $this->latitude, PDO::PARAM_STR);
-						break;
-					case '`LONGITUDE`':
-						$stmt->bindValue($identifier, $this->longitude, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -734,12 +648,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 			case 2:
 				return $this->getMaxNotified();
 				break;
-			case 3:
-				return $this->getLatitude();
-				break;
-			case 4:
-				return $this->getLongitude();
-				break;
 			default:
 				return null;
 				break;
@@ -772,8 +680,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 			$keys[0] => $this->getConsultantsId(),
 			$keys[1] => $this->getDescription(),
 			$keys[2] => $this->getMaxNotified(),
-			$keys[3] => $this->getLatitude(),
-			$keys[4] => $this->getLongitude(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCustomers) {
@@ -819,12 +725,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 			case 2:
 				$this->setMaxNotified($value);
 				break;
-			case 3:
-				$this->setLatitude($value);
-				break;
-			case 4:
-				$this->setLongitude($value);
-				break;
 		} // switch()
 	}
 
@@ -852,8 +752,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 		if (array_key_exists($keys[0], $arr)) $this->setConsultantsId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setDescription($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setMaxNotified($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setLatitude($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setLongitude($arr[$keys[4]]);
 	}
 
 	/**
@@ -868,8 +766,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 		if ($this->isColumnModified(ConsultantsInfoPeer::CONSULTANTS_ID)) $criteria->add(ConsultantsInfoPeer::CONSULTANTS_ID, $this->consultants_id);
 		if ($this->isColumnModified(ConsultantsInfoPeer::DESCRIPTION)) $criteria->add(ConsultantsInfoPeer::DESCRIPTION, $this->description);
 		if ($this->isColumnModified(ConsultantsInfoPeer::MAX_NOTIFIED)) $criteria->add(ConsultantsInfoPeer::MAX_NOTIFIED, $this->max_notified);
-		if ($this->isColumnModified(ConsultantsInfoPeer::LATITUDE)) $criteria->add(ConsultantsInfoPeer::LATITUDE, $this->latitude);
-		if ($this->isColumnModified(ConsultantsInfoPeer::LONGITUDE)) $criteria->add(ConsultantsInfoPeer::LONGITUDE, $this->longitude);
 
 		return $criteria;
 	}
@@ -934,8 +830,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	{
 		$copyObj->setDescription($this->getDescription());
 		$copyObj->setMaxNotified($this->getMaxNotified());
-		$copyObj->setLatitude($this->getLatitude());
-		$copyObj->setLongitude($this->getLongitude());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -1048,8 +942,6 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 		$this->consultants_id = null;
 		$this->description = null;
 		$this->max_notified = null;
-		$this->latitude = null;
-		$this->longitude = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();

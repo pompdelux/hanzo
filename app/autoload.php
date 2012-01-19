@@ -23,6 +23,7 @@ $loader->registerNamespaces(array(
     'Propel'           => __DIR__.'/../vendor/bundles',
     'Snc'              => __DIR__.'/../vendor/bundles',
     'Predis'           => __DIR__.'/../vendor/predis/lib',
+    'Geocoder'         => __DIR__.'/../vendor/Geocoder/src',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
