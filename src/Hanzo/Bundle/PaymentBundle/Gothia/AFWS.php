@@ -1,4 +1,4 @@
-<?php
+<?php /* vim: set sw=4: */
 
 // Ange sökvägen till nusoap biblioteket
 require_once(dirname(__FILE__).'/nusoap/nusoap.php');

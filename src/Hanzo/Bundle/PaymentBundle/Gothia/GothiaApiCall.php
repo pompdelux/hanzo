@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\PaymentBundle\Gothia;
 
 use Hanzo\Core\Hanzo,
+    Hanzo\Model\Orders,
     Hanzo\Model\Customers,
     Hanzo\Model\GothiaAccounts,
     Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallResponse;
@@ -69,17 +70,24 @@ class GothiaApiCall
         $errorReporting = error_reporting(0);
         $client = AFSWS_Init( 'test' );
 
-        $response = $client->call( $function, $request);
+        $response = $client->call( $function, $request );
         error_log(__LINE__.':'.__FILE__.' '.$callString); // hf@bellcom.dk debugging
         error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
 
         error_reporting($errorReporting);
 
-        return true;
-
-        if ( $response === false )
+        if ( $response === false || $client->fault )
         {
-            throw new GothiaApiCallException('Kommunikation med Gothia fejlede');
+            $msg = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
+
+            $err = $client->getError();
+
+            if ( $err )
+            {
+                $msg .= $err;
+            }
+
+            throw new GothiaApiCallException( $msg );
         }
 
         return new GothiaApiCallResponse( $response, $function );

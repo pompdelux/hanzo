@@ -1,7 +1,12 @@
 parameters:
-#    payment.example.class: Hanzo\Bundle\PaymentBundle\Example
+  payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Dibs\DibsApi
+  payment.dibsapi.md5key1: 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp'
+  payment.dibsapi.md5key2: 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n['
+  payment.dibsapi.merchant_id: '90057323'
+  payment.dibsapi.api_user: 'bellcom_test_api_user'
+  payment.dibsapi.api_pass: '7iuTR8EZ'
 
 services:
-#    payment.example:
-#        class: %payment.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+  payment.dibsapi:
+    class: %payment.dibsapi.class%
+    arguments: [%payment.dibsapi.md5key1%]
