@@ -12,9 +12,9 @@ use Hanzo\Core\Hanzo,
 
 class DefaultController extends CoreController
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('NewsletterBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('NewsletterBundle:Default:index.html.twig', array('page_type' => 'newsletter'));
     }
 
     /**
