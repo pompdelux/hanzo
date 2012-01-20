@@ -1,11 +1,11 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Model;
 
 use Hanzo\Model\om\BaseOrdersPeer,
     Hanzo\Model\Orders,
     Hanzo\Model\OrdersQuery
-;
+    ;
 
 /**
  * Skeleton subclass for performing query and update operations on the 'orders' table.
@@ -31,7 +31,7 @@ class OrdersPeer extends BaseOrdersPeer
         if (!empty($_SESSION['order_id'])) {
             $query = OrdersQuery::create()
                 ->leftJoinWithOrdersLines()
-            ;
+                ;
             self::$current = $query->findPk($_SESSION['order_id']);
         }
 
