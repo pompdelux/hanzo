@@ -8,7 +8,7 @@ use Hanzo\Model\om\BaseCustomers;
 /**
  * Skeleton subclass for representing a row from the 'customers' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,33 @@ use Hanzo\Model\om\BaseCustomers;
  *
  * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
  */
-class Customers extends BaseCustomers {
+class Customers extends BaseCustomers
+{
+    protected $acl;
+
+
+    /**
+     * shortcut for access checks on the customer.
+     *
+     * @return boolean
+     */
+    public function isGranted($role)
+    {
+        if (empty($this->acl)) {
+            $this->acl = Hanzo::getInstance()->container->get('security.context');
+        }
+
+        return $this->acl->isGranted($role);
+    }
+
+    /**
+     * login check
+     *
+     * @return boolean
+     */
+    public function isLoggedIn()
+    {
+        return $this->isGranted('IS_AUTHENTICATED_FULLY');
+    }
 
 } // Customers

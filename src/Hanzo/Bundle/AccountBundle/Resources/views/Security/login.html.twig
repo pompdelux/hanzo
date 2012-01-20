@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+
+<h1>{{ 'My account - Login'|trans }}</h1>
+
+{% if error %}
+    <div>{{ error.message }}</div>
+{% endif %}
+
+<form action="{{ path('login_check') }}" method="post">
+    <label for="username">
+        {{ 'Username'|trans }}:
+        <input type="text" id="username" name="_username" value="{{ last_username }}">
+    </label>
+
+    <label for="password">
+        {{ 'Password'|trans }}:
+        <input type="password" id="password" name="_password">
+    </label>
+
+    <input type="hidden" name="_target_path" value="{{ url('_account') }}">
+    <input type="submit" name="login" value="{{ 'Login'|trans }}" class="button">
+</form>
+
+
+{% endblock %}

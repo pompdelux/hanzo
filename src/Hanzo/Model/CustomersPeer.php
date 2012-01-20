@@ -2,13 +2,15 @@
 
 namespace Hanzo\Model;
 
-use Hanzo\Model\om\BaseCustomersPeer;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
+use Hanzo\Model\om\BaseCustomersPeer;
 
 /**
  * Skeleton subclass for performing query and update operations on the 'customers' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,12 +18,12 @@ use Hanzo\Model\om\BaseCustomersPeer;
  *
  * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
  */
-class CustomersPeer extends BaseCustomersPeer 
+class CustomersPeer extends BaseCustomersPeer
 {
     static $current;
 
     /**
-     * getCurrenct() returns the current user, if the user is not logged ind, a new Customers object is returned 
+     * getCurrenct() returns the current user, if the user is not logged ind, a new Customers object is returned
      * Based on Orders::getCurrent()
      * @return Customers
      * @author Henrik Farre <hf@bellcom.dk>
@@ -32,8 +34,10 @@ class CustomersPeer extends BaseCustomersPeer
             return self::$current;
         }
 
-        if (!empty($_SESSION['customer_id'])) {
-            self::$current = Customers::retrieveByPK($_SESSION['customer_id']);
+        // load users based on security context
+        $acl = Hanzo::getInstance()->container->get('security.context');
+        if ($acl->isGranted('IS_AUTHENTICATED_FULLY')) {
+            self::$current = $acl->getToken()->getUser()->getUser();
         }
 
         self::$current = self::$current ?: new Customers;
