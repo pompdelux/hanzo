@@ -1,0 +1,3 @@
+CheckoutBundle_homepage:
+    pattern:  /checkout
+    defaults: { _controller: CheckoutBundle:Default:index }

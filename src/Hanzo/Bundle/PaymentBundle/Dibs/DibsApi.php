@@ -24,7 +24,8 @@ class DibsApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct( $md5key1, $md5key2, $merchantId, $apiUser, $apiPass )
+    //public function __construct( $md5key1, $md5key2, $merchant, $apiUser, $apiPass )
+    public function __construct()
     {
         // FIXME: 
         // - hardcoded settings
@@ -32,10 +33,31 @@ class DibsApi
         $this->settings = array(
             'md5key1'     => 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp',
             'md5key2'     => 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n[',
-            'merchant_id' => '90057323',
+            'merchant'    => '90057323',
+            'test'        => 'YES',
             'api_user'    => 'bellcom_test_api_user',
             'api_pass'    => '7iuTR8EZ',
         );
+    }
+
+    /**
+     * getMerchant
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getMerchant()
+    {
+        return $this->settings['merchant'];
+    }
+
+    /**
+     * getTest
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getTest()
+    {
+        return $this->settings['test'];
     }
 
     /**
@@ -53,7 +75,7 @@ class DibsApi
             throw new Exception( 'The order is not in the correct state "'. $order->getState() .'"' );
         }
 
-        if ( $callbackRequest->get('merchant') != $this->settings['merchant_id'] )
+        if ( $callbackRequest->get('merchant') != $this->settings['merchant'] )
         {
             throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
         }
@@ -134,7 +156,7 @@ class DibsApi
      **/
     public function md5( $orderId, $currency, $amount )
     {
-        return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'merchant='. $this->settings['merchant_id'] .'&orderid='. $orderId .'&currency='.$currency.'&amount='.$amount));
+        return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'merchant='. $this->settings['merchant'] .'&orderid='. $orderId .'&currency='.$currency.'&amount='.$amount));
     }
 
     /**
@@ -145,6 +167,39 @@ class DibsApi
     public function md5AuthKey( $transact, $currency, $amount )
     {
         return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'transact='.$transact.'&amount='.$amount.'&currency='.$currency));
+    }
+
+    /**
+     * buildFormFields
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function buildFormFields( Orders $order )
+    {
+        // FIXME: hardcoded vars:
+        $orderId  = 'test_'.date('His');
+        $amount   = self::formatAmount( 100 );
+        $currency = 208;
+        $lang     = 'da';
+        $payType  = 'DK';
+
+        $settings = array(
+            'orderid'      => $orderId,
+            'amount'       => $amount,
+            'lang'         => $lang, 
+            "merchant"     => $this->getMerchant(),
+            "currency"     => $currency,
+            "cancelurl"    => "/payment/dibs/cancel",
+            "callbackurl"  => "/payment/dibs/callback",
+            "accepturl"    => "/payment/dibs/ok",
+            "skiplastpage" => "YES",
+            "uniqueoid"    => "YES",
+            "test"         => $this->getTest(),
+            "paytype"      => $payType,
+            "md5key"       => $this->md5( $orderId, $currency, $amount ),
+            );
+
+        return $settings;
     }
 
     /**

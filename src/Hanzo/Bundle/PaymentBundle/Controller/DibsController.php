@@ -107,8 +107,12 @@ class DibsController extends CoreController
     public function formTestAction()
     {
         $api = new DibsApi();
-        $orderID = 'test_'.date('His');
-        $amount = 41500;
+
+        // FIXME: testing
+        $orderId = 1;
+        //$order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::retrieveByPK( $orderId );
+        $settings = $api->buildFormFields( $order );
 
         $form = '<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
             <html lang="da">
@@ -117,31 +121,11 @@ class DibsController extends CoreController
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             </head>
             <body>
-            <form name="dibs_payment_info" action="https://payment.architrade.com/paymentweb/start.action" method="post">
-            <input type="text" name="merchant" value="90057323" />
-            <input type="text" name="orderid" value="'. $orderID .'" />
-            <input type="text" name="lang" value="da" />
-            <input type="text" name="amount" value="'.$amount.'" />
-            <input type="text" name="currency" value="208" />
-            <input type="text" name="cancelurl" value="http://hanzo.dk/app_dev.php/payment/dibs/cancel" />
-            <input type="text" name="callbackurl" value="http://hanzo.dk/app_dev.php/payment/dibs/callback" />
-            <input type="text" name="accepturl" value="http://hanzo.dk/app_dev.php/payment/dibs/ok" />
-            <input type="text" name="skiplastpage" value="YES" />
-            <input type="text" name="uniqueoid" value="YES" />
-            <input type="text" name="test" value="YES" />
-            <input type="text" name="paytype" value="DK" />
-            <input type="text" name="md5key" value="'. $api->md5( $orderID, 208, $amount )  .'" />
-            <input type="submit" value="Fortsæt" alt="Fortsæt" />
-            </form>
+            '. $this->renderView('PaymentBundle:Dibs:form.html.twig',$settings) .'
             </body>
             </html>';
 
         return new Response( $form, 200, array('Content-Type' => 'text/html'));
-    }
-
-    public function indexAction($name)
-    {
-        return $this->render('PaymentBundle:Default:index.html.twig', array('name' => $name));
     }
 
     /**

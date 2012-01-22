@@ -9,7 +9,8 @@ var gothia = (function($) {
         event.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-          url: '/app_dev.php/payment/gothia/test',
+          /* FIXME: path */
+          url: '/app_dev.php/payment/gothia',
           type: 'post',
           dataType: 'json',
           data: data,
