@@ -117,6 +117,26 @@
                 <source>nno.fetch</source>
                 <target>Hent</target>
             </trans-unit>
+            <trans-unit id="71">
+                <source>create.accept</source>
+                <target>Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer </target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>create.newsletter</source>
+                <target>Tilmeld nyhedsbrev</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>create.terms</source>
+                <target>POMPdeLUX vilkår.</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>create.nno.address_found</source>
+                <target>Adressen der matcher det indtastede telefonnummer er indsat i formen herunder.</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>create.nno.no_address_found</source>
+                <target>Der blev ikke fundet nogen adresse på det indtastede telefonnummer.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

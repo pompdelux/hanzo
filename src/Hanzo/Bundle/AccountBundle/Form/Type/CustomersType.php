@@ -7,18 +7,20 @@ use Symfony\Component\Form\FormBuilder;
 
 class CustomersType extends AbstractType
 {
+
+    public function __construct() {}
+
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder->add('first_name', null, array('translation_domain' => 'account'));
         $builder->add('last_name', null, array('translation_domain' => 'account'));
-        $builder->add('initials', null, array('translation_domain' => 'account'));
-        $builder->add('password', 'repeated', array(
-            'type' => 'password',
-            'invalid_message' => 'The password fields must match.',
-            'first_name' => 'password',
-            'second_name' => 'password_repeated',
-            'translation_domain' => 'account',
+
+        $builder->add('addresses', 'collection', array(
+            'type' => new AddressesType(),
+            'translation_domain' => 'account'
         ));
+
+        $builder->add('phone', null, array('translation_domain' => 'account'));
 
         $builder->add('email', 'repeated', array(
             'type' => 'email',
@@ -28,12 +30,24 @@ class CustomersType extends AbstractType
             'translation_domain' => 'account',
         ));
 
-        $builder->add('phone', null, array('translation_domain' => 'account'));
+        $builder->add('password', 'repeated', array(
+            'type' => 'password',
+            'invalid_message' => 'The password fields must match.',
+            'first_name' => 'password',
+            'second_name' => 'password_repeated',
+            'translation_domain' => 'account',
+        ));
 
-         $builder->add('addresses', 'collection', array(
-             'type' => new AddressesType(),
-             'translation_domain' => 'account'
-         ));
+        $builder->add('newsletter', 'checkbox', array(
+            'label' => 'create.newsletter',
+            'required' => false,
+            'translation_domain' => 'account',
+        ));
+        $builder->add('accept', 'checkbox', array(
+            'label' => 'create.accept',
+            'required' => true,
+            'translation_domain' => 'account',
+        ));
     }
 
     public function getDefaultOptions(array $options)

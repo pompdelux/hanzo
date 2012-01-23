@@ -56,4 +56,24 @@ class Customers extends BaseCustomers
         return $this->getAddressess();
     }
 
+    protected $newsletter = FALSE;
+    public function getNewsletter()
+    {
+        return $this->newsletter;
+    }
+    public function setNewsletter($value = TRUE)
+    {
+        return $this->newsletter = (bool) $value;
+    }
+
+    protected $accept = FALSE;
+    public function getAccept()
+    {
+        return $this->accept;
+    }
+    public function setAccept($value = TRUE)
+    {
+        return $this->accept = (bool) $value;
+    }
+
 } // Customers

@@ -25,6 +25,7 @@ _account_lost_password:
         _controller: AccountBundle:Default:passwordForgotten
 
 _account_nno:
-    pattern: /account/nno
+    pattern: /account/nno/{phone}
     defaults:
         _controller: AccountBundle:NNO:check
+        phone: ''

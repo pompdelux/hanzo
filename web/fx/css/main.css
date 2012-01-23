@@ -88,6 +88,13 @@ hr {
   height:0
 }
 
+input[type=text],
+input[type=password],
+input[type=email] {
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+
 .button {
   background: #000000 url(/fx/images/arrow_dobble_right_white.png) no-repeat center right;
   padding: 2px 20px 3px 5px;

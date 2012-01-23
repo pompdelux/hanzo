@@ -13,7 +13,7 @@ class AddressesType extends AbstractType
         $builder->add('address_line_1', null, array('translation_domain' => 'account'));
         $builder->add('postal_code', null, array('translation_domain' => 'account'));
         $builder->add('city', null, array('translation_domain' => 'account'));
-        $builder->add('country', null, array('translation_domain' => 'account'));
+        $builder->add('country', null, array('translation_domain' => 'account', 'read_only' => TRUE));
 
         //$builder->add('address_line_2');
         // $builder->add('state_province');
