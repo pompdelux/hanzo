@@ -54,66 +54,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 	protected $customers_id;
 
 	/**
-	 * The value for the first_name field.
-	 * @var        string
-	 */
-	protected $first_name;
-
-	/**
-	 * The value for the last_name field.
-	 * @var        string
-	 */
-	protected $last_name;
-
-	/**
-	 * The value for the address field.
-	 * @var        string
-	 */
-	protected $address;
-
-	/**
-	 * The value for the postal_code field.
-	 * @var        string
-	 */
-	protected $postal_code;
-
-	/**
-	 * The value for the postal_place field.
-	 * @var        string
-	 */
-	protected $postal_place;
-
-	/**
-	 * The value for the email field.
-	 * @var        string
-	 */
-	protected $email;
-
-	/**
-	 * The value for the phone field.
-	 * @var        string
-	 */
-	protected $phone;
-
-	/**
-	 * The value for the mobile_phone field.
-	 * @var        string
-	 */
-	protected $mobile_phone;
-
-	/**
-	 * The value for the fax field.
-	 * @var        string
-	 */
-	protected $fax;
-
-	/**
-	 * The value for the country_code field.
-	 * @var        string
-	 */
-	protected $country_code;
-
-	/**
 	 * The value for the distribution_by field.
 	 * @var        string
 	 */
@@ -158,106 +98,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 	public function getCustomersId()
 	{
 		return $this->customers_id;
-	}
-
-	/**
-	 * Get the [first_name] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getFirstName()
-	{
-		return $this->first_name;
-	}
-
-	/**
-	 * Get the [last_name] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getLastName()
-	{
-		return $this->last_name;
-	}
-
-	/**
-	 * Get the [address] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getAddress()
-	{
-		return $this->address;
-	}
-
-	/**
-	 * Get the [postal_code] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getPostalCode()
-	{
-		return $this->postal_code;
-	}
-
-	/**
-	 * Get the [postal_place] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getPostalPlace()
-	{
-		return $this->postal_place;
-	}
-
-	/**
-	 * Get the [email] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getEmail()
-	{
-		return $this->email;
-	}
-
-	/**
-	 * Get the [phone] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getPhone()
-	{
-		return $this->phone;
-	}
-
-	/**
-	 * Get the [mobile_phone] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getMobilePhone()
-	{
-		return $this->mobile_phone;
-	}
-
-	/**
-	 * Get the [fax] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getFax()
-	{
-		return $this->fax;
-	}
-
-	/**
-	 * Get the [country_code] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getCountryCode()
-	{
-		return $this->country_code;
 	}
 
 	/**
@@ -313,206 +153,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 
 		return $this;
 	} // setCustomersId()
-
-	/**
-	 * Set the value of [first_name] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setFirstName($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->first_name !== $v) {
-			$this->first_name = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::FIRST_NAME;
-		}
-
-		return $this;
-	} // setFirstName()
-
-	/**
-	 * Set the value of [last_name] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setLastName($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->last_name !== $v) {
-			$this->last_name = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::LAST_NAME;
-		}
-
-		return $this;
-	} // setLastName()
-
-	/**
-	 * Set the value of [address] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setAddress($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->address !== $v) {
-			$this->address = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::ADDRESS;
-		}
-
-		return $this;
-	} // setAddress()
-
-	/**
-	 * Set the value of [postal_code] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setPostalCode($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->postal_code !== $v) {
-			$this->postal_code = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::POSTAL_CODE;
-		}
-
-		return $this;
-	} // setPostalCode()
-
-	/**
-	 * Set the value of [postal_place] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setPostalPlace($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->postal_place !== $v) {
-			$this->postal_place = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::POSTAL_PLACE;
-		}
-
-		return $this;
-	} // setPostalPlace()
-
-	/**
-	 * Set the value of [email] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setEmail($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->email !== $v) {
-			$this->email = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::EMAIL;
-		}
-
-		return $this;
-	} // setEmail()
-
-	/**
-	 * Set the value of [phone] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setPhone($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->phone !== $v) {
-			$this->phone = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::PHONE;
-		}
-
-		return $this;
-	} // setPhone()
-
-	/**
-	 * Set the value of [mobile_phone] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setMobilePhone($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->mobile_phone !== $v) {
-			$this->mobile_phone = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::MOBILE_PHONE;
-		}
-
-		return $this;
-	} // setMobilePhone()
-
-	/**
-	 * Set the value of [fax] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setFax($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->fax !== $v) {
-			$this->fax = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::FAX;
-		}
-
-		return $this;
-	} // setFax()
-
-	/**
-	 * Set the value of [country_code] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     GothiaAccounts The current object (for fluent API support)
-	 */
-	public function setCountryCode($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->country_code !== $v) {
-			$this->country_code = $v;
-			$this->modifiedColumns[] = GothiaAccountsPeer::COUNTRY_CODE;
-		}
-
-		return $this;
-	} // setCountryCode()
 
 	/**
 	 * Set the value of [distribution_by] column.
@@ -607,19 +247,9 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 		try {
 
 			$this->customers_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->first_name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->last_name = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->address = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->postal_code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->postal_place = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->email = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->phone = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-			$this->mobile_phone = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->fax = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->country_code = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-			$this->distribution_by = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-			$this->distribution_type = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-			$this->social_security_num = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+			$this->distribution_by = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+			$this->distribution_type = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->social_security_num = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -628,7 +258,7 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 14; // 14 = GothiaAccountsPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 4; // 4 = GothiaAccountsPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating GothiaAccounts object", $e);
@@ -851,36 +481,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 		if ($this->isColumnModified(GothiaAccountsPeer::CUSTOMERS_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
 		}
-		if ($this->isColumnModified(GothiaAccountsPeer::FIRST_NAME)) {
-			$modifiedColumns[':p' . $index++]  = '`FIRST_NAME`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::LAST_NAME)) {
-			$modifiedColumns[':p' . $index++]  = '`LAST_NAME`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::ADDRESS)) {
-			$modifiedColumns[':p' . $index++]  = '`ADDRESS`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::POSTAL_CODE)) {
-			$modifiedColumns[':p' . $index++]  = '`POSTAL_CODE`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::POSTAL_PLACE)) {
-			$modifiedColumns[':p' . $index++]  = '`POSTAL_PLACE`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::EMAIL)) {
-			$modifiedColumns[':p' . $index++]  = '`EMAIL`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::PHONE)) {
-			$modifiedColumns[':p' . $index++]  = '`PHONE`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::MOBILE_PHONE)) {
-			$modifiedColumns[':p' . $index++]  = '`MOBILE_PHONE`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::FAX)) {
-			$modifiedColumns[':p' . $index++]  = '`FAX`';
-		}
-		if ($this->isColumnModified(GothiaAccountsPeer::COUNTRY_CODE)) {
-			$modifiedColumns[':p' . $index++]  = '`COUNTRY_CODE`';
-		}
 		if ($this->isColumnModified(GothiaAccountsPeer::DISTRIBUTION_BY)) {
 			$modifiedColumns[':p' . $index++]  = '`DISTRIBUTION_BY`';
 		}
@@ -903,36 +503,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 				switch ($columnName) {
 					case '`CUSTOMERS_ID`':
 						$stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
-						break;
-					case '`FIRST_NAME`':
-						$stmt->bindValue($identifier, $this->first_name, PDO::PARAM_STR);
-						break;
-					case '`LAST_NAME`':
-						$stmt->bindValue($identifier, $this->last_name, PDO::PARAM_STR);
-						break;
-					case '`ADDRESS`':
-						$stmt->bindValue($identifier, $this->address, PDO::PARAM_STR);
-						break;
-					case '`POSTAL_CODE`':
-						$stmt->bindValue($identifier, $this->postal_code, PDO::PARAM_STR);
-						break;
-					case '`POSTAL_PLACE`':
-						$stmt->bindValue($identifier, $this->postal_place, PDO::PARAM_STR);
-						break;
-					case '`EMAIL`':
-						$stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
-						break;
-					case '`PHONE`':
-						$stmt->bindValue($identifier, $this->phone, PDO::PARAM_STR);
-						break;
-					case '`MOBILE_PHONE`':
-						$stmt->bindValue($identifier, $this->mobile_phone, PDO::PARAM_STR);
-						break;
-					case '`FAX`':
-						$stmt->bindValue($identifier, $this->fax, PDO::PARAM_STR);
-						break;
-					case '`COUNTRY_CODE`':
-						$stmt->bindValue($identifier, $this->country_code, PDO::PARAM_STR);
 						break;
 					case '`DISTRIBUTION_BY`':
 						$stmt->bindValue($identifier, $this->distribution_by, PDO::PARAM_STR);
@@ -1082,42 +652,12 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 				return $this->getCustomersId();
 				break;
 			case 1:
-				return $this->getFirstName();
-				break;
-			case 2:
-				return $this->getLastName();
-				break;
-			case 3:
-				return $this->getAddress();
-				break;
-			case 4:
-				return $this->getPostalCode();
-				break;
-			case 5:
-				return $this->getPostalPlace();
-				break;
-			case 6:
-				return $this->getEmail();
-				break;
-			case 7:
-				return $this->getPhone();
-				break;
-			case 8:
-				return $this->getMobilePhone();
-				break;
-			case 9:
-				return $this->getFax();
-				break;
-			case 10:
-				return $this->getCountryCode();
-				break;
-			case 11:
 				return $this->getDistributionBy();
 				break;
-			case 12:
+			case 2:
 				return $this->getDistributionType();
 				break;
-			case 13:
+			case 3:
 				return $this->getSocialSecurityNum();
 				break;
 			default:
@@ -1150,19 +690,9 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 		$keys = GothiaAccountsPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getCustomersId(),
-			$keys[1] => $this->getFirstName(),
-			$keys[2] => $this->getLastName(),
-			$keys[3] => $this->getAddress(),
-			$keys[4] => $this->getPostalCode(),
-			$keys[5] => $this->getPostalPlace(),
-			$keys[6] => $this->getEmail(),
-			$keys[7] => $this->getPhone(),
-			$keys[8] => $this->getMobilePhone(),
-			$keys[9] => $this->getFax(),
-			$keys[10] => $this->getCountryCode(),
-			$keys[11] => $this->getDistributionBy(),
-			$keys[12] => $this->getDistributionType(),
-			$keys[13] => $this->getSocialSecurityNum(),
+			$keys[1] => $this->getDistributionBy(),
+			$keys[2] => $this->getDistributionType(),
+			$keys[3] => $this->getSocialSecurityNum(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCustomers) {
@@ -1203,42 +733,12 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 				$this->setCustomersId($value);
 				break;
 			case 1:
-				$this->setFirstName($value);
-				break;
-			case 2:
-				$this->setLastName($value);
-				break;
-			case 3:
-				$this->setAddress($value);
-				break;
-			case 4:
-				$this->setPostalCode($value);
-				break;
-			case 5:
-				$this->setPostalPlace($value);
-				break;
-			case 6:
-				$this->setEmail($value);
-				break;
-			case 7:
-				$this->setPhone($value);
-				break;
-			case 8:
-				$this->setMobilePhone($value);
-				break;
-			case 9:
-				$this->setFax($value);
-				break;
-			case 10:
-				$this->setCountryCode($value);
-				break;
-			case 11:
 				$this->setDistributionBy($value);
 				break;
-			case 12:
+			case 2:
 				$this->setDistributionType($value);
 				break;
-			case 13:
+			case 3:
 				$this->setSocialSecurityNum($value);
 				break;
 		} // switch()
@@ -1266,19 +766,9 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 		$keys = GothiaAccountsPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setCustomersId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFirstName($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setLastName($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setAddress($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setPostalCode($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setPostalPlace($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setEmail($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setPhone($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setMobilePhone($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setFax($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setCountryCode($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setDistributionBy($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setDistributionType($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setSocialSecurityNum($arr[$keys[13]]);
+		if (array_key_exists($keys[1], $arr)) $this->setDistributionBy($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setDistributionType($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setSocialSecurityNum($arr[$keys[3]]);
 	}
 
 	/**
@@ -1291,16 +781,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 		$criteria = new Criteria(GothiaAccountsPeer::DATABASE_NAME);
 
 		if ($this->isColumnModified(GothiaAccountsPeer::CUSTOMERS_ID)) $criteria->add(GothiaAccountsPeer::CUSTOMERS_ID, $this->customers_id);
-		if ($this->isColumnModified(GothiaAccountsPeer::FIRST_NAME)) $criteria->add(GothiaAccountsPeer::FIRST_NAME, $this->first_name);
-		if ($this->isColumnModified(GothiaAccountsPeer::LAST_NAME)) $criteria->add(GothiaAccountsPeer::LAST_NAME, $this->last_name);
-		if ($this->isColumnModified(GothiaAccountsPeer::ADDRESS)) $criteria->add(GothiaAccountsPeer::ADDRESS, $this->address);
-		if ($this->isColumnModified(GothiaAccountsPeer::POSTAL_CODE)) $criteria->add(GothiaAccountsPeer::POSTAL_CODE, $this->postal_code);
-		if ($this->isColumnModified(GothiaAccountsPeer::POSTAL_PLACE)) $criteria->add(GothiaAccountsPeer::POSTAL_PLACE, $this->postal_place);
-		if ($this->isColumnModified(GothiaAccountsPeer::EMAIL)) $criteria->add(GothiaAccountsPeer::EMAIL, $this->email);
-		if ($this->isColumnModified(GothiaAccountsPeer::PHONE)) $criteria->add(GothiaAccountsPeer::PHONE, $this->phone);
-		if ($this->isColumnModified(GothiaAccountsPeer::MOBILE_PHONE)) $criteria->add(GothiaAccountsPeer::MOBILE_PHONE, $this->mobile_phone);
-		if ($this->isColumnModified(GothiaAccountsPeer::FAX)) $criteria->add(GothiaAccountsPeer::FAX, $this->fax);
-		if ($this->isColumnModified(GothiaAccountsPeer::COUNTRY_CODE)) $criteria->add(GothiaAccountsPeer::COUNTRY_CODE, $this->country_code);
 		if ($this->isColumnModified(GothiaAccountsPeer::DISTRIBUTION_BY)) $criteria->add(GothiaAccountsPeer::DISTRIBUTION_BY, $this->distribution_by);
 		if ($this->isColumnModified(GothiaAccountsPeer::DISTRIBUTION_TYPE)) $criteria->add(GothiaAccountsPeer::DISTRIBUTION_TYPE, $this->distribution_type);
 		if ($this->isColumnModified(GothiaAccountsPeer::SOCIAL_SECURITY_NUM)) $criteria->add(GothiaAccountsPeer::SOCIAL_SECURITY_NUM, $this->social_security_num);
@@ -1366,16 +846,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
-		$copyObj->setFirstName($this->getFirstName());
-		$copyObj->setLastName($this->getLastName());
-		$copyObj->setAddress($this->getAddress());
-		$copyObj->setPostalCode($this->getPostalCode());
-		$copyObj->setPostalPlace($this->getPostalPlace());
-		$copyObj->setEmail($this->getEmail());
-		$copyObj->setPhone($this->getPhone());
-		$copyObj->setMobilePhone($this->getMobilePhone());
-		$copyObj->setFax($this->getFax());
-		$copyObj->setCountryCode($this->getCountryCode());
 		$copyObj->setDistributionBy($this->getDistributionBy());
 		$copyObj->setDistributionType($this->getDistributionType());
 		$copyObj->setSocialSecurityNum($this->getSocialSecurityNum());
@@ -1489,16 +959,6 @@ abstract class BaseGothiaAccounts extends BaseObject  implements Persistent
 	public function clear()
 	{
 		$this->customers_id = null;
-		$this->first_name = null;
-		$this->last_name = null;
-		$this->address = null;
-		$this->postal_code = null;
-		$this->postal_place = null;
-		$this->email = null;
-		$this->phone = null;
-		$this->mobile_phone = null;
-		$this->fax = null;
-		$this->country_code = null;
 		$this->distribution_by = null;
 		$this->distribution_type = null;
 		$this->social_security_num = null;

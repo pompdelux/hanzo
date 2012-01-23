@@ -39,46 +39,16 @@ abstract class BaseGothiaAccountsPeer {
 	const TM_CLASS = 'GothiaAccountsTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 14;
+	const NUM_COLUMNS = 4;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 14;
+	const NUM_HYDRATE_COLUMNS = 4;
 
 	/** the column name for the CUSTOMERS_ID field */
 	const CUSTOMERS_ID = 'gothia_accounts.CUSTOMERS_ID';
-
-	/** the column name for the FIRST_NAME field */
-	const FIRST_NAME = 'gothia_accounts.FIRST_NAME';
-
-	/** the column name for the LAST_NAME field */
-	const LAST_NAME = 'gothia_accounts.LAST_NAME';
-
-	/** the column name for the ADDRESS field */
-	const ADDRESS = 'gothia_accounts.ADDRESS';
-
-	/** the column name for the POSTAL_CODE field */
-	const POSTAL_CODE = 'gothia_accounts.POSTAL_CODE';
-
-	/** the column name for the POSTAL_PLACE field */
-	const POSTAL_PLACE = 'gothia_accounts.POSTAL_PLACE';
-
-	/** the column name for the EMAIL field */
-	const EMAIL = 'gothia_accounts.EMAIL';
-
-	/** the column name for the PHONE field */
-	const PHONE = 'gothia_accounts.PHONE';
-
-	/** the column name for the MOBILE_PHONE field */
-	const MOBILE_PHONE = 'gothia_accounts.MOBILE_PHONE';
-
-	/** the column name for the FAX field */
-	const FAX = 'gothia_accounts.FAX';
-
-	/** the column name for the COUNTRY_CODE field */
-	const COUNTRY_CODE = 'gothia_accounts.COUNTRY_CODE';
 
 	/** the column name for the DISTRIBUTION_BY field */
 	const DISTRIBUTION_BY = 'gothia_accounts.DISTRIBUTION_BY';
@@ -108,12 +78,12 @@ abstract class BaseGothiaAccountsPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('CustomersId', 'FirstName', 'LastName', 'Address', 'PostalCode', 'PostalPlace', 'Email', 'Phone', 'MobilePhone', 'Fax', 'CountryCode', 'DistributionBy', 'DistributionType', 'SocialSecurityNum', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('customersId', 'firstName', 'lastName', 'address', 'postalCode', 'postalPlace', 'email', 'phone', 'mobilePhone', 'fax', 'countryCode', 'distributionBy', 'distributionType', 'socialSecurityNum', ),
-		BasePeer::TYPE_COLNAME => array (self::CUSTOMERS_ID, self::FIRST_NAME, self::LAST_NAME, self::ADDRESS, self::POSTAL_CODE, self::POSTAL_PLACE, self::EMAIL, self::PHONE, self::MOBILE_PHONE, self::FAX, self::COUNTRY_CODE, self::DISTRIBUTION_BY, self::DISTRIBUTION_TYPE, self::SOCIAL_SECURITY_NUM, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID', 'FIRST_NAME', 'LAST_NAME', 'ADDRESS', 'POSTAL_CODE', 'POSTAL_PLACE', 'EMAIL', 'PHONE', 'MOBILE_PHONE', 'FAX', 'COUNTRY_CODE', 'DISTRIBUTION_BY', 'DISTRIBUTION_TYPE', 'SOCIAL_SECURITY_NUM', ),
-		BasePeer::TYPE_FIELDNAME => array ('customers_id', 'first_name', 'last_name', 'address', 'postal_code', 'postal_place', 'email', 'phone', 'mobile_phone', 'fax', 'country_code', 'distribution_by', 'distribution_type', 'social_security_num', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+		BasePeer::TYPE_PHPNAME => array ('CustomersId', 'DistributionBy', 'DistributionType', 'SocialSecurityNum', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('customersId', 'distributionBy', 'distributionType', 'socialSecurityNum', ),
+		BasePeer::TYPE_COLNAME => array (self::CUSTOMERS_ID, self::DISTRIBUTION_BY, self::DISTRIBUTION_TYPE, self::SOCIAL_SECURITY_NUM, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID', 'DISTRIBUTION_BY', 'DISTRIBUTION_TYPE', 'SOCIAL_SECURITY_NUM', ),
+		BasePeer::TYPE_FIELDNAME => array ('customers_id', 'distribution_by', 'distribution_type', 'social_security_num', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	/**
@@ -123,12 +93,12 @@ abstract class BaseGothiaAccountsPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('CustomersId' => 0, 'FirstName' => 1, 'LastName' => 2, 'Address' => 3, 'PostalCode' => 4, 'PostalPlace' => 5, 'Email' => 6, 'Phone' => 7, 'MobilePhone' => 8, 'Fax' => 9, 'CountryCode' => 10, 'DistributionBy' => 11, 'DistributionType' => 12, 'SocialSecurityNum' => 13, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('customersId' => 0, 'firstName' => 1, 'lastName' => 2, 'address' => 3, 'postalCode' => 4, 'postalPlace' => 5, 'email' => 6, 'phone' => 7, 'mobilePhone' => 8, 'fax' => 9, 'countryCode' => 10, 'distributionBy' => 11, 'distributionType' => 12, 'socialSecurityNum' => 13, ),
-		BasePeer::TYPE_COLNAME => array (self::CUSTOMERS_ID => 0, self::FIRST_NAME => 1, self::LAST_NAME => 2, self::ADDRESS => 3, self::POSTAL_CODE => 4, self::POSTAL_PLACE => 5, self::EMAIL => 6, self::PHONE => 7, self::MOBILE_PHONE => 8, self::FAX => 9, self::COUNTRY_CODE => 10, self::DISTRIBUTION_BY => 11, self::DISTRIBUTION_TYPE => 12, self::SOCIAL_SECURITY_NUM => 13, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID' => 0, 'FIRST_NAME' => 1, 'LAST_NAME' => 2, 'ADDRESS' => 3, 'POSTAL_CODE' => 4, 'POSTAL_PLACE' => 5, 'EMAIL' => 6, 'PHONE' => 7, 'MOBILE_PHONE' => 8, 'FAX' => 9, 'COUNTRY_CODE' => 10, 'DISTRIBUTION_BY' => 11, 'DISTRIBUTION_TYPE' => 12, 'SOCIAL_SECURITY_NUM' => 13, ),
-		BasePeer::TYPE_FIELDNAME => array ('customers_id' => 0, 'first_name' => 1, 'last_name' => 2, 'address' => 3, 'postal_code' => 4, 'postal_place' => 5, 'email' => 6, 'phone' => 7, 'mobile_phone' => 8, 'fax' => 9, 'country_code' => 10, 'distribution_by' => 11, 'distribution_type' => 12, 'social_security_num' => 13, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+		BasePeer::TYPE_PHPNAME => array ('CustomersId' => 0, 'DistributionBy' => 1, 'DistributionType' => 2, 'SocialSecurityNum' => 3, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('customersId' => 0, 'distributionBy' => 1, 'distributionType' => 2, 'socialSecurityNum' => 3, ),
+		BasePeer::TYPE_COLNAME => array (self::CUSTOMERS_ID => 0, self::DISTRIBUTION_BY => 1, self::DISTRIBUTION_TYPE => 2, self::SOCIAL_SECURITY_NUM => 3, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID' => 0, 'DISTRIBUTION_BY' => 1, 'DISTRIBUTION_TYPE' => 2, 'SOCIAL_SECURITY_NUM' => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('customers_id' => 0, 'distribution_by' => 1, 'distribution_type' => 2, 'social_security_num' => 3, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	/**
@@ -201,31 +171,11 @@ abstract class BaseGothiaAccountsPeer {
 	{
 		if (null === $alias) {
 			$criteria->addSelectColumn(GothiaAccountsPeer::CUSTOMERS_ID);
-			$criteria->addSelectColumn(GothiaAccountsPeer::FIRST_NAME);
-			$criteria->addSelectColumn(GothiaAccountsPeer::LAST_NAME);
-			$criteria->addSelectColumn(GothiaAccountsPeer::ADDRESS);
-			$criteria->addSelectColumn(GothiaAccountsPeer::POSTAL_CODE);
-			$criteria->addSelectColumn(GothiaAccountsPeer::POSTAL_PLACE);
-			$criteria->addSelectColumn(GothiaAccountsPeer::EMAIL);
-			$criteria->addSelectColumn(GothiaAccountsPeer::PHONE);
-			$criteria->addSelectColumn(GothiaAccountsPeer::MOBILE_PHONE);
-			$criteria->addSelectColumn(GothiaAccountsPeer::FAX);
-			$criteria->addSelectColumn(GothiaAccountsPeer::COUNTRY_CODE);
 			$criteria->addSelectColumn(GothiaAccountsPeer::DISTRIBUTION_BY);
 			$criteria->addSelectColumn(GothiaAccountsPeer::DISTRIBUTION_TYPE);
 			$criteria->addSelectColumn(GothiaAccountsPeer::SOCIAL_SECURITY_NUM);
 		} else {
 			$criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
-			$criteria->addSelectColumn($alias . '.FIRST_NAME');
-			$criteria->addSelectColumn($alias . '.LAST_NAME');
-			$criteria->addSelectColumn($alias . '.ADDRESS');
-			$criteria->addSelectColumn($alias . '.POSTAL_CODE');
-			$criteria->addSelectColumn($alias . '.POSTAL_PLACE');
-			$criteria->addSelectColumn($alias . '.EMAIL');
-			$criteria->addSelectColumn($alias . '.PHONE');
-			$criteria->addSelectColumn($alias . '.MOBILE_PHONE');
-			$criteria->addSelectColumn($alias . '.FAX');
-			$criteria->addSelectColumn($alias . '.COUNTRY_CODE');
 			$criteria->addSelectColumn($alias . '.DISTRIBUTION_BY');
 			$criteria->addSelectColumn($alias . '.DISTRIBUTION_TYPE');
 			$criteria->addSelectColumn($alias . '.SOCIAL_SECURITY_NUM');

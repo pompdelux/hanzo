@@ -1,3 +1,7 @@
+PaymentBundle_success:
+    pattern:  /payment/success
+    defaults: { _controller: PaymentBundle:Default:success }
+
 PaymentBundle_dibs_callback:
     pattern:  /payment/dibs/callback
     defaults: { _controller: PaymentBundle:Dibs:callback }
@@ -23,3 +27,17 @@ PaymentBundle_dibs_form_test:
 PaymentBundle_gothia_payment:
     pattern:  /payment/gothia
     defaults: { _controller: PaymentBundle:Gothia:payment }
+
+PaymentBundle_gothia_payment_test:
+    pattern:  /payment/gothia/test
+    defaults: { _controller: PaymentBundle:Gothia:test }
+
+PaymentBundle_gothia_payment_checkcustomer:
+    pattern:  /payment/gothia/checkcustomer
+    defaults: { _controller: PaymentBundle:Gothia:checkCustomer, _format: json }
+    requirements: { _format: (xml|json), _method: POST }
+
+PaymentBundle_gothia_payment_confirm:
+    pattern:  /payment/gothia/confirm
+    defaults: { _controller: PaymentBundle:Gothia:confirm, _format: json }
+    requirements: { _format: (xml|json), _method: POST }

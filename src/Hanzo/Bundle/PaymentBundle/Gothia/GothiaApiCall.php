@@ -18,23 +18,9 @@ class GothiaApiCall
     /**
      * undocumented class variable
      *
-     * @var bool
-     **/
-    const USE_AUTH_HEADERS = true;
-
-    /**
-     * undocumented class variable
-     *
      * @var GothiaApiCall instance 
      **/
     private static $instance = null;
-
-    /**
-     * undocumented class variable
-     *
-     * @var string
-     **/
-    protected $baseUrl = 'https://payment.architrade.com/';
 
     /**
      * __construct
@@ -67,9 +53,8 @@ class GothiaApiCall
      **/
     protected function call( $function, $request )
     {
-        //$logger = Hanzo::getInstance()->container->get('logger');
-
         $errorReporting = error_reporting(0);
+        // FIXME: hardcoded to test
         $client = AFSWS_Init( 'test' );
 
         $response = $client->call( $function, $request );
@@ -157,32 +142,35 @@ class GothiaApiCall
 
     /**
      * callAcquirersStatus
-     * @param GothiaAccount $account
-     * @return bool
+     * @param Customers $customer
+     * @return GothiaApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function checkCustomer( Customers $customer )
     {
-        // FIXME: hardcoded values
+        $addresses     = $customer->getAddressess();
+        $address       = $addresses[0];
+        $gothiaAccount = $customer->getGothiaAccounts();
+
         $callString = AFSWS_CheckCustomer(
 	        $this->userString(),
             AFSWS_Customer(
-                $customer->getAddress(),
+                $address->getAddressLine1().' '.$address->getAddressLine2(),
                 'SE',
                 'SEK',
-                $account->getCustomersId(),
+                $customer->getId(),
                 'Person',
                 null,
+                $gothiaAccount->getDistributionBy(),
+                $gothiaAccount->getDistributionType(),
+                $customer->getEmail(),
                 null,
+                $customer->getFirstName(),
+                $customer->getLastName(),
                 null,
-                $account->getEmail(),
-                null,
-                $account->getFirstName(),
-                $account->getLastName(),
-                null,
-                $account->getSocialSecurityNum(),
-                $account->getPhone(),
-                $account->getPostalCode(),
+                $gothiaAccount->getSocialSecurityNum(),
+                $customer->getPhone(),
+                $address->getPostalCode(),
                 null,
                 null
             )
@@ -195,38 +183,49 @@ class GothiaApiCall
 
     /**
      * placeReservation
-     * @return void
+     * @param Customers $customer
+     * @param Orders $order
+     * @return GothiaApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function placeReservation( GothiaAccounts $account, Orders $order )
+    public function placeReservation( Customers $customer, Orders $order )
     {
-        $amount = $order->getTotalPrice();
+        $amount     = $order->getTotalPrice();
+        $customerId = $customer->getId();
+
+        // FIXME: hardcoded values
+        $amount = 100;
+        $customerId = '00100001';
+
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
         $callString = AFSWS_PlaceReservation(
 	        $this->userString(),
-            AFSWS_Reservation('NoAccountOffer', $amount, 'SEK', $account->getCustomersId(), '') 
+            AFSWS_Reservation('NoAccountOffer', $amount, 'SEK', $customerId, null) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function
 
-        $response = $this->call('CancelReservation', $callString);
+        $response = $this->call('PlaceReservation', $callString);
 
         return $response;
     }
 
     /**
      * cancelReservation
-     * @return void
+     * @param Customers $customer
+     * @param Orders $order
+     * @return GothiaApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function cancelReservation( GothiaAccounts $account, Orders $order )
+    public function cancelReservation( Customers $customer, Orders $order )
     {
         $amount = $order->getTotalPrice();
+
         // Gothia uses tns:CancelReservation which contains a tns:cancelReservation, therefore the 2 functions with almost the same name
         // hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :) -->>
         // hf@bellcom.dk, 21-jan-2012: 2.nd param was order no.
         $callString = AFSWS_CancelReservation(
 	        $this->userString(),
-            AFSWS_CancelReservationObj( $account->getCustomersId, '', $amount) 
+            AFSWS_CancelReservationObj( $customer->getId(), '', $amount) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :)
 

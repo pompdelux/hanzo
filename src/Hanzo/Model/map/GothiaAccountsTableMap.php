@@ -43,16 +43,6 @@ class GothiaAccountsTableMap extends TableMap
 		$this->setUseIdGenerator(false);
 		// columns
 		$this->addForeignPrimaryKey('CUSTOMERS_ID', 'CustomersId', 'INTEGER' , 'customers', 'ID', true, null, null);
-		$this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', true, 128, null);
-		$this->addColumn('LAST_NAME', 'LastName', 'VARCHAR', true, 128, null);
-		$this->addColumn('ADDRESS', 'Address', 'VARCHAR', true, 255, null);
-		$this->addColumn('POSTAL_CODE', 'PostalCode', 'VARCHAR', true, 12, null);
-		$this->addColumn('POSTAL_PLACE', 'PostalPlace', 'VARCHAR', true, 64, null);
-		$this->addColumn('EMAIL', 'Email', 'VARCHAR', true, 255, null);
-		$this->addColumn('PHONE', 'Phone', 'VARCHAR', true, 32, null);
-		$this->addColumn('MOBILE_PHONE', 'MobilePhone', 'VARCHAR', false, 32, null);
-		$this->addColumn('FAX', 'Fax', 'VARCHAR', false, 32, null);
-		$this->addColumn('COUNTRY_CODE', 'CountryCode', 'VARCHAR', false, 4, null);
 		$this->addColumn('DISTRIBUTION_BY', 'DistributionBy', 'VARCHAR', false, 255, null);
 		$this->addColumn('DISTRIBUTION_TYPE', 'DistributionType', 'VARCHAR', false, 255, null);
 		$this->addColumn('SOCIAL_SECURITY_NUM', 'SocialSecurityNum', 'VARCHAR', true, 12, null);

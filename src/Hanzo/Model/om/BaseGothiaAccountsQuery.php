@@ -21,31 +21,11 @@ use Hanzo\Model\GothiaAccountsQuery;
  * 
  *
  * @method     GothiaAccountsQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
- * @method     GothiaAccountsQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
- * @method     GothiaAccountsQuery orderByLastName($order = Criteria::ASC) Order by the last_name column
- * @method     GothiaAccountsQuery orderByAddress($order = Criteria::ASC) Order by the address column
- * @method     GothiaAccountsQuery orderByPostalCode($order = Criteria::ASC) Order by the postal_code column
- * @method     GothiaAccountsQuery orderByPostalPlace($order = Criteria::ASC) Order by the postal_place column
- * @method     GothiaAccountsQuery orderByEmail($order = Criteria::ASC) Order by the email column
- * @method     GothiaAccountsQuery orderByPhone($order = Criteria::ASC) Order by the phone column
- * @method     GothiaAccountsQuery orderByMobilePhone($order = Criteria::ASC) Order by the mobile_phone column
- * @method     GothiaAccountsQuery orderByFax($order = Criteria::ASC) Order by the fax column
- * @method     GothiaAccountsQuery orderByCountryCode($order = Criteria::ASC) Order by the country_code column
  * @method     GothiaAccountsQuery orderByDistributionBy($order = Criteria::ASC) Order by the distribution_by column
  * @method     GothiaAccountsQuery orderByDistributionType($order = Criteria::ASC) Order by the distribution_type column
  * @method     GothiaAccountsQuery orderBySocialSecurityNum($order = Criteria::ASC) Order by the social_security_num column
  *
  * @method     GothiaAccountsQuery groupByCustomersId() Group by the customers_id column
- * @method     GothiaAccountsQuery groupByFirstName() Group by the first_name column
- * @method     GothiaAccountsQuery groupByLastName() Group by the last_name column
- * @method     GothiaAccountsQuery groupByAddress() Group by the address column
- * @method     GothiaAccountsQuery groupByPostalCode() Group by the postal_code column
- * @method     GothiaAccountsQuery groupByPostalPlace() Group by the postal_place column
- * @method     GothiaAccountsQuery groupByEmail() Group by the email column
- * @method     GothiaAccountsQuery groupByPhone() Group by the phone column
- * @method     GothiaAccountsQuery groupByMobilePhone() Group by the mobile_phone column
- * @method     GothiaAccountsQuery groupByFax() Group by the fax column
- * @method     GothiaAccountsQuery groupByCountryCode() Group by the country_code column
  * @method     GothiaAccountsQuery groupByDistributionBy() Group by the distribution_by column
  * @method     GothiaAccountsQuery groupByDistributionType() Group by the distribution_type column
  * @method     GothiaAccountsQuery groupBySocialSecurityNum() Group by the social_security_num column
@@ -62,31 +42,11 @@ use Hanzo\Model\GothiaAccountsQuery;
  * @method     GothiaAccounts findOneOrCreate(PropelPDO $con = null) Return the first GothiaAccounts matching the query, or a new GothiaAccounts object populated from the query conditions when no match is found
  *
  * @method     GothiaAccounts findOneByCustomersId(int $customers_id) Return the first GothiaAccounts filtered by the customers_id column
- * @method     GothiaAccounts findOneByFirstName(string $first_name) Return the first GothiaAccounts filtered by the first_name column
- * @method     GothiaAccounts findOneByLastName(string $last_name) Return the first GothiaAccounts filtered by the last_name column
- * @method     GothiaAccounts findOneByAddress(string $address) Return the first GothiaAccounts filtered by the address column
- * @method     GothiaAccounts findOneByPostalCode(string $postal_code) Return the first GothiaAccounts filtered by the postal_code column
- * @method     GothiaAccounts findOneByPostalPlace(string $postal_place) Return the first GothiaAccounts filtered by the postal_place column
- * @method     GothiaAccounts findOneByEmail(string $email) Return the first GothiaAccounts filtered by the email column
- * @method     GothiaAccounts findOneByPhone(string $phone) Return the first GothiaAccounts filtered by the phone column
- * @method     GothiaAccounts findOneByMobilePhone(string $mobile_phone) Return the first GothiaAccounts filtered by the mobile_phone column
- * @method     GothiaAccounts findOneByFax(string $fax) Return the first GothiaAccounts filtered by the fax column
- * @method     GothiaAccounts findOneByCountryCode(string $country_code) Return the first GothiaAccounts filtered by the country_code column
  * @method     GothiaAccounts findOneByDistributionBy(string $distribution_by) Return the first GothiaAccounts filtered by the distribution_by column
  * @method     GothiaAccounts findOneByDistributionType(string $distribution_type) Return the first GothiaAccounts filtered by the distribution_type column
  * @method     GothiaAccounts findOneBySocialSecurityNum(string $social_security_num) Return the first GothiaAccounts filtered by the social_security_num column
  *
  * @method     array findByCustomersId(int $customers_id) Return GothiaAccounts objects filtered by the customers_id column
- * @method     array findByFirstName(string $first_name) Return GothiaAccounts objects filtered by the first_name column
- * @method     array findByLastName(string $last_name) Return GothiaAccounts objects filtered by the last_name column
- * @method     array findByAddress(string $address) Return GothiaAccounts objects filtered by the address column
- * @method     array findByPostalCode(string $postal_code) Return GothiaAccounts objects filtered by the postal_code column
- * @method     array findByPostalPlace(string $postal_place) Return GothiaAccounts objects filtered by the postal_place column
- * @method     array findByEmail(string $email) Return GothiaAccounts objects filtered by the email column
- * @method     array findByPhone(string $phone) Return GothiaAccounts objects filtered by the phone column
- * @method     array findByMobilePhone(string $mobile_phone) Return GothiaAccounts objects filtered by the mobile_phone column
- * @method     array findByFax(string $fax) Return GothiaAccounts objects filtered by the fax column
- * @method     array findByCountryCode(string $country_code) Return GothiaAccounts objects filtered by the country_code column
  * @method     array findByDistributionBy(string $distribution_by) Return GothiaAccounts objects filtered by the distribution_by column
  * @method     array findByDistributionType(string $distribution_type) Return GothiaAccounts objects filtered by the distribution_type column
  * @method     array findBySocialSecurityNum(string $social_security_num) Return GothiaAccounts objects filtered by the social_security_num column
@@ -178,7 +138,7 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `ADDRESS`, `POSTAL_CODE`, `POSTAL_PLACE`, `EMAIL`, `PHONE`, `MOBILE_PHONE`, `FAX`, `COUNTRY_CODE`, `DISTRIBUTION_BY`, `DISTRIBUTION_TYPE`, `SOCIAL_SECURITY_NUM` FROM `gothia_accounts` WHERE `CUSTOMERS_ID` = :p0';
+		$sql = 'SELECT `CUSTOMERS_ID`, `DISTRIBUTION_BY`, `DISTRIBUTION_TYPE`, `SOCIAL_SECURITY_NUM` FROM `gothia_accounts` WHERE `CUSTOMERS_ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -289,286 +249,6 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
 			$comparison = Criteria::IN;
 		}
 		return $this->addUsingAlias(GothiaAccountsPeer::CUSTOMERS_ID, $customersId, $comparison);
-	}
-
-	/**
-	 * Filter the query on the first_name column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByFirstName('fooValue');   // WHERE first_name = 'fooValue'
-	 * $query->filterByFirstName('%fooValue%'); // WHERE first_name LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $firstName The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByFirstName($firstName = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($firstName)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $firstName)) {
-				$firstName = str_replace('*', '%', $firstName);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::FIRST_NAME, $firstName, $comparison);
-	}
-
-	/**
-	 * Filter the query on the last_name column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByLastName('fooValue');   // WHERE last_name = 'fooValue'
-	 * $query->filterByLastName('%fooValue%'); // WHERE last_name LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $lastName The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByLastName($lastName = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($lastName)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $lastName)) {
-				$lastName = str_replace('*', '%', $lastName);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::LAST_NAME, $lastName, $comparison);
-	}
-
-	/**
-	 * Filter the query on the address column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByAddress('fooValue');   // WHERE address = 'fooValue'
-	 * $query->filterByAddress('%fooValue%'); // WHERE address LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $address The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByAddress($address = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($address)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $address)) {
-				$address = str_replace('*', '%', $address);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::ADDRESS, $address, $comparison);
-	}
-
-	/**
-	 * Filter the query on the postal_code column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByPostalCode('fooValue');   // WHERE postal_code = 'fooValue'
-	 * $query->filterByPostalCode('%fooValue%'); // WHERE postal_code LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $postalCode The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByPostalCode($postalCode = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($postalCode)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $postalCode)) {
-				$postalCode = str_replace('*', '%', $postalCode);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::POSTAL_CODE, $postalCode, $comparison);
-	}
-
-	/**
-	 * Filter the query on the postal_place column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByPostalPlace('fooValue');   // WHERE postal_place = 'fooValue'
-	 * $query->filterByPostalPlace('%fooValue%'); // WHERE postal_place LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $postalPlace The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByPostalPlace($postalPlace = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($postalPlace)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $postalPlace)) {
-				$postalPlace = str_replace('*', '%', $postalPlace);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::POSTAL_PLACE, $postalPlace, $comparison);
-	}
-
-	/**
-	 * Filter the query on the email column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByEmail('fooValue');   // WHERE email = 'fooValue'
-	 * $query->filterByEmail('%fooValue%'); // WHERE email LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $email The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByEmail($email = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($email)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $email)) {
-				$email = str_replace('*', '%', $email);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::EMAIL, $email, $comparison);
-	}
-
-	/**
-	 * Filter the query on the phone column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByPhone('fooValue');   // WHERE phone = 'fooValue'
-	 * $query->filterByPhone('%fooValue%'); // WHERE phone LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $phone The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByPhone($phone = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($phone)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $phone)) {
-				$phone = str_replace('*', '%', $phone);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::PHONE, $phone, $comparison);
-	}
-
-	/**
-	 * Filter the query on the mobile_phone column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByMobilePhone('fooValue');   // WHERE mobile_phone = 'fooValue'
-	 * $query->filterByMobilePhone('%fooValue%'); // WHERE mobile_phone LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $mobilePhone The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByMobilePhone($mobilePhone = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($mobilePhone)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $mobilePhone)) {
-				$mobilePhone = str_replace('*', '%', $mobilePhone);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::MOBILE_PHONE, $mobilePhone, $comparison);
-	}
-
-	/**
-	 * Filter the query on the fax column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByFax('fooValue');   // WHERE fax = 'fooValue'
-	 * $query->filterByFax('%fooValue%'); // WHERE fax LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $fax The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByFax($fax = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($fax)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $fax)) {
-				$fax = str_replace('*', '%', $fax);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::FAX, $fax, $comparison);
-	}
-
-	/**
-	 * Filter the query on the country_code column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByCountryCode('fooValue');   // WHERE country_code = 'fooValue'
-	 * $query->filterByCountryCode('%fooValue%'); // WHERE country_code LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $countryCode The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    GothiaAccountsQuery The current query, for fluid interface
-	 */
-	public function filterByCountryCode($countryCode = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($countryCode)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $countryCode)) {
-				$countryCode = str_replace('*', '%', $countryCode);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(GothiaAccountsPeer::COUNTRY_CODE, $countryCode, $comparison);
 	}
 
 	/**
