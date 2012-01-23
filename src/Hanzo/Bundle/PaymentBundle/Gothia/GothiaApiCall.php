@@ -161,16 +161,16 @@ class GothiaApiCall
      * @return bool
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function checkCustomer( GothiaAccounts $account )
+    public function checkCustomer( Customers $customer )
     {
         // FIXME: hardcoded values
         $callString = AFSWS_CheckCustomer(
 	        $this->userString(),
             AFSWS_Customer(
-                $account->getAddress(),
-                $account->getCountryCode(),
+                $customer->getAddress(),
+                'SE',
                 'SEK',
-                '1000010',
+                $account->getCustomersId(),
                 'Person',
                 null,
                 null,
@@ -200,8 +200,7 @@ class GothiaApiCall
      **/
     public function placeReservation( GothiaAccounts $account, Orders $order )
     {
-        // FIXME: missing amount from order
-        $amount = 100;
+        $amount = $order->getTotalPrice();
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
         $callString = AFSWS_PlaceReservation(
 	        $this->userString(),
@@ -221,8 +220,7 @@ class GothiaApiCall
      **/
     public function cancelReservation( GothiaAccounts $account, Orders $order )
     {
-        // FIXME: missing amount from order
-        $amount = 100;
+        $amount = $order->getTotalPrice();
         // Gothia uses tns:CancelReservation which contains a tns:cancelReservation, therefore the 2 functions with almost the same name
         // hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :) -->>
         // hf@bellcom.dk, 21-jan-2012: 2.nd param was order no.
