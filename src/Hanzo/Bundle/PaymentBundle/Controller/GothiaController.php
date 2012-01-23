@@ -46,6 +46,7 @@ class GothiaController extends CoreController
      *     show error
      *   else
      *     go to payment success
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -65,31 +66,8 @@ class GothiaController extends CoreController
             $gothiaAccount = new GothiaAccounts();
 
             // Prefill object with information from the customer object
-            // FIXME: has this is the same information as on the customer, why have it?
-            $gothiaAccount->setFirstName( $customer->getFirstName() )
-                ->setLastName( $customer->getLastName() )
-                ->setAddress( 'Dalagatan' )
-                ->setPostalCode( '28020' )
-                ->setPostalPlace( 'BJÄRNUM' )
-                ->setEmail( 'hf-gothia-28020@bellcom.dk' )
-                ->setPhone( '00000000' )
-                ->setCountryCode( 'SE' )
-                ->setDistributionBy( 'NotSet' )
+            $gothiaAccount->setDistributionBy( 'NotSet' )
                 ->setDistributionType( 'NotSet' );
-
-            /* Test data:
-                $gothiaAccount->setFirstName( 'Sven Anders' )
-                ->setLastName( 'Ström' )
-                ->setAddress( 'Dalagatan' )
-                ->setPostalCode( '28020' )
-                ->setPostalPlace( 'BJÄRNUM' )
-                ->setEmail( 'hf-gothia-28020@bellcom.dk' )
-                ->setPhone( '00000000' )
-                ->setCountryCode( 'SE' )
-                ->setDistributionBy( 'NotSet' )
-                ->setDistributionType( 'NotSet' )
-                ->setSocialSecurityNum( '4409291111' );
-             */
 
             // Build the form where the customer can enter his/hers information
             $form = $this->createFormBuilder( $gothiaAccount )
@@ -103,7 +81,7 @@ class GothiaController extends CoreController
                 $form->bindRequest($this->get('request'));
 
                 // Validate information @ gothia
-                $response = $api->call()->checkCustomer( $gothiaAccount );
+                $response = $api->call()->checkCustomer( $customer );
 
                 if ( !$response->isError() && $form->isValid()) 
                 {
@@ -114,14 +92,16 @@ class GothiaController extends CoreController
                     // Handle reservations in Gothia when editing the order
                     // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK 
                     // it will fail because we have not removed the old reservation first, this should fix it
-                    if ( !empty($_SESSION['editing_order']['edit_order_id']) )
+
+                    if ( $order->getState() == OrdersPeer::STATE_EDITING )
                     {
+                        // FIXME:
                         $oldOrder = OrdersPeer::retrieveByPK($_SESSION['editing_order']['edit_order_id']);
 
                         // The new order amount is different from the old order amount
                         // We will remove the old reservation, and create a new one
                         // FIXME:
-                        if ( $oscomOrderAmount != $oldOrder->total->total )
+                        if ( $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                         {
                             $api->call()->cancelReservation( $gothiaAccount, $oldOrder );
                         }
@@ -158,3 +138,16 @@ class GothiaController extends CoreController
         return new Response( 'You should not be here', 500, array('Content-Type' => 'text/html'));
     }
 }
+/* Test data:
+    $gothiaAccount->setFirstName( 'Sven Anders' )
+    ->setLastName( 'Ström' )
+    ->setAddress( 'Dalagatan' )
+    ->setPostalCode( '28020' )
+    ->setPostalPlace( 'BJÄRNUM' )
+    ->setEmail( 'hf-gothia-28020@bellcom.dk' )
+    ->setPhone( '00000000' )
+    ->setCountryCode( 'SE' )
+    ->setDistributionBy( 'NotSet' )
+    ->setDistributionType( 'NotSet' )
+    ->setSocialSecurityNum( '4409291111' );
+ */

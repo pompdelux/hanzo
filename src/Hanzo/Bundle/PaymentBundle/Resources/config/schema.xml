@@ -3,16 +3,6 @@
 
   <table name="gothia_accounts">
     <column name="customers_id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="first_name" type="VARCHAR" size="128" required="true"/>
-    <column name="last_name" type="VARCHAR" size="128" required="true"/>
-    <column name="address" type="VARCHAR" size="255" required="true"/>
-    <column name="postal_code" type="VARCHAR" size="12" required="true"/>
-    <column name="postal_place" type="VARCHAR" size="64" required="true"/>
-    <column name="email" type="VARCHAR" size="255" required="true"/>
-    <column name="phone" type="VARCHAR" size="32" required="true"/>
-    <column name="mobile_phone" type="VARCHAR" size="32" required="false"/>
-    <column name="fax" type="VARCHAR" size="32" required="false"/>
-    <column name="country_code" type="VARCHAR" size="4" required="false"/>
     <column name="distribution_by" type="VARCHAR" size="255" required="false"/>
     <column name="distribution_type" type="VARCHAR" size="255" required="false"/>
     <column name="social_security_num" type="VARCHAR" size="12" required="true"/>
