@@ -23,10 +23,6 @@ services:
     # twig extensions
     hanzo.twig.extension:
         class:  Hanzo\Twig\Extension\HanzoTwigExtension
-        # removed..... (maby)
-        # arguments:
-        #     container: @service_container
-        #     cdn: http://cdn.hanzo.bc/
         tags:
             -  { name: twig.extension }
 
@@ -34,6 +30,9 @@ services:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+        resources:
+            - SimpleThingsFormExtraBundle:Form:translation_domain.html.twig
 
 # Assetic Configuration
 assetic:
@@ -64,7 +63,7 @@ propel:
         driver:               mysql
         user:                 root
         password:             null
-        dsn:                  mysql:host=localhost;dbname=hanzo;charset=UTF8
+        dsn:                  mysql:host=localhost;dbname=hanzo
         options:              {}
         attributes:           {}
     path:       "%kernel.root_dir%/../vendor/propel"
@@ -112,3 +111,7 @@ snc_redis:
     session:
         client: session
         prefix: hanzo.session
+
+# form addons
+simple_things_form_extra:
+    translation_domain_forward_campat: true

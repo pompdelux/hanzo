@@ -1,0 +1,46 @@
+#body-account h2 {
+  margin-top: 10px;
+}
+
+#body-create-account {}
+#body-create-account form {
+  margin: 20px 0px;
+}
+#body-create-account form.create {
+  width: 400px;
+}
+#body-create-account input[type=text],
+#body-create-account input[type=password],
+#body-create-account input[type=email],
+#body-account input[type=text],
+#body-account input[type=password],
+#body-account input[type=email],
+#body-login input[type=text],
+#body-login input[type=password],
+#body-login input[type=email] {
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+form.create input {
+  float: right;
+}
+form.create input.button {
+  float: left;
+}
+
+form.create label {
+  display: block;
+  float: left;
+}
+form.create label:after {
+  content: ":";
+}
+
+form.create input[required=required] {
+  border: 1px solid #f00;
+}
+
+form.create #customers div {
+  overflow: hidden;
+  margin-bottom: 10px;
+}

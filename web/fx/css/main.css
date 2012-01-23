@@ -625,11 +625,6 @@ form.newsletter-subscription-form input.button {
   width: auto;
 }
 
-/* account */
-#body-account h2 {
-  margin-top: 10px;
-}
-
 /* consultants */
 
 div#near-you-container h2 {}
@@ -790,6 +785,15 @@ div#near-you-container .entry i {
   background-color: #fff;
   float: right;
 }
+#body-login div.left {
+  float: left;
+  width: 335px;
+}
+#body-login div.right {
+  float: right;
+  width: 380px;
+}
+
 
 /* account history info */
 #body-account-history #main div,

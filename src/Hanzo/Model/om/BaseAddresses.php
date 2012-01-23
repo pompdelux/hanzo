@@ -729,11 +729,6 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 		$isInsert = $this->isNew();
 		try {
 			$ret = $this->preSave($con);
-			// geocodable behavior
-			if (!$this->isColumnModified(AddressesPeer::LATITUDE) && !$this->isColumnModified(AddressesPeer::LONGITUDE)) {
-			    $this->geocode();
-			}
-
 			if ($isInsert) {
 				$ret = $ret && $this->preInsert($con);
 			} else {
@@ -1612,12 +1607,10 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	
 	/**
 	 * update geocode information
-	 *
-	 * @retrun Addresses
 	 */
 	public function geocode()
 	{
-	    $geocoder = new \Geocoder\Geocoder(new \Geocoder\Provider\YahooProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter()));
+	    $geocoder = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter(), \Hanzo\Core\Hanzo::getInstance()->get('google.maps')));
 	    if (isset($result) && $coordinates = $result->getCoordinates()) {
 	        $this->setLatitude($coordinates[0]);
 	        $this->setLongitude($coordinates[1]);

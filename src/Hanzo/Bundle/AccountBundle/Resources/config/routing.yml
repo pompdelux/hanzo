@@ -15,3 +15,16 @@ _account:
     pattern: /account
     defaults:
         _controller: AccountBundle:Default:index
+_account_create:
+    pattern: /account/create
+    defaults:
+        _controller: AccountBundle:Default:create
+_account_lost_password:
+    pattern: /account/password-forgotten
+    defaults:
+        _controller: AccountBundle:Default:passwordForgotten
+
+_account_nno:
+    pattern: /account/nno
+    defaults:
+        _controller: AccountBundle:NNO:check

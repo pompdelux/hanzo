@@ -8,7 +8,7 @@ use Hanzo\Model\om\BaseAddresses;
 /**
  * Skeleton subclass for representing a row from the 'addresses' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -16,6 +16,6 @@ use Hanzo\Model\om\BaseAddresses;
  *
  * @package    propel.generator.src.Hanzo.Model
  */
-class Addresses extends BaseAddresses {
-
+class Addresses extends BaseAddresses
+{
 } // Addresses
