@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Propel\PropelBundle\PropelBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
+            new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
 
             new Hanzo\Bundle\CMSBundle\HanzoCMSBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),

@@ -73,13 +73,13 @@ class Tools
     public static function fxImageTag($src, $preset = '', array $params = array())
     {
         $src = Hanzo::getInstance()->get('core.cdn') . 'fx/' . $src;
-        return self::imageTag(self::imagePath($src, $preset), $params);
+        return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {
         $src = Hanzo::getInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
-        return self::imageTag(self::imagePath($src, $preset), $params);
+        return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageUrl($src, $preset = '50x50', array $params = array())
@@ -88,6 +88,12 @@ class Tools
         return self::imagePath($src, $preset);
     }
 
+
+    public static function imageTag($src, array $params = array())
+    {
+        $src = Hanzo::getInstance()->get('core.cdn') . '' . $src;
+        return self::generateImageTag(self::imagePath($src), $params);
+    }
 
     /**
      * build image path based on source and preset
@@ -122,7 +128,7 @@ class Tools
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
     }
 
-    protected static function imageTag($src, array $params = array())
+    protected static function generateImageTag($src, array $params = array())
     {
         if (empty($params['title']) && !empty($params['alt'])) {
             $params['title'] = $params['alt'];

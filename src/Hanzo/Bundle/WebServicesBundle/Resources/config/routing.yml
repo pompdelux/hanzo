@@ -19,3 +19,9 @@ ws_stock:
         _method:  GET
         id: \d+
         version: "v[0-9]+"
+
+ws_product_video:
+    pattern:  /rest/{version}/video
+    defaults:
+        _controller: WebServicesBundle:RestVideo:get
+        version: v1

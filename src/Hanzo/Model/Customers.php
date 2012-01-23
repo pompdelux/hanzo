@@ -45,4 +45,15 @@ class Customers extends BaseCustomers
         return $this->isGranted('IS_AUTHENTICATED_FULLY');
     }
 
+
+
+    /**
+     * The following methods is needed by the form component.....
+     */
+
+    public function getAddresses()
+    {
+        return $this->getAddressess();
+    }
+
 } // Customers

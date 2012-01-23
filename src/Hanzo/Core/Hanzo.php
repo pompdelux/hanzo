@@ -55,15 +55,15 @@ class Hanzo
 
         $config = Yaml::parse( __DIR__ . '/../../../app/config/hanzo.yml' );
 
-        if (isset($config['cdn'])) {
-           $this->settings['core.cdn'] = $config['cdn'];
+        if (isset($config['core']['cdn'])) {
+           $this->settings['core.cdn'] = $config['core']['cdn'];
         }
 
         // translate locale dev tld's
-        if (isset($config['tld_map']) &&
-            isset($config['tld_map'][$this->settings['core.tld']])
+        if (isset($config['core']['tld_map']) &&
+            isset($config['core']['tld_map'][$this->settings['core.tld']])
         ) {
-            $this->settings['core.tld'] = $config['tld_map'][$this->settings['core.tld']];
+            $this->settings['core.tld'] = $config['core']['tld_map'][$this->settings['core.tld']];
         }
 
         if ($cache = $this->cache->get($this->cache->id('core.settings'))) {
@@ -71,8 +71,16 @@ class Hanzo
         }
         else {
             $this->initSettings();
-            $this->initDomain($config['default_tld'], $config['tld_map']);
+            $this->initDomain($config['core']['default_tld'], $config['core']['tld_map']);
             $this->cache->set($this->cache->id('core.settings'), $this->settings);
+        }
+
+        unset($config['core']['cdn'], $config['core']['tld_map'], $config['core']['default_tld']);
+
+        foreach ($config as $section => $settings) {
+            foreach ($settings as $key => $value) {
+                $this->settings[$section.'.'.$key] = $value;
+            }
         }
 
         $session = $this->container->get('session');
@@ -81,7 +89,6 @@ class Hanzo
         }
 
         setLocale(LC_ALL, $session->getLocale().'.utf-8');
-        $this->settings['core.main_menu_thread'] = $config['main_menu_thread'];
     }
 
 

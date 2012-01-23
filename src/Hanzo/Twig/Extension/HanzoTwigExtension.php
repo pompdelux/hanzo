@@ -33,6 +33,7 @@ class HanzoTwigExtension extends Twig_Extension
             'product_image_url' => new Twig_Function_Method($this, 'product_image_url'),
             'fx_image_tag' => new Twig_Function_Method($this, 'fx_image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'image_path' => new Twig_Function_Method($this, 'image_path', array()),
+            'image_tag' => new Twig_Function_Method($this, 'image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'print_r' => new Twig_Function_Function('print_r'),
         );
     }
@@ -83,7 +84,7 @@ class HanzoTwigExtension extends Twig_Extension
      * @see Hanzo\Core\Tools\Tools::imageTag
      * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
-    protected function image_tag($src, array $params = array())
+    public function image_tag($src, array $params = array())
     {
         return Tools::imageTag($src, $params);
     }

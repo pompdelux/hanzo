@@ -153,7 +153,12 @@
     <foreign-key foreignTable="countries">
       <reference local="countries_id" foreign="id"/>
     </foreign-key>
-    <behavior name="geocodable" />
+    <behavior name="geocodable">
+        <parameter name="auto_update" value="false" />
+        <parameter name="geocoder_api_key_provider" value="\\Hanzo\\Core\\Hanzo::getInstance()->get(\'google.maps\')" />
+        <parameter name="geocoder_provider" value="\Geocoder\Provider\GoogleMapsProvider" />
+        <parameter name="address_columns" value="address_line_1,address_line_2,state_province,postal_code,country" />
+    </behavior>
   </table>
 
   <table name="domains">
