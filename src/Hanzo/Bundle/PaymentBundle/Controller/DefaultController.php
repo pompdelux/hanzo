@@ -10,6 +10,15 @@ use Hanzo\Core\Hanzo,
 
 class DefaultController extends CoreController
 {
+  /**
+   * blockAction
+   * @return void
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function blockAction()
+  {
+    return $this->render('PaymentBundle:Default:block.html.twig');
+  }
 
   public function indexAction($name)
   {

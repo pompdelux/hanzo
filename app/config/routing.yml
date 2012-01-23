@@ -1,3 +1,7 @@
+CheckoutBundle:
+    resource: "@CheckoutBundle/Resources/config/routing.yml"
+    prefix:   /
+
 AccountBundle:
     resource: "@AccountBundle/Resources/config/routing.yml"
     prefix:   /

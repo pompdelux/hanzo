@@ -1,0 +1,7 @@
+parameters:
+#    checkout.example.class: Hanzo\Bundle\CheckoutBundle\Example
+
+services:
+#    checkout.example:
+#        class: %checkout.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
