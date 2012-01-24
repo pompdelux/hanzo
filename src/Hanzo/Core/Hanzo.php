@@ -163,6 +163,10 @@ class Hanzo
      */
     public function get($key, $default = NULL)
     {
+        if ($key == 'ALL') {
+            return $this->settings;
+        }
+
         if (isset($this->settings[$key])) {
             return $this->settings[$key];
         }

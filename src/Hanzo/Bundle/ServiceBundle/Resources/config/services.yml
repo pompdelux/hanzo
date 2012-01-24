@@ -1,0 +1,27 @@
+parameters:
+    service_factory.class: Hanzo\Bundle\ServiceBundle\ServiceFactory
+
+    mail_manager.class: Hanzo\Bundle\ServiceBundle\Services\MailService
+    sms_manager.class: Hanzo\Bundle\ServiceBundle\Services\SmsService
+
+services:
+    service_factory:
+        class:           %service_factory.class%
+
+    mail_manager:
+        class:           %mail_manager.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     mail
+            parameters:  [@mailer, @templating]
+            class:       %mail_manager.class%
+
+    sms_manager:
+        class:           %sms_manager.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     sms
+            parameters:  ~
+            class:       %sms_manager.class%
