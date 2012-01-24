@@ -1,37 +1,46 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpFoundation\Response,
+    Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo,
-  Hanzo\Core\Tools,
-  Hanzo\Core\CoreController;
+    Hanzo\Core\Tools,
+    Hanzo\Model\Orders,
+    Hanzo\Model\OrdersPeer,
+    Hanzo\Model\Customers,
+    Hanzo\Model\CustomersPeer,
+    Hanzo\Core\CoreController
+    ;
 
 class DefaultController extends CoreController
 {
-  /**
-   * blockAction
-   * @return void
-   * @author Henrik Farre <hf@bellcom.dk>
-   **/
-  public function blockAction()
-  {
-    return $this->render('PaymentBundle:Default:block.html.twig');
-  }
+    /**
+     * blockAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function blockAction()
+    {
+        return $this->render('PaymentBundle:Default:block.html.twig');
+    }
 
-  public function indexAction($name)
-  {
-    return $this->render('PaymentBundle:Default:index.html.twig', array('name' => $name));
-  }
+    public function testAction()
+    {
+        return $this->render('PaymentBundle:Default:block.html.twig');
+    }
 
-  /**
-   * successAction
-   * @return void
-   * @author Henrik Farre <hf@bellcom.dk>
-   **/
-  public function successAction()
-  {
-    return new Response( 'Success', 200, array('Content-Type' => 'text/html'));
-  }
+    /**
+     * successAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function successAction()
+    {
+        $customer = CustomersPeer::getCurrent();
+        $order    = OrdersPeer::getCurrent();
+        return $this->render('PaymentBundle:Default:success.html.twig', array('page_type' => 'checkout-success'));
+    }
 }

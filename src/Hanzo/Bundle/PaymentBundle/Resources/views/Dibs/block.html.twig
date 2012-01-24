@@ -1,0 +1,34 @@
+<ul class="payment-methods" id="payment-method-dibs">
+    {% if cardtypes.DK %} 
+    <li>
+      <input type="radio" value="DK" id="dibs_card_type_DK" name="paytype">
+      <label for="dibs_card_type_DK">
+        <img alt="DK" src="http://test.static.pompdelux.dk/templates/pompdelux/images/icons/dankort.jpg"> Visa/Dankort
+      </label>
+    </li>
+    {% endif %}
+    {% if cardtypes.VISA %} 
+    <li>
+      <input type="radio" value="VISA" id="dibs_card_type_VISA" name="paytype">
+      <label for="dibs_card_type_VISA">
+        <img alt="VISA" src="http://test.static.pompdelux.dk/templates/pompdelux/images/icons/visa.jpg"> Visa
+      </label>
+    </li>
+    {% endif %}
+    {% if cardtypes.ELEC %} 
+    <li>
+      <input type="radio" value="ELEC" id="dibs_card_type_ELEC" name="paytype">
+      <label for="dibs_card_type_ELEC">
+        <img alt="ELEC" src="http://test.static.pompdelux.dk/templates/pompdelux/images/icons/visaelectron.jpg"> Visa Electron
+      </label>
+    </li>
+    {% endif %}
+    {% if cardtypes.MC %} 
+    <li>
+      <input type="radio" value="MC" id="dibs_card_type_MC" name="paytype">
+      <label for="dibs_card_type_MC">
+        <img alt="MC" src="http://test.static.pompdelux.dk/templates/pompdelux/images/icons/mastercard.jpg"> Mastercard/Eurocard
+      </label>
+    </li>
+    {% endif %}
+</ul>

@@ -54,23 +54,38 @@ class GothiaApiCall
     protected function call( $function, $request )
     {
         $errorReporting = error_reporting(0);
-        // FIXME: hardcoded to test
-        $client = AFSWS_Init( 'test' );
 
-        $response = $client->call( $function, $request );
-        error_log(__LINE__.':'.__FILE__.' '.$request); // hf@bellcom.dk debugging
-        error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
+        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        {
+            $client = AFSWS_Init( 'test' );
+        }
+        else
+        {
+            $client = AFSWS_Init( 'live' );
+        }
+
+        try
+        {
+            $response = $client->call( $function, $request );
+            error_log(__LINE__.':'.__FILE__.' '.$request); // hf@bellcom.dk debugging
+            error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
+        }
+        catch (Exception $e)
+        {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
+            throw new GothiaApiCallException( $e->getMessage() );
+        }
+
         error_reporting($errorReporting);
 
         // If there is a problem with the connection or something like that a GothiaApiCallException is thrown
         // Else a GothiaApiCallResponse is returned, which might still be an "error" but the call went through fine
-        try
+        $errors = $this->checkResponseForErrors( $response, $client );
+
+        if ( !empty($errors) )
         {
-            $this->checkResponseForErrors( $response, $client );
-        }
-        catch (Exception $e)
-        {
-            throw new GothiaApiCallException( $e->getMessage() );
+            error_log(__LINE__.':'.__FILE__.' '.print_r($errors,1)); // hf@bellcom.dk debugging
+            throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
         return new GothiaApiCallResponse( $response, $function );
@@ -99,44 +114,43 @@ class GothiaApiCall
 
             if ( $err )
             {
-                $msg .= $err;
+                $msg .= ' '.$err;
             }
 
-            throw new Exception( $msg );
+            $errors[] = $msg;
         }
-
-        foreach ( $response as $key => $data )
+        else
         {
-            if ( isset($data['Errors']) && !empty($data['Errors']) && is_array($data['Errors']) )
+            foreach ( $response as $key => $data )
             {
-                foreach ( $data['Errors'] as $errorKey => $errorData )
+                if ( isset($data['Errors']) && !empty($data['Errors']) && is_array($data['Errors']) )
                 {
-                    if ( !empty($errorData) )
+                    foreach ( $data['Errors'] as $errorKey => $errorData )
                     {
-                        if ( !isset($errorData['ID']) && isset($errorData[0]['ID']) )
+                        if ( !empty($errorData) )
                         {
-                            foreach ( $errorData as $subError )
+                            if ( !isset($errorData['ID']) && isset($errorData[0]['ID']) )
                             {
-                                $errors[] = (isset( $prettyErrors[$subError['ID']] )) ? $prettyErrors[$subError['ID']] : $subError['Message'];
+                                foreach ( $errorData as $subError )
+                                {
+                                    $errors[] = (isset( $prettyErrors[$subError['ID']] )) ? $prettyErrors[$subError['ID']] : $subError['Message'];
+                                }
                             }
-                        }
-                        else
-                        {
-                            $errors[] = (isset( $prettyErrors[$errorData['ID']] )) ? $prettyErrors[$errorData['ID']] : $errorData['Message'];
+                            else
+                            {
+                                $errors[] = (isset( $prettyErrors[$errorData['ID']] )) ? $prettyErrors[$errorData['ID']] : $errorData['Message'];
+                            }
                         }
                     }
                 }
-            }
-            if ( isset($data['TemporaryExternalProblem']) && $data['TemporaryExternalProblem'] !== 'false' )
-            {
-                $errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
+                if ( isset($data['TemporaryExternalProblem']) && $data['TemporaryExternalProblem'] !== 'false' )
+                {
+                    $errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
+                }
             }
         }
 
-        if (!empty($errors))
-        {
-            throw new Exception( implode('<br>', $errors) );
-        }
+        return $errors;
     }
 
 
@@ -151,6 +165,12 @@ class GothiaApiCall
         $addresses     = $customer->getAddressess();
         $address       = $addresses[0];
         $gothiaAccount = $customer->getGothiaAccounts();
+        $customerId    = $customer->getId();
+
+        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        {
+            $customerId = '100001';
+        }
 
         $callString = AFSWS_CheckCustomer(
 	        $this->userString(),
@@ -158,7 +178,7 @@ class GothiaApiCall
                 $address->getAddressLine1().' '.$address->getAddressLine2(),
                 'SE',
                 'SEK',
-                $customer->getId(),
+                $customerId,
                 'Person',
                 null,
                 $gothiaAccount->getDistributionBy(),
@@ -193,9 +213,10 @@ class GothiaApiCall
         $amount     = $order->getTotalPrice();
         $customerId = $customer->getId();
 
-        // FIXME: hardcoded values
-        $amount = 100;
-        $customerId = '00100001';
+        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        {
+            $customerId = '00100001';
+        }
 
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
         $callString = AFSWS_PlaceReservation(
@@ -218,14 +239,20 @@ class GothiaApiCall
      **/
     public function cancelReservation( Customers $customer, Orders $order )
     {
-        $amount = $order->getTotalPrice();
+        $amount     = $order->getTotalPrice();
+        $customerId = $customer->getId();
+
+        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        {
+            $customerId = '00100001';
+        }
 
         // Gothia uses tns:CancelReservation which contains a tns:cancelReservation, therefore the 2 functions with almost the same name
         // hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :) -->>
         // hf@bellcom.dk, 21-jan-2012: 2.nd param was order no.
         $callString = AFSWS_CancelReservation(
 	        $this->userString(),
-            AFSWS_CancelReservationObj( $customer->getId(), '', $amount) 
+            AFSWS_CancelReservationObj( $customerId, '', $amount) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :)
 

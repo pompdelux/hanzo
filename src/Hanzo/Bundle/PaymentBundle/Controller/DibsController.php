@@ -24,13 +24,10 @@ class DibsController extends CoreController
      **/
     public function callbackAction()
     {
-        $api = new DibsApi();
+        $api = $this->get('payment.dibsapi');
 
         $request = $this->get('request');
         $orderId = $request->get('orderid');
-
-        // FIXME: testing
-        $orderId = 1;
 
         if ( $orderId === false )
         {
@@ -60,23 +57,13 @@ class DibsController extends CoreController
     }
 
     /**
-     * okAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function okAction()
-    {
-        error_log(__LINE__.':'.__FILE__.' '.print_r($_GET,1)); // hf@bellcom.dk debugging
-        return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
-    }
-
-    /**
      * cancelAction
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function cancelAction()
     {
+        // FIXME: should be handled by default route?
         error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
         error_log(__LINE__.':'.__FILE__.' '.print_r($_GET,1)); // hf@bellcom.dk debugging
         return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
@@ -106,7 +93,7 @@ class DibsController extends CoreController
      **/
     public function formTestAction()
     {
-        $api = new DibsApi();
+        $api = $this->get('payment.dibsapi');
 
         // FIXME: testing
         $orderId = 1;
@@ -135,6 +122,18 @@ class DibsController extends CoreController
      **/
     public function blockAction()
     {
-        return new Response('Dibs payment block', 200, array('Content-Type' => 'text/html'));
+        $api = $this->get('payment.dibsapi');
+
+        if ( !$api->isActive() )
+        {
+            return new Response( '', 200, array('Content-Type' => 'text/html'));
+        }
+
+        // FIXME: hardcoded vars
+        $cardtypes = array(
+            'DK' => true, 'VISA' => true, 'ELEC' => true, 'MC' => true
+            );
+
+        return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes ));
     }
 }

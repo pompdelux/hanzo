@@ -24,20 +24,28 @@ class DibsApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    //public function __construct( $md5key1, $md5key2, $merchant, $apiUser, $apiPass )
-    public function __construct()
+    public function __construct( $params, $settings )
     {
         // FIXME: 
-        // - hardcoded settings
         // - define paytypes avaliable for domain
-        $this->settings = array(
-            'md5key1'     => 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp',
-            'md5key2'     => 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n[',
-            'merchant'    => '90057323',
-            'test'        => 'YES',
-            'api_user'    => 'bellcom_test_api_user',
-            'api_pass'    => '7iuTR8EZ',
-        );
+        // - set active
+        // TODO: check for missing settings
+        $this->settings = $settings;
+
+        // FIXME: hardcode vars:
+        $this->settings['active'] = true;
+    }
+
+    /**
+     * isActive
+     * Checks if the api is active for the current configuration
+     *
+     * @return bool
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function isActive()
+    {
+        return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
     }
 
     /**

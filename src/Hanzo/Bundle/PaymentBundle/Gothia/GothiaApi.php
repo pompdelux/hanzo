@@ -2,19 +2,8 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Gothia;
 
-use Exception;
-
-use Symfony\Component\HttpFoundation\Request;
-
-use Hanzo\Model\Orders,
-    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCall,
-    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException;
-
 class GothiaApi
 {
-    const MODE_TEST = 'test';
-    const MODE_LIVE = 'live';
-
     /**
      * undocumented class variable
      *
@@ -34,22 +23,42 @@ class GothiaApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct()
+    public function __construct($params, $settings)
     {
-        // FIXME: hardcoded settings
+        // FIXME: missing
+        // - set active
+        // TODO: check for missing settings
+        $this->settings = $settings;
+        
+        // FIXME: hardcoded vars:
+        $this->settings['test'] = true;
+        $this->settings['active'] = true;
+
+        // Live settings
         /*$this->settings = array(
             'username' => 'PompDeLuxExternalSE',
             'password' => 'i4F1FfFJ',
             'clientID' => 7757,
         );*/
 
-        $this->settings = array(
+        // Test settings:
+        /*$this->settings = array(
             'username' => 'EXTPompDeLuxSETest',
             'password' => 'o6K7IGPR',
             'clientID' => 7012,
-        );
+        );*/
+    }
 
-        $this->mode = self::MODE_TEST;
+    /**
+     * isActive
+     * Checks if the api is active for the current configuration
+     *
+     * @return bool
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function isActive()
+    {
+        return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
     }
 
     /**

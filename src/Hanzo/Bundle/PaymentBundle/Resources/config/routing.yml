@@ -2,15 +2,15 @@ PaymentBundle_success:
     pattern:  /payment/success
     defaults: { _controller: PaymentBundle:Default:success }
 
+PaymentBundle_test:
+    pattern:  /payment/test
+    defaults: { _controller: PaymentBundle:Default:test }
+
 PaymentBundle_dibs_callback:
     pattern:  /payment/dibs/callback
     defaults: { _controller: PaymentBundle:Dibs:callback }
     requirements:
         _method: POST
-
-PaymentBundle_dibs_ok:
-    pattern:  /payment/dibs/ok
-    defaults: { _controller: PaymentBundle:Dibs:ok }
 
 PaymentBundle_dibs_cancel:
     pattern:  /payment/dibs/cancel

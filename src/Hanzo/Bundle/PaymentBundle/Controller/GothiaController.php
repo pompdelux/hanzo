@@ -16,7 +16,9 @@ use Hanzo\Core\Hanzo,
     Hanzo\Model\GothiaAccounts,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController,
-    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi;
+    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi,
+    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException
+    ;
 
 class GothiaController extends CoreController
 {
@@ -27,7 +29,14 @@ class GothiaController extends CoreController
      **/
     public function blockAction()
     {
-        return new Response('Gothia payment block', 200, array('Content-Type' => 'text/html'));
+        $api = $this->get('payment.gothiaapi');
+
+        if ( !$api->isActive() )
+        {
+            return new Response( '', 200, array('Content-Type' => 'text/html'));
+        }
+
+        return $this->render('PaymentBundle:Gothia:block.html.twig',array());
     }
 
     /**
@@ -42,31 +51,19 @@ class GothiaController extends CoreController
         $gothiaAccount = $customer->getGothiaAccounts();
 
         // No gothia account has been created and associated with the customer, so lets do that
+        $step = 2;
         if ( is_null($gothiaAccount) )
         {
+            $step = 1;
             $gothiaAccount = new GothiaAccounts();
-
-            // TODO: form is created twice
-            // Build the form where the customer can enter his/hers information
-            $form = $this->createFormBuilder( $gothiaAccount )
-                ->add( 'social_security_num', 'text' )
-                ->getForm();
-
-            return $this->render('PaymentBundle:Gothia:payment.html.twig',array('page_type' => 'gothia','step' => 1, 'form' => $form->createView()));
-        }
-        else
-        {
-            // TODO: form is created twice
-            // Build the form where the customer can enter his/hers information
-            $form = $this->createFormBuilder( $gothiaAccount )
-                ->add( 'social_security_num', 'text' )
-                ->getForm();
-
-            // A existing gothia account exists, ask the user for confirmation and get on with it
-            return $this->render('PaymentBundle:Gothia:payment.html.twig',array('page_type' => 'gothia','step' => 2, 'form' => $form->createView()));
         }
 
-        return new Response( 'You should not be here', 500, array('Content-Type' => 'text/html'));
+        // Build the form where the customer can enter his/hers information
+        $form = $this->createFormBuilder( $gothiaAccount )
+            ->add( 'social_security_num', 'text' )
+            ->getForm();
+
+        return $this->render('PaymentBundle:Gothia:payment.html.twig',array('page_type' => 'gothia','step' => $step, 'form' => $form->createView()));
     }
 
     /**
@@ -78,8 +75,8 @@ class GothiaController extends CoreController
      **/
     public function checkCustomerAction(Request $request)
     {
-        $form = $request->request->get('form');
-        $SSN  = $form['social_security_num'];
+        $form       = $request->request->get('form');
+        $SSN        = $form['social_security_num'];
         $translator = $this->get('translator');
 
         // Use form validation?
@@ -93,8 +90,10 @@ class GothiaController extends CoreController
 
         if ( strlen( $SSN ) < 10 )
         {
-            // FIXME: define
-            return $this->json_response( GOTHIA_ERROR_ORGNOSSN_IS_TO_SHORT );
+            return $this->json_response(array( 
+                'status' => FALSE,
+                'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+            ));
         }
 
         $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
@@ -114,17 +113,18 @@ class GothiaController extends CoreController
 
         $customer->setGothiaAccounts( $gothiaAccount );
 
-        // Validate information @ gothia
-        $api = new GothiaApi();
-
         try
         {
+            // Validate information @ gothia
+            $api = $this->get('payment.gothiaapi');
             $response = $api->call()->checkCustomer( $customer );
         }
         catch( GothiaApiCallException $g )
         {
-            // FIXME: better response
-            return $this->json_response( 'error' );
+            return $this->json_response(array( 
+                'status' => FALSE,
+                'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+            ));
         }
 
         if ( !$response->isError() ) 
@@ -135,19 +135,26 @@ class GothiaController extends CoreController
 
             $customer->setGothiaAccounts( $gothiaAccount );
             $customer->save();
-            // FIXME: better response
-            return $this->json_response( 'ok' );
+
+            return $this->json_response(array( 
+                'status' => true,
+                'message' => '',
+            ));
         }
         else
         {
             if ( $response->data['PurchaseStop'] === 'true')
             {
-                // FIXME: better response
-                return $this->json_response( 'error: purchase denied' );
+                return $this->json_response(array( 
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
+                ));
             }
 
-            // FIXME: better response
-            return $this->json_response( 'error' );
+            return $this->json_response(array( 
+                'status' => FALSE,
+                'message' => $translator->trans('json.checkcustomer.error', array(), 'gothia'),
+            ));
         }
     }
 
@@ -159,9 +166,10 @@ class GothiaController extends CoreController
      **/
     public function confirmAction(Request $request)
     {
-        $customer      = CustomersPeer::getCurrent();
-        $order         = OrdersPeer::getCurrent();
-        $api           = new GothiaApi();
+        $customer   = CustomersPeer::getCurrent();
+        $order      = OrdersPeer::getCurrent();
+        $api        = $this->get('payment.gothiaapi');
+        $translator = $this->get('translator');
 
         // Handle reservations in Gothia when editing the order
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK 
@@ -182,14 +190,18 @@ class GothiaController extends CoreController
                 }
                 catch( GothiaApiCallException $g )
                 {
-                    // FIXME: better response
-                    return $this->json_response( 'error' );
+                    return $this->json_response(array( 
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                    ));
                 }
 
                 if ( $response->isError() )
                 {
-                    // FIXME: better response
-                    return $this->json_response( 'error' );
+                    return $this->json_response(array( 
+                        'status' => FALSE,
+                        'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
+                    ));
                 }
             }
         }
@@ -200,18 +212,24 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
-            // FIXME: better response
-            return $this->json_response( 'error' );
+            return $this->json_response(array( 
+                'status' => FALSE,
+                'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+            ));
         }
 
         if ( $response->isError() )
         {
-            // FIXME: better response
-            return $this->json_response( 'error' );
+            return $this->json_response(array( 
+                'status' => FALSE,
+                'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
+            ));
         }
 
-        // FIXME: better response
-        return $this->json_response( 'ok' );
+        return $this->json_response(array( 
+            'status' => TRUE,
+            'message' => '',
+        ));
     }
 
     /**
@@ -224,9 +242,6 @@ class GothiaController extends CoreController
         $customer  = CustomersPeer::getCurrent();
         $addresses = $customer->getAddresses();
 
-        error_log(__LINE__.':'.__FILE__.' '.print_r($addresses[0],1)); // hf@bellcom.dk debugging
-
         return new Response( 'Test completed', 200, array('Content-Type' => 'text/html'));
     }
-
 }

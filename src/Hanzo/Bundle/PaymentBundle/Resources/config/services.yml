@@ -1,12 +1,22 @@
 parameters:
-  payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Dibs\DibsApi
-  payment.dibsapi.md5key1: 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp'
-  payment.dibsapi.md5key2: 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n['
-  payment.dibsapi.merchant_id: '90057323'
-  payment.dibsapi.api_user: 'bellcom_test_api_user'
-  payment.dibsapi.api_pass: '7iuTR8EZ'
+    payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Dibs\DibsApi
+    payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi
 
 services:
-  payment.dibsapi:
-    class: %payment.dibsapi.class%
-    arguments: [%payment.dibsapi.md5key1%]
+    payment.dibsapi:
+        class:           %payment.dibsapi.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments: 
+            service:     dibsapi 
+            parameters:  ~ 
+            class:       %payment.dibsapi.class%
+
+    payment.gothiaapi:
+        class:           %payment.gothiaapi.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments: 
+            service:     gothiaapi
+            parameters:  ~ 
+            class:       %payment.gothiaapi.class%
