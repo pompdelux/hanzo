@@ -45,6 +45,7 @@ var dialoug = (function($) {
 
     $.colorbox({
       'top' : '25%',
+      'maxWidth' : '400px',
       'close' : i18n.t('Close'),
       'html': templates.alert
                        .replace('%title%', title)
