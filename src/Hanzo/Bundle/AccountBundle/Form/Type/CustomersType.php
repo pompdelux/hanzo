@@ -7,9 +7,6 @@ use Symfony\Component\Form\FormBuilder;
 
 class CustomersType extends AbstractType
 {
-
-    public function __construct() {}
-
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder->add('first_name', null, array('translation_domain' => 'account'));
@@ -20,7 +17,10 @@ class CustomersType extends AbstractType
             'translation_domain' => 'account'
         ));
 
-        $builder->add('phone', null, array('translation_domain' => 'account'));
+        $builder->add('phone', null, array(
+            'required' => TRUE,
+            'translation_domain' => 'account'
+        ));
 
         $builder->add('email', 'repeated', array(
             'type' => 'email',
@@ -43,6 +43,7 @@ class CustomersType extends AbstractType
             'required' => false,
             'translation_domain' => 'account',
         ));
+
         $builder->add('accept', 'checkbox', array(
             'label' => 'create.accept',
             'required' => true,

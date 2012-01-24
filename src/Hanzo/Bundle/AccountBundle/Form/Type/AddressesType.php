@@ -10,16 +10,22 @@ class AddressesType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder->add('type', 'hidden', array('translation_domain' => 'account'));
-        $builder->add('address_line_1', null, array('translation_domain' => 'account'));
-        $builder->add('postal_code', null, array('translation_domain' => 'account'));
-        $builder->add('city', null, array('translation_domain' => 'account'));
-        $builder->add('country', null, array('translation_domain' => 'account', 'read_only' => TRUE));
-
-        //$builder->add('address_line_2');
-        // $builder->add('state_province');
-        // $builder->add('company_name');
-        // $builder->add('latitude', 'hidden');
-        // $builder->add('longitude', 'hidden');
+        $builder->add('address_line_1', null, array(
+            'required' => TRUE,
+            'translation_domain' => 'account'
+        ));
+        $builder->add('postal_code', null, array(
+            'required' => TRUE,
+            'translation_domain' => 'account'
+        ));
+        $builder->add('city', null, array(
+            'required' => TRUE,
+            'translation_domain' => 'account'
+        ));
+        $builder->add('country', null, array(
+            'translation_domain' => 'account',
+            'read_only' => TRUE
+        ));
     }
 
     public function getDefaultOptions(array $options)
