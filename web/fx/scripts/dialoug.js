@@ -5,7 +5,9 @@ var dialoug = (function($) {
   var pub = {};
 
   var templates = {
-    'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>'
+    'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
+    'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">%ok%</a><a class="button left dialoug-confirm" data-case="cancel" href="">%cancel%</a></div></div>',
+    'notice' : '<div id="dialoug-message %type%"><p>%message%</p></div>'
   };
 
   pub.confirm = function(title, message, callback) {
@@ -17,7 +19,11 @@ var dialoug = (function($) {
       'maxWidth' : '400px',
       'overlayClose' : false,
       'escKey' : false,
-      'html' : '<div class="dialoug confirm"><h2>' + title + '</h2><div class="message">' + message + '</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">' + i18n.t('Ok') + '</a><a class="button left dialoug-confirm" data-case="cancel" href="">' + i18n.t('Cancel') + '</a></div></div>'
+      'html' : templates.confirm
+                        .replace('%title%', title)
+                        .replace('%message%', message)
+                        .replace('%ok%', i18n.t('Ok'))
+                        .replace('%cancel%', i18n.t('Cancel'))
     });
 
     $('#cboxContent .dialoug a').bind('click', function(event) {
@@ -40,9 +46,10 @@ var dialoug = (function($) {
     $.colorbox({
       'top' : '25%',
       'close' : i18n.t('Close'),
-      'html': templates.alert.replace('%title%', title)
-                             .replace('%message%', message)
-                             .replace('%type%', type)
+      'html': templates.alert
+                       .replace('%title%', title)
+                       .replace('%message%', message)
+                       .replace('%type%', type)
     });
 
     if ((undefined !== timeout) && (typeof timeout == 'number')) {
@@ -74,7 +81,10 @@ var dialoug = (function($) {
     var $notice = $('h1', $main);
 
     type = undefined === type ? 'info' : type;
-    var tpl = '<div id="dialoug-message ' + type + '"><p>' + message + '</p></div>';
+    var tpl = templates.notice
+                       .replace('%message%', message)
+                       .replace('%type%', type)
+    ;
 
     if ($notice.length) {
       $notice.after(tpl);
