@@ -4,7 +4,7 @@
 var dialoug = (function($) {
   var pub = {};
 
-  pub.confirm = function (title, message, callback) {
+  pub.confirm = function(title, message, callback) {
     var $callback = callback;
 
     $.colorbox({
@@ -28,7 +28,7 @@ var dialoug = (function($) {
     });
   };
 
-  pub.alert = function (title, message, timeout) {
+  pub.alert = function(title, message, timeout) {
     $.colorbox({
       'top' : '25%',
       'close' : i18n.t('Close'),
@@ -42,8 +42,36 @@ var dialoug = (function($) {
     }
   };
 
+  pub.notice = function(message, type, timeout) {
+    var $main = $('#main');
+    var $notice = $('h1', $main);
 
-  pub.slideNotice = function (message, duration) {
+    type = undefined === type ? 'info' : type;
+    var tpl = '<div id="dialoug-message ' + type + '"><p>' + message + '</p></div>';
+
+    if ($notice.length) {
+      $notice.after(tpl);
+    }
+    else {
+      $main.prepend(tpl);
+    }
+
+    var $message = $('div#dialoug-message', $main);
+    var dim = $message.offset();
+    $(document).scrollTop(dim.top - ($message.height() + 50));
+
+    $message.slideDown();
+
+    if (undefined !== timeout && $.isNumeric(timeout)) {
+      setTimeout(function() {
+        $message.slideUp(function() {
+          $message.remove();
+        });
+      }, timeout);
+    }
+  };
+
+  pub.slideNotice = function(message, duration) {
     if (undefined === duration) {
       duration = 2000;
     }
@@ -74,7 +102,28 @@ var dialoug = (function($) {
     });
   };
 
-  sleep = function (delay) {
+
+  var loading_status = false;
+  pub.loading = function(selector, message) {
+    if (loading_status) { return; }
+
+    $(selector).each(function() {
+      var $this = $(this);
+      var msg = undefined === message ? '' : message;
+      $this.after('<div class="dialoug-loading">' + msg + '</div>');
+      loading_status = $('.dialoug-loading', $this.parent());
+    });
+  }
+
+  pub.stopLoading = function(message) {
+    if (loading_status) {
+      loading_status.remove();
+      loading_status = false;
+    }
+  }
+
+
+  sleep = function(delay) {
     var start = new Date().getTime();
     while (new Date().getTime() < start + delay);
   }

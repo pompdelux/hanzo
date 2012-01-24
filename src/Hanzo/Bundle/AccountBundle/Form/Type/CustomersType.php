@@ -25,16 +25,16 @@ class CustomersType extends AbstractType
         $builder->add('email', 'repeated', array(
             'type' => 'email',
             'invalid_message' => 'The email fields must match.',
-            'first_name' => 'email',
-            'second_name' => 'email_repeated',
+            'first_name' => 'email_address',
+            'second_name' => 'email_address_repeated',
             'translation_domain' => 'account',
         ));
 
         $builder->add('password', 'repeated', array(
             'type' => 'password',
             'invalid_message' => 'The password fields must match.',
-            'first_name' => 'password',
-            'second_name' => 'password_repeated',
+            'first_name' => 'pass',
+            'second_name' => 'pass_repeated',
             'translation_domain' => 'account',
         ));
 

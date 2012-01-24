@@ -6,9 +6,11 @@
       $('form.nno').on('submit', function(event) {
         event.preventDefault();
         var $form = $(this);
-
-        var $input = $form.find('input[name="phone"]');
+        var $input = $('input[name="phone"]', $form);
         if ($input.val()) {
+          // trigger loading box
+          dialoug.loading('form.nno input[type="submit"]', 'søger efter adresse...');
+          // fetch data
           $.getJSON(this.action + '/' + $input.val() , function(result) {
             if (result.status) {
               var $target = $('form.create');
@@ -22,7 +24,9 @@
             else {
               dialoug.alert('Woops!', result.message);
             }
+            // reset form and kill loader
             $input.val('');
+            dialoug.stopLoading();
           });
         }
 

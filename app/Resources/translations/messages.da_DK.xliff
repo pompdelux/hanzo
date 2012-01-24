@@ -177,6 +177,24 @@
                 <source>No such product in your cart.</source>
                 <target>Det efterspurgte produkt er ikke i din kurv.</target>
             </trans-unit>
+
+<!-- from account/create -->
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadresse</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Gentag e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Valgfrit adgangskode</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Gentag adgangskode</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
