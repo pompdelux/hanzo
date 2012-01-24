@@ -33,7 +33,6 @@ var dialoug = (function($) {
   };
 
   pub.alert = function(title, message, type, timeout) {
-
     if (undefined === type) {
       type = 'info';
     }
@@ -52,6 +51,23 @@ var dialoug = (function($) {
       }, timeout);
     }
   };
+
+  /**
+   * wrapper functions for the different alert types.
+   * type can be:
+   * - info
+   * - warning
+   * - error
+   */
+  pub.info = function (title, message, timeout) {
+    pub.alert(title, message, 'info', timeout);
+  }
+  pub.warning = function (title, message, timeout) {
+    pub.alert(title, message, 'warning', timeout);
+  }
+  pub.error = function (title, message, timeout) {
+    pub.alert(title, message, 'error', timeout);
+  }
 
   pub.notice = function(message, type, timeout) {
     var $main = $('#main');
