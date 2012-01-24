@@ -4,6 +4,10 @@
 var dialoug = (function($) {
   var pub = {};
 
+  var templates = {
+    'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>'
+  };
+
   pub.confirm = function(title, message, callback) {
     var $callback = callback;
 
@@ -28,11 +32,18 @@ var dialoug = (function($) {
     });
   };
 
-  pub.alert = function(title, message, timeout) {
+  pub.alert = function(title, message, type, timeout) {
+
+    if (undefined === type) {
+      type = 'info';
+    }
+
     $.colorbox({
       'top' : '25%',
       'close' : i18n.t('Close'),
-      'html': '<div class="dialoug alert"><h2>' + title + '</h2><p class="message">' + message + '</p></div>'
+      'html': templates.alert.replace('%title%', title)
+                             .replace('%message%', message)
+                             .replace('%type%', type)
     });
 
     if ((undefined !== timeout) && (typeof timeout == 'number')) {
@@ -121,7 +132,6 @@ var dialoug = (function($) {
       loading_status = false;
     }
   }
-
 
   sleep = function(delay) {
     var start = new Date().getTime();
