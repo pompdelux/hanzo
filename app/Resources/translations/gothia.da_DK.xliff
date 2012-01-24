@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+<!-- json error responses -->
+            <trans-unit id="json_err1">
+                <source>json.ssn.not_numeric</source>
+                <target>Det indtastede personnummer må ikke indeholde andet end tal</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

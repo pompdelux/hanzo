@@ -80,12 +80,15 @@ class GothiaController extends CoreController
     {
         $form = $request->request->get('form');
         $SSN  = $form['social_security_num'];
+        $translator = $this->get('translator');
 
         // Use form validation?
         if ( !is_numeric( $SSN ) )
         {
-            // FIXME: define
-            return $this->json_response( GOTHIA_ERROR_ORGNOSSN_IS_NOT_NUMERIC );
+            return $this->json_response(array( 
+                'status' => FALSE,
+                'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
+            ));
         }
 
         if ( strlen( $SSN ) < 10 )
