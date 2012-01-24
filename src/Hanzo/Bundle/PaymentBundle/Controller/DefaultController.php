@@ -24,4 +24,14 @@ class DefaultController extends CoreController
   {
     return $this->render('PaymentBundle:Default:index.html.twig', array('name' => $name));
   }
+
+  /**
+   * successAction
+   * @return void
+   * @author Henrik Farre <hf@bellcom.dk>
+   **/
+  public function successAction()
+  {
+    return new Response( 'Success', 200, array('Content-Type' => 'text/html'));
+  }
 }

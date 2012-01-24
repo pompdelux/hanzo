@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %} 
+
+{% block content %} 
+<div id="gothia-payment-step-1" style="display: none">
+  <h1>Gothia opret konto</h1>
+  <div id="gothia-account-container">
+    <form action="{{ path('PaymentBundle_gothia_payment_checkcustomer') }}" method="post" {{ form_enctype(form) }}>
+      {{ form_widget(form) }}
+      <input type="submit" value="Opret" name="action-submit-gothia-checkcustomer" id="action-submit-gothia-checkcustomer"/>
+    </form>
+  </div>
+</div>
+<div id="gothia-payment-step-2" style="display: none">
+  <h1>Gothia confirm</h1>
+  <div id="gothia-confirm-container">
+    <form action="{{ path('PaymentBundle_gothia_payment_confirm') }}" method="post" {{ form_enctype(form) }}>
+      <input type="submit" value="Bekræft" name="action-submit-gothia-confirm" id="action-submit-gothia-confirm"/>
+    </form>
+  </div>
+</div>
+<div id="gothia-payment-step-3" style="display: none">
+  <div id="gothia-success-container">
+    <form action="{{ path('PaymentBundle_success') }}" method="post" {{ form_enctype(form) }}>
+      <input type="hidden" value="gothia" name="paytype" />
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>$(function () {gothia.init( {{step}} );});</script>
+{% endblock javascript %}

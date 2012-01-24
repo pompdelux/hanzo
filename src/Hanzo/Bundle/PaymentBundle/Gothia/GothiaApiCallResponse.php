@@ -26,7 +26,6 @@ class GothiaApiCallResponse
     public function __construct( $rawResponse, $function )
     {
         $this->parse( $rawResponse, $function );
-        //$this->setStatus( $function );
     }
 
     /**
@@ -40,10 +39,17 @@ class GothiaApiCallResponse
     }
 
     /**
+     * setIsError
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setIsError()
+    {
+        $this->isError = true;
+    }
+
+    /**
      * parse
-     * @todo: store info in $this->data
-     *        should exceptions be thrown? dont think so
-     *        move errors info the respective calls
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -52,46 +58,67 @@ class GothiaApiCallResponse
         switch ($function) 
         {
             case 'CheckCustomer':
-                if ( isset( $rawResponse['CheckCustomerResult']['Success'] ) && $rawResponse['CheckCustomerResult']['Success'] === 'true' )
+                if ( !isset( $rawResponse['CheckCustomerResult']['Success'] ) )
                 {
-                    $gothiaCustomer = $rawResponse['CheckCustomerResult']['Customer'];
-
-                    if ( $gothiaCustomer['PurchaseStop'] === 'true' )
-                    {
-                        throw new Exception(GOTHIA_ERROR_PURCHASE_DENIED);
-                    }
+                    $this->isError = true;
                 }
                 else
                 {
-                    throw new Exception(GOTHIA_ERROR_COULD_NOT_CREATE_CUSTOMER);
+                    if ( $rawResponse['CheckCustomerResult']['Success'] !== 'true' ) 
+                    {
+                        $this->isError = true;
+                    }
                 }
+
+                if ( !isset( $rawResponse['CheckCustomerResult']['Customer'] ) )
+                {
+                    $this->isError = true;
+                }
+
+                if ( !$this->isError )
+                {
+                    foreach ($rawResponse['CheckCustomerResult']['Customer'] as $key => $value) 
+                    {
+                        $this->data[$key] = $value;
+                    }
+                }
+
+                if ( isset($this->data['PurchaseStop']) && $this->data['PurchaseStop'] === 'true' )
+                {
+                    $this->isError = true;
+                }
+
                 break;
             case 'CancelReservation':
-                if ( !isset($rawResponse['CancelReservationResult']['Success']) || $rawResponse['CancelReservationResult']['Success'] != 'true')
+                if ( !isset($rawResponse['CancelReservationResult']['Success']) || $rawResponse['CancelReservationResult']['Success'] !== 'true')
                 {
-                    throw new Exception('Reservation kunne ikke annuleres');
+                    $this->isError = true;
+                }
+
+                if ( !$this->isError )
+                {
+                    // FIXME: check that it's call Reservation
+                    foreach ($rawResponse['CancelReservationResult']['Reservation'] as $key => $value) 
+                    {
+                        $this->data[$key] = $value;
+                    }
                 }
                 break;
             case 'PlaceReservation':
-                if ( !isset($rawResponse['PlaceReservationResult']['ReservationApproved']) || $rawResponse['PlaceReservationResult']['ReservationApproved'] != 'true')
+                if ( !isset($rawResponse['PlaceReservationResult']['ReservationApproved']) || $rawResponse['PlaceReservationResult']['ReservationApproved'] !== 'true')
                 {
-                    throw new Exception(GOTHIA_ERROR_RESERVATION_DENIED);
+                    $this->isError = true;
+                }
+
+                if ( !$this->isError )
+                {
+                    // FIXME: check that it's call Reservation
+                    foreach ($rawResponse['PlaceReservationResult']['Reservation'] as $key => $value) 
+                    {
+                        $this->data[$key] = $value;
+                    }
                 }
                 break;
-
-            default:
-                // code...
-                break;
         }
-    }
-
-    /**
-     * debug
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function debug()
-    {
-        return $this->data;
     }
 }
