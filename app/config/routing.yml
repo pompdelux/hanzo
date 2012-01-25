@@ -1,3 +1,7 @@
+ShippingBundle:
+    resource: "@ShippingBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ServiceBundle:
     resource: "@ServiceBundle/Resources/config/routing.yml"
     prefix:   /
