@@ -34,7 +34,6 @@ class DibsController extends CoreController
             throw new Exception( 'Dibs callback did not supply a valid order id' );
         }
 
-        //$order = OrdersPeer::getCurrent();
         $order = OrdersPeer::retrieveByPK( $orderId );
 
         if ( !($order instanceof Orders) )
@@ -95,10 +94,7 @@ class DibsController extends CoreController
     {
         $api = $this->get('payment.dibsapi');
 
-        // FIXME: testing
-        $orderId = 1;
-        //$order = OrdersPeer::getCurrent();
-        $order = OrdersPeer::retrieveByPK( $orderId );
+        $order = OrdersPeer::getCurrent();
         $settings = $api->buildFormFields( $order );
 
         $form = '<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
