@@ -125,11 +125,16 @@ class DibsController extends CoreController
             return new Response( '', 200, array('Content-Type' => 'text/html'));
         }
 
+        $api = $this->get('payment.dibsapi');
+
+        $order = OrdersPeer::getCurrent();
+        $settings = $api->buildFormFields( $order );
+
         // FIXME: hardcoded vars
         $cardtypes = array(
             'DK' => true, 'VISA' => true, 'ELEC' => true, 'MC' => true
             );
 
-        return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes ));
+        return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes, 'form_fields' => $settings ));
     }
 }

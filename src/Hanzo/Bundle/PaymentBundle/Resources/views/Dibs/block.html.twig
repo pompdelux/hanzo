@@ -1,3 +1,18 @@
+<h2>Dibs</h2>
+
+<form name="dibs-payment" action="https://payment.architrade.com/paymentweb/start.action" method="post">
+  <input type="hidden" name="merchant" value="{{ form_fields.merchant }}" />
+  <input type="hidden" name="orderid" value="{{ form_fields.orderid }}" />
+  <input type="hidden" name="lang" value="{{ form_fields.lang }}" />
+  <input type="hidden" name="amount" value="{{ form_fields.amount }}" />
+  <input type="hidden" name="currency" value="{{ form_fields.currency }}" />
+  <input type="hidden" name="cancelurl" value="{{ url('PaymentBundle_dibs_cancel') }}" />
+  <input type="hidden" name="callbackurl" value="{{ url('PaymentBundle_dibs_callback') }}" />
+  <input type="hidden" name="accepturl" value="{{ url('PaymentBundle_success') }}" />
+  <input type="hidden" name="skiplastpage" value="{{ form_fields.skiplastpage }}" />
+  <input type="hidden" name="uniqueoid" value="{{ form_fields.uniqueoid }}" />
+  <input type="hidden" name="test" value="{{ form_fields.test }}" />
+  <input type="hidden" name="md5key" value="{{ form_fields.md5key }}" />
 <ul class="payment-methods" id="payment-method-dibs">
     {% if cardtypes.DK %} 
     <li>
@@ -32,3 +47,5 @@
     </li>
     {% endif %}
 </ul>
+<input class="button" type="submit" value="Betal med kort">
+</form>

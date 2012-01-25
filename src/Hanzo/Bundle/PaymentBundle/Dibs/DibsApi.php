@@ -186,7 +186,8 @@ class DibsApi
     {
         // FIXME: hardcoded vars:
         $orderId  = 'test_'.date('His');
-        $amount   = self::formatAmount( 100 );
+        $amount   = self::formatAmount( $order->getTotalPrice() );
+        //$currency = $order->getCurrencyId();
         $currency = 208;
         $lang     = 'da';
         $payType  = 'DK';
