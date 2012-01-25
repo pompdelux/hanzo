@@ -91,7 +91,7 @@ class DibsApi
         $currency = $order->getCurrencyId();
         $amount   = self::formatAmount( $order->getTotalPrice() );
 
-        $calculated = $this->md5( $order->getId(), $currency, $amount );
+        $calculated = $this->md5key( $order->getId(), $currency, $amount );
 
         if ( $callbackRequest->get('md5key') != $calculated )
         {
@@ -154,32 +154,50 @@ class DibsApi
      **/
     public function call()
     {
-        return DibsApiCall::getInstance($this->settings);
+        return DibsApiCall::getInstance($this->settings, $this);
     }
 
     /**
      * Calculate md5 sum for verification
+     * @param int $orderId
+     * @param int $currency
+     * @param int $amount 
      * @return string 
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function md5( $orderId, $currency, $amount )
+    public function md5key( $orderId, $currency, $amount )
     {
-        return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'merchant='. $this->settings['merchant'] .'&orderid='. $orderId .'&currency='.$currency.'&amount='.$amount));
+        return $this->md5keyFromString( 'merchant='. $this->settings['merchant'] .'&orderid='. $orderId .'&currency='.$currency.'&amount='.$amount);
     }
 
     /**
      * md5AuthKey
-     * @return void
+     * @param int $transact
+     * @param int $currency
+     * @param int $amount 
+     * @return string
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function md5AuthKey( $transact, $currency, $amount )
     {
-        return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] .'transact='.$transact.'&amount='.$amount.'&currency='.$currency));
+        return $this->md5keyFromString( 'transact='.$transact.'&amount='.$amount.'&currency='.$currency );
+    }
+
+    /**
+     * md5keyFromString
+     * @param string $string containing the key=value pairs to be hashed
+     * @return string 
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function md5keyFromString( $string )
+    {
+        return md5( $this->settings['md5key2'] . md5( $this->settings['md5key1'] . $string));
     }
 
     /**
      * buildFormFields
-     * @return void
+     * @param Orders $order
+     * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function buildFormFields( Orders $order )
@@ -205,7 +223,7 @@ class DibsApi
             "uniqueoid"    => "YES",
             "test"         => $this->getTest(),
             "paytype"      => $payType,
-            "md5key"       => $this->md5( $orderId, $currency, $amount ),
+            "md5key"       => $this->md5key( $orderId, $currency, $amount ),
             );
 
         return $settings;
