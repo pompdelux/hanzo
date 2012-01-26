@@ -57,7 +57,10 @@ var base_url = '{{ url('_homepage') }}';
   </a>
 
     <div id="main" role="main">
+
+{# <a href="#" onclick="dialoug.alert('test', 'test 1.2.3'); return false;">alert</a> #}
 {# <a href="{{ path('basket_add', { 'master' : 'Silas PULLOVER', 'size' : 104, 'color' : 'Navy', 'quantity' : 10 }) }}">{{ "Add to basket"|trans }}</a> #}
+
       {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'sub', 'from': 400, 'offset': 482 } %}
       {% block content %}
       {% endblock %}
@@ -158,9 +161,9 @@ var vegas_backgrounds = [
   'fx/scripts/video-js/video.js'
   'fx/scripts/vegas/jquery.vegas.js'
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
-  'fx/scripts/ICanHaz.js/ICanHaz.min.js'
 
   'fx/scripts/i18n.js'
+  'fx/scripts/yatzy.js'
 
   'fx/scripts/dialoug.js'
   'fx/scripts/colorbox.js'

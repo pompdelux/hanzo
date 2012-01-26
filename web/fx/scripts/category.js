@@ -1,6 +1,5 @@
 (function(doc, $) {
 
-
   var category = (function($) {
     var pub = {}
 
@@ -9,6 +8,8 @@
     var cache = [];
 
     var $target = $('div.' + $('.pager.ajax').data('target'));
+
+    yatzy.compile('productItems');
 
     pub.initPager = function() {
       $('.pager.ajax a').on('click', function(event) {
@@ -26,14 +27,7 @@
           State = History.getState(),
           url = State.url;
 
-        var $loading = $('.pager .loading');
-        var $loading_span = $loading.find('span');
-
-        var loading = setInterval(function() {
-          $loading.show();
-          var w = $loading_span.width() + 2;
-          $loading_span.width(w);
-        }, 10);
+        dialoug.loading('.pager.ajax ul', i18n.t('Loading ...'));
 
         if ( cache[url] === undefined ) {
           $.ajax({
@@ -64,26 +58,7 @@
         }
 
         var current = cache[url];
-
-        $target.append('<div class="wrapper"></div>');
-        var $wrapper = $target.find('.wrapper').last();
-
-        $.each(current.products, function(index, item) {
-          if (undefined === item.prices.sales) {
-            item.normal = item.prices.normal.formattet;
-          }
-          else {
-            item.sales = item.prices.sales.formattet;
-            item.normal = item.prices.normal.formattet;
-          }
-
-          item.index = index+1;
-          $wrapper.append(ich.productItem(item));
-        });
-
-        clearInterval(loading);
-        $loading_span.hide();
-        $loading_span.width(1);
+        $target.append(yatzy.render('productItems', current.products));
 
         $target.find('.wrapper').first().slideUp(function() {
           $(this).remove();
@@ -92,7 +67,7 @@
           var $prew = $('.pager.ajax li.prew');
 
           $('.pager.ajax li').removeClass('current');
-          $('.pager.ajax li:eq('+current.paginate.index+')').addClass('current');
+          $('.pager.ajax li:eq(' + current.paginate.index + ')').addClass('current');
 
           $next.addClass('off');
           $prew.addClass('off');
@@ -106,9 +81,8 @@
           if ((undefined !== current.paginate.prew) && current.paginate.prew) {
             $prew.removeClass('off');
           }
-
         });
-
+        dialoug.stopLoading();
 
         if ( undefined !== window._gaq ) {
           _gaq.push(['_trackPageview']);
