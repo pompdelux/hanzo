@@ -9,6 +9,8 @@
 
     var $target = $('div.' + $('.pager.ajax').data('target'));
 
+    yatzy.compile('productItems');
+
     pub.initPager = function() {
       $('.pager.ajax a').on('click', function(event) {
         if ( event.which == 2 || event.metaKey ) {
@@ -56,7 +58,7 @@
         }
 
         var current = cache[url];
-        $target.append(yatzy.parse('productItems', current.products));
+        $target.append(yatzy.render('productItems', current.products));
 
         $target.find('.wrapper').first().slideUp(function() {
           $(this).remove();
