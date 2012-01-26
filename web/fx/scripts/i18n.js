@@ -11,6 +11,7 @@ var i18n = (function($) {
       'Choose' : 'Vælg',
       'Quantity' : 'Antal',
       'Please wait': 'Vent venligst',
+      'An error occurred': 'Der opstod en fejl',
       'countdown date' : 'February 20, 2012 09:00:00',
       'countdown format' : '{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}',
       'late delivery notice': '<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.',

@@ -1,1 +1,14 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %} 
+
+{% block content %} 
+<h1>Nyhedsbreve</h1>
+<div id="newsletter-lists-container">
+  <form action="">
+    <ul></ul>
+  </form>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>$(function () { newsletter.init( '#newsletter-lists-container' ); newsletter.lists.get();});</script>
+{% endblock javascript %}
