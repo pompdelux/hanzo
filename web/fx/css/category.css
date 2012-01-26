@@ -92,21 +92,7 @@
 }
 .pager ul a:hover {}
 
-.pager .loading {
+.pager .dialoug-loading {
   margin: 5px 0 0 0;
-  float: right;
-  display: none;
-  height: 16px;
-}
-.pager .loading p {
-  display: inline-block;
-  float: left;
-  margin-right: 5px;
-}
-.pager .loading span {
-  background-color: #fff;
-  width: 1px;
-  height: 16px;
-  display: block;
   float: right;
 }

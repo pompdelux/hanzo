@@ -42,28 +42,30 @@
   {% endfor %}
     <li class="next {% if paginate.next is empty %}off{% endif %}"><a href="{{ paginate.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a></li>
   </ul>
-  <div class="loading"><p>{{ "Loading"|trans }}</p> <span></span></div>
 </div>
 {% endif %}
 
-{#  mustache template used by the pager, do not delete ! #}
+{#  yatzy js template used by the pager, do not delete ! #}
 {% raw %}
-<script type="text/html" id="productItem">
-  <div class="block block-num-{{ index }}">
-    <a href="{{ url }}" title="">
-      <img src="{{ image }}" alt="{{ title }}">
-      <span class="title">{{ title }}</span>
+<script type="text/html" id="productItems">
+<div class="wrapper">
+<? for(i=0, l=data.length; i<l; i++) {?>
+  <div class="block block-num-<?=(i+1)?>">
+    <a href="<?=data[i].url?>" title="">
+      <img src="<?=data[i].image?>" alt="<?=data[i].title?>">
+      <span class="title"><?=data[i].title?></span>
       <span class="prices">
-      {{#sales}}
-        <span class="normal strike">{{ normal }}</span>
-        <span class="discount">{{ sales }}</span>
-      {{/sales}}
-      {{^sales}}
-        <span class="normal">{{ normal }}</span>
-      {{/sales}}
+      <? if(undefined === data[i].prices.sales) {?>
+        <span class="normal"><?=data[i].prices.normal.formattet?></span>
+      <?}else{?>
+        <span class="normal strike"><?=data[i].prices.normal.formattet?></span>
+        <span class="discount"><?=data[i].prices.sales.formattet?></span>
+      <? }?>
       </span>
     </a>
   </div>
+  <? }?>
+</div>
 </script>
 {% endraw %}
 

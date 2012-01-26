@@ -142,18 +142,23 @@ var dialoug = (function($) {
 
 
   var loading_status = false;
-  pub.loading = function(selector, message) {
+  pub.loading = function(selector, message, position) {
     if (loading_status) { return; }
 
     $(selector).each(function() {
       var $this = $(this);
       var msg = undefined === message ? '' : message;
-      $this.after('<div class="dialoug-loading">' + msg + '</div>');
+
+      if (undefined === position) {
+        $this.after('<div class="dialoug-loading">' + msg + '</div>');
+      } else {
+        $this.before('<div class="dialoug-loading">' + msg + '</div>');
+      }
       loading_status = $('.dialoug-loading', $this.parent());
     });
   }
 
-  pub.stopLoading = function(message) {
+  pub.stopLoading = function() {
     if (loading_status) {
       loading_status.remove();
       loading_status = false;
