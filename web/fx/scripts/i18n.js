@@ -11,6 +11,7 @@ var i18n = (function($) {
       'Choose' : 'Vælg',
       'Quantity' : 'Antal',
       'Please wait': 'Vent venligst',
+      'Your action was completed': 'Din handling blev udført',
       'An error occurred': 'Der opstod en fejl',
       'countdown date' : 'February 20, 2012 09:00:00',
       'countdown format' : '{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}',
