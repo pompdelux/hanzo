@@ -5,10 +5,11 @@ namespace Hanzo\Bundle\ShippingBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Hanzo\Core\Hanzo,
-    Hanzo\Core\CoreController
+    Hanzo\Core\CoreController,
+    Hanzo\Bundle\ShippingBundle\ShippingMethods\ShippingMethod
     ;
 
-class DefaultController extends Controller
+class DefaultController extends CoreController
 {
     /**
      * blockAction
@@ -17,7 +18,11 @@ class DefaultController extends Controller
      **/
     public function blockAction()
     {
-        return $this->render('ShippingBundle:Default:block.html.twig');
+        $api = $this->get('shipping.shippingapi');
+
+        $methods = $api->getMethods();
+
+        return $this->render('ShippingBundle:Default:block.html.twig', array( 'methods' => $methods ));
     }
 
     public function indexAction($name)

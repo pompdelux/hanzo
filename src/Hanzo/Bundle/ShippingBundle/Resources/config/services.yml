@@ -1,7 +1,6 @@
 parameters:
-#    shipping.example.class: Hanzo\Bundle\ShippingBundle\Example
+    shipping.shippingapi.class: Hanzo\Bundle\ShippingBundle\ShippingApi
 
 services:
-#    shipping.example:
-#        class: %shipping.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    shipping.shippingapi:
+        class: %shipping.shippingapi.class%

@@ -1,0 +1,11 @@
+/* Styles for checkout */
+
+#checkout-block-shipping {
+  display: block;
+}
+
+#checkout-block-payment,
+#checkout-block-conditions,
+#checkout-block-summery {
+  display: none;
+}

@@ -5,4 +5,22 @@
       {% render 'ShippingBundle:Default:block' %}
       {% render 'PaymentBundle:Default:block' %}
 
+      <div id="checkout-block-conditions">
+        <h1>Conditions</h1>
+        <div class="msg"></div>
+        Skal der være conditions, når de har sagt ja ved oprettelse?
+      </div>
+
+      <div id="checkout-block-summery">
+        <h1>Ordre opsummering</h1>
+        <div class="msg"></div>
+        bla
+      </div>
+
+      <a class="button hidden" id="checkout-execute" href="#">Gå til betaling</a>
+
 {% endblock %}
+
+{% block javascript %}
+  <script>$(function () {checkout.init();});</script>
+{% endblock javascript %}

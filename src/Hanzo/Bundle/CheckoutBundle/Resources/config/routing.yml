@@ -1,3 +1,8 @@
 CheckoutBundle_homepage:
     pattern:  /checkout
     defaults: { _controller: CheckoutBundle:Default:index }
+
+CheckoutBundle_state:
+    pattern:  /checkout/state
+    defaults: { _controller: CheckoutBundle:Default:state, _format: json }
+    requirements: { _format: (xml|json), _method: POST }

@@ -1,6 +1,10 @@
 <div id="checkout-block-shipping">
 <h1>Fragttype</h1>
-Vælg den rigtige fragttype.
-      {# % render 'PaymentBundle:Dibs:block' % #}
-      {# % render 'PaymentBundle:Gothia:block' % #}
+<div class="msg"></div>
+Vælg den rigtige fragttype.<br>
+<form action="">
+{% for method in methods %}
+  <input type="radio" name="shipping" value="{{ method.externalid }}" />{{ method.name }}<br>
+{% endfor %}
+</form>
 </div>
