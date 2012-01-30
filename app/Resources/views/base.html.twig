@@ -108,22 +108,7 @@ var base_url = '{{ url('_homepage') }}';
         </a>
       </li>
       <li class="teaser-box-3">
-        <h2>Tilmeld nyhedsbrev</h2>
-        <br>
-        <form action="/newsletter/subscribe" method="post" class="newsletter-subscription-form">
-          <input type="hidden" name="list_ids[]" value="1">
-          <div class="clearfix">
-            <label>Navn:</label>
-            <input type="text" name="name" value="" title="Navn">
-          </div>
-          <div class="clearfix">
-            <label>E-mailadresse:</label>
-            <input type="email" name="email_address" value="" title="E-mailadresse">
-          </div>
-          <div class="clearfix">
-            <input type="button" class="button" name="commit" value="Tilmeld">
-          </div>
-        </form>
+        {% render 'NewsletterBundle:Default:block' %}
       </li>
     </ul>
   </aside>
@@ -204,6 +189,15 @@ var vegas_backgrounds = [
 
 {% block javascript %}
 {% endblock %}
+
+{# 
+ Hm, should not be here? 
+ And how to parse args to the js?
+ FIXME: hardcoded to dk newsletter
+#}
+{% if page_type == 'frontpage' %}
+<script>$(function () { newsletter.init( '#newsletter-list-container' );});</script>
+{% endif %}
 
 {#
 <script type="text/javascript">

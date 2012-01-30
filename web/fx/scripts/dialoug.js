@@ -69,13 +69,13 @@ var dialoug = (function($) {
    */
   pub.info = function (title, message, timeout) {
     pub.alert(title, message, 'info', timeout);
-  }
+  };
   pub.warning = function (title, message, timeout) {
     pub.alert(title, message, 'warning', timeout);
-  }
+  };
   pub.error = function (title, message, timeout) {
     pub.alert(title, message, 'error', timeout);
-  }
+  };
 
   pub.notice = function(message, type, timeout) {
     var $main = $('#main');
@@ -94,6 +94,7 @@ var dialoug = (function($) {
       $main.prepend(tpl);
     }
 
+    /* FIXME: fails, dim is null*/
     var $message = $('div#dialoug-message', $main);
     var dim = $message.offset();
     $(document).scrollTop(dim.top - ($message.height() + 50));
@@ -156,19 +157,19 @@ var dialoug = (function($) {
       }
       loading_status = $('.dialoug-loading', $this.parent());
     });
-  }
+  };
 
   pub.stopLoading = function() {
     if (loading_status) {
       loading_status.remove();
       loading_status = false;
     }
-  }
+  };
 
   sleep = function(delay) {
     var start = new Date().getTime();
-    while (new Date().getTime() < start + delay);
-  }
+    while (new Date().getTime() < start + delay) {}
+  };
 
   return pub;
 }(jQuery));

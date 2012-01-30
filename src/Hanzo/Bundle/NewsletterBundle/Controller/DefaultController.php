@@ -8,22 +8,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
+    Hanzo\Core\CoreController,
+    Hanzo\Model\Customers,
+    Hanzo\Model\CustomersPeer
+    ;
 
 class DefaultController extends CoreController
 {
     public function indexAction()
     {
-        return $this->render('NewsletterBundle:Default:index.html.twig', array('page_type' => 'newsletter'));
+        return $this->render('NewsletterBundle:Default:index.html.twig', array(
+            'page_type' => 'newsletter'
+        ));
     }
 
-    /**
-     * testAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function testAction()
+    public function blockAction()
     {
-        return $this->render('NewsletterBundle:Default:test.html.twig',array('page_type' => 'newsletter'));
+        $customer = CustomersPeer::getCurrent();
+        return $this->render('NewsletterBundle:Default:block.html.twig', array( 'customer' => $customer ));
     }
 }

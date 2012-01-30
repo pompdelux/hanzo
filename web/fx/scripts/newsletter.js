@@ -1,48 +1,82 @@
 var newsletter = (function($) {
-  var base_url = 'http://phplist.pompdelux.dk/integration/json.php?callback=?';
-  var email = 'hf@bellcom.dk';
+  var base_url = '';
+  var email = '';
   var pub = {
     lists: {}
   };
 
-  pub.init = function() {
+  var $selector;
+  var selectorName;
+
+  pub.init = function( selector ) {
+    $selector = $(selector);
+    selectorName = selector;
+    email = $selector.find('.newsletter-subscriber-email').val();
+    base_url = $selector.find('form').attr('action');
+    attachEvents();
   };
 
   var subscriptionsUpdate = function( lists ) {
+    dialoug.loading( selectorName, i18n.t('Please wait') );
     $.getJSON(base_url, {method: 'subscriptions:update', email: email, lists: lists}, function(data) {
-      console.log(data);
+      if ( data.is_error )
+      {
+        dialoug.error( i18n.t('An error occurred'), data.content.msg  );
+      }
+      dialoug.stopLoading();
+      dialoug.notice( i18n.t( 'Your action was completed' ), 'info', 2000 );
     });
   };
 
   var attachEvents = function() {
-    $("#newsletter-lists-container ul li span").on('click',function(event) {
-      /* FIXME: */
-      console.log( $(this).data('state') );
-      var lists = [ $(this).data('listid') ];
+    var lists = [];
+    $(selectorName+" form").on('submit',function(event) {
+      event.preventDefault();
+      
+      if ( email === "" ) {
+        email = $selector.find('.newsletter-subscriber-email').val();
+      }
+
+      $selector.find('.newsletter-list-id').each(function() {
+        if ( $(this).attr('type') === 'checkbox' && $(this).is(":checked") )
+        {
+          lists.push($(this).val());
+        }
+        else if( $(this).attr('type') !== 'checkbox' )
+        {
+          lists.push($(this).val());
+        }
+      });
+
       subscriptionsUpdate(lists);
+      lists = [];
     });
   };
 
-  pub.lists.get = function() {
-    $.getJSON(base_url, {method: 'lists:get', email: email}, function(data) {
+  pub.lists.get = function( id ) {
+      dialoug.loading( selectorName, i18n.t('Please wait') );
+      $.getJSON(base_url, {method: 'lists:get', email: email}, function(data) {
       if ( data.is_error )
       {
-        console.log(data.msg);
+        dialoug.error( i18n.t('An error occurred'), data.content.msg  );
       }
       else
       {
-        var $el = $('#newsletter-lists-container ul');
+        var $el = $(selectorName+' ul');
         var list_container = '<ul>';
         
         $.each(data.content.lists, function(index,list) {
-          list_container += '<li><span data-listid="'+list.id+'" data-state="'+ (list.is_subscribed ? '1">[-' : '0">[+') +']</span> '+list.name+'</li>';
+          if ( ( id !== undefined && id == list.id ) || id === undefined ) /* must use == to compare id and list.id */
+          {
+            list_container += '<li><input type="checkbox" class="newsletter-list-id" name="listid[]" value="'+list.id+'" '+ (list.is_subscribed ? 'checked' : '') +'> '+list.name+'</li>';
+          }
         });
 
         list_container += '</ul>';
 
         $el.replaceWith(list_container);
-        attachEvents();
       }
+      dialoug.stopLoading();
     });
   };
 
