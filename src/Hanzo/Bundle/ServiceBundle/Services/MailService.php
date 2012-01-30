@@ -2,18 +2,11 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
-
-use Symfony\Bundle\TwigBundle\TwigEngine;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
-
-use \Swift_Mailer,
-    \Twig_Environment,
-    \Twig_Loader_String;
-
-use Hanzo\Model\MessagesQuery,
-    Hanzo\Model\MessagesI18nQuery;
+use Hanzo\Core\Hanzo;
+use Hanzo\Bundle\ServiceBundle\Services\TwigStringService;
+use Hanzo\Model\MessagesQuery;
+use Hanzo\Model\MessagesI18nQuery;
+use \Swift_Mailer;
 
 class MailService
 {
@@ -28,26 +21,24 @@ class MailService
             throw new \InvalidArgumentException('Swift_Mailer instance required.');
         }
 
-        if ($parameters[1] instanceof Twig_Environment) {
+        if ($parameters[1] instanceof TwigStringService) {
             $this->twig = $parameters[1];
         }
         else {
-            throw new \InvalidArgumentException('TwigEngine instance required.');
-        }
-
-        if ($parameters[2] instanceof Router) {
-            $this->router = $parameters[2];
-        }
-        else {
-            throw new \InvalidArgumentException('Router instance required.');
+            throw new \InvalidArgumentException('TwigStringService instance required.');
         }
 
         $this->settings = $settings;
         $this->swift = \Swift_Message::newInstance();
     }
 
-
-    public function setMessage($template, array $parameters = array())
+    /**
+     * Set email message body, this is done by loading templates from the messages table.
+     *
+     * @param string $template tis is the template identifier - excluding the .txt and/or .html postfix
+     * @param mixed $parameters parameters send to the twig template
+     */
+    public function setMessage($template, $parameters = NULL)
     {
         $messages = MessagesI18nQuery::create()
             ->joinWithMessages()
@@ -66,44 +57,67 @@ class MailService
         }
 
         // override the template loader so we can load strings from the database.
-        $loader = $this->twig->getLoader();
-        $this->twig->setLoader(new Twig_Loader_String());
+        $this->twig->startTransaction();
 
         foreach ($messages as $message) {
             $this->swift->setSubject($message->getSubject());
 
             if ('.txt' == substr($message->getMessages()->getKey(), -4)) {
-                $this->swift->setBody($this->twig->render($message->getBody(), $parameters));
+                $this->swift->setBody($this->twig->parse($message->getBody(), $parameters));
             }
             elseif('.html' == substr($message->getMessages()->getKey(), -5)) {
-                $this->swift->addPart($this->twig->render($message->getBody(), $parameters), 'text/html');
+                $this->swift->addPart($this->twig->parse($message->getBody(), $parameters), 'text/html');
             }
         }
 
         // reset the loader, needed to not break the reset of the application
-        $this->twig->setLoader($loader);
+        $this->twig->endTransaction();
     }
 
+    /**
+     * Set to address(es)
+     * @see Swift_Mime_Message::setFrom
+     */
     public function setTo($address)
     {
         return $this->swift->setTo($address);
     }
 
+    /**
+     * Set cc address(es)
+     * @see Swift_Mime_Message::setFrom
+     */
     public function setCc($address)
     {
         return $this->swift->setCc($address);
     }
 
+    /**
+     * Set bcc address(es)
+     * @see Swift_Mime_Message::setFrom
+     */
     public function setBcc($address)
     {
         return $this->swift->setBcc($address);
     }
 
+    /**
+     * Set from address(es)
+     * @see Swift_Mime_Message::setFrom
+     */
     public function setFrom($address)
     {
         $this->swift->setFrom($address);
     }
 
+
+    /**
+     * Send the email
+     *
+     * @see Swift_Transport_MailTransport::send()
+     * @throws Swift_TransportException
+     * @return int, number of messages send
+     */
     public function send()
     {
         $hanzo = Hanzo::getInstance();
