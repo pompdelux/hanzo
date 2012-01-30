@@ -11,6 +11,7 @@ security:
                 target: /
                 invalidate_session: true
     access_control:
+        - { path: ^/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 

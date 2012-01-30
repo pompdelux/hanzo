@@ -14,7 +14,7 @@ services:
         factory_method:  get
         arguments:
             service:     mail
-            parameters:  [@mailer, @templating]
+            parameters:  [@mailer, @twig, @router]
             class:       %mail_manager.class%
 
     sms_manager:

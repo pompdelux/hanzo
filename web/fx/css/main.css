@@ -703,9 +703,8 @@ div#near-you-container .entry i {
 #body-password-forgotten input.button {
   float: right;
 }
-#body-checkout-shipping input.noborder {
-  margin-left: 5px;
-  vertical-align: sub;
+#body-password-forgotten form div {
+  margin-top: 10px;
 }
 
 /* checkout shipping address */

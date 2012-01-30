@@ -1610,7 +1610,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	 */
 	public function geocode()
 	{
-	    $geocoder = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter(), \Hanzo\Core\Hanzo::getInstance()->get('google.maps')));
+	    $geocoder = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter()));
 	    if (isset($result) && $coordinates = $result->getCoordinates()) {
 	        $this->setLatitude($coordinates[0]);
 	        $this->setLongitude($coordinates[1]);

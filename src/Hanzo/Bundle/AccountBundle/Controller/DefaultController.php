@@ -9,16 +9,28 @@ use Hanzo\Core\CoreController,
     Hanzo\Core\Hanzo,
     Hanzo\Core\Tools;
 
-use Hanzo\Model\Customers;
-use Hanzo\Model\Addresses;
+use Hanzo\Model\Customers,
+    Hanzo\Model\CustomersPeer,
+    Hanzo\Model\Addresses;
 
-use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser;
-use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
+use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser,
+    Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
 
 class DefaultController extends CoreController
 {
     public function indexAction()
     {
+
+        // $x = $this->get('mail_manager');
+        // $x->setMessage('account.create', array(
+        //     'name' => 'anders and',
+        //     'username' => 'aa',
+        //     'password' => 'qwer123',
+        // ));
+        // $x->setTo('ulrik@o3.dk', 'ulrik nielsen');
+        // $x->setFrom('ulrik@bellcom.dk', 'anders and');
+        // $x->send();
+
         return $this->render('AccountBundle:Default:index.html.twig', array(
             'page_type' => 'account'
         ));
@@ -54,6 +66,18 @@ class DefaultController extends CoreController
 
                 $this->get('session')->setFlash('notice', 'account.created');
 
+                $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
+
+                $mailer = $this->get('mail_manager');
+                $mailer->setMessage('account.create', array(
+                    'name' => 'anders and',
+                    'username' => $customer->getEmail(),
+                    'password' => $customer->getPasswordClear(),
+                ));
+
+                $mailer->setTo($customer->getEmail(), $name);
+                $mailer->send();
+
                 return $this->redirect($this->generateUrl('_account'));
             }
         }
@@ -65,5 +89,41 @@ class DefaultController extends CoreController
         ));
     }
 
-    public function passwordForgottenAction(){}
+    /**
+     * handle password retrival
+     *
+     * @return Responce object
+     */
+    public function passwordForgottenAction()
+    {
+        $message = '';
+        $request = $this->getRequest();
+
+        if ('POST' === $request->getMethod()) {
+            // find the user by email address
+            $customer = CustomersPeer::getByEmail($request->get('email'));
+            if ($customer instanceof Customers) {
+                $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
+
+                $mailer = $this->get('mail_manager');
+                $mailer->setMessage('password.forgotten', array(
+                    'name' => $name,
+                    'username' => $customer->getEmail(),
+                    'password' => $customer->getPasswordClear(),
+                ));
+
+                $mailer->setTo($customer->getEmail(), $name);
+                $mailer->send();
+                $message = 'password.forgotten.resend';
+            }
+            else {
+                $message = 'password.forgotten.not_found';
+            }
+        }
+
+        return $this->render('AccountBundle:Default:password_forgotten.html.twig', array(
+            'page_type' => 'password-forgotten',
+            'message' => $message
+        ));
+    }
 }

@@ -6,6 +6,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\om\BaseCustomersPeer;
+use Hanzo\Model\CustomersQuery;
 
 /**
  * Skeleton subclass for performing query and update operations on the 'customers' table.
@@ -42,6 +43,12 @@ class CustomersPeer extends BaseCustomersPeer
 
         self::$current = self::$current ?: new Customers;
         return self::$current;
+    }
+
+
+    public static function getByEmail($email)
+    {
+        return CustomersQuery::create()->findOneByEmail($email);
     }
 
 } // CustomersPeer
