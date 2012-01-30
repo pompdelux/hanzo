@@ -110,6 +110,14 @@ input[type=email] {
   color: #d3c2a2;
 }
 
+.button.disabled {
+  cursor:progress;
+  background-color: #cbcbcb;
+}
+.button.disabled:hover {
+  color: #fff;
+}
+
 .left {
   float: left;
 }
