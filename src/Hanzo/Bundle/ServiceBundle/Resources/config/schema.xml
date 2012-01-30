@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="Hanzo\Model" defaultIdMethod="native">
+
+  <table name="messages">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
+    <column name="ns" type="VARCHAR" size="12" required="true"/>
+    <column name="key" type="VARCHAR" size="128" required="true"/>
+    <column name="subject" type="VARCHAR" required="true" primaryString="true" />
+    <column name="body" type="LONGVARCHAR" />
+    <unique name="key_UNIQUE">
+      <unique-column name="ns"/>
+      <unique-column name="key"/>
+    </unique>
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="subject, body" />
+    </behavior>
+    <behavior name="timestampable" />
+  </table>
+
+</database>

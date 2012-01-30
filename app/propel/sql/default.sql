@@ -791,6 +791,23 @@ CREATE TABLE `gothia_accounts`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- messages
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `messages`;
+
+CREATE TABLE `messages`
+(
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`ns` VARCHAR(12) NOT NULL,
+	`key` VARCHAR(128) NOT NULL,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `key_UNIQUE` (`ns`, `key`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- categories_i18n
 -- ---------------------------------------------------------------------
 
@@ -864,6 +881,25 @@ CREATE TABLE `products_i18n`
 	CONSTRAINT `products_i18n_FK_1`
 		FOREIGN KEY (`id`)
 		REFERENCES `products` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- messages_i18n
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `messages_i18n`;
+
+CREATE TABLE `messages_i18n`
+(
+	`id` INTEGER NOT NULL,
+	`locale` VARCHAR(5) DEFAULT 'en_EN' NOT NULL,
+	`subject` VARCHAR(255) NOT NULL,
+	`body` TEXT,
+	PRIMARY KEY (`id`,`locale`),
+	CONSTRAINT `messages_i18n_FK_1`
+		FOREIGN KEY (`id`)
+		REFERENCES `messages` (`id`)
 		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 

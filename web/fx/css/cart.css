@@ -106,10 +106,37 @@
 #cart-edit-element {
   border: 5px solid #fff;
   position: absolute;
+  padding: 5px;
 }
-#cart-edit-element a {
+#cart-edit-element a.cancel {
   position: absolute;
   bottom: 5px;
   right: 5px;
   color: #f00;
+}
+
+table.edit-element {}
+table.edit-element img {
+  float: left;
+  margin-right: 10px;
+}
+table.edit-element td div.info {
+  float: left;
+  width: 210px;
+  line-height: 1.4em;
+}
+table.edit-element td div.info label {
+  display: block;
+  font-weight: normal;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+}
+table.edit-element td div.info span,
+table.edit-element td div.info label select {
+  float: right;
+}
+
+table.edit-element td div.info select {
+  width: 150px;
 }

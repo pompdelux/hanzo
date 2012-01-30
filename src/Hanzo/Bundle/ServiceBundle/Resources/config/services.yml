@@ -3,6 +3,7 @@ parameters:
 
     mail_manager.class: Hanzo\Bundle\ServiceBundle\Services\MailService
     sms_manager.class: Hanzo\Bundle\ServiceBundle\Services\SmsService
+    twig_string.class: Hanzo\Bundle\ServiceBundle\Services\TwigStringService
 
 services:
     service_factory:
@@ -14,7 +15,7 @@ services:
         factory_method:  get
         arguments:
             service:     mail
-            parameters:  [@mailer, @templating]
+            parameters:  [@mailer, @twig_string]
             class:       %mail_manager.class%
 
     sms_manager:
@@ -25,3 +26,12 @@ services:
             service:     sms
             parameters:  ~
             class:       %sms_manager.class%
+
+    twig_string:
+        class:           %twig_string.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     mail
+            parameters:  [@twig]
+            class:       %twig_string.class%
