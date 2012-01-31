@@ -17,6 +17,7 @@ var checkout = (function($) {
         {
           blocks.payment.hide();
           blocks.summery.hide();
+          $("#checkout-execute").addClass('hidden');
         }
       break;
       case 'payment':
@@ -27,6 +28,7 @@ var checkout = (function($) {
         else
         {
           blocks.summery.hide();
+          $("#checkout-execute").addClass('hidden');
         }
       break;
       case 'summery':
@@ -40,9 +42,20 @@ var checkout = (function($) {
 
   /* Displays an message in a block */
   function setBlockMessage( selector, msg, type ) {
-    console.log(selector+' '+msg+' '+type); 
     $(selector).addClass(type);
     $(selector).html(msg);
+  }
+
+  function updateServerState( block, state, data )
+  {
+    $.ajax({
+      url: base_url+'checkout/update/'+block+'/'+state,
+      type: 'post',
+      dataType: 'json',
+      data: {data: data},
+      success: function(data) {
+      }
+    });
   }
 
   /**
@@ -51,11 +64,12 @@ var checkout = (function($) {
   blocks.shipping = (function() {
     var name     = 'shipping',
         selector = '#checkout-block-shipping',
+        selectedMethod = '',
         state    = false;
 
     function update(event) {
-      // If the user has selected a shipping method, everything is ok
       checkoutUpdate( name, state );
+      updateServerState(name,state,{selected_method:selectedMethod});
     };
 
     function reset() {
@@ -63,21 +77,28 @@ var checkout = (function($) {
     };
 
     return { 
-      init : function() {
+      init: function() {
+        $(selector+' form input').each( function(item) {
+          $(this).prop('disabled',false);
+        });
         $(selector+' form input').on('click', function(event) {
+          // If the user has selected a shipping method, everything is ok
           state = true;
+          selectedMethod = $(this).val();
           update(event);
         });
       },
-      getName : function() {
+      getName: function() {
         return name;
+      },
+      getState: function() {
+        return state;
       },
       reveal: function() {
         // This is the first block shown and it is not hidden
         return true;
       },
       error: function() {
-        console.log('shipping marked as error');
         state = false;
         reset();
         update(false);
@@ -99,31 +120,45 @@ var checkout = (function($) {
    * Payment block
    */
   blocks.payment = (function() {
-    var name     = 'payment',
-        selector = '#checkout-block-payment',
+    var name             = 'payment',
+        selector         = '#checkout-block-payment',
+        selectedMethod   = '',
+        selectedPaytype  = '',
         $paytypeSelector = '',
-        state    = false;
+        state            = false;
 
     function update(event) {
       checkoutUpdate( name, state );
+      updateServerState(name,state,{selected_method:selectedMethod,selected_paytype:selectedPaytype});
     };
 
     function reset() {
-      // FIXME: does not work
-      $(selector+' input').prop('checked',false)
+      $(selector+' input').prop('checked',false);
     };
 
     return { 
-      init : function() {
-        $(selector+' form input').on('click', function(event) {
-          state = true;
+      init: function() {
+        $(selector+' form input[type=radio]').on('click', function(event) {
           $paytypeSelector = $(this).closest('form');
-          // FIXME: clear other form on click
+          selectedMethod   = $paytypeSelector.attr('id');
+          selectedPaytype  = $(this).val();
+          state            = true;
+
+          var $selectedInput = $(this);
+          $(selector+' form input[type=radio]').each(function(item) {
+            if ( this !== $selectedInput.get(0) )
+            {
+              $(this).prop('checked',false);
+            }
+          });
           update(event);
         });
       },
-      getName : function() {
+      getName: function() {
         return name;
+      },
+      getState: function() {
+        return state;
       },
       reveal: function() {
         $(selector).slideDown();
@@ -134,42 +169,44 @@ var checkout = (function($) {
         update(false);
       },
       hide: function() {
-        console.log('payment hide');
         $(selector).slideUp();
       },
       setMessage: function( msg, type ) {
         setBlockMessage( selector, msg, type );
       },
       execute: function() {
-        console.log('Executing selected payment method');
-        console.log( $paytypeSelector.attr('name') );
+        $paytypeSelector.submit();
       }
     };
   }());
 
   /**
    * Summery block
-   */
+*/
   blocks.summery = (function() {
     var name     = 'summery',
-        selector = '#checkout-block-summery',
-        state    = false;
+    selector = '#checkout-block-summery',
+    state    = false;
 
     function update() {
       checkoutUpdate( name, state );
     };
 
     function reset() {
-    
+
     };
 
     return { 
-      init : function() {
+      init: function() {
       },
-      getName : function() {
+      getName: function() {
         return name;
       },
+      getState: function() {
+        return state;
+      },
       reveal: function() {
+        // FIXME: should block contens come from ajax for js template?
         $(selector).slideDown();
         // FIXME: delay update until slideDown is done
         state = true;
@@ -190,19 +227,24 @@ var checkout = (function($) {
     };
   }());
 
-  /**
-   * Main method, called on checkout page 
-   */
-  pub.init = function() {
-    $.each(blocks, function(item) {
-      this.init();
-    });
-
+  function handleCheckoutExecute()
+  {
     // When the user clicks the link, check if everything is as it should be
     $("#checkout-execute").on('click', function(event) {
       event.preventDefault();
+
+      $.each(blocks, function(item) {
+        if ( this.getState() !== true )
+        {
+          // FIXME: hardcoded text
+          this.setMessage( 'Not filled correctly', 'error' );
+          this.error();
+          return false;
+        }
+      });
+
       $.ajax({
-        url: base_url+'checkout/state',
+        url: base_url+'checkout/validate',
         type: 'post',
         dataType: 'json',
         success: function(data) {
@@ -223,6 +265,17 @@ var checkout = (function($) {
         }
       });
     });
+  }
+
+  /**
+   * Main method, called on checkout page 
+   */
+  pub.init = function() {
+    $.each(blocks, function(item) {
+      this.init();
+    });
+
+    handleCheckoutExecute();
   };
 
   return pub;
