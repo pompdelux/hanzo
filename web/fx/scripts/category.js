@@ -10,7 +10,7 @@
     var $target = $('div.' + $('.pager.ajax').data('target'));
 
     pub.initPager = function() {
-console.log($target.length);
+
       if (0 == $target.length) { return; }
 
       yatzy.compile('productItems');
