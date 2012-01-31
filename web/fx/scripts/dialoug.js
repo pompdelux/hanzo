@@ -7,7 +7,7 @@ var dialoug = (function($) {
   var templates = {
     'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
     'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">%ok%</a><a class="button left dialoug-confirm" data-case="cancel" href="">%cancel%</a></div></div>',
-    'notice' : '<div id="dialoug-message %type%"><p>%message%</p></div>'
+    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>'
   };
 
   pub.confirm = function(title, message, callback) {
@@ -94,8 +94,7 @@ var dialoug = (function($) {
       $main.prepend(tpl);
     }
 
-    /* FIXME: fails, dim is null*/
-    var $message = $('div#dialoug-message', $main);
+    var $message = $('div#dialoug-message',$main);
     var dim = $message.offset();
     $(document).scrollTop(dim.top - ($message.height() + 50));
 

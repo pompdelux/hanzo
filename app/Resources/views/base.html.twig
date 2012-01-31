@@ -192,13 +192,8 @@ var vegas_backgrounds = [
 {% block javascript %}
 {% endblock %}
 
-{# 
- Hm, should not be here? 
- And how to parse args to the js?
- FIXME: hardcoded to dk newsletter
-#}
 {% if page_type == 'frontpage' %}
-<script>$(function () { newsletter.init( '#newsletter-list-container' );});</script>
+{% render 'NewsletterBundle:Default:js' %}
 {% endif %}
 
 {#
