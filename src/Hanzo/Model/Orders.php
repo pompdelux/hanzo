@@ -131,16 +131,16 @@ class Orders extends BaseOrders
     }
 
     /**
-    * setAttribute
-    *
-    * Sets an order attribute
-    *
-    * @param string $key Name of the attribute
-    * @param string $ns Namespace of the attribute, e.g. payment
-    * @param string $value The value of the attribute
-    * @return void
-    * @author Henrik Farre <hf@bellcom.dk>
-    **/
+     * setAttribute
+     *
+     * Sets an order attribute
+     *
+     * @param string $key Name of the attribute
+     * @param string $ns Namespace of the attribute, e.g. payment
+     * @param string $value The value of the attribute
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     */
     public function setAttribute( $key, $ns, $value )
     {
         $attributes = $this->getOrdersAttributess();
@@ -163,6 +163,12 @@ class Orders extends BaseOrders
         $this->addOrdersAttributes($attribute);
     }
 
+
+    /**
+     * Fetch an array of attached documents.
+     *
+     * @return array
+     */
     public function getAttachments()
     {
         $attributes = $this->getOrdersAttributess();
