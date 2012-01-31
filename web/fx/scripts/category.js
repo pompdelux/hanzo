@@ -9,9 +9,12 @@
 
     var $target = $('div.' + $('.pager.ajax').data('target'));
 
-    yatzy.compile('productItems');
-
     pub.initPager = function() {
+console.log($target.length);
+      if (0 == $target.length) { return; }
+
+      yatzy.compile('productItems');
+
       $('.pager.ajax a').on('click', function(event) {
         if ( event.which == 2 || event.metaKey ) {
           return true;
