@@ -10,11 +10,6 @@
 
 {% endblock %}
 
-{# 
- Hm, should not be here? 
- And how to parse args to the js?
- FIXME: hardcoded to dk newsletter
-#}
 {% block javascript %}
-<script>$(function () { newsletter.init( '#newsletter-list-container' ); newsletter.lists.get( 1 );});</script>
+{% render 'NewsletterBundle:Default:js' %}
 {% endblock javascript %}
