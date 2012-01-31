@@ -11,13 +11,12 @@
         Skal der være conditions, når de har sagt ja ved oprettelse?
       </div>
 
-      <div id="checkout-block-summery">
-        <h1>Ordre opsummering</h1>
-        <div class="msg"></div>
-        bla
-      </div>
+      {% render 'CheckoutBundle:Default:summery' %}
 
-      <a class="button hidden" id="checkout-execute" href="#">Gå til betaling</a>
+      <div>
+        <a class="button hidden left" href="#">Tilbage (hvor til?)</a>
+        <a class="button hidden right" id="checkout-execute" href="#">Gå til betaling</a>
+      </div>
 
 {% endblock %}
 

@@ -6,3 +6,18 @@ CheckoutBundle_state:
     pattern:  /checkout/state
     defaults: { _controller: CheckoutBundle:Default:state, _format: json }
     requirements: { _format: (xml|json), _method: POST }
+
+CheckoutBundle_validate:
+    pattern:  /checkout/validate
+    defaults: { _controller: CheckoutBundle:Default:validate, _format: json }
+    requirements: { _format: (xml|json), _method: POST }
+
+CheckoutBundle_update:
+    pattern:  /checkout/update/{block}/{state}
+    defaults: { _controller: CheckoutBundle:Default:update, _format: json }
+    requirements: { _format: (xml|json), _method: POST }
+
+CheckoutBundle_summery:
+    pattern:  /checkout/summery
+    defaults: { _controller: CheckoutBundle:Default:summery, _format: json }
+    requirements: { _format: (xml|json), _method: POST }

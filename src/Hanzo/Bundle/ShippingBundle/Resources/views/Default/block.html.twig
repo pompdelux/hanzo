@@ -4,7 +4,7 @@
 Vælg den rigtige fragttype.<br>
 <form action="">
 {% for method in methods %}
-  <input type="radio" name="shipping" value="{{ method.externalid }}" />{{ method.name }}<br>
+  <input type="radio" name="shipping" value="{{ method.externalid }}" disabled>{{ method.name }}<br>
 {% endfor %}
 </form>
 </div>
