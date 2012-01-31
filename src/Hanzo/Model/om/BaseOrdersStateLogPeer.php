@@ -9,34 +9,34 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\OrdersAttributes;
-use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersPeer;
-use Hanzo\Model\map\OrdersAttributesTableMap;
+use Hanzo\Model\OrdersStateLog;
+use Hanzo\Model\OrdersStateLogPeer;
+use Hanzo\Model\map\OrdersStateLogTableMap;
 
 /**
- * Base static class for performing query and update operations on the 'orders_attributes' table.
+ * Base static class for performing query and update operations on the 'orders_state_log' table.
  *
  * 
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
-abstract class BaseOrdersAttributesPeer {
+abstract class BaseOrdersStateLogPeer {
 
 	/** the default database name for this class */
 	const DATABASE_NAME = 'default';
 
 	/** the table name for this class */
-	const TABLE_NAME = 'orders_attributes';
+	const TABLE_NAME = 'orders_state_log';
 
 	/** the related Propel class for this table */
-	const OM_CLASS = 'Hanzo\\Model\\OrdersAttributes';
+	const OM_CLASS = 'Hanzo\\Model\\OrdersStateLog';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.OrdersAttributes';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.OrdersStateLog';
 
 	/** the related TableMap class for this table */
-	const TM_CLASS = 'OrdersAttributesTableMap';
+	const TM_CLASS = 'OrdersStateLogTableMap';
 
 	/** The total number of columns. */
 	const NUM_COLUMNS = 4;
@@ -48,25 +48,25 @@ abstract class BaseOrdersAttributesPeer {
 	const NUM_HYDRATE_COLUMNS = 4;
 
 	/** the column name for the ORDERS_ID field */
-	const ORDERS_ID = 'orders_attributes.ORDERS_ID';
+	const ORDERS_ID = 'orders_state_log.ORDERS_ID';
 
-	/** the column name for the NS field */
-	const NS = 'orders_attributes.NS';
+	/** the column name for the STATE field */
+	const STATE = 'orders_state_log.STATE';
 
-	/** the column name for the C_KEY field */
-	const C_KEY = 'orders_attributes.C_KEY';
+	/** the column name for the CREATED_AT field */
+	const CREATED_AT = 'orders_state_log.CREATED_AT';
 
-	/** the column name for the C_VALUE field */
-	const C_VALUE = 'orders_attributes.C_VALUE';
+	/** the column name for the MESSAGE field */
+	const MESSAGE = 'orders_state_log.MESSAGE';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
 	/**
-	 * An identiy map to hold any loaded instances of OrdersAttributes objects.
+	 * An identiy map to hold any loaded instances of OrdersStateLog objects.
 	 * This must be public so that other peer classes can access this when hydrating from JOIN
 	 * queries.
-	 * @var        array OrdersAttributes[]
+	 * @var        array OrdersStateLog[]
 	 */
 	public static $instances = array();
 
@@ -78,11 +78,11 @@ abstract class BaseOrdersAttributesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'Ns', 'CKey', 'CValue', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'ns', 'cKey', 'cValue', ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::NS, self::C_KEY, self::C_VALUE, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'NS', 'C_KEY', 'C_VALUE', ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'ns', 'c_key', 'c_value', ),
+		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'State', 'CreatedAt', 'Message', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'state', 'createdAt', 'message', ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::STATE, self::CREATED_AT, self::MESSAGE, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'STATE', 'CREATED_AT', 'MESSAGE', ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'state', 'created_at', 'message', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
@@ -93,11 +93,11 @@ abstract class BaseOrdersAttributesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'Ns' => 1, 'CKey' => 2, 'CValue' => 3, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'ns' => 1, 'cKey' => 2, 'cValue' => 3, ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::NS => 1, self::C_KEY => 2, self::C_VALUE => 3, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'NS' => 1, 'C_KEY' => 2, 'C_VALUE' => 3, ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'ns' => 1, 'c_key' => 2, 'c_value' => 3, ),
+		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'State' => 1, 'CreatedAt' => 2, 'Message' => 3, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'state' => 1, 'createdAt' => 2, 'message' => 3, ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::STATE => 1, self::CREATED_AT => 2, self::MESSAGE => 3, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'STATE' => 1, 'CREATED_AT' => 2, 'MESSAGE' => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'state' => 1, 'created_at' => 2, 'message' => 3, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
@@ -147,12 +147,12 @@ abstract class BaseOrdersAttributesPeer {
 	 *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
 	 * </code>
 	 * @param      string $alias The alias for the current table.
-	 * @param      string $column The column name for current table. (i.e. OrdersAttributesPeer::COLUMN_NAME).
+	 * @param      string $column The column name for current table. (i.e. OrdersStateLogPeer::COLUMN_NAME).
 	 * @return     string
 	 */
 	public static function alias($alias, $column)
 	{
-		return str_replace(OrdersAttributesPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(OrdersStateLogPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	/**
@@ -170,15 +170,15 @@ abstract class BaseOrdersAttributesPeer {
 	public static function addSelectColumns(Criteria $criteria, $alias = null)
 	{
 		if (null === $alias) {
-			$criteria->addSelectColumn(OrdersAttributesPeer::ORDERS_ID);
-			$criteria->addSelectColumn(OrdersAttributesPeer::NS);
-			$criteria->addSelectColumn(OrdersAttributesPeer::C_KEY);
-			$criteria->addSelectColumn(OrdersAttributesPeer::C_VALUE);
+			$criteria->addSelectColumn(OrdersStateLogPeer::ORDERS_ID);
+			$criteria->addSelectColumn(OrdersStateLogPeer::STATE);
+			$criteria->addSelectColumn(OrdersStateLogPeer::CREATED_AT);
+			$criteria->addSelectColumn(OrdersStateLogPeer::MESSAGE);
 		} else {
 			$criteria->addSelectColumn($alias . '.ORDERS_ID');
-			$criteria->addSelectColumn($alias . '.NS');
-			$criteria->addSelectColumn($alias . '.C_KEY');
-			$criteria->addSelectColumn($alias . '.C_VALUE');
+			$criteria->addSelectColumn($alias . '.STATE');
+			$criteria->addSelectColumn($alias . '.CREATED_AT');
+			$criteria->addSelectColumn($alias . '.MESSAGE');
 		}
 	}
 
@@ -198,21 +198,21 @@ abstract class BaseOrdersAttributesPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(OrdersAttributesPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(OrdersStateLogPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			OrdersAttributesPeer::addSelectColumns($criteria);
+			OrdersStateLogPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 		$criteria->setDbName(self::DATABASE_NAME); // Set the correct dbName
 
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 		// BasePeer returns a PDOStatement
 		$stmt = BasePeer::doCount($criteria, $con);
@@ -230,7 +230,7 @@ abstract class BaseOrdersAttributesPeer {
 	 *
 	 * @param      Criteria $criteria object used to create the SELECT statement.
 	 * @param      PropelPDO $con
-	 * @return     OrdersAttributes
+	 * @return     OrdersStateLog
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -238,7 +238,7 @@ abstract class BaseOrdersAttributesPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = OrdersAttributesPeer::doSelect($critcopy, $con);
+		$objects = OrdersStateLogPeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -255,7 +255,7 @@ abstract class BaseOrdersAttributesPeer {
 	 */
 	public static function doSelect(Criteria $criteria, PropelPDO $con = null)
 	{
-		return OrdersAttributesPeer::populateObjects(OrdersAttributesPeer::doSelectStmt($criteria, $con));
+		return OrdersStateLogPeer::populateObjects(OrdersStateLogPeer::doSelectStmt($criteria, $con));
 	}
 	/**
 	 * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -273,12 +273,12 @@ abstract class BaseOrdersAttributesPeer {
 	public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		if (!$criteria->hasSelectClause()) {
 			$criteria = clone $criteria;
-			OrdersAttributesPeer::addSelectColumns($criteria);
+			OrdersStateLogPeer::addSelectColumns($criteria);
 		}
 
 		// Set the correct dbName
@@ -296,14 +296,14 @@ abstract class BaseOrdersAttributesPeer {
 	 * to the cache in order to ensure that the same objects are always returned by doSelect*()
 	 * and retrieveByPK*() calls.
 	 *
-	 * @param      OrdersAttributes $value A OrdersAttributes object.
+	 * @param      OrdersStateLog $value A OrdersStateLog object.
 	 * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
 	 */
 	public static function addInstanceToPool($obj, $key = null)
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getNs(), (string) $obj->getCKey()));
+				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getState(), (string) $obj->getCreatedAt()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -317,18 +317,18 @@ abstract class BaseOrdersAttributesPeer {
 	 * methods in your stub classes -- you may need to explicitly remove objects
 	 * from the cache in order to prevent returning objects that no longer exist.
 	 *
-	 * @param      mixed $value A OrdersAttributes object or a primary key value.
+	 * @param      mixed $value A OrdersStateLog object or a primary key value.
 	 */
 	public static function removeInstanceFromPool($value)
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
-			if (is_object($value) && $value instanceof OrdersAttributes) {
-				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getNs(), (string) $value->getCKey()));
+			if (is_object($value) && $value instanceof OrdersStateLog) {
+				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getState(), (string) $value->getCreatedAt()));
 			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
 				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));
 			} else {
-				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or OrdersAttributes object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or OrdersStateLog object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
 			}
 
@@ -343,7 +343,7 @@ abstract class BaseOrdersAttributesPeer {
 	 * a multi-column primary key, a serialize()d version of the primary key will be returned.
 	 *
 	 * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-	 * @return     OrdersAttributes Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+	 * @return     OrdersStateLog Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
 	 * @see        getPrimaryKeyHash()
 	 */
 	public static function getInstanceFromPool($key)
@@ -367,7 +367,7 @@ abstract class BaseOrdersAttributesPeer {
 	}
 	
 	/**
-	 * Method to invalidate the instance pool of all tables related to orders_attributes
+	 * Method to invalidate the instance pool of all tables related to orders_state_log
 	 * by a foreign key with ON DELETE CASCADE
 	 */
 	public static function clearRelatedInstancePool()
@@ -404,7 +404,7 @@ abstract class BaseOrdersAttributesPeer {
 	 */
 	public static function getPrimaryKeyFromRow($row, $startcol = 0)
 	{
-		return array((int) $row[$startcol], (string) $row[$startcol + 1], (string) $row[$startcol + 2]);
+		return array((int) $row[$startcol], (int) $row[$startcol + 1], (string) $row[$startcol + 2]);
 	}
 	
 	/**
@@ -419,11 +419,11 @@ abstract class BaseOrdersAttributesPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = OrdersAttributesPeer::getOMClass(false);
+		$cls = OrdersStateLogPeer::getOMClass(false);
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key = OrdersAttributesPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj = OrdersAttributesPeer::getInstanceFromPool($key))) {
+			$key = OrdersStateLogPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj = OrdersStateLogPeer::getInstanceFromPool($key))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj->hydrate($row, 0, true); // rehydrate
@@ -432,7 +432,7 @@ abstract class BaseOrdersAttributesPeer {
 				$obj = new $cls();
 				$obj->hydrate($row);
 				$results[] = $obj;
-				OrdersAttributesPeer::addInstanceToPool($obj, $key);
+				OrdersStateLogPeer::addInstanceToPool($obj, $key);
 			} // if key exists
 		}
 		$stmt->closeCursor();
@@ -445,21 +445,21 @@ abstract class BaseOrdersAttributesPeer {
 	 * @param      int $startcol The 0-based offset for reading from the resultset row.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
-	 * @return     array (OrdersAttributes object, last column rank)
+	 * @return     array (OrdersStateLog object, last column rank)
 	 */
 	public static function populateObject($row, $startcol = 0)
 	{
-		$key = OrdersAttributesPeer::getPrimaryKeyHashFromRow($row, $startcol);
-		if (null !== ($obj = OrdersAttributesPeer::getInstanceFromPool($key))) {
+		$key = OrdersStateLogPeer::getPrimaryKeyHashFromRow($row, $startcol);
+		if (null !== ($obj = OrdersStateLogPeer::getInstanceFromPool($key))) {
 			// We no longer rehydrate the object, since this can cause data loss.
 			// See http://www.propelorm.org/ticket/509
 			// $obj->hydrate($row, $startcol, true); // rehydrate
-			$col = $startcol + OrdersAttributesPeer::NUM_HYDRATE_COLUMNS;
+			$col = $startcol + OrdersStateLogPeer::NUM_HYDRATE_COLUMNS;
 		} else {
-			$cls = OrdersAttributesPeer::OM_CLASS;
+			$cls = OrdersStateLogPeer::OM_CLASS;
 			$obj = new $cls();
 			$col = $obj->hydrate($row, $startcol);
-			OrdersAttributesPeer::addInstanceToPool($obj, $key);
+			OrdersStateLogPeer::addInstanceToPool($obj, $key);
 		}
 		return array($obj, $col);
 	}
@@ -482,14 +482,14 @@ abstract class BaseOrdersAttributesPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(OrdersAttributesPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(OrdersStateLogPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			OrdersAttributesPeer::addSelectColumns($criteria);
+			OrdersStateLogPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
@@ -498,10 +498,10 @@ abstract class BaseOrdersAttributesPeer {
 		$criteria->setDbName(self::DATABASE_NAME);
 
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(OrdersAttributesPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
+		$criteria->addJoin(OrdersStateLogPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -516,11 +516,11 @@ abstract class BaseOrdersAttributesPeer {
 
 
 	/**
-	 * Selects a collection of OrdersAttributes objects pre-filled with their Orders objects.
+	 * Selects a collection of OrdersStateLog objects pre-filled with their Orders objects.
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of OrdersAttributes objects.
+	 * @return     array Array of OrdersStateLog objects.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -533,28 +533,28 @@ abstract class BaseOrdersAttributesPeer {
 			$criteria->setDbName(self::DATABASE_NAME);
 		}
 
-		OrdersAttributesPeer::addSelectColumns($criteria);
-		$startcol = OrdersAttributesPeer::NUM_HYDRATE_COLUMNS;
+		OrdersStateLogPeer::addSelectColumns($criteria);
+		$startcol = OrdersStateLogPeer::NUM_HYDRATE_COLUMNS;
 		OrdersPeer::addSelectColumns($criteria);
 
-		$criteria->addJoin(OrdersAttributesPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
+		$criteria->addJoin(OrdersStateLogPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
 
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = OrdersAttributesPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = OrdersAttributesPeer::getInstanceFromPool($key1))) {
+			$key1 = OrdersStateLogPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = OrdersStateLogPeer::getInstanceFromPool($key1))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = OrdersAttributesPeer::getOMClass(false);
+				$cls = OrdersStateLogPeer::getOMClass(false);
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
-				OrdersAttributesPeer::addInstanceToPool($obj1, $key1);
+				OrdersStateLogPeer::addInstanceToPool($obj1, $key1);
 			} // if $obj1 already loaded
 
 			$key2 = OrdersPeer::getPrimaryKeyHashFromRow($row, $startcol);
@@ -569,8 +569,8 @@ abstract class BaseOrdersAttributesPeer {
 					OrdersPeer::addInstanceToPool($obj2, $key2);
 				} // if obj2 already loaded
 
-				// Add the $obj1 (OrdersAttributes) to $obj2 (Orders)
-				$obj2->addOrdersAttributes($obj1);
+				// Add the $obj1 (OrdersStateLog) to $obj2 (Orders)
+				$obj2->addOrdersStateLog($obj1);
 
 			} // if joined row was not null
 
@@ -598,14 +598,14 @@ abstract class BaseOrdersAttributesPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(OrdersAttributesPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(OrdersStateLogPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			OrdersAttributesPeer::addSelectColumns($criteria);
+			OrdersStateLogPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
@@ -614,10 +614,10 @@ abstract class BaseOrdersAttributesPeer {
 		$criteria->setDbName(self::DATABASE_NAME);
 
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(OrdersAttributesPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
+		$criteria->addJoin(OrdersStateLogPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -631,12 +631,12 @@ abstract class BaseOrdersAttributesPeer {
 	}
 
 	/**
-	 * Selects a collection of OrdersAttributes objects pre-filled with all related objects.
+	 * Selects a collection of OrdersStateLog objects pre-filled with all related objects.
 	 *
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of OrdersAttributes objects.
+	 * @return     array Array of OrdersStateLog objects.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -649,29 +649,29 @@ abstract class BaseOrdersAttributesPeer {
 			$criteria->setDbName(self::DATABASE_NAME);
 		}
 
-		OrdersAttributesPeer::addSelectColumns($criteria);
-		$startcol2 = OrdersAttributesPeer::NUM_HYDRATE_COLUMNS;
+		OrdersStateLogPeer::addSelectColumns($criteria);
+		$startcol2 = OrdersStateLogPeer::NUM_HYDRATE_COLUMNS;
 
 		OrdersPeer::addSelectColumns($criteria);
 		$startcol3 = $startcol2 + OrdersPeer::NUM_HYDRATE_COLUMNS;
 
-		$criteria->addJoin(OrdersAttributesPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
+		$criteria->addJoin(OrdersStateLogPeer::ORDERS_ID, OrdersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
 
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = OrdersAttributesPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = OrdersAttributesPeer::getInstanceFromPool($key1))) {
+			$key1 = OrdersStateLogPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = OrdersStateLogPeer::getInstanceFromPool($key1))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = OrdersAttributesPeer::getOMClass(false);
+				$cls = OrdersStateLogPeer::getOMClass(false);
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
-				OrdersAttributesPeer::addInstanceToPool($obj1, $key1);
+				OrdersStateLogPeer::addInstanceToPool($obj1, $key1);
 			} // if obj1 already loaded
 
 			// Add objects for joined Orders rows
@@ -688,8 +688,8 @@ abstract class BaseOrdersAttributesPeer {
 					OrdersPeer::addInstanceToPool($obj2, $key2);
 				} // if obj2 loaded
 
-				// Add the $obj1 (OrdersAttributes) to the collection in $obj2 (Orders)
-				$obj2->addOrdersAttributes($obj1);
+				// Add the $obj1 (OrdersStateLog) to the collection in $obj2 (Orders)
+				$obj2->addOrdersStateLog($obj1);
 			} // if joined row not null
 
 			$results[] = $obj1;
@@ -715,10 +715,10 @@ abstract class BaseOrdersAttributesPeer {
 	 */
 	public static function buildTableMap()
 	{
-	  $dbMap = Propel::getDatabaseMap(BaseOrdersAttributesPeer::DATABASE_NAME);
-	  if (!$dbMap->hasTable(BaseOrdersAttributesPeer::TABLE_NAME))
+	  $dbMap = Propel::getDatabaseMap(BaseOrdersStateLogPeer::DATABASE_NAME);
+	  if (!$dbMap->hasTable(BaseOrdersStateLogPeer::TABLE_NAME))
 	  {
-	    $dbMap->addTableObject(new OrdersAttributesTableMap());
+	    $dbMap->addTableObject(new OrdersStateLogTableMap());
 	  }
 	}
 
@@ -735,13 +735,13 @@ abstract class BaseOrdersAttributesPeer {
 	 */
 	public static function getOMClass($withPrefix = true)
 	{
-		return $withPrefix ? OrdersAttributesPeer::CLASS_DEFAULT : OrdersAttributesPeer::OM_CLASS;
+		return $withPrefix ? OrdersStateLogPeer::CLASS_DEFAULT : OrdersStateLogPeer::OM_CLASS;
 	}
 
 	/**
-	 * Performs an INSERT on the database, given a OrdersAttributes or Criteria object.
+	 * Performs an INSERT on the database, given a OrdersStateLog or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or OrdersAttributes object containing data that is used to create the INSERT statement.
+	 * @param      mixed $values Criteria or OrdersStateLog object containing data that is used to create the INSERT statement.
 	 * @param      PropelPDO $con the PropelPDO connection to use
 	 * @return     mixed The new primary key.
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -750,13 +750,13 @@ abstract class BaseOrdersAttributesPeer {
 	public static function doInsert($values, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 		} else {
-			$criteria = $values->buildCriteria(); // build Criteria from OrdersAttributes object
+			$criteria = $values->buildCriteria(); // build Criteria from OrdersStateLog object
 		}
 
 
@@ -778,9 +778,9 @@ abstract class BaseOrdersAttributesPeer {
 	}
 
 	/**
-	 * Performs an UPDATE on the database, given a OrdersAttributes or Criteria object.
+	 * Performs an UPDATE on the database, given a OrdersStateLog or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or OrdersAttributes object containing data that is used to create the UPDATE statement.
+	 * @param      mixed $values Criteria or OrdersStateLog object containing data that is used to create the UPDATE statement.
 	 * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -789,7 +789,7 @@ abstract class BaseOrdersAttributesPeer {
 	public static function doUpdate($values, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$selectCriteria = new Criteria(self::DATABASE_NAME);
@@ -797,31 +797,31 @@ abstract class BaseOrdersAttributesPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 
-			$comparison = $criteria->getComparison(OrdersAttributesPeer::ORDERS_ID);
-			$value = $criteria->remove(OrdersAttributesPeer::ORDERS_ID);
+			$comparison = $criteria->getComparison(OrdersStateLogPeer::ORDERS_ID);
+			$value = $criteria->remove(OrdersStateLogPeer::ORDERS_ID);
 			if ($value) {
-				$selectCriteria->add(OrdersAttributesPeer::ORDERS_ID, $value, $comparison);
+				$selectCriteria->add(OrdersStateLogPeer::ORDERS_ID, $value, $comparison);
 			} else {
-				$selectCriteria->setPrimaryTableName(OrdersAttributesPeer::TABLE_NAME);
+				$selectCriteria->setPrimaryTableName(OrdersStateLogPeer::TABLE_NAME);
 			}
 
-			$comparison = $criteria->getComparison(OrdersAttributesPeer::NS);
-			$value = $criteria->remove(OrdersAttributesPeer::NS);
+			$comparison = $criteria->getComparison(OrdersStateLogPeer::STATE);
+			$value = $criteria->remove(OrdersStateLogPeer::STATE);
 			if ($value) {
-				$selectCriteria->add(OrdersAttributesPeer::NS, $value, $comparison);
+				$selectCriteria->add(OrdersStateLogPeer::STATE, $value, $comparison);
 			} else {
-				$selectCriteria->setPrimaryTableName(OrdersAttributesPeer::TABLE_NAME);
+				$selectCriteria->setPrimaryTableName(OrdersStateLogPeer::TABLE_NAME);
 			}
 
-			$comparison = $criteria->getComparison(OrdersAttributesPeer::C_KEY);
-			$value = $criteria->remove(OrdersAttributesPeer::C_KEY);
+			$comparison = $criteria->getComparison(OrdersStateLogPeer::CREATED_AT);
+			$value = $criteria->remove(OrdersStateLogPeer::CREATED_AT);
 			if ($value) {
-				$selectCriteria->add(OrdersAttributesPeer::C_KEY, $value, $comparison);
+				$selectCriteria->add(OrdersStateLogPeer::CREATED_AT, $value, $comparison);
 			} else {
-				$selectCriteria->setPrimaryTableName(OrdersAttributesPeer::TABLE_NAME);
+				$selectCriteria->setPrimaryTableName(OrdersStateLogPeer::TABLE_NAME);
 			}
 
-		} else { // $values is OrdersAttributes object
+		} else { // $values is OrdersStateLog object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
 		}
@@ -833,7 +833,7 @@ abstract class BaseOrdersAttributesPeer {
 	}
 
 	/**
-	 * Deletes all rows from the orders_attributes table.
+	 * Deletes all rows from the orders_state_log table.
 	 *
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int The number of affected rows (if supported by underlying database driver).
@@ -841,19 +841,19 @@ abstract class BaseOrdersAttributesPeer {
 	public static function doDeleteAll(PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		$affectedRows = 0; // initialize var to track total num of affected rows
 		try {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
-			$affectedRows += BasePeer::doDeleteAll(OrdersAttributesPeer::TABLE_NAME, $con, OrdersAttributesPeer::DATABASE_NAME);
+			$affectedRows += BasePeer::doDeleteAll(OrdersStateLogPeer::TABLE_NAME, $con, OrdersStateLogPeer::DATABASE_NAME);
 			// Because this db requires some delete cascade/set null emulation, we have to
 			// clear the cached instance *after* the emulation has happened (since
 			// instances get re-added by the select statement contained therein).
-			OrdersAttributesPeer::clearInstancePool();
-			OrdersAttributesPeer::clearRelatedInstancePool();
+			OrdersStateLogPeer::clearInstancePool();
+			OrdersStateLogPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -863,9 +863,9 @@ abstract class BaseOrdersAttributesPeer {
 	}
 
 	/**
-	 * Performs a DELETE on the database, given a OrdersAttributes or Criteria object OR a primary key value.
+	 * Performs a DELETE on the database, given a OrdersStateLog or Criteria object OR a primary key value.
 	 *
-	 * @param      mixed $values Criteria or OrdersAttributes object or primary key or array of primary keys
+	 * @param      mixed $values Criteria or OrdersStateLog object or primary key or array of primary keys
 	 *              which is used to create the DELETE statement
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int 	The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -876,19 +876,19 @@ abstract class BaseOrdersAttributesPeer {
 	 public static function doDelete($values, PropelPDO $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			// invalidate the cache for all objects of this type, since we have no
 			// way of knowing (without running a query) what objects should be invalidated
 			// from the cache based on this Criteria.
-			OrdersAttributesPeer::clearInstancePool();
+			OrdersStateLogPeer::clearInstancePool();
 			// rename for clarity
 			$criteria = clone $values;
-		} elseif ($values instanceof OrdersAttributes) { // it's a model object
+		} elseif ($values instanceof OrdersStateLog) { // it's a model object
 			// invalidate the cache for this single object
-			OrdersAttributesPeer::removeInstanceFromPool($values);
+			OrdersStateLogPeer::removeInstanceFromPool($values);
 			// create criteria based on pk values
 			$criteria = $values->buildPkeyCriteria();
 		} else { // it's a primary key, or an array of pks
@@ -900,12 +900,12 @@ abstract class BaseOrdersAttributesPeer {
 				$values = array($values);
 			}
 			foreach ($values as $value) {
-				$criterion = $criteria->getNewCriterion(OrdersAttributesPeer::ORDERS_ID, $value[0]);
-				$criterion->addAnd($criteria->getNewCriterion(OrdersAttributesPeer::NS, $value[1]));
-				$criterion->addAnd($criteria->getNewCriterion(OrdersAttributesPeer::C_KEY, $value[2]));
+				$criterion = $criteria->getNewCriterion(OrdersStateLogPeer::ORDERS_ID, $value[0]);
+				$criterion->addAnd($criteria->getNewCriterion(OrdersStateLogPeer::STATE, $value[1]));
+				$criterion->addAnd($criteria->getNewCriterion(OrdersStateLogPeer::CREATED_AT, $value[2]));
 				$criteria->addOr($criterion);
 				// we can invalidate the cache for this single PK
-				OrdersAttributesPeer::removeInstanceFromPool($value);
+				OrdersStateLogPeer::removeInstanceFromPool($value);
 			}
 		}
 
@@ -920,7 +920,7 @@ abstract class BaseOrdersAttributesPeer {
 			$con->beginTransaction();
 			
 			$affectedRows += BasePeer::doDelete($criteria, $con);
-			OrdersAttributesPeer::clearRelatedInstancePool();
+			OrdersStateLogPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -930,13 +930,13 @@ abstract class BaseOrdersAttributesPeer {
 	}
 
 	/**
-	 * Validates all modified columns of given OrdersAttributes object.
+	 * Validates all modified columns of given OrdersStateLog object.
 	 * If parameter $columns is either a single column name or an array of column names
 	 * than only those columns are validated.
 	 *
 	 * NOTICE: This does not apply to primary or foreign keys for now.
 	 *
-	 * @param      OrdersAttributes $obj The object to validate.
+	 * @param      OrdersStateLog $obj The object to validate.
 	 * @param      mixed $cols Column name or array of column names.
 	 *
 	 * @return     mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -946,8 +946,8 @@ abstract class BaseOrdersAttributesPeer {
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(OrdersAttributesPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(OrdersAttributesPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(OrdersStateLogPeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(OrdersStateLogPeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -963,37 +963,37 @@ abstract class BaseOrdersAttributesPeer {
 
 		}
 
-		return BasePeer::doValidate(OrdersAttributesPeer::DATABASE_NAME, OrdersAttributesPeer::TABLE_NAME, $columns);
+		return BasePeer::doValidate(OrdersStateLogPeer::DATABASE_NAME, OrdersStateLogPeer::TABLE_NAME, $columns);
 	}
 
 	/**
 	 * Retrieve object using using composite pkey values.
 	 * @param      int $orders_id
-	 * @param      string $ns
-	 * @param      string $c_key
+	 * @param      int $state
+	 * @param      string $created_at
 	 * @param      PropelPDO $con
-	 * @return     OrdersAttributes
+	 * @return     OrdersStateLog
 	 */
-	public static function retrieveByPK($orders_id, $ns, $c_key, PropelPDO $con = null) {
-		$_instancePoolKey = serialize(array((string) $orders_id, (string) $ns, (string) $c_key));
- 		if (null !== ($obj = OrdersAttributesPeer::getInstanceFromPool($_instancePoolKey))) {
+	public static function retrieveByPK($orders_id, $state, $created_at, PropelPDO $con = null) {
+		$_instancePoolKey = serialize(array((string) $orders_id, (string) $state, (string) $created_at));
+ 		if (null !== ($obj = OrdersStateLogPeer::getInstanceFromPool($_instancePoolKey))) {
  			return $obj;
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
-		$criteria = new Criteria(OrdersAttributesPeer::DATABASE_NAME);
-		$criteria->add(OrdersAttributesPeer::ORDERS_ID, $orders_id);
-		$criteria->add(OrdersAttributesPeer::NS, $ns);
-		$criteria->add(OrdersAttributesPeer::C_KEY, $c_key);
-		$v = OrdersAttributesPeer::doSelect($criteria, $con);
+		$criteria = new Criteria(OrdersStateLogPeer::DATABASE_NAME);
+		$criteria->add(OrdersStateLogPeer::ORDERS_ID, $orders_id);
+		$criteria->add(OrdersStateLogPeer::STATE, $state);
+		$criteria->add(OrdersStateLogPeer::CREATED_AT, $created_at);
+		$v = OrdersStateLogPeer::doSelect($criteria, $con);
 
 		return !empty($v) ? $v[0] : null;
 	}
-} // BaseOrdersAttributesPeer
+} // BaseOrdersStateLogPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseOrdersAttributesPeer::buildTableMap();
+BaseOrdersStateLogPeer::buildTableMap();
 

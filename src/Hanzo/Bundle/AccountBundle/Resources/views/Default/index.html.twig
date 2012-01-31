@@ -4,14 +4,33 @@
 
 <h1>{{ 'My account'|trans({}, 'account') }}</h1>
 
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice') }}
+</div>
+{% endif %}
+
+<h2>{{ 'Previous Orders'|trans({}, 'account') }}</h2>
+{% render 'AccountBundle:History:block' %}
+
+
+<h2>{{ 'My Account'|trans({}, 'account') }}</h2>
+<ul>
+  <li><a href="{{ path('_account_edit') }}">» {{ 'Show or change my account details.'|trans({}, 'account') }}</a></li>
+  <li><a href="{{ path('logout') }}">» {{ 'Log out'|trans({}, 'account') }}</a></li>
+</ul>
+
+
 <div id="account-block-newsletter">
 {% render 'NewsletterBundle:Default:block' %}
 </div>
 
+
 {% endblock %}
 
-{# 
- Hm, should not be here? 
+{#
+ Hm, should not be here?
  And how to parse args to the js?
  FIXME: hardcoded to dk newsletter
 #}

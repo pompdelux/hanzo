@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+
+<h1>{{ 'Edit account'|trans({}, 'account') }}</h1>
+
+<p>{{ 'update.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
+
+<form action="{{ path('_account_edit') }}" method="post" {{ form_enctype(form) }} class="create">
+  <div id="customers">
+    {{ form_row(form.first_name) }}
+    {{ form_row(form.last_name) }}
+    {{ form_row(form.addresses.0.address_line_1) }}
+    {{ form_row(form.addresses.0.postal_code) }}
+    {{ form_row(form.addresses.0.city) }}
+    {{ form_row(form.addresses.0.country) }}
+    {{ form_row(form.phone) }}
+    <br>
+    {{ form_row(form.email) }}
+    <br>
+    <p>{{ 'update.password_notice'|trans({}, 'account') }}</p>
+    {{ form_row(form.password) }}
+    <br>
+    {{ form_row(form.addresses.0.type) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'Update account'|trans({}, 'account') }}">
+  <a class="button left" href="{{ path('_account') }}">{{ 'Cancel'|trans({}, 'account') }}</a>
+</form>
+
+{% endblock %}

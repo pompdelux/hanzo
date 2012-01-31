@@ -16,6 +16,7 @@ use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersSyncLog;
 
 /**
@@ -27,6 +28,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery orderBySessionId($order = Criteria::ASC) Order by the session_id column
  * @method     OrdersQuery orderByPaymentGatewayId($order = Criteria::ASC) Order by the payment_gateway_id column
  * @method     OrdersQuery orderByState($order = Criteria::ASC) Order by the state column
+ * @method     OrdersQuery orderByInEdit($order = Criteria::ASC) Order by the in_edit column
  * @method     OrdersQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method     OrdersQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
  * @method     OrdersQuery orderByLastName($order = Criteria::ASC) Order by the last_name column
@@ -59,6 +61,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery groupBySessionId() Group by the session_id column
  * @method     OrdersQuery groupByPaymentGatewayId() Group by the payment_gateway_id column
  * @method     OrdersQuery groupByState() Group by the state column
+ * @method     OrdersQuery groupByInEdit() Group by the in_edit column
  * @method     OrdersQuery groupByCustomersId() Group by the customers_id column
  * @method     OrdersQuery groupByFirstName() Group by the first_name column
  * @method     OrdersQuery groupByLastName() Group by the last_name column
@@ -107,6 +110,10 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery rightJoinOrdersLines($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersLines relation
  * @method     OrdersQuery innerJoinOrdersLines($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersLines relation
  *
+ * @method     OrdersQuery leftJoinOrdersStateLog($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersStateLog relation
+ * @method     OrdersQuery rightJoinOrdersStateLog($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersStateLog relation
+ * @method     OrdersQuery innerJoinOrdersStateLog($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersStateLog relation
+ *
  * @method     OrdersQuery leftJoinOrdersSyncLog($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersSyncLog relation
  * @method     OrdersQuery rightJoinOrdersSyncLog($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersSyncLog relation
  * @method     OrdersQuery innerJoinOrdersSyncLog($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersSyncLog relation
@@ -118,6 +125,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     Orders findOneBySessionId(string $session_id) Return the first Orders filtered by the session_id column
  * @method     Orders findOneByPaymentGatewayId(int $payment_gateway_id) Return the first Orders filtered by the payment_gateway_id column
  * @method     Orders findOneByState(int $state) Return the first Orders filtered by the state column
+ * @method     Orders findOneByInEdit(boolean $in_edit) Return the first Orders filtered by the in_edit column
  * @method     Orders findOneByCustomersId(int $customers_id) Return the first Orders filtered by the customers_id column
  * @method     Orders findOneByFirstName(string $first_name) Return the first Orders filtered by the first_name column
  * @method     Orders findOneByLastName(string $last_name) Return the first Orders filtered by the last_name column
@@ -150,6 +158,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     array findBySessionId(string $session_id) Return Orders objects filtered by the session_id column
  * @method     array findByPaymentGatewayId(int $payment_gateway_id) Return Orders objects filtered by the payment_gateway_id column
  * @method     array findByState(int $state) Return Orders objects filtered by the state column
+ * @method     array findByInEdit(boolean $in_edit) Return Orders objects filtered by the in_edit column
  * @method     array findByCustomersId(int $customers_id) Return Orders objects filtered by the customers_id column
  * @method     array findByFirstName(string $first_name) Return Orders objects filtered by the first_name column
  * @method     array findByLastName(string $last_name) Return Orders objects filtered by the last_name column
@@ -265,7 +274,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_ID`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_METHOD`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `IN_EDIT`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_ID`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_METHOD`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -278,7 +287,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Orders();
 			$obj->hydrate($row);
-			OrdersPeer::addInstanceToPool($obj, (string) $row[0]);
+			OrdersPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 
@@ -482,6 +491,32 @@ abstract class BaseOrdersQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(OrdersPeer::STATE, $state, $comparison);
+	}
+
+	/**
+	 * Filter the query on the in_edit column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByInEdit(true); // WHERE in_edit = true
+	 * $query->filterByInEdit('yes'); // WHERE in_edit = true
+	 * </code>
+	 *
+	 * @param     boolean|string $inEdit The value to use as filter.
+	 *              Non-boolean arguments are converted using the following rules:
+	 *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+	 *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+	 *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByInEdit($inEdit = null, $comparison = null)
+	{
+		if (is_string($inEdit)) {
+			$in_edit = in_array(strtolower($inEdit), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+		}
+		return $this->addUsingAlias(OrdersPeer::IN_EDIT, $inEdit, $comparison);
 	}
 
 	/**
@@ -1638,6 +1673,79 @@ abstract class BaseOrdersQuery extends ModelCriteria
 		return $this
 			->joinOrdersLines($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'OrdersLines', '\Hanzo\Model\OrdersLinesQuery');
+	}
+
+	/**
+	 * Filter the query by a related OrdersStateLog object
+	 *
+	 * @param     OrdersStateLog $ordersStateLog  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByOrdersStateLog($ordersStateLog, $comparison = null)
+	{
+		if ($ordersStateLog instanceof OrdersStateLog) {
+			return $this
+				->addUsingAlias(OrdersPeer::ID, $ordersStateLog->getOrdersId(), $comparison);
+		} elseif ($ordersStateLog instanceof PropelCollection) {
+			return $this
+				->useOrdersStateLogQuery()
+				->filterByPrimaryKeys($ordersStateLog->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByOrdersStateLog() only accepts arguments of type OrdersStateLog or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the OrdersStateLog relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function joinOrdersStateLog($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('OrdersStateLog');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'OrdersStateLog');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the OrdersStateLog relation OrdersStateLog object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\OrdersStateLogQuery A secondary query class using the current class as primary query
+	 */
+	public function useOrdersStateLogQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinOrdersStateLog($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'OrdersStateLog', '\Hanzo\Model\OrdersStateLogQuery');
 	}
 
 	/**

@@ -220,7 +220,7 @@ abstract class BaseEventsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Events();
 			$obj->hydrate($row);
-			EventsPeer::addInstanceToPool($obj, (string) $row[0]);
+			EventsPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

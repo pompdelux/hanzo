@@ -158,7 +158,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsImagesCategoriesSort();
 			$obj->hydrate($row);
-			ProductsImagesCategoriesSortPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1], (string) $row[2])));
+			ProductsImagesCategoriesSortPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1], (string) $key[2])));
 		}
 		$stmt->closeCursor();
 

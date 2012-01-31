@@ -11,7 +11,6 @@ use Hanzo\Core\Hanzo,
 
 class SecurityController extends CoreController
 {
-
     public function loginAction()
     {
         $request = $this->getRequest();
@@ -25,10 +24,20 @@ class SecurityController extends CoreController
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
         }
 
+        switch (strrchr($request->headers->get('referer'), '/')) {
+            case '/basket':
+                $target = '_checkout';
+                break;
+            default:
+                $target = '_account';
+                break;
+        }
+
         return $this->render('AccountBundle:Security:login.html.twig', array(
             'page_type' => 'login',
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error' => $error,
+            'target' => $target
         ));
     }
 }

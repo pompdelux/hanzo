@@ -7,6 +7,11 @@ use Hanzo\Model\om\BaseOrdersPeer,
     Hanzo\Model\OrdersQuery
     ;
 
+use Hanzo\Model\CustomersPeer;
+
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+
 /**
  * Skeleton subclass for performing query and update operations on the 'orders' table.
  *
@@ -31,8 +36,20 @@ class OrdersPeer extends BaseOrdersPeer
         if (!empty($_SESSION['order_id'])) {
             $query = OrdersQuery::create()
                 ->leftJoinWithOrdersLines()
-                ;
+            ;
             self::$current = $query->findPk($_SESSION['order_id']);
+
+            // attach the customer to the order.
+            if (!self::$current->getCustomersId()) {
+                $hanzo = Hanzo::getInstance();
+                $security = $hanzo->container->get('security.context');
+
+                if ($security->isGranted('ROLE_USER')) {
+                    $user = $security->getToken()->getUser()->getUser();
+                    self::$current->setCustomersId($user->getId());
+                    self::$current->save();
+                }
+            }
         }
 
         self::$current = self::$current ?: new Orders;

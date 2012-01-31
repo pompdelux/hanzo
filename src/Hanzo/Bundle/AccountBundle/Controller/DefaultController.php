@@ -1,4 +1,4 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
@@ -32,7 +32,7 @@ class DefaultController extends CoreController
         // $x->send();
 
         return $this->render('AccountBundle:Default:index.html.twig', array(
-            'page_type' => 'account'
+            'page_type' => 'account',
         ));
     }
 
@@ -113,7 +113,10 @@ class DefaultController extends CoreController
                 ));
 
                 $mailer->setTo($customer->getEmail(), $name);
-                $mailer->send();
+                try{
+                    $mailer->send();
+                }
+                catch (Exception $e) {}
                 $message = 'password.forgotten.resend';
             }
             else {
@@ -124,6 +127,37 @@ class DefaultController extends CoreController
         return $this->render('AccountBundle:Default:password_forgotten.html.twig', array(
             'page_type' => 'password-forgotten',
             'message' => $message
+        ));
+    }
+
+    /**
+     * Handles the user edit form.
+     *
+     * @return Response object
+     */
+    public function editAction()
+    {
+        $customer = CustomersPeer::getCurrent();
+        $form = $this->createForm(new CustomersType(FALSE), $customer);
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                if (!$customer->getPassword()) {
+                    $customer->setPassword(sha1($customer->getPasswordClear()));
+                }
+                $customer->save();
+
+                $this->get('session')->setFlash('notice', 'account.updated');
+                return $this->redirect($this->generateUrl('_account'));
+            }
+        }
+
+        return $this->render('AccountBundle:Default:edit.html.twig', array(
+            'page_type' => 'create-account',
+            'form' => $form->createView(),
         ));
     }
 }
