@@ -34,9 +34,9 @@ class DefaultController extends CoreController
 
         if ( $state === 'false' )
         {
-            foreach ( $orderAttributes as $att ) 
+            foreach ( $orderAttributes as $att )
             {
-                switch ($att->getNs()) 
+                switch ($att->getNs())
                 {
                     case 'shipping':
                         if ( $att->getCKey() === 'method' )
@@ -58,7 +58,7 @@ class DefaultController extends CoreController
         {
             $data = $this->get('request')->get('data');
 
-            switch ($block) 
+            switch ($block)
             {
                 case 'shipping':
                     $order->setAttribute( 'method', $block, $data['selected_method'] );
@@ -74,7 +74,7 @@ class DefaultController extends CoreController
         }
 
 
-        return $this->json_response(array( 
+        return $this->json_response(array(
             'status' => true,
             'message' => '',
         ));
@@ -88,12 +88,12 @@ class DefaultController extends CoreController
     public function validateAction()
     {
         // FIXME:
-        return $this->json_response(array( 
+        return $this->json_response(array(
             'status' => true,
             'message' => 'Ok',
         ));
 
-        return $this->json_response(array( 
+        return $this->json_response(array(
             'status' => false,
             'message' => 'Dette er en test fejl besked',
             'data' => array(
@@ -104,23 +104,23 @@ class DefaultController extends CoreController
 
     /**
      * summeryAction
-     * @params Request
+     *
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function summeryAction(Request $request)
+    public function summeryAction()
     {
         $order = OrdersPeer::getCurrent();
         $orderAttributes = $order->getOrdersAttributess();
 
         $attributes = array();
 
-        foreach ($orderAttributes as $att) 
+        foreach ($orderAttributes as $att)
         {
-          $attributes[$att->getNs()][$att->getCKey] = $att->value();
+          $attributes[$att->getNs()][$att->getCKey()] = $att->getCValue();
         }
 
-        if ( $request->isXmlHttpRequest() )
+        if ( $this->get('request')->isXmlHttpRequest() )
         {
           return json_encode('hest');
         }

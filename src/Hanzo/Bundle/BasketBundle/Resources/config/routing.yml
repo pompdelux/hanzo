@@ -29,8 +29,3 @@ basket_view:
 basket_view_mini:
     pattern:  /miniBasket
     defaults: { _controller: BasketBundle:Default:miniBasket }
-
-checkout:
-    pattern: /checkout
-    defaults:
-        _controller: BasketBundle:Default:index
