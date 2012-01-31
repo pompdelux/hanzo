@@ -29,3 +29,20 @@ _account_nno:
     defaults:
         _controller: AccountBundle:NNO:check
         phone: ''
+
+_account_history:
+    pattern: /account/history
+    defaults:
+        _controller: AccountBundle:History:index
+
+_account_show_order:
+    pattern: /account/history/{order_id}
+    defaults:
+        _controller: AccountBundle:History:showOrder
+    requirements:
+        order_id: \d+
+
+_account_edit:
+    pattern: /account/edit
+    defaults:
+        _controller: AccountBundle:Default:edit

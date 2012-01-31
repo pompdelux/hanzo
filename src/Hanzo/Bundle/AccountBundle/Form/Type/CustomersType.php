@@ -7,6 +7,13 @@ use Symfony\Component\Form\FormBuilder;
 
 class CustomersType extends AbstractType
 {
+    protected $is_new;
+
+    public function __construct($is_new = TRUE)
+    {
+        $this->is_new = (boolean) $is_new;
+    }
+
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder->add('first_name', null, array('translation_domain' => 'account'));
@@ -36,19 +43,22 @@ class CustomersType extends AbstractType
             'first_name' => 'pass',
             'second_name' => 'pass_repeated',
             'translation_domain' => 'account',
+            'required' => $this->is_new,
         ));
 
-        $builder->add('newsletter', 'checkbox', array(
-            'label' => 'create.newsletter',
-            'required' => false,
-            'translation_domain' => 'account',
-        ));
+        if ($this->is_new) {
+            $builder->add('newsletter', 'checkbox', array(
+                'label' => 'create.newsletter',
+                'required' => false,
+                'translation_domain' => 'account',
+            ));
 
-        $builder->add('accept', 'checkbox', array(
-            'label' => 'create.accept',
-            'required' => true,
-            'translation_domain' => 'account',
-        ));
+            $builder->add('accept', 'checkbox', array(
+                'label' => 'create.accept',
+                'required' => true,
+                'translation_domain' => 'account',
+            ));
+        }
     }
 
     public function getDefaultOptions(array $options)

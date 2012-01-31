@@ -11,77 +11,77 @@ use \PropelCollection;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersSyncLog;
-use Hanzo\Model\OrdersSyncLogPeer;
-use Hanzo\Model\OrdersSyncLogQuery;
+use Hanzo\Model\OrdersStateLog;
+use Hanzo\Model\OrdersStateLogPeer;
+use Hanzo\Model\OrdersStateLogQuery;
 
 /**
- * Base class that represents a query for the 'orders_sync_log' table.
+ * Base class that represents a query for the 'orders_state_log' table.
  *
  * 
  *
- * @method     OrdersSyncLogQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
- * @method     OrdersSyncLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
- * @method     OrdersSyncLogQuery orderByState($order = Criteria::ASC) Order by the state column
- * @method     OrdersSyncLogQuery orderByContent($order = Criteria::ASC) Order by the content column
+ * @method     OrdersStateLogQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
+ * @method     OrdersStateLogQuery orderByState($order = Criteria::ASC) Order by the state column
+ * @method     OrdersStateLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
+ * @method     OrdersStateLogQuery orderByMessage($order = Criteria::ASC) Order by the message column
  *
- * @method     OrdersSyncLogQuery groupByOrdersId() Group by the orders_id column
- * @method     OrdersSyncLogQuery groupByCreatedAt() Group by the created_at column
- * @method     OrdersSyncLogQuery groupByState() Group by the state column
- * @method     OrdersSyncLogQuery groupByContent() Group by the content column
+ * @method     OrdersStateLogQuery groupByOrdersId() Group by the orders_id column
+ * @method     OrdersStateLogQuery groupByState() Group by the state column
+ * @method     OrdersStateLogQuery groupByCreatedAt() Group by the created_at column
+ * @method     OrdersStateLogQuery groupByMessage() Group by the message column
  *
- * @method     OrdersSyncLogQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
- * @method     OrdersSyncLogQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
- * @method     OrdersSyncLogQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ * @method     OrdersStateLogQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
+ * @method     OrdersStateLogQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
+ * @method     OrdersStateLogQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method     OrdersSyncLogQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
- * @method     OrdersSyncLogQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
- * @method     OrdersSyncLogQuery innerJoinOrders($relationAlias = null) Adds a INNER JOIN clause to the query using the Orders relation
+ * @method     OrdersStateLogQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
+ * @method     OrdersStateLogQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
+ * @method     OrdersStateLogQuery innerJoinOrders($relationAlias = null) Adds a INNER JOIN clause to the query using the Orders relation
  *
- * @method     OrdersSyncLog findOne(PropelPDO $con = null) Return the first OrdersSyncLog matching the query
- * @method     OrdersSyncLog findOneOrCreate(PropelPDO $con = null) Return the first OrdersSyncLog matching the query, or a new OrdersSyncLog object populated from the query conditions when no match is found
+ * @method     OrdersStateLog findOne(PropelPDO $con = null) Return the first OrdersStateLog matching the query
+ * @method     OrdersStateLog findOneOrCreate(PropelPDO $con = null) Return the first OrdersStateLog matching the query, or a new OrdersStateLog object populated from the query conditions when no match is found
  *
- * @method     OrdersSyncLog findOneByOrdersId(int $orders_id) Return the first OrdersSyncLog filtered by the orders_id column
- * @method     OrdersSyncLog findOneByCreatedAt(string $created_at) Return the first OrdersSyncLog filtered by the created_at column
- * @method     OrdersSyncLog findOneByState(string $state) Return the first OrdersSyncLog filtered by the state column
- * @method     OrdersSyncLog findOneByContent(string $content) Return the first OrdersSyncLog filtered by the content column
+ * @method     OrdersStateLog findOneByOrdersId(int $orders_id) Return the first OrdersStateLog filtered by the orders_id column
+ * @method     OrdersStateLog findOneByState(int $state) Return the first OrdersStateLog filtered by the state column
+ * @method     OrdersStateLog findOneByCreatedAt(string $created_at) Return the first OrdersStateLog filtered by the created_at column
+ * @method     OrdersStateLog findOneByMessage(string $message) Return the first OrdersStateLog filtered by the message column
  *
- * @method     array findByOrdersId(int $orders_id) Return OrdersSyncLog objects filtered by the orders_id column
- * @method     array findByCreatedAt(string $created_at) Return OrdersSyncLog objects filtered by the created_at column
- * @method     array findByState(string $state) Return OrdersSyncLog objects filtered by the state column
- * @method     array findByContent(string $content) Return OrdersSyncLog objects filtered by the content column
+ * @method     array findByOrdersId(int $orders_id) Return OrdersStateLog objects filtered by the orders_id column
+ * @method     array findByState(int $state) Return OrdersStateLog objects filtered by the state column
+ * @method     array findByCreatedAt(string $created_at) Return OrdersStateLog objects filtered by the created_at column
+ * @method     array findByMessage(string $message) Return OrdersStateLog objects filtered by the message column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
-abstract class BaseOrdersSyncLogQuery extends ModelCriteria
+abstract class BaseOrdersStateLogQuery extends ModelCriteria
 {
 	
 	/**
-	 * Initializes internal state of BaseOrdersSyncLogQuery object.
+	 * Initializes internal state of BaseOrdersStateLogQuery object.
 	 *
 	 * @param     string $dbName The dabase name
 	 * @param     string $modelName The phpName of a model, e.g. 'Book'
 	 * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
 	 */
-	public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\OrdersSyncLog', $modelAlias = null)
+	public function __construct($dbName = 'default', $modelName = 'Hanzo\\Model\\OrdersStateLog', $modelAlias = null)
 	{
 		parent::__construct($dbName, $modelName, $modelAlias);
 	}
 
 	/**
-	 * Returns a new OrdersSyncLogQuery object.
+	 * Returns a new OrdersStateLogQuery object.
 	 *
 	 * @param     string $modelAlias The alias of a model in the query
 	 * @param     Criteria $criteria Optional Criteria to build the query from
 	 *
-	 * @return    OrdersSyncLogQuery
+	 * @return    OrdersStateLogQuery
 	 */
 	public static function create($modelAlias = null, $criteria = null)
 	{
-		if ($criteria instanceof OrdersSyncLogQuery) {
+		if ($criteria instanceof OrdersStateLogQuery) {
 			return $criteria;
 		}
-		$query = new OrdersSyncLogQuery();
+		$query = new OrdersStateLogQuery();
 		if (null !== $modelAlias) {
 			$query->setModelAlias($modelAlias);
 		}
@@ -97,25 +97,25 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 * Go fast if the query is untouched.
 	 *
 	 * <code>
-	 * $obj = $c->findPk(array(12, 34), $con);
+	 * $obj = $c->findPk(array(12, 34, 56), $con);
 	 * </code>
 	 *
-	 * @param     array[$orders_id, $created_at] $key Primary key to use for the query
+	 * @param     array[$orders_id, $state, $created_at] $key Primary key to use for the query
 	 * @param     PropelPDO $con an optional connection object
 	 *
-	 * @return    OrdersSyncLog|array|mixed the result, formatted by the current formatter
+	 * @return    OrdersStateLog|array|mixed the result, formatted by the current formatter
 	 */
 	public function findPk($key, $con = null)
 	{
 		if ($key === null) {
 			return null;
 		}
-		if ((null !== ($obj = OrdersSyncLogPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
+		if ((null !== ($obj = OrdersStateLogPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1], (string) $key[2]))))) && !$this->formatter) {
 			// the object is alredy in the instance pool
 			return $obj;
 		}
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersSyncLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 		$this->basePreSelect($con);
 		if ($this->formatter || $this->modelAlias || $this->with || $this->select
@@ -134,15 +134,16 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 * @param     mixed $key Primary key to use for the query
 	 * @param     PropelPDO $con A connection object
 	 *
-	 * @return    OrdersSyncLog A model object, or null if the key is not found
+	 * @return    OrdersStateLog A model object, or null if the key is not found
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ORDERS_ID`, `CREATED_AT`, `STATE`, `CONTENT` FROM `orders_sync_log` WHERE `ORDERS_ID` = :p0 AND `CREATED_AT` = :p1';
+		$sql = 'SELECT `ORDERS_ID`, `STATE`, `CREATED_AT`, `MESSAGE` FROM `orders_state_log` WHERE `ORDERS_ID` = :p0 AND `STATE` = :p1 AND `CREATED_AT` = :p2';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
-			$stmt->bindValue(':p1', $key[1], PDO::PARAM_STR);
+			$stmt->bindValue(':p1', $key[1], PDO::PARAM_INT);
+			$stmt->bindValue(':p2', $key[2], PDO::PARAM_STR);
 			$stmt->execute();
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -150,9 +151,9 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 		}
 		$obj = null;
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$obj = new OrdersSyncLog();
+			$obj = new OrdersStateLog();
 			$obj->hydrate($row);
-			OrdersSyncLogPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1])));
+			OrdersStateLogPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1], (string) $key[2])));
 		}
 		$stmt->closeCursor();
 
@@ -165,7 +166,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 * @param     mixed $key Primary key to use for the query
 	 * @param     PropelPDO $con A connection object
 	 *
-	 * @return    OrdersSyncLog|array|mixed the result, formatted by the current formatter
+	 * @return    OrdersStateLog|array|mixed the result, formatted by the current formatter
 	 */
 	protected function findPkComplex($key, $con)
 	{
@@ -205,12 +206,13 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 *
 	 * @param     mixed $key Primary key to use for the query
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
 	public function filterByPrimaryKey($key)
 	{
-		$this->addUsingAlias(OrdersSyncLogPeer::ORDERS_ID, $key[0], Criteria::EQUAL);
-		$this->addUsingAlias(OrdersSyncLogPeer::CREATED_AT, $key[1], Criteria::EQUAL);
+		$this->addUsingAlias(OrdersStateLogPeer::ORDERS_ID, $key[0], Criteria::EQUAL);
+		$this->addUsingAlias(OrdersStateLogPeer::STATE, $key[1], Criteria::EQUAL);
+		$this->addUsingAlias(OrdersStateLogPeer::CREATED_AT, $key[2], Criteria::EQUAL);
 
 		return $this;
 	}
@@ -220,7 +222,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 *
 	 * @param     array $keys The list of primary key to use for the query
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
 	public function filterByPrimaryKeys($keys)
 	{
@@ -228,9 +230,11 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 			return $this->add(null, '1<>1', Criteria::CUSTOM);
 		}
 		foreach ($keys as $key) {
-			$cton0 = $this->getNewCriterion(OrdersSyncLogPeer::ORDERS_ID, $key[0], Criteria::EQUAL);
-			$cton1 = $this->getNewCriterion(OrdersSyncLogPeer::CREATED_AT, $key[1], Criteria::EQUAL);
+			$cton0 = $this->getNewCriterion(OrdersStateLogPeer::ORDERS_ID, $key[0], Criteria::EQUAL);
+			$cton1 = $this->getNewCriterion(OrdersStateLogPeer::STATE, $key[1], Criteria::EQUAL);
 			$cton0->addAnd($cton1);
+			$cton2 = $this->getNewCriterion(OrdersStateLogPeer::CREATED_AT, $key[2], Criteria::EQUAL);
+			$cton0->addAnd($cton2);
 			$this->addOr($cton0);
 		}
 
@@ -255,14 +259,40 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
 	public function filterByOrdersId($ordersId = null, $comparison = null)
 	{
 		if (is_array($ordersId) && null === $comparison) {
 			$comparison = Criteria::IN;
 		}
-		return $this->addUsingAlias(OrdersSyncLogPeer::ORDERS_ID, $ordersId, $comparison);
+		return $this->addUsingAlias(OrdersStateLogPeer::ORDERS_ID, $ordersId, $comparison);
+	}
+
+	/**
+	 * Filter the query on the state column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByState(1234); // WHERE state = 1234
+	 * $query->filterByState(array(12, 34)); // WHERE state IN (12, 34)
+	 * $query->filterByState(array('min' => 12)); // WHERE state > 12
+	 * </code>
+	 *
+	 * @param     mixed $state The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
+	 */
+	public function filterByState($state = null, $comparison = null)
+	{
+		if (is_array($state) && null === $comparison) {
+			$comparison = Criteria::IN;
+		}
+		return $this->addUsingAlias(OrdersStateLogPeer::STATE, $state, $comparison);
 	}
 
 	/**
@@ -283,18 +313,18 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
 	public function filterByCreatedAt($createdAt = null, $comparison = null)
 	{
 		if (is_array($createdAt)) {
 			$useMinMax = false;
 			if (isset($createdAt['min'])) {
-				$this->addUsingAlias(OrdersSyncLogPeer::CREATED_AT, $createdAt['min'], Criteria::GREATER_EQUAL);
+				$this->addUsingAlias(OrdersStateLogPeer::CREATED_AT, $createdAt['min'], Criteria::GREATER_EQUAL);
 				$useMinMax = true;
 			}
 			if (isset($createdAt['max'])) {
-				$this->addUsingAlias(OrdersSyncLogPeer::CREATED_AT, $createdAt['max'], Criteria::LESS_EQUAL);
+				$this->addUsingAlias(OrdersStateLogPeer::CREATED_AT, $createdAt['max'], Criteria::LESS_EQUAL);
 				$useMinMax = true;
 			}
 			if ($useMinMax) {
@@ -304,63 +334,35 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 				$comparison = Criteria::IN;
 			}
 		}
-		return $this->addUsingAlias(OrdersSyncLogPeer::CREATED_AT, $createdAt, $comparison);
+		return $this->addUsingAlias(OrdersStateLogPeer::CREATED_AT, $createdAt, $comparison);
 	}
 
 	/**
-	 * Filter the query on the state column
+	 * Filter the query on the message column
 	 *
 	 * Example usage:
 	 * <code>
-	 * $query->filterByState('fooValue');   // WHERE state = 'fooValue'
-	 * $query->filterByState('%fooValue%'); // WHERE state LIKE '%fooValue%'
+	 * $query->filterByMessage('fooValue');   // WHERE message = 'fooValue'
+	 * $query->filterByMessage('%fooValue%'); // WHERE message LIKE '%fooValue%'
 	 * </code>
 	 *
-	 * @param     string $state The value to use as filter.
+	 * @param     string $message The value to use as filter.
 	 *              Accepts wildcards (* and % trigger a LIKE)
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
-	public function filterByState($state = null, $comparison = null)
+	public function filterByMessage($message = null, $comparison = null)
 	{
 		if (null === $comparison) {
-			if (is_array($state)) {
+			if (is_array($message)) {
 				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $state)) {
-				$state = str_replace('*', '%', $state);
+			} elseif (preg_match('/[\%\*]/', $message)) {
+				$message = str_replace('*', '%', $message);
 				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(OrdersSyncLogPeer::STATE, $state, $comparison);
-	}
-
-	/**
-	 * Filter the query on the content column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByContent('fooValue');   // WHERE content = 'fooValue'
-	 * $query->filterByContent('%fooValue%'); // WHERE content LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $content The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
-	 */
-	public function filterByContent($content = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($content)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $content)) {
-				$content = str_replace('*', '%', $content);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(OrdersSyncLogPeer::CONTENT, $content, $comparison);
+		return $this->addUsingAlias(OrdersStateLogPeer::MESSAGE, $message, $comparison);
 	}
 
 	/**
@@ -369,19 +371,19 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 * @param     Orders|PropelCollection $orders The related object(s) to use as filter
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
 	public function filterByOrders($orders, $comparison = null)
 	{
 		if ($orders instanceof Orders) {
 			return $this
-				->addUsingAlias(OrdersSyncLogPeer::ORDERS_ID, $orders->getId(), $comparison);
+				->addUsingAlias(OrdersStateLogPeer::ORDERS_ID, $orders->getId(), $comparison);
 		} elseif ($orders instanceof PropelCollection) {
 			if (null === $comparison) {
 				$comparison = Criteria::IN;
 			}
 			return $this
-				->addUsingAlias(OrdersSyncLogPeer::ORDERS_ID, $orders->toKeyValue('PrimaryKey', 'Id'), $comparison);
+				->addUsingAlias(OrdersStateLogPeer::ORDERS_ID, $orders->toKeyValue('PrimaryKey', 'Id'), $comparison);
 		} else {
 			throw new PropelException('filterByOrders() only accepts arguments of type Orders or PropelCollection');
 		}
@@ -393,7 +395,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 * @param     string $relationAlias optional alias for the relation
 	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
 	public function joinOrders($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
@@ -440,19 +442,20 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	/**
 	 * Exclude object from result
 	 *
-	 * @param     OrdersSyncLog $ordersSyncLog Object to remove from the list of results
+	 * @param     OrdersStateLog $ordersStateLog Object to remove from the list of results
 	 *
-	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
 	 */
-	public function prune($ordersSyncLog = null)
+	public function prune($ordersStateLog = null)
 	{
-		if ($ordersSyncLog) {
-			$this->addCond('pruneCond0', $this->getAliasedColName(OrdersSyncLogPeer::ORDERS_ID), $ordersSyncLog->getOrdersId(), Criteria::NOT_EQUAL);
-			$this->addCond('pruneCond1', $this->getAliasedColName(OrdersSyncLogPeer::CREATED_AT), $ordersSyncLog->getCreatedAt(), Criteria::NOT_EQUAL);
-			$this->combine(array('pruneCond0', 'pruneCond1'), Criteria::LOGICAL_OR);
+		if ($ordersStateLog) {
+			$this->addCond('pruneCond0', $this->getAliasedColName(OrdersStateLogPeer::ORDERS_ID), $ordersStateLog->getOrdersId(), Criteria::NOT_EQUAL);
+			$this->addCond('pruneCond1', $this->getAliasedColName(OrdersStateLogPeer::STATE), $ordersStateLog->getState(), Criteria::NOT_EQUAL);
+			$this->addCond('pruneCond2', $this->getAliasedColName(OrdersStateLogPeer::CREATED_AT), $ordersStateLog->getCreatedAt(), Criteria::NOT_EQUAL);
+			$this->combine(array('pruneCond0', 'pruneCond1', 'pruneCond2'), Criteria::LOGICAL_OR);
 		}
 
 		return $this;
 	}
 
-} // BaseOrdersSyncLogQuery
+} // BaseOrdersStateLogQuery

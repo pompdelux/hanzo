@@ -140,7 +140,7 @@ abstract class BaseHelpdeskDataLogQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new HelpdeskDataLog();
 			$obj->hydrate($row);
-			HelpdeskDataLogPeer::addInstanceToPool($obj, (string) $row[0]);
+			HelpdeskDataLogPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

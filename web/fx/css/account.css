@@ -16,9 +16,6 @@ form.create {
 form.create input {
   float: right;
 }
-form.create input.button {
-  float: left;
-}
 
 form.create label {
   display: block;
@@ -41,6 +38,29 @@ form.create #customers div {
   margin-bottom: 5px;
 }
 
-form.create input.button {
+form.create #customers {
   margin-top: 20px;
+}
+
+#body-account ul {
+  list-style: none;
+  margin: 5px 0 15px 10px;
+  padding: 0;
+}
+
+#order-status td.pdf {
+  float: none;
+}
+#order-status td.pdf a {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/fx/images/pdficon.png) no-repeat top left;
+}
+
+#order-status td.show a {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/fx/images/page_white_text.png) no-repeat top left;
 }

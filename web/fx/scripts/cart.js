@@ -40,37 +40,45 @@
 
       $('a.edit').on('click', function(event) {
         event.preventDefault();
-        var $a = $(this);
-        var $tr = $a.closest('tr');
-        var $info = $tr.find('.info');
+        var $a    = $(this);
+        var $tr   = $a.closest('tr');
+        var $info = $('.info', $tr);
         var $form = $('#main form');
 
         var id = this.href;
         var data = {
-          master : $info.find('a:first').text(),
-          size : $info.find('label.size span').text(),
-          color : $info.find('label.color span').text(),
+          master : $('a:first', $info).text(),
+          size   : $('label.size span', $info).text(),
+          color  : $('label.color span', $info).text(),
         }
 
-        var $act = $('<div id="cart-edit-element"><a href="">' + i18n.t('Cancel') + '</a></div>');
+        var $act = $('<div id="cart-edit-element"><a href="" class="cancel">' + i18n.t('Cancel') + '</a></div>');
         var tr_offset = $tr.offset();
         var form_offset = $form.offset();
 
         $act.css({
-          'top': tr_offset.top - $tr.height() - 3,
+          'top': tr_offset.top - $tr.height() - 8,
           'left' : 15,
-          'height' : $tr.height(),
-          'width' : $tr.width()
+          'height' : $tr.height() + 30,
+          'width' : $tr.width(),
+          'background-color' : '#615e5f'
         });
         $form.prepend($act);
 
-        $act.find('a').on('click', function(event) {
+        var $clone = $tr.clone();
+        $act.prepend($clone);
+        $('tr', $act).wrap('<table class="edit-element"><tbody></tbody></table>');
+
+        var $edit = $('tr', $act);
+        $('td:last', $edit).html('');
+
+        $('a', $act).on('click', function(event) {
           event.preventDefault();
           $(this).off('click');
           $act.remove();
 
-          $info.find('select').each(function(index, element) {
-            $(this).replaceWith('<span>'+data[element.name]+'</span>')
+          $('select', $info).each(function(index, element) {
+            $(this).replaceWith('<span>'+data[element.name]+'</span>');
           });
         });
 
@@ -90,10 +98,44 @@
                   $size.append('<option value="'+product.size+'">'+product.size+'</option>');
                 }
               });
-              $info.find('label.size span').replaceWith($size);
+              $('label.size span', $edit).replaceWith($size);
             }
           }
         });
+
+        $('select', $edit).on('change', function() {
+          if (this.name == 'size') {
+            $('select#color', $edit).replaceWith('<span>'+data['color']+'</span>');
+            $('label[for="quantity"]', $edit).remove();
+          }
+
+          var request_data = {
+            master : data.master,
+            size   : $('select#size', $edit).val(),
+            color  : $('select#color', $edit).val(),
+          }
+
+          $.ajax({
+            url : base_url + 'rest/v1/stock-check',
+            data : { master : data.master, size: this.value },
+            dataType : 'json',
+            async : false,
+            success : function(responce, textStatus, jqXHR) {
+              if (responce.status) {
+                var $color = $('<select id="color" name="color"><option value="">' + i18n.t('Choose') + '</option></select>');
+
+                var used = [];
+                $.each(responce.data.products, function(index, product) {
+                  if (-1 == $.inArray(product.color, used)) {
+                    used.push(product.color);
+                    $color.append('<option value="'+product.color+'">'+product.color+'</option>');
+                  }
+                });
+                $('label.color span', $edit).replaceWith($color);
+              }
+            }
+         });
+       });
 
       });
     };

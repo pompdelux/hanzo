@@ -20,15 +20,15 @@ use Hanzo\Model\OrdersAttributesQuery;
  *
  * 
  *
- * @method     OrdersAttributesQuery orderByCKey($order = Criteria::ASC) Order by the c_key column
- * @method     OrdersAttributesQuery orderByNs($order = Criteria::ASC) Order by the ns column
- * @method     OrdersAttributesQuery orderByCValue($order = Criteria::ASC) Order by the c_value column
  * @method     OrdersAttributesQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
+ * @method     OrdersAttributesQuery orderByNs($order = Criteria::ASC) Order by the ns column
+ * @method     OrdersAttributesQuery orderByCKey($order = Criteria::ASC) Order by the c_key column
+ * @method     OrdersAttributesQuery orderByCValue($order = Criteria::ASC) Order by the c_value column
  *
- * @method     OrdersAttributesQuery groupByCKey() Group by the c_key column
- * @method     OrdersAttributesQuery groupByNs() Group by the ns column
- * @method     OrdersAttributesQuery groupByCValue() Group by the c_value column
  * @method     OrdersAttributesQuery groupByOrdersId() Group by the orders_id column
+ * @method     OrdersAttributesQuery groupByNs() Group by the ns column
+ * @method     OrdersAttributesQuery groupByCKey() Group by the c_key column
+ * @method     OrdersAttributesQuery groupByCValue() Group by the c_value column
  *
  * @method     OrdersAttributesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     OrdersAttributesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -41,15 +41,15 @@ use Hanzo\Model\OrdersAttributesQuery;
  * @method     OrdersAttributes findOne(PropelPDO $con = null) Return the first OrdersAttributes matching the query
  * @method     OrdersAttributes findOneOrCreate(PropelPDO $con = null) Return the first OrdersAttributes matching the query, or a new OrdersAttributes object populated from the query conditions when no match is found
  *
- * @method     OrdersAttributes findOneByCKey(string $c_key) Return the first OrdersAttributes filtered by the c_key column
- * @method     OrdersAttributes findOneByNs(string $ns) Return the first OrdersAttributes filtered by the ns column
- * @method     OrdersAttributes findOneByCValue(string $c_value) Return the first OrdersAttributes filtered by the c_value column
  * @method     OrdersAttributes findOneByOrdersId(int $orders_id) Return the first OrdersAttributes filtered by the orders_id column
+ * @method     OrdersAttributes findOneByNs(string $ns) Return the first OrdersAttributes filtered by the ns column
+ * @method     OrdersAttributes findOneByCKey(string $c_key) Return the first OrdersAttributes filtered by the c_key column
+ * @method     OrdersAttributes findOneByCValue(string $c_value) Return the first OrdersAttributes filtered by the c_value column
  *
- * @method     array findByCKey(string $c_key) Return OrdersAttributes objects filtered by the c_key column
- * @method     array findByNs(string $ns) Return OrdersAttributes objects filtered by the ns column
- * @method     array findByCValue(string $c_value) Return OrdersAttributes objects filtered by the c_value column
  * @method     array findByOrdersId(int $orders_id) Return OrdersAttributes objects filtered by the orders_id column
+ * @method     array findByNs(string $ns) Return OrdersAttributes objects filtered by the ns column
+ * @method     array findByCKey(string $c_key) Return OrdersAttributes objects filtered by the c_key column
+ * @method     array findByCValue(string $c_value) Return OrdersAttributes objects filtered by the c_value column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -97,10 +97,10 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 	 * Go fast if the query is untouched.
 	 *
 	 * <code>
-	 * $obj = $c->findPk(array(12, 34), $con);
+	 * $obj = $c->findPk(array(12, 34, 56), $con);
 	 * </code>
 	 *
-	 * @param     array[$c_key, $ns] $key Primary key to use for the query
+	 * @param     array[$orders_id, $ns, $c_key] $key Primary key to use for the query
 	 * @param     PropelPDO $con an optional connection object
 	 *
 	 * @return    OrdersAttributes|array|mixed the result, formatted by the current formatter
@@ -110,7 +110,7 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 		if ($key === null) {
 			return null;
 		}
-		if ((null !== ($obj = OrdersAttributesPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
+		if ((null !== ($obj = OrdersAttributesPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1], (string) $key[2]))))) && !$this->formatter) {
 			// the object is alredy in the instance pool
 			return $obj;
 		}
@@ -138,11 +138,12 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `C_KEY`, `NS`, `C_VALUE`, `ORDERS_ID` FROM `orders_attributes` WHERE `C_KEY` = :p0 AND `NS` = :p1';
+		$sql = 'SELECT `ORDERS_ID`, `NS`, `C_KEY`, `C_VALUE` FROM `orders_attributes` WHERE `ORDERS_ID` = :p0 AND `NS` = :p1 AND `C_KEY` = :p2';
 		try {
 			$stmt = $con->prepare($sql);
-			$stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);
+			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
 			$stmt->bindValue(':p1', $key[1], PDO::PARAM_STR);
+			$stmt->bindValue(':p2', $key[2], PDO::PARAM_STR);
 			$stmt->execute();
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -152,7 +153,7 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new OrdersAttributes();
 			$obj->hydrate($row);
-			OrdersAttributesPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1])));
+			OrdersAttributesPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1], (string) $key[2])));
 		}
 		$stmt->closeCursor();
 
@@ -209,8 +210,9 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 	 */
 	public function filterByPrimaryKey($key)
 	{
-		$this->addUsingAlias(OrdersAttributesPeer::C_KEY, $key[0], Criteria::EQUAL);
+		$this->addUsingAlias(OrdersAttributesPeer::ORDERS_ID, $key[0], Criteria::EQUAL);
 		$this->addUsingAlias(OrdersAttributesPeer::NS, $key[1], Criteria::EQUAL);
+		$this->addUsingAlias(OrdersAttributesPeer::C_KEY, $key[2], Criteria::EQUAL);
 
 		return $this;
 	}
@@ -228,9 +230,11 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 			return $this->add(null, '1<>1', Criteria::CUSTOM);
 		}
 		foreach ($keys as $key) {
-			$cton0 = $this->getNewCriterion(OrdersAttributesPeer::C_KEY, $key[0], Criteria::EQUAL);
+			$cton0 = $this->getNewCriterion(OrdersAttributesPeer::ORDERS_ID, $key[0], Criteria::EQUAL);
 			$cton1 = $this->getNewCriterion(OrdersAttributesPeer::NS, $key[1], Criteria::EQUAL);
 			$cton0->addAnd($cton1);
+			$cton2 = $this->getNewCriterion(OrdersAttributesPeer::C_KEY, $key[2], Criteria::EQUAL);
+			$cton0->addAnd($cton2);
 			$this->addOr($cton0);
 		}
 
@@ -238,31 +242,31 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the c_key column
+	 * Filter the query on the orders_id column
 	 *
 	 * Example usage:
 	 * <code>
-	 * $query->filterByCKey('fooValue');   // WHERE c_key = 'fooValue'
-	 * $query->filterByCKey('%fooValue%'); // WHERE c_key LIKE '%fooValue%'
+	 * $query->filterByOrdersId(1234); // WHERE orders_id = 1234
+	 * $query->filterByOrdersId(array(12, 34)); // WHERE orders_id IN (12, 34)
+	 * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id > 12
 	 * </code>
 	 *
-	 * @param     string $cKey The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @see       filterByOrders()
+	 *
+	 * @param     mixed $ordersId The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    OrdersAttributesQuery The current query, for fluid interface
 	 */
-	public function filterByCKey($cKey = null, $comparison = null)
+	public function filterByOrdersId($ordersId = null, $comparison = null)
 	{
-		if (null === $comparison) {
-			if (is_array($cKey)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $cKey)) {
-				$cKey = str_replace('*', '%', $cKey);
-				$comparison = Criteria::LIKE;
-			}
+		if (is_array($ordersId) && null === $comparison) {
+			$comparison = Criteria::IN;
 		}
-		return $this->addUsingAlias(OrdersAttributesPeer::C_KEY, $cKey, $comparison);
+		return $this->addUsingAlias(OrdersAttributesPeer::ORDERS_ID, $ordersId, $comparison);
 	}
 
 	/**
@@ -294,6 +298,34 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query on the c_key column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByCKey('fooValue');   // WHERE c_key = 'fooValue'
+	 * $query->filterByCKey('%fooValue%'); // WHERE c_key LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $cKey The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersAttributesQuery The current query, for fluid interface
+	 */
+	public function filterByCKey($cKey = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($cKey)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $cKey)) {
+				$cKey = str_replace('*', '%', $cKey);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(OrdersAttributesPeer::C_KEY, $cKey, $comparison);
+	}
+
+	/**
 	 * Filter the query on the c_value column
 	 *
 	 * Example usage:
@@ -319,48 +351,6 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(OrdersAttributesPeer::C_VALUE, $cValue, $comparison);
-	}
-
-	/**
-	 * Filter the query on the orders_id column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByOrdersId(1234); // WHERE orders_id = 1234
-	 * $query->filterByOrdersId(array(12, 34)); // WHERE orders_id IN (12, 34)
-	 * $query->filterByOrdersId(array('min' => 12)); // WHERE orders_id > 12
-	 * </code>
-	 *
-	 * @see       filterByOrders()
-	 *
-	 * @param     mixed $ordersId The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    OrdersAttributesQuery The current query, for fluid interface
-	 */
-	public function filterByOrdersId($ordersId = null, $comparison = null)
-	{
-		if (is_array($ordersId)) {
-			$useMinMax = false;
-			if (isset($ordersId['min'])) {
-				$this->addUsingAlias(OrdersAttributesPeer::ORDERS_ID, $ordersId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($ordersId['max'])) {
-				$this->addUsingAlias(OrdersAttributesPeer::ORDERS_ID, $ordersId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(OrdersAttributesPeer::ORDERS_ID, $ordersId, $comparison);
 	}
 
 	/**
@@ -447,9 +437,10 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
 	public function prune($ordersAttributes = null)
 	{
 		if ($ordersAttributes) {
-			$this->addCond('pruneCond0', $this->getAliasedColName(OrdersAttributesPeer::C_KEY), $ordersAttributes->getCKey(), Criteria::NOT_EQUAL);
+			$this->addCond('pruneCond0', $this->getAliasedColName(OrdersAttributesPeer::ORDERS_ID), $ordersAttributes->getOrdersId(), Criteria::NOT_EQUAL);
 			$this->addCond('pruneCond1', $this->getAliasedColName(OrdersAttributesPeer::NS), $ordersAttributes->getNs(), Criteria::NOT_EQUAL);
-			$this->combine(array('pruneCond0', 'pruneCond1'), Criteria::LOGICAL_OR);
+			$this->addCond('pruneCond2', $this->getAliasedColName(OrdersAttributesPeer::C_KEY), $ordersAttributes->getCKey(), Criteria::NOT_EQUAL);
+			$this->combine(array('pruneCond0', 'pruneCond1', 'pruneCond2'), Criteria::LOGICAL_OR);
 		}
 
 		return $this;

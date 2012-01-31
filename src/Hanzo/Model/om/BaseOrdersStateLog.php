@@ -5,39 +5,42 @@ namespace Hanzo\Model\om;
 use \BaseObject;
 use \BasePeer;
 use \Criteria;
+use \DateTime;
+use \DateTimeZone;
 use \Exception;
 use \PDO;
 use \Persistent;
 use \Propel;
 use \PropelCollection;
+use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
 use Hanzo\Model\Orders;
-use Hanzo\Model\OrdersAttributesPeer;
-use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersStateLogPeer;
+use Hanzo\Model\OrdersStateLogQuery;
 
 /**
- * Base class that represents a row from the 'orders_attributes' table.
+ * Base class that represents a row from the 'orders_state_log' table.
  *
  * 
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
-abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
+abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 {
 
 	/**
 	 * Peer class name
 	 */
-	const PEER = 'Hanzo\\Model\\OrdersAttributesPeer';
+	const PEER = 'Hanzo\\Model\\OrdersStateLogPeer';
 
 	/**
 	 * The Peer class.
 	 * Instance provides a convenient way of calling static methods on a class
 	 * that calling code may not be able to identify.
-	 * @var        OrdersAttributesPeer
+	 * @var        OrdersStateLogPeer
 	 */
 	protected static $peer;
 
@@ -54,22 +57,22 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	protected $orders_id;
 
 	/**
-	 * The value for the ns field.
-	 * @var        string
+	 * The value for the state field.
+	 * @var        int
 	 */
-	protected $ns;
+	protected $state;
 
 	/**
-	 * The value for the c_key field.
+	 * The value for the created_at field.
 	 * @var        string
 	 */
-	protected $c_key;
+	protected $created_at;
 
 	/**
-	 * The value for the c_value field.
+	 * The value for the message field.
 	 * @var        string
 	 */
-	protected $c_value;
+	protected $message;
 
 	/**
 	 * @var        Orders
@@ -101,40 +104,68 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [ns] column value.
+	 * Get the [state] column value.
 	 * 
-	 * @return     string
+	 * @return     int
 	 */
-	public function getNs()
+	public function getState()
 	{
-		return $this->ns;
+		return $this->state;
 	}
 
 	/**
-	 * Get the [c_key] column value.
+	 * Get the [optionally formatted] temporal [created_at] column value.
 	 * 
-	 * @return     string
+	 *
+	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
+	 *							If format is NULL, then the raw DateTime object will be returned.
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getCKey()
+	public function getCreatedAt($format = NULL)
 	{
-		return $this->c_key;
+		if ($this->created_at === null) {
+			return null;
+		}
+
+
+		if ($this->created_at === '0000-00-00 00:00:00') {
+			// while technically this is not a default value of NULL,
+			// this seems to be closest in meaning.
+			return null;
+		} else {
+			try {
+				$dt = new DateTime($this->created_at);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+			}
+		}
+
+		if ($format === null) {
+			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
+			return $dt;
+		} elseif (strpos($format, '%') !== false) {
+			return strftime($format, $dt->format('U'));
+		} else {
+			return $dt->format($format);
+		}
 	}
 
 	/**
-	 * Get the [c_value] column value.
+	 * Get the [message] column value.
 	 * 
 	 * @return     string
 	 */
-	public function getCValue()
+	public function getMessage()
 	{
-		return $this->c_value;
+		return $this->message;
 	}
 
 	/**
 	 * Set the value of [orders_id] column.
 	 * 
 	 * @param      int $v new value
-	 * @return     OrdersAttributes The current object (for fluent API support)
+	 * @return     OrdersStateLog The current object (for fluent API support)
 	 */
 	public function setOrdersId($v)
 	{
@@ -144,7 +175,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 
 		if ($this->orders_id !== $v) {
 			$this->orders_id = $v;
-			$this->modifiedColumns[] = OrdersAttributesPeer::ORDERS_ID;
+			$this->modifiedColumns[] = OrdersStateLogPeer::ORDERS_ID;
 		}
 
 		if ($this->aOrders !== null && $this->aOrders->getId() !== $v) {
@@ -155,64 +186,66 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	} // setOrdersId()
 
 	/**
-	 * Set the value of [ns] column.
+	 * Set the value of [state] column.
 	 * 
-	 * @param      string $v new value
-	 * @return     OrdersAttributes The current object (for fluent API support)
+	 * @param      int $v new value
+	 * @return     OrdersStateLog The current object (for fluent API support)
 	 */
-	public function setNs($v)
+	public function setState($v)
 	{
 		if ($v !== null) {
-			$v = (string) $v;
+			$v = (int) $v;
 		}
 
-		if ($this->ns !== $v) {
-			$this->ns = $v;
-			$this->modifiedColumns[] = OrdersAttributesPeer::NS;
+		if ($this->state !== $v) {
+			$this->state = $v;
+			$this->modifiedColumns[] = OrdersStateLogPeer::STATE;
 		}
 
 		return $this;
-	} // setNs()
+	} // setState()
 
 	/**
-	 * Set the value of [c_key] column.
+	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
 	 * 
-	 * @param      string $v new value
-	 * @return     OrdersAttributes The current object (for fluent API support)
+	 * @param      mixed $v string, integer (timestamp), or DateTime value.
+	 *               Empty strings are treated as NULL.
+	 * @return     OrdersStateLog The current object (for fluent API support)
 	 */
-	public function setCKey($v)
+	public function setCreatedAt($v)
 	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->c_key !== $v) {
-			$this->c_key = $v;
-			$this->modifiedColumns[] = OrdersAttributesPeer::C_KEY;
-		}
+		$dt = PropelDateTime::newInstance($v, null, 'DateTime');
+		if ($this->created_at !== null || $dt !== null) {
+			$currentDateAsString = ($this->created_at !== null && $tmpDt = new DateTime($this->created_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
+			if ($currentDateAsString !== $newDateAsString) {
+				$this->created_at = $newDateAsString;
+				$this->modifiedColumns[] = OrdersStateLogPeer::CREATED_AT;
+			}
+		} // if either are not null
 
 		return $this;
-	} // setCKey()
+	} // setCreatedAt()
 
 	/**
-	 * Set the value of [c_value] column.
+	 * Set the value of [message] column.
 	 * 
 	 * @param      string $v new value
-	 * @return     OrdersAttributes The current object (for fluent API support)
+	 * @return     OrdersStateLog The current object (for fluent API support)
 	 */
-	public function setCValue($v)
+	public function setMessage($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->c_value !== $v) {
-			$this->c_value = $v;
-			$this->modifiedColumns[] = OrdersAttributesPeer::C_VALUE;
+		if ($this->message !== $v) {
+			$this->message = $v;
+			$this->modifiedColumns[] = OrdersStateLogPeer::MESSAGE;
 		}
 
 		return $this;
-	} // setCValue()
+	} // setMessage()
 
 	/**
 	 * Indicates whether the columns in this object are only set to default values.
@@ -247,9 +280,9 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		try {
 
 			$this->orders_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->ns = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->c_key = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->c_value = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->state = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
+			$this->created_at = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->message = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -258,10 +291,10 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 4; // 4 = OrdersAttributesPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 4; // 4 = OrdersStateLogPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating OrdersAttributes object", $e);
+			throw new PropelException("Error populating OrdersStateLog object", $e);
 		}
 	}
 
@@ -307,13 +340,13 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		// We don't need to alter the object instance pool; we're just modifying this instance
 		// already in the pool.
 
-		$stmt = OrdersAttributesPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
+		$stmt = OrdersStateLogPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
 		$row = $stmt->fetch(PDO::FETCH_NUM);
 		$stmt->closeCursor();
 		if (!$row) {
@@ -343,12 +376,12 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$con->beginTransaction();
 		try {
-			$deleteQuery = OrdersAttributesQuery::create()
+			$deleteQuery = OrdersStateLogQuery::create()
 				->filterByPrimaryKey($this->getPrimaryKey());
 			$ret = $this->preDelete($con);
 			if ($ret) {
@@ -385,7 +418,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(OrdersAttributesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(OrdersStateLogPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$con->beginTransaction();
@@ -405,7 +438,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 					$this->postUpdate($con);
 				}
 				$this->postSave($con);
-				OrdersAttributesPeer::addInstanceToPool($this);
+				OrdersStateLogPeer::addInstanceToPool($this);
 			} else {
 				$affectedRows = 0;
 			}
@@ -478,21 +511,21 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 
 
 		 // check the columns in natural order for more readable SQL queries
-		if ($this->isColumnModified(OrdersAttributesPeer::ORDERS_ID)) {
+		if ($this->isColumnModified(OrdersStateLogPeer::ORDERS_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
 		}
-		if ($this->isColumnModified(OrdersAttributesPeer::NS)) {
-			$modifiedColumns[':p' . $index++]  = '`NS`';
+		if ($this->isColumnModified(OrdersStateLogPeer::STATE)) {
+			$modifiedColumns[':p' . $index++]  = '`STATE`';
 		}
-		if ($this->isColumnModified(OrdersAttributesPeer::C_KEY)) {
-			$modifiedColumns[':p' . $index++]  = '`C_KEY`';
+		if ($this->isColumnModified(OrdersStateLogPeer::CREATED_AT)) {
+			$modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
 		}
-		if ($this->isColumnModified(OrdersAttributesPeer::C_VALUE)) {
-			$modifiedColumns[':p' . $index++]  = '`C_VALUE`';
+		if ($this->isColumnModified(OrdersStateLogPeer::MESSAGE)) {
+			$modifiedColumns[':p' . $index++]  = '`MESSAGE`';
 		}
 
 		$sql = sprintf(
-			'INSERT INTO `orders_attributes` (%s) VALUES (%s)',
+			'INSERT INTO `orders_state_log` (%s) VALUES (%s)',
 			implode(', ', $modifiedColumns),
 			implode(', ', array_keys($modifiedColumns))
 		);
@@ -504,14 +537,14 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 					case '`ORDERS_ID`':
 						$stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
 						break;
-					case '`NS`':
-						$stmt->bindValue($identifier, $this->ns, PDO::PARAM_STR);
+					case '`STATE`':
+						$stmt->bindValue($identifier, $this->state, PDO::PARAM_INT);
 						break;
-					case '`C_KEY`':
-						$stmt->bindValue($identifier, $this->c_key, PDO::PARAM_STR);
+					case '`CREATED_AT`':
+						$stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
 						break;
-					case '`C_VALUE`':
-						$stmt->bindValue($identifier, $this->c_value, PDO::PARAM_STR);
+					case '`MESSAGE`':
+						$stmt->bindValue($identifier, $this->message, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -610,7 +643,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 			}
 
 
-			if (($retval = OrdersAttributesPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = OrdersStateLogPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -633,7 +666,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = OrdersAttributesPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = OrdersStateLogPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		$field = $this->getByPosition($pos);
 		return $field;
 	}
@@ -652,13 +685,13 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 				return $this->getOrdersId();
 				break;
 			case 1:
-				return $this->getNs();
+				return $this->getState();
 				break;
 			case 2:
-				return $this->getCKey();
+				return $this->getCreatedAt();
 				break;
 			case 3:
-				return $this->getCValue();
+				return $this->getMessage();
 				break;
 			default:
 				return null;
@@ -683,16 +716,16 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
 	{
-		if (isset($alreadyDumpedObjects['OrdersAttributes'][serialize($this->getPrimaryKey())])) {
+		if (isset($alreadyDumpedObjects['OrdersStateLog'][serialize($this->getPrimaryKey())])) {
 			return '*RECURSION*';
 		}
-		$alreadyDumpedObjects['OrdersAttributes'][serialize($this->getPrimaryKey())] = true;
-		$keys = OrdersAttributesPeer::getFieldNames($keyType);
+		$alreadyDumpedObjects['OrdersStateLog'][serialize($this->getPrimaryKey())] = true;
+		$keys = OrdersStateLogPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getOrdersId(),
-			$keys[1] => $this->getNs(),
-			$keys[2] => $this->getCKey(),
-			$keys[3] => $this->getCValue(),
+			$keys[1] => $this->getState(),
+			$keys[2] => $this->getCreatedAt(),
+			$keys[3] => $this->getMessage(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aOrders) {
@@ -714,7 +747,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = OrdersAttributesPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = OrdersStateLogPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -733,13 +766,13 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 				$this->setOrdersId($value);
 				break;
 			case 1:
-				$this->setNs($value);
+				$this->setState($value);
 				break;
 			case 2:
-				$this->setCKey($value);
+				$this->setCreatedAt($value);
 				break;
 			case 3:
-				$this->setCValue($value);
+				$this->setMessage($value);
 				break;
 		} // switch()
 	}
@@ -763,12 +796,12 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = OrdersAttributesPeer::getFieldNames($keyType);
+		$keys = OrdersStateLogPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setOrdersId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setNs($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setCKey($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setCValue($arr[$keys[3]]);
+		if (array_key_exists($keys[1], $arr)) $this->setState($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setCreatedAt($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setMessage($arr[$keys[3]]);
 	}
 
 	/**
@@ -778,12 +811,12 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(OrdersAttributesPeer::DATABASE_NAME);
+		$criteria = new Criteria(OrdersStateLogPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(OrdersAttributesPeer::ORDERS_ID)) $criteria->add(OrdersAttributesPeer::ORDERS_ID, $this->orders_id);
-		if ($this->isColumnModified(OrdersAttributesPeer::NS)) $criteria->add(OrdersAttributesPeer::NS, $this->ns);
-		if ($this->isColumnModified(OrdersAttributesPeer::C_KEY)) $criteria->add(OrdersAttributesPeer::C_KEY, $this->c_key);
-		if ($this->isColumnModified(OrdersAttributesPeer::C_VALUE)) $criteria->add(OrdersAttributesPeer::C_VALUE, $this->c_value);
+		if ($this->isColumnModified(OrdersStateLogPeer::ORDERS_ID)) $criteria->add(OrdersStateLogPeer::ORDERS_ID, $this->orders_id);
+		if ($this->isColumnModified(OrdersStateLogPeer::STATE)) $criteria->add(OrdersStateLogPeer::STATE, $this->state);
+		if ($this->isColumnModified(OrdersStateLogPeer::CREATED_AT)) $criteria->add(OrdersStateLogPeer::CREATED_AT, $this->created_at);
+		if ($this->isColumnModified(OrdersStateLogPeer::MESSAGE)) $criteria->add(OrdersStateLogPeer::MESSAGE, $this->message);
 
 		return $criteria;
 	}
@@ -798,10 +831,10 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(OrdersAttributesPeer::DATABASE_NAME);
-		$criteria->add(OrdersAttributesPeer::ORDERS_ID, $this->orders_id);
-		$criteria->add(OrdersAttributesPeer::NS, $this->ns);
-		$criteria->add(OrdersAttributesPeer::C_KEY, $this->c_key);
+		$criteria = new Criteria(OrdersStateLogPeer::DATABASE_NAME);
+		$criteria->add(OrdersStateLogPeer::ORDERS_ID, $this->orders_id);
+		$criteria->add(OrdersStateLogPeer::STATE, $this->state);
+		$criteria->add(OrdersStateLogPeer::CREATED_AT, $this->created_at);
 
 		return $criteria;
 	}
@@ -815,8 +848,8 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	{
 		$pks = array();
 		$pks[0] = $this->getOrdersId();
-		$pks[1] = $this->getNs();
-		$pks[2] = $this->getCKey();
+		$pks[1] = $this->getState();
+		$pks[2] = $this->getCreatedAt();
 
 		return $pks;
 	}
@@ -830,8 +863,8 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	public function setPrimaryKey($keys)
 	{
 		$this->setOrdersId($keys[0]);
-		$this->setNs($keys[1]);
-		$this->setCKey($keys[2]);
+		$this->setState($keys[1]);
+		$this->setCreatedAt($keys[2]);
 	}
 
 	/**
@@ -840,7 +873,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function isPrimaryKeyNull()
 	{
-		return (null === $this->getOrdersId()) && (null === $this->getNs()) && (null === $this->getCKey());
+		return (null === $this->getOrdersId()) && (null === $this->getState()) && (null === $this->getCreatedAt());
 	}
 
 	/**
@@ -849,7 +882,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 * If desired, this method can also make copies of all associated (fkey referrers)
 	 * objects.
 	 *
-	 * @param      object $copyObj An object of OrdersAttributes (or compatible) type.
+	 * @param      object $copyObj An object of OrdersStateLog (or compatible) type.
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
 	 * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
 	 * @throws     PropelException
@@ -857,9 +890,9 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
 		$copyObj->setOrdersId($this->getOrdersId());
-		$copyObj->setNs($this->getNs());
-		$copyObj->setCKey($this->getCKey());
-		$copyObj->setCValue($this->getCValue());
+		$copyObj->setState($this->getState());
+		$copyObj->setCreatedAt($this->getCreatedAt());
+		$copyObj->setMessage($this->getMessage());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -886,7 +919,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 * objects.
 	 *
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return     OrdersAttributes Clone of current object.
+	 * @return     OrdersStateLog Clone of current object.
 	 * @throws     PropelException
 	 */
 	public function copy($deepCopy = false)
@@ -905,12 +938,12 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 * same instance for all member of this class. The method could therefore
 	 * be static, but this would prevent one from overriding the behavior.
 	 *
-	 * @return     OrdersAttributesPeer
+	 * @return     OrdersStateLogPeer
 	 */
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new OrdersAttributesPeer();
+			self::$peer = new OrdersStateLogPeer();
 		}
 		return self::$peer;
 	}
@@ -919,7 +952,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 * Declares an association between this object and a Orders object.
 	 *
 	 * @param      Orders $v
-	 * @return     OrdersAttributes The current object (for fluent API support)
+	 * @return     OrdersStateLog The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function setOrders(Orders $v = null)
@@ -935,7 +968,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		// Add binding for other direction of this n:n relationship.
 		// If this object has already been added to the Orders object, it will not be re-added.
 		if ($v !== null) {
-			$v->addOrdersAttributes($this);
+			$v->addOrdersStateLog($this);
 		}
 
 		return $this;
@@ -958,7 +991,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 				to this object.  This level of coupling may, however, be
 				undesirable since it could result in an only partially populated collection
 				in the referenced object.
-				$this->aOrders->addOrdersAttributess($this);
+				$this->aOrders->addOrdersStateLogs($this);
 			 */
 		}
 		return $this->aOrders;
@@ -970,9 +1003,9 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	public function clear()
 	{
 		$this->orders_id = null;
-		$this->ns = null;
-		$this->c_key = null;
-		$this->c_value = null;
+		$this->state = null;
+		$this->created_at = null;
+		$this->message = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
@@ -1005,7 +1038,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function __toString()
 	{
-		return (string) $this->exportTo(OrdersAttributesPeer::DEFAULT_STRING_FORMAT);
+		return (string) $this->exportTo(OrdersStateLogPeer::DEFAULT_STRING_FORMAT);
 	}
 
-} // BaseOrdersAttributes
+} // BaseOrdersStateLog

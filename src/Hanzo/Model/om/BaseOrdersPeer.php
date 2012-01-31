@@ -14,6 +14,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\OrdersSyncLogPeer;
 use Hanzo\Model\map\OrdersTableMap;
 
@@ -42,13 +43,13 @@ abstract class BaseOrdersPeer {
 	const TM_CLASS = 'OrdersTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 31;
+	const NUM_COLUMNS = 32;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 31;
+	const NUM_HYDRATE_COLUMNS = 32;
 
 	/** the column name for the ID field */
 	const ID = 'orders.ID';
@@ -61,6 +62,9 @@ abstract class BaseOrdersPeer {
 
 	/** the column name for the STATE field */
 	const STATE = 'orders.STATE';
+
+	/** the column name for the IN_EDIT field */
+	const IN_EDIT = 'orders.IN_EDIT';
 
 	/** the column name for the CUSTOMERS_ID field */
 	const CUSTOMERS_ID = 'orders.CUSTOMERS_ID';
@@ -162,12 +166,12 @@ abstract class BaseOrdersPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'SessionId', 'PaymentGatewayId', 'State', 'CustomersId', 'FirstName', 'LastName', 'Email', 'Phone', 'LanguagesId', 'CurrencyId', 'BillingAddressLine1', 'BillingAddressLine2', 'BillingPostalCode', 'BillingCity', 'BillingCountry', 'BillingCountriesId', 'BillingStateProvince', 'BillingMethod', 'DeliveryAddressLine1', 'DeliveryAddressLine2', 'DeliveryPostalCode', 'DeliveryCity', 'DeliveryCountry', 'DeliveryCountriesId', 'DeliveryStateProvince', 'DeliveryCompanyName', 'DeliveryMethod', 'FinishedAt', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sessionId', 'paymentGatewayId', 'state', 'customersId', 'firstName', 'lastName', 'email', 'phone', 'languagesId', 'currencyId', 'billingAddressLine1', 'billingAddressLine2', 'billingPostalCode', 'billingCity', 'billingCountry', 'billingCountriesId', 'billingStateProvince', 'billingMethod', 'deliveryAddressLine1', 'deliveryAddressLine2', 'deliveryPostalCode', 'deliveryCity', 'deliveryCountry', 'deliveryCountriesId', 'deliveryStateProvince', 'deliveryCompanyName', 'deliveryMethod', 'finishedAt', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::SESSION_ID, self::PAYMENT_GATEWAY_ID, self::STATE, self::CUSTOMERS_ID, self::FIRST_NAME, self::LAST_NAME, self::EMAIL, self::PHONE, self::LANGUAGES_ID, self::CURRENCY_ID, self::BILLING_ADDRESS_LINE_1, self::BILLING_ADDRESS_LINE_2, self::BILLING_POSTAL_CODE, self::BILLING_CITY, self::BILLING_COUNTRY, self::BILLING_COUNTRIES_ID, self::BILLING_STATE_PROVINCE, self::BILLING_METHOD, self::DELIVERY_ADDRESS_LINE_1, self::DELIVERY_ADDRESS_LINE_2, self::DELIVERY_POSTAL_CODE, self::DELIVERY_CITY, self::DELIVERY_COUNTRY, self::DELIVERY_COUNTRIES_ID, self::DELIVERY_STATE_PROVINCE, self::DELIVERY_COMPANY_NAME, self::DELIVERY_METHOD, self::FINISHED_AT, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SESSION_ID', 'PAYMENT_GATEWAY_ID', 'STATE', 'CUSTOMERS_ID', 'FIRST_NAME', 'LAST_NAME', 'EMAIL', 'PHONE', 'LANGUAGES_ID', 'CURRENCY_ID', 'BILLING_ADDRESS_LINE_1', 'BILLING_ADDRESS_LINE_2', 'BILLING_POSTAL_CODE', 'BILLING_CITY', 'BILLING_COUNTRY', 'BILLING_COUNTRIES_ID', 'BILLING_STATE_PROVINCE', 'BILLING_METHOD', 'DELIVERY_ADDRESS_LINE_1', 'DELIVERY_ADDRESS_LINE_2', 'DELIVERY_POSTAL_CODE', 'DELIVERY_CITY', 'DELIVERY_COUNTRY', 'DELIVERY_COUNTRIES_ID', 'DELIVERY_STATE_PROVINCE', 'DELIVERY_COMPANY_NAME', 'DELIVERY_METHOD', 'FINISHED_AT', 'CREATED_AT', 'UPDATED_AT', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'session_id', 'payment_gateway_id', 'state', 'customers_id', 'first_name', 'last_name', 'email', 'phone', 'languages_id', 'currency_id', 'billing_address_line_1', 'billing_address_line_2', 'billing_postal_code', 'billing_city', 'billing_country', 'billing_countries_id', 'billing_state_province', 'billing_method', 'delivery_address_line_1', 'delivery_address_line_2', 'delivery_postal_code', 'delivery_city', 'delivery_country', 'delivery_countries_id', 'delivery_state_province', 'delivery_company_name', 'delivery_method', 'finished_at', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'SessionId', 'PaymentGatewayId', 'State', 'InEdit', 'CustomersId', 'FirstName', 'LastName', 'Email', 'Phone', 'LanguagesId', 'CurrencyId', 'BillingAddressLine1', 'BillingAddressLine2', 'BillingPostalCode', 'BillingCity', 'BillingCountry', 'BillingCountriesId', 'BillingStateProvince', 'BillingMethod', 'DeliveryAddressLine1', 'DeliveryAddressLine2', 'DeliveryPostalCode', 'DeliveryCity', 'DeliveryCountry', 'DeliveryCountriesId', 'DeliveryStateProvince', 'DeliveryCompanyName', 'DeliveryMethod', 'FinishedAt', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sessionId', 'paymentGatewayId', 'state', 'inEdit', 'customersId', 'firstName', 'lastName', 'email', 'phone', 'languagesId', 'currencyId', 'billingAddressLine1', 'billingAddressLine2', 'billingPostalCode', 'billingCity', 'billingCountry', 'billingCountriesId', 'billingStateProvince', 'billingMethod', 'deliveryAddressLine1', 'deliveryAddressLine2', 'deliveryPostalCode', 'deliveryCity', 'deliveryCountry', 'deliveryCountriesId', 'deliveryStateProvince', 'deliveryCompanyName', 'deliveryMethod', 'finishedAt', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::SESSION_ID, self::PAYMENT_GATEWAY_ID, self::STATE, self::IN_EDIT, self::CUSTOMERS_ID, self::FIRST_NAME, self::LAST_NAME, self::EMAIL, self::PHONE, self::LANGUAGES_ID, self::CURRENCY_ID, self::BILLING_ADDRESS_LINE_1, self::BILLING_ADDRESS_LINE_2, self::BILLING_POSTAL_CODE, self::BILLING_CITY, self::BILLING_COUNTRY, self::BILLING_COUNTRIES_ID, self::BILLING_STATE_PROVINCE, self::BILLING_METHOD, self::DELIVERY_ADDRESS_LINE_1, self::DELIVERY_ADDRESS_LINE_2, self::DELIVERY_POSTAL_CODE, self::DELIVERY_CITY, self::DELIVERY_COUNTRY, self::DELIVERY_COUNTRIES_ID, self::DELIVERY_STATE_PROVINCE, self::DELIVERY_COMPANY_NAME, self::DELIVERY_METHOD, self::FINISHED_AT, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SESSION_ID', 'PAYMENT_GATEWAY_ID', 'STATE', 'IN_EDIT', 'CUSTOMERS_ID', 'FIRST_NAME', 'LAST_NAME', 'EMAIL', 'PHONE', 'LANGUAGES_ID', 'CURRENCY_ID', 'BILLING_ADDRESS_LINE_1', 'BILLING_ADDRESS_LINE_2', 'BILLING_POSTAL_CODE', 'BILLING_CITY', 'BILLING_COUNTRY', 'BILLING_COUNTRIES_ID', 'BILLING_STATE_PROVINCE', 'BILLING_METHOD', 'DELIVERY_ADDRESS_LINE_1', 'DELIVERY_ADDRESS_LINE_2', 'DELIVERY_POSTAL_CODE', 'DELIVERY_CITY', 'DELIVERY_COUNTRY', 'DELIVERY_COUNTRIES_ID', 'DELIVERY_STATE_PROVINCE', 'DELIVERY_COMPANY_NAME', 'DELIVERY_METHOD', 'FINISHED_AT', 'CREATED_AT', 'UPDATED_AT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'session_id', 'payment_gateway_id', 'state', 'in_edit', 'customers_id', 'first_name', 'last_name', 'email', 'phone', 'languages_id', 'currency_id', 'billing_address_line_1', 'billing_address_line_2', 'billing_postal_code', 'billing_city', 'billing_country', 'billing_countries_id', 'billing_state_province', 'billing_method', 'delivery_address_line_1', 'delivery_address_line_2', 'delivery_postal_code', 'delivery_city', 'delivery_country', 'delivery_countries_id', 'delivery_state_province', 'delivery_company_name', 'delivery_method', 'finished_at', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, )
 	);
 
 	/**
@@ -177,12 +181,12 @@ abstract class BaseOrdersPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'SessionId' => 1, 'PaymentGatewayId' => 2, 'State' => 3, 'CustomersId' => 4, 'FirstName' => 5, 'LastName' => 6, 'Email' => 7, 'Phone' => 8, 'LanguagesId' => 9, 'CurrencyId' => 10, 'BillingAddressLine1' => 11, 'BillingAddressLine2' => 12, 'BillingPostalCode' => 13, 'BillingCity' => 14, 'BillingCountry' => 15, 'BillingCountriesId' => 16, 'BillingStateProvince' => 17, 'BillingMethod' => 18, 'DeliveryAddressLine1' => 19, 'DeliveryAddressLine2' => 20, 'DeliveryPostalCode' => 21, 'DeliveryCity' => 22, 'DeliveryCountry' => 23, 'DeliveryCountriesId' => 24, 'DeliveryStateProvince' => 25, 'DeliveryCompanyName' => 26, 'DeliveryMethod' => 27, 'FinishedAt' => 28, 'CreatedAt' => 29, 'UpdatedAt' => 30, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sessionId' => 1, 'paymentGatewayId' => 2, 'state' => 3, 'customersId' => 4, 'firstName' => 5, 'lastName' => 6, 'email' => 7, 'phone' => 8, 'languagesId' => 9, 'currencyId' => 10, 'billingAddressLine1' => 11, 'billingAddressLine2' => 12, 'billingPostalCode' => 13, 'billingCity' => 14, 'billingCountry' => 15, 'billingCountriesId' => 16, 'billingStateProvince' => 17, 'billingMethod' => 18, 'deliveryAddressLine1' => 19, 'deliveryAddressLine2' => 20, 'deliveryPostalCode' => 21, 'deliveryCity' => 22, 'deliveryCountry' => 23, 'deliveryCountriesId' => 24, 'deliveryStateProvince' => 25, 'deliveryCompanyName' => 26, 'deliveryMethod' => 27, 'finishedAt' => 28, 'createdAt' => 29, 'updatedAt' => 30, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SESSION_ID => 1, self::PAYMENT_GATEWAY_ID => 2, self::STATE => 3, self::CUSTOMERS_ID => 4, self::FIRST_NAME => 5, self::LAST_NAME => 6, self::EMAIL => 7, self::PHONE => 8, self::LANGUAGES_ID => 9, self::CURRENCY_ID => 10, self::BILLING_ADDRESS_LINE_1 => 11, self::BILLING_ADDRESS_LINE_2 => 12, self::BILLING_POSTAL_CODE => 13, self::BILLING_CITY => 14, self::BILLING_COUNTRY => 15, self::BILLING_COUNTRIES_ID => 16, self::BILLING_STATE_PROVINCE => 17, self::BILLING_METHOD => 18, self::DELIVERY_ADDRESS_LINE_1 => 19, self::DELIVERY_ADDRESS_LINE_2 => 20, self::DELIVERY_POSTAL_CODE => 21, self::DELIVERY_CITY => 22, self::DELIVERY_COUNTRY => 23, self::DELIVERY_COUNTRIES_ID => 24, self::DELIVERY_STATE_PROVINCE => 25, self::DELIVERY_COMPANY_NAME => 26, self::DELIVERY_METHOD => 27, self::FINISHED_AT => 28, self::CREATED_AT => 29, self::UPDATED_AT => 30, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SESSION_ID' => 1, 'PAYMENT_GATEWAY_ID' => 2, 'STATE' => 3, 'CUSTOMERS_ID' => 4, 'FIRST_NAME' => 5, 'LAST_NAME' => 6, 'EMAIL' => 7, 'PHONE' => 8, 'LANGUAGES_ID' => 9, 'CURRENCY_ID' => 10, 'BILLING_ADDRESS_LINE_1' => 11, 'BILLING_ADDRESS_LINE_2' => 12, 'BILLING_POSTAL_CODE' => 13, 'BILLING_CITY' => 14, 'BILLING_COUNTRY' => 15, 'BILLING_COUNTRIES_ID' => 16, 'BILLING_STATE_PROVINCE' => 17, 'BILLING_METHOD' => 18, 'DELIVERY_ADDRESS_LINE_1' => 19, 'DELIVERY_ADDRESS_LINE_2' => 20, 'DELIVERY_POSTAL_CODE' => 21, 'DELIVERY_CITY' => 22, 'DELIVERY_COUNTRY' => 23, 'DELIVERY_COUNTRIES_ID' => 24, 'DELIVERY_STATE_PROVINCE' => 25, 'DELIVERY_COMPANY_NAME' => 26, 'DELIVERY_METHOD' => 27, 'FINISHED_AT' => 28, 'CREATED_AT' => 29, 'UPDATED_AT' => 30, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'session_id' => 1, 'payment_gateway_id' => 2, 'state' => 3, 'customers_id' => 4, 'first_name' => 5, 'last_name' => 6, 'email' => 7, 'phone' => 8, 'languages_id' => 9, 'currency_id' => 10, 'billing_address_line_1' => 11, 'billing_address_line_2' => 12, 'billing_postal_code' => 13, 'billing_city' => 14, 'billing_country' => 15, 'billing_countries_id' => 16, 'billing_state_province' => 17, 'billing_method' => 18, 'delivery_address_line_1' => 19, 'delivery_address_line_2' => 20, 'delivery_postal_code' => 21, 'delivery_city' => 22, 'delivery_country' => 23, 'delivery_countries_id' => 24, 'delivery_state_province' => 25, 'delivery_company_name' => 26, 'delivery_method' => 27, 'finished_at' => 28, 'created_at' => 29, 'updated_at' => 30, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'SessionId' => 1, 'PaymentGatewayId' => 2, 'State' => 3, 'InEdit' => 4, 'CustomersId' => 5, 'FirstName' => 6, 'LastName' => 7, 'Email' => 8, 'Phone' => 9, 'LanguagesId' => 10, 'CurrencyId' => 11, 'BillingAddressLine1' => 12, 'BillingAddressLine2' => 13, 'BillingPostalCode' => 14, 'BillingCity' => 15, 'BillingCountry' => 16, 'BillingCountriesId' => 17, 'BillingStateProvince' => 18, 'BillingMethod' => 19, 'DeliveryAddressLine1' => 20, 'DeliveryAddressLine2' => 21, 'DeliveryPostalCode' => 22, 'DeliveryCity' => 23, 'DeliveryCountry' => 24, 'DeliveryCountriesId' => 25, 'DeliveryStateProvince' => 26, 'DeliveryCompanyName' => 27, 'DeliveryMethod' => 28, 'FinishedAt' => 29, 'CreatedAt' => 30, 'UpdatedAt' => 31, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sessionId' => 1, 'paymentGatewayId' => 2, 'state' => 3, 'inEdit' => 4, 'customersId' => 5, 'firstName' => 6, 'lastName' => 7, 'email' => 8, 'phone' => 9, 'languagesId' => 10, 'currencyId' => 11, 'billingAddressLine1' => 12, 'billingAddressLine2' => 13, 'billingPostalCode' => 14, 'billingCity' => 15, 'billingCountry' => 16, 'billingCountriesId' => 17, 'billingStateProvince' => 18, 'billingMethod' => 19, 'deliveryAddressLine1' => 20, 'deliveryAddressLine2' => 21, 'deliveryPostalCode' => 22, 'deliveryCity' => 23, 'deliveryCountry' => 24, 'deliveryCountriesId' => 25, 'deliveryStateProvince' => 26, 'deliveryCompanyName' => 27, 'deliveryMethod' => 28, 'finishedAt' => 29, 'createdAt' => 30, 'updatedAt' => 31, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SESSION_ID => 1, self::PAYMENT_GATEWAY_ID => 2, self::STATE => 3, self::IN_EDIT => 4, self::CUSTOMERS_ID => 5, self::FIRST_NAME => 6, self::LAST_NAME => 7, self::EMAIL => 8, self::PHONE => 9, self::LANGUAGES_ID => 10, self::CURRENCY_ID => 11, self::BILLING_ADDRESS_LINE_1 => 12, self::BILLING_ADDRESS_LINE_2 => 13, self::BILLING_POSTAL_CODE => 14, self::BILLING_CITY => 15, self::BILLING_COUNTRY => 16, self::BILLING_COUNTRIES_ID => 17, self::BILLING_STATE_PROVINCE => 18, self::BILLING_METHOD => 19, self::DELIVERY_ADDRESS_LINE_1 => 20, self::DELIVERY_ADDRESS_LINE_2 => 21, self::DELIVERY_POSTAL_CODE => 22, self::DELIVERY_CITY => 23, self::DELIVERY_COUNTRY => 24, self::DELIVERY_COUNTRIES_ID => 25, self::DELIVERY_STATE_PROVINCE => 26, self::DELIVERY_COMPANY_NAME => 27, self::DELIVERY_METHOD => 28, self::FINISHED_AT => 29, self::CREATED_AT => 30, self::UPDATED_AT => 31, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SESSION_ID' => 1, 'PAYMENT_GATEWAY_ID' => 2, 'STATE' => 3, 'IN_EDIT' => 4, 'CUSTOMERS_ID' => 5, 'FIRST_NAME' => 6, 'LAST_NAME' => 7, 'EMAIL' => 8, 'PHONE' => 9, 'LANGUAGES_ID' => 10, 'CURRENCY_ID' => 11, 'BILLING_ADDRESS_LINE_1' => 12, 'BILLING_ADDRESS_LINE_2' => 13, 'BILLING_POSTAL_CODE' => 14, 'BILLING_CITY' => 15, 'BILLING_COUNTRY' => 16, 'BILLING_COUNTRIES_ID' => 17, 'BILLING_STATE_PROVINCE' => 18, 'BILLING_METHOD' => 19, 'DELIVERY_ADDRESS_LINE_1' => 20, 'DELIVERY_ADDRESS_LINE_2' => 21, 'DELIVERY_POSTAL_CODE' => 22, 'DELIVERY_CITY' => 23, 'DELIVERY_COUNTRY' => 24, 'DELIVERY_COUNTRIES_ID' => 25, 'DELIVERY_STATE_PROVINCE' => 26, 'DELIVERY_COMPANY_NAME' => 27, 'DELIVERY_METHOD' => 28, 'FINISHED_AT' => 29, 'CREATED_AT' => 30, 'UPDATED_AT' => 31, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'session_id' => 1, 'payment_gateway_id' => 2, 'state' => 3, 'in_edit' => 4, 'customers_id' => 5, 'first_name' => 6, 'last_name' => 7, 'email' => 8, 'phone' => 9, 'languages_id' => 10, 'currency_id' => 11, 'billing_address_line_1' => 12, 'billing_address_line_2' => 13, 'billing_postal_code' => 14, 'billing_city' => 15, 'billing_country' => 16, 'billing_countries_id' => 17, 'billing_state_province' => 18, 'billing_method' => 19, 'delivery_address_line_1' => 20, 'delivery_address_line_2' => 21, 'delivery_postal_code' => 22, 'delivery_city' => 23, 'delivery_country' => 24, 'delivery_countries_id' => 25, 'delivery_state_province' => 26, 'delivery_company_name' => 27, 'delivery_method' => 28, 'finished_at' => 29, 'created_at' => 30, 'updated_at' => 31, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, )
 	);
 
 	/**
@@ -258,6 +262,7 @@ abstract class BaseOrdersPeer {
 			$criteria->addSelectColumn(OrdersPeer::SESSION_ID);
 			$criteria->addSelectColumn(OrdersPeer::PAYMENT_GATEWAY_ID);
 			$criteria->addSelectColumn(OrdersPeer::STATE);
+			$criteria->addSelectColumn(OrdersPeer::IN_EDIT);
 			$criteria->addSelectColumn(OrdersPeer::CUSTOMERS_ID);
 			$criteria->addSelectColumn(OrdersPeer::FIRST_NAME);
 			$criteria->addSelectColumn(OrdersPeer::LAST_NAME);
@@ -290,6 +295,7 @@ abstract class BaseOrdersPeer {
 			$criteria->addSelectColumn($alias . '.SESSION_ID');
 			$criteria->addSelectColumn($alias . '.PAYMENT_GATEWAY_ID');
 			$criteria->addSelectColumn($alias . '.STATE');
+			$criteria->addSelectColumn($alias . '.IN_EDIT');
 			$criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
 			$criteria->addSelectColumn($alias . '.FIRST_NAME');
 			$criteria->addSelectColumn($alias . '.LAST_NAME');
@@ -516,6 +522,9 @@ abstract class BaseOrdersPeer {
 		// Invalidate objects in OrdersLinesPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		OrdersLinesPeer::clearInstancePool();
+		// Invalidate objects in OrdersStateLogPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		OrdersStateLogPeer::clearInstancePool();
 		// Invalidate objects in OrdersSyncLogPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		OrdersSyncLogPeer::clearInstancePool();

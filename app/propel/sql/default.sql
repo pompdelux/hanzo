@@ -655,6 +655,7 @@ CREATE TABLE `orders`
 	`session_id` VARCHAR(32) NOT NULL,
 	`payment_gateway_id` INTEGER,
 	`state` INTEGER DEFAULT -3 NOT NULL,
+	`in_edit` TINYINT(1) DEFAULT 0 NOT NULL,
 	`customers_id` INTEGER,
 	`first_name` VARCHAR(128),
 	`last_name` VARCHAR(128),
@@ -706,12 +707,11 @@ DROP TABLE IF EXISTS `orders_attributes`;
 
 CREATE TABLE `orders_attributes`
 (
-	`c_key` VARCHAR(64) NOT NULL,
-	`ns` VARCHAR(64) NOT NULL,
-	`c_value` VARCHAR(255),
 	`orders_id` INTEGER NOT NULL,
-	PRIMARY KEY (`c_key`,`ns`),
-	INDEX `FI_orders_attributes_1` (`orders_id`),
+	`ns` VARCHAR(64) NOT NULL,
+	`c_key` VARCHAR(64) NOT NULL,
+	`c_value` VARCHAR(255),
+	PRIMARY KEY (`orders_id`,`ns`,`c_key`),
 	CONSTRAINT `fk_orders_attributes_1`
 		FOREIGN KEY (`orders_id`)
 		REFERENCES `orders` (`id`)
@@ -749,6 +749,25 @@ CREATE TABLE `orders_lines`
 		FOREIGN KEY (`products_id`)
 		REFERENCES `products` (`id`)
 		ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_state_log
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_state_log`;
+
+CREATE TABLE `orders_state_log`
+(
+	`orders_id` INTEGER NOT NULL,
+	`state` INTEGER NOT NULL,
+	`created_at` DATETIME NOT NULL,
+	`message` VARCHAR(128) NOT NULL,
+	PRIMARY KEY (`orders_id`,`state`,`created_at`),
+	CONSTRAINT `orders_state_log_FK_1`
+		FOREIGN KEY (`orders_id`)
+		REFERENCES `orders` (`id`)
+		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

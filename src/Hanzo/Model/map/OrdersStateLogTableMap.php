@@ -7,7 +7,7 @@ use \TableMap;
 
 
 /**
- * This class defines the structure of the 'orders_attributes' table.
+ * This class defines the structure of the 'orders_state_log' table.
  *
  *
  *
@@ -18,13 +18,13 @@ use \TableMap;
  *
  * @package    propel.generator.src.Hanzo.Model.map
  */
-class OrdersAttributesTableMap extends TableMap
+class OrdersStateLogTableMap extends TableMap
 {
 
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.OrdersAttributesTableMap';
+	const CLASS_NAME = 'src.Hanzo.Model.map.OrdersStateLogTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -36,16 +36,16 @@ class OrdersAttributesTableMap extends TableMap
 	public function initialize()
 	{
 		// attributes
-		$this->setName('orders_attributes');
-		$this->setPhpName('OrdersAttributes');
-		$this->setClassname('Hanzo\\Model\\OrdersAttributes');
+		$this->setName('orders_state_log');
+		$this->setPhpName('OrdersStateLog');
+		$this->setClassname('Hanzo\\Model\\OrdersStateLog');
 		$this->setPackage('src.Hanzo.Model');
 		$this->setUseIdGenerator(false);
 		// columns
 		$this->addForeignPrimaryKey('ORDERS_ID', 'OrdersId', 'INTEGER' , 'orders', 'ID', true, null, null);
-		$this->addPrimaryKey('NS', 'Ns', 'VARCHAR', true, 64, null);
-		$this->addPrimaryKey('C_KEY', 'CKey', 'VARCHAR', true, 64, null);
-		$this->addColumn('C_VALUE', 'CValue', 'VARCHAR', false, 255, null);
+		$this->addPrimaryKey('STATE', 'State', 'INTEGER', true, null, null);
+		$this->addPrimaryKey('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
+		$this->addColumn('MESSAGE', 'Message', 'VARCHAR', true, 128, null);
 		// validators
 	} // initialize()
 
@@ -57,4 +57,4 @@ class OrdersAttributesTableMap extends TableMap
 		$this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::MANY_TO_ONE, array('orders_id' => 'id', ), 'CASCADE', null);
 	} // buildRelations()
 
-} // OrdersAttributesTableMap
+} // OrdersStateLogTableMap

@@ -149,7 +149,7 @@ abstract class BaseProductsToCategoriesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsToCategories();
 			$obj->hydrate($row);
-			ProductsToCategoriesPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1])));
+			ProductsToCategoriesPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1])));
 		}
 		$stmt->closeCursor();
 
