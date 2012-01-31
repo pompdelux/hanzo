@@ -11,7 +11,7 @@ use Hanzo\Model\om\BaseOrders,
     Hanzo\Model\OrdersLines,
     Hanzo\Model\OrdersLinesPeer,
     Hanzo\Model\OrdersLinesQuery
-;
+    ;
 
 
 /**
@@ -29,7 +29,6 @@ class Orders extends BaseOrders
      * Definition of the different status a order can have
      *
      */
-    const STATE_EDITING         = -40;
     const STATE_PRE_CONFIRM     = -30;
     const STATE_PRE_PAYMENT     = -20;
     const STATE_POST_PAYMENT    = 10;

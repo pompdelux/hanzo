@@ -3,7 +3,7 @@
   <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
   <br>
   <form action="http://phplist.pompdelux.dk/integration/json.php?callback=?" method="post" class="newsletter-subscription-form">
-    <input type="hidden" name="listid[]" value="1" class="newsletter-list-id">
+    <input type="hidden" name="listid[]" value="{{ listid }}" class="newsletter-list-id">
     <div class="clearfix">
       <label>{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}:</label>
       <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">

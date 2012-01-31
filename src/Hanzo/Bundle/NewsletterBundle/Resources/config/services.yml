@@ -1,7 +1,6 @@
 parameters:
-#    newsletter.example.class: Hanzo\Bundle\NewsletterBundle\Example
+    newsletterapi.class: Hanzo\Bundle\NewsletterBundle\NewsletterApi
 
 services:
-#    newsletter.example:
-#        class: %newsletter.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    newsletterapi:
+        class: %newsletterapi.class%
