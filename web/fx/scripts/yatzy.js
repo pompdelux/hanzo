@@ -38,9 +38,9 @@ var yatzy = (function(window, $, undefined) {
         }
       }
 
-      if (typeof templates[id] != 'function') {
+      if ((undefined !== templates[id]) && typeof (templates[id] != 'function')) {
         var code = "try { var p=[], template_id='" + id + "'; p.push('" +
-            templates[id]
+          templates[id]
             .replace(/[\r\t\n]/g, " ")
             .replace(/<\?/g, "\t")
             .replace(/((^|\?>)[^\t]*)'/g, "$1\r")
