@@ -6,7 +6,6 @@
 /tmp/*
 /vendor/*
 /app/config/parameters.ini
-/app/config/config.yml
 /app/config/hanzo.yml
 /src/Hanzo/Bundle/CMSBundle/Resources/config/cms_routing.yml
 /src/Hanzo/Bundle/BasketBundle/Resources/config/category_map.php

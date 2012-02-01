@@ -23,6 +23,7 @@ services:
     # twig extensions
     hanzo.twig.extension:
         class:  Hanzo\Twig\Extension\HanzoTwigExtension
+        arguments: [ @twig_string ]
         tags:
             -  { name: twig.extension }
 
@@ -60,17 +61,17 @@ jms_security_extra:
 # Propel Configuration
 propel:
     dbal:
-        driver:               mysql
-        user:                 root
-        password:             null
-        dsn:                  mysql:host=localhost;dbname=hanzo
+        driver:               %database_driver%
+        user:                 %database_user%
+        password:             %database_password%
+        dsn:                  mysql:host=%database_host%;dbname=%database_name%
         options:              {}
         attributes:           {}
     path:       "%kernel.root_dir%/../vendor/propel"
     phing_path: "%kernel.root_dir%/../vendor/phing"
     logging:    %kernel.debug%
     build_properties:
-        propel.project: hanzo
+        propel.project: %database_name%
         propel.addValidators: all
         propel.namespace.autoPackage: true
 
@@ -114,4 +115,4 @@ snc_redis:
 
 # form addons
 simple_things_form_extra:
-    translation_domain_forward_campat: true
+    translation_domain_forward_compat: true
