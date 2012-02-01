@@ -38,7 +38,7 @@ class Hanzo
             return self::$hanzo;
         }
 
-        throw new Exception('Hanzo not initializet', 100);
+        throw new \Exception('Hanzo not initializet', 100);
     }
 
 

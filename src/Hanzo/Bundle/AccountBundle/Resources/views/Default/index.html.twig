@@ -12,7 +12,7 @@
 {% endif %}
 
 <h2>{{ 'Previous Orders'|trans({}, 'account') }}</h2>
-{% render 'AccountBundle:History:block' %}
+{% render 'AccountBundle:History:block' with { 'route' : app.request.attributes.get('_route') } %}
 
 
 <h2>{{ 'My Account'|trans({}, 'account') }}</h2>

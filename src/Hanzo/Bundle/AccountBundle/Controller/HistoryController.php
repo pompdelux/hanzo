@@ -23,29 +23,59 @@ class HistoryController extends CoreController
 
     public function viewAction($order_id)
     {
-        return $this->render('AccountBundle:History:index.html.twig', array(
+        return $this->render('AccountBundle:History:view.html.twig', array(
             'page_type' => 'account-history-view',
             'order' => OrdersQuery::create()->findPk($order_id)
         ));
     }
 
 
-    public function blockAction($limit = 10, $link = true)
+    public function blockAction($limit = 6, $link = TRUE, $route = FALSE)
     {
         $hanzo = Hanzo::getInstance();
         $customer = CustomersPeer::getCurrent();
+
+        if (empty($route)) {
+            $route = $this->get('request')->get('_route');
+        }
+
+        $router = $this->get('router');
+        $pager = $this->get('request')->get('pager', 1);
+
+
+        $offset = 6;
+        if (($limit > 6) || ($limit == 0)) {
+            $offset = 20;
+        }
 
         $result = OrdersQuery::create()
             ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_THAN)
             ->orderByCreatedAt(Criteria::DESC)
             ->limit($limit)
-            ->findByCustomersId($customer->getId())
+            ->filterByCustomersId($customer->getId())
+            ->paginate($pager, $offset)
         ;
 
+        $paginate = FALSE;
+
+        if (!$link) {
+            $pages = array();
+            if ($result->haveToPaginate()) {
+                foreach ($result->getLinks(20) as $page) {
+                    $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+                }
+
+                $paginate = array(
+                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage()), TRUE)),
+                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage()), TRUE)),
+                    'pages' => $pages,
+                    'index' => $pager
+                );
+            }
+        }
 
         $orders = array();
         foreach ($result as $record) {
-
             $attachments = array();
             foreach ($record->getAttachments() as $key => $attachment) {
                 $attachments[] = $hanzo->get('core.cdn') . 'dl.php?' . http_build_query(array(
@@ -53,7 +83,6 @@ class HistoryController extends CoreController
                     'key' => $this->get('session')->getId()
                 ));
             }
-
 
             $orders[] = array(
                 'id' => $record->getId(),
@@ -67,7 +96,8 @@ class HistoryController extends CoreController
         return $this->render('AccountBundle:History:block.html.twig', array(
             'page_type' => 'account-history',
             'orders' => (count($orders) ? $orders : NULL),
-            'link' => $link
+            'link' => $link,
+            'paginate' => $paginate
         ));
     }
 }

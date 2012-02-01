@@ -20,17 +20,6 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
-
-        // $x = $this->get('mail_manager');
-        // $x->setMessage('account.create', array(
-        //     'name' => 'anders and',
-        //     'username' => 'aa',
-        //     'password' => 'qwer123',
-        // ));
-        // $x->setTo('ulrik@o3.dk', 'ulrik nielsen');
-        // $x->setFrom('ulrik@bellcom.dk', 'anders and');
-        // $x->send();
-
         return $this->render('AccountBundle:Default:index.html.twig', array(
             'page_type' => 'account',
         ));
@@ -57,6 +46,12 @@ class DefaultController extends CoreController
                 $customer->setLanguagesId($hanzo->get('core.language_id'));
                 $customer->setPasswordClear($customer->getPassword());
                 $customer->setPassword(sha1($customer->getPassword()));
+
+                if ($customer->getNewsletter()) {
+                    // FIXME: no hardcoding list id's
+                    $this->get('newsletterapi')->subscribe($customer->getEmail(), 1);
+                }
+
                 $customer->save();
 
                 // login user

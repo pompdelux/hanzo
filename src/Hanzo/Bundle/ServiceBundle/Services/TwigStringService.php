@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use \Twig_Environment;
 use \Twig_Loader_String;
+use \Twig_Error_Runtime;
 
 class TwigStringService
 {
@@ -28,18 +29,23 @@ class TwigStringService
      * Parse a twig string template
      *
      * @param string $template the string to parse
-     * @param mixed $parameters array, string or object parsed to the template
+     * @param array $parameters, array of parameters parsed to the template
      * @return string
      */
-    public function parse($template, $parameters = NULL)
+    public function parse($template, $parameters = array())
     {
         if (FALSE === $this->overridden) {
             $this->begin();
         }
 
-        $result = $this->twig->render($template, $parameters);
+        try {
+            $result = $this->twig->render($template, $parameters);
+        } catch(Twig_Error_Runtime $e) {
+            $result = $template;
+        }
 
-        if ($this->auto_end) {
+
+        if (TRUE === $this->auto_end) {
             $this->end();
         }
 

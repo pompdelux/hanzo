@@ -38,7 +38,7 @@ _account_history:
 _account_show_order:
     pattern: /account/history/{order_id}
     defaults:
-        _controller: AccountBundle:History:showOrder
+        _controller: AccountBundle:History:view
     requirements:
         order_id: \d+
 

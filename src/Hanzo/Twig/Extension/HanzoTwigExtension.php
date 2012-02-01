@@ -2,6 +2,8 @@
 
 namespace Hanzo\Twig\Extension;
 
+use Hanzo\Bundle\ServiceBundle\Services\TwigStringService;
+
 use Twig_Extension,
     Twig_Function_Method,
     Twig_Function_Function,
@@ -12,13 +14,12 @@ use Hanzo\Core\Hanzo,
 
 class HanzoTwigExtension extends Twig_Extension
 {
-    // protected $container;
+    protected $twig_string;
 
-    // public function __construct($container, $cdn = '')
-    // {
-    //     $this->container = $container;
-    //     $this->cdn = $cdn;
-    // }
+    public function __construct(TwigStringService $twig_string)
+    {
+        $this->twig_string = $twig_string;
+    }
 
     public function getName()
     {
@@ -35,6 +36,8 @@ class HanzoTwigExtension extends Twig_Extension
             'image_path' => new Twig_Function_Method($this, 'image_path', array()),
             'image_tag' => new Twig_Function_Method($this, 'image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'print_r' => new Twig_Function_Function('print_r'),
+
+            'parse' => new Twig_Function_Method($this, 'parse', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
@@ -46,7 +49,7 @@ class HanzoTwigExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::moneyFormat
-     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function hanzo_money_format($number, $format = '%i')
     {
@@ -55,7 +58,7 @@ class HanzoTwigExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::fxImageTag
-     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function fx_image_tag($src, $preset = '', array $params = array())
     {
@@ -64,7 +67,7 @@ class HanzoTwigExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::productImageTag
-     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function product_image_tag($src, $preset = '50x50', array $params = array())
     {
@@ -73,7 +76,7 @@ class HanzoTwigExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::productImageUrl
-     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function product_image_url($src, $preset = '50x50', array $params = array())
     {
@@ -82,7 +85,7 @@ class HanzoTwigExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::imageTag
-     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function image_tag($src, array $params = array())
     {
@@ -91,10 +94,15 @@ class HanzoTwigExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::imagePath
-     * @todo loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function image_path($src, $preset = '')
     {
         return Tools::imagePath($src, $preset);
+    }
+
+    public function parse($string, $parameters = array())
+    {
+        return $this->twig_string->parse($string, $parameters);
     }
 }

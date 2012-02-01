@@ -34,15 +34,8 @@
 </div>
 
 {% if paginate %}
-<div class="pager ajax" data-target="product-list">
-  <ul>
-    <li class="prew {% if paginate.prew is empty %}off{% endif %}"><a href="{{ paginate.prew }}" title="{{ "Show previous page"|trans }}">{{ "Previous"|trans }}</a></li>
-  {% for page, url in paginate.pages %}
-    <li{% if page == paginate.index %} class="current"{% endif %}><a href="{{ url }}" title="{{ "Show page %page%"|trans({'%page%' : page}) }}">{{ page }}</a></li>
-  {% endfor %}
-    <li class="next {% if paginate.next is empty %}off{% endif %}"><a href="{{ paginate.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a></li>
-  </ul>
-</div>
+  {% import "::macro.pager.html.twig" as p %}
+  {{ p.pager(paginate, 'product-list') }}
 {% endif %}
 
 {#  yatzy js template used by the pager, do not delete ! #}

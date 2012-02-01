@@ -144,6 +144,11 @@ class MenuController extends CoreController
 
             foreach($result as $record) {
 
+                $path = $record->getPath();
+                if ($record->getType() == 'frontpage') {
+                    $path = '';
+                }
+
                 $class = 'inactive';
                 if ((isset($this->trail[$record->getId()])) ||
                     ($record->getPath() == $this->path)
@@ -155,11 +160,12 @@ class MenuController extends CoreController
                     if (is_array($params) && isset($params['class'])) {
                         $class .= ' ' . $params['class'];
                     }
-                }
-
-                $path = $record->getPath();
-                if ($record->getType() == 'frontpage') {
-                    $path = '';
+                    else {
+                        // handle frontpage urls
+                        if ($params && isset($params['is_frontpage'])) {
+                            $path = '';
+                        }
+                    }
                 }
 
                 $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $path . '" rel="'.$record->getId().'">' . $record->getTitle() . '</a>';

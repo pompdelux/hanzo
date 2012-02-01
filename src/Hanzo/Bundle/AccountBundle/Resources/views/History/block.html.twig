@@ -44,6 +44,11 @@
 {% endif %}
 </table>
 
+{% if paginate %}
+  {% import "::macro.pager.html.twig" as p %}
+  {{ p.pager(paginate, 'product-list') }}
+{% endif %}
+
 {% else %}
   <p>{{ 'You have placed no orders with us yet.'|trans({}, 'account') }}</p>
 {% endif %}

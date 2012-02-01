@@ -33,12 +33,14 @@ class ServiceFactory
             $settings[$record->getCKey()] = $record->getCValue();
         }
 
-        foreach (Hanzo::getInstance()->get('ALL') as $key => $value) {
-            list($ns, $key) = explode('.', $key);
-            if ($ns == $settings_key) {
-                $settings[$key] = $value;
+        try {
+            foreach (Hanzo::getInstance()->get('ALL') as $key => $value) {
+                list($ns, $key) = explode('.', $key);
+                if ($ns == $settings_key) {
+                    $settings[$key] = $value;
+                }
             }
-        }
+        } catch(\Exception $e) {}
 
         // return the instance
         return new $service($parameters, $settings);

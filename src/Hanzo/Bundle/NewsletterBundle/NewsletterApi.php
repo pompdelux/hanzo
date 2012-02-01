@@ -37,7 +37,7 @@ class NewsletterApi
      * subscribe
      * @param string $email An valid e-mail
      * @param int $listid
-     * @return stdClass 
+     * @return stdClass
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function subscribe( $email, $listid  )
@@ -59,7 +59,7 @@ class NewsletterApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    protected function jsonp_decode($jsonp, $assoc = false) { 
+    protected function jsonp_decode($jsonp, $assoc = false) {
         // PHP 5.3 adds "depth" as third parameter to json_decode
         if($jsonp[0] !== '[' && $jsonp[0] !== '{') { // we have JSONP
             $jsonp = substr($jsonp, strpos($jsonp, '('));
@@ -79,7 +79,7 @@ class NewsletterApi
     {
         $listid = 0;
 
-        switch ($this->domainKey) 
+        switch ($this->domainKey)
         {
             case 'DK':
                 $listid = 1;

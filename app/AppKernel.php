@@ -51,14 +51,14 @@ class AppKernel extends Kernel
     public function boot()
     {
         parent::boot();
-        $twig = $this->container->get('twig'); // ->addGlobal('', '');
-        $twig->addExtension(new Twig_Extension_Optimizer());
-
         // TODO: figure out if this is good or bad..
         if ('cli' !== php_sapi_name()) {
             $hanzo = C\Hanzo::initialize($this->container, $this->getEnvironment());
             $this->container->get('translator')->setLocale($hanzo->get('core.locale'));
         }
+
+        $twig = $this->container->get('twig'); // ->addGlobal('', '');
+        $twig->addExtension(new Twig_Extension_Optimizer());
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

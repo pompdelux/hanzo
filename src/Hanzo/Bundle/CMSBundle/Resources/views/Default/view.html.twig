@@ -5,7 +5,7 @@
 
 <h2>{{ page.title }}</h2>
 <article>
-  {{ page.content|raw }}
+  {{ parse(page.content) }}
 </article>
 
 {% endblock %}
