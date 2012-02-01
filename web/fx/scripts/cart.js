@@ -39,7 +39,11 @@
       });
 
       $('a.edit').on('click', function(event) {
+
+        $('#cboxOverlay').css({"opacity": 0.9, "cursor": "auto"}).show();
+
         event.preventDefault();
+
         var $a    = $(this);
         var $tr   = $a.closest('tr');
         var $info = $('.info', $tr);
@@ -52,18 +56,18 @@
           color  : $('label.color span', $info).text(),
         }
 
-        var $act = $('<div id="cart-edit-element"><a href="" class="cancel">' + i18n.t('Cancel') + '</a></div>');
+        var $act = $('<div id="cart-edit-element"><a href="" class="button">' + i18n.t('Cancel') + '</a></div>');
         var tr_offset = $tr.offset();
         var form_offset = $form.offset();
 
         $act.css({
-          'top': tr_offset.top - $tr.height() - 8,
-          'left' : 15,
+          'top': tr_offset.top - 18,
+          'left' : tr_offset.left,
           'height' : $tr.height() + 30,
           'width' : $tr.width(),
           'background-color' : '#615e5f'
         });
-        $form.prepend($act);
+        $('body').prepend($act);
 
         var $clone = $tr.clone();
         $act.prepend($clone);
@@ -76,6 +80,7 @@
           event.preventDefault();
           $(this).off('click');
           $act.remove();
+          $('#cboxOverlay').hide();
 
           $('select', $info).each(function(index, element) {
             $(this).replaceWith('<span>'+data[element.name]+'</span>');
@@ -103,11 +108,12 @@
           }
         });
 
-        $('select', $edit).on('change', function() {
-          if (this.name == 'size') {
+        $edit.on('change', 'select#size, select#color', function() {
+          var name = this.name;
+          if (name == 'size') {
             $('select#color', $edit).replaceWith('<span>'+data['color']+'</span>');
-            $('label[for="quantity"]', $edit).remove();
           }
+          $('label[for="quantity"]', $edit).remove();
 
           var request_data = {
             master : data.master,
@@ -117,26 +123,48 @@
 
           $.ajax({
             url : base_url + 'rest/v1/stock-check',
-            data : { master : data.master, size: this.value },
+            data : request_data,
             dataType : 'json',
             async : false,
             success : function(responce, textStatus, jqXHR) {
-              if (responce.status) {
-                var $color = $('<select id="color" name="color"><option value="">' + i18n.t('Choose') + '</option></select>');
-
-                var used = [];
-                $.each(responce.data.products, function(index, product) {
-                  if (-1 == $.inArray(product.color, used)) {
-                    used.push(product.color);
-                    $color.append('<option value="'+product.color+'">'+product.color+'</option>');
+              if (name == 'size') {
+                if (responce.status) {
+                  var $color = $('<select id="color" name="color"><option value="">' + i18n.t('Choose') + '</option></select>');
+                  var used = [];
+                  $.each(responce.data.products, function(index, product) {
+                    if (-1 == $.inArray(product.color, used)) {
+                      used.push(product.color);
+                      $color.append('<option value="'+product.color+'">'+product.color+'</option>');
+                    }
+                  });
+                  $('label.color span', $edit).replaceWith($color);
+                }
+              }
+              else {
+                if (responce.status) {
+                  var product = responce.data.products[0];
+console.log(product);
+                  if (product.date) {
+                    dialoug.confirm(i18n.t('Notice!'), responce.message, function(c) {
+                      if (c != 'ok') {
+                        return;
+                      }
+                    });
                   }
-                });
-                $('label.color span', $edit).replaceWith($color);
+
+                  $('.info', $edit).append('<label for="quantity">' + i18n.t('Quantity') + ': <select name="quantity" id="quantity"><option value="">' + i18n.t('Choose') + '</option></select></label>');
+                  for (i=1; i<11; i++) {
+                    $('.info select#quantity', $edit).append('<option value="'+i+'">'+i+'</option>');
+                  }
+                }
               }
             }
-         });
-       });
+          });
+        });
 
+        $($edit).on('change', 'select#quantity', function() {
+          $(this).closest('label').after('<input type="button" class="button" value="'+i18n.t('Update')+'">');
+        });
       });
     };
 

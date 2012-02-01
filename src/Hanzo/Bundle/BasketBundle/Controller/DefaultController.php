@@ -228,8 +228,9 @@ class DefaultController extends CoreController
                 $product_route = $router_keys[$key];
             }
 
+            $master = ProductsQuery::create()->findOneByMaster($line['products_name']);
             $line['url'] = $router->generate($product_route, array(
-                'product_id' => $line['products_id'],
+                'product_id' => $master->getId(),
                 'title' => Tools::stripText($line['products_name']),
             ));
 

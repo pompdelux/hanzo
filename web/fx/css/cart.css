@@ -107,12 +107,12 @@
   border: 5px solid #fff;
   position: absolute;
   padding: 5px;
+  z-index: 10000;
 }
-#cart-edit-element a.cancel {
+#cart-edit-element a.button {
   position: absolute;
   bottom: 5px;
   right: 5px;
-  color: #f00;
 }
 
 table.edit-element {}
@@ -131,10 +131,16 @@ table.edit-element td div.info label {
   white-space: nowrap;
   width: 100%;
   overflow: hidden;
+  height: 25px;
 }
 table.edit-element td div.info span,
 table.edit-element td div.info label select {
   float: right;
+}
+table.edit-element td div.info .button {
+  position: absolute;
+  top: 75px;
+  left: 295px;
 }
 
 table.edit-element td div.info select {
