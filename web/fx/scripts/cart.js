@@ -4,7 +4,13 @@
     var pub = {}
 
     pub.init = function() {
-      $('a.delete').on('click', function(event) {
+      var $table = $('table.product-table');
+      if ($table.length != 1) {
+        return;
+      }
+
+
+      $table.on('click', 'a.delete', function(event) {
         event.preventDefault();
         var $a = $(this);
         var name = $a.closest('tr').find('.info a').text();
@@ -38,8 +44,7 @@
         });
       });
 
-      $('a.edit').on('click', function(event) {
-
+      $table.on('click', 'a.edit', function(event) {
         $('#cboxOverlay').css({"opacity": 0.9, "cursor": "auto"}).show();
 
         event.preventDefault();
@@ -56,7 +61,7 @@
           color  : $('label.color span', $info).text(),
         }
 
-        var $act = $('<div id="cart-edit-element"><a href="" class="button">' + i18n.t('Cancel') + '</a></div>');
+        var $act = $('<div id="cart-edit-element"><a href="" class="button left">' + i18n.t('Cancel') + '</a></div>');
         var tr_offset = $tr.offset();
         var form_offset = $form.offset();
 
@@ -143,7 +148,6 @@
               else {
                 if (responce.status) {
                   var product = responce.data.products[0];
-console.log(product);
                   if (product.date) {
                     dialoug.confirm(i18n.t('Notice!'), responce.message, function(c) {
                       if (c != 'ok') {
@@ -162,8 +166,18 @@ console.log(product);
           });
         });
 
-        $($edit).on('change', 'select#quantity', function() {
+        $edit.on('change', 'select#quantity', function() {
           $(this).closest('label').after('<input type="button" class="button" value="'+i18n.t('Update')+'">');
+        });
+
+        $edit.on('click', 'input.button', function() {
+          var vars = {
+            'master': data.master
+          };
+          $('select', $edit).each(function(index, element) {
+            vars[element.name] = element.value;
+          });
+          console.log(vars);
         });
       });
     };
