@@ -21,9 +21,13 @@ services:
         class: Hanzo\Core\Stock
 
     # twig extensions
-    hanzo.twig.extension:
-        class:  Hanzo\Twig\Extension\HanzoTwigExtension
+    hanzo.misc.twig.extension:
+        class:  Hanzo\Twig\Extension\MiscExtension
         arguments: [ @twig_string ]
+        tags:
+            -  { name: twig.extension }
+    hanzo.asset.twig.extension:
+        class:  Hanzo\Twig\Extension\AssetExtension
         tags:
             -  { name: twig.extension }
 
