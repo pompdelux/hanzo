@@ -2,9 +2,7 @@
 
 require __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php';
 
-#use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-
 use Symfony\Component\ClassLoader\ApcUniversalClassLoader;
 
 $loader = new ApcUniversalClassLoader('autoloader.');
