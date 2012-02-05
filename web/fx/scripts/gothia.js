@@ -3,7 +3,7 @@ var gothia = (function($) {
 
   var confirmInit = function() {
       $("#gothia-payment-step-2").show();
-    
+
       $("#gothia-confirm-container form").on('submit', function(event) {
         event.preventDefault();
         dialoug.loading( '#form_social_security_num', i18n.t('Please wait') );

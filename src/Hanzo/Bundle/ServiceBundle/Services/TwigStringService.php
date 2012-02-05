@@ -6,6 +6,8 @@ use \Twig_Environment;
 use \Twig_Loader_String;
 use \Twig_Error_Runtime;
 
+use Hanzo\Core\Tools;
+
 class TwigStringService
 {
     protected $twig;
@@ -41,6 +43,7 @@ class TwigStringService
         try {
             $result = $this->twig->render($template, $parameters);
         } catch(Twig_Error_Runtime $e) {
+            Tools::log($e->getMessage());
             $result = $template;
         }
 

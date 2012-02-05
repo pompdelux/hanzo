@@ -1,0 +1,9 @@
+<div id="near-you-container"></div>
+<script src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+<script type="text/javascript">
+var near_you_params = {
+  type : geo_zipcode_params.type || "{{ type }}",
+  lat  : geoplugin_latitude(),
+  lon  : geoplugin_longitude()
+};
+</script>

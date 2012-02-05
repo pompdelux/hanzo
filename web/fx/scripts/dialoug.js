@@ -148,11 +148,16 @@ var dialoug = (function($) {
     $(selector).each(function() {
       var $this = $(this);
       var msg = undefined === message ? '' : message;
+      var tpl = '<div class="dialoug-loading">' + msg + '</div>';
 
       if (undefined === position) {
-        $this.after('<div class="dialoug-loading">' + msg + '</div>');
-      } else {
-        $this.before('<div class="dialoug-loading">' + msg + '</div>');
+        $this.after(tpl);
+      }
+      else if(position == 'append') {
+        $this.append(tpl);
+      }
+      else {
+        $this.before(tpl);
       }
       loading_status = $('.dialoug-loading', $this.parent());
     });

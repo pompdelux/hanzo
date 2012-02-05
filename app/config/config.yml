@@ -30,6 +30,11 @@ services:
         class:  Hanzo\Twig\Extension\AssetExtension
         tags:
             -  { name: twig.extension }
+    hanzo.maps.twig.extension:
+        class:  Hanzo\Twig\Extension\MapsExtension
+        arguments: [ @twig_string ]
+        tags:
+            -  { name: twig.extension }
 
 # Twig Configuration
 twig:
