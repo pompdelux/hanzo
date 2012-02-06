@@ -956,3 +956,17 @@ div#near-you-container .entry i {
 #body-participant form .last {
   margin-bottom: 5px;
 }
+
+/* Generic messages */
+.msg {
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #000;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.msg.error {
+  border: 2px solid #f00;
+}
