@@ -26,6 +26,7 @@ class AddressesType extends AbstractType
             'translation_domain' => 'account',
             'read_only' => TRUE
         ));
+        $builder->add('countries_id', 'hidden', array('translation_domain' => 'account'));
     }
 
     public function getDefaultOptions(array $options)

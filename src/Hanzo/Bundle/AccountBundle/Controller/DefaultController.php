@@ -32,6 +32,7 @@ class DefaultController extends CoreController
 
         $addresses = new Addresses();
         $addresses->setCountry('Danmark');
+        $addresses->setCountriesId(58);
 
         $customer = new Customers();
         $customer->addAddresses($addresses);
@@ -43,14 +44,17 @@ class DefaultController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $customer->setLanguagesId($hanzo->get('core.language_id'));
+                // hf: removed from customer
+                //$customer->setLanguagesId($hanzo->get('core.language_id'));
                 $customer->setPasswordClear($customer->getPassword());
                 $customer->setPassword(sha1($customer->getPassword()));
 
                 if ($customer->getNewsletter()) {
-                    // FIXME: no hardcoding list id's
-                    $this->get('newsletterapi')->subscribe($customer->getEmail(), 1);
+                    $api = $this->get('newsletterapi');
+                    $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                 }
+
+                error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
 
                 $customer->save();
 
@@ -65,7 +69,7 @@ class DefaultController extends CoreController
 
                 $mailer = $this->get('mail_manager');
                 $mailer->setMessage('account.create', array(
-                    'name' => 'anders and',
+                    'name' => 'anders and', // FIXME: :)
                     'username' => $customer->getEmail(),
                     'password' => $customer->getPasswordClear(),
                 ));
