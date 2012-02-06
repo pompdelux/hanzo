@@ -174,19 +174,14 @@ CREATE TABLE `customers`
 	`discount` DECIMAL(8,2) DEFAULT 0.00,
 	`groups_id` INTEGER DEFAULT 1 NOT NULL,
 	`is_active` TINYINT(1) DEFAULT 1 NOT NULL,
-	`languages_id` INTEGER NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
 	INDEX `FI_customers_10` (`groups_id`),
-	INDEX `FI_customers_20` (`languages_id`),
 	CONSTRAINT `fk_customers_10`
 		FOREIGN KEY (`groups_id`)
 		REFERENCES `groups` (`id`)
-		ON UPDATE CASCADE,
-	CONSTRAINT `fk_customers_20`
-		FOREIGN KEY (`languages_id`)
-		REFERENCES `languages` (`id`)
+		ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -199,16 +194,20 @@ CREATE TABLE `addresses`
 (
 	`customers_id` INTEGER NOT NULL,
 	`type` VARCHAR(10) DEFAULT 'payment' NOT NULL,
-	`address_line_1` VARCHAR(255),
+	`first_name` VARCHAR(128) NOT NULL,
+	`last_name` VARCHAR(128) NOT NULL,
+	`address_line_1` VARCHAR(255) NOT NULL,
 	`address_line_2` VARCHAR(255),
-	`postal_code` VARCHAR(12),
-	`city` VARCHAR(64),
-	`country` VARCHAR(128),
-	`countries_id` INTEGER,
+	`postal_code` VARCHAR(12) NOT NULL,
+	`city` VARCHAR(64) NOT NULL,
+	`country` VARCHAR(128) NOT NULL,
+	`countries_id` INTEGER NOT NULL,
 	`state_province` VARCHAR(64),
 	`company_name` VARCHAR(128),
 	`latitude` DOUBLE,
 	`longitude` DOUBLE,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
 	PRIMARY KEY (`customers_id`,`type`),
 	INDEX `addresses_FI_2` (`countries_id`),
 	CONSTRAINT `addresses_FK_1`

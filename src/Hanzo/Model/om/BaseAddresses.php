@@ -5,11 +5,14 @@ namespace Hanzo\Model\om;
 use \BaseObject;
 use \BasePeer;
 use \Criteria;
+use \DateTime;
+use \DateTimeZone;
 use \Exception;
 use \PDO;
 use \Persistent;
 use \Propel;
 use \PropelCollection;
+use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
@@ -61,6 +64,18 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	 * @var        string
 	 */
 	protected $type;
+
+	/**
+	 * The value for the first_name field.
+	 * @var        string
+	 */
+	protected $first_name;
+
+	/**
+	 * The value for the last_name field.
+	 * @var        string
+	 */
+	protected $last_name;
 
 	/**
 	 * The value for the address_line_1 field.
@@ -121,6 +136,18 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	 * @var        double
 	 */
 	protected $longitude;
+
+	/**
+	 * The value for the created_at field.
+	 * @var        string
+	 */
+	protected $created_at;
+
+	/**
+	 * The value for the updated_at field.
+	 * @var        string
+	 */
+	protected $updated_at;
 
 	/**
 	 * @var        Customers
@@ -185,6 +212,26 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	public function getType()
 	{
 		return $this->type;
+	}
+
+	/**
+	 * Get the [first_name] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getFirstName()
+	{
+		return $this->first_name;
+	}
+
+	/**
+	 * Get the [last_name] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getLastName()
+	{
+		return $this->last_name;
 	}
 
 	/**
@@ -288,6 +335,82 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Get the [optionally formatted] temporal [created_at] column value.
+	 * 
+	 *
+	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
+	 *							If format is NULL, then the raw DateTime object will be returned.
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+	 * @throws     PropelException - if unable to parse/validate the date/time value.
+	 */
+	public function getCreatedAt($format = NULL)
+	{
+		if ($this->created_at === null) {
+			return null;
+		}
+
+
+		if ($this->created_at === '0000-00-00 00:00:00') {
+			// while technically this is not a default value of NULL,
+			// this seems to be closest in meaning.
+			return null;
+		} else {
+			try {
+				$dt = new DateTime($this->created_at);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+			}
+		}
+
+		if ($format === null) {
+			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
+			return $dt;
+		} elseif (strpos($format, '%') !== false) {
+			return strftime($format, $dt->format('U'));
+		} else {
+			return $dt->format($format);
+		}
+	}
+
+	/**
+	 * Get the [optionally formatted] temporal [updated_at] column value.
+	 * 
+	 *
+	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
+	 *							If format is NULL, then the raw DateTime object will be returned.
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+	 * @throws     PropelException - if unable to parse/validate the date/time value.
+	 */
+	public function getUpdatedAt($format = NULL)
+	{
+		if ($this->updated_at === null) {
+			return null;
+		}
+
+
+		if ($this->updated_at === '0000-00-00 00:00:00') {
+			// while technically this is not a default value of NULL,
+			// this seems to be closest in meaning.
+			return null;
+		} else {
+			try {
+				$dt = new DateTime($this->updated_at);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+			}
+		}
+
+		if ($format === null) {
+			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
+			return $dt;
+		} elseif (strpos($format, '%') !== false) {
+			return strftime($format, $dt->format('U'));
+		} else {
+			return $dt->format($format);
+		}
+	}
+
+	/**
 	 * Set the value of [customers_id] column.
 	 * 
 	 * @param      int $v new value
@@ -330,6 +453,46 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 		return $this;
 	} // setType()
+
+	/**
+	 * Set the value of [first_name] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Addresses The current object (for fluent API support)
+	 */
+	public function setFirstName($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->first_name !== $v) {
+			$this->first_name = $v;
+			$this->modifiedColumns[] = AddressesPeer::FIRST_NAME;
+		}
+
+		return $this;
+	} // setFirstName()
+
+	/**
+	 * Set the value of [last_name] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Addresses The current object (for fluent API support)
+	 */
+	public function setLastName($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->last_name !== $v) {
+			$this->last_name = $v;
+			$this->modifiedColumns[] = AddressesPeer::LAST_NAME;
+		}
+
+		return $this;
+	} // setLastName()
 
 	/**
 	 * Set the value of [address_line_1] column.
@@ -536,6 +699,50 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	} // setLongitude()
 
 	/**
+	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
+	 * 
+	 * @param      mixed $v string, integer (timestamp), or DateTime value.
+	 *               Empty strings are treated as NULL.
+	 * @return     Addresses The current object (for fluent API support)
+	 */
+	public function setCreatedAt($v)
+	{
+		$dt = PropelDateTime::newInstance($v, null, 'DateTime');
+		if ($this->created_at !== null || $dt !== null) {
+			$currentDateAsString = ($this->created_at !== null && $tmpDt = new DateTime($this->created_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
+			if ($currentDateAsString !== $newDateAsString) {
+				$this->created_at = $newDateAsString;
+				$this->modifiedColumns[] = AddressesPeer::CREATED_AT;
+			}
+		} // if either are not null
+
+		return $this;
+	} // setCreatedAt()
+
+	/**
+	 * Sets the value of [updated_at] column to a normalized version of the date/time value specified.
+	 * 
+	 * @param      mixed $v string, integer (timestamp), or DateTime value.
+	 *               Empty strings are treated as NULL.
+	 * @return     Addresses The current object (for fluent API support)
+	 */
+	public function setUpdatedAt($v)
+	{
+		$dt = PropelDateTime::newInstance($v, null, 'DateTime');
+		if ($this->updated_at !== null || $dt !== null) {
+			$currentDateAsString = ($this->updated_at !== null && $tmpDt = new DateTime($this->updated_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
+			if ($currentDateAsString !== $newDateAsString) {
+				$this->updated_at = $newDateAsString;
+				$this->modifiedColumns[] = AddressesPeer::UPDATED_AT;
+			}
+		} // if either are not null
+
+		return $this;
+	} // setUpdatedAt()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -573,16 +780,20 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 			$this->customers_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->type = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->address_line_1 = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->address_line_2 = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->postal_code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->city = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->country = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->countries_id = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
-			$this->state_province = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->company_name = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->latitude = ($row[$startcol + 10] !== null) ? (double) $row[$startcol + 10] : null;
-			$this->longitude = ($row[$startcol + 11] !== null) ? (double) $row[$startcol + 11] : null;
+			$this->first_name = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->last_name = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->address_line_1 = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->address_line_2 = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->postal_code = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->city = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->country = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->countries_id = ($row[$startcol + 9] !== null) ? (int) $row[$startcol + 9] : null;
+			$this->state_province = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->company_name = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->latitude = ($row[$startcol + 12] !== null) ? (double) $row[$startcol + 12] : null;
+			$this->longitude = ($row[$startcol + 13] !== null) ? (double) $row[$startcol + 13] : null;
+			$this->created_at = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+			$this->updated_at = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -591,7 +802,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 12; // 12 = AddressesPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 16; // 16 = AddressesPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Addresses object", $e);
@@ -731,8 +942,19 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 			$ret = $this->preSave($con);
 			if ($isInsert) {
 				$ret = $ret && $this->preInsert($con);
+				// timestampable behavior
+				if (!$this->isColumnModified(AddressesPeer::CREATED_AT)) {
+					$this->setCreatedAt(time());
+				}
+				if (!$this->isColumnModified(AddressesPeer::UPDATED_AT)) {
+					$this->setUpdatedAt(time());
+				}
 			} else {
 				$ret = $ret && $this->preUpdate($con);
+				// timestampable behavior
+				if ($this->isModified() && !$this->isColumnModified(AddressesPeer::UPDATED_AT)) {
+					$this->setUpdatedAt(time());
+				}
 			}
 			if ($ret) {
 				$affectedRows = $this->doSave($con);
@@ -828,6 +1050,12 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 		if ($this->isColumnModified(AddressesPeer::TYPE)) {
 			$modifiedColumns[':p' . $index++]  = '`TYPE`';
 		}
+		if ($this->isColumnModified(AddressesPeer::FIRST_NAME)) {
+			$modifiedColumns[':p' . $index++]  = '`FIRST_NAME`';
+		}
+		if ($this->isColumnModified(AddressesPeer::LAST_NAME)) {
+			$modifiedColumns[':p' . $index++]  = '`LAST_NAME`';
+		}
 		if ($this->isColumnModified(AddressesPeer::ADDRESS_LINE_1)) {
 			$modifiedColumns[':p' . $index++]  = '`ADDRESS_LINE_1`';
 		}
@@ -858,6 +1086,12 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 		if ($this->isColumnModified(AddressesPeer::LONGITUDE)) {
 			$modifiedColumns[':p' . $index++]  = '`LONGITUDE`';
 		}
+		if ($this->isColumnModified(AddressesPeer::CREATED_AT)) {
+			$modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
+		}
+		if ($this->isColumnModified(AddressesPeer::UPDATED_AT)) {
+			$modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
+		}
 
 		$sql = sprintf(
 			'INSERT INTO `addresses` (%s) VALUES (%s)',
@@ -874,6 +1108,12 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 						break;
 					case '`TYPE`':
 						$stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
+						break;
+					case '`FIRST_NAME`':
+						$stmt->bindValue($identifier, $this->first_name, PDO::PARAM_STR);
+						break;
+					case '`LAST_NAME`':
+						$stmt->bindValue($identifier, $this->last_name, PDO::PARAM_STR);
 						break;
 					case '`ADDRESS_LINE_1`':
 						$stmt->bindValue($identifier, $this->address_line_1, PDO::PARAM_STR);
@@ -904,6 +1144,12 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 						break;
 					case '`LONGITUDE`':
 						$stmt->bindValue($identifier, $this->longitude, PDO::PARAM_STR);
+						break;
+					case '`CREATED_AT`':
+						$stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
+						break;
+					case '`UPDATED_AT`':
+						$stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -1053,34 +1299,46 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 				return $this->getType();
 				break;
 			case 2:
-				return $this->getAddressLine1();
+				return $this->getFirstName();
 				break;
 			case 3:
-				return $this->getAddressLine2();
+				return $this->getLastName();
 				break;
 			case 4:
-				return $this->getPostalCode();
+				return $this->getAddressLine1();
 				break;
 			case 5:
-				return $this->getCity();
+				return $this->getAddressLine2();
 				break;
 			case 6:
-				return $this->getCountry();
+				return $this->getPostalCode();
 				break;
 			case 7:
-				return $this->getCountriesId();
+				return $this->getCity();
 				break;
 			case 8:
-				return $this->getStateProvince();
+				return $this->getCountry();
 				break;
 			case 9:
-				return $this->getCompanyName();
+				return $this->getCountriesId();
 				break;
 			case 10:
-				return $this->getLatitude();
+				return $this->getStateProvince();
 				break;
 			case 11:
+				return $this->getCompanyName();
+				break;
+			case 12:
+				return $this->getLatitude();
+				break;
+			case 13:
 				return $this->getLongitude();
+				break;
+			case 14:
+				return $this->getCreatedAt();
+				break;
+			case 15:
+				return $this->getUpdatedAt();
 				break;
 			default:
 				return null;
@@ -1113,16 +1371,20 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 		$result = array(
 			$keys[0] => $this->getCustomersId(),
 			$keys[1] => $this->getType(),
-			$keys[2] => $this->getAddressLine1(),
-			$keys[3] => $this->getAddressLine2(),
-			$keys[4] => $this->getPostalCode(),
-			$keys[5] => $this->getCity(),
-			$keys[6] => $this->getCountry(),
-			$keys[7] => $this->getCountriesId(),
-			$keys[8] => $this->getStateProvince(),
-			$keys[9] => $this->getCompanyName(),
-			$keys[10] => $this->getLatitude(),
-			$keys[11] => $this->getLongitude(),
+			$keys[2] => $this->getFirstName(),
+			$keys[3] => $this->getLastName(),
+			$keys[4] => $this->getAddressLine1(),
+			$keys[5] => $this->getAddressLine2(),
+			$keys[6] => $this->getPostalCode(),
+			$keys[7] => $this->getCity(),
+			$keys[8] => $this->getCountry(),
+			$keys[9] => $this->getCountriesId(),
+			$keys[10] => $this->getStateProvince(),
+			$keys[11] => $this->getCompanyName(),
+			$keys[12] => $this->getLatitude(),
+			$keys[13] => $this->getLongitude(),
+			$keys[14] => $this->getCreatedAt(),
+			$keys[15] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCustomers) {
@@ -1169,34 +1431,46 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 				$this->setType($value);
 				break;
 			case 2:
-				$this->setAddressLine1($value);
+				$this->setFirstName($value);
 				break;
 			case 3:
-				$this->setAddressLine2($value);
+				$this->setLastName($value);
 				break;
 			case 4:
-				$this->setPostalCode($value);
+				$this->setAddressLine1($value);
 				break;
 			case 5:
-				$this->setCity($value);
+				$this->setAddressLine2($value);
 				break;
 			case 6:
-				$this->setCountry($value);
+				$this->setPostalCode($value);
 				break;
 			case 7:
-				$this->setCountriesId($value);
+				$this->setCity($value);
 				break;
 			case 8:
-				$this->setStateProvince($value);
+				$this->setCountry($value);
 				break;
 			case 9:
-				$this->setCompanyName($value);
+				$this->setCountriesId($value);
 				break;
 			case 10:
-				$this->setLatitude($value);
+				$this->setStateProvince($value);
 				break;
 			case 11:
+				$this->setCompanyName($value);
+				break;
+			case 12:
+				$this->setLatitude($value);
+				break;
+			case 13:
 				$this->setLongitude($value);
+				break;
+			case 14:
+				$this->setCreatedAt($value);
+				break;
+			case 15:
+				$this->setUpdatedAt($value);
 				break;
 		} // switch()
 	}
@@ -1224,16 +1498,20 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 		if (array_key_exists($keys[0], $arr)) $this->setCustomersId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setType($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setAddressLine1($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setAddressLine2($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setPostalCode($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setCity($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setCountry($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setCountriesId($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setStateProvince($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setCompanyName($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setLatitude($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setLongitude($arr[$keys[11]]);
+		if (array_key_exists($keys[2], $arr)) $this->setFirstName($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setLastName($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setAddressLine1($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setAddressLine2($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setPostalCode($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setCity($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setCountry($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setCountriesId($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setStateProvince($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setCompanyName($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setLatitude($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setLongitude($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setCreatedAt($arr[$keys[14]]);
+		if (array_key_exists($keys[15], $arr)) $this->setUpdatedAt($arr[$keys[15]]);
 	}
 
 	/**
@@ -1247,6 +1525,8 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 		if ($this->isColumnModified(AddressesPeer::CUSTOMERS_ID)) $criteria->add(AddressesPeer::CUSTOMERS_ID, $this->customers_id);
 		if ($this->isColumnModified(AddressesPeer::TYPE)) $criteria->add(AddressesPeer::TYPE, $this->type);
+		if ($this->isColumnModified(AddressesPeer::FIRST_NAME)) $criteria->add(AddressesPeer::FIRST_NAME, $this->first_name);
+		if ($this->isColumnModified(AddressesPeer::LAST_NAME)) $criteria->add(AddressesPeer::LAST_NAME, $this->last_name);
 		if ($this->isColumnModified(AddressesPeer::ADDRESS_LINE_1)) $criteria->add(AddressesPeer::ADDRESS_LINE_1, $this->address_line_1);
 		if ($this->isColumnModified(AddressesPeer::ADDRESS_LINE_2)) $criteria->add(AddressesPeer::ADDRESS_LINE_2, $this->address_line_2);
 		if ($this->isColumnModified(AddressesPeer::POSTAL_CODE)) $criteria->add(AddressesPeer::POSTAL_CODE, $this->postal_code);
@@ -1257,6 +1537,8 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 		if ($this->isColumnModified(AddressesPeer::COMPANY_NAME)) $criteria->add(AddressesPeer::COMPANY_NAME, $this->company_name);
 		if ($this->isColumnModified(AddressesPeer::LATITUDE)) $criteria->add(AddressesPeer::LATITUDE, $this->latitude);
 		if ($this->isColumnModified(AddressesPeer::LONGITUDE)) $criteria->add(AddressesPeer::LONGITUDE, $this->longitude);
+		if ($this->isColumnModified(AddressesPeer::CREATED_AT)) $criteria->add(AddressesPeer::CREATED_AT, $this->created_at);
+		if ($this->isColumnModified(AddressesPeer::UPDATED_AT)) $criteria->add(AddressesPeer::UPDATED_AT, $this->updated_at);
 
 		return $criteria;
 	}
@@ -1328,6 +1610,8 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	{
 		$copyObj->setCustomersId($this->getCustomersId());
 		$copyObj->setType($this->getType());
+		$copyObj->setFirstName($this->getFirstName());
+		$copyObj->setLastName($this->getLastName());
 		$copyObj->setAddressLine1($this->getAddressLine1());
 		$copyObj->setAddressLine2($this->getAddressLine2());
 		$copyObj->setPostalCode($this->getPostalCode());
@@ -1338,6 +1622,8 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 		$copyObj->setCompanyName($this->getCompanyName());
 		$copyObj->setLatitude($this->getLatitude());
 		$copyObj->setLongitude($this->getLongitude());
+		$copyObj->setCreatedAt($this->getCreatedAt());
+		$copyObj->setUpdatedAt($this->getUpdatedAt());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -1498,6 +1784,8 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	{
 		$this->customers_id = null;
 		$this->type = null;
+		$this->first_name = null;
+		$this->last_name = null;
 		$this->address_line_1 = null;
 		$this->address_line_2 = null;
 		$this->postal_code = null;
@@ -1508,6 +1796,8 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 		$this->company_name = null;
 		$this->latitude = null;
 		$this->longitude = null;
+		$this->created_at = null;
+		$this->updated_at = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
@@ -1616,6 +1906,19 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	        $this->setLongitude($coordinates[1]);
 	    }
 	
+	}
+
+	// timestampable behavior
+	
+	/**
+	 * Mark the current object so that the update date doesn't get updated during next save
+	 *
+	 * @return     Addresses The current object (for fluent API support)
+	 */
+	public function keepUpdateDateUnchanged()
+	{
+		$this->modifiedColumns[] = AddressesPeer::UPDATED_AT;
+		return $this;
 	}
 
 } // BaseAddresses

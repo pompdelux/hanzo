@@ -19,7 +19,6 @@ use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
 use Hanzo\Model\GothiaAccounts;
 use Hanzo\Model\Groups;
-use Hanzo\Model\Languages;
 
 /**
  * Base class that represents a query for the 'customers' table.
@@ -37,7 +36,6 @@ use Hanzo\Model\Languages;
  * @method     CustomersQuery orderByDiscount($order = Criteria::ASC) Order by the discount column
  * @method     CustomersQuery orderByGroupsId($order = Criteria::ASC) Order by the groups_id column
  * @method     CustomersQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
- * @method     CustomersQuery orderByLanguagesId($order = Criteria::ASC) Order by the languages_id column
  * @method     CustomersQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     CustomersQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -52,7 +50,6 @@ use Hanzo\Model\Languages;
  * @method     CustomersQuery groupByDiscount() Group by the discount column
  * @method     CustomersQuery groupByGroupsId() Group by the groups_id column
  * @method     CustomersQuery groupByIsActive() Group by the is_active column
- * @method     CustomersQuery groupByLanguagesId() Group by the languages_id column
  * @method     CustomersQuery groupByCreatedAt() Group by the created_at column
  * @method     CustomersQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -63,10 +60,6 @@ use Hanzo\Model\Languages;
  * @method     CustomersQuery leftJoinGroups($relationAlias = null) Adds a LEFT JOIN clause to the query using the Groups relation
  * @method     CustomersQuery rightJoinGroups($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Groups relation
  * @method     CustomersQuery innerJoinGroups($relationAlias = null) Adds a INNER JOIN clause to the query using the Groups relation
- *
- * @method     CustomersQuery leftJoinLanguages($relationAlias = null) Adds a LEFT JOIN clause to the query using the Languages relation
- * @method     CustomersQuery rightJoinLanguages($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Languages relation
- * @method     CustomersQuery innerJoinLanguages($relationAlias = null) Adds a INNER JOIN clause to the query using the Languages relation
  *
  * @method     CustomersQuery leftJoinConsultantsInfo($relationAlias = null) Adds a LEFT JOIN clause to the query using the ConsultantsInfo relation
  * @method     CustomersQuery rightJoinConsultantsInfo($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ConsultantsInfo relation
@@ -106,7 +99,6 @@ use Hanzo\Model\Languages;
  * @method     Customers findOneByDiscount(string $discount) Return the first Customers filtered by the discount column
  * @method     Customers findOneByGroupsId(int $groups_id) Return the first Customers filtered by the groups_id column
  * @method     Customers findOneByIsActive(boolean $is_active) Return the first Customers filtered by the is_active column
- * @method     Customers findOneByLanguagesId(int $languages_id) Return the first Customers filtered by the languages_id column
  * @method     Customers findOneByCreatedAt(string $created_at) Return the first Customers filtered by the created_at column
  * @method     Customers findOneByUpdatedAt(string $updated_at) Return the first Customers filtered by the updated_at column
  *
@@ -121,7 +113,6 @@ use Hanzo\Model\Languages;
  * @method     array findByDiscount(string $discount) Return Customers objects filtered by the discount column
  * @method     array findByGroupsId(int $groups_id) Return Customers objects filtered by the groups_id column
  * @method     array findByIsActive(boolean $is_active) Return Customers objects filtered by the is_active column
- * @method     array findByLanguagesId(int $languages_id) Return Customers objects filtered by the languages_id column
  * @method     array findByCreatedAt(string $created_at) Return Customers objects filtered by the created_at column
  * @method     array findByUpdatedAt(string $updated_at) Return Customers objects filtered by the updated_at column
  *
@@ -212,7 +203,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `FIRST_NAME`, `LAST_NAME`, `INITIALS`, `PASSWORD`, `EMAIL`, `PHONE`, `PASSWORD_CLEAR`, `DISCOUNT`, `GROUPS_ID`, `IS_ACTIVE`, `LANGUAGES_ID`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `FIRST_NAME`, `LAST_NAME`, `INITIALS`, `PASSWORD`, `EMAIL`, `PHONE`, `PASSWORD_CLEAR`, `DISCOUNT`, `GROUPS_ID`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -225,7 +216,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Customers();
 			$obj->hydrate($row);
-			CustomersPeer::addInstanceToPool($obj, (string) $key);
+			CustomersPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 
@@ -628,48 +619,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the languages_id column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByLanguagesId(1234); // WHERE languages_id = 1234
-	 * $query->filterByLanguagesId(array(12, 34)); // WHERE languages_id IN (12, 34)
-	 * $query->filterByLanguagesId(array('min' => 12)); // WHERE languages_id > 12
-	 * </code>
-	 *
-	 * @see       filterByLanguages()
-	 *
-	 * @param     mixed $languagesId The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByLanguagesId($languagesId = null, $comparison = null)
-	{
-		if (is_array($languagesId)) {
-			$useMinMax = false;
-			if (isset($languagesId['min'])) {
-				$this->addUsingAlias(CustomersPeer::LANGUAGES_ID, $languagesId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($languagesId['max'])) {
-				$this->addUsingAlias(CustomersPeer::LANGUAGES_ID, $languagesId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::LANGUAGES_ID, $languagesId, $comparison);
-	}
-
-	/**
 	 * Filter the query on the created_at column
 	 *
 	 * Example usage:
@@ -825,80 +774,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinGroups($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'Groups', '\Hanzo\Model\GroupsQuery');
-	}
-
-	/**
-	 * Filter the query by a related Languages object
-	 *
-	 * @param     Languages|PropelCollection $languages The related object(s) to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByLanguages($languages, $comparison = null)
-	{
-		if ($languages instanceof Languages) {
-			return $this
-				->addUsingAlias(CustomersPeer::LANGUAGES_ID, $languages->getId(), $comparison);
-		} elseif ($languages instanceof PropelCollection) {
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-			return $this
-				->addUsingAlias(CustomersPeer::LANGUAGES_ID, $languages->toKeyValue('PrimaryKey', 'Id'), $comparison);
-		} else {
-			throw new PropelException('filterByLanguages() only accepts arguments of type Languages or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the Languages relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function joinLanguages($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('Languages');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'Languages');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the Languages relation Languages object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\LanguagesQuery A secondary query class using the current class as primary query
-	 */
-	public function useLanguagesQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		return $this
-			->joinLanguages($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'Languages', '\Hanzo\Model\LanguagesQuery');
 	}
 
 	/**

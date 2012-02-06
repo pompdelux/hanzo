@@ -1,0 +1,7 @@
+parameters:
+#    data_io.example.class: Hanzo\Bundle\DataIOBundle\Example
+
+services:
+#    data_io.example:
+#        class: %data_io.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

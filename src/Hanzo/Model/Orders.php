@@ -36,6 +36,7 @@ class Orders extends BaseOrders
     const STATE_PENDING         = 30;
     const STATE_BEING_PROCESSED = 40;
     const STATE_SHIPPED         = 50;
+    // TODO: maybe these should be negative?
     const STATE_ERROR           = 100;
     const STATE_ERROR_PAYMENT   = 110;
 

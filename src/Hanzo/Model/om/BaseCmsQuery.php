@@ -180,7 +180,7 @@ abstract class BaseCmsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Cms();
 			$obj->hydrate($row);
-			CmsPeer::addInstanceToPool($obj, (string) $key);
+			CmsPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 

@@ -140,7 +140,7 @@ abstract class BaseRedirectsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Redirects();
 			$obj->hydrate($row);
-			RedirectsPeer::addInstanceToPool($obj, (string) $key);
+			RedirectsPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 

@@ -9,7 +9,6 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Languages;
 use Hanzo\Model\LanguagesPeer;
 use Hanzo\Model\ProductsWashingInstructionsPeer;

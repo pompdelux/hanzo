@@ -189,7 +189,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Countries();
 			$obj->hydrate($row);
-			CountriesPeer::addInstanceToPool($obj, (string) $key);
+			CountriesPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 
@@ -594,7 +594,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	 *
 	 * @return    CountriesQuery The current query, for fluid interface
 	 */
-	public function joinAddresses($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function joinAddresses($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		$tableMap = $this->getTableMap();
 		$relationMap = $tableMap->getRelation('Addresses');
@@ -629,7 +629,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	 *
 	 * @return    \Hanzo\Model\AddressesQuery A secondary query class using the current class as primary query
 	 */
-	public function useAddressesQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function useAddressesQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		return $this
 			->joinAddresses($relationAlias, $joinType)

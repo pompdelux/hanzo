@@ -13,8 +13,6 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
-use Hanzo\Model\Customers;
-use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\LanguagesPeer;
 use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
@@ -87,11 +85,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 	protected $direction;
 
 	/**
-	 * @var        array Customers[] Collection to store aggregation of Customers objects.
-	 */
-	protected $collCustomerss;
-
-	/**
 	 * @var        array ProductsWashingInstructions[] Collection to store aggregation of ProductsWashingInstructions objects.
 	 */
 	protected $collProductsWashingInstructionss;
@@ -109,12 +102,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 	 * @var        boolean
 	 */
 	protected $alreadyInValidation = false;
-
-	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $customerssScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -435,8 +422,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 
 		if ($deep) {  // also de-associate any related objects?
 
-			$this->collCustomerss = null;
-
 			$this->collProductsWashingInstructionss = null;
 
 		} // if (deep)
@@ -558,23 +543,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 				}
 				$affectedRows += 1;
 				$this->resetModified();
-			}
-
-			if ($this->customerssScheduledForDeletion !== null) {
-				if (!$this->customerssScheduledForDeletion->isEmpty()) {
-					CustomersQuery::create()
-						->filterByPrimaryKeys($this->customerssScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->customerssScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->collCustomerss !== null) {
-				foreach ($this->collCustomerss as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
 			}
 
 			if ($this->productsWashingInstructionssScheduledForDeletion !== null) {
@@ -763,14 +731,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 			}
 
 
-				if ($this->collCustomerss !== null) {
-					foreach ($this->collCustomerss as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
 				if ($this->collProductsWashingInstructionss !== null) {
 					foreach ($this->collProductsWashingInstructionss as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
@@ -867,9 +827,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 			$keys[5] => $this->getDirection(),
 		);
 		if ($includeForeignObjects) {
-			if (null !== $this->collCustomerss) {
-				$result['Customerss'] = $this->collCustomerss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-			}
 			if (null !== $this->collProductsWashingInstructionss) {
 				$result['ProductsWashingInstructionss'] = $this->collProductsWashingInstructionss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
@@ -1044,12 +1001,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 			// store object hash to prevent cycle
 			$this->startCopy = true;
 
-			foreach ($this->getCustomerss() as $relObj) {
-				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addCustomers($relObj->copy($deepCopy));
-				}
-			}
-
 			foreach ($this->getProductsWashingInstructionss() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
 					$copyObj->addProductsWashingInstructions($relObj->copy($deepCopy));
@@ -1115,185 +1066,9 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 	 */
 	public function initRelation($relationName)
 	{
-		if ('Customers' == $relationName) {
-			return $this->initCustomerss();
-		}
 		if ('ProductsWashingInstructions' == $relationName) {
 			return $this->initProductsWashingInstructionss();
 		}
-	}
-
-	/**
-	 * Clears out the collCustomerss collection
-	 *
-	 * This does not modify the database; however, it will remove any associated objects, causing
-	 * them to be refetched by subsequent calls to accessor method.
-	 *
-	 * @return     void
-	 * @see        addCustomerss()
-	 */
-	public function clearCustomerss()
-	{
-		$this->collCustomerss = null; // important to set this to NULL since that means it is uninitialized
-	}
-
-	/**
-	 * Initializes the collCustomerss collection.
-	 *
-	 * By default this just sets the collCustomerss collection to an empty array (like clearcollCustomerss());
-	 * however, you may wish to override this method in your stub class to provide setting appropriate
-	 * to your application -- for example, setting the initial array to the values stored in database.
-	 *
-	 * @param      boolean $overrideExisting If set to true, the method call initializes
-	 *                                        the collection even if it is not empty
-	 *
-	 * @return     void
-	 */
-	public function initCustomerss($overrideExisting = true)
-	{
-		if (null !== $this->collCustomerss && !$overrideExisting) {
-			return;
-		}
-		$this->collCustomerss = new PropelObjectCollection();
-		$this->collCustomerss->setModel('Customers');
-	}
-
-	/**
-	 * Gets an array of Customers objects which contain a foreign key that references this object.
-	 *
-	 * If the $criteria is not null, it is used to always fetch the results from the database.
-	 * Otherwise the results are fetched from the database the first time, then cached.
-	 * Next time the same method is called without $criteria, the cached collection is returned.
-	 * If this Languages is new, it will return
-	 * an empty collection or the current collection; the criteria is ignored on a new object.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 * @throws     PropelException
-	 */
-	public function getCustomerss($criteria = null, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomerss || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerss) {
-				// return empty collection
-				$this->initCustomerss();
-			} else {
-				$collCustomerss = CustomersQuery::create(null, $criteria)
-					->filterByLanguages($this)
-					->find($con);
-				if (null !== $criteria) {
-					return $collCustomerss;
-				}
-				$this->collCustomerss = $collCustomerss;
-			}
-		}
-		return $this->collCustomerss;
-	}
-
-	/**
-	 * Sets a collection of Customers objects related by a one-to-many relationship
-	 * to the current object.
-	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-	 * and new objects from the given Propel collection.
-	 *
-	 * @param      PropelCollection $customerss A Propel collection.
-	 * @param      PropelPDO $con Optional connection object
-	 */
-	public function setCustomerss(PropelCollection $customerss, PropelPDO $con = null)
-	{
-		$this->customerssScheduledForDeletion = $this->getCustomerss(new Criteria(), $con)->diff($customerss);
-
-		foreach ($customerss as $customers) {
-			// Fix issue with collection modified by reference
-			if ($customers->isNew()) {
-				$customers->setLanguages($this);
-			}
-			$this->addCustomers($customers);
-		}
-
-		$this->collCustomerss = $customerss;
-	}
-
-	/**
-	 * Returns the number of related Customers objects.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct
-	 * @param      PropelPDO $con
-	 * @return     int Count of related Customers objects.
-	 * @throws     PropelException
-	 */
-	public function countCustomerss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomerss || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomerss) {
-				return 0;
-			} else {
-				$query = CustomersQuery::create(null, $criteria);
-				if($distinct) {
-					$query->distinct();
-				}
-				return $query
-					->filterByLanguages($this)
-					->count($con);
-			}
-		} else {
-			return count($this->collCustomerss);
-		}
-	}
-
-	/**
-	 * Method called to associate a Customers object to this object
-	 * through the Customers foreign key attribute.
-	 *
-	 * @param      Customers $l Customers
-	 * @return     Languages The current object (for fluent API support)
-	 */
-	public function addCustomers(Customers $l)
-	{
-		if ($this->collCustomerss === null) {
-			$this->initCustomerss();
-		}
-		if (!$this->collCustomerss->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddCustomers($l);
-		}
-
-		return $this;
-	}
-
-	/**
-	 * @param	Customers $customers The customers object to add.
-	 */
-	protected function doAddCustomers($customers)
-	{
-		$this->collCustomerss[]= $customers;
-		$customers->setLanguages($this);
-	}
-
-
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Languages is new, it will return
-	 * an empty collection; or if this Languages has previously
-	 * been saved, it will retrieve related Customerss from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Languages.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array Customers[] List of Customers objects
-	 */
-	public function getCustomerssJoinGroups($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$query = CustomersQuery::create(null, $criteria);
-		$query->joinWith('Groups', $join_behavior);
-
-		return $this->getCustomerss($query, $con);
 	}
 
 	/**
@@ -1476,11 +1251,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
-			if ($this->collCustomerss) {
-				foreach ($this->collCustomerss as $o) {
-					$o->clearAllReferences($deep);
-				}
-			}
 			if ($this->collProductsWashingInstructionss) {
 				foreach ($this->collProductsWashingInstructionss as $o) {
 					$o->clearAllReferences($deep);
@@ -1488,10 +1258,6 @@ abstract class BaseLanguages extends BaseObject  implements Persistent
 			}
 		} // if ($deep)
 
-		if ($this->collCustomerss instanceof PropelCollection) {
-			$this->collCustomerss->clearIterator();
-		}
-		$this->collCustomerss = null;
 		if ($this->collProductsWashingInstructionss instanceof PropelCollection) {
 			$this->collProductsWashingInstructionss->clearIterator();
 		}

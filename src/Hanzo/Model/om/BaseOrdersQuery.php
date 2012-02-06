@@ -287,7 +287,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Orders();
 			$obj->hydrate($row);
-			OrdersPeer::addInstanceToPool($obj, (string) $key);
+			OrdersPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 
