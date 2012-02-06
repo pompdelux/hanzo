@@ -25,3 +25,11 @@ ws_product_video:
     defaults:
         _controller: WebServicesBundle:RestVideo:get
         version: v1
+
+ws_google_maps_proxy:
+    pattern: /rest/{version}/gm/proxy/{query}/{country}
+    defaults:
+        _controller: WebServicesBundle:RestGoogle:proxy
+        version: v1
+        query: ''
+        country: ''

@@ -14,10 +14,6 @@
     git=http://github.com/doctrine/common.git
     version=2.1.4
 
-[doctrine-dbal]
-    git=http://github.com/doctrine/dbal.git
-    version=2.1.5
-
 [doctrine]
     git=http://github.com/doctrine/doctrine2.git
     version=2.1.5
