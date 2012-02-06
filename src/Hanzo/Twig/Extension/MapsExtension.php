@@ -43,7 +43,7 @@ class MapsExtension extends Twig_Extension
         );
     }
 
-    public function geo_zip_code_form($type = 'near-you', $country = 'Denmark')
+    public function geo_zip_code_form($type = 'near', $country = 'Denmark')
     {
         $template = file_get_contents($this->template_dir . 'zip_form.html.twig');
         return $this->twig_string->parse($template, array(
@@ -52,7 +52,7 @@ class MapsExtension extends Twig_Extension
         ));
     }
 
-    public function geo_consultants_map($type = 'near-you')
+    public function geo_consultants_map($type = 'near')
     {
         $template = file_get_contents($this->template_dir . 'consultants_map.html.twig');
         return $this->twig_string->parse($template, array(
