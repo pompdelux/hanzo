@@ -199,7 +199,7 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new EventsParticipants();
 			$obj->hydrate($row);
-			EventsParticipantsPeer::addInstanceToPool($obj, (string) $row[0]);
+			EventsParticipantsPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

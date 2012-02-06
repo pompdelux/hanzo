@@ -164,7 +164,7 @@ abstract class BaseCategoriesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Categories();
 			$obj->hydrate($row);
-			CategoriesPeer::addInstanceToPool($obj, (string) $row[0]);
+			CategoriesPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

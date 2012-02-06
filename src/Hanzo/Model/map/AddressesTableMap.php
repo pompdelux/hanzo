@@ -79,7 +79,7 @@ class AddressesTableMap extends TableMap
 	public function getBehaviors()
 	{
 		return array(
-			'geocodable' => array('auto_update' => 'false', 'latitude_column' => 'latitude', 'longitude_column' => 'longitude', 'geocode_ip' => 'false', 'ip_column' => 'ip_address', 'geocode_address' => 'false', 'address_columns' => 'address_line_1,address_line_2,state_province,postal_code,country', 'geocoder_provider' => '\Geocoder\Provider\GoogleMapsProvider', 'geocoder_adapter' => '\Geocoder\HttpAdapter\CurlHttpAdapter', 'geocoder_api_key' => 'false', 'geocoder_api_key_provider' => '\\Hanzo\\Core\\Hanzo::getInstance()->get(\'google.maps\')', ),
+			'geocodable' => array('auto_update' => 'false', 'latitude_column' => 'latitude', 'longitude_column' => 'longitude', 'geocode_ip' => 'false', 'ip_column' => 'ip_address', 'geocode_address' => 'true', 'address_columns' => 'address_line_1,address_line_2,state_province,postal_code,country', 'geocoder_provider' => '\Geocoder\Provider\GoogleMapsProvider', 'geocoder_adapter' => '\Geocoder\HttpAdapter\CurlHttpAdapter', 'geocoder_api_key' => 'false', 'geocoder_api_key_provider' => '\Hanzo\Core\Hanzo::getInstance()->getGoogleMapsKey()', ),
 			'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', ),
 		);
 	} // getBehaviors()

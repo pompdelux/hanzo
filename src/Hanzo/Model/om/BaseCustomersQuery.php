@@ -216,7 +216,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Customers();
 			$obj->hydrate($row);
-			CustomersPeer::addInstanceToPool($obj, (string) $row[0]);
+			CustomersPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

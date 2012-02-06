@@ -163,7 +163,7 @@ abstract class BaseZipToCityQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ZipToCity();
 			$obj->hydrate($row);
-			ZipToCityPeer::addInstanceToPool($obj, (string) $row[0]);
+			ZipToCityPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

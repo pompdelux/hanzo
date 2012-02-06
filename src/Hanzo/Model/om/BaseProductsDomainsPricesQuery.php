@@ -170,7 +170,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsDomainsPrices();
 			$obj->hydrate($row);
-			ProductsDomainsPricesPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1], (string) $row[2])));
+			ProductsDomainsPricesPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1], (string) $key[2])));
 		}
 		$stmt->closeCursor();
 

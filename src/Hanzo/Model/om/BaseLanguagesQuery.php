@@ -159,7 +159,7 @@ abstract class BaseLanguagesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Languages();
 			$obj->hydrate($row);
-			LanguagesPeer::addInstanceToPool($obj, (string) $row[0]);
+			LanguagesPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

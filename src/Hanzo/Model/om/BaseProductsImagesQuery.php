@@ -157,7 +157,7 @@ abstract class BaseProductsImagesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsImages();
 			$obj->hydrate($row);
-			ProductsImagesPeer::addInstanceToPool($obj, (string) $row[0]);
+			ProductsImagesPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

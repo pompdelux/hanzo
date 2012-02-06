@@ -152,7 +152,7 @@ abstract class BaseDomainsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Domains();
 			$obj->hydrate($row);
-			DomainsPeer::addInstanceToPool($obj, (string) $row[0]);
+			DomainsPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

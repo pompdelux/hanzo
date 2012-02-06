@@ -147,7 +147,7 @@ abstract class BaseConsultantsInfoQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ConsultantsInfo();
 			$obj->hydrate($row);
-			ConsultantsInfoPeer::addInstanceToPool($obj, (string) $row[0]);
+			ConsultantsInfoPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

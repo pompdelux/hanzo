@@ -640,49 +640,6 @@ form.newsletter-subscription-form input.button {
   width: auto;
 }
 
-/* consultants */
-
-div#near-you-container h2 {}
-div#near-you-container .entry {
-  width:320px;
-  height:115px;
-  border:1px solid #666;
-  margin-bottom:10px;
-  margin-right:30px;
-}
-div#near-you-container .entry .wrapper {
-  padding:10px;
-}
-div#near-you-container .entry.odd {
-  float:left;
-}
-div#near-you-container .entry.even {
-  float:right;
-}
-div#near-you-container .entry .info {
-  width:155px;
-  float:left;
-}
-div#near-you-container .entry .img {
-  width:100px;
-  float:right;
-}
-div#near-you-container .entry i {
-  margin-top: 5px;
-  position: absolute;
-  right: 60px;
-}
-#near-you-container .element,
-.panes div.pane .element {
-  width: 240px;
-  padding: 0px;
-  float: left;
-}
-
-#near-you-container .element .note,
-.panes div.pane .note {
-  margin:5px 0;
-}
 
 /* check out flow */
 #body-checkout-confirmation h1,
