@@ -76,7 +76,7 @@
     git=git://github.com/nrk/predis.git
 
 [GeocodableBehavior]
-    git=http://github.com/mrbase/GeocodableBehavior.git
+    git=git@github.com:mrbase/GeocodableBehavior.git
     target=/propel-behaviors/GeocodableBehavior
 
 [Geocoder]
