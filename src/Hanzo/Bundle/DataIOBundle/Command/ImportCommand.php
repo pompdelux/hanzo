@@ -576,6 +576,7 @@ class ImportCommand extends ContainerAwareCommand
 
             if ( is_null($customer) )
             {
+                $this->output->writeln('Creating: '. $row['customers_email_address']);
                 $customer = new Customers();
                 $customer->setFirstname( $row['customers_firstname'] )
                     ->setLastname($row['customers_lastname'])
@@ -605,8 +606,6 @@ class ImportCommand extends ContainerAwareCommand
 
                 $this->createOrders($row, $customer);
                 unset($customer);
-
-                //$this->output->writeln('Created: '. $row['customers_email_address']);
             }
 
             //break;
@@ -620,31 +619,48 @@ class ImportCommand extends ContainerAwareCommand
      **/
     private function createOrders( $customerRow, $customer )
     {
-        $sql = "SELECT * FROM osc_orders WHERE customers_id = ". $customerRow['customers_id'];
+        $sql = "SELECT * 
+            FROM 
+              osc_orders 
+            LEFT JOIN 
+              osc_orders_attributes ON osc_orders.orders_id = osc_orders_attributes.orders_id 
+            WHERE 
+              customers_id = ". $customerRow['customers_id'];
         foreach ( $this->connection->query($sql) as $row )
         {
+            if ( empty($row['customers_name']) )
+            {
+                $this->output->writeln('<error>Order not valid</error>');
+            }
+
             $order = new Orders();
-            $order->setPaymentGatewayId( $row['payment_gateway_id'] ) // FIXME: alot of old orders are 0
+            $order->setPaymentGatewayId( (!empty($row['payment_gateway_id'])) ? $row['payment_gateway_id'] : NULL ) 
+                ->setSessionId( uniqid().uniqid() )
                 ->setState( $this->mapStatusToState( $row['orders_status'] ) )
                 ->setCustomersId( $customer->getId() )
                 ->setFirstName( $customer->getFirstName() )
                 ->setLastName( $customer->getLastName() )
                 ->setEmail( $customer->getEmail() )
                 ->setPhone( $customer->getPhone() )
+                ->setBillingFirstName( $customer->getFirstName() ) // The name from the order table is ignored
+                ->setBillingLastName( $customer->getLastName() ) // The name from the order table is ignored
+                ->setBillingCompanyName( $row['billing_company'] )
                 ->setBillingAddressLine1( $row['billing_street_address'] )
                 ->setBillingPostalCode( $row['billing_postcode'] )
                 ->setBillingCity( $row['billing_city'] )
                 ->setBillingCountry( $row['billing_country'] )
                 ->setBillingCountriesId( $this->mapCountryName( $row['billing_country'] ) )
-                ->setSessionId() // FIXME: random?
-                //->setBillingMethod()
-                //->setDeliveryAddressLine1()
-                //->setDeliveryAddressLine2()
-                //->setDeliveryPostalCode()
-                //->setDeliveryCity()
-                //->setDeliveryCountry()
-                //->setDeliveryCountriesId()
-                //->setDeliveryMethod()
+                ->setBillingMethod( $row['payment_method'] )
+                ->setDeliveryFirstName( $customer->getFirstName() ) // The name from the order table is ignored
+                ->setDeliveryLastName( $customer->getLastName() ) // The name from the order table is ignored
+                ->setDeliveryCompanyName( $row['delivery_company'] )
+                ->setDeliveryAddressLine1( $row['delivery_street_address'] )
+                ->setDeliveryAddressLine2( $row['delivery_suburb'] )
+                ->setDeliveryPostalCode( $row['delivery_postcode'] )
+                ->setDeliveryCity( $row['delivery_city'] )
+                ->setDeliveryCountry( $row['delivery_country'] )
+                ->setDeliveryCountriesId( $this->mapCountryName( $row['delivery_country'] ) )
+                ->setDeliveryMethod( 'hest' ) // TODO
                 ;
             $order->save();
         }
@@ -728,6 +744,7 @@ class ImportCommand extends ContainerAwareCommand
 
         $address = new Addresses();
         $address->setAddressLine1($orderAddressRow['delivery_street_address'])
+            ->setAddressLine2($orderAddressRow['delivery_suburb'])
             ->setType('shipping')
             ->setPostalCode($orderAddressRow['delivery_postcode'])
             ->setCity($orderAddressRow['delivery_city'])
@@ -735,16 +752,19 @@ class ImportCommand extends ContainerAwareCommand
             ->setLastName( $shippingAddress['lastname'] )
             ->setCountry( $orderAddressRow['delivery_country'] )
             ->setCountriesId( $this->mapCountryId( $shippingAddress['entry_country_id'] ) )
-            //->setStateProvince()
+            ->setStateProvince( $orderAddressRow['delivery_state'] )
             ->setCompanyName($orderAddressRow['delivery_company'])
             ->setLatitude( $shippingAddress['latitude'] )
             ->setLongitude( $shippingAddress['longitude'] )
             ;
 
+        // entry_state
+
         $addresses[] = $address;
 
         $address = new Addresses();
         $address->setAddressLine1($orderAddressRow['billing_street_address'])
+            ->setAddressLine2($orderAddressRow['billing_suburb'])
             ->setType('payment')
             ->setPostalCode($orderAddressRow['billing_postcode'])
             ->setCity($orderAddressRow['billing_city'])
@@ -752,7 +772,7 @@ class ImportCommand extends ContainerAwareCommand
             ->setLastName( $paymentAddress['lastname'] )
             ->setCountry( $orderAddressRow['billing_country'] )
             ->setCountriesId( $this->mapCountryId( $paymentAddress['entry_country_id'] ) )
-            //->setStateProvince()
+            ->setStateProvince( $orderAddressRow['billing_state'] )
             ->setCompanyName($orderAddressRow['billing_company'])
             ->setLatitude( $paymentAddress['latitude'] )
             ->setLongitude( $paymentAddress['longitude'] )
@@ -772,7 +792,7 @@ class ImportCommand extends ContainerAwareCommand
     {
         static $map = array(
             1 => Orders::STATE_PENDING, // Afventer i oscom
-            2 => 127, // FIXME: Ordreredigering
+            2 => 9999, // NOTE: In hanzo there is no editing state 
             3 => Orders::STATE_BEING_PROCESSED, // Under behandling
             4 => Orders::STATE_SHIPPED, // Faktureret
         );
@@ -807,7 +827,7 @@ class ImportCommand extends ContainerAwareCommand
 
         if ( $error )
         {
-            $this->output->writeln('<error>Could not find a country, defaulting to DK</error>');
+            $this->output->writeln('<error>Could not find a country, defaulting to DK (id was: "'.$id.'")</error>');
         }
 
         return $hanzoId;
@@ -822,7 +842,7 @@ class ImportCommand extends ContainerAwareCommand
     {
         if ( !isset( self::$hanzoNameToIdMap[$name] ) )
         {
-            $this->output->writeln('<error>Could not find a country, defaulting to DK</error>');
+            $this->output->writeln('<error>Could not find a country, defaulting to DK (name was: "'.$name.'")</error>');
             return self::$hanzoNameToIdMap['Denmark'];
         }
 

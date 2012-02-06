@@ -129,6 +129,9 @@
     <foreign-key foreignTable="groups" name="fk_customers_10" onUpdate="CASCADE">
       <reference local="groups_id" foreign="id"/>
     </foreign-key>
+    <unique name="customers_email">
+      <unique-column name="email"/>
+    </unique>
     <behavior name="timestampable" />
   </table>
 
@@ -441,7 +444,7 @@
   <table name="orders">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="session_id" type="VARCHAR" size="32" required="true"/>
-    <column name="payment_gateway_id" type="INTEGER" required="false"/>
+    <column name="payment_gateway_id" type="INTEGER" required="false" defaultValue="NULL"/>
     <column name="state" type="INTEGER" required="true" defaultValue="-3"/>
     <column name="in_edit" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <column name="customers_id" type="INTEGER" required="false"/>
@@ -451,6 +454,8 @@
     <column name="phone" type="VARCHAR" size="32" required="false"/>
     <column name="languages_id" type="INTEGER" required="true"/>
     <column name="currency_id" type="INTEGER" required="true"/>
+    <column name="billing_first_name" type="VARCHAR" size="128" required="true"/>
+    <column name="billing_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
     <column name="billing_address_line_2" type="VARCHAR" size="255" required="false"/>
     <column name="billing_postal_code" type="VARCHAR" size="12" required="false"/>
@@ -458,7 +463,10 @@
     <column name="billing_country" type="VARCHAR" size="128" required="false"/>
     <column name="billing_countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
     <column name="billing_state_province" type="VARCHAR" size="64" required="false"/>
+    <column name="billing_company_name" type="VARCHAR" size="128" required="false"/>
     <column name="billing_method" type="VARCHAR" size="64" required="false"/>
+    <column name="delivery_first_name" type="VARCHAR" size="128" required="true"/>
+    <column name="delivery_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>
     <column name="delivery_address_line_2" type="VARCHAR" size="255" required="false"/>
     <column name="delivery_postal_code" type="VARCHAR" size="12" required="false"/>

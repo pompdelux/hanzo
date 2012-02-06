@@ -74,7 +74,7 @@
       });
 
       var contailer = '';
-      for (i=0; i<images.length; i++) {
+      for (var i=0; i<images.length; i++) {
         contailer += '<a href="'+images[i]+'" rel="slideshow"></a>';
       }
       $('#colorbox-slideshow').append(contailer);
@@ -89,14 +89,14 @@
 
     // handle "add to basket"
     pub.initPurchase = function() {
-      _resetForm(1);
+      _resetForm();
       $('form.buy select#size, form.buy select#color').on('change', function() {
         var name = this.name;
         var value = this.value;
 
         // make shure the form is updated!
         if ((name === 'size') && (value !== '')) {
-          _resetForm();
+          _resetForm(name);
         }
 
         var $form = $('form.buy');
@@ -117,7 +117,7 @@
             // populate color select with options
             if (name === 'size') {
               $.each(responce.data.products, function(index, product) {
-                $('form.buy #color').append('<option value="'+product.color+'">'+product.color+'</option>')
+                $('form.buy #color').append('<option value="'+product.color+'">'+product.color+'</option>');
               });
               $('form.buy #color').closest('label').removeClass('off');
             }
@@ -164,14 +164,24 @@
               dialoug.slideNotice(responce.message);
             }
             _resetForm();
-          }
+          },
+        error: function(jqXHR, textStatus, errorThrown) {
+          dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+        }
         });
       });
 
     };
 
     _resetForm = function(section) {
-      $this = $('form.buy');
+      var $this = $('form.buy');
+
+      if ( section !== 'size' ) {
+        $this.find('#size option').each(function(index) {
+          $(this).removeProp('selected');
+        });
+      }
+
       $this.find('#color option').each(function(index) {
         if (this.value !== ''){
           $(this).remove();
@@ -182,8 +192,11 @@
           $(this).addClass('off');
         }
       });
+      $this.find('#quantity option').each(function(index) {
+        $(this).removeProp('selected');
+      });
       $this.find('.button').hide();
-    }
+    };
 
     return pub;
   })(jQuery);
