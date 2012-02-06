@@ -619,9 +619,20 @@ class ImportCommand extends ContainerAwareCommand
      **/
     private function createOrders( $customerRow, $customer )
     {
-        $sql = "SELECT * FROM osc_orders WHERE customers_id = ". $customerRow['customers_id'];
+        $sql = "SELECT * 
+            FROM 
+              osc_orders 
+            LEFT JOIN 
+              osc_orders_attributes ON osc_orders.orders_id = osc_orders_attributes.orders_id 
+            WHERE 
+              customers_id = ". $customerRow['customers_id'];
         foreach ( $this->connection->query($sql) as $row )
         {
+            if ( empty($row['customers_name']) )
+            {
+                $this->output->writeln('<error>Order not valid</error>');
+            }
+
             $order = new Orders();
             $order->setPaymentGatewayId( (!empty($row['payment_gateway_id'])) ? $row['payment_gateway_id'] : NULL ) 
                 ->setSessionId( uniqid().uniqid() )
@@ -831,7 +842,7 @@ class ImportCommand extends ContainerAwareCommand
     {
         if ( !isset( self::$hanzoNameToIdMap[$name] ) )
         {
-            $this->output->writeln('<error>Could not find a country, defaulting to DK</error>');
+            $this->output->writeln('<error>Could not find a country, defaulting to DK (name was: "'.$name.'")</error>');
             return self::$hanzoNameToIdMap['Denmark'];
         }
 

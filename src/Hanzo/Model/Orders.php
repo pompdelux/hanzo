@@ -162,6 +162,25 @@ class Orders extends BaseOrders
         $this->addOrdersAttributes($attribute);
     }
 
+    /**
+     * setPaymentMethod
+     * @param string $method
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setPaymentMethod( $method )
+    {
+    }
+
+    /**
+     * setPaymentPayType
+     * @param string $paytype
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setPaymentPayType( $paytype )
+    {
+    }
 
     /**
      * Fetch an array of attached documents.
