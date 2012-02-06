@@ -173,6 +173,12 @@ class Hanzo
 
         return $default;
     }
+
+
+    public function getGoogleMapsKey()
+    {
+        return $this->get('google.maps');
+    }
 }
 
 // # da
