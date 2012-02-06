@@ -48,7 +48,7 @@ var yatzy = (function(window, $, undefined) {
             .replace(/\t/g, "');")
             .replace(/\?>/g, "p.push('")
             .replace(/\r/g, "\\'")
-            + "');return p.join('');} catch(ex) { if(window.console) { console.error('[tpl 28] ' + template_id + ' Exception:', ex); } }";
+            + "');return p.join(''); } catch(ex) { if(window.console) { console.error('[tpl 28] ' + template_id + ' Exception:', ex); } }";
 
         templates[id] = new Function("data", code);
       }
