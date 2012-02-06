@@ -530,7 +530,7 @@ class ImportCommand extends ContainerAwareCommand
         $database   = $input->getArgument('database');
 
         //TODO: handle .se/.no/.nl/.com
-        switch ($database) 
+        switch ($database)
         {
             case 'dk':
                 $this->connection = Propel::getConnection( 'pdlfront_dk' );
@@ -544,7 +544,7 @@ class ImportCommand extends ContainerAwareCommand
 
         $this->connection->exec("SET NAMES latin1");
 
-        switch ($importType) 
+        switch ($importType)
         {
             case 'customers':
                 $this->customerImport();
@@ -570,7 +570,7 @@ class ImportCommand extends ContainerAwareCommand
 
         //$sql = "SELECT * FROM osc_customers LEFT JOIN osc_address_book ON osc_customers.customers_id = osc_address_book.customers_id";
         $sql = "SELECT * FROM osc_customers";
-        foreach ( $this->connection->query($sql) as $row ) 
+        foreach ( $this->connection->query($sql) as $row )
         {
             $customer = CustomersPeer::getByEmail( $row['customers_email_address'] );
 
@@ -596,7 +596,7 @@ class ImportCommand extends ContainerAwareCommand
                 $addresses = array();
                 $addresses = $this->getAddresses( $row );
 
-                foreach ($addresses as $address) 
+                foreach ($addresses as $address)
                 {
                     $customer->addAddresses( $address );
                 }
@@ -619,12 +619,12 @@ class ImportCommand extends ContainerAwareCommand
      **/
     private function createOrders( $customerRow, $customer )
     {
-        $sql = "SELECT * 
-            FROM 
-              osc_orders 
-            LEFT JOIN 
-              osc_orders_attributes ON osc_orders.orders_id = osc_orders_attributes.orders_id 
-            WHERE 
+        $sql = "SELECT *
+            FROM
+              osc_orders
+            LEFT JOIN
+              osc_orders_attributes ON osc_orders.orders_id = osc_orders_attributes.orders_id
+            WHERE
               customers_id = ". $customerRow['customers_id'];
         foreach ( $this->connection->query($sql) as $row )
         {
@@ -634,7 +634,7 @@ class ImportCommand extends ContainerAwareCommand
             }
 
             $order = new Orders();
-            $order->setPaymentGatewayId( (!empty($row['payment_gateway_id'])) ? $row['payment_gateway_id'] : NULL ) 
+            $order->setPaymentGatewayId( (!empty($row['payment_gateway_id'])) ? $row['payment_gateway_id'] : NULL )
                 ->setSessionId( uniqid().uniqid() )
                 ->setState( $this->mapStatusToState( $row['orders_status'] ) )
                 ->setCustomersId( $customer->getId() )
@@ -703,7 +703,7 @@ class ImportCommand extends ContainerAwareCommand
 
         foreach ( $this->connection->query("SELECT * FROM osc_address_book WHERE customers_id = ".$customerRow['customers_id']) as $addressBookRow )
         {
-            if ( 
+            if (
                 $addressBookRow['entry_firstname'].' '.$addressBookRow['entry_lastname'] == $orderAddressRow['delivery_name']
                 &&
                 $addressBookRow['entry_street_address'] == $orderAddressRow['delivery_street_address']
@@ -721,7 +721,7 @@ class ImportCommand extends ContainerAwareCommand
                 //print_r($addressBookRow);
             }
 
-            if ( 
+            if (
                 $addressBookRow['entry_firstname'].' '.$addressBookRow['entry_lastname'] == $orderAddressRow['billing_name']
                 &&
                 $addressBookRow['entry_street_address'] == $orderAddressRow['billing_street_address']
@@ -792,7 +792,7 @@ class ImportCommand extends ContainerAwareCommand
     {
         static $map = array(
             1 => Orders::STATE_PENDING, // Afventer i oscom
-            2 => 9999, // NOTE: In hanzo there is no editing state 
+            2 => 9999, // NOTE: In hanzo there is no editing state
             3 => Orders::STATE_BEING_PROCESSED, // Under behandling
             4 => Orders::STATE_SHIPPED, // Faktureret
         );
