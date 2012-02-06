@@ -1,6 +1,6 @@
 ws_index:
     pattern:  /wolla/{name}
-    defaults: { _controller: WebServicesBundle:Default:index }
+    defaults: { _controller: WebServicesBundle:RestGoogle:index }
 
 ws_soap:
     pattern:  /soap/{version}/{service_name}
@@ -33,3 +33,14 @@ ws_google_maps_proxy:
         version: v1
         query: ''
         country: ''
+
+ws_google_maps_near_you:
+    pattern: /rest/{version}/gm/near_you/{type}/{latitude}/{longitude}
+    defaults:
+        _controller: WebServicesBundle:RestGoogle:nearYou
+        version: v1
+        type: 'near'
+        latitude: 0.00
+        longitude: 0.00
+    requirements:
+        type: '(near|hus)'
