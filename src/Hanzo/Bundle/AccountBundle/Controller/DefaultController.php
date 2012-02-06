@@ -29,8 +29,10 @@ class DefaultController extends CoreController
     public function createAction()
     {
         $hanzo = Hanzo::getInstance();
+        $request = $this->getRequest();
 
         $addresses = new Addresses();
+        // FIXME: hardcoded vars
         $addresses->setCountry('Danmark');
         $addresses->setCountriesId(58);
 
@@ -39,7 +41,6 @@ class DefaultController extends CoreController
 
         $form = $this->createForm(new CustomersType(), $customer);
 
-        $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
@@ -51,31 +52,41 @@ class DefaultController extends CoreController
 
                 if ($customer->getNewsletter()) {
                     $api = $this->get('newsletterapi');
-                    $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
+                    $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
+                    if ( $response->is_error )
+                    {
+                      // TODO: do something? 
+                    }
                 }
-
-                error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
 
                 $customer->save();
 
                 // login user
                 $user = new ProxyUser($customer);
-                $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
+                $token = new UsernamePasswordToken($user, null, 'secu.gitred_area', $user->getRoles());
                 $this->container->get('security.context')->setToken($token);
 
                 $this->get('session')->setFlash('notice', 'account.created');
 
                 $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
 
-                $mailer = $this->get('mail_manager');
-                $mailer->setMessage('account.create', array(
-                    'name' => 'anders and', // FIXME: :)
-                    'username' => $customer->getEmail(),
-                    'password' => $customer->getPasswordClear(),
-                ));
+                // TODO: why does this not work?
+                try
+                {
+                    $mailer = $this->get('mail_manager');
+                    $mailer->setMessage('account.create', array(
+                        'name' => $name,
+                        'username' => $customer->getEmail(),
+                        'password' => $customer->getPasswordClear(),
+                    ));
 
-                $mailer->setTo($customer->getEmail(), $name);
-                $mailer->send();
+                    $mailer->setTo($customer->getEmail(), $name);
+                    $mailer->send();
+                }
+                catch (Swift_TransportException $e)
+                {
+                    error_log(__LINE__.':'.__FILE__.' '.print_r($e->getMessage(),1)); // hf@bellcom.dk debugging
+                }
 
                 return $this->redirect($this->generateUrl('_account'));
             }
@@ -116,7 +127,7 @@ class DefaultController extends CoreController
                     $mailer->send();
                 }
                 catch (Exception $e) {}
-                $message = 'password.forgotten.resend';
+                    $message = 'password.forgotten.resend';
             }
             else {
                 $message = 'password.forgotten.not_found';

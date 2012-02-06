@@ -1,6 +1,7 @@
 basket_add:
     pattern:  /add-to-basket
-    defaults: { _controller: BasketBundle:Default:add }
+    defaults: { _controller: BasketBundle:Default:add, _format: json }
+    requirements: { _format: (xml|json), _method: POST }
 
 basket_remove:
     pattern:  /remove-from-basket/{product_id}/{quantity}
