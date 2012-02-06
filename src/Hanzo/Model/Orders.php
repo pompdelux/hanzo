@@ -29,6 +29,8 @@ class Orders extends BaseOrders
      * Definition of the different status a order can have
      *
      */
+    const STATE_ERROR_PAYMENT   = -110;
+    const STATE_ERROR           = -100;
     const STATE_PRE_CONFIRM     = -30;
     const STATE_PRE_PAYMENT     = -20;
     const STATE_POST_PAYMENT    = 10;
@@ -36,9 +38,6 @@ class Orders extends BaseOrders
     const STATE_PENDING         = 30;
     const STATE_BEING_PROCESSED = 40;
     const STATE_SHIPPED         = 50;
-    // TODO: maybe these should be negative?
-    const STATE_ERROR           = 100;
-    const STATE_ERROR_PAYMENT   = 110;
 
     /**
      * set quantity on a product line in the current order
