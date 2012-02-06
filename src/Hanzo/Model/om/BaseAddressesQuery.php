@@ -23,6 +23,8 @@ use Hanzo\Model\Customers;
  *
  * @method     AddressesQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method     AddressesQuery orderByType($order = Criteria::ASC) Order by the type column
+ * @method     AddressesQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
+ * @method     AddressesQuery orderByLastName($order = Criteria::ASC) Order by the last_name column
  * @method     AddressesQuery orderByAddressLine1($order = Criteria::ASC) Order by the address_line_1 column
  * @method     AddressesQuery orderByAddressLine2($order = Criteria::ASC) Order by the address_line_2 column
  * @method     AddressesQuery orderByPostalCode($order = Criteria::ASC) Order by the postal_code column
@@ -33,9 +35,13 @@ use Hanzo\Model\Customers;
  * @method     AddressesQuery orderByCompanyName($order = Criteria::ASC) Order by the company_name column
  * @method     AddressesQuery orderByLatitude($order = Criteria::ASC) Order by the latitude column
  * @method     AddressesQuery orderByLongitude($order = Criteria::ASC) Order by the longitude column
+ * @method     AddressesQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
+ * @method     AddressesQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
  * @method     AddressesQuery groupByCustomersId() Group by the customers_id column
  * @method     AddressesQuery groupByType() Group by the type column
+ * @method     AddressesQuery groupByFirstName() Group by the first_name column
+ * @method     AddressesQuery groupByLastName() Group by the last_name column
  * @method     AddressesQuery groupByAddressLine1() Group by the address_line_1 column
  * @method     AddressesQuery groupByAddressLine2() Group by the address_line_2 column
  * @method     AddressesQuery groupByPostalCode() Group by the postal_code column
@@ -46,6 +52,8 @@ use Hanzo\Model\Customers;
  * @method     AddressesQuery groupByCompanyName() Group by the company_name column
  * @method     AddressesQuery groupByLatitude() Group by the latitude column
  * @method     AddressesQuery groupByLongitude() Group by the longitude column
+ * @method     AddressesQuery groupByCreatedAt() Group by the created_at column
+ * @method     AddressesQuery groupByUpdatedAt() Group by the updated_at column
  *
  * @method     AddressesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     AddressesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -64,6 +72,8 @@ use Hanzo\Model\Customers;
  *
  * @method     Addresses findOneByCustomersId(int $customers_id) Return the first Addresses filtered by the customers_id column
  * @method     Addresses findOneByType(string $type) Return the first Addresses filtered by the type column
+ * @method     Addresses findOneByFirstName(string $first_name) Return the first Addresses filtered by the first_name column
+ * @method     Addresses findOneByLastName(string $last_name) Return the first Addresses filtered by the last_name column
  * @method     Addresses findOneByAddressLine1(string $address_line_1) Return the first Addresses filtered by the address_line_1 column
  * @method     Addresses findOneByAddressLine2(string $address_line_2) Return the first Addresses filtered by the address_line_2 column
  * @method     Addresses findOneByPostalCode(string $postal_code) Return the first Addresses filtered by the postal_code column
@@ -74,9 +84,13 @@ use Hanzo\Model\Customers;
  * @method     Addresses findOneByCompanyName(string $company_name) Return the first Addresses filtered by the company_name column
  * @method     Addresses findOneByLatitude(double $latitude) Return the first Addresses filtered by the latitude column
  * @method     Addresses findOneByLongitude(double $longitude) Return the first Addresses filtered by the longitude column
+ * @method     Addresses findOneByCreatedAt(string $created_at) Return the first Addresses filtered by the created_at column
+ * @method     Addresses findOneByUpdatedAt(string $updated_at) Return the first Addresses filtered by the updated_at column
  *
  * @method     array findByCustomersId(int $customers_id) Return Addresses objects filtered by the customers_id column
  * @method     array findByType(string $type) Return Addresses objects filtered by the type column
+ * @method     array findByFirstName(string $first_name) Return Addresses objects filtered by the first_name column
+ * @method     array findByLastName(string $last_name) Return Addresses objects filtered by the last_name column
  * @method     array findByAddressLine1(string $address_line_1) Return Addresses objects filtered by the address_line_1 column
  * @method     array findByAddressLine2(string $address_line_2) Return Addresses objects filtered by the address_line_2 column
  * @method     array findByPostalCode(string $postal_code) Return Addresses objects filtered by the postal_code column
@@ -87,6 +101,8 @@ use Hanzo\Model\Customers;
  * @method     array findByCompanyName(string $company_name) Return Addresses objects filtered by the company_name column
  * @method     array findByLatitude(double $latitude) Return Addresses objects filtered by the latitude column
  * @method     array findByLongitude(double $longitude) Return Addresses objects filtered by the longitude column
+ * @method     array findByCreatedAt(string $created_at) Return Addresses objects filtered by the created_at column
+ * @method     array findByUpdatedAt(string $updated_at) Return Addresses objects filtered by the updated_at column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -175,7 +191,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `CUSTOMERS_ID`, `TYPE`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `COUNTRY`, `COUNTRIES_ID`, `STATE_PROVINCE`, `COMPANY_NAME`, `LATITUDE`, `LONGITUDE` FROM `addresses` WHERE `CUSTOMERS_ID` = :p0 AND `TYPE` = :p1';
+		$sql = 'SELECT `CUSTOMERS_ID`, `TYPE`, `FIRST_NAME`, `LAST_NAME`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `COUNTRY`, `COUNTRIES_ID`, `STATE_PROVINCE`, `COMPANY_NAME`, `LATITUDE`, `LONGITUDE`, `CREATED_AT`, `UPDATED_AT` FROM `addresses` WHERE `CUSTOMERS_ID` = :p0 AND `TYPE` = :p1';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -189,7 +205,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Addresses();
 			$obj->hydrate($row);
-			AddressesPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1])));
+			AddressesPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1])));
 		}
 		$stmt->closeCursor();
 
@@ -328,6 +344,62 @@ abstract class BaseAddressesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(AddressesPeer::TYPE, $type, $comparison);
+	}
+
+	/**
+	 * Filter the query on the first_name column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByFirstName('fooValue');   // WHERE first_name = 'fooValue'
+	 * $query->filterByFirstName('%fooValue%'); // WHERE first_name LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $firstName The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    AddressesQuery The current query, for fluid interface
+	 */
+	public function filterByFirstName($firstName = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($firstName)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $firstName)) {
+				$firstName = str_replace('*', '%', $firstName);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(AddressesPeer::FIRST_NAME, $firstName, $comparison);
+	}
+
+	/**
+	 * Filter the query on the last_name column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByLastName('fooValue');   // WHERE last_name = 'fooValue'
+	 * $query->filterByLastName('%fooValue%'); // WHERE last_name LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $lastName The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    AddressesQuery The current query, for fluid interface
+	 */
+	public function filterByLastName($lastName = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($lastName)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $lastName)) {
+				$lastName = str_replace('*', '%', $lastName);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(AddressesPeer::LAST_NAME, $lastName, $comparison);
 	}
 
 	/**
@@ -649,6 +721,90 @@ abstract class BaseAddressesQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query on the created_at column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByCreatedAt('2011-03-14'); // WHERE created_at = '2011-03-14'
+	 * $query->filterByCreatedAt('now'); // WHERE created_at = '2011-03-14'
+	 * $query->filterByCreatedAt(array('max' => 'yesterday')); // WHERE created_at > '2011-03-13'
+	 * </code>
+	 *
+	 * @param     mixed $createdAt The value to use as filter.
+	 *              Values can be integers (unix timestamps), DateTime objects, or strings.
+	 *              Empty strings are treated as NULL.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    AddressesQuery The current query, for fluid interface
+	 */
+	public function filterByCreatedAt($createdAt = null, $comparison = null)
+	{
+		if (is_array($createdAt)) {
+			$useMinMax = false;
+			if (isset($createdAt['min'])) {
+				$this->addUsingAlias(AddressesPeer::CREATED_AT, $createdAt['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($createdAt['max'])) {
+				$this->addUsingAlias(AddressesPeer::CREATED_AT, $createdAt['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(AddressesPeer::CREATED_AT, $createdAt, $comparison);
+	}
+
+	/**
+	 * Filter the query on the updated_at column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByUpdatedAt('2011-03-14'); // WHERE updated_at = '2011-03-14'
+	 * $query->filterByUpdatedAt('now'); // WHERE updated_at = '2011-03-14'
+	 * $query->filterByUpdatedAt(array('max' => 'yesterday')); // WHERE updated_at > '2011-03-13'
+	 * </code>
+	 *
+	 * @param     mixed $updatedAt The value to use as filter.
+	 *              Values can be integers (unix timestamps), DateTime objects, or strings.
+	 *              Empty strings are treated as NULL.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    AddressesQuery The current query, for fluid interface
+	 */
+	public function filterByUpdatedAt($updatedAt = null, $comparison = null)
+	{
+		if (is_array($updatedAt)) {
+			$useMinMax = false;
+			if (isset($updatedAt['min'])) {
+				$this->addUsingAlias(AddressesPeer::UPDATED_AT, $updatedAt['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($updatedAt['max'])) {
+				$this->addUsingAlias(AddressesPeer::UPDATED_AT, $updatedAt['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(AddressesPeer::UPDATED_AT, $updatedAt, $comparison);
+	}
+
+	/**
 	 * Filter the query by a related Customers object
 	 *
 	 * @param     Customers|PropelCollection $customers The related object(s) to use as filter
@@ -754,7 +910,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
 	 *
 	 * @return    AddressesQuery The current query, for fluid interface
 	 */
-	public function joinCountries($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function joinCountries($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		$tableMap = $this->getTableMap();
 		$relationMap = $tableMap->getRelation('Countries');
@@ -789,7 +945,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
 	 *
 	 * @return    \Hanzo\Model\CountriesQuery A secondary query class using the current class as primary query
 	 */
-	public function useCountriesQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function useCountriesQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		return $this
 			->joinCountries($relationAlias, $joinType)
@@ -851,6 +1007,72 @@ abstract class BaseAddressesQuery extends ModelCriteria
 	        ->withColumn($preparedSql, 'Distance')
 	        ->where(sprintf('%s %s ?', $preparedSql, $comparison), $distance, PDO::PARAM_STR)
 	        ;
+	}
+
+	// timestampable behavior
+	
+	/**
+	 * Filter by the latest updated
+	 *
+	 * @param      int $nbDays Maximum age of the latest update in days
+	 *
+	 * @return     AddressesQuery The current query, for fluid interface
+	 */
+	public function recentlyUpdated($nbDays = 7)
+	{
+		return $this->addUsingAlias(AddressesPeer::UPDATED_AT, time() - $nbDays * 24 * 60 * 60, Criteria::GREATER_EQUAL);
+	}
+	
+	/**
+	 * Filter by the latest created
+	 *
+	 * @param      int $nbDays Maximum age of in days
+	 *
+	 * @return     AddressesQuery The current query, for fluid interface
+	 */
+	public function recentlyCreated($nbDays = 7)
+	{
+		return $this->addUsingAlias(AddressesPeer::CREATED_AT, time() - $nbDays * 24 * 60 * 60, Criteria::GREATER_EQUAL);
+	}
+	
+	/**
+	 * Order by update date desc
+	 *
+	 * @return     AddressesQuery The current query, for fluid interface
+	 */
+	public function lastUpdatedFirst()
+	{
+		return $this->addDescendingOrderByColumn(AddressesPeer::UPDATED_AT);
+	}
+	
+	/**
+	 * Order by update date asc
+	 *
+	 * @return     AddressesQuery The current query, for fluid interface
+	 */
+	public function firstUpdatedFirst()
+	{
+		return $this->addAscendingOrderByColumn(AddressesPeer::UPDATED_AT);
+	}
+	
+	/**
+	 * Order by create date desc
+	 *
+	 * @return     AddressesQuery The current query, for fluid interface
+	 */
+	public function lastCreatedFirst()
+	{
+		return $this->addDescendingOrderByColumn(AddressesPeer::CREATED_AT);
+	}
+	
+	/**
+	 * Order by create date asc
+	 *
+	 * @return     AddressesQuery The current query, for fluid interface
+	 */
+	public function firstCreatedFirst()
+	{
+		return $this->addAscendingOrderByColumn(AddressesPeer::CREATED_AT);
 	}
 
 } // BaseAddressesQuery

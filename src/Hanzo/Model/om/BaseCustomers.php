@@ -30,8 +30,6 @@ use Hanzo\Model\GothiaAccounts;
 use Hanzo\Model\GothiaAccountsQuery;
 use Hanzo\Model\Groups;
 use Hanzo\Model\GroupsQuery;
-use Hanzo\Model\Languages;
-use Hanzo\Model\LanguagesQuery;
 
 /**
  * Base class that represents a row from the 'customers' table.
@@ -132,12 +130,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $is_active;
 
 	/**
-	 * The value for the languages_id field.
-	 * @var        int
-	 */
-	protected $languages_id;
-
-	/**
 	 * The value for the created_at field.
 	 * @var        string
 	 */
@@ -153,11 +145,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        Groups
 	 */
 	protected $aGroups;
-
-	/**
-	 * @var        Languages
-	 */
-	protected $aLanguages;
 
 	/**
 	 * @var        ConsultantsInfo one-to-one related ConsultantsInfo object
@@ -370,16 +357,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	public function getIsActive()
 	{
 		return $this->is_active;
-	}
-
-	/**
-	 * Get the [languages_id] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getLanguagesId()
-	{
-		return $this->languages_id;
 	}
 
 	/**
@@ -691,30 +668,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	} // setIsActive()
 
 	/**
-	 * Set the value of [languages_id] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setLanguagesId($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->languages_id !== $v) {
-			$this->languages_id = $v;
-			$this->modifiedColumns[] = CustomersPeer::LANGUAGES_ID;
-		}
-
-		if ($this->aLanguages !== null && $this->aLanguages->getId() !== $v) {
-			$this->aLanguages = null;
-		}
-
-		return $this;
-	} // setLanguagesId()
-
-	/**
 	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
 	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.
@@ -813,9 +766,8 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->discount = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
 			$this->groups_id = ($row[$startcol + 9] !== null) ? (int) $row[$startcol + 9] : null;
 			$this->is_active = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
-			$this->languages_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
-			$this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-			$this->updated_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+			$this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->updated_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -824,7 +776,7 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 14; // 14 = CustomersPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 13; // 13 = CustomersPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Customers object", $e);
@@ -849,9 +801,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 		if ($this->aGroups !== null && $this->groups_id !== $this->aGroups->getId()) {
 			$this->aGroups = null;
-		}
-		if ($this->aLanguages !== null && $this->languages_id !== $this->aLanguages->getId()) {
-			$this->aLanguages = null;
 		}
 	} // ensureConsistency
 
@@ -893,7 +842,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($deep) {  // also de-associate any related objects?
 
 			$this->aGroups = null;
-			$this->aLanguages = null;
 			$this->singleConsultantsInfo = null;
 
 			$this->collCouponsToCustomerss = null;
@@ -1037,13 +985,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					$affectedRows += $this->aGroups->save($con);
 				}
 				$this->setGroups($this->aGroups);
-			}
-
-			if ($this->aLanguages !== null) {
-				if ($this->aLanguages->isModified() || $this->aLanguages->isNew()) {
-					$affectedRows += $this->aLanguages->save($con);
-				}
-				$this->setLanguages($this->aLanguages);
 			}
 
 			if ($this->isNew() || $this->isModified()) {
@@ -1213,9 +1154,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) {
 			$modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
 		}
-		if ($this->isColumnModified(CustomersPeer::LANGUAGES_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`LANGUAGES_ID`';
-		}
 		if ($this->isColumnModified(CustomersPeer::CREATED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
 		}
@@ -1265,9 +1203,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 						break;
 					case '`IS_ACTIVE`':
 						$stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
-						break;
-					case '`LANGUAGES_ID`':
-						$stmt->bindValue($identifier, $this->languages_id, PDO::PARAM_INT);
 						break;
 					case '`CREATED_AT`':
 						$stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1375,12 +1310,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			if ($this->aGroups !== null) {
 				if (!$this->aGroups->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aGroups->getValidationFailures());
-				}
-			}
-
-			if ($this->aLanguages !== null) {
-				if (!$this->aLanguages->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aLanguages->getValidationFailures());
 				}
 			}
 
@@ -1501,12 +1430,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				return $this->getIsActive();
 				break;
 			case 11:
-				return $this->getLanguagesId();
-				break;
-			case 12:
 				return $this->getCreatedAt();
 				break;
-			case 13:
+			case 12:
 				return $this->getUpdatedAt();
 				break;
 			default:
@@ -1549,16 +1475,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$keys[8] => $this->getDiscount(),
 			$keys[9] => $this->getGroupsId(),
 			$keys[10] => $this->getIsActive(),
-			$keys[11] => $this->getLanguagesId(),
-			$keys[12] => $this->getCreatedAt(),
-			$keys[13] => $this->getUpdatedAt(),
+			$keys[11] => $this->getCreatedAt(),
+			$keys[12] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aGroups) {
 				$result['Groups'] = $this->aGroups->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-			}
-			if (null !== $this->aLanguages) {
-				$result['Languages'] = $this->aLanguages->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
 			}
 			if (null !== $this->singleConsultantsInfo) {
 				$result['ConsultantsInfo'] = $this->singleConsultantsInfo->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
@@ -1643,12 +1565,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->setIsActive($value);
 				break;
 			case 11:
-				$this->setLanguagesId($value);
-				break;
-			case 12:
 				$this->setCreatedAt($value);
 				break;
-			case 13:
+			case 12:
 				$this->setUpdatedAt($value);
 				break;
 		} // switch()
@@ -1686,9 +1605,8 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if (array_key_exists($keys[8], $arr)) $this->setDiscount($arr[$keys[8]]);
 		if (array_key_exists($keys[9], $arr)) $this->setGroupsId($arr[$keys[9]]);
 		if (array_key_exists($keys[10], $arr)) $this->setIsActive($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setLanguagesId($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setUpdatedAt($arr[$keys[13]]);
+		if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setUpdatedAt($arr[$keys[12]]);
 	}
 
 	/**
@@ -1711,7 +1629,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CustomersPeer::DISCOUNT)) $criteria->add(CustomersPeer::DISCOUNT, $this->discount);
 		if ($this->isColumnModified(CustomersPeer::GROUPS_ID)) $criteria->add(CustomersPeer::GROUPS_ID, $this->groups_id);
 		if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) $criteria->add(CustomersPeer::IS_ACTIVE, $this->is_active);
-		if ($this->isColumnModified(CustomersPeer::LANGUAGES_ID)) $criteria->add(CustomersPeer::LANGUAGES_ID, $this->languages_id);
 		if ($this->isColumnModified(CustomersPeer::CREATED_AT)) $criteria->add(CustomersPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(CustomersPeer::UPDATED_AT)) $criteria->add(CustomersPeer::UPDATED_AT, $this->updated_at);
 
@@ -1786,7 +1703,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$copyObj->setDiscount($this->getDiscount());
 		$copyObj->setGroupsId($this->getGroupsId());
 		$copyObj->setIsActive($this->getIsActive());
-		$copyObj->setLanguagesId($this->getLanguagesId());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -1926,55 +1842,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			 */
 		}
 		return $this->aGroups;
-	}
-
-	/**
-	 * Declares an association between this object and a Languages object.
-	 *
-	 * @param      Languages $v
-	 * @return     Customers The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setLanguages(Languages $v = null)
-	{
-		if ($v === null) {
-			$this->setLanguagesId(NULL);
-		} else {
-			$this->setLanguagesId($v->getId());
-		}
-
-		$this->aLanguages = $v;
-
-		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Languages object, it will not be re-added.
-		if ($v !== null) {
-			$v->addCustomers($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Languages object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Languages The associated Languages object.
-	 * @throws     PropelException
-	 */
-	public function getLanguages(PropelPDO $con = null)
-	{
-		if ($this->aLanguages === null && ($this->languages_id !== null)) {
-			$this->aLanguages = LanguagesQuery::create()->findPk($this->languages_id, $con);
-			/* The following can be used additionally to
-				guarantee the related object contains a reference
-				to this object.  This level of coupling may, however, be
-				undesirable since it could result in an only partially populated collection
-				in the referenced object.
-				$this->aLanguages->addCustomerss($this);
-			 */
-		}
-		return $this->aLanguages;
 	}
 
 
@@ -2732,7 +2599,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$this->discount = null;
 		$this->groups_id = null;
 		$this->is_active = null;
-		$this->languages_id = null;
 		$this->created_at = null;
 		$this->updated_at = null;
 		$this->alreadyInSave = false;
@@ -2809,7 +2675,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		}
 		$this->singleGothiaAccounts = null;
 		$this->aGroups = null;
-		$this->aLanguages = null;
 	}
 
 	/**

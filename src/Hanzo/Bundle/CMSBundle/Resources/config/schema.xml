@@ -126,12 +126,8 @@
     <column name="discount" type="DECIMAL" size="8" scale="2" required="false" defaultValue="0.00"/>
     <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
     <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <column name="languages_id" type="INTEGER" required="true"/>
     <foreign-key foreignTable="groups" name="fk_customers_10" onUpdate="CASCADE">
       <reference local="groups_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="languages" name="fk_customers_20">
-      <reference local="languages_id" foreign="id"/>
     </foreign-key>
     <behavior name="timestampable" />
   </table>
@@ -139,12 +135,14 @@
   <table name="addresses">
     <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="type" type="VARCHAR" size="10" primaryKey="true" required="true" defaultValue="payment"/>
-    <column name="address_line_1" type="VARCHAR" size="255" required="false"/>
+    <column name="first_name" type="VARCHAR" size="128" required="true"/>
+    <column name="last_name" type="VARCHAR" size="128" required="true"/>
+    <column name="address_line_1" type="VARCHAR" size="255" required="true"/>
     <column name="address_line_2" type="VARCHAR" size="255" required="false"/>
-    <column name="postal_code" type="VARCHAR" size="12" required="false"/>
-    <column name="city" type="VARCHAR" size="64" required="false"/>
-    <column name="country" type="VARCHAR" size="128" required="false"/>
-    <column name="countries_id" type="INTEGER" required="false" defaultValue="NULL"/>
+    <column name="postal_code" type="VARCHAR" size="12" required="true"/>
+    <column name="city" type="VARCHAR" size="64" required="true"/>
+    <column name="country" type="VARCHAR" size="128" required="true"/>
+    <column name="countries_id" type="INTEGER" required="true"/>
     <column name="state_province" type="VARCHAR" size="64" required="false"/>
     <column name="company_name" type="VARCHAR" size="128" required="false"/>
     <foreign-key foreignTable="customers" onDelete="CASCADE">
@@ -159,6 +157,7 @@
         <parameter name="geocoder_provider" value="\Geocoder\Provider\GoogleMapsProvider" />
         <parameter name="address_columns" value="address_line_1,address_line_2,state_province,postal_code,country" />
     </behavior>
+    <behavior name="timestampable" />
   </table>
 
   <table name="domains">

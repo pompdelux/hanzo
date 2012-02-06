@@ -17,7 +17,6 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\EventsPeer;
 use Hanzo\Model\GothiaAccountsPeer;
 use Hanzo\Model\GroupsPeer;
-use Hanzo\Model\LanguagesPeer;
 use Hanzo\Model\map\CustomersTableMap;
 
 /**
@@ -45,13 +44,13 @@ abstract class BaseCustomersPeer {
 	const TM_CLASS = 'CustomersTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 14;
+	const NUM_COLUMNS = 13;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 14;
+	const NUM_HYDRATE_COLUMNS = 13;
 
 	/** the column name for the ID field */
 	const ID = 'customers.ID';
@@ -86,9 +85,6 @@ abstract class BaseCustomersPeer {
 	/** the column name for the IS_ACTIVE field */
 	const IS_ACTIVE = 'customers.IS_ACTIVE';
 
-	/** the column name for the LANGUAGES_ID field */
-	const LANGUAGES_ID = 'customers.LANGUAGES_ID';
-
 	/** the column name for the CREATED_AT field */
 	const CREATED_AT = 'customers.CREATED_AT';
 
@@ -114,12 +110,12 @@ abstract class BaseCustomersPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FirstName', 'LastName', 'Initials', 'Password', 'Email', 'Phone', 'PasswordClear', 'Discount', 'GroupsId', 'IsActive', 'LanguagesId', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'firstName', 'lastName', 'initials', 'password', 'email', 'phone', 'passwordClear', 'discount', 'groupsId', 'isActive', 'languagesId', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::FIRST_NAME, self::LAST_NAME, self::INITIALS, self::PASSWORD, self::EMAIL, self::PHONE, self::PASSWORD_CLEAR, self::DISCOUNT, self::GROUPS_ID, self::IS_ACTIVE, self::LANGUAGES_ID, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'FIRST_NAME', 'LAST_NAME', 'INITIALS', 'PASSWORD', 'EMAIL', 'PHONE', 'PASSWORD_CLEAR', 'DISCOUNT', 'GROUPS_ID', 'IS_ACTIVE', 'LANGUAGES_ID', 'CREATED_AT', 'UPDATED_AT', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'first_name', 'last_name', 'initials', 'password', 'email', 'phone', 'password_clear', 'discount', 'groups_id', 'is_active', 'languages_id', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FirstName', 'LastName', 'Initials', 'Password', 'Email', 'Phone', 'PasswordClear', 'Discount', 'GroupsId', 'IsActive', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'firstName', 'lastName', 'initials', 'password', 'email', 'phone', 'passwordClear', 'discount', 'groupsId', 'isActive', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::FIRST_NAME, self::LAST_NAME, self::INITIALS, self::PASSWORD, self::EMAIL, self::PHONE, self::PASSWORD_CLEAR, self::DISCOUNT, self::GROUPS_ID, self::IS_ACTIVE, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'FIRST_NAME', 'LAST_NAME', 'INITIALS', 'PASSWORD', 'EMAIL', 'PHONE', 'PASSWORD_CLEAR', 'DISCOUNT', 'GROUPS_ID', 'IS_ACTIVE', 'CREATED_AT', 'UPDATED_AT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'first_name', 'last_name', 'initials', 'password', 'email', 'phone', 'password_clear', 'discount', 'groups_id', 'is_active', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
 	);
 
 	/**
@@ -129,12 +125,12 @@ abstract class BaseCustomersPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FirstName' => 1, 'LastName' => 2, 'Initials' => 3, 'Password' => 4, 'Email' => 5, 'Phone' => 6, 'PasswordClear' => 7, 'Discount' => 8, 'GroupsId' => 9, 'IsActive' => 10, 'LanguagesId' => 11, 'CreatedAt' => 12, 'UpdatedAt' => 13, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'firstName' => 1, 'lastName' => 2, 'initials' => 3, 'password' => 4, 'email' => 5, 'phone' => 6, 'passwordClear' => 7, 'discount' => 8, 'groupsId' => 9, 'isActive' => 10, 'languagesId' => 11, 'createdAt' => 12, 'updatedAt' => 13, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FIRST_NAME => 1, self::LAST_NAME => 2, self::INITIALS => 3, self::PASSWORD => 4, self::EMAIL => 5, self::PHONE => 6, self::PASSWORD_CLEAR => 7, self::DISCOUNT => 8, self::GROUPS_ID => 9, self::IS_ACTIVE => 10, self::LANGUAGES_ID => 11, self::CREATED_AT => 12, self::UPDATED_AT => 13, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'FIRST_NAME' => 1, 'LAST_NAME' => 2, 'INITIALS' => 3, 'PASSWORD' => 4, 'EMAIL' => 5, 'PHONE' => 6, 'PASSWORD_CLEAR' => 7, 'DISCOUNT' => 8, 'GROUPS_ID' => 9, 'IS_ACTIVE' => 10, 'LANGUAGES_ID' => 11, 'CREATED_AT' => 12, 'UPDATED_AT' => 13, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'first_name' => 1, 'last_name' => 2, 'initials' => 3, 'password' => 4, 'email' => 5, 'phone' => 6, 'password_clear' => 7, 'discount' => 8, 'groups_id' => 9, 'is_active' => 10, 'languages_id' => 11, 'created_at' => 12, 'updated_at' => 13, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FirstName' => 1, 'LastName' => 2, 'Initials' => 3, 'Password' => 4, 'Email' => 5, 'Phone' => 6, 'PasswordClear' => 7, 'Discount' => 8, 'GroupsId' => 9, 'IsActive' => 10, 'CreatedAt' => 11, 'UpdatedAt' => 12, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'firstName' => 1, 'lastName' => 2, 'initials' => 3, 'password' => 4, 'email' => 5, 'phone' => 6, 'passwordClear' => 7, 'discount' => 8, 'groupsId' => 9, 'isActive' => 10, 'createdAt' => 11, 'updatedAt' => 12, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FIRST_NAME => 1, self::LAST_NAME => 2, self::INITIALS => 3, self::PASSWORD => 4, self::EMAIL => 5, self::PHONE => 6, self::PASSWORD_CLEAR => 7, self::DISCOUNT => 8, self::GROUPS_ID => 9, self::IS_ACTIVE => 10, self::CREATED_AT => 11, self::UPDATED_AT => 12, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'FIRST_NAME' => 1, 'LAST_NAME' => 2, 'INITIALS' => 3, 'PASSWORD' => 4, 'EMAIL' => 5, 'PHONE' => 6, 'PASSWORD_CLEAR' => 7, 'DISCOUNT' => 8, 'GROUPS_ID' => 9, 'IS_ACTIVE' => 10, 'CREATED_AT' => 11, 'UPDATED_AT' => 12, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'first_name' => 1, 'last_name' => 2, 'initials' => 3, 'password' => 4, 'email' => 5, 'phone' => 6, 'password_clear' => 7, 'discount' => 8, 'groups_id' => 9, 'is_active' => 10, 'created_at' => 11, 'updated_at' => 12, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
 	);
 
 	/**
@@ -217,7 +213,6 @@ abstract class BaseCustomersPeer {
 			$criteria->addSelectColumn(CustomersPeer::DISCOUNT);
 			$criteria->addSelectColumn(CustomersPeer::GROUPS_ID);
 			$criteria->addSelectColumn(CustomersPeer::IS_ACTIVE);
-			$criteria->addSelectColumn(CustomersPeer::LANGUAGES_ID);
 			$criteria->addSelectColumn(CustomersPeer::CREATED_AT);
 			$criteria->addSelectColumn(CustomersPeer::UPDATED_AT);
 		} else {
@@ -232,7 +227,6 @@ abstract class BaseCustomersPeer {
 			$criteria->addSelectColumn($alias . '.DISCOUNT');
 			$criteria->addSelectColumn($alias . '.GROUPS_ID');
 			$criteria->addSelectColumn($alias . '.IS_ACTIVE');
-			$criteria->addSelectColumn($alias . '.LANGUAGES_ID');
 			$criteria->addSelectColumn($alias . '.CREATED_AT');
 			$criteria->addSelectColumn($alias . '.UPDATED_AT');
 		}
@@ -584,56 +578,6 @@ abstract class BaseCustomersPeer {
 
 
 	/**
-	 * Returns the number of rows matching criteria, joining the related Languages table
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-	 * @param      PropelPDO $con
-	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     int Number of matching rows.
-	 */
-	public static function doCountJoinLanguages(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
-
-		// We need to set the primary table name, since in the case that there are no WHERE columns
-		// it will be impossible for the BasePeer::createSelectSql() method to determine which
-		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(CustomersPeer::TABLE_NAME);
-
-		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->setDistinct();
-		}
-
-		if (!$criteria->hasSelectClause()) {
-			CustomersPeer::addSelectColumns($criteria);
-		}
-
-		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
-
-		// Set the correct dbName
-		$criteria->setDbName(self::DATABASE_NAME);
-
-		if ($con === null) {
-			$con = Propel::getConnection(CustomersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-		}
-
-		$criteria->addJoin(CustomersPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
-
-		$stmt = BasePeer::doCount($criteria, $con);
-
-		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$count = (int) $row[0];
-		} else {
-			$count = 0; // no rows returned; we infer that means 0 matches.
-		}
-		$stmt->closeCursor();
-		return $count;
-	}
-
-
-	/**
 	 * Selects a collection of Customers objects pre-filled with their Groups objects.
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
@@ -700,72 +644,6 @@ abstract class BaseCustomersPeer {
 
 
 	/**
-	 * Selects a collection of Customers objects pre-filled with their Languages objects.
-	 * @param      Criteria  $criteria
-	 * @param      PropelPDO $con
-	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of Customers objects.
-	 * @throws     PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
-	public static function doSelectJoinLanguages(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$criteria = clone $criteria;
-
-		// Set the correct dbName if it has not been overridden
-		if ($criteria->getDbName() == Propel::getDefaultDB()) {
-			$criteria->setDbName(self::DATABASE_NAME);
-		}
-
-		CustomersPeer::addSelectColumns($criteria);
-		$startcol = CustomersPeer::NUM_HYDRATE_COLUMNS;
-		LanguagesPeer::addSelectColumns($criteria);
-
-		$criteria->addJoin(CustomersPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
-
-		$stmt = BasePeer::doSelect($criteria, $con);
-		$results = array();
-
-		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = CustomersPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = CustomersPeer::getInstanceFromPool($key1))) {
-				// We no longer rehydrate the object, since this can cause data loss.
-				// See http://www.propelorm.org/ticket/509
-				// $obj1->hydrate($row, 0, true); // rehydrate
-			} else {
-
-				$cls = CustomersPeer::getOMClass(false);
-
-				$obj1 = new $cls();
-				$obj1->hydrate($row);
-				CustomersPeer::addInstanceToPool($obj1, $key1);
-			} // if $obj1 already loaded
-
-			$key2 = LanguagesPeer::getPrimaryKeyHashFromRow($row, $startcol);
-			if ($key2 !== null) {
-				$obj2 = LanguagesPeer::getInstanceFromPool($key2);
-				if (!$obj2) {
-
-					$cls = LanguagesPeer::getOMClass(false);
-
-					$obj2 = new $cls();
-					$obj2->hydrate($row, $startcol);
-					LanguagesPeer::addInstanceToPool($obj2, $key2);
-				} // if obj2 already loaded
-
-				// Add the $obj1 (Customers) to $obj2 (Languages)
-				$obj2->addCustomers($obj1);
-
-			} // if joined row was not null
-
-			$results[] = $obj1;
-		}
-		$stmt->closeCursor();
-		return $results;
-	}
-
-
-	/**
 	 * Returns the number of rows matching criteria, joining all related tables
 	 *
 	 * @param      Criteria $criteria
@@ -803,8 +681,6 @@ abstract class BaseCustomersPeer {
 
 		$criteria->addJoin(CustomersPeer::GROUPS_ID, GroupsPeer::ID, $join_behavior);
 
-		$criteria->addJoin(CustomersPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
-
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -841,12 +717,7 @@ abstract class BaseCustomersPeer {
 		GroupsPeer::addSelectColumns($criteria);
 		$startcol3 = $startcol2 + GroupsPeer::NUM_HYDRATE_COLUMNS;
 
-		LanguagesPeer::addSelectColumns($criteria);
-		$startcol4 = $startcol3 + LanguagesPeer::NUM_HYDRATE_COLUMNS;
-
 		$criteria->addJoin(CustomersPeer::GROUPS_ID, GroupsPeer::ID, $join_behavior);
-
-		$criteria->addJoin(CustomersPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
@@ -882,270 +753,6 @@ abstract class BaseCustomersPeer {
 				// Add the $obj1 (Customers) to the collection in $obj2 (Groups)
 				$obj2->addCustomers($obj1);
 			} // if joined row not null
-
-			// Add objects for joined Languages rows
-
-			$key3 = LanguagesPeer::getPrimaryKeyHashFromRow($row, $startcol3);
-			if ($key3 !== null) {
-				$obj3 = LanguagesPeer::getInstanceFromPool($key3);
-				if (!$obj3) {
-
-					$cls = LanguagesPeer::getOMClass(false);
-
-					$obj3 = new $cls();
-					$obj3->hydrate($row, $startcol3);
-					LanguagesPeer::addInstanceToPool($obj3, $key3);
-				} // if obj3 loaded
-
-				// Add the $obj1 (Customers) to the collection in $obj3 (Languages)
-				$obj3->addCustomers($obj1);
-			} // if joined row not null
-
-			$results[] = $obj1;
-		}
-		$stmt->closeCursor();
-		return $results;
-	}
-
-
-	/**
-	 * Returns the number of rows matching criteria, joining the related Groups table
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-	 * @param      PropelPDO $con
-	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     int Number of matching rows.
-	 */
-	public static function doCountJoinAllExceptGroups(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
-
-		// We need to set the primary table name, since in the case that there are no WHERE columns
-		// it will be impossible for the BasePeer::createSelectSql() method to determine which
-		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(CustomersPeer::TABLE_NAME);
-
-		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->setDistinct();
-		}
-
-		if (!$criteria->hasSelectClause()) {
-			CustomersPeer::addSelectColumns($criteria);
-		}
-
-		$criteria->clearOrderByColumns(); // ORDER BY should not affect count
-
-		// Set the correct dbName
-		$criteria->setDbName(self::DATABASE_NAME);
-
-		if ($con === null) {
-			$con = Propel::getConnection(CustomersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-		}
-	
-		$criteria->addJoin(CustomersPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
-
-		$stmt = BasePeer::doCount($criteria, $con);
-
-		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$count = (int) $row[0];
-		} else {
-			$count = 0; // no rows returned; we infer that means 0 matches.
-		}
-		$stmt->closeCursor();
-		return $count;
-	}
-
-
-	/**
-	 * Returns the number of rows matching criteria, joining the related Languages table
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-	 * @param      PropelPDO $con
-	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     int Number of matching rows.
-	 */
-	public static function doCountJoinAllExceptLanguages(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		// we're going to modify criteria, so copy it first
-		$criteria = clone $criteria;
-
-		// We need to set the primary table name, since in the case that there are no WHERE columns
-		// it will be impossible for the BasePeer::createSelectSql() method to determine which
-		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(CustomersPeer::TABLE_NAME);
-
-		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-			$criteria->setDistinct();
-		}
-
-		if (!$criteria->hasSelectClause()) {
-			CustomersPeer::addSelectColumns($criteria);
-		}
-
-		$criteria->clearOrderByColumns(); // ORDER BY should not affect count
-
-		// Set the correct dbName
-		$criteria->setDbName(self::DATABASE_NAME);
-
-		if ($con === null) {
-			$con = Propel::getConnection(CustomersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-		}
-	
-		$criteria->addJoin(CustomersPeer::GROUPS_ID, GroupsPeer::ID, $join_behavior);
-
-		$stmt = BasePeer::doCount($criteria, $con);
-
-		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$count = (int) $row[0];
-		} else {
-			$count = 0; // no rows returned; we infer that means 0 matches.
-		}
-		$stmt->closeCursor();
-		return $count;
-	}
-
-
-	/**
-	 * Selects a collection of Customers objects pre-filled with all related objects except Groups.
-	 *
-	 * @param      Criteria  $criteria
-	 * @param      PropelPDO $con
-	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of Customers objects.
-	 * @throws     PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
-	public static function doSelectJoinAllExceptGroups(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$criteria = clone $criteria;
-
-		// Set the correct dbName if it has not been overridden
-		// $criteria->getDbName() will return the same object if not set to another value
-		// so == check is okay and faster
-		if ($criteria->getDbName() == Propel::getDefaultDB()) {
-			$criteria->setDbName(self::DATABASE_NAME);
-		}
-
-		CustomersPeer::addSelectColumns($criteria);
-		$startcol2 = CustomersPeer::NUM_HYDRATE_COLUMNS;
-
-		LanguagesPeer::addSelectColumns($criteria);
-		$startcol3 = $startcol2 + LanguagesPeer::NUM_HYDRATE_COLUMNS;
-
-		$criteria->addJoin(CustomersPeer::LANGUAGES_ID, LanguagesPeer::ID, $join_behavior);
-
-
-		$stmt = BasePeer::doSelect($criteria, $con);
-		$results = array();
-
-		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = CustomersPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = CustomersPeer::getInstanceFromPool($key1))) {
-				// We no longer rehydrate the object, since this can cause data loss.
-				// See http://www.propelorm.org/ticket/509
-				// $obj1->hydrate($row, 0, true); // rehydrate
-			} else {
-				$cls = CustomersPeer::getOMClass(false);
-
-				$obj1 = new $cls();
-				$obj1->hydrate($row);
-				CustomersPeer::addInstanceToPool($obj1, $key1);
-			} // if obj1 already loaded
-
-				// Add objects for joined Languages rows
-
-				$key2 = LanguagesPeer::getPrimaryKeyHashFromRow($row, $startcol2);
-				if ($key2 !== null) {
-					$obj2 = LanguagesPeer::getInstanceFromPool($key2);
-					if (!$obj2) {
-	
-						$cls = LanguagesPeer::getOMClass(false);
-
-					$obj2 = new $cls();
-					$obj2->hydrate($row, $startcol2);
-					LanguagesPeer::addInstanceToPool($obj2, $key2);
-				} // if $obj2 already loaded
-
-				// Add the $obj1 (Customers) to the collection in $obj2 (Languages)
-				$obj2->addCustomers($obj1);
-
-			} // if joined row is not null
-
-			$results[] = $obj1;
-		}
-		$stmt->closeCursor();
-		return $results;
-	}
-
-
-	/**
-	 * Selects a collection of Customers objects pre-filled with all related objects except Languages.
-	 *
-	 * @param      Criteria  $criteria
-	 * @param      PropelPDO $con
-	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of Customers objects.
-	 * @throws     PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
-	public static function doSelectJoinAllExceptLanguages(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$criteria = clone $criteria;
-
-		// Set the correct dbName if it has not been overridden
-		// $criteria->getDbName() will return the same object if not set to another value
-		// so == check is okay and faster
-		if ($criteria->getDbName() == Propel::getDefaultDB()) {
-			$criteria->setDbName(self::DATABASE_NAME);
-		}
-
-		CustomersPeer::addSelectColumns($criteria);
-		$startcol2 = CustomersPeer::NUM_HYDRATE_COLUMNS;
-
-		GroupsPeer::addSelectColumns($criteria);
-		$startcol3 = $startcol2 + GroupsPeer::NUM_HYDRATE_COLUMNS;
-
-		$criteria->addJoin(CustomersPeer::GROUPS_ID, GroupsPeer::ID, $join_behavior);
-
-
-		$stmt = BasePeer::doSelect($criteria, $con);
-		$results = array();
-
-		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = CustomersPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = CustomersPeer::getInstanceFromPool($key1))) {
-				// We no longer rehydrate the object, since this can cause data loss.
-				// See http://www.propelorm.org/ticket/509
-				// $obj1->hydrate($row, 0, true); // rehydrate
-			} else {
-				$cls = CustomersPeer::getOMClass(false);
-
-				$obj1 = new $cls();
-				$obj1->hydrate($row);
-				CustomersPeer::addInstanceToPool($obj1, $key1);
-			} // if obj1 already loaded
-
-				// Add objects for joined Groups rows
-
-				$key2 = GroupsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
-				if ($key2 !== null) {
-					$obj2 = GroupsPeer::getInstanceFromPool($key2);
-					if (!$obj2) {
-	
-						$cls = GroupsPeer::getOMClass(false);
-
-					$obj2 = new $cls();
-					$obj2->hydrate($row, $startcol2);
-					GroupsPeer::addInstanceToPool($obj2, $key2);
-				} // if $obj2 already loaded
-
-				// Add the $obj1 (Customers) to the collection in $obj2 (Groups)
-				$obj2->addCustomers($obj1);
-
-			} // if joined row is not null
 
 			$results[] = $obj1;
 		}

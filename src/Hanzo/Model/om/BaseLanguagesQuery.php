@@ -10,7 +10,6 @@ use \Propel;
 use \PropelCollection;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\Customers;
 use Hanzo\Model\Languages;
 use Hanzo\Model\LanguagesPeer;
 use Hanzo\Model\LanguagesQuery;
@@ -38,10 +37,6 @@ use Hanzo\Model\ProductsWashingInstructions;
  * @method     LanguagesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     LanguagesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method     LanguagesQuery innerJoin($relation) Adds a INNER JOIN clause to the query
- *
- * @method     LanguagesQuery leftJoinCustomers($relationAlias = null) Adds a LEFT JOIN clause to the query using the Customers relation
- * @method     LanguagesQuery rightJoinCustomers($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Customers relation
- * @method     LanguagesQuery innerJoinCustomers($relationAlias = null) Adds a INNER JOIN clause to the query using the Customers relation
  *
  * @method     LanguagesQuery leftJoinProductsWashingInstructions($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsWashingInstructions relation
  * @method     LanguagesQuery rightJoinProductsWashingInstructions($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsWashingInstructions relation
@@ -164,7 +159,7 @@ abstract class BaseLanguagesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Languages();
 			$obj->hydrate($row);
-			LanguagesPeer::addInstanceToPool($obj, (string) $key);
+			LanguagesPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 
@@ -400,79 +395,6 @@ abstract class BaseLanguagesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(LanguagesPeer::DIRECTION, $direction, $comparison);
-	}
-
-	/**
-	 * Filter the query by a related Customers object
-	 *
-	 * @param     Customers $customers  the related object to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    LanguagesQuery The current query, for fluid interface
-	 */
-	public function filterByCustomers($customers, $comparison = null)
-	{
-		if ($customers instanceof Customers) {
-			return $this
-				->addUsingAlias(LanguagesPeer::ID, $customers->getLanguagesId(), $comparison);
-		} elseif ($customers instanceof PropelCollection) {
-			return $this
-				->useCustomersQuery()
-				->filterByPrimaryKeys($customers->getPrimaryKeys())
-				->endUse();
-		} else {
-			throw new PropelException('filterByCustomers() only accepts arguments of type Customers or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the Customers relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    LanguagesQuery The current query, for fluid interface
-	 */
-	public function joinCustomers($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('Customers');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'Customers');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the Customers relation Customers object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\CustomersQuery A secondary query class using the current class as primary query
-	 */
-	public function useCustomersQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		return $this
-			->joinCustomers($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'Customers', '\Hanzo\Model\CustomersQuery');
 	}
 
 	/**

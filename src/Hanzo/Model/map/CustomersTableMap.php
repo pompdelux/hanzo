@@ -53,7 +53,6 @@ class CustomersTableMap extends TableMap
 		$this->addColumn('DISCOUNT', 'Discount', 'DECIMAL', false, 8, 0);
 		$this->addForeignKey('GROUPS_ID', 'GroupsId', 'INTEGER', 'groups', 'ID', true, null, 1);
 		$this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
-		$this->addForeignKey('LANGUAGES_ID', 'LanguagesId', 'INTEGER', 'languages', 'ID', true, null, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
 		// validators
@@ -65,7 +64,6 @@ class CustomersTableMap extends TableMap
 	public function buildRelations()
 	{
 		$this->addRelation('Groups', 'Hanzo\\Model\\Groups', RelationMap::MANY_TO_ONE, array('groups_id' => 'id', ), null, 'CASCADE');
-		$this->addRelation('Languages', 'Hanzo\\Model\\Languages', RelationMap::MANY_TO_ONE, array('languages_id' => 'id', ), null, null);
 		$this->addRelation('ConsultantsInfo', 'Hanzo\\Model\\ConsultantsInfo', RelationMap::ONE_TO_ONE, array('id' => 'consultants_id', ), 'CASCADE', null);
 		$this->addRelation('CouponsToCustomers', 'Hanzo\\Model\\CouponsToCustomers', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'CouponsToCustomerss');
 		$this->addRelation('Addresses', 'Hanzo\\Model\\Addresses', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'Addressess');

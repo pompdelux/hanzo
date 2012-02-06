@@ -160,7 +160,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new CmsI18n();
 			$obj->hydrate($row);
-			CmsI18nPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1])));
+			CmsI18nPeer::addInstanceToPool($obj, serialize(array((string) $row[0], (string) $row[1])));
 		}
 		$stmt->closeCursor();
 
