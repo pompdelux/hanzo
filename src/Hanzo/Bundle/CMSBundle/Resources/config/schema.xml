@@ -129,6 +129,9 @@
     <foreign-key foreignTable="groups" name="fk_customers_10" onUpdate="CASCADE">
       <reference local="groups_id" foreign="id"/>
     </foreign-key>
+    <unique name="customers_email">
+      <unique-column name="email"/>
+    </unique>
     <behavior name="timestampable" />
   </table>
 
