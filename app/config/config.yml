@@ -14,7 +14,7 @@ framework:
     templating:      { engines: ['twig'] }
     session:
         default_locale: %locale%
-        auto_start:     true
+        auto_start:     false
 
 services:
     stock:
