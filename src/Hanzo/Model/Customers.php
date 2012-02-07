@@ -1,4 +1,4 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Model;
 
@@ -56,7 +56,7 @@ class Customers extends BaseCustomers
         return $this->getAddressess();
     }
 
-    protected $newsletter = FALSE;
+    /*protected $newsletter = FALSE;
     public function getNewsletter()
     {
         return $this->newsletter;
@@ -64,9 +64,9 @@ class Customers extends BaseCustomers
     public function setNewsletter($value = TRUE)
     {
         return $this->newsletter = (bool) $value;
-    }
+    }*/
 
-    protected $accept = FALSE;
+    /*protected $accept = FALSE;
     public function getAccept()
     {
         return $this->accept;
@@ -74,6 +74,6 @@ class Customers extends BaseCustomers
     public function setAccept($value = TRUE)
     {
         return $this->accept = (bool) $value;
-    }
+    }*/
 
 } // Customers

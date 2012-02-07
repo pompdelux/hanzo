@@ -7,9 +7,15 @@ use Symfony\Component\Form\FormBuilder;
 
 class AddressesType extends AbstractType
 {
+    public function __construct($countries = null)
+    {
+        $this->countries = $countries;
+    }
+
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder->add('type', 'hidden', array('translation_domain' => 'account'));
+
         $builder->add('address_line_1', null, array(
             'required' => TRUE,
             'translation_domain' => 'account'
@@ -22,22 +28,40 @@ class AddressesType extends AbstractType
             'required' => TRUE,
             'translation_domain' => 'account'
         ));
-        $builder->add('country', null, array(
+
+        // Butt ugly... but it works for now
+        if ( $this->countries instanceOf \PropelObjectCollection ) // Show a list of all countries
+        {
+          $choices = array();
+          foreach ($this->countries as $country) 
+          {
+            $choices[$country->getId()] = $country->getName();
+          }
+
+          $builder->add('country', 'choice', array(
+            'choices'   => $choices,
+            'translation_domain' => 'account',
+          ));
+        }
+        else
+        {
+          $builder->add('country', null, array(
             'translation_domain' => 'account',
             'read_only' => TRUE
-        ));
-        $builder->add('countries_id', 'hidden', array('translation_domain' => 'account'));
+          ));
+          $builder->add('countries_id', 'hidden', array('translation_domain' => 'account'));
+        }
     }
 
     public function getDefaultOptions(array $options)
     {
-        return array(
-            'data_class' => 'Hanzo\Model\Addresses',
-        );
+      return array(
+        'data_class' => 'Hanzo\Model\Addresses',
+      );
     }
 
     public function getName()
     {
-        return 'addresses';
+      return 'addresses';
     }
 }
