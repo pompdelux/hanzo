@@ -45,7 +45,7 @@ class OrdersTableMap extends TableMap
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addColumn('SESSION_ID', 'SessionId', 'VARCHAR', true, 32, null);
 		$this->addColumn('PAYMENT_GATEWAY_ID', 'PaymentGatewayId', 'INTEGER', false, null, null);
-		$this->addColumn('STATE', 'State', 'INTEGER', true, null, -3);
+		$this->addColumn('STATE', 'State', 'INTEGER', true, null, -50);
 		$this->addColumn('IN_EDIT', 'InEdit', 'BOOLEAN', true, 1, false);
 		$this->addColumn('CUSTOMERS_ID', 'CustomersId', 'INTEGER', false, null, null);
 		$this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', false, 128, null);

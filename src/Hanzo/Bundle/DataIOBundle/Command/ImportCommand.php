@@ -18,7 +18,10 @@ use Hanzo\Model\Customers,
     Hanzo\Model\Addresses,
     Hanzo\Model\AddressesPeer,
     Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer
+    Hanzo\Model\OrdersPeer,
+    Hanzo\Model\OrdersQuery,
+    Hanzo\Model\OrdersAttributes,
+    Hanzo\Model\OrdersLines
     ;
 class ImportCommand extends ContainerAwareCommand
 {
@@ -576,9 +579,11 @@ class ImportCommand extends ContainerAwareCommand
 
             if ( is_null($customer) )
             {
-                $this->output->writeln('Creating: '. $row['customers_email_address']);
+                $this->output->writeln('<comment>Creating: '. $row['customers_email_address'].'</comment>');
                 $customer = new Customers();
-                $customer->setFirstname( $row['customers_firstname'] )
+                $customer
+                    ->setId( $row['customers_id'] )
+                    ->setFirstname( $row['customers_firstname'] )
                     ->setLastname($row['customers_lastname'])
                     ->setPassword( sha1( $row[ 'customers_password_cleartext' ] ) )
                     ->setEmail($row['customers_email_address'])
@@ -605,6 +610,7 @@ class ImportCommand extends ContainerAwareCommand
                 $customerId = $customer->getId();
 
                 $this->createOrders($row, $customer);
+                $customer->clearAllReferences(TRUE);
                 unset($customer);
             }
 
@@ -619,22 +625,35 @@ class ImportCommand extends ContainerAwareCommand
      **/
     private function createOrders( $customerRow, $customer )
     {
-        $sql = "SELECT *
+        $sql = "
+            SELECT *
             FROM
-              osc_orders
-            LEFT JOIN
-              osc_orders_attributes ON osc_orders.orders_id = osc_orders_attributes.orders_id
+                osc_orders
             WHERE
-              customers_id = ". $customerRow['customers_id'];
-        foreach ( $this->connection->query($sql) as $row )
-        {
-            if ( empty($row['customers_name']) )
-            {
+                customers_id = ". $customerRow['customers_id']
+        ;
+
+        $this->output->writeln('<info> - importing orders, order attributes and order lines</info>');
+
+        $dubs = array();
+        foreach ( $this->connection->query($sql) as $row ) {
+
+            if ( empty($row['customers_name']) ) {
                 $this->output->writeln('<error>Order not valid</error>');
             }
 
+            $check = OrdersQuery::create()->findPk($row['orders_id']);
+            if ($check instanceof Orders) {
+                $check->clearAllReferences(TRUE);
+                unset($check);
+                continue;
+            }
+            unset($check);
+
             $order = new Orders();
-            $order->setPaymentGatewayId( (!empty($row['payment_gateway_id'])) ? $row['payment_gateway_id'] : NULL )
+            $order
+                ->setId($row['orders_id'])
+                ->setPaymentGatewayId( (!empty($row['payment_gateway_id'])) ? $row['payment_gateway_id'] : NULL )
                 ->setSessionId( uniqid().uniqid() )
                 ->setState( $this->mapStatusToState( $row['orders_status'] ) )
                 ->setCustomersId( $customer->getId() )
@@ -661,9 +680,141 @@ class ImportCommand extends ContainerAwareCommand
                 ->setDeliveryCountry( $row['delivery_country'] )
                 ->setDeliveryCountriesId( $this->mapCountryName( $row['delivery_country'] ) )
                 ->setDeliveryMethod( 'hest' ) // TODO
+            ;
+
+            try {
+                $order->save();
+            } catch (\Exception $e) {
+                $x = explode('Stack trace:', $e->getCause());
+                $x = array_shift($x);
+                preg_match("/Duplicate entry '([0-9]+) for key '([a-z0-9]+)'/", $x, $matches);
+
+                if (isset($matches[1])) {
+                    $dubs[] = array(
+                        'order_id' => $row['orders_id'],
+                        $matches[2] => $matches[1]
+                    );
+                }
+                continue;
+                // $this->output->writeln('<error>' . $x . '</error>');
+            }
+
+            // attributes
+            $query = "
+                SELECT *
+                FROM osc_orders_attributes
+                WHERE orders_id = " . $row['orders_id'] . "
+            ";
+            foreach ( $this->connection->query($query) as $record ) {
+
+                $ns = 'global';
+                $key = $record['attribute_key'];
+                $value = $record['attribute_value'];
+
+                // attachments (pdf documents)
+                if (substr($key, 0, 11) == 'attachment_') {
+                    $ns = 'attachment';
+                }
+
+                // shipping
+                elseif (substr($key, 0, 9) == 'shipping_') {
+                    $ns = 'shipping';
+                    $key = str_replace('shipping_', '', $key);
+                }
+
+                // handeling
+                elseif (substr($key, 0, 9) == 'handling_') {
+                    $ns = 'handling';
+                    $key = str_replace('handling_', '', $key);
+                }
+
+                // event
+                elseif (substr($key, 0, 6) == 'event_') {
+                    $ns = 'event';
+                    $key = str_replace('event_', '', $key);
+                }
+                elseif ($key == 'consultants_id') {
+                    $ns = 'event';
+                }
+                elseif ($key == 'hostessDiscount') {
+                    $ns = 'event';
+                }
+
+                // voucher
+                elseif (substr($key, 0, 8) == 'voucher_') {
+                    $ns = 'voucher';
+                    $key = str_replace('voucher_', '', $key);
+                }
+
+                $attr = new OrdersAttributes();
+                $attr
+                    ->setNs($ns)
+                    ->setCkey($key)
+                    ->setCValue($value)
                 ;
+                $order->addOrdersAttributes($attr);
+            }
+
+            // attach order lines
+            $query = "
+                SELECT *
+                FROM osc_orders_products
+                WHERE orders_id = " . $row['orders_id'] . "
+            ";
+            foreach ( $this->connection->query($query) as $record ) {
+                $line = new OrdersLines();
+
+                $color = $size = '';
+
+                if ($p = $this->getProduct($record['products_id'])) {
+                    if ($p['products_variant_id'] == $record['products_name']) {
+                        $sku = $p['products_external_id'];
+                        $size = $p['products_attribute_1_value'];
+                        $color = $p['products_attribute_2_value'];
+                    }
+                }
+
+                if (empty($sku)) {
+                    $record['products_id'] = NULL;
+                    preg_match('/([0-9-]+) ([a-z -]+)/i', $record['products_model'], $matches);
+
+                    if (count($matches) == 3) {
+                        $size = $matches[1];
+                        $color = $matches[2];
+                    }
+
+                    $sku = trim($record['products_name'] . ' ' . $color . ' ' . $size);
+                }
+
+                $line
+                    ->setType('product')
+                    ->setTax($record['products_tax'])
+                    ->setPrice($record['final_price'])
+                    ->setQuantity($record['products_quantity'])
+                    ->setProductsId(NULL)
+                    ->setProductsSku($sku)
+                    ->setProductsName($record['products_name'])
+                    ->setProductsColor($color)
+                    ->setProductsSize($size)
+                    ->setExpectedAt($record['products_expected'] ?: NULL)
+                ;
+                $order->addOrdersLines($line);
+            }
+
             $order->save();
+            $order->clearAllReferences(TRUE);
         }
+
+        if (count($dubs)) {
+            $this->output->writeln("<error>Dublicate keys found for:\n" . print_r($dubs,1) . '</error>');
+        }
+    }
+
+
+    private function getProduct($id)
+    {
+        $query = "SELECT * FROM osc_products WHERE products_id = " . (int) $id;
+        return $this->connection->query($query)->fetch();
     }
 
     /**

@@ -26,7 +26,7 @@ use Hanzo\Model\CustomersQuery;
 /**
  * Base class that represents a row from the 'addresses' table.
  *
- *
+ * 
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -196,7 +196,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [customers_id] column value.
-	 *
+	 * 
 	 * @return     int
 	 */
 	public function getCustomersId()
@@ -206,7 +206,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [type] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getType()
@@ -216,7 +216,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [first_name] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getFirstName()
@@ -226,7 +226,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [last_name] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getLastName()
@@ -236,7 +236,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [address_line_1] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getAddressLine1()
@@ -246,7 +246,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [address_line_2] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getAddressLine2()
@@ -256,7 +256,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [postal_code] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getPostalCode()
@@ -266,7 +266,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [city] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getCity()
@@ -276,7 +276,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [country] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getCountry()
@@ -286,7 +286,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [countries_id] column value.
-	 *
+	 * 
 	 * @return     int
 	 */
 	public function getCountriesId()
@@ -296,7 +296,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [state_province] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getStateProvince()
@@ -306,7 +306,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [company_name] column value.
-	 *
+	 * 
 	 * @return     string
 	 */
 	public function getCompanyName()
@@ -316,7 +316,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [latitude] column value.
-	 *
+	 * 
 	 * @return     double
 	 */
 	public function getLatitude()
@@ -326,7 +326,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [longitude] column value.
-	 *
+	 * 
 	 * @return     double
 	 */
 	public function getLongitude()
@@ -336,7 +336,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [optionally formatted] temporal [created_at] column value.
-	 *
+	 * 
 	 *
 	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
 	 *							If format is NULL, then the raw DateTime object will be returned.
@@ -374,7 +374,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Get the [optionally formatted] temporal [updated_at] column value.
-	 *
+	 * 
 	 *
 	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
 	 *							If format is NULL, then the raw DateTime object will be returned.
@@ -412,7 +412,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [customers_id] column.
-	 *
+	 * 
 	 * @param      int $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -436,7 +436,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [type] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -456,7 +456,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [first_name] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -476,7 +476,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [last_name] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -496,7 +496,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [address_line_1] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -516,7 +516,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [address_line_2] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -536,7 +536,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [postal_code] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -556,7 +556,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [city] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -576,7 +576,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [country] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -596,7 +596,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [countries_id] column.
-	 *
+	 * 
 	 * @param      int $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -620,7 +620,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [state_province] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -640,7 +640,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [company_name] column.
-	 *
+	 * 
 	 * @param      string $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -660,7 +660,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [latitude] column.
-	 *
+	 * 
 	 * @param      double $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -680,7 +680,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Set the value of [longitude] column.
-	 *
+	 * 
 	 * @param      double $v new value
 	 * @return     Addresses The current object (for fluent API support)
 	 */
@@ -700,7 +700,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
-	 *
+	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.
 	 *               Empty strings are treated as NULL.
 	 * @return     Addresses The current object (for fluent API support)
@@ -722,7 +722,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 
 	/**
 	 * Sets the value of [updated_at] column to a normalized version of the date/time value specified.
-	 *
+	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.
 	 *               Empty strings are treated as NULL.
 	 * @return     Addresses The current object (for fluent API support)
@@ -1847,7 +1847,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	    $this->setLatitude($latitude);
 	    $this->setLongitude($longitude);
 	}
-
+	
 	/**
 	 * Returns an array with latitude and longitude values.
 	 *
@@ -1860,7 +1860,7 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	        'longitude' => $this->getLongitude()
 	    );
 	}
-
+	
 	/**
 	 * Returns whether this object has been geocoded or not.
 	 *
@@ -1870,10 +1870,10 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	{
 	    $lat = $this->getLatitude();
 	    $lng = $this->getLongitude();
-
+	
 	    return (!empty($lat) && !empty($lng));
 	}
-
+	
 	/**
 	 * Calculates the distance between a given addresses and this one.
 	 *
@@ -1885,56 +1885,56 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	public function getDistanceTo(Addresses $addresses, $unit = AddressesPeer::KILOMETERS_UNIT)
 	{
 	    $dist = rad2deg(acos(sin(deg2rad($this->getLatitude())) * sin(deg2rad($addresses->getLatitude())) +  cos(deg2rad($this->getLatitude())) * cos(deg2rad($addresses->getLatitude())) * cos(deg2rad($this->getLongitude() - $addresses->getLongitude())))) * 60 * AddressesPeer::MILES_UNIT;
-
+	
 	    if (AddressesPeer::MILES_UNIT === $unit) {
 	        return $dist;
 	    } else if (AddressesPeer::NAUTICAL_MILES_UNIT === $unit) {
 	        return $dist * AddressesPeer::NAUTICAL_MILES_UNIT;
 	    }
-
+	
 	    return $dist * AddressesPeer::KILOMETERS_UNIT;
 	}
-
+	
 	/**
 	 * update geocode information
 	 */
 	public function geocode()
 	{
 	    $geocoder = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter(), \Hanzo\Core\Hanzo::getInstance()->getGoogleMapsKey()));
-
+	
 	    $address_parts = array();
 	    $address_modified = $this->isNew() || !$this->isGeocoded();
-
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::ADDRESS_LINE_1);
 	    $address_parts['AddressLine1'] = $this->getAddressLine1();
-
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::ADDRESS_LINE_2);
 	    $address_parts['AddressLine2'] = $this->getAddressLine2();
-
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::STATE_PROVINCE);
 	    $address_parts['StateProvince'] = $this->getStateProvince();
-
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::POSTAL_CODE);
 	    $address_parts['PostalCode'] = $this->getPostalCode();
-
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::COUNTRY);
 	    $address_parts['Country'] = $this->getCountry();
-
+	
 	    $address = join(',', array_filter($address_parts));
-
+	
 	    if ($address_modified) {
 	        $result = $geocoder->geocode($address);
 	    }
-
+	
 	    if (isset($result) && $coordinates = $result->getCoordinates()) {
 	        $this->setLatitude($coordinates[0]);
 	        $this->setLongitude($coordinates[1]);
 	    }
-
+	
 	}
 
 	// timestampable behavior
-
+	
 	/**
 	 * Mark the current object so that the update date doesn't get updated during next save
 	 *

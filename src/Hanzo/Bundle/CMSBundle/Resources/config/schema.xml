@@ -445,7 +445,7 @@
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="session_id" type="VARCHAR" size="32" required="true"/>
     <column name="payment_gateway_id" type="INTEGER" required="false" defaultValue="NULL"/>
-    <column name="state" type="INTEGER" required="true" defaultValue="-3"/>
+    <column name="state" type="INTEGER" required="true" defaultValue="-50"/>
     <column name="in_edit" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <column name="customers_id" type="INTEGER" required="false"/>
     <column name="first_name" type="VARCHAR" size="128" required="false"/>

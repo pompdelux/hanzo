@@ -31,6 +31,7 @@ class Orders extends BaseOrders
      */
     const STATE_ERROR_PAYMENT   = -110;
     const STATE_ERROR           = -100;
+    const STATE_BUILDING        = -50;
     const STATE_PRE_CONFIRM     = -30;
     const STATE_PRE_PAYMENT     = -20;
     const STATE_POST_PAYMENT    = 10;
@@ -38,6 +39,12 @@ class Orders extends BaseOrders
     const STATE_PENDING         = 30;
     const STATE_BEING_PROCESSED = 40;
     const STATE_SHIPPED         = 50;
+
+    const TYPE_PRIVATE          = -1;
+    const TYPE_GIFT             = -2;
+    const TYPE_FRIEND           = -3;
+    const TYPE_OUTSIDE_EVENT    = -4;
+    const TYPE_NORMAL           = -10;
 
     /**
      * set quantity on a product line in the current order

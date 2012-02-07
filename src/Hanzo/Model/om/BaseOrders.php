@@ -78,7 +78,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 
 	/**
 	 * The value for the state field.
-	 * Note: this column has a database default value of: -3
+	 * Note: this column has a database default value of: -50
 	 * @var        int
 	 */
 	protected $state;
@@ -358,7 +358,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	 */
 	public function applyDefaultValues()
 	{
-		$this->state = -3;
+		$this->state = -50;
 		$this->in_edit = false;
 	}
 
@@ -1598,7 +1598,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
-			if ($this->state !== -3) {
+			if ($this->state !== -50) {
 				return false;
 			}
 
