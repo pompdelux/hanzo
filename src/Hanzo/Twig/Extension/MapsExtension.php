@@ -38,12 +38,13 @@ class MapsExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'geo_zip_code_form' => new Twig_Function_Method($this, 'geo_zip_code_form', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'geo_consultants_map' => new Twig_Function_Method($this, 'geo_consultants_map', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'geo_zip_code_form' => new Twig_Function_Method($this, 'zip_code_form', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'consultants_near_you' => new Twig_Function_Method($this, 'consultants_near_you', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'consultants_map' => new Twig_Function_Method($this, 'consultants_map', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
-    public function geo_zip_code_form($type = 'near', $country = 'Denmark')
+    public function zip_code_form($type = 'near', $country = 'Denmark')
     {
         $template = file_get_contents($this->template_dir . 'zip_form.html.twig');
         return $this->twig_string->parse($template, array(
@@ -52,9 +53,22 @@ class MapsExtension extends Twig_Extension
         ));
     }
 
-    public function geo_consultants_map($type = 'near')
+    public function consultants_map()
     {
+        $hanzo = Hanzo::getInstance();
+        $config = $hanzo->getByNs('maps');
+
         $template = file_get_contents($this->template_dir . 'consultants_map.html.twig');
+        return $this->twig_string->parse($template, array(
+            'settings' => 'lat:' . $config['consultants_map.lat'] . ',lng:' . $config['consultants_map.lng'].', zoom:' . $config['consultants_map.zoom'],
+            'language' => $config['consultants_map.language'],
+            'height'   => $config['consultants_map.height'],
+        ));
+    }
+
+    public function consultants_near_you($type = 'near')
+    {
+        $template = file_get_contents($this->template_dir . 'consultants_near_you.html.twig');
         return $this->twig_string->parse($template, array(
             'type' => $type,
         ));

@@ -46,6 +46,14 @@ class Customers extends BaseCustomers
     }
 
 
+    /**
+     * get full name
+     */
+     public function getName()
+     {
+         return trim($this->getFirstName() . ' ' . $this->getLastName());
+     }
+
 
     /**
      * The following methods is needed by the form component.....
