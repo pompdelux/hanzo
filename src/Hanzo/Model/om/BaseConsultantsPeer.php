@@ -9,61 +9,67 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\ConsultantsInfo;
-use Hanzo\Model\ConsultantsInfoPeer;
+use Hanzo\Model\Consultants;
+use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\CustomersPeer;
-use Hanzo\Model\map\ConsultantsInfoTableMap;
+use Hanzo\Model\map\ConsultantsTableMap;
 
 /**
- * Base static class for performing query and update operations on the 'consultants_info' table.
+ * Base static class for performing query and update operations on the 'consultants' table.
  *
  * 
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
-abstract class BaseConsultantsInfoPeer {
+abstract class BaseConsultantsPeer {
 
 	/** the default database name for this class */
 	const DATABASE_NAME = 'default';
 
 	/** the table name for this class */
-	const TABLE_NAME = 'consultants_info';
+	const TABLE_NAME = 'consultants';
 
 	/** the related Propel class for this table */
-	const OM_CLASS = 'Hanzo\\Model\\ConsultantsInfo';
+	const OM_CLASS = 'Hanzo\\Model\\Consultants';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.ConsultantsInfo';
+	const CLASS_DEFAULT = 'src.Hanzo.Model.Consultants';
 
 	/** the related TableMap class for this table */
-	const TM_CLASS = 'ConsultantsInfoTableMap';
+	const TM_CLASS = 'ConsultantsTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 3;
+	const NUM_COLUMNS = 5;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 3;
+	const NUM_HYDRATE_COLUMNS = 5;
 
-	/** the column name for the CONSULTANTS_ID field */
-	const CONSULTANTS_ID = 'consultants_info.CONSULTANTS_ID';
+	/** the column name for the INITIALS field */
+	const INITIALS = 'consultants.INITIALS';
 
-	/** the column name for the DESCRIPTION field */
-	const DESCRIPTION = 'consultants_info.DESCRIPTION';
+	/** the column name for the INFO field */
+	const INFO = 'consultants.INFO';
+
+	/** the column name for the EVENT_NOTES field */
+	const EVENT_NOTES = 'consultants.EVENT_NOTES';
 
 	/** the column name for the MAX_NOTIFIED field */
-	const MAX_NOTIFIED = 'consultants_info.MAX_NOTIFIED';
+	const MAX_NOTIFIED = 'consultants.MAX_NOTIFIED';
+
+	/** the column name for the ID field */
+	const ID = 'consultants.ID';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
 	/**
-	 * An identiy map to hold any loaded instances of ConsultantsInfo objects.
+	 * An identiy map to hold any loaded instances of Consultants objects.
 	 * This must be public so that other peer classes can access this when hydrating from JOIN
 	 * queries.
-	 * @var        array ConsultantsInfo[]
+	 * @var        array Consultants[]
 	 */
 	public static $instances = array();
 
@@ -75,12 +81,12 @@ abstract class BaseConsultantsInfoPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('ConsultantsId', 'Description', 'MaxNotified', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('consultantsId', 'description', 'maxNotified', ),
-		BasePeer::TYPE_COLNAME => array (self::CONSULTANTS_ID, self::DESCRIPTION, self::MAX_NOTIFIED, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('CONSULTANTS_ID', 'DESCRIPTION', 'MAX_NOTIFIED', ),
-		BasePeer::TYPE_FIELDNAME => array ('consultants_id', 'description', 'max_notified', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Initials', 'Info', 'EventNotes', 'MaxNotified', 'Id', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('initials', 'info', 'eventNotes', 'maxNotified', 'id', ),
+		BasePeer::TYPE_COLNAME => array (self::INITIALS, self::INFO, self::EVENT_NOTES, self::MAX_NOTIFIED, self::ID, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('INITIALS', 'INFO', 'EVENT_NOTES', 'MAX_NOTIFIED', 'ID', ),
+		BasePeer::TYPE_FIELDNAME => array ('initials', 'info', 'event_notes', 'max_notified', 'id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	/**
@@ -90,12 +96,12 @@ abstract class BaseConsultantsInfoPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('ConsultantsId' => 0, 'Description' => 1, 'MaxNotified' => 2, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('consultantsId' => 0, 'description' => 1, 'maxNotified' => 2, ),
-		BasePeer::TYPE_COLNAME => array (self::CONSULTANTS_ID => 0, self::DESCRIPTION => 1, self::MAX_NOTIFIED => 2, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('CONSULTANTS_ID' => 0, 'DESCRIPTION' => 1, 'MAX_NOTIFIED' => 2, ),
-		BasePeer::TYPE_FIELDNAME => array ('consultants_id' => 0, 'description' => 1, 'max_notified' => 2, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Initials' => 0, 'Info' => 1, 'EventNotes' => 2, 'MaxNotified' => 3, 'Id' => 4, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('initials' => 0, 'info' => 1, 'eventNotes' => 2, 'maxNotified' => 3, 'id' => 4, ),
+		BasePeer::TYPE_COLNAME => array (self::INITIALS => 0, self::INFO => 1, self::EVENT_NOTES => 2, self::MAX_NOTIFIED => 3, self::ID => 4, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('INITIALS' => 0, 'INFO' => 1, 'EVENT_NOTES' => 2, 'MAX_NOTIFIED' => 3, 'ID' => 4, ),
+		BasePeer::TYPE_FIELDNAME => array ('initials' => 0, 'info' => 1, 'event_notes' => 2, 'max_notified' => 3, 'id' => 4, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	/**
@@ -144,12 +150,12 @@ abstract class BaseConsultantsInfoPeer {
 	 *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
 	 * </code>
 	 * @param      string $alias The alias for the current table.
-	 * @param      string $column The column name for current table. (i.e. ConsultantsInfoPeer::COLUMN_NAME).
+	 * @param      string $column The column name for current table. (i.e. ConsultantsPeer::COLUMN_NAME).
 	 * @return     string
 	 */
 	public static function alias($alias, $column)
 	{
-		return str_replace(ConsultantsInfoPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(ConsultantsPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	/**
@@ -167,13 +173,17 @@ abstract class BaseConsultantsInfoPeer {
 	public static function addSelectColumns(Criteria $criteria, $alias = null)
 	{
 		if (null === $alias) {
-			$criteria->addSelectColumn(ConsultantsInfoPeer::CONSULTANTS_ID);
-			$criteria->addSelectColumn(ConsultantsInfoPeer::DESCRIPTION);
-			$criteria->addSelectColumn(ConsultantsInfoPeer::MAX_NOTIFIED);
+			$criteria->addSelectColumn(ConsultantsPeer::INITIALS);
+			$criteria->addSelectColumn(ConsultantsPeer::INFO);
+			$criteria->addSelectColumn(ConsultantsPeer::EVENT_NOTES);
+			$criteria->addSelectColumn(ConsultantsPeer::MAX_NOTIFIED);
+			$criteria->addSelectColumn(ConsultantsPeer::ID);
 		} else {
-			$criteria->addSelectColumn($alias . '.CONSULTANTS_ID');
-			$criteria->addSelectColumn($alias . '.DESCRIPTION');
+			$criteria->addSelectColumn($alias . '.INITIALS');
+			$criteria->addSelectColumn($alias . '.INFO');
+			$criteria->addSelectColumn($alias . '.EVENT_NOTES');
 			$criteria->addSelectColumn($alias . '.MAX_NOTIFIED');
+			$criteria->addSelectColumn($alias . '.ID');
 		}
 	}
 
@@ -193,21 +203,21 @@ abstract class BaseConsultantsInfoPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(ConsultantsInfoPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(ConsultantsPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			ConsultantsInfoPeer::addSelectColumns($criteria);
+			ConsultantsPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 		$criteria->setDbName(self::DATABASE_NAME); // Set the correct dbName
 
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 		// BasePeer returns a PDOStatement
 		$stmt = BasePeer::doCount($criteria, $con);
@@ -225,7 +235,7 @@ abstract class BaseConsultantsInfoPeer {
 	 *
 	 * @param      Criteria $criteria object used to create the SELECT statement.
 	 * @param      PropelPDO $con
-	 * @return     ConsultantsInfo
+	 * @return     Consultants
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -233,7 +243,7 @@ abstract class BaseConsultantsInfoPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = ConsultantsInfoPeer::doSelect($critcopy, $con);
+		$objects = ConsultantsPeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -250,7 +260,7 @@ abstract class BaseConsultantsInfoPeer {
 	 */
 	public static function doSelect(Criteria $criteria, PropelPDO $con = null)
 	{
-		return ConsultantsInfoPeer::populateObjects(ConsultantsInfoPeer::doSelectStmt($criteria, $con));
+		return ConsultantsPeer::populateObjects(ConsultantsPeer::doSelectStmt($criteria, $con));
 	}
 	/**
 	 * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -268,12 +278,12 @@ abstract class BaseConsultantsInfoPeer {
 	public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		if (!$criteria->hasSelectClause()) {
 			$criteria = clone $criteria;
-			ConsultantsInfoPeer::addSelectColumns($criteria);
+			ConsultantsPeer::addSelectColumns($criteria);
 		}
 
 		// Set the correct dbName
@@ -291,14 +301,14 @@ abstract class BaseConsultantsInfoPeer {
 	 * to the cache in order to ensure that the same objects are always returned by doSelect*()
 	 * and retrieveByPK*() calls.
 	 *
-	 * @param      ConsultantsInfo $value A ConsultantsInfo object.
+	 * @param      Consultants $value A Consultants object.
 	 * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
 	 */
 	public static function addInstanceToPool($obj, $key = null)
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = (string) $obj->getConsultantsId();
+				$key = (string) $obj->getId();
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -312,18 +322,18 @@ abstract class BaseConsultantsInfoPeer {
 	 * methods in your stub classes -- you may need to explicitly remove objects
 	 * from the cache in order to prevent returning objects that no longer exist.
 	 *
-	 * @param      mixed $value A ConsultantsInfo object or a primary key value.
+	 * @param      mixed $value A Consultants object or a primary key value.
 	 */
 	public static function removeInstanceFromPool($value)
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
-			if (is_object($value) && $value instanceof ConsultantsInfo) {
-				$key = (string) $value->getConsultantsId();
+			if (is_object($value) && $value instanceof Consultants) {
+				$key = (string) $value->getId();
 			} elseif (is_scalar($value)) {
 				// assume we've been passed a primary key
 				$key = (string) $value;
 			} else {
-				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or ConsultantsInfo object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or Consultants object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
 			}
 
@@ -338,7 +348,7 @@ abstract class BaseConsultantsInfoPeer {
 	 * a multi-column primary key, a serialize()d version of the primary key will be returned.
 	 *
 	 * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-	 * @return     ConsultantsInfo Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+	 * @return     Consultants Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
 	 * @see        getPrimaryKeyHash()
 	 */
 	public static function getInstanceFromPool($key)
@@ -362,7 +372,7 @@ abstract class BaseConsultantsInfoPeer {
 	}
 	
 	/**
-	 * Method to invalidate the instance pool of all tables related to consultants_info
+	 * Method to invalidate the instance pool of all tables related to consultants
 	 * by a foreign key with ON DELETE CASCADE
 	 */
 	public static function clearRelatedInstancePool()
@@ -382,10 +392,10 @@ abstract class BaseConsultantsInfoPeer {
 	public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
 	{
 		// If the PK cannot be derived from the row, return NULL.
-		if ($row[$startcol] === null) {
+		if ($row[$startcol + 4] === null) {
 			return null;
 		}
-		return (string) $row[$startcol];
+		return (string) $row[$startcol + 4];
 	}
 
 	/**
@@ -399,7 +409,7 @@ abstract class BaseConsultantsInfoPeer {
 	 */
 	public static function getPrimaryKeyFromRow($row, $startcol = 0)
 	{
-		return (int) $row[$startcol];
+		return (int) $row[$startcol + 4];
 	}
 	
 	/**
@@ -414,11 +424,11 @@ abstract class BaseConsultantsInfoPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = ConsultantsInfoPeer::getOMClass(false);
+		$cls = ConsultantsPeer::getOMClass(false);
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key = ConsultantsInfoPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj = ConsultantsInfoPeer::getInstanceFromPool($key))) {
+			$key = ConsultantsPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj = ConsultantsPeer::getInstanceFromPool($key))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj->hydrate($row, 0, true); // rehydrate
@@ -427,7 +437,7 @@ abstract class BaseConsultantsInfoPeer {
 				$obj = new $cls();
 				$obj->hydrate($row);
 				$results[] = $obj;
-				ConsultantsInfoPeer::addInstanceToPool($obj, $key);
+				ConsultantsPeer::addInstanceToPool($obj, $key);
 			} // if key exists
 		}
 		$stmt->closeCursor();
@@ -440,21 +450,21 @@ abstract class BaseConsultantsInfoPeer {
 	 * @param      int $startcol The 0-based offset for reading from the resultset row.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
-	 * @return     array (ConsultantsInfo object, last column rank)
+	 * @return     array (Consultants object, last column rank)
 	 */
 	public static function populateObject($row, $startcol = 0)
 	{
-		$key = ConsultantsInfoPeer::getPrimaryKeyHashFromRow($row, $startcol);
-		if (null !== ($obj = ConsultantsInfoPeer::getInstanceFromPool($key))) {
+		$key = ConsultantsPeer::getPrimaryKeyHashFromRow($row, $startcol);
+		if (null !== ($obj = ConsultantsPeer::getInstanceFromPool($key))) {
 			// We no longer rehydrate the object, since this can cause data loss.
 			// See http://www.propelorm.org/ticket/509
 			// $obj->hydrate($row, $startcol, true); // rehydrate
-			$col = $startcol + ConsultantsInfoPeer::NUM_HYDRATE_COLUMNS;
+			$col = $startcol + ConsultantsPeer::NUM_HYDRATE_COLUMNS;
 		} else {
-			$cls = ConsultantsInfoPeer::OM_CLASS;
+			$cls = ConsultantsPeer::OM_CLASS;
 			$obj = new $cls();
 			$col = $obj->hydrate($row, $startcol);
-			ConsultantsInfoPeer::addInstanceToPool($obj, $key);
+			ConsultantsPeer::addInstanceToPool($obj, $key);
 		}
 		return array($obj, $col);
 	}
@@ -477,14 +487,14 @@ abstract class BaseConsultantsInfoPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(ConsultantsInfoPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(ConsultantsPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			ConsultantsInfoPeer::addSelectColumns($criteria);
+			ConsultantsPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
@@ -493,10 +503,10 @@ abstract class BaseConsultantsInfoPeer {
 		$criteria->setDbName(self::DATABASE_NAME);
 
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(ConsultantsInfoPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
+		$criteria->addJoin(ConsultantsPeer::ID, CustomersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -511,11 +521,11 @@ abstract class BaseConsultantsInfoPeer {
 
 
 	/**
-	 * Selects a collection of ConsultantsInfo objects pre-filled with their Customers objects.
+	 * Selects a collection of Consultants objects pre-filled with their Customers objects.
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of ConsultantsInfo objects.
+	 * @return     array Array of Consultants objects.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -528,28 +538,28 @@ abstract class BaseConsultantsInfoPeer {
 			$criteria->setDbName(self::DATABASE_NAME);
 		}
 
-		ConsultantsInfoPeer::addSelectColumns($criteria);
-		$startcol = ConsultantsInfoPeer::NUM_HYDRATE_COLUMNS;
+		ConsultantsPeer::addSelectColumns($criteria);
+		$startcol = ConsultantsPeer::NUM_HYDRATE_COLUMNS;
 		CustomersPeer::addSelectColumns($criteria);
 
-		$criteria->addJoin(ConsultantsInfoPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
+		$criteria->addJoin(ConsultantsPeer::ID, CustomersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
 
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = ConsultantsInfoPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = ConsultantsInfoPeer::getInstanceFromPool($key1))) {
+			$key1 = ConsultantsPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = ConsultantsPeer::getInstanceFromPool($key1))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = ConsultantsInfoPeer::getOMClass(false);
+				$cls = ConsultantsPeer::getOMClass(false);
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
-				ConsultantsInfoPeer::addInstanceToPool($obj1, $key1);
+				ConsultantsPeer::addInstanceToPool($obj1, $key1);
 			} // if $obj1 already loaded
 
 			$key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol);
@@ -564,7 +574,7 @@ abstract class BaseConsultantsInfoPeer {
 					CustomersPeer::addInstanceToPool($obj2, $key2);
 				} // if obj2 already loaded
 
-				// Add the $obj1 (ConsultantsInfo) to $obj2 (Customers)
+				// Add the $obj1 (Consultants) to $obj2 (Customers)
 				// one to one relationship
 				$obj1->setCustomers($obj2);
 
@@ -594,14 +604,14 @@ abstract class BaseConsultantsInfoPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(ConsultantsInfoPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(ConsultantsPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			ConsultantsInfoPeer::addSelectColumns($criteria);
+			ConsultantsPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
@@ -610,10 +620,10 @@ abstract class BaseConsultantsInfoPeer {
 		$criteria->setDbName(self::DATABASE_NAME);
 
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(ConsultantsInfoPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
+		$criteria->addJoin(ConsultantsPeer::ID, CustomersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -627,12 +637,12 @@ abstract class BaseConsultantsInfoPeer {
 	}
 
 	/**
-	 * Selects a collection of ConsultantsInfo objects pre-filled with all related objects.
+	 * Selects a collection of Consultants objects pre-filled with all related objects.
 	 *
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of ConsultantsInfo objects.
+	 * @return     array Array of Consultants objects.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -645,29 +655,29 @@ abstract class BaseConsultantsInfoPeer {
 			$criteria->setDbName(self::DATABASE_NAME);
 		}
 
-		ConsultantsInfoPeer::addSelectColumns($criteria);
-		$startcol2 = ConsultantsInfoPeer::NUM_HYDRATE_COLUMNS;
+		ConsultantsPeer::addSelectColumns($criteria);
+		$startcol2 = ConsultantsPeer::NUM_HYDRATE_COLUMNS;
 
 		CustomersPeer::addSelectColumns($criteria);
 		$startcol3 = $startcol2 + CustomersPeer::NUM_HYDRATE_COLUMNS;
 
-		$criteria->addJoin(ConsultantsInfoPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
+		$criteria->addJoin(ConsultantsPeer::ID, CustomersPeer::ID, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
 
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = ConsultantsInfoPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = ConsultantsInfoPeer::getInstanceFromPool($key1))) {
+			$key1 = ConsultantsPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = ConsultantsPeer::getInstanceFromPool($key1))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = ConsultantsInfoPeer::getOMClass(false);
+				$cls = ConsultantsPeer::getOMClass(false);
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
-				ConsultantsInfoPeer::addInstanceToPool($obj1, $key1);
+				ConsultantsPeer::addInstanceToPool($obj1, $key1);
 			} // if obj1 already loaded
 
 			// Add objects for joined Customers rows
@@ -684,7 +694,7 @@ abstract class BaseConsultantsInfoPeer {
 					CustomersPeer::addInstanceToPool($obj2, $key2);
 				} // if obj2 loaded
 
-				// Add the $obj1 (ConsultantsInfo) to the collection in $obj2 (Customers)
+				// Add the $obj1 (Consultants) to the collection in $obj2 (Customers)
 				$obj1->setCustomers($obj2);
 			} // if joined row not null
 
@@ -711,10 +721,10 @@ abstract class BaseConsultantsInfoPeer {
 	 */
 	public static function buildTableMap()
 	{
-	  $dbMap = Propel::getDatabaseMap(BaseConsultantsInfoPeer::DATABASE_NAME);
-	  if (!$dbMap->hasTable(BaseConsultantsInfoPeer::TABLE_NAME))
+	  $dbMap = Propel::getDatabaseMap(BaseConsultantsPeer::DATABASE_NAME);
+	  if (!$dbMap->hasTable(BaseConsultantsPeer::TABLE_NAME))
 	  {
-	    $dbMap->addTableObject(new ConsultantsInfoTableMap());
+	    $dbMap->addTableObject(new ConsultantsTableMap());
 	  }
 	}
 
@@ -731,13 +741,13 @@ abstract class BaseConsultantsInfoPeer {
 	 */
 	public static function getOMClass($withPrefix = true)
 	{
-		return $withPrefix ? ConsultantsInfoPeer::CLASS_DEFAULT : ConsultantsInfoPeer::OM_CLASS;
+		return $withPrefix ? ConsultantsPeer::CLASS_DEFAULT : ConsultantsPeer::OM_CLASS;
 	}
 
 	/**
-	 * Performs an INSERT on the database, given a ConsultantsInfo or Criteria object.
+	 * Performs an INSERT on the database, given a Consultants or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or ConsultantsInfo object containing data that is used to create the INSERT statement.
+	 * @param      mixed $values Criteria or Consultants object containing data that is used to create the INSERT statement.
 	 * @param      PropelPDO $con the PropelPDO connection to use
 	 * @return     mixed The new primary key.
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -746,13 +756,13 @@ abstract class BaseConsultantsInfoPeer {
 	public static function doInsert($values, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 		} else {
-			$criteria = $values->buildCriteria(); // build Criteria from ConsultantsInfo object
+			$criteria = $values->buildCriteria(); // build Criteria from Consultants object
 		}
 
 
@@ -774,9 +784,9 @@ abstract class BaseConsultantsInfoPeer {
 	}
 
 	/**
-	 * Performs an UPDATE on the database, given a ConsultantsInfo or Criteria object.
+	 * Performs an UPDATE on the database, given a Consultants or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or ConsultantsInfo object containing data that is used to create the UPDATE statement.
+	 * @param      mixed $values Criteria or Consultants object containing data that is used to create the UPDATE statement.
 	 * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -785,7 +795,7 @@ abstract class BaseConsultantsInfoPeer {
 	public static function doUpdate($values, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$selectCriteria = new Criteria(self::DATABASE_NAME);
@@ -793,15 +803,15 @@ abstract class BaseConsultantsInfoPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 
-			$comparison = $criteria->getComparison(ConsultantsInfoPeer::CONSULTANTS_ID);
-			$value = $criteria->remove(ConsultantsInfoPeer::CONSULTANTS_ID);
+			$comparison = $criteria->getComparison(ConsultantsPeer::ID);
+			$value = $criteria->remove(ConsultantsPeer::ID);
 			if ($value) {
-				$selectCriteria->add(ConsultantsInfoPeer::CONSULTANTS_ID, $value, $comparison);
+				$selectCriteria->add(ConsultantsPeer::ID, $value, $comparison);
 			} else {
-				$selectCriteria->setPrimaryTableName(ConsultantsInfoPeer::TABLE_NAME);
+				$selectCriteria->setPrimaryTableName(ConsultantsPeer::TABLE_NAME);
 			}
 
-		} else { // $values is ConsultantsInfo object
+		} else { // $values is Consultants object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
 		}
@@ -813,7 +823,7 @@ abstract class BaseConsultantsInfoPeer {
 	}
 
 	/**
-	 * Deletes all rows from the consultants_info table.
+	 * Deletes all rows from the consultants table.
 	 *
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int The number of affected rows (if supported by underlying database driver).
@@ -821,19 +831,19 @@ abstract class BaseConsultantsInfoPeer {
 	public static function doDeleteAll(PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		$affectedRows = 0; // initialize var to track total num of affected rows
 		try {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
-			$affectedRows += BasePeer::doDeleteAll(ConsultantsInfoPeer::TABLE_NAME, $con, ConsultantsInfoPeer::DATABASE_NAME);
+			$affectedRows += BasePeer::doDeleteAll(ConsultantsPeer::TABLE_NAME, $con, ConsultantsPeer::DATABASE_NAME);
 			// Because this db requires some delete cascade/set null emulation, we have to
 			// clear the cached instance *after* the emulation has happened (since
 			// instances get re-added by the select statement contained therein).
-			ConsultantsInfoPeer::clearInstancePool();
-			ConsultantsInfoPeer::clearRelatedInstancePool();
+			ConsultantsPeer::clearInstancePool();
+			ConsultantsPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -843,9 +853,9 @@ abstract class BaseConsultantsInfoPeer {
 	}
 
 	/**
-	 * Performs a DELETE on the database, given a ConsultantsInfo or Criteria object OR a primary key value.
+	 * Performs a DELETE on the database, given a Consultants or Criteria object OR a primary key value.
 	 *
-	 * @param      mixed $values Criteria or ConsultantsInfo object or primary key or array of primary keys
+	 * @param      mixed $values Criteria or Consultants object or primary key or array of primary keys
 	 *              which is used to create the DELETE statement
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int 	The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -856,27 +866,27 @@ abstract class BaseConsultantsInfoPeer {
 	 public static function doDelete($values, PropelPDO $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			// invalidate the cache for all objects of this type, since we have no
 			// way of knowing (without running a query) what objects should be invalidated
 			// from the cache based on this Criteria.
-			ConsultantsInfoPeer::clearInstancePool();
+			ConsultantsPeer::clearInstancePool();
 			// rename for clarity
 			$criteria = clone $values;
-		} elseif ($values instanceof ConsultantsInfo) { // it's a model object
+		} elseif ($values instanceof Consultants) { // it's a model object
 			// invalidate the cache for this single object
-			ConsultantsInfoPeer::removeInstanceFromPool($values);
+			ConsultantsPeer::removeInstanceFromPool($values);
 			// create criteria based on pk values
 			$criteria = $values->buildPkeyCriteria();
 		} else { // it's a primary key, or an array of pks
 			$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(ConsultantsInfoPeer::CONSULTANTS_ID, (array) $values, Criteria::IN);
+			$criteria->add(ConsultantsPeer::ID, (array) $values, Criteria::IN);
 			// invalidate the cache for this object(s)
 			foreach ((array) $values as $singleval) {
-				ConsultantsInfoPeer::removeInstanceFromPool($singleval);
+				ConsultantsPeer::removeInstanceFromPool($singleval);
 			}
 		}
 
@@ -891,7 +901,7 @@ abstract class BaseConsultantsInfoPeer {
 			$con->beginTransaction();
 			
 			$affectedRows += BasePeer::doDelete($criteria, $con);
-			ConsultantsInfoPeer::clearRelatedInstancePool();
+			ConsultantsPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -901,13 +911,13 @@ abstract class BaseConsultantsInfoPeer {
 	}
 
 	/**
-	 * Validates all modified columns of given ConsultantsInfo object.
+	 * Validates all modified columns of given Consultants object.
 	 * If parameter $columns is either a single column name or an array of column names
 	 * than only those columns are validated.
 	 *
 	 * NOTICE: This does not apply to primary or foreign keys for now.
 	 *
-	 * @param      ConsultantsInfo $obj The object to validate.
+	 * @param      Consultants $obj The object to validate.
 	 * @param      mixed $cols Column name or array of column names.
 	 *
 	 * @return     mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -917,8 +927,8 @@ abstract class BaseConsultantsInfoPeer {
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(ConsultantsInfoPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(ConsultantsInfoPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(ConsultantsPeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(ConsultantsPeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -934,7 +944,7 @@ abstract class BaseConsultantsInfoPeer {
 
 		}
 
-		return BasePeer::doValidate(ConsultantsInfoPeer::DATABASE_NAME, ConsultantsInfoPeer::TABLE_NAME, $columns);
+		return BasePeer::doValidate(ConsultantsPeer::DATABASE_NAME, ConsultantsPeer::TABLE_NAME, $columns);
 	}
 
 	/**
@@ -942,23 +952,23 @@ abstract class BaseConsultantsInfoPeer {
 	 *
 	 * @param      int $pk the primary key.
 	 * @param      PropelPDO $con the connection to use
-	 * @return     ConsultantsInfo
+	 * @return     Consultants
 	 */
 	public static function retrieveByPK($pk, PropelPDO $con = null)
 	{
 
-		if (null !== ($obj = ConsultantsInfoPeer::getInstanceFromPool((string) $pk))) {
+		if (null !== ($obj = ConsultantsPeer::getInstanceFromPool((string) $pk))) {
 			return $obj;
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria = new Criteria(ConsultantsInfoPeer::DATABASE_NAME);
-		$criteria->add(ConsultantsInfoPeer::CONSULTANTS_ID, $pk);
+		$criteria = new Criteria(ConsultantsPeer::DATABASE_NAME);
+		$criteria->add(ConsultantsPeer::ID, $pk);
 
-		$v = ConsultantsInfoPeer::doSelect($criteria, $con);
+		$v = ConsultantsPeer::doSelect($criteria, $con);
 
 		return !empty($v) > 0 ? $v[0] : null;
 	}
@@ -974,23 +984,23 @@ abstract class BaseConsultantsInfoPeer {
 	public static function retrieveByPKs($pks, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		$objs = null;
 		if (empty($pks)) {
 			$objs = array();
 		} else {
-			$criteria = new Criteria(ConsultantsInfoPeer::DATABASE_NAME);
-			$criteria->add(ConsultantsInfoPeer::CONSULTANTS_ID, $pks, Criteria::IN);
-			$objs = ConsultantsInfoPeer::doSelect($criteria, $con);
+			$criteria = new Criteria(ConsultantsPeer::DATABASE_NAME);
+			$criteria->add(ConsultantsPeer::ID, $pks, Criteria::IN);
+			$objs = ConsultantsPeer::doSelect($criteria, $con);
 		}
 		return $objs;
 	}
 
-} // BaseConsultantsInfoPeer
+} // BaseConsultantsPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseConsultantsInfoPeer::buildTableMap();
+BaseConsultantsPeer::buildTableMap();
 

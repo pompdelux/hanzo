@@ -10,7 +10,7 @@ use \Propel;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\AddressesPeer;
-use Hanzo\Model\ConsultantsInfoPeer;
+use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\CouponsToCustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
@@ -44,16 +44,19 @@ abstract class BaseCustomersPeer {
 	const TM_CLASS = 'CustomersTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 13;
+	const NUM_COLUMNS = 12;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 13;
+	const NUM_HYDRATE_COLUMNS = 12;
 
 	/** the column name for the ID field */
 	const ID = 'customers.ID';
+
+	/** the column name for the GROUPS_ID field */
+	const GROUPS_ID = 'customers.GROUPS_ID';
 
 	/** the column name for the FIRST_NAME field */
 	const FIRST_NAME = 'customers.FIRST_NAME';
@@ -61,26 +64,20 @@ abstract class BaseCustomersPeer {
 	/** the column name for the LAST_NAME field */
 	const LAST_NAME = 'customers.LAST_NAME';
 
-	/** the column name for the INITIALS field */
-	const INITIALS = 'customers.INITIALS';
-
-	/** the column name for the PASSWORD field */
-	const PASSWORD = 'customers.PASSWORD';
-
 	/** the column name for the EMAIL field */
 	const EMAIL = 'customers.EMAIL';
 
 	/** the column name for the PHONE field */
 	const PHONE = 'customers.PHONE';
 
+	/** the column name for the PASSWORD field */
+	const PASSWORD = 'customers.PASSWORD';
+
 	/** the column name for the PASSWORD_CLEAR field */
 	const PASSWORD_CLEAR = 'customers.PASSWORD_CLEAR';
 
 	/** the column name for the DISCOUNT field */
 	const DISCOUNT = 'customers.DISCOUNT';
-
-	/** the column name for the GROUPS_ID field */
-	const GROUPS_ID = 'customers.GROUPS_ID';
 
 	/** the column name for the IS_ACTIVE field */
 	const IS_ACTIVE = 'customers.IS_ACTIVE';
@@ -110,12 +107,12 @@ abstract class BaseCustomersPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'FirstName', 'LastName', 'Initials', 'Password', 'Email', 'Phone', 'PasswordClear', 'Discount', 'GroupsId', 'IsActive', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'firstName', 'lastName', 'initials', 'password', 'email', 'phone', 'passwordClear', 'discount', 'groupsId', 'isActive', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::FIRST_NAME, self::LAST_NAME, self::INITIALS, self::PASSWORD, self::EMAIL, self::PHONE, self::PASSWORD_CLEAR, self::DISCOUNT, self::GROUPS_ID, self::IS_ACTIVE, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'FIRST_NAME', 'LAST_NAME', 'INITIALS', 'PASSWORD', 'EMAIL', 'PHONE', 'PASSWORD_CLEAR', 'DISCOUNT', 'GROUPS_ID', 'IS_ACTIVE', 'CREATED_AT', 'UPDATED_AT', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'first_name', 'last_name', 'initials', 'password', 'email', 'phone', 'password_clear', 'discount', 'groups_id', 'is_active', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'GroupsId', 'FirstName', 'LastName', 'Email', 'Phone', 'Password', 'PasswordClear', 'Discount', 'IsActive', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'groupsId', 'firstName', 'lastName', 'email', 'phone', 'password', 'passwordClear', 'discount', 'isActive', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::GROUPS_ID, self::FIRST_NAME, self::LAST_NAME, self::EMAIL, self::PHONE, self::PASSWORD, self::PASSWORD_CLEAR, self::DISCOUNT, self::IS_ACTIVE, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'GROUPS_ID', 'FIRST_NAME', 'LAST_NAME', 'EMAIL', 'PHONE', 'PASSWORD', 'PASSWORD_CLEAR', 'DISCOUNT', 'IS_ACTIVE', 'CREATED_AT', 'UPDATED_AT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'groups_id', 'first_name', 'last_name', 'email', 'phone', 'password', 'password_clear', 'discount', 'is_active', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
 	);
 
 	/**
@@ -125,12 +122,12 @@ abstract class BaseCustomersPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FirstName' => 1, 'LastName' => 2, 'Initials' => 3, 'Password' => 4, 'Email' => 5, 'Phone' => 6, 'PasswordClear' => 7, 'Discount' => 8, 'GroupsId' => 9, 'IsActive' => 10, 'CreatedAt' => 11, 'UpdatedAt' => 12, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'firstName' => 1, 'lastName' => 2, 'initials' => 3, 'password' => 4, 'email' => 5, 'phone' => 6, 'passwordClear' => 7, 'discount' => 8, 'groupsId' => 9, 'isActive' => 10, 'createdAt' => 11, 'updatedAt' => 12, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FIRST_NAME => 1, self::LAST_NAME => 2, self::INITIALS => 3, self::PASSWORD => 4, self::EMAIL => 5, self::PHONE => 6, self::PASSWORD_CLEAR => 7, self::DISCOUNT => 8, self::GROUPS_ID => 9, self::IS_ACTIVE => 10, self::CREATED_AT => 11, self::UPDATED_AT => 12, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'FIRST_NAME' => 1, 'LAST_NAME' => 2, 'INITIALS' => 3, 'PASSWORD' => 4, 'EMAIL' => 5, 'PHONE' => 6, 'PASSWORD_CLEAR' => 7, 'DISCOUNT' => 8, 'GROUPS_ID' => 9, 'IS_ACTIVE' => 10, 'CREATED_AT' => 11, 'UPDATED_AT' => 12, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'first_name' => 1, 'last_name' => 2, 'initials' => 3, 'password' => 4, 'email' => 5, 'phone' => 6, 'password_clear' => 7, 'discount' => 8, 'groups_id' => 9, 'is_active' => 10, 'created_at' => 11, 'updated_at' => 12, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'GroupsId' => 1, 'FirstName' => 2, 'LastName' => 3, 'Email' => 4, 'Phone' => 5, 'Password' => 6, 'PasswordClear' => 7, 'Discount' => 8, 'IsActive' => 9, 'CreatedAt' => 10, 'UpdatedAt' => 11, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'groupsId' => 1, 'firstName' => 2, 'lastName' => 3, 'email' => 4, 'phone' => 5, 'password' => 6, 'passwordClear' => 7, 'discount' => 8, 'isActive' => 9, 'createdAt' => 10, 'updatedAt' => 11, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::GROUPS_ID => 1, self::FIRST_NAME => 2, self::LAST_NAME => 3, self::EMAIL => 4, self::PHONE => 5, self::PASSWORD => 6, self::PASSWORD_CLEAR => 7, self::DISCOUNT => 8, self::IS_ACTIVE => 9, self::CREATED_AT => 10, self::UPDATED_AT => 11, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'GROUPS_ID' => 1, 'FIRST_NAME' => 2, 'LAST_NAME' => 3, 'EMAIL' => 4, 'PHONE' => 5, 'PASSWORD' => 6, 'PASSWORD_CLEAR' => 7, 'DISCOUNT' => 8, 'IS_ACTIVE' => 9, 'CREATED_AT' => 10, 'UPDATED_AT' => 11, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'groups_id' => 1, 'first_name' => 2, 'last_name' => 3, 'email' => 4, 'phone' => 5, 'password' => 6, 'password_clear' => 7, 'discount' => 8, 'is_active' => 9, 'created_at' => 10, 'updated_at' => 11, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
 	);
 
 	/**
@@ -203,29 +200,27 @@ abstract class BaseCustomersPeer {
 	{
 		if (null === $alias) {
 			$criteria->addSelectColumn(CustomersPeer::ID);
+			$criteria->addSelectColumn(CustomersPeer::GROUPS_ID);
 			$criteria->addSelectColumn(CustomersPeer::FIRST_NAME);
 			$criteria->addSelectColumn(CustomersPeer::LAST_NAME);
-			$criteria->addSelectColumn(CustomersPeer::INITIALS);
-			$criteria->addSelectColumn(CustomersPeer::PASSWORD);
 			$criteria->addSelectColumn(CustomersPeer::EMAIL);
 			$criteria->addSelectColumn(CustomersPeer::PHONE);
+			$criteria->addSelectColumn(CustomersPeer::PASSWORD);
 			$criteria->addSelectColumn(CustomersPeer::PASSWORD_CLEAR);
 			$criteria->addSelectColumn(CustomersPeer::DISCOUNT);
-			$criteria->addSelectColumn(CustomersPeer::GROUPS_ID);
 			$criteria->addSelectColumn(CustomersPeer::IS_ACTIVE);
 			$criteria->addSelectColumn(CustomersPeer::CREATED_AT);
 			$criteria->addSelectColumn(CustomersPeer::UPDATED_AT);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
+			$criteria->addSelectColumn($alias . '.GROUPS_ID');
 			$criteria->addSelectColumn($alias . '.FIRST_NAME');
 			$criteria->addSelectColumn($alias . '.LAST_NAME');
-			$criteria->addSelectColumn($alias . '.INITIALS');
-			$criteria->addSelectColumn($alias . '.PASSWORD');
 			$criteria->addSelectColumn($alias . '.EMAIL');
 			$criteria->addSelectColumn($alias . '.PHONE');
+			$criteria->addSelectColumn($alias . '.PASSWORD');
 			$criteria->addSelectColumn($alias . '.PASSWORD_CLEAR');
 			$criteria->addSelectColumn($alias . '.DISCOUNT');
-			$criteria->addSelectColumn($alias . '.GROUPS_ID');
 			$criteria->addSelectColumn($alias . '.IS_ACTIVE');
 			$criteria->addSelectColumn($alias . '.CREATED_AT');
 			$criteria->addSelectColumn($alias . '.UPDATED_AT');
@@ -422,9 +417,6 @@ abstract class BaseCustomersPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
-		// Invalidate objects in ConsultantsInfoPeer instance pool,
-		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-		ConsultantsInfoPeer::clearInstancePool();
 		// Invalidate objects in CouponsToCustomersPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		CouponsToCustomersPeer::clearInstancePool();
@@ -434,6 +426,9 @@ abstract class BaseCustomersPeer {
 		// Invalidate objects in GothiaAccountsPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		GothiaAccountsPeer::clearInstancePool();
+		// Invalidate objects in ConsultantsPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		ConsultantsPeer::clearInstancePool();
 	}
 
 	/**

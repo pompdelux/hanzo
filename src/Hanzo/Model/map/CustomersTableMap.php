@@ -43,15 +43,14 @@ class CustomersTableMap extends TableMap
 		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+		$this->addForeignKey('GROUPS_ID', 'GroupsId', 'INTEGER', 'groups', 'ID', true, null, 1);
 		$this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', true, 128, null);
 		$this->addColumn('LAST_NAME', 'LastName', 'VARCHAR', true, 128, null);
-		$this->addColumn('INITIALS', 'Initials', 'VARCHAR', false, 6, null);
-		$this->addColumn('PASSWORD', 'Password', 'VARCHAR', true, 128, null);
 		$this->addColumn('EMAIL', 'Email', 'VARCHAR', true, 255, null);
 		$this->addColumn('PHONE', 'Phone', 'VARCHAR', false, 32, null);
+		$this->addColumn('PASSWORD', 'Password', 'VARCHAR', true, 128, null);
 		$this->addColumn('PASSWORD_CLEAR', 'PasswordClear', 'VARCHAR', false, 45, null);
 		$this->addColumn('DISCOUNT', 'Discount', 'DECIMAL', false, 8, 0);
-		$this->addForeignKey('GROUPS_ID', 'GroupsId', 'INTEGER', 'groups', 'ID', true, null, 1);
 		$this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
@@ -64,12 +63,12 @@ class CustomersTableMap extends TableMap
 	public function buildRelations()
 	{
 		$this->addRelation('Groups', 'Hanzo\\Model\\Groups', RelationMap::MANY_TO_ONE, array('groups_id' => 'id', ), null, 'CASCADE');
-		$this->addRelation('ConsultantsInfo', 'Hanzo\\Model\\ConsultantsInfo', RelationMap::ONE_TO_ONE, array('id' => 'consultants_id', ), 'CASCADE', null);
 		$this->addRelation('CouponsToCustomers', 'Hanzo\\Model\\CouponsToCustomers', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'CouponsToCustomerss');
 		$this->addRelation('Addresses', 'Hanzo\\Model\\Addresses', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'Addressess');
 		$this->addRelation('EventsRelatedByConsultantsId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'consultants_id', ), null, null, 'EventssRelatedByConsultantsId');
 		$this->addRelation('EventsRelatedByCustomersId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), null, null, 'EventssRelatedByCustomersId');
 		$this->addRelation('GothiaAccounts', 'Hanzo\\Model\\GothiaAccounts', RelationMap::ONE_TO_ONE, array('id' => 'customers_id', ), 'CASCADE', null);
+		$this->addRelation('Consultants', 'Hanzo\\Model\\Consultants', RelationMap::ONE_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
 	} // buildRelations()
 
 	/**
@@ -82,6 +81,7 @@ class CustomersTableMap extends TableMap
 	{
 		return array(
 			'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', ),
+			'delegate' => array('to' => 'consultants', ),
 		);
 	} // getBehaviors()
 

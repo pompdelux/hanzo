@@ -11,7 +11,7 @@ use \PropelCollection;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\Addresses;
-use Hanzo\Model\ConsultantsInfo;
+use Hanzo\Model\Consultants;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
@@ -26,29 +26,27 @@ use Hanzo\Model\Groups;
  * 
  *
  * @method     CustomersQuery orderById($order = Criteria::ASC) Order by the id column
+ * @method     CustomersQuery orderByGroupsId($order = Criteria::ASC) Order by the groups_id column
  * @method     CustomersQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
  * @method     CustomersQuery orderByLastName($order = Criteria::ASC) Order by the last_name column
- * @method     CustomersQuery orderByInitials($order = Criteria::ASC) Order by the initials column
- * @method     CustomersQuery orderByPassword($order = Criteria::ASC) Order by the password column
  * @method     CustomersQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method     CustomersQuery orderByPhone($order = Criteria::ASC) Order by the phone column
+ * @method     CustomersQuery orderByPassword($order = Criteria::ASC) Order by the password column
  * @method     CustomersQuery orderByPasswordClear($order = Criteria::ASC) Order by the password_clear column
  * @method     CustomersQuery orderByDiscount($order = Criteria::ASC) Order by the discount column
- * @method     CustomersQuery orderByGroupsId($order = Criteria::ASC) Order by the groups_id column
  * @method     CustomersQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method     CustomersQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     CustomersQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
  * @method     CustomersQuery groupById() Group by the id column
+ * @method     CustomersQuery groupByGroupsId() Group by the groups_id column
  * @method     CustomersQuery groupByFirstName() Group by the first_name column
  * @method     CustomersQuery groupByLastName() Group by the last_name column
- * @method     CustomersQuery groupByInitials() Group by the initials column
- * @method     CustomersQuery groupByPassword() Group by the password column
  * @method     CustomersQuery groupByEmail() Group by the email column
  * @method     CustomersQuery groupByPhone() Group by the phone column
+ * @method     CustomersQuery groupByPassword() Group by the password column
  * @method     CustomersQuery groupByPasswordClear() Group by the password_clear column
  * @method     CustomersQuery groupByDiscount() Group by the discount column
- * @method     CustomersQuery groupByGroupsId() Group by the groups_id column
  * @method     CustomersQuery groupByIsActive() Group by the is_active column
  * @method     CustomersQuery groupByCreatedAt() Group by the created_at column
  * @method     CustomersQuery groupByUpdatedAt() Group by the updated_at column
@@ -60,10 +58,6 @@ use Hanzo\Model\Groups;
  * @method     CustomersQuery leftJoinGroups($relationAlias = null) Adds a LEFT JOIN clause to the query using the Groups relation
  * @method     CustomersQuery rightJoinGroups($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Groups relation
  * @method     CustomersQuery innerJoinGroups($relationAlias = null) Adds a INNER JOIN clause to the query using the Groups relation
- *
- * @method     CustomersQuery leftJoinConsultantsInfo($relationAlias = null) Adds a LEFT JOIN clause to the query using the ConsultantsInfo relation
- * @method     CustomersQuery rightJoinConsultantsInfo($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ConsultantsInfo relation
- * @method     CustomersQuery innerJoinConsultantsInfo($relationAlias = null) Adds a INNER JOIN clause to the query using the ConsultantsInfo relation
  *
  * @method     CustomersQuery leftJoinCouponsToCustomers($relationAlias = null) Adds a LEFT JOIN clause to the query using the CouponsToCustomers relation
  * @method     CustomersQuery rightJoinCouponsToCustomers($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CouponsToCustomers relation
@@ -85,33 +79,35 @@ use Hanzo\Model\Groups;
  * @method     CustomersQuery rightJoinGothiaAccounts($relationAlias = null) Adds a RIGHT JOIN clause to the query using the GothiaAccounts relation
  * @method     CustomersQuery innerJoinGothiaAccounts($relationAlias = null) Adds a INNER JOIN clause to the query using the GothiaAccounts relation
  *
+ * @method     CustomersQuery leftJoinConsultants($relationAlias = null) Adds a LEFT JOIN clause to the query using the Consultants relation
+ * @method     CustomersQuery rightJoinConsultants($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Consultants relation
+ * @method     CustomersQuery innerJoinConsultants($relationAlias = null) Adds a INNER JOIN clause to the query using the Consultants relation
+ *
  * @method     Customers findOne(PropelPDO $con = null) Return the first Customers matching the query
  * @method     Customers findOneOrCreate(PropelPDO $con = null) Return the first Customers matching the query, or a new Customers object populated from the query conditions when no match is found
  *
  * @method     Customers findOneById(int $id) Return the first Customers filtered by the id column
+ * @method     Customers findOneByGroupsId(int $groups_id) Return the first Customers filtered by the groups_id column
  * @method     Customers findOneByFirstName(string $first_name) Return the first Customers filtered by the first_name column
  * @method     Customers findOneByLastName(string $last_name) Return the first Customers filtered by the last_name column
- * @method     Customers findOneByInitials(string $initials) Return the first Customers filtered by the initials column
- * @method     Customers findOneByPassword(string $password) Return the first Customers filtered by the password column
  * @method     Customers findOneByEmail(string $email) Return the first Customers filtered by the email column
  * @method     Customers findOneByPhone(string $phone) Return the first Customers filtered by the phone column
+ * @method     Customers findOneByPassword(string $password) Return the first Customers filtered by the password column
  * @method     Customers findOneByPasswordClear(string $password_clear) Return the first Customers filtered by the password_clear column
  * @method     Customers findOneByDiscount(string $discount) Return the first Customers filtered by the discount column
- * @method     Customers findOneByGroupsId(int $groups_id) Return the first Customers filtered by the groups_id column
  * @method     Customers findOneByIsActive(boolean $is_active) Return the first Customers filtered by the is_active column
  * @method     Customers findOneByCreatedAt(string $created_at) Return the first Customers filtered by the created_at column
  * @method     Customers findOneByUpdatedAt(string $updated_at) Return the first Customers filtered by the updated_at column
  *
  * @method     array findById(int $id) Return Customers objects filtered by the id column
+ * @method     array findByGroupsId(int $groups_id) Return Customers objects filtered by the groups_id column
  * @method     array findByFirstName(string $first_name) Return Customers objects filtered by the first_name column
  * @method     array findByLastName(string $last_name) Return Customers objects filtered by the last_name column
- * @method     array findByInitials(string $initials) Return Customers objects filtered by the initials column
- * @method     array findByPassword(string $password) Return Customers objects filtered by the password column
  * @method     array findByEmail(string $email) Return Customers objects filtered by the email column
  * @method     array findByPhone(string $phone) Return Customers objects filtered by the phone column
+ * @method     array findByPassword(string $password) Return Customers objects filtered by the password column
  * @method     array findByPasswordClear(string $password_clear) Return Customers objects filtered by the password_clear column
  * @method     array findByDiscount(string $discount) Return Customers objects filtered by the discount column
- * @method     array findByGroupsId(int $groups_id) Return Customers objects filtered by the groups_id column
  * @method     array findByIsActive(boolean $is_active) Return Customers objects filtered by the is_active column
  * @method     array findByCreatedAt(string $created_at) Return Customers objects filtered by the created_at column
  * @method     array findByUpdatedAt(string $updated_at) Return Customers objects filtered by the updated_at column
@@ -203,7 +199,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `FIRST_NAME`, `LAST_NAME`, `INITIALS`, `PASSWORD`, `EMAIL`, `PHONE`, `PASSWORD_CLEAR`, `DISCOUNT`, `GROUPS_ID`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `GROUPS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `PASSWORD`, `PASSWORD_CLEAR`, `DISCOUNT`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -315,6 +311,48 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query on the groups_id column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByGroupsId(1234); // WHERE groups_id = 1234
+	 * $query->filterByGroupsId(array(12, 34)); // WHERE groups_id IN (12, 34)
+	 * $query->filterByGroupsId(array('min' => 12)); // WHERE groups_id > 12
+	 * </code>
+	 *
+	 * @see       filterByGroups()
+	 *
+	 * @param     mixed $groupsId The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByGroupsId($groupsId = null, $comparison = null)
+	{
+		if (is_array($groupsId)) {
+			$useMinMax = false;
+			if (isset($groupsId['min'])) {
+				$this->addUsingAlias(CustomersPeer::GROUPS_ID, $groupsId['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($groupsId['max'])) {
+				$this->addUsingAlias(CustomersPeer::GROUPS_ID, $groupsId['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(CustomersPeer::GROUPS_ID, $groupsId, $comparison);
+	}
+
+	/**
 	 * Filter the query on the first_name column
 	 *
 	 * Example usage:
@@ -371,62 +409,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the initials column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByInitials('fooValue');   // WHERE initials = 'fooValue'
-	 * $query->filterByInitials('%fooValue%'); // WHERE initials LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $initials The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByInitials($initials = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($initials)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $initials)) {
-				$initials = str_replace('*', '%', $initials);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::INITIALS, $initials, $comparison);
-	}
-
-	/**
-	 * Filter the query on the password column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByPassword('fooValue');   // WHERE password = 'fooValue'
-	 * $query->filterByPassword('%fooValue%'); // WHERE password LIKE '%fooValue%'
-	 * </code>
-	 *
-	 * @param     string $password The value to use as filter.
-	 *              Accepts wildcards (* and % trigger a LIKE)
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByPassword($password = null, $comparison = null)
-	{
-		if (null === $comparison) {
-			if (is_array($password)) {
-				$comparison = Criteria::IN;
-			} elseif (preg_match('/[\%\*]/', $password)) {
-				$password = str_replace('*', '%', $password);
-				$comparison = Criteria::LIKE;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::PASSWORD, $password, $comparison);
-	}
-
-	/**
 	 * Filter the query on the email column
 	 *
 	 * Example usage:
@@ -480,6 +462,34 @@ abstract class BaseCustomersQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(CustomersPeer::PHONE, $phone, $comparison);
+	}
+
+	/**
+	 * Filter the query on the password column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByPassword('fooValue');   // WHERE password = 'fooValue'
+	 * $query->filterByPassword('%fooValue%'); // WHERE password LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $password The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByPassword($password = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($password)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $password)) {
+				$password = str_replace('*', '%', $password);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(CustomersPeer::PASSWORD, $password, $comparison);
 	}
 
 	/**
@@ -548,48 +558,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(CustomersPeer::DISCOUNT, $discount, $comparison);
-	}
-
-	/**
-	 * Filter the query on the groups_id column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByGroupsId(1234); // WHERE groups_id = 1234
-	 * $query->filterByGroupsId(array(12, 34)); // WHERE groups_id IN (12, 34)
-	 * $query->filterByGroupsId(array('min' => 12)); // WHERE groups_id > 12
-	 * </code>
-	 *
-	 * @see       filterByGroups()
-	 *
-	 * @param     mixed $groupsId The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByGroupsId($groupsId = null, $comparison = null)
-	{
-		if (is_array($groupsId)) {
-			$useMinMax = false;
-			if (isset($groupsId['min'])) {
-				$this->addUsingAlias(CustomersPeer::GROUPS_ID, $groupsId['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($groupsId['max'])) {
-				$this->addUsingAlias(CustomersPeer::GROUPS_ID, $groupsId['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CustomersPeer::GROUPS_ID, $groupsId, $comparison);
 	}
 
 	/**
@@ -774,79 +742,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinGroups($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'Groups', '\Hanzo\Model\GroupsQuery');
-	}
-
-	/**
-	 * Filter the query by a related ConsultantsInfo object
-	 *
-	 * @param     ConsultantsInfo $consultantsInfo  the related object to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByConsultantsInfo($consultantsInfo, $comparison = null)
-	{
-		if ($consultantsInfo instanceof ConsultantsInfo) {
-			return $this
-				->addUsingAlias(CustomersPeer::ID, $consultantsInfo->getConsultantsId(), $comparison);
-		} elseif ($consultantsInfo instanceof PropelCollection) {
-			return $this
-				->useConsultantsInfoQuery()
-				->filterByPrimaryKeys($consultantsInfo->getPrimaryKeys())
-				->endUse();
-		} else {
-			throw new PropelException('filterByConsultantsInfo() only accepts arguments of type ConsultantsInfo or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the ConsultantsInfo relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function joinConsultantsInfo($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('ConsultantsInfo');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'ConsultantsInfo');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the ConsultantsInfo relation ConsultantsInfo object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\ConsultantsInfoQuery A secondary query class using the current class as primary query
-	 */
-	public function useConsultantsInfoQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		return $this
-			->joinConsultantsInfo($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'ConsultantsInfo', '\Hanzo\Model\ConsultantsInfoQuery');
 	}
 
 	/**
@@ -1212,6 +1107,79 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinGothiaAccounts($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'GothiaAccounts', '\Hanzo\Model\GothiaAccountsQuery');
+	}
+
+	/**
+	 * Filter the query by a related Consultants object
+	 *
+	 * @param     Consultants $consultants  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByConsultants($consultants, $comparison = null)
+	{
+		if ($consultants instanceof Consultants) {
+			return $this
+				->addUsingAlias(CustomersPeer::ID, $consultants->getId(), $comparison);
+		} elseif ($consultants instanceof PropelCollection) {
+			return $this
+				->useConsultantsQuery()
+				->filterByPrimaryKeys($consultants->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByConsultants() only accepts arguments of type Consultants or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the Consultants relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function joinConsultants($relationAlias = null, $joinType = 'LEFT JOIN')
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('Consultants');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'Consultants');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the Consultants relation Consultants object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\ConsultantsQuery A secondary query class using the current class as primary query
+	 */
+	public function useConsultantsQuery($relationAlias = null, $joinType = 'LEFT JOIN')
+	{
+		return $this
+			->joinConsultants($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'Consultants', '\Hanzo\Model\ConsultantsQuery');
 	}
 
 	/**

@@ -50,15 +50,6 @@
     <behavior name="timestampable" />
   </table>
 
-  <table name="consultants_info">
-    <column name="consultants_id" primaryKey="true" type="INTEGER" required="true"/>
-    <column name="description" type="LONGVARCHAR" required="false"/>
-    <column name="max_notified" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
-    <foreign-key foreignTable="customers" name="fk_consultants_info_1" onDelete="CASCADE">
-      <reference local="consultants_id" foreign="id"/>
-    </foreign-key>
-  </table>
-
   <table name="countries">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="name" type="VARCHAR" size="128" required="true"/>
@@ -114,25 +105,36 @@
     </foreign-key>
   </table>
 
+
   <table name="customers">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
-    <column name="initials" type="VARCHAR" size="6" required="false"/>
-    <column name="password" type="VARCHAR" size="128" required="true"/>
     <column name="email" type="VARCHAR" size="255" required="true"/>
     <column name="phone" type="VARCHAR" size="32" required="false"/>
+    <column name="password" type="VARCHAR" size="128" required="true"/>
     <column name="password_clear" type="VARCHAR" size="45" required="false"/>
     <column name="discount" type="DECIMAL" size="8" scale="2" required="false" defaultValue="0.00"/>
-    <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
     <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
-    <foreign-key foreignTable="groups" name="fk_customers_10" onUpdate="CASCADE">
+
+    <foreign-key foreignTable="groups" onUpdate="CASCADE">
       <reference local="groups_id" foreign="id"/>
     </foreign-key>
     <unique name="customers_email">
       <unique-column name="email"/>
     </unique>
     <behavior name="timestampable" />
+    <behavior name="delegate">
+      <parameter name="to" value="consultants" />
+    </behavior>
+  </table>
+
+  <table name="consultants">
+    <column name="initials" type="VARCHAR" size="6" required="false"/>
+    <column name="info" type="LONGVARCHAR" defaultValue="null" required="false"/>
+    <column name="event_notes" type="LONGVARCHAR" defaultValue="null" required="false"/>
+    <column name="max_notified" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
   </table>
 
   <table name="addresses">
@@ -442,7 +444,7 @@
   </table>
 
   <table name="orders">
-    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
     <column name="session_id" type="VARCHAR" size="32" required="true"/>
     <column name="payment_gateway_id" type="INTEGER" required="false" defaultValue="NULL"/>
     <column name="state" type="INTEGER" required="true" defaultValue="-50"/>

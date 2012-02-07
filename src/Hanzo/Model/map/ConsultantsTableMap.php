@@ -7,7 +7,7 @@ use \TableMap;
 
 
 /**
- * This class defines the structure of the 'consultants_info' table.
+ * This class defines the structure of the 'consultants' table.
  *
  *
  *
@@ -18,13 +18,13 @@ use \TableMap;
  *
  * @package    propel.generator.src.Hanzo.Model.map
  */
-class ConsultantsInfoTableMap extends TableMap
+class ConsultantsTableMap extends TableMap
 {
 
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.ConsultantsInfoTableMap';
+	const CLASS_NAME = 'src.Hanzo.Model.map.ConsultantsTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -36,15 +36,17 @@ class ConsultantsInfoTableMap extends TableMap
 	public function initialize()
 	{
 		// attributes
-		$this->setName('consultants_info');
-		$this->setPhpName('ConsultantsInfo');
-		$this->setClassname('Hanzo\\Model\\ConsultantsInfo');
+		$this->setName('consultants');
+		$this->setPhpName('Consultants');
+		$this->setClassname('Hanzo\\Model\\Consultants');
 		$this->setPackage('src.Hanzo.Model');
 		$this->setUseIdGenerator(false);
 		// columns
-		$this->addForeignPrimaryKey('CONSULTANTS_ID', 'ConsultantsId', 'INTEGER' , 'customers', 'ID', true, null, null);
-		$this->addColumn('DESCRIPTION', 'Description', 'LONGVARCHAR', false, null, null);
+		$this->addColumn('INITIALS', 'Initials', 'VARCHAR', false, 6, null);
+		$this->addColumn('INFO', 'Info', 'LONGVARCHAR', false, null, null);
+		$this->addColumn('EVENT_NOTES', 'EventNotes', 'LONGVARCHAR', false, null, null);
 		$this->addColumn('MAX_NOTIFIED', 'MaxNotified', 'BOOLEAN', true, 1, false);
+		$this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'customers', 'ID', true, null, null);
 		// validators
 	} // initialize()
 
@@ -53,7 +55,7 @@ class ConsultantsInfoTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('consultants_id' => 'id', ), 'CASCADE', null);
+		$this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
 	} // buildRelations()
 
-} // ConsultantsInfoTableMap
+} // ConsultantsTableMap

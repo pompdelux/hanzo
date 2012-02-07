@@ -18,8 +18,8 @@ use \PropelObjectCollection;
 use \PropelPDO;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
-use Hanzo\Model\ConsultantsInfo;
-use Hanzo\Model\ConsultantsInfoQuery;
+use Hanzo\Model\Consultants;
+use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\CouponsToCustomersQuery;
 use Hanzo\Model\CustomersPeer;
@@ -67,6 +67,13 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $id;
 
 	/**
+	 * The value for the groups_id field.
+	 * Note: this column has a database default value of: 1
+	 * @var        int
+	 */
+	protected $groups_id;
+
+	/**
 	 * The value for the first_name field.
 	 * @var        string
 	 */
@@ -77,18 +84,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        string
 	 */
 	protected $last_name;
-
-	/**
-	 * The value for the initials field.
-	 * @var        string
-	 */
-	protected $initials;
-
-	/**
-	 * The value for the password field.
-	 * @var        string
-	 */
-	protected $password;
 
 	/**
 	 * The value for the email field.
@@ -103,6 +98,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $phone;
 
 	/**
+	 * The value for the password field.
+	 * @var        string
+	 */
+	protected $password;
+
+	/**
 	 * The value for the password_clear field.
 	 * @var        string
 	 */
@@ -114,13 +115,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        string
 	 */
 	protected $discount;
-
-	/**
-	 * The value for the groups_id field.
-	 * Note: this column has a database default value of: 1
-	 * @var        int
-	 */
-	protected $groups_id;
 
 	/**
 	 * The value for the is_active field.
@@ -145,11 +139,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        Groups
 	 */
 	protected $aGroups;
-
-	/**
-	 * @var        ConsultantsInfo one-to-one related ConsultantsInfo object
-	 */
-	protected $singleConsultantsInfo;
 
 	/**
 	 * @var        array CouponsToCustomers[] Collection to store aggregation of CouponsToCustomers objects.
@@ -177,6 +166,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $singleGothiaAccounts;
 
 	/**
+	 * @var        Consultants one-to-one related Consultants object
+	 */
+	protected $singleConsultants;
+
+	/**
 	 * Flag to prevent endless save loop, if this object is referenced
 	 * by another object which falls in this transaction.
 	 * @var        boolean
@@ -189,12 +183,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        boolean
 	 */
 	protected $alreadyInValidation = false;
-
-	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $consultantsInfosScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -227,6 +215,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $gothiaAccountssScheduledForDeletion = null;
 
 	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $consultantssScheduledForDeletion = null;
+
+	/**
 	 * Applies default values to this object.
 	 * This method should be called from the object's constructor (or
 	 * equivalent initialization method).
@@ -234,8 +228,8 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 */
 	public function applyDefaultValues()
 	{
-		$this->discount = '0.00';
 		$this->groups_id = 1;
+		$this->discount = '0.00';
 		$this->is_active = true;
 	}
 
@@ -260,6 +254,16 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Get the [groups_id] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getGroupsId()
+	{
+		return $this->groups_id;
+	}
+
+	/**
 	 * Get the [first_name] column value.
 	 * 
 	 * @return     string
@@ -277,26 +281,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	public function getLastName()
 	{
 		return $this->last_name;
-	}
-
-	/**
-	 * Get the [initials] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getInitials()
-	{
-		return $this->initials;
-	}
-
-	/**
-	 * Get the [password] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getPassword()
-	{
-		return $this->password;
 	}
 
 	/**
@@ -320,6 +304,16 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Get the [password] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getPassword()
+	{
+		return $this->password;
+	}
+
+	/**
 	 * Get the [password_clear] column value.
 	 * 
 	 * @return     string
@@ -337,16 +331,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	public function getDiscount()
 	{
 		return $this->discount;
-	}
-
-	/**
-	 * Get the [groups_id] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getGroupsId()
-	{
-		return $this->groups_id;
 	}
 
 	/**
@@ -456,6 +440,30 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	} // setId()
 
 	/**
+	 * Set the value of [groups_id] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     Customers The current object (for fluent API support)
+	 */
+	public function setGroupsId($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->groups_id !== $v) {
+			$this->groups_id = $v;
+			$this->modifiedColumns[] = CustomersPeer::GROUPS_ID;
+		}
+
+		if ($this->aGroups !== null && $this->aGroups->getId() !== $v) {
+			$this->aGroups = null;
+		}
+
+		return $this;
+	} // setGroupsId()
+
+	/**
 	 * Set the value of [first_name] column.
 	 * 
 	 * @param      string $v new value
@@ -494,46 +502,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 		return $this;
 	} // setLastName()
-
-	/**
-	 * Set the value of [initials] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setInitials($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->initials !== $v) {
-			$this->initials = $v;
-			$this->modifiedColumns[] = CustomersPeer::INITIALS;
-		}
-
-		return $this;
-	} // setInitials()
-
-	/**
-	 * Set the value of [password] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setPassword($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->password !== $v) {
-			$this->password = $v;
-			$this->modifiedColumns[] = CustomersPeer::PASSWORD;
-		}
-
-		return $this;
-	} // setPassword()
 
 	/**
 	 * Set the value of [email] column.
@@ -576,6 +544,26 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	} // setPhone()
 
 	/**
+	 * Set the value of [password] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Customers The current object (for fluent API support)
+	 */
+	public function setPassword($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->password !== $v) {
+			$this->password = $v;
+			$this->modifiedColumns[] = CustomersPeer::PASSWORD;
+		}
+
+		return $this;
+	} // setPassword()
+
+	/**
 	 * Set the value of [password_clear] column.
 	 * 
 	 * @param      string $v new value
@@ -614,30 +602,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 		return $this;
 	} // setDiscount()
-
-	/**
-	 * Set the value of [groups_id] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function setGroupsId($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->groups_id !== $v) {
-			$this->groups_id = $v;
-			$this->modifiedColumns[] = CustomersPeer::GROUPS_ID;
-		}
-
-		if ($this->aGroups !== null && $this->aGroups->getId() !== $v) {
-			$this->aGroups = null;
-		}
-
-		return $this;
-	} // setGroupsId()
 
 	/**
 	 * Sets the value of the [is_active] column.
@@ -721,11 +685,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
-			if ($this->discount !== '0.00') {
+			if ($this->groups_id !== 1) {
 				return false;
 			}
 
-			if ($this->groups_id !== 1) {
+			if ($this->discount !== '0.00') {
 				return false;
 			}
 
@@ -756,18 +720,17 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		try {
 
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->first_name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->last_name = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->initials = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->password = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->email = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->phone = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->groups_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
+			$this->first_name = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->last_name = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->email = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->phone = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->password = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
 			$this->password_clear = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
 			$this->discount = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->groups_id = ($row[$startcol + 9] !== null) ? (int) $row[$startcol + 9] : null;
-			$this->is_active = ($row[$startcol + 10] !== null) ? (boolean) $row[$startcol + 10] : null;
-			$this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-			$this->updated_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+			$this->is_active = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
+			$this->created_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->updated_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -776,7 +739,7 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 13; // 13 = CustomersPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 12; // 12 = CustomersPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Customers object", $e);
@@ -842,8 +805,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($deep) {  // also de-associate any related objects?
 
 			$this->aGroups = null;
-			$this->singleConsultantsInfo = null;
-
 			$this->collCouponsToCustomerss = null;
 
 			$this->collAddressess = null;
@@ -853,6 +814,8 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->collEventssRelatedByCustomersId = null;
 
 			$this->singleGothiaAccounts = null;
+
+			$this->singleConsultants = null;
 
 		} // if (deep)
 	}
@@ -998,21 +961,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->resetModified();
 			}
 
-			if ($this->consultantsInfosScheduledForDeletion !== null) {
-				if (!$this->consultantsInfosScheduledForDeletion->isEmpty()) {
-					ConsultantsInfoQuery::create()
-						->filterByPrimaryKeys($this->consultantsInfosScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->consultantsInfosScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->singleConsultantsInfo !== null) {
-				if (!$this->singleConsultantsInfo->isDeleted()) {
-						$affectedRows += $this->singleConsultantsInfo->save($con);
-				}
-			}
-
 			if ($this->couponsToCustomerssScheduledForDeletion !== null) {
 				if (!$this->couponsToCustomerssScheduledForDeletion->isEmpty()) {
 					CouponsToCustomersQuery::create()
@@ -1096,6 +1044,21 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				}
 			}
 
+			if ($this->consultantssScheduledForDeletion !== null) {
+				if (!$this->consultantssScheduledForDeletion->isEmpty()) {
+					ConsultantsQuery::create()
+						->filterByPrimaryKeys($this->consultantssScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->consultantssScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->singleConsultants !== null) {
+				if (!$this->singleConsultants->isDeleted()) {
+						$affectedRows += $this->singleConsultants->save($con);
+				}
+			}
+
 			$this->alreadyInSave = false;
 
 		}
@@ -1124,17 +1087,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CustomersPeer::ID)) {
 			$modifiedColumns[':p' . $index++]  = '`ID`';
 		}
+		if ($this->isColumnModified(CustomersPeer::GROUPS_ID)) {
+			$modifiedColumns[':p' . $index++]  = '`GROUPS_ID`';
+		}
 		if ($this->isColumnModified(CustomersPeer::FIRST_NAME)) {
 			$modifiedColumns[':p' . $index++]  = '`FIRST_NAME`';
 		}
 		if ($this->isColumnModified(CustomersPeer::LAST_NAME)) {
 			$modifiedColumns[':p' . $index++]  = '`LAST_NAME`';
-		}
-		if ($this->isColumnModified(CustomersPeer::INITIALS)) {
-			$modifiedColumns[':p' . $index++]  = '`INITIALS`';
-		}
-		if ($this->isColumnModified(CustomersPeer::PASSWORD)) {
-			$modifiedColumns[':p' . $index++]  = '`PASSWORD`';
 		}
 		if ($this->isColumnModified(CustomersPeer::EMAIL)) {
 			$modifiedColumns[':p' . $index++]  = '`EMAIL`';
@@ -1142,14 +1102,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CustomersPeer::PHONE)) {
 			$modifiedColumns[':p' . $index++]  = '`PHONE`';
 		}
+		if ($this->isColumnModified(CustomersPeer::PASSWORD)) {
+			$modifiedColumns[':p' . $index++]  = '`PASSWORD`';
+		}
 		if ($this->isColumnModified(CustomersPeer::PASSWORD_CLEAR)) {
 			$modifiedColumns[':p' . $index++]  = '`PASSWORD_CLEAR`';
 		}
 		if ($this->isColumnModified(CustomersPeer::DISCOUNT)) {
 			$modifiedColumns[':p' . $index++]  = '`DISCOUNT`';
-		}
-		if ($this->isColumnModified(CustomersPeer::GROUPS_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`GROUPS_ID`';
 		}
 		if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) {
 			$modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
@@ -1174,17 +1134,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					case '`ID`':
 						$stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
 						break;
+					case '`GROUPS_ID`':
+						$stmt->bindValue($identifier, $this->groups_id, PDO::PARAM_INT);
+						break;
 					case '`FIRST_NAME`':
 						$stmt->bindValue($identifier, $this->first_name, PDO::PARAM_STR);
 						break;
 					case '`LAST_NAME`':
 						$stmt->bindValue($identifier, $this->last_name, PDO::PARAM_STR);
-						break;
-					case '`INITIALS`':
-						$stmt->bindValue($identifier, $this->initials, PDO::PARAM_STR);
-						break;
-					case '`PASSWORD`':
-						$stmt->bindValue($identifier, $this->password, PDO::PARAM_STR);
 						break;
 					case '`EMAIL`':
 						$stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
@@ -1192,14 +1149,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					case '`PHONE`':
 						$stmt->bindValue($identifier, $this->phone, PDO::PARAM_STR);
 						break;
+					case '`PASSWORD`':
+						$stmt->bindValue($identifier, $this->password, PDO::PARAM_STR);
+						break;
 					case '`PASSWORD_CLEAR`':
 						$stmt->bindValue($identifier, $this->password_clear, PDO::PARAM_STR);
 						break;
 					case '`DISCOUNT`':
 						$stmt->bindValue($identifier, $this->discount, PDO::PARAM_STR);
-						break;
-					case '`GROUPS_ID`':
-						$stmt->bindValue($identifier, $this->groups_id, PDO::PARAM_INT);
 						break;
 					case '`IS_ACTIVE`':
 						$stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
@@ -1319,12 +1276,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 
 
-				if ($this->singleConsultantsInfo !== null) {
-					if (!$this->singleConsultantsInfo->validate($columns)) {
-						$failureMap = array_merge($failureMap, $this->singleConsultantsInfo->getValidationFailures());
-					}
-				}
-
 				if ($this->collCouponsToCustomerss !== null) {
 					foreach ($this->collCouponsToCustomerss as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
@@ -1360,6 +1311,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				if ($this->singleGothiaAccounts !== null) {
 					if (!$this->singleGothiaAccounts->validate($columns)) {
 						$failureMap = array_merge($failureMap, $this->singleGothiaAccounts->getValidationFailures());
+					}
+				}
+
+				if ($this->singleConsultants !== null) {
+					if (!$this->singleConsultants->validate($columns)) {
+						$failureMap = array_merge($failureMap, $this->singleConsultants->getValidationFailures());
 					}
 				}
 
@@ -1400,22 +1357,22 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				return $this->getId();
 				break;
 			case 1:
-				return $this->getFirstName();
+				return $this->getGroupsId();
 				break;
 			case 2:
-				return $this->getLastName();
+				return $this->getFirstName();
 				break;
 			case 3:
-				return $this->getInitials();
+				return $this->getLastName();
 				break;
 			case 4:
-				return $this->getPassword();
-				break;
-			case 5:
 				return $this->getEmail();
 				break;
-			case 6:
+			case 5:
 				return $this->getPhone();
+				break;
+			case 6:
+				return $this->getPassword();
 				break;
 			case 7:
 				return $this->getPasswordClear();
@@ -1424,15 +1381,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				return $this->getDiscount();
 				break;
 			case 9:
-				return $this->getGroupsId();
-				break;
-			case 10:
 				return $this->getIsActive();
 				break;
-			case 11:
+			case 10:
 				return $this->getCreatedAt();
 				break;
-			case 12:
+			case 11:
 				return $this->getUpdatedAt();
 				break;
 			default:
@@ -1465,25 +1419,21 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$keys = CustomersPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
-			$keys[1] => $this->getFirstName(),
-			$keys[2] => $this->getLastName(),
-			$keys[3] => $this->getInitials(),
-			$keys[4] => $this->getPassword(),
-			$keys[5] => $this->getEmail(),
-			$keys[6] => $this->getPhone(),
+			$keys[1] => $this->getGroupsId(),
+			$keys[2] => $this->getFirstName(),
+			$keys[3] => $this->getLastName(),
+			$keys[4] => $this->getEmail(),
+			$keys[5] => $this->getPhone(),
+			$keys[6] => $this->getPassword(),
 			$keys[7] => $this->getPasswordClear(),
 			$keys[8] => $this->getDiscount(),
-			$keys[9] => $this->getGroupsId(),
-			$keys[10] => $this->getIsActive(),
-			$keys[11] => $this->getCreatedAt(),
-			$keys[12] => $this->getUpdatedAt(),
+			$keys[9] => $this->getIsActive(),
+			$keys[10] => $this->getCreatedAt(),
+			$keys[11] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aGroups) {
 				$result['Groups'] = $this->aGroups->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-			}
-			if (null !== $this->singleConsultantsInfo) {
-				$result['ConsultantsInfo'] = $this->singleConsultantsInfo->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
 			}
 			if (null !== $this->collCouponsToCustomerss) {
 				$result['CouponsToCustomerss'] = $this->collCouponsToCustomerss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1499,6 +1449,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 			if (null !== $this->singleGothiaAccounts) {
 				$result['GothiaAccounts'] = $this->singleGothiaAccounts->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
+			}
+			if (null !== $this->singleConsultants) {
+				$result['Consultants'] = $this->singleConsultants->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
 			}
 		}
 		return $result;
@@ -1535,22 +1488,22 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->setId($value);
 				break;
 			case 1:
-				$this->setFirstName($value);
+				$this->setGroupsId($value);
 				break;
 			case 2:
-				$this->setLastName($value);
+				$this->setFirstName($value);
 				break;
 			case 3:
-				$this->setInitials($value);
+				$this->setLastName($value);
 				break;
 			case 4:
-				$this->setPassword($value);
-				break;
-			case 5:
 				$this->setEmail($value);
 				break;
-			case 6:
+			case 5:
 				$this->setPhone($value);
+				break;
+			case 6:
+				$this->setPassword($value);
 				break;
 			case 7:
 				$this->setPasswordClear($value);
@@ -1559,15 +1512,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$this->setDiscount($value);
 				break;
 			case 9:
-				$this->setGroupsId($value);
-				break;
-			case 10:
 				$this->setIsActive($value);
 				break;
-			case 11:
+			case 10:
 				$this->setCreatedAt($value);
 				break;
-			case 12:
+			case 11:
 				$this->setUpdatedAt($value);
 				break;
 		} // switch()
@@ -1595,18 +1545,17 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$keys = CustomersPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFirstName($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setLastName($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setInitials($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setPassword($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setEmail($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setPhone($arr[$keys[6]]);
+		if (array_key_exists($keys[1], $arr)) $this->setGroupsId($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setFirstName($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setLastName($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setEmail($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setPhone($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setPassword($arr[$keys[6]]);
 		if (array_key_exists($keys[7], $arr)) $this->setPasswordClear($arr[$keys[7]]);
 		if (array_key_exists($keys[8], $arr)) $this->setDiscount($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setGroupsId($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setIsActive($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setUpdatedAt($arr[$keys[12]]);
+		if (array_key_exists($keys[9], $arr)) $this->setIsActive($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setCreatedAt($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setUpdatedAt($arr[$keys[11]]);
 	}
 
 	/**
@@ -1619,15 +1568,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		$criteria = new Criteria(CustomersPeer::DATABASE_NAME);
 
 		if ($this->isColumnModified(CustomersPeer::ID)) $criteria->add(CustomersPeer::ID, $this->id);
+		if ($this->isColumnModified(CustomersPeer::GROUPS_ID)) $criteria->add(CustomersPeer::GROUPS_ID, $this->groups_id);
 		if ($this->isColumnModified(CustomersPeer::FIRST_NAME)) $criteria->add(CustomersPeer::FIRST_NAME, $this->first_name);
 		if ($this->isColumnModified(CustomersPeer::LAST_NAME)) $criteria->add(CustomersPeer::LAST_NAME, $this->last_name);
-		if ($this->isColumnModified(CustomersPeer::INITIALS)) $criteria->add(CustomersPeer::INITIALS, $this->initials);
-		if ($this->isColumnModified(CustomersPeer::PASSWORD)) $criteria->add(CustomersPeer::PASSWORD, $this->password);
 		if ($this->isColumnModified(CustomersPeer::EMAIL)) $criteria->add(CustomersPeer::EMAIL, $this->email);
 		if ($this->isColumnModified(CustomersPeer::PHONE)) $criteria->add(CustomersPeer::PHONE, $this->phone);
+		if ($this->isColumnModified(CustomersPeer::PASSWORD)) $criteria->add(CustomersPeer::PASSWORD, $this->password);
 		if ($this->isColumnModified(CustomersPeer::PASSWORD_CLEAR)) $criteria->add(CustomersPeer::PASSWORD_CLEAR, $this->password_clear);
 		if ($this->isColumnModified(CustomersPeer::DISCOUNT)) $criteria->add(CustomersPeer::DISCOUNT, $this->discount);
-		if ($this->isColumnModified(CustomersPeer::GROUPS_ID)) $criteria->add(CustomersPeer::GROUPS_ID, $this->groups_id);
 		if ($this->isColumnModified(CustomersPeer::IS_ACTIVE)) $criteria->add(CustomersPeer::IS_ACTIVE, $this->is_active);
 		if ($this->isColumnModified(CustomersPeer::CREATED_AT)) $criteria->add(CustomersPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(CustomersPeer::UPDATED_AT)) $criteria->add(CustomersPeer::UPDATED_AT, $this->updated_at);
@@ -1693,15 +1641,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
+		$copyObj->setGroupsId($this->getGroupsId());
 		$copyObj->setFirstName($this->getFirstName());
 		$copyObj->setLastName($this->getLastName());
-		$copyObj->setInitials($this->getInitials());
-		$copyObj->setPassword($this->getPassword());
 		$copyObj->setEmail($this->getEmail());
 		$copyObj->setPhone($this->getPhone());
+		$copyObj->setPassword($this->getPassword());
 		$copyObj->setPasswordClear($this->getPasswordClear());
 		$copyObj->setDiscount($this->getDiscount());
-		$copyObj->setGroupsId($this->getGroupsId());
 		$copyObj->setIsActive($this->getIsActive());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
@@ -1712,11 +1659,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$copyObj->setNew(false);
 			// store object hash to prevent cycle
 			$this->startCopy = true;
-
-			$relObj = $this->getConsultantsInfo();
-			if ($relObj) {
-				$copyObj->setConsultantsInfo($relObj->copy($deepCopy));
-			}
 
 			foreach ($this->getCouponsToCustomerss() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
@@ -1745,6 +1687,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$relObj = $this->getGothiaAccounts();
 			if ($relObj) {
 				$copyObj->setGothiaAccounts($relObj->copy($deepCopy));
+			}
+
+			$relObj = $this->getConsultants();
+			if ($relObj) {
+				$copyObj->setConsultants($relObj->copy($deepCopy));
 			}
 
 			//unflag object copy
@@ -1867,42 +1814,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ('EventsRelatedByCustomersId' == $relationName) {
 			return $this->initEventssRelatedByCustomersId();
 		}
-	}
-
-	/**
-	 * Gets a single ConsultantsInfo object, which is related to this object by a one-to-one relationship.
-	 *
-	 * @param      PropelPDO $con optional connection object
-	 * @return     ConsultantsInfo
-	 * @throws     PropelException
-	 */
-	public function getConsultantsInfo(PropelPDO $con = null)
-	{
-
-		if ($this->singleConsultantsInfo === null && !$this->isNew()) {
-			$this->singleConsultantsInfo = ConsultantsInfoQuery::create()->findPk($this->getPrimaryKey(), $con);
-		}
-
-		return $this->singleConsultantsInfo;
-	}
-
-	/**
-	 * Sets a single ConsultantsInfo object as related to this object by a one-to-one relationship.
-	 *
-	 * @param      ConsultantsInfo $v ConsultantsInfo
-	 * @return     Customers The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setConsultantsInfo(ConsultantsInfo $v = null)
-	{
-		$this->singleConsultantsInfo = $v;
-
-		// Make sure that that the passed-in ConsultantsInfo isn't already associated with this object
-		if ($v !== null && $v->getCustomers() === null) {
-			$v->setCustomers($this);
-		}
-
-		return $this;
 	}
 
 	/**
@@ -2584,20 +2495,55 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Gets a single Consultants object, which is related to this object by a one-to-one relationship.
+	 *
+	 * @param      PropelPDO $con optional connection object
+	 * @return     Consultants
+	 * @throws     PropelException
+	 */
+	public function getConsultants(PropelPDO $con = null)
+	{
+
+		if ($this->singleConsultants === null && !$this->isNew()) {
+			$this->singleConsultants = ConsultantsQuery::create()->findPk($this->getPrimaryKey(), $con);
+		}
+
+		return $this->singleConsultants;
+	}
+
+	/**
+	 * Sets a single Consultants object as related to this object by a one-to-one relationship.
+	 *
+	 * @param      Consultants $v Consultants
+	 * @return     Customers The current object (for fluent API support)
+	 * @throws     PropelException
+	 */
+	public function setConsultants(Consultants $v = null)
+	{
+		$this->singleConsultants = $v;
+
+		// Make sure that that the passed-in Consultants isn't already associated with this object
+		if ($v !== null && $v->getCustomers() === null) {
+			$v->setCustomers($this);
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Clears the current object and sets all attributes to their default values
 	 */
 	public function clear()
 	{
 		$this->id = null;
+		$this->groups_id = null;
 		$this->first_name = null;
 		$this->last_name = null;
-		$this->initials = null;
-		$this->password = null;
 		$this->email = null;
 		$this->phone = null;
+		$this->password = null;
 		$this->password_clear = null;
 		$this->discount = null;
-		$this->groups_id = null;
 		$this->is_active = null;
 		$this->created_at = null;
 		$this->updated_at = null;
@@ -2622,9 +2568,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
-			if ($this->singleConsultantsInfo) {
-				$this->singleConsultantsInfo->clearAllReferences($deep);
-			}
 			if ($this->collCouponsToCustomerss) {
 				foreach ($this->collCouponsToCustomerss as $o) {
 					$o->clearAllReferences($deep);
@@ -2648,12 +2591,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			if ($this->singleGothiaAccounts) {
 				$this->singleGothiaAccounts->clearAllReferences($deep);
 			}
+			if ($this->singleConsultants) {
+				$this->singleConsultants->clearAllReferences($deep);
+			}
 		} // if ($deep)
 
-		if ($this->singleConsultantsInfo instanceof PropelCollection) {
-			$this->singleConsultantsInfo->clearIterator();
-		}
-		$this->singleConsultantsInfo = null;
 		if ($this->collCouponsToCustomerss instanceof PropelCollection) {
 			$this->collCouponsToCustomerss->clearIterator();
 		}
@@ -2674,6 +2616,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->singleGothiaAccounts->clearIterator();
 		}
 		$this->singleGothiaAccounts = null;
+		if ($this->singleConsultants instanceof PropelCollection) {
+			$this->singleConsultants->clearIterator();
+		}
+		$this->singleConsultants = null;
 		$this->aGroups = null;
 	}
 
@@ -2698,6 +2644,24 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	{
 		$this->modifiedColumns[] = CustomersPeer::UPDATED_AT;
 		return $this;
+	}
+
+	/**
+	 * Catches calls to virtual methods
+	 */
+	public function __call($name, $params)
+	{
+		
+		// delegate behavior
+		
+		if (is_callable(array('Hanzo\Model\Consultants', $name))) {
+			if (!$delegate = $this->getConsultants()) {
+				$delegate = new Consultants();
+				$this->setConsultants($delegate);
+			}
+			return call_user_func_array(array($delegate, $name), $params);
+		}
+		return parent::__call($name, $params);
 	}
 
 } // BaseCustomers

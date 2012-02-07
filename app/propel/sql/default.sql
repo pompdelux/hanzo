@@ -67,24 +67,6 @@ CREATE TABLE `cms`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- consultants_info
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `consultants_info`;
-
-CREATE TABLE `consultants_info`
-(
-	`consultants_id` INTEGER NOT NULL,
-	`description` TEXT,
-	`max_notified` TINYINT(1) DEFAULT 0 NOT NULL,
-	PRIMARY KEY (`consultants_id`),
-	CONSTRAINT `fk_consultants_info_1`
-		FOREIGN KEY (`consultants_id`)
-		REFERENCES `customers` (`id`)
-		ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- ---------------------------------------------------------------------
 -- countries
 -- ---------------------------------------------------------------------
 
@@ -164,25 +146,44 @@ DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`groups_id` INTEGER DEFAULT 1 NOT NULL,
 	`first_name` VARCHAR(128) NOT NULL,
 	`last_name` VARCHAR(128) NOT NULL,
-	`initials` VARCHAR(6),
-	`password` VARCHAR(128) NOT NULL,
 	`email` VARCHAR(255) NOT NULL,
 	`phone` VARCHAR(32),
+	`password` VARCHAR(128) NOT NULL,
 	`password_clear` VARCHAR(45),
 	`discount` DECIMAL(8,2) DEFAULT 0.00,
-	`groups_id` INTEGER DEFAULT 1 NOT NULL,
 	`is_active` TINYINT(1) DEFAULT 1 NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `customers_email` (`email`),
-	INDEX `FI_customers_10` (`groups_id`),
-	CONSTRAINT `fk_customers_10`
+	INDEX `customers_FI_1` (`groups_id`),
+	CONSTRAINT `customers_FK_1`
 		FOREIGN KEY (`groups_id`)
 		REFERENCES `groups` (`id`)
 		ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- consultants
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `consultants`;
+
+CREATE TABLE `consultants`
+(
+	`initials` VARCHAR(6),
+	`info` TEXT,
+	`event_notes` TEXT,
+	`max_notified` TINYINT(1) DEFAULT 0 NOT NULL,
+	`id` INTEGER NOT NULL,
+	PRIMARY KEY (`id`),
+	CONSTRAINT `consultants_FK_1`
+		FOREIGN KEY (`id`)
+		REFERENCES `customers` (`id`)
+		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

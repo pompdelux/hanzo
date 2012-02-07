@@ -15,6 +15,7 @@ use Propel,
 
 use Hanzo\Model\Customers,
     Hanzo\Model\CustomersPeer,
+    Hanzo\Model\Consultants,
     Hanzo\Model\Addresses,
     Hanzo\Model\AddressesPeer,
     Hanzo\Model\Orders,
@@ -572,7 +573,14 @@ class ImportCommand extends ContainerAwareCommand
         $this->output->writeln('<info>Starting customer import</info>');
 
         //$sql = "SELECT * FROM osc_customers LEFT JOIN osc_address_book ON osc_customers.customers_id = osc_address_book.customers_id";
-        $sql = "SELECT * FROM osc_customers";
+        $sql = "
+            SELECT c.*, ci.*
+            FROM osc_customers AS c
+            LEFT JOIN pdl_consultant_info AS ci ON (ci.consultant_id = c.customers_id)
+
+-- first import consultants, to save time...
+            WHERE c.customers_groups_id = 2
+        ";
         foreach ( $this->connection->query($sql) as $row )
         {
             $customer = CustomersPeer::getByEmail( $row['customers_email_address'] );
@@ -580,7 +588,17 @@ class ImportCommand extends ContainerAwareCommand
             if ( is_null($customer) )
             {
                 $this->output->writeln('<comment>Creating: '. $row['customers_email_address'].'</comment>');
+
                 $customer = new Customers();
+                if ($row['customers_groups_id'] > 1) {
+                    $customer->setGroupsId(2);
+                    $customer->setEventNotes($row['notes']);
+                    $customer->setInfo($row['customers_notes']);
+                    $customer->setInitials($row['customers_initials']);
+                }
+                else {
+                    $customer->setGroupsId(1);
+                }
                 $customer
                     ->setId( $row['customers_id'] )
                     ->setFirstname( $row['customers_firstname'] )
@@ -591,12 +609,7 @@ class ImportCommand extends ContainerAwareCommand
                     ->setPasswordClear( $row[ 'customers_password_cleartext' ] )
                     ->setDiscount( $row['customers_discount'] )
                     ->setIsActive( $row['customers_status'] )
-                    ;
-
-                if ( !empty( $row['customers_initials'] ) )
-                {
-                    $customer->setInitials($row['customers_initials']);
-                }
+                ;
 
                 $addresses = array();
                 $addresses = $this->getAddresses( $row );

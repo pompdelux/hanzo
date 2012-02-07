@@ -13,31 +13,31 @@ use \PropelCollection;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
-use Hanzo\Model\ConsultantsInfoPeer;
-use Hanzo\Model\ConsultantsInfoQuery;
+use Hanzo\Model\ConsultantsPeer;
+use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 
 /**
- * Base class that represents a row from the 'consultants_info' table.
+ * Base class that represents a row from the 'consultants' table.
  *
  * 
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
-abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
+abstract class BaseConsultants extends BaseObject  implements Persistent
 {
 
 	/**
 	 * Peer class name
 	 */
-	const PEER = 'Hanzo\\Model\\ConsultantsInfoPeer';
+	const PEER = 'Hanzo\\Model\\ConsultantsPeer';
 
 	/**
 	 * The Peer class.
 	 * Instance provides a convenient way of calling static methods on a class
 	 * that calling code may not be able to identify.
-	 * @var        ConsultantsInfoPeer
+	 * @var        ConsultantsPeer
 	 */
 	protected static $peer;
 
@@ -48,16 +48,22 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	protected $startCopy = false;
 
 	/**
-	 * The value for the consultants_id field.
-	 * @var        int
-	 */
-	protected $consultants_id;
-
-	/**
-	 * The value for the description field.
+	 * The value for the initials field.
 	 * @var        string
 	 */
-	protected $description;
+	protected $initials;
+
+	/**
+	 * The value for the info field.
+	 * @var        string
+	 */
+	protected $info;
+
+	/**
+	 * The value for the event_notes field.
+	 * @var        string
+	 */
+	protected $event_notes;
 
 	/**
 	 * The value for the max_notified field.
@@ -65,6 +71,12 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 * @var        boolean
 	 */
 	protected $max_notified;
+
+	/**
+	 * The value for the id field.
+	 * @var        int
+	 */
+	protected $id;
 
 	/**
 	 * @var        Customers
@@ -97,7 +109,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Initializes internal state of BaseConsultantsInfo object.
+	 * Initializes internal state of BaseConsultants object.
 	 * @see        applyDefaults()
 	 */
 	public function __construct()
@@ -107,23 +119,33 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [consultants_id] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getConsultantsId()
-	{
-		return $this->consultants_id;
-	}
-
-	/**
-	 * Get the [description] column value.
+	 * Get the [initials] column value.
 	 * 
 	 * @return     string
 	 */
-	public function getDescription()
+	public function getInitials()
 	{
-		return $this->description;
+		return $this->initials;
+	}
+
+	/**
+	 * Get the [info] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getInfo()
+	{
+		return $this->info;
+	}
+
+	/**
+	 * Get the [event_notes] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getEventNotes()
+	{
+		return $this->event_notes;
 	}
 
 	/**
@@ -137,48 +159,74 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Set the value of [consultants_id] column.
+	 * Get the [id] column value.
 	 * 
-	 * @param      int $v new value
-	 * @return     ConsultantsInfo The current object (for fluent API support)
+	 * @return     int
 	 */
-	public function setConsultantsId($v)
+	public function getId()
 	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->consultants_id !== $v) {
-			$this->consultants_id = $v;
-			$this->modifiedColumns[] = ConsultantsInfoPeer::CONSULTANTS_ID;
-		}
-
-		if ($this->aCustomers !== null && $this->aCustomers->getId() !== $v) {
-			$this->aCustomers = null;
-		}
-
-		return $this;
-	} // setConsultantsId()
+		return $this->id;
+	}
 
 	/**
-	 * Set the value of [description] column.
+	 * Set the value of [initials] column.
 	 * 
 	 * @param      string $v new value
-	 * @return     ConsultantsInfo The current object (for fluent API support)
+	 * @return     Consultants The current object (for fluent API support)
 	 */
-	public function setDescription($v)
+	public function setInitials($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->description !== $v) {
-			$this->description = $v;
-			$this->modifiedColumns[] = ConsultantsInfoPeer::DESCRIPTION;
+		if ($this->initials !== $v) {
+			$this->initials = $v;
+			$this->modifiedColumns[] = ConsultantsPeer::INITIALS;
 		}
 
 		return $this;
-	} // setDescription()
+	} // setInitials()
+
+	/**
+	 * Set the value of [info] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Consultants The current object (for fluent API support)
+	 */
+	public function setInfo($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->info !== $v) {
+			$this->info = $v;
+			$this->modifiedColumns[] = ConsultantsPeer::INFO;
+		}
+
+		return $this;
+	} // setInfo()
+
+	/**
+	 * Set the value of [event_notes] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Consultants The current object (for fluent API support)
+	 */
+	public function setEventNotes($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->event_notes !== $v) {
+			$this->event_notes = $v;
+			$this->modifiedColumns[] = ConsultantsPeer::EVENT_NOTES;
+		}
+
+		return $this;
+	} // setEventNotes()
 
 	/**
 	 * Sets the value of the [max_notified] column.
@@ -188,7 +236,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
 	 * 
 	 * @param      boolean|integer|string $v The new value
-	 * @return     ConsultantsInfo The current object (for fluent API support)
+	 * @return     Consultants The current object (for fluent API support)
 	 */
 	public function setMaxNotified($v)
 	{
@@ -202,11 +250,35 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 
 		if ($this->max_notified !== $v) {
 			$this->max_notified = $v;
-			$this->modifiedColumns[] = ConsultantsInfoPeer::MAX_NOTIFIED;
+			$this->modifiedColumns[] = ConsultantsPeer::MAX_NOTIFIED;
 		}
 
 		return $this;
 	} // setMaxNotified()
+
+	/**
+	 * Set the value of [id] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     Consultants The current object (for fluent API support)
+	 */
+	public function setId($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->id !== $v) {
+			$this->id = $v;
+			$this->modifiedColumns[] = ConsultantsPeer::ID;
+		}
+
+		if ($this->aCustomers !== null && $this->aCustomers->getId() !== $v) {
+			$this->aCustomers = null;
+		}
+
+		return $this;
+	} // setId()
 
 	/**
 	 * Indicates whether the columns in this object are only set to default values.
@@ -244,9 +316,11 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	{
 		try {
 
-			$this->consultants_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->description = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->max_notified = ($row[$startcol + 2] !== null) ? (boolean) $row[$startcol + 2] : null;
+			$this->initials = ($row[$startcol + 0] !== null) ? (string) $row[$startcol + 0] : null;
+			$this->info = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+			$this->event_notes = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->max_notified = ($row[$startcol + 3] !== null) ? (boolean) $row[$startcol + 3] : null;
+			$this->id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -255,10 +329,10 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 3; // 3 = ConsultantsInfoPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 5; // 5 = ConsultantsPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating ConsultantsInfo object", $e);
+			throw new PropelException("Error populating Consultants object", $e);
 		}
 	}
 
@@ -278,7 +352,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	public function ensureConsistency()
 	{
 
-		if ($this->aCustomers !== null && $this->consultants_id !== $this->aCustomers->getId()) {
+		if ($this->aCustomers !== null && $this->id !== $this->aCustomers->getId()) {
 			$this->aCustomers = null;
 		}
 	} // ensureConsistency
@@ -304,13 +378,13 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		// We don't need to alter the object instance pool; we're just modifying this instance
 		// already in the pool.
 
-		$stmt = ConsultantsInfoPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
+		$stmt = ConsultantsPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
 		$row = $stmt->fetch(PDO::FETCH_NUM);
 		$stmt->closeCursor();
 		if (!$row) {
@@ -340,12 +414,12 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$con->beginTransaction();
 		try {
-			$deleteQuery = ConsultantsInfoQuery::create()
+			$deleteQuery = ConsultantsQuery::create()
 				->filterByPrimaryKey($this->getPrimaryKey());
 			$ret = $this->preDelete($con);
 			if ($ret) {
@@ -382,7 +456,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(ConsultantsInfoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(ConsultantsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$con->beginTransaction();
@@ -402,7 +476,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 					$this->postUpdate($con);
 				}
 				$this->postSave($con);
-				ConsultantsInfoPeer::addInstanceToPool($this);
+				ConsultantsPeer::addInstanceToPool($this);
 			} else {
 				$affectedRows = 0;
 			}
@@ -475,18 +549,24 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 
 
 		 // check the columns in natural order for more readable SQL queries
-		if ($this->isColumnModified(ConsultantsInfoPeer::CONSULTANTS_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`CONSULTANTS_ID`';
+		if ($this->isColumnModified(ConsultantsPeer::INITIALS)) {
+			$modifiedColumns[':p' . $index++]  = '`INITIALS`';
 		}
-		if ($this->isColumnModified(ConsultantsInfoPeer::DESCRIPTION)) {
-			$modifiedColumns[':p' . $index++]  = '`DESCRIPTION`';
+		if ($this->isColumnModified(ConsultantsPeer::INFO)) {
+			$modifiedColumns[':p' . $index++]  = '`INFO`';
 		}
-		if ($this->isColumnModified(ConsultantsInfoPeer::MAX_NOTIFIED)) {
+		if ($this->isColumnModified(ConsultantsPeer::EVENT_NOTES)) {
+			$modifiedColumns[':p' . $index++]  = '`EVENT_NOTES`';
+		}
+		if ($this->isColumnModified(ConsultantsPeer::MAX_NOTIFIED)) {
 			$modifiedColumns[':p' . $index++]  = '`MAX_NOTIFIED`';
+		}
+		if ($this->isColumnModified(ConsultantsPeer::ID)) {
+			$modifiedColumns[':p' . $index++]  = '`ID`';
 		}
 
 		$sql = sprintf(
-			'INSERT INTO `consultants_info` (%s) VALUES (%s)',
+			'INSERT INTO `consultants` (%s) VALUES (%s)',
 			implode(', ', $modifiedColumns),
 			implode(', ', array_keys($modifiedColumns))
 		);
@@ -495,14 +575,20 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 			$stmt = $con->prepare($sql);
 			foreach ($modifiedColumns as $identifier => $columnName) {
 				switch ($columnName) {
-					case '`CONSULTANTS_ID`':
-						$stmt->bindValue($identifier, $this->consultants_id, PDO::PARAM_INT);
+					case '`INITIALS`':
+						$stmt->bindValue($identifier, $this->initials, PDO::PARAM_STR);
 						break;
-					case '`DESCRIPTION`':
-						$stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
+					case '`INFO`':
+						$stmt->bindValue($identifier, $this->info, PDO::PARAM_STR);
+						break;
+					case '`EVENT_NOTES`':
+						$stmt->bindValue($identifier, $this->event_notes, PDO::PARAM_STR);
 						break;
 					case '`MAX_NOTIFIED`':
 						$stmt->bindValue($identifier, (int) $this->max_notified, PDO::PARAM_INT);
+						break;
+					case '`ID`':
+						$stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
 						break;
 				}
 			}
@@ -601,7 +687,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 			}
 
 
-			if (($retval = ConsultantsInfoPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = ConsultantsPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -624,7 +710,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = ConsultantsInfoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = ConsultantsPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		$field = $this->getByPosition($pos);
 		return $field;
 	}
@@ -640,13 +726,19 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	{
 		switch($pos) {
 			case 0:
-				return $this->getConsultantsId();
+				return $this->getInitials();
 				break;
 			case 1:
-				return $this->getDescription();
+				return $this->getInfo();
 				break;
 			case 2:
+				return $this->getEventNotes();
+				break;
+			case 3:
 				return $this->getMaxNotified();
+				break;
+			case 4:
+				return $this->getId();
 				break;
 			default:
 				return null;
@@ -671,15 +763,17 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
 	{
-		if (isset($alreadyDumpedObjects['ConsultantsInfo'][$this->getPrimaryKey()])) {
+		if (isset($alreadyDumpedObjects['Consultants'][$this->getPrimaryKey()])) {
 			return '*RECURSION*';
 		}
-		$alreadyDumpedObjects['ConsultantsInfo'][$this->getPrimaryKey()] = true;
-		$keys = ConsultantsInfoPeer::getFieldNames($keyType);
+		$alreadyDumpedObjects['Consultants'][$this->getPrimaryKey()] = true;
+		$keys = ConsultantsPeer::getFieldNames($keyType);
 		$result = array(
-			$keys[0] => $this->getConsultantsId(),
-			$keys[1] => $this->getDescription(),
-			$keys[2] => $this->getMaxNotified(),
+			$keys[0] => $this->getInitials(),
+			$keys[1] => $this->getInfo(),
+			$keys[2] => $this->getEventNotes(),
+			$keys[3] => $this->getMaxNotified(),
+			$keys[4] => $this->getId(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCustomers) {
@@ -701,7 +795,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = ConsultantsInfoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = ConsultantsPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -717,13 +811,19 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	{
 		switch($pos) {
 			case 0:
-				$this->setConsultantsId($value);
+				$this->setInitials($value);
 				break;
 			case 1:
-				$this->setDescription($value);
+				$this->setInfo($value);
 				break;
 			case 2:
+				$this->setEventNotes($value);
+				break;
+			case 3:
 				$this->setMaxNotified($value);
+				break;
+			case 4:
+				$this->setId($value);
 				break;
 		} // switch()
 	}
@@ -747,11 +847,13 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = ConsultantsInfoPeer::getFieldNames($keyType);
+		$keys = ConsultantsPeer::getFieldNames($keyType);
 
-		if (array_key_exists($keys[0], $arr)) $this->setConsultantsId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setDescription($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setMaxNotified($arr[$keys[2]]);
+		if (array_key_exists($keys[0], $arr)) $this->setInitials($arr[$keys[0]]);
+		if (array_key_exists($keys[1], $arr)) $this->setInfo($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setEventNotes($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setMaxNotified($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setId($arr[$keys[4]]);
 	}
 
 	/**
@@ -761,11 +863,13 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(ConsultantsInfoPeer::DATABASE_NAME);
+		$criteria = new Criteria(ConsultantsPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(ConsultantsInfoPeer::CONSULTANTS_ID)) $criteria->add(ConsultantsInfoPeer::CONSULTANTS_ID, $this->consultants_id);
-		if ($this->isColumnModified(ConsultantsInfoPeer::DESCRIPTION)) $criteria->add(ConsultantsInfoPeer::DESCRIPTION, $this->description);
-		if ($this->isColumnModified(ConsultantsInfoPeer::MAX_NOTIFIED)) $criteria->add(ConsultantsInfoPeer::MAX_NOTIFIED, $this->max_notified);
+		if ($this->isColumnModified(ConsultantsPeer::INITIALS)) $criteria->add(ConsultantsPeer::INITIALS, $this->initials);
+		if ($this->isColumnModified(ConsultantsPeer::INFO)) $criteria->add(ConsultantsPeer::INFO, $this->info);
+		if ($this->isColumnModified(ConsultantsPeer::EVENT_NOTES)) $criteria->add(ConsultantsPeer::EVENT_NOTES, $this->event_notes);
+		if ($this->isColumnModified(ConsultantsPeer::MAX_NOTIFIED)) $criteria->add(ConsultantsPeer::MAX_NOTIFIED, $this->max_notified);
+		if ($this->isColumnModified(ConsultantsPeer::ID)) $criteria->add(ConsultantsPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -780,8 +884,8 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(ConsultantsInfoPeer::DATABASE_NAME);
-		$criteria->add(ConsultantsInfoPeer::CONSULTANTS_ID, $this->consultants_id);
+		$criteria = new Criteria(ConsultantsPeer::DATABASE_NAME);
+		$criteria->add(ConsultantsPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -792,18 +896,18 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function getPrimaryKey()
 	{
-		return $this->getConsultantsId();
+		return $this->getId();
 	}
 
 	/**
-	 * Generic method to set the primary key (consultants_id column).
+	 * Generic method to set the primary key (id column).
 	 *
 	 * @param      int $key Primary key.
 	 * @return     void
 	 */
 	public function setPrimaryKey($key)
 	{
-		$this->setConsultantsId($key);
+		$this->setId($key);
 	}
 
 	/**
@@ -812,7 +916,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function isPrimaryKeyNull()
 	{
-		return null === $this->getConsultantsId();
+		return null === $this->getId();
 	}
 
 	/**
@@ -821,14 +925,16 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 * If desired, this method can also make copies of all associated (fkey referrers)
 	 * objects.
 	 *
-	 * @param      object $copyObj An object of ConsultantsInfo (or compatible) type.
+	 * @param      object $copyObj An object of Consultants (or compatible) type.
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
 	 * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
 	 * @throws     PropelException
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
-		$copyObj->setDescription($this->getDescription());
+		$copyObj->setInitials($this->getInitials());
+		$copyObj->setInfo($this->getInfo());
+		$copyObj->setEventNotes($this->getEventNotes());
 		$copyObj->setMaxNotified($this->getMaxNotified());
 
 		if ($deepCopy && !$this->startCopy) {
@@ -849,7 +955,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 
 		if ($makeNew) {
 			$copyObj->setNew(true);
-			$copyObj->setConsultantsId(NULL); // this is a auto-increment column, so set to default value
+			$copyObj->setId(NULL); // this is a auto-increment column, so set to default value
 		}
 	}
 
@@ -862,7 +968,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 * objects.
 	 *
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return     ConsultantsInfo Clone of current object.
+	 * @return     Consultants Clone of current object.
 	 * @throws     PropelException
 	 */
 	public function copy($deepCopy = false)
@@ -881,12 +987,12 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 * same instance for all member of this class. The method could therefore
 	 * be static, but this would prevent one from overriding the behavior.
 	 *
-	 * @return     ConsultantsInfoPeer
+	 * @return     ConsultantsPeer
 	 */
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new ConsultantsInfoPeer();
+			self::$peer = new ConsultantsPeer();
 		}
 		return self::$peer;
 	}
@@ -895,22 +1001,22 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 * Declares an association between this object and a Customers object.
 	 *
 	 * @param      Customers $v
-	 * @return     ConsultantsInfo The current object (for fluent API support)
+	 * @return     Consultants The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function setCustomers(Customers $v = null)
 	{
 		if ($v === null) {
-			$this->setConsultantsId(NULL);
+			$this->setId(NULL);
 		} else {
-			$this->setConsultantsId($v->getId());
+			$this->setId($v->getId());
 		}
 
 		$this->aCustomers = $v;
 
 		// Add binding for other direction of this 1:1 relationship.
 		if ($v !== null) {
-			$v->setConsultantsInfo($this);
+			$v->setConsultants($this);
 		}
 
 		return $this;
@@ -926,10 +1032,10 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function getCustomers(PropelPDO $con = null)
 	{
-		if ($this->aCustomers === null && ($this->consultants_id !== null)) {
-			$this->aCustomers = CustomersQuery::create()->findPk($this->consultants_id, $con);
+		if ($this->aCustomers === null && ($this->id !== null)) {
+			$this->aCustomers = CustomersQuery::create()->findPk($this->id, $con);
 			// Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
-			$this->aCustomers->setConsultantsInfo($this);
+			$this->aCustomers->setConsultants($this);
 		}
 		return $this->aCustomers;
 	}
@@ -939,9 +1045,11 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function clear()
 	{
-		$this->consultants_id = null;
-		$this->description = null;
+		$this->initials = null;
+		$this->info = null;
+		$this->event_notes = null;
 		$this->max_notified = null;
+		$this->id = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
@@ -975,7 +1083,7 @@ abstract class BaseConsultantsInfo extends BaseObject  implements Persistent
 	 */
 	public function __toString()
 	{
-		return (string) $this->exportTo(ConsultantsInfoPeer::DEFAULT_STRING_FORMAT);
+		return (string) $this->exportTo(ConsultantsPeer::DEFAULT_STRING_FORMAT);
 	}
 
-} // BaseConsultantsInfo
+} // BaseConsultants
