@@ -1,4 +1,4 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\AccountBundle\Form\Type;
 
@@ -8,9 +8,11 @@ use Symfony\Component\Form\FormBuilder;
 class CustomersType extends AbstractType
 {
     protected $is_new;
+    protected $addressType;
 
-    public function __construct($is_new = TRUE)
+    public function __construct($is_new = TRUE, AddressesType $addressType)
     {
+        $this->addressType = $addressType;
         $this->is_new = (boolean) $is_new;
     }
 
@@ -20,7 +22,7 @@ class CustomersType extends AbstractType
         $builder->add('last_name', null, array('translation_domain' => 'account'));
 
         $builder->add('addresses', 'collection', array(
-            'type' => new AddressesType(),
+            'type' => $this->addressType,
             'translation_domain' => 'account'
         ));
 
@@ -51,12 +53,14 @@ class CustomersType extends AbstractType
                 'label' => 'create.newsletter',
                 'required' => false,
                 'translation_domain' => 'account',
+                'property_path' => false,
             ));
 
             $builder->add('accept', 'checkbox', array(
                 'label' => 'create.accept',
                 'required' => true,
                 'translation_domain' => 'account',
+                'property_path' => false,
             ));
         }
     }

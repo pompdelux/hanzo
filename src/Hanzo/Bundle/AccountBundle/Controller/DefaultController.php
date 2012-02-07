@@ -11,10 +11,16 @@ use Hanzo\Core\CoreController,
 
 use Hanzo\Model\Customers,
     Hanzo\Model\CustomersPeer,
-    Hanzo\Model\Addresses;
+    Hanzo\Model\Addresses,
+    Hanzo\Model\Countries,
+    Hanzo\Model\CountriesPeer,
+    Hanzo\Model\CountriesQuery
+    ;
 
 use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser,
-    Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
+    Hanzo\Bundle\AccountBundle\Form\Type\CustomersType,
+    Hanzo\Bundle\AccountBundle\Form\Type\AddressesType
+    ;
 
 class DefaultController extends CoreController
 {
@@ -25,52 +31,88 @@ class DefaultController extends CoreController
         ));
     }
 
-    //
     public function createAction()
     {
         $hanzo = Hanzo::getInstance();
         $request = $this->getRequest();
 
-        $addresses = new Addresses();
-        // FIXME: hardcoded vars
-        $addresses->setCountry('Danmark');
-        $addresses->setCountriesId(58);
+        $domainKey = $hanzo->get('core.domain_key');
+
+        switch ($domainKey) 
+        {
+            case 'DK':
+                $country = CountriesPeer::retrieveByPK(58);
+                break;
+            case 'COM':
+                $country = CountriesQuery::create()->find(); // Note that .com returns all countries
+                break;
+            case 'SE':
+                $country = CountriesPeer::retrieveByPK(207);
+                break;
+            case 'NO':
+                $country = CountriesPeer::retrieveByPK(161);
+                break;
+            case 'NL':
+                $country = CountriesPeer::retrieveByPK(151);
+                break;
+        }
 
         $customer = new Customers();
+        $addresses = new Addresses();
+
+        if ( $country instanceOf Countries ) // else it is probably a list (PropelObjectCollection)
+        {
+            $addresses->setCountry( $country->getLocalName() );
+            $addresses->setCountriesId( $country->getId() );
+        }
         $customer->addAddresses($addresses);
 
-        $form = $this->createForm(new CustomersType(), $customer);
+        $form = $this->createForm(new CustomersType( true, new AddressesType( $country ) ), $customer);
 
-        if ('POST' === $request->getMethod()) {
+        if ('POST' === $request->getMethod()) 
+        {
             $form->bindRequest($request);
 
-            if ($form->isValid()) {
-                // hf: removed from customer
-                //$customer->setLanguagesId($hanzo->get('core.language_id'));
+            if ($form->isValid()) 
+            {
                 $customer->setPasswordClear($customer->getPassword());
                 $customer->setPassword(sha1($customer->getPassword()));
 
-                if ($customer->getNewsletter()) {
+                $formData = $request->request->get('customers');
+
+                if ( $formData['newsletter'] ) 
+                {
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
-                    if ( $response->is_error )
+                    if ( is_object($response) && $response->is_error )
                     {
-                      // TODO: do something? 
+                        // TODO: do something? 
                     }
+                }
+
+                if ( !isset($formData['addresses'][0]['countries_id']) && isset($formData['addresses'][0]['country']) )
+                {
+                    $addresses = $customer->getAddresses();
+                    $address = $addresses[0];
+                    $country = CountriesPeer::retrieveByPK($formData['addresses'][0]['country']);
+                    $address->setCountriesId( $country->getId() );
+                    $address->setCountry( $country->getLocalName() );
+                    // TODO: delete existing??
+                    $customer->addAddresses($address);
                 }
 
                 $customer->save();
 
                 // login user
                 $user = new ProxyUser($customer);
-                $token = new UsernamePasswordToken($user, null, 'secu.gitred_area', $user->getRoles());
+                $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
                 $this->container->get('security.context')->setToken($token);
 
                 $this->get('session')->setFlash('notice', 'account.created');
 
+                // TODO: should all fields not have been trimmed?
                 $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
 
-                // TODO: why does this not work?
                 try
                 {
                     $mailer = $this->get('mail_manager');
@@ -83,7 +125,7 @@ class DefaultController extends CoreController
                     $mailer->setTo($customer->getEmail(), $name);
                     $mailer->send();
                 }
-                catch (Swift_TransportException $e)
+                catch (\Swift_TransportException $e)
                 {
                     error_log(__LINE__.':'.__FILE__.' '.print_r($e->getMessage(),1)); // hf@bellcom.dk debugging
                 }
@@ -95,7 +137,7 @@ class DefaultController extends CoreController
         return $this->render('AccountBundle:Default:create.html.twig', array(
             'page_type' => 'create-account',
             'form' => $form->createView(),
-            'domain_key' => $hanzo->get('core.domain_key')
+            'domain_key' => $domainKey
         ));
     }
 
