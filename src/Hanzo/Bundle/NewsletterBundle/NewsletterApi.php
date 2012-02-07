@@ -42,8 +42,7 @@ class NewsletterApi
      **/
     public function subscribe( $email, $listid  )
     {
-        error_log(__LINE__.':'.__FILE__.' '.$email); // hf@bellcom.dk debugging
-        $ch = curl_init( urlencode( $this->phplistUrl.'/integration/json.php?callback=PHP_'.uniqid().'&method=subscriptions:update&email='.$email.'&lists[]='.$listid.'&_='.time() ) );
+        $ch = curl_init( $this->phplistUrl.'/integration/json.php?callback=PHP_'.uniqid().'&method=subscriptions:update&email='.urlencode( $email ).'&lists[]='.$listid.'&_='.time() );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);
         $result = curl_exec($ch);

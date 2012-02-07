@@ -105,11 +105,12 @@ class DefaultController extends CoreController
 
                 // login user
                 $user = new ProxyUser($customer);
-                $token = new UsernamePasswordToken($user, null, 'secu.gitred_area', $user->getRoles());
+                $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
                 $this->container->get('security.context')->setToken($token);
 
                 $this->get('session')->setFlash('notice', 'account.created');
 
+                // TODO: should all fields not have been trimmed?
                 $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
 
                 try
