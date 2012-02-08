@@ -1,0 +1,20 @@
+      <div id="checkout-block-address">
+        <h1>Addresses</h1>
+        <div class="msg hidn"></div>
+        {% if no_addresses is defined %}
+          Der er ikke oprettet nogle adresser
+        {% else %}
+        <table>
+        	<tr>
+        		<td>
+        			<h2>Leveringsadresse</h2>
+        			{% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.shipping} %}
+        		</td>
+        		<td>
+        			<h2>Privatadresses</h2>
+        			{% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.payment} %}
+        		</td>
+        	</tr>
+        </table>
+        {% endif %}
+      </div>
