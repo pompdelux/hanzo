@@ -2,9 +2,20 @@ var account = (function($) {
   var pub = {};
 
   pub.init = function() {
-
+    nnoInit();
     zipToCityInit();
 
+    if($('form.create').length) {
+      var $form = $('form.create');
+      var $a = $('form.create a');
+      $form.find('label[for="customers_accept"]').append($a);
+    }
+
+    $('a[rel="colorbox"]').colorbox();
+  };
+
+  function nnoInit()
+  {
     $('form.nno').on('submit', function(event) {
       event.preventDefault();
       var $form = $(this);
@@ -34,15 +45,7 @@ var account = (function($) {
 
       return false;
     });
-
-    if($('form.create').length) {
-      var $form = $('form.create');
-      var $a = $('form.create a');
-      $form.find('label[for="customers_accept"]').append($a);
-    }
-
-    $('a[rel="colorbox"]').colorbox();
-  };
+  }
 
   function zipToCityInit()
   {
@@ -57,6 +60,7 @@ var account = (function($) {
 
         // set city to readonly
         $('#customers_addresses_0_city').focus(function () {
+          dialoug.loading( '#customers_addresses_0_city', i18n.t('Please wait') );
           this.value = '';
           if ($('#customers_addresses_0_postal_code').val() == '') {
             $('#customers_addresses_0_postal_code')
@@ -65,6 +69,7 @@ var account = (function($) {
             .fadeOut(100).fadeIn(100)
             .fadeOut(100).fadeIn(100)
             .focus();
+            dialoug.stopLoading();
             return;
           }
           $.getJSON( base_url+'service/get-city-from-zip/'+$('#customers_addresses_0_postal_code').val(), function(data) {
@@ -78,6 +83,7 @@ var account = (function($) {
             else {
               $('#customers_addresses_0_postal_code').css('border-color', '#a10000').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).focus();
             }
+            dialoug.stopLoading();
           });
         });
       }
@@ -87,4 +93,6 @@ var account = (function($) {
   return pub;
 })(jQuery);
 
-account.init();
+if ($("#body-create-account").length) {
+  account.init();
+}

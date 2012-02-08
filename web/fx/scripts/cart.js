@@ -1,7 +1,7 @@
 (function($) {
 
   var cart = (function($) {
-    var pub = {}
+    var pub = {};
 
     pub.init = function() {
       var $table = $('table.product-table');
@@ -59,7 +59,7 @@
           master : $('a:first', $info).text(),
           size   : $('label.size span', $info).text(),
           color  : $('label.color span', $info).text(),
-        }
+        };
 
         var $act = $('<div id="cart-edit-element"><a href="" class="button left">' + i18n.t('Cancel') + '</a></div>');
         var tr_offset = $tr.offset();
@@ -124,7 +124,7 @@
             master : data.master,
             size   : $('select#size', $edit).val(),
             color  : $('select#color', $edit).val(),
-          }
+          };
 
           $.ajax({
             url : base_url + 'rest/v1/stock-check',
@@ -157,7 +157,7 @@
                   }
 
                   $('.info', $edit).append('<label for="quantity">' + i18n.t('Quantity') + ': <select name="quantity" id="quantity"><option value="">' + i18n.t('Choose') + '</option></select></label>');
-                  for (i=1; i<11; i++) {
+                  for (var i=1; i<11; i++) {
                     $('.info select#quantity', $edit).append('<option value="'+i+'">'+i+'</option>');
                   }
                 }

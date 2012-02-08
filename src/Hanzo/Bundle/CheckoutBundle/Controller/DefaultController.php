@@ -10,7 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 use Hanzo\Core\Hanzo,
     Hanzo\Core\CoreController,
     Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer
+    Hanzo\Model\OrdersPeer,
+    Hanzo\Model\CustomersPeer
     ;
 
 class DefaultController extends CoreController
@@ -126,5 +127,41 @@ class DefaultController extends CoreController
         }
 
         return $this->render('CheckoutBundle:Default:summery.html.twig',array('order'=>$order, 'attributes' => $attributes));
+    }
+
+    /**
+     * addressesAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function addressesAction()
+    {
+        // TODO: should we take the addresses from the order?
+        $customer = CustomersPeer::getCurrent();
+        $customerAddresses = $customer->getAddresses();
+
+        $addresses = array();
+
+        foreach ($customerAddresses as $address) 
+        {
+            $addresses[$address->getType()] = $address;
+        }
+
+        if ( !isset($addresses['shipping']) && !isset($addresses['payment']) )
+        {
+            return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
+        }
+
+        if ( !isset($addresses['shipping']) && isset($addresses['payment']) )
+        {
+            $addresses['shipping'] = $addresses['payment'];
+        }
+
+        if ( !isset($addresses['payment']) && isset($addresses['shipping']) )
+        {
+            $addresses['shipping'] = $addresses['payment'];
+        }
+
+        return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses ));
     }
 }

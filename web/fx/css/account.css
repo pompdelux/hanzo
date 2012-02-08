@@ -38,6 +38,10 @@ form.create #customers div {
   margin-bottom: 5px;
 }
 
+form.create #customers div.dialoug-loading {
+  margin-bottom: 0;
+}
+
 form.create #customers {
   margin-top: 20px;
 }

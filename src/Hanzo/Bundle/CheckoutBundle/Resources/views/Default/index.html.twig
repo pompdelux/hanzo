@@ -3,11 +3,14 @@
 {% block content %} 
 
       {% render 'ShippingBundle:Default:block' %}
+
+      {% render 'CheckoutBundle:Default:addresses' %}
+
       {% render 'PaymentBundle:Default:block' %}
 
       <div id="checkout-block-conditions">
         <h1>Conditions</h1>
-        <div class="msg"></div>
+        <div class="msg hidn"></div>
         Skal der være conditions, når de har sagt ja ved oprettelse?
       </div>
 
@@ -18,8 +21,8 @@
         <a class="button hidden right" id="checkout-execute" href="#">Gå til betaling</a>
       </div>
 
-{% endblock %}
+      {% endblock %}
 
-{% block javascript %}
-  <script>$(function () {checkout.init();});</script>
-{% endblock javascript %}
+      {% block javascript %}
+      <script>$(function () {checkout.init();});</script>
+      {% endblock javascript %}

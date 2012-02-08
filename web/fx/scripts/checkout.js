@@ -11,6 +11,19 @@ var checkout = (function($) {
       case 'shipping':
         if (state === true)
         {
+          blocks.address.reveal();
+        }
+        else
+        {
+          blocks.address.hide();
+          blocks.payment.hide();
+          blocks.summery.hide();
+          $("#checkout-execute").addClass('hidden');
+        }
+      break;
+      case 'address':
+        if (state === true)
+        {
           blocks.payment.reveal();
         }
         else
@@ -44,6 +57,7 @@ var checkout = (function($) {
   function setBlockMessage( selector, msg, type ) {
     $(selector).addClass(type);
     $(selector).html(msg);
+    $(selector).show();
   }
 
   function updateServerState( block, state, data )
@@ -70,11 +84,11 @@ var checkout = (function($) {
     function update(event) {
       checkoutUpdate( name, state );
       updateServerState(name,state,{selected_method:selectedMethod});
-    };
+    }
 
     function reset() {
-      $(selector+' input').prop('checked',false)
-    };
+      $(selector+' input').prop('checked',false);
+    }
 
     return { 
       init: function() {
@@ -94,9 +108,77 @@ var checkout = (function($) {
       getState: function() {
         return state;
       },
+      getSelectedMethod: function() {
+        return selectedMethod;
+      },
       reveal: function() {
         // This is the first block shown and it is not hidden
         return true;
+      },
+      error: function() {
+        state = false;
+        reset();
+        update(false);
+      },
+      hide: function() {
+        // This can't be hidden as it is the first block
+        return false;
+      },
+      setMessage: function( msg, type ) {
+        setBlockMessage( selector+' .msg', msg, type );
+      },
+      execute: function() {
+        // What should we do here? in payment it makes sense, because we submit the form
+      }
+    };
+  }());
+
+  /**
+   * Address block
+   */
+  blocks.address = (function() {
+    var name     = 'address',
+        selector = '#checkout-block-address',
+        state    = false;
+
+    function update(event) {
+      checkoutUpdate( name, state );
+      updateServerState(name,state,{});
+    }
+
+    function reset() {
+      $(selector+' input').prop('checked',false);
+    }
+
+    return { 
+      init: function() {
+      },
+      getName: function() {
+        return name;
+      },
+      getState: function() {
+        return state;
+      },
+      reveal: function() {
+        state = false;
+        $(selector).slideDown();
+        var shippingMethod = blocks.shipping.getSelectedMethod();
+        console.log(shippingMethod);
+        switch(shippingMethod) {
+          case '10':
+            state = true;
+            update(false);
+          break;
+          case '11':
+            alert('Snaps?');
+          // look for normalAddress in common.js on old shop
+            // if not ok hide payment
+          break;
+          case '12':
+            alert('Mere snaps?');
+            // if not ok hide payment
+          break;
+        }
       },
       error: function() {
         state = false;
@@ -130,11 +212,11 @@ var checkout = (function($) {
     function update(event) {
       checkoutUpdate( name, state );
       updateServerState(name,state,{selected_method:selectedMethod,selected_paytype:selectedPaytype});
-    };
+    }
 
     function reset() {
       $(selector+' input').prop('checked',false);
-    };
+    }
 
     return { 
       init: function() {
@@ -190,11 +272,10 @@ var checkout = (function($) {
 
     function update() {
       checkoutUpdate( name, state );
-    };
+    }
 
     function reset() {
-
-    };
+    }
 
     return { 
       init: function() {

@@ -38,36 +38,20 @@ class DefaultController extends CoreController
 
         $domainKey = $hanzo->get('core.domain_key');
 
-        switch ($domainKey) 
-        {
-            case 'DK':
-                $country = CountriesPeer::retrieveByPK(58);
-                break;
-            case 'COM':
-                $country = CountriesQuery::create()->find(); // Note that .com returns all countries
-                break;
-            case 'SE':
-                $country = CountriesPeer::retrieveByPK(207);
-                break;
-            case 'NO':
-                $country = CountriesPeer::retrieveByPK(161);
-                break;
-            case 'NL':
-                $country = CountriesPeer::retrieveByPK(151);
-                break;
-        }
-
         $customer = new Customers();
         $addresses = new Addresses();
+
+        $country = $this->getCountryOrCountries();
 
         if ( $country instanceOf Countries ) // else it is probably a list (PropelObjectCollection)
         {
             $addresses->setCountry( $country->getLocalName() );
             $addresses->setCountriesId( $country->getId() );
         }
+
         $customer->addAddresses($addresses);
 
-        $form = $this->createForm(new CustomersType( true, new AddressesType( $country ) ), $customer);
+        $form = $this->createForm(new CustomersType( true, new AddressesType( $country )), $customer);
 
         if ('POST' === $request->getMethod()) 
         {
@@ -77,6 +61,9 @@ class DefaultController extends CoreController
             {
                 $customer->setPasswordClear($customer->getPassword());
                 $customer->setPassword(sha1($customer->getPassword()));
+
+                $addresses->setFirstName( $customer->getFirstName() );
+                $addresses->setLastName( $customer->getLastName() );
 
                 $formData = $request->request->get('customers');
 
@@ -92,6 +79,7 @@ class DefaultController extends CoreController
 
                 if ( !isset($formData['addresses'][0]['countries_id']) && isset($formData['addresses'][0]['country']) )
                 {
+                    // TODO: can the first instance of addresses be used? is it pass by ref when addAddreses is called?
                     $addresses = $customer->getAddresses();
                     $address = $addresses[0];
                     $country = CountriesPeer::retrieveByPK($formData['addresses'][0]['country']);
@@ -190,7 +178,9 @@ class DefaultController extends CoreController
     public function editAction()
     {
         $customer = CustomersPeer::getCurrent();
-        $form = $this->createForm(new CustomersType(FALSE), $customer);
+        $country = $this->getCountryOrCountries();
+
+        $form = $this->createForm(new CustomersType(FALSE, new AddressesType( $country )), $customer);
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -211,5 +201,37 @@ class DefaultController extends CoreController
             'page_type' => 'create-account',
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * getCountryOrCountries
+     * @return mixed
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function getCountryOrCountries()
+    {
+        $hanzo = Hanzo::getInstance();
+        $domainKey = $hanzo->get('core.domain_key');
+
+        switch ($domainKey) 
+        {
+            case 'DK':
+                $country = CountriesPeer::retrieveByPK(58);
+                break;
+            case 'COM':
+                $country = CountriesQuery::create()->find(); // Note that .com returns all countries
+                break;
+            case 'SE':
+                $country = CountriesPeer::retrieveByPK(207);
+                break;
+            case 'NO':
+                $country = CountriesPeer::retrieveByPK(161);
+                break;
+            case 'NL':
+                $country = CountriesPeer::retrieveByPK(151);
+                break;
+        }
+
+        return $country;
     }
 }

@@ -139,7 +139,7 @@ table.edit-element td div.info label {
 }
 table.edit-element td div.info span,
 table.edit-element td div.info label select {
-  float: right;
+  float: right; /* FIXME: Breaks in FF */
 }
 table.edit-element td div.info .button {
   position: absolute;
