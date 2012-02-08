@@ -56,7 +56,8 @@ class Hanzo
         $config = Yaml::parse( __DIR__ . '/../../../app/config/hanzo.yml' );
 
         if (isset($config['core']['cdn'])) {
-           $this->settings['core.cdn'] = $config['core']['cdn'];
+            $this->settings['core.cdn'] = $config['core']['cdn'];
+            $this->container->get('twig')->addGlobal('cdn', $config['core']['cdn']);
         }
 
         // translate locale dev tld's
@@ -87,6 +88,9 @@ class Hanzo
         if ($session->getLocale() != $this->settings['core.locale']) {
             $session->setLocale($this->settings['core.locale']);
         }
+
+        list($lang, ) = explode('_', $this->settings['core.locale'], 2);
+        $this->container->get('twig')->addGlobal('html_lang', $lang);
 
         setLocale(LC_ALL, $session->getLocale().'.utf-8');
     }
@@ -174,7 +178,29 @@ class Hanzo
         return $default;
     }
 
+    /**
+     * Get all settings associated with a specific namespace
+     *
+     * @param string $ns
+     * @return array
+     */
+    public function getByNs($ns)
+    {
+        $settings = array();
+        foreach ($this->settings as $key => $value) {
+            if (strpos($key, $ns.'.') === 0) {
+                $key = substr($key, strlen($ns) +1);
+                $settings[$key] = $value;
+            }
+        }
 
+        return $settings;
+    }
+
+
+    /**
+     * used by the GeocodableBehavior
+     */
     public function getGoogleMapsKey()
     {
         return $this->get('google.maps');

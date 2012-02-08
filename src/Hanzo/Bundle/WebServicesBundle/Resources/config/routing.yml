@@ -44,3 +44,8 @@ ws_google_maps_near_you:
         longitude: 0.00
     requirements:
         type: '(near|hus)'
+
+ws_google_maps_consultants_map:
+    pattern: /rest/{version}/gm/consultants
+    defaults:
+        _controller: WebServicesBundle:RestGoogle:consultants

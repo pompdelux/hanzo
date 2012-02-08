@@ -1,8 +1,8 @@
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="da"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="da"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="da"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="da"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
 <head>
 
 <title>POMPdeLUX - Vild med børnetøj {{  browser_title|default('') }}</title>
@@ -15,7 +15,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="all">
-<link rel="dns-prefetch" href="//static.pompdelux.dk">
+<link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
 <link rel="dns-prefetch" href="//html5shim.googlecode.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -23,7 +23,7 @@
 <link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
 
 <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
- {% stylesheets
+{% stylesheets
   'fx/css/boilerplate.css'
   'fx/css/faq.css'
   'fx/css/colorbox/theme4/colorbox.css'
@@ -48,6 +48,7 @@
 <script type="text/javascript" src="/fx/scripts/modernizr-2.0.6.min.js"></script>
 <script type="text/javascript">
 var base_url = '{{ url('_homepage') }}';
+var cdn_url = '{{ cdn }}';
 </script>
 
 </head>

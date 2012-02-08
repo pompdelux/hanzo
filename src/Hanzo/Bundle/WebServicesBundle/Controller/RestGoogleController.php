@@ -50,6 +50,18 @@ class RestGoogleController extends CoreController
     }
 
 
+    /**
+     * This method handles "near you" pages.
+     * Currrently two types are handled - the "near" and "hus" types.
+     *   near: lists the consultants nearest you
+     *   hus.: lists the events nearest you
+     * in a 100km radius
+     *
+     * @param string $type
+     * @param float $latitude
+     * @param float $longitude
+     * @return object json encoded Response object
+     */
     public function nearYouAction($type = 'near', $latitude = 0.00, $longitude = 0.00)
     {
         $latitude = (float) $latitude;
@@ -71,19 +83,34 @@ class RestGoogleController extends CoreController
 
         $query = "
             SELECT
-                customers_id AS id,
-                (6371 * acos( cos(radians(".str_replace(',', '.', $latitude).")) * cos(radians(a.latitude)) * cos(radians(a.longitude) - radians(".str_replace(',', '.', $longitude).")) + sin(radians(".str_replace(',', '.', $latitude).")) * sin(radians(a.latitude)) )) AS distance
+                c.id,
+                (6371 * acos( cos(radians(".str_replace(',', '.', $latitude).")) * cos(radians(a.latitude)) * cos(radians(a.longitude) - radians(".str_replace(',', '.', $longitude).")) + sin(radians(".str_replace(',', '.', $latitude).")) * sin(radians(a.latitude)) )) AS distance,
+                c.first_name,
+                c.last_name,
+                c.email,
+                c.phone,
+                a.postal_code,
+                a.city,
+                cn.info,
+                cn.event_notes
             FROM
                 customers AS c
             JOIN
                 addresses AS a
-                ON (c.id = a.customers_id AND a.type = 'payment')
+                ON (
+                    c.id = a.customers_id
+                    AND
+                    a.type = 'payment'
+                )
+            JOIN
+                consultants AS cn
+                ON (cn.id = c.id)
             WHERE
---                c.groups_id = 2
---                AND
+                c.groups_id = 2
+                AND
                     c.is_active = 1
---                AND
---                    c.email NOT LIKE ('%@bellcom.dk')
+                AND
+                    c.email NOT LIKE ('%@bellcom.dk')
                 AND
                     c.email NOT IN ('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk')
             HAVING
@@ -93,43 +120,72 @@ class RestGoogleController extends CoreController
             LIMIT
                 {$num_items}
         ";
+
         $con = \Propel::getConnection();
         $result = $con->query($query);
 
-        $ids = array();
-        foreach ($result as $record) {
-            $ids[] = $record['id'];
-        }
-
-        $customers = CustomersQuery::create()
-            ->useAddressesQuery()
-                ->filterByType('payment')
-            ->endUse()
-            ->filterById($ids)
-            ->find()
-        ;
-
         $data = array();
-        foreach ($customers as $record) {
+        foreach ($result as $record) {
 
-            $info = '<img src="http://cdn.ph.dk/images/consultantsDK/LineSkovsen.jpg" width="100" height="75"><i>Træffes bedst kl. 16 - 18</i>';
+            $info = $record['info'];
             if ($type == 'hus') {
-                $info = '<b>Åbent hus arrangement</b><br>Mandag d. 20/2 kl. 12-22<br>Tirsdag d. 21/2 kl. 12-22<br>Haderslev Idrætscenter<br>Stadionvej 5<br>6100 Haderslev<br>Tilmelding nødvendig<br><i>Gerne mail eller sms 2627 7466</i>';
+                $info = str_replace("\n", "<br>", $record['event_notes']);
             }
-//php app/console dataio:import customers dk
-            $address = $record->getAddresses()->getFirst();
+
+            $info = preg_replace_callback('/src="(.+)"/Ui', function($matches) {
+                $img = Hanzo::getInstance()->get('core.cdn') . substr($matches[1], 1);
+                return 'src="'.$img.'"';
+            }, $info);
 
             $data[] = array(
-                'id' => $record->getId(),
-                'name' => $record->getFirstName(). ' ' . $record->getLastName(),
-                'zip' => $address->getPostalCode(),
-                'city' => $address->getCity(),
-                'email' => $record->getEmail(),
-                'phone' => $record->getPhone(),
+                'id' => $record['id'],
+                'name' => $record['first_name']. ' ' . $record['last_name'],
+                'zip' => $record['postal_code'],
+                'city' => $record['city'],
+                'email' => $record['email'],
+                'phone' => $record['phone'],
                 'info' => $info,
             );
         }
 
+        $response = array(
+            'status' => TRUE,
+            'data' => $data
+        );
+
+        return $this->json_response($response);
+    }
+
+    public function consultantsAction()
+    {
+        $consultants = CustomersQuery::create()
+            ->filterByEmail('%@bellcom.dk', \Criteria::NOT_LIKE)
+            ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk'), \Criteria::NOT_IN)
+            ->filterByGroupsId(2)
+            ->filterByIsActive(TRUE)
+            ->useAddressesQuery()
+                ->filterByType('payment')
+            ->endUse()
+            ->joinWithAddresses()
+            ->find()
+        ;
+
+        $data = array();
+        foreach ($consultants as $consultant) {
+            $address = $consultant->getAddresses()->getFirst();
+            $data[] = array(
+                'fullname' => $consultant->getName(),
+                'email' => $consultant->getEmail(),
+                'phone' => $consultant->getPhone(),
+                'notes' => $consultant->getInfo(),
+                'address' => $address->getAddressLine1(),
+                'postcode' => $address->getPostalCode(),
+                'city' => $address->getCity(),
+                'countryname' => $address->getCountry(),
+                'latitude' => $address->getLatitude(),
+                'longitude' => $address->getLongitude(),
+            );
+        }
 
         $response = array(
             'status' => TRUE,
