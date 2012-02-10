@@ -32,6 +32,7 @@ class MiscExtension extends Twig_Extension
         return array(
             'print_r' => new Twig_Function_Function('print_r'),
             'parse' => new Twig_Function_Method($this, 'parse', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'meta_tags' => new Twig_Function_Method($this, 'meta_tags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
@@ -62,4 +63,26 @@ class MiscExtension extends Twig_Extension
     {
         return $this->twig_string->parse($string, $parameters);
     }
+
+
+    /**
+     * Returns any meta data associated with this domain.
+     *
+     * @return string
+     */
+     public function meta_tags()
+     {
+         $meta = Hanzo::getInstance()->getByNs('meta');
+
+         $result = '';
+         foreach ($meta as $key => $value) {
+             $attr = 'name';
+             if (0 === strpos($key, 'og:')) {
+                 $attr = 'property';
+             }
+             $result .= '<meta '.$attr.'="'.$key.'" content="'.$value.'">'."\n";
+         }
+
+         return $result;
+     }
 }

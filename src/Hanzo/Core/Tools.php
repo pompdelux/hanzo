@@ -2,8 +2,52 @@
 
 namespace Hanzo\Core;
 
+use Hanzo\Core\Hanzo;
+
 class Tools
 {
+    /**
+     * Get country, state city lat/lon information from an ip address
+     * The method relies on maxminds webservice for ip to country database.
+     *
+     * @param string $ip
+     * @return array
+     */
+    public function getIp($ip)
+    {
+        $cache = Hanzo::getInstance()->cache;
+        $cache_key = $cache->id('geocache', $ip);
+        $data = $cache->get($cache_key);
+
+        if (!$data) {
+            $data = array();
+            $result = file_get_contents('http://geoip3.maxmind.com/b?l=Vy3Df3CSG8kI&i=' . $ip);
+
+            if ($result) {
+                $result = explode(',', $result);
+                $data = array(
+                    'country' => $result[0],
+                    'state' => $result[1],
+                    'city' => $result[2],
+                    'lat' => $result[3],
+                    'lon' => $result[4],
+                );
+
+                // cache the result for one week
+                $cache->set($cache_key, $data, 604800);
+            }
+        }
+
+        return $data;
+    }
+
+
+    /**
+     * Sanitize a string, trying to translate some caracters before stripping unwanted ones
+     *
+     * @param string $v
+     * @return string
+     */
     public static function stripText($v)
     {
         $url_safe_char_map = array(
@@ -49,11 +93,20 @@ class Tools
         error_log($file.' +'.$line.' :: '.print_r($data, 1));
     }
 
+
+    /**
+     * Wrapper for php's money_fornat function
+     *
+     * @see http://dk.php.net/manual/en/function.number-format.php
+     *
+     * @param float $numner
+     * @param string $format see php.net for format documentation
+     * @return string
+     */
     public static function moneyFormat($number, $format = '%i')
     {
         return money_format($format, $number);
     }
-
 
 
     /**
@@ -145,5 +198,4 @@ class Tools
 
         return '<img src="' . $src . '"' . $extra . '>';
     }
-
 }
