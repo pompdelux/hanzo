@@ -47,7 +47,11 @@ var checkout = (function($) {
       case 'summery':
         if (state === true)
         {
-          $("#checkout-execute").removeClass('hidden');
+          blocks.confirm.reveal();
+        }
+        else
+        {
+          blocks.confirm.hide();
         }
       break;
     } 
@@ -60,8 +64,7 @@ var checkout = (function($) {
     $(selector).show();
   }
 
-  function updateServerState( block, state, data )
-  {
+  function updateServerState( block, state, data ) {
     $.ajax({
       url: base_url+'checkout/update/'+block+'/'+state,
       type: 'post',
@@ -72,291 +75,200 @@ var checkout = (function($) {
     });
   }
 
-  /**
-   * Shipping block
-   */
-  blocks.shipping = (function() {
-    var name     = 'shipping',
-        selector = '#checkout-block-shipping',
-        selectedMethod = '',
-        state    = false;
-
-    function update(event) {
-      checkoutUpdate( name, state );
-      updateServerState(name,state,{selected_method:selectedMethod});
-    }
-
-    function reset() {
-      $(selector+' input').prop('checked',false);
-    }
-
-    return { 
-      init: function() {
-        $(selector+' form input').each( function(item) {
-          $(this).prop('disabled',false);
-        });
-        $(selector+' form input').on('click', function(event) {
-          // If the user has selected a shipping method, everything is ok
-          state = true;
-          selectedMethod = $(this).val();
-          update(event);
-        });
-      },
-      getName: function() {
-        return name;
-      },
-      getState: function() {
-        return state;
-      },
-      getSelectedMethod: function() {
-        return selectedMethod;
-      },
-      reveal: function() {
-        // This is the first block shown and it is not hidden
-        return true;
-      },
-      error: function() {
-        state = false;
-        reset();
-        update(false);
-      },
-      hide: function() {
-        // This can't be hidden as it is the first block
-        return false;
-      },
-      setMessage: function( msg, type ) {
-        setBlockMessage( selector+' .msg', msg, type );
-      },
-      execute: function() {
-        // What should we do here? in payment it makes sense, because we submit the form
-      }
+  function Block(blockName, blockSelector) {
+    this.data = {
+      name: blockName,
+      selector: blockSelector,
+      state: false,
     };
-  }());
 
-  /**
-   * Address block
-   */
-  blocks.address = (function() {
-    var name     = 'address',
-        selector = '#checkout-block-address',
-        state    = false;
-
-    function update(event) {
-      checkoutUpdate( name, state );
-      updateServerState(name,state,{});
-    }
-
-    function reset() {
-      $(selector+' input').prop('checked',false);
-    }
-
-    return { 
-      init: function() {
-      },
-      getName: function() {
-        return name;
-      },
-      getState: function() {
-        return state;
-      },
-      reveal: function() {
-        state = false;
-        $(selector).slideDown();
-        var shippingMethod = blocks.shipping.getSelectedMethod();
-        console.log(shippingMethod);
-        switch(shippingMethod) {
-          case '10':
-            state = true;
-            update(false);
-          break;
-          case '11':
-            alert('Snaps?');
-          // look for normalAddress in common.js on old shop
-            // if not ok hide payment
-          break;
-          case '12':
-            alert('Mere snaps?');
-            // if not ok hide payment
-          break;
-        }
-      },
-      error: function() {
-        state = false;
-        reset();
-        update(false);
-      },
-      hide: function() {
-        // This can't be hidden as it is the first block
-        return false;
-      },
-      setMessage: function( msg, type ) {
-        setBlockMessage( selector+' .msg', msg, type );
-      },
-      execute: function() {
-        // What should we do here? in payment it makes sense, because we submit the form
-      }
+    this.update = function(event) {
+      checkoutUpdate( this.data.name, this.data.state );
+      updateServerState( this.data.name, this.data.state, this.data);
     };
-  }());
 
-  /**
-   * Payment block
-   */
-  blocks.payment = (function() {
-    var name             = 'payment',
-        selector         = '#checkout-block-payment',
-        selectedMethod   = '',
-        selectedPaytype  = '',
-        $paytypeSelector = '',
-        state            = false;
-
-    function update(event) {
-      checkoutUpdate( name, state );
-      updateServerState(name,state,{selected_method:selectedMethod,selected_paytype:selectedPaytype});
-    }
-
-    function reset() {
-      $(selector+' input').prop('checked',false);
-    }
-
-    return { 
-      init: function() {
-        $(selector+' form input[type=radio]').on('click', function(event) {
-          $paytypeSelector = $(this).closest('form');
-          selectedMethod   = $paytypeSelector.attr('id');
-          selectedPaytype  = $(this).val();
-          state            = true;
-
-          var $selectedInput = $(this);
-          $(selector+' form input[type=radio]').each(function(item) {
-            if ( this !== $selectedInput.get(0) )
-            {
-              $(this).prop('checked',false);
-            }
-          });
-          update(event);
-        });
-      },
-      getName: function() {
-        return name;
-      },
-      getState: function() {
-        return state;
-      },
-      reveal: function() {
-        $(selector).slideDown();
-      },
-      error: function() {
-        state = false;
-        reset();
-        update(false);
-      },
-      hide: function() {
-        $(selector).slideUp();
-      },
-      setMessage: function( msg, type ) {
-        setBlockMessage( selector, msg, type );
-      },
-      execute: function() {
-        $paytypeSelector.submit();
-      }
+    this.reset = function() {
+      $(this.data.selector+' input').prop('checked',false);
     };
-  }());
 
-  /**
-   * Summery block
-*/
-  blocks.summery = (function() {
-    var name     = 'summery',
-    selector = '#checkout-block-summery',
-    state    = false;
-
-    function update() {
-      checkoutUpdate( name, state );
-    }
-
-    function reset() {
-    }
-
-    return { 
-      init: function() {
-      },
-      getName: function() {
-        return name;
-      },
-      getState: function() {
-        return state;
-      },
-      reveal: function() {
-        // FIXME: should block contens come from ajax for js template?
-        $(selector).slideDown();
-        // FIXME: delay update until slideDown is done
-        state = true;
-        update();
-      },
-      error: function() {
-        state = false;
-        update(false);
-      },
-      hide: function() {
-        $(selector).slideUp();
-      },
-      setMessage: function( msg, type ) {
-        setBlockMessage( selector, msg, type );
-      },
-      execute: function() {
-      }
+    this.init = function() {
+      return true;
     };
-  }());
 
-  function handleCheckoutExecute()
-  {
-    // When the user clicks the link, check if everything is as it should be
-    $("#checkout-execute").on('click', function(event) {
-      event.preventDefault();
+    this.reveal = function() {
+      $(this.data.selector).slideDown();
+      return true;
+    };
 
-      $.each(blocks, function(item) {
-        if ( this.getState() !== true )
-        {
-          // FIXME: hardcoded text
-          this.setMessage( 'Not filled correctly', 'error' );
-          this.error();
-          return false;
-        }
+    this.error = function() {
+      this.state = false;
+      this.reset();
+      this.update(false);
+    };
+
+    this.hide = function() {
+      $(this.data.selector).slideUp();
+      return true;
+    };
+
+    this.setMessage = function( msg, type ) {
+      setBlockMessage( this.data.selector+' .msg', msg, type );
+    };
+
+    this.execute = function() {
+      return true;
+    };
+  }
+
+  function blockInit() {
+   /**
+    * Shipping block
+    */
+    blocks.shipping = new Block( 'shipping', '#checkout-block-shipping' );
+    blocks.shipping.init = function() {
+      $(this.data.selector+' form input').each( function(item) {
+        $(this).prop('disabled',false);
       });
 
-      $.ajax({
-        url: base_url+'checkout/validate',
-        type: 'post',
-        dataType: 'json',
-        success: function(data) {
-          if ( data.status )
+      var self = this;
+
+      $(this.data.selector+' form input').on('click', function(event) {
+        self.data.state = true; // If the user has selected a shipping method, everything is ok
+        self.data.selectedMethod = $(this).val();
+        self.update(event);
+      });
+    };
+
+    blocks.address = new Block( 'address', '#checkout-block-address');
+    blocks.address.reveal = function() {
+      this.data.state = false;
+      $(this.data.selector).slideDown();
+      var shippingMethod = blocks.shipping.data.selectedMethod;
+
+      switch(shippingMethod) {
+        case '10':
+          this.data.state = true;
+          this.update(false);
+          $(this.data.selector +" "+ ".checkout-block-type-shipping").show();
+          $(this.data.selector +" "+ ".checkout-block-type-overnightbox").hide();
+        break;
+        case '11':
+          $(this.data.selector +" "+ ".checkout-block-type-shipping").show();
+          $(this.data.selector +" "+ ".checkout-block-type-overnightbox").hide();
+          var hasCompanyAddress = false;
+          $(this.data.selector).find(".account-address-block").each(function() {
+            if ( $(this).data('allowedDest') === 'company' )
+            {
+              hasCompanyAddress = true;
+            }
+          });
+
+          if ( !hasCompanyAddress )
           {
-            blocks.payment.execute();
+            this.data.state = false;
+            this.update(false);
+            // FIXME: text
+            dialoug.alert( 'Bemærk', 'Du har valgt "Post Danmark Erhverv". Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).' );
           }
           else
           {
-            $.each(blocks, function(item) {
-              if ( this.getName() === data.data.name )
-              {
-                this.setMessage( data.message, 'error' );
-                this.error();
-              }
-            });
+            this.data.state = true;
+            this.update(false);
           }
-        }
+          // look for normalAddress in common.js on old shop
+          // if not ok hide payment
+          break;
+        case '12':
+          this.data.state = false;
+          this.update(false);
+          $(this.data.selector +" "+ ".checkout-block-type-shipping").hide();
+          $(this.data.selector +" "+ ".checkout-block-type-overnightbox").show();
+        // if not ok hide payment
+        break;
+      }
+    };
+     
+
+    blocks.payment = new Block( 'payment', '#checkout-block-payment');
+    blocks.payment.init = function() {
+      var self = this;
+      $(this.data.selector+' form input[type=radio]').on('click', function(event) {
+        var $paytypeSelector = $(this).closest('form');
+        self.data.selectedMethod = $paytypeSelector.attr('id');
+        self.data.selectedPaytype = $(this).val();
+        self.data.state          = true;
+
+        var $selectedInput = $(this);
+        $(self.data.selector+' form input[type=radio]').each(function(item) {
+          if ( this !== $selectedInput.get(0) )
+          {
+            $(this).prop('checked',false);
+          }
+        });
+        self.update(event);
       });
-    });
+    };
+
+
+    blocks.summery = new Block( 'summery', '#checkout-block-summery');
+    blocks.summery.reveal = function() {
+      // FIXME: should block contens come from ajax for js template?
+      $(this.data.selector).slideDown();
+      // FIXME: delay update until slideDown is done
+      this.data.state = true;
+      this.update();
+    };
+
+    blocks.confirm = new Block( 'confirm', '#checkout-block-confirm' );
+    blocks.confirm.init = function() {
+      // When the user clicks the link, check if everything is as it should be
+      $("#checkout-execute").on('click', function(event) {
+        event.preventDefault();
+
+        $.each(blocks, function(item) {
+          if ( this.data.state() !== true )
+          {
+            // FIXME: hardcoded text
+            this.setMessage( 'Not filled correctly', 'error' );
+            this.error();
+            return false;
+          }
+        });
+
+        $.ajax({
+          url: base_url+'checkout/validate',
+          type: 'post',
+          dataType: 'json',
+          success: function(data) {
+            if ( data.status )
+            {
+              blocks.payment.execute();
+            }
+            else
+            {
+              $.each(blocks, function(item) {
+                if ( this.data.name === data.data.name )
+                {
+                  this.setMessage( data.message, 'error' );
+                  this.error();
+                }
+              });
+            }
+          }
+        });
+      });
+    };
   }
 
   /**
    * Main method, called on checkout page 
    */
   pub.init = function() {
+    blockInit();
+
     $.each(blocks, function(item) {
       this.init();
     });
-
-    handleCheckoutExecute();
   };
 
   return pub;

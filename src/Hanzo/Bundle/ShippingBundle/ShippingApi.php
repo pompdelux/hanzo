@@ -32,6 +32,18 @@ class ShippingApi
     }
 
     /**
+     * isMethodAvaliable
+     * @param int $axId The id of the shipping method in AX
+     * @return bool
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function isMethodAvaliable( $axId )
+    {
+        $methods = $this->getMethods();
+        return isset($methods[$axId]);
+    }
+
+    /**
      * getMethods
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>

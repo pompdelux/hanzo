@@ -6,7 +6,7 @@
 
 #checkout-block-payment,
 #checkout-block-address,
-#checkout-block-conditions,
-#checkout-block-summery {
+#checkout-block-summery,
+#checkout-block-confirm {
   display: none;
 }

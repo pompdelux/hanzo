@@ -6,13 +6,25 @@
         {% else %}
         <table>
         	<tr>
-        		<td>
+        		<td class="checkout-block-type-shipping">
         			<h2>Leveringsadresse</h2>
-        			{% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.shipping} %}
+        			{% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.shipping, 'type': 'shipping'} %}
+        			<a href="#" id="checkout-block-edit-shipping-address">Ret leveringsadresse</a>
         		</td>
-        		<td>
+        		{% if has_overnight_box is defined and has_overnight_box %}
+        		<td class="checkout-block-type-overnightbox hidn">
+        			<h2>Leveringsadresse</h2>
+        			{% if addresses.overnightbox is defined%}
+        			{% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.overnightbox, 'type': 'overnightbox'} %}
+        			{% else %}
+        			  Ingen døgn boks adresse oprettet
+        			{% endif %}
+        			<a href="#" id="checkout-block-edit-overnight-address">Ret døgnpostadresse</a>
+        		</td>
+        		{% endif %}
+        		<td class="checkout-block-type-payment">
         			<h2>Privatadresses</h2>
-        			{% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.payment} %}
+        			{% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.payment, 'type': 'payment'} %}
         		</td>
         	</tr>
         </table>

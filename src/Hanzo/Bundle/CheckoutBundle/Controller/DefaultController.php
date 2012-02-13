@@ -18,6 +18,13 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
+        $order = OrdersPeer::getCurrent();
+
+        if ( $order->isNew() === true )
+        {
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
         return $this->render('CheckoutBundle:Default:index.html.twig',array('page_type'=>'checkout'));
     }
 
@@ -30,6 +37,11 @@ class DefaultController extends CoreController
      **/
     public function updateAction($block, $state)
     {
+        return $this->json_response(array(
+            'status' => true,
+            'message' => '',
+        ));
+
         $order = OrdersPeer::getCurrent();
         $orderAttributes = $order->getOrdersAttributess();
 
@@ -121,6 +133,7 @@ class DefaultController extends CoreController
           $attributes[$att->getNs()][$att->getCKey()] = $att->getCValue();
         }
 
+        // FIXME:
         if ( $this->get('request')->isXmlHttpRequest() )
         {
           return json_encode('hest');
@@ -142,6 +155,8 @@ class DefaultController extends CoreController
 
         $addresses = array();
 
+        $shippingApi = $this->get('shipping.shippingapi');
+
         foreach ($customerAddresses as $address) 
         {
             $addresses[$address->getType()] = $address;
@@ -162,6 +177,18 @@ class DefaultController extends CoreController
             $addresses['shipping'] = $addresses['payment'];
         }
 
-        return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses ));
+        $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
+
+        return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
+    }
+
+    /**
+     * confirmAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function confirmAction()
+    {
+        return $this->render('CheckoutBundle:Default:confirm.html.twig');
     }
 }

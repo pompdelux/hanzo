@@ -8,21 +8,12 @@
 
       {% render 'PaymentBundle:Default:block' %}
 
-      <div id="checkout-block-conditions">
-        <h1>Conditions</h1>
-        <div class="msg hidn"></div>
-        Skal der være conditions, når de har sagt ja ved oprettelse?
-      </div>
-
       {% render 'CheckoutBundle:Default:summery' %}
 
-      <div>
-        <a class="button hidden left" href="#">Tilbage (hvor til?)</a>
-        <a class="button hidden right" id="checkout-execute" href="#">Gå til betaling</a>
-      </div>
+      {% render 'CheckoutBundle:Default:confirm' %}
 
-      {% endblock %}
+{% endblock %}
 
-      {% block javascript %}
-      <script>$(function () {checkout.init();});</script>
-      {% endblock javascript %}
+{% block javascript %}
+<script>$(function () {checkout.init();});</script>
+{% endblock javascript %}
