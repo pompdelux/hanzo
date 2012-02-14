@@ -9,8 +9,11 @@ use Hanzo\Core\Hanzo,
     Hanzo\Core\Stock,
     Hanzo\Core\CoreController;
 
-use Hanzo\Model\ProductsQuery,
+use Hanzo\Model\Products,
+    Hanzo\Model\ProductsPeer,
+    Hanzo\Model\ProductsQuery,
     Hanzo\Model\ProductsStockQuery,
+    Hanzo\Model\ProductsDomainsPricesPeer,
     Hanzo\Model\ProductsDomainsPricesQuery,
     Hanzo\Model\ProductsToCategoriesQuery;
 
@@ -28,30 +31,10 @@ class DefaultController extends CoreController
         // product_id,master,size,color,quantity
         $request = $this->get('request');
         $quantity = $request->get('quantity', 1);
-
-        $product_id = $request->get('product_id');
-        if ($product_id) {
-            $product = ProductsQuery::findOneById($product_id);
-        }
-        else {
-            $master = $request->get('master');
-            $size = $request->get('size');
-            $color = $request->get('color');
-
-            $product = ProductsQuery::create()
-                ->filterByMaster($master)
-                ->filterBySize($size)
-                ->filterByColor($color)
-                ->filterByIsOutOfStock(0)
-                ->useProductsDomainsPricesQuery()
-                    ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
-                ->endUse()
-                ->findOne()
-            ;
-        }
+        $product = ProductsPeer::findFromRequest($request);
 
         // could not find matching product, throw 404 ?
-        if (empty($product)) {
+        if (!$product instanceof Products) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
                     'status' => FALSE,
@@ -180,6 +163,67 @@ class DefaultController extends CoreController
         return $this->response('remove from basket');
     }
 
+
+    public function replaceItemAction()
+    {
+        // 0. sanetize request
+        // 1. figure out whether or not the product is in the basket
+        // 2. find out whether or not the new product is in stock
+        // 2.1 if not kick request with a reply about it
+        // 2.2. if there is delivery time on the product, get confirmation
+        // 2.3. or just add the goddam product.
+        // 3. remove the old product
+        // 4. add the new
+
+        $request = $this->get('request');
+        $product_to_replace = $request->get('product_to_replace');
+
+        $request_data = array(
+            'quantity' => $request->get('quantity'),
+            'master' => $request->get('master'),
+            'size' => $request->get('size'),
+            'color' => $request->get('color'),
+        );
+
+        $response = $this->forward('WebServicesBundle:RestStock:check', $request_data);
+        $response = json_decode($response->getContent(), TRUE);
+
+        if ($response['status'] && isset($response['data']['products']) && count($response['data']['products']) == 1) {
+            $product = $response['data']['products'][0];
+
+            // if the product is backordered, require a confirmation to continue
+            if ($product['date'] && (FALSE === $request->get('confirmed', FALSE))) {
+                return $this->json_response($response);
+            }
+
+            // ok, we proceed
+            // first, nuke original product
+            $this->forward('BasketBundle:Default:remove', array('product_id' => $product_to_replace, 'quantity' => 'all'));
+
+            // then add new product to cart
+            $response = $this->forward('BasketBundle:Default:add', $request_data);
+            $response = json_decode($response->getContent(), TRUE);
+
+            // we need the product!
+            if ($response['status']) {
+                $response['data'] = array();
+
+                $product = ProductsPeer::findFromRequest($request);
+                $prices = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+                $prices = array_shift($prices);
+
+                foreach ($prices as $key => $price) {
+                    $response['data'][$key.'_total'] = Tools::moneyFormat($price['price'] * $request->get('quantity'));
+                    $response['data'][$key] = Tools::moneyFormat($price['price']);
+                }
+                $response['data']['basket'] = $this->miniBasketAction(TRUE);
+            }
+        }
+
+        return $this->json_response($response);
+    }
+
+
     public function updateAction()
     {
         return $this->response('update basket');
@@ -199,7 +243,6 @@ class DefaultController extends CoreController
         // product lines- if any
         foreach ($order->getOrdersLiness() as $line) {
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
-
 
             // find first products2category match
             $products2category = ProductsToCategoriesQuery::create()->findOneByProductsId($line['products_id']);

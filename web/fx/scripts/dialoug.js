@@ -3,6 +3,7 @@
  */
 var dialoug = (function($) {
   var pub = {};
+  var loading_status = false;
 
   var templates = {
     'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
@@ -10,6 +11,14 @@ var dialoug = (function($) {
     'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>'
   };
 
+
+  /**
+   * Display a confirmation box via colorbox
+   *
+   * @param string title
+   * @param string message
+   * @param function callback
+   */
   pub.confirm = function(title, message, callback) {
     var $callback = callback;
 
@@ -38,6 +47,15 @@ var dialoug = (function($) {
     });
   };
 
+
+  /**
+   * Display alert messages via colorbox
+   *
+   * @param string title
+   * @param string message
+   * @param string type
+   * @param int timeout
+   */
   pub.alert = function(title, message, type, timeout) {
     if (undefined === type) {
       type = 'info';
@@ -109,6 +127,13 @@ var dialoug = (function($) {
     }
   };
 
+
+  /**
+   * Slide in notification
+   *
+   * @param string message
+   * @param int duration
+   */
   pub.slideNotice = function(message, duration) {
     if (undefined === duration) {
       duration = 2000;
@@ -140,12 +165,23 @@ var dialoug = (function($) {
     });
   };
 
-
-  var loading_status = false;
+  /**
+   * inserts a loading anim image and an optional text
+   *
+   * @see dialoug.stopLoading()
+   * @param mixed selector either a css selector or a jQuery reference
+   * @param string message, a massage to display along side the image
+   * @param position string, how to insert the element, currently the followint is supported:
+   *    after, append, before - default is after
+   */
   pub.loading = function(selector, message, position) {
     if (loading_status) { return; }
 
-    $(selector).each(function() {
+    if (typeof(selector) === 'string') {
+      selector = $(selector);
+    }
+
+    selector.each(function() {
       var $this = $(this);
       var msg = undefined === message ? '' : message;
       var tpl = '<div class="dialoug-loading">' + msg + '</div>';
@@ -163,6 +199,12 @@ var dialoug = (function($) {
     });
   };
 
+
+  /**
+   * Stop any loading anims.
+   *
+   * @see dialoug.loading()
+   */
   pub.stopLoading = function() {
     if (loading_status) {
       loading_status.remove();

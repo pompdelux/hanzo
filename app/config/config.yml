@@ -36,6 +36,12 @@ services:
         tags:
             -  { name: twig.extension }
 
+    hanzo.boot:
+        class: Hanzo\Core\HanzoBoot
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -83,6 +89,7 @@ propel:
         propel.project: %database_name%
         propel.addValidators: all
         propel.namespace.autoPackage: true
+
 
 # redis configuration
 snc_redis:

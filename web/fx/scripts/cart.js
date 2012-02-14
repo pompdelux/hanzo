@@ -22,19 +22,19 @@
               url : $a.attr('href'),
               dataType: 'json',
               async : false,
-              success : function(responce, textStatus, jqXHR) {
-                if (responce.status) {
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
                   // add effects to the removal of a basket row
                   $a.closest('tr').fadeOut(function() {
                     $(this).remove();
                   });
 
                   // update elements
-                  $('#mini-basket a').html('(' + responce.data.quantity + ') ' + responce.data.total);
-                  $('tfoot td.total').text(responce.data.total);
+                  $('#mini-basket a').html('(' + response.data.quantity + ') ' + response.data.total);
+                  $('tfoot td.total').text(response.data.total);
 
                   // remove the proceed button if there are no products in the cart
-                  if (0 == responce.data.quantity) {
+                  if (0 == response.data.quantity) {
                     $('.buttons a.button.proceed').remove();
                   }
                 }
@@ -57,8 +57,8 @@
         var id = this.href;
         var data = {
           master : $('a:first', $info).text(),
-          size   : $('label.size span', $info).text(),
-          color  : $('label.color span', $info).text(),
+          size   : $('div.size span', $info).text(),
+          color  : $('div.color span', $info).text(),
         };
 
         var $act = $('<div id="cart-edit-element"><a href="" class="button left">' + i18n.t('Cancel') + '</a></div>');
@@ -97,28 +97,33 @@
           data : { master : data.master },
           dataType : 'json',
           async : false,
-          success : function(responce, textStatus, jqXHR) {
-            if (responce.status) {
+          success : function(response, textStatus, jqXHR) {
+            if (response.status) {
               var $size = $('<select id="size" name="size"><option value="">' + i18n.t('Choose') + '</option></select>');
 
               var used = [];
-              $.each(responce.data.products, function(index, product) {
+              $.each(response.data.products, function(index, product) {
                 if (-1 == $.inArray(product.size, used)) {
                   used.push(product.size);
                   $size.append('<option value="'+product.size+'">'+product.size+'</option>');
                 }
               });
-              $('label.size span', $edit).replaceWith($size);
+              $('div.size span', $edit).replaceWith($size);
             }
           }
         });
 
         $edit.on('change', 'select#size, select#color', function() {
           var name = this.name;
+          var $this = $(this);
+
+          dialoug.loading($this);
+
           if (name == 'size') {
             $('select#color', $edit).replaceWith('<span>'+data['color']+'</span>');
           }
-          $('label[for="quantity"]', $edit).remove();
+          $('div.quantity', $edit).remove();
+          $('input.button', $act).remove();
 
           var request_data = {
             master : data.master,
@@ -131,53 +136,104 @@
             data : request_data,
             dataType : 'json',
             async : false,
-            success : function(responce, textStatus, jqXHR) {
+            success : function(response, textStatus, jqXHR) {
               if (name == 'size') {
-                if (responce.status) {
+                if (response.status) {
                   var $color = $('<select id="color" name="color"><option value="">' + i18n.t('Choose') + '</option></select>');
                   var used = [];
-                  $.each(responce.data.products, function(index, product) {
+                  $.each(response.data.products, function(index, product) {
                     if (-1 == $.inArray(product.color, used)) {
                       used.push(product.color);
                       $color.append('<option value="'+product.color+'">'+product.color+'</option>');
                     }
                   });
-                  $('label.color span', $edit).replaceWith($color);
+                  $('div.color span', $edit).replaceWith($color);
                 }
               }
               else {
-                if (responce.status) {
-                  var product = responce.data.products[0];
+                if (response.status) {
+                  var product = response.data.products[0];
                   if (product.date) {
-                    dialoug.confirm(i18n.t('Notice!'), responce.message, function(c) {
+                    dialoug.confirm(i18n.t('Notice!'), response.message, function(c) {
                       if (c != 'ok') {
                         return;
                       }
                     });
                   }
 
-                  $('.info', $edit).append('<label for="quantity">' + i18n.t('Quantity') + ': <select name="quantity" id="quantity"><option value="">' + i18n.t('Choose') + '</option></select></label>');
+                  $('.info', $edit).append('<div class="quantity"><label for="quantity">' + i18n.t('Quantity') + ':</label> <select name="quantity" id="quantity"><option value="">' + i18n.t('Choose') + '</option></select></div>');
                   for (var i=1; i<11; i++) {
                     $('.info select#quantity', $edit).append('<option value="'+i+'">'+i+'</option>');
                   }
                 }
               }
+              dialoug.stopLoading();
             }
           });
         });
 
         $edit.on('change', 'select#quantity', function() {
-          $(this).closest('label').after('<input type="button" class="button" value="'+i18n.t('Update')+'">');
+          $(this).closest('div').after('<input type="button" class="button" value="'+i18n.t('Update')+'">');
         });
 
         $edit.on('click', 'input.button', function() {
-          var vars = {
+          var request_data = {
+            'product_to_replace': $info.data('product_id'),
             'master': data.master
           };
+
+          if ($info.data('confirmed')) {
+            request_data.confirmed = true;
+          }
+
           $('select', $edit).each(function(index, element) {
-            vars[element.name] = element.value;
+            request_data[element.name] = element.value;
           });
-          console.log(vars);
+
+          $.ajax({
+            url : base_url + 'replace-basket-item',
+            data : request_data,
+            dataType : 'json',
+            async : false,
+            type: 'POST',
+            success : function(response, textStatus, jqXHR) {
+              if (response.status) {
+                if (response.data.products !== undefined) {
+                  var product = response.data.products[0];
+                  if (product === undefined) {
+                    // no product - this is bad...
+                  }
+                  else {
+                    if (product.date) {
+                      var notice = i18n.t('late delivery', {'%product%' : request_data.master+' '+request_data.color+' '+request_data.size , '%date%' : product.date});
+                      $act.append('<div class="delivery-notice">'+notice+'</div>');
+                      $info.data('confirmed', true);
+                      return;
+                    }
+                  }
+                }
+
+                // update containers, and close overlay
+                if (response.data.normal !== undefined) {
+                  $('div.size span', $info).text(request_data.size);
+                  $('div.color span', $info).text(request_data.color);
+                  $('td.quantity', $tr).text(request_data.quantity);
+
+                  $('td.price', $tr).text(response.data.sales || response.data.normal);
+                  $('td.total', $tr).text(response.data.sales_total || response.data.normal_total);
+
+                  // totals
+                  $('#mini-basket a').text(response.data.basket);
+                  var find = /\([0-9+]\) /;
+                  var total = response.data.basket.replace(find, '');
+                  $('tfoot .total').text(total);
+                }
+
+                // close overlay
+                $('a', $act).click();
+              }
+            }
+          });
         });
       });
     };

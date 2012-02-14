@@ -53,11 +53,22 @@ class CoreController extends Controller
 
     public function response($content, $status = 200, $headers = array())
     {
+        // no need to doubble "encode"
+        if ($content instanceof Response) {
+            return $content;
+        }
+
         // set no cache header for json requests
         if (isset($headers['Content-Type']) &&
             ($headers['Content-Type'] == 'application/json')
         ) {
-            define('JSON_RESPONSE', 1);
+            /**
+             * prevent statistics to be appended to json requests, and only set the
+             * define once - it will lead to errors in sub-requests othertwise.
+             */
+            if (!defined('JSON_RESPONSE')) {
+                define('JSON_RESPONSE', 1);
+            }
             $headers['Cache-Control'] = 'no-cache';
         }
 
@@ -83,6 +94,11 @@ class CoreController extends Controller
             die(json_encode($data));
         }
 
-        return $this->response(json_encode($data), $code, array('Content-Type' => 'application/json'));
+        // only scalar values can be send as json
+        if (!is_scalar($data) && (!$data instanceof Response)) {
+            $data = json_encode($data);
+        }
+
+        return $this->response($data, $code, array('Content-Type' => 'application/json'));
     }
 }

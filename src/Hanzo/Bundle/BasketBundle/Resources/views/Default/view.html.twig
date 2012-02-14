@@ -31,10 +31,16 @@
         <tr>
           <td class="image">
             {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
-            <div class="info">
+            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
               <a href="{{ product.url }}">{{ product.products_name }}</a>
-              <label class="size">{{ "Size"|trans }}: <span>{{ product.products_size }}</span></label>
-              <label class="color">{{ "Color"|trans }}: <span>{{ product.products_color }}</span></label>
+              <div class="size">
+                <label>{{ "Size"|trans }}:</label>
+                <span>{{ product.products_size }}</span>
+              </div>
+              <div class="color">
+                <label>{{ "Color"|trans }}:</label>
+                <span>{{ product.products_color }}</span>
+              </div>
             </div>
           </td>
           <td class="right date">
@@ -42,9 +48,9 @@
               {{ product.expected_at|date('d-m-Y') }}
             {% endif %}
           </td>
-          <td class="right">{{ product.price|money }}</td>
-          <td class="right">{{ product.quantity }}</td>
-          <td class="right">{{ (product.price * product.quantity)|money }}</td>
+          <td class="right price">{{ product.price|money }}</td>
+          <td class="right quantity">{{ product.quantity }}</td>
+          <td class="right total">{{ (product.price * product.quantity)|money }}</td>
           <td class="actions">
             <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"Delete"|trans }) }}</a>
             <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"Edit"|trans }) }}</a>

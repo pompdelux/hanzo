@@ -19,7 +19,15 @@ basket_update:
     pattern:  /update-basket
     defaults:
         _controller: BasketBundle:Default:update
-        _format: rest
+        _format: json
+    requirements:
+        _format: html|json
+
+basket_replace:
+    pattern:  /replace-basket-item
+    defaults:
+        _controller: BasketBundle:Default:replaceItem
+        _format: json
     requirements:
         _format: html|json
 
