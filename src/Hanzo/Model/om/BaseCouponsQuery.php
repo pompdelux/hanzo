@@ -179,7 +179,7 @@ abstract class BaseCouponsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Coupons();
 			$obj->hydrate($row);
-			CouponsPeer::addInstanceToPool($obj, (string) $key);
+			CouponsPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 

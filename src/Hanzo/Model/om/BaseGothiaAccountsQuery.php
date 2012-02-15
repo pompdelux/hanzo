@@ -151,7 +151,7 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new GothiaAccounts();
 			$obj->hydrate($row);
-			GothiaAccountsPeer::addInstanceToPool($obj, (string) $key);
+			GothiaAccountsPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 
