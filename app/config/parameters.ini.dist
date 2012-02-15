@@ -5,9 +5,20 @@
     database_name="hanzo"
     database_user="root"
     database_password=""
+
     mailer_transport="mail"
     mailer_host="localhost"
     mailer_user=""
     mailer_password=""
+
     locale="da_DK"
+
     secret="31f7be90d71a82859f16bc1e2109379a4"
+
+    redis_session_host="localhost"
+    redis_session_port="6379"
+    redis_session_database="1"
+
+    redis_cache1_host="localhost"
+    redis_cache1_port="6380"
+    redis_cache1_database="0"
