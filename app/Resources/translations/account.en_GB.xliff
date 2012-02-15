@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+<!-- login -->
+            <trans-unit id="43">
+                <source>» I wish to create an account at POMPdeLUX</source>
+                <target>» I wish to create an account at POMPdeLUX.</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>I have forgotten my password</source>
+                <target>I have forgotten my password</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>» Receive your password by e-mail</source>
+                <target>» Receive your password by e-mail</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source><![CDATA[If you wish to shop at POMPdeLUX you have to open an account here on this page.<br><br>You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order.<br><br>As a customer at POMPdeLUX you can see your previous orders and find old invoices on My page.]]></source>
+                <target><![CDATA[If you wish to shop at POMPdeLUX you have to open an account here on this page.<br /><br />You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order.<br /><br />As a customer at POMPdeLUX you can see your previous orders and find old invoices on My page]]></target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>New customer</source>
+                <target>New customer</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>E-mail Address</source>
+                <target>E-mail Address</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>Password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>My account - Login</source>
+                <target>My account - Login</target>
+            </trans-unit>
+
+<!-- create account -->
+            <trans-unit id="51">
+                <source>First name</source>
+                <target>First name</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Last name</source>
+                <target>Last name</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>Initials</source>
+                <target>Initials</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>Phone</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>Address line 1</source>
+                <target>Street Address</target>
+            </trans-unit>
+            <trans-unit id="56" approved="no">
+                <source>Address line 2</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Postal code</source>
+                <target>Postal code</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>City</source>
+                <target>City</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Password repeated</source>
+                <target>Password repeated</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>The password fields must match.</source>
+                <target>The password fields must match.</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>Email repeated</source>
+                <target>Email repeated</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>The email fields must match.</source>
+                <target>The email fields must match.</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>Country</source>
+                <target>Country</target>
+            </trans-unit>
+            <trans-unit id="64" approved="no">
+                <source>account.created</source>
+                <target>Din konto er nu oprettet.</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>Create account</source>
+                <target>Create account</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Email repeated</source>
+                <target>Email repeated</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>create.notice</source>
+                <target><![CDATA[<strong>Please note:</strong> If you are an existing customer you log in on <a href="%url%">My pages</a><br><br>]]></target>
+            </trans-unit>
+            <trans-unit id="68" approved="no">
+                <source>nno.title</source>
+                <target>Hent dine adresseoplysninger fra De Gule Sider (TDC).</target>
+            </trans-unit>
+            <trans-unit id="69" approved="no">
+                <source>nno.description</source>
+                <target>Indtast dit telefonnummer og få autoudfyldt din adresse.</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>nno.fetch</source>
+                <target>Get</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>create.accept</source>
+                <target>I confirm the above order and confirm<br/>that I have read and accept POMPdeLUX terms and conditions</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>create.newsletter</source>
+                <target>Newsletter</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>create.terms</source>
+                <target>POMPdeLUX privacy Notice.</target>
+            </trans-unit>
+            <trans-unit id="74" approved="no">
+                <source>create.nno.address_found</source>
+                <target>Adressen der matcher det indtastede telefonnummer er indsat i formen herunder.</target>
+            </trans-unit>
+            <trans-unit id="75" approved="no">
+                <source>create.nno.no_address_found</source>
+                <target>Der blev ikke fundet nogen adresse på det indtastede telefonnummer.</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>The password fields must match.</source>
+                <target>The password fields must match.</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>The email fields must match.</source>
+                <target>The email fields must match.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
+<!--
+            <trans-unit id="">
+                <source></source>
+                <target></target>
+            </trans-unit>
+ -->
