@@ -10,80 +10,167 @@ namespace Hanzo\Bundle\ShippingBundle\ShippingMethods;
  **/
 class ShippingMethod
 {
-  /**
-   * undocumented class variable
-   *
-   * @var string
-   **/
-  protected $name;
+    const TYPE_FEE = true;
+    const TYPE_NORMAL = false;
 
-  /**
-   * undocumented class variable
-   *
-   * @var string
-   **/
-  protected $carrier;
+    /**
+     * undocumented class variable
+     *
+     * @var string
+     **/
+    protected $name;
 
-  /**
-   * undocumented class variable
-   *
-   * @var string
-   **/
-  protected $description;
+    /**
+     * undocumented class variable
+     *
+     * @var string
+     **/
+    protected $carrier;
 
-  /**
-   * Internal id
-   *
-   * @var string
-   **/
-  protected $id;
+    /**
+     * undocumented class variable
+     *
+     * @var string
+     **/
+    protected $description;
 
-  /**
-   * AX id 
-   *
-   * @var string
-   **/
-  protected $externalId;
+    /**
+     * Internal id
+     *
+     * @var string
+     **/
+    protected $id;
 
-  /**
-   * CalculationEngine 
-   *
-   * @var string
-   **/
-  protected $calcEngine;
+    /**
+     * AX id 
+     *
+     * @var string
+     **/
+    protected $externalId;
 
-  /**
-   * __construct
-   * @return void
-   * @author Henrik Farre <hf@bellcom.dk>
-   **/
-  public function __construct( $carrier, $name, $description, $externalId, $calcEngine )
-  {
-    $this->carrier = $carrier;
-    $this->name = $name;
-    $this->description = $description;
-    $this->externalId = $externalId;
-    $this->calcEngine = $calcEngine;
-  }
+    /**
+     * CalculationEngine 
+     *
+     * @var string
+     **/
+    protected $calcEngine;
 
-  /**
-   * get
-   * @return void
-   * @author Henrik Farre <hf@bellcom.dk>
-   **/
-  public function getName()
-  {
-    return $this->name;
-  }
+    /**
+     * __construct
+     * @param string $carrier
+     * @param string $name
+     * @param string $description
+     * @param string $externalId
+     * @param mixed $calcEngine
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function __construct( $carrier, $name, $description, $externalId, $calcEngine )
+    {
+        $this->carrier = $carrier;
+        $this->name = $name;
+        $this->description = $description;
+        $this->externalId = $externalId;
+        $this->calcEngine = $calcEngine;
 
-  /**
-   * getExternalId
-   * @return void
-   * @author Henrik Farre <hf@bellcom.dk>
-   **/
-  public function getExternalId()
-  {
-    return $this->externalId;
-  }
+        // FIXME: hardcoded
+        $this->feeExternalId = 90;
+        $this->hasFee = true;
+        $this->fee = 10.00;
+        $this->feeTax = 0.00;
+        $this->feeName = 'eks. gebyr';
+    }
+
+    /**
+     * get
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * getExternalId
+     * @return string The AX id
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
+
+    /**
+     * getPrice 
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getPrice()
+    {
+        // FIXME: hardcoded
+        return 100.00;
+    }
+
+    /**
+     * getFeePrice
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeePrice()
+    {
+        return $this->fee;
+    }
+
+    /**
+     * getFeeTax
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeTax()
+    {
+        return $this->feeTax;
+    }
+
+    /**
+     * hasFee
+     * @return bool
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function hasFee()
+    {
+        return $this->hasFee;
+    }
+
+    /**
+     * getFeeExternalId
+     * @return string
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeExternalId()
+    {
+        return $this->feeExternalId;
+    }
+
+    /**
+     * getFeeName
+     * @return string
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeName()
+    {
+        return $this->feeName;
+    }
+
+    /**
+     * getTax
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getTax()
+    {
+        // FIXME: hardcoded
+        return 0.00;
+    }
 
 } // END class ShippingMethod

@@ -13,6 +13,11 @@ use Hanzo\Model\om\BaseOrders,
     Hanzo\Model\OrdersLinesQuery
     ;
 
+use Hanzo\Bundle\ShippingBundle\ShippingMethods\ShippingMethod
+    ;
+
+use Exception
+    ;
 
 /**
  * Skeleton subclass for representing a row from the 'orders' table.
@@ -94,6 +99,57 @@ class Orders extends BaseOrders
         $this->addOrdersLines($line);
     }
 
+    /**
+     * setOrderLineShipping
+     * @param ShippingMethod
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setOrderLineShipping( ShippingMethod $shippingMethod, $isFee = false )
+    {
+        if ( $isFee )
+        {
+            $price = $shippingMethod->getFeePrice();
+            $name  = $shippingMethod->getFeeName();
+            $id    = $shippingMethod->getFeeExternalId();
+            $tax   = $shippingMethod->getFeeTax();
+            $type  = 'shipping.fee';
+        }
+        else
+        {
+            $price = $shippingMethod->getPrice();
+            $name  = $shippingMethod->getName();
+            $id    = $shippingMethod->getExternalId();
+            $tax   = $shippingMethod->getTax();
+            $type  = 'shipping';
+        }
+
+        // first update existing product lines, if any
+        $lines = $this->getOrdersLiness();
+        foreach ($lines as $index => $line) 
+        {
+            if ( $line->getProductsId() == $id && $line->getType() == $type ) 
+            {
+                $line->setProductsName( $name );
+                $line->setPrice( $price );
+                $line->setTax( $tax );
+                $lines[$index] = $line;
+                $this->setOrdersLiness($lines);
+
+                return;
+            }
+        }
+
+        $line = new OrdersLines;
+        $line->setOrdersId($this->getId());
+        $line->setProductsId( $id );
+        $line->setProductsName( $name );
+        $line->setQuantity(1);
+        $line->setPrice( $price );
+        $line->setTax( $tax );
+        $line->setType( $type );
+        $this->addOrdersLines($line);
+    }
 
     public function preSave(PropelPDO $con = null)
     {
@@ -177,16 +233,168 @@ class Orders extends BaseOrders
      **/
     public function setPaymentMethod( $method )
     {
+        $this->setBillingMethod( $method );
     }
 
     /**
-     * setPaymentPayType
+     * setPaymentPaytype
      * @param string $paytype
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function setPaymentPayType( $paytype )
+    public function setPaymentPaytype( $paytype )
     {
+        // TODO: match CustPaymMode from old system?
+        $this->setAttribute( 'paytype', 'payment', $paytype ); 
+    }
+
+    /**
+     * setOrderLinePaymentFee
+     * @param string $name
+     * @param float $price
+     * @param float $tax
+     * @param string $id
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setOrderLinePaymentFee( $name, $price, $tax, $id )
+    {
+        $type = 'payment.fee';
+
+        // first update existing product lines, if any
+        $lines = $this->getOrdersLiness();
+        foreach ($lines as $index => $line) 
+        {
+            if ( $line->getProductsId() == $id && $line->getType() == $type ) 
+            {
+                $line->setProductsName( $name );
+                $line->setPrice( $price );
+                $line->setTax( $tax );
+                $lines[$index] = $line;
+                $this->setOrdersLiness($lines);
+
+                return;
+            }
+        }
+
+        $line = new OrdersLines;
+        $line->setOrdersId($this->getId());
+        $line->setProductsId( $id );
+        $line->setProductsName( $name );
+        $line->setQuantity(1);
+        $line->setPrice( $price );
+        $line->setTax( $tax );
+        $line->setType( $type );
+        $this->addOrdersLines($line);
+    }
+
+    /**
+     * setShippingMethod
+     * @param string $method
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setShippingMethod( $method )
+    {
+        $this->setDeliveryMethod( $method );
+    }
+
+    /**
+     * setBillingAddress
+     * @param Addresses $address 
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setBillingAddress( Addresses $address )
+    {
+        if ( $address->getType != 'payment' )
+        {
+          throw new Exception( 'Address is not of type payment' );
+        }
+
+        $this->setBillingAddressLine1( $address->getAddressLine1() )
+            ->setBillingAddressLine2( $address->getAddressLine2() )
+            ->setBillingCity( $address->getCity() )
+            ->setBillingPostalCode( $address->getPostalCode() )
+            ->setBillingCountry( $address->getCountry() )
+            ->setBillingCountriesId( $address->getCountriesId() )
+            ->setBillingStateProvince( $address->getStateProvince() )
+            ->setBillingCompanyName( $address->getCompanyName() )
+            ->setBillingFirstName( $address->getFirstName() )
+            ->setBillingLastName( $address->getLastName() )
+            ;
+    }
+
+    /**
+     * clearBillingAddress
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearBillingAddress()
+    {
+      $fields = array(
+          'BillingAddressLine1'  => null,
+          'BillingAddressLine2'  => null,
+          'BillingCity'          => null,
+          'BillingPostalCode'    => null,
+          'BillingCountry'       => null,
+          'BillingCountriesId'   => null,
+          'BillingStateProvince' => null,
+          'BillingCompanyName'   => null,
+          'BillingFirstName'     => null,
+          'BillingLastName'      => null,
+          ); 
+
+      $this->fromArray($fields);
+    }
+
+    /**
+     * clearBillingAddress
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearDeliveryAddress()
+    {
+      $fields = array(
+          'DeliveryAddressLine1'  => null,
+          'DeliveryAddressLine2'  => null,
+          'DeliveryCity'          => null,
+          'DeliveryPostalCode'    => null,
+          'DeliveryCountry'       => null,
+          'DeliveryCountriesId'   => null,
+          'DeliveryStateProvince' => null,
+          'DeliveryCompanyName'   => null,
+          'DeliveryFirstName'     => null,
+          'DeliveryLastName'      => null,
+          ); 
+
+      $this->fromArray($fields);
+    }
+
+    /**
+     * setDeliveryAddress
+     * @param Addresses $address 
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function setDeliveryAddress( Addresses $address )
+    {
+        if ( $address->getType != 'shipping' )
+        {
+          throw new Exception( 'Address is not of type shipping' );
+        }
+
+        $this->setDeliveryAddressLine1( $address->getAddressLine1() )
+            ->setDeliveryAddressLine2( $address->getAddressLine2() )
+            ->setDeliveryCity( $address->getCity() )
+            ->setDeliveryPostalCode( $address->getPostalCode() )
+            ->setDeliveryCountry( $address->getCountry() )
+            ->setDeliveryCountriesId( $address->getCountriesId() )
+            ->setDeliveryStateProvince( $address->getStateProvince() )
+            ->setDeliveryCompanyName( $address->getCompanyName() )
+            ->setDeliveryFirstName( $address->getFirstName() )
+            ->setDeliveryLastName( $address->getLastName() )
+            ;
     }
 
     /**
