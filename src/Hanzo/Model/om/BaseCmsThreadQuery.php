@@ -148,7 +148,7 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new CmsThread();
 			$obj->hydrate($row);
-			CmsThreadPeer::addInstanceToPool($obj, (string) $key);
+			CmsThreadPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 

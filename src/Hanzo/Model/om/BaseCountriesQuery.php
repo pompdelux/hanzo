@@ -189,7 +189,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Countries();
 			$obj->hydrate($row);
-			CountriesPeer::addInstanceToPool($obj, (string) $key);
+			CountriesPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 

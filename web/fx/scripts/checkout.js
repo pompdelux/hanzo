@@ -18,19 +18,22 @@ var checkout = (function($) {
           blocks.address.hide();
           blocks.payment.hide();
           blocks.summery.hide();
-          $("#checkout-execute").addClass('hidden');
+          blocks.confirm.hide();
         }
       break;
       case 'address':
         if (state === true)
         {
           blocks.payment.reveal();
+          if (blocks.payment.data.state) {
+            checkoutUpdate( blocks.payment.data.name, blocks.payment.data.state );
+          }
         }
         else
         {
           blocks.payment.hide();
           blocks.summery.hide();
-          $("#checkout-execute").addClass('hidden');
+          blocks.confirm.hide();
         }
       break;
       case 'payment':
@@ -41,7 +44,7 @@ var checkout = (function($) {
         else
         {
           blocks.summery.hide();
-          $("#checkout-execute").addClass('hidden');
+          blocks.confirm.hide();
         }
       break;
       case 'summery':
@@ -71,6 +74,10 @@ var checkout = (function($) {
       dataType: 'json',
       data: {data: data},
       success: function(data) {
+        if ( !data.status )
+        {
+          dialoug.alert( i18n.t('Notice!'), data.message);
+        }
       }
     });
   }
@@ -82,9 +89,10 @@ var checkout = (function($) {
       state: false,
     };
 
-    this.update = function(event) {
+    this.update = function() {
+      //console.log( "Updating: "+ this.data.name +" "+ (this.data.state ? 'true' : 'false'));
       checkoutUpdate( this.data.name, this.data.state );
-      updateServerState( this.data.name, this.data.state, this.data);
+      updateServerState( this.data.name, this.data.state, this.data );
     };
 
     this.reset = function() {
@@ -103,7 +111,7 @@ var checkout = (function($) {
     this.error = function() {
       this.state = false;
       this.reset();
-      this.update(false);
+      this.update();
     };
 
     this.hide = function() {
@@ -135,11 +143,22 @@ var checkout = (function($) {
       $(this.data.selector+' form input').on('click', function(event) {
         self.data.state = true; // If the user has selected a shipping method, everything is ok
         self.data.selectedMethod = $(this).val();
-        self.update(event);
+        self.update();
       });
     };
 
+    /**
+     * Address block
+     */
     blocks.address = new Block( 'address', '#checkout-block-address');
+    blocks.address.getData = function() {
+      var self = this;
+      this.data.addresses = [];
+      $(this.data.selector).find(".account-address-block").each(function() {
+        console.log($(this).data('type'));
+        self.data.addresses.push($(this).data('type'));
+      });
+    };
     blocks.address.reveal = function() {
       this.data.state = false;
       $(this.data.selector).slideDown();
@@ -148,7 +167,8 @@ var checkout = (function($) {
       switch(shippingMethod) {
         case '10':
           this.data.state = true;
-          this.update(false);
+          this.getData();
+          this.update();
           $(this.data.selector +" "+ ".checkout-block-type-shipping").show();
           $(this.data.selector +" "+ ".checkout-block-type-overnightbox").hide();
         break;
@@ -166,37 +186,40 @@ var checkout = (function($) {
           if ( !hasCompanyAddress )
           {
             this.data.state = false;
-            this.update(false);
-            // FIXME: text
-            dialoug.alert( 'Bemærk', 'Du har valgt "Post Danmark Erhverv". Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).' );
+            this.update();
+            dialoug.alert( i18n.t('Notice!'), i18n.t('checkout.shipping_business') );
           }
           else
           {
             this.data.state = true;
-            this.update(false);
+            this.update();
           }
           // look for normalAddress in common.js on old shop
           // if not ok hide payment
           break;
         case '12':
           this.data.state = false;
-          this.update(false);
+          this.update();
           $(this.data.selector +" "+ ".checkout-block-type-shipping").hide();
           $(this.data.selector +" "+ ".checkout-block-type-overnightbox").show();
-        // if not ok hide payment
+          // if not ok hide payment
         break;
       }
     };
      
-
+    /**
+     * Payment block
+     */
     blocks.payment = new Block( 'payment', '#checkout-block-payment');
     blocks.payment.init = function() {
       var self = this;
       $(this.data.selector+' form input[type=radio]').on('click', function(event) {
-        var $paytypeSelector = $(this).closest('form');
-        self.data.selectedMethod = $paytypeSelector.attr('id');
+        //console.log('---------------------------------------------------');
+        var $paytypeSelector      = $(this).closest('form');
+        self.data.selectedMethod  = $paytypeSelector.attr('id');
         self.data.selectedPaytype = $(this).val();
-        self.data.state          = true;
+        self.data.state           = true;
+        self.update();
 
         var $selectedInput = $(this);
         $(self.data.selector+' form input[type=radio]').each(function(item) {
@@ -205,35 +228,44 @@ var checkout = (function($) {
             $(this).prop('checked',false);
           }
         });
-        self.update(event);
       });
     };
 
-
+    /**
+     * Summery block
+     */
     blocks.summery = new Block( 'summery', '#checkout-block-summery');
     blocks.summery.reveal = function() {
-      // FIXME: should block contens come from ajax for js template?
+      var self = this;
       $(this.data.selector).slideDown();
-      // FIXME: delay update until slideDown is done
-      this.data.state = true;
-      this.update();
+      self.data.state = true;
+      self.update();
     };
 
+    /**
+     * Confirm block
+     */
     blocks.confirm = new Block( 'confirm', '#checkout-block-confirm' );
     blocks.confirm.init = function() {
-      // When the user clicks the link, check if everything is as it should be
-      $("#checkout-execute").on('click', function(event) {
+      var self = this;
+
+      $("#checkout-execute").on('click', function(event) { // When the user clicks the link, check if everything is as it should be
         event.preventDefault();
 
         $.each(blocks, function(item) {
-          if ( this.data.state() !== true )
+          if ( this.data.state !== true )
           {
-            // FIXME: hardcoded text
-            this.setMessage( 'Not filled correctly', 'error' );
+            //console.log(this.data.name +" does not have a ok state");
+            this.setMessage( i18n.t('Not filled correctly'), 'error' );
             this.error();
+            self.data.state = false;
+            self.update();
             return false;
           }
         });
+
+        self.data.state = true;
+        self.update();
 
         $.ajax({
           url: base_url+'checkout/validate',
@@ -242,6 +274,10 @@ var checkout = (function($) {
           success: function(data) {
             if ( data.status )
             {
+              $.each(blocks, function(item) {
+                this.hide();
+              });
+
               blocks.payment.execute();
             }
             else
@@ -251,6 +287,8 @@ var checkout = (function($) {
                 {
                   this.setMessage( data.message, 'error' );
                   this.error();
+                  self.data.state = false;
+                  self.update();
                 }
               });
             }
@@ -258,6 +296,27 @@ var checkout = (function($) {
         });
       });
     };
+
+    blocks.confirm.reveal = function() {
+      $(this.data.selector).slideDown();
+      //console.log('confirm reveal');
+      var self = this;
+      $.each(blocks, function(item) {
+        if ( this.data.name !== self.data.name && this.data.state !== true )
+        {
+          //console.log(this.data.name +" does not have a ok state");
+          this.setMessage( i18n.t('Not filled correctly'), 'error' );
+          this.error();
+          self.data.state = false;
+          self.update();
+          return false;
+        }
+      });
+
+      self.data.state = true;
+      self.update();
+    };
+
   }
 
   /**

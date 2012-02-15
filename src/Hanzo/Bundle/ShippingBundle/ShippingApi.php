@@ -23,11 +23,15 @@ class ShippingApi
 
     /**
      * __construct
+     * @param array $params
+     * @param array $settings
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct()
+    public function __construct( $params, $settings )
     {
+        // TODO: handle free shipping
+        error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
         $this->domainKey = Hanzo::getInstance()->get('core.domain_key');;
     }
 

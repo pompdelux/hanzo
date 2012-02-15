@@ -67,7 +67,7 @@ class DefaultController extends CoreController
 
                 $formData = $request->request->get('customers');
 
-                if ( $formData['newsletter'] ) 
+                if ( isset( $formData['newsletter'] )  && $formData['newsletter'] ) 
                 {
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());

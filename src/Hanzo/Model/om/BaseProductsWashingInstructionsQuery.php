@@ -156,7 +156,7 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsWashingInstructions();
 			$obj->hydrate($row);
-			ProductsWashingInstructionsPeer::addInstanceToPool($obj, (string) $key);
+			ProductsWashingInstructionsPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 

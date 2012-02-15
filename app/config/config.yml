@@ -95,35 +95,22 @@ propel:
 snc_redis:
     connections:
         default:
-            alias: default
-            host: localhost
-            port: 6379
-            database: 0
-            logging: %kernel.debug%
-        cache:
-            alias: cache
-            host: localhost
-            port: 6379
-            database: 1
-            password: secret
-            connection_timeout: 10
-            read_write_timeout: 30
+            alias:    default
+            host:     %redis_cache1_host%
+            port:     %redis_cache1_port%
+            database: %redis_cache1_database%
+            logging:  %kernel.debug%
         session:
-            alias: session
-            host: localhost
-            port: 6379
-            database: 2
+            alias:    session
+            host:     %redis_session_host%
+            port:     %redis_session_port%
+            database: %redis_session_database%
     clients:
         default:
-            alias: default
+            alias:      default
             connection: default
-        cache:
-            alias: cache
-            connection: cache
-            options:
-                profile: 2.2
         session:
-            alias: session
+            alias:      session
             connection: session
     session:
         client: session

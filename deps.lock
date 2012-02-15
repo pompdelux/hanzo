@@ -2,7 +2,6 @@ symfony v2.0.10
 twig v1.6.0
 monolog 1.0.2
 doctrine-common 2.1.4
-doctrine-dbal 2.1.6
 doctrine 2.1.6
 swiftmailer v4.1.5
 assetic v1.0.2
@@ -13,3 +12,11 @@ JMSSecurityExtraBundle 541a4c242328dc04b99540c75346cc74a7c0cfb5
 SensioDistributionBundle 20b66a408084ad8752f98e50f10533f5245310bf
 SensioGeneratorBundle dd37fc4487bc09ac01bdcf89e0ff4ee4484b7fab
 AsseticBundle v1.0.1
+PropelBundle 0.3^2
+phing 1fd92c78f14a02b3e1cd9c59c7a08b4cab532d33
+propel 0eacc54d8c265448e14e2b1632a2c43433b4106c
+SncRedisBundle a7c6d2a88d6cfa1b05d2ac12dac1ad0a18cbebc1
+predis 46d293a7166c563ff3889fceee47346c0e59ae0c
+GeocodableBehavior 1ac584c1712a48753cc4fec941c0698037eebc48
+Geocoder 58f680e03f4cc6dc6a89cc48102700e71f21f0e2
+SimpleThingsFormExtraBundle b9c3a0c4d2de8d1313ec64ef705485618492c26a

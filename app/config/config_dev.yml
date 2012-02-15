@@ -21,3 +21,22 @@ monolog:
 
 assetic:
     use_controller: true
+
+propel:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:               %database_driver%
+                user:                 %database_user%
+                password:             %database_password%
+                dsn:                  mysql:host=%database_host%;dbname=%database_name%
+                options:              {}
+                attributes:           {}
+            pdlfront_dk:
+                driver:               %database_driver%
+                user:                 %database_user%
+                password:             %database_password%
+                dsn:                  mysql:host=%database_host%;dbname=pdl_dk
+                options:              {}
+                attributes:           {}
