@@ -123,8 +123,7 @@ class ECommerceServices extends SoapService
             $domains[$domain->getDomainKey()] = $domain->getId();
         }
 
-
-
+        // loop over all items
         foreach ($item->InventDim as $entry)
         {
             $sku = trim($item->ItemName . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId);
@@ -145,21 +144,26 @@ class ECommerceServices extends SoapService
             $product->setIsOutOfStock(FALSE);
             $product->setIsActive(TRUE);
 
+            // // products i18n
+            // $i18n = new ProductsI18n();
+            // $i18n->setLocale();
+
             // products 2 domain
             $collection = new \PropelCollection();
             foreach ($item->WebDomain as $domain) {
                 $data = new ProductsDomainsPrices();
-                $data->setDomainId($domains[$domain]);
+                $data->setDomainsId($domains[$domain]);
                 $data->setPrice(0.00);
                 $data->setVat(0.00);
                 $data->setFromDate(time());
                 $data->setCurrencyId(0);  // fixme !
                 $collection->setData($data);
             }
-
+            $product->setProductsDomainsPricess($collection);
 
             // products 2 category
 
+            $product->save();
         }
 
 

@@ -236,7 +236,7 @@ abstract class BaseProductsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Products();
 			$obj->hydrate($row);
-			ProductsPeer::addInstanceToPool($obj, (string) $key);
+			ProductsPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 

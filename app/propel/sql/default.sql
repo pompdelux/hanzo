@@ -833,6 +833,25 @@ CREATE TABLE `messages`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- shipping_methods
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shipping_methods`;
+
+CREATE TABLE `shipping_methods`
+(
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`carrier` VARCHAR(255) NOT NULL,
+	`external_id` VARCHAR(32) NOT NULL,
+	`calc_engine` VARCHAR(32) DEFAULT 'flat' NOT NULL,
+	`price` DECIMAL(15,4) NOT NULL,
+	`fee` DECIMAL(15,4) DEFAULT 0.00,
+	`fee_external_id` VARCHAR(32),
+	`is_active` TINYINT(1) DEFAULT 1 NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- categories_i18n
 -- ---------------------------------------------------------------------
 

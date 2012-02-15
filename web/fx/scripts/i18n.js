@@ -17,7 +17,9 @@ var i18n = (function($) {
       'countdown format' : '{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}',
       'late delivery notice': '<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.',
       'delete from basket warning' : 'Er du sikker på du vil slette <strong>%product%</strong> fra din kurv ?',
-      'late delivery' : '<h2>Bemærk</h2><strong>"%product%"</strong> har vi ikke på lager i øjeblikket.<br>Hele din ordre forventes afsendt fra vores lager senest <strong>%date%</strong>.'
+      'late delivery' : '<h2>Bemærk</h2><strong>"%product%"</strong> har vi ikke på lager i øjeblikket.<br>Hele din ordre forventes afsendt fra vores lager senest <strong>%date%</strong>.',
+      'Not filled correctly': 'Ikke udfyldt korrekt',
+      'checkout.shipping_business' : 'Du har valgt "Post Danmark Erhverv". Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).'
     },
     en : {
       'countdown date' : 'February 20, 2012 09:00:00',
