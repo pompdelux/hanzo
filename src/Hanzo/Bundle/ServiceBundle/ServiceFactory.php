@@ -1,4 +1,4 @@
-<?php
+<?php /* vim: set sw=4: */
 namespace Hanzo\Bundle\ServiceBundle;
 
 use Hanzo\Bundle\ServiceBundle\Services;
