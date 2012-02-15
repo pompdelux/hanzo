@@ -3,7 +3,7 @@ ws_index:
     defaults: { _controller: WebServicesBundle:RestGoogle:index }
 
 ws_soap:
-    pattern:  /soap/{version}/{service_name}
+    pattern:  /soap/{version}/{service_name}/
     defaults: { _controller: WebServicesBundle:Soap:index, version: v1 }
     requirements:
         service_name: "[a-zA-Z0-9_]+"

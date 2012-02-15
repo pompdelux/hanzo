@@ -162,8 +162,10 @@ class Orders extends BaseOrders
 
     public function postSave(PropelPDO $con = null)
     {
-        if(empty($_SESSION['order_id'])) {
-            $_SESSION['order_id'] = $this->getId();
+        $session = Hanzo::getInstance()->getSession();
+
+        if(FALSE === $session->has('order_id')) {
+            $session->set('order_id', $this->getId());
         }
     }
 

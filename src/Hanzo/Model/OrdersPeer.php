@@ -33,11 +33,13 @@ class OrdersPeer extends BaseOrdersPeer
             return self::$current;
         }
 
-        if (!empty($_SESSION['order_id'])) {
+        $session = Hanzo::getInstance()->getSession();
+
+        if ($session->has('order_id')) {
             $query = OrdersQuery::create()
                 ->leftJoinWithOrdersLines()
             ;
-            self::$current = $query->findPk($_SESSION['order_id']);
+            self::$current = $query->findPk($session->get('order_id'));
 
             // attach the customer to the order.
             if ( ( self::$current instanceOf Orders ) && !self::$current->getCustomersId()) {

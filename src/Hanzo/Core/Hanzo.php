@@ -205,6 +205,14 @@ class Hanzo
     {
         return $this->get('google.maps');
     }
+
+    /**
+     * get session object wrapper
+     */
+    public function getSession()
+    {
+        return $this->container->get('request')->getSession();
+    }
 }
 
 // # da
