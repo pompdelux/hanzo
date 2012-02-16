@@ -163,7 +163,7 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new MannequinImages();
 			$obj->hydrate($row);
-			MannequinImagesPeer::addInstanceToPool($obj, (string) $row[0]);
+			MannequinImagesPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

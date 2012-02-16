@@ -151,7 +151,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsStock();
 			$obj->hydrate($row);
-			ProductsStockPeer::addInstanceToPool($obj, (string) $row[0]);
+			ProductsStockPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

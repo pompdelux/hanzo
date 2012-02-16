@@ -160,7 +160,7 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ShippingMethods();
 			$obj->hydrate($row);
-			ShippingMethodsPeer::addInstanceToPool($obj, (string) $row[0]);
+			ShippingMethodsPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

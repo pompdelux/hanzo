@@ -155,7 +155,7 @@ abstract class BaseMessagesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new Messages();
 			$obj->hydrate($row);
-			MessagesPeer::addInstanceToPool($obj, (string) $row[0]);
+			MessagesPeer::addInstanceToPool($obj, (string) $key);
 		}
 		$stmt->closeCursor();
 

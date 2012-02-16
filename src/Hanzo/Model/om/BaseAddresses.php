@@ -1900,23 +1900,32 @@ abstract class BaseAddresses extends BaseObject  implements Persistent
 	 */
 	public function geocode()
 	{
-	    $geocoder = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter()));
+	    $geocoder = new \Geocoder\Geocoder(new \Geocoder\Provider\GoogleMapsProvider(new \Geocoder\HttpAdapter\CurlHttpAdapter(), \Hanzo\Core\Hanzo::getInstance()->getGoogleMapsKey()));
+	
 	    $address_parts = array();
-	    $address_modified = false;
+	    $address_modified = $this->isNew() || !$this->isGeocoded();
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::ADDRESS_LINE_1);
 	    $address_parts['AddressLine1'] = $this->getAddressLine1();
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::ADDRESS_LINE_2);
 	    $address_parts['AddressLine2'] = $this->getAddressLine2();
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::STATE_PROVINCE);
 	    $address_parts['StateProvince'] = $this->getStateProvince();
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::POSTAL_CODE);
 	    $address_parts['PostalCode'] = $this->getPostalCode();
+	
 	    $address_modified = $address_modified || $this->isColumnModified(AddressesPeer::COUNTRY);
 	    $address_parts['Country'] = $this->getCountry();
+	
 	    $address = join(',', array_filter($address_parts));
+	
 	    if ($address_modified) {
 	        $result = $geocoder->geocode($address);
 	    }
+	
 	    if (isset($result) && $coordinates = $result->getCoordinates()) {
 	        $this->setLatitude($coordinates[0]);
 	        $this->setLongitude($coordinates[1]);
