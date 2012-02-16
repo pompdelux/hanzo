@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+<!-- main -->
+            <trans-unit id="1">
+                <source>Home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>My account</source>
+                <target>My account</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Show basket</source>
+                <target>Show basket</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Choose</source>
+                <target>Choose</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Quantity</source>
+                <target>Quantity</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Loading</source>
+                <target>Loading</target>
+            </trans-unit>
+
+<!-- category -->
+            <trans-unit id="12">
+                <source>Click for more information about %name%.</source>
+                <target>Click for more information about %name%.</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>All products in this category is out of stock.</source>
+                <target>All products in this category is out of stock.</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Show previous page</source>
+                <target>Show previous page</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Previous</source>
+                <target>Previous</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Show page %page%</source>
+                <target>Show page %page%</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Show next page</source>
+                <target>Show next page</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Next</source>
+                <target>Next</target>
+            </trans-unit>
+
+<!-- product page -->
+            <trans-unit id="6">
+                <source>Product details</source>
+                <target>Product details</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Care instructions</source>
+                <target>Care instructions</target>
+            </trans-unit>
+
+
+<!-- basket -->
+            <trans-unit id="8">
+                <source>Add to basket</source>
+                <target>Add to basket</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>"%product%" just added to your cart</source>
+                <target>"%product%" just added to your cart</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>"%product%" is out of stock</source>
+                <target>"%product%" is out of stock</target>
+            </trans-unit>
+
+            <trans-unit id="19">
+                <source>Products</source>
+                <target>Products</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Latest shipment date</source>
+                <target>Latest shipment date</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Price</source>
+                <target>Price</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Quantity</source>
+                <target>Quantity</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Color</source>
+                <target>Color</target>
+            </trans-unit>
+
+<!-- checkout -->
+            <trans-unit id="28">
+                <source>Step 1 of 6 - Basket</source>
+                <target>Step 1 of 6 - Basket</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>1. Basket</source>
+                <target>1. Basket</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>2. Delivery options</source>
+                <target>2. Delivery options</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>3. Payment options</source>
+                <target>3. Payment options</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>4. Confirm</source>
+                <target>4. Confirm</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>5. Payment</source>
+                <target>5. Payment</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>6. Order confirmation</source>
+                <target>6. Order confirmation</target>
+            </trans-unit>
+             <trans-unit id="36">
+                <source>Continue shopping</source>
+                <target>Continue shopping</target>
+            </trans-unit>
+             <trans-unit id="37">
+                <source>Proceed</source>
+                <target>Proceed</target>
+            </trans-unit>
+             <trans-unit id="38">
+                <source>Your cart is currently empty.</source>
+                <target>Your cart is currently empty.</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source><![CDATA[<strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.]]></source>
+                <target><![CDATA[<strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.]]></target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>If your order contains items with shipping dates, we ship your order when all items are in stock.</source>
+                <target>If your order contains items with shipping dates, we ship your order when all items are in stock.</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source><![CDATA[<p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>]]></source>
+                <target><![CDATA[<p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be     shipped from our warehouse at the latest: <strong>%date%</strong>.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>No such product in your cart.</source>
+                <target>No such product in your cart.</target>
+            </trans-unit>
+
+<!-- from account/create -->
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>Email address</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Email address repeated</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Pass</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Pass repeated</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
+
+<!--
+            <trans-unit id="">
+                <source></source>
+                <target></target>
+            </trans-unit>
+ -->
