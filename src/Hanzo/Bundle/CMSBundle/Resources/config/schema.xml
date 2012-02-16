@@ -508,7 +508,7 @@
     <column name="ns" type="VARCHAR" size="64" primaryKey="true" required="true"/>
     <column name="c_key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
     <column name="c_value" type="VARCHAR" size="255" required="false"/>
-    <foreign-key foreignTable="orders" name="fk_orders_attributes_1" onDelete="CASCADE">
+    <foreign-key foreignTable="orders" onDelete="CASCADE">
       <reference local="orders_id" foreign="id"/>
     </foreign-key>
   </table>
