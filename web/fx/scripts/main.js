@@ -62,16 +62,15 @@
 
     pub.initBasket = function() {
       /**
-       * only try to fetch the basket on init if the element is empty.
+       * we always fetch the basket via ajax, this
+       * way we can keep stuff in varnish without esi
        */
       var $basket = $('#mini-basket a');
-      if ($basket.html().trim() == '') {
-        $.getJSON(base_url + 'miniBasket', function(data) {
-          if (data.status && data.data) {
-            $basket.text(data.data);
-          }
-        });
-      }
+      $.getJSON(base_url + 'miniBasket', function(data) {
+        if (data.status && data.data) {
+          $basket.text(data.data);
+        }
+      });
     };
 
     return pub;
