@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="product-list clearfix">
-  <div class="wrapper">
+  <div class="wrapper old-item">
 
   {% for product in products %}
 
@@ -41,7 +41,7 @@
 {#  yatzy js template used by the pager, do not delete ! #}
 {% raw %}
 <script type="text/html" id="productItems">
-<div class="wrapper">
+<div class="wrapper new-item">
 <? for(i=0, l=data.length; i<l; i++) {?>
   <div class="block block-num-<?=(i+1)?>">
     <a href="<?=data[i].url?>" title="">
