@@ -33,6 +33,7 @@ class MiscExtension extends Twig_Extension
             'print_r' => new Twig_Function_Function('print_r'),
             'parse' => new Twig_Function_Method($this, 'parse', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'meta_tags' => new Twig_Function_Method($this, 'meta_tags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'google_analytics_tag' => new Twig_Function_Method($this, 'google_analytics_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
@@ -85,4 +86,26 @@ class MiscExtension extends Twig_Extension
 
          return $result;
      }
+
+     public function google_analytics_tag() {
+            $google = Hanzo::getInstance()->getByNs('google');
+            if (!empty($google['analytics_id'])) {
+        return <<<DOC
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', '{$google['analytics_id']}']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+DOC;
+        }
+
+        return '';
+     }
+
+
 }

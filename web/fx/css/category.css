@@ -4,10 +4,14 @@
   text-align: left;
   width: 735px;
   height: 600px;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .product-list .wrapper {
-  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 735px;
+  height: 600px;
 }
 .product-list .block {
   float: left;
@@ -52,6 +56,15 @@
   clear: both;
   line-height: 10px;
 }
+
+.product-list .wrapper.prev {
+  left: -744px;
+}
+.product-list .wrapper.next {
+  left: 744px;
+}
+
+
 
 .pager {
   width: 100%;
