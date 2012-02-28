@@ -6,35 +6,37 @@ use Hanzo\Bundle\WebServicesBundle\Services\Soap\SoapService;
 
 use Hanzo\Core\Tools;
 
-use Hanzo\Model\ProductsDomainsPricesPeer,
-    Hanzo\Model\ProductsDomainsPrices,
-    Hanzo\Model\ProductsDomainsPricesQuery,
-    Hanzo\Model\ProductsI18nPeer,
-    Hanzo\Model\ProductsI18n,
-    Hanzo\Model\ProductsI18nQuery,
-    Hanzo\Model\ProductsImagesCategoriesSortPeer,
-    Hanzo\Model\ProductsImagesCategoriesSort,
-    Hanzo\Model\ProductsImagesCategoriesSortQuery,
-    Hanzo\Model\ProductsImagesPeer,
-    Hanzo\Model\ProductsImages,
-    Hanzo\Model\ProductsImagesProductReferencesPeer,
-    Hanzo\Model\ProductsImagesProductReferences,
-    Hanzo\Model\ProductsImagesProductReferencesQuery,
-    Hanzo\Model\ProductsImagesQuery,
-    Hanzo\Model\ProductsPeer,
-    Hanzo\Model\Products,
-    Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsStockPeer,
-    Hanzo\Model\ProductsStock,
-    Hanzo\Model\ProductsStockQuery,
-    Hanzo\Model\ProductsToCategoriesPeer,
-    Hanzo\Model\ProductsToCategories,
-    Hanzo\Model\ProductsToCategoriesQuery,
-    Hanzo\Model\ProductsWashingInstructionsPeer,
-    Hanzo\Model\ProductsWashingInstructions,
-    Hanzo\Model\ProductsWashingInstructionsQuery,
-    Hanzo\Model\DomainsQuery
-;
+use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\ProductsDomainsPrices;
+use Hanzo\Model\ProductsDomainsPricesQuery;
+use Hanzo\Model\ProductsI18n;
+use Hanzo\Model\ProductsImagesCategoriesSort;
+use Hanzo\Model\ProductsImagesCategoriesSortQuery;
+use Hanzo\Model\ProductsImagesPeer;
+use Hanzo\Model\ProductsImages;
+use Hanzo\Model\ProductsImagesProductReferencesPeer;
+use Hanzo\Model\ProductsImagesProductReferences;
+use Hanzo\Model\ProductsImagesProductReferencesQuery;
+use Hanzo\Model\ProductsImagesQuery;
+use Hanzo\Model\ProductsPeer;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsStockPeer;
+use Hanzo\Model\ProductsStock;
+use Hanzo\Model\ProductsStockQuery;
+use Hanzo\Model\ProductsToCategoriesPeer;
+use Hanzo\Model\ProductsToCategories;
+use Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\ProductsWashingInstructionsPeer;
+use Hanzo\Model\ProductsWashingInstructions;
+use Hanzo\Model\ProductsWashingInstructionsQuery;
+
+use Hanzo\Model\DomainsQuery;
+use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\LanguagesQuery;
+
+use \Exception;
+use \PropelCollection;
 
 class ECommerceServices extends SoapService
 {
@@ -118,55 +120,112 @@ class ECommerceServices extends SoapService
         // .....<ze code>......
         // ....................
 
-        $domains = array();
-        foreach(DomainsQuery::create()->find() as $domain) {
-            $domains[$domain->getDomainKey()] = $domain->getId();
-        }
+        try {
+            // loop over all items
+            $index = 0;
+            foreach ($item->InventDim as $entry)
+            {
+                /**
+                 * create master product
+                 */
+                if ($index == 0) {
+                    $sku = trim($item->ItemName);
+                    $product = ProductsQuery::create()->findOneBySku($sku);
 
-        // loop over all items
-        foreach ($item->InventDim as $entry)
-        {
-            $sku = trim($item->ItemName . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId);
+                    if (!$product instanceof Products) {
+                        $product = new Products();
+                        $product->setSku($sku);
+                        $product->setUnit(trim('1 ' .$item->Sales->UnitId));
+                        $product->setWashing(trim($item->WashInstruction));
 
-            $product = ProductsQuery::create()->findBySku($sku);
+                        // products 2 category
+                        $categories = explode(',', $item->ItemGroupId);
 
-            if (!$product instanceof Products) {
-                $product = new Products();
-                $product->setSku($sku);
-                $product->setMaster($item->ItemName);
-                $product->setColor($entry->InventColorId);
-                $product->setSize($entry->InventSizeId);
+                        // cleanup elements
+                        array_walk($categories, function(&$value, $key) use (&$categories) {
+                            $value = trim($value);
+                            if (empty($value)) {
+                                unset ($categories[$key]);
+                            }
+                        });
+
+                        $categories = CategoriesQuery::create()
+                            ->filterByContext($categories)
+                            ->find();
+
+                        if (0 == $categories->count()) {
+                            $errors = array(
+                                'InventId: ' . $item->ItemId,
+                                'No category/categories found for ItemGroupId: '.$item->ItemGroupId.'.',
+                            );
+                            break;
+                        }
+
+                        // products i18n
+                        $languages = LanguagesQuery::create()->find();
+                        foreach ($languages as $language) {
+                            $i18n = new ProductsI18n();
+                            $i18n->setLocale($language->getLocale());
+                            $i18n->setTitle($item->ItemName);
+                            $i18n->setContent($item->ItemName);
+                            $product->addProductsI18n($i18n);
+                        }
+
+                        // bind product to categories
+                        foreach ($categories as $category) {
+                            $p2c = new ProductsToCategories();
+                            $p2c->setCategoriesId($category->getId());
+                            $product->addProductsToCategories($p2c);
+                        }
+
+                        // save ze product
+                        $product->save();
+                    }
+                }
+
+                // create product variations
+                $sku = trim($item->ItemName . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId);
+                $product = ProductsQuery::create()->findOneBySku($sku);
+
+                if (!$product instanceof Products) {
+                    $product = new Products();
+                    $product->setSku($sku);
+                    $product->setMaster($item->ItemName);
+                    $product->setColor($entry->InventColorId);
+                    $product->setSize($entry->InventSizeId);
+                }
+
+                $product->setUnit(trim('1 ' .$item->Sales->UnitId));
+                $product->setWashing(trim($item->WashInstruction));
+                $product->setHasVideo(TRUE);
+                $product->setIsOutOfStock(FALSE);
+                $product->setIsActive(TRUE);
+
+                // moved to SyncPriceList
+                // // products 2 domain
+                // $collection = new PropelCollection();
+                // foreach ($item->WebDomain as $domain) {
+                //     $data = new ProductsDomainsPrices();
+                //     $data->setDomainsId($domains[$domain]);
+                //     $data->setPrice(0.00);
+                //     $data->setVat(0.00);
+                //     $data->setFromDate(time());
+                //     $data->setCurrencyId(0);  // fixme !
+                //     $collection->setData($data);
+                // }
+                // $product->setProductsDomainsPricess($collection);
+
+                $product->save();
+                $index++;
             }
 
-            $product->setUnit(trim('1 ' .$item->Sales->UnitId));
-            $product->setWashing(trim($item->WashInstruction));
-            $product->setHasVideo(TRUE);
-            $product->setIsOutOfStock(FALSE);
-            $product->setIsActive(TRUE);
-
-            // // products i18n
-            // $i18n = new ProductsI18n();
-            // $i18n->setLocale();
-
-            // products 2 domain
-            $collection = new \PropelCollection();
-            foreach ($item->WebDomain as $domain) {
-                $data = new ProductsDomainsPrices();
-                $data->setDomainsId($domains[$domain]);
-                $data->setPrice(0.00);
-                $data->setVat(0.00);
-                $data->setFromDate(time());
-                $data->setCurrencyId(0);  // fixme !
-                $collection->setData($data);
-            }
-            $product->setProductsDomainsPricess($collection);
-
-            // products 2 category
-
-            $product->save();
         }
-
-
+        catch(Exception $e) {
+            $errors = array(
+                //'InventId: ' . $item->ItemId,
+                $e->getMessage(),
+            );
+        }
 
 
         // ....................
@@ -182,97 +241,282 @@ class ECommerceServices extends SoapService
         return self::responseStatus('Ok', 'SyncItemResult');
     }
 
-/**
-* syncronize a products price(s)
-*
-* @param object $data xmlformat:
-* <priceList>
-*   <ItemId>Daisy SKIRT</ItemId>
-*   <SalesPrice>
-*     <AmountCur>127.5</AmountCur>
-*     <Currency>DKK</Currency>
-*     <CustAccount/>
-*     <InventColorId>Rød</InventColorId>
-*     <InventSizeId>5-6</InventSizeId>
-*     <PriceDate>2008-12-08</PriceDate>
-*     <PriceDateTo>2009-12-08</PriceDateTo>
-*     <PriceUnit>1</PriceUnit>
-*     <Quantity>1</Quantity>
-*     <UnitId>Stk</UnitId>
-*   </SalesPrice>
-*   <SalesPrice>
-*     ...
-*   </SalesPrice>
-* </priceList>
-*
-* @return object SyncPriceListResult
-*/
-public function SyncPriceList($data)
-{
-$errors = array();
-$price = $data->priceList;
+    /**
+     * syncronize a products price(s)
+     *
+     * @param object $data xmlformat:
+     * <priceList>
+     *   <ItemId>Daisy SKIRT</ItemId>
+     *   <SalesPrice>
+     *     <AmountCur>127.5</AmountCur>
+     *     <Currency>DKK</Currency>
+     *     <CustAccount/>
+     *     <InventColorId>Rød</InventColorId>
+     *     <InventSizeId>5-6</InventSizeId>
+     *     <PriceDate>2008-12-08</PriceDate>
+     *     <PriceDateTo>2009-12-08</PriceDateTo>
+     *     <PriceUnit>1</PriceUnit>
+     *     <Quantity>1</Quantity>
+     *     <UnitId>Stk</UnitId>
+     *   </SalesPrice>
+     *   <SalesPrice>
+     *     ...
+     *   </SalesPrice>
+     * </priceList>
+     *
+     * @return object SyncPriceListResult
+     */
+    public function SyncPriceList($data)
+    {
+        $errors = array();
+        $prices = $data->priceList;
 
-if (!$price->ItemId) {
-$this->logger->addCritical('no ItemId given');
-return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
-}
+        if (!$prices->ItemId) {
+            $this->logger->addCritical('no ItemId given');
+            return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
+        }
 
-// ....................
-// ..... ze code ......
-// ....................
+        if (!is_array($prices->SalesPrice)) {
+            $prices->SalesPrice = array($prices->SalesPrice);
+        }
+
+        // ....................
+        // .....<ze code>......
+        // ....................
+
+        $domains = array();
+        foreach(DomainsQuery::create()->find() as $domain) {
+            $domains[$domain->getDomainKey()] = $domain->getId();
+            $domains['Sales'.$domain->getDomainKey()] = $domain->getId();
+        }
+
+        // FIXME:
+        $currencies = array(
+            'DKK' => 1,
+            'NOK' => 2,
+            'SEK' => 3,
+            'EUR' => 4,
+            'EUR' => 5,
+        );
 
 
-if (count($errors)) {
-$this->logger->addCritical('SyncPriceList failed with the following error(s)', $errors);
-return self::responseStatus('Error', 'SyncPriceListResult', $errors);
-}
+        $error = array();
+        $products = array();
 
-return self::responseStatus('Ok', 'SyncPriceListResult');
-}
+        foreach ($prices->SalesPrice as $entry)
+        {
+            $key = $prices->ItemId . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId;
 
-/**
-* inventory syncronization
-*
-* @param object $data xmlformat:
-* <inventoryOnHand>
-*   <InventSum>
-*     <ItemId>Daisy SKIRT</ItemId>
-*     <InventDim>
-*       <InventColorId>Rød</InventColorId>
-*       <InventSizeId>5-6</InventSizeId>
-*       <InventQtyAvailOrdered>0</InventQtyAvailOrdered>
-*       <InventQtyAvailOrderedDate></InventQtyAvailOrderedDate>
-*       <InventQtyAvailPhysical>0</InventQtyAvailPhysical>
-*       <InventQtyPhysicalOnhand>0</InventQtyPhysicalOnhand> <!-- never use(d) -->
-*     </InventDim>
-*     <InventDim>
-*       ...
-*     </InventDim>
-*   </InventSum>
-* </inventoryOnHand>
-* @return unknown_type
-*/
-public function SyncInventoryOnHand($data)
-{
-$errors = array();
-$stock = $data->inventoryOnHand->InventSum;
+            if (empty($domains[$entry->CustAccount])) {
+                $errors[] = sprintf("No domain setup for '%s'", $key);
+                continue;
+            }
+            $domain_key = $domains[$entry->CustAccount];
 
-if (!$stock->ItemId) {
-$this->logger->addCritical('no ItemId given');
-return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
-}
+            if (empty($products[$key])) {
+                $product = ProductsQuery::create()
+                    ->filterByMaster($prices->ItemId)
+                    ->filterByColor($entry->InventColorId)
+                    ->filterBySize($entry->InventSizeId)
+                    ->findOne()
+                ;
 
-// ....................
-// ..... ze code ......
-// ....................
+                // catch unknown products
+                if (!$product instanceof Products) {
+                    $errors[] = sprintf("'%s' does not exist in products", $key);
+                    continue;
+                }
 
-if (count($errors)) {
-$this->logger->addCritical('SyncInventoryOnHand failed with the following error(s)', $errors);
-return self::responseStatus('Error', 'SyncInventoryOnHandResult', $errors);
-}
+                $products[$key]['product'] = $product;
+            }
 
-return self::responseStatus('Ok', 'SyncInventoryOnHandResult');
-}
+            switch ($entry->CustAccount)
+            {
+                case 'ØVRIG':
+                    $thePrice = $entry->AmountCur;
+                    $vat = 0;
+                    break;
+                default:
+                    $thePrice = $entry->AmountCur * 0.8;
+                    $vat = $entry->AmountCur - $thePrice;
+                    break;
+            }
+
+            $products[$key]['prices'][] = array(
+                'domain' => $domain_key,
+                'currency' => $currencies[$entry->Currency],
+                'amount' => $thePrice,
+                'vat' => $vat,
+                'from_date' => $entry->PriceDate,
+                'to_date' => $entry->PriceDateTo,
+            );
+        }
+
+        foreach ($products as $item) {
+            $product = $item['product'];
+            $prices = $item['prices'];
+
+            // products 2 domain
+            $collection = new PropelCollection();
+            foreach ($prices as $price) {
+                $data = new ProductsDomainsPrices();
+                $data->setDomainsId($price['domain']);
+                $data->setPrice($price['amount']);
+                $data->setVat($price['vat']);
+                $data->setFromDate($price['from_date']);
+                // only add to_date if set.
+                if ($price['to_date']) {
+                    $data->setToDate($price['to_date']);
+                }
+                $data->setCurrencyId($price['currency']);
+                $collection->prepend($data);
+            }
+
+            $product->setProductsDomainsPricess($collection);
+            $product->save();
+        }
+
+        // ....................
+        // .....</ze code>.....
+        // ....................
+
+
+        if (count($errors)) {
+            $this->logger->addCritical('SyncPriceList failed with the following error(s)', $errors);
+            return self::responseStatus('Error', 'SyncPriceListResult', $errors);
+        }
+
+        return self::responseStatus('Ok', 'SyncPriceListResult');
+    }
+
+    /**
+     * inventory syncronization
+     *
+     * @param object $data xmlformat:
+     * <inventoryOnHand>
+     *   <InventSum>
+     *     <ItemId>Daisy SKIRT</ItemId>
+     *     <InventDim>
+     *       <InventColorId>Rød</InventColorId>
+     *       <InventSizeId>5-6</InventSizeId>
+     *       <InventQtyAvailOrdered>0</InventQtyAvailOrdered>
+     *       <InventQtyAvailOrderedDate></InventQtyAvailOrderedDate>
+     *       <InventQtyAvailPhysical>0</InventQtyAvailPhysical>
+     *       <InventQtyPhysicalOnhand>0</InventQtyPhysicalOnhand> <!-- never use(d) -->
+     *     </InventDim>
+     *     <InventDim>
+     *       ...
+     *     </InventDim>
+     *   </InventSum>
+     * </inventoryOnHand>
+     * @return object
+     */
+    public function SyncInventoryOnHand($data)
+    {
+        //Tools::log($data);
+        $now = date('Ymd');
+        $errors = array();
+        $stock = $data->inventoryOnHand->InventSum;
+
+        if (!$stock->ItemId) {
+            $this->logger->addCritical('no ItemId given');
+            return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
+        }
+
+        // ....................
+        // .....<ze code>......
+        // ....................
+
+        // if there is only one item it is not send as an array
+        if (!is_array($stock->InventDim))
+        {
+            $stock->InventDim = array($stock->InventDim);
+        }
+
+        $products = array();
+        foreach($stock->InventDim as $item) {
+            $key = $stock->ItemId . ' ' . $item->InventColorId . ' ' . $item->InventSizeId;
+
+            if (empty($products[$key])) {
+                $product = ProductsQuery::create()
+                    ->filterByMaster($stock->ItemId)
+                    ->filterByColor($item->InventColorId)
+                    ->filterBySize($item->InventSizeId)
+                    ->findOne()
+                ;
+
+                if (!$product instanceof Products) {
+                    $errors[] = "{$key} not a known product";
+                    continue;
+                }
+
+                $products[$key]['product'] = $product;
+            }
+
+            // alm lager:
+            // [InventColorId] => Navy
+            // [InventSizeId] => 80
+            // [InventQtyAvailOrdered] => 0.00
+            // [InventQtyAvailOrderedDate] => 2012-02-28
+            // [InventQtyAvailPhysical] => 63.00
+            // [InventQtyPhysicalOnhand] => 79.00
+            //
+            // bestilt lager:
+            // [InventColorId] => Navy
+            // [InventSizeId] => 110-116
+            // [InventQtyAvailOrdered] => 23.00
+            // [InventQtyAvailOrderedDate] => 2012-03-25
+            // [InventQtyAvailPhysical] => 0.00
+            // [InventQtyPhysicalOnhand] => 0.00
+
+
+            $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate ? $item->InventQtyAvailOrderedDate : 0;
+            $incomming = str_replace('-', '', $item->InventQtyAvailOrderedDate);
+
+            $quantity = $item->InventQtyAvailPhysical;
+            if (($incomming > $now) && ($item->InventQtyAvailOrdered > 0)) {
+                $quantity = $item->InventQtyAvailOrdered;
+            }
+
+            // no need to add empty entries
+            if ($quantity == 0) {
+                continue;
+            }
+
+            $products[$key]['inventory'][] = array(
+                'date' => $item->InventQtyAvailOrderedDate,
+                'stock' => $quantity
+            );
+        }
+
+        foreach ($products as $item) {
+            $product = $item['product'];
+            $inventory = $item['inventory'];
+
+            // inventory 2 products
+            $collection = new PropelCollection();
+            foreach ($inventory as $s) {
+                $data = new ProductsStock();
+                $data->setQuantity($s['stock']);
+                $data->setAvailableFrom($s['date']);
+                $collection->prepend($data);
+            }
+
+            $product->setProductsStocks($collection);
+            $product->save();
+        }
+
+        // ....................
+        // .....</ze code>.....
+        // ....................
+
+        if (count($errors)) {
+            $this->logger->addCritical('SyncInventoryOnHand failed with the following error(s)', $errors);
+            return self::responseStatus('Error', 'SyncInventoryOnHandResult', $errors);
+        }
+
+        return self::responseStatus('Ok', 'SyncInventoryOnHandResult');
+    }
 
 
 /**
