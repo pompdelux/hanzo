@@ -1197,10 +1197,10 @@ abstract class BaseProductsWashingInstructions extends BaseObject  implements Pe
 	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
 	 * @return     PropelCollection|array Products[] List of Products objects
 	 */
-	public function getProductssJoinProductsRelatedBySku($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public function getProductssJoinProductsRelatedByMaster($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		$query = ProductsQuery::create(null, $criteria);
-		$query->joinWith('ProductsRelatedBySku', $join_behavior);
+		$query->joinWith('ProductsRelatedByMaster', $join_behavior);
 
 		return $this->getProductss($query, $con);
 	}

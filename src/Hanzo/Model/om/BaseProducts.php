@@ -147,7 +147,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	/**
 	 * @var        Products
 	 */
-	protected $aProductsRelatedBySku;
+	protected $aProductsRelatedByMaster;
 
 	/**
 	 * @var        ProductsWashingInstructions
@@ -162,7 +162,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	/**
 	 * @var        array Products[] Collection to store aggregation of Products objects.
 	 */
-	protected $collProductssRelatedByMaster;
+	protected $collProductssRelatedBySku;
 
 	/**
 	 * @var        array ProductsDomainsPrices[] Collection to store aggregation of ProductsDomainsPrices objects.
@@ -242,7 +242,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * An array of objects scheduled for deletion.
 	 * @var		array
 	 */
-	protected $productssRelatedByMasterScheduledForDeletion = null;
+	protected $productssRelatedBySkuScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -424,7 +424,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getCreatedAt($format = NULL)
+	public function getCreatedAt($format = 'Y-m-d H:i:s')
 	{
 		if ($this->created_at === null) {
 			return null;
@@ -462,7 +462,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getUpdatedAt($format = NULL)
+	public function getUpdatedAt($format = 'Y-m-d H:i:s')
 	{
 		if ($this->updated_at === null) {
 			return null;
@@ -528,10 +528,6 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			$this->modifiedColumns[] = ProductsPeer::SKU;
 		}
 
-		if ($this->aProductsRelatedBySku !== null && $this->aProductsRelatedBySku->getMaster() !== $v) {
-			$this->aProductsRelatedBySku = null;
-		}
-
 		return $this;
 	} // setSku()
 
@@ -550,6 +546,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		if ($this->master !== $v) {
 			$this->master = $v;
 			$this->modifiedColumns[] = ProductsPeer::MASTER;
+		}
+
+		if ($this->aProductsRelatedByMaster !== null && $this->aProductsRelatedByMaster->getSku() !== $v) {
+			$this->aProductsRelatedByMaster = null;
 		}
 
 		return $this;
@@ -854,8 +854,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	public function ensureConsistency()
 	{
 
-		if ($this->aProductsRelatedBySku !== null && $this->sku !== $this->aProductsRelatedBySku->getMaster()) {
-			$this->aProductsRelatedBySku = null;
+		if ($this->aProductsRelatedByMaster !== null && $this->master !== $this->aProductsRelatedByMaster->getSku()) {
+			$this->aProductsRelatedByMaster = null;
 		}
 		if ($this->aProductsWashingInstructions !== null && $this->washing !== $this->aProductsWashingInstructions->getCode()) {
 			$this->aProductsWashingInstructions = null;
@@ -899,11 +899,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 
 		if ($deep) {  // also de-associate any related objects?
 
-			$this->aProductsRelatedBySku = null;
+			$this->aProductsRelatedByMaster = null;
 			$this->aProductsWashingInstructions = null;
 			$this->singleMannequinImages = null;
 
-			$this->collProductssRelatedByMaster = null;
+			$this->collProductssRelatedBySku = null;
 
 			$this->collProductsDomainsPricess = null;
 
@@ -1047,11 +1047,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			// method.  This object relates to these object(s) by a
 			// foreign key reference.
 
-			if ($this->aProductsRelatedBySku !== null) {
-				if ($this->aProductsRelatedBySku->isModified() || $this->aProductsRelatedBySku->isNew()) {
-					$affectedRows += $this->aProductsRelatedBySku->save($con);
+			if ($this->aProductsRelatedByMaster !== null) {
+				if ($this->aProductsRelatedByMaster->isModified() || $this->aProductsRelatedByMaster->isNew()) {
+					$affectedRows += $this->aProductsRelatedByMaster->save($con);
 				}
-				$this->setProductsRelatedBySku($this->aProductsRelatedBySku);
+				$this->setProductsRelatedByMaster($this->aProductsRelatedByMaster);
 			}
 
 			if ($this->aProductsWashingInstructions !== null) {
@@ -1087,17 +1087,17 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 				}
 			}
 
-			if ($this->productssRelatedByMasterScheduledForDeletion !== null) {
-				if (!$this->productssRelatedByMasterScheduledForDeletion->isEmpty()) {
+			if ($this->productssRelatedBySkuScheduledForDeletion !== null) {
+				if (!$this->productssRelatedBySkuScheduledForDeletion->isEmpty()) {
 					ProductsQuery::create()
-						->filterByPrimaryKeys($this->productssRelatedByMasterScheduledForDeletion->getPrimaryKeys(false))
+						->filterByPrimaryKeys($this->productssRelatedBySkuScheduledForDeletion->getPrimaryKeys(false))
 						->delete($con);
-					$this->productssRelatedByMasterScheduledForDeletion = null;
+					$this->productssRelatedBySkuScheduledForDeletion = null;
 				}
 			}
 
-			if ($this->collProductssRelatedByMaster !== null) {
-				foreach ($this->collProductssRelatedByMaster as $referrerFK) {
+			if ($this->collProductssRelatedBySku !== null) {
+				foreach ($this->collProductssRelatedBySku as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -1445,9 +1445,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			// method.  This object relates to these object(s) by a
 			// foreign key reference.
 
-			if ($this->aProductsRelatedBySku !== null) {
-				if (!$this->aProductsRelatedBySku->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aProductsRelatedBySku->getValidationFailures());
+			if ($this->aProductsRelatedByMaster !== null) {
+				if (!$this->aProductsRelatedByMaster->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aProductsRelatedByMaster->getValidationFailures());
 				}
 			}
 
@@ -1469,8 +1469,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 					}
 				}
 
-				if ($this->collProductssRelatedByMaster !== null) {
-					foreach ($this->collProductssRelatedByMaster as $referrerFK) {
+				if ($this->collProductssRelatedBySku !== null) {
+					foreach ($this->collProductssRelatedBySku as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1653,8 +1653,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			$keys[11] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
-			if (null !== $this->aProductsRelatedBySku) {
-				$result['ProductsRelatedBySku'] = $this->aProductsRelatedBySku->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+			if (null !== $this->aProductsRelatedByMaster) {
+				$result['ProductsRelatedByMaster'] = $this->aProductsRelatedByMaster->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
 			}
 			if (null !== $this->aProductsWashingInstructions) {
 				$result['ProductsWashingInstructions'] = $this->aProductsWashingInstructions->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
@@ -1662,8 +1662,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			if (null !== $this->singleMannequinImages) {
 				$result['MannequinImages'] = $this->singleMannequinImages->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
 			}
-			if (null !== $this->collProductssRelatedByMaster) {
-				$result['ProductssRelatedByMaster'] = $this->collProductssRelatedByMaster->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			if (null !== $this->collProductssRelatedBySku) {
+				$result['ProductssRelatedBySku'] = $this->collProductssRelatedBySku->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->collProductsDomainsPricess) {
 				$result['ProductsDomainsPricess'] = $this->collProductsDomainsPricess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1901,9 +1901,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 				$copyObj->setMannequinImages($relObj->copy($deepCopy));
 			}
 
-			foreach ($this->getProductssRelatedByMaster() as $relObj) {
+			foreach ($this->getProductssRelatedBySku() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addProductsRelatedByMaster($relObj->copy($deepCopy));
+					$copyObj->addProductsRelatedBySku($relObj->copy($deepCopy));
 				}
 			}
 
@@ -2010,20 +2010,20 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @return     Products The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
-	public function setProductsRelatedBySku(Products $v = null)
+	public function setProductsRelatedByMaster(Products $v = null)
 	{
 		if ($v === null) {
-			$this->setSku(NULL);
+			$this->setMaster(NULL);
 		} else {
-			$this->setSku($v->getMaster());
+			$this->setMaster($v->getSku());
 		}
 
-		$this->aProductsRelatedBySku = $v;
+		$this->aProductsRelatedByMaster = $v;
 
 		// Add binding for other direction of this n:n relationship.
 		// If this object has already been added to the Products object, it will not be re-added.
 		if ($v !== null) {
-			$v->addProductsRelatedByMaster($this);
+			$v->addProductsRelatedBySku($this);
 		}
 
 		return $this;
@@ -2037,21 +2037,21 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @return     Products The associated Products object.
 	 * @throws     PropelException
 	 */
-	public function getProductsRelatedBySku(PropelPDO $con = null)
+	public function getProductsRelatedByMaster(PropelPDO $con = null)
 	{
-		if ($this->aProductsRelatedBySku === null && (($this->sku !== "" && $this->sku !== null))) {
-			$this->aProductsRelatedBySku = ProductsQuery::create()
-				->filterByProductsRelatedByMaster($this) // here
+		if ($this->aProductsRelatedByMaster === null && (($this->master !== "" && $this->master !== null))) {
+			$this->aProductsRelatedByMaster = ProductsQuery::create()
+				->filterByProductsRelatedBySku($this) // here
 				->findOne($con);
 			/* The following can be used additionally to
 				guarantee the related object contains a reference
 				to this object.  This level of coupling may, however, be
 				undesirable since it could result in an only partially populated collection
 				in the referenced object.
-				$this->aProductsRelatedBySku->addProductssRelatedByMaster($this);
+				$this->aProductsRelatedByMaster->addProductssRelatedBySku($this);
 			 */
 		}
-		return $this->aProductsRelatedBySku;
+		return $this->aProductsRelatedByMaster;
 	}
 
 	/**
@@ -2116,8 +2116,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 */
 	public function initRelation($relationName)
 	{
-		if ('ProductsRelatedByMaster' == $relationName) {
-			return $this->initProductssRelatedByMaster();
+		if ('ProductsRelatedBySku' == $relationName) {
+			return $this->initProductssRelatedBySku();
 		}
 		if ('ProductsDomainsPrices' == $relationName) {
 			return $this->initProductsDomainsPricess();
@@ -2182,23 +2182,23 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Clears out the collProductssRelatedByMaster collection
+	 * Clears out the collProductssRelatedBySku collection
 	 *
 	 * This does not modify the database; however, it will remove any associated objects, causing
 	 * them to be refetched by subsequent calls to accessor method.
 	 *
 	 * @return     void
-	 * @see        addProductssRelatedByMaster()
+	 * @see        addProductssRelatedBySku()
 	 */
-	public function clearProductssRelatedByMaster()
+	public function clearProductssRelatedBySku()
 	{
-		$this->collProductssRelatedByMaster = null; // important to set this to NULL since that means it is uninitialized
+		$this->collProductssRelatedBySku = null; // important to set this to NULL since that means it is uninitialized
 	}
 
 	/**
-	 * Initializes the collProductssRelatedByMaster collection.
+	 * Initializes the collProductssRelatedBySku collection.
 	 *
-	 * By default this just sets the collProductssRelatedByMaster collection to an empty array (like clearcollProductssRelatedByMaster());
+	 * By default this just sets the collProductssRelatedBySku collection to an empty array (like clearcollProductssRelatedBySku());
 	 * however, you may wish to override this method in your stub class to provide setting appropriate
 	 * to your application -- for example, setting the initial array to the values stored in database.
 	 *
@@ -2207,13 +2207,13 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 *
 	 * @return     void
 	 */
-	public function initProductssRelatedByMaster($overrideExisting = true)
+	public function initProductssRelatedBySku($overrideExisting = true)
 	{
-		if (null !== $this->collProductssRelatedByMaster && !$overrideExisting) {
+		if (null !== $this->collProductssRelatedBySku && !$overrideExisting) {
 			return;
 		}
-		$this->collProductssRelatedByMaster = new PropelObjectCollection();
-		$this->collProductssRelatedByMaster->setModel('Products');
+		$this->collProductssRelatedBySku = new PropelObjectCollection();
+		$this->collProductssRelatedBySku->setModel('Products');
 	}
 
 	/**
@@ -2230,47 +2230,47 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @return     PropelCollection|array Products[] List of Products objects
 	 * @throws     PropelException
 	 */
-	public function getProductssRelatedByMaster($criteria = null, PropelPDO $con = null)
+	public function getProductssRelatedBySku($criteria = null, PropelPDO $con = null)
 	{
-		if(null === $this->collProductssRelatedByMaster || null !== $criteria) {
-			if ($this->isNew() && null === $this->collProductssRelatedByMaster) {
+		if(null === $this->collProductssRelatedBySku || null !== $criteria) {
+			if ($this->isNew() && null === $this->collProductssRelatedBySku) {
 				// return empty collection
-				$this->initProductssRelatedByMaster();
+				$this->initProductssRelatedBySku();
 			} else {
-				$collProductssRelatedByMaster = ProductsQuery::create(null, $criteria)
-					->filterByProductsRelatedBySku($this)
+				$collProductssRelatedBySku = ProductsQuery::create(null, $criteria)
+					->filterByProductsRelatedByMaster($this)
 					->find($con);
 				if (null !== $criteria) {
-					return $collProductssRelatedByMaster;
+					return $collProductssRelatedBySku;
 				}
-				$this->collProductssRelatedByMaster = $collProductssRelatedByMaster;
+				$this->collProductssRelatedBySku = $collProductssRelatedBySku;
 			}
 		}
-		return $this->collProductssRelatedByMaster;
+		return $this->collProductssRelatedBySku;
 	}
 
 	/**
-	 * Sets a collection of ProductsRelatedByMaster objects related by a one-to-many relationship
+	 * Sets a collection of ProductsRelatedBySku objects related by a one-to-many relationship
 	 * to the current object.
 	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
 	 * and new objects from the given Propel collection.
 	 *
-	 * @param      PropelCollection $productssRelatedByMaster A Propel collection.
+	 * @param      PropelCollection $productssRelatedBySku A Propel collection.
 	 * @param      PropelPDO $con Optional connection object
 	 */
-	public function setProductssRelatedByMaster(PropelCollection $productssRelatedByMaster, PropelPDO $con = null)
+	public function setProductssRelatedBySku(PropelCollection $productssRelatedBySku, PropelPDO $con = null)
 	{
-		$this->productssRelatedByMasterScheduledForDeletion = $this->getProductssRelatedByMaster(new Criteria(), $con)->diff($productssRelatedByMaster);
+		$this->productssRelatedBySkuScheduledForDeletion = $this->getProductssRelatedBySku(new Criteria(), $con)->diff($productssRelatedBySku);
 
-		foreach ($productssRelatedByMaster as $productsRelatedByMaster) {
+		foreach ($productssRelatedBySku as $productsRelatedBySku) {
 			// Fix issue with collection modified by reference
-			if ($productsRelatedByMaster->isNew()) {
-				$productsRelatedByMaster->setProductsRelatedBySku($this);
+			if ($productsRelatedBySku->isNew()) {
+				$productsRelatedBySku->setProductsRelatedByMaster($this);
 			}
-			$this->addProductsRelatedByMaster($productsRelatedByMaster);
+			$this->addProductsRelatedBySku($productsRelatedBySku);
 		}
 
-		$this->collProductssRelatedByMaster = $productssRelatedByMaster;
+		$this->collProductssRelatedBySku = $productssRelatedBySku;
 	}
 
 	/**
@@ -2282,10 +2282,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @return     int Count of related Products objects.
 	 * @throws     PropelException
 	 */
-	public function countProductssRelatedByMaster(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	public function countProductssRelatedBySku(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
 	{
-		if(null === $this->collProductssRelatedByMaster || null !== $criteria) {
-			if ($this->isNew() && null === $this->collProductssRelatedByMaster) {
+		if(null === $this->collProductssRelatedBySku || null !== $criteria) {
+			if ($this->isNew() && null === $this->collProductssRelatedBySku) {
 				return 0;
 			} else {
 				$query = ProductsQuery::create(null, $criteria);
@@ -2293,11 +2293,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 					$query->distinct();
 				}
 				return $query
-					->filterByProductsRelatedBySku($this)
+					->filterByProductsRelatedByMaster($this)
 					->count($con);
 			}
 		} else {
-			return count($this->collProductssRelatedByMaster);
+			return count($this->collProductssRelatedBySku);
 		}
 	}
 
@@ -2308,25 +2308,25 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @param      Products $l Products
 	 * @return     Products The current object (for fluent API support)
 	 */
-	public function addProductsRelatedByMaster(Products $l)
+	public function addProductsRelatedBySku(Products $l)
 	{
-		if ($this->collProductssRelatedByMaster === null) {
-			$this->initProductssRelatedByMaster();
+		if ($this->collProductssRelatedBySku === null) {
+			$this->initProductssRelatedBySku();
 		}
-		if (!$this->collProductssRelatedByMaster->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddProductsRelatedByMaster($l);
+		if (!$this->collProductssRelatedBySku->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddProductsRelatedBySku($l);
 		}
 
 		return $this;
 	}
 
 	/**
-	 * @param	ProductsRelatedByMaster $productsRelatedByMaster The productsRelatedByMaster object to add.
+	 * @param	ProductsRelatedBySku $productsRelatedBySku The productsRelatedBySku object to add.
 	 */
-	protected function doAddProductsRelatedByMaster($productsRelatedByMaster)
+	protected function doAddProductsRelatedBySku($productsRelatedBySku)
 	{
-		$this->collProductssRelatedByMaster[]= $productsRelatedByMaster;
-		$productsRelatedByMaster->setProductsRelatedBySku($this);
+		$this->collProductssRelatedBySku[]= $productsRelatedBySku;
+		$productsRelatedBySku->setProductsRelatedByMaster($this);
 	}
 
 
@@ -2335,7 +2335,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * an identical criteria, it returns the collection.
 	 * Otherwise if this Products is new, it will return
 	 * an empty collection; or if this Products has previously
-	 * been saved, it will retrieve related ProductssRelatedByMaster from storage.
+	 * been saved, it will retrieve related ProductssRelatedBySku from storage.
 	 *
 	 * This method is protected by default in order to keep the public
 	 * api reasonable.  You can provide public methods for those you
@@ -2346,12 +2346,12 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
 	 * @return     PropelCollection|array Products[] List of Products objects
 	 */
-	public function getProductssRelatedByMasterJoinProductsWashingInstructions($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public function getProductssRelatedBySkuJoinProductsWashingInstructions($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		$query = ProductsQuery::create(null, $criteria);
 		$query->joinWith('ProductsWashingInstructions', $join_behavior);
 
-		return $this->getProductssRelatedByMaster($query, $con);
+		return $this->getProductssRelatedBySku($query, $con);
 	}
 
 	/**
@@ -3708,8 +3708,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			if ($this->singleMannequinImages) {
 				$this->singleMannequinImages->clearAllReferences($deep);
 			}
-			if ($this->collProductssRelatedByMaster) {
-				foreach ($this->collProductssRelatedByMaster as $o) {
+			if ($this->collProductssRelatedBySku) {
+				foreach ($this->collProductssRelatedBySku as $o) {
 					$o->clearAllReferences($deep);
 				}
 			}
@@ -3762,10 +3762,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			$this->singleMannequinImages->clearIterator();
 		}
 		$this->singleMannequinImages = null;
-		if ($this->collProductssRelatedByMaster instanceof PropelCollection) {
-			$this->collProductssRelatedByMaster->clearIterator();
+		if ($this->collProductssRelatedBySku instanceof PropelCollection) {
+			$this->collProductssRelatedBySku->clearIterator();
 		}
-		$this->collProductssRelatedByMaster = null;
+		$this->collProductssRelatedBySku = null;
 		if ($this->collProductsDomainsPricess instanceof PropelCollection) {
 			$this->collProductsDomainsPricess->clearIterator();
 		}
@@ -3798,7 +3798,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			$this->collProductsI18ns->clearIterator();
 		}
 		$this->collProductsI18ns = null;
-		$this->aProductsRelatedBySku = null;
+		$this->aProductsRelatedByMaster = null;
 		$this->aProductsWashingInstructions = null;
 	}
 

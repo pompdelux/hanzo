@@ -291,18 +291,18 @@
   <table name="products">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="sku" type="VARCHAR" size="128" required="true"/>
-    <column name="master" type="VARCHAR" size="128" required="true"/>
-    <column name="size" type="VARCHAR" size="32" required="true"/>
-    <column name="color" type="VARCHAR" size="128" required="true"/>
-    <column name="unit" type="VARCHAR" size="12" required="true"/>
+    <column name="master" type="VARCHAR" size="128" required="false"/>
+    <column name="size" type="VARCHAR" size="32" required="false"/>
+    <column name="color" type="VARCHAR" size="128" required="false"/>
+    <column name="unit" type="VARCHAR" size="12" required="false"/>
     <column name="washing" type="INTEGER" required="false"/>
     <column name="has_video" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <column name="is_out_of_stock" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <column name="title" type="VARCHAR" required="true" primaryString="true" />
     <column name="content" type="LONGVARCHAR" />
-    <foreign-key foreignTable="products" name="fk_products_1" onDelete="CASCADE">
-      <reference local="sku" foreign="master"/>
+    <foreign-key foreignTable="products" onDelete="CASCADE">
+      <reference local="master" foreign="sku"/>
     </foreign-key>
     <foreign-key foreignTable="products_washing_instructions">
       <reference local="washing" foreign="code"/>

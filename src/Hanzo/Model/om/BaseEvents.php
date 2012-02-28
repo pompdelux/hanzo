@@ -286,7 +286,7 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getEventDate($format = NULL)
+	public function getEventDate($format = 'Y-m-d H:i:s')
 	{
 		if ($this->event_date === null) {
 			return null;
@@ -434,7 +434,7 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getCreatedAt($format = NULL)
+	public function getCreatedAt($format = 'Y-m-d H:i:s')
 	{
 		if ($this->created_at === null) {
 			return null;
@@ -472,7 +472,7 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getUpdatedAt($format = NULL)
+	public function getUpdatedAt($format = 'Y-m-d H:i:s')
 	{
 		if ($this->updated_at === null) {
 			return null;

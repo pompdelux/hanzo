@@ -409,10 +409,10 @@ CREATE TABLE `products`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`sku` VARCHAR(128) NOT NULL,
-	`master` VARCHAR(128) NOT NULL,
-	`size` VARCHAR(32) NOT NULL,
-	`color` VARCHAR(128) NOT NULL,
-	`unit` VARCHAR(12) NOT NULL,
+	`master` VARCHAR(128),
+	`size` VARCHAR(32),
+	`color` VARCHAR(128),
+	`unit` VARCHAR(12),
 	`washing` INTEGER,
 	`has_video` TINYINT(1) DEFAULT 1 NOT NULL,
 	`is_out_of_stock` TINYINT(1) DEFAULT 0 NOT NULL,
@@ -425,9 +425,9 @@ CREATE TABLE `products`
 	INDEX `key_out_of_stock` (`is_out_of_stock`),
 	INDEX `index5` (`master`),
 	INDEX `products_FI_2` (`washing`),
-	CONSTRAINT `fk_products_1`
-		FOREIGN KEY (`sku`)
-		REFERENCES `products` (`master`)
+	CONSTRAINT `products_FK_1`
+		FOREIGN KEY (`master`)
+		REFERENCES `products` (`sku`)
 		ON DELETE CASCADE,
 	CONSTRAINT `products_FK_2`
 		FOREIGN KEY (`washing`)
@@ -718,7 +718,7 @@ CREATE TABLE `orders_attributes`
 	`c_key` VARCHAR(64) NOT NULL,
 	`c_value` VARCHAR(255),
 	PRIMARY KEY (`orders_id`,`ns`,`c_key`),
-	CONSTRAINT `fk_orders_attributes_1`
+	CONSTRAINT `orders_attributes_FK_1`
 		FOREIGN KEY (`orders_id`)
 		REFERENCES `orders` (`id`)
 		ON DELETE CASCADE

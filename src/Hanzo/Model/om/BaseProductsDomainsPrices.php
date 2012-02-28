@@ -177,7 +177,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getFromDate($format = NULL)
+	public function getFromDate($format = 'Y-m-d H:i:s')
 	{
 		if ($this->from_date === null) {
 			return null;
@@ -215,7 +215,7 @@ abstract class BaseProductsDomainsPrices extends BaseObject  implements Persiste
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getToDate($format = NULL)
+	public function getToDate($format = 'Y-m-d H:i:s')
 	{
 		if ($this->to_date === null) {
 			return null;

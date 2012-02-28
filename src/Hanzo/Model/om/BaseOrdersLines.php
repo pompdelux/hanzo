@@ -271,7 +271,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getExpectedAt($format = NULL)
+	public function getExpectedAt($format = 'Y-m-d')
 	{
 		if ($this->expected_at === null) {
 			return null;

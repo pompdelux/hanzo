@@ -154,7 +154,7 @@ abstract class BaseProductsStock extends BaseObject  implements Persistent
 	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00
 	 * @throws     PropelException - if unable to parse/validate the date/time value.
 	 */
-	public function getAvailableFrom($format = NULL)
+	public function getAvailableFrom($format = 'Y-m-d')
 	{
 		if ($this->available_from === null) {
 			return null;

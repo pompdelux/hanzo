@@ -780,7 +780,7 @@ abstract class BaseProductsPeer {
 
 
 	/**
-	 * Returns the number of rows matching criteria, joining the related ProductsRelatedBySku table
+	 * Returns the number of rows matching criteria, joining the related ProductsRelatedByMaster table
 	 *
 	 * @param      Criteria $criteria
 	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -788,7 +788,7 @@ abstract class BaseProductsPeer {
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
 	 * @return     int Number of matching rows.
 	 */
-	public static function doCountJoinAllExceptProductsRelatedBySku(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public static function doCountJoinAllExceptProductsRelatedByMaster(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		// we're going to modify criteria, so copy it first
 		$criteria = clone $criteria;
@@ -878,7 +878,7 @@ abstract class BaseProductsPeer {
 
 
 	/**
-	 * Selects a collection of Products objects pre-filled with all related objects except ProductsRelatedBySku.
+	 * Selects a collection of Products objects pre-filled with all related objects except ProductsRelatedByMaster.
 	 *
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
@@ -887,7 +887,7 @@ abstract class BaseProductsPeer {
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
-	public static function doSelectJoinAllExceptProductsRelatedBySku(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public static function doSelectJoinAllExceptProductsRelatedByMaster(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		$criteria = clone $criteria;
 
