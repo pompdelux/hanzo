@@ -17,17 +17,15 @@ First off, the same requirements as [symfony2(http://symfony.com/doc/2.0/referen
 2. `cd hanzo`
 3. Copy app/config/parameters.ini.dist to app/config/parameters.ini
   1. Change any settings necessary to connect to your database
-4. Copy app/config/config.yml.dist to app/config/config.yml
-  1. Change propel dns and/or other settings
-5. Copy app/config/hanzo.yml.dist to app/config/hanzo.yml
+4. Copy app/config/hanzo.yml.dist to app/config/hanzo.yml
   1. Change cdn and/or other settings
-6. `php bin/vendors install`
-7. `php app/console propel:database:create`
-8. `php app/console propel:insert-sql --force`
-9. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures.sql`
-10. `php app/console hanzo:router:builder`
-11. `git submodule update --recursive --init`
-12. Setup apache, see `dosc/vhost.conf` for an example
+5. `php bin/vendors install`
+6. `php app/console propel:database:create`
+7. `php app/console propel:insert-sql --force`
+8. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures.sql`
+9. `php app/console hanzo:router:builder`
+10. `git submodule update --recursive --init`
+11. Setup apache, see `dosc/vhost.conf` for an example
 
 ## Configuration:
 
