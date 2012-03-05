@@ -554,6 +554,10 @@ class ImportCommand extends ContainerAwareCommand
                 $this->customerImport();
                 break;
 
+            case 'images':
+                $this->imageImport();
+                break;
+
             default:
                 $this->output->writeln('<error>Unknown import type "'.$importType.'"</error>');
                 exit;
@@ -562,6 +566,16 @@ class ImportCommand extends ContainerAwareCommand
 
         $this->output->writeln('<info>Import completed</info>');
     }
+
+
+    /**
+     * customerImport
+     *
+     * @return void
+     * @author Ulrik Nielsen <un@bellcom.dk>
+     */
+    private function imageImport()
+    {}
 
     /**
      * customerImport

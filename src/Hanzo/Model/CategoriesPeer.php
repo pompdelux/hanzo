@@ -33,6 +33,7 @@ class CategoriesPeer extends BaseCategoriesPeer
 
         $result = ProductsImagesCategoriesSortQuery::create()
             ->useProductsQuery()
+                ->where('products.MASTER IS NULL')
                 ->filterByIsOutOfStock(FALSE)
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId($domain_id)
@@ -63,7 +64,7 @@ class CategoriesPeer extends BaseCategoriesPeer
                 'image' => $record->getProductsImages()->getImage(),
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
-                    'title' => Tools::stripText($product->getMaster()),
+                    'title' => Tools::stripText($product->getSku()),
                     'focus' => $record->getProductsImages()->getId()
                 )),
             );

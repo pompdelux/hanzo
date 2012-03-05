@@ -53,7 +53,7 @@ class ProductsImagesTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), null, null);
+		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), 'CASCADE', null);
 		$this->addRelation('ProductsImagesCategoriesSort', 'Hanzo\\Model\\ProductsImagesCategoriesSort', RelationMap::ONE_TO_MANY, array('id' => 'products_images_id', ), 'CASCADE', null, 'ProductsImagesCategoriesSorts');
 		$this->addRelation('ProductsImagesProductReferences', 'Hanzo\\Model\\ProductsImagesProductReferences', RelationMap::ONE_TO_MANY, array('id' => 'products_images_id', ), 'CASCADE', null, 'ProductsImagesProductReferencess');
 	} // buildRelations()

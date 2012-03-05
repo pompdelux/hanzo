@@ -303,7 +303,7 @@ abstract class BaseOrdersSyncLogPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getCreatedAt()));
+				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getCreatedAt('c')));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -323,7 +323,7 @@ abstract class BaseOrdersSyncLogPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof OrdersSyncLog) {
-				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getCreatedAt()));
+				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getCreatedAt('c')));
 			} elseif (is_array($value) && count($value) === 2) {
 				// assume we've been passed a primary key
 				$key = serialize(array((string) $value[0], (string) $value[1]));

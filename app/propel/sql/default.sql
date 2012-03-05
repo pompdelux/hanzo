@@ -477,6 +477,7 @@ CREATE TABLE `products_images`
 	CONSTRAINT `fk_products_images_1`
 		FOREIGN KEY (`products_id`)
 		REFERENCES `products` (`id`)
+		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

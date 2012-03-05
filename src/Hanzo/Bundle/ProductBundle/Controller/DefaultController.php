@@ -54,8 +54,11 @@ class DefaultController extends CoreController
             ;
 
             $product = $products[0]->getProducts();
+
+            // find and calculate prices
             $prices = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
+            // find all product images
             $images = array();
             $product_images = $product->getProductsImagess();
             foreach ($product_images as $image) {
@@ -65,9 +68,12 @@ class DefaultController extends CoreController
                 );
             }
 
+            // set focus image
             if ($focus = $this->get('request')->get('focus', FALSE)) {
-                $main_image = $images[$focus];
-                unset($images[$focus]);
+                if (isset($images[$focus])) {
+                    $main_image = $images[$focus];
+                    unset($images[$focus]);
+                }
             }
             else {
                 $main_image = array_shift($images);
@@ -77,7 +83,7 @@ class DefaultController extends CoreController
             $variants = ProductsQuery::create()
                 ->select(array('Id', 'Size', 'Color'))
                 ->distinct()
-                ->findByMaster($product->getMaster())
+                ->findByMaster($product->getSku())
             ;
 
             $colors = $sizes = array();
@@ -110,17 +116,17 @@ class DefaultController extends CoreController
             $images_references = array();
             foreach ($references as $ref) {
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
-                    'title' => $ref->getProducts()->getMaster(),
+                    'title' => $ref->getProducts()->getSku(),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
-                        'title'=> Tools::stripText($ref->getProducts()->getMaster()),
+                        'title'=> Tools::stripText($ref->getProducts()->getSku()),
                     ), TRUE),
                 );
             }
 
             $data = array(
                 'id' => $product->getId(),
-                'master' => $product->getMaster(),
+                'sku' => $product->getSku(),
                 'title' => $product->getTitle(),
                 'description' => $product->getContent(),
                 'washing' => stripslashes($product->getProductsWashingInstructions()->getDescription()),

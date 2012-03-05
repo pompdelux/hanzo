@@ -115,7 +115,6 @@ class ECommerceServices extends SoapService
             $item->InventDim = array($item->InventDim);
         }
 
-
         // ....................
         // .....<ze code>......
         // ....................
@@ -197,23 +196,9 @@ class ECommerceServices extends SoapService
 
                 $product->setUnit(trim('1 ' .$item->Sales->UnitId));
                 $product->setWashing(trim($item->WashInstruction));
-                $product->setHasVideo(TRUE);
-                $product->setIsOutOfStock(FALSE);
-                $product->setIsActive(TRUE);
-
-                // moved to SyncPriceList
-                // // products 2 domain
-                // $collection = new PropelCollection();
-                // foreach ($item->WebDomain as $domain) {
-                //     $data = new ProductsDomainsPrices();
-                //     $data->setDomainsId($domains[$domain]);
-                //     $data->setPrice(0.00);
-                //     $data->setVat(0.00);
-                //     $data->setFromDate(time());
-                //     $data->setCurrencyId(0);  // fixme !
-                //     $collection->setData($data);
-                // }
-                // $product->setProductsDomainsPricess($collection);
+                $product->setHasVideo(true);
+                $product->setIsOutOfStock(false);
+                $product->setIsActive(true);
 
                 $product->save();
                 $index++;
@@ -276,6 +261,11 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
         }
 
+        if (empty($prices->SalesPrice)) {
+            Tools::log($prices);
+            die();
+        }
+
         if (!is_array($prices->SalesPrice)) {
             $prices->SalesPrice = array($prices->SalesPrice);
         }
@@ -299,9 +289,13 @@ class ECommerceServices extends SoapService
             'EUR' => 5,
         );
 
-
         $error = array();
-        $products = array();
+        $products = array(
+            "{$prices->ItemId}" => array(
+                'product' => ProductsQuery::create()->findOneBySku($prices->ItemId),
+                'prices' => array()
+            )
+        );
 
         foreach ($prices->SalesPrice as $entry)
         {
@@ -342,7 +336,18 @@ class ECommerceServices extends SoapService
                     break;
             }
 
+            // perhaps we could skip this, pompdelux does not use alternative prices pr. variant
             $products[$key]['prices'][] = array(
+                'domain' => $domain_key,
+                'currency' => $currencies[$entry->Currency],
+                'amount' => $thePrice,
+                'vat' => $vat,
+                'from_date' => $entry->PriceDate,
+                'to_date' => $entry->PriceDateTo,
+            );
+
+            // this is here to maintain price info on the master product also
+            $products[$prices->ItemId]['prices'][$domain_key.$entry->PriceDate] = array(
                 'domain' => $domain_key,
                 'currency' => $currencies[$entry->Currency],
                 'amount' => $thePrice,
@@ -356,6 +361,10 @@ class ECommerceServices extends SoapService
             $product = $item['product'];
             $prices = $item['prices'];
 
+            if (!$product instanceof Products) {
+                continue;
+            }
+
             // products 2 domain
             $collection = new PropelCollection();
             foreach ($prices as $price) {
@@ -364,7 +373,6 @@ class ECommerceServices extends SoapService
                 $data->setPrice($price['amount']);
                 $data->setVat($price['vat']);
                 $data->setFromDate($price['from_date']);
-                // only add to_date if set.
                 if ($price['to_date']) {
                     $data->setToDate($price['to_date']);
                 }
@@ -423,6 +431,12 @@ class ECommerceServices extends SoapService
             return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
         }
 
+        $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
+        if (!$master instanceof Products) {
+            $this->logger->addCritical('Unknown product');
+            return self::responseStatus('Error', 'SyncPriceListResult', array('Unknown ItemId: ' . $stock->ItemId));
+        }
+
         // ....................
         // .....<ze code>......
         // ....................
@@ -453,23 +467,6 @@ class ECommerceServices extends SoapService
                 $products[$key]['product'] = $product;
             }
 
-            // alm lager:
-            // [InventColorId] => Navy
-            // [InventSizeId] => 80
-            // [InventQtyAvailOrdered] => 0.00
-            // [InventQtyAvailOrderedDate] => 2012-02-28
-            // [InventQtyAvailPhysical] => 63.00
-            // [InventQtyPhysicalOnhand] => 79.00
-            //
-            // bestilt lager:
-            // [InventColorId] => Navy
-            // [InventSizeId] => 110-116
-            // [InventQtyAvailOrdered] => 23.00
-            // [InventQtyAvailOrderedDate] => 2012-03-25
-            // [InventQtyAvailPhysical] => 0.00
-            // [InventQtyPhysicalOnhand] => 0.00
-
-
             $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate ? $item->InventQtyAvailOrderedDate : 0;
             $incomming = str_replace('-', '', $item->InventQtyAvailOrderedDate);
 
@@ -483,27 +480,42 @@ class ECommerceServices extends SoapService
                 continue;
             }
 
+            if (empty($products[$key]['inventory'])) {
+                $products[$key]['inventory'] = array();
+            }
+
             $products[$key]['inventory'][] = array(
                 'date' => $item->InventQtyAvailOrderedDate,
                 'stock' => $quantity
             );
         }
 
+        $allout = true;
         foreach ($products as $item) {
             $product = $item['product'];
-            $inventory = $item['inventory'];
 
-            // inventory 2 products
-            $collection = new PropelCollection();
-            foreach ($inventory as $s) {
-                $data = new ProductsStock();
-                $data->setQuantity($s['stock']);
-                $data->setAvailableFrom($s['date']);
-                $collection->prepend($data);
+            if (isset($item['inventory'])) {
+                // inventory to products
+                $collection = new PropelCollection();
+                foreach ($item['inventory'] as $s) {
+                    $data = new ProductsStock();
+                    $data->setQuantity($s['stock']);
+                    $data->setAvailableFrom($s['date']);
+                    $collection->prepend($data);
+                }
+                $product->setProductsStocks($collection);
+                $allout = false;
+            }
+            else {
+                $product->setIsOutOfStock(true);
             }
 
-            $product->setProductsStocks($collection);
             $product->save();
+        }
+
+        if ($allout) {
+            $master->setIsOutOfStock(true);
+            $master->save();
         }
 
         // ....................

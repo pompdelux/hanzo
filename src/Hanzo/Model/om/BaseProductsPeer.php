@@ -434,6 +434,9 @@ abstract class BaseProductsPeer {
 		// Invalidate objects in ProductsDomainsPricesPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		ProductsDomainsPricesPeer::clearInstancePool();
+		// Invalidate objects in ProductsImagesPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		ProductsImagesPeer::clearInstancePool();
 		// Invalidate objects in ProductsImagesCategoriesSortPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		ProductsImagesCategoriesSortPeer::clearInstancePool();

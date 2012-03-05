@@ -303,7 +303,7 @@ abstract class BaseOrdersStateLogPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getState(), (string) $obj->getCreatedAt()));
+				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getState(), (string) $obj->getCreatedAt('c')));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -323,7 +323,7 @@ abstract class BaseOrdersStateLogPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof OrdersStateLog) {
-				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getState(), (string) $value->getCreatedAt()));
+				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getState(), (string) $value->getCreatedAt('c')));
 			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
 				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));

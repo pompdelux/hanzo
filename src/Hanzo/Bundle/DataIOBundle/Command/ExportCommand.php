@@ -93,13 +93,15 @@ class ExportCommand extends ContainerAwareCommand
     {
         $now = date('Ymd');
         $products = ProductsQuery::create()
-            ->filterByMaster('Abby SKIRT')
-            // ->joinWithProductsI18n()
+            //->filterByMaster('Abby SKIRT')
+            //->filterByMaster('Jeff LS SHIRT')
             ->joinWithProductsToCategories()
             ->joinWithProductsDomainsPrices()
             ->joinWithProductsStock()
-            ->orderByMaster()
-            ->find();
+            ->where('products.MASTER = products.SKU')
+            ->orderById()
+            ->find()
+        ;
 
 ob_start();
 echo '<?php';
@@ -115,17 +117,17 @@ $client->__setLocation('http://ph.dk/app_dev.php/soap/v1/ECommerceServices/');
 
         $i = 0;
         $master = '';
+        $split_count = $all = 0;
         foreach ($products as $product) {
+            $split_count++;
 
-            if ($master != $product->getMaster()) {
-                $master = $product->getMaster();
-
-                $categories = array();
-                foreach ($product->getProductsToCategoriess() as $category) {
-                    $categories[] = $category->getCategories()->getContext();
-                }
+            $categories = array();
+            foreach ($product->getProductsToCategoriess() as $category) {
+                $categories[] = $category->getCategories()->getContext();
+            }
 
 ?>
+// <?php echo $product->getMaster() . ' : ' . $all ."\n" ?>
 $item = new stdClass();
 $price = new stdClass();
 $stock = new stdClass();
@@ -139,7 +141,7 @@ $item->item->InventTable->ItemGroupName = '<?php echo $product->getMaster() ?>';
 $item->item->InventTable->ItemName = '<?php echo $product->getMaster() ?>';
 $item->item->InventTable->ItemType = 'Vare';
 
-$item->item->InventTable->NetWeight = 0.20;
+$item->item->InventTable->NetWeight = 0;
 $item->item->InventTable->BlockedDate = 0;
 $item->item->InventTable->WebEnabled = 1;
 $item->item->InventTable->WashInstruction = '<?php echo $product->getWashing() ?>';
@@ -154,49 +156,49 @@ $price->priceList->SalesPrice = array();
 $stock->inventoryOnHand->InventSum->InventDim = array();
 
 <?php
-                $domains = array();
-                foreach ($product->getProductsDomainsPricess() as $price) {
-                    if (isset($domains[$price->getDomainsId()])) {
-                        continue;
-                    }
-                    $domain = DomainsQuery::create()->findPk($price->getDomainsId());
-                    $domains[$price->getDomainsId()] = $domain->getDomainKey();
+            $used = array();
+            foreach ($product->getProductsDomainsPricess() as $price) {
+                $domain = DomainsQuery::create()->findPk($price->getDomainsId());
+                if (isset($used[$domain->getDomainKey()])) {
+                    continue;
+                }
+                $used[$domain->getDomainKey()] = TRUE;
 ?>
 $item->item->InventTable->WebDomain[] = '<?php echo $domain->getDomainKey() ?>';
 <?php
-                }
+            }
 ?>
 
 $item->item->InventTable->InventDim = array();
 <?php
-                // variants
-                $a = $b = $c = $i = 0;
-                foreach ($product->getProductssRelatedBySku() as $related) {
+            // variants
+            $a = $b = $c = $i = 0;
+            foreach ($product->getProductssRelatedBySku() as $related) {
 ?>
 
 $item->item->InventTable->InventDim[<?php echo $a ?>]->InventSizeId  = '<?php echo $related->getSize() ?>';
 $item->item->InventTable->InventDim[<?php echo $a ?>]->InventColorId = '<?php echo $related->getColor() ?>';
 
 <?php
-                    $a++;
-                    $map = array(
-                        1 => 'DKK',
-                        2 => 'NOK',
-                        3 => 'SEK',
-                        4 => 'EUR',
-                        5 => 'EUR',
-                    );
-                    $map2 = array(
-                        'DKK' => 'DK',
-                        'NOK' => 'NO',
-                        'SEK' => 'SE',
-                        'NLD' => 'NL',
-                        'EUR' => 'COM',
-                        'ØVRIGT' => 'COM',
-                    );
+                $a++;
+                $map = array(
+                    1 => 'DKK',
+                    2 => 'NOK',
+                    3 => 'SEK',
+                    4 => 'EUR',
+                    5 => 'EUR',
+                );
+                $map2 = array(
+                    '1' => 'DK',
+                    '2' => 'NO',
+                    '3' => 'SE',
+                    '4' => 'NL',
+                    '5' => 'COM',
+                    '6' => 'COM',
+                );
 
-                    // domain prices
-                    foreach ($related->getProductsDomainsPricess() as $price) {
+                // domain prices
+                foreach ($related->getProductsDomainsPricess() as $price) {
 ?>
 
 $price->priceList->SalesPrice[<?php echo $b ?>]->AmountCur     = <?php echo ($price->getPrice() + $price->getVat()) ?>;
@@ -211,21 +213,21 @@ $price->priceList->SalesPrice[<?php echo $b ?>]->Quantity      = 1;
 $price->priceList->SalesPrice[<?php echo $b ?>]->UnitId        = '<?php echo preg_replace('/[0-9]+ /', '', $related->getUnit()) ?>';
 
 <?php
-                        $b++;
-                        $i++;
+                    $b++;
+                    $i++;
+                }
+
+                // stock
+                foreach($related->getProductsStocks() as $stock) {
+
+                    $ao = 0;
+                    $ap = $stock->getQuantity();
+                    $aod = '';
+                    if ($stock->getAvailableFrom('Ymd') > $now) {
+                        $ao = $stock->getQuantity();
+                        $ap = 0;
+                        $aod = $stock->getAvailableFrom('Y-m-d');
                     }
-
-                    // stock
-                    foreach($related->getProductsStocks() as $stock) {
-
-                        $ao = 0;
-                        $ap = $stock->getQuantity();
-                        $aod = '';
-                        if ($stock->getAvailableFrom('Ymd') > $now) {
-                            $ao = $stock->getQuantity();
-                            $ap = 0;
-                            $aod = $stock->getAvailableFrom('Y-m-d');
-                        }
 ?>
 
 $stock->inventoryOnHand->InventSum->InventDim[<?php echo $c ?>]->InventSizeId = '<?php echo $related->getSize() ?>';
@@ -236,36 +238,52 @@ $stock->inventoryOnHand->InventSum->InventDim[<?php echo $c ?>]->InventQtyAvailP
 $stock->inventoryOnHand->InventSum->InventDim[<?php echo $c ?>]->InventQtyPhysicalOnhand = 0;
 
 <?php
-                        $c++;
-                        $i++;
-                    }
-
+                    $c++;
                     $i++;
                 }
 
+                $i++;
+            }
 ?>
 
-echo '<pre>';
 try {
     $result = $client->SyncItem($item);
-    print_r($result);
+#    print_r($result);
 
     $result = $client->SyncPriceList($price);
-    print_r($result);
+#    print_r($result);
 
     $result = $client->SyncInventoryOnHand($stock);
-    print_r($result);
+#    print_r($result);
 }
 catch (\SoapFault $e) {
     print_r($e);
 }
 
 <?php
+            if ($split_count == 50) {
+                file_put_contents(__DIR__ . '/../../../../../tmp/products_'.$all.'.php', ob_get_clean());
+                ob_start();
+echo '<?php';
+?>
+
+$client = new SoapClient( "http://ph.dk/app_dev.php/soap/v1/ECommerceServices/?wsdl", array(
+  'trace'      => true,
+  'exceptions' => true,
+));
+$client->__setLocation('http://ph.dk/app_dev.php/soap/v1/ECommerceServices/');
+
+<?php
+                $split_count = 0;
             }
+
+            $all++;
         }
 
+        $this->output->writeln('<info>Count: '.$all.'</info>');
+
         $content = ob_get_clean();
-        file_put_contents(__DIR__ . '/../../../../../tmp/products.php', $content);
+        file_put_contents(__DIR__ . '/../../../../../tmp/products_last.php', $content);
 
     }
 

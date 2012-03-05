@@ -319,7 +319,7 @@ abstract class BaseProductsDomainsPricesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId(), (string) $obj->getFromDate()));
+				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId(), (string) $obj->getFromDate('c')));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -339,7 +339,7 @@ abstract class BaseProductsDomainsPricesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof ProductsDomainsPrices) {
-				$key = serialize(array((string) $value->getProductsId(), (string) $value->getDomainsId(), (string) $value->getFromDate()));
+				$key = serialize(array((string) $value->getProductsId(), (string) $value->getDomainsId(), (string) $value->getFromDate('c')));
 			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
 				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));

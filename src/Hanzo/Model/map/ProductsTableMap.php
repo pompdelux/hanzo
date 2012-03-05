@@ -67,7 +67,7 @@ class ProductsTableMap extends TableMap
 		$this->addRelation('MannequinImages', 'Hanzo\\Model\\MannequinImages', RelationMap::ONE_TO_ONE, array('master' => 'master', ), null, null);
 		$this->addRelation('ProductsRelatedBySku', 'Hanzo\\Model\\Products', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'ProductssRelatedBySku');
 		$this->addRelation('ProductsDomainsPrices', 'Hanzo\\Model\\ProductsDomainsPrices', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsDomainsPricess');
-		$this->addRelation('ProductsImages', 'Hanzo\\Model\\ProductsImages', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), null, null, 'ProductsImagess');
+		$this->addRelation('ProductsImages', 'Hanzo\\Model\\ProductsImages', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsImagess');
 		$this->addRelation('ProductsImagesCategoriesSort', 'Hanzo\\Model\\ProductsImagesCategoriesSort', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsImagesCategoriesSorts');
 		$this->addRelation('ProductsImagesProductReferences', 'Hanzo\\Model\\ProductsImagesProductReferences', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsImagesProductReferencess');
 		$this->addRelation('ProductsStock', 'Hanzo\\Model\\ProductsStock', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsStocks');

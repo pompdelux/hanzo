@@ -245,9 +245,15 @@ class DefaultController extends CoreController
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
             // find first products2category match
-            $products2category = ProductsToCategoriesQuery::create()->findOneByProductsId($line['products_id']);
+            $products2category = ProductsToCategoriesQuery::create()
+                ->useProductsQuery()
+                    ->filterBySku($line['products_name'])
+                ->endUse()
+                ->findOne()
+            ;
             // find matching router
 
+            $line['expected_at'] = new \DateTime($line['expected_at']);
             if ($line['expected_at']->getTimestamp() > 0) {
                 $line['expected_at'] = $line['expected_at']->getTimestamp();
                 if ($delivery_date < $line['expected_at']) {
@@ -271,7 +277,7 @@ class DefaultController extends CoreController
                 $product_route = $router_keys[$key];
             }
 
-            $master = ProductsQuery::create()->findOneByMaster($line['products_name']);
+            $master = ProductsQuery::create()->findOneBySku($line['products_name']);
             $line['url'] = $router->generate($product_route, array(
                 'product_id' => $master->getId(),
                 'title' => Tools::stripText($line['products_name']),
