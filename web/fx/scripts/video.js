@@ -8,6 +8,14 @@ $(function() {
    * attach click events to video "poppers"
    * videos will be opened in a colorbox iframe
    * these will always have autoplay
+   *
+   * @usage
+   * <a href="{{ url('ws_product_video') }}" data-width="480" data-height="270" data-src="ModeshowAW11" data-banner="video_bg" class="video-popper"></a>
+   * @params
+   * - width...: int
+   * - height..: int
+   * - src.....: string, name of the video file, without extension and path
+   * - banner..: string, default: video_bg, name of the banner file, without extension and path
    */
   $('a.video-popper').click(function(event) {
     event.preventDefault();
@@ -18,7 +26,7 @@ $(function() {
     // call colorbox and play the video.
     $.colorbox({
       iframe : true,
-      href: '/video.php?src=' + $this.data('src') + '&height=' + height + '&width=' + width,
+      href: this.href + '?src=' + $this.data('src') + '&height=' + height + '&width=' + width,
       innerHeight: (height + 20) + 'px',
       innerWidth: (width + 15) + 'px'
     });
@@ -26,6 +34,15 @@ $(function() {
 
   /**
    * load videos and embed these in the document where the trigger is.
+   *
+   * @usage
+   * <a href="{{ url('ws_product_video') }}" data-autoplay="0" data-width="480" data-height="270" data-src="ModeshowAW11" data-banner="VB_modeshowAW11" class="video-embed"></a>
+   * @params
+   * - autoplay: boolean, default: 0
+   * - width...: int
+   * - height..: int
+   * - src.....: string, name of the video file, without extension and path
+   * - banner..: string, default: video_bg, name of the banner file, without extension and path
    */
   $('a.video-embed').each(function() {
     var $this = $(this);
@@ -36,7 +53,7 @@ $(function() {
     params.embed = 1;
 
     // load video code and push it into the document
-    $this.load('/video.php', params, function() {
+    $this.load(this.href, params, function() {
       var $video = $this.find('video');
       var player = VideoJS.setup($video.attr('id'));
 

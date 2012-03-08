@@ -18,5 +18,19 @@ use Hanzo\Core\CoreController;
 
 class RestVideoController extends CoreController
 {
-    public function getAction() {}
+    public function getAction()
+    {
+        $request = $this->get('request');
+
+        $params = array(
+            'video' => $request->get('src'),
+            'banner' => $request->get('banner', 'video_bg'),
+            'height' => (int) $request->get('height'),
+            'width' => (int) $request->get('width'),
+            'embed' => (bool) $request->get('embed', false),
+            'video_counter' => uniqid(),
+        );
+
+        return $this->render('WebServicesBundle:RestVideo:get.html.twig', $params);
+    }
 }
