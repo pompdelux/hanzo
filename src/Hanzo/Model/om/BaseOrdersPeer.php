@@ -1275,10 +1275,6 @@ abstract class BaseOrdersPeer {
 			$criteria = $values->buildCriteria(); // build Criteria from Orders object
 		}
 
-		if ($criteria->containsKey(OrdersPeer::ID) && $criteria->keyContainsValue(OrdersPeer::ID) ) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key ('.OrdersPeer::ID.')');
-		}
-
 
 		// Set the correct dbName
 		$criteria->setDbName(self::DATABASE_NAME);

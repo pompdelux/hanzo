@@ -5,35 +5,29 @@ namespace Hanzo\Bundle\WebServicesBundle\Services\Soap\ECommerceServices;
 use Hanzo\Bundle\WebServicesBundle\Services\Soap\SoapService;
 
 use Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo;
 
-use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsDomainsPrices;
-use Hanzo\Model\ProductsDomainsPricesQuery;
 use Hanzo\Model\ProductsI18n;
-use Hanzo\Model\ProductsImagesCategoriesSort;
-use Hanzo\Model\ProductsImagesCategoriesSortQuery;
-use Hanzo\Model\ProductsImagesPeer;
-use Hanzo\Model\ProductsImages;
-use Hanzo\Model\ProductsImagesProductReferencesPeer;
-use Hanzo\Model\ProductsImagesProductReferences;
-use Hanzo\Model\ProductsImagesProductReferencesQuery;
-use Hanzo\Model\ProductsImagesQuery;
-use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsStock;
-use Hanzo\Model\ProductsStockQuery;
-use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\ProductsToCategories;
-use Hanzo\Model\ProductsToCategoriesQuery;
-use Hanzo\Model\ProductsWashingInstructionsPeer;
-use Hanzo\Model\ProductsWashingInstructions;
-use Hanzo\Model\ProductsWashingInstructionsQuery;
+
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Consultants;
+use Hanzo\Model\ConsultantsQuery;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\Countries;
+use Hanzo\Model\CountriesQuery;
 
 use Hanzo\Model\DomainsQuery;
 use Hanzo\Model\CategoriesQuery;
 use Hanzo\Model\LanguagesQuery;
+
+use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 
 use \Exception;
 use \PropelCollection;
@@ -531,48 +525,150 @@ class ECommerceServices extends SoapService
     }
 
 
-/**
-* customer syncronizer
-*
-* @param object $data xmlformat:
-* <customer>
-*   <CustTable>
-*     <AccountNum>109381</AccountNum>
-*     <InitialsId></InitialsId>
-*     <CustName>Mamarie Karlsson</CustName>
-*     <AddressStreet>marknadsvøgen 7</AddressStreet>
-*     <AddressCity>bjærketorp</AddressCity>
-*     <AddressZipCode>51994</AddressZipCode>
-*     <AddressCountryRegionId>DKK</AddressCountryRegionId>
-*     <CustCurrencyCode>DKK</CustCurrencyCode>
-*     <Email>mariedelice@hotmail.com</Email>
-*     <Phone>004632060004</Phone>
-*     <PhoneLocal></PhoneLocal>
-*     <PhoneMobile></PhoneMobile>
-*     <TeleFax></TeleFax>
-*   </CustTable>
-* </customer>
-*/
-public function SyncCustomer($data)
-{
-$errors = array();
+    /**
+     * customer syncronizer
+     *
+     * @param object $data xmlformat:
+     * <customer>
+     *   <CustTable>
+     *     <AccountNum>109381</AccountNum>
+     *     <InitialsId></InitialsId>
+     *     <CustName>Mamarie Karlsson</CustName>
+     *     <AddressStreet>marknadsvøgen 7</AddressStreet>
+     *     <AddressCity>bjærketorp</AddressCity>
+     *     <AddressZipCode>51994</AddressZipCode>
+     *     <AddressCountryRegionId>DK</AddressCountryRegionId>
+     *     <CustCurrencyCode>DKK</CustCurrencyCode>
+     *     <Email>mariedelice@hotmail.com</Email>
+     *     <Phone>004632060004</Phone>
+     *     <PhoneLocal></PhoneLocal>
+     *     <PhoneMobile></PhoneMobile>
+     *     <TeleFax></TeleFax>
+     *     <SalesDiscountPercent></SalesDiscountPercent>
+     *   </CustTable>
+     * </customer>
+     */
+    public function SyncCustomer($data)
+    {
+        /**
+         * customer groups is as following:
+         *  id: >= 10,001 < 15,000 = consultants = 2
+         *  id: >= 15.000 < 20,000 = employees   = 3
+         *  id: >= 20,000          = customers   = 1
+         */
 
-if (!$data instanceof stdClass || empty($data->customer->CustTable)) {
-parent::log('error', 'not a customer object');
-return self::responseStatus('Error', 'SyncCustomerResult', array('not a customer object'));
-}
+        $errors = array();
 
-// ....................
-// ..... ze code ......
-// ....................
+        if (!$data instanceof \stdClass || empty($data->customer->CustTable)) {
+            $this->logger->addCritical('not a customer object');
+            return self::responseStatus('Error', 'SyncCustomerResult', array('not a customer object'));
+        }
 
-if (count($errors)) {
-$this->logger->addCritical('SyncCustomerResult failed with the following error(s)', $errors);
-return self::responseStatus('Error', 'SyncCustomerResult', $errors);
-}
+        $data = $data->customer->CustTable;
 
-return self::responseStatus('Ok', 'SyncCustomerResult');
-}
+        // ....................
+        // .....<ze code>......
+        // ....................
+
+        $country = CountriesQuery::create()->findOneByIso2($data->AddressCountryRegionId);
+
+        if (!$country instanceof Countries) {
+            $this->logger->addCritical('unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum);
+            return self::responseStatus('Error', 'SyncCustomerResult', array('unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum));
+        }
+
+        $group_id = ($data->AccountNum < 15000 ? 2 : ($data->AccountNum < 20000 ? 3 : 1));
+
+        $customer = CustomersQuery::create()->findOneById($data->AccountNum);
+        if (!$customer instanceof Customers) {
+            $customer = new Customers();
+            $customer->setId($data->AccountNum);
+            // we never update passwords
+            $customer->setPassword(sha1($data->Phone));
+            $customer->setPasswordClear($data->Phone);
+        }
+
+        if ($group_id > 1) {
+            if ($customer->isNew()) {
+                $consultant = new Consultants();
+            } else {
+                $consultant = $customer->getConsultants();
+            }
+            $consultant->setInitials($data->InitialsId);
+            $customer->setConsultants($consultant);
+        }
+
+        $names = explode(' ', $data->CustName);
+        $first_name = array_shift($names);
+        $last_names = implode(' ', $names);
+
+        $customer->setFirstName($first_name);
+        $customer->setLastName($last_names);
+
+        $customer->setEmail($data->Email);
+        $customer->setPhone($data->Phone);
+
+        if ($data->SalesDiscountPercent) {
+            $customer->setDiscount((float) $data->SalesDiscountPercent * -1);
+        }
+
+        // create or update primary (payment) address
+        if ($customer->isNew()) {
+            $address = new Addresses();
+            $address->setType('payment');
+        } else {
+            $address = AddressesQuery::create()
+                ->filterByType('payment')
+                ->findOneByCustomersId($customer->getId())
+            ;
+        }
+
+        $address->setFirstName($first_name);
+        $address->setLastName($last_names);
+        $address->setAddressLine1($data->AddressStreet);
+        $address->setPostalCode($data->AddressZipCode);
+        $address->setCity($data->AddressCity);
+        $address->setCountry($country->getName());
+        $address->setCountriesId($country->getId());
+        $address->geocode();
+
+        if ($customer->isNew()) {
+            $customer->addAddresses($address);
+        } else {
+            $address->save();
+        }
+
+        try {
+            $customer->save();
+
+            // user created, add him/her to phplist
+            if ($group_id > 1) {
+                $hanzo = Hanzo::getInstance();
+                $domain_key = $hanzo->get('core.domain_key');
+                $newsletter_lists = $hanzo->get('phplist.lists');
+                if (isset($newsletter_lists[$domain_key])) {
+                    $newsletter = new NewsletterApi();
+                    $result = $newsletter->subscribe($customer->getEmail(), $newsletter_lists[$domain_key]);
+                }
+            }
+
+        } catch (\Exception $e) {
+            $errors[] = 'Cound not create or update account.';
+            $errors[] = $e->getMessage();
+        }
+
+
+        // ....................
+        // .....</ze code>.....
+        // ....................
+
+        if (count($errors)) {
+            $this->logger->addCritical('SyncCustomerResult failed with the following error(s)', $errors);
+            return self::responseStatus('Error', 'SyncCustomerResult', $errors);
+        }
+
+        return self::responseStatus('Ok', 'SyncCustomerResult');
+    }
 
 /**
 * delete a specific sales order.
@@ -594,7 +690,11 @@ $errors[] = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
 }
 
 // ....................
-// ..... ze code ......
+// .....<ze code>......
+// ....................
+
+// ....................
+// .....</ze code>.....
 // ....................
 
 if (count($errors)) {
@@ -644,7 +744,11 @@ $errors[] = 'order #' . $data->eOrderNumber . ' does not exist.';
 else {
 
 // ....................
-// ..... ze code ......
+// .....<ze code>......
+// ....................
+
+// ....................
+// .....</ze code>.....
 // ....................
 
 }
@@ -689,7 +793,11 @@ return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order 
 }
 
 // ....................
-// ..... ze code ......
+// .....<ze code>......
+// ....................
+
+// ....................
+// .....</ze code>.....
 // ....................
 
 
@@ -716,6 +824,14 @@ if (empty($data->eOrderNumber)) {
 $this->logger->addCritical('no eOrderNumber given.');
 return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
 }
+
+// ....................
+// .....<ze code>......
+// ....................
+
+// ....................
+// .....</ze code>.....
+// ....................
 
 if (count($errors)) {
 $this->logger->addCritical('SalesOrderAddDocumentResult failed with the following error(s)', $errors);

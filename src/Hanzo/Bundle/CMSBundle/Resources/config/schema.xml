@@ -106,7 +106,7 @@
   </table>
 
 
-  <table name="customers">
+  <table name="customers" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
     <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
@@ -443,7 +443,7 @@
     </index>
   </table>
 
-  <table name="orders">
+  <table name="orders" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
     <column name="session_id" type="VARCHAR" size="32" required="true"/>
     <column name="payment_gateway_id" type="INTEGER" required="false" defaultValue="NULL"/>

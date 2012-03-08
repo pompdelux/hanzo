@@ -9,6 +9,14 @@ class HanzoBoot
 {
     public function onKernelRequest(GetResponseEvent $event)
     {
-        $event->getRequest()->attributes->set('_request_type', $event->getRequestType());
+        $attr = $event->getRequest()->attributes;
+        $attr->set('_request_type', $event->getRequestType());
+
+        // use this to switch between layouts for pc/mobile devices
+        $device = 'pc';
+        if (isset($_SERVER['HTTP_X_DEVICE'])) {
+            $device = $_SERVER['HTTP_X_DEVICE'];
+        }
+        $attr->set('_x_device', $device);
     }
 }

@@ -37,6 +37,10 @@ class Stock
             continue;
           }
 
+          // catch out of stock
+          $this->stock[$id] = array();
+          $this->stock[$id]['total'] = 0;
+
           $ids[] = $id;
         }
 
@@ -57,11 +61,6 @@ class Stock
         foreach ($result as $record) {
             $id = $record->getProductsId();
             $date = $record->getAvailableFrom('Ymd');
-
-            if (empty($this->stock[$id])) {
-                $this->stock[$id] = array();
-                $this->stock[$id]['total'] = 0;
-            }
 
             $this->stock[$id]['total'] += $record->getQuantity();
             $this->stock[$id][$date] = array(
@@ -100,7 +99,6 @@ class Stock
         else {
             $id = (int) $product;
         }
-
 
         if (empty($this->stock[$id])) {
             $this->load($product);

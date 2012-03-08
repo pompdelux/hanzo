@@ -816,10 +816,6 @@ abstract class BaseCustomersPeer {
 			$criteria = $values->buildCriteria(); // build Criteria from Customers object
 		}
 
-		if ($criteria->containsKey(CustomersPeer::ID) && $criteria->keyContainsValue(CustomersPeer::ID) ) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key ('.CustomersPeer::ID.')');
-		}
-
 
 		// Set the correct dbName
 		$criteria->setDbName(self::DATABASE_NAME);

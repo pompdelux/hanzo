@@ -48,7 +48,7 @@ class Tools
      * @param string $v
      * @return string
      */
-    public static function stripText($v)
+    public static function stripText($v, $with = '-', $lower = true)
     {
         $url_safe_char_map = array(
             'æ' => 'ae', 'Æ' => 'AE',
@@ -68,14 +68,18 @@ class Tools
         $search  = array_keys($url_safe_char_map);
         $replace = array_values($url_safe_char_map);
 
-        $v = str_replace(' ', '-', trim($v));
+        $v = str_replace(' ', $with, trim($v));
         $v = str_replace($search, $replace, $v);
 
         $v = preg_replace('/[^a-z0-9_-]+/i', '', $v);
-        $v = preg_replace('/[-]+/', '-', $v);
-        $v = preg_replace('/^-|-$/', '-', $v);
+        $v = preg_replace('/['.$with.']+/', $with, $v);
+        $v = preg_replace('/^'.$with.'|'.$with.'$/', '', $v);
 
-        return strtolower($v);
+        if ($lower) {
+            return strtolower($v);
+        }
+
+        return $v;
     }
 
     /**
