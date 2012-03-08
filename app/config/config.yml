@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
-    - { resource: security.yml }
+# note security is handled in config_ws_webshop.yml and config_ws_consultant.yml
+#    - { resource: security.yml }
 
 framework:
     #esi:             ~

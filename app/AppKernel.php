@@ -58,12 +58,30 @@ class AppKernel extends Kernel
         }
 
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
+
+        //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
+        $twig->addGlobal('store_mode', self::getStoreMode());
         $twig->addExtension(new Twig_Extension_Optimizer());
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
+        // first we load "store mode" configs
+        $loader->load(__DIR__.'/config/config_ws_'.self::getStoreMode().'.yml');
+        // then we load env configs, these should always be loaded last.
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+    }
+
+
+    protected static function getStoreMode()
+    {
+        $mode = 'webshop';
+        // use strpos to capture test.kons and friends
+        if (isset($_SERVER['HTTP_HOST']) && (false !== strpos($_SERVER['HTTP_HOST'], 'kons'))) {
+            $mode = 'consultant';
+        }
+
+        return $mode;
     }
 }
 

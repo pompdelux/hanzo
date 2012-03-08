@@ -1,0 +1,35 @@
+# please note, do NOT split this section - it will break the application
+# the security section MUST be defined in one place, and cannot be overwritten
+security:
+    firewalls:
+        secured_area:
+            pattern: .*
+            anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login_check
+            logout:
+                path:   /logout
+                target: /
+                invalidate_session: true
+
+        login_firewall:
+            pattern:    ^/login$
+            anonymous:  ~
+
+    access_control:
+        - { path: ^/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/fx, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_CONSULTANT }
+
+    providers:
+        custom_provider:
+            id: hanzo.account.security.provider
+
+    encoders:
+        Hanzo\Bundle\AccountBundle\Security\User\ProxyUser:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
