@@ -12,6 +12,8 @@ use Twig_Filter_Method;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
+use Hanzo\Model\CmsI18nQuery;
+
 class MiscExtension extends Twig_Extension
 {
     protected $twig_string;
@@ -34,6 +36,7 @@ class MiscExtension extends Twig_Extension
             'parse' => new Twig_Function_Method($this, 'parse', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'meta_tags' => new Twig_Function_Method($this, 'meta_tags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'google_analytics_tag' => new Twig_Function_Method($this, 'google_analytics_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'front_page_teasers' => new Twig_Function_Method($this, 'front_page_teasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
@@ -87,7 +90,12 @@ class MiscExtension extends Twig_Extension
          return $result;
      }
 
-     public function google_analytics_tag() {
+
+     /**
+      * Google analytics tag, will only be displayed if a key is found
+      */
+     public function google_analytics_tag()
+     {
             $google = Hanzo::getInstance()->getByNs('google');
             if (!empty($google['analytics_id'])) {
         return <<<DOC
@@ -107,5 +115,40 @@ DOC;
         return '';
      }
 
+
+     /**
+      * Build and return frontpage teasers
+      *
+      * TODO:
+      * - implement caching
+      * - implement templating
+      * - fix hardcoded id
+      */
+     public function front_page_teasers()
+     {
+        $pages = CmsI18nQuery::create()
+            ->useCmsQuery()
+                ->filterByCmsThreadId(21) // FIXME!
+            ->endUse()
+            ->findByLocale(Hanzo::getInstance()->get('core.locale'))
+        ;
+
+        ob_start();
+        if ($pages->count()) {
+?>
+  <aside id="teasers" role="teasers">
+    <ul>
+<?php $i=1; foreach ($pages as $page): ?>
+      <li class="teaser-box-<?php echo $i ?>">
+        <?php echo $this->parse($page->getContent()) ?>
+      </li>
+<?php $i++; endforeach; ?>
+    </ul>
+  </aside>
+<?php
+        }
+
+        return ob_get_clean();
+     }
 
 }
