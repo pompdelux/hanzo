@@ -11,6 +11,11 @@
         window.open(this.href);
       });
 
+      $("#select-domain a.open-menu").click(function(e) {
+        e.preventDefault();
+        $("#select-domain div").slideToggle();
+      });
+
       // ios class added to body
       switch (navigator.platform) {
       case 'iPad':
