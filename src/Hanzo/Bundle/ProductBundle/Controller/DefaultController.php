@@ -24,6 +24,7 @@ class DefaultController extends CoreController
     public function viewAction($product_id)
     {
         $hanzo = Hanzo::getInstance();
+        $translator = $this->get('translator');
 
         $cache_id = array('product', $product_id);
         $data = $this->getCache($cache_id);
@@ -124,11 +125,13 @@ class DefaultController extends CoreController
                 );
             }
 
+            $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
+
             $data = array(
                 'id' => $product->getId(),
                 'sku' => $product->getSku(),
-                'title' => $product->getTitle(),
-                'description' => $product->getContent(),
+                'title' => $product->getSku(),
+                'description' => $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products'),
                 'washing' => stripslashes($product->getProductsWashingInstructions()->getDescription()),
                 'main_image' => $main_image,
                 'images' => $images,
