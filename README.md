@@ -37,12 +37,14 @@ The system relies heavily on domain names and tld's. So if you use none standard
 Try to follow the [coding standards](http://symfony.com/doc/current/contributing/code/standards.html) as much as possible.
 
 symfony console:
+
 - `php app/console --help` for help on the cli interface for symfony
 - clearing caches
   - `php app/console cache:clear`
   - `php app/console cache:clear --env=prod`
 
 redis:
+
 - `redis-cli` is the commandline interface for handeling redis related tasks
   redis supports tab-completion
 - flushing the cache: `FLUSHALL`
