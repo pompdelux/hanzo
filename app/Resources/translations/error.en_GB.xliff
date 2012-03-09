@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="404.title">
+                <source>404.title</source>
+                <target>404 - page not found.</target>
+            </trans-unit>
+            <trans-unit id="404.description">
+                <source>404.description</source>
+                <target><![CDATA[The page you required does not exist.<br><br>Try browsing the categories or use the search box below.]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
+<!--
+            <trans-unit id="">
+                <source></source>
+                <target></target>
+            </trans-unit>
+ -->
