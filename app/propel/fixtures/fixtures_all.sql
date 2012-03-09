@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2012 at 08:45 AM
+-- Generation Time: Mar 09, 2012 at 09:07 AM
 -- Server version: 5.1.58
 -- PHP Version: 5.3.6-13ubuntu3.6
 
@@ -29235,13 +29235,6 @@ INSERT INTO `products_washing_instructions` (`id`, `code`, `locale`, `descriptio
 (40, 12, 'nl_NL', 'Machine fijnwas tot 30Â°C/Niet strijken/Niet drogen in droogtrommel/Niet bleken/Niet chemisch reinigen.	<br><br>	Was binnenstebuiten. Droog in de droogtrommel op lage temperatuur, met twee tennisballen. Vermijd wasverzachter, ontvlekken en weken. Was met gelijksoortige kleuren.\r\n<br><br>\r\n<div>\r\n<img src=\\"/images/wash/3.png\\">\r\n<img src=\\"/images/wash/6.png\\">\r\n<img src=\\"/images/wash/8.png\\">\r\n<img src=\\"/images/wash/13.png\\">\r\n<img src=\\"/images/wash/14.png\\">\r\n</div>'),
 (41, 13, 'nl_NL', 'Machine fijnwas tot 30Â°C/Liggend drogen/Niet strijken/Niet drogen in droogtrommel/Niet bleken/Niet chemisch reinigen.	<br><br>	Was binnenstebuiten. Droog in de droogtrommel op lage temperatuur. Vermijd wasverzachter, ontvlekken en weken. Was met gelijksoortige kleuren.\r\n<br><br>\r\n<div>\r\n<img src=\\"/images/wash/3.png\\">\r\n<img src=\\"/images/wash/6.png\\">\r\n<img src=\\"/images/wash/8.png\\">\r\n<img src=\\"/images/wash/10.png\\">\r\n<img src=\\"/images/wash/13.png\\">\r\n<img src=\\"/images/wash/14.png\\">\r\n</div>'),
 (42, 14, 'nl_NL', 'Machine fijnwas tot 30Â°C/Niet strijken/Niet drogen in droogtrommel/Niet bleken/Niet chemisch reinigen.	<br><br>	Was binnenstebuiten. Vermijd wasverzachter, ontvlekken en weken. Was met gelijksoortige kleuren.\r\n<br><br>\r\n<div>\r\n<img src=\\"/images/wash/2.png\\">\r\n<img src=\\"/images/wash/6.png\\">\r\n<img src=\\"/images/wash/7.png\\">\r\n<img src=\\"/images/wash/11.png\\">\r\n<img src=\\"/images/wash/14.png\\">\r\n</div>');
-
---
--- Dumping data for table `propel_migration`
---
-
-INSERT INTO `propel_migration` (`version`) VALUES
-(1330946717);
 
 --
 -- Dumping data for table `settings`

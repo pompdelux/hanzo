@@ -3,7 +3,7 @@
 
 ## Requirements:
 
-First off, the same requirements as [symfony2(http://symfony.com/doc/2.0/reference/requirements.html)], besides this, we have these addons:
+First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/reference/requirements.html), besides this, we have these addons:
 
 1. [redis](http://redis.io/) must be installed and working
 2. [cdn.hanzo](https://github.com/bellcom/cdn.hanzo) must be setup
@@ -22,7 +22,7 @@ First off, the same requirements as [symfony2(http://symfony.com/doc/2.0/referen
 5. `mysql -u xxx -p yyy hanzo < app/propel/sql/default.sql`
 6. add fixture data, here we have a "clean" and a "full" version, the full version includes testdata.
   1. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures.sql`
-  A. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures_all.sql`
+  2. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures_all.sql`
 7. `php bin/vendors install`
 8. `git submodule update --recursive --init`
 9. If you loaded the "full" fixtures you can do:
@@ -39,14 +39,17 @@ The system relies heavily on domain names and tld's. So if you use none standard
 Try to follow the [coding standards](http://symfony.com/doc/current/contributing/code/standards.html) as much as possible.
 
 symfony console:
+
 - `php app/console --help` for help on the cli interface for symfony
 - clearing caches
   - `php app/console cache:clear`
   - `php app/console cache:clear --env=prod`
 
 redis:
+
 - `redis-cli` is the commandline interface for handeling redis related tasks
   redis supports tab-completion
 - flushing the cache: `FLUSHALL`
 - find a key: `KEYS *xx*`
 - help, well: `HELP` or go see the [docs](http://redis.io/documentation), they are great.
+
