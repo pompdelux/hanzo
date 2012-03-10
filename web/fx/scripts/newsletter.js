@@ -32,7 +32,7 @@ var newsletter = (function($) {
     var lists = [];
     $(selectorName+" form").on('submit',function(event) {
       event.preventDefault();
-      
+
       if ( email === "" ) {
         email = $selector.find('.newsletter-subscriber-email').val();
       }
@@ -64,7 +64,7 @@ var newsletter = (function($) {
       {
         var $el = $(selectorName+' ul');
         var list_container = '<ul>';
-        
+
         $.each(data.content.lists, function(index,list) {
           if ( ( id !== undefined && id == list.id ) || id === undefined ) /* must use == to compare id and list.id */
           {

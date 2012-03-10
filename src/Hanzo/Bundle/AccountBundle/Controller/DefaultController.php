@@ -53,11 +53,11 @@ class DefaultController extends CoreController
 
         $form = $this->createForm(new CustomersType( true, new AddressesType( $country )), $customer);
 
-        if ('POST' === $request->getMethod()) 
+        if ('POST' === $request->getMethod())
         {
             $form->bindRequest($request);
 
-            if ($form->isValid()) 
+            if ($form->isValid())
             {
                 $customer->setPasswordClear($customer->getPassword());
                 $customer->setPassword(sha1($customer->getPassword()));
@@ -67,13 +67,13 @@ class DefaultController extends CoreController
 
                 $formData = $request->request->get('customers');
 
-                if ( isset( $formData['newsletter'] )  && $formData['newsletter'] ) 
+                if ( isset( $formData['newsletter'] )  && $formData['newsletter'] )
                 {
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                     if ( is_object($response) && $response->is_error )
                     {
-                        // TODO: do something? 
+                        // TODO: do something?
                     }
                 }
 
@@ -213,7 +213,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $domainKey = $hanzo->get('core.domain_key');
 
-        switch ($domainKey) 
+        switch ($domainKey)
         {
             case 'DK':
                 $country = CountriesPeer::retrieveByPK(58);

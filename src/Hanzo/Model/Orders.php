@@ -13,7 +13,7 @@ use Hanzo\Model\om\BaseOrders,
     Hanzo\Model\OrdersLinesQuery
     ;
 
-use Hanzo\Bundle\ShippingBundle\ShippingMethods\ShippingMethod
+use Hanzo\Model\ShippingMethods
     ;
 
 use Exception
@@ -105,14 +105,13 @@ class Orders extends BaseOrders
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function setOrderLineShipping( ShippingMethod $shippingMethod, $isFee = false )
+    public function setOrderLineShipping( ShippingMethods $shippingMethod, $isFee = false )
     {
         if ( $isFee )
         {
-            $price = $shippingMethod->getFeePrice();
-            $name  = $shippingMethod->getFeeName();
+            $price = $shippingMethod->getFee();
+            $name  = $shippingMethod->getName();
             $id    = $shippingMethod->getFeeExternalId();
-            $tax   = $shippingMethod->getFeeTax();
             $type  = 'shipping.fee';
         }
         else
@@ -120,19 +119,18 @@ class Orders extends BaseOrders
             $price = $shippingMethod->getPrice();
             $name  = $shippingMethod->getName();
             $id    = $shippingMethod->getExternalId();
-            $tax   = $shippingMethod->getTax();
             $type  = 'shipping';
         }
 
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
-        foreach ($lines as $index => $line) 
+        foreach ($lines as $index => $line)
         {
-            if ( $line->getProductsId() == $id && $line->getType() == $type ) 
+            if ( $line->getProductsId() == $id && $line->getType() == $type )
             {
                 $line->setProductsName( $name );
                 $line->setPrice( $price );
-                $line->setTax( $tax );
+                $line->setTax( 0.00 );
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
 
@@ -146,7 +144,7 @@ class Orders extends BaseOrders
         $line->setProductsName( $name );
         $line->setQuantity(1);
         $line->setPrice( $price );
-        $line->setTax( $tax );
+        $line->setTax( 0.00 );
         $line->setType( $type );
         $this->addOrdersLines($line);
     }
@@ -170,12 +168,16 @@ class Orders extends BaseOrders
     }
 
 
-    public function getTotalPrice()
+    public function getTotalPrice($products_only = false)
     {
         $lines = $this->getOrdersLiness();
 
         $total = 0;
         foreach ($lines as $line) {
+            if ($products_only && $line->getType() != 'product') {
+                continue;
+            }
+
             $total += ($line->getPrice() * $line->getQuantity());
         }
 
@@ -247,7 +249,7 @@ class Orders extends BaseOrders
     public function setPaymentPaytype( $paytype )
     {
         // TODO: match CustPaymMode from old system?
-        $this->setAttribute( 'paytype', 'payment', $paytype ); 
+        $this->setAttribute( 'paytype', 'payment', $paytype );
     }
 
     /**
@@ -265,9 +267,9 @@ class Orders extends BaseOrders
 
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
-        foreach ($lines as $index => $line) 
+        foreach ($lines as $index => $line)
         {
-            if ( $line->getProductsId() == $id && $line->getType() == $type ) 
+            if ( $line->getProductsId() == $id && $line->getType() == $type )
             {
                 $line->setProductsName( $name );
                 $line->setPrice( $price );
@@ -303,13 +305,13 @@ class Orders extends BaseOrders
 
     /**
      * setBillingAddress
-     * @param Addresses $address 
+     * @param Addresses $address
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function setBillingAddress( Addresses $address )
     {
-        if ( $address->getType != 'payment' )
+        if ( $address->getType() != 'payment' )
         {
           throw new Exception( 'Address is not of type payment' );
         }
@@ -345,7 +347,7 @@ class Orders extends BaseOrders
           'BillingCompanyName'   => null,
           'BillingFirstName'     => null,
           'BillingLastName'      => null,
-          ); 
+          );
 
       $this->fromArray($fields);
     }
@@ -368,20 +370,20 @@ class Orders extends BaseOrders
           'DeliveryCompanyName'   => null,
           'DeliveryFirstName'     => null,
           'DeliveryLastName'      => null,
-          ); 
+          );
 
       $this->fromArray($fields);
     }
 
     /**
      * setDeliveryAddress
-     * @param Addresses $address 
+     * @param Addresses $address
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function setDeliveryAddress( Addresses $address )
     {
-        if ( $address->getType != 'shipping' )
+        if ( $address->getType() != 'shipping' )
         {
           throw new Exception( 'Address is not of type shipping' );
         }

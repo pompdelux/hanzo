@@ -843,6 +843,7 @@ CREATE TABLE `shipping_methods`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`carrier` VARCHAR(255) NOT NULL,
+	`method` VARCHAR(255) NOT NULL,
 	`external_id` VARCHAR(32) NOT NULL,
 	`calc_engine` VARCHAR(32) DEFAULT 'flat' NOT NULL,
 	`price` DECIMAL(15,4) NOT NULL,

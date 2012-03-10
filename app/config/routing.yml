@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 AdminBundle:
     resource: "@AdminBundle/Resources/config/routing.yml"
+=======
+DataIOBundle:
+    resource: "@DataIOBundle/Resources/config/routing.yml"
+>>>>>>> 2bb1e4fd417223f4c3ab80d8cdc98b859b9b1036
     prefix:   /
 
 ShippingBundle:

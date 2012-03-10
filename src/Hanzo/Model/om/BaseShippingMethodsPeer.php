@@ -38,19 +38,22 @@ abstract class BaseShippingMethodsPeer {
 	const TM_CLASS = 'ShippingMethodsTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 8;
+	const NUM_COLUMNS = 9;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 8;
+	const NUM_HYDRATE_COLUMNS = 9;
 
 	/** the column name for the ID field */
 	const ID = 'shipping_methods.ID';
 
 	/** the column name for the CARRIER field */
 	const CARRIER = 'shipping_methods.CARRIER';
+
+	/** the column name for the METHOD field */
+	const METHOD = 'shipping_methods.METHOD';
 
 	/** the column name for the EXTERNAL_ID field */
 	const EXTERNAL_ID = 'shipping_methods.EXTERNAL_ID';
@@ -89,12 +92,12 @@ abstract class BaseShippingMethodsPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Carrier', 'ExternalId', 'CalcEngine', 'Price', 'Fee', 'FeeExternalId', 'IsActive', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'carrier', 'externalId', 'calcEngine', 'price', 'fee', 'feeExternalId', 'isActive', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::CARRIER, self::EXTERNAL_ID, self::CALC_ENGINE, self::PRICE, self::FEE, self::FEE_EXTERNAL_ID, self::IS_ACTIVE, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CARRIER', 'EXTERNAL_ID', 'CALC_ENGINE', 'PRICE', 'FEE', 'FEE_EXTERNAL_ID', 'IS_ACTIVE', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'carrier', 'external_id', 'calc_engine', 'price', 'fee', 'fee_external_id', 'is_active', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Carrier', 'Method', 'ExternalId', 'CalcEngine', 'Price', 'Fee', 'FeeExternalId', 'IsActive', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'carrier', 'method', 'externalId', 'calcEngine', 'price', 'fee', 'feeExternalId', 'isActive', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::CARRIER, self::METHOD, self::EXTERNAL_ID, self::CALC_ENGINE, self::PRICE, self::FEE, self::FEE_EXTERNAL_ID, self::IS_ACTIVE, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CARRIER', 'METHOD', 'EXTERNAL_ID', 'CALC_ENGINE', 'PRICE', 'FEE', 'FEE_EXTERNAL_ID', 'IS_ACTIVE', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'carrier', 'method', 'external_id', 'calc_engine', 'price', 'fee', 'fee_external_id', 'is_active', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
 	);
 
 	/**
@@ -104,12 +107,12 @@ abstract class BaseShippingMethodsPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Carrier' => 1, 'ExternalId' => 2, 'CalcEngine' => 3, 'Price' => 4, 'Fee' => 5, 'FeeExternalId' => 6, 'IsActive' => 7, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'carrier' => 1, 'externalId' => 2, 'calcEngine' => 3, 'price' => 4, 'fee' => 5, 'feeExternalId' => 6, 'isActive' => 7, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::CARRIER => 1, self::EXTERNAL_ID => 2, self::CALC_ENGINE => 3, self::PRICE => 4, self::FEE => 5, self::FEE_EXTERNAL_ID => 6, self::IS_ACTIVE => 7, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CARRIER' => 1, 'EXTERNAL_ID' => 2, 'CALC_ENGINE' => 3, 'PRICE' => 4, 'FEE' => 5, 'FEE_EXTERNAL_ID' => 6, 'IS_ACTIVE' => 7, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'carrier' => 1, 'external_id' => 2, 'calc_engine' => 3, 'price' => 4, 'fee' => 5, 'fee_external_id' => 6, 'is_active' => 7, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Carrier' => 1, 'Method' => 2, 'ExternalId' => 3, 'CalcEngine' => 4, 'Price' => 5, 'Fee' => 6, 'FeeExternalId' => 7, 'IsActive' => 8, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'carrier' => 1, 'method' => 2, 'externalId' => 3, 'calcEngine' => 4, 'price' => 5, 'fee' => 6, 'feeExternalId' => 7, 'isActive' => 8, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::CARRIER => 1, self::METHOD => 2, self::EXTERNAL_ID => 3, self::CALC_ENGINE => 4, self::PRICE => 5, self::FEE => 6, self::FEE_EXTERNAL_ID => 7, self::IS_ACTIVE => 8, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CARRIER' => 1, 'METHOD' => 2, 'EXTERNAL_ID' => 3, 'CALC_ENGINE' => 4, 'PRICE' => 5, 'FEE' => 6, 'FEE_EXTERNAL_ID' => 7, 'IS_ACTIVE' => 8, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'carrier' => 1, 'method' => 2, 'external_id' => 3, 'calc_engine' => 4, 'price' => 5, 'fee' => 6, 'fee_external_id' => 7, 'is_active' => 8, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
 	);
 
 	/**
@@ -183,6 +186,7 @@ abstract class BaseShippingMethodsPeer {
 		if (null === $alias) {
 			$criteria->addSelectColumn(ShippingMethodsPeer::ID);
 			$criteria->addSelectColumn(ShippingMethodsPeer::CARRIER);
+			$criteria->addSelectColumn(ShippingMethodsPeer::METHOD);
 			$criteria->addSelectColumn(ShippingMethodsPeer::EXTERNAL_ID);
 			$criteria->addSelectColumn(ShippingMethodsPeer::CALC_ENGINE);
 			$criteria->addSelectColumn(ShippingMethodsPeer::PRICE);
@@ -192,6 +196,7 @@ abstract class BaseShippingMethodsPeer {
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.CARRIER');
+			$criteria->addSelectColumn($alias . '.METHOD');
 			$criteria->addSelectColumn($alias . '.EXTERNAL_ID');
 			$criteria->addSelectColumn($alias . '.CALC_ENGINE');
 			$criteria->addSelectColumn($alias . '.PRICE');

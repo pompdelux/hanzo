@@ -82,6 +82,12 @@ class Tools
         return $v;
     }
 
+    public static function stripTags($text)
+    {
+        return preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', '', $text);
+    }
+
+
     /**
      * shortcut for logging data to the error log
      * only requests comming from bellcom ip addresses will be logged.

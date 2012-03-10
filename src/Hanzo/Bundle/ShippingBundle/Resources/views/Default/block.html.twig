@@ -1,10 +1,18 @@
 <div id="checkout-block-shipping">
-<h1>Fragttype</h1>
-<div class="msg hidn"></div>
-Vælg den rigtige fragttype.<br>
-<form action="">
-{% for method in methods %}
-  <input type="radio" name="shipping" value="{{ method.externalid }}" disabled>{{ method.name }}<br>
-{% endfor %}
-</form>
+  <h1>{{ 'page.heading'|trans({},'shipping') }}</h1>
+  <div class="msg hidn"></div>
+  {{ 'page.desc'|trans({},'shipping') }}<br>
+  <form action="#">
+  {% for method in methods %}
+    <h3>{{ ('shipping_method.name.' ~ method.externalid)|trans({},'shipping') }}</h3>
+    <p>
+      {{ ('shipping_method.desc.' ~ method.externalid)|trans({},'shipping')|raw }}
+    </p>
+    <div>
+    	<label for="shipping_method_{{ method.externalid }}">{{ ('shipping_method.label.' ~ method.externalid)|trans({'%price%':method.price|money}, 'shipping') }}</label>
+      <input type="radio" name="shipping" id="shipping_method_{{method.externalid}}" value="{{ method.externalid }}" disabled>
+    </div>
+    <br>
+  {% endfor %}
+  </form>
 </div>

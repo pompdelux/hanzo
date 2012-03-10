@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>title</source>
+                <target>Sök</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>description</source>
+                <target>Om du letar efter information som du inte kan hitta på vår hemsida, så kan du skriva ett sökord i fältet nedan och tryck på "sök".</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>button.label</source>
+                <target>Sök</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>result.products</source>
+                <target>Fundet %count% produkter</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>result.pages</source>
+                <target>Fundet %count% sider</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

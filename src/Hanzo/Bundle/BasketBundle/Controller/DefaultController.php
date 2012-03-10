@@ -244,6 +244,10 @@ class DefaultController extends CoreController
         foreach ($order->getOrdersLiness() as $line) {
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
+            if ($line['type'] != 'product') {
+                continue;
+            }
+
             // find first products2category match
             $products2category = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
@@ -289,7 +293,7 @@ class DefaultController extends CoreController
         return $this->render('BasketBundle:Default:view.html.twig', array(
             'page_type' => 'basket',
             'products' => $products,
-            'total' => $order->getTotalPrice(),
+            'total' => $order->getTotalPrice(true),
             'delivery_date' => $delivery_date,
             'continue_shopping' =>  $router->generate('page_400_' . $locale),
         ));

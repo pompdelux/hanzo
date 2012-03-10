@@ -25074,8 +25074,15 @@ INSERT INTO `zip_to_city` (`id`, `zip`, `countries_iso2`, `city`, `county_id`, `
 (42965, '98494', 'SE', 'Lovikka', '2521', 'Pajala', NULL),
 (42966, '98495', 'SE', 'Muodoslompolo', '2521', 'Pajala', NULL),
 (42967, '98499', 'SE', 'Pajala', '2521', 'Pajala', NULL);
+
+INSERT INTO `shipping_methods` (`id`, `carrier`, `external_id`, `calc_engine`, `price`, `fee`, `fee_external_id`, `is_active`, `method`) VALUES
+(1, 'Post Danmark', '10', 'flat', '59.0000', '15.0000', '90', 1, 'Privat'),
+(2, 'Post Danmark', '11', 'flat', '39.0000', '15.0000', '90', 1, 'Erhverv'),
+(3, 'Post Danmark', '12', 'flat', '45.0000', '15.0000', '90', 1, 'Døgnpost');
+
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

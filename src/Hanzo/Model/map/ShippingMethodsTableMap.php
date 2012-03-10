@@ -44,6 +44,7 @@ class ShippingMethodsTableMap extends TableMap
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addColumn('CARRIER', 'Carrier', 'VARCHAR', true, 255, null);
+		$this->addColumn('METHOD', 'Method', 'VARCHAR', true, 255, null);
 		$this->addColumn('EXTERNAL_ID', 'ExternalId', 'VARCHAR', true, 32, null);
 		$this->addColumn('CALC_ENGINE', 'CalcEngine', 'VARCHAR', true, 32, 'flat');
 		$this->addColumn('PRICE', 'Price', 'DECIMAL', true, 15, null);

@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\CoreController,
-    Hanzo\Bundle\ShippingBundle\ShippingMethods\ShippingMethod
+    Hanzo\Model\ShippingMethods
     ;
 
 class DefaultController extends CoreController
@@ -21,6 +21,8 @@ class DefaultController extends CoreController
         $api = $this->get('shipping.shippingapi');
 
         $methods = $api->getMethods();
+
+        // TODO: set fee
 
         return $this->render('ShippingBundle:Default:block.html.twig', array( 'methods' => $methods ));
     }

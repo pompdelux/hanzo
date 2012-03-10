@@ -3,7 +3,10 @@
 namespace Hanzo\Bundle\ShippingBundle;
 
 use Hanzo\Core\Hanzo,
-    Hanzo\Bundle\ShippingBundle\ShippingMethods\ShippingMethod
+    Hanzo\Core\Tools,
+    Hanzo\Model\ShippingMethods,
+    Hanzo\Model\ShippingMethodsPeer,
+    Hanzo\Model\ShippingMethodsQuery
     ;
 
 /**
@@ -22,6 +25,13 @@ class ShippingApi
     protected $domainKey;
 
     /**
+     * undocumented class variable
+     *
+     * @var string
+     **/
+    protected $methods = array();
+
+    /**
      * __construct
      * @param array $params
      * @param array $settings
@@ -31,7 +41,25 @@ class ShippingApi
     public function __construct( $params, $settings )
     {
         // TODO: handle free shipping
-        error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
+        //error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
+
+        if ( !isset( $settings['methods_enabled'] ) )
+        {
+          return false;
+        }
+
+        $methodsEnabled = unserialize( $settings['methods_enabled'] );
+
+        $query = ShippingMethodsQuery::create()
+            ->filterByIsActive(1)
+            ->filterByExternalId($methodsEnabled)
+            ->find();
+
+        foreach ($query as $q)
+        {
+            $this->methods[ $q->getExternalId() ] = $q;
+        }
+
         $this->domainKey = Hanzo::getInstance()->get('core.domain_key');;
     }
 
@@ -54,9 +82,7 @@ class ShippingApi
      **/
     public function getMethods()
     {
-        $methods = array();
-
-        switch ($this->domainKey) 
+        /*switch ($this->domainKey)
         {
             case 'DK':
                 $methods = array(
@@ -86,8 +112,8 @@ class ShippingApi
                     '60' => new ShippingMethod( 'DPD', 'DPD', '', '60', 'flat' ),
                 );
                 break;
-        }
+        }*/
 
-        return $methods;
+        return $this->methods;
     }
 } // END class ShippingApi

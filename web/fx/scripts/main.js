@@ -5,14 +5,14 @@
     var pub = {}
 
     pub.initUI = function() {
-      // open facebook in a new window
-      $('li.facebook a').click(function(event) {
+      // open in a new window
+      $('li.facebook a, a[rel="external"]').on('click', function(event) {
         event.preventDefault();
         window.open(this.href);
       });
 
-      $("#select-domain a.open-menu").click(function(e) {
-        e.preventDefault();
+      $("#select-domain a.open-menu").on('click', function(event) {
+        event.preventDefault();
         $("#select-domain div").slideToggle();
       });
 
