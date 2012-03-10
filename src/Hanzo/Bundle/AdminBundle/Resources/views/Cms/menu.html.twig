@@ -1,0 +1,19 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+<div class="admin-actions">
+	<a class="admin_cms_update_tree" href="{{ path('admin_cms_update_tree') }}">
+		{{ "save.cms.page_tree"|trans }}
+	</a>
+</div>
+
+{{ tree|raw }}
+
+<div class="admin-actions">
+	<a class="admin_cms_update_tree" href="{{ path('admin_cms_update_tree') }}">
+		{{ "save.cms.page_tree"|trans }}
+	</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="admin_home_text">
+        <source>admin.home.text</source>
+        <target>Administration</target>
+      </trans-unit>
+      <trans-unit id="admin_page_edit_text">
+        <source>page.edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="admin_page_delete_text">
+        <source>page.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="admin_save_cms_page_tree">
+        <source>save.cms.page_tree</source>
+        <target>Gem rækkefølge</target>
+      </trans-unit>
+      <trans-unit id="admin_save_changes_success">
+        <source>save.changes.success</source>
+        <target>Dine ændringer blev gemt</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source></source>
+        <target></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
