@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="404.title">
                 <source>404.title</source>
-                <target>404 - page not found.</target>
+                <target>Page not found.</target>
             </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
