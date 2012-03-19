@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\CoreController,
-    Hanzo\Bundle\ShippingBundle\ShippingMethods\ShippingMethod
+    Hanzo\Model\ShippingMethods
     ;
 
 class DefaultController extends CoreController

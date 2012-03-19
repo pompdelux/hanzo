@@ -19,6 +19,7 @@ use Hanzo\Model\ShippingMethodsQuery;
  *
  * @method     ShippingMethodsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method     ShippingMethodsQuery orderByCarrier($order = Criteria::ASC) Order by the carrier column
+ * @method     ShippingMethodsQuery orderByMethod($order = Criteria::ASC) Order by the method column
  * @method     ShippingMethodsQuery orderByExternalId($order = Criteria::ASC) Order by the external_id column
  * @method     ShippingMethodsQuery orderByCalcEngine($order = Criteria::ASC) Order by the calc_engine column
  * @method     ShippingMethodsQuery orderByPrice($order = Criteria::ASC) Order by the price column
@@ -28,6 +29,7 @@ use Hanzo\Model\ShippingMethodsQuery;
  *
  * @method     ShippingMethodsQuery groupById() Group by the id column
  * @method     ShippingMethodsQuery groupByCarrier() Group by the carrier column
+ * @method     ShippingMethodsQuery groupByMethod() Group by the method column
  * @method     ShippingMethodsQuery groupByExternalId() Group by the external_id column
  * @method     ShippingMethodsQuery groupByCalcEngine() Group by the calc_engine column
  * @method     ShippingMethodsQuery groupByPrice() Group by the price column
@@ -44,6 +46,7 @@ use Hanzo\Model\ShippingMethodsQuery;
  *
  * @method     ShippingMethods findOneById(int $id) Return the first ShippingMethods filtered by the id column
  * @method     ShippingMethods findOneByCarrier(string $carrier) Return the first ShippingMethods filtered by the carrier column
+ * @method     ShippingMethods findOneByMethod(string $method) Return the first ShippingMethods filtered by the method column
  * @method     ShippingMethods findOneByExternalId(string $external_id) Return the first ShippingMethods filtered by the external_id column
  * @method     ShippingMethods findOneByCalcEngine(string $calc_engine) Return the first ShippingMethods filtered by the calc_engine column
  * @method     ShippingMethods findOneByPrice(string $price) Return the first ShippingMethods filtered by the price column
@@ -53,6 +56,7 @@ use Hanzo\Model\ShippingMethodsQuery;
  *
  * @method     array findById(int $id) Return ShippingMethods objects filtered by the id column
  * @method     array findByCarrier(string $carrier) Return ShippingMethods objects filtered by the carrier column
+ * @method     array findByMethod(string $method) Return ShippingMethods objects filtered by the method column
  * @method     array findByExternalId(string $external_id) Return ShippingMethods objects filtered by the external_id column
  * @method     array findByCalcEngine(string $calc_engine) Return ShippingMethods objects filtered by the calc_engine column
  * @method     array findByPrice(string $price) Return ShippingMethods objects filtered by the price column
@@ -147,7 +151,7 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `CARRIER`, `EXTERNAL_ID`, `CALC_ENGINE`, `PRICE`, `FEE`, `FEE_EXTERNAL_ID`, `IS_ACTIVE` FROM `shipping_methods` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `CARRIER`, `METHOD`, `EXTERNAL_ID`, `CALC_ENGINE`, `PRICE`, `FEE`, `FEE_EXTERNAL_ID`, `IS_ACTIVE` FROM `shipping_methods` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -284,6 +288,34 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(ShippingMethodsPeer::CARRIER, $carrier, $comparison);
+	}
+
+	/**
+	 * Filter the query on the method column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByMethod('fooValue');   // WHERE method = 'fooValue'
+	 * $query->filterByMethod('%fooValue%'); // WHERE method LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $method The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    ShippingMethodsQuery The current query, for fluid interface
+	 */
+	public function filterByMethod($method = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($method)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $method)) {
+				$method = str_replace('*', '%', $method);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(ShippingMethodsPeer::METHOD, $method, $comparison);
 	}
 
 	/**

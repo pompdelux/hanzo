@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\ShippingBundle;
 
 use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
     Hanzo\Model\ShippingMethods,
     Hanzo\Model\ShippingMethodsPeer,
     Hanzo\Model\ShippingMethodsQuery
@@ -40,7 +41,7 @@ class ShippingApi
     public function __construct( $params, $settings )
     {
         // TODO: handle free shipping
-        error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
+        //error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
 
         if ( !isset( $settings['methods_enabled'] ) )
         {
@@ -54,7 +55,7 @@ class ShippingApi
             ->filterByExternalId($methodsEnabled)
             ->find();
 
-        foreach ($query as $q) 
+        foreach ($query as $q)
         {
             $this->methods[ $q->getExternalId() ] = $q;
         }
@@ -81,7 +82,7 @@ class ShippingApi
      **/
     public function getMethods()
     {
-        /*switch ($this->domainKey) 
+        /*switch ($this->domainKey)
         {
             case 'DK':
                 $methods = array(

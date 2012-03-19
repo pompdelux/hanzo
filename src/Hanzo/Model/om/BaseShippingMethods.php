@@ -58,6 +58,12 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 	protected $carrier;
 
 	/**
+	 * The value for the method field.
+	 * @var        string
+	 */
+	protected $method;
+
+	/**
 	 * The value for the external_id field.
 	 * @var        string
 	 */
@@ -151,6 +157,16 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 	public function getCarrier()
 	{
 		return $this->carrier;
+	}
+
+	/**
+	 * Get the [method] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getMethod()
+	{
+		return $this->method;
 	}
 
 	/**
@@ -252,6 +268,26 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 
 		return $this;
 	} // setCarrier()
+
+	/**
+	 * Set the value of [method] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     ShippingMethods The current object (for fluent API support)
+	 */
+	public function setMethod($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->method !== $v) {
+			$this->method = $v;
+			$this->modifiedColumns[] = ShippingMethodsPeer::METHOD;
+		}
+
+		return $this;
+	} // setMethod()
 
 	/**
 	 * Set the value of [external_id] column.
@@ -427,12 +463,13 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->carrier = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->external_id = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->calc_engine = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->price = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->fee = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->fee_external_id = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->is_active = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
+			$this->method = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->external_id = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->calc_engine = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->price = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->fee = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->fee_external_id = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->is_active = ($row[$startcol + 8] !== null) ? (boolean) $row[$startcol + 8] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -441,7 +478,7 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 8; // 8 = ShippingMethodsPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 9; // 9 = ShippingMethodsPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating ShippingMethods object", $e);
@@ -655,6 +692,9 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 		if ($this->isColumnModified(ShippingMethodsPeer::CARRIER)) {
 			$modifiedColumns[':p' . $index++]  = '`CARRIER`';
 		}
+		if ($this->isColumnModified(ShippingMethodsPeer::METHOD)) {
+			$modifiedColumns[':p' . $index++]  = '`METHOD`';
+		}
 		if ($this->isColumnModified(ShippingMethodsPeer::EXTERNAL_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`EXTERNAL_ID`';
 		}
@@ -689,6 +729,9 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 						break;
 					case '`CARRIER`':
 						$stmt->bindValue($identifier, $this->carrier, PDO::PARAM_STR);
+						break;
+					case '`METHOD`':
+						$stmt->bindValue($identifier, $this->method, PDO::PARAM_STR);
 						break;
 					case '`EXTERNAL_ID`':
 						$stmt->bindValue($identifier, $this->external_id, PDO::PARAM_STR);
@@ -845,21 +888,24 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 				return $this->getCarrier();
 				break;
 			case 2:
-				return $this->getExternalId();
+				return $this->getMethod();
 				break;
 			case 3:
-				return $this->getCalcEngine();
+				return $this->getExternalId();
 				break;
 			case 4:
-				return $this->getPrice();
+				return $this->getCalcEngine();
 				break;
 			case 5:
-				return $this->getFee();
+				return $this->getPrice();
 				break;
 			case 6:
-				return $this->getFeeExternalId();
+				return $this->getFee();
 				break;
 			case 7:
+				return $this->getFeeExternalId();
+				break;
+			case 8:
 				return $this->getIsActive();
 				break;
 			default:
@@ -892,12 +938,13 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 		$result = array(
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getCarrier(),
-			$keys[2] => $this->getExternalId(),
-			$keys[3] => $this->getCalcEngine(),
-			$keys[4] => $this->getPrice(),
-			$keys[5] => $this->getFee(),
-			$keys[6] => $this->getFeeExternalId(),
-			$keys[7] => $this->getIsActive(),
+			$keys[2] => $this->getMethod(),
+			$keys[3] => $this->getExternalId(),
+			$keys[4] => $this->getCalcEngine(),
+			$keys[5] => $this->getPrice(),
+			$keys[6] => $this->getFee(),
+			$keys[7] => $this->getFeeExternalId(),
+			$keys[8] => $this->getIsActive(),
 		);
 		return $result;
 	}
@@ -936,21 +983,24 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 				$this->setCarrier($value);
 				break;
 			case 2:
-				$this->setExternalId($value);
+				$this->setMethod($value);
 				break;
 			case 3:
-				$this->setCalcEngine($value);
+				$this->setExternalId($value);
 				break;
 			case 4:
-				$this->setPrice($value);
+				$this->setCalcEngine($value);
 				break;
 			case 5:
-				$this->setFee($value);
+				$this->setPrice($value);
 				break;
 			case 6:
-				$this->setFeeExternalId($value);
+				$this->setFee($value);
 				break;
 			case 7:
+				$this->setFeeExternalId($value);
+				break;
+			case 8:
 				$this->setIsActive($value);
 				break;
 		} // switch()
@@ -979,12 +1029,13 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setCarrier($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setExternalId($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setCalcEngine($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setPrice($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setFee($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setFeeExternalId($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setIsActive($arr[$keys[7]]);
+		if (array_key_exists($keys[2], $arr)) $this->setMethod($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setExternalId($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setCalcEngine($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setPrice($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setFee($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setFeeExternalId($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setIsActive($arr[$keys[8]]);
 	}
 
 	/**
@@ -998,6 +1049,7 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 
 		if ($this->isColumnModified(ShippingMethodsPeer::ID)) $criteria->add(ShippingMethodsPeer::ID, $this->id);
 		if ($this->isColumnModified(ShippingMethodsPeer::CARRIER)) $criteria->add(ShippingMethodsPeer::CARRIER, $this->carrier);
+		if ($this->isColumnModified(ShippingMethodsPeer::METHOD)) $criteria->add(ShippingMethodsPeer::METHOD, $this->method);
 		if ($this->isColumnModified(ShippingMethodsPeer::EXTERNAL_ID)) $criteria->add(ShippingMethodsPeer::EXTERNAL_ID, $this->external_id);
 		if ($this->isColumnModified(ShippingMethodsPeer::CALC_ENGINE)) $criteria->add(ShippingMethodsPeer::CALC_ENGINE, $this->calc_engine);
 		if ($this->isColumnModified(ShippingMethodsPeer::PRICE)) $criteria->add(ShippingMethodsPeer::PRICE, $this->price);
@@ -1067,6 +1119,7 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
 		$copyObj->setCarrier($this->getCarrier());
+		$copyObj->setMethod($this->getMethod());
 		$copyObj->setExternalId($this->getExternalId());
 		$copyObj->setCalcEngine($this->getCalcEngine());
 		$copyObj->setPrice($this->getPrice());
@@ -1124,6 +1177,7 @@ abstract class BaseShippingMethods extends BaseObject  implements Persistent
 	{
 		$this->id = null;
 		$this->carrier = null;
+		$this->method = null;
 		$this->external_id = null;
 		$this->calc_engine = null;
 		$this->price = null;

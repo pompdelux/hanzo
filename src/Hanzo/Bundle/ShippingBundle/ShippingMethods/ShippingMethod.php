@@ -42,14 +42,14 @@ class ShippingMethod
     protected $id;
 
     /**
-     * AX id 
+     * AX id
      *
      * @var string
      **/
     protected $externalId;
 
     /**
-     * CalculationEngine 
+     * CalculationEngine
      *
      * @var string
      **/
@@ -102,7 +102,7 @@ class ShippingMethod
     }
 
     /**
-     * getPrice 
+     * getPrice
      * @return float
      * @author Henrik Farre <hf@bellcom.dk>
      **/

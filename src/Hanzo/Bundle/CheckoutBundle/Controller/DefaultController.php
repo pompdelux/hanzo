@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     ;
 
 use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
     Hanzo\Core\CoreController,
     Hanzo\Model\Orders,
     Hanzo\Model\OrdersPeer,
@@ -17,7 +18,7 @@ use Hanzo\Core\Hanzo,
     Hanzo\Model\CustomersPeer
     ;
 
-use Hanzo\Bundle\ShippingBundle\ShippingMethods\ShippingMethod
+use Hanzo\Model\ShippingMethods
     ;
 
 use Exception
@@ -61,7 +62,7 @@ class DefaultController extends CoreController
 
         try
         {
-            switch ($block) 
+            switch ($block)
             {
                 case 'shipping':
                     $this->updateShipping( $order, $request, $state );
@@ -96,7 +97,7 @@ class DefaultController extends CoreController
                 'status' => false,
                 'message' => $e->getMessage(),
                 'data' => array(
-                    'name' => $block 
+                    'name' => $block
                 ),
             ));
         }
@@ -130,7 +131,7 @@ class DefaultController extends CoreController
 
         $addresses = array();
 
-        foreach ($addressTypes as $type) 
+        foreach ($addressTypes as $type)
         {
             $query = AddressesQuery::create()
                 ->filterByCustomersId( $customer->getId() )
@@ -143,7 +144,7 @@ class DefaultController extends CoreController
                 throw new Exception( 'No address could be found' );
             }
 
-            switch ($type) 
+            switch ($type)
             {
                 case 'payment':
                     $order->setBillingAddress( $query );
@@ -170,7 +171,6 @@ class DefaultController extends CoreController
         {
             $order->setShippingMethod(null);
         }
-
         $shippingApi = $this->get('shipping.shippingapi');
         $data = $request->get('data');
         $t = $this->get('translator');
@@ -187,10 +187,10 @@ class DefaultController extends CoreController
         $method = $methods[$shippingMethodId];
 
         $order->setShippingMethod( $shippingMethodId );
-        $order->setOrderLineShipping( $method, ShippingMethod::TYPE_NORMAL );
-        if ( $method->hasFee() )
+        $order->setOrderLineShipping( $method, ShippingMethods::TYPE_NORMAL );
+        if ( $method->getFee() )
         {
-            $order->setOrderLineShipping( $method, ShippingMethod::TYPE_FEE );
+            $order->setOrderLineShipping( $method, ShippingMethods::TYPE_FEE );
         }
     }
 
@@ -298,7 +298,7 @@ class DefaultController extends CoreController
 
         $shippingApi = $this->get('shipping.shippingapi');
 
-        foreach ($customerAddresses as $address) 
+        foreach ($customerAddresses as $address)
         {
             $addresses[$address->getType()] = $address;
         }

@@ -44,7 +44,7 @@
       <trans-unit id="shipping_method_desc_12">
         <source>shipping_method.desc.12</source>
         <target><![CDATA[For at du kan få sendt pakker til Døgnposten, skal du oplyse dit navn og det ID, du valgte ved tilmeldingen til Døgnposten. Oplys Døgnpostens nummer og adresse som leveringsadresse og din egen adresse som betalingsadresse.<br>
-            <a target="_blank" href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/privat/doegnpost/doegnpost_forside.htm&amp;menufile=">» Læs mere om Døgnpost</a>]]></target>
+            <a href="http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx" rel="external">» Læs mere om Døgnpost</a>]]></target>
       </trans-unit>
       <trans-unit id="shipping_method_label_12">
         <source>shipping_method.label.12</source>

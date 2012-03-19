@@ -37,6 +37,7 @@ class MiscExtension extends Twig_Extension
             'meta_tags' => new Twig_Function_Method($this, 'meta_tags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'google_analytics_tag' => new Twig_Function_Method($this, 'google_analytics_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'front_page_teasers' => new Twig_Function_Method($this, 'front_page_teasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'get_layout' => new Twig_Function_Method($this, 'get_layout'),
         );
     }
 
@@ -151,4 +152,9 @@ DOC;
         return ob_get_clean();
      }
 
+
+     public static function get_layout()
+     {
+
+     }
 }

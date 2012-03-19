@@ -2,8 +2,8 @@ var checkout = (function($) {
   var pub = {};
   var blocks = {};
 
-  /* 
-   * This controlles the flow between the states 
+  /*
+   * This controlles the flow between the states
    * It should be called from the blocks when they change state
    */
   function checkoutUpdate( name, state ) {
@@ -57,7 +57,7 @@ var checkout = (function($) {
           blocks.confirm.hide();
         }
       break;
-    } 
+    }
   }
 
   /* Displays an message in a block */
@@ -90,7 +90,6 @@ var checkout = (function($) {
     };
 
     this.update = function() {
-      //console.log( "Updating: "+ this.data.name +" "+ (this.data.state ? 'true' : 'false'));
       checkoutUpdate( this.data.name, this.data.state );
       updateServerState( this.data.name, this.data.state, this.data );
     };
@@ -155,7 +154,7 @@ var checkout = (function($) {
       var self = this;
       this.data.addresses = [];
       $(this.data.selector).find(".account-address-block").each(function() {
-        console.log($(this).data('type'));
+//        console.log($(this).data('type'));
         self.data.addresses.push($(this).data('type'));
       });
     };
@@ -164,10 +163,10 @@ var checkout = (function($) {
       $(this.data.selector).slideDown();
       var shippingMethod = blocks.shipping.data.selectedMethod;
 
+      this.getData();
       switch(shippingMethod) {
         case '10':
           this.data.state = true;
-          this.getData();
           this.update();
           $(this.data.selector +" "+ ".checkout-block-type-shipping").show();
           $(this.data.selector +" "+ ".checkout-block-type-overnightbox").hide();
@@ -206,7 +205,7 @@ var checkout = (function($) {
         break;
       }
     };
-     
+
     /**
      * Payment block
      */
@@ -214,7 +213,6 @@ var checkout = (function($) {
     blocks.payment.init = function() {
       var self = this;
       $(this.data.selector+' form input[type=radio]').on('click', function(event) {
-        //console.log('---------------------------------------------------');
         var $paytypeSelector      = $(this).closest('form');
         self.data.selectedMethod  = $paytypeSelector.attr('id');
         self.data.selectedPaytype = $(this).val();
@@ -320,7 +318,7 @@ var checkout = (function($) {
   }
 
   /**
-   * Main method, called on checkout page 
+   * Main method, called on checkout page
    */
   pub.init = function() {
     blockInit();
