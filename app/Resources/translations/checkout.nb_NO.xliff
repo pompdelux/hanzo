@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="checkout_json_err_no_order">
+        <source>json.err.no_order</source>
+        <target>Ordren findes ikke</target>
+      </trans-unit>
+      <trans-unit id="checkout_err_unknown_shipping_method">
+        <source>err.unknown_shipping_method</source>
+        <target>Ukendt leveringsform</target>
+      </trans-unit>
+
+      <trans-unit id="checkout.success.title">
+        <source>checkout.success.title</source>
+        <target>Ordrebekreftelse</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.text">
+        <source>checkout.success.text</source>
+        <target><![CDATA[
+          <h2>E-ordrenummer</h2>
+          <p>E-ordrenummer: <b>%id%</b></p>
+
+          <h2>Leveringstid</h2>
+          <p>Den aktuelle leveringstiden er i øyeblikket: %date% ukedager.</p>
+
+          <h2>Kontakt</h2>
+          <p>Kontakt oss gjerne dersom du har spørsmål.</p>
+          <p>Telefon  +47 2274 2600</p>
+          <p>E-post: <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a></p>
+
+          <h2>Min side</h2>
+          <p>
+            Se din ordre og mye mer <br>
+            <a href="%account%">&raquo; Min side</a>
+          </p>
+
+          <h2>FAQ</h2>
+          <p>
+            Her kan du finne ofte stilte spørsmål og svar om POMPdeLUX.<br>
+            <a href="/p/forside-kundeservice-fakta">&raquo; FAQ</a>
+          </p>
+
+          <h2>Nyheter</h2>
+          <p>
+            Under menyen Nyheter kan du holde deg oppdatert med seneste aktuelle nyheter.<br>
+            <a href="/p/forside-nyheter">&raquo; Nyheter</a>
+          </p>
+        ]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

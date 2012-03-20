@@ -1,0 +1,30 @@
+{% set page_type = 'checkout-success' %}
+{% extends get_layout() %}
+
+{% block content %}
+
+<h1>{{ 'checkout.success.title'|trans({}, 'checkout') }}</h1>
+
+<div>
+  {{ 'checkout.success.text'|trans({
+    '%id%' : order_id,
+    '%date%' : expected_in,
+    '%account%': url('_account')
+  }, 'checkout')|raw }}
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+  var google_conversion_id = 1056677768;
+  var google_conversion_language = "en";
+  var google_conversion_format = "1";
+  var google_conversion_color = "666666";
+  var google_conversion_label = "purchase";
+</script>
+<script src="//www.googleadservices.com/pagead/conversion.js"></script>
+<noscript>
+  <img height="1" width="1" border="0" src="http://www.googleadservices.com/pagead/conversion/1056677768/?label=purchase&amp;guid=ON&amp;script=0"/>
+</noscript>
+{% endblock javascript %}
