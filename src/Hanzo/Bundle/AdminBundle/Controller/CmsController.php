@@ -12,6 +12,8 @@ use Hanzo\Model\Cms,
     Hanzo\Model\CmsPeer,
     Hanzo\Model\CmsQuery;
 
+use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
+
 class CmsController extends CoreController
 {
     
@@ -31,9 +33,48 @@ class CmsController extends CoreController
             return $this->json_response(array(
                 'status' => TRUE,
                 'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
-                'log' => $nodes,
             ));
         }
+    }
+
+    public function deleteAction($node_id)
+    {
+        CmsQuery::create()
+          ->findOneById($node_id)
+          ->delete();
+          
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.node.success', array(), 'admin'),
+            ));
+        }
+    }
+
+    public function editAction($id)
+    {
+        $node = CmsQuery::create()
+          ->findPK($id);
+        $form = $this->createForm(new CmsType($id), $node);
+        
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                
+                $node->save();
+                // todo:
+                //$this->get('session')->setFlash('notice', 'account.updated');
+                //return $this->redirect($this->generateUrl('_account'));
+            }
+        }
+
+        return $this->render('AdminBundle:Cms:edit.html.twig', array(
+            //'page_type' => 'create-account',
+            'form' => $form->createView(),
+            'node' => $node
+        ));
     }
     /**
      * Updates all CMSnodes in the SQL
