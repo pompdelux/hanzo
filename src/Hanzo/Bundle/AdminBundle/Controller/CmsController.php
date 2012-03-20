@@ -16,19 +16,19 @@ use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 
 class CmsController extends CoreController
 {
-    
+
     public function indexAction()
     {
         return $this->render('AdminBundle:Cms:menu.html.twig',array('tree'=>$this->getCmsTree()));
     }
-    
+
     public function updateCmsTreeAction()
     {
         $requests = $this->get('request');
         $nodes = $requests->get('data');
 
         $this->updateCmsTree($nodes);
-        
+
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
@@ -78,7 +78,7 @@ class CmsController extends CoreController
     }
     /**
      * Updates all CMSnodes in the SQL
-     * @param nestedSortable $nodes 
+     * @param nestedSortable $nodes
      * @return type
      */
     protected function updateCmsTree($nodes)
@@ -107,7 +107,7 @@ class CmsController extends CoreController
     }
 
     /*
-     * Alternative method under construction 
+     * Alternative method under construction
     protected function getFlatCmsTree()
     {
         // Get all nodes in Cms sorted by SORT and PARENTID
@@ -117,7 +117,7 @@ class CmsController extends CoreController
             ->orderBySort()
             ->joinCmsRelatedByParentId('sub')
         ;
-        
+
         $result = $query->find();
         $menu = array();
         foreach ($result as $record) {
@@ -128,11 +128,11 @@ class CmsController extends CoreController
     }*/
 
     /**
-     * Creates the html for a System Tree of the CMS. Works recursivly. 
+     * Creates the html for a System Tree of the CMS. Works recursivly.
      * @todo no-recursive: This could be done better, with an left join.
      * How? Too many Propel Calls.
      * @todo revove html from controller and make an array instead.
-     * @param $int parent_id The parents ID 
+     * @param $int parent_id The parents ID
      * @return html ordered list
      */
     protected function getCmsTree($parent_id = NULL)
@@ -186,7 +186,7 @@ class CmsController extends CoreController
             $menu .= '</ul>';
 
         }
-        
+
         return $menu;
     }
 

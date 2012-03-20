@@ -10,6 +10,44 @@
         <source>err.unknown_shipping_method</source>
         <target>Ukendt leveringsform</target>
       </trans-unit>
+
+      <trans-unit id="checkout.success.title">
+        <source>checkout.success.title</source>
+        <target>Ordrebekræftelse</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.text">
+        <source>checkout.success.text</source>
+        <target><![CDATA[
+          <h2>E-ordrenummer</h2>
+          <p>E-ordrenummer: <b>%id%</b></p>
+
+          <h2>Ekspeditionstid</h2>
+          <p>Vores forventet ekspeditionstid: %date% hverdage(e).</p>
+
+          <h2>Kontakt</h2>
+          <p>Har du spørgsmål er du velkommen til at kontakte os.</p>
+          <p>Telefon 8678 7871</p>
+          <p>Email: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+
+          <h2>Min side</h2>
+          <p>
+            Se din ordre og meget mere<br>
+            <a href="%account%">&raquo; Min side</a>
+          </p>
+
+          <h2>FAQ</h2>
+          <p>
+            Her kan du finde ofte stillede spørgsmål og svar om POMPdeLUX.<br>
+            <a href="/p/forside-kundeservice-faq">&raquo; FAQ</a>
+          </p>
+
+          <h2>Nyheder</h2>
+          <p>
+            Under menuen Nyheder kan du holde dig opdateret med seneste aktuelle nyheder.<br>
+            <a href="/p/forside-nyheder">&raquo; Nyheder</a>
+          </p>
+        ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

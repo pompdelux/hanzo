@@ -184,12 +184,16 @@ class Orders extends BaseOrders
         return $total;
     }
 
-    public function getTotalQuantity()
+    public function getTotalQuantity($products_only = false)
     {
         $lines = $this->getOrdersLiness();
 
         $total = 0;
         foreach ($lines as $line) {
+            if ($products_only && $line->getType() != 'product') {
+                continue;
+            }
+
             $total += $line->getQuantity();
         }
 

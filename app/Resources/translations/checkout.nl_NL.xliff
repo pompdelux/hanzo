@@ -10,6 +10,43 @@
         <source>err.unknown_shipping_method</source>
         <target></target>
       </trans-unit>
+
+      <trans-unit id="checkout.success.title">
+        <source>checkout.success.title</source>
+        <target>Orderbevestiging</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.text">
+        <source>checkout.success.text</source>
+        <target><![CDATA[
+          <h2>E-ordernummer</h2>
+          <p>E-ordernummer: <b>%id%</b></p>
+
+          <h2>Levertijd</h2>
+          <p>Verwachte levertijd: %date% werkdag(en).</p>
+
+          <h2>Contact</h2>
+          <p>Heb je vragen, neem dan contact op met ons.</p>
+          <p>E-mailadres: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
+
+          <h2>Mijn pagina</h2>
+          <p>
+            Bekijk je order e.d.<br>
+            <a href="%account%">&raquo; Mijn pagina</a>
+          </p>
+
+          <h2>FAQ</h2>
+          <p>
+            Hier kun je veelgestelde vragen zien over POMPdeLUX.<br>
+            <a href="/p/voorpagina-klantenservice">&raquo; FAQ</a>
+          </p>
+
+          <h2>Nieuws</h2>
+          <p>
+            Onder het menupunt Nieuws staat het laatste nieuws.<br>
+            <a href="/p/voorpagina-nieuw">&raquo; Nieuws</a>
+          </p>
+        ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

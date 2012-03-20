@@ -25,8 +25,8 @@ admin_cms_delete:
     defaults: { _controller: AdminBundle:Cms:delete }
 admin_cms_update_tree:
     pattern:  /admin/cms/update-tree/
-    defaults:  
-        _controller: AdminBundle:Cms:updateCmsTree 
+    defaults:
+        _controller: AdminBundle:Cms:updateCmsTree
         _format: json
     requirements:
         _format: html|json

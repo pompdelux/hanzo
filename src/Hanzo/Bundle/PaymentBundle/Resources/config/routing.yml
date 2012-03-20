@@ -41,3 +41,7 @@ PaymentBundle_gothia_payment_confirm:
     pattern:  /payment/gothia/confirm
     defaults: { _controller: PaymentBundle:Gothia:confirm, _format: json }
     requirements: { _format: (xml|json), _method: POST }
+
+_paybybill_callback:
+    pattern:  /payment/paybybill/callback
+    defaults: { _controller: PaymentBundle:PayByBill:callback }

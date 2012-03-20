@@ -341,4 +341,28 @@ class DefaultController extends CoreController
     {
         return $this->render('CheckoutBundle:Default:confirm.html.twig');
     }
+
+    /**
+     * success Action
+     **/
+    public function successAction()
+    {
+        $order = OrdersPeer::getCurrent();
+
+        if ($order->isNew()) {
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
+        // the order is now complete, so we remove it from the session
+        $session = Hanzo::getInstance()->getSession();
+        $session->remove('order_id');
+
+        // one-to-one, we can only have one session_id or order in the database....
+        $session->regenerate();
+
+        return $this->render('CheckoutBundle:Default:success.html.twig', array(
+            'order_id' => $order->getId(),
+            'expected_in' => 2
+        ));
+    }
 }

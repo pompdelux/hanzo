@@ -25,7 +25,7 @@
 <link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
 
 <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
- 
+
 {% stylesheets
   'fx/css/boilerplate.css'
   'fx/css/colorbox/theme4/colorbox.css'
@@ -54,7 +54,7 @@ var cdn_url = '{{ cdn }}';
   <a href="{{ path('admin') }}" title="{{ "admin.home"|trans }}">
     {{ fx_image_tag('images/POMPdeLUX_logo.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
   </a>
-  
+
   <nav class="main">
     <ul>
       <li><a href="{{ path('admin') }}">Forside</a></li>
@@ -139,7 +139,7 @@ var cdn_url = '{{ cdn }}';
   'fx/scripts/maps.js'
 
   filter='?yui_js'
-  output='fx/cache/all.js'
+  output='fx/cache/admin-all.js'
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
