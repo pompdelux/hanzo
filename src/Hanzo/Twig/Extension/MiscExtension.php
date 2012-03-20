@@ -155,6 +155,6 @@ DOC;
 
      public static function get_layout()
      {
-
+        return '::base.html.twig';
      }
 }

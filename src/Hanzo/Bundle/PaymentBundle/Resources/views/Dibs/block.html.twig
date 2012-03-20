@@ -15,7 +15,7 @@
   <input type="hidden" name="md5key" value="{{ form_fields.md5key }}" />
 <ul class="payment-methods" id="payment-method-dibs">
 {# FIXME: hardcoded links to static #}
-    {% if cardtypes.DK %} 
+    {% if cardtypes.DK %}
     <li>
       <input type="radio" value="DK" id="dibs_card_type_DK" name="paytype">
       <label for="dibs_card_type_DK">
@@ -23,7 +23,7 @@
       </label>
     </li>
     {% endif %}
-    {% if cardtypes.VISA %} 
+    {% if cardtypes.VISA %}
     <li>
       <input type="radio" value="VISA" id="dibs_card_type_VISA" name="paytype">
       <label for="dibs_card_type_VISA">
@@ -31,7 +31,7 @@
       </label>
     </li>
     {% endif %}
-    {% if cardtypes.ELEC %} 
+    {% if cardtypes.ELEC %}
     <li>
       <input type="radio" value="ELEC" id="dibs_card_type_ELEC" name="paytype">
       <label for="dibs_card_type_ELEC">
@@ -39,7 +39,7 @@
       </label>
     </li>
     {% endif %}
-    {% if cardtypes.MC %} 
+    {% if cardtypes.MC %}
     <li>
       <input type="radio" value="MC" id="dibs_card_type_MC" name="paytype">
       <label for="dibs_card_type_MC">

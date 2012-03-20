@@ -228,6 +228,22 @@ var checkout = (function($) {
         });
       });
     };
+    blocks.payment.execute = function() {
+
+      var ok = true;
+      $.each(blocks, function(index, item) {
+        if (item.data.state !== true) { ok = false; }
+      });
+
+      if (ok) {
+        var $form = $('#'+blocks.payment.data.selectedMethod);
+        if ($form.attr('action') != '') {
+          $form.submit();
+        }
+      }
+
+      return true;
+    };
 
     /**
      * Summery block

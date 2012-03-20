@@ -21,3 +21,7 @@ CheckoutBundle_summery:
     pattern:  /checkout/summery
     defaults: { _controller: CheckoutBundle:Default:summery, _format: json }
     requirements: { _format: (xml|json), _method: POST }
+
+_checkout_success:
+    pattern:  /checkout/success
+    defaults: { _controller: CheckoutBundle:Default:success}

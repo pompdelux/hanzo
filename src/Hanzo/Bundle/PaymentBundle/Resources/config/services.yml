@@ -1,22 +1,32 @@
 parameters:
     payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Dibs\DibsApi
     payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi
+    payment.paybybill.class: Hanzo\Bundle\PaymentBundle\PayByBill\PayByBillApi
 
 services:
     payment.dibsapi:
         class:           %payment.dibsapi.class%
         factory_service: service_factory
         factory_method:  get
-        arguments: 
-            service:     dibsapi 
-            parameters:  ~ 
+        arguments:
+            service:     dibsapi
+            parameters:  ~
             class:       %payment.dibsapi.class%
 
     payment.gothiaapi:
         class:           %payment.gothiaapi.class%
         factory_service: service_factory
         factory_method:  get
-        arguments: 
+        arguments:
             service:     gothiaapi
-            parameters:  ~ 
+            parameters:  ~
             class:       %payment.gothiaapi.class%
+
+    payment.paybybillapi:
+        class:           %payment.paybybill.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     paybybillapi
+            parameters:  ~
+            class:       %payment.paybybill.class%
