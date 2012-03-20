@@ -1,3 +1,8 @@
+
+AdminBundle:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
 DataIOBundle:
     resource: "@DataIOBundle/Resources/config/routing.yml"
     prefix:   /

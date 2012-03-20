@@ -1,0 +1,46 @@
+admin:
+    pattern:  /admin/
+    defaults: { _controller: AdminBundle:Default:index }
+admin_settings:
+    pattern:  /admin/settings/
+    defaults: { _controller: AdminBundle:Settings:index }
+admin_settingsdomain:
+    pattern:  /admin/settings/domain/
+    defaults: { _controller: AdminBundle:Settings:domain }
+admin_category:
+    pattern:  /admin/category/
+    defaults: { _controller: AdminBundle:Category:index }
+admin_cms:
+    pattern:  /admin/cms/
+    defaults: { _controller: AdminBundle:Cms:index }
+admin_cms_edit:
+    pattern:  /admin/cms/edit/{id}
+    defaults: { _controller: AdminBundle:Cms:index }
+admin_cms_delete:
+    pattern:  /admin/cms/delete/{id}
+    defaults: { _controller: AdminBundle:Cms:index }
+admin_cms_update_tree:
+    pattern:  /admin/cms/update-tree/
+    defaults:  
+        _controller: AdminBundle:Cms:updateCmsTree 
+        _format: json
+    requirements:
+        _format: html|json
+admin_products:
+    pattern:  /admin/products/
+    defaults: { _controller: AdminBundle:Products:index }
+admin_orders:
+    pattern:  /admin/orders/
+    defaults: { _controller: AdminBundle:Orders:index }
+admin_cache:
+    pattern:  /admin/cache/
+    defaults: { _controller: AdminBundle:Cache:index }
+admin_cache_jscss:
+    pattern:  /admin/cache/
+    defaults: { _controller: AdminBundle:Cache:index }
+admin_cache_redis:
+    pattern:  /admin/cache/
+    defaults: { _controller: AdminBundle:Cache:index }
+admin_cache_productpicture:
+    pattern:  /admin/cache/
+    defaults: { _controller: AdminBundle:Cache:index }
