@@ -14,10 +14,11 @@ admin_cms:
     pattern:  /admin/cms/
     defaults: { _controller: AdminBundle:Cms:index }
 admin_cms_edit:
-    pattern:  /admin/cms/edit/{id}
+    pattern:  /admin/cms/edit/{id}/{locale}
     defaults: 
         _controller: AdminBundle:Cms:edit
         id: 0
+        locale: 'en_EN'
     requirements:
         id: \d+
 admin_cms_delete:

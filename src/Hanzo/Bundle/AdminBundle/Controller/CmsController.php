@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Locale\Locale;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
@@ -51,11 +52,16 @@ class CmsController extends CoreController
         }
     }
 
-    public function editAction($id)
+    public function editAction($id, $locale = 'en_EN')
     {
+        /**
+         * @todo Get all tranlations and give them to the tamplate. Template missing ref to it
+         **/
         $node = CmsQuery::create()
-          ->findPK($id);
-        $form = $this->createForm(new CmsType($id), $node);
+            ->joinWithI18n($locale, 'INNER JOIN')
+            ->findPK($id);
+
+        $form = $this->createForm(new CmsType(), $node);
         
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -64,17 +70,19 @@ class CmsController extends CoreController
             if ($form->isValid()) {
                 
                 $node->save();
-                // todo:
+                /**
+                 * @todo give some feedback when done?
+                 */
                 //$this->get('session')->setFlash('notice', 'account.updated');
                 //return $this->redirect($this->generateUrl('_account'));
             }
         }
-
-        return $this->render('AdminBundle:Cms:edit.html.twig', array(
-            //'page_type' => 'create-account',
-            'form' => $form->createView(),
-            'node' => $node
-        ));
+        if($node){
+            return $this->render('AdminBundle:Cms:edit.html.twig', array(
+                'form' => $form->createView(),
+                'node' => $node
+            ));
+        }
     }
     /**
      * Updates all CMSnodes in the SQL
@@ -155,7 +163,7 @@ class CmsController extends CoreController
 
         if ($result->count()) {
             if (empty($parent_id))
-                $menu .= '<ul id="sortable-list" data-updateHref="/admin/cms/update-tree/">';
+                $menu .= '<ul id="sortable-list">';
             else
                 $menu .= '<ul>';
             foreach($result as $record) {

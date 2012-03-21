@@ -7,9 +7,11 @@ use Symfony\Component\Form\FormBuilder;
 
 class CmsType extends AbstractType
 {
-    public function __construct($id = null)
+    
+
+    public function __construct()
     {
-        $this->id = $id;
+        // No Constructor
     }
 
     public function buildForm(FormBuilder $builder, array $options)
@@ -25,14 +27,17 @@ class CmsType extends AbstractType
           'required' => TRUE,
           'translation_domain' => 'admin'
       ));
+
       $builder->add('path', null, array(
           'required' => TRUE,
           'translation_domain' => 'admin'
       ));
+
       $builder->add('content', 'textarea', array(
           'required' => FALSE,
           'translation_domain' => 'admin'
       ));
+
       $builder->add('settings', null, array(
           'required' => FALSE,
           'translation_domain' => 'admin'
