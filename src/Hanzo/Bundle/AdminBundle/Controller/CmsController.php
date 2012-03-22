@@ -14,28 +14,13 @@ use Hanzo\Model\Cms,
     Hanzo\Model\CmsQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
-
+use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
 class CmsController extends CoreController
 {
 
     public function indexAction()
     {
         return $this->render('AdminBundle:Cms:menu.html.twig',array('tree'=>$this->getCmsTree()));
-    }
-
-    public function updateCmsTreeAction()
-    {
-        $requests = $this->get('request');
-        $nodes = $requests->get('data');
-
-        $this->updateCmsTree($nodes);
-
-        if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
-            ));
-        }
     }
 
     public function deleteAction($node_id)
@@ -51,9 +36,86 @@ class CmsController extends CoreController
             ));
         }
     }
+    public function addAction($locale = 'en_EN')
+    {
+        $cms_node = new CmsNode();
+        
+        $form = $this->createFormBuilder($cms_node)
+            ->add('type', 'choice', array(
+                  'label'     => 'cms.edit.label.settings',
+                  'choices'   => array(
+                    'category'  => 'cms.edit.type.category',
+                    'category_search'  => 'cms.edit.type.category_search',
+                    'newsletter'  => 'cms.edit.type.newsletter',
+                    'advanced_search'  => 'cms.edit.type.advanced_search',
+                    'mannequin'  => 'cms.edit.type.mannequin'
+                  )
+                  'required'  => FALSE,
+                  'translation_domain' => 'admin'
+              )
+            ->getForm()
+        );
 
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                $node = new Cms();
+                $settings = array();
+                switch ($cms_node->getType()) {
+                    case 'category':
+                        $node->setType('category');
+                        $settings['type'] = 'category';
+                        // Noget med category_id
+                        break;
+                    case 'category_search':
+                        $node->setType('system');
+                        $settings['type'] = 'category_search';
+                        $settings['param']['categories'] = '' //Dummy Data? 
+                        $settings['param']['group'] = '' //Dummy Data?
+                        break;
+                    case 'newsletter':
+                        $node->setType('system');
+                        $settings['type'] = 'newsletter';
+                        break;
+                    case 'advanced_search':
+                        $node->setType('system');
+                        $settings['type'] = 'advanced_search';
+                        break;
+                    case 'mannequin':
+                        $node->setType('system');
+                        $settings['type'] = 'mannequin';
+                        $settings['param']['categories'] = '' //Dummy Data? 
+                        $settings['param']['image'] = '' //Dummy Data? 
+                        $settings['param']['title'] = '' //Dummy Data?
+                        $settings['param']['colorsheme'] = '' //Dummy Data?
+                        $settings['param']['ignore'] = '' //Dummy Data?
+                        break;
+                    default:
+                        $node->setType($cms_node->getType());
+                        break;
+                }
+
+                $node->setSettings(json_encode($settings));
+                $node->save();
+                
+                $this->get('session')->setFlash('notice', 'cms.added');
+                return $this->redirect($this->generateUrl('admin_cms_edit', 
+                    array(
+                        'id' => $node->getId()
+                        'locale' => $locale
+                    )
+                ));
+            }
+        } 
+        return $this->render('AdminBundle:Cms:newcms.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
     public function editAction($id, $locale = 'en_EN')
     {
+        $response = '';
         /**
          * @todo Get all tranlations and give them to the tamplate. Template missing ref to it
          **/
@@ -73,17 +135,33 @@ class CmsController extends CoreController
                 /**
                  * @todo give some feedback when done?
                  */
-                //$this->get('session')->setFlash('notice', 'account.updated');
+                $this->get('session')->setFlash('notice', 'cms.updated');
                 //return $this->redirect($this->generateUrl('_account'));
             }
         }
-        if($node){
-            return $this->render('AdminBundle:Cms:edit.html.twig', array(
-                'form' => $form->createView(),
-                'node' => $node
+        return $this->render('AdminBundle:Cms:edit.html.twig', array(
+            'form'      => $form->createView(),
+            'node'      => $node,
+            'notice'    => $response
+        ));
+        
+    }
+
+    public function updateCmsTreeAction()
+    {
+        $requests = $this->get('request');
+        $nodes = $requests->get('data');
+
+        $this->updateCmsTree($nodes);
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
             ));
         }
     }
+
     /**
      * Updates all CMSnodes in the SQL
      * @param nestedSortable $nodes

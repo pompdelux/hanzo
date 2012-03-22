@@ -13,6 +13,11 @@ admin_category:
 admin_cms:
     pattern:  /admin/cms/
     defaults: { _controller: AdminBundle:Cms:index }
+admin_cms_add:
+    pattern:  /admin/cms/add/{locale}
+    defaults: 
+        _controller: AdminBundle:Cms:add
+        locale: 'en_EN'
 admin_cms_edit:
     pattern:  /admin/cms/edit/{id}/{locale}
     defaults: 

@@ -26,17 +26,41 @@
         <source>delete.node.success</source>
         <target>CMS noden blev slettet</target>
       </trans-unit>
-      <trans-unit id="admin_cms_edit_isActive_text">
-        <source>cms.edit.is_active</source>
+      <trans-unit id="admin_cms_edit_is_active_text">
+        <source>cms.edit.label.is_active</source>
         <target>Skal være offentlig</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_title_text">
+        <source>cms.edit.label.title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_path_text">
+        <source>cms.edit.label.path</source>
+        <target>Sti (Url)</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_content_text">
+        <source>cms.edit.label.content</source>
+        <target>Indhold</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_settings_text">
+        <source>cms.edit.label.settings</source>
+        <target>Indstillinger</target>
       </trans-unit>
       <trans-unit id="admin.cancel">
         <source>cancel</source>
         <target>Afbryd</target>
       </trans-unit>
+      <trans-unit id="admin.update.cms.header.text">
+        <source>update.cms.header.text</source>
+        <target>Rediger CMS side.</target>
+      </trans-unit>
       <trans-unit id="admin.cms.update">
         <source>update.cms</source>
         <target>Gem</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.update.success">
+        <source>cms.updated</source>
+        <target>Siden blev succesfuldt opdateret!</target>
       </trans-unit>
       <trans-unit id="">
         <source></source>

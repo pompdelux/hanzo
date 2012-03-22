@@ -34,9 +34,17 @@
         <source>cancel</source>
         <target>Cancel</target>
       </trans-unit>
+      <trans-unit id="admin.update.cms.header.text">
+        <source>update.cms.header.text</source>
+        <target>Edit CMS page.</target>
+      </trans-unit>
       <trans-unit id="admin.cms.update">
         <source>update.cms</source>
         <target>Save</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.update.success">
+        <source>cms.updated</source>
+        <target>The page was succefull updated!</target>
       </trans-unit>
     </body>
   </file>
