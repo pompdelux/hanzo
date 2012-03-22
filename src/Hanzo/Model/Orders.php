@@ -101,6 +101,9 @@ class Orders extends BaseOrders
 
     /**
      * setOrderLineShipping
+     *
+     * TODO: rewrite to use self::setOrderLine
+     *
      * @param ShippingMethod
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -122,13 +125,15 @@ class Orders extends BaseOrders
             $type  = 'shipping';
         }
 
+
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
         foreach ($lines as $index => $line)
         {
-            if ( $line->getProductsId() == $id && $line->getType() == $type )
+            if ( $line->getType() == $type )
             {
                 $line->setProductsName( $name );
+                $line->setProductsId( $id );
                 $line->setPrice( $price );
                 $line->setTax( 0.00 );
                 $lines[$index] = $line;
@@ -147,6 +152,18 @@ class Orders extends BaseOrders
         $line->setTax( 0.00 );
         $line->setType( $type );
         $this->addOrdersLines($line);
+    }
+
+    public function getOrderLineShipping()
+    {
+        $shipping = array();
+        foreach ($this->getOrdersLiness() as $index => $line) {
+            if (in_array($line->getType(), array('shipping', 'shipping.fee'))) {
+                $shipping[] = $line;
+            }
+        }
+
+        return $shipping;
     }
 
     public function preSave(PropelPDO $con = null)
@@ -179,6 +196,18 @@ class Orders extends BaseOrders
             }
 
             $total += ($line->getPrice() * $line->getQuantity());
+        }
+
+        return $total;
+    }
+
+    public function getTotalTax()
+    {
+        $lines = $this->getOrdersLiness();
+
+        $total = 0;
+        foreach ($lines as $line) {
+            $total += ($line->getTax() * $line->getQuantity());
         }
 
         return $total;
@@ -258,6 +287,9 @@ class Orders extends BaseOrders
 
     /**
      * setOrderLinePaymentFee
+     *
+     * TODO: rewrite to use self::setOrderLine
+     *
      * @param string $name
      * @param float $price
      * @param float $tax
@@ -295,6 +327,67 @@ class Orders extends BaseOrders
         $line->setType( $type );
         $this->addOrdersLines($line);
     }
+
+
+    /**
+     * set an orderline
+     * note if the type is not "product" only one line pr. type is handled
+     *
+     * @param string $type  the line type
+     * @param int    $id    product id, must be set even for virtual lines
+     * @param string $name  line description
+     * @param float  $price price
+     * @param float  $tax   tax
+     * @return object Orders object returned to keep the chain alive.
+     */
+    public function setOrderLine($type, $id, $name, $price = 0.00, $tax = 0.00, $quantity = 1)
+    {
+        $lines = $this->getOrdersLiness();
+
+        foreach ($lines as $index => $line) {
+            if ($line->getType() == $type) {
+                if ($type != 'product') {
+                    $line->setProductsId( $id );
+                    $line->setProductsName( $name );
+                    $line->setPrice( $price );
+                    $line->setTax( $tax );
+                    $line->setQuantity( $quantity );
+                    $lines[$index] = $line;
+                    $this->setOrdersLiness($lines);
+
+                    // maintain chain, return self
+                    return $this;
+                } else {
+                    if ($line->getProductsId() == $id) {
+                        $line->setProductsName( $name );
+                        $line->setPrice( $price );
+                        $line->setTax( $tax );
+                        $line->setQuantity( $quantity );
+                        $lines[$index] = $line;
+                        $this->setOrdersLiness($lines);
+
+                        // maintain chain, return self
+                        return $this;
+                    }
+                }
+            }
+        }
+
+        // add new line
+        $line = new OrdersLines;
+        $line->setType( $type );
+        $line->setOrdersId($this->getId());
+        $line->setProductsId( $id );
+        $line->setProductsName( $name );
+        $line->setQuantity( $quantity );
+        $line->setPrice( $price );
+        $line->setTax( $tax );
+        $this->addOrdersLines($line);
+
+        // maintain chain, return self
+        return $this;
+    }
+
 
     /**
      * setShippingMethod

@@ -37,6 +37,11 @@ class OrdersPeer extends BaseOrdersPeer
 
         if ($session->has('order_id')) {
             $query = OrdersQuery::create()
+                ->useOrdersLinesQuery()
+                    ->orderByType()
+                    ->orderByProductsName()
+                    ->orderByPrice()
+                ->endUse()
                 ->leftJoinWithOrdersLines()
             ;
             self::$current = $query->findPk($session->get('order_id'));
