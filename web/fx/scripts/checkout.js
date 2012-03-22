@@ -381,11 +381,6 @@ var checkout = (function($) {
   pub.init = function() {
     blockInit();
 
-  $("#accordion").tabs(
-    "#accordion div.pane",
-    {tabs: 'h2', effect: 'slide', initialIndex: null}
-  );
-
     $.each(blocks, function(item) {
       this.init();
     });
