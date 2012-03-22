@@ -4,43 +4,39 @@
     <body>
       <trans-unit id="admin_home_text">
         <source>admin.home.text</source>
-        <target>Administration</target>
+        <target>Admin</target>
       </trans-unit>
       <trans-unit id="admin_page_edit_text">
         <source>page.edit</source>
-        <target>Rediger</target>
+        <target>Edit</target>
       </trans-unit>
       <trans-unit id="admin_page_delete_text">
         <source>page.delete</source>
-        <target>Slet</target>
+        <target>Delete</target>
       </trans-unit>
       <trans-unit id="admin_save_cms_page_tree">
         <source>save.cms.page_tree</source>
-        <target>Gem rækkefølge</target>
+        <target>Save tree</target>
       </trans-unit>
       <trans-unit id="admin_save_changes_success">
         <source>save.changes.success</source>
-        <target>Dine ændringer blev gemt</target>
+        <target>The changes was saved</target>
       </trans-unit>
       <trans-unit id="admin_cms_node_delete_success">
         <source>delete.node.success</source>
-        <target>CMS noden blev slettet</target>
+        <target>The CMS node was deleted</target>
       </trans-unit>
       <trans-unit id="admin_cms_edit_isActive_text">
         <source>cms.edit.is_active</source>
-        <target>Skal være offentlig</target>
+        <target>Show public</target>
       </trans-unit>
       <trans-unit id="admin.cancel">
         <source>cancel</source>
-        <target>Afbryd</target>
+        <target>Cancel</target>
       </trans-unit>
       <trans-unit id="admin.cms.update">
         <source>update.cms</source>
-        <target>Gem</target>
-      </trans-unit>
-      <trans-unit id="">
-        <source></source>
-        <target></target>
+        <target>Save</target>
       </trans-unit>
     </body>
   </file>
