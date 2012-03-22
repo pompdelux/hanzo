@@ -54,9 +54,17 @@
         <source>update.cms.header.text</source>
         <target>Rediger CMS side.</target>
       </trans-unit>
+      <trans-unit id="admin.add.cms.header.text">
+        <source>add.cms.header.text</source>
+        <target>Opret ny CMS side.</target>
+      </trans-unit>
       <trans-unit id="admin.cms.update">
         <source>update.cms</source>
         <target>Gem</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.add">
+        <source>add.cms</source>
+        <target>Opret</target>
       </trans-unit>
       <trans-unit id="admin.cms.update.success">
         <source>cms.updated</source>
