@@ -1,6 +1,6 @@
 <?php
 
-namespace Hanzo\Bundle\AdminBundle\Entity\CmsNode;
+namespace Hanzo\Bundle\AdminBundle\Entity;
 
 class CmsNode
 {
@@ -8,7 +8,7 @@ class CmsNode
 
     public function getType()
     {
-        return $this->task;
+        return $this->type;
     }
     public function setType($type)
     {

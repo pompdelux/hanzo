@@ -49,12 +49,11 @@ class CmsController extends CoreController
                     'newsletter'  => 'cms.edit.type.newsletter',
                     'advanced_search'  => 'cms.edit.type.advanced_search',
                     'mannequin'  => 'cms.edit.type.mannequin'
-                  )
+                  ),
                   'required'  => FALSE,
                   'translation_domain' => 'admin'
-              )
-            ->getForm()
-        );
+              ))
+            ->getForm();
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -72,8 +71,8 @@ class CmsController extends CoreController
                     case 'category_search':
                         $node->setType('system');
                         $settings['type'] = 'category_search';
-                        $settings['param']['categories'] = '' //Dummy Data? 
-                        $settings['param']['group'] = '' //Dummy Data?
+                        $settings['param']['categories'] = ''; //Dummy Data? 
+                        $settings['param']['group'] = ''; //Dummy Data?
                         break;
                     case 'newsletter':
                         $node->setType('system');
@@ -86,11 +85,11 @@ class CmsController extends CoreController
                     case 'mannequin':
                         $node->setType('system');
                         $settings['type'] = 'mannequin';
-                        $settings['param']['categories'] = '' //Dummy Data? 
-                        $settings['param']['image'] = '' //Dummy Data? 
-                        $settings['param']['title'] = '' //Dummy Data?
-                        $settings['param']['colorsheme'] = '' //Dummy Data?
-                        $settings['param']['ignore'] = '' //Dummy Data?
+                        $settings['param']['categories'] = ''; //Dummy Data? 
+                        $settings['param']['image'] = ''; //Dummy Data? 
+                        $settings['param']['title'] = ''; //Dummy Data?
+                        $settings['param']['colorsheme'] = ''; //Dummy Data?
+                        $settings['param']['ignore'] = ''; //Dummy Data?
                         break;
                     default:
                         $node->setType($cms_node->getType());
@@ -103,13 +102,13 @@ class CmsController extends CoreController
                 $this->get('session')->setFlash('notice', 'cms.added');
                 return $this->redirect($this->generateUrl('admin_cms_edit', 
                     array(
-                        'id' => $node->getId()
+                        'id' => $node->getId(),
                         'locale' => $locale
                     )
                 ));
             }
         } 
-        return $this->render('AdminBundle:Cms:newcms.html.twig', array(
+        return $this->render('AdminBundle:Cms:addcms.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -139,7 +138,7 @@ class CmsController extends CoreController
                 //return $this->redirect($this->generateUrl('_account'));
             }
         }
-        return $this->render('AdminBundle:Cms:edit.html.twig', array(
+        return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
             'notice'    => $response
