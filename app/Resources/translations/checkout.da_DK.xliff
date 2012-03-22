@@ -112,6 +112,19 @@
         <source>confirm.total</source>
         <target>Samlet Beløb</target>
       </trans-unit>
+
+      <trans-unit id="payment.paybybill.title">
+        <source>payment.paybybill.title</source>
+        <target>Betaling på konto</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.text">
+        <source>payment.paybybill.text</source>
+        <target>Indbetal pengene på kontonummer: "yy-yy xx-xx-xx-xx-xx" senest 8 dage efter du bar modtaget varene.</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.label">
+        <source>payment.paybybill.label</source>
+        <target>Betaling på konto</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

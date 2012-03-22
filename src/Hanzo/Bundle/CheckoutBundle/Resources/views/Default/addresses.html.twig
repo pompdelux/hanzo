@@ -14,7 +14,8 @@
         {% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.shipping, 'type': 'shipping'} %}
         <a href="#" id="checkout-block-edit-shipping-address">{{ 'shipping.address.edit'|trans({}, 'checkout') }}</a>
       </td>
-      {% if has_overnight_box is defined and has_overnight_box %}
+
+    {% if has_overnight_box is defined and has_overnight_box %}
       <td class="checkout-block-type-overnightbox">
         <h2>{{ 'shipping.address.overnight'|trans({}, 'checkout') }}</h2>
         {% if addresses.overnightbox is defined%}
@@ -24,7 +25,8 @@
         {% endif %}
         <a href="#" id="checkout-block-edit-overnight-address">{{ 'shipping.address.overnight.edit'|trans({}, 'checkout') }}</a>
       </td>
-      {% endif %}
+    {% endif %}
+
       <td class="checkout-block-type-payment">
         <h2>{{ 'payment.address'|trans({}, 'checkout') }}</h2>
         {% include 'AccountBundle:Default:address_block.html.twig' with {'address': addresses.payment, 'type': 'payment'} %}
