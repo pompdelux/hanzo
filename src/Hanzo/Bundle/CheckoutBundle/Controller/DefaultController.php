@@ -2,27 +2,23 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\Request
-    ;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Model\Addresses,
-    Hanzo\Model\AddressesPeer,
-    Hanzo\Model\AddressesQuery,
-    Hanzo\Model\CustomersPeer
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\CustomersPeer;
 
-use Hanzo\Model\ShippingMethods
-    ;
+use Hanzo\Model\ShippingMethods;
 
-use Exception
-    ;
+use Exception;
 
 class DefaultController extends CoreController
 {
@@ -30,16 +26,20 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->isNew() === true )
-        {
+        if ( $order->isNew() === true ) {
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
-        return $this->render('CheckoutBundle:Default:index.html.twig',array('page_type'=>'checkout'));
+        // set
+
+        return $this->render('CheckoutBundle:Default:index.html.twig', array(
+            'page_type' => 'checkout'
+        ));
     }
 
     /**
      * updateAction
+     *
      * @param string $block The block that has been updated
      * @param string $state State of the block
      * @return Response
@@ -50,8 +50,7 @@ class DefaultController extends CoreController
         $order = OrdersPeer::getCurrent();
         $t = $this->get('translator');
 
-        if ( $order->isNew() )
-        {
+        if ( $order->isNew() ) {
             return $this->json_response(array(
                 'status' => false,
                 'message' => $t->trans('json.err.no_order', array(), 'checkout'),
@@ -60,10 +59,8 @@ class DefaultController extends CoreController
 
         $request = $this->get('request');
 
-        try
-        {
-            switch ($block)
-            {
+        try {
+            switch ($block) {
                 case 'shipping':
                     $this->updateShipping( $order, $request, $state );
                     break;
@@ -90,9 +87,7 @@ class DefaultController extends CoreController
                 'status' => true,
                 'message' => '',
             ));
-        }
-        catch ( Exception $e )
-        {
+        } catch ( Exception $e ) {
             return $this->json_response(array(
                 'status' => false,
                 'message' => $e->getMessage(),
@@ -106,6 +101,7 @@ class DefaultController extends CoreController
 
     /**
      * updateAddress
+     *
      * @param Orders $order
      * @param Request $request
      * @param bool $state
@@ -114,8 +110,7 @@ class DefaultController extends CoreController
      **/
     protected function updateAddress( Orders $order, Request $request, $state )
     {
-        if ( $state === false )
-        {
+        if ( $state === false ) {
           $order->clearBillingAddress();
           $order->clearDeliveryAddress();
           return;
@@ -138,14 +133,12 @@ class DefaultController extends CoreController
                 ->filterByType( $type )
                 ->findOne();
 
-            if ( !($query instanceOf Addresses) )
-            {
+            if ( !($query instanceOf Addresses) ) {
                 // There should be 2 addresses at this point
                 throw new Exception( 'No address could be found' );
             }
 
-            switch ($type)
-            {
+            switch ($type) {
                 case 'payment':
                     $order->setBillingAddress( $query );
                     break;
@@ -159,6 +152,7 @@ class DefaultController extends CoreController
 
     /**
      * updateShipping
+     *
      * @param Orders $order
      * @param Request $request
      * @param bool $state
@@ -167,10 +161,10 @@ class DefaultController extends CoreController
      **/
     protected function updateShipping( Orders $order, Request $request, $state )
     {
-        if ( $state === false )
-        {
+        if ( $state === false ) {
             $order->setShippingMethod(null);
         }
+
         $shippingApi = $this->get('shipping.shippingapi');
         $data = $request->get('data');
         $t = $this->get('translator');
@@ -179,8 +173,7 @@ class DefaultController extends CoreController
 
         $methods = $shippingApi->getMethods();
 
-        if ( !isset($methods[$shippingMethodId]) )
-        {
+        if ( !isset($methods[$shippingMethodId]) ) {
             throw new Exception( $t->trans('err.unknown_shipping_method', array(), 'checkout') );
         }
 
@@ -188,14 +181,14 @@ class DefaultController extends CoreController
 
         $order->setShippingMethod( $shippingMethodId );
         $order->setOrderLineShipping( $method, ShippingMethods::TYPE_NORMAL );
-        if ( $method->getFee() )
-        {
+        if ( $method->getFee() ) {
             $order->setOrderLineShipping( $method, ShippingMethods::TYPE_FEE );
         }
     }
 
     /**
      * updatePayment
+     *
      * @todo: should state be uses to something?
      * @param Orders $order
      * @param Request $request
@@ -211,8 +204,7 @@ class DefaultController extends CoreController
         $order->setPaymentPaytype( $data['selectedPaytype'] );
 
         // Some payforms have a fee
-        if ( $data['selectedMethod'] == 'gothia' )
-        {
+        if ( $data['selectedMethod'] == 'gothia' ) {
             $order->setOrderLinePaymentFee( 'gothia', 29.00, 0, 91 );
         }
     }
@@ -227,12 +219,9 @@ class DefaultController extends CoreController
         // TODO: make this usefull
         $order = OrdersPeer::getCurrent();
 
-        try
-        {
+        try {
           $this->validateShipping( $order );
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             return $this->json_response(array(
                 'status' => false,
                 'message' => $e->getMessage(),
@@ -253,9 +242,7 @@ class DefaultController extends CoreController
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    protected function validateShipping( Orders $order )
-    {
-    }
+    protected function validateShipping( Orders $order ){}
 
     /**
      * summeryAction
@@ -269,18 +256,23 @@ class DefaultController extends CoreController
         $orderAttributes = $order->getOrdersAttributess();
 
         $attributes = array();
-
-        foreach ($orderAttributes as $att)
-        {
+        foreach ($orderAttributes as $att) {
             $attributes[$att->getNs()][$att->getCKey()] = $att->getCValue();
         }
 
-        if ( $this->get('request')->isXmlHttpRequest() )
-        {
-            return json_encode('hest'); // FIXME: return something usefull
+        $html = $this->render('CheckoutBundle:Default:summery.html.twig',array('order'=> $order, 'attributes' => $attributes));
+
+        if ( $this->get('request')->isXmlHttpRequest() ) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => true,
+                    'message' => '',
+                    'data' => $html->getContent()
+                ));
+            }
         }
 
-        return $this->render('CheckoutBundle:Default:summery.html.twig',array('order'=>$order, 'attributes' => $attributes));
+        return $html;
     }
 
     /**
@@ -298,19 +290,16 @@ class DefaultController extends CoreController
 
         $shippingApi = $this->get('shipping.shippingapi');
 
-        foreach ($customerAddresses as $address)
-        {
+        foreach ($customerAddresses as $address) {
             $addresses[$address->getType()] = $address;
         }
 
-        if ( !isset($addresses['shipping']) && !isset($addresses['payment']) )
-        {
+        if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
             return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
         }
 
         // Only a payment address exists, create a shipping address based on the payment address
-        if ( !isset($addresses['shipping']) && isset($addresses['payment']) )
-        {
+        if ( !isset($addresses['shipping']) && isset($addresses['payment']) ) {
             $shipping = $addresses['payment']->copy();
             $shipping->setType('shipping');
             $shipping->save();
@@ -318,8 +307,7 @@ class DefaultController extends CoreController
         }
 
         // Same as above just for payment
-        if ( !isset($addresses['payment']) && isset($addresses['shipping']) )
-        {
+        if ( !isset($addresses['payment']) && isset($addresses['shipping']) ) {
             $payment = $addresses['shipping']->copy();
             $payment->setType('payment');
             $payment->save();
@@ -344,7 +332,7 @@ class DefaultController extends CoreController
 
     /**
      * success Action
-     **/
+     */
     public function successAction()
     {
         $order = OrdersPeer::getCurrent();
@@ -358,7 +346,7 @@ class DefaultController extends CoreController
         $session->remove('order_id');
 
         // one-to-one, we can only have one session_id or order in the database....
-        $session->regenerate();
+        $session->migrate();
 
         return $this->render('CheckoutBundle:Default:success.html.twig', array(
             'order_id' => $order->getId(),

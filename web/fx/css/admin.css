@@ -698,11 +698,3 @@ a.video-popper,
 .msg.error {
   border: 2px solid #f00;
 }
-
-.clr {
-  clear: both;
-}
-
-.hidn {
-  display: none;
-}

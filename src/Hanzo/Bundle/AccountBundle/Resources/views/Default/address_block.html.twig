@@ -1,9 +1,9 @@
 <div class="account-address-block" data-allowed-dest="{% if address.companyname is empty %}privat{% else %}company{% endif %}"{% if type is defined %}data-type="{{ type }}"{% endif %}>
-{{ address.type }}<br>
+{# address.type #}<br>
 {{ address.firstname }} {{ address.lastname }}<br>
-{{ address.companyname }}<br>
-{{ address.addressline1 }}<br>
-{{ address.addressline2 }}<br>
+{% if address.companyname %}{{ address.companyname }}<br>{% endif %}
+{% if address.addressline1 %}{{ address.addressline1 }}<br>{% endif %}
+{% if address.addressline2 %}{{ address.addressline2 }}<br>{% endif %}
 {{ address.postalcode }} {{ address.city }}<br>
 {{ address.country }}
 </div>

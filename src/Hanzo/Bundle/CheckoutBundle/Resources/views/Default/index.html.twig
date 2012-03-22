@@ -2,15 +2,32 @@
 
 {% block content %}
 
-      {% render 'ShippingBundle:Default:block' %}
 
-      {% render 'CheckoutBundle:Default:addresses' %}
 
-      {% render 'PaymentBundle:Default:block' %}
+<div id="accordion">
+  <h2 class="current">First pane</h2>
+  <div class="pane" style="display:block">... pane content ...</div>
 
-      {% render 'CheckoutBundle:Default:summery' %}
+  <h2>Second pane</h2>
+  <div class="pane">... pane content ...</div>
 
-      {% render 'CheckoutBundle:Default:confirm' %}
+  <h2>Third pane</h2>
+  <div class="pane">... pane content ...</div>
+</div>
+
+
+
+
+
+{#
+  TODO: rewrite to use accordion
+  http://jquerytools.org/demos/tabs/accordion.html
+#}
+
+  {% render 'ShippingBundle:Default:block' %}
+  {% render 'CheckoutBundle:Default:addresses' %}
+  {% render 'PaymentBundle:Default:block' %}
+  {% render 'CheckoutBundle:Default:confirm' %}
 
 {% endblock %}
 
