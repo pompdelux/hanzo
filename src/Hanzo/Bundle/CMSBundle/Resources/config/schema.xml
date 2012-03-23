@@ -559,7 +559,7 @@
   </table>
 
   <table name="sequences">
-    <column name="name" type="VARCHAR" size="12" required="true" primaryKey="true" />
+    <column name="name" type="VARCHAR" size="32" required="true" primaryKey="true" />
     <column name="id" type="BIGINT" required="true" />
   </table>
 </database>

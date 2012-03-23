@@ -805,7 +805,7 @@ DROP TABLE IF EXISTS `sequences`;
 
 CREATE TABLE `sequences`
 (
-	`name` VARCHAR(12) NOT NULL,
+	`name` VARCHAR(32) NOT NULL,
 	`id` BIGINT NOT NULL,
 	PRIMARY KEY (`name`)
 ) ENGINE=InnoDB;

@@ -42,7 +42,7 @@ class SequencesTableMap extends TableMap
 		$this->setPackage('src.Hanzo.Model');
 		$this->setUseIdGenerator(false);
 		// columns
-		$this->addPrimaryKey('NAME', 'Name', 'VARCHAR', true, 12, null);
+		$this->addPrimaryKey('NAME', 'Name', 'VARCHAR', true, 32, null);
 		$this->addColumn('ID', 'Id', 'BIGINT', true, null, null);
 		// validators
 	} // initialize()
