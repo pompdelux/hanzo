@@ -139,9 +139,11 @@ class DibsController extends CoreController
 
         $api = $this->get('payment.dibsapi');
 
+        $gateway_id = Tools::getPaymentGatewayId();
         $order = OrdersPeer::getCurrent();
+        $order->setPaymentGatewayId($gateway_id);
         $settings = $api->buildFormFields(
-            Tools::getPaymentGatewayId(),
+            $gateway_id,
             Hanzo::getInstance()->get('core.locale'),
             $order
         );

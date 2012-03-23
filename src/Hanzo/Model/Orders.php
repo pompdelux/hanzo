@@ -529,7 +529,7 @@ class Orders extends BaseOrders
             list($junk, $gateway_id) = explode('_', $gateway_id, 2);
         }
 
-        return $this->setPaymentGatewayId($gateway_id);
+        return parent::setPaymentGatewayId($gateway_id);
     }
 
 } // Orders
