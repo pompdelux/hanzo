@@ -517,4 +517,19 @@ class Orders extends BaseOrders
         return $attachments;
     }
 
+    /**
+     * Wrapping the setPaymentGatewayId method to auto-generate gateway id's
+     *
+     * @param int $gateway_id if specified, this is used over the auto generated one
+     * @return Orders The current object (for fluent API support)
+     */
+    public function setPaymentGatewayId($gateway_id = null)
+    {
+        if (false !== strpos($gateway_id, '_')) {
+            list($junk, $gateway_id) = explode('_', $gateway_id, 2);
+        }
+
+        return $this->setPaymentGatewayId($gateway_id);
+    }
+
 } // Orders

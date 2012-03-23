@@ -53,7 +53,7 @@ class PayByBillApi
     public function updateOrderSuccess( Request $request, Orders $order )
     {
         $order->setState( Orders::STATE_PAYMENT_OK );
-        $order->setAttribute( 'paytype' , 'payment:gateway', 'paybybill' );
+        $order->setAttribute( 'paytype' , 'payment', 'paybybill' );
         $order->save();
     }
 }

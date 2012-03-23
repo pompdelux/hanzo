@@ -8,7 +8,7 @@
                 <target>Til forsiden</target>
             </trans-unit>
             <trans-unit id="2">
-                <source>My account</source>
+                <source>my.account</source>
                 <target>Min side</target>
             </trans-unit>
             <trans-unit id="3">
@@ -194,6 +194,23 @@
             <trans-unit id="acc.4">
                 <source>Pass repeated</source>
                 <target>Gentag adgangskode</target>
+            </trans-unit>
+            <trans-unit id="company.address">
+                <source>company.address</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="date">
+                <source>date</source>
+                <target>Dato</target>
+            </trans-unit>
+            <trans-unit id="event.id">
+                <source>event.id</source>
+                <target>Arrangenments nr.</target>
+            </trans-unit>
+
+            <trans-unit id="store.address">
+                <source>store.address</source>
+                <target>POMPdeLUX ApS · Møgelhøj 8 DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · +45 8678 7871</target>
             </trans-unit>
         </body>
     </file>

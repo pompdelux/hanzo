@@ -2,7 +2,12 @@
 
 namespace Hanzo\Core;
 
+use Propel;
 use Hanzo\Core\Hanzo;
+use Hanzo\Model\Orders;
+use Hanzo\Model\Sequences;
+use Hanzo\Model\SequencesPeer;
+use Hanzo\Model\SequencesQuery;
 
 class Tools
 {
@@ -85,6 +90,126 @@ class Tools
     public static function stripTags($text)
     {
         return preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', '', $text);
+    }
+
+
+    /**
+     * Format order addresses
+     *
+     * @param  string $part  wich address part to format, can be either 'payment' or 'shipping'
+     * @param  Orders $order the order object
+     * @return string        the formatted address
+     */
+    public static function orderAddress($part, Orders $order)
+    {
+        static $cache = array();
+
+        $id = $order->getId();
+        if (empty($cache[$id])) {
+            $cache[$id] = $order->toArray(BasePeer::TYPE_FIELDNAME);
+        }
+
+        $fields = $cache[$id];
+        $address = array();
+
+        $skip = array(
+            'billing_countries_id',
+            'billing_method',
+
+            'delivery_countries_id',
+            'delivery_state_province',
+            'delivery_company_name',
+            'delivery_method',
+        );
+
+        switch ($part) {
+            case 'billing':
+            case 'payment':
+                $address[] = trim($fields['first_name'] . ' ' . $fields['last_name']);
+                foreach ($fields as $key => $value) {
+                    if (!in_array($key, $skip) && $value && is_scalar($value) && (substr($key, 0, 8) == 'billing_')) {
+                        $address[$key] = $value;
+                    }
+                }
+                $address['billing_postal_code'] = $address['billing_postal_code'] . ' ' . $address['billing_city'];
+                unset($address['billing_city']);
+            break;
+            case 'delivery':
+            case 'shipping':
+                if ($fields['delivery_company_name']) {
+                    $address[] = $fields['delivery_company_name'];
+                    $address[] = 'Att: ' . trim($fields['first_name'] . ' ' . $fields['last_name']);
+                } else {
+                    $address[] = trim($fields['first_name'] . ' ' . $fields['last_name']);
+                }
+
+                foreach ($fields as $key => $value) {
+                    if (!in_array($key, $skip) && $value && is_scalar($value) && (substr($key, 0, 9) == 'delivery_')) {
+                        $address[$key] = $value;
+                    }
+                }
+                $address['delivery_postal_code'] = $address['delivery_postal_code'] . ' ' . $address['delivery_city'];
+                unset($address['delivery_city']);
+            break;
+        }
+
+        return implode("\n", $address);
+    }
+
+    /**
+     * Sequence generator, returns next sequesce id of a named sequence.
+     * Unknown sequences is created on first request.
+     *
+     * @param  string $name the name of the sequence
+     * @return int
+     */
+    public static function getNextSequenceId($name)
+    {
+        if (!preg_match('/[a-z][a-z0-9\._ -]{2,31}/i', $name)) {
+            throw new \InvalidArgumentException("'{$name}' is not a valid sequence name.");
+        }
+
+        Propel::setForceMasterConnection(true);
+        $con = Propel::getConnection(SequencesPeer::DATABASE_NAME);
+        $con->beginTransaction();
+
+        $item = SequencesQuery::create()->findPk($name);
+
+        if (!$item instanceof Sequences) {
+            $item = new Sequences();
+            $item->setName($name);
+            $item->setId(1);
+        }
+
+        $sequence_id = $item->getId();
+
+        $item->setId($sequence_id + 1);
+        $item->save();
+
+        $con->commit();
+        Propel::setForceMasterConnection(false);
+
+        return $sequence_id;
+    }
+
+    /**
+     * Wrapping the setPaymentGatewayId method to auto-generate gateway id's
+     *
+     * @param int $gateway_id if specified, this is used over the auto generated one
+     * @return $gateway_id;
+     */
+    public static function getPaymentGatewayId($gateway_id = null)
+    {
+        if (is_null($gateway_id)) {
+            $gateway_id = self::getNextSequenceId('payment gateway');
+
+            $env = Hanso::getInstance()->get('kernel')->getEnvironment();
+            if ($env != 'prod') {
+                $gateway_id = $env . '_' . $gateway_id;
+            }
+        }
+
+        return $gateway_id;
     }
 
 

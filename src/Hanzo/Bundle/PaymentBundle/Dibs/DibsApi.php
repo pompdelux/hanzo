@@ -6,16 +6,16 @@ use Exception;
 
 use Symfony\Component\HttpFoundation\Request;
 
-use Hanzo\Model\Orders,
-    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall,
-    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
+use Hanzo\Model\Orders;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
 class DibsApi
 {
     /**
      * undocumented class variable
      *
-     * @var array 
+     * @var array
      **/
     protected $settings = array();
 
@@ -26,7 +26,7 @@ class DibsApi
      **/
     public function __construct( $params, $settings )
     {
-        // FIXME: 
+        // FIXME:
         // - define paytypes avaliable for domain
         // - set active
         // TODO: check for missing settings
@@ -127,7 +127,7 @@ class DibsApi
             'transact',
         );
 
-        foreach ($fields as $field) 
+        foreach ($fields as $field)
         {
             $order->setAttribute( $field , 'payment:gateway', $request->get($field) );
         }
@@ -161,8 +161,8 @@ class DibsApi
      * Calculate md5 sum for verification
      * @param int $orderId
      * @param int $currency
-     * @param int $amount 
-     * @return string 
+     * @param int $amount
+     * @return string
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function md5key( $orderId, $currency, $amount )
@@ -174,7 +174,7 @@ class DibsApi
      * md5AuthKey
      * @param int $transact
      * @param int $currency
-     * @param int $amount 
+     * @param int $amount
      * @return string
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -186,7 +186,7 @@ class DibsApi
     /**
      * md5keyFromString
      * @param string $string containing the key=value pairs to be hashed
-     * @return string 
+     * @return string
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function md5keyFromString( $string )
@@ -200,20 +200,19 @@ class DibsApi
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function buildFormFields( Orders $order )
+    public function buildFormFields( $gateway_id, $lang, Orders $order )
     {
-        // FIXME: hardcoded vars:
-        $orderId  = 'test_'.date('His');
+        $orderId  = $gateway_id;
         $amount   = self::formatAmount( $order->getTotalPrice() );
-        //$currency = $order->getCurrencyId();
-        $currency = 208;
-        $lang     = 'da';
+        $currency = $order->getCountriesRelatedByBillingCountriesId()->getCurrencyId();
+
+        // needed ? is set in the form...
         $payType  = 'DK';
 
         $settings = array(
             'orderid'      => $orderId,
             'amount'       => $amount,
-            'lang'         => $lang, 
+            'lang'         => $lang,
             "merchant"     => $this->getMerchant(),
             "currency"     => $currency,
             "cancelurl"    => "/payment/dibs/cancel",
@@ -224,7 +223,7 @@ class DibsApi
             "test"         => $this->getTest(),
             "paytype"      => $payType,
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
-            );
+        );
 
         return $settings;
     }
@@ -236,7 +235,7 @@ class DibsApi
      **/
     protected static function formatAmount( $amount )
     {
-        $amount = ( number_format( $amount, 2, '.', '') ) * 100 ; 
+        $amount = ( number_format( $amount, 2, '.', '') ) * 100 ;
         return $amount;
     }
 }

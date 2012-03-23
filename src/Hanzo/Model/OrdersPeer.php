@@ -63,4 +63,20 @@ class OrdersPeer extends BaseOrdersPeer
         return self::$current;
     }
 
+
+    /**
+     * Fetch order by its payment gateway id
+     *
+     * @param  mixed $gateway_id
+     * @return Orders object
+     */
+    public static function retriveByPaymentGatewayId($gateway_id)
+    {
+        if (false !== strpos($gateway_id, '_')) {
+            list($junk, $gateway_id) = explode('_', $gateway_id, 2);
+        }
+
+        return OrdersQuery::create()->findOneByPaymentGatewayId($gateway_id);
+    }
+
 } // OrdersPeer
