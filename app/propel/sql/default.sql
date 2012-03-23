@@ -798,6 +798,19 @@ CREATE TABLE `orders_sync_log`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- sequences
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `sequences`;
+
+CREATE TABLE `sequences`
+(
+	`name` VARCHAR(12) NOT NULL,
+	`id` BIGINT NOT NULL,
+	PRIMARY KEY (`name`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- gothia_accounts
 -- ---------------------------------------------------------------------
 
