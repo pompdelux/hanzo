@@ -204,7 +204,7 @@ class DibsApi
     {
         $orderId  = $gateway_id;
         $amount   = self::formatAmount( $order->getTotalPrice() );
-        $currency = $order->getCountriesRelatedByBillingCountriesId()->getCurrencyId();
+        $currency = $order->getCurrencyId();
 
         // needed ? is set in the form...
         $payType  = 'DK';

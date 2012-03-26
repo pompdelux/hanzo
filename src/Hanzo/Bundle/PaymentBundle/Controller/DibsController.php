@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\Hanzo;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\AddressesPeer;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
@@ -142,6 +143,14 @@ class DibsController extends CoreController
         $gateway_id = Tools::getPaymentGatewayId();
         $order = OrdersPeer::getCurrent();
         $order->setPaymentGatewayId($gateway_id);
+
+        // annoying, but performs better...
+        if (false === $order->getCurrencyId(false)) {
+            $c = new \Criteria();
+            $c->add(AddressesPeer::TYPE, 'payment');
+            $order->setCurrencyId(CustomersPeer::getCurrent()->getAddressess($c)->getFirst()->getCurrencyId());
+        }
+
         $settings = $api->buildFormFields(
             $gateway_id,
             Hanzo::getInstance()->get('core.locale'),
