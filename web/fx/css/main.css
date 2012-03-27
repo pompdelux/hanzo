@@ -927,11 +927,3 @@ form.newsletter-subscription-form input.button {
 .msg.error {
   border: 2px solid #f00;
 }
-
-.clr {
-  clear: both;
-}
-
-.hidn {
-  display: none;
-}

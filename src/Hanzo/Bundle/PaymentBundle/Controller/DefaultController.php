@@ -19,7 +19,8 @@ class DefaultController extends CoreController
 {
     /**
      * blockAction
-     * @return void
+     *
+     *  @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function blockAction()
@@ -34,13 +35,15 @@ class DefaultController extends CoreController
 
     /**
      * successAction
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function successAction()
     {
-        $customer = CustomersPeer::getCurrent();
-        $order    = OrdersPeer::getCurrent();
-        return $this->render('PaymentBundle:Default:success.html.twig', array('page_type' => 'checkout-success'));
+        return $this->redirect($this->generateUrl('_checkout_success'));
+        // $customer = CustomersPeer::getCurrent();
+        // $order    = OrdersPeer::getCurrent();
+        // return $this->render('PaymentBundle:Default:success.html.twig', array('page_type' => 'checkout-success'));
     }
 }

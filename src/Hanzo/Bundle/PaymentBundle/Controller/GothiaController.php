@@ -4,21 +4,22 @@ namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Model\Customers,
-    Hanzo\Model\CustomersPeer,
-    Hanzo\Model\GothiaAccounts,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController,
-    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi,
-    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\GothiaAccounts;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi;
+use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException;
+
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 class GothiaController extends CoreController
 {
@@ -70,7 +71,7 @@ class GothiaController extends CoreController
      * checkCustomerAction
      * The form has been submitted via ajax -> process it
      * @param Request $request
-     * @return Response 
+     * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function checkCustomerAction(Request $request)
@@ -82,15 +83,15 @@ class GothiaController extends CoreController
         // Use form validation?
         if ( !is_numeric( $SSN ) )
         {
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
+             'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
             ));
         }
 
         if ( strlen( $SSN ) < 10 )
         {
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
             ));
@@ -121,13 +122,13 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
             ));
         }
 
-        if ( !$response->isError() ) 
+        if ( !$response->isError() )
         {
             $gothiaAccount = $customer->getGothiaAccounts();
             $gothiaAccount->setDistributionBy( $response->data['DistributionBy'] )
@@ -136,7 +137,7 @@ class GothiaController extends CoreController
             $customer->setGothiaAccounts( $gothiaAccount );
             $customer->save();
 
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => true,
                 'message' => '',
             ));
@@ -145,13 +146,13 @@ class GothiaController extends CoreController
         {
             if ( $response->data['PurchaseStop'] === 'true')
             {
-                return $this->json_response(array( 
+                return $this->json_response(array(
                     'status' => FALSE,
                     'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
                 ));
             }
 
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.error', array(), 'gothia'),
             ));
@@ -161,7 +162,7 @@ class GothiaController extends CoreController
     /**
      * confirmAction
      * @param Request $request
-     * @return Response 
+     * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function confirmAction(Request $request)
@@ -172,7 +173,7 @@ class GothiaController extends CoreController
         $translator = $this->get('translator');
 
         // Handle reservations in Gothia when editing the order
-        // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK 
+        // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
         // it will fail because we have not removed the old reservation first, this should fix it
 
         if ( $order->getState() == Orders::STATE_EDITING )
@@ -190,7 +191,7 @@ class GothiaController extends CoreController
                 }
                 catch( GothiaApiCallException $g )
                 {
-                    return $this->json_response(array( 
+                    return $this->json_response(array(
                         'status' => FALSE,
                         'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
                     ));
@@ -198,7 +199,7 @@ class GothiaController extends CoreController
 
                 if ( $response->isError() )
                 {
-                    return $this->json_response(array( 
+                    return $this->json_response(array(
                         'status' => FALSE,
                         'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
                     ));
@@ -212,7 +213,7 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
             ));
@@ -220,13 +221,15 @@ class GothiaController extends CoreController
 
         if ( $response->isError() )
         {
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
 
-        return $this->json_response(array( 
+        $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
+
+        return $this->json_response(array(
             'status' => TRUE,
             'message' => '',
         ));

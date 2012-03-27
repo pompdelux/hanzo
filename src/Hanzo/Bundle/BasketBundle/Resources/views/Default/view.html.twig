@@ -13,84 +13,8 @@
 
   <h1>{{ "Step 1 of 6 - Basket"|trans }}</h1>
 
-  {% if products %}
-  <form action="{{ url('basket_update') }}" method="post">
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th class="left">{{ "Products"|trans }}</th>
-          <th class="right">{{ "Latest shipment date"|trans }}</th>
-          <th class="right">{{ "Price"|trans }}</th>
-          <th class="center">{{ "Quantity"|trans }}</th>
-          <th class="right">{{ "Total"|trans }}</th>
-          <th class=""></th>
-        </tr>
-      </thead>
-      <tbody>
-    {% for product in products %}
-        <tr>
-          <td class="image">
-            {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
-            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
-              <a href="{{ product.url }}">{{ product.products_name }}</a>
-              <div class="size">
-                <label>{{ "Size"|trans }}:</label>
-                <span>{{ product.products_size }}</span>
-              </div>
-              <div class="color">
-                <label>{{ "Color"|trans }}:</label>
-                <span>{{ product.products_color }}</span>
-              </div>
-            </div>
-          </td>
-          <td class="right date">
-            {% if product.expected_at %}
-              {{ product.expected_at|date('d-m-Y') }}
-            {% endif %}
-          </td>
-          <td class="right price">{{ product.price|money }}</td>
-          <td class="right quantity">{{ product.quantity }}</td>
-          <td class="right total">{{ (product.price * product.quantity)|money }}</td>
-          <td class="actions">
-            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"Delete"|trans }) }}</a>
-            <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"Edit"|trans }) }}</a>
-          </td>
-        </tr>
-    {% endfor %}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="4">{{ "Total"|trans }}:</td>
-          <td class="right total">{{ total|money }}</td>
-          <td></td>
-        </tr>
-      </tfoot>
-    </table>
 
-    {% if delivery_date %}
-      {% trans with { '%date%' : delivery_date|date('d-m-Y') } %}
-        <p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>
-      {% endtrans %}
-    {% else %}
-      <p>
-      {% trans %}
-        <strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.
-      {% endtrans %}
-      </p>
-    {% endif %}
-
-    <div class="buttons">
-      <a class="button left" href="{{ continue_shopping }}">{{ "Continue shopping"|trans }}</a>
-      <a class="button right proceed" href="{{ url('_checkout') }}">{{ "Proceed"|trans }}</a>
-    </div>
-  </form>
-
-  {% else %}
-    <p>{{ "Your cart is currently empty."|trans }}</p>
-    <div class="buttons">
-      <a class="button left" href="{{ continue_shopping }}">{{ "Continue shopping"|trans }}</a>
-    </div>
-  {% endif %}
+  {% include 'BasketBundle:Default:block.html.twig' %}
 
 {% endblock %}
 

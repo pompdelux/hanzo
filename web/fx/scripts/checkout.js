@@ -143,6 +143,8 @@ var checkout = (function($) {
         self.data.state = true; // If the user has selected a shipping method, everything is ok
         self.data.selectedMethod = $(this).val();
         self.update();
+        var pos = $('#checkout-block-address').offset();
+        $('body').animate({scrollTop : pos.top});
       });
     };
 
@@ -229,7 +231,6 @@ var checkout = (function($) {
       });
     };
     blocks.payment.execute = function() {
-
       var ok = true;
       $.each(blocks, function(index, item) {
         if (item.data.state !== true) { ok = false; }
@@ -251,9 +252,27 @@ var checkout = (function($) {
     blocks.summery = new Block( 'summery', '#checkout-block-summery');
     blocks.summery.reveal = function() {
       var self = this;
-      $(this.data.selector).slideDown();
-      self.data.state = true;
-      self.update();
+        $.getJSON(base_url + 'checkout/summery', function(result) {
+
+
+        var $container = $('#main #checkout-block-summery');
+        if($container.length) {
+          $container.replaceWith(result.data);
+        } else {
+          $('#main #checkout-block-confirm').before(result.data);
+        }
+
+        $.each(blocks, function(index, item) {
+          if (item.data.name !== 'summery' && item.data.name !== 'confirm') {
+            $(item.data.selector).slideUp();
+          }
+        });
+        $('#continue-button').hide();
+
+        $('#checkout-block-summery').slideDown();
+        self.data.state = true;
+        self.update();
+      });
     };
 
     /**
@@ -263,7 +282,30 @@ var checkout = (function($) {
     blocks.confirm.init = function() {
       var self = this;
 
-      $("#checkout-execute").on('click', function(event) { // When the user clicks the link, check if everything is as it should be
+      $('#checkout-block-confirm a.edit').on('click', function(event) {
+        event.preventDefault();
+        $.each(blocks, function(index, item) {
+          if (item.data.name !== 'summery' && item.data.name !== 'confirm') {
+            $(item.data.selector).slideDown();
+          } else {
+            $(item.data.selector).slideUp();
+          }
+        });
+
+        var $button = $('#continue-button');
+        if ($button.length) {
+          $button.show();
+        } else {
+          $('#main').append('<div id="continue-button" class="checkout-block"><a href="" class="button right">'+i18n.t('forward')+'</a></div>');
+          $('#continue-button a').on('click', function(event) {
+            event.preventDefault();
+            blocks.summery.reveal();
+          });
+        }
+      });
+
+      // When the user clicks the link, check if everything is as it should be
+      $("#checkout-execute").on('click', function(event) {
         event.preventDefault();
 
         $.each(blocks, function(item) {

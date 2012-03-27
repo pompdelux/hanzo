@@ -48,6 +48,164 @@
           </p>
         ]]></target>
       </trans-unit>
+
+      <trans-unit id="confirm.title">
+        <source>confirm.title</source>
+        <target>Godkend</target>
+      </trans-unit>
+      <trans-unit id="confirm.order_id">
+        <source>confirm.order_id</source>
+        <target>E-ordrenummer</target>
+      </trans-unit>
+      <trans-unit id="addresses">
+        <source>addresses</source>
+        <target>Adresser</target>
+      </trans-unit>
+      <trans-unit id="no_addresses">
+        <source>no_addresses</source>
+        <target>Der er ikke oprettet nogle adresser</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.edit">
+        <source>shipping.address.edit</source>
+        <target>» Ret leveringsadresse</target>
+      </trans-unit>
+      <trans-unit id="shipping.address">
+        <source>shipping.address</source>
+        <target>Leveringsadresse</target>
+      </trans-unit>
+
+      <trans-unit id="shipping.address.overnight">
+        <source>shipping.address.overnight</source>
+        <target>Leveringsadresse</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.overnight.edit">
+        <source>shipping.address.overnight.edit</source>
+        <target>» Ret døgnpostadresse</target>
+      </trans-unit>
+
+      <trans-unit id="shipping.address.no_overnight">
+        <source>shipping.address.no_overnight</source>
+        <target>Ingen døgn boks adresse oprettet</target>
+      </trans-unit>
+      <trans-unit id="payment.method">
+        <source>payment.method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="payment.address">
+        <source>payment.address</source>
+        <target>Privatadresse</target>
+      </trans-unit>
+      <trans-unit id="payment.title">
+        <source>payment.title</source>
+        <target>Betalingsmåde</target>
+      </trans-unit>
+      <trans-unit id="payment.text">
+        <source>payment.text</source>
+        <target>Vælg hvordan du vil betale denne ordre.</target>
+      </trans-unit>
+
+      <trans-unit id="confirm.vat">
+        <source>confirm.vat</source>
+        <target>Momsbeløb</target>
+      </trans-unit>
+      <trans-unit id="confirm.sub_total">
+        <source>confirm.sub_total</source>
+        <target>Varer i alt</target>
+      </trans-unit>
+      <trans-unit id="confirm.total">
+        <source>confirm.total</source>
+        <target>Samlet Beløb</target>
+      </trans-unit>
+
+      <trans-unit id="payment.paybybill.title">
+        <source>payment.paybybill.title</source>
+        <target>Betaling på konto</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.text">
+        <source>payment.paybybill.text</source>
+        <target>Indbetal pengene på kontonummer: "yy-yy xx-xx-xx-xx-xx" senest 8 dage efter du bar modtaget varene.</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.label">
+        <source>payment.paybybill.label</source>
+        <target>Betaling på konto</target>
+      </trans-unit>
+      <trans-unit id="payment.gateway_id">
+        <source>payment.gateway_id</source>
+        <target>Betalingsid</target>
+      </trans-unit>
+      <trans-unit id="payment.transaction_id">
+        <source>payment.transaction_id</source>
+        <target>Transaktionsnummer</target>
+      </trans-unit>
+      <trans-unit id="payment.fee">
+        <source>payment.fee</source>
+        <target>Betalingsgebyr</target>
+      </trans-unit>
+
+      <trans-unit id="customer.id">
+        <source>customer.id</source>
+        <target>Kundenummer</target>
+      </trans-unit>
+
+      <trans-unit id="quantity">
+        <source>quantity</source>
+        <target>Antal</target>
+      </trans-unit>
+      <trans-unit id="products">
+        <source>products</source>
+        <target>Produkter</target>
+      </trans-unit>
+      <trans-unit id="product.name">
+        <source>product.name</source>
+        <target>Varenavn</target>
+      </trans-unit>
+      <trans-unit id="product.size">
+        <source>product.size</source>
+        <target>Størrelse</target>
+      </trans-unit>
+      <trans-unit id="product.color">
+        <source>product.color</source>
+        <target>Farve</target>
+      </trans-unit>
+      <trans-unit id="product.price">
+        <source>product.price</source>
+        <target>Stk. pris</target>
+      </trans-unit>
+      <trans-unit id="product.total">
+        <source>product.total</source>
+        <target>I alt</target>
+      </trans-unit>
+
+      <trans-unit id="total.excl_vat">
+        <source>total.excl_vat</source>
+        <target>Total ekskl. fragt og ekspeditionsgebyr</target>
+      </trans-unit>
+      <trans-unit id="total.vat">
+        <source>total.vat</source>
+        <target>Moms udgør</target>
+      </trans-unit>
+      <trans-unit id="total.incl_vat">
+        <source>product.incl_vat</source>
+        <target>Total inkl. fragt, moms og ekspeditionsgebyr</target>
+      </trans-unit>
+
+      <trans-unit id="expected_at">
+        <source>expected_at</source>
+        <target>Forventet ekspeditionstid</target>
+      </trans-unit>
+
+      <trans-unit id="my.account.info">
+        <source>my.account.info</source>
+        <target>Se dine ordrer, ret dine personlige oplysninger, ret adgangskode og meget mere.</target>
+      </trans-unit>
+      <trans-unit id="my.account.username">
+        <source>my.account.username</source>
+        <target>Brugernavn</target>
+      </trans-unit>
+      <trans-unit id="my.account.password">
+        <source>my.account.password</source>
+        <target>Kodeord</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

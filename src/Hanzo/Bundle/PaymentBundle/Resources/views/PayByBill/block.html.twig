@@ -3,6 +3,8 @@
 <form name="payment-paybybill" id="paybybill" action="{{  path('_paybybill_callback') }}" method="post">
   <ul class="payment-methods" id="payment-method-paybybill">
     <li>
+      <p>{{ 'payment.paybybill.text'|trans({}, 'checkout') }}</p>
+
       <input type="radio" value="paybybill" id="pbb" name="paytype">
       <label for="pbb">{{ 'payment.paybybill.label'|trans({}, 'checkout') }}</label>
     </li>

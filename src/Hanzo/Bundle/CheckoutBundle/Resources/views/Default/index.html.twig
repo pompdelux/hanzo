@@ -2,15 +2,15 @@
 
 {% block content %}
 
-      {% render 'ShippingBundle:Default:block' %}
+{#
+  TODO: rewrite to use accordion
+  http://jquerytools.org/demos/tabs/accordion.html
+#}
 
-      {% render 'CheckoutBundle:Default:addresses' %}
-
-      {% render 'PaymentBundle:Default:block' %}
-
-      {% render 'CheckoutBundle:Default:summery' %}
-
-      {% render 'CheckoutBundle:Default:confirm' %}
+  {% render 'ShippingBundle:Default:block' %}
+  {% render 'CheckoutBundle:Default:addresses' %}
+  {% render 'PaymentBundle:Default:block' %}
+  {% render 'CheckoutBundle:Default:confirm' %}
 
 {% endblock %}
 

@@ -4,21 +4,25 @@ namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController,
-    Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
+use Hanzo\Core\Hanzo;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\AddressesPeer;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
+
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 class DibsController extends CoreController
 {
     /**
      * callbackAction
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -31,14 +35,18 @@ class DibsController extends CoreController
 
         if ( $orderId === false )
         {
-            throw new Exception( 'Dibs callback did not supply a valid order id' );
+            Tools::log( 'Dibs callback did not supply a valid order id' );
+            Tools::log( $_POST );
+            return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
 
-        $order = OrdersPeer::retrieveByPK( $orderId );
+        $order = OrdersPeer::retriveByPaymentGatewayId( $orderId );
 
         if ( !($order instanceof Orders) )
         {
-            throw new Exception( 'Dibs callback did not supply a valid order id: "'. $orderId .'"' );
+            Tools::log( 'Dibs callback did not supply a valid order id: "'. $orderId .'"' );
+            Tools::log( $_POST );
+            return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
 
         try
@@ -46,9 +54,11 @@ class DibsController extends CoreController
             $api->verifyCallback( $request, $order );
             // TODO: is this the right way todo it? passing request seems wrong
             $api->updateOrderSuccess( $request, $order );
+            $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         }
         catch (Exception $e)
         {
+            Tools::log( $e->getMessage() );
             $api->updateOrderFailed( $request, $order );
         }
 
@@ -57,12 +67,12 @@ class DibsController extends CoreController
 
     /**
      * cancelAction
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function cancelAction()
     {
-        // FIXME: should be handled by default route?
         error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
         error_log(__LINE__.':'.__FILE__.' '.print_r($_GET,1)); // hf@bellcom.dk debugging
         return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
@@ -70,6 +80,7 @@ class DibsController extends CoreController
 
     /**
      * apiTestAction
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -87,6 +98,7 @@ class DibsController extends CoreController
 
     /**
      * formTestAdction
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -113,6 +125,7 @@ class DibsController extends CoreController
 
     /**
      * blockAction
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -127,13 +140,30 @@ class DibsController extends CoreController
 
         $api = $this->get('payment.dibsapi');
 
+        $gateway_id = Tools::getPaymentGatewayId();
         $order = OrdersPeer::getCurrent();
-        $settings = $api->buildFormFields( $order );
+        $order->setPaymentGatewayId($gateway_id);
+
+        // annoying, but performs better...
+        if (false === $order->getCurrencyId(false)) {
+            $c = new \Criteria();
+            $c->add(AddressesPeer::TYPE, 'payment');
+            $order->setCurrencyId(CustomersPeer::getCurrent()->getAddressess($c)->getFirst()->getCurrencyId());
+        }
+
+        $settings = $api->buildFormFields(
+            $gateway_id,
+            Hanzo::getInstance()->get('core.locale'),
+            $order
+        );
 
         // FIXME: hardcoded vars
         $cardtypes = array(
-            'DK' => true, 'VISA' => true, 'ELEC' => true, 'MC' => true
-            );
+            'DK' => true,
+            'VISA' => true,
+            'ELEC' => true,
+            'MC' => true
+        );
 
         return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes, 'form_fields' => $settings ));
     }

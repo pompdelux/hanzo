@@ -229,7 +229,7 @@ class DefaultController extends CoreController
         return $this->response('update basket');
     }
 
-    public function viewAction()
+    public function viewAction($embed = false)
     {
         $order = OrdersPeer::getCurrent();
 
@@ -290,7 +290,13 @@ class DefaultController extends CoreController
             $products[] = $line;
         }
 
-        return $this->render('BasketBundle:Default:view.html.twig', array(
+        $template = 'BasketBundle:Default:view.html.twig';
+        if ($embed) {
+            $template = 'BasketBundle:Default:block.html.twig';
+        }
+
+        return $this->render($template, array(
+            'embedded' => $embed,
             'page_type' => 'basket',
             'products' => $products,
             'total' => $order->getTotalPrice(true),

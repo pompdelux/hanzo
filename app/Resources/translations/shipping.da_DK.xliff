@@ -63,6 +63,10 @@
         <source>shipping_fee.label</source>
         <target>Ekspeditionsgebyr %price%</target>
       </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Ekspeditionsgebyr</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

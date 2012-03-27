@@ -1,5 +1,12 @@
 /* Styles for checkout */
 
+.checkout-block {
+  margin: 20px 0;
+}
+.checkout-block ul {
+  list-style:none;
+}
+
 #checkout-block-shipping {
   display: block;
 }
@@ -9,4 +16,20 @@
 #checkout-block-summery,
 #checkout-block-confirm {
   display: none;
+  overflow: hidden;
+}
+
+#checkout-block-summery .checkout-block {
+  display: block;
+}
+#checkout-block-summery .checkout-block a {
+  display: none;
+}
+
+#checkout-block-confirm .edit {
+  margin-left: 10px;
+}
+
+.checkout-block .product-table {
+  margin:0;
 }

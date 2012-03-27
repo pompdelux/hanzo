@@ -4,16 +4,18 @@ namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController,
-    Hanzo\Bundle\PaymentBundle\PayByBill\PayByBillApi;
+use Hanzo\Core\Hanzo;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Bundle\PaymentBundle\PayByBill\PayByBillApi;
+
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 class PayByBillController extends CoreController
 {
@@ -34,6 +36,7 @@ class PayByBillController extends CoreController
 
         try {
             $api->updateOrderSuccess( $request, $order );
+            $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         } catch (Exception $e) {
             Tools::log($e->getMessage());
         }

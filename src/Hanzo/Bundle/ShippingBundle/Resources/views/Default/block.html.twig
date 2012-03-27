@@ -1,7 +1,9 @@
-<div id="checkout-block-shipping">
+<div id="checkout-block-shipping" class="checkout-block">
   <h1>{{ 'page.heading'|trans({},'shipping') }}</h1>
-  <div class="msg hidn"></div>
-  {{ 'page.desc'|trans({},'shipping') }}<br>
+  <div class="msg hidden"></div>
+
+  <p>{{ 'page.desc'|trans({},'shipping') }}</p>
+
   <form action="#">
   {% for method in methods %}
     <h3>{{ ('shipping_method.name.' ~ method.externalid)|trans({},'shipping') }}</h3>
