@@ -255,7 +255,7 @@ nav.sub ul {
   height: 20px;
 }
 nav.sub li {
-  float: left;
+  float: right;
   padding: 0 10px;
   background: url(/fx/images/dots_webshop_topmenu.png) no-repeat center right;
 }
@@ -267,11 +267,46 @@ nav.sub li:last-child {
 }
 nav.sub a {
   font-weight: normal;
-  color: #fff;
+  color: black;
 }
 nav.sub a:hover {
   color: #d3c2a2;
 }
+
+nav.sub #select-language div{
+  position: absolute;
+  top: 40px;
+  padding: 1em 0.5em;
+  background:#D3C2A2;
+  border:1px solid #C8B289;
+}
+
+nav.sub #select-language div ul{
+  border:none;
+}
+nav.sub #select-language div ul li{
+  float:left;
+  clear: both;
+  display: block;
+  padding:0;
+  background:none;
+}
+nav.sub #select-language div a{
+  border: none;
+}
+/* http://flag-sprites.com/ */
+nav.sub #select-language a span.flag{
+  margin-right:5px;
+  display:inline-block;
+  width: 16px;
+  height: 11px;
+  background:url(/fx/images/flags.png) no-repeat
+}
+nav.sub #select-language a span.flag.da_DK {background-position: -16px 0}
+nav.sub #select-language a span.flag.en_EN {background-position: -33px 0}
+nav.sub #select-language a span.flag.nl_NL {background-position: 0 -11px}
+nav.sub #select-language a span.flag.no_NB {background-position: -17px -12px}
+nav.sub #select-language a span.flag.sv_SE {background-position: -33px -12px}
 
 /* top right menu */
 #secondary-links {
@@ -315,11 +350,12 @@ nav.sub a:hover {
 #secondary-links #select-cache div {
   position: absolute;
   top: 40px;
-  background-image: url(/fx/images/ffffff.png);
+  background:white;
   padding: 1em 0.5em;
+  border:1px solid #D3C2A2;
 }
 
-#secondary-links #select-domain div a,q
+#secondary-links #select-domain div a,
 #secondary-links #select-cache div a {
   border: none;
 }

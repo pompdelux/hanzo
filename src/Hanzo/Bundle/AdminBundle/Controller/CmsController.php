@@ -11,7 +11,8 @@ use Hanzo\Core\Hanzo,
 
 use Hanzo\Model\Cms,
     Hanzo\Model\CmsPeer,
-    Hanzo\Model\CmsQuery;
+    Hanzo\Model\CmsQuery,
+    Hanzo\Model\LanguagesQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
@@ -114,13 +115,18 @@ class CmsController extends CoreController
     }
     public function editAction($id, $locale = 'en_EN')
     {
-        $response = '';
-        /**
-         * @todo Get all tranlations and give them to the tamplate. Template missing ref to it
-         **/
+        $languages_availible = LanguagesQuery::Create()
+            ->find();
+
         $node = CmsQuery::create()
             ->joinWithI18n($locale, 'INNER JOIN')
             ->findPK($id);
+        
+        if(!$node){ // Oversættelsen findes ikke for det givne ID
+            $node = CmsQuery::create()
+                ->findPk($id);
+            $node->setLocale($locale);
+        }
 
         $form = $this->createForm(new CmsType(), $node);
         
@@ -131,17 +137,14 @@ class CmsController extends CoreController
             if ($form->isValid()) {
                 
                 $node->save();
-                /**
-                 * @todo give some feedback when done?
-                 */
+                
                 $this->get('session')->setFlash('notice', 'cms.updated');
-                //return $this->redirect($this->generateUrl('_account'));
             }
         }
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
-            'notice'    => $response
+            'languages' => $languages_availible
         ));
         
     }

@@ -6,6 +6,10 @@
         <source>admin.home.text</source>
         <target>Admin</target>
       </trans-unit>
+      <trans-unit id="admin_language_selector">
+        <source>languages.selector</source>
+        <target>Choose language to translate</target>
+      </trans-unit>
       <trans-unit id="admin_page_edit_text">
         <source>page.edit</source>
         <target>Edit</target>

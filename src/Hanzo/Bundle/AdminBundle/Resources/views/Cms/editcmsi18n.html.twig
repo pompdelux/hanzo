@@ -1,6 +1,26 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
+<nav class="sub">
+  <ul>
+    <li id="select-language">
+        <a class="open-menu" href="#">
+        	<span class="flag {{ node.locale }}"></span>{{ 'languages.selector'|trans({}, 'admin') }}
+        </a>
+        <div style="display:none;">
+        	<ul>
+		    {% for language in languages %}
+		      <li>
+		      	<a href="{{ path('admin_cms_edit', {'id' : node.id, 'locale' : language.locale}) }}">
+		      		<span class="flag {{ language.locale }}"></span>{{ language.name }}
+		      	</a>
+		      </li>
+		    {% endfor %}
+        	</ul>
+        </div>
+    </li>
+  </ul>
+</nav>
 
 <h1>{{ 'update.cms.header.text'|trans({}, 'admin') }}</h1>
 
