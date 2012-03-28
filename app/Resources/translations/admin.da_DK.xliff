@@ -58,6 +58,10 @@
         <source>cms.edit.label.settings</source>
         <target>Indstillinger</target>
       </trans-unit>
+      <trans-unit id="admin_cms_edit_cms_thread_text">
+        <source>cms.edit.label.cms_thread</source>
+        <target>Thread</target>
+      </trans-unit>
       <trans-unit id="admin_cancel">
         <source>cancel</source>
         <target>Afbryd</target>
@@ -77,6 +81,10 @@
       <trans-unit id="admin_cms_add">
         <source>add.cms</source>
         <target>Opret</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_add_success">
+        <source>cms.added</source>
+        <target>Siden blev succesfuldt oprettet!</target>
       </trans-unit>
       <trans-unit id="admin_cms_update_success">
         <source>cms.updated</source>

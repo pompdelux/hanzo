@@ -12,6 +12,9 @@ use Hanzo\Core\Hanzo,
 use Hanzo\Model\Cms,
     Hanzo\Model\CmsPeer,
     Hanzo\Model\CmsQuery,
+    Hanzo\Model\CmsThreadI18n,
+    Hanzo\Model\CmsThreadI18nPeer,
+    Hanzo\Model\CmsThreadI18nQuery,
     Hanzo\Model\LanguagesQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
@@ -43,23 +46,38 @@ class CmsController extends CoreController
     public function addAction($locale = 'en_EN')
     {
         $cms_node = new CmsNode();
-        
+
+        $cms_threads = CmsThreadI18nQuery::create()
+            ->filterByLocale($locale)
+            ->find();
+
+        $cms_thread_choices = array();
+
+        foreach ($cms_threads as $cms_thread) {
+            $cms_thread_choices[$cms_thread->getId()] = $cms_thread->getTitle();
+        }
         $form = $this->createFormBuilder($cms_node)
             ->add('type', 'choice', array(
-                  'label'     => 'cms.edit.label.settings',
-                  'choices'   => array(
-                    'frontpage'  => 'cms.edit.type.frontpage',
-                    'page'  => 'cms.edit.type.page',
-                    'url'  => 'cms.edit.type.url',
-                    'category'  => 'cms.edit.type.category',
-                    'category_search'  => 'cms.edit.type.category_search',
-                    'newsletter'  => 'cms.edit.type.newsletter',
-                    'advanced_search'  => 'cms.edit.type.advanced_search',
-                    'mannequin'  => 'cms.edit.type.mannequin'
-                  ),
-                  'required'  => FALSE,
-                  'translation_domain' => 'admin'
-              ))
+                    'label'     => 'cms.edit.label.settings',
+                    'choices'   => array(
+                        'frontpage'  => 'cms.edit.type.frontpage',
+                        'page'  => 'cms.edit.type.page',
+                        'url'  => 'cms.edit.type.url',
+                        'category'  => 'cms.edit.type.category',
+                        'category_search'  => 'cms.edit.type.category_search',
+                        'newsletter'  => 'cms.edit.type.newsletter',
+                        'advanced_search'  => 'cms.edit.type.advanced_search',
+                        'mannequin'  => 'cms.edit.type.mannequin'
+                    ),
+                    'required'  => TRUE,
+                    'translation_domain' => 'admin'
+                ))
+            ->add('cms_thread_id', 'choice', array(
+                    'label' => 'cms.edit.label.cms_thread',
+                    'choices' => $cms_thread_choices,
+                    'required' => TRUE,
+                    'translation_domain' => 'admin'
+                ))
             ->getForm();
 
         $request = $this->getRequest();
@@ -102,7 +120,7 @@ class CmsController extends CoreController
                         $node->setType($cms_node->getType());
                         break;
                 }
-
+                $node->setCmsThreadId($cms_node->getCmsThreadId());
                 $node->setIsActive(FALSE);
                 $node->setSettings(json_encode($settings));
                 $node->save();
