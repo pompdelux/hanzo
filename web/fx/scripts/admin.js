@@ -59,36 +59,31 @@
           });
         }
       });
-
-      $('a.admin_cms_update_tree').click(function(e){
+      /* Delete cms node from NestedSortable */
+      $('a.delete').click(function(e){
         e.preventDefault();
         var $a = $(this);
-        var $data = $('#sortable-list').nestedSortable('toArray');
-        
-        $.ajax({
-          url: $a.attr('href'),
-          dataType: 'json',
-          type: 'POST',
-          data: {data : $data},
-          async: false,
-          success: function(responce, textStatus, jqXHR) {
-            if (false === responce.status) {
-              if (responce.message) {
-                dialoug.alert(i18n.t('Notice!', responce.message));
+        dialoug.confirm(i18n.t('Notice!'), i18n.t('Er du sikker på du vil <strong>slette</strong> CMS noden?'),function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+
+                  window.scrollTo(window.scrollMinX, window.scrollMinY);
+                  dialoug.slideNotice(response.message);
+                }
               }
-            }
-            else {
-              window.scrollTo(window.scrollMinX, window.scrollMinY);
-              dialoug.slideNotice(responce.message);
-            }
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+            });
           }
         });
       });
-  
-      $('a.delete')
+
       // ios class added to body
       switch (navigator.platform) {
       case 'iPad':

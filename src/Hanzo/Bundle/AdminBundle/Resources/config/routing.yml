@@ -28,7 +28,11 @@ admin_cms_edit:
         id: \d+
 admin_cms_delete:
     pattern:  /admin/cms/delete/{id}
-    defaults: { _controller: AdminBundle:Cms:delete }
+    defaults: 
+        _controller: AdminBundle:Cms:delete
+        id: 0
+    requirements:
+        id: \d+
 admin_cms_update_tree:
     pattern:  /admin/cms/update-tree/
     defaults:

@@ -24,11 +24,14 @@ class CmsController extends CoreController
         return $this->render('AdminBundle:Cms:menu.html.twig',array('tree'=>$this->getCmsTree()));
     }
 
-    public function deleteAction($node_id)
+    public function deleteAction($id)
     {
-        CmsQuery::create()
-          ->findOneById($node_id)
-          ->delete();
+
+        $node = CmsQuery::create()
+            ->findPK($id);
+
+        if($node)
+            $node->delete();
           
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -123,6 +126,12 @@ class CmsController extends CoreController
             ->findPK($id);
         
         if(!$node){ // Oversættelsen findes ikke for det givne ID
+            
+            /**
+              * @todo Den har glemt hvad der skulle stå i indstillingerne.
+              * Vi kender ikke den tidligere? 
+              */
+
             $node = CmsQuery::create()
                 ->findPk($id);
             $node->setLocale($locale);
