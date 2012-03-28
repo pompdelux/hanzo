@@ -30,8 +30,9 @@
 </div>
 {% endif %}
 
-<form action="{{ path('admin_cms_edit', {'id' : node.id}) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form">
+<form action="{{ path('admin_cms_edit', {'id' : node.id, 'locale' : node.locale}) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form">
   <div id="cms-edit">
+    {{ form_row(form.locale) }}
     {{ form_row(form.is_active) }}
     {{ form_row(form.title) }}
     {{ form_row(form.path) }}

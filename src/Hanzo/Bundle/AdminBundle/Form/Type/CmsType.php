@@ -17,6 +17,8 @@ class CmsType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
 
+      $builder->add('locale', 'hidden');
+
       $builder->add('is_active', 'checkbox', array(
           'label'     => 'cms.edit.label.is_active',
           'translation_domain' => 'admin',

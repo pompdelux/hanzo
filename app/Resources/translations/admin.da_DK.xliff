@@ -10,6 +10,14 @@
         <source>languages.selector</source>
         <target>Vælg sprog til oversættelse</target>
       </trans-unit>
+      <trans-unit id="admin_add_new_cmspage">
+        <source>add.new.cmspage</source>
+        <target>Opret nyt CMS node</target>
+      </trans-unit>
+      <trans-unit id="admin_add_new_cmspage_success">
+        <source>add.new.cmspage.success</source>
+        <target>CMS siden blev oprettet! Du kan nu tilføje indhold og indstillinger.</target>
+      </trans-unit>
       <trans-unit id="admin_page_edit_text">
         <source>page.edit</source>
         <target>Rediger</target>
@@ -50,29 +58,61 @@
         <source>cms.edit.label.settings</source>
         <target>Indstillinger</target>
       </trans-unit>
-      <trans-unit id="admin.cancel">
+      <trans-unit id="admin_cancel">
         <source>cancel</source>
         <target>Afbryd</target>
       </trans-unit>
-      <trans-unit id="admin.update.cms.header.text">
+      <trans-unit id="admin_update_cms_header_text">
         <source>update.cms.header.text</source>
         <target>Rediger CMS side.</target>
       </trans-unit>
-      <trans-unit id="admin.add.cms.header.text">
+      <trans-unit id="admin_add_cms_header_text">
         <source>add.cms.header.text</source>
         <target>Opret ny CMS side.</target>
       </trans-unit>
-      <trans-unit id="admin.cms.update">
+      <trans-unit id="admin_cms_update">
         <source>update.cms</source>
         <target>Gem</target>
       </trans-unit>
-      <trans-unit id="admin.cms.add">
+      <trans-unit id="admin_cms_add">
         <source>add.cms</source>
         <target>Opret</target>
       </trans-unit>
-      <trans-unit id="admin.cms.update.success">
+      <trans-unit id="admin_cms_update_success">
         <source>cms.updated</source>
         <target>Siden blev succesfuldt opdateret!</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_page">
+        <source>cms.edit.type.page</source>
+        <target>Alm. Cms side</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_frontpage">
+        <source>cms.edit.type.frontpage</source>
+        <target>Forside</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_url">
+        <source>cms.edit.type.url</source>
+        <target>Url</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_category">
+        <source>cms.edit.type.category</source>
+        <target>Kategori</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_category_search">
+        <source>cms.edit.type.category_search</source>
+        <target>Kategori Søgning</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_newsletter">
+        <source>cms.edit.type.newsletter</source>
+        <target>Nyhedsbrev</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_advanced_search">
+        <source>cms.edit.type.advanced_search</source>
+        <target>Advanceret Søgning</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_page_type_mannequin">
+        <source>cms.edit.type.mannequin</source>
+        <target>Mannequin</target>
       </trans-unit>
       <trans-unit id="">
         <source></source>

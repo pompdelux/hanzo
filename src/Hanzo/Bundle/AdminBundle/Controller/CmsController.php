@@ -48,6 +48,9 @@ class CmsController extends CoreController
             ->add('type', 'choice', array(
                   'label'     => 'cms.edit.label.settings',
                   'choices'   => array(
+                    'frontpage'  => 'cms.edit.type.frontpage',
+                    'page'  => 'cms.edit.type.page',
+                    'url'  => 'cms.edit.type.url',
                     'category'  => 'cms.edit.type.category',
                     'category_search'  => 'cms.edit.type.category_search',
                     'newsletter'  => 'cms.edit.type.newsletter',
@@ -100,9 +103,10 @@ class CmsController extends CoreController
                         break;
                 }
 
+                $node->setIsActive(FALSE);
                 $node->setSettings(json_encode($settings));
                 $node->save();
-                
+
                 $this->get('session')->setFlash('notice', 'cms.added');
                 return $this->redirect($this->generateUrl('admin_cms_edit', 
                     array(
@@ -146,7 +150,11 @@ class CmsController extends CoreController
             if ($form->isValid()) {
                 
                 $node->save();
-                
+
+                /**
+                 * @todo Opdater routing.yml
+                 */
+
                 $this->get('session')->setFlash('notice', 'cms.updated');
             }
         }
