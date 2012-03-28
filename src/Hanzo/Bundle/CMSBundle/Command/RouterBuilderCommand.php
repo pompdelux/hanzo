@@ -114,7 +114,7 @@ page_" . $id . "_" . $locale . ":
 ")."\n";
                         break;
                     case 'system':
-                        switch ($settings['type']) {s
+                        switch ($settings['type']) {
                             case 'mannequin':
                             $buffer[$locale] .= trim("
 system_" . $id . "_" . $locale . ":
@@ -135,7 +135,7 @@ newsletter_" . $id . "_" . $locale . ":
                             break;
                         case 'category_search':
                         case 'advanced_search':
-                            $method = explode('_', $settings['view']);
+                            $method = explode('_', $settings['type']);
                             $method = array_shift($method);
                             $buffer[$locale] .= trim("
 search_" . $id . "_" . $locale . ":
