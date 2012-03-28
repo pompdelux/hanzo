@@ -65,6 +65,8 @@ class RouterBuilderCommand extends ContainerAwareCommand
                 $settings = $item->getSettings();
                 if (substr($settings, 0, 2) == 'a:') {
                     $settings = unserialize(stripslashes($settings));
+                }else if(substr($settings, 0, 1) == '{') { // Json encoded settings
+                    $settings = json_decode($settings, true);
                 }
 
                 switch ($type) {
@@ -112,7 +114,7 @@ page_" . $id . "_" . $locale . ":
 ")."\n";
                         break;
                     case 'system':
-                        switch ($settings['view']) {
+                        switch ($settings['type']) {s
                             case 'mannequin':
                             $buffer[$locale] .= trim("
 system_" . $id . "_" . $locale . ":
