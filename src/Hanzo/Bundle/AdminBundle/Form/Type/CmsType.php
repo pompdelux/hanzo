@@ -41,7 +41,7 @@ class CmsType extends AbstractType
           'translation_domain' => 'admin'
       ));
 
-      $builder->add('settings', null, array(
+      $builder->add('settings', 'textarea', array(
           'label'     => 'cms.edit.label.settings',
           'required' => FALSE,
           'translation_domain' => 'admin'

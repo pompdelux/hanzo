@@ -30,7 +30,7 @@
 </div>
 {% endif %}
 
-<form action="{{ path('admin_cms_edit', {'id' : node.id}) }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('admin_cms_edit', {'id' : node.id}) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form">
   <div id="cms-edit">
     {{ form_row(form.is_active) }}
     {{ form_row(form.title) }}
@@ -42,5 +42,17 @@
   <input class="button right" type="submit" value="{{ 'update.cms'|trans({}, 'admin') }}">
   <a class="button left" href="{{ path('admin_cms') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
 </form>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      /* Pretty print the settings in the textarea */
+      var settings = $('#cms_settings').val(); 
+      $('#cms_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
+    });
+</script>
 
 {% endblock %}
