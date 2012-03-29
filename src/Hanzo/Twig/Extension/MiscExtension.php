@@ -23,12 +23,18 @@ class MiscExtension extends Twig_Extension
         $this->twig_string = $twig_string;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'misc';
     }
 
 
+    /**
+     * {@inheritdoc}
+     */
     public function getGlobals()
     {
         return array(
@@ -37,28 +43,49 @@ class MiscExtension extends Twig_Extension
     }
 
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFunctions()
     {
         return array(
             'print_r' => new Twig_Function_Function('print_r'),
             'parse' => new Twig_Function_Method($this, 'parse', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'meta_tags' => new Twig_Function_Method($this, 'meta_tags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'google_analytics_tag' => new Twig_Function_Method($this, 'google_analytics_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'front_page_teasers' => new Twig_Function_Method($this, 'front_page_teasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'meta_tags' => new Twig_Function_Method($this, 'metaTags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'google_analytics_tag' => new Twig_Function_Method($this, 'googleAnalyticsTag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'front_page_teasers' => new Twig_Function_Method($this, 'frontPageTeasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
+
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters() {
         return array(
-            'money' => new Twig_Filter_Method($this, 'hanzo_money_format'),
+            'money' => new Twig_Filter_Method($this, 'moneyFormat'),
         );
     }
 
+
+    /**
+     * Set the global twig var "layout"
+     *
+     * @see Hanzo\Core\HanzoBoot::onKernelRequest()
+     * @return string
+     */
     public function getLayout()
     {
         $hanzo = Hanzo::getInstance();
         $device = $hanzo->container->get('request')->attributes->get('_x_device');
-        return '::base.html.twig';
+
+        // TODO: implement the mobile layout
+        $device_map = array(
+            'pc' => '::base.html.twig',
+            // 'mobile' => '::base_mobile.html.twig',
+        );
+
+        return isset($device_map[$device]) ? $device_map[$device] : $device_map['pc'];
     }
 
 
@@ -66,7 +93,7 @@ class MiscExtension extends Twig_Extension
      * @see Hanzo\Core\Tools\Tools::moneyFormat
      * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
-    public function hanzo_money_format($number, $format = '%i')
+    public function moneyFormat($number, $format = '%i')
     {
         return Tools::moneyFormat($number, $format);
     }
@@ -90,7 +117,7 @@ class MiscExtension extends Twig_Extension
      *
      * @return string
      */
-     public function meta_tags()
+     public function metaTags()
      {
          $meta = Hanzo::getInstance()->getByNs('meta');
 
@@ -110,7 +137,7 @@ class MiscExtension extends Twig_Extension
      /**
       * Google analytics tag, will only be displayed if a key is found
       */
-     public function google_analytics_tag()
+     public function googleAnalyticsTag()
      {
             $google = Hanzo::getInstance()->getByNs('google');
             if (!empty($google['analytics_id'])) {
@@ -140,7 +167,7 @@ DOC;
       * - implement templating
       * - fix hardcoded id
       */
-     public function front_page_teasers()
+     public function frontPageTeasers()
      {
         $pages = CmsI18nQuery::create()
             ->useCmsQuery()
