@@ -17,6 +17,18 @@ class HanzoBoot
         if (isset($_SERVER['HTTP_X_DEVICE'])) {
             $device = $_SERVER['HTTP_X_DEVICE'];
         }
+        if (isset($_GET['_x_device']) && preg_match('/[a-z]+/i', $_GET['_x_device'])) {
+            $device = $_GET['_x_device'];
+        }
+
+        if (isset($_COOKIE['_x_device'])) {
+            if ($_COOKIE['_x_device'] != $device) {
+                $_COOKIE['_x_device'] = $device;
+            }
+        } else {
+            $_COOKIE['_x_device'] = $device;
+        }
+
         $attr->set('_x_device', $device);
     }
 }

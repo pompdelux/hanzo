@@ -29,6 +29,14 @@ class MiscExtension extends Twig_Extension
     }
 
 
+    public function getGlobals()
+    {
+        return array(
+            'layout' => $this->getLayout(),
+        );
+    }
+
+
     public function getFunctions()
     {
         return array(
@@ -37,7 +45,6 @@ class MiscExtension extends Twig_Extension
             'meta_tags' => new Twig_Function_Method($this, 'meta_tags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'google_analytics_tag' => new Twig_Function_Method($this, 'google_analytics_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'front_page_teasers' => new Twig_Function_Method($this, 'front_page_teasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'get_layout' => new Twig_Function_Method($this, 'get_layout'),
         );
     }
 
@@ -46,6 +53,14 @@ class MiscExtension extends Twig_Extension
             'money' => new Twig_Filter_Method($this, 'hanzo_money_format'),
         );
     }
+
+    public function getLayout()
+    {
+        $hanzo = Hanzo::getInstance();
+        $device = $hanzo->container->get('request')->attributes->get('_x_device');
+        return '::base.html.twig';
+    }
+
 
     /**
      * @see Hanzo\Core\Tools\Tools::moneyFormat
@@ -150,11 +165,5 @@ DOC;
         }
 
         return ob_get_clean();
-     }
-
-
-     public static function get_layout()
-     {
-        return '::base.html.twig';
      }
 }
