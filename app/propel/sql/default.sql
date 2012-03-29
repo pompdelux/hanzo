@@ -690,6 +690,9 @@ CREATE TABLE `orders`
 	`finished_at` DATETIME,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
+	`version` INTEGER DEFAULT 0,
+	`version_created_at` DATETIME,
+	`version_comment` VARCHAR(255),
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `index2` (`session_id`),
 	UNIQUE INDEX `index3` (`payment_gateway_id`),
@@ -718,6 +721,7 @@ CREATE TABLE `orders_attributes`
 	`ns` VARCHAR(64) NOT NULL,
 	`c_key` VARCHAR(64) NOT NULL,
 	`c_value` VARCHAR(255),
+	`version` INTEGER DEFAULT 0,
 	PRIMARY KEY (`orders_id`,`ns`,`c_key`),
 	CONSTRAINT `orders_attributes_FK_1`
 		FOREIGN KEY (`orders_id`)
@@ -745,6 +749,7 @@ CREATE TABLE `orders_lines`
 	`expected_at` DATE DEFAULT '1970-01-01',
 	`price` DECIMAL(15,4),
 	`quantity` INTEGER,
+	`version` INTEGER DEFAULT 0,
 	PRIMARY KEY (`id`),
 	INDEX `FI_orders_lines_1` (`orders_id`),
 	INDEX `FI_orders_lines_2` (`products_id`),
@@ -770,6 +775,7 @@ CREATE TABLE `orders_state_log`
 	`state` INTEGER NOT NULL,
 	`created_at` DATETIME NOT NULL,
 	`message` VARCHAR(128) NOT NULL,
+	`version` INTEGER DEFAULT 0,
 	PRIMARY KEY (`orders_id`,`state`,`created_at`),
 	CONSTRAINT `orders_state_log_FK_1`
 		FOREIGN KEY (`orders_id`)
@@ -959,6 +965,138 @@ CREATE TABLE `messages_i18n`
 	CONSTRAINT `messages_i18n_FK_1`
 		FOREIGN KEY (`id`)
 		REFERENCES `messages` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_version
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_version`;
+
+CREATE TABLE `orders_version`
+(
+	`id` INTEGER NOT NULL,
+	`session_id` VARCHAR(32) NOT NULL,
+	`payment_gateway_id` INTEGER,
+	`state` INTEGER DEFAULT -50 NOT NULL,
+	`in_edit` TINYINT(1) DEFAULT 0 NOT NULL,
+	`customers_id` INTEGER,
+	`first_name` VARCHAR(128),
+	`last_name` VARCHAR(128),
+	`email` VARCHAR(255),
+	`phone` VARCHAR(32),
+	`languages_id` INTEGER NOT NULL,
+	`currency_id` INTEGER NOT NULL,
+	`billing_first_name` VARCHAR(128) NOT NULL,
+	`billing_last_name` VARCHAR(128) NOT NULL,
+	`billing_address_line_1` VARCHAR(255),
+	`billing_address_line_2` VARCHAR(255),
+	`billing_postal_code` VARCHAR(12),
+	`billing_city` VARCHAR(64),
+	`billing_country` VARCHAR(128),
+	`billing_countries_id` INTEGER,
+	`billing_state_province` VARCHAR(64),
+	`billing_company_name` VARCHAR(128),
+	`billing_method` VARCHAR(64),
+	`delivery_first_name` VARCHAR(128) NOT NULL,
+	`delivery_last_name` VARCHAR(128) NOT NULL,
+	`delivery_address_line_1` VARCHAR(255),
+	`delivery_address_line_2` VARCHAR(255),
+	`delivery_postal_code` VARCHAR(12),
+	`delivery_city` VARCHAR(64),
+	`delivery_country` VARCHAR(128),
+	`delivery_countries_id` INTEGER,
+	`delivery_state_province` VARCHAR(64),
+	`delivery_company_name` VARCHAR(128),
+	`delivery_method` VARCHAR(64),
+	`finished_at` DATETIME,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	`version` INTEGER DEFAULT 0 NOT NULL,
+	`version_created_at` DATETIME,
+	`version_comment` VARCHAR(255),
+	`orders_attributes_ids` TEXT,
+	`orders_attributes_versions` TEXT,
+	`orders_lines_ids` TEXT,
+	`orders_lines_versions` TEXT,
+	`orders_state_log_ids` TEXT,
+	`orders_state_log_versions` TEXT,
+	PRIMARY KEY (`id`,`version`),
+	CONSTRAINT `orders_version_FK_1`
+		FOREIGN KEY (`id`)
+		REFERENCES `orders` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_attributes_version
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_attributes_version`;
+
+CREATE TABLE `orders_attributes_version`
+(
+	`orders_id` INTEGER NOT NULL,
+	`ns` VARCHAR(64) NOT NULL,
+	`c_key` VARCHAR(64) NOT NULL,
+	`c_value` VARCHAR(255),
+	`version` INTEGER DEFAULT 0 NOT NULL,
+	`orders_id_version` INTEGER DEFAULT 0,
+	PRIMARY KEY (`orders_id`,`ns`,`c_key`,`version`),
+	CONSTRAINT `orders_attributes_version_FK_1`
+		FOREIGN KEY (`orders_id`,`ns`,`c_key`)
+		REFERENCES `orders_attributes` (`orders_id`,`ns`,`c_key`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_lines_version
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_lines_version`;
+
+CREATE TABLE `orders_lines_version`
+(
+	`id` INTEGER NOT NULL,
+	`orders_id` INTEGER NOT NULL,
+	`type` VARCHAR(12) NOT NULL,
+	`tax` DECIMAL(4,2) DEFAULT 0.00,
+	`products_id` INTEGER,
+	`products_sku` VARCHAR(255),
+	`products_name` VARCHAR(255) NOT NULL,
+	`products_color` VARCHAR(128),
+	`products_size` VARCHAR(32),
+	`expected_at` DATE DEFAULT '1970-01-01',
+	`price` DECIMAL(15,4),
+	`quantity` INTEGER,
+	`version` INTEGER DEFAULT 0 NOT NULL,
+	`orders_id_version` INTEGER DEFAULT 0,
+	PRIMARY KEY (`id`,`version`),
+	CONSTRAINT `orders_lines_version_FK_1`
+		FOREIGN KEY (`id`)
+		REFERENCES `orders_lines` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_state_log_version
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_state_log_version`;
+
+CREATE TABLE `orders_state_log_version`
+(
+	`orders_id` INTEGER NOT NULL,
+	`state` INTEGER NOT NULL,
+	`created_at` DATETIME NOT NULL,
+	`message` VARCHAR(128) NOT NULL,
+	`version` INTEGER DEFAULT 0 NOT NULL,
+	`orders_id_version` INTEGER DEFAULT 0,
+	PRIMARY KEY (`orders_id`,`state`,`created_at`,`version`),
+	CONSTRAINT `orders_state_log_version_FK_1`
+		FOREIGN KEY (`orders_id`,`state`,`created_at`)
+		REFERENCES `orders_state_log` (`orders_id`,`state`,`created_at`)
 		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 

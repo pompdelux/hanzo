@@ -79,6 +79,9 @@ class OrdersTableMap extends TableMap
 		$this->addColumn('FINISHED_AT', 'FinishedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+		$this->addColumn('VERSION', 'Version', 'INTEGER', false, null, 0);
+		$this->addColumn('VERSION_CREATED_AT', 'VersionCreatedAt', 'TIMESTAMP', false, null, null);
+		$this->addColumn('VERSION_COMMENT', 'VersionComment', 'VARCHAR', false, 255, null);
 		// validators
 	} // initialize()
 
@@ -93,6 +96,7 @@ class OrdersTableMap extends TableMap
 		$this->addRelation('OrdersLines', 'Hanzo\\Model\\OrdersLines', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersLiness');
 		$this->addRelation('OrdersStateLog', 'Hanzo\\Model\\OrdersStateLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersStateLogs');
 		$this->addRelation('OrdersSyncLog', 'Hanzo\\Model\\OrdersSyncLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersSyncLogs');
+		$this->addRelation('OrdersVersion', 'Hanzo\\Model\\OrdersVersion', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'OrdersVersions');
 	} // buildRelations()
 
 	/**
@@ -105,6 +109,7 @@ class OrdersTableMap extends TableMap
 	{
 		return array(
 			'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', ),
+			'versionable' => array('version_column' => 'version', 'version_table' => '', 'log_created_at' => 'true', 'log_created_by' => 'false', 'log_comment' => 'true', 'version_created_at_column' => 'version_created_at', 'version_created_by_column' => 'version_created_by', 'version_comment_column' => 'version_comment', ),
 		);
 	} // getBehaviors()
 

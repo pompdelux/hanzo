@@ -14,6 +14,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\OrdersStateLogQuery;
+use Hanzo\Model\OrdersStateLogVersion;
 
 /**
  * Base class that represents a query for the 'orders_state_log' table.
@@ -24,11 +25,13 @@ use Hanzo\Model\OrdersStateLogQuery;
  * @method     OrdersStateLogQuery orderByState($order = Criteria::ASC) Order by the state column
  * @method     OrdersStateLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     OrdersStateLogQuery orderByMessage($order = Criteria::ASC) Order by the message column
+ * @method     OrdersStateLogQuery orderByVersion($order = Criteria::ASC) Order by the version column
  *
  * @method     OrdersStateLogQuery groupByOrdersId() Group by the orders_id column
  * @method     OrdersStateLogQuery groupByState() Group by the state column
  * @method     OrdersStateLogQuery groupByCreatedAt() Group by the created_at column
  * @method     OrdersStateLogQuery groupByMessage() Group by the message column
+ * @method     OrdersStateLogQuery groupByVersion() Group by the version column
  *
  * @method     OrdersStateLogQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     OrdersStateLogQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -38,6 +41,10 @@ use Hanzo\Model\OrdersStateLogQuery;
  * @method     OrdersStateLogQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
  * @method     OrdersStateLogQuery innerJoinOrders($relationAlias = null) Adds a INNER JOIN clause to the query using the Orders relation
  *
+ * @method     OrdersStateLogQuery leftJoinOrdersStateLogVersion($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersStateLogVersion relation
+ * @method     OrdersStateLogQuery rightJoinOrdersStateLogVersion($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersStateLogVersion relation
+ * @method     OrdersStateLogQuery innerJoinOrdersStateLogVersion($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersStateLogVersion relation
+ *
  * @method     OrdersStateLog findOne(PropelPDO $con = null) Return the first OrdersStateLog matching the query
  * @method     OrdersStateLog findOneOrCreate(PropelPDO $con = null) Return the first OrdersStateLog matching the query, or a new OrdersStateLog object populated from the query conditions when no match is found
  *
@@ -45,11 +52,13 @@ use Hanzo\Model\OrdersStateLogQuery;
  * @method     OrdersStateLog findOneByState(int $state) Return the first OrdersStateLog filtered by the state column
  * @method     OrdersStateLog findOneByCreatedAt(string $created_at) Return the first OrdersStateLog filtered by the created_at column
  * @method     OrdersStateLog findOneByMessage(string $message) Return the first OrdersStateLog filtered by the message column
+ * @method     OrdersStateLog findOneByVersion(int $version) Return the first OrdersStateLog filtered by the version column
  *
  * @method     array findByOrdersId(int $orders_id) Return OrdersStateLog objects filtered by the orders_id column
  * @method     array findByState(int $state) Return OrdersStateLog objects filtered by the state column
  * @method     array findByCreatedAt(string $created_at) Return OrdersStateLog objects filtered by the created_at column
  * @method     array findByMessage(string $message) Return OrdersStateLog objects filtered by the message column
+ * @method     array findByVersion(int $version) Return OrdersStateLog objects filtered by the version column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -138,7 +147,7 @@ abstract class BaseOrdersStateLogQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ORDERS_ID`, `STATE`, `CREATED_AT`, `MESSAGE` FROM `orders_state_log` WHERE `ORDERS_ID` = :p0 AND `STATE` = :p1 AND `CREATED_AT` = :p2';
+		$sql = 'SELECT `ORDERS_ID`, `STATE`, `CREATED_AT`, `MESSAGE`, `VERSION` FROM `orders_state_log` WHERE `ORDERS_ID` = :p0 AND `STATE` = :p1 AND `CREATED_AT` = :p2';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -366,6 +375,46 @@ abstract class BaseOrdersStateLogQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query on the version column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByVersion(1234); // WHERE version = 1234
+	 * $query->filterByVersion(array(12, 34)); // WHERE version IN (12, 34)
+	 * $query->filterByVersion(array('min' => 12)); // WHERE version > 12
+	 * </code>
+	 *
+	 * @param     mixed $version The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
+	 */
+	public function filterByVersion($version = null, $comparison = null)
+	{
+		if (is_array($version)) {
+			$useMinMax = false;
+			if (isset($version['min'])) {
+				$this->addUsingAlias(OrdersStateLogPeer::VERSION, $version['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($version['max'])) {
+				$this->addUsingAlias(OrdersStateLogPeer::VERSION, $version['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(OrdersStateLogPeer::VERSION, $version, $comparison);
+	}
+
+	/**
 	 * Filter the query by a related Orders object
 	 *
 	 * @param     Orders|PropelCollection $orders The related object(s) to use as filter
@@ -437,6 +486,76 @@ abstract class BaseOrdersStateLogQuery extends ModelCriteria
 		return $this
 			->joinOrders($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'Orders', '\Hanzo\Model\OrdersQuery');
+	}
+
+	/**
+	 * Filter the query by a related OrdersStateLogVersion object
+	 *
+	 * @param     OrdersStateLogVersion $ordersStateLogVersion  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
+	 */
+	public function filterByOrdersStateLogVersion($ordersStateLogVersion, $comparison = null)
+	{
+		if ($ordersStateLogVersion instanceof OrdersStateLogVersion) {
+			return $this
+				->addUsingAlias(OrdersStateLogPeer::ORDERS_ID, $ordersStateLogVersion->getOrdersId(), $comparison)
+				->addUsingAlias(OrdersStateLogPeer::STATE, $ordersStateLogVersion->getState(), $comparison)
+				->addUsingAlias(OrdersStateLogPeer::CREATED_AT, $ordersStateLogVersion->getCreatedAt(), $comparison);
+		} else {
+			throw new PropelException('filterByOrdersStateLogVersion() only accepts arguments of type OrdersStateLogVersion');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the OrdersStateLogVersion relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    OrdersStateLogQuery The current query, for fluid interface
+	 */
+	public function joinOrdersStateLogVersion($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('OrdersStateLogVersion');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'OrdersStateLogVersion');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the OrdersStateLogVersion relation OrdersStateLogVersion object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\OrdersStateLogVersionQuery A secondary query class using the current class as primary query
+	 */
+	public function useOrdersStateLogVersionQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinOrdersStateLogVersion($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'OrdersStateLogVersion', '\Hanzo\Model\OrdersStateLogVersionQuery');
 	}
 
 	/**

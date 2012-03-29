@@ -46,6 +46,7 @@ class OrdersAttributesTableMap extends TableMap
 		$this->addPrimaryKey('NS', 'Ns', 'VARCHAR', true, 64, null);
 		$this->addPrimaryKey('C_KEY', 'CKey', 'VARCHAR', true, 64, null);
 		$this->addColumn('C_VALUE', 'CValue', 'VARCHAR', false, 255, null);
+		$this->addColumn('VERSION', 'Version', 'INTEGER', false, null, 0);
 		// validators
 	} // initialize()
 
@@ -55,6 +56,20 @@ class OrdersAttributesTableMap extends TableMap
 	public function buildRelations()
 	{
 		$this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::MANY_TO_ONE, array('orders_id' => 'id', ), 'CASCADE', null);
+		$this->addRelation('OrdersAttributesVersion', 'Hanzo\\Model\\OrdersAttributesVersion', RelationMap::ONE_TO_MANY, array('orders_id' => 'orders_id', 'ns' => 'ns', 'c_key' => 'c_key', ), 'CASCADE', null, 'OrdersAttributesVersions');
 	} // buildRelations()
+
+	/**
+	 *
+	 * Gets the list of behaviors registered for this table
+	 *
+	 * @return array Associative array (name => parameters) of behaviors
+	 */
+	public function getBehaviors()
+	{
+		return array(
+			'versionable' => array('version_column' => 'version', 'version_table' => '', 'log_created_at' => 'false', 'log_created_by' => 'false', 'log_comment' => 'false', 'version_created_at_column' => 'version_created_at', 'version_created_by_column' => 'version_created_by', 'version_comment_column' => 'version_comment', ),
+		);
+	} // getBehaviors()
 
 } // OrdersAttributesTableMap

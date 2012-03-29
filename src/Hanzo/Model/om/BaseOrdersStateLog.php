@@ -20,6 +20,9 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\OrdersStateLogQuery;
+use Hanzo\Model\OrdersStateLogVersion;
+use Hanzo\Model\OrdersStateLogVersionQuery;
+use Hanzo\Model\OrdersVersionQuery;
 
 /**
  * Base class that represents a row from the 'orders_state_log' table.
@@ -75,9 +78,21 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 	protected $message;
 
 	/**
+	 * The value for the version field.
+	 * Note: this column has a database default value of: 0
+	 * @var        int
+	 */
+	protected $version;
+
+	/**
 	 * @var        Orders
 	 */
 	protected $aOrders;
+
+	/**
+	 * @var        array OrdersStateLogVersion[] Collection to store aggregation of OrdersStateLogVersion objects.
+	 */
+	protected $collOrdersStateLogVersions;
 
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
@@ -92,6 +107,33 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 	 * @var        boolean
 	 */
 	protected $alreadyInValidation = false;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $ordersStateLogVersionsScheduledForDeletion = null;
+
+	/**
+	 * Applies default values to this object.
+	 * This method should be called from the object's constructor (or
+	 * equivalent initialization method).
+	 * @see        __construct()
+	 */
+	public function applyDefaultValues()
+	{
+		$this->version = 0;
+	}
+
+	/**
+	 * Initializes internal state of BaseOrdersStateLog object.
+	 * @see        applyDefaults()
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->applyDefaultValues();
+	}
 
 	/**
 	 * Get the [orders_id] column value.
@@ -159,6 +201,16 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 	public function getMessage()
 	{
 		return $this->message;
+	}
+
+	/**
+	 * Get the [version] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getVersion()
+	{
+		return $this->version;
 	}
 
 	/**
@@ -248,6 +300,26 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 	} // setMessage()
 
 	/**
+	 * Set the value of [version] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     OrdersStateLog The current object (for fluent API support)
+	 */
+	public function setVersion($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->version !== $v) {
+			$this->version = $v;
+			$this->modifiedColumns[] = OrdersStateLogPeer::VERSION;
+		}
+
+		return $this;
+	} // setVersion()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -257,6 +329,10 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
+			if ($this->version !== 0) {
+				return false;
+			}
+
 		// otherwise, everything was equal, so return TRUE
 		return true;
 	} // hasOnlyDefaultValues()
@@ -283,6 +359,7 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 			$this->state = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->created_at = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->message = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->version = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -291,7 +368,7 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 4; // 4 = OrdersStateLogPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 5; // 5 = OrdersStateLogPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating OrdersStateLog object", $e);
@@ -357,6 +434,8 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		if ($deep) {  // also de-associate any related objects?
 
 			$this->aOrders = null;
+			$this->collOrdersStateLogVersions = null;
+
 		} // if (deep)
 	}
 
@@ -425,6 +504,11 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		$isInsert = $this->isNew();
 		try {
 			$ret = $this->preSave($con);
+			// versionable behavior
+			if ($this->isVersioningNecessary()) {
+				$this->setVersion($this->isNew() ? 1 : $this->getLastVersionNumber($con) + 1);
+				$createVersion = true; // for postSave hook
+			}
 			if ($isInsert) {
 				$ret = $ret && $this->preInsert($con);
 			} else {
@@ -438,6 +522,10 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 					$this->postUpdate($con);
 				}
 				$this->postSave($con);
+				// versionable behavior
+				if (isset($createVersion)) {
+					$this->addVersion($con);
+				}
 				OrdersStateLogPeer::addInstanceToPool($this);
 			} else {
 				$affectedRows = 0;
@@ -490,6 +578,23 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 				$this->resetModified();
 			}
 
+			if ($this->ordersStateLogVersionsScheduledForDeletion !== null) {
+				if (!$this->ordersStateLogVersionsScheduledForDeletion->isEmpty()) {
+					OrdersStateLogVersionQuery::create()
+						->filterByPrimaryKeys($this->ordersStateLogVersionsScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->ordersStateLogVersionsScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collOrdersStateLogVersions !== null) {
+				foreach ($this->collOrdersStateLogVersions as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 
 		}
@@ -523,6 +628,9 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersStateLogPeer::MESSAGE)) {
 			$modifiedColumns[':p' . $index++]  = '`MESSAGE`';
 		}
+		if ($this->isColumnModified(OrdersStateLogPeer::VERSION)) {
+			$modifiedColumns[':p' . $index++]  = '`VERSION`';
+		}
 
 		$sql = sprintf(
 			'INSERT INTO `orders_state_log` (%s) VALUES (%s)',
@@ -545,6 +653,9 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 						break;
 					case '`MESSAGE`':
 						$stmt->bindValue($identifier, $this->message, PDO::PARAM_STR);
+						break;
+					case '`VERSION`':
+						$stmt->bindValue($identifier, $this->version, PDO::PARAM_INT);
 						break;
 				}
 			}
@@ -648,6 +759,14 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 			}
 
 
+				if ($this->collOrdersStateLogVersions !== null) {
+					foreach ($this->collOrdersStateLogVersions as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
 
 			$this->alreadyInValidation = false;
 		}
@@ -693,6 +812,9 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 			case 3:
 				return $this->getMessage();
 				break;
+			case 4:
+				return $this->getVersion();
+				break;
 			default:
 				return null;
 				break;
@@ -726,10 +848,14 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 			$keys[1] => $this->getState(),
 			$keys[2] => $this->getCreatedAt(),
 			$keys[3] => $this->getMessage(),
+			$keys[4] => $this->getVersion(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aOrders) {
 				$result['Orders'] = $this->aOrders->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+			}
+			if (null !== $this->collOrdersStateLogVersions) {
+				$result['OrdersStateLogVersions'] = $this->collOrdersStateLogVersions->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 		}
 		return $result;
@@ -774,6 +900,9 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 			case 3:
 				$this->setMessage($value);
 				break;
+			case 4:
+				$this->setVersion($value);
+				break;
 		} // switch()
 	}
 
@@ -802,6 +931,7 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		if (array_key_exists($keys[1], $arr)) $this->setState($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setCreatedAt($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setMessage($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setVersion($arr[$keys[4]]);
 	}
 
 	/**
@@ -817,6 +947,7 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersStateLogPeer::STATE)) $criteria->add(OrdersStateLogPeer::STATE, $this->state);
 		if ($this->isColumnModified(OrdersStateLogPeer::CREATED_AT)) $criteria->add(OrdersStateLogPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(OrdersStateLogPeer::MESSAGE)) $criteria->add(OrdersStateLogPeer::MESSAGE, $this->message);
+		if ($this->isColumnModified(OrdersStateLogPeer::VERSION)) $criteria->add(OrdersStateLogPeer::VERSION, $this->version);
 
 		return $criteria;
 	}
@@ -893,6 +1024,7 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		$copyObj->setState($this->getState());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setMessage($this->getMessage());
+		$copyObj->setVersion($this->getVersion());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -900,6 +1032,12 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 			$copyObj->setNew(false);
 			// store object hash to prevent cycle
 			$this->startCopy = true;
+
+			foreach ($this->getOrdersStateLogVersions() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addOrdersStateLogVersion($relObj->copy($deepCopy));
+				}
+			}
 
 			//unflag object copy
 			$this->startCopy = false;
@@ -997,6 +1135,170 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		return $this->aOrders;
 	}
 
+
+	/**
+	 * Initializes a collection based on the name of a relation.
+	 * Avoids crafting an 'init[$relationName]s' method name
+	 * that wouldn't work when StandardEnglishPluralizer is used.
+	 *
+	 * @param      string $relationName The name of the relation to initialize
+	 * @return     void
+	 */
+	public function initRelation($relationName)
+	{
+		if ('OrdersStateLogVersion' == $relationName) {
+			return $this->initOrdersStateLogVersions();
+		}
+	}
+
+	/**
+	 * Clears out the collOrdersStateLogVersions collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addOrdersStateLogVersions()
+	 */
+	public function clearOrdersStateLogVersions()
+	{
+		$this->collOrdersStateLogVersions = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collOrdersStateLogVersions collection.
+	 *
+	 * By default this just sets the collOrdersStateLogVersions collection to an empty array (like clearcollOrdersStateLogVersions());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initOrdersStateLogVersions($overrideExisting = true)
+	{
+		if (null !== $this->collOrdersStateLogVersions && !$overrideExisting) {
+			return;
+		}
+		$this->collOrdersStateLogVersions = new PropelObjectCollection();
+		$this->collOrdersStateLogVersions->setModel('OrdersStateLogVersion');
+	}
+
+	/**
+	 * Gets an array of OrdersStateLogVersion objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this OrdersStateLog is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array OrdersStateLogVersion[] List of OrdersStateLogVersion objects
+	 * @throws     PropelException
+	 */
+	public function getOrdersStateLogVersions($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collOrdersStateLogVersions || null !== $criteria) {
+			if ($this->isNew() && null === $this->collOrdersStateLogVersions) {
+				// return empty collection
+				$this->initOrdersStateLogVersions();
+			} else {
+				$collOrdersStateLogVersions = OrdersStateLogVersionQuery::create(null, $criteria)
+					->filterByOrdersStateLog($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collOrdersStateLogVersions;
+				}
+				$this->collOrdersStateLogVersions = $collOrdersStateLogVersions;
+			}
+		}
+		return $this->collOrdersStateLogVersions;
+	}
+
+	/**
+	 * Sets a collection of OrdersStateLogVersion objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $ordersStateLogVersions A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setOrdersStateLogVersions(PropelCollection $ordersStateLogVersions, PropelPDO $con = null)
+	{
+		$this->ordersStateLogVersionsScheduledForDeletion = $this->getOrdersStateLogVersions(new Criteria(), $con)->diff($ordersStateLogVersions);
+
+		foreach ($ordersStateLogVersions as $ordersStateLogVersion) {
+			// Fix issue with collection modified by reference
+			if ($ordersStateLogVersion->isNew()) {
+				$ordersStateLogVersion->setOrdersStateLog($this);
+			}
+			$this->addOrdersStateLogVersion($ordersStateLogVersion);
+		}
+
+		$this->collOrdersStateLogVersions = $ordersStateLogVersions;
+	}
+
+	/**
+	 * Returns the number of related OrdersStateLogVersion objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related OrdersStateLogVersion objects.
+	 * @throws     PropelException
+	 */
+	public function countOrdersStateLogVersions(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collOrdersStateLogVersions || null !== $criteria) {
+			if ($this->isNew() && null === $this->collOrdersStateLogVersions) {
+				return 0;
+			} else {
+				$query = OrdersStateLogVersionQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByOrdersStateLog($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collOrdersStateLogVersions);
+		}
+	}
+
+	/**
+	 * Method called to associate a OrdersStateLogVersion object to this object
+	 * through the OrdersStateLogVersion foreign key attribute.
+	 *
+	 * @param      OrdersStateLogVersion $l OrdersStateLogVersion
+	 * @return     OrdersStateLog The current object (for fluent API support)
+	 */
+	public function addOrdersStateLogVersion(OrdersStateLogVersion $l)
+	{
+		if ($this->collOrdersStateLogVersions === null) {
+			$this->initOrdersStateLogVersions();
+		}
+		if (!$this->collOrdersStateLogVersions->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddOrdersStateLogVersion($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	OrdersStateLogVersion $ordersStateLogVersion The ordersStateLogVersion object to add.
+	 */
+	protected function doAddOrdersStateLogVersion($ordersStateLogVersion)
+	{
+		$this->collOrdersStateLogVersions[]= $ordersStateLogVersion;
+		$ordersStateLogVersion->setOrdersStateLog($this);
+	}
+
 	/**
 	 * Clears the current object and sets all attributes to their default values
 	 */
@@ -1006,9 +1308,11 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 		$this->state = null;
 		$this->created_at = null;
 		$this->message = null;
+		$this->version = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
+		$this->applyDefaultValues();
 		$this->resetModified();
 		$this->setNew(true);
 		$this->setDeleted(false);
@@ -1026,8 +1330,17 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
+			if ($this->collOrdersStateLogVersions) {
+				foreach ($this->collOrdersStateLogVersions as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 		} // if ($deep)
 
+		if ($this->collOrdersStateLogVersions instanceof PropelCollection) {
+			$this->collOrdersStateLogVersions->clearIterator();
+		}
+		$this->collOrdersStateLogVersions = null;
 		$this->aOrders = null;
 	}
 
@@ -1039,6 +1352,214 @@ abstract class BaseOrdersStateLog extends BaseObject  implements Persistent
 	public function __toString()
 	{
 		return (string) $this->exportTo(OrdersStateLogPeer::DEFAULT_STRING_FORMAT);
+	}
+
+	// versionable behavior
+	
+	/**
+	 * Checks whether the current state must be recorded as a version
+	 *
+	 * @return  boolean
+	 */
+	public function isVersioningNecessary($con = null)
+	{
+		if ($this->alreadyInSave) {
+			return false;
+		}
+		if (OrdersStateLogPeer::isVersioningEnabled() && ($this->isNew() || $this->isModified())) {
+			return true;
+		}
+		if ($this->getOrders($con)->isVersioningNecessary($con)) {
+			return true;
+		}
+	
+		return false;
+	}
+	
+	/**
+	 * Creates a version of the current object and saves it.
+	 *
+	 * @param   PropelPDO $con the connection to use
+	 *
+	 * @return  OrdersStateLogVersion A version object
+	 */
+	public function addVersion($con = null)
+	{
+		$version = new OrdersStateLogVersion();
+		$version->setOrdersId($this->getOrdersId());
+		$version->setState($this->getState());
+		$version->setCreatedAt($this->getCreatedAt());
+		$version->setMessage($this->getMessage());
+		$version->setVersion($this->getVersion());
+		$version->setOrdersStateLog($this);
+		if (($related = $this->getOrders($con)) && $related->getVersion()) {
+			$version->setOrdersIdVersion($related->getVersion());
+		}
+		$version->save($con);
+	
+		return $version;
+	}
+	
+	/**
+	 * Sets the properties of the curent object to the value they had at a specific version
+	 *
+	 * @param   integer $versionNumber The version number to read
+	 * @param   PropelPDO $con the connection to use
+	 *
+	 * @return  OrdersStateLog The current object (for fluent API support)
+	 */
+	public function toVersion($versionNumber, $con = null)
+	{
+		$version = $this->getOneVersion($versionNumber, $con);
+		if (!$version) {
+			throw new PropelException(sprintf('No OrdersStateLog object found with version %d', $version));
+		}
+		$this->populateFromVersion($version, $con);
+	
+		return $this;
+	}
+	
+	/**
+	 * Sets the properties of the curent object to the value they had at a specific version
+	 *
+	 * @param   OrdersStateLogVersion $version The version object to use
+	 * @param   PropelPDO $con the connection to use
+	 * @param   array $loadedObjects objects thats been loaded in a chain of populateFromVersion calls on referrer or fk objects.
+	 *
+	 * @return  OrdersStateLog The current object (for fluent API support)
+	 */
+	public function populateFromVersion($version, $con = null, &$loadedObjects = array())
+	{
+	
+		$loadedObjects['OrdersStateLog'][$version->getOrdersId()][$version->getVersion()] = $this;
+		$this->setOrdersId($version->getOrdersId());
+		$this->setState($version->getState());
+		$this->setCreatedAt($version->getCreatedAt());
+		$this->setMessage($version->getMessage());
+		$this->setVersion($version->getVersion());
+		if ($fkValue = $version->getOrdersId()) {
+			if (isset($loadedObjects['Orders']) && isset($loadedObjects['Orders'][$fkValue]) && isset($loadedObjects['Orders'][$fkValue][$version->getOrdersIdVersion()])) {
+				$related = $loadedObjects['Orders'][$fkValue][$version->getOrdersIdVersion()];
+			} else {
+				$related = new Orders();
+				$relatedVersion = OrdersVersionQuery::create()
+					->filterById($fkValue)
+					->filterByVersion($version->getOrdersIdVersion())
+					->findOne($con);
+				$related->populateFromVersion($relatedVersion, $con, $loadedObjects);
+				$related->setNew(false);
+			}
+			$this->setOrders($related);
+		}
+		return $this;
+	}
+	
+	/**
+	 * Gets the latest persisted version number for the current object
+	 *
+	 * @param   PropelPDO $con the connection to use
+	 *
+	 * @return  integer
+	 */
+	public function getLastVersionNumber($con = null)
+	{
+		$v = OrdersStateLogVersionQuery::create()
+			->filterByOrdersStateLog($this)
+			->orderByVersion('desc')
+			->findOne($con);
+		if (!$v) {
+			return 0;
+		}
+		return $v->getVersion();
+	}
+	
+	/**
+	 * Checks whether the current object is the latest one
+	 *
+	 * @param   PropelPDO $con the connection to use
+	 *
+	 * @return  Boolean
+	 */
+	public function isLastVersion($con = null)
+	{
+		return $this->getLastVersionNumber($con) == $this->getVersion();
+	}
+	
+	/**
+	 * Retrieves a version object for this entity and a version number
+	 *
+	 * @param   integer $versionNumber The version number to read
+	 * @param   PropelPDO $con the connection to use
+	 *
+	 * @return  OrdersStateLogVersion A version object
+	 */
+	public function getOneVersion($versionNumber, $con = null)
+	{
+		return OrdersStateLogVersionQuery::create()
+			->filterByOrdersStateLog($this)
+			->filterByVersion($versionNumber)
+			->findOne($con);
+	}
+	
+	/**
+	 * Gets all the versions of this object, in incremental order
+	 *
+	 * @param   PropelPDO $con the connection to use
+	 *
+	 * @return  PropelObjectCollection A list of OrdersStateLogVersion objects
+	 */
+	public function getAllVersions($con = null)
+	{
+		$criteria = new Criteria();
+		$criteria->addAscendingOrderByColumn(OrdersStateLogVersionPeer::VERSION);
+		return $this->getOrdersStateLogVersions($criteria, $con);
+	}
+	
+	/**
+	 * Gets all the versions of this object, in incremental order.
+	 * <code>
+	 * print_r($book->compare(1, 2));
+	 * => array(
+	 *   '1' => array('Title' => 'Book title at version 1'),
+	 *   '2' => array('Title' => 'Book title at version 2')
+	 * );
+	 * </code>
+	 *
+	 * @param   integer   $fromVersionNumber
+	 * @param   integer   $toVersionNumber
+	 * @param   string    $keys Main key used for the result diff (versions|columns)
+	 * @param   PropelPDO $con the connection to use
+	 *
+	 * @return  array A list of differences
+	 */
+	public function compareVersions($fromVersionNumber, $toVersionNumber, $keys = 'columns', $con = null)
+	{
+		$fromVersion = $this->getOneVersion($fromVersionNumber, $con)->toArray();
+		$toVersion = $this->getOneVersion($toVersionNumber, $con)->toArray();
+		$ignoredColumns = array(
+			'Version',
+		);
+		$diff = array();
+		foreach ($fromVersion as $key => $value) {
+			if (in_array($key, $ignoredColumns)) {
+				continue;
+			}
+			if ($toVersion[$key] != $value) {
+				switch ($keys) {
+					case 'versions':
+						$diff[$fromVersionNumber][$key] = $value;
+						$diff[$toVersionNumber][$key] = $toVersion[$key];
+						break;
+					default:
+						$diff[$key] = array(
+							$fromVersionNumber => $value,
+							$toVersionNumber => $toVersion[$key],
+						);
+						break;
+				}
+			}
+		}
+		return $diff;
 	}
 
 } // BaseOrdersStateLog

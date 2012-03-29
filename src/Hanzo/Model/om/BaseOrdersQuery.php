@@ -18,6 +18,7 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersSyncLog;
+use Hanzo\Model\OrdersVersion;
 
 /**
  * Base class that represents a query for the 'orders' table.
@@ -61,6 +62,9 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery orderByFinishedAt($order = Criteria::ASC) Order by the finished_at column
  * @method     OrdersQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     OrdersQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
+ * @method     OrdersQuery orderByVersion($order = Criteria::ASC) Order by the version column
+ * @method     OrdersQuery orderByVersionCreatedAt($order = Criteria::ASC) Order by the version_created_at column
+ * @method     OrdersQuery orderByVersionComment($order = Criteria::ASC) Order by the version_comment column
  *
  * @method     OrdersQuery groupById() Group by the id column
  * @method     OrdersQuery groupBySessionId() Group by the session_id column
@@ -99,6 +103,9 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery groupByFinishedAt() Group by the finished_at column
  * @method     OrdersQuery groupByCreatedAt() Group by the created_at column
  * @method     OrdersQuery groupByUpdatedAt() Group by the updated_at column
+ * @method     OrdersQuery groupByVersion() Group by the version column
+ * @method     OrdersQuery groupByVersionCreatedAt() Group by the version_created_at column
+ * @method     OrdersQuery groupByVersionComment() Group by the version_comment column
  *
  * @method     OrdersQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     OrdersQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -127,6 +134,10 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery leftJoinOrdersSyncLog($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersSyncLog relation
  * @method     OrdersQuery rightJoinOrdersSyncLog($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersSyncLog relation
  * @method     OrdersQuery innerJoinOrdersSyncLog($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersSyncLog relation
+ *
+ * @method     OrdersQuery leftJoinOrdersVersion($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersVersion relation
+ * @method     OrdersQuery rightJoinOrdersVersion($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersVersion relation
+ * @method     OrdersQuery innerJoinOrdersVersion($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersVersion relation
  *
  * @method     Orders findOne(PropelPDO $con = null) Return the first Orders matching the query
  * @method     Orders findOneOrCreate(PropelPDO $con = null) Return the first Orders matching the query, or a new Orders object populated from the query conditions when no match is found
@@ -168,6 +179,9 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     Orders findOneByFinishedAt(string $finished_at) Return the first Orders filtered by the finished_at column
  * @method     Orders findOneByCreatedAt(string $created_at) Return the first Orders filtered by the created_at column
  * @method     Orders findOneByUpdatedAt(string $updated_at) Return the first Orders filtered by the updated_at column
+ * @method     Orders findOneByVersion(int $version) Return the first Orders filtered by the version column
+ * @method     Orders findOneByVersionCreatedAt(string $version_created_at) Return the first Orders filtered by the version_created_at column
+ * @method     Orders findOneByVersionComment(string $version_comment) Return the first Orders filtered by the version_comment column
  *
  * @method     array findById(int $id) Return Orders objects filtered by the id column
  * @method     array findBySessionId(string $session_id) Return Orders objects filtered by the session_id column
@@ -206,6 +220,9 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     array findByFinishedAt(string $finished_at) Return Orders objects filtered by the finished_at column
  * @method     array findByCreatedAt(string $created_at) Return Orders objects filtered by the created_at column
  * @method     array findByUpdatedAt(string $updated_at) Return Orders objects filtered by the updated_at column
+ * @method     array findByVersion(int $version) Return Orders objects filtered by the version column
+ * @method     array findByVersionCreatedAt(string $version_created_at) Return Orders objects filtered by the version_created_at column
+ * @method     array findByVersionComment(string $version_comment) Return Orders objects filtered by the version_comment column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -294,7 +311,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `IN_EDIT`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_ID`, `BILLING_FIRST_NAME`, `BILLING_LAST_NAME`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_COMPANY_NAME`, `BILLING_METHOD`, `DELIVERY_FIRST_NAME`, `DELIVERY_LAST_NAME`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `IN_EDIT`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_ID`, `BILLING_FIRST_NAME`, `BILLING_LAST_NAME`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_COMPANY_NAME`, `BILLING_METHOD`, `DELIVERY_FIRST_NAME`, `DELIVERY_LAST_NAME`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT`, `VERSION`, `VERSION_CREATED_AT`, `VERSION_COMMENT` FROM `orders` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -1542,6 +1559,116 @@ abstract class BaseOrdersQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query on the version column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByVersion(1234); // WHERE version = 1234
+	 * $query->filterByVersion(array(12, 34)); // WHERE version IN (12, 34)
+	 * $query->filterByVersion(array('min' => 12)); // WHERE version > 12
+	 * </code>
+	 *
+	 * @param     mixed $version The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByVersion($version = null, $comparison = null)
+	{
+		if (is_array($version)) {
+			$useMinMax = false;
+			if (isset($version['min'])) {
+				$this->addUsingAlias(OrdersPeer::VERSION, $version['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($version['max'])) {
+				$this->addUsingAlias(OrdersPeer::VERSION, $version['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(OrdersPeer::VERSION, $version, $comparison);
+	}
+
+	/**
+	 * Filter the query on the version_created_at column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByVersionCreatedAt('2011-03-14'); // WHERE version_created_at = '2011-03-14'
+	 * $query->filterByVersionCreatedAt('now'); // WHERE version_created_at = '2011-03-14'
+	 * $query->filterByVersionCreatedAt(array('max' => 'yesterday')); // WHERE version_created_at > '2011-03-13'
+	 * </code>
+	 *
+	 * @param     mixed $versionCreatedAt The value to use as filter.
+	 *              Values can be integers (unix timestamps), DateTime objects, or strings.
+	 *              Empty strings are treated as NULL.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByVersionCreatedAt($versionCreatedAt = null, $comparison = null)
+	{
+		if (is_array($versionCreatedAt)) {
+			$useMinMax = false;
+			if (isset($versionCreatedAt['min'])) {
+				$this->addUsingAlias(OrdersPeer::VERSION_CREATED_AT, $versionCreatedAt['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($versionCreatedAt['max'])) {
+				$this->addUsingAlias(OrdersPeer::VERSION_CREATED_AT, $versionCreatedAt['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(OrdersPeer::VERSION_CREATED_AT, $versionCreatedAt, $comparison);
+	}
+
+	/**
+	 * Filter the query on the version_comment column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByVersionComment('fooValue');   // WHERE version_comment = 'fooValue'
+	 * $query->filterByVersionComment('%fooValue%'); // WHERE version_comment LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $versionComment The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByVersionComment($versionComment = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($versionComment)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $versionComment)) {
+				$versionComment = str_replace('*', '%', $versionComment);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(OrdersPeer::VERSION_COMMENT, $versionComment, $comparison);
+	}
+
+	/**
 	 * Filter the query by a related Countries object
 	 *
 	 * @param     Countries|PropelCollection $countries The related object(s) to use as filter
@@ -1979,6 +2106,79 @@ abstract class BaseOrdersQuery extends ModelCriteria
 		return $this
 			->joinOrdersSyncLog($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'OrdersSyncLog', '\Hanzo\Model\OrdersSyncLogQuery');
+	}
+
+	/**
+	 * Filter the query by a related OrdersVersion object
+	 *
+	 * @param     OrdersVersion $ordersVersion  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByOrdersVersion($ordersVersion, $comparison = null)
+	{
+		if ($ordersVersion instanceof OrdersVersion) {
+			return $this
+				->addUsingAlias(OrdersPeer::ID, $ordersVersion->getId(), $comparison);
+		} elseif ($ordersVersion instanceof PropelCollection) {
+			return $this
+				->useOrdersVersionQuery()
+				->filterByPrimaryKeys($ordersVersion->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByOrdersVersion() only accepts arguments of type OrdersVersion or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the OrdersVersion relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function joinOrdersVersion($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('OrdersVersion');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'OrdersVersion');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the OrdersVersion relation OrdersVersion object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\OrdersVersionQuery A secondary query class using the current class as primary query
+	 */
+	public function useOrdersVersionQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinOrdersVersion($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'OrdersVersion', '\Hanzo\Model\OrdersVersionQuery');
 	}
 
 	/**

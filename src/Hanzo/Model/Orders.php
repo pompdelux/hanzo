@@ -36,20 +36,48 @@ class Orders extends BaseOrders
      */
     const STATE_ERROR_PAYMENT   = -110;
     const STATE_ERROR           = -100;
-    const STATE_BUILDING        = -50;
-    const STATE_PRE_CONFIRM     = -30;
-    const STATE_PRE_PAYMENT     = -20;
-    const STATE_POST_PAYMENT    = 10;
-    const STATE_PAYMENT_OK      = 20;
-    const STATE_PENDING         = 30;
-    const STATE_BEING_PROCESSED = 40;
-    const STATE_SHIPPED         = 50;
+    const STATE_BUILDING        =  -50;
+    const STATE_PRE_CONFIRM     =  -30;
+    const STATE_PRE_PAYMENT     =  -20;
+    const STATE_POST_PAYMENT    =   10;
+    const STATE_PAYMENT_OK      =   20;
+    const STATE_PENDING         =   30;
+    const STATE_BEING_PROCESSED =   40;
+    const STATE_SHIPPED         =   50;
 
-    const TYPE_PRIVATE          = -1;
-    const TYPE_GIFT             = -2;
-    const TYPE_FRIEND           = -3;
-    const TYPE_OUTSIDE_EVENT    = -4;
+    const TYPE_PRIVATE          =  -1;
+    const TYPE_GIFT             =  -2;
+    const TYPE_FRIEND           =  -3;
+    const TYPE_OUTSIDE_EVENT    =  -4;
     const TYPE_NORMAL           = -10;
+
+
+    protected $new_version = false;
+
+
+    /**
+     * Call this if you need to create a new version of the order.
+     *
+     * @return object Orders
+     */
+    public function addNewVersion()
+    {
+        $this->new_version = true;
+
+        return $this;
+    }
+
+
+    /**
+     * Return wether or not to version an order
+     *
+     * @return boolean
+     */
+    public function isVersioningNecessary($con = null)
+    {
+        return ($this->new_version && parent::isVersioningNecessary());
+    }
+
 
     /**
      * set quantity on a product line in the current order

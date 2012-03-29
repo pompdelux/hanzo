@@ -11,6 +11,7 @@ use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesPeer;
+use Hanzo\Model\OrdersAttributesVersionPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\map\OrdersAttributesTableMap;
 
@@ -39,13 +40,13 @@ abstract class BaseOrdersAttributesPeer {
 	const TM_CLASS = 'OrdersAttributesTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 4;
+	const NUM_COLUMNS = 5;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 4;
+	const NUM_HYDRATE_COLUMNS = 5;
 
 	/** the column name for the ORDERS_ID field */
 	const ORDERS_ID = 'orders_attributes.ORDERS_ID';
@@ -59,6 +60,9 @@ abstract class BaseOrdersAttributesPeer {
 	/** the column name for the C_VALUE field */
 	const C_VALUE = 'orders_attributes.C_VALUE';
 
+	/** the column name for the VERSION field */
+	const VERSION = 'orders_attributes.VERSION';
+
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -71,6 +75,13 @@ abstract class BaseOrdersAttributesPeer {
 	public static $instances = array();
 
 
+	// versionable behavior
+	
+	/**
+	 * Whether the versioning is enabled
+	 */
+	static $isVersioningEnabled = true;
+
 	/**
 	 * holds an array of fieldnames
 	 *
@@ -78,12 +89,12 @@ abstract class BaseOrdersAttributesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'Ns', 'CKey', 'CValue', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'ns', 'cKey', 'cValue', ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::NS, self::C_KEY, self::C_VALUE, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'NS', 'C_KEY', 'C_VALUE', ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'ns', 'c_key', 'c_value', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'Ns', 'CKey', 'CValue', 'Version', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'ns', 'cKey', 'cValue', 'version', ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::NS, self::C_KEY, self::C_VALUE, self::VERSION, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'NS', 'C_KEY', 'C_VALUE', 'VERSION', ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'ns', 'c_key', 'c_value', 'version', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	/**
@@ -93,12 +104,12 @@ abstract class BaseOrdersAttributesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'Ns' => 1, 'CKey' => 2, 'CValue' => 3, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'ns' => 1, 'cKey' => 2, 'cValue' => 3, ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::NS => 1, self::C_KEY => 2, self::C_VALUE => 3, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'NS' => 1, 'C_KEY' => 2, 'C_VALUE' => 3, ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'ns' => 1, 'c_key' => 2, 'c_value' => 3, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'Ns' => 1, 'CKey' => 2, 'CValue' => 3, 'Version' => 4, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'ns' => 1, 'cKey' => 2, 'cValue' => 3, 'version' => 4, ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::NS => 1, self::C_KEY => 2, self::C_VALUE => 3, self::VERSION => 4, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'NS' => 1, 'C_KEY' => 2, 'C_VALUE' => 3, 'VERSION' => 4, ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'ns' => 1, 'c_key' => 2, 'c_value' => 3, 'version' => 4, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	/**
@@ -174,11 +185,13 @@ abstract class BaseOrdersAttributesPeer {
 			$criteria->addSelectColumn(OrdersAttributesPeer::NS);
 			$criteria->addSelectColumn(OrdersAttributesPeer::C_KEY);
 			$criteria->addSelectColumn(OrdersAttributesPeer::C_VALUE);
+			$criteria->addSelectColumn(OrdersAttributesPeer::VERSION);
 		} else {
 			$criteria->addSelectColumn($alias . '.ORDERS_ID');
 			$criteria->addSelectColumn($alias . '.NS');
 			$criteria->addSelectColumn($alias . '.C_KEY');
 			$criteria->addSelectColumn($alias . '.C_VALUE');
+			$criteria->addSelectColumn($alias . '.VERSION');
 		}
 	}
 
@@ -372,6 +385,9 @@ abstract class BaseOrdersAttributesPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
+		// Invalidate objects in OrdersAttributesVersionPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		OrdersAttributesVersionPeer::clearInstancePool();
 	}
 
 	/**
@@ -991,6 +1007,34 @@ abstract class BaseOrdersAttributesPeer {
 
 		return !empty($v) ? $v[0] : null;
 	}
+	// versionable behavior
+	
+	/**
+	 * Checks whether versioning is enabled
+	 *
+	 * @return boolean
+	 */
+	public static function isVersioningEnabled()
+	{
+		return self::$isVersioningEnabled;
+	}
+	
+	/**
+	 * Enables versioning
+	 */
+	public static function enableVersioning()
+	{
+		self::$isVersioningEnabled = true;
+	}
+	
+	/**
+	 * Disables versioning
+	 */
+	public static function disableVersioning()
+	{
+		self::$isVersioningEnabled = false;
+	}
+
 } // BaseOrdersAttributesPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.

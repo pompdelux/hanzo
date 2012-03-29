@@ -54,6 +54,7 @@ class OrdersLinesTableMap extends TableMap
 		$this->addColumn('EXPECTED_AT', 'ExpectedAt', 'DATE', false, null, '1970-01-01');
 		$this->addColumn('PRICE', 'Price', 'DECIMAL', false, 15, null);
 		$this->addColumn('QUANTITY', 'Quantity', 'INTEGER', false, null, null);
+		$this->addColumn('VERSION', 'Version', 'INTEGER', false, null, 0);
 		// validators
 	} // initialize()
 
@@ -64,6 +65,20 @@ class OrdersLinesTableMap extends TableMap
 	{
 		$this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::MANY_TO_ONE, array('orders_id' => 'id', ), 'CASCADE', null);
 		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), 'SET NULL', null);
+		$this->addRelation('OrdersLinesVersion', 'Hanzo\\Model\\OrdersLinesVersion', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'OrdersLinesVersions');
 	} // buildRelations()
+
+	/**
+	 *
+	 * Gets the list of behaviors registered for this table
+	 *
+	 * @return array Associative array (name => parameters) of behaviors
+	 */
+	public function getBehaviors()
+	{
+		return array(
+			'versionable' => array('version_column' => 'version', 'version_table' => '', 'log_created_at' => 'false', 'log_created_by' => 'false', 'log_comment' => 'false', 'version_created_at_column' => 'version_created_at', 'version_created_by_column' => 'version_created_by', 'version_comment_column' => 'version_comment', ),
+		);
+	} // getBehaviors()
 
 } // OrdersLinesTableMap
