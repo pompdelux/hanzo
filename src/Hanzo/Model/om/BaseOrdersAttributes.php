@@ -16,10 +16,7 @@ use \PropelPDO;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersAttributesQuery;
-use Hanzo\Model\OrdersAttributesVersion;
-use Hanzo\Model\OrdersAttributesVersionQuery;
 use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersVersionQuery;
 
 /**
  * Base class that represents a row from the 'orders_attributes' table.
@@ -75,21 +72,9 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	protected $c_value;
 
 	/**
-	 * The value for the version field.
-	 * Note: this column has a database default value of: 0
-	 * @var        int
-	 */
-	protected $version;
-
-	/**
 	 * @var        Orders
 	 */
 	protected $aOrders;
-
-	/**
-	 * @var        array OrdersAttributesVersion[] Collection to store aggregation of OrdersAttributesVersion objects.
-	 */
-	protected $collOrdersAttributesVersions;
 
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
@@ -104,33 +89,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 * @var        boolean
 	 */
 	protected $alreadyInValidation = false;
-
-	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $ordersAttributesVersionsScheduledForDeletion = null;
-
-	/**
-	 * Applies default values to this object.
-	 * This method should be called from the object's constructor (or
-	 * equivalent initialization method).
-	 * @see        __construct()
-	 */
-	public function applyDefaultValues()
-	{
-		$this->version = 0;
-	}
-
-	/**
-	 * Initializes internal state of BaseOrdersAttributes object.
-	 * @see        applyDefaults()
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->applyDefaultValues();
-	}
 
 	/**
 	 * Get the [orders_id] column value.
@@ -170,16 +128,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	public function getCValue()
 	{
 		return $this->c_value;
-	}
-
-	/**
-	 * Get the [version] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getVersion()
-	{
-		return $this->version;
 	}
 
 	/**
@@ -267,26 +215,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	} // setCValue()
 
 	/**
-	 * Set the value of [version] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     OrdersAttributes The current object (for fluent API support)
-	 */
-	public function setVersion($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->version !== $v) {
-			$this->version = $v;
-			$this->modifiedColumns[] = OrdersAttributesPeer::VERSION;
-		}
-
-		return $this;
-	} // setVersion()
-
-	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -296,10 +224,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
-			if ($this->version !== 0) {
-				return false;
-			}
-
 		// otherwise, everything was equal, so return TRUE
 		return true;
 	} // hasOnlyDefaultValues()
@@ -326,7 +250,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 			$this->ns = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->c_key = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->c_value = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->version = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -335,7 +258,7 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 5; // 5 = OrdersAttributesPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 4; // 4 = OrdersAttributesPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating OrdersAttributes object", $e);
@@ -401,8 +324,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		if ($deep) {  // also de-associate any related objects?
 
 			$this->aOrders = null;
-			$this->collOrdersAttributesVersions = null;
-
 		} // if (deep)
 	}
 
@@ -471,11 +392,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		$isInsert = $this->isNew();
 		try {
 			$ret = $this->preSave($con);
-			// versionable behavior
-			if ($this->isVersioningNecessary()) {
-				$this->setVersion($this->isNew() ? 1 : $this->getLastVersionNumber($con) + 1);
-				$createVersion = true; // for postSave hook
-			}
 			if ($isInsert) {
 				$ret = $ret && $this->preInsert($con);
 			} else {
@@ -489,10 +405,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 					$this->postUpdate($con);
 				}
 				$this->postSave($con);
-				// versionable behavior
-				if (isset($createVersion)) {
-					$this->addVersion($con);
-				}
 				OrdersAttributesPeer::addInstanceToPool($this);
 			} else {
 				$affectedRows = 0;
@@ -545,23 +457,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 				$this->resetModified();
 			}
 
-			if ($this->ordersAttributesVersionsScheduledForDeletion !== null) {
-				if (!$this->ordersAttributesVersionsScheduledForDeletion->isEmpty()) {
-					OrdersAttributesVersionQuery::create()
-						->filterByPrimaryKeys($this->ordersAttributesVersionsScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->ordersAttributesVersionsScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->collOrdersAttributesVersions !== null) {
-				foreach ($this->collOrdersAttributesVersions as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
 			$this->alreadyInSave = false;
 
 		}
@@ -595,9 +490,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersAttributesPeer::C_VALUE)) {
 			$modifiedColumns[':p' . $index++]  = '`C_VALUE`';
 		}
-		if ($this->isColumnModified(OrdersAttributesPeer::VERSION)) {
-			$modifiedColumns[':p' . $index++]  = '`VERSION`';
-		}
 
 		$sql = sprintf(
 			'INSERT INTO `orders_attributes` (%s) VALUES (%s)',
@@ -620,9 +512,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 						break;
 					case '`C_VALUE`':
 						$stmt->bindValue($identifier, $this->c_value, PDO::PARAM_STR);
-						break;
-					case '`VERSION`':
-						$stmt->bindValue($identifier, $this->version, PDO::PARAM_INT);
 						break;
 				}
 			}
@@ -726,14 +615,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 			}
 
 
-				if ($this->collOrdersAttributesVersions !== null) {
-					foreach ($this->collOrdersAttributesVersions as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
 
 			$this->alreadyInValidation = false;
 		}
@@ -779,9 +660,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 			case 3:
 				return $this->getCValue();
 				break;
-			case 4:
-				return $this->getVersion();
-				break;
 			default:
 				return null;
 				break;
@@ -815,14 +693,10 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 			$keys[1] => $this->getNs(),
 			$keys[2] => $this->getCKey(),
 			$keys[3] => $this->getCValue(),
-			$keys[4] => $this->getVersion(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aOrders) {
 				$result['Orders'] = $this->aOrders->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-			}
-			if (null !== $this->collOrdersAttributesVersions) {
-				$result['OrdersAttributesVersions'] = $this->collOrdersAttributesVersions->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 		}
 		return $result;
@@ -867,9 +741,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 			case 3:
 				$this->setCValue($value);
 				break;
-			case 4:
-				$this->setVersion($value);
-				break;
 		} // switch()
 	}
 
@@ -898,7 +769,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		if (array_key_exists($keys[1], $arr)) $this->setNs($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setCKey($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setCValue($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setVersion($arr[$keys[4]]);
 	}
 
 	/**
@@ -914,7 +784,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersAttributesPeer::NS)) $criteria->add(OrdersAttributesPeer::NS, $this->ns);
 		if ($this->isColumnModified(OrdersAttributesPeer::C_KEY)) $criteria->add(OrdersAttributesPeer::C_KEY, $this->c_key);
 		if ($this->isColumnModified(OrdersAttributesPeer::C_VALUE)) $criteria->add(OrdersAttributesPeer::C_VALUE, $this->c_value);
-		if ($this->isColumnModified(OrdersAttributesPeer::VERSION)) $criteria->add(OrdersAttributesPeer::VERSION, $this->version);
 
 		return $criteria;
 	}
@@ -991,7 +860,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		$copyObj->setNs($this->getNs());
 		$copyObj->setCKey($this->getCKey());
 		$copyObj->setCValue($this->getCValue());
-		$copyObj->setVersion($this->getVersion());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -999,12 +867,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 			$copyObj->setNew(false);
 			// store object hash to prevent cycle
 			$this->startCopy = true;
-
-			foreach ($this->getOrdersAttributesVersions() as $relObj) {
-				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addOrdersAttributesVersion($relObj->copy($deepCopy));
-				}
-			}
 
 			//unflag object copy
 			$this->startCopy = false;
@@ -1102,170 +964,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		return $this->aOrders;
 	}
 
-
-	/**
-	 * Initializes a collection based on the name of a relation.
-	 * Avoids crafting an 'init[$relationName]s' method name
-	 * that wouldn't work when StandardEnglishPluralizer is used.
-	 *
-	 * @param      string $relationName The name of the relation to initialize
-	 * @return     void
-	 */
-	public function initRelation($relationName)
-	{
-		if ('OrdersAttributesVersion' == $relationName) {
-			return $this->initOrdersAttributesVersions();
-		}
-	}
-
-	/**
-	 * Clears out the collOrdersAttributesVersions collection
-	 *
-	 * This does not modify the database; however, it will remove any associated objects, causing
-	 * them to be refetched by subsequent calls to accessor method.
-	 *
-	 * @return     void
-	 * @see        addOrdersAttributesVersions()
-	 */
-	public function clearOrdersAttributesVersions()
-	{
-		$this->collOrdersAttributesVersions = null; // important to set this to NULL since that means it is uninitialized
-	}
-
-	/**
-	 * Initializes the collOrdersAttributesVersions collection.
-	 *
-	 * By default this just sets the collOrdersAttributesVersions collection to an empty array (like clearcollOrdersAttributesVersions());
-	 * however, you may wish to override this method in your stub class to provide setting appropriate
-	 * to your application -- for example, setting the initial array to the values stored in database.
-	 *
-	 * @param      boolean $overrideExisting If set to true, the method call initializes
-	 *                                        the collection even if it is not empty
-	 *
-	 * @return     void
-	 */
-	public function initOrdersAttributesVersions($overrideExisting = true)
-	{
-		if (null !== $this->collOrdersAttributesVersions && !$overrideExisting) {
-			return;
-		}
-		$this->collOrdersAttributesVersions = new PropelObjectCollection();
-		$this->collOrdersAttributesVersions->setModel('OrdersAttributesVersion');
-	}
-
-	/**
-	 * Gets an array of OrdersAttributesVersion objects which contain a foreign key that references this object.
-	 *
-	 * If the $criteria is not null, it is used to always fetch the results from the database.
-	 * Otherwise the results are fetched from the database the first time, then cached.
-	 * Next time the same method is called without $criteria, the cached collection is returned.
-	 * If this OrdersAttributes is new, it will return
-	 * an empty collection or the current collection; the criteria is ignored on a new object.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array OrdersAttributesVersion[] List of OrdersAttributesVersion objects
-	 * @throws     PropelException
-	 */
-	public function getOrdersAttributesVersions($criteria = null, PropelPDO $con = null)
-	{
-		if(null === $this->collOrdersAttributesVersions || null !== $criteria) {
-			if ($this->isNew() && null === $this->collOrdersAttributesVersions) {
-				// return empty collection
-				$this->initOrdersAttributesVersions();
-			} else {
-				$collOrdersAttributesVersions = OrdersAttributesVersionQuery::create(null, $criteria)
-					->filterByOrdersAttributes($this)
-					->find($con);
-				if (null !== $criteria) {
-					return $collOrdersAttributesVersions;
-				}
-				$this->collOrdersAttributesVersions = $collOrdersAttributesVersions;
-			}
-		}
-		return $this->collOrdersAttributesVersions;
-	}
-
-	/**
-	 * Sets a collection of OrdersAttributesVersion objects related by a one-to-many relationship
-	 * to the current object.
-	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-	 * and new objects from the given Propel collection.
-	 *
-	 * @param      PropelCollection $ordersAttributesVersions A Propel collection.
-	 * @param      PropelPDO $con Optional connection object
-	 */
-	public function setOrdersAttributesVersions(PropelCollection $ordersAttributesVersions, PropelPDO $con = null)
-	{
-		$this->ordersAttributesVersionsScheduledForDeletion = $this->getOrdersAttributesVersions(new Criteria(), $con)->diff($ordersAttributesVersions);
-
-		foreach ($ordersAttributesVersions as $ordersAttributesVersion) {
-			// Fix issue with collection modified by reference
-			if ($ordersAttributesVersion->isNew()) {
-				$ordersAttributesVersion->setOrdersAttributes($this);
-			}
-			$this->addOrdersAttributesVersion($ordersAttributesVersion);
-		}
-
-		$this->collOrdersAttributesVersions = $ordersAttributesVersions;
-	}
-
-	/**
-	 * Returns the number of related OrdersAttributesVersion objects.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct
-	 * @param      PropelPDO $con
-	 * @return     int Count of related OrdersAttributesVersion objects.
-	 * @throws     PropelException
-	 */
-	public function countOrdersAttributesVersions(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-	{
-		if(null === $this->collOrdersAttributesVersions || null !== $criteria) {
-			if ($this->isNew() && null === $this->collOrdersAttributesVersions) {
-				return 0;
-			} else {
-				$query = OrdersAttributesVersionQuery::create(null, $criteria);
-				if($distinct) {
-					$query->distinct();
-				}
-				return $query
-					->filterByOrdersAttributes($this)
-					->count($con);
-			}
-		} else {
-			return count($this->collOrdersAttributesVersions);
-		}
-	}
-
-	/**
-	 * Method called to associate a OrdersAttributesVersion object to this object
-	 * through the OrdersAttributesVersion foreign key attribute.
-	 *
-	 * @param      OrdersAttributesVersion $l OrdersAttributesVersion
-	 * @return     OrdersAttributes The current object (for fluent API support)
-	 */
-	public function addOrdersAttributesVersion(OrdersAttributesVersion $l)
-	{
-		if ($this->collOrdersAttributesVersions === null) {
-			$this->initOrdersAttributesVersions();
-		}
-		if (!$this->collOrdersAttributesVersions->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddOrdersAttributesVersion($l);
-		}
-
-		return $this;
-	}
-
-	/**
-	 * @param	OrdersAttributesVersion $ordersAttributesVersion The ordersAttributesVersion object to add.
-	 */
-	protected function doAddOrdersAttributesVersion($ordersAttributesVersion)
-	{
-		$this->collOrdersAttributesVersions[]= $ordersAttributesVersion;
-		$ordersAttributesVersion->setOrdersAttributes($this);
-	}
-
 	/**
 	 * Clears the current object and sets all attributes to their default values
 	 */
@@ -1275,11 +973,9 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 		$this->ns = null;
 		$this->c_key = null;
 		$this->c_value = null;
-		$this->version = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
-		$this->applyDefaultValues();
 		$this->resetModified();
 		$this->setNew(true);
 		$this->setDeleted(false);
@@ -1297,17 +993,8 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
-			if ($this->collOrdersAttributesVersions) {
-				foreach ($this->collOrdersAttributesVersions as $o) {
-					$o->clearAllReferences($deep);
-				}
-			}
 		} // if ($deep)
 
-		if ($this->collOrdersAttributesVersions instanceof PropelCollection) {
-			$this->collOrdersAttributesVersions->clearIterator();
-		}
-		$this->collOrdersAttributesVersions = null;
 		$this->aOrders = null;
 	}
 
@@ -1319,214 +1006,6 @@ abstract class BaseOrdersAttributes extends BaseObject  implements Persistent
 	public function __toString()
 	{
 		return (string) $this->exportTo(OrdersAttributesPeer::DEFAULT_STRING_FORMAT);
-	}
-
-	// versionable behavior
-	
-	/**
-	 * Checks whether the current state must be recorded as a version
-	 *
-	 * @return  boolean
-	 */
-	public function isVersioningNecessary($con = null)
-	{
-		if ($this->alreadyInSave) {
-			return false;
-		}
-		if (OrdersAttributesPeer::isVersioningEnabled() && ($this->isNew() || $this->isModified())) {
-			return true;
-		}
-		if ($this->getOrders($con)->isVersioningNecessary($con)) {
-			return true;
-		}
-	
-		return false;
-	}
-	
-	/**
-	 * Creates a version of the current object and saves it.
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  OrdersAttributesVersion A version object
-	 */
-	public function addVersion($con = null)
-	{
-		$version = new OrdersAttributesVersion();
-		$version->setOrdersId($this->getOrdersId());
-		$version->setNs($this->getNs());
-		$version->setCKey($this->getCKey());
-		$version->setCValue($this->getCValue());
-		$version->setVersion($this->getVersion());
-		$version->setOrdersAttributes($this);
-		if (($related = $this->getOrders($con)) && $related->getVersion()) {
-			$version->setOrdersIdVersion($related->getVersion());
-		}
-		$version->save($con);
-	
-		return $version;
-	}
-	
-	/**
-	 * Sets the properties of the curent object to the value they had at a specific version
-	 *
-	 * @param   integer $versionNumber The version number to read
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  OrdersAttributes The current object (for fluent API support)
-	 */
-	public function toVersion($versionNumber, $con = null)
-	{
-		$version = $this->getOneVersion($versionNumber, $con);
-		if (!$version) {
-			throw new PropelException(sprintf('No OrdersAttributes object found with version %d', $version));
-		}
-		$this->populateFromVersion($version, $con);
-	
-		return $this;
-	}
-	
-	/**
-	 * Sets the properties of the curent object to the value they had at a specific version
-	 *
-	 * @param   OrdersAttributesVersion $version The version object to use
-	 * @param   PropelPDO $con the connection to use
-	 * @param   array $loadedObjects objects thats been loaded in a chain of populateFromVersion calls on referrer or fk objects.
-	 *
-	 * @return  OrdersAttributes The current object (for fluent API support)
-	 */
-	public function populateFromVersion($version, $con = null, &$loadedObjects = array())
-	{
-	
-		$loadedObjects['OrdersAttributes'][$version->getOrdersId()][$version->getVersion()] = $this;
-		$this->setOrdersId($version->getOrdersId());
-		$this->setNs($version->getNs());
-		$this->setCKey($version->getCKey());
-		$this->setCValue($version->getCValue());
-		$this->setVersion($version->getVersion());
-		if ($fkValue = $version->getOrdersId()) {
-			if (isset($loadedObjects['Orders']) && isset($loadedObjects['Orders'][$fkValue]) && isset($loadedObjects['Orders'][$fkValue][$version->getOrdersIdVersion()])) {
-				$related = $loadedObjects['Orders'][$fkValue][$version->getOrdersIdVersion()];
-			} else {
-				$related = new Orders();
-				$relatedVersion = OrdersVersionQuery::create()
-					->filterById($fkValue)
-					->filterByVersion($version->getOrdersIdVersion())
-					->findOne($con);
-				$related->populateFromVersion($relatedVersion, $con, $loadedObjects);
-				$related->setNew(false);
-			}
-			$this->setOrders($related);
-		}
-		return $this;
-	}
-	
-	/**
-	 * Gets the latest persisted version number for the current object
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  integer
-	 */
-	public function getLastVersionNumber($con = null)
-	{
-		$v = OrdersAttributesVersionQuery::create()
-			->filterByOrdersAttributes($this)
-			->orderByVersion('desc')
-			->findOne($con);
-		if (!$v) {
-			return 0;
-		}
-		return $v->getVersion();
-	}
-	
-	/**
-	 * Checks whether the current object is the latest one
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  Boolean
-	 */
-	public function isLastVersion($con = null)
-	{
-		return $this->getLastVersionNumber($con) == $this->getVersion();
-	}
-	
-	/**
-	 * Retrieves a version object for this entity and a version number
-	 *
-	 * @param   integer $versionNumber The version number to read
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  OrdersAttributesVersion A version object
-	 */
-	public function getOneVersion($versionNumber, $con = null)
-	{
-		return OrdersAttributesVersionQuery::create()
-			->filterByOrdersAttributes($this)
-			->filterByVersion($versionNumber)
-			->findOne($con);
-	}
-	
-	/**
-	 * Gets all the versions of this object, in incremental order
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  PropelObjectCollection A list of OrdersAttributesVersion objects
-	 */
-	public function getAllVersions($con = null)
-	{
-		$criteria = new Criteria();
-		$criteria->addAscendingOrderByColumn(OrdersAttributesVersionPeer::VERSION);
-		return $this->getOrdersAttributesVersions($criteria, $con);
-	}
-	
-	/**
-	 * Gets all the versions of this object, in incremental order.
-	 * <code>
-	 * print_r($book->compare(1, 2));
-	 * => array(
-	 *   '1' => array('Title' => 'Book title at version 1'),
-	 *   '2' => array('Title' => 'Book title at version 2')
-	 * );
-	 * </code>
-	 *
-	 * @param   integer   $fromVersionNumber
-	 * @param   integer   $toVersionNumber
-	 * @param   string    $keys Main key used for the result diff (versions|columns)
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  array A list of differences
-	 */
-	public function compareVersions($fromVersionNumber, $toVersionNumber, $keys = 'columns', $con = null)
-	{
-		$fromVersion = $this->getOneVersion($fromVersionNumber, $con)->toArray();
-		$toVersion = $this->getOneVersion($toVersionNumber, $con)->toArray();
-		$ignoredColumns = array(
-			'Version',
-		);
-		$diff = array();
-		foreach ($fromVersion as $key => $value) {
-			if (in_array($key, $ignoredColumns)) {
-				continue;
-			}
-			if ($toVersion[$key] != $value) {
-				switch ($keys) {
-					case 'versions':
-						$diff[$fromVersionNumber][$key] = $value;
-						$diff[$toVersionNumber][$key] = $toVersion[$key];
-						break;
-					default:
-						$diff[$key] = array(
-							$fromVersionNumber => $value,
-							$toVersionNumber => $toVersion[$key],
-						);
-						break;
-				}
-			}
-		}
-		return $diff;
 	}
 
 } // BaseOrdersAttributes

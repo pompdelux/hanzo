@@ -46,7 +46,6 @@ class OrdersStateLogTableMap extends TableMap
 		$this->addPrimaryKey('STATE', 'State', 'INTEGER', true, null, null);
 		$this->addPrimaryKey('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
 		$this->addColumn('MESSAGE', 'Message', 'VARCHAR', true, 128, null);
-		$this->addColumn('VERSION', 'Version', 'INTEGER', false, null, 0);
 		// validators
 	} // initialize()
 
@@ -56,20 +55,6 @@ class OrdersStateLogTableMap extends TableMap
 	public function buildRelations()
 	{
 		$this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::MANY_TO_ONE, array('orders_id' => 'id', ), 'CASCADE', null);
-		$this->addRelation('OrdersStateLogVersion', 'Hanzo\\Model\\OrdersStateLogVersion', RelationMap::ONE_TO_MANY, array('orders_id' => 'orders_id', 'state' => 'state', 'created_at' => 'created_at', ), 'CASCADE', null, 'OrdersStateLogVersions');
 	} // buildRelations()
-
-	/**
-	 *
-	 * Gets the list of behaviors registered for this table
-	 *
-	 * @return array Associative array (name => parameters) of behaviors
-	 */
-	public function getBehaviors()
-	{
-		return array(
-			'versionable' => array('version_column' => 'version', 'version_table' => '', 'log_created_at' => 'false', 'log_created_by' => 'false', 'log_comment' => 'false', 'version_created_at_column' => 'version_created_at', 'version_created_by_column' => 'version_created_by', 'version_comment_column' => 'version_comment', ),
-		);
-	} // getBehaviors()
 
 } // OrdersStateLogTableMap

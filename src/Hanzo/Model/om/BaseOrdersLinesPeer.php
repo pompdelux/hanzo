@@ -11,7 +11,6 @@ use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesPeer;
-use Hanzo\Model\OrdersLinesVersionPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\map\OrdersLinesTableMap;
@@ -41,13 +40,13 @@ abstract class BaseOrdersLinesPeer {
 	const TM_CLASS = 'OrdersLinesTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 13;
+	const NUM_COLUMNS = 12;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 13;
+	const NUM_HYDRATE_COLUMNS = 12;
 
 	/** the column name for the ID field */
 	const ID = 'orders_lines.ID';
@@ -85,9 +84,6 @@ abstract class BaseOrdersLinesPeer {
 	/** the column name for the QUANTITY field */
 	const QUANTITY = 'orders_lines.QUANTITY';
 
-	/** the column name for the VERSION field */
-	const VERSION = 'orders_lines.VERSION';
-
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -100,13 +96,6 @@ abstract class BaseOrdersLinesPeer {
 	public static $instances = array();
 
 
-	// versionable behavior
-	
-	/**
-	 * Whether the versioning is enabled
-	 */
-	static $isVersioningEnabled = true;
-
 	/**
 	 * holds an array of fieldnames
 	 *
@@ -114,12 +103,12 @@ abstract class BaseOrdersLinesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'OrdersId', 'Type', 'Tax', 'ProductsId', 'ProductsSku', 'ProductsName', 'ProductsColor', 'ProductsSize', 'ExpectedAt', 'Price', 'Quantity', 'Version', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'ordersId', 'type', 'tax', 'productsId', 'productsSku', 'productsName', 'productsColor', 'productsSize', 'expectedAt', 'price', 'quantity', 'version', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::ORDERS_ID, self::TYPE, self::TAX, self::PRODUCTS_ID, self::PRODUCTS_SKU, self::PRODUCTS_NAME, self::PRODUCTS_COLOR, self::PRODUCTS_SIZE, self::EXPECTED_AT, self::PRICE, self::QUANTITY, self::VERSION, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'ORDERS_ID', 'TYPE', 'TAX', 'PRODUCTS_ID', 'PRODUCTS_SKU', 'PRODUCTS_NAME', 'PRODUCTS_COLOR', 'PRODUCTS_SIZE', 'EXPECTED_AT', 'PRICE', 'QUANTITY', 'VERSION', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'orders_id', 'type', 'tax', 'products_id', 'products_sku', 'products_name', 'products_color', 'products_size', 'expected_at', 'price', 'quantity', 'version', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'OrdersId', 'Type', 'Tax', 'ProductsId', 'ProductsSku', 'ProductsName', 'ProductsColor', 'ProductsSize', 'ExpectedAt', 'Price', 'Quantity', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'ordersId', 'type', 'tax', 'productsId', 'productsSku', 'productsName', 'productsColor', 'productsSize', 'expectedAt', 'price', 'quantity', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::ORDERS_ID, self::TYPE, self::TAX, self::PRODUCTS_ID, self::PRODUCTS_SKU, self::PRODUCTS_NAME, self::PRODUCTS_COLOR, self::PRODUCTS_SIZE, self::EXPECTED_AT, self::PRICE, self::QUANTITY, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'ORDERS_ID', 'TYPE', 'TAX', 'PRODUCTS_ID', 'PRODUCTS_SKU', 'PRODUCTS_NAME', 'PRODUCTS_COLOR', 'PRODUCTS_SIZE', 'EXPECTED_AT', 'PRICE', 'QUANTITY', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'orders_id', 'type', 'tax', 'products_id', 'products_sku', 'products_name', 'products_color', 'products_size', 'expected_at', 'price', 'quantity', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
 	);
 
 	/**
@@ -129,12 +118,12 @@ abstract class BaseOrdersLinesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'OrdersId' => 1, 'Type' => 2, 'Tax' => 3, 'ProductsId' => 4, 'ProductsSku' => 5, 'ProductsName' => 6, 'ProductsColor' => 7, 'ProductsSize' => 8, 'ExpectedAt' => 9, 'Price' => 10, 'Quantity' => 11, 'Version' => 12, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'ordersId' => 1, 'type' => 2, 'tax' => 3, 'productsId' => 4, 'productsSku' => 5, 'productsName' => 6, 'productsColor' => 7, 'productsSize' => 8, 'expectedAt' => 9, 'price' => 10, 'quantity' => 11, 'version' => 12, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::ORDERS_ID => 1, self::TYPE => 2, self::TAX => 3, self::PRODUCTS_ID => 4, self::PRODUCTS_SKU => 5, self::PRODUCTS_NAME => 6, self::PRODUCTS_COLOR => 7, self::PRODUCTS_SIZE => 8, self::EXPECTED_AT => 9, self::PRICE => 10, self::QUANTITY => 11, self::VERSION => 12, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'ORDERS_ID' => 1, 'TYPE' => 2, 'TAX' => 3, 'PRODUCTS_ID' => 4, 'PRODUCTS_SKU' => 5, 'PRODUCTS_NAME' => 6, 'PRODUCTS_COLOR' => 7, 'PRODUCTS_SIZE' => 8, 'EXPECTED_AT' => 9, 'PRICE' => 10, 'QUANTITY' => 11, 'VERSION' => 12, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'orders_id' => 1, 'type' => 2, 'tax' => 3, 'products_id' => 4, 'products_sku' => 5, 'products_name' => 6, 'products_color' => 7, 'products_size' => 8, 'expected_at' => 9, 'price' => 10, 'quantity' => 11, 'version' => 12, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'OrdersId' => 1, 'Type' => 2, 'Tax' => 3, 'ProductsId' => 4, 'ProductsSku' => 5, 'ProductsName' => 6, 'ProductsColor' => 7, 'ProductsSize' => 8, 'ExpectedAt' => 9, 'Price' => 10, 'Quantity' => 11, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'ordersId' => 1, 'type' => 2, 'tax' => 3, 'productsId' => 4, 'productsSku' => 5, 'productsName' => 6, 'productsColor' => 7, 'productsSize' => 8, 'expectedAt' => 9, 'price' => 10, 'quantity' => 11, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::ORDERS_ID => 1, self::TYPE => 2, self::TAX => 3, self::PRODUCTS_ID => 4, self::PRODUCTS_SKU => 5, self::PRODUCTS_NAME => 6, self::PRODUCTS_COLOR => 7, self::PRODUCTS_SIZE => 8, self::EXPECTED_AT => 9, self::PRICE => 10, self::QUANTITY => 11, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'ORDERS_ID' => 1, 'TYPE' => 2, 'TAX' => 3, 'PRODUCTS_ID' => 4, 'PRODUCTS_SKU' => 5, 'PRODUCTS_NAME' => 6, 'PRODUCTS_COLOR' => 7, 'PRODUCTS_SIZE' => 8, 'EXPECTED_AT' => 9, 'PRICE' => 10, 'QUANTITY' => 11, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'orders_id' => 1, 'type' => 2, 'tax' => 3, 'products_id' => 4, 'products_sku' => 5, 'products_name' => 6, 'products_color' => 7, 'products_size' => 8, 'expected_at' => 9, 'price' => 10, 'quantity' => 11, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
 	);
 
 	/**
@@ -218,7 +207,6 @@ abstract class BaseOrdersLinesPeer {
 			$criteria->addSelectColumn(OrdersLinesPeer::EXPECTED_AT);
 			$criteria->addSelectColumn(OrdersLinesPeer::PRICE);
 			$criteria->addSelectColumn(OrdersLinesPeer::QUANTITY);
-			$criteria->addSelectColumn(OrdersLinesPeer::VERSION);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.ORDERS_ID');
@@ -232,7 +220,6 @@ abstract class BaseOrdersLinesPeer {
 			$criteria->addSelectColumn($alias . '.EXPECTED_AT');
 			$criteria->addSelectColumn($alias . '.PRICE');
 			$criteria->addSelectColumn($alias . '.QUANTITY');
-			$criteria->addSelectColumn($alias . '.VERSION');
 		}
 	}
 
@@ -426,9 +413,6 @@ abstract class BaseOrdersLinesPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
-		// Invalidate objects in OrdersLinesVersionPeer instance pool,
-		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-		OrdersLinesVersionPeer::clearInstancePool();
 	}
 
 	/**
@@ -1438,34 +1422,6 @@ abstract class BaseOrdersLinesPeer {
 			$objs = OrdersLinesPeer::doSelect($criteria, $con);
 		}
 		return $objs;
-	}
-
-	// versionable behavior
-	
-	/**
-	 * Checks whether versioning is enabled
-	 *
-	 * @return boolean
-	 */
-	public static function isVersioningEnabled()
-	{
-		return self::$isVersioningEnabled;
-	}
-	
-	/**
-	 * Enables versioning
-	 */
-	public static function enableVersioning()
-	{
-		self::$isVersioningEnabled = true;
-	}
-	
-	/**
-	 * Disables versioning
-	 */
-	public static function disableVersioning()
-	{
-		self::$isVersioningEnabled = false;
 	}
 
 } // BaseOrdersLinesPeer

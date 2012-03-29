@@ -14,7 +14,6 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\OrdersLinesVersion;
 use Hanzo\Model\Products;
 
 /**
@@ -34,7 +33,6 @@ use Hanzo\Model\Products;
  * @method     OrdersLinesQuery orderByExpectedAt($order = Criteria::ASC) Order by the expected_at column
  * @method     OrdersLinesQuery orderByPrice($order = Criteria::ASC) Order by the price column
  * @method     OrdersLinesQuery orderByQuantity($order = Criteria::ASC) Order by the quantity column
- * @method     OrdersLinesQuery orderByVersion($order = Criteria::ASC) Order by the version column
  *
  * @method     OrdersLinesQuery groupById() Group by the id column
  * @method     OrdersLinesQuery groupByOrdersId() Group by the orders_id column
@@ -48,7 +46,6 @@ use Hanzo\Model\Products;
  * @method     OrdersLinesQuery groupByExpectedAt() Group by the expected_at column
  * @method     OrdersLinesQuery groupByPrice() Group by the price column
  * @method     OrdersLinesQuery groupByQuantity() Group by the quantity column
- * @method     OrdersLinesQuery groupByVersion() Group by the version column
  *
  * @method     OrdersLinesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     OrdersLinesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -61,10 +58,6 @@ use Hanzo\Model\Products;
  * @method     OrdersLinesQuery leftJoinProducts($relationAlias = null) Adds a LEFT JOIN clause to the query using the Products relation
  * @method     OrdersLinesQuery rightJoinProducts($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Products relation
  * @method     OrdersLinesQuery innerJoinProducts($relationAlias = null) Adds a INNER JOIN clause to the query using the Products relation
- *
- * @method     OrdersLinesQuery leftJoinOrdersLinesVersion($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersLinesVersion relation
- * @method     OrdersLinesQuery rightJoinOrdersLinesVersion($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersLinesVersion relation
- * @method     OrdersLinesQuery innerJoinOrdersLinesVersion($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersLinesVersion relation
  *
  * @method     OrdersLines findOne(PropelPDO $con = null) Return the first OrdersLines matching the query
  * @method     OrdersLines findOneOrCreate(PropelPDO $con = null) Return the first OrdersLines matching the query, or a new OrdersLines object populated from the query conditions when no match is found
@@ -81,7 +74,6 @@ use Hanzo\Model\Products;
  * @method     OrdersLines findOneByExpectedAt(string $expected_at) Return the first OrdersLines filtered by the expected_at column
  * @method     OrdersLines findOneByPrice(string $price) Return the first OrdersLines filtered by the price column
  * @method     OrdersLines findOneByQuantity(int $quantity) Return the first OrdersLines filtered by the quantity column
- * @method     OrdersLines findOneByVersion(int $version) Return the first OrdersLines filtered by the version column
  *
  * @method     array findById(int $id) Return OrdersLines objects filtered by the id column
  * @method     array findByOrdersId(int $orders_id) Return OrdersLines objects filtered by the orders_id column
@@ -95,7 +87,6 @@ use Hanzo\Model\Products;
  * @method     array findByExpectedAt(string $expected_at) Return OrdersLines objects filtered by the expected_at column
  * @method     array findByPrice(string $price) Return OrdersLines objects filtered by the price column
  * @method     array findByQuantity(int $quantity) Return OrdersLines objects filtered by the quantity column
- * @method     array findByVersion(int $version) Return OrdersLines objects filtered by the version column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -184,7 +175,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `TAX`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `PRICE`, `QUANTITY`, `VERSION` FROM `orders_lines` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `TAX`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `PRICE`, `QUANTITY` FROM `orders_lines` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -682,46 +673,6 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the version column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByVersion(1234); // WHERE version = 1234
-	 * $query->filterByVersion(array(12, 34)); // WHERE version IN (12, 34)
-	 * $query->filterByVersion(array('min' => 12)); // WHERE version > 12
-	 * </code>
-	 *
-	 * @param     mixed $version The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    OrdersLinesQuery The current query, for fluid interface
-	 */
-	public function filterByVersion($version = null, $comparison = null)
-	{
-		if (is_array($version)) {
-			$useMinMax = false;
-			if (isset($version['min'])) {
-				$this->addUsingAlias(OrdersLinesPeer::VERSION, $version['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($version['max'])) {
-				$this->addUsingAlias(OrdersLinesPeer::VERSION, $version['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(OrdersLinesPeer::VERSION, $version, $comparison);
-	}
-
-	/**
 	 * Filter the query by a related Orders object
 	 *
 	 * @param     Orders|PropelCollection $orders The related object(s) to use as filter
@@ -867,79 +818,6 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 		return $this
 			->joinProducts($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'Products', '\Hanzo\Model\ProductsQuery');
-	}
-
-	/**
-	 * Filter the query by a related OrdersLinesVersion object
-	 *
-	 * @param     OrdersLinesVersion $ordersLinesVersion  the related object to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    OrdersLinesQuery The current query, for fluid interface
-	 */
-	public function filterByOrdersLinesVersion($ordersLinesVersion, $comparison = null)
-	{
-		if ($ordersLinesVersion instanceof OrdersLinesVersion) {
-			return $this
-				->addUsingAlias(OrdersLinesPeer::ID, $ordersLinesVersion->getId(), $comparison);
-		} elseif ($ordersLinesVersion instanceof PropelCollection) {
-			return $this
-				->useOrdersLinesVersionQuery()
-				->filterByPrimaryKeys($ordersLinesVersion->getPrimaryKeys())
-				->endUse();
-		} else {
-			throw new PropelException('filterByOrdersLinesVersion() only accepts arguments of type OrdersLinesVersion or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the OrdersLinesVersion relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    OrdersLinesQuery The current query, for fluid interface
-	 */
-	public function joinOrdersLinesVersion($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('OrdersLinesVersion');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'OrdersLinesVersion');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the OrdersLinesVersion relation OrdersLinesVersion object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\OrdersLinesVersionQuery A secondary query class using the current class as primary query
-	 */
-	public function useOrdersLinesVersionQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		return $this
-			->joinOrdersLinesVersion($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'OrdersLinesVersion', '\Hanzo\Model\OrdersLinesVersionQuery');
 	}
 
 	/**

@@ -20,22 +20,14 @@ use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesQuery;
-use Hanzo\Model\OrdersAttributesVersionPeer;
-use Hanzo\Model\OrdersAttributesVersionQuery;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
-use Hanzo\Model\OrdersLinesVersionPeer;
-use Hanzo\Model\OrdersLinesVersionQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersStateLogQuery;
-use Hanzo\Model\OrdersStateLogVersionPeer;
-use Hanzo\Model\OrdersStateLogVersionQuery;
 use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\OrdersSyncLogQuery;
-use Hanzo\Model\OrdersVersion;
-use Hanzo\Model\OrdersVersionQuery;
 
 /**
  * Base class that represents a row from the 'orders' table.
@@ -291,25 +283,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	protected $updated_at;
 
 	/**
-	 * The value for the version field.
-	 * Note: this column has a database default value of: 0
-	 * @var        int
-	 */
-	protected $version;
-
-	/**
-	 * The value for the version_created_at field.
-	 * @var        string
-	 */
-	protected $version_created_at;
-
-	/**
-	 * The value for the version_comment field.
-	 * @var        string
-	 */
-	protected $version_comment;
-
-	/**
 	 * @var        Countries
 	 */
 	protected $aCountriesRelatedByBillingCountriesId;
@@ -338,11 +311,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	 * @var        array OrdersSyncLog[] Collection to store aggregation of OrdersSyncLog objects.
 	 */
 	protected $collOrdersSyncLogs;
-
-	/**
-	 * @var        array OrdersVersion[] Collection to store aggregation of OrdersVersion objects.
-	 */
-	protected $collOrdersVersions;
 
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
@@ -383,12 +351,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	protected $ordersSyncLogsScheduledForDeletion = null;
 
 	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $ordersVersionsScheduledForDeletion = null;
-
-	/**
 	 * Applies default values to this object.
 	 * This method should be called from the object's constructor (or
 	 * equivalent initialization method).
@@ -398,7 +360,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	{
 		$this->state = -50;
 		$this->in_edit = false;
-		$this->version = 0;
 	}
 
 	/**
@@ -863,64 +824,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		} else {
 			return $dt->format($format);
 		}
-	}
-
-	/**
-	 * Get the [version] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getVersion()
-	{
-		return $this->version;
-	}
-
-	/**
-	 * Get the [optionally formatted] temporal [version_created_at] column value.
-	 * 
-	 *
-	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
-	 *							If format is NULL, then the raw DateTime object will be returned.
-	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
-	 * @throws     PropelException - if unable to parse/validate the date/time value.
-	 */
-	public function getVersionCreatedAt($format = 'Y-m-d H:i:s')
-	{
-		if ($this->version_created_at === null) {
-			return null;
-		}
-
-
-		if ($this->version_created_at === '0000-00-00 00:00:00') {
-			// while technically this is not a default value of NULL,
-			// this seems to be closest in meaning.
-			return null;
-		} else {
-			try {
-				$dt = new DateTime($this->version_created_at);
-			} catch (Exception $x) {
-				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->version_created_at, true), $x);
-			}
-		}
-
-		if ($format === null) {
-			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
-			return $dt;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $dt->format('U'));
-		} else {
-			return $dt->format($format);
-		}
-	}
-
-	/**
-	 * Get the [version_comment] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getVersionComment()
-	{
-		return $this->version_comment;
 	}
 
 	/**
@@ -1686,68 +1589,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	} // setUpdatedAt()
 
 	/**
-	 * Set the value of [version] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Orders The current object (for fluent API support)
-	 */
-	public function setVersion($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->version !== $v) {
-			$this->version = $v;
-			$this->modifiedColumns[] = OrdersPeer::VERSION;
-		}
-
-		return $this;
-	} // setVersion()
-
-	/**
-	 * Sets the value of [version_created_at] column to a normalized version of the date/time value specified.
-	 * 
-	 * @param      mixed $v string, integer (timestamp), or DateTime value.
-	 *               Empty strings are treated as NULL.
-	 * @return     Orders The current object (for fluent API support)
-	 */
-	public function setVersionCreatedAt($v)
-	{
-		$dt = PropelDateTime::newInstance($v, null, 'DateTime');
-		if ($this->version_created_at !== null || $dt !== null) {
-			$currentDateAsString = ($this->version_created_at !== null && $tmpDt = new DateTime($this->version_created_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
-			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
-			if ($currentDateAsString !== $newDateAsString) {
-				$this->version_created_at = $newDateAsString;
-				$this->modifiedColumns[] = OrdersPeer::VERSION_CREATED_AT;
-			}
-		} // if either are not null
-
-		return $this;
-	} // setVersionCreatedAt()
-
-	/**
-	 * Set the value of [version_comment] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Orders The current object (for fluent API support)
-	 */
-	public function setVersionComment($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->version_comment !== $v) {
-			$this->version_comment = $v;
-			$this->modifiedColumns[] = OrdersPeer::VERSION_COMMENT;
-		}
-
-		return $this;
-	} // setVersionComment()
-
-	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -1762,10 +1603,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			}
 
 			if ($this->in_edit !== false) {
-				return false;
-			}
-
-			if ($this->version !== 0) {
 				return false;
 			}
 
@@ -1828,9 +1665,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$this->finished_at = ($row[$startcol + 34] !== null) ? (string) $row[$startcol + 34] : null;
 			$this->created_at = ($row[$startcol + 35] !== null) ? (string) $row[$startcol + 35] : null;
 			$this->updated_at = ($row[$startcol + 36] !== null) ? (string) $row[$startcol + 36] : null;
-			$this->version = ($row[$startcol + 37] !== null) ? (int) $row[$startcol + 37] : null;
-			$this->version_created_at = ($row[$startcol + 38] !== null) ? (string) $row[$startcol + 38] : null;
-			$this->version_comment = ($row[$startcol + 39] !== null) ? (string) $row[$startcol + 39] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -1839,7 +1673,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 40; // 40 = OrdersPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 37; // 37 = OrdersPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Orders object", $e);
@@ -1917,8 +1751,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 
 			$this->collOrdersSyncLogs = null;
 
-			$this->collOrdersVersions = null;
-
 		} // if (deep)
 	}
 
@@ -1987,14 +1819,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$isInsert = $this->isNew();
 		try {
 			$ret = $this->preSave($con);
-			// versionable behavior
-			if ($this->isVersioningNecessary()) {
-				$this->setVersion($this->isNew() ? 1 : $this->getLastVersionNumber($con) + 1);
-				if (!$this->isColumnModified(OrdersPeer::VERSION_CREATED_AT)) {
-					$this->setVersionCreatedAt(time());
-				}
-				$createVersion = true; // for postSave hook
-			}
 			if ($isInsert) {
 				$ret = $ret && $this->preInsert($con);
 				// timestampable behavior
@@ -2019,10 +1843,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 					$this->postUpdate($con);
 				}
 				$this->postSave($con);
-				// versionable behavior
-				if (isset($createVersion)) {
-					$this->addVersion($con);
-				}
 				OrdersPeer::addInstanceToPool($this);
 			} else {
 				$affectedRows = 0;
@@ -2144,23 +1964,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 
 			if ($this->collOrdersSyncLogs !== null) {
 				foreach ($this->collOrdersSyncLogs as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
-			}
-
-			if ($this->ordersVersionsScheduledForDeletion !== null) {
-				if (!$this->ordersVersionsScheduledForDeletion->isEmpty()) {
-					OrdersVersionQuery::create()
-						->filterByPrimaryKeys($this->ordersVersionsScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->ordersVersionsScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->collOrdersVersions !== null) {
-				foreach ($this->collOrdersVersions as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -2300,15 +2103,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersPeer::UPDATED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
 		}
-		if ($this->isColumnModified(OrdersPeer::VERSION)) {
-			$modifiedColumns[':p' . $index++]  = '`VERSION`';
-		}
-		if ($this->isColumnModified(OrdersPeer::VERSION_CREATED_AT)) {
-			$modifiedColumns[':p' . $index++]  = '`VERSION_CREATED_AT`';
-		}
-		if ($this->isColumnModified(OrdersPeer::VERSION_COMMENT)) {
-			$modifiedColumns[':p' . $index++]  = '`VERSION_COMMENT`';
-		}
 
 		$sql = sprintf(
 			'INSERT INTO `orders` (%s) VALUES (%s)',
@@ -2430,15 +2224,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 						break;
 					case '`UPDATED_AT`':
 						$stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
-						break;
-					case '`VERSION`':
-						$stmt->bindValue($identifier, $this->version, PDO::PARAM_INT);
-						break;
-					case '`VERSION_CREATED_AT`':
-						$stmt->bindValue($identifier, $this->version_created_at, PDO::PARAM_STR);
-						break;
-					case '`VERSION_COMMENT`':
-						$stmt->bindValue($identifier, $this->version_comment, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -2589,14 +2374,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 					}
 				}
 
-				if ($this->collOrdersVersions !== null) {
-					foreach ($this->collOrdersVersions as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
 
 			$this->alreadyInValidation = false;
 		}
@@ -2741,15 +2518,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			case 36:
 				return $this->getUpdatedAt();
 				break;
-			case 37:
-				return $this->getVersion();
-				break;
-			case 38:
-				return $this->getVersionCreatedAt();
-				break;
-			case 39:
-				return $this->getVersionComment();
-				break;
 			default:
 				return null;
 				break;
@@ -2816,9 +2584,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$keys[34] => $this->getFinishedAt(),
 			$keys[35] => $this->getCreatedAt(),
 			$keys[36] => $this->getUpdatedAt(),
-			$keys[37] => $this->getVersion(),
-			$keys[38] => $this->getVersionCreatedAt(),
-			$keys[39] => $this->getVersionComment(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCountriesRelatedByBillingCountriesId) {
@@ -2838,9 +2603,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			}
 			if (null !== $this->collOrdersSyncLogs) {
 				$result['OrdersSyncLogs'] = $this->collOrdersSyncLogs->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-			}
-			if (null !== $this->collOrdersVersions) {
-				$result['OrdersVersions'] = $this->collOrdersVersions->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 		}
 		return $result;
@@ -2984,15 +2746,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			case 36:
 				$this->setUpdatedAt($value);
 				break;
-			case 37:
-				$this->setVersion($value);
-				break;
-			case 38:
-				$this->setVersionCreatedAt($value);
-				break;
-			case 39:
-				$this->setVersionComment($value);
-				break;
 		} // switch()
 	}
 
@@ -3054,9 +2807,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if (array_key_exists($keys[34], $arr)) $this->setFinishedAt($arr[$keys[34]]);
 		if (array_key_exists($keys[35], $arr)) $this->setCreatedAt($arr[$keys[35]]);
 		if (array_key_exists($keys[36], $arr)) $this->setUpdatedAt($arr[$keys[36]]);
-		if (array_key_exists($keys[37], $arr)) $this->setVersion($arr[$keys[37]]);
-		if (array_key_exists($keys[38], $arr)) $this->setVersionCreatedAt($arr[$keys[38]]);
-		if (array_key_exists($keys[39], $arr)) $this->setVersionComment($arr[$keys[39]]);
 	}
 
 	/**
@@ -3105,9 +2855,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersPeer::FINISHED_AT)) $criteria->add(OrdersPeer::FINISHED_AT, $this->finished_at);
 		if ($this->isColumnModified(OrdersPeer::CREATED_AT)) $criteria->add(OrdersPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(OrdersPeer::UPDATED_AT)) $criteria->add(OrdersPeer::UPDATED_AT, $this->updated_at);
-		if ($this->isColumnModified(OrdersPeer::VERSION)) $criteria->add(OrdersPeer::VERSION, $this->version);
-		if ($this->isColumnModified(OrdersPeer::VERSION_CREATED_AT)) $criteria->add(OrdersPeer::VERSION_CREATED_AT, $this->version_created_at);
-		if ($this->isColumnModified(OrdersPeer::VERSION_COMMENT)) $criteria->add(OrdersPeer::VERSION_COMMENT, $this->version_comment);
 
 		return $criteria;
 	}
@@ -3206,9 +2953,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$copyObj->setFinishedAt($this->getFinishedAt());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
-		$copyObj->setVersion($this->getVersion());
-		$copyObj->setVersionCreatedAt($this->getVersionCreatedAt());
-		$copyObj->setVersionComment($this->getVersionComment());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -3238,12 +2982,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			foreach ($this->getOrdersSyncLogs() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
 					$copyObj->addOrdersSyncLog($relObj->copy($deepCopy));
-				}
-			}
-
-			foreach ($this->getOrdersVersions() as $relObj) {
-				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addOrdersVersion($relObj->copy($deepCopy));
 				}
 			}
 
@@ -3415,9 +3153,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		}
 		if ('OrdersSyncLog' == $relationName) {
 			return $this->initOrdersSyncLogs();
-		}
-		if ('OrdersVersion' == $relationName) {
-			return $this->initOrdersVersions();
 		}
 	}
 
@@ -4039,154 +3774,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Clears out the collOrdersVersions collection
-	 *
-	 * This does not modify the database; however, it will remove any associated objects, causing
-	 * them to be refetched by subsequent calls to accessor method.
-	 *
-	 * @return     void
-	 * @see        addOrdersVersions()
-	 */
-	public function clearOrdersVersions()
-	{
-		$this->collOrdersVersions = null; // important to set this to NULL since that means it is uninitialized
-	}
-
-	/**
-	 * Initializes the collOrdersVersions collection.
-	 *
-	 * By default this just sets the collOrdersVersions collection to an empty array (like clearcollOrdersVersions());
-	 * however, you may wish to override this method in your stub class to provide setting appropriate
-	 * to your application -- for example, setting the initial array to the values stored in database.
-	 *
-	 * @param      boolean $overrideExisting If set to true, the method call initializes
-	 *                                        the collection even if it is not empty
-	 *
-	 * @return     void
-	 */
-	public function initOrdersVersions($overrideExisting = true)
-	{
-		if (null !== $this->collOrdersVersions && !$overrideExisting) {
-			return;
-		}
-		$this->collOrdersVersions = new PropelObjectCollection();
-		$this->collOrdersVersions->setModel('OrdersVersion');
-	}
-
-	/**
-	 * Gets an array of OrdersVersion objects which contain a foreign key that references this object.
-	 *
-	 * If the $criteria is not null, it is used to always fetch the results from the database.
-	 * Otherwise the results are fetched from the database the first time, then cached.
-	 * Next time the same method is called without $criteria, the cached collection is returned.
-	 * If this Orders is new, it will return
-	 * an empty collection or the current collection; the criteria is ignored on a new object.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array OrdersVersion[] List of OrdersVersion objects
-	 * @throws     PropelException
-	 */
-	public function getOrdersVersions($criteria = null, PropelPDO $con = null)
-	{
-		if(null === $this->collOrdersVersions || null !== $criteria) {
-			if ($this->isNew() && null === $this->collOrdersVersions) {
-				// return empty collection
-				$this->initOrdersVersions();
-			} else {
-				$collOrdersVersions = OrdersVersionQuery::create(null, $criteria)
-					->filterByOrders($this)
-					->find($con);
-				if (null !== $criteria) {
-					return $collOrdersVersions;
-				}
-				$this->collOrdersVersions = $collOrdersVersions;
-			}
-		}
-		return $this->collOrdersVersions;
-	}
-
-	/**
-	 * Sets a collection of OrdersVersion objects related by a one-to-many relationship
-	 * to the current object.
-	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-	 * and new objects from the given Propel collection.
-	 *
-	 * @param      PropelCollection $ordersVersions A Propel collection.
-	 * @param      PropelPDO $con Optional connection object
-	 */
-	public function setOrdersVersions(PropelCollection $ordersVersions, PropelPDO $con = null)
-	{
-		$this->ordersVersionsScheduledForDeletion = $this->getOrdersVersions(new Criteria(), $con)->diff($ordersVersions);
-
-		foreach ($ordersVersions as $ordersVersion) {
-			// Fix issue with collection modified by reference
-			if ($ordersVersion->isNew()) {
-				$ordersVersion->setOrders($this);
-			}
-			$this->addOrdersVersion($ordersVersion);
-		}
-
-		$this->collOrdersVersions = $ordersVersions;
-	}
-
-	/**
-	 * Returns the number of related OrdersVersion objects.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct
-	 * @param      PropelPDO $con
-	 * @return     int Count of related OrdersVersion objects.
-	 * @throws     PropelException
-	 */
-	public function countOrdersVersions(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-	{
-		if(null === $this->collOrdersVersions || null !== $criteria) {
-			if ($this->isNew() && null === $this->collOrdersVersions) {
-				return 0;
-			} else {
-				$query = OrdersVersionQuery::create(null, $criteria);
-				if($distinct) {
-					$query->distinct();
-				}
-				return $query
-					->filterByOrders($this)
-					->count($con);
-			}
-		} else {
-			return count($this->collOrdersVersions);
-		}
-	}
-
-	/**
-	 * Method called to associate a OrdersVersion object to this object
-	 * through the OrdersVersion foreign key attribute.
-	 *
-	 * @param      OrdersVersion $l OrdersVersion
-	 * @return     Orders The current object (for fluent API support)
-	 */
-	public function addOrdersVersion(OrdersVersion $l)
-	{
-		if ($this->collOrdersVersions === null) {
-			$this->initOrdersVersions();
-		}
-		if (!$this->collOrdersVersions->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddOrdersVersion($l);
-		}
-
-		return $this;
-	}
-
-	/**
-	 * @param	OrdersVersion $ordersVersion The ordersVersion object to add.
-	 */
-	protected function doAddOrdersVersion($ordersVersion)
-	{
-		$this->collOrdersVersions[]= $ordersVersion;
-		$ordersVersion->setOrders($this);
-	}
-
-	/**
 	 * Clears the current object and sets all attributes to their default values
 	 */
 	public function clear()
@@ -4228,9 +3815,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$this->finished_at = null;
 		$this->created_at = null;
 		$this->updated_at = null;
-		$this->version = null;
-		$this->version_created_at = null;
-		$this->version_comment = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
@@ -4272,11 +3856,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
-			if ($this->collOrdersVersions) {
-				foreach ($this->collOrdersVersions as $o) {
-					$o->clearAllReferences($deep);
-				}
-			}
 		} // if ($deep)
 
 		if ($this->collOrdersAttributess instanceof PropelCollection) {
@@ -4295,10 +3874,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$this->collOrdersSyncLogs->clearIterator();
 		}
 		$this->collOrdersSyncLogs = null;
-		if ($this->collOrdersVersions instanceof PropelCollection) {
-			$this->collOrdersVersions->clearIterator();
-		}
-		$this->collOrdersVersions = null;
 		$this->aCountriesRelatedByBillingCountriesId = null;
 		$this->aCountriesRelatedByDeliveryCountriesId = null;
 	}
@@ -4324,370 +3899,6 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	{
 		$this->modifiedColumns[] = OrdersPeer::UPDATED_AT;
 		return $this;
-	}
-
-	// versionable behavior
-	
-	/**
-	 * Checks whether the current state must be recorded as a version
-	 *
-	 * @return  boolean
-	 */
-	public function isVersioningNecessary($con = null)
-	{
-		if ($this->alreadyInSave) {
-			return false;
-		}
-		if (OrdersPeer::isVersioningEnabled() && ($this->isNew() || $this->isModified())) {
-			return true;
-		}
-	  // to avoid infinite loops, emulate in save
-	  $this->alreadyInSave = true;
-		foreach ($this->getOrdersAttributess(null, $con) as $relatedObject) {
-			if ($relatedObject->isVersioningNecessary($con)) {
-	      $this->alreadyInSave = false;
-				return true;
-			}
-		}
-	  $this->alreadyInSave = false;
-	
-	  // to avoid infinite loops, emulate in save
-	  $this->alreadyInSave = true;
-		foreach ($this->getOrdersLiness(null, $con) as $relatedObject) {
-			if ($relatedObject->isVersioningNecessary($con)) {
-	      $this->alreadyInSave = false;
-				return true;
-			}
-		}
-	  $this->alreadyInSave = false;
-	
-	  // to avoid infinite loops, emulate in save
-	  $this->alreadyInSave = true;
-		foreach ($this->getOrdersStateLogs(null, $con) as $relatedObject) {
-			if ($relatedObject->isVersioningNecessary($con)) {
-	      $this->alreadyInSave = false;
-				return true;
-			}
-		}
-	  $this->alreadyInSave = false;
-	
-		return false;
-	}
-	
-	/**
-	 * Creates a version of the current object and saves it.
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  OrdersVersion A version object
-	 */
-	public function addVersion($con = null)
-	{
-		$version = new OrdersVersion();
-		$version->setId($this->getId());
-		$version->setSessionId($this->getSessionId());
-		$version->setPaymentGatewayId($this->getPaymentGatewayId());
-		$version->setState($this->getState());
-		$version->setInEdit($this->getInEdit());
-		$version->setCustomersId($this->getCustomersId());
-		$version->setFirstName($this->getFirstName());
-		$version->setLastName($this->getLastName());
-		$version->setEmail($this->getEmail());
-		$version->setPhone($this->getPhone());
-		$version->setLanguagesId($this->getLanguagesId());
-		$version->setCurrencyId($this->getCurrencyId());
-		$version->setBillingFirstName($this->getBillingFirstName());
-		$version->setBillingLastName($this->getBillingLastName());
-		$version->setBillingAddressLine1($this->getBillingAddressLine1());
-		$version->setBillingAddressLine2($this->getBillingAddressLine2());
-		$version->setBillingPostalCode($this->getBillingPostalCode());
-		$version->setBillingCity($this->getBillingCity());
-		$version->setBillingCountry($this->getBillingCountry());
-		$version->setBillingCountriesId($this->getBillingCountriesId());
-		$version->setBillingStateProvince($this->getBillingStateProvince());
-		$version->setBillingCompanyName($this->getBillingCompanyName());
-		$version->setBillingMethod($this->getBillingMethod());
-		$version->setDeliveryFirstName($this->getDeliveryFirstName());
-		$version->setDeliveryLastName($this->getDeliveryLastName());
-		$version->setDeliveryAddressLine1($this->getDeliveryAddressLine1());
-		$version->setDeliveryAddressLine2($this->getDeliveryAddressLine2());
-		$version->setDeliveryPostalCode($this->getDeliveryPostalCode());
-		$version->setDeliveryCity($this->getDeliveryCity());
-		$version->setDeliveryCountry($this->getDeliveryCountry());
-		$version->setDeliveryCountriesId($this->getDeliveryCountriesId());
-		$version->setDeliveryStateProvince($this->getDeliveryStateProvince());
-		$version->setDeliveryCompanyName($this->getDeliveryCompanyName());
-		$version->setDeliveryMethod($this->getDeliveryMethod());
-		$version->setFinishedAt($this->getFinishedAt());
-		$version->setCreatedAt($this->getCreatedAt());
-		$version->setUpdatedAt($this->getUpdatedAt());
-		$version->setVersion($this->getVersion());
-		$version->setVersionCreatedAt($this->getVersionCreatedAt());
-		$version->setVersionComment($this->getVersionComment());
-		$version->setOrders($this);
-		if ($relateds = $this->getOrdersAttributess($con)->toKeyValue('Id', 'Version')) {
-			$version->setOrdersAttributesIds(array_keys($relateds));
-			$version->setOrdersAttributesVersions(array_values($relateds));
-		}
-		if ($relateds = $this->getOrdersLiness($con)->toKeyValue('Id', 'Version')) {
-			$version->setOrdersLinesIds(array_keys($relateds));
-			$version->setOrdersLinesVersions(array_values($relateds));
-		}
-		if ($relateds = $this->getOrdersStateLogs($con)->toKeyValue('Id', 'Version')) {
-			$version->setOrdersStateLogIds(array_keys($relateds));
-			$version->setOrdersStateLogVersions(array_values($relateds));
-		}
-		$version->save($con);
-	
-		return $version;
-	}
-	
-	/**
-	 * Sets the properties of the curent object to the value they had at a specific version
-	 *
-	 * @param   integer $versionNumber The version number to read
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  Orders The current object (for fluent API support)
-	 */
-	public function toVersion($versionNumber, $con = null)
-	{
-		$version = $this->getOneVersion($versionNumber, $con);
-		if (!$version) {
-			throw new PropelException(sprintf('No Orders object found with version %d', $version));
-		}
-		$this->populateFromVersion($version, $con);
-	
-		return $this;
-	}
-	
-	/**
-	 * Sets the properties of the curent object to the value they had at a specific version
-	 *
-	 * @param   OrdersVersion $version The version object to use
-	 * @param   PropelPDO $con the connection to use
-	 * @param   array $loadedObjects objects thats been loaded in a chain of populateFromVersion calls on referrer or fk objects.
-	 *
-	 * @return  Orders The current object (for fluent API support)
-	 */
-	public function populateFromVersion($version, $con = null, &$loadedObjects = array())
-	{
-	
-		$loadedObjects['Orders'][$version->getId()][$version->getVersion()] = $this;
-		$this->setId($version->getId());
-		$this->setSessionId($version->getSessionId());
-		$this->setPaymentGatewayId($version->getPaymentGatewayId());
-		$this->setState($version->getState());
-		$this->setInEdit($version->getInEdit());
-		$this->setCustomersId($version->getCustomersId());
-		$this->setFirstName($version->getFirstName());
-		$this->setLastName($version->getLastName());
-		$this->setEmail($version->getEmail());
-		$this->setPhone($version->getPhone());
-		$this->setLanguagesId($version->getLanguagesId());
-		$this->setCurrencyId($version->getCurrencyId());
-		$this->setBillingFirstName($version->getBillingFirstName());
-		$this->setBillingLastName($version->getBillingLastName());
-		$this->setBillingAddressLine1($version->getBillingAddressLine1());
-		$this->setBillingAddressLine2($version->getBillingAddressLine2());
-		$this->setBillingPostalCode($version->getBillingPostalCode());
-		$this->setBillingCity($version->getBillingCity());
-		$this->setBillingCountry($version->getBillingCountry());
-		$this->setBillingCountriesId($version->getBillingCountriesId());
-		$this->setBillingStateProvince($version->getBillingStateProvince());
-		$this->setBillingCompanyName($version->getBillingCompanyName());
-		$this->setBillingMethod($version->getBillingMethod());
-		$this->setDeliveryFirstName($version->getDeliveryFirstName());
-		$this->setDeliveryLastName($version->getDeliveryLastName());
-		$this->setDeliveryAddressLine1($version->getDeliveryAddressLine1());
-		$this->setDeliveryAddressLine2($version->getDeliveryAddressLine2());
-		$this->setDeliveryPostalCode($version->getDeliveryPostalCode());
-		$this->setDeliveryCity($version->getDeliveryCity());
-		$this->setDeliveryCountry($version->getDeliveryCountry());
-		$this->setDeliveryCountriesId($version->getDeliveryCountriesId());
-		$this->setDeliveryStateProvince($version->getDeliveryStateProvince());
-		$this->setDeliveryCompanyName($version->getDeliveryCompanyName());
-		$this->setDeliveryMethod($version->getDeliveryMethod());
-		$this->setFinishedAt($version->getFinishedAt());
-		$this->setCreatedAt($version->getCreatedAt());
-		$this->setUpdatedAt($version->getUpdatedAt());
-		$this->setVersion($version->getVersion());
-		$this->setVersionCreatedAt($version->getVersionCreatedAt());
-		$this->setVersionComment($version->getVersionComment());
-		if ($fkValues = $version->getOrdersAttributesIds()) {
-			$this->clearOrdersAttributess();
-			$fkVersions = $version->getOrdersAttributesVersions();
-			$query = OrdersAttributesVersionQuery::create();
-			foreach ($fkValues as $key => $value) {
-				$c1 = $query->getNewCriterion(OrdersAttributesVersionPeer::ID, $value);
-				$c2 = $query->getNewCriterion(OrdersAttributesVersionPeer::VERSION, $fkVersions[$key]);
-				$c1->addAnd($c2);
-				$query->addOr($c1);
-			}
-			foreach ($query->find($con) as $relatedVersion) {
-				if (isset($loadedObjects['OrdersAttributes']) && isset($loadedObjects['OrdersAttributes'][$relatedVersion->getId()]) && isset($loadedObjects['OrdersAttributes'][$relatedVersion->getId()][$relatedVersion->getVersion()])) {
-					$related = $loadedObjects['OrdersAttributes'][$relatedVersion->getId()][$relatedVersion->getVersion()];
-				} else {
-					$related = new OrdersAttributes();
-					$related->populateFromVersion($relatedVersion, $con, $loadedObjects);
-					$related->setNew(false);
-				}
-				$this->addOrdersAttributes($related);
-			}
-		}
-		if ($fkValues = $version->getOrdersLinesIds()) {
-			$this->clearOrdersLiness();
-			$fkVersions = $version->getOrdersLinesVersions();
-			$query = OrdersLinesVersionQuery::create();
-			foreach ($fkValues as $key => $value) {
-				$c1 = $query->getNewCriterion(OrdersLinesVersionPeer::ID, $value);
-				$c2 = $query->getNewCriterion(OrdersLinesVersionPeer::VERSION, $fkVersions[$key]);
-				$c1->addAnd($c2);
-				$query->addOr($c1);
-			}
-			foreach ($query->find($con) as $relatedVersion) {
-				if (isset($loadedObjects['OrdersLines']) && isset($loadedObjects['OrdersLines'][$relatedVersion->getId()]) && isset($loadedObjects['OrdersLines'][$relatedVersion->getId()][$relatedVersion->getVersion()])) {
-					$related = $loadedObjects['OrdersLines'][$relatedVersion->getId()][$relatedVersion->getVersion()];
-				} else {
-					$related = new OrdersLines();
-					$related->populateFromVersion($relatedVersion, $con, $loadedObjects);
-					$related->setNew(false);
-				}
-				$this->addOrdersLines($related);
-			}
-		}
-		if ($fkValues = $version->getOrdersStateLogIds()) {
-			$this->clearOrdersStateLogs();
-			$fkVersions = $version->getOrdersStateLogVersions();
-			$query = OrdersStateLogVersionQuery::create();
-			foreach ($fkValues as $key => $value) {
-				$c1 = $query->getNewCriterion(OrdersStateLogVersionPeer::ID, $value);
-				$c2 = $query->getNewCriterion(OrdersStateLogVersionPeer::VERSION, $fkVersions[$key]);
-				$c1->addAnd($c2);
-				$query->addOr($c1);
-			}
-			foreach ($query->find($con) as $relatedVersion) {
-				if (isset($loadedObjects['OrdersStateLog']) && isset($loadedObjects['OrdersStateLog'][$relatedVersion->getId()]) && isset($loadedObjects['OrdersStateLog'][$relatedVersion->getId()][$relatedVersion->getVersion()])) {
-					$related = $loadedObjects['OrdersStateLog'][$relatedVersion->getId()][$relatedVersion->getVersion()];
-				} else {
-					$related = new OrdersStateLog();
-					$related->populateFromVersion($relatedVersion, $con, $loadedObjects);
-					$related->setNew(false);
-				}
-				$this->addOrdersStateLog($related);
-			}
-		}
-		return $this;
-	}
-	
-	/**
-	 * Gets the latest persisted version number for the current object
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  integer
-	 */
-	public function getLastVersionNumber($con = null)
-	{
-		$v = OrdersVersionQuery::create()
-			->filterByOrders($this)
-			->orderByVersion('desc')
-			->findOne($con);
-		if (!$v) {
-			return 0;
-		}
-		return $v->getVersion();
-	}
-	
-	/**
-	 * Checks whether the current object is the latest one
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  Boolean
-	 */
-	public function isLastVersion($con = null)
-	{
-		return $this->getLastVersionNumber($con) == $this->getVersion();
-	}
-	
-	/**
-	 * Retrieves a version object for this entity and a version number
-	 *
-	 * @param   integer $versionNumber The version number to read
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  OrdersVersion A version object
-	 */
-	public function getOneVersion($versionNumber, $con = null)
-	{
-		return OrdersVersionQuery::create()
-			->filterByOrders($this)
-			->filterByVersion($versionNumber)
-			->findOne($con);
-	}
-	
-	/**
-	 * Gets all the versions of this object, in incremental order
-	 *
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  PropelObjectCollection A list of OrdersVersion objects
-	 */
-	public function getAllVersions($con = null)
-	{
-		$criteria = new Criteria();
-		$criteria->addAscendingOrderByColumn(OrdersVersionPeer::VERSION);
-		return $this->getOrdersVersions($criteria, $con);
-	}
-	
-	/**
-	 * Gets all the versions of this object, in incremental order.
-	 * <code>
-	 * print_r($book->compare(1, 2));
-	 * => array(
-	 *   '1' => array('Title' => 'Book title at version 1'),
-	 *   '2' => array('Title' => 'Book title at version 2')
-	 * );
-	 * </code>
-	 *
-	 * @param   integer   $fromVersionNumber
-	 * @param   integer   $toVersionNumber
-	 * @param   string    $keys Main key used for the result diff (versions|columns)
-	 * @param   PropelPDO $con the connection to use
-	 *
-	 * @return  array A list of differences
-	 */
-	public function compareVersions($fromVersionNumber, $toVersionNumber, $keys = 'columns', $con = null)
-	{
-		$fromVersion = $this->getOneVersion($fromVersionNumber, $con)->toArray();
-		$toVersion = $this->getOneVersion($toVersionNumber, $con)->toArray();
-		$ignoredColumns = array(
-			'Version',
-			'VersionCreatedAt',
-			'VersionComment',
-		);
-		$diff = array();
-		foreach ($fromVersion as $key => $value) {
-			if (in_array($key, $ignoredColumns)) {
-				continue;
-			}
-			if ($toVersion[$key] != $value) {
-				switch ($keys) {
-					case 'versions':
-						$diff[$fromVersionNumber][$key] = $value;
-						$diff[$toVersionNumber][$key] = $toVersion[$key];
-						break;
-					default:
-						$diff[$key] = array(
-							$fromVersionNumber => $value,
-							$toVersionNumber => $toVersion[$key],
-						);
-						break;
-				}
-			}
-		}
-		return $diff;
 	}
 
 } // BaseOrders

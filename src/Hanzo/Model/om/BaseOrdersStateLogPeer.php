@@ -12,7 +12,6 @@ use \PropelPDO;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersStateLogPeer;
-use Hanzo\Model\OrdersStateLogVersionPeer;
 use Hanzo\Model\map\OrdersStateLogTableMap;
 
 /**
@@ -40,13 +39,13 @@ abstract class BaseOrdersStateLogPeer {
 	const TM_CLASS = 'OrdersStateLogTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 5;
+	const NUM_COLUMNS = 4;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 5;
+	const NUM_HYDRATE_COLUMNS = 4;
 
 	/** the column name for the ORDERS_ID field */
 	const ORDERS_ID = 'orders_state_log.ORDERS_ID';
@@ -60,9 +59,6 @@ abstract class BaseOrdersStateLogPeer {
 	/** the column name for the MESSAGE field */
 	const MESSAGE = 'orders_state_log.MESSAGE';
 
-	/** the column name for the VERSION field */
-	const VERSION = 'orders_state_log.VERSION';
-
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -75,13 +71,6 @@ abstract class BaseOrdersStateLogPeer {
 	public static $instances = array();
 
 
-	// versionable behavior
-	
-	/**
-	 * Whether the versioning is enabled
-	 */
-	static $isVersioningEnabled = true;
-
 	/**
 	 * holds an array of fieldnames
 	 *
@@ -89,12 +78,12 @@ abstract class BaseOrdersStateLogPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'State', 'CreatedAt', 'Message', 'Version', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'state', 'createdAt', 'message', 'version', ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::STATE, self::CREATED_AT, self::MESSAGE, self::VERSION, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'STATE', 'CREATED_AT', 'MESSAGE', 'VERSION', ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'state', 'created_at', 'message', 'version', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'State', 'CreatedAt', 'Message', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'state', 'createdAt', 'message', ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::STATE, self::CREATED_AT, self::MESSAGE, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'STATE', 'CREATED_AT', 'MESSAGE', ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'state', 'created_at', 'message', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	/**
@@ -104,12 +93,12 @@ abstract class BaseOrdersStateLogPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'State' => 1, 'CreatedAt' => 2, 'Message' => 3, 'Version' => 4, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'state' => 1, 'createdAt' => 2, 'message' => 3, 'version' => 4, ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::STATE => 1, self::CREATED_AT => 2, self::MESSAGE => 3, self::VERSION => 4, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'STATE' => 1, 'CREATED_AT' => 2, 'MESSAGE' => 3, 'VERSION' => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'state' => 1, 'created_at' => 2, 'message' => 3, 'version' => 4, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'State' => 1, 'CreatedAt' => 2, 'Message' => 3, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'state' => 1, 'createdAt' => 2, 'message' => 3, ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::STATE => 1, self::CREATED_AT => 2, self::MESSAGE => 3, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'STATE' => 1, 'CREATED_AT' => 2, 'MESSAGE' => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'state' => 1, 'created_at' => 2, 'message' => 3, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	/**
@@ -185,13 +174,11 @@ abstract class BaseOrdersStateLogPeer {
 			$criteria->addSelectColumn(OrdersStateLogPeer::STATE);
 			$criteria->addSelectColumn(OrdersStateLogPeer::CREATED_AT);
 			$criteria->addSelectColumn(OrdersStateLogPeer::MESSAGE);
-			$criteria->addSelectColumn(OrdersStateLogPeer::VERSION);
 		} else {
 			$criteria->addSelectColumn($alias . '.ORDERS_ID');
 			$criteria->addSelectColumn($alias . '.STATE');
 			$criteria->addSelectColumn($alias . '.CREATED_AT');
 			$criteria->addSelectColumn($alias . '.MESSAGE');
-			$criteria->addSelectColumn($alias . '.VERSION');
 		}
 	}
 
@@ -385,9 +372,6 @@ abstract class BaseOrdersStateLogPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
-		// Invalidate objects in OrdersStateLogVersionPeer instance pool,
-		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-		OrdersStateLogVersionPeer::clearInstancePool();
 	}
 
 	/**
@@ -1007,34 +991,6 @@ abstract class BaseOrdersStateLogPeer {
 
 		return !empty($v) ? $v[0] : null;
 	}
-	// versionable behavior
-	
-	/**
-	 * Checks whether versioning is enabled
-	 *
-	 * @return boolean
-	 */
-	public static function isVersioningEnabled()
-	{
-		return self::$isVersioningEnabled;
-	}
-	
-	/**
-	 * Enables versioning
-	 */
-	public static function enableVersioning()
-	{
-		self::$isVersioningEnabled = true;
-	}
-	
-	/**
-	 * Disables versioning
-	 */
-	public static function disableVersioning()
-	{
-		self::$isVersioningEnabled = false;
-	}
-
 } // BaseOrdersStateLogPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
