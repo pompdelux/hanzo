@@ -2,12 +2,12 @@
 <table id="order-status">
   <thead>
     <tr>
-      <th>{{ 'Order Number'|trans({}, 'account') }}</th>
-      <th>{{ 'Date'|trans({}, 'account') }}</th>
-      <th>{{ 'Status'|trans({}, 'account') }}</th>
-      <th class="right">{{ 'Total'|trans({}, 'account') }}</th>
-      <th class="center">{{ 'Invoice'|trans({}, 'account') }}</th>
-      <th></th>
+      <th>{{ 'order.number'|trans({}, 'account') }}</th>
+      <th>{{ 'order.date'|trans({}, 'account') }}</th>
+      <th>{{ 'order.status'|trans({}, 'account') }}</th>
+      <th class="right">{{ 'order.total'|trans({}, 'account') }}</th>
+      <th class="center">{{ 'order.invoice'|trans({}, 'account') }}</th>
+      <th class="right">{{ 'order.actions'|trans({}, 'account') }}</th>
     </tr>
   </thead>
   <tbody>
@@ -27,8 +27,9 @@
           <a href="{{ pdf }}" title="{{ title }}"></a>
       {% endfor %}
       </td>
-      <td class="right show">
-        <a href="{{ path('_account_show_order', { 'order_id': order.id }) }}" title="{{ 'Show order details'|trans({}, 'account') }}"></a>
+      <td class="right">
+        <a href="{{ path('_account_edit_order', { 'order_id': order.id }) }}" title="{{ 'order.edit.title'|trans({}, 'account') }}" class="edit"></a>
+        <a href="{{ path('_account_show_order', { 'order_id': order.id }) }}" title="{{ 'order.invoice.title'|trans({}, 'account') }}" class="show"></a>
       </td>
     </tr>
   {% endfor %}

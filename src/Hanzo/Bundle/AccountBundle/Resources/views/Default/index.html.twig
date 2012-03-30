@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>{{ 'My account'|trans({}, 'account') }}</h1>
+<h1>{{ 'my.account'|trans({}, 'account') }}</h1>
 
 
 {% if app.session.hasFlash('notice') %}
@@ -11,14 +11,14 @@
 </div>
 {% endif %}
 
-<h2>{{ 'Previous Orders'|trans({}, 'account') }}</h2>
+<h2>{{ 'previous.orders'|trans({}, 'account') }}</h2>
 {% render 'AccountBundle:History:block' with { 'route' : app.request.attributes.get('_route') } %}
 
 
-<h2>{{ 'My Account'|trans({}, 'account') }}</h2>
+<h2>{{ 'my.account'|trans({}, 'account') }}</h2>
 <ul>
-  <li><a href="{{ path('_account_edit') }}">» {{ 'Show or change my account details.'|trans({}, 'account') }}</a></li>
-  <li><a href="{{ path('logout') }}">» {{ 'Log out'|trans({}, 'account') }}</a></li>
+  <li><a href="{{ path('_account_edit') }}">» {{ 'account.details'|trans({}, 'account') }}</a></li>
+  <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
 </ul>
 
 
