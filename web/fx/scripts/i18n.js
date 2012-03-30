@@ -7,7 +7,7 @@ var i18n = (function($) {
       'Close' : 'Luk',
       'Ok' : 'Ok',
       'Cancel' : 'Annuller',
-      'Notice!' : 'Bemærk!',
+      'notice' : 'Bemærk!',
       'Choose' : 'Vælg',
       'Quantity' : 'Antal',
       'Please wait': 'Vent venligst',
@@ -22,9 +22,11 @@ var i18n = (function($) {
       'checkout.shipping_business' : 'Du har valgt "Post Danmark Erhverv". Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).',
       'loading.std' : 'Indlæser ...',
       'loading.search' : 'Søger ...',
-      'loading.search.products' : 'Finder produkter ...'
+      'loading.search.products' : 'Finder produkter ...',
+      'edit order notice' : '<font color="#A10000"><b>Det er muligt at din ordres afsendelsesdato ændre sig til en senere afsendelsesdato ved redigering.</b></font><br><br>For at redigere din ordre skal du gøre følgende:<br><br>1) Klik på "Rediger" for at redigere ordren. Dine varer vil herefter blive lagt tilbage i kurven.<br><br>2) Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du at tilføje varer, skal du klikke på menuen Webshop.<br><br>3) Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og følge trin 1 til 5. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.<br><br><b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard skal du være opmærksom på følgende:<ul><li>Der foretages endnu en reservation af det fulde købs beløb når du redigerer din ordre. </li><li>Reservationen på din oprindelige ordre bliver straks annulleret af POMPdeLUX og vi har således kun reserveret købs beløbet på din redigerede ordre. Hos dit pengeinstitut kan der imidlertid gå op til 6 uger inden reservationen ophæves. </li></ul>'
     },
     en : {
+      'notice' : 'Notice!',
       'countdown date' : 'February 20, 2012 09:00:00',
       'countdown format' : '{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}',
       'late delivery notice': '<p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock. </p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>',
@@ -32,7 +34,8 @@ var i18n = (function($) {
       'late delivery' : '<h2>Notice</h2><strong>"%product%"</strong> currently not in stock.<br>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.',
       'loading.std' : 'Loading ...',
       'loading.search' : 'Searching ...',
-      'loading.search.products' : 'Finding products ...'
+      'loading.search.products' : 'Finding products ...',
+      'edit order notice' : 'To edit your order you have to do the following:<br /><br />1) Click on "Edit" to edit the order. Your items will then be returned to the basket.<br /><br />2) If you wish to change colour or size, click on the pencil in the basket. If you wish to add items, click on the menu Webshop.<br /><br />3) When you have finished editing, click on "Show basket" and follow step 1 to 5. When you have completed your order with new credit card payment, the old payment will automatically be cancelled.'
     }
   };
 

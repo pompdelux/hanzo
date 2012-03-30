@@ -90,9 +90,25 @@ var account = (function($) {
     } catch (e) {}
   }
 
+  pub.orderHistoryInit = function() {
+    $('a.edit').on('click', function(event) {
+      event.preventDefault();
+      var href = this.href;
+      dialoug.confirm(i18n.t('notice'), i18n.t('edit order notice'), function(c) {
+        if (c == 'ok') {
+          document.location.href = href;
+        }
+      }, { maxWidth : '550px' });
+    });
+  }
+
   return pub;
 })(jQuery);
 
 if ($("#body-create-account").length) {
   account.init();
+}
+
+if ($("table#order-status").length) {
+  account.orderHistoryInit();
 }
