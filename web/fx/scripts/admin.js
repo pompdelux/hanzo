@@ -101,11 +101,12 @@
         scroll: true,
         update: function () {
           list = $(this).sortable('toArray');
+          category_id = category_id; // Footer JavaScript Block
           $.ajax({
             url: 'update-sort/',
             dataType: 'json',
             type: 'POST',
-            data: {data : list},
+            data: {data : list, category_id : category_id},
             async: false,
             success: function(responce, textStatus, jqXHR) {
               if (false === responce.status) {

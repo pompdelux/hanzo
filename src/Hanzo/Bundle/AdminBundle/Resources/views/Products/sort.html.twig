@@ -3,6 +3,7 @@
 {% block content %}
 <nav class="sub">
   <ul>
+    <li><a href="{{ path('admin_products_sort_update') }}" id="save-sortable">{{ 'update.product.sort'|trans({}, 'admin') }}</a></li>
     <li id="select-category" class="dropdown-menu">
         <a class="open-menu" href="#">
         	{{ 'categories.selector'|trans({}, 'admin') }}
@@ -21,7 +22,7 @@
     </li>
   </ul>
 </nav>
-<h1>{{ 'admin.products.sort.header.text'|trans({}, 'admin') }}</h1>
+<h1>{{ 'admin.products.sort.header.text.%category-name%'|trans({'%category-name%' : current_category.title}, 'admin') }}</h1>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
@@ -31,9 +32,9 @@
 
   {% if products %}
   	 <ul id="product-list-sort">
-	  {% for product in products %}
+	  {% for product in products %}	
 	  	
-	    <li id="item-{{ product.id }}" class="sortable-item item-num-{{ loop.index }}">
+	    <li id="item-{{ product.id }}-{{ product.image_id}}" class="sortable-item item-num-{{ loop.index }}">
 	        {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
 	        <span class="product-id">(#{{ product.id }})</span>
 	        <span class="title">{{ product.title }}</span>
@@ -42,5 +43,13 @@
 	  {% endfor %}
 	 </ul>
   {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript">
+    var category_id = {{ current_category.id }} ;
+</script>
 
 {% endblock %}
