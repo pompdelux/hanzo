@@ -1,0 +1,46 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li id="select-category" class="dropdown-menu">
+        <a class="open-menu" href="#">
+        	{{ 'categories.selector'|trans({}, 'admin') }}
+        </a>
+        <div style="display:none;">
+        	<ul>
+		    {% for category in categories %}
+		      <li>
+		      	<a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}">
+		      		<span class="cat-id">(#{{ category.id }})</span>{{ category.group }} {{ category.title }}
+		      	</a>
+		      </li>
+		    {% endfor %}
+        	</ul>
+        </div>
+    </li>
+  </ul>
+</nav>
+<h1>{{ 'admin.products.sort.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+  {% if products %}
+  	 <ul id="product-list-sort">
+	  {% for product in products %}
+	  	
+	    <li id="item-{{ product.id }}" class="sortable-item item-num-{{ loop.index }}">
+	        {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
+	        <span class="product-id">(#{{ product.id }})</span>
+	        <span class="title">{{ product.title }}</span>
+	    </li>
+
+	  {% endfor %}
+	 </ul>
+  {% endif %}
+
+{% endblock %}

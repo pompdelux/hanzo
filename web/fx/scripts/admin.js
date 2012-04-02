@@ -21,6 +21,11 @@
         $("#select-language div").slideToggle();
       });
 
+      $("#select-category a.open-menu").click(function(e) {
+        e.preventDefault();
+        $("#select-category div").slideToggle();
+      });
+
       /* Admin Sortable list to show and update Cms pages' order*/
       $('#sortable-list').nestedSortable({
         listType: 'ul',
@@ -82,6 +87,42 @@
             });
           }
         });
+      });
+
+      $('ul#product-list-sort').sortable({
+        axis : 'y',
+        delay : 500,
+        distance : 30,
+        forceHelperSize : true,
+        forcePlaceholderSize : true,
+        items : 'li',
+        opacity : 0.5,
+        placeholder : 'placeholder',
+        scroll: true,
+        update: function () {
+          list = $(this).sortable('toArray');
+          $.ajax({
+            url: 'update-sort/',
+            dataType: 'json',
+            type: 'POST',
+            data: {data : list},
+            async: false,
+            success: function(responce, textStatus, jqXHR) {
+              if (false === responce.status) {
+                if (responce.message) {
+                  dialoug.alert(i18n.t('Notice!', responce.message));
+                }
+              }
+              else {
+                window.scrollTo(window.scrollMinX, window.scrollMinY);
+                dialoug.slideNotice(responce.message);
+              }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+            }
+          });
+        }
       });
 
       // ios class added to body

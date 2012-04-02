@@ -5,6 +5,12 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Locale\Locale;
 
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController;
@@ -19,6 +25,7 @@ use Hanzo\Model\Cms,
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
+
 class CmsController extends CoreController
 {
 
@@ -172,6 +179,21 @@ class CmsController extends CoreController
                 /**
                  * @todo Opdater routing.yml
                  */
+
+                // $command = $this->getApplication()->find('Hanzo:router:builder');
+                // $returnCode = $command->run(null,null);
+
+                /**
+                 * @todo Clear cache
+                 */
+
+                // $command = $this->getApplication()->find('cache:clear');
+                // $arguments = array(
+                //     'command' => 'cache:clear',
+                //     '--env' => 'prod'
+                // );
+                // $input = new ArrayInput($arguments);
+                // $returnCode = $command->run($input, $output);
 
                 $this->get('session')->setFlash('notice', 'cms.updated');
             }

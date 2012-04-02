@@ -43,6 +43,20 @@ admin_cms_update_tree:
 admin_products:
     pattern:  /admin/products/
     defaults: { _controller: AdminBundle:Products:index }
+admin_products_sort:
+    pattern:  /admin/products/sort/{category_id}
+    defaults: 
+        _controller: AdminBundle:Products:sort
+        category_id: null
+    requirements:
+        category_id: \d+
+admin_products_sort_update:
+    pattern:  /admin/products/sort/update-sort/
+    defaults:
+        _controller: AdminBundle:Products:updateSort
+        _format: json
+    requirements:
+        _format: html|json
 admin_orders:
     pattern:  /admin/orders/
     defaults: { _controller: AdminBundle:Orders:index }
