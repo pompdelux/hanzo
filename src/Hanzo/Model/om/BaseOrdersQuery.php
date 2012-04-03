@@ -11,6 +11,7 @@ use \PropelCollection;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\Countries;
+use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersLines;
@@ -18,6 +19,7 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersSyncLog;
+use Hanzo\Model\OrdersVersions;
 
 /**
  * Base class that represents a query for the 'orders' table.
@@ -25,6 +27,7 @@ use Hanzo\Model\OrdersSyncLog;
  * 
  *
  * @method     OrdersQuery orderById($order = Criteria::ASC) Order by the id column
+ * @method     OrdersQuery orderByVersionId($order = Criteria::ASC) Order by the version_id column
  * @method     OrdersQuery orderBySessionId($order = Criteria::ASC) Order by the session_id column
  * @method     OrdersQuery orderByPaymentGatewayId($order = Criteria::ASC) Order by the payment_gateway_id column
  * @method     OrdersQuery orderByState($order = Criteria::ASC) Order by the state column
@@ -63,6 +66,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
  * @method     OrdersQuery groupById() Group by the id column
+ * @method     OrdersQuery groupByVersionId() Group by the version_id column
  * @method     OrdersQuery groupBySessionId() Group by the session_id column
  * @method     OrdersQuery groupByPaymentGatewayId() Group by the payment_gateway_id column
  * @method     OrdersQuery groupByState() Group by the state column
@@ -104,6 +108,10 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method     OrdersQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
+ * @method     OrdersQuery leftJoinCustomers($relationAlias = null) Adds a LEFT JOIN clause to the query using the Customers relation
+ * @method     OrdersQuery rightJoinCustomers($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Customers relation
+ * @method     OrdersQuery innerJoinCustomers($relationAlias = null) Adds a INNER JOIN clause to the query using the Customers relation
+ *
  * @method     OrdersQuery leftJoinCountriesRelatedByBillingCountriesId($relationAlias = null) Adds a LEFT JOIN clause to the query using the CountriesRelatedByBillingCountriesId relation
  * @method     OrdersQuery rightJoinCountriesRelatedByBillingCountriesId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CountriesRelatedByBillingCountriesId relation
  * @method     OrdersQuery innerJoinCountriesRelatedByBillingCountriesId($relationAlias = null) Adds a INNER JOIN clause to the query using the CountriesRelatedByBillingCountriesId relation
@@ -128,10 +136,15 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     OrdersQuery rightJoinOrdersSyncLog($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersSyncLog relation
  * @method     OrdersQuery innerJoinOrdersSyncLog($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersSyncLog relation
  *
+ * @method     OrdersQuery leftJoinOrdersVersions($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersVersions relation
+ * @method     OrdersQuery rightJoinOrdersVersions($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersVersions relation
+ * @method     OrdersQuery innerJoinOrdersVersions($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersVersions relation
+ *
  * @method     Orders findOne(PropelPDO $con = null) Return the first Orders matching the query
  * @method     Orders findOneOrCreate(PropelPDO $con = null) Return the first Orders matching the query, or a new Orders object populated from the query conditions when no match is found
  *
  * @method     Orders findOneById(int $id) Return the first Orders filtered by the id column
+ * @method     Orders findOneByVersionId(int $version_id) Return the first Orders filtered by the version_id column
  * @method     Orders findOneBySessionId(string $session_id) Return the first Orders filtered by the session_id column
  * @method     Orders findOneByPaymentGatewayId(int $payment_gateway_id) Return the first Orders filtered by the payment_gateway_id column
  * @method     Orders findOneByState(int $state) Return the first Orders filtered by the state column
@@ -170,6 +183,7 @@ use Hanzo\Model\OrdersSyncLog;
  * @method     Orders findOneByUpdatedAt(string $updated_at) Return the first Orders filtered by the updated_at column
  *
  * @method     array findById(int $id) Return Orders objects filtered by the id column
+ * @method     array findByVersionId(int $version_id) Return Orders objects filtered by the version_id column
  * @method     array findBySessionId(string $session_id) Return Orders objects filtered by the session_id column
  * @method     array findByPaymentGatewayId(int $payment_gateway_id) Return Orders objects filtered by the payment_gateway_id column
  * @method     array findByState(int $state) Return Orders objects filtered by the state column
@@ -294,7 +308,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `IN_EDIT`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_ID`, `BILLING_FIRST_NAME`, `BILLING_LAST_NAME`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_COMPANY_NAME`, `BILLING_METHOD`, `DELIVERY_FIRST_NAME`, `DELIVERY_LAST_NAME`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `VERSION_ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `IN_EDIT`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_ID`, `BILLING_FIRST_NAME`, `BILLING_LAST_NAME`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_COMPANY_NAME`, `BILLING_METHOD`, `DELIVERY_FIRST_NAME`, `DELIVERY_LAST_NAME`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -403,6 +417,46 @@ abstract class BaseOrdersQuery extends ModelCriteria
 			$comparison = Criteria::IN;
 		}
 		return $this->addUsingAlias(OrdersPeer::ID, $id, $comparison);
+	}
+
+	/**
+	 * Filter the query on the version_id column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByVersionId(1234); // WHERE version_id = 1234
+	 * $query->filterByVersionId(array(12, 34)); // WHERE version_id IN (12, 34)
+	 * $query->filterByVersionId(array('min' => 12)); // WHERE version_id > 12
+	 * </code>
+	 *
+	 * @param     mixed $versionId The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByVersionId($versionId = null, $comparison = null)
+	{
+		if (is_array($versionId)) {
+			$useMinMax = false;
+			if (isset($versionId['min'])) {
+				$this->addUsingAlias(OrdersPeer::VERSION_ID, $versionId['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($versionId['max'])) {
+				$this->addUsingAlias(OrdersPeer::VERSION_ID, $versionId['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(OrdersPeer::VERSION_ID, $versionId, $comparison);
 	}
 
 	/**
@@ -548,6 +602,8 @@ abstract class BaseOrdersQuery extends ModelCriteria
 	 * $query->filterByCustomersId(array(12, 34)); // WHERE customers_id IN (12, 34)
 	 * $query->filterByCustomersId(array('min' => 12)); // WHERE customers_id > 12
 	 * </code>
+	 *
+	 * @see       filterByCustomers()
 	 *
 	 * @param     mixed $customersId The value to use as filter.
 	 *              Use scalar values for equality.
@@ -1542,6 +1598,80 @@ abstract class BaseOrdersQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query by a related Customers object
+	 *
+	 * @param     Customers|PropelCollection $customers The related object(s) to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByCustomers($customers, $comparison = null)
+	{
+		if ($customers instanceof Customers) {
+			return $this
+				->addUsingAlias(OrdersPeer::CUSTOMERS_ID, $customers->getId(), $comparison);
+		} elseif ($customers instanceof PropelCollection) {
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+			return $this
+				->addUsingAlias(OrdersPeer::CUSTOMERS_ID, $customers->toKeyValue('PrimaryKey', 'Id'), $comparison);
+		} else {
+			throw new PropelException('filterByCustomers() only accepts arguments of type Customers or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the Customers relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function joinCustomers($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('Customers');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'Customers');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the Customers relation Customers object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\CustomersQuery A secondary query class using the current class as primary query
+	 */
+	public function useCustomersQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	{
+		return $this
+			->joinCustomers($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'Customers', '\Hanzo\Model\CustomersQuery');
+	}
+
+	/**
 	 * Filter the query by a related Countries object
 	 *
 	 * @param     Countries|PropelCollection $countries The related object(s) to use as filter
@@ -1979,6 +2109,79 @@ abstract class BaseOrdersQuery extends ModelCriteria
 		return $this
 			->joinOrdersSyncLog($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'OrdersSyncLog', '\Hanzo\Model\OrdersSyncLogQuery');
+	}
+
+	/**
+	 * Filter the query by a related OrdersVersions object
+	 *
+	 * @param     OrdersVersions $ordersVersions  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByOrdersVersions($ordersVersions, $comparison = null)
+	{
+		if ($ordersVersions instanceof OrdersVersions) {
+			return $this
+				->addUsingAlias(OrdersPeer::ID, $ordersVersions->getOrdersId(), $comparison);
+		} elseif ($ordersVersions instanceof PropelCollection) {
+			return $this
+				->useOrdersVersionsQuery()
+				->filterByPrimaryKeys($ordersVersions->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByOrdersVersions() only accepts arguments of type OrdersVersions or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the OrdersVersions relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function joinOrdersVersions($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('OrdersVersions');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'OrdersVersions');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the OrdersVersions relation OrdersVersions object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\OrdersVersionsQuery A secondary query class using the current class as primary query
+	 */
+	public function useOrdersVersionsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinOrdersVersions($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'OrdersVersions', '\Hanzo\Model\OrdersVersionsQuery');
 	}
 
 	/**

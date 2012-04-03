@@ -19,21 +19,29 @@ var dialoug = (function($) {
    * @param string message
    * @param function callback
    */
-  pub.confirm = function(title, message, callback) {
+  pub.confirm = function(title, message, callback, params) {
     var $callback = callback;
 
-    $.colorbox({
+    var defaults = {
       'top' : '20%',
       'close' : '',
       'maxWidth' : '400px',
-      'overlayClose' : false,
-      'escKey' : false,
-      'html' : templates.confirm
-                        .replace('%title%', title)
-                        .replace('%message%', message)
-                        .replace('%ok%', i18n.t('Ok'))
-                        .replace('%cancel%', i18n.t('Cancel'))
-    });
+    };
+
+    if (undefined !== params) {
+      $.extend(defaults, params);
+    }
+
+    defaults.overlayClose = false;
+    defaults.escKey = false;
+    defaults.html = templates.confirm
+      .replace('%title%', title)
+      .replace('%message%', message)
+      .replace('%ok%', i18n.t('Ok'))
+      .replace('%cancel%', i18n.t('Cancel'))
+    ;
+
+    $.colorbox(defaults);
 
     $('#cboxContent .dialoug a').bind('click', function(event) {
       $('#cboxContent .dialoug a').unbind('click');

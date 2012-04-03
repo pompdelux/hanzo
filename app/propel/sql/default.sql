@@ -654,6 +654,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`version_id` INTEGER DEFAULT 1 NOT NULL,
 	`session_id` VARCHAR(32) NOT NULL,
 	`payment_gateway_id` INTEGER,
 	`state` INTEGER DEFAULT -50 NOT NULL,
@@ -693,11 +694,15 @@ CREATE TABLE `orders`
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `index2` (`session_id`),
 	UNIQUE INDEX `index3` (`payment_gateway_id`),
-	INDEX `index4` (`customers_id`),
 	INDEX `index5` (`languages_id`),
 	INDEX `index8` (`state`),
+	INDEX `orders_FI_1` (`customers_id`),
 	INDEX `FI_customers_1` (`billing_countries_id`),
 	INDEX `FI_customers_2` (`delivery_countries_id`),
+	CONSTRAINT `orders_FK_1`
+		FOREIGN KEY (`customers_id`)
+		REFERENCES `customers` (`id`)
+		ON DELETE SET NULL,
 	CONSTRAINT `fk_customers_1`
 		FOREIGN KEY (`billing_countries_id`)
 		REFERENCES `countries` (`id`),
@@ -790,8 +795,26 @@ CREATE TABLE `orders_sync_log`
 	`state` VARCHAR(12) DEFAULT 'ok' NOT NULL,
 	`content` TEXT,
 	PRIMARY KEY (`orders_id`,`created_at`),
-	INDEX `osl_index_1` (`orders_id`, `created_at`),
 	CONSTRAINT `fk_orders_lines_3`
+		FOREIGN KEY (`orders_id`)
+		REFERENCES `orders` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_versions
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_versions`;
+
+CREATE TABLE `orders_versions`
+(
+	`orders_id` INTEGER NOT NULL,
+	`version_id` INTEGER NOT NULL,
+	`created_at` DATETIME NOT NULL,
+	`content` LONGTEXT NOT NULL,
+	PRIMARY KEY (`orders_id`,`version_id`),
+	CONSTRAINT `orders_versions_FK_1`
 		FOREIGN KEY (`orders_id`)
 		REFERENCES `orders` (`id`)
 		ON DELETE CASCADE

@@ -2,22 +2,27 @@
 
 namespace Hanzo\Model;
 
+use \BasePeer;
 use \PropelPDO;
+use \PropelCollection;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
-use Hanzo\Model\om\BaseOrders,
-    Hanzo\Model\OrdersLines,
-    Hanzo\Model\OrdersLinesPeer,
-    Hanzo\Model\OrdersLinesQuery
-    ;
+use Hanzo\Model\om\BaseOrders;
+use Hanzo\Model\OrdersLines;
+use Hanzo\Model\OrdersLinesPeer;
+use Hanzo\Model\OrdersLinesQuery;
 
-use Hanzo\Model\ShippingMethods
-    ;
+use Hanzo\Model\OrdersAttributes;
+use Hanzo\Model\OrdersAttributesQuery;
 
-use Exception
-    ;
+use Hanzo\Model\OrdersVersions;
+use Hanzo\Model\OrdersVersionsQuery;
+
+use Hanzo\Model\ShippingMethods;
+
+use Exception;
 
 /**
  * Skeleton subclass for representing a row from the 'orders' table.
@@ -36,20 +41,205 @@ class Orders extends BaseOrders
      */
     const STATE_ERROR_PAYMENT   = -110;
     const STATE_ERROR           = -100;
-    const STATE_BUILDING        = -50;
-    const STATE_PRE_CONFIRM     = -30;
-    const STATE_PRE_PAYMENT     = -20;
-    const STATE_POST_PAYMENT    = 10;
-    const STATE_PAYMENT_OK      = 20;
-    const STATE_PENDING         = 30;
-    const STATE_BEING_PROCESSED = 40;
-    const STATE_SHIPPED         = 50;
+    const STATE_BUILDING        =  -50;
+    const STATE_PRE_CONFIRM     =  -30;
+    const STATE_PRE_PAYMENT     =  -20;
+    const STATE_POST_PAYMENT    =   10;
+    const STATE_PAYMENT_OK      =   20;
+    const STATE_PENDING         =   30;
+    const STATE_BEING_PROCESSED =   40;
+    const STATE_SHIPPED         =   50;
 
-    const TYPE_PRIVATE          = -1;
-    const TYPE_GIFT             = -2;
-    const TYPE_FRIEND           = -3;
-    const TYPE_OUTSIDE_EVENT    = -4;
+    const TYPE_PRIVATE          =  -1;
+    const TYPE_GIFT             =  -2;
+    const TYPE_FRIEND           =  -3;
+    const TYPE_OUTSIDE_EVENT    =  -4;
     const TYPE_NORMAL           = -10;
+
+
+    /**
+     * Create a new version of the current order.
+     *
+     * @return object Orders
+     */
+    public function createNewVersion()
+    {
+        // never create a new version of a new object.
+        if ($this->isNew()) {
+            return $this;
+        }
+
+        /**
+         * we need to version the following tables:
+         *     orders
+         *     orders_products
+         *     orders_attributes
+         */
+        $data = array();
+        $data['order'] = $this->toArray();
+        unset($data['order']['Id']);
+
+        $data['products'] = $this->getOrdersLiness()->toArray();
+        $data['attributes'] = $this->getOrdersAttributess()->toArray();
+
+        // find current version id.
+        $version_id = OrdersVersionsQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->orderByVersionId('desc')
+            ->findOne()
+        ;
+
+        if ($version_id) {
+            $version_id = $version_id->getVersionId() + 1;
+        } else {
+            $version_id = 1;
+        }
+
+        $now = time();
+        $version = new OrdersVersions();
+        $version->setOrdersId($this->getId());
+        $version->setVersionId($version_id);
+        $version->setContent(serialize($data));
+        $version->setCreatedAt($now);
+        $version->save();
+
+        // for the first version we create entries for both first and second version
+        if ($version_id == 1) {
+            $version = new OrdersVersions();
+            $version->setOrdersId($this->getId());
+            $version->setVersionId($version_id + 1);
+            $version->setContent(serialize($data));
+            $version->setCreatedAt($now);
+            $version->save();
+        }
+
+        $this->setVersionId($version_id + 1);
+        return $this->save();
+    }
+
+
+    /**
+     * Get all version ids including the current version
+     *
+     * @return array
+     */
+    public function getVersionIds()
+    {
+        $versions = OrdersVersionsQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->orderByVersionId('desc')
+            ->find()
+        ;
+
+        $id = $this->getVersionId();
+        $ids = array(
+            $id => $id
+        );
+
+        foreach ($versions as $version) {
+            $ids[$version->getVersionId()] = $version->getVersionId();
+        }
+
+        return array_keys($ids);
+    }
+
+
+    /**
+     * delete a version, note you cannot delete the current version
+     *
+     * @param  int $version_id the version you wich to delete
+     * @return boolean
+     */
+    public function deleteVersion($version_id)
+    {
+        if (($version_id == $this->getVersionId()) || !in_array($version_id, $this->getVersionIds())) {
+            throw new OutOfBoundsException('Invalid version id');
+        }
+
+        return OrdersVersionsQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->findOneByVersionId($version_id)
+            ->delete()
+        ;
+    }
+
+
+    /**
+     * switch the order object to another version
+     *
+     * @param  int $version_id the version id to switch to
+     * @return object Orders
+     */
+    public function toVersion($version_id)
+    {
+        // if it's the same version, just return self.
+        if ($this->getVersionId() == $version_id) {
+            return $this;
+        }
+
+        $version = OrdersVersionsQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->findOneByVersionId($version_id)
+        ;
+
+        if (!$version instanceof OrdersVersions) {
+            throw new OutOfBoundsException('No such version: ' . $version_id . ' of order nr: ' . $this->getId());
+        }
+
+        $data = unserialize($version->getContent());
+
+        // start by setting the order.
+        $this->fromArray($data['order']);
+
+        // set product lines
+        $collection = new PropelCollection();
+        foreach ($data['products'] as $item) {
+            unset($item['Id']);
+            $line = new OrdersLines();
+            $line->fromArray($item);
+            $collection->prepend($line);
+        }
+        $this->setOrdersLiness($collection);
+
+        // set attribute lines
+        // OrdersAttributesQuery::create()
+        //     ->filterByOrdersId($this->getId())
+        //     ->delete()
+        // ;
+        $collection = new PropelCollection();
+        foreach ($data['attributes'] as $item) {
+            $line = new OrdersAttributes();
+            $line->fromArray($item);
+            $collection->prepend($line);
+        }
+        $this->setOrdersAttributess($collection);
+
+        // save and return the version
+        return $this->save();
+    }
+
+    /**
+     * Go one version back
+     *
+     * @return object Orders
+     */
+    public function toPreviousVersion()
+    {
+        // no previous version, return current
+        if (count($this->getVersionIds()) < 2) {
+            return $this;
+        }
+
+        $version = OrdersVersionsQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->filterByVersionId($this->getVersionId(), \Criteria::NOT_EQUAL)
+            ->orderByVersionId('desc')
+            ->findOne()
+        ;
+
+        return $this->toVersion($version->getVersionId());
+    }
+
 
     /**
      * set quantity on a product line in the current order

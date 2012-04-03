@@ -212,6 +212,20 @@
                 <source>store.address</source>
                 <target>POMPdeLUX ApS · Møgelhøj 8 DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · +45 8678 7871</target>
             </trans-unit>
+
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target><![CDATA[
+                  <h2>Bemærk:</h2>
+                  <p>
+                    Du er ved at redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
+                    Ønsker du at afbryde redigeringen af din ordre - <a href="%stop_url%" title="stop editering af ordren">klik her.</a>
+                  </p>
+                  <p>Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du at tilføje varer, skal du klikke på menuen Webshop.</p>
+                  <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og følge trin 1 til 6. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.</p>
+                ]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

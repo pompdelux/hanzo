@@ -30,6 +30,17 @@ class HistoryController extends CoreController
     }
 
 
+    public function editAction($order_id)
+    {
+        $order = OrdersQuery::create()
+            ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
+            ->findOneById($order_id)
+        ;
+        $this->get('event_dispatcher')->dispatch('order.edit.end', new FilterOrderEvent($order));
+        return $this->redirect($this->generateUrl('basket_view'));
+    }
+
+
     public function blockAction($limit = 6, $link = TRUE, $route = FALSE)
     {
         $hanzo = Hanzo::getInstance();
@@ -49,7 +60,7 @@ class HistoryController extends CoreController
         }
 
         $result = OrdersQuery::create()
-            ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_THAN)
+            ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_EQUAL)
             ->orderByCreatedAt(Criteria::DESC)
             ->limit($limit)
             ->filterByCustomersId($customer->getId())

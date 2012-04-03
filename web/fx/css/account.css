@@ -55,16 +55,32 @@ form.create #customers {
 #order-status td.pdf {
   float: none;
 }
-#order-status td.pdf a {
+#order-status td a.pdf {
   display: inline-block;
   width: 16px;
   height: 16px;
   background: url(/fx/images/pdficon.png) no-repeat top left;
 }
-
-#order-status td.show a {
+#order-status td a {
+  margin-left: 10px;
+}
+#order-status td a.show {
   display: inline-block;
   width: 16px;
   height: 16px;
   background: url(/fx/images/page_white_text.png) no-repeat top left;
+}
+#order-status td a.edit {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/fx/images/edit_icon.png) no-repeat top left;
+}
+
+#body-account #cboxLoadedContent ul {
+  list-style: square;
+  margin: 5px 0 15px 20px;
+}
+#body-account #cboxLoadedContent ul li {
+  padding-bottom: 5px;
 }

@@ -4,22 +4,22 @@ namespace Hanzo\Bundle\BasketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\Stock,
-    Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\Stock;
+use Hanzo\Core\CoreController;
 
-use Hanzo\Model\Products,
-    Hanzo\Model\ProductsPeer,
-    Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsStockQuery,
-    Hanzo\Model\ProductsDomainsPricesPeer,
-    Hanzo\Model\ProductsDomainsPricesQuery,
-    Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsPeer;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsStockQuery;
+use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\ProductsDomainsPricesQuery;
+use Hanzo\Model\ProductsToCategoriesQuery;
 
-use Hanzo\Model\OrdersPeer,
-    Hanzo\Model\OrdersQuery,
-    Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersLinesQuery;
 
 class DefaultController extends CoreController
 {

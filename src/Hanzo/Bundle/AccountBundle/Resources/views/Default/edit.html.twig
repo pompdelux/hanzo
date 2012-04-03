@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>{{ 'Edit account'|trans({}, 'account') }}</h1>
+<h1>{{ 'edit.account'|trans({}, 'account') }}</h1>
 
 <p>{{ 'update.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
@@ -25,8 +25,8 @@
     {{ form_row(form.addresses.0.type) }}
     {{ form_row(form._token) }}
   </div>
-  <input class="button right" type="submit" value="{{ 'Update account'|trans({}, 'account') }}">
-  <a class="button left" href="{{ path('_account') }}">{{ 'Cancel'|trans({}, 'account') }}</a>
+  <input class="button right" type="submit" value="{{ 'update.account'|trans({}, 'account') }}">
+  <a class="button left" href="{{ path('_account') }}">{{ 'cancel'|trans({}, 'account') }}</a>
 </form>
 
 {% endblock %}

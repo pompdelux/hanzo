@@ -2,7 +2,9 @@
 
 namespace Hanzo\Core;
 
-use Propel;
+use \Propel;
+use \BasePeer;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Model\Orders;
 use Hanzo\Model\Sequences;
@@ -115,11 +117,15 @@ class Tools
         $skip = array(
             'billing_countries_id',
             'billing_method',
+            'billing_first_name',
+            'billing_last_name',
 
             'delivery_countries_id',
             'delivery_state_province',
             'delivery_company_name',
             'delivery_method',
+            'delivery_first_name',
+            'delivery_last_name',
         );
 
         switch ($part) {
@@ -134,6 +140,7 @@ class Tools
                 $address['billing_postal_code'] = $address['billing_postal_code'] . ' ' . $address['billing_city'];
                 unset($address['billing_city']);
             break;
+
             case 'delivery':
             case 'shipping':
                 if ($fields['delivery_company_name']) {

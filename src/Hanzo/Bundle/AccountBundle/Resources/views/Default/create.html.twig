@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>{{ 'Create account'|trans({}, 'account') }}</h1>
+<h1>{{ 'create.account'|trans({}, 'account') }}</h1>
 
 <p>{{ 'create.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
@@ -33,7 +33,7 @@
     {{ form_row(form.addresses.0.type) }}
     {{ form_row(form._token) }}
   </div>
-  <input class="button" type="submit" value="{{ 'Create account'|trans({}, 'account') }}">
+  <input class="button" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
   <a href="/forside/kundeservice/vilkaar" rel="colorbox">{{ 'create.terms'|trans({}, 'account') }}</a>
 </form>
 

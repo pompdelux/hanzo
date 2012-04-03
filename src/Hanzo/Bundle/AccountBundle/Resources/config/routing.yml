@@ -36,9 +36,16 @@ _account_history:
         _controller: AccountBundle:History:index
 
 _account_show_order:
-    pattern: /account/history/{order_id}
+    pattern: /account/order/{order_id}/show
     defaults:
         _controller: AccountBundle:History:view
+    requirements:
+        order_id: \d+
+
+_account_edit_order:
+    pattern: /account/order/{order_id}/edit
+    defaults:
+        _controller: AccountBundle:History:edit
     requirements:
         order_id: \d+
 

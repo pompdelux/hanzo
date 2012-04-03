@@ -5,27 +5,34 @@ namespace Hanzo\Bundle\AccountBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-use Hanzo\Core\CoreController,
-    Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
-use Hanzo\Model\Customers,
-    Hanzo\Model\CustomersPeer,
-    Hanzo\Model\Addresses,
-    Hanzo\Model\Countries,
-    Hanzo\Model\CountriesPeer,
-    Hanzo\Model\CountriesQuery
-    ;
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\Countries;
+use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\CountriesQuery;
+use Hanzo\Model\OrdersPeer;
 
-use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser,
-    Hanzo\Bundle\AccountBundle\Form\Type\CustomersType,
-    Hanzo\Bundle\AccountBundle\Form\Type\AddressesType
-    ;
+use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser;
+use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
+use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
+
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 class DefaultController extends CoreController
 {
     public function indexAction()
     {
+        $session = $this->getRequest()->getSession();
+
+        if ($session->has('in_edit') && $this->getRequest()->get('stop')) {
+            $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersPeer::getCurrent()));
+        }
+
         return $this->render('AccountBundle:Default:index.html.twig', array(
             'page_type' => 'account',
         ));

@@ -10,12 +10,14 @@ use \Propel;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\OrdersSyncLogPeer;
+use Hanzo\Model\OrdersVersionsPeer;
 use Hanzo\Model\map\OrdersTableMap;
 
 /**
@@ -43,16 +45,19 @@ abstract class BaseOrdersPeer {
 	const TM_CLASS = 'OrdersTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 37;
+	const NUM_COLUMNS = 38;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 37;
+	const NUM_HYDRATE_COLUMNS = 38;
 
 	/** the column name for the ID field */
 	const ID = 'orders.ID';
+
+	/** the column name for the VERSION_ID field */
+	const VERSION_ID = 'orders.VERSION_ID';
 
 	/** the column name for the SESSION_ID field */
 	const SESSION_ID = 'orders.SESSION_ID';
@@ -181,12 +186,12 @@ abstract class BaseOrdersPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'SessionId', 'PaymentGatewayId', 'State', 'InEdit', 'CustomersId', 'FirstName', 'LastName', 'Email', 'Phone', 'LanguagesId', 'CurrencyId', 'BillingFirstName', 'BillingLastName', 'BillingAddressLine1', 'BillingAddressLine2', 'BillingPostalCode', 'BillingCity', 'BillingCountry', 'BillingCountriesId', 'BillingStateProvince', 'BillingCompanyName', 'BillingMethod', 'DeliveryFirstName', 'DeliveryLastName', 'DeliveryAddressLine1', 'DeliveryAddressLine2', 'DeliveryPostalCode', 'DeliveryCity', 'DeliveryCountry', 'DeliveryCountriesId', 'DeliveryStateProvince', 'DeliveryCompanyName', 'DeliveryMethod', 'FinishedAt', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'sessionId', 'paymentGatewayId', 'state', 'inEdit', 'customersId', 'firstName', 'lastName', 'email', 'phone', 'languagesId', 'currencyId', 'billingFirstName', 'billingLastName', 'billingAddressLine1', 'billingAddressLine2', 'billingPostalCode', 'billingCity', 'billingCountry', 'billingCountriesId', 'billingStateProvince', 'billingCompanyName', 'billingMethod', 'deliveryFirstName', 'deliveryLastName', 'deliveryAddressLine1', 'deliveryAddressLine2', 'deliveryPostalCode', 'deliveryCity', 'deliveryCountry', 'deliveryCountriesId', 'deliveryStateProvince', 'deliveryCompanyName', 'deliveryMethod', 'finishedAt', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::SESSION_ID, self::PAYMENT_GATEWAY_ID, self::STATE, self::IN_EDIT, self::CUSTOMERS_ID, self::FIRST_NAME, self::LAST_NAME, self::EMAIL, self::PHONE, self::LANGUAGES_ID, self::CURRENCY_ID, self::BILLING_FIRST_NAME, self::BILLING_LAST_NAME, self::BILLING_ADDRESS_LINE_1, self::BILLING_ADDRESS_LINE_2, self::BILLING_POSTAL_CODE, self::BILLING_CITY, self::BILLING_COUNTRY, self::BILLING_COUNTRIES_ID, self::BILLING_STATE_PROVINCE, self::BILLING_COMPANY_NAME, self::BILLING_METHOD, self::DELIVERY_FIRST_NAME, self::DELIVERY_LAST_NAME, self::DELIVERY_ADDRESS_LINE_1, self::DELIVERY_ADDRESS_LINE_2, self::DELIVERY_POSTAL_CODE, self::DELIVERY_CITY, self::DELIVERY_COUNTRY, self::DELIVERY_COUNTRIES_ID, self::DELIVERY_STATE_PROVINCE, self::DELIVERY_COMPANY_NAME, self::DELIVERY_METHOD, self::FINISHED_AT, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SESSION_ID', 'PAYMENT_GATEWAY_ID', 'STATE', 'IN_EDIT', 'CUSTOMERS_ID', 'FIRST_NAME', 'LAST_NAME', 'EMAIL', 'PHONE', 'LANGUAGES_ID', 'CURRENCY_ID', 'BILLING_FIRST_NAME', 'BILLING_LAST_NAME', 'BILLING_ADDRESS_LINE_1', 'BILLING_ADDRESS_LINE_2', 'BILLING_POSTAL_CODE', 'BILLING_CITY', 'BILLING_COUNTRY', 'BILLING_COUNTRIES_ID', 'BILLING_STATE_PROVINCE', 'BILLING_COMPANY_NAME', 'BILLING_METHOD', 'DELIVERY_FIRST_NAME', 'DELIVERY_LAST_NAME', 'DELIVERY_ADDRESS_LINE_1', 'DELIVERY_ADDRESS_LINE_2', 'DELIVERY_POSTAL_CODE', 'DELIVERY_CITY', 'DELIVERY_COUNTRY', 'DELIVERY_COUNTRIES_ID', 'DELIVERY_STATE_PROVINCE', 'DELIVERY_COMPANY_NAME', 'DELIVERY_METHOD', 'FINISHED_AT', 'CREATED_AT', 'UPDATED_AT', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'session_id', 'payment_gateway_id', 'state', 'in_edit', 'customers_id', 'first_name', 'last_name', 'email', 'phone', 'languages_id', 'currency_id', 'billing_first_name', 'billing_last_name', 'billing_address_line_1', 'billing_address_line_2', 'billing_postal_code', 'billing_city', 'billing_country', 'billing_countries_id', 'billing_state_province', 'billing_company_name', 'billing_method', 'delivery_first_name', 'delivery_last_name', 'delivery_address_line_1', 'delivery_address_line_2', 'delivery_postal_code', 'delivery_city', 'delivery_country', 'delivery_countries_id', 'delivery_state_province', 'delivery_company_name', 'delivery_method', 'finished_at', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'VersionId', 'SessionId', 'PaymentGatewayId', 'State', 'InEdit', 'CustomersId', 'FirstName', 'LastName', 'Email', 'Phone', 'LanguagesId', 'CurrencyId', 'BillingFirstName', 'BillingLastName', 'BillingAddressLine1', 'BillingAddressLine2', 'BillingPostalCode', 'BillingCity', 'BillingCountry', 'BillingCountriesId', 'BillingStateProvince', 'BillingCompanyName', 'BillingMethod', 'DeliveryFirstName', 'DeliveryLastName', 'DeliveryAddressLine1', 'DeliveryAddressLine2', 'DeliveryPostalCode', 'DeliveryCity', 'DeliveryCountry', 'DeliveryCountriesId', 'DeliveryStateProvince', 'DeliveryCompanyName', 'DeliveryMethod', 'FinishedAt', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'versionId', 'sessionId', 'paymentGatewayId', 'state', 'inEdit', 'customersId', 'firstName', 'lastName', 'email', 'phone', 'languagesId', 'currencyId', 'billingFirstName', 'billingLastName', 'billingAddressLine1', 'billingAddressLine2', 'billingPostalCode', 'billingCity', 'billingCountry', 'billingCountriesId', 'billingStateProvince', 'billingCompanyName', 'billingMethod', 'deliveryFirstName', 'deliveryLastName', 'deliveryAddressLine1', 'deliveryAddressLine2', 'deliveryPostalCode', 'deliveryCity', 'deliveryCountry', 'deliveryCountriesId', 'deliveryStateProvince', 'deliveryCompanyName', 'deliveryMethod', 'finishedAt', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::VERSION_ID, self::SESSION_ID, self::PAYMENT_GATEWAY_ID, self::STATE, self::IN_EDIT, self::CUSTOMERS_ID, self::FIRST_NAME, self::LAST_NAME, self::EMAIL, self::PHONE, self::LANGUAGES_ID, self::CURRENCY_ID, self::BILLING_FIRST_NAME, self::BILLING_LAST_NAME, self::BILLING_ADDRESS_LINE_1, self::BILLING_ADDRESS_LINE_2, self::BILLING_POSTAL_CODE, self::BILLING_CITY, self::BILLING_COUNTRY, self::BILLING_COUNTRIES_ID, self::BILLING_STATE_PROVINCE, self::BILLING_COMPANY_NAME, self::BILLING_METHOD, self::DELIVERY_FIRST_NAME, self::DELIVERY_LAST_NAME, self::DELIVERY_ADDRESS_LINE_1, self::DELIVERY_ADDRESS_LINE_2, self::DELIVERY_POSTAL_CODE, self::DELIVERY_CITY, self::DELIVERY_COUNTRY, self::DELIVERY_COUNTRIES_ID, self::DELIVERY_STATE_PROVINCE, self::DELIVERY_COMPANY_NAME, self::DELIVERY_METHOD, self::FINISHED_AT, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'VERSION_ID', 'SESSION_ID', 'PAYMENT_GATEWAY_ID', 'STATE', 'IN_EDIT', 'CUSTOMERS_ID', 'FIRST_NAME', 'LAST_NAME', 'EMAIL', 'PHONE', 'LANGUAGES_ID', 'CURRENCY_ID', 'BILLING_FIRST_NAME', 'BILLING_LAST_NAME', 'BILLING_ADDRESS_LINE_1', 'BILLING_ADDRESS_LINE_2', 'BILLING_POSTAL_CODE', 'BILLING_CITY', 'BILLING_COUNTRY', 'BILLING_COUNTRIES_ID', 'BILLING_STATE_PROVINCE', 'BILLING_COMPANY_NAME', 'BILLING_METHOD', 'DELIVERY_FIRST_NAME', 'DELIVERY_LAST_NAME', 'DELIVERY_ADDRESS_LINE_1', 'DELIVERY_ADDRESS_LINE_2', 'DELIVERY_POSTAL_CODE', 'DELIVERY_CITY', 'DELIVERY_COUNTRY', 'DELIVERY_COUNTRIES_ID', 'DELIVERY_STATE_PROVINCE', 'DELIVERY_COMPANY_NAME', 'DELIVERY_METHOD', 'FINISHED_AT', 'CREATED_AT', 'UPDATED_AT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'version_id', 'session_id', 'payment_gateway_id', 'state', 'in_edit', 'customers_id', 'first_name', 'last_name', 'email', 'phone', 'languages_id', 'currency_id', 'billing_first_name', 'billing_last_name', 'billing_address_line_1', 'billing_address_line_2', 'billing_postal_code', 'billing_city', 'billing_country', 'billing_countries_id', 'billing_state_province', 'billing_company_name', 'billing_method', 'delivery_first_name', 'delivery_last_name', 'delivery_address_line_1', 'delivery_address_line_2', 'delivery_postal_code', 'delivery_city', 'delivery_country', 'delivery_countries_id', 'delivery_state_province', 'delivery_company_name', 'delivery_method', 'finished_at', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, )
 	);
 
 	/**
@@ -196,12 +201,12 @@ abstract class BaseOrdersPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'SessionId' => 1, 'PaymentGatewayId' => 2, 'State' => 3, 'InEdit' => 4, 'CustomersId' => 5, 'FirstName' => 6, 'LastName' => 7, 'Email' => 8, 'Phone' => 9, 'LanguagesId' => 10, 'CurrencyId' => 11, 'BillingFirstName' => 12, 'BillingLastName' => 13, 'BillingAddressLine1' => 14, 'BillingAddressLine2' => 15, 'BillingPostalCode' => 16, 'BillingCity' => 17, 'BillingCountry' => 18, 'BillingCountriesId' => 19, 'BillingStateProvince' => 20, 'BillingCompanyName' => 21, 'BillingMethod' => 22, 'DeliveryFirstName' => 23, 'DeliveryLastName' => 24, 'DeliveryAddressLine1' => 25, 'DeliveryAddressLine2' => 26, 'DeliveryPostalCode' => 27, 'DeliveryCity' => 28, 'DeliveryCountry' => 29, 'DeliveryCountriesId' => 30, 'DeliveryStateProvince' => 31, 'DeliveryCompanyName' => 32, 'DeliveryMethod' => 33, 'FinishedAt' => 34, 'CreatedAt' => 35, 'UpdatedAt' => 36, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'sessionId' => 1, 'paymentGatewayId' => 2, 'state' => 3, 'inEdit' => 4, 'customersId' => 5, 'firstName' => 6, 'lastName' => 7, 'email' => 8, 'phone' => 9, 'languagesId' => 10, 'currencyId' => 11, 'billingFirstName' => 12, 'billingLastName' => 13, 'billingAddressLine1' => 14, 'billingAddressLine2' => 15, 'billingPostalCode' => 16, 'billingCity' => 17, 'billingCountry' => 18, 'billingCountriesId' => 19, 'billingStateProvince' => 20, 'billingCompanyName' => 21, 'billingMethod' => 22, 'deliveryFirstName' => 23, 'deliveryLastName' => 24, 'deliveryAddressLine1' => 25, 'deliveryAddressLine2' => 26, 'deliveryPostalCode' => 27, 'deliveryCity' => 28, 'deliveryCountry' => 29, 'deliveryCountriesId' => 30, 'deliveryStateProvince' => 31, 'deliveryCompanyName' => 32, 'deliveryMethod' => 33, 'finishedAt' => 34, 'createdAt' => 35, 'updatedAt' => 36, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SESSION_ID => 1, self::PAYMENT_GATEWAY_ID => 2, self::STATE => 3, self::IN_EDIT => 4, self::CUSTOMERS_ID => 5, self::FIRST_NAME => 6, self::LAST_NAME => 7, self::EMAIL => 8, self::PHONE => 9, self::LANGUAGES_ID => 10, self::CURRENCY_ID => 11, self::BILLING_FIRST_NAME => 12, self::BILLING_LAST_NAME => 13, self::BILLING_ADDRESS_LINE_1 => 14, self::BILLING_ADDRESS_LINE_2 => 15, self::BILLING_POSTAL_CODE => 16, self::BILLING_CITY => 17, self::BILLING_COUNTRY => 18, self::BILLING_COUNTRIES_ID => 19, self::BILLING_STATE_PROVINCE => 20, self::BILLING_COMPANY_NAME => 21, self::BILLING_METHOD => 22, self::DELIVERY_FIRST_NAME => 23, self::DELIVERY_LAST_NAME => 24, self::DELIVERY_ADDRESS_LINE_1 => 25, self::DELIVERY_ADDRESS_LINE_2 => 26, self::DELIVERY_POSTAL_CODE => 27, self::DELIVERY_CITY => 28, self::DELIVERY_COUNTRY => 29, self::DELIVERY_COUNTRIES_ID => 30, self::DELIVERY_STATE_PROVINCE => 31, self::DELIVERY_COMPANY_NAME => 32, self::DELIVERY_METHOD => 33, self::FINISHED_AT => 34, self::CREATED_AT => 35, self::UPDATED_AT => 36, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SESSION_ID' => 1, 'PAYMENT_GATEWAY_ID' => 2, 'STATE' => 3, 'IN_EDIT' => 4, 'CUSTOMERS_ID' => 5, 'FIRST_NAME' => 6, 'LAST_NAME' => 7, 'EMAIL' => 8, 'PHONE' => 9, 'LANGUAGES_ID' => 10, 'CURRENCY_ID' => 11, 'BILLING_FIRST_NAME' => 12, 'BILLING_LAST_NAME' => 13, 'BILLING_ADDRESS_LINE_1' => 14, 'BILLING_ADDRESS_LINE_2' => 15, 'BILLING_POSTAL_CODE' => 16, 'BILLING_CITY' => 17, 'BILLING_COUNTRY' => 18, 'BILLING_COUNTRIES_ID' => 19, 'BILLING_STATE_PROVINCE' => 20, 'BILLING_COMPANY_NAME' => 21, 'BILLING_METHOD' => 22, 'DELIVERY_FIRST_NAME' => 23, 'DELIVERY_LAST_NAME' => 24, 'DELIVERY_ADDRESS_LINE_1' => 25, 'DELIVERY_ADDRESS_LINE_2' => 26, 'DELIVERY_POSTAL_CODE' => 27, 'DELIVERY_CITY' => 28, 'DELIVERY_COUNTRY' => 29, 'DELIVERY_COUNTRIES_ID' => 30, 'DELIVERY_STATE_PROVINCE' => 31, 'DELIVERY_COMPANY_NAME' => 32, 'DELIVERY_METHOD' => 33, 'FINISHED_AT' => 34, 'CREATED_AT' => 35, 'UPDATED_AT' => 36, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'session_id' => 1, 'payment_gateway_id' => 2, 'state' => 3, 'in_edit' => 4, 'customers_id' => 5, 'first_name' => 6, 'last_name' => 7, 'email' => 8, 'phone' => 9, 'languages_id' => 10, 'currency_id' => 11, 'billing_first_name' => 12, 'billing_last_name' => 13, 'billing_address_line_1' => 14, 'billing_address_line_2' => 15, 'billing_postal_code' => 16, 'billing_city' => 17, 'billing_country' => 18, 'billing_countries_id' => 19, 'billing_state_province' => 20, 'billing_company_name' => 21, 'billing_method' => 22, 'delivery_first_name' => 23, 'delivery_last_name' => 24, 'delivery_address_line_1' => 25, 'delivery_address_line_2' => 26, 'delivery_postal_code' => 27, 'delivery_city' => 28, 'delivery_country' => 29, 'delivery_countries_id' => 30, 'delivery_state_province' => 31, 'delivery_company_name' => 32, 'delivery_method' => 33, 'finished_at' => 34, 'created_at' => 35, 'updated_at' => 36, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'VersionId' => 1, 'SessionId' => 2, 'PaymentGatewayId' => 3, 'State' => 4, 'InEdit' => 5, 'CustomersId' => 6, 'FirstName' => 7, 'LastName' => 8, 'Email' => 9, 'Phone' => 10, 'LanguagesId' => 11, 'CurrencyId' => 12, 'BillingFirstName' => 13, 'BillingLastName' => 14, 'BillingAddressLine1' => 15, 'BillingAddressLine2' => 16, 'BillingPostalCode' => 17, 'BillingCity' => 18, 'BillingCountry' => 19, 'BillingCountriesId' => 20, 'BillingStateProvince' => 21, 'BillingCompanyName' => 22, 'BillingMethod' => 23, 'DeliveryFirstName' => 24, 'DeliveryLastName' => 25, 'DeliveryAddressLine1' => 26, 'DeliveryAddressLine2' => 27, 'DeliveryPostalCode' => 28, 'DeliveryCity' => 29, 'DeliveryCountry' => 30, 'DeliveryCountriesId' => 31, 'DeliveryStateProvince' => 32, 'DeliveryCompanyName' => 33, 'DeliveryMethod' => 34, 'FinishedAt' => 35, 'CreatedAt' => 36, 'UpdatedAt' => 37, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'versionId' => 1, 'sessionId' => 2, 'paymentGatewayId' => 3, 'state' => 4, 'inEdit' => 5, 'customersId' => 6, 'firstName' => 7, 'lastName' => 8, 'email' => 9, 'phone' => 10, 'languagesId' => 11, 'currencyId' => 12, 'billingFirstName' => 13, 'billingLastName' => 14, 'billingAddressLine1' => 15, 'billingAddressLine2' => 16, 'billingPostalCode' => 17, 'billingCity' => 18, 'billingCountry' => 19, 'billingCountriesId' => 20, 'billingStateProvince' => 21, 'billingCompanyName' => 22, 'billingMethod' => 23, 'deliveryFirstName' => 24, 'deliveryLastName' => 25, 'deliveryAddressLine1' => 26, 'deliveryAddressLine2' => 27, 'deliveryPostalCode' => 28, 'deliveryCity' => 29, 'deliveryCountry' => 30, 'deliveryCountriesId' => 31, 'deliveryStateProvince' => 32, 'deliveryCompanyName' => 33, 'deliveryMethod' => 34, 'finishedAt' => 35, 'createdAt' => 36, 'updatedAt' => 37, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::VERSION_ID => 1, self::SESSION_ID => 2, self::PAYMENT_GATEWAY_ID => 3, self::STATE => 4, self::IN_EDIT => 5, self::CUSTOMERS_ID => 6, self::FIRST_NAME => 7, self::LAST_NAME => 8, self::EMAIL => 9, self::PHONE => 10, self::LANGUAGES_ID => 11, self::CURRENCY_ID => 12, self::BILLING_FIRST_NAME => 13, self::BILLING_LAST_NAME => 14, self::BILLING_ADDRESS_LINE_1 => 15, self::BILLING_ADDRESS_LINE_2 => 16, self::BILLING_POSTAL_CODE => 17, self::BILLING_CITY => 18, self::BILLING_COUNTRY => 19, self::BILLING_COUNTRIES_ID => 20, self::BILLING_STATE_PROVINCE => 21, self::BILLING_COMPANY_NAME => 22, self::BILLING_METHOD => 23, self::DELIVERY_FIRST_NAME => 24, self::DELIVERY_LAST_NAME => 25, self::DELIVERY_ADDRESS_LINE_1 => 26, self::DELIVERY_ADDRESS_LINE_2 => 27, self::DELIVERY_POSTAL_CODE => 28, self::DELIVERY_CITY => 29, self::DELIVERY_COUNTRY => 30, self::DELIVERY_COUNTRIES_ID => 31, self::DELIVERY_STATE_PROVINCE => 32, self::DELIVERY_COMPANY_NAME => 33, self::DELIVERY_METHOD => 34, self::FINISHED_AT => 35, self::CREATED_AT => 36, self::UPDATED_AT => 37, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'VERSION_ID' => 1, 'SESSION_ID' => 2, 'PAYMENT_GATEWAY_ID' => 3, 'STATE' => 4, 'IN_EDIT' => 5, 'CUSTOMERS_ID' => 6, 'FIRST_NAME' => 7, 'LAST_NAME' => 8, 'EMAIL' => 9, 'PHONE' => 10, 'LANGUAGES_ID' => 11, 'CURRENCY_ID' => 12, 'BILLING_FIRST_NAME' => 13, 'BILLING_LAST_NAME' => 14, 'BILLING_ADDRESS_LINE_1' => 15, 'BILLING_ADDRESS_LINE_2' => 16, 'BILLING_POSTAL_CODE' => 17, 'BILLING_CITY' => 18, 'BILLING_COUNTRY' => 19, 'BILLING_COUNTRIES_ID' => 20, 'BILLING_STATE_PROVINCE' => 21, 'BILLING_COMPANY_NAME' => 22, 'BILLING_METHOD' => 23, 'DELIVERY_FIRST_NAME' => 24, 'DELIVERY_LAST_NAME' => 25, 'DELIVERY_ADDRESS_LINE_1' => 26, 'DELIVERY_ADDRESS_LINE_2' => 27, 'DELIVERY_POSTAL_CODE' => 28, 'DELIVERY_CITY' => 29, 'DELIVERY_COUNTRY' => 30, 'DELIVERY_COUNTRIES_ID' => 31, 'DELIVERY_STATE_PROVINCE' => 32, 'DELIVERY_COMPANY_NAME' => 33, 'DELIVERY_METHOD' => 34, 'FINISHED_AT' => 35, 'CREATED_AT' => 36, 'UPDATED_AT' => 37, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'version_id' => 1, 'session_id' => 2, 'payment_gateway_id' => 3, 'state' => 4, 'in_edit' => 5, 'customers_id' => 6, 'first_name' => 7, 'last_name' => 8, 'email' => 9, 'phone' => 10, 'languages_id' => 11, 'currency_id' => 12, 'billing_first_name' => 13, 'billing_last_name' => 14, 'billing_address_line_1' => 15, 'billing_address_line_2' => 16, 'billing_postal_code' => 17, 'billing_city' => 18, 'billing_country' => 19, 'billing_countries_id' => 20, 'billing_state_province' => 21, 'billing_company_name' => 22, 'billing_method' => 23, 'delivery_first_name' => 24, 'delivery_last_name' => 25, 'delivery_address_line_1' => 26, 'delivery_address_line_2' => 27, 'delivery_postal_code' => 28, 'delivery_city' => 29, 'delivery_country' => 30, 'delivery_countries_id' => 31, 'delivery_state_province' => 32, 'delivery_company_name' => 33, 'delivery_method' => 34, 'finished_at' => 35, 'created_at' => 36, 'updated_at' => 37, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, )
 	);
 
 	/**
@@ -274,6 +279,7 @@ abstract class BaseOrdersPeer {
 	{
 		if (null === $alias) {
 			$criteria->addSelectColumn(OrdersPeer::ID);
+			$criteria->addSelectColumn(OrdersPeer::VERSION_ID);
 			$criteria->addSelectColumn(OrdersPeer::SESSION_ID);
 			$criteria->addSelectColumn(OrdersPeer::PAYMENT_GATEWAY_ID);
 			$criteria->addSelectColumn(OrdersPeer::STATE);
@@ -312,6 +318,7 @@ abstract class BaseOrdersPeer {
 			$criteria->addSelectColumn(OrdersPeer::UPDATED_AT);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
+			$criteria->addSelectColumn($alias . '.VERSION_ID');
 			$criteria->addSelectColumn($alias . '.SESSION_ID');
 			$criteria->addSelectColumn($alias . '.PAYMENT_GATEWAY_ID');
 			$criteria->addSelectColumn($alias . '.STATE');
@@ -553,6 +560,9 @@ abstract class BaseOrdersPeer {
 		// Invalidate objects in OrdersSyncLogPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		OrdersSyncLogPeer::clearInstancePool();
+		// Invalidate objects in OrdersVersionsPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		OrdersVersionsPeer::clearInstancePool();
 	}
 
 	/**
@@ -643,6 +653,56 @@ abstract class BaseOrdersPeer {
 			OrdersPeer::addInstanceToPool($obj, $key);
 		}
 		return array($obj, $col);
+	}
+
+
+	/**
+	 * Returns the number of rows matching criteria, joining the related Customers table
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     int Number of matching rows.
+	 */
+	public static function doCountJoinCustomers(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		// we're going to modify criteria, so copy it first
+		$criteria = clone $criteria;
+
+		// We need to set the primary table name, since in the case that there are no WHERE columns
+		// it will be impossible for the BasePeer::createSelectSql() method to determine which
+		// tables go into the FROM clause.
+		$criteria->setPrimaryTableName(OrdersPeer::TABLE_NAME);
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			OrdersPeer::addSelectColumns($criteria);
+		}
+
+		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
+
+		// Set the correct dbName
+		$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
+
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; // no rows returned; we infer that means 0 matches.
+		}
+		$stmt->closeCursor();
+		return $count;
 	}
 
 
@@ -743,6 +803,72 @@ abstract class BaseOrdersPeer {
 		}
 		$stmt->closeCursor();
 		return $count;
+	}
+
+
+	/**
+	 * Selects a collection of Orders objects pre-filled with their Customers objects.
+	 * @param      Criteria  $criteria
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     array Array of Orders objects.
+	 * @throws     PropelException Any exceptions caught during processing will be
+	 *		 rethrown wrapped into a PropelException.
+	 */
+	public static function doSelectJoinCustomers(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$criteria = clone $criteria;
+
+		// Set the correct dbName if it has not been overridden
+		if ($criteria->getDbName() == Propel::getDefaultDB()) {
+			$criteria->setDbName(self::DATABASE_NAME);
+		}
+
+		OrdersPeer::addSelectColumns($criteria);
+		$startcol = OrdersPeer::NUM_HYDRATE_COLUMNS;
+		CustomersPeer::addSelectColumns($criteria);
+
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
+
+		$stmt = BasePeer::doSelect($criteria, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = OrdersPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = OrdersPeer::getInstanceFromPool($key1))) {
+				// We no longer rehydrate the object, since this can cause data loss.
+				// See http://www.propelorm.org/ticket/509
+				// $obj1->hydrate($row, 0, true); // rehydrate
+			} else {
+
+				$cls = OrdersPeer::getOMClass(false);
+
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				OrdersPeer::addInstanceToPool($obj1, $key1);
+			} // if $obj1 already loaded
+
+			$key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol);
+			if ($key2 !== null) {
+				$obj2 = CustomersPeer::getInstanceFromPool($key2);
+				if (!$obj2) {
+
+					$cls = CustomersPeer::getOMClass(false);
+
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol);
+					CustomersPeer::addInstanceToPool($obj2, $key2);
+				} // if obj2 already loaded
+
+				// Add the $obj1 (Orders) to $obj2 (Customers)
+				$obj2->addOrders($obj1);
+
+			} // if joined row was not null
+
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
 	}
 
 
@@ -914,6 +1040,8 @@ abstract class BaseOrdersPeer {
 			$con = Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
+
 		$criteria->addJoin(OrdersPeer::BILLING_COUNTRIES_ID, CountriesPeer::ID, $join_behavior);
 
 		$criteria->addJoin(OrdersPeer::DELIVERY_COUNTRIES_ID, CountriesPeer::ID, $join_behavior);
@@ -951,11 +1079,16 @@ abstract class BaseOrdersPeer {
 		OrdersPeer::addSelectColumns($criteria);
 		$startcol2 = OrdersPeer::NUM_HYDRATE_COLUMNS;
 
-		CountriesPeer::addSelectColumns($criteria);
-		$startcol3 = $startcol2 + CountriesPeer::NUM_HYDRATE_COLUMNS;
+		CustomersPeer::addSelectColumns($criteria);
+		$startcol3 = $startcol2 + CustomersPeer::NUM_HYDRATE_COLUMNS;
 
 		CountriesPeer::addSelectColumns($criteria);
 		$startcol4 = $startcol3 + CountriesPeer::NUM_HYDRATE_COLUMNS;
+
+		CountriesPeer::addSelectColumns($criteria);
+		$startcol5 = $startcol4 + CountriesPeer::NUM_HYDRATE_COLUMNS;
+
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
 
 		$criteria->addJoin(OrdersPeer::BILLING_COUNTRIES_ID, CountriesPeer::ID, $join_behavior);
 
@@ -978,22 +1111,22 @@ abstract class BaseOrdersPeer {
 				OrdersPeer::addInstanceToPool($obj1, $key1);
 			} // if obj1 already loaded
 
-			// Add objects for joined Countries rows
+			// Add objects for joined Customers rows
 
-			$key2 = CountriesPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+			$key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol2);
 			if ($key2 !== null) {
-				$obj2 = CountriesPeer::getInstanceFromPool($key2);
+				$obj2 = CustomersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CountriesPeer::getOMClass(false);
+					$cls = CustomersPeer::getOMClass(false);
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
-					CountriesPeer::addInstanceToPool($obj2, $key2);
+					CustomersPeer::addInstanceToPool($obj2, $key2);
 				} // if obj2 loaded
 
-				// Add the $obj1 (Orders) to the collection in $obj2 (Countries)
-				$obj2->addOrdersRelatedByBillingCountriesId($obj1);
+				// Add the $obj1 (Orders) to the collection in $obj2 (Customers)
+				$obj2->addOrders($obj1);
 			} // if joined row not null
 
 			// Add objects for joined Countries rows
@@ -1011,13 +1144,83 @@ abstract class BaseOrdersPeer {
 				} // if obj3 loaded
 
 				// Add the $obj1 (Orders) to the collection in $obj3 (Countries)
-				$obj3->addOrdersRelatedByDeliveryCountriesId($obj1);
+				$obj3->addOrdersRelatedByBillingCountriesId($obj1);
+			} // if joined row not null
+
+			// Add objects for joined Countries rows
+
+			$key4 = CountriesPeer::getPrimaryKeyHashFromRow($row, $startcol4);
+			if ($key4 !== null) {
+				$obj4 = CountriesPeer::getInstanceFromPool($key4);
+				if (!$obj4) {
+
+					$cls = CountriesPeer::getOMClass(false);
+
+					$obj4 = new $cls();
+					$obj4->hydrate($row, $startcol4);
+					CountriesPeer::addInstanceToPool($obj4, $key4);
+				} // if obj4 loaded
+
+				// Add the $obj1 (Orders) to the collection in $obj4 (Countries)
+				$obj4->addOrdersRelatedByDeliveryCountriesId($obj1);
 			} // if joined row not null
 
 			$results[] = $obj1;
 		}
 		$stmt->closeCursor();
 		return $results;
+	}
+
+
+	/**
+	 * Returns the number of rows matching criteria, joining the related Customers table
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     int Number of matching rows.
+	 */
+	public static function doCountJoinAllExceptCustomers(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		// we're going to modify criteria, so copy it first
+		$criteria = clone $criteria;
+
+		// We need to set the primary table name, since in the case that there are no WHERE columns
+		// it will be impossible for the BasePeer::createSelectSql() method to determine which
+		// tables go into the FROM clause.
+		$criteria->setPrimaryTableName(OrdersPeer::TABLE_NAME);
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			OrdersPeer::addSelectColumns($criteria);
+		}
+
+		$criteria->clearOrderByColumns(); // ORDER BY should not affect count
+
+		// Set the correct dbName
+		$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+	
+		$criteria->addJoin(OrdersPeer::BILLING_COUNTRIES_ID, CountriesPeer::ID, $join_behavior);
+
+		$criteria->addJoin(OrdersPeer::DELIVERY_COUNTRIES_ID, CountriesPeer::ID, $join_behavior);
+
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; // no rows returned; we infer that means 0 matches.
+		}
+		$stmt->closeCursor();
+		return $count;
 	}
 
 
@@ -1057,6 +1260,8 @@ abstract class BaseOrdersPeer {
 			$con = Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 	
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
+
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -1105,6 +1310,8 @@ abstract class BaseOrdersPeer {
 			$con = Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 	
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
+
 		$stmt = BasePeer::doCount($criteria, $con);
 
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -1114,6 +1321,103 @@ abstract class BaseOrdersPeer {
 		}
 		$stmt->closeCursor();
 		return $count;
+	}
+
+
+	/**
+	 * Selects a collection of Orders objects pre-filled with all related objects except Customers.
+	 *
+	 * @param      Criteria  $criteria
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     array Array of Orders objects.
+	 * @throws     PropelException Any exceptions caught during processing will be
+	 *		 rethrown wrapped into a PropelException.
+	 */
+	public static function doSelectJoinAllExceptCustomers(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$criteria = clone $criteria;
+
+		// Set the correct dbName if it has not been overridden
+		// $criteria->getDbName() will return the same object if not set to another value
+		// so == check is okay and faster
+		if ($criteria->getDbName() == Propel::getDefaultDB()) {
+			$criteria->setDbName(self::DATABASE_NAME);
+		}
+
+		OrdersPeer::addSelectColumns($criteria);
+		$startcol2 = OrdersPeer::NUM_HYDRATE_COLUMNS;
+
+		CountriesPeer::addSelectColumns($criteria);
+		$startcol3 = $startcol2 + CountriesPeer::NUM_HYDRATE_COLUMNS;
+
+		CountriesPeer::addSelectColumns($criteria);
+		$startcol4 = $startcol3 + CountriesPeer::NUM_HYDRATE_COLUMNS;
+
+		$criteria->addJoin(OrdersPeer::BILLING_COUNTRIES_ID, CountriesPeer::ID, $join_behavior);
+
+		$criteria->addJoin(OrdersPeer::DELIVERY_COUNTRIES_ID, CountriesPeer::ID, $join_behavior);
+
+
+		$stmt = BasePeer::doSelect($criteria, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = OrdersPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = OrdersPeer::getInstanceFromPool($key1))) {
+				// We no longer rehydrate the object, since this can cause data loss.
+				// See http://www.propelorm.org/ticket/509
+				// $obj1->hydrate($row, 0, true); // rehydrate
+			} else {
+				$cls = OrdersPeer::getOMClass(false);
+
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				OrdersPeer::addInstanceToPool($obj1, $key1);
+			} // if obj1 already loaded
+
+				// Add objects for joined Countries rows
+
+				$key2 = CountriesPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+				if ($key2 !== null) {
+					$obj2 = CountriesPeer::getInstanceFromPool($key2);
+					if (!$obj2) {
+	
+						$cls = CountriesPeer::getOMClass(false);
+
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol2);
+					CountriesPeer::addInstanceToPool($obj2, $key2);
+				} // if $obj2 already loaded
+
+				// Add the $obj1 (Orders) to the collection in $obj2 (Countries)
+				$obj2->addOrdersRelatedByBillingCountriesId($obj1);
+
+			} // if joined row is not null
+
+				// Add objects for joined Countries rows
+
+				$key3 = CountriesPeer::getPrimaryKeyHashFromRow($row, $startcol3);
+				if ($key3 !== null) {
+					$obj3 = CountriesPeer::getInstanceFromPool($key3);
+					if (!$obj3) {
+	
+						$cls = CountriesPeer::getOMClass(false);
+
+					$obj3 = new $cls();
+					$obj3->hydrate($row, $startcol3);
+					CountriesPeer::addInstanceToPool($obj3, $key3);
+				} // if $obj3 already loaded
+
+				// Add the $obj1 (Orders) to the collection in $obj3 (Countries)
+				$obj3->addOrdersRelatedByDeliveryCountriesId($obj1);
+
+			} // if joined row is not null
+
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
 	}
 
 
@@ -1141,6 +1445,11 @@ abstract class BaseOrdersPeer {
 		OrdersPeer::addSelectColumns($criteria);
 		$startcol2 = OrdersPeer::NUM_HYDRATE_COLUMNS;
 
+		CustomersPeer::addSelectColumns($criteria);
+		$startcol3 = $startcol2 + CustomersPeer::NUM_HYDRATE_COLUMNS;
+
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
+
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
@@ -1158,6 +1467,25 @@ abstract class BaseOrdersPeer {
 				$obj1->hydrate($row);
 				OrdersPeer::addInstanceToPool($obj1, $key1);
 			} // if obj1 already loaded
+
+				// Add objects for joined Customers rows
+
+				$key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+				if ($key2 !== null) {
+					$obj2 = CustomersPeer::getInstanceFromPool($key2);
+					if (!$obj2) {
+	
+						$cls = CustomersPeer::getOMClass(false);
+
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol2);
+					CustomersPeer::addInstanceToPool($obj2, $key2);
+				} // if $obj2 already loaded
+
+				// Add the $obj1 (Orders) to the collection in $obj2 (Customers)
+				$obj2->addOrders($obj1);
+
+			} // if joined row is not null
 
 			$results[] = $obj1;
 		}
@@ -1190,6 +1518,11 @@ abstract class BaseOrdersPeer {
 		OrdersPeer::addSelectColumns($criteria);
 		$startcol2 = OrdersPeer::NUM_HYDRATE_COLUMNS;
 
+		CustomersPeer::addSelectColumns($criteria);
+		$startcol3 = $startcol2 + CustomersPeer::NUM_HYDRATE_COLUMNS;
+
+		$criteria->addJoin(OrdersPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
+
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
@@ -1207,6 +1540,25 @@ abstract class BaseOrdersPeer {
 				$obj1->hydrate($row);
 				OrdersPeer::addInstanceToPool($obj1, $key1);
 			} // if obj1 already loaded
+
+				// Add objects for joined Customers rows
+
+				$key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+				if ($key2 !== null) {
+					$obj2 = CustomersPeer::getInstanceFromPool($key2);
+					if (!$obj2) {
+	
+						$cls = CustomersPeer::getOMClass(false);
+
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol2);
+					CustomersPeer::addInstanceToPool($obj2, $key2);
+				} // if $obj2 already loaded
+
+				// Add the $obj1 (Orders) to the collection in $obj2 (Customers)
+				$obj2->addOrders($obj1);
+
+			} // if joined row is not null
 
 			$results[] = $obj1;
 		}

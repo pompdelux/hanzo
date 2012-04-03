@@ -195,6 +195,20 @@
                 <source>Pass repeated</source>
                 <target>Gentag adgangskode</target>
             </trans-unit>
+
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target><![CDATA[
+                    <h3>Let op:</h3>
+                    <p>
+                        Je bent E-ordernummer <a href="%history_ulr%" title="se ordren">%order_id%</a> aan het wijzigen.<br>
+                        Wil je het wijzigen van je order onderbreken - <a href="%stop_url%" title="stop wijziging van order">klik dan hier.</a>
+                    </p>
+                    <p>Wil je een andere kleur of maat, klik dan op het potloodje in je winkelmandje. Wil je meer artikelen toevoegen, klik dan op het menupunt Webshop.</p>
+                    <p class="last">Als je klaar bent met je wijzigingen, klik dan op "Toon winkelmandje" en doorloop daarna stappen 1 tot 6. Betaal je je order weer met een creditcard, dan wordt je eerdere betaling automatisch gewist.</p>
+                ]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

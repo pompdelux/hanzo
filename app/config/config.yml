@@ -43,12 +43,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-    hanzo.checkout:
-        class: Hanzo\Bundle\CheckoutBundle\Event\CheckoutListener
-        arguments: [ @mail_manager ]
-        tags:
-            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected }
-
 
 # Twig Configuration
 twig:

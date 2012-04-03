@@ -2,7 +2,15 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-<!-- login -->
+            <trans-unit id="previous.orders">
+                <source>previous.orders</source>
+                <target>Previous Orders</target>
+            </trans-unit>
+            <trans-unit id="account.details">
+                <source>account.details</source>
+                <target>Show or change my account details.</target>
+            </trans-unit>
+
             <trans-unit id="43">
                 <source>» I wish to create an account at POMPdeLUX</source>
                 <target>» Jeg ønsker å opprette meg som ny kunde hos POMPdeLUX.</target>
@@ -94,8 +102,16 @@
                 <target>Din konto er nu oprettet.</target>
             </trans-unit>
             <trans-unit id="65">
-                <source>Create account</source>
+                <source>create.account</source>
                 <target>Opret konto</target>
+            </trans-unit>
+            <trans-unit id="edit.account">
+                <source>edit.account</source>
+                <target>Ret konto</target>
+            </trans-unit>
+            <trans-unit id="update.account">
+                <source>update.account</source>
+                <target>Opdatér konto</target>
             </trans-unit>
             <trans-unit id="66">
                 <source>Email repeated</source>
@@ -144,6 +160,42 @@
             <trans-unit id="77" approved="no">
                 <source>The email fields must match.</source>
                 <target>De to felter med e-mailadresser skal være ens.</target>
+            </trans-unit>
+            <trans-unit id="order.number">
+                <source>order.number</source>
+                <target>Order number</target>
+            </trans-unit>
+            <trans-unit id="order.date">
+                <source>order.date</source>
+                <target>Dato</target>
+            </trans-unit>
+            <trans-unit id="order.status">
+                <source>order.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="order.total">
+                <source>order.total</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="order.invoice">
+                <source>order.invoice</source>
+                <target>Faktura</target>
+            </trans-unit>
+            <trans-unit id="order.invoice.title">
+                <source>order.invoice.title</source>
+                <target>Vis detaljer</target>
+            </trans-unit>
+            <trans-unit id="order.edit.title">
+                <source>order.edit.title</source>
+                <target>Redigér ordre</target>
+            </trans-unit>
+            <trans-unit id="order.actions">
+                <source>order.actions</source>
+                <target>Handlinger</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Cancel</target>
             </trans-unit>
         </body>
     </file>
