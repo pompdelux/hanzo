@@ -99,6 +99,12 @@ class ProductsController extends CoreController
 
     public function viewAction($id)
     {
+        /**
+         * @todo Opret js til tilføj af reference
+         * @todo Opret js til slet af ref
+         * @todo Lav fint med CSS
+         * 
+         **/
 
         $all_products = ProductsQuery::create()
             ->filterByMaster(NULL)
