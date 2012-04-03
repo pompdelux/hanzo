@@ -298,20 +298,6 @@ nav.sub #select-language div a,
 nav.sub li.dropdown-menu div a{
   border: none;
 }
-/* http://flag-sprites.com/ 
-nav.sub #select-language a span.flag{
-  margin-right:5px;
-  display:inline-block;
-  width: 16px;
-  height: 11px;
-  background:url(/fx/images/flags.png) no-repeat
-}
-nav.sub #select-language a span.flag.da_DK {background-position: -16px 0}
-nav.sub #select-language a span.flag.en_EN {background-position: -33px 0}
-nav.sub #select-language a span.flag.nl_NL {background-position: 0 -11px}
-nav.sub #select-language a span.flag.no_NB {background-position: -17px -12px}
-nav.sub #select-language a span.flag.sv_SE {background-position: -33px -12px}*/
-
 /* http://flag-sprites.com/ */
 span.flag{
   margin-right:5px;
@@ -326,7 +312,10 @@ span.flag.nl_NL {background-position: 0 -11px}
 span.flag.no_NB {background-position: -17px -12px}
 span.flag.sv_SE {background-position: -33px -12px}
 
-nav.sub li.dropdown-menu a span.cat-id {color:grey;}
+nav.sub li.dropdown-menu a span.cat-id,
+#categories-list a span.cat-id{
+  color:grey; font-size:8pt;
+}
 
 /* top right menu */
 #secondary-links {
@@ -464,6 +453,20 @@ nav.sub li.dropdown-menu a span.cat-id {color:grey;}
   background: url(/fx/images/edit_icon.png) no-repeat center center;
 }
 
+.actions .delete,
+.actions .edit{
+  text-indent: -9999px;
+  width:23px;
+  display: inline-block;
+  height:100%;
+}
+.actions .delete{
+  background: url(/fx/images/delete_icon.png) no-repeat center center;
+}
+.actions .edit{
+  background: url(/fx/images/edit_icon.png) no-repeat center center;
+}
+
 
 /* Product Category sortable list */
 
@@ -471,8 +474,11 @@ ul#product-list-sort {
   list-style-type:none;
 }
 ul#product-list-sort .sortable-item {
-  width:100%;
-  margin:10px;
+  padding:10px;
+  cursor:move;
+}
+ul#product-list-sort .placeholder{
+  border:2px dashed #4D4345;
 }
 ul#product-list-sort .sortable-item img{
   padding:5px;
@@ -481,8 +487,14 @@ ul#product-list-sort .sortable-item img{
   width:120px;
   height:240px;
 }
-ul#product-list-sort .sortable-item:nth-child(even){
+ul#product-list-sort li:nth-child(even){
   background:#D9D9D9;
+}
+ul#product-list-sort li:nth-child(12n){
+  border-bottom:5px dashed #4D4345;
+}
+ul#product-list-sort .sortable-item span{
+  display: block;
 }
 
 /* colorbox */

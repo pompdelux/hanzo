@@ -22,8 +22,8 @@
         <source>page.edit</source>
         <target>Rediger</target>
       </trans-unit>
-      <trans-unit id="admin_page_delete_text">
-        <source>page.delete</source>
+      <trans-unit id="admin_delete_text">
+        <source>delete</source>
         <target>Slet</target>
       </trans-unit>
       <trans-unit id="admin_save_cms_page_tree">
@@ -121,6 +121,26 @@
       <trans-unit id="admin_cms_page_type_mannequin">
         <source>cms.edit.type.mannequin</source>
         <target>Mannequin</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_header_text_category">
+        <source>admin.products.sort.header.text.%category-name%</source>
+        <target>Rediger rækkefølgen for produkter i kategorien %category-name%</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_header_text">
+        <source>admin.products.sort.header.text</source>
+        <target>Rediger rækkefølgen for produkter i kategori</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_description_text">
+        <source>admin.products.sort.description.text</source>
+        <target>Vælg en kategori, som du vil redigere rækkefølgen for produkter. Du kan trække og slippe produkter i listen.</target>
+      </trans-unit>
+      <trans-unit id="admin_products_sort_categories_selector">
+        <source>categories.selector</source>
+        <target>Vælg kategori</target>
+      </trans-unit>
+      <trans-unit id="admin_save_changes">
+        <source>save.changes</source>
+        <target>Gem ændringer</target>
       </trans-unit>
       <trans-unit id="">
         <source></source>

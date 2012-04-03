@@ -40,18 +40,31 @@ admin_cms_update_tree:
         _format: json
     requirements:
         _format: html|json
+
 admin_products:
-    pattern:  /admin/products/
-    defaults: { _controller: AdminBundle:Products:index }
-admin_products_sort:
-    pattern:  /admin/products/sort/{category_id}
-    defaults: 
-        _controller: AdminBundle:Products:sort
-        category_id: null
+    pattern:  /admin/products/cat/{category_id}/{subcategory_id}
+    defaults:
+        _controller: AdminBundle:Products:index
+        category_id: 0
+        subcategory_id: 0
     requirements:
         category_id: \d+
+        subcategory_id: \d+
+
+admin_product:
+    pattern:  /admin/products/id/{id}
+    defaults:
+        _controller: AdminBundle:Products:view
+    requirements:
+        id: \d+
+
+admin_products_sort:
+    pattern:  /admin/products/sort/{category_id}/
+    defaults:
+        _controller: AdminBundle:Products:sort
+        category_id: 0
 admin_products_sort_update:
-    pattern:  /admin/products/sort/update-sort/
+    pattern:  /admin/products/update-sort/
     defaults:
         _controller: AdminBundle:Products:updateSort
         _format: json

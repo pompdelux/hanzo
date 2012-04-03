@@ -38,32 +38,36 @@
         errorClass: 'err',
         maxLevels: 5,
         tolerance: 'pointer',
-        toleranceElement: '> div',
-        update: function () {
-          list = $(this).nestedSortable('toArray', {startDepthCount: 0});
-          $.ajax({
-            url: 'update-tree/',
-            dataType: 'json',
-            type: 'POST',
-            data: {data : list},
-            async: false,
-            success: function(responce, textStatus, jqXHR) {
-              if (false === responce.status) {
-                if (responce.message) {
-                  dialoug.alert(i18n.t('Notice!', responce.message));
-                }
-              }
-              else {
-                window.scrollTo(window.scrollMinX, window.scrollMinY);
-                dialoug.slideNotice(responce.message);
-              }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
-            }
-          });
-        }
+        toleranceElement: '> div'
       });
+
+      $('#save-nestedsortable').click(function(e){
+        e.preventDefault();
+        list = $('ul#sortable-list').nestedSortable('toArray', {startDepthCount: 0});
+        console.log(list);
+        $.ajax({
+          url: 'update-tree/',
+          dataType: 'json',
+          type: 'POST',
+          data: {data : list},
+          async: false,
+          success: function(responce, textStatus, jqXHR) {
+            if (false === responce.status) {
+              if (responce.message) {
+                dialoug.alert(i18n.t('Notice!', responce.message));
+              }
+            }
+            else {
+              window.scrollTo(window.scrollMinX, window.scrollMinY);
+              dialoug.slideNotice(responce.message);
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+          }
+        });
+      });
+      
       /* Delete cms node from NestedSortable */
       $('a.delete').click(function(e){
         e.preventDefault();
@@ -99,31 +103,31 @@
         opacity : 0.5,
         placeholder : 'placeholder',
         scroll: true,
-        update: function () {
-          list = $(this).sortable('toArray');
-          category_id = category_id; // Footer JavaScript Block
-          $.ajax({
-            url: 'update-sort/',
-            dataType: 'json',
-            type: 'POST',
-            data: {data : list, category_id : category_id},
-            async: false,
-            success: function(responce, textStatus, jqXHR) {
-              if (false === responce.status) {
-                if (responce.message) {
-                  dialoug.alert(i18n.t('Notice!', responce.message));
-                }
+      });
+      $('#save-sortable').click(function(e){
+        e.preventDefault();
+        list = $('ul#product-list-sort').sortable('toArray');
+        $.ajax({
+          url: '../../update-sort/',
+          dataType: 'json',
+          type: 'POST',
+          data: {data : list},
+          async: false,
+          success: function(responce, textStatus, jqXHR) {
+            if (false === responce.status) {
+              if (responce.message) {
+                dialoug.alert(i18n.t('Notice!', responce.message));
               }
-              else {
-                window.scrollTo(window.scrollMinX, window.scrollMinY);
-                dialoug.slideNotice(responce.message);
-              }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
             }
-          });
-        }
+            else {
+              window.scrollTo(window.scrollMinX, window.scrollMinY);
+              dialoug.slideNotice(responce.message);
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+          }
+        });
       });
 
       // ios class added to body

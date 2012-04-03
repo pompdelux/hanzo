@@ -8,18 +8,146 @@ use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController;
 
-use Hanzo\Model\ProductsImagesCategoriesSortQuery;
-use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\ProductsImagesCategoriesSortQuery,
+    Hanzo\Model\ProductsImagesProductReferencesQuery,
+    Hanzo\Model\ProductsToCategoriesQuery,
+    Hanzo\Model\ProductsImagesQuery,
+    Hanzo\Model\ProductsQuery,
+    Hanzo\Model\CategoriesQuery;
 
 class ProductsController extends CoreController
 {
     
-    public function indexAction()
+    public function indexAction($category_id, $subcategory_id)
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        $categories = null;
+        $products = null;
+        if (!$category_id){
+
+            $categories = CategoriesQuery::create()
+                ->where('categories.PARENT_ID IS NULL')
+                ->joinWithI18n()
+                ->orderById()
+                ->find()
+            ;
+            $parent_category = null;
+
+        } elseif (!$subcategory_id){
+
+            $categories = CategoriesQuery::create()
+                ->filterByParentId($category_id)
+                ->joinWithI18n()
+                ->orderById()
+                ->find()
+            ;
+
+            $parent_category = CategoriesQuery::create()
+                ->joinWithI18n()
+                ->findOneById($category_id)
+            ;
+
+        } else { // Both $category_id and $subcategory_id are set. Show some products!
+
+            $products = ProductsQuery::create()
+                ->useProductsToCategoriesQuery()
+                    ->filterByCategoriesId($subcategory_id)
+                ->endUse()
+                ->find()
+            ;
+            
+            $parent_category = CategoriesQuery::create()
+                ->joinWithI18n()
+                ->findOneById($subcategory_id)
+            ;
+        }
+        $categories_list = array();
+        $products_list = array();
+        if ($categories) {
+
+            foreach ($categories as $category) {
+                $categories_list[] = array(
+                    'id' => $category->getId(),
+                    'context' => $category->getContext(),
+                    'is_active' => $category->getIsActive(),
+                    'title' => $category->getTitle()
+                );
+            }
+
+        }else if ($products) {
+
+            foreach ($products as $product) {
+                $products_list[] = array(
+                    'id' => $product->getId(),
+                    'sku' => $product->getSku(),
+                    'master' => $product->getMaster(),
+                    'size' => $product->getSize(),
+                    'color' => $product->getColor(),
+                    'unit' => $product->getUnit(),
+                    'is_out_of_stock' => $product->getIsOutOfStock(),
+                    'is_active' => $product->getIsActive()
+                );
+            }
+
+        }
+        
+        return $this->render('AdminBundle:Products:list.html.twig', array(
+            'categories'        => $categories_list,
+            'products'        => $products_list,
+            'parent_category'   => $parent_category
+        ));
     }
 
-    public function sortAction($category_id = null)
+    public function viewAction($id)
+    {
+
+        $all_products = ProductsQuery::create()
+            ->filterByMaster(NULL)
+            ->find()
+        ;
+
+        $product_images = ProductsImagesQuery::create()
+            ->joinProducts()
+            ->findByProductsId($id)
+        ;
+
+        $product_images_list = array();
+
+        foreach ($product_images as $record) {
+
+            $products_refs = ProductsImagesProductReferencesQuery::create()
+                ->joinWithProducts()
+                ->joinWithProductsImages()
+                ->filterByProductsImagesId($record->getId())
+                ->find()
+            ;
+
+            $products_refs_list = array();
+            if($products_refs){
+                foreach ($products_refs as $ref) {
+
+                    $product_ref = $ref->getProducts();
+
+                    $products_refs_list[] = array(
+                        'id' => $product_ref->getId(),
+                        'sku' => $product_ref->getSku()
+                    );
+                }
+            }
+
+            $product_images_list[] = array(
+                'id' => $record->getProductsId(),
+                'image' => $record->getImage(),
+                'image_id' => $record->getId(),
+                'product_ref_ids' => $products_refs_list
+            );
+        }
+        return $this->render('AdminBundle:Products:viewImages.html.twig', array(
+            'product_images'    => $product_images_list,
+            'products' => $all_products
+        ));
+    }
+
+    public function sortAction($category_id)
     {
         $current_category = CategoriesQuery::create()
             ->joinWithI18n()
@@ -80,18 +208,16 @@ class ProductsController extends CoreController
     {
     	$requests = $this->get('request');
         $products = $requests->get('data');
-        $category_id = $requests->get('category_id'); // @todo Fjernes og cat id tages med som ÌD på hver item
-        
+
         $sort = 0;
         foreach ($products as $product) {
             $item_parts = explode('-', substr($product, 5));
             $product_id = $item_parts[0];
             $picture_id = $item_parts[1];
+            $category_id = $item_parts[2];
             $result = ProductsImagesCategoriesSortQuery::create()
                 ->filterByCategoriesId($category_id)
-                //->useProductsImagesQuery()
-            	   ->filterByProductsId($product_id)
-                //->endUse()
+                ->filterByProductsId($product_id)
                 ->findOneByProductsImagesId($picture_id)
             	->setSort($sort)
             	->save()
@@ -103,19 +229,8 @@ class ProductsController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
-                'catID' => $category_id,
-                'productId' => $product_id,
-                'productIds' => substr($product_id, 5),
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
             ));
         }
-
-        $this->get('session')->setFlash('notice', 'product.sort.updated');
-        return $this->redirect($this->generateUrl('admin_products_sort', 
-            array(
-                'category_id' => $category_id
-            )
-        ));
-
     }
 }
