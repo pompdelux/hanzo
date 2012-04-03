@@ -185,7 +185,7 @@
         <target>Moms udgør</target>
       </trans-unit>
       <trans-unit id="total.incl_vat">
-        <source>product.incl_vat</source>
+        <source>total.incl_vat</source>
         <target>Total inkl. fragt, moms og ekspeditionsgebyr</target>
       </trans-unit>
 
