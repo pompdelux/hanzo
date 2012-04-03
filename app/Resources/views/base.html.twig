@@ -65,21 +65,31 @@ var cdn_url = '{{ cdn }}';
     {{ fx_image_tag('images/POMPdeLUX_logo.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
   </a>
 
-    <div id="main" role="main">
-      {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'sub', 'from': 400, 'offset': 482 } %}
-      {% block content %}
-      {% endblock %}
-    </div><!-- /div#main -->
+  <div id="main" role="main">
+
+    {% if app.session.get('in_edit') %}
+      {{ 'order.edit.global.notice'|trans({
+        '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
+        '%order_id%' : app.session.get('order_id'),
+        '%stop_url%' : url('_account', {stop : 1})
+      })|raw }}
+    {% endif %}
+
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'sub', 'from': 400, 'offset': 482 } %}
+    {% block content %}
+    {% endblock %}
+
+  </div><!-- /div#main -->
 
   <nav class="main">
     {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'main', 'from': 20 } %}
   </nav><!-- /nav.main -->
 
-  <aside id="secondary-links" role="secondary-links">
+  <aside id="secondary-links">
     <ul>
       <li><a href="{{ path('_account') }}">{{ "my.account"|trans({}, 'account') }}</a></li>
     {% if is_granted('ROLE_USER') %}
-      <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
+      <li><a href="{{ path('logout') }}">{{ 'my.account.logout'|trans({}, 'account') }}</a></li>
     {% endif %}
       <li id="select-domain">
         <a class="open-menu" href="#">Change Country</a>

@@ -2,6 +2,15 @@ parameters:
 #    checkout.example.class: Hanzo\Bundle\CheckoutBundle\Example
 
 services:
-#    checkout.example:
-#        class: %checkout.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    hanzo.checkout:
+        class: Hanzo\Bundle\CheckoutBundle\Event\CheckoutListener
+        arguments: [ @mail_manager, @translator ]
+        tags:
+            - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected }
+
+    hanzo.order:
+        class: Hanzo\Bundle\CheckoutBundle\Event\OrderListener
+        arguments: [ @session ]
+        tags:
+            - { name: kernel.event_listener, event: order.edit.start, method: onEditStart }
+            - { name: kernel.event_listener, event: order.edit.cancel, method: onEditCancel }

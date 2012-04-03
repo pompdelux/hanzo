@@ -43,11 +43,12 @@ class OrdersTableMap extends TableMap
 		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+		$this->addColumn('VERSION_ID', 'VersionId', 'INTEGER', true, null, 1);
 		$this->addColumn('SESSION_ID', 'SessionId', 'VARCHAR', true, 32, null);
 		$this->addColumn('PAYMENT_GATEWAY_ID', 'PaymentGatewayId', 'INTEGER', false, null, null);
 		$this->addColumn('STATE', 'State', 'INTEGER', true, null, -50);
 		$this->addColumn('IN_EDIT', 'InEdit', 'BOOLEAN', true, 1, false);
-		$this->addColumn('CUSTOMERS_ID', 'CustomersId', 'INTEGER', false, null, null);
+		$this->addForeignKey('CUSTOMERS_ID', 'CustomersId', 'INTEGER', 'customers', 'ID', false, null, null);
 		$this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', false, 128, null);
 		$this->addColumn('LAST_NAME', 'LastName', 'VARCHAR', false, 128, null);
 		$this->addColumn('EMAIL', 'Email', 'VARCHAR', false, 255, null);
@@ -87,12 +88,14 @@ class OrdersTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
+		$this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('customers_id' => 'id', ), 'SET NULL', null);
 		$this->addRelation('CountriesRelatedByBillingCountriesId', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('billing_countries_id' => 'id', ), null, null);
 		$this->addRelation('CountriesRelatedByDeliveryCountriesId', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('delivery_countries_id' => 'id', ), null, null);
 		$this->addRelation('OrdersAttributes', 'Hanzo\\Model\\OrdersAttributes', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersAttributess');
 		$this->addRelation('OrdersLines', 'Hanzo\\Model\\OrdersLines', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersLiness');
 		$this->addRelation('OrdersStateLog', 'Hanzo\\Model\\OrdersStateLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersStateLogs');
 		$this->addRelation('OrdersSyncLog', 'Hanzo\\Model\\OrdersSyncLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersSyncLogs');
+		$this->addRelation('OrdersVersions', 'Hanzo\\Model\\OrdersVersions', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersVersionss');
 	} // buildRelations()
 
 	/**

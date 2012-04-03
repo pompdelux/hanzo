@@ -17,6 +17,7 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\EventsPeer;
 use Hanzo\Model\GothiaAccountsPeer;
 use Hanzo\Model\GroupsPeer;
+use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\map\CustomersTableMap;
 
 /**
@@ -423,6 +424,9 @@ abstract class BaseCustomersPeer {
 		// Invalidate objects in AddressesPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		AddressesPeer::clearInstancePool();
+		// Invalidate objects in OrdersPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		OrdersPeer::clearInstancePool();
 		// Invalidate objects in GothiaAccountsPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		GothiaAccountsPeer::clearInstancePool();

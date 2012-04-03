@@ -33,7 +33,8 @@ class OrdersPeer extends BaseOrdersPeer
             return self::$current;
         }
 
-        $session = Hanzo::getInstance()->getSession();
+        $hanzo = Hanzo::getInstance();
+        $session = $hanzo->getSession();
 
         if ($session->has('order_id')) {
             $query = OrdersQuery::create()
@@ -48,12 +49,14 @@ class OrdersPeer extends BaseOrdersPeer
 
             // attach the customer to the order.
             if ( ( self::$current instanceOf Orders ) && !self::$current->getCustomersId()) {
-                $hanzo = Hanzo::getInstance();
                 $security = $hanzo->container->get('security.context');
 
                 if ($security->isGranted('ROLE_USER')) {
                     $user = $security->getToken()->getUser()->getUser();
                     self::$current->setCustomersId($user->getId());
+                    self::$current->setEmail($user->getEmail());
+                    self::$current->setFirstName($user->getFirstName());
+                    self::$current->setLastName($user->getLastName());
                     self::$current->save();
                 }
             }

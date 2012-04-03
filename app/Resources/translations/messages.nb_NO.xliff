@@ -195,6 +195,21 @@
                 <source>Pass repeated</source>
                 <target>Gentag adgangskode</target>
             </trans-unit>
+
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target><![CDATA[
+                    <h3>Bemerk:</h3>
+                    <p>
+                        Du er ved å redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
+                        Ønsker du å avbryte redigeringen av din ordre - <a href="%stop_url%" title="stop editering af ordren">klikk her.</a>
+                    </p>
+                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du å legge til flere varer, skal du klikke på menyen Webshop.</p>
+                    <p class="last">Når du er ferdig med dine endringer, skal du klikke på "Vis kurv" og følge trin 1 til 6. Når du har gjennomført din ordre med ny kreditkortbetaling, vil den gamle betalingen blir slettet automatisk.</p>
+                ]]></target>
+            </trans-unit>
+
+
         </body>
     </file>
 </xliff>

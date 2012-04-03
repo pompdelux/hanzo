@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 use Hanzo\Bundle\ServiceBundle\Services\TwigStringService;
 use Hanzo\Model\MessagesQuery;
 use Hanzo\Model\MessagesI18nQuery;
@@ -60,15 +61,17 @@ class MailService
         $this->twig->startTransaction();
 
         foreach ($messages as $message) {
-            $this->swift->setSubject($message->getSubject());
+            $subject = $message->getSubject();
+            $body = $this->twig->parse($message->getBody(), $parameters);
 
             if ('.txt' == substr($message->getMessages()->getKey(), -4)) {
-                $this->swift->setBody($this->twig->parse($message->getBody(), $parameters));
+                $this->swift->addPart($body, 'text/plain');
             }
             elseif('.html' == substr($message->getMessages()->getKey(), -5)) {
-                $this->swift->addPart($this->twig->parse($message->getBody(), $parameters), 'text/html');
+                $this->swift->setBody($body, 'text/html');
             }
         }
+        $this->swift->setSubject($subject);
 
         // reset the loader, needed to not break the reset of the application
         $this->twig->endTransaction();
@@ -78,27 +81,27 @@ class MailService
      * Set to address(es)
      * @see Swift_Mime_Message::setFrom
      */
-    public function setTo($address)
+    public function setTo($address, $name = null)
     {
-        return $this->swift->setTo($address);
+        return $this->swift->setTo($address, $name);
     }
 
     /**
      * Set cc address(es)
      * @see Swift_Mime_Message::setFrom
      */
-    public function setCc($address)
+    public function setCc($address, $name = null)
     {
-        return $this->swift->setCc($address);
+        return $this->swift->setCc($address, $name);
     }
 
     /**
      * Set bcc address(es)
      * @see Swift_Mime_Message::setFrom
      */
-    public function setBcc($address)
+    public function setBcc($address, $name = null)
     {
-        return $this->swift->setBcc($address);
+        return $this->swift->setBcc($address, $name);
     }
 
     /**

@@ -195,6 +195,23 @@
                 <source>Pass repeated</source>
                 <target>Gentag adgangskode</target>
             </trans-unit>
+
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target><![CDATA[
+                    <h3>Observera:</h3>
+                    <p>
+                        Du kommer nu att redigera E-ordernummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
+                        Om du önskar att avbryta redigeringen av din order - <a href="%stop_url%" title="stop editering af ordren"> – klicka här.</a>
+                    </p>
+                    <p>Om du önskar att ändra en färg eller en storlek, ska du klicka på pennan i korgen. Om du önskar att lägga till varor, ska du klicka på menyn Webshop.</p>
+                    <p class="last">När du är färdig med dina ändringar, ska du klicka på "Visa korg" och följa steg 1 till 6. När du har genomfört din order med en ny kortbetalning, kommer den gamla betalningen automatiskt att bli raderad, och din första reservation blir tillgänglig på ditt konto igen efter ca 5 vardagar.</p>
+                ]]></target>
+            </trans-unit>
+
+
+
+
         </body>
     </file>
 </xliff>

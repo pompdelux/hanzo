@@ -182,7 +182,7 @@
             </trans-unit>
             <trans-unit id="order.total">
                 <source>order.total</source>
-                <target>Status</target>
+                <target>Total</target>
             </trans-unit>
             <trans-unit id="order.invoice">
                 <source>order.invoice</source>
