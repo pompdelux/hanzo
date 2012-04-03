@@ -36,13 +36,17 @@ class CmsController extends CoreController
 
     public function deleteAction($id)
     {
+        $cache = $this->get('cache_manager');
 
         $node = CmsQuery::create()
             ->findPK($id);
 
         if($node)
             $node->delete();
-          
+        
+        $cache->routerBuilder();
+        $cache->clearRedisCache();
+
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
@@ -147,6 +151,8 @@ class CmsController extends CoreController
     }
     public function editAction($id, $locale = 'en_EN')
     {
+        $cache = $this->get('cache_manager');
+
         $languages_availible = LanguagesQuery::Create()
             ->find();
 
@@ -163,7 +169,8 @@ class CmsController extends CoreController
 
             $node = CmsQuery::create()
                 ->findPk($id);
-            $node->setLocale($locale);
+            if($node)
+                $node->setLocale($locale);
         }
 
         $form = $this->createForm(new CmsType(), $node);
@@ -176,24 +183,10 @@ class CmsController extends CoreController
                 
                 $node->save();
 
-                /**
-                 * @todo Opdater routing.yml
-                 */
-
-                // $command = $this->getApplication()->find('Hanzo:router:builder');
-                // $returnCode = $command->run(null,null);
-
-                /**
-                 * @todo Clear cache
-                 */
-
-                // $command = $this->getApplication()->find('cache:clear');
-                // $arguments = array(
-                //     'command' => 'cache:clear',
-                //     '--env' => 'prod'
-                // );
-                // $input = new ArrayInput($arguments);
-                // $returnCode = $command->run($input, $output);
+                if($node->getIsActive()){
+                    $cache->routerBuilder();
+                    $cache->clearRedisCache();
+                }
 
                 $this->get('session')->setFlash('notice', 'cms.updated');
             }
@@ -211,23 +204,6 @@ class CmsController extends CoreController
         $requests = $this->get('request');
         $nodes = $requests->get('data');
 
-        $this->updateCmsTree($nodes);
-
-        if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status' => TRUE,
-                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
-            ));
-        }
-    }
-
-    /**
-     * Updates all CMSnodes in the SQL
-     * @param nestedSortable $nodes
-     * @return type
-     */
-    protected function updateCmsTree($nodes)
-    {
         // $sort: Array to keep track on the sort number associated with the parent id.
         // NestedSortable jQuery Plugin doesnt have a sort number, but the array are sorted.
         $sort = array();
@@ -246,8 +222,19 @@ class CmsController extends CoreController
                 $cmsNode->setParentId(null);
             else
                 $cmsNode->setParentId($node['parent_id']);
+            
             $cmsNode->setSort($sort[$node['parent_id']]);
             $cmsNode->save();
+        }
+
+        $cache = $this->get('cache_manager');
+        $cache->clearRedisCache();
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
+            ));
         }
     }
 

@@ -118,7 +118,7 @@ page_" . $id . "_" . $locale . ":
 ")."\n";
                         break;
                     case 'system':
-                        switch ($settings['view']) {
+                        switch ($settings['type']) {
                             case 'mannequin':
                             $buffer[$locale] .= trim("
 system_" . $id . "_" . $locale . ":
@@ -176,7 +176,7 @@ search_" . $id . "_" . $locale . ":
 ";
         }
 
-        $cms_routing_file = __DIR__ . '/../Resources/config/cms_routing.yml';
+        $cms_routing_file = __DIR__ . '/../../CMSBundle/Resources/config/cms_routing.yml';
         if (file_put_contents($cms_routing_file, $cms_routing_out)) {
             $category_map_out = '<?php # -:[' . $date . ']:-
 return '. var_export($categories, 1) . "
