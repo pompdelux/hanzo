@@ -1,0 +1,4231 @@
+# -:[da_dk : 2012-04-03 11:44:24]:-
+
+page_452_da_dk:
+    pattern: /forside/nyheder
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 452
+search_471_da_dk:
+    pattern: /forside/soeg
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 471
+    requirements:
+        _format: html|json
+page_89_da_dk:
+    pattern: /konsulent/info
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 89
+page_447_da_dk:
+    pattern: /forside/mixmatch
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 447
+page_464_da_dk:
+    pattern: /forside/om-pompdelux
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 464
+page_473_da_dk:
+    pattern: /forside-bokse/kollektionsproevesalg
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 473
+page_456_da_dk:
+    pattern: /forside/kundeservice
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 456
+page_475_da_dk:
+    pattern: /forside-bokse/tilmeld-nyhedsbrev
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 475
+page_472_da_dk:
+    pattern: /forside/forside
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 472
+page_400_da_dk:
+    pattern: /forside/webshop
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 400
+page_448_da_dk:
+    pattern: /forside/home-shopping
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 448
+page_474_da_dk:
+    pattern: /forside-bokse/autumn-winter11
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 474
+page_87_da_dk:
+    pattern: /konsulent/info/manualer
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 87
+page_482_da_dk:
+    pattern: /forside/webshop/info
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 482
+page_424_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 424
+page_401_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 401
+page_520_da_dk:
+    pattern: /forside/webshop/special-offers
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 520
+page_437_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 437
+page_414_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 414
+search_402_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/soeg-paa-str
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 402
+    requirements:
+        _format: html|json
+category_411_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 411
+        category_id: 21
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_411_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 411
+        category_id: 21
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_404_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 404
+        category_id: 20
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_404_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 404
+        category_id: 20
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_413_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 413
+        category_id: 39
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_413_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 413
+        category_id: 39
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_514_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 514
+        category_id: 46
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_514_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 514
+        category_id: 46
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_406_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/cardigans-vest/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 406
+        category_id: 13
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_406_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/cardigans-vest/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 406
+        category_id: 13
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_408_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 408
+        category_id: 17
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_408_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 408
+        category_id: 17
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_410_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/leggings/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 410
+        category_id: 15
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_410_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/leggings/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 410
+        category_id: 15
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_403_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/dresses/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 403
+        category_id: 14
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_403_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/dresses/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 403
+        category_id: 14
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_412_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 412
+        category_id: 12
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_412_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 412
+        category_id: 12
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_405_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/tunics-blouses-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 405
+        category_id: 19
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_405_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/tunics-blouses-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 405
+        category_id: 19
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_407_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/shorts-skirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 407
+        category_id: 18
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_407_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/shorts-skirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 407
+        category_id: 18
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_409_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 409
+        category_id: 16
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_409_da_dk:
+    pattern: /forside/webshop/girl-104-152-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 409
+        category_id: 16
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_418_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/sweatshirts-pullover/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 418
+        category_id: 9
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_418_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/sweatshirts-pullover/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 418
+        category_id: 9
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_420_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 420
+        category_id: 6
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_420_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 420
+        category_id: 6
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_422_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 422
+        category_id: 5
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_422_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 422
+        category_id: 5
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_415_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/soeg-paa-str
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 415
+    requirements:
+        _format: html|json
+category_417_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 417
+        category_id: 8
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_417_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 417
+        category_id: 8
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_419_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 419
+        category_id: 7
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_419_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 419
+        category_id: 7
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_513_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 513
+        category_id: 44
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_513_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 513
+        category_id: 44
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_421_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 421
+        category_id: 11
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_421_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 421
+        category_id: 11
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_423_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 423
+        category_id: 40
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_423_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 423
+        category_id: 40
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_416_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 416
+        category_id: 10
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_416_da_dk:
+    pattern: /forside/webshop/boy-104-152-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 416
+        category_id: 10
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_434_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 434
+        category_id: 38
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_434_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 434
+        category_id: 38
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_427_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/tunics-tops/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 427
+        category_id: 37
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_427_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/tunics-tops/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 427
+        category_id: 37
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_436_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 436
+        category_id: 42
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_436_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 436
+        category_id: 42
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_429_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 429
+        category_id: 36
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_429_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 429
+        category_id: 36
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_431_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/pants-pantsuits/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 431
+        category_id: 34
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_431_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/pants-pantsuits/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 431
+        category_id: 34
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_516_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 516
+        category_id: 50
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_516_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 516
+        category_id: 50
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_433_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/leggings/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 433
+        category_id: 32
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_433_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/leggings/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 433
+        category_id: 32
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_426_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/dresses/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 426
+        category_id: 31
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_426_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/dresses/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 426
+        category_id: 31
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_435_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 435
+        category_id: 29
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_435_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 435
+        category_id: 29
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_428_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/cardigans/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 428
+        category_id: 30
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_428_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/cardigans/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 428
+        category_id: 30
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_430_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/skirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 430
+        category_id: 35
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_430_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/skirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 430
+        category_id: 35
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_432_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 432
+        category_id: 33
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_432_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 432
+        category_id: 33
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_425_da_dk:
+    pattern: /forside/webshop/little-girl-80-98-cm/soeg-paa-str
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 425
+    requirements:
+        _format: html|json
+category_443_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 443
+        category_id: 24
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_443_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 443
+        category_id: 24
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_445_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 445
+        category_id: 22
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_445_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 445
+        category_id: 22
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_438_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/soeg-paa-str
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 438
+    requirements:
+        _format: html|json
+category_440_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/shirts-polos/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 440
+        category_id: 26
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_440_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/shirts-polos/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 440
+        category_id: 26
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_442_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 442
+        category_id: 25
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_442_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 442
+        category_id: 25
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_444_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 444
+        category_id: 28
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_444_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 444
+        category_id: 28
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_515_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 515
+        category_id: 48
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_515_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 515
+        category_id: 48
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_446_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 446
+        category_id: 41
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_446_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 446
+        category_id: 41
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_439_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 439
+        category_id: 27
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_439_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 439
+        category_id: 27
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_441_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/cardigans-knit-vests/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 441
+        category_id: 23
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_441_da_dk:
+    pattern: /forside/webshop/little-boy-80-98-cm/cardigans-knit-vests/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 441
+        category_id: 23
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+page_486_da_dk:
+    pattern: /forside/mixmatch/girl
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 486
+page_500_da_dk:
+    pattern: /forside/mixmatch/little-girl
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 500
+page_495_da_dk:
+    pattern: /forside/mixmatch/boy
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 495
+page_501_da_dk:
+    pattern: /forside/mixmatch/little-boy
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 501
+page_450_da_dk:
+    pattern: /forside/home-shopping/find-konsulent-paa-kort
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 450
+page_449_da_dk:
+    pattern: /forside/home-shopping/find-konsulent
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 449
+page_451_da_dk:
+    pattern: /forside/home-shopping/aabent-hus
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 451
+page_454_da_dk:
+    pattern: /forside/nyheder/nyhedsbrev-arkiv
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 454
+newsletter_453_da_dk:
+    pattern: /forside/nyheder/nyhedsbrev
+    defaults:
+        _controller: HanzoNewsletterBundle:Default:view
+        id: 453
+page_455_da_dk:
+    pattern: /forside/nyheder/pressemeddelelser
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 455
+page_517_da_dk:
+    pattern: /forside/nyheder/gazelle-2011
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 517
+page_460_da_dk:
+    pattern: /forside/kundeservice/ombytning
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 460
+page_462_da_dk:
+    pattern: /forside/kundeservice/vilkaar
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 462
+page_459_da_dk:
+    pattern: /forside/kundeservice/returnering
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 459
+page_461_da_dk:
+    pattern: /forside/kundeservice/returseddel
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 461
+page_463_da_dk:
+    pattern: /forside/kundeservice/om-webshoppen
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 463
+page_457_da_dk:
+    pattern: /forside/kundeservice/faq
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 457
+page_467_da_dk:
+    pattern: /forside/om-pompdelux/job
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 467
+page_469_da_dk:
+    pattern: /forside/om-pompdelux/kontakt
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 469
+page_466_da_dk:
+    pattern: /forside/om-pompdelux/social-ansvarlighed
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 466
+page_465_da_dk:
+    pattern: /forside/om-pompdelux/koncept
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 465
+page_468_da_dk:
+    pattern: /forside/om-pompdelux/job/boernemodel
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 468
+page_494_da_dk:
+    pattern: /forside/om-pompdelux/job/fritidskonsulent
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 494
+page_478_da_dk:
+    pattern: /forside/webshop/info/katalog
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 478
+page_512_da_dk:
+    pattern: /forside/webshop/info/gots-organic
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 512
+page_480_da_dk:
+    pattern: /forside/webshop/info/vaske-raad
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 480
+page_484_da_dk:
+    pattern: /forside/webshop/info/sizeguide
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 484
+page_479_da_dk:
+    pattern: /forside/webshop/info/video
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 479
+page_481_da_dk:
+    pattern: /forside/webshop/info/oeko-tex
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 481
+page_483_da_dk:
+    pattern: /forside/webshop/info/credits
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 483
+system_488_da_dk:
+    pattern: /forside/mixmatch/girl/dusty-purple
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 488
+system_490_da_dk:
+    pattern: /forside/mixmatch/girl/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 490
+system_492_da_dk:
+    pattern: /forside/mixmatch/girl/black-cream
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 492
+system_487_da_dk:
+    pattern: /forside/mixmatch/girl/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 487
+system_489_da_dk:
+    pattern: /forside/mixmatch/girl/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 489
+system_491_da_dk:
+    pattern: /forside/mixmatch/girl/petrol
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 491
+system_496_da_dk:
+    pattern: /forside/mixmatch/boy/black
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 496
+system_498_da_dk:
+    pattern: /forside/mixmatch/boy/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 498
+system_497_da_dk:
+    pattern: /forside/mixmatch/boy/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 497
+system_499_da_dk:
+    pattern: /forside/mixmatch/boy/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 499
+system_503_da_dk:
+    pattern: /forside/mixmatch/little-girl/dusty-purple
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 503
+system_505_da_dk:
+    pattern: /forside/mixmatch/little-girl/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 505
+system_507_da_dk:
+    pattern: /forside/mixmatch/little-girl/petrol
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 507
+system_502_da_dk:
+    pattern: /forside/mixmatch/little-girl/black-cream
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 502
+system_504_da_dk:
+    pattern: /forside/mixmatch/little-girl/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 504
+system_506_da_dk:
+    pattern: /forside/mixmatch/little-girl/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 506
+system_509_da_dk:
+    pattern: /forside/mixmatch/little-boy/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 509
+system_511_da_dk:
+    pattern: /forside/mixmatch/little-boy/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 511
+system_508_da_dk:
+    pattern: /forside/mixmatch/little-boy/black
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 508
+system_510_da_dk:
+    pattern: /forside/mixmatch/little-boy/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 510
+category_525_da_dk:
+    pattern: /forside/webshop/special-offers/girl-104-152-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 525
+        category_id: 52
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_525_da_dk:
+    pattern: /forside/webshop/special-offers/girl-104-152-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 525
+        category_id: 52
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_527_da_dk:
+    pattern: /forside/webshop/special-offers/little-girl-80-98-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 527
+        category_id: 54
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_527_da_dk:
+    pattern: /forside/webshop/special-offers/little-girl-80-98-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 527
+        category_id: 54
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_526_da_dk:
+    pattern: /forside/webshop/special-offers/boy-104-152-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 526
+        category_id: 51
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_526_da_dk:
+    pattern: /forside/webshop/special-offers/boy-104-152-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 526
+        category_id: 51
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_528_da_dk:
+    pattern: /forside/webshop/special-offers/little-boy-80-98-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 528
+        category_id: 53
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_528_da_dk:
+    pattern: /forside/webshop/special-offers/little-boy-80-98-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 528
+        category_id: 53
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+
+# --------------------------------------------
+# -:[en_en : 2012-04-03 11:44:24]:-
+
+page_452_en_en:
+    pattern: /home/news
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 452
+search_471_en_en:
+    pattern: /home/search
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 471
+    requirements:
+        _format: html|json
+page_89_en_en:
+    pattern: /consultant/info
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 89
+page_447_en_en:
+    pattern: /home/mixmatch
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 447
+page_464_en_en:
+    pattern: /home/about-pompdelux
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 464
+page_473_en_en:
+    pattern: /forside-bokse/pre-sale
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 473
+page_456_en_en:
+    pattern: /home/customer-service
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 456
+page_475_en_en:
+    pattern: /forside-bokse/newsletter
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 475
+page_472_en_en:
+    pattern: /home/home
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 472
+page_400_en_en:
+    pattern: /home/webshop
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 400
+page_474_en_en:
+    pattern: /forside-bokse/autumn-winter11
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 474
+page_87_en_en:
+    pattern: /consultant/info/manualer
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 87
+page_482_en_en:
+    pattern: /home/webshop/info
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 482
+page_424_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 424
+page_401_en_en:
+    pattern: /home/webshop/girl-104-152-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 401
+page_520_en_en:
+    pattern: /home/webshop/special-offers
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 520
+page_437_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 437
+page_414_en_en:
+    pattern: /home/webshop/boy-104-152-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 414
+search_402_en_en:
+    pattern: /home/webshop/girl-104-152-cm/search-on-size
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 402
+    requirements:
+        _format: html|json
+category_411_en_en:
+    pattern: /home/webshop/girl-104-152-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 411
+        category_id: 21
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_411_en_en:
+    pattern: /home/webshop/girl-104-152-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 411
+        category_id: 21
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_404_en_en:
+    pattern: /home/webshop/girl-104-152-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 404
+        category_id: 20
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_404_en_en:
+    pattern: /home/webshop/girl-104-152-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 404
+        category_id: 20
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_413_en_en:
+    pattern: /home/webshop/girl-104-152-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 413
+        category_id: 39
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_413_en_en:
+    pattern: /home/webshop/girl-104-152-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 413
+        category_id: 39
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_514_en_en:
+    pattern: /home/webshop/girl-104-152-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 514
+        category_id: 46
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_514_en_en:
+    pattern: /home/webshop/girl-104-152-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 514
+        category_id: 46
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_406_en_en:
+    pattern: /home/webshop/girl-104-152-cm/cardigans-vest/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 406
+        category_id: 13
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_406_en_en:
+    pattern: /home/webshop/girl-104-152-cm/cardigans-vest/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 406
+        category_id: 13
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_408_en_en:
+    pattern: /home/webshop/girl-104-152-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 408
+        category_id: 17
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_408_en_en:
+    pattern: /home/webshop/girl-104-152-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 408
+        category_id: 17
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_410_en_en:
+    pattern: /home/webshop/girl-104-152-cm/leggings/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 410
+        category_id: 15
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_410_en_en:
+    pattern: /home/webshop/girl-104-152-cm/leggings/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 410
+        category_id: 15
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_403_en_en:
+    pattern: /home/webshop/girl-104-152-cm/dresses/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 403
+        category_id: 14
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_403_en_en:
+    pattern: /home/webshop/girl-104-152-cm/dresses/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 403
+        category_id: 14
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_412_en_en:
+    pattern: /home/webshop/girl-104-152-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 412
+        category_id: 12
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_412_en_en:
+    pattern: /home/webshop/girl-104-152-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 412
+        category_id: 12
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_405_en_en:
+    pattern: /home/webshop/girl-104-152-cm/tunics-blouses-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 405
+        category_id: 19
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_405_en_en:
+    pattern: /home/webshop/girl-104-152-cm/tunics-blouses-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 405
+        category_id: 19
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_407_en_en:
+    pattern: /home/webshop/girl-104-152-cm/shorts-skirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 407
+        category_id: 18
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_407_en_en:
+    pattern: /home/webshop/girl-104-152-cm/shorts-skirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 407
+        category_id: 18
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_409_en_en:
+    pattern: /home/webshop/girl-104-152-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 409
+        category_id: 16
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_409_en_en:
+    pattern: /home/webshop/girl-104-152-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 409
+        category_id: 16
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_418_en_en:
+    pattern: /home/webshop/boy-104-152-cm/sweatshirts-pullover/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 418
+        category_id: 9
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_418_en_en:
+    pattern: /home/webshop/boy-104-152-cm/sweatshirts-pullover/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 418
+        category_id: 9
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_420_en_en:
+    pattern: /home/webshop/boy-104-152-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 420
+        category_id: 6
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_420_en_en:
+    pattern: /home/webshop/boy-104-152-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 420
+        category_id: 6
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_422_en_en:
+    pattern: /home/webshop/boy-104-152-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 422
+        category_id: 5
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_422_en_en:
+    pattern: /home/webshop/boy-104-152-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 422
+        category_id: 5
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_415_en_en:
+    pattern: /home/webshop/boy-104-152-cm/search-on-size
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 415
+    requirements:
+        _format: html|json
+category_417_en_en:
+    pattern: /home/webshop/boy-104-152-cm/shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 417
+        category_id: 8
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_417_en_en:
+    pattern: /home/webshop/boy-104-152-cm/shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 417
+        category_id: 8
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_419_en_en:
+    pattern: /home/webshop/boy-104-152-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 419
+        category_id: 7
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_419_en_en:
+    pattern: /home/webshop/boy-104-152-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 419
+        category_id: 7
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_513_en_en:
+    pattern: /home/webshop/boy-104-152-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 513
+        category_id: 44
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_513_en_en:
+    pattern: /home/webshop/boy-104-152-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 513
+        category_id: 44
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_421_en_en:
+    pattern: /home/webshop/boy-104-152-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 421
+        category_id: 11
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_421_en_en:
+    pattern: /home/webshop/boy-104-152-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 421
+        category_id: 11
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_423_en_en:
+    pattern: /home/webshop/boy-104-152-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 423
+        category_id: 40
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_423_en_en:
+    pattern: /home/webshop/boy-104-152-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 423
+        category_id: 40
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_416_en_en:
+    pattern: /home/webshop/boy-104-152-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 416
+        category_id: 10
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_416_en_en:
+    pattern: /home/webshop/boy-104-152-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 416
+        category_id: 10
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_434_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 434
+        category_id: 38
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_434_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 434
+        category_id: 38
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_427_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/tunics-tops/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 427
+        category_id: 37
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_427_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/tunics-tops/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 427
+        category_id: 37
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_436_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 436
+        category_id: 42
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_436_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 436
+        category_id: 42
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_429_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 429
+        category_id: 36
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_429_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 429
+        category_id: 36
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_431_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/pants-pantsuits/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 431
+        category_id: 34
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_431_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/pants-pantsuits/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 431
+        category_id: 34
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_516_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 516
+        category_id: 50
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_516_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 516
+        category_id: 50
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_433_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/leggings/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 433
+        category_id: 32
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_433_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/leggings/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 433
+        category_id: 32
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_426_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/dresses/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 426
+        category_id: 31
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_426_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/dresses/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 426
+        category_id: 31
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_435_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 435
+        category_id: 29
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_435_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 435
+        category_id: 29
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_428_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/cardigans/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 428
+        category_id: 30
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_428_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/cardigans/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 428
+        category_id: 30
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_430_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/skirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 430
+        category_id: 35
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_430_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/skirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 430
+        category_id: 35
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_432_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 432
+        category_id: 33
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_432_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 432
+        category_id: 33
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_425_en_en:
+    pattern: /home/webshop/little-girl-80-98-cm/search-on-size
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 425
+    requirements:
+        _format: html|json
+category_443_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 443
+        category_id: 24
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_443_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 443
+        category_id: 24
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_445_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 445
+        category_id: 22
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_445_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 445
+        category_id: 22
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_438_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/search-on-size
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 438
+    requirements:
+        _format: html|json
+category_440_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/shirts-polos/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 440
+        category_id: 26
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_440_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/shirts-polos/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 440
+        category_id: 26
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_442_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 442
+        category_id: 25
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_442_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 442
+        category_id: 25
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_444_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 444
+        category_id: 28
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_444_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 444
+        category_id: 28
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_515_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 515
+        category_id: 48
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_515_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 515
+        category_id: 48
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_446_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 446
+        category_id: 41
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_446_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 446
+        category_id: 41
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_439_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 439
+        category_id: 27
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_439_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 439
+        category_id: 27
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_441_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/cardigans-knit-vests/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 441
+        category_id: 23
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_441_en_en:
+    pattern: /home/webshop/little-boy-80-98-cm/cardigans-knit-vests/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 441
+        category_id: 23
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+page_486_en_en:
+    pattern: /home/mixmatch/girl
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 486
+page_500_en_en:
+    pattern: /home/mixmatch/little-girl
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 500
+page_495_en_en:
+    pattern: /home/mixmatch/boy
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 495
+page_501_en_en:
+    pattern: /home/mixmatch/little-boy
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 501
+newsletter_453_en_en:
+    pattern: /home/news/newsletter
+    defaults:
+        _controller: HanzoNewsletterBundle:Default:view
+        id: 453
+page_460_en_en:
+    pattern: /home/customer-service/exchange
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 460
+page_462_en_en:
+    pattern: /home/customer-service/terms-and-conditions
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 462
+page_459_en_en:
+    pattern: /home/customer-service/returns
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 459
+page_461_en_en:
+    pattern: /home/customer-service/returns-form
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 461
+page_463_en_en:
+    pattern: /home/customer-service/about-the-webshop
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 463
+page_457_en_en:
+    pattern: /home/customer-service/faq
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 457
+page_469_en_en:
+    pattern: /home/about-pompdelux/contact
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 469
+page_466_en_en:
+    pattern: /home/about-pompdelux/social-responsibility
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 466
+page_465_en_en:
+    pattern: /home/about-pompdelux/the-concept
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 465
+page_478_en_en:
+    pattern: /home/webshop/info/catalogue
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 478
+page_512_en_en:
+    pattern: /home/webshop/info/gots-organic
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 512
+page_480_en_en:
+    pattern: /home/webshop/info/care-instructions
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 480
+page_484_en_en:
+    pattern: /home/webshop/info/sizeguide
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 484
+page_479_en_en:
+    pattern: /home/webshop/info/video
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 479
+page_481_en_en:
+    pattern: /home/webshop/info/oeko-tex
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 481
+page_483_en_en:
+    pattern: /home/webshop/info/credits
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 483
+system_488_en_en:
+    pattern: /home/mixmatch/girl/dusty-purple
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 488
+system_490_en_en:
+    pattern: /home/mixmatch/girl/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 490
+system_492_en_en:
+    pattern: /home/mixmatch/girl/black-cream
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 492
+system_487_en_en:
+    pattern: /home/mixmatch/girl/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 487
+system_489_en_en:
+    pattern: /home/mixmatch/girl/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 489
+system_491_en_en:
+    pattern: /home/mixmatch/girl/petrol
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 491
+system_496_en_en:
+    pattern: /home/mixmatch/boy/black
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 496
+system_498_en_en:
+    pattern: /home/mixmatch/boy/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 498
+system_497_en_en:
+    pattern: /home/mixmatch/boy/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 497
+system_499_en_en:
+    pattern: /home/mixmatch/boy/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 499
+system_503_en_en:
+    pattern: /home/mixmatch/little-girl/dusty-purple
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 503
+system_505_en_en:
+    pattern: /home/mixmatch/little-girl/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 505
+system_507_en_en:
+    pattern: /home/mixmatch/little-girl/petrol
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 507
+system_502_en_en:
+    pattern: /home/mixmatch/little-girl/black-cream
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 502
+system_504_en_en:
+    pattern: /home/mixmatch/little-girl/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 504
+system_506_en_en:
+    pattern: /home/mixmatch/little-girl/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 506
+system_509_en_en:
+    pattern: /home/mixmatch/little-boy/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 509
+system_511_en_en:
+    pattern: /home/mixmatch/little-boy/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 511
+system_508_en_en:
+    pattern: /home/mixmatch/little-boy/black
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 508
+system_510_en_en:
+    pattern: /home/mixmatch/little-boy/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 510
+category_525_en_en:
+    pattern: /home/webshop/special-offers/girl-104-152-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 525
+        category_id: 52
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_525_en_en:
+    pattern: /home/webshop/special-offers/girl-104-152-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 525
+        category_id: 52
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_527_en_en:
+    pattern: /home/webshop/special-offers/little-girl-80-98-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 527
+        category_id: 54
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_527_en_en:
+    pattern: /home/webshop/special-offers/little-girl-80-98-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 527
+        category_id: 54
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_526_en_en:
+    pattern: /home/webshop/special-offers/boy-104-152-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 526
+        category_id: 51
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_526_en_en:
+    pattern: /home/webshop/special-offers/boy-104-152-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 526
+        category_id: 51
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_528_en_en:
+    pattern: /home/webshop/special-offers/little-boy-80-98-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 528
+        category_id: 53
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_528_en_en:
+    pattern: /home/webshop/special-offers/little-boy-80-98-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 528
+        category_id: 53
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+
+# --------------------------------------------
+# -:[nl_nl : 2012-04-03 11:44:24]:-
+
+page_452_nl_nl:
+    pattern: /voorpagina/nieuw
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 452
+search_471_nl_nl:
+    pattern: /voorpagina/zoek
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 471
+    requirements:
+        _format: html|json
+page_89_nl_nl:
+    pattern: /info
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 89
+page_447_nl_nl:
+    pattern: /voorpagina/mixmatch
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 447
+page_464_nl_nl:
+    pattern: /voorpagina/over-pompdelux
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 464
+page_473_nl_nl:
+    pattern: /de-vroege-uitverkoop
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 473
+page_456_nl_nl:
+    pattern: /voorpagina/klantenservice
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 456
+page_475_nl_nl:
+    pattern: /nieuwsbrief
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 475
+page_472_nl_nl:
+    pattern: /voorpagina/voorpagina
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 472
+page_400_nl_nl:
+    pattern: /voorpagina/webshop
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 400
+page_474_nl_nl:
+    pattern: /autumn-winter11
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 474
+page_87_nl_nl:
+    pattern: /info/manualer
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 87
+page_482_nl_nl:
+    pattern: /voorpagina/webshop/info
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 482
+page_424_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 424
+page_401_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 401
+page_520_nl_nl:
+    pattern: /voorpagina/webshop/special-offers
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 520
+page_437_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 437
+page_414_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 414
+search_402_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/zoek-op-maat
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 402
+    requirements:
+        _format: html|json
+category_411_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 411
+        category_id: 21
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_411_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 411
+        category_id: 21
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_404_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 404
+        category_id: 20
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_404_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 404
+        category_id: 20
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_413_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 413
+        category_id: 39
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_413_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 413
+        category_id: 39
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_514_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 514
+        category_id: 46
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_514_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 514
+        category_id: 46
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_406_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/cardigans-vest/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 406
+        category_id: 13
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_406_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/cardigans-vest/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 406
+        category_id: 13
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_408_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 408
+        category_id: 17
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_408_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 408
+        category_id: 17
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_410_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/leggings/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 410
+        category_id: 15
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_410_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/leggings/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 410
+        category_id: 15
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_403_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/dresses/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 403
+        category_id: 14
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_403_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/dresses/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 403
+        category_id: 14
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_412_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 412
+        category_id: 12
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_412_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 412
+        category_id: 12
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_405_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/tunics-blouses-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 405
+        category_id: 19
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_405_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/tunics-blouses-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 405
+        category_id: 19
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_407_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/shorts-skirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 407
+        category_id: 18
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_407_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/shorts-skirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 407
+        category_id: 18
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_409_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 409
+        category_id: 16
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_409_nl_nl:
+    pattern: /voorpagina/webshop/girl-104-152-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 409
+        category_id: 16
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_418_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/sweatshirts-pullover/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 418
+        category_id: 9
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_418_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/sweatshirts-pullover/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 418
+        category_id: 9
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_420_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 420
+        category_id: 6
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_420_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 420
+        category_id: 6
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_422_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 422
+        category_id: 5
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_422_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 422
+        category_id: 5
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_415_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/zoek-op-maat
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 415
+    requirements:
+        _format: html|json
+category_417_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 417
+        category_id: 8
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_417_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 417
+        category_id: 8
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_419_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 419
+        category_id: 7
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_419_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 419
+        category_id: 7
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_513_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 513
+        category_id: 44
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_513_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 513
+        category_id: 44
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_421_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 421
+        category_id: 11
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_421_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 421
+        category_id: 11
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_423_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 423
+        category_id: 40
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_423_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 423
+        category_id: 40
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_416_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 416
+        category_id: 10
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_416_nl_nl:
+    pattern: /voorpagina/webshop/boy-104-152-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 416
+        category_id: 10
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_434_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 434
+        category_id: 38
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_434_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 434
+        category_id: 38
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_427_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/tunics-tops/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 427
+        category_id: 37
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_427_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/tunics-tops/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 427
+        category_id: 37
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_436_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 436
+        category_id: 42
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_436_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 436
+        category_id: 42
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_429_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 429
+        category_id: 36
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_429_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 429
+        category_id: 36
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_431_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/pants-pantsuits/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 431
+        category_id: 34
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_431_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/pants-pantsuits/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 431
+        category_id: 34
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_516_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 516
+        category_id: 50
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_516_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 516
+        category_id: 50
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_433_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/leggings/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 433
+        category_id: 32
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_433_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/leggings/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 433
+        category_id: 32
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_426_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/dresses/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 426
+        category_id: 31
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_426_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/dresses/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 426
+        category_id: 31
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_435_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 435
+        category_id: 29
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_435_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 435
+        category_id: 29
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_428_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/cardigans/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 428
+        category_id: 30
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_428_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/cardigans/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 428
+        category_id: 30
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_430_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/skirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 430
+        category_id: 35
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_430_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/skirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 430
+        category_id: 35
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_432_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 432
+        category_id: 33
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_432_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 432
+        category_id: 33
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_425_nl_nl:
+    pattern: /voorpagina/webshop/little-girl-80-98-cm/zoek-op-maat
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 425
+    requirements:
+        _format: html|json
+category_443_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/outerwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 443
+        category_id: 24
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_443_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/outerwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 443
+        category_id: 24
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_445_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/accessories/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 445
+        category_id: 22
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_445_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/accessories/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 445
+        category_id: 22
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+search_438_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/zoek-op-maat
+    defaults:
+        _controller: HanzoSearchBundle:Default:system
+        _format: html
+        id: 438
+    requirements:
+        _format: html|json
+category_440_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/shirts-polos/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 440
+        category_id: 26
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_440_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/shirts-polos/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 440
+        category_id: 26
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_442_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/pants/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 442
+        category_id: 25
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_442_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/pants/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 442
+        category_id: 25
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_444_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/underwear-nightwear/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 444
+        category_id: 28
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_444_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/underwear-nightwear/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 444
+        category_id: 28
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_515_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/gots-organic/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 515
+        category_id: 48
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_515_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/gots-organic/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 515
+        category_id: 48
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_446_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/oeko-tex/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 446
+        category_id: 41
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_446_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/oeko-tex/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 446
+        category_id: 41
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_439_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/t-shirts/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 439
+        category_id: 27
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_439_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/t-shirts/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 439
+        category_id: 27
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_441_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/cardigans-knit-vests/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 441
+        category_id: 23
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_441_nl_nl:
+    pattern: /voorpagina/webshop/little-boy-80-98-cm/cardigans-knit-vests/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 441
+        category_id: 23
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+page_486_nl_nl:
+    pattern: /voorpagina/mixmatch/girl
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 486
+page_500_nl_nl:
+    pattern: /voorpagina/mixmatch/little-girl
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 500
+page_495_nl_nl:
+    pattern: /voorpagina/mixmatch/boy
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 495
+page_501_nl_nl:
+    pattern: /voorpagina/mixmatch/little-boy
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 501
+page_454_nl_nl:
+    pattern: /voorpagina/nieuw/nieuwsbrief-archief
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 454
+newsletter_453_nl_nl:
+    pattern: /voorpagina/nieuw/nieuwsbrief
+    defaults:
+        _controller: HanzoNewsletterBundle:Default:view
+        id: 453
+page_460_nl_nl:
+    pattern: /voorpagina/klantenservice/ruilen
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 460
+page_462_nl_nl:
+    pattern: /voorpagina/klantenservice/termen
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 462
+page_459_nl_nl:
+    pattern: /voorpagina/klantenservice/retourneren
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 459
+page_461_nl_nl:
+    pattern: /voorpagina/klantenservice/retourformulier
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 461
+page_463_nl_nl:
+    pattern: /voorpagina/klantenservice/over-de-webshop
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 463
+page_457_nl_nl:
+    pattern: /voorpagina/klantenservice/faq
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 457
+page_469_nl_nl:
+    pattern: /voorpagina/over-pompdelux/contact
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 469
+page_466_nl_nl:
+    pattern: /voorpagina/over-pompdelux/sociale-verantwoordelijkheid
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 466
+page_465_nl_nl:
+    pattern: /voorpagina/over-pompdelux/het-concept
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 465
+page_478_nl_nl:
+    pattern: /voorpagina/webshop/info/catalogus
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 478
+page_512_nl_nl:
+    pattern: /voorpagina/webshop/info/gots-organic
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 512
+page_480_nl_nl:
+    pattern: /voorpagina/webshop/info/het-wassen
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 480
+page_484_nl_nl:
+    pattern: /voorpagina/webshop/info/sizeguide
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 484
+page_479_nl_nl:
+    pattern: /voorpagina/webshop/info/video
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 479
+page_481_nl_nl:
+    pattern: /voorpagina/webshop/info/oeko-tex
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 481
+page_483_nl_nl:
+    pattern: /voorpagina/webshop/info/credits
+    defaults:
+        _controller: HanzoCMSBundle:Default:view
+        id: 483
+system_488_nl_nl:
+    pattern: /voorpagina/mixmatch/girl/dusty-purple
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 488
+system_490_nl_nl:
+    pattern: /voorpagina/mixmatch/girl/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 490
+system_492_nl_nl:
+    pattern: /voorpagina/mixmatch/girl/black-cream
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 492
+system_487_nl_nl:
+    pattern: /voorpagina/mixmatch/girl/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 487
+system_489_nl_nl:
+    pattern: /voorpagina/mixmatch/girl/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 489
+system_491_nl_nl:
+    pattern: /voorpagina/mixmatch/girl/petrol
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 491
+system_496_nl_nl:
+    pattern: /voorpagina/mixmatch/boy/black
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 496
+system_498_nl_nl:
+    pattern: /voorpagina/mixmatch/boy/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 498
+system_497_nl_nl:
+    pattern: /voorpagina/mixmatch/boy/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 497
+system_499_nl_nl:
+    pattern: /voorpagina/mixmatch/boy/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 499
+system_503_nl_nl:
+    pattern: /voorpagina/mixmatch/little-girl/dusty-purple
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 503
+system_505_nl_nl:
+    pattern: /voorpagina/mixmatch/little-girl/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 505
+system_507_nl_nl:
+    pattern: /voorpagina/mixmatch/little-girl/petrol
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 507
+system_502_nl_nl:
+    pattern: /voorpagina/mixmatch/little-girl/black-cream
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 502
+system_504_nl_nl:
+    pattern: /voorpagina/mixmatch/little-girl/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 504
+system_506_nl_nl:
+    pattern: /voorpagina/mixmatch/little-girl/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 506
+system_509_nl_nl:
+    pattern: /voorpagina/mixmatch/little-boy/grey
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 509
+system_511_nl_nl:
+    pattern: /voorpagina/mixmatch/little-boy/olive
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 511
+system_508_nl_nl:
+    pattern: /voorpagina/mixmatch/little-boy/black
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 508
+system_510_nl_nl:
+    pattern: /voorpagina/mixmatch/little-boy/navy
+    defaults:
+        _controller: HanzoMannequinBundle:Default:view
+        id: 510
+category_525_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/girl-104-152-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 525
+        category_id: 52
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_525_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/girl-104-152-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 525
+        category_id: 52
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_527_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/little-girl-80-98-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 527
+        category_id: 54
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_527_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/little-girl-80-98-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 527
+        category_id: 54
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_526_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/boy-104-152-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 526
+        category_id: 51
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_526_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/boy-104-152-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 526
+        category_id: 51
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+category_528_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/little-boy-80-98-cm/{pager}
+    defaults:
+        _controller: HanzoCategoryBundle:Default:view
+        _format: html
+        cms_id: 528
+        category_id: 53
+        pager: 1
+    requirements:
+        pager: \d+
+        _format: html|json
+product_528_nl_nl:
+    pattern: /voorpagina/webshop/special-offers/little-boy-80-98-cm/{product_id}/{title}
+    defaults:
+        _controller: HanzoProductBundle:Default:view
+        _format: html
+        product_id: 0
+        cms_id: 528
+        category_id: 53
+        title: ''
+    requirements:
+        product_id: \d+
+        _format: html|json
+
+# --------------------------------------------
