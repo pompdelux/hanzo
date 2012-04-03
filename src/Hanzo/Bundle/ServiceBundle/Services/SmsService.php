@@ -2,17 +2,17 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
 class SmsService
 {
+    protected $parameters;
     protected $settings;
-    protected $services;
 
     public function __construct($parameters, $settings)
     {
-        $this->settings = $settings;
+        $this->parameters = $parameters;
         $this->settings = $settings;
     }
 }
