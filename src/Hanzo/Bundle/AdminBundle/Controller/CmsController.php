@@ -54,6 +54,7 @@ class CmsController extends CoreController
             ));
         }
     }
+    
     public function addAction($locale = 'en_EN')
     {
         $cms_node = new CmsNode();
