@@ -23,9 +23,15 @@
    <ul id="product-images-list">
     {% for product_image in product_images %} 
       
-      <li id="item-{{ product_image.id }}">
+      <li id="item-{{ product_image.image_id }}">
+        <span class="id">(#{{ product_image.image_id }})</span>
         {{ product_image_tag(product_image.image, '120x240', { 'alt' : '' }) }}
-        <span class="id">(#{{ product_image.id }})</span>
+        <select class="product-selector" name="product-selector">
+          <option value="0">{{ 'admin.products.product.selector.description'|trans({}, 'admin') }}</option>
+          {% for product in products %}
+          <option value="{{ product_image.image_id }}-{{ product.id }}">{{ product.sku }}</option>
+          {% endfor %}
+        </select>
         <ul class="product-references">
           {% if product_image.product_ref_ids|length > 0 %}
             {% for product_ref in product_image.product_ref_ids %}
@@ -33,21 +39,13 @@
               <span class="id">{{ product_ref.id }}</span>
               <span class="sku">{{ product_ref.sku }}</span>
               <span class="actions">
-                <a href="{{ path('admin_product_ref_delete', {'id' : product_ref.id}) }}" class="delete">
+                <a href="{{ path('admin_product_ref_delete', {'image_id': product_image.image_id, 'product_id' : product_ref.id}) }}" class="delete">
                   {{ 'delete'|trans({}, 'admin') }}
                 </a>
               </span>
             </li>
             {% endfor %}
           {% endif %}
-          <li>
-            <select class="product-selector" name="product-selector">
-              <option disabled>{{ 'admin.products.product.selector.description'|trans({}, 'admin') }}</option>
-              {% for product in products %}
-              <option value="{{ product.id }}">{{ product.sku }}</option>
-              {% endfor %}
-            </select>
-          </li>
         </ul>
       </li>
 

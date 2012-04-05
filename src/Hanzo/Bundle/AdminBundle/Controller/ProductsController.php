@@ -9,6 +9,7 @@ use Hanzo\Core\Hanzo,
     Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsImagesCategoriesSortQuery,
+    Hanzo\Model\ProductsImagesProductReferences,
     Hanzo\Model\ProductsImagesProductReferencesQuery,
     Hanzo\Model\ProductsToCategoriesQuery,
     Hanzo\Model\ProductsImagesQuery,
@@ -151,6 +152,54 @@ class ProductsController extends CoreController
             'product_images'    => $product_images_list,
             'products' => $all_products
         ));
+    }
+
+    public function addReferenceAction()
+    {
+        $requests = $this->get('request');
+        $image_id = $requests->get('image');
+        $product_id = $requests->get('product');
+
+        $reference = new ProductsImagesProductReferences();
+        $reference->setProductsImagesId($image_id);
+        $reference->setProductsId($product_id);
+
+        try {
+            $reference->save();
+        } catch (PropelException $e) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                ));
+            }
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+            ));
+        }
+    }
+
+    public function deleteReferenceAction($image_id, $product_id)
+    {
+
+        $product_ref = ProductsImagesProductReferencesQuery::create()
+            ->filterByProductsImagesId($image_id)
+            ->findOneByProductsId($product_id)
+        ;
+
+        if($product_ref)
+            $product_ref->delete();
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.imageReference.success', array(), 'admin'),
+            ));
+        }
     }
 
     public function sortAction($category_id)

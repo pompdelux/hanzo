@@ -51,15 +51,15 @@
           type: 'POST',
           data: {data : list},
           async: false,
-          success: function(responce, textStatus, jqXHR) {
-            if (false === responce.status) {
-              if (responce.message) {
-                dialoug.alert(i18n.t('Notice!', responce.message));
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(i18n.t('Notice!', response.message));
               }
             }
             else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
-              dialoug.slideNotice(responce.message);
+              dialoug.slideNotice(response.message);
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -69,7 +69,7 @@
       });
       
       /* Delete cms node from NestedSortable */
-      $('a.delete').click(function(e){
+      $('#sortable-list a.delete').click(function(e){
         e.preventDefault();
         var $a = $(this);
         dialoug.confirm(i18n.t('Notice!'), i18n.t('Er du sikker på du vil <strong>slette</strong> CMS noden?'),function(choice) {
@@ -113,19 +113,69 @@
           type: 'POST',
           data: {data : list},
           async: false,
-          success: function(responce, textStatus, jqXHR) {
-            if (false === responce.status) {
-              if (responce.message) {
-                dialoug.alert(i18n.t('Notice!', responce.message));
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(i18n.t('Notice!', response.message));
               }
             }
             else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
-              dialoug.slideNotice(responce.message);
+              dialoug.slideNotice(response.message);
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
             dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+          }
+        });
+      });
+
+      $('.product-selector').change(function(){
+        selectedOption = $(this).find('option:selected');
+        reference = selectedOption.val().split('-');
+        image = reference[0];
+        product = reference[1];
+        $.ajax({
+          url: '../add-reference/',
+          dataType: 'json',
+          type: 'POST',
+          data: {image : image, product : product},
+          async: false,
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(i18n.t('Notice!', response.message));
+              }
+            }
+            else {
+              $('#item-' + image + ' .product-references').append('<li><span class="id">' + product + '</span><span class="sku">' + selectedOption.text() + '</span><span class="actions"><a href="' + base_url + 'products/delete-reference/' + image + '/' + product + '" class="delete">Slet</a></span></li>');
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+          }
+        });
+        $(this).val(0);
+      });
+
+
+      $('#product-images-list a.delete').live('click',function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(i18n.t('Notice!'), i18n.t('Er du sikker på du vil <strong>slette</strong> Billede referencen?'),function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+                }
+              }
+            });
           }
         });
       });
