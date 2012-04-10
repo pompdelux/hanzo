@@ -146,6 +146,10 @@
         <source>admin.categories.list.description.text</source>
         <target>Vælg en af de 4 overkategorier. Du vil derefter få vist alle underkategorier.</target>
       </trans-unit>
+      <trans-unit id="admin.categories.list.sort-link.text">
+        <source>admin.categories.list.sort-link.text</source>
+        <target>Sorter produkters rækkefølge</target>
+      </trans-unit>
       <trans-unit id="admin.categories.list.header.text.%category-name%">
         <source>admin.categories.list.header.text.%category-name%</source>
         <target>Kategorier i overkategori "%category-name%"</target>
@@ -157,6 +161,10 @@
       <trans-unit id="admin.subcategories.list.description.text">
         <source>admin.subcategories.list.description.text</source>
         <target>Vælg en kategori for at kunne se dens produkter.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.description.text">
+        <source>admin.products.list.description.text</source>
+        <target>Vælg en af nedenstående produkter for at se den detaljeret.</target>
       </trans-unit>
       <trans-unit id="admin.product.categories.header.text.%product-name%">
         <source>admin.product.categories.header.text.%product-name%</source>

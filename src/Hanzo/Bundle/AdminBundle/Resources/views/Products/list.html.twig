@@ -35,6 +35,7 @@
   <p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
 
 {% else %}
+alt andet
   <h1>{{ 'admin.categories.list.header.text'|trans({}, 'admin') }}</h1>
   <p>{{ 'admin.categories.list.description.text'|trans({}, 'admin') }}</p>
 {% endif %}
@@ -55,6 +56,9 @@
           <a href="{{ path('admin_products', {'category_id' : parent_category.id, 'subcategory_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
             <span class="title">{{ category.title }}</span>
+          </a>
+          <a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}" class="sort-link" title="{{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}">
+            {{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}
           </a>
   	    </li>
 

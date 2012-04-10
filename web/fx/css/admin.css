@@ -505,6 +505,12 @@ ul#product-list li{
   padding: 5px;
   border: 1px solid #DBDBDB;
 }
+ul#category-list li a.sort-link{
+  font-size:10px;
+  font-weight:normal;
+  float:right;
+}
+
 /* ProductToCategories list */
 select#product-category-selector{
   display: block;
