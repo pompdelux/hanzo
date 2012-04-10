@@ -12,6 +12,7 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery,
     Hanzo\Model\ProductsImagesProductReferences,
     Hanzo\Model\ProductsImagesProductReferencesQuery,
     Hanzo\Model\ProductsToCategoriesQuery,
+    Hanzo\Model\ProductsToCategories,
     Hanzo\Model\ProductsImagesQuery,
     Hanzo\Model\ProductsQuery,
     Hanzo\Model\CategoriesQuery;
@@ -102,10 +103,21 @@ class ProductsController extends CoreController
 
     public function viewAction($id)
     {
-        /**
-         * @todo Lav fint med CSS
-         * 
-         **/
+        $categories = CategoriesQuery::create()
+            ->where('categories.PARENT_ID IS NOT NULL')
+            ->joinWithI18n()
+            ->orderByContext()
+            ->find()
+        ;
+
+        $product_categories = CategoriesQuery::create()
+            ->useProductsToCategoriesQuery()
+                ->filterByProductsId($id)
+            ->endUse()
+            ->orderById()
+            ->find()
+        ;
+
         $current_product = ProductsQuery::create()
             ->findOneById($id)
         ;
@@ -151,13 +163,62 @@ class ProductsController extends CoreController
                 'product_ref_ids' => $products_refs_list
             );
         }
-        return $this->render('AdminBundle:Products:viewImages.html.twig', array(
-            'current_product' => $current_product,
-            'product_images'    => $product_images_list,
-            'products' => $all_products
+        return $this->render('AdminBundle:Products:view.html.twig', array(
+            'product_categories'    => $product_categories,
+            'categories'            => $categories,
+            'current_product'       => $current_product,
+            'product_images'        => $product_images_list,
+            'products'              => $all_products
         ));
     }
 
+    public function addCategoryAction()
+    {
+        $requests = $this->get('request');
+        $category_id = $requests->get('category');
+        $product_id = $requests->get('product');
+
+        $category_to_product = new ProductsToCategories();
+        $category_to_product->setCategoriesId($category_id);
+        $category_to_product->setProductsId($product_id);
+
+        try {
+            $category_to_product->save();
+        } catch (PropelException $e) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                ));
+            }
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+            ));
+        }
+    }
+
+    public function deleteCategoryAction($category_id, $product_id)
+    {
+
+        $category_to_product = ProductsToCategoriesQuery::create()
+            ->filterByCategoriesId($category_id)
+            ->findOneByProductsId($product_id)
+        ;
+
+        if($category_to_product)
+            $category_to_product->delete();
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.changes.success', array(), 'admin'),
+            ));
+        }
+    }
     public function addReferenceAction()
     {
         $requests = $this->get('request');

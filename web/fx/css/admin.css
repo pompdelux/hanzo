@@ -505,6 +505,25 @@ ul#product-list li{
   padding: 5px;
   border: 1px solid #DBDBDB;
 }
+/* ProductToCategories list */
+select#product-category-selector{
+  display: block;
+  margin:15px 40px;
+}
+ul#product-categories {
+  display: inline-block;
+}
+ul#product-categories li {
+  list-style-type: none;
+  border: 1px solid #DBDBDB;
+  margin: 2px 0;
+  padding: 2px 5px;
+  position: relative;
+}
+ul#product-categories li a.delete{
+  position: absolute;
+  right: -23px;
+}
 
 
 /* Product Image list with references */

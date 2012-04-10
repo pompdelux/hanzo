@@ -158,12 +158,24 @@
         <source>admin.subcategories.list.description.text</source>
         <target>Vælg en kategori for at kunne se dens produkter.</target>
       </trans-unit>
-      <trans-unit id="admin.product.header.text.%product-name%">
-        <source>admin.product.header.text.%product-name%</source>
+      <trans-unit id="admin.product.categories.header.text.%product-name%">
+        <source>admin.product.categories.header.text.%product-name%</source>
+        <target>Kategorier for produktet: "%product-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.product.categories.description.text">
+        <source>admin.product.categories.description.text</source>
+        <target>Herunder kan du se alle de forskellige kategorier der er tilknyttet dette produkt. I boksen kan du vælge nye kategorier, ellers slette dem som allerede er tilknyttet.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.category.selector.description">
+        <source>admin.products.category.selector.description</source>
+        <target>Vælg og tilføj en ny kategori...</target>
+      </trans-unit>
+      <trans-unit id="admin.product.images.header.text.%product-name%">
+        <source>admin.product.images.header.text.%product-name%</source>
         <target>Billeder for produktet: "%product-name%"</target>
       </trans-unit>
-      <trans-unit id="admin.product.description.text">
-        <source>admin.product.description.text</source>
+      <trans-unit id="admin.product.images.description.text">
+        <source>admin.product.images.description.text</source>
         <target>Herunder kan du se alle de forskellige billeder der er tilknyttet dette produkt. Du kan derudover vælge hvilke styleguides der er skal være tilknyttet hvert billede.</target>
       </trans-unit>
       <trans-unit id="admin.products.product.selector.description">
