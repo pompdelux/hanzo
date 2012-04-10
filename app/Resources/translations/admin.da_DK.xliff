@@ -138,9 +138,45 @@
         <source>categories.selector</source>
         <target>Vælg kategori</target>
       </trans-unit>
+      <trans-unit id="admin.categories.list.header.text">
+        <source>admin.categories.list.header.text</source>
+        <target>Kategorier</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.description.text">
+        <source>admin.categories.list.description.text</source>
+        <target>Vælg en af de 4 overkategorier. Du vil derefter få vist alle underkategorier.</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.header.text.%category-name%">
+        <source>admin.categories.list.header.text.%category-name%</source>
+        <target>Kategorier i overkategori %category-name%</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.header.text.%category-name%">
+        <source>admin.products.list.header.text.%category-name%</source>
+        <target>Produkter i kategorien %category-name%</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.description.text">
+        <source>admin.products.list.description.text</source>
+        <target>Vælg en kategori for at kunne se dens produkter.</target>
+      </trans-unit>
+      <trans-unit id="admin.product.header.text.%product-name%">
+        <source>admin.product.header.text.%product-name%</source>
+        <target>Billeder for produktet: %product-name%</target>
+      </trans-unit>
+      <trans-unit id="admin.product.description.text">
+        <source>admin.product.description.text</source>
+        <target>Herunder kan du se alle de forskellige billeder der er tilknyttet dette produkt. Du kan derudover vælge hvilke styleguides der er skal være tilknyttet hvert billede.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.product.selector.description">
+        <source>admin.products.product.selector.description</source>
+        <target>Vælg og tilføj et nyt produkt...</target>
+      </trans-unit>
       <trans-unit id="admin_save_changes">
         <source>save.changes</source>
         <target>Gem ændringer</target>
+      </trans-unit>
+      <trans-unit id="admin.back.button.text">
+        <source>admin.back.button</source>
+        <target>Tilbage</target>
       </trans-unit>
       <trans-unit id="">
         <source></source>

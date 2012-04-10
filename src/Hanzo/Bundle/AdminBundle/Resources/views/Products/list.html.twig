@@ -1,21 +1,44 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li><a href="#" id="save-sortable">{{ 'update.product.sort'|trans({}, 'admin') }}</a></li>
-  </ul>
-</nav>
 
 {% if categories|length > 0 and parent_category %}
-<h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+
+  <nav class="sub">
+    <ul>
+      <li>
+        <a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">
+          {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+    </ul>
+  </nav>
+
+  <h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+  
+  <p>{{ 'admin.categories.list.description.text'|trans({}, 'admin') }}</p>
+
 {% elseif products|length > 0 %}
-<h1>{{ 'admin.products.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+
+  <nav class="sub">
+    <ul>
+      <li>
+        <a href="{{ path('admin_products', {'category_id' : category_id}) }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">
+          {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+    </ul>
+  </nav>
+
+  <h1>{{ 'admin.products.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+  
+  <p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
+
 {% else %}
-<h1>{{ 'admin.products.list.header.text'|trans({}, 'admin') }}</h1>
+  <h1>{{ 'admin.categories.list.header.text'|trans({}, 'admin') }}</h1>
+  <p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
 {% endif %}
 
-<p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
@@ -25,7 +48,7 @@
 
   {% if categories|length > 0 %}
     {% if parent_category %}
-     <ul id="category-list subcategory">
+     <ul id="category-list">
   	  {% for category in categories %}	
   	  	
   	    <li id="item-{{ category.id }}">

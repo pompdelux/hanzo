@@ -148,7 +148,7 @@
               }
             }
             else {
-              $('#item-' + image + ' .product-references').append('<li><span class="id">' + product + '</span><span class="sku">' + selectedOption.text() + '</span><span class="actions"><a href="' + base_url + 'products/delete-reference/' + image + '/' + product + '" class="delete">Slet</a></span></li>');
+              $('#item-' + image + ' .product-references').append('<li><span class="actions"><a href="' + base_url + 'products/delete-reference/' + image + '/' + product + '" class="delete" title="Slet">Slet</a></span><span class="id">(#' + product + ')</span><span class="sku">' + selectedOption.text() + '</span></li>');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {

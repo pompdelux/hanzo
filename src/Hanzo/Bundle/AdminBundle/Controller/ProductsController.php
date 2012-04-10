@@ -94,18 +94,21 @@ class ProductsController extends CoreController
         return $this->render('AdminBundle:Products:list.html.twig', array(
             'categories'        => $categories_list,
             'products'        => $products_list,
-            'parent_category'   => $parent_category
+            'parent_category'   => $parent_category,
+            'category_id' => $category_id,
+            'subcategory_id' => $subcategory_id
         ));
     }
 
     public function viewAction($id)
     {
         /**
-         * @todo Opret js til tilføj af reference
-         * @todo Opret js til slet af ref
          * @todo Lav fint med CSS
          * 
          **/
+        $current_product = ProductsQuery::create()
+            ->findOneById($id)
+        ;
 
         $all_products = ProductsQuery::create()
             ->filterByMaster(NULL)
@@ -149,6 +152,7 @@ class ProductsController extends CoreController
             );
         }
         return $this->render('AdminBundle:Products:viewImages.html.twig', array(
+            'current_product' => $current_product,
             'product_images'    => $product_images_list,
             'products' => $all_products
         ));
