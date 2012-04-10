@@ -148,19 +148,19 @@
       </trans-unit>
       <trans-unit id="admin.categories.list.header.text.%category-name%">
         <source>admin.categories.list.header.text.%category-name%</source>
-        <target>Kategorier i overkategori %category-name%</target>
+        <target>Kategorier i overkategori "%category-name%"</target>
       </trans-unit>
       <trans-unit id="admin.products.list.header.text.%category-name%">
         <source>admin.products.list.header.text.%category-name%</source>
-        <target>Produkter i kategorien %category-name%</target>
+        <target>Produkter i kategorien "%category-name%"</target>
       </trans-unit>
-      <trans-unit id="admin.products.list.description.text">
-        <source>admin.products.list.description.text</source>
+      <trans-unit id="admin.subcategories.list.description.text">
+        <source>admin.subcategories.list.description.text</source>
         <target>Vælg en kategori for at kunne se dens produkter.</target>
       </trans-unit>
       <trans-unit id="admin.product.header.text.%product-name%">
         <source>admin.product.header.text.%product-name%</source>
-        <target>Billeder for produktet: %product-name%</target>
+        <target>Billeder for produktet: "%product-name%"</target>
       </trans-unit>
       <trans-unit id="admin.product.description.text">
         <source>admin.product.description.text</source>

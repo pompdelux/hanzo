@@ -16,7 +16,7 @@
 
   <h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
   
-  <p>{{ 'admin.categories.list.description.text'|trans({}, 'admin') }}</p>
+  <p>{{ 'admin.subcategories.list.description.text'|trans({}, 'admin') }}</p>
 
 {% elseif products|length > 0 %}
 
@@ -36,7 +36,7 @@
 
 {% else %}
   <h1>{{ 'admin.categories.list.header.text'|trans({}, 'admin') }}</h1>
-  <p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
+  <p>{{ 'admin.categories.list.description.text'|trans({}, 'admin') }}</p>
 {% endif %}
 
 
