@@ -1,10 +1,12 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
 use Hanzo\Core\Tools;
+
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+
 
 class OrderListener
 {
