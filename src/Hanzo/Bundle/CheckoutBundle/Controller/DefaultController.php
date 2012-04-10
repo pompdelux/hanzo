@@ -40,10 +40,10 @@ class DefaultController extends CoreController
     /**
      * updateAction
      *
+     * @author Henrik Farre <hf@bellcom.dk>
      * @param string $block The block that has been updated
      * @param string $state State of the block
      * @return Response
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function updateAction($block, $state)
     {
@@ -102,11 +102,11 @@ class DefaultController extends CoreController
     /**
      * updateAddress
      *
+     * @author Henrik Farre <hf@bellcom.dk>
      * @param Orders $order
      * @param Request $request
      * @param bool $state
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     protected function updateAddress( Orders $order, Request $request, $state )
     {
@@ -153,11 +153,11 @@ class DefaultController extends CoreController
     /**
      * updateShipping
      *
+     * @author Henrik Farre <hf@bellcom.dk>
      * @param Orders $order
      * @param Request $request
      * @param bool $state
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     protected function updateShipping( Orders $order, Request $request, $state )
     {
@@ -189,12 +189,12 @@ class DefaultController extends CoreController
     /**
      * updatePayment
      *
+     * @author Henrik Farre <hf@bellcom.dk>
      * @todo: should state be uses to something?
      * @param Orders $order
      * @param Request $request
      * @param bool $state
      * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
      **/
     protected function updatePayment( Orders $order, Request $request, $state )
     {
@@ -211,8 +211,9 @@ class DefaultController extends CoreController
 
     /**
      * Validate
-     * @return Response
+     *
      * @author Henrik Farre <hf@bellcom.dk>
+     * @return Response
      **/
     public function validateAction()
     {
@@ -239,16 +240,17 @@ class DefaultController extends CoreController
 
     /**
      * validateShipping
-     * @return void
+     *
      * @author Henrik Farre <hf@bellcom.dk>
+     * @return void
      **/
     protected function validateShipping( Orders $order ){}
 
     /**
      * summeryAction
      *
-     * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
+     * @return Response
      **/
     public function summeryAction()
     {
@@ -277,8 +279,9 @@ class DefaultController extends CoreController
 
     /**
      * addressesAction
-     * @return void
+     *
      * @author Henrik Farre <hf@bellcom.dk>
+     * @return void
      **/
     public function addressesAction()
     {
@@ -320,18 +323,23 @@ class DefaultController extends CoreController
         return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
     }
 
+
     /**
      * confirmAction
-     * @return void
+     *
      * @author Henrik Farre <hf@bellcom.dk>
+     * @return Response
      **/
     public function confirmAction()
     {
         return $this->render('CheckoutBundle:Default:confirm.html.twig');
     }
 
+
     /**
      * success Action
+     *
+     * @return Response
      */
     public function successAction()
     {
@@ -348,6 +356,7 @@ class DefaultController extends CoreController
         // one-to-one, we can only have one session_id or order in the database....
         $session->migrate();
 
+        // TODO: expected_in needs to be loaded from the database.
         return $this->render('CheckoutBundle:Default:success.html.twig', array(
             'order_id' => $order->getId(),
             'expected_in' => 2

@@ -2,12 +2,12 @@
 
 namespace Hanzo\Bundle\ShippingBundle;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Model\ShippingMethods,
-    Hanzo\Model\ShippingMethodsPeer,
-    Hanzo\Model\ShippingMethodsQuery
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\ShippingMethods;
+use Hanzo\Model\ShippingMethodsPeer;
+use Hanzo\Model\ShippingMethodsQuery;
 
 /**
  * undocumented class
@@ -33,6 +33,7 @@ class ShippingApi
 
     /**
      * __construct
+     *
      * @param array $params
      * @param array $settings
      * @return void
@@ -40,9 +41,6 @@ class ShippingApi
      **/
     public function __construct( $params, $settings )
     {
-        // TODO: handle free shipping
-        //error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
-
         if ( !isset( $settings['methods_enabled'] ) )
         {
           return false;
@@ -55,8 +53,17 @@ class ShippingApi
             ->filterByExternalId($methodsEnabled)
             ->find();
 
+        // shipping fee check
+        $fee_limit = Hanzo::getInstance()->get('shipping.free_shipping', 10);
+        if ($fee_limit > 0) {
+            $total = OrdersPeer::getCurrent()->getTotalPrice(true);
+        }
+
         foreach ($query as $q)
         {
+            if ($fee_limit && ($total > $fee_limit)) {
+                $q->setPrice(0.00);
+            }
             $this->methods[ $q->getExternalId() ] = $q;
         }
 
@@ -65,6 +72,7 @@ class ShippingApi
 
     /**
      * isMethodAvaliable
+     *
      * @param int $axId The id of the shipping method in AX
      * @return bool
      * @author Henrik Farre <hf@bellcom.dk>
@@ -77,43 +85,12 @@ class ShippingApi
 
     /**
      * getMethods
+     *
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function getMethods()
     {
-        /*switch ($this->domainKey)
-        {
-            case 'DK':
-                $methods = array(
-                    '10' => new ShippingMethod( 'Post Danmark', 'Privat', 'Fragt til private', '10', 'flat' ),
-                    '11' => new ShippingMethod( 'Post Danmark', 'Erhverv', 'Fragt til erhverv', '11', 'flat' ),
-                    '12' => new ShippingMethod( 'Post Danmark', 'Døgnpost', '', '12', 'flat' ),
-                );
-                break;
-            case 'COM':
-                $methods = array(
-                    '20' => new ShippingMethod( 'Post Danmark', 'Overseas', '', '20', 'flat' ),
-                );
-                break;
-            case 'SE':
-                $methods = array(
-                    '30' => new ShippingMethod( 'Privat bulksplit', 'Privat bulksplit', '', '30', 'flat' ),
-                );
-                break;
-            case 'NO':
-                $methods = array(
-                    'P' => new ShippingMethod( 'Post Danmark', 'På døren', '', 'P', 'flat' ),
-                    'S' => new ShippingMethod( 'Post Danmark', 'Servicepakke', '', 'S', 'flat' ),
-                );
-                break;
-            case 'NL':
-                $methods = array(
-                    '60' => new ShippingMethod( 'DPD', 'DPD', '', '60', 'flat' ),
-                );
-                break;
-        }*/
-
         return $this->methods;
     }
 } // END class ShippingApi

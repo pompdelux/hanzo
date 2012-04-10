@@ -20,7 +20,7 @@ class DefaultController extends CoreController
     /**
      * blockAction
      *
-     *  @return void
+     * @return object Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function blockAction()
@@ -36,7 +36,7 @@ class DefaultController extends CoreController
     /**
      * successAction
      *
-     * @return void
+     * @return object Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function successAction()
