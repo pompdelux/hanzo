@@ -54,9 +54,7 @@
   	    <li id="item-{{ category.id }}">
           <a href="{{ path('admin_products', {'category_id' : parent_category.id, 'subcategory_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
-            <span class="context">{{ category.context }}</span>
             <span class="title">{{ category.title }}</span>
-            <span class="is_active">{{ category.is_active }}</span>
           </a>
   	    </li>
 
@@ -69,9 +67,7 @@
         <li id="item-{{ category.id }}">
           <a href="{{ path('admin_products', {'category_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
-            <span class="context">{{ category.context }}</span>
             <span class="title">{{ category.title }}</span>
-            <span class="is_active">{{ category.is_active }}</span>
           </a>
         </li>
 
@@ -86,12 +82,6 @@
         <a href="{{ path('admin_product', {'id' : product.id}) }}" title="{{ product.sku }}">
           <span class="id">(#{{ product.id }})</span>
           <span class="sku">{{ product.sku }}</span>
-          <span class="master">{{ product.master }}</span>
-          <span class="size">{{ product.size }}</span>
-          <span class="color">{{ product.color }}</span>
-          <span class="unit">{{ product.unit }}</span>
-          <span class="is-out-of-stock">{{ product.is_out_of_stock }}</span>
-          <span class="is-active">{{ product.is_active }}</span>
         </a>
       </li>
 
