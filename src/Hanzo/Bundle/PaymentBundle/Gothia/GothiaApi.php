@@ -14,7 +14,7 @@ class GothiaApi
     /**
      * undocumented class variable
      *
-     * @var array 
+     * @var array
      **/
     protected $settings = array();
 
@@ -29,7 +29,7 @@ class GothiaApi
         // - set active
         // TODO: check for missing settings
         $this->settings = $settings;
-        
+
         // FIXME: hardcoded vars:
         $this->settings['test'] = true;
         $this->settings['active'] = true;
