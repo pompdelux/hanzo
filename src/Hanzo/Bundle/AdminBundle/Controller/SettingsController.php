@@ -15,7 +15,7 @@ use Hanzo\Bundle\AdminBundle\Form\Type\SettingsType;
 class SettingsController extends Controller
 {
 	/**
-	 * @todo Lav slet funktion til settings
+	 * Shows all globale settings.
 	 */    
     public function indexAction()
     {
@@ -34,10 +34,18 @@ class SettingsController extends Controller
             	try{
 	            	$setting = SettingsQuery::create()
 						->filterByNs($ns)
-						->findOneByCKey($c_key)
-						->setCValue($c_value)
-						->save()
-					;
+						->findOneByCKey($c_key);
+
+					if ($setting && '' === $c_value) {
+
+            			$setting->delete();
+
+            		}else{
+
+						$setting->setCValue($c_value);
+						$setting->save();
+
+            		}
 				}catch(PropelException $e){
             		$this->get('session')->setFlash('notice', 'settings.updated.failed.'.$e);
 				}
@@ -59,6 +67,7 @@ class SettingsController extends Controller
 			->find()
 		;
 
+		//Fields names: CKEY__NS << Double underscored
 		$global_settings_list = array();
 		foreach ($global_settings as $setting) {
 			$global_settings_list[$setting->getCKey() . '__' . $setting->getNs()] = $setting->getCValue();
@@ -67,7 +76,10 @@ class SettingsController extends Controller
 		$form = $this->createFormBuilder($global_settings_list);
 		foreach ($global_settings as $setting) {
 			$form->add($setting->getCKey() . '__' . $setting->getNs(), 'text',
-				array('label' => $setting->getTitle())
+				array(
+					'label' => $setting->getTitle(),
+					'required' => false
+				)
 			);
 		}
 
@@ -84,6 +96,11 @@ class SettingsController extends Controller
 		));
     }
 
+    /**
+     * Shows the settings for the chosed domain.
+     * 
+     * @param domain_key The domain key to show example:'DA', default=COM
+     */
     public function domainAction($domain_key = 'COM')
     {
        	$request = $this->getRequest();
@@ -97,16 +114,24 @@ class SettingsController extends Controller
             	$keys = explode('__',$key_ns);
             	$c_key = $keys[0];
             	$ns = $keys[1];
-            	$domain_key = $keys[3];
+            	$domain_key = $keys[2];
 
             	try{
 	            	$setting = DomainsSettingsQuery::create()
 						->filterByNs($ns)
-						->filterByDomainKey($locale)
-						->findOneByCKey($c_key)
-						->setCValue($c_value)
-						->save()
-					;
+						->filterByDomainKey($domain_key)
+						->findOneByCKey($c_key);
+
+            		if ($setting && '' === $c_value) {
+
+            			$setting->delete();
+
+            		}else{
+
+						$setting->setCValue($c_value);
+						$setting->save();
+
+            		}
 				}catch(PropelException $e){
             		$this->get('session')->setFlash('notice', 'settings.updated.failed.'.$e);
 				}
@@ -132,6 +157,7 @@ class SettingsController extends Controller
 			->find()
 		;
 
+		//Fields names: CKEY__NS__DOMAIN
 		$domain_settings_list = array();
 		foreach ($domain_settings as $setting) {
 			$domain_settings_list[$setting->getCKey() . '__' . $setting->getNs() . '__' . $setting->getDomainKey()] = $setting->getCValue();
@@ -139,7 +165,8 @@ class SettingsController extends Controller
 
 		$form = $this->createFormBuilder($domain_settings_list);
 		foreach ($domain_settings as $setting) {
-			$form->add($setting->getCKey() . '__' . $setting->getNs() . '__' . $setting->getDomainKey(), 'text'
+			$form->add($setting->getCKey() . '__' . $setting->getNs() . '__' . $setting->getDomainKey(), 'text',
+				array('required' => false)
 			);
 		}
 
@@ -151,16 +178,15 @@ class SettingsController extends Controller
 		return $this->render('AdminBundle:Settings:domain.html.twig', array(
 			'form'      => $form->getForm()->createView(),
 			'add_domain_setting_form' => $form_add_domain_setting->createView(),
-			'domains_availible' => $domains_availible
+			'domains_availible' => $domains_availible,
+			'domain' => $domain_key
 		));
     }
 
     /**
      * Function to add new setting to the settings tables. Either a domain specific or a global setting
      * 
-     * @param domain_setting If the setting are a domain specific setting
-     * @todo Lav js til ajax kald... ?
-     * @return json status
+     * @param domain_setting If the setting are a domain specific setting othervise it will be added to globale settings
      */
     public function addSettingAction($domain_setting = false)
     {
@@ -184,9 +210,8 @@ class SettingsController extends Controller
 				$setting->save();
 			} catch (PropelException $e) {
             	$this->get('session')->setFlash('notice', 'settings.update.failed');
-
 			}
-			return $this->redirect($this->generateUrl('admin_settingsdomain', 
+			return $this->redirect($this->generateUrl('admin_settings_domain', 
 				array('domain_key' => $domain_key)
 			));
 
