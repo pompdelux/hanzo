@@ -208,7 +208,7 @@
       </trans-unit>
       <trans-unit id="admin.settings.description.text">
         <source>admin.settings.description.text</source>
-        <target>Her vises alle globale indstillinger der er gemt. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
+        <target>Her vises alle globale indstillinger der er   gemt. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
       </trans-unit>
       <trans-unit id="admin.settings.add.header.text">
         <source>admin.settings.add.header.text</source>

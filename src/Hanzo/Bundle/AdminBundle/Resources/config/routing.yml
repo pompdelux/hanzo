@@ -1,30 +1,37 @@
 admin:
     pattern:  /admin/
     defaults: { _controller: AdminBundle:Default:index }
+
 admin_settings:
     pattern:  /admin/settings/
     defaults: { _controller: AdminBundle:Settings:index }
+
 admin_setting_add:
     pattern:  /admin/settings/add/{domain_setting}
     defaults: 
         _controller: AdminBundle:Settings:addSetting
         domain_setting: false
+
 admin_settings_domain:
     pattern:  /admin/settings/domain/{domain_key}
     defaults: 
         _controller: AdminBundle:Settings:domain
         domain_key: 'COM'
+
 admin_category:
     pattern:  /admin/category/
     defaults: { _controller: AdminBundle:Category:index }
+
 admin_cms:
     pattern:  /admin/cms/
     defaults: { _controller: AdminBundle:Cms:index }
+
 admin_cms_add:
     pattern:  /admin/cms/add/{locale}
     defaults: 
         _controller: AdminBundle:Cms:add
         locale: 'en_EN'
+
 admin_cms_edit:
     pattern:  /admin/cms/edit/{id}/{locale}
     defaults: 
@@ -33,6 +40,7 @@ admin_cms_edit:
         locale: 'en_EN'
     requirements:
         id: \d+
+
 admin_cms_delete:
     pattern:  /admin/cms/delete/{id}
     defaults: 
@@ -40,6 +48,7 @@ admin_cms_delete:
         id: 0
     requirements:
         id: \d+
+
 admin_cms_update_tree:
     pattern:  /admin/cms/update-tree/
     defaults:
@@ -70,6 +79,7 @@ admin_products_sort:
     defaults:
         _controller: AdminBundle:Products:sort
         category_id: 0
+
 admin_products_sort_update:
     pattern:  /admin/products/update-sort/
     defaults:
@@ -77,6 +87,7 @@ admin_products_sort_update:
         _format: json
     requirements:
         _format: html|json
+
 admin_product_ref_add:
     pattern:  /admin/products/add-reference/
     defaults:
@@ -84,6 +95,7 @@ admin_product_ref_add:
         _format: json
     requirements:
         _format: html|json
+
 admin_product_ref_delete:
     pattern:  /admin/products/delete-reference/{image_id}/{product_id}
     defaults:
@@ -93,6 +105,7 @@ admin_product_ref_delete:
         _format: html|json
         image_id: \d+
         product_id: \d+
+
 admin_product_cat_add:
     pattern:  /admin/products/add-category/
     defaults:
@@ -100,6 +113,7 @@ admin_product_cat_add:
         _format: json
     requirements:
         _format: html|json
+
 admin_product_cat_delete:
     pattern:  /admin/products/delete-category/{category_id}/{product_id}
     defaults:
@@ -109,18 +123,42 @@ admin_product_cat_delete:
         _format: html|json
         category_id: \d+
         product_id: \d+
+
+admin_customers:
+    pattern:  /admin/customers/{pager}
+    defaults: 
+        _controller: AdminBundle:Customers:index
+        pager: 1
+
+admin_customer:
+    pattern:  /admin/customer/{id}
+    defaults:
+        _controller: AdminBundle:Customers:view
+    requirements:
+        id: \d+
+
+admin_consultants:
+    pattern:  /admin/consultants/{pager}
+    defaults: 
+        _controller: AdminBundle:Customers:index
+        pager: 1
+
 admin_orders:
     pattern:  /admin/orders/
     defaults: { _controller: AdminBundle:Orders:index }
+
 admin_cache:
     pattern:  /admin/cache/
     defaults: { _controller: AdminBundle:Cache:index }
+
 admin_cache_jscss:
     pattern:  /admin/cache/
     defaults: { _controller: AdminBundle:Cache:index }
+
 admin_cache_redis:
     pattern:  /admin/cache/
     defaults: { _controller: AdminBundle:Cache:index }
+
 admin_cache_productpicture:
     pattern:  /admin/cache/
     defaults: { _controller: AdminBundle:Cache:index }

@@ -546,6 +546,20 @@ form#settings-list .button{
   margin:5px;
 }
 
+/* Customers/Consulents List */
+table#customers th,
+table#customers tr:hover{
+  background-color: #EBEBEB;
+}
+table#customers tr{
+  border-top:1px solid #D9D9D9;
+  border-bottom:1px solid #D9D9D9;
+}
+table#customers td,
+table#customers th{
+  padding:5px;
+}
+
 /* Product Image list with references */
 ul#product-images-list li{
   clear:both;
