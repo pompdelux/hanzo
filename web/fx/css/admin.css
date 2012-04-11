@@ -538,6 +538,14 @@ form#add-setting div{
   padding-right:10px;
 }
 
+form#settings-list input[type=text]{
+  width:50%;
+  margin:;
+}
+form#settings-list .button{
+  margin:5px;
+}
+
 /* Product Image list with references */
 ul#product-images-list li{
   clear:both;
