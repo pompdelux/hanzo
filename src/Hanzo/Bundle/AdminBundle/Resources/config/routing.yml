@@ -143,6 +143,13 @@ admin_consultants:
         _controller: AdminBundle:Consultants:index
         pager: 1
 
+admin_consultant:
+    pattern:  /admin/consultant/{id}
+    defaults:
+        _controller: AdminBundle:Consultants:view
+    requirements:
+        id: \d+
+
 admin_orders:
     pattern:  /admin/orders/
     defaults: { _controller: AdminBundle:Orders:index }

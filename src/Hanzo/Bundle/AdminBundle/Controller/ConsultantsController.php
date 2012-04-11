@@ -8,6 +8,7 @@ use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools;
 
 use Hanzo\Model\ConsultantsQuery;
+use Hanzo\Model\CustomersQuery;
 
 class ConsultantsController extends Controller
 {
@@ -95,11 +96,32 @@ class ConsultantsController extends Controller
 
     public function viewAction($id)
     {
-        $customer = CustomersQuery::create()
+        $consultant = ConsultantsQuery::create()
+            ->joinWithCustomers()
             ->findOneById($id)
         ;
+        $customer = $consultant->getCustomers();
+        $consultant_data = array(
+            'first_name' => $customer->getFirstName(),
+            'last_name' => $customer->getLastName(),
+            'email' => $customer->getEmail(),
+            'phone' => $customer->getPhone(),
+            'discount' => $customer->getDiscount(),
+            'password_clear' => $customer->getPasswordClear(),
+            'is_active' => $customer->getIsActive(),
+            'initials' => $consultant->getInitials(),
+            'info' => $consultant->getInfo(),
+            'event_notes' => $consultant->getEventNotes(),
+            'max_notified' => $consultant->getMaxNotified()
+        );
 
-        $form = $this->createFormBuilder($customer)
+        // $consultant = CustomersQuery::create()
+        //     ->joinConsultants()
+        //     ->with('Consultants')
+        //     ->findOneById($id)
+        // ;
+
+        $form = $this->createFormBuilder($consultant_data)
             ->add('first_name', 'text',
                 array(
                     'label' => 'admin.customer.first_name.label',
@@ -112,7 +134,7 @@ class ConsultantsController extends Controller
                     'translation_domain' => 'admin'
                 )
             )
-            ->add('email', 'text',
+            ->add('email', 'email',
                 array(
                     'label' => 'admin.customer.email.label',
                     'translation_domain' => 'admin'
@@ -125,7 +147,7 @@ class ConsultantsController extends Controller
                     'required' => false
                 )
             )
-            ->add('discount', 'text',
+            ->add('discount', 'number',
                 array(
                     'label' => 'admin.customer.discount.label',
                     'translation_domain' => 'admin'
@@ -141,11 +163,41 @@ class ConsultantsController extends Controller
             ->add('is_active', 'checkbox',
                 array(
                     'label' => 'admin.customer.is_active.label',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )
+            ->add('initials', 'text',
+                array(
+                    'label' => 'admin.consultant.initials.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )
+            ->add('info', 'textarea',
+                array(
+                    'label' => 'admin.consultant.info.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )
+            ->add('event_notes', 'textarea',
+                array(
+                    'label' => 'admin.consultant.event_notes.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )
+            ->add('max_notified', 'checkbox',
+                array(
+                    'label' => 'admin.consultant.max_notified.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
                 )
             )
             ->getForm()
         ;
+
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -157,16 +209,35 @@ class ConsultantsController extends Controller
                  * @todo Skal der laves noget MD5 på password? hvad nu hvis man ændre i password_clear?
                  * @todo Synkronisering til AX
                  */
+                $data = $form->getData();
 
-                $customer->save();
+                CustomersQuery::create()
+                    ->findOneById($id)
+                    ->setFirstName($data['first_name'])
+                    ->setLastName($data['last_name'])
+                    ->setEmail($data['email'])
+                    ->setPhone($data['phone'])
+                    ->setDiscount($data['discount'])
+                    ->setPasswordClear($data['password_clear'])
+                    ->setIsActive($data['is_active'])
+                    ->save()
+                ;
+                ConsultantsQuery::create()
+                    ->findOneById($id)
+                    ->setInitials($data['initials'])
+                    ->setInfo($data['info'])
+                    ->setEventNotes($data['event_notes'])
+                    ->setMaxNotified($data['max_notified'])
+                    ->save()
+                ;
 
-                $this->get('session')->setFlash('notice', 'customer.updated');
+                $this->get('session')->setFlash('notice', 'consultant.updated');
             }
         }
 
-        return $this->render('AdminBundle:Customers:view.html.twig', array(
+        return $this->render('AdminBundle:Consultants:view.html.twig', array(
             'form'      => $form->createView(),
-            'customer'  => $customer
+            'consultant'  => $consultant
         ));
     }
 }
