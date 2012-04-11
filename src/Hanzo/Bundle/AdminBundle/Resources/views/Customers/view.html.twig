@@ -4,15 +4,15 @@
 <nav class="sub">
   <ul>
     <li>
-      <a href="{{ path('admin_customers') }}">
-        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
       <form action="{{ path('admin_customers') }}" method="get">
         <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
         <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
       </form>
+    </li>
+    <li>
+      <a href="{{ path('admin_customers') }}">
+        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
+      </a>
     </li>
   </ul>
 </nav>
