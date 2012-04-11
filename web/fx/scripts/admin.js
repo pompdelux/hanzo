@@ -92,7 +92,7 @@
           }
         });
       });
-
+      // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({
         axis : 'y',
         delay : 500,
@@ -130,6 +130,7 @@
         });
       });
 
+      //ProductsToImages on Products page
       $('.product-selector').change(function(){
         selectedOption = $(this).find('option:selected');
         reference = selectedOption.val().split('-');
