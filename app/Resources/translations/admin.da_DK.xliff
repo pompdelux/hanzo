@@ -250,9 +250,105 @@
         <source>add.setting</source>
         <target>Opret indstilling</target>
       </trans-unit>
+      <trans-unit id="admin.customers.list.link">
+        <source>admin.customers.list.link</source>
+        <target>Alle Kunder</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.list.link">
+        <source>admin.consultants.list.link</source>
+        <target>Alle Konsulenter</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.header.text">
+        <source>admin.customers.header.text</source>
+        <target>Kunder</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.header.text">
+        <source>admin.consultants.header.text</source>
+        <target>Konsulenter</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.description.text">
+        <source>admin.customers.description.text</source>
+        <target>I tabellen herunder vises alle kunder i databasen. Du kan rediger en kunde i linket ud for. Søg eventuelt efter en kunde i feltet til højre(fornavn, efternavn, email, telefon).</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.description.text">
+        <source>admin.consultants.description.text</source>
+        <target>I tabellen herunder vises alle konsulenter i databasen. Du kan rediger en konsulent i linket ud for. Søg eventuelt efter en konsulent i feltet til højre(fornavn, efternavn, email, telefon).</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.no.customers.text">
+        <source>admin.customers.no.customers.text</source>
+        <target>Der findes desværre ingen kunder i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.no.consultants.text">
+        <source>admin.consultants.no.consultants.text</source>
+        <target>Der findes desværre ingen konsulenter i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.edit">
+        <source>admin.customer.edit</source>
+        <target>Rediger kunde</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.edit">
+        <source>admin.consultant.edit</source>
+        <target>Rediger kunde</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.first_name">
+        <source>admin.customer.first_name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.last_name">
+        <source>admin.customer.last_name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.email">
+        <source>admin.customer.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.phone">
+        <source>admin.customer.phone</source>
+        <target>Tlf.</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.discount">
+        <source>admin.customer.discount</source>
+        <target>Rabat</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.is_active">
+        <source>admin.customer.is_active</source>
+        <target>Aktiv</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.activated">
+        <source>admin.customer.activated</source>
+        <target>Aktiveret</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.deactivated">
+        <source>admin.customer.deactivated</source>
+        <target>Deaktiveret</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.initials">
+        <source>admin.consultant.initials</source>
+        <target>Initialer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.info">
+        <source>admin.consultant.info</source>
+        <target>Info</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.event_notes">
+        <source>admin.consultant.event_notes</source>
+        <target>Event Noter</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.max_notified">
+        <source>admin.consultant.max_notified</source>
+        <target>Max notifikationer</target>
+      </trans-unit>
       <trans-unit id="admin.back.button.text">
         <source>admin.back.button</source>
         <target>Tilbage</target>
+      </trans-unit>
+      <trans-unit id="search.label">
+        <source>search.label</source>
+        <target>Søg...</target>
+      </trans-unit>
+      <trans-unit id="search">
+        <source>search</source>
+        <target>Søg</target>
       </trans-unit>
       <trans-unit id="">
         <source></source>

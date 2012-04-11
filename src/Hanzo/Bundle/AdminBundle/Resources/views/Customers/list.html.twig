@@ -14,6 +14,11 @@
         {{ 'admin.customers.list.link'|trans({}, 'admin') }}
       </a>
     </li>
+    <li>
+      <a href="{{ path('admin_consultants') }}">
+        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
   </ul>
 </nav>
 
@@ -47,7 +52,7 @@
     <tr>
       <td>{{ customer.firstname }}</td>
       <td>{{ customer.lastname }}</td>
-      <td>{{ customer.email }}</td>
+      <td><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></td>
       <td>{{ customer.phone }}</td>
       <td>{{ customer.discount }}</td>
       <td>
