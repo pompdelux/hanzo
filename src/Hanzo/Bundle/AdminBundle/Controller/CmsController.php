@@ -54,14 +54,15 @@ class CmsController extends CoreController
             ));
         }
     }
-    
+
     public function addAction($locale = 'en_EN')
     {
         $cms_node = new CmsNode();
 
         $cms_threads = CmsThreadI18nQuery::create()
             ->filterByLocale($locale)
-            ->find();
+            ->find()
+        ;
 
         $cms_thread_choices = array();
 
