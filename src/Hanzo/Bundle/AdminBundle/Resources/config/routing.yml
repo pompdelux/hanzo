@@ -140,7 +140,7 @@ admin_customer:
 admin_consultants:
     pattern:  /admin/consultants/{pager}
     defaults: 
-        _controller: AdminBundle:Customers:index
+        _controller: AdminBundle:Consultants:index
         pager: 1
 
 admin_orders:
