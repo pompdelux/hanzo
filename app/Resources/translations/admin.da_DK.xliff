@@ -208,7 +208,7 @@
       </trans-unit>
       <trans-unit id="admin.settings.description.text">
         <source>admin.settings.description.text</source>
-        <target>Her vises alle globale indstillinger gemt. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
+        <target>Her vises alle globale indstillinger der er gemt. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
       </trans-unit>
       <trans-unit id="admin.settings.add.header.text">
         <source>admin.settings.add.header.text</source>
@@ -233,6 +233,14 @@
       <trans-unit id="admin.domain.settings.add.description.text">
         <source>admin.domain.settings.add.description.text</source>
         <target>Du kan tilføje nye indstillinger til det valgte domæne, ved at udfylde nedenstående felter.</target>
+      </trans-unit>
+      <trans-unit id="settings.updated">
+        <source>settings.updated</source>
+        <target>Indstillinger opdateret!</target>
+      </trans-unit>
+      <trans-unit id="settings.update.failed">
+        <source>settings.update.failed</source>
+        <target>Der skete en fejl under opdatering af indstillingerne! Prøv igen.</target>
       </trans-unit>
       <trans-unit id="save.settings">
         <source>save.settings</source>
