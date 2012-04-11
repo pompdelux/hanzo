@@ -43,7 +43,7 @@ class CustomersController extends Controller
                 ->orderByLastName()
                 ->paginate($pager, 10)
             ;
-        }else{
+        } else {
 
             $customers = CustomersQuery::create()
                 ->useGroupsQuery()
@@ -61,7 +61,11 @@ class CustomersController extends Controller
 
             $pages = array();
             foreach ($customers->getLinks(20) as $page) {
-                $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+                if (isset($_GET['q']))
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $_GET['q']), TRUE);
+                else
+                    $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+
             }
 
             $paginate = array(
