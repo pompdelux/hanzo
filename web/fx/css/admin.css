@@ -531,6 +531,11 @@ ul#product-categories li a.delete{
   right: -23px;
 }
 
+/* Settings page */
+form#add-setting div{
+  display: inline-block;
+  padding-right:10px;
+}
 
 /* Product Image list with references */
 ul#product-images-list li{

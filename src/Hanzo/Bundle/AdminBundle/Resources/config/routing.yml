@@ -4,9 +4,16 @@ admin:
 admin_settings:
     pattern:  /admin/settings/
     defaults: { _controller: AdminBundle:Settings:index }
-admin_settingsdomain:
-    pattern:  /admin/settings/domain/
-    defaults: { _controller: AdminBundle:Settings:domain }
+admin_setting_add:
+    pattern:  /admin/settings/add/{domain_setting}
+    defaults: 
+        _controller: AdminBundle:Settings:addSetting
+        domain_setting: false
+admin_settings_domain:
+    pattern:  /admin/settings/domain/{domain_key}
+    defaults: 
+        _controller: AdminBundle:Settings:domain
+        domain_key: 'COM'
 admin_category:
     pattern:  /admin/category/
     defaults: { _controller: AdminBundle:Category:index }
