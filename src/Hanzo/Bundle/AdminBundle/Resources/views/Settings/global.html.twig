@@ -30,21 +30,29 @@
 </div>
 {% endif %}
 
-<form id="add-setting" action="{{ path('admin_setting_add') }}" method="post" {{ form_enctype(add_global_setting_form) }}>
-  <div>
-  	{{ form_rest(add_global_setting_form) }}
-    {{ form_row(add_global_setting_form._token) }}
-  </div>
-  <input class="button" type="submit" value="{{ 'add.cms'|trans({}, 'admin') }}">
-</form>
+<div>
+	<p>{{ 'admin.settings.description.text'|trans({}, 'admin') }}</p>
 
-<form id="settings-list" action="{{ path('admin_settings') }}" method="post" {{ form_enctype(form) }}>
-  <div>
-  	{{ form_rest(form) }}
-    {{ form_row(form._token) }}
-  </div>
-  <input class="button right" type="submit" value="{{ 'add.cms'|trans({}, 'admin') }}">
-  <a class="button left" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
-</form>
+	<form id="settings-list" action="{{ path('admin_settings') }}" method="post" {{ form_enctype(form) }}>
+	  <div>
+	  	{{ form_rest(form) }}
+	    {{ form_row(form._token) }}
+	  </div>
+	  <input class="button right" type="submit" value="{{ 'save.settings'|trans({}, 'admin') }}">
+	  <a class="button left" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+	</form>
+</div>
+<div>
+	<h1>{{ 'admin.settings.add.header.text'|trans({}, 'admin') }}</h1>
+	<p>{{ 'admin.settings.add.description.text'|trans({}, 'admin') }}</p>
+
+	<form id="add-setting" action="{{ path('admin_setting_add') }}" method="post" {{ form_enctype(add_global_setting_form) }}>
+	  <div>
+	  	{{ form_rest(add_global_setting_form) }}
+	    {{ form_row(add_global_setting_form._token) }}
+	  </div>
+	  <input class="button" type="submit" value="{{ 'add.setting'|trans({}, 'admin') }}">
+	</form>
+</div>
 
 {% endblock %}
