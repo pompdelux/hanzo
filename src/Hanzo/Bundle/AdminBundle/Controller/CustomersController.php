@@ -67,14 +67,23 @@ class CustomersController extends Controller
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
 
             }
+            
+            if (isset($_GET['q'])) // If search query, add it to the route
+                $paginate = array(
+                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage(), 'q' => $_GET['q']), TRUE)),
+                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getPreviousPage(), 'q' => $_GET['q']), TRUE)),
 
-            $paginate = array(
-                'next' => '',//($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage()), TRUE)),
-                'prew' => '',//($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage()), TRUE)),
+                    'pages' => $pages,
+                    'index' => $pager
+                );
+            else
+                $paginate = array(
+                    'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage()), TRUE)),
+                    'prew' => ($customers->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getPreviousPage()), TRUE)),
 
-                'pages' => $pages,
-                'index' => $pager
-            );
+                    'pages' => $pages,
+                    'index' => $pager
+                );
         }
 
         return $this->render('AdminBundle:Customers:list.html.twig', array(
