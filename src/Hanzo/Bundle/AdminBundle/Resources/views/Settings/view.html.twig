@@ -1,0 +1,32 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+<h1>{{ 'admin.settings.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<form action="{{ path('admin_settings') }}" method="post" {{ form_enctype(form) }}>
+  <div id="cms-edit">
+    {{ form_row(form.api_user__dibsapi) }}
+    {{ form_row(form.api_pass__dibsapi) }}
+    {{ form_row(form.merchant__dibsapi) }}
+    {{ form_row(form.md5key1__dibsapi) }}
+    {{ form_row(form.md5key2__dibsapi) }}
+    {{ form_row(form.test__dibsapi) }}
+    {{ form_row(form.from_email__email) }}
+    {{ form_row(form.from_name__email) }}
+    {{ form_row(form.clientID__gothiaapi) }}
+    {{ form_row(form.username__gothiaapi) }}
+    {{ form_row(form.password__gothiaapi) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'add.cms'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}
