@@ -19,7 +19,7 @@ class CustomersController extends Controller
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
         $customers = null;
-
+        
         if (isset($_GET['q'])) {
             $q = $this->getRequest()->get('q', null);
             $q = '%'.$q.'%';
@@ -108,7 +108,7 @@ class CustomersController extends Controller
             )
             ->add('last_name', 'text',
                 array(
-                    'label' => 'admin.customer.email.label',
+                    'label' => 'admin.customer.last_name.label',
                     'translation_domain' => 'admin'
                 )
             )

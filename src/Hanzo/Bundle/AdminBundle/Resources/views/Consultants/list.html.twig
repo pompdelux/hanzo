@@ -62,7 +62,13 @@
       <td>{{ consultant.customers.discount }}</td>
       <td>{{ consultant.info }}</td>
       <td>{{ consultant.eventnotes }}</td>
-      <td>{{ consultant.maxnotified }}</td>
+      <td>
+        {% if consultant.maxnotified == 1 %}
+          {{ 'admin.consultant.yes'|trans({}, 'admin') }}
+        {% else %}
+          {{ 'admin.consultant.no'|trans({}, 'admin') }}
+        {% endif %}
+      </td>
       <td>
         {% if consultant.customers.isactive == 1 %}
           {{ 'admin.customer.activated'|trans({}, 'admin') }}
@@ -88,7 +94,7 @@
 
 {% else %}
 
-<p>{{ 'admin.customers.no.customers.text'|trans({}, 'admin') }}</p>
+<p>{{ 'admin.consultants.no.consultants.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
 {% endblock %}

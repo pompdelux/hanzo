@@ -286,9 +286,13 @@
         <source>admin.customer.edit</source>
         <target>Rediger kunde</target>
       </trans-unit>
+      <trans-unit id="admin.customer.orders">
+        <source>admin.customer.orders</source>
+        <target>Se ordrer</target>
+      </trans-unit>
       <trans-unit id="admin.consultant.edit">
         <source>admin.consultant.edit</source>
-        <target>Rediger kunde</target>
+        <target>Rediger konsulent</target>
       </trans-unit>
       <trans-unit id="admin.customer.first_name">
         <source>admin.customer.first_name</source>
@@ -322,6 +326,14 @@
         <source>admin.customer.deactivated</source>
         <target>Deaktiveret</target>
       </trans-unit>
+      <trans-unit id="admin.consultant.yes">
+        <source>admin.consultant.yes</source>
+        <target>Ja</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.no">
+        <source>admin.consultant.no</source>
+        <target>Nej</target>
+      </trans-unit>
       <trans-unit id="admin.consultant.initials">
         <source>admin.consultant.initials</source>
         <target>Initialer</target>
@@ -337,6 +349,82 @@
       <trans-unit id="admin.consultant.max_notified">
         <source>admin.consultant.max_notified</source>
         <target>Max notifikationer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.header.text">
+        <source>admin.consultant.header.text</source>
+        <target>Rediger konsulent</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.header.text">
+        <source>admin.customer.header.text</source>
+        <target>Rediger kunde</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.description.text">
+        <source>admin.consultant.description.text</source>
+        <target>Herunder kan du redigere alle informationer gemt for denne konsulent. Tryk på gem for at gemme dine ændringer</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.description.text">
+        <source>admin.customer.description.text</source>
+        <target>Herunder kan du redigere alle informationer gemt for denne kunde. Tryk på gem for at gemme dine ændringer</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.first_name.label">
+        <source>admin.customer.first_name.label</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.last_name.label">
+        <source>admin.customer.last_name.label</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.email.label">
+        <source>admin.customer.email.label</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.phone.label">
+        <source>admin.customer.phone.label</source>
+        <target>Telefon nummer</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.discount.label">
+        <source>admin.customer.discount.label</source>
+        <target>Rabat</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.password_clear.label">
+        <source>admin.customer.password_clear.label</source>
+        <target>Kodeord (ukrypteret)</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.is_active.label">
+        <source>admin.customer.is_active.label</source>
+        <target>Aktiveret</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.initials.label">
+        <source>admin.consultant.initials.label</source>
+        <target>Initialer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.info.label">
+        <source>admin.consultant.info.label</source>
+        <target>Informationer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.event_notes.label">
+        <source>admin.consultant.event_notes.label</source>
+        <target>Event informationer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.max_notified.label">
+        <source>admin.consultant.max_notified.label</source>
+        <target>Max notifikationer</target>
+      </trans-unit>
+      <trans-unit id="update.consultant">
+        <source>update.consultant</source>
+        <target>Gem konsulent</target>
+      </trans-unit>
+      <trans-unit id="update.customer">
+        <source>update.customer</source>
+        <target>Gem kunde</target>
+      </trans-unit>
+      <trans-unit id="consultant.updated">
+        <source>consultant.updated</source>
+        <target>Konsulenten er successfuldt blevet opdateret.</target>
+      </trans-unit>
+      <trans-unit id="customer.updated">
+        <source>customer.updated</source>
+        <target>Kunden er successfuldt blevet opdateret.</target>
       </trans-unit>
       <trans-unit id="admin.back.button.text">
         <source>admin.back.button</source>

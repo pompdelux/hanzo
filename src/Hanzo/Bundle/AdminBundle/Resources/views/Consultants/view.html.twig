@@ -31,7 +31,6 @@
 {% endif %}
 
 <p>{{ 'admin.consultant.description.text'|trans({}, 'admin') }}</p>
-consultant
 <form action="{{ path('admin_consultant', {'id' : consultant.id}) }}" method="post" {{ form_enctype(form) }} id="consultant-edit-form">
   <div id="consultant-edit">
     {{ form_row(form.first_name) }}

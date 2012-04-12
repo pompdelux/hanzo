@@ -137,6 +137,13 @@ admin_customer:
     requirements:
         id: \d+
 
+admin_customer_orders:
+    pattern:  /admin/customer/orders/{id}
+    defaults:
+        _controller: AdminBundle:Customers:orderView
+    requirements:
+        id: \d+
+
 admin_consultants:
     pattern:  /admin/consultants/{pager}
     defaults: 

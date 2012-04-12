@@ -581,12 +581,17 @@ table#customers th, table#consultants th{
 
 /* Customers/Consultants edit page */
 form#customer-edit-form input[type=text],
-form#consultants-edit-form input[type=text]{
+form#consultant-edit-form input[type=text]{
   width:50%;
 }
 form#customer-edit-form input[type=checkbox],
-form#consultants-edit-form input[type=checkbox]{
+form#consultant-edit-form input[type=checkbox]{
   display: inline;
+}
+form#customer-edit-form textarea,
+form#consultant-edit-form textarea{
+  width:50%;
+  height:200px;
 }
 
 /* Product Image list with references */
