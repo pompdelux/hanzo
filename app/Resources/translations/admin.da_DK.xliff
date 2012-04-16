@@ -10,6 +10,10 @@
         <source>languages.selector</source>
         <target>Vælg sprog til oversættelse</target>
       </trans-unit>
+      <trans-unit id="admin_domain_selector">
+        <source>domain.selector</source>
+        <target>Vælg domæne</target>
+      </trans-unit>
       <trans-unit id="admin_add_new_cmspage">
         <source>add.new.cmspage</source>
         <target>Opret nyt CMS node</target>
@@ -138,9 +142,109 @@
         <source>categories.selector</source>
         <target>Vælg kategori</target>
       </trans-unit>
-      <trans-unit id="admin_save_changes">
+      <trans-unit id="admin.categories.list.header.text">
+        <source>admin.categories.list.header.text</source>
+        <target>Kategorier</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.description.text">
+        <source>admin.categories.list.description.text</source>
+        <target>Vælg en af de 4 overkategorier. Du vil derefter få vist alle underkategorier.</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.sort-link.text">
+        <source>admin.categories.list.sort-link.text</source>
+        <target>Sorter produkters rækkefølge</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.header.text.%category-name%">
+        <source>admin.categories.list.header.text.%category-name%</source>
+        <target>Kategorier i overkategori "%category-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.header.text.%category-name%">
+        <source>admin.products.list.header.text.%category-name%</source>
+        <target>Produkter i kategorien "%category-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.subcategories.list.description.text">
+        <source>admin.subcategories.list.description.text</source>
+        <target>Vælg en kategori for at kunne se dens produkter.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.list.description.text">
+        <source>admin.products.list.description.text</source>
+        <target>Vælg en af nedenstående produkter for at se den detaljeret.</target>
+      </trans-unit>
+      <trans-unit id="admin.product.categories.header.text.%product-name%">
+        <source>admin.product.categories.header.text.%product-name%</source>
+        <target>Kategorier for produktet: "%product-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.product.categories.description.text">
+        <source>admin.product.categories.description.text</source>
+        <target>Herunder kan du se alle de forskellige kategorier der er tilknyttet dette produkt. I boksen kan du vælge nye kategorier, ellers slette dem som allerede er tilknyttet.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.category.selector.description">
+        <source>admin.products.category.selector.description</source>
+        <target>Vælg og tilføj en ny kategori...</target>
+      </trans-unit>
+      <trans-unit id="admin.product.images.header.text.%product-name%">
+        <source>admin.product.images.header.text.%product-name%</source>
+        <target>Billeder for produktet: "%product-name%"</target>
+      </trans-unit>
+      <trans-unit id="admin.product.images.description.text">
+        <source>admin.product.images.description.text</source>
+        <target>Herunder kan du se alle de forskellige billeder der er tilknyttet dette produkt. Du kan derudover vælge hvilke styleguides der er skal være tilknyttet hvert billede.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.product.selector.description">
+        <source>admin.products.product.selector.description</source>
+        <target>Vælg og tilføj et nyt produkt...</target>
+      </trans-unit>
+      <trans-unit id="settings.global.settings">
+        <source>settings.global.settings</source>
+        <target>Globale indstillinger</target>
+      </trans-unit>
+      <trans-unit id="admin.save.changes">
         <source>save.changes</source>
         <target>Gem ændringer</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.header.text">
+        <source>admin.settings.header.text</source>
+        <target>Globale indstillinger</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.description.text">
+        <source>admin.settings.description.text</source>
+        <target>Her vises alle globale indstillinger gemt. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.add.header.text">
+        <source>admin.settings.add.header.text</source>
+        <target>Opret en ny global indstilling.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.add.description.text">
+        <source>admin.settings.add.description.text</source>
+        <target>Du kan tilføje en ny indstilling som skal være global, ved at udfylde nedenstående felter.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.header.text.%domain_key%">
+        <source>admin.settings.header.text.%domain_key%</source>
+        <target>Domæne indstillinger for domæne: %domain_key%</target>
+      </trans-unit>
+      <trans-unit id="admin.domain.settings.description.text">
+        <source>admin.domain.settings.description.text</source>
+        <target>Her vises alle indstillinger gemt for det valgte domæne. Rediger indholdet i hver key, eller slet indholdet for at slette indstillingen.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.add.header.text.%domain_key%">
+        <source>admin.settings.add.header.text.%domain_key%</source>
+        <target>Opret ny indstilling til domæne: %domain_key%</target>
+      </trans-unit>
+      <trans-unit id="admin.domain.settings.add.description.text">
+        <source>admin.domain.settings.add.description.text</source>
+        <target>Du kan tilføje nye indstillinger til det valgte domæne, ved at udfylde nedenstående felter.</target>
+      </trans-unit>
+      <trans-unit id="save.settings">
+        <source>save.settings</source>
+        <target>Gem indstillinger</target>
+      </trans-unit>
+      <trans-unit id="add.setting">
+        <source>add.setting</source>
+        <target>Opret indstilling</target>
+      </trans-unit>
+      <trans-unit id="admin.back.button.text">
+        <source>admin.back.button</source>
+        <target>Tilbage</target>
       </trans-unit>
       <trans-unit id="">
         <source></source>

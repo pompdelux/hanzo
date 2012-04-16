@@ -1,21 +1,45 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-<nav class="sub">
-  <ul>
-    <li><a href="#" id="save-sortable">{{ 'update.product.sort'|trans({}, 'admin') }}</a></li>
-  </ul>
-</nav>
 
 {% if categories|length > 0 and parent_category %}
-<h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+
+  <nav class="sub">
+    <ul>
+      <li>
+        <a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">
+          {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+    </ul>
+  </nav>
+
+  <h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+  
+  <p>{{ 'admin.subcategories.list.description.text'|trans({}, 'admin') }}</p>
+
 {% elseif products|length > 0 %}
-<h1>{{ 'admin.products.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+
+  <nav class="sub">
+    <ul>
+      <li>
+        <a href="{{ path('admin_products', {'category_id' : category_id}) }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">
+          {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+    </ul>
+  </nav>
+
+  <h1>{{ 'admin.products.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
+  
+  <p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
+
 {% else %}
-<h1>{{ 'admin.products.list.header.text'|trans({}, 'admin') }}</h1>
+alt andet
+  <h1>{{ 'admin.categories.list.header.text'|trans({}, 'admin') }}</h1>
+  <p>{{ 'admin.categories.list.description.text'|trans({}, 'admin') }}</p>
 {% endif %}
 
-<p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
@@ -25,15 +49,16 @@
 
   {% if categories|length > 0 %}
     {% if parent_category %}
-     <ul id="category-list subcategory">
+     <ul id="category-list">
   	  {% for category in categories %}	
   	  	
   	    <li id="item-{{ category.id }}">
           <a href="{{ path('admin_products', {'category_id' : parent_category.id, 'subcategory_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
-            <span class="context">{{ category.context }}</span>
             <span class="title">{{ category.title }}</span>
-            <span class="is_active">{{ category.is_active }}</span>
+          </a>
+          <a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}" class="sort-link" title="{{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}">
+            {{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}
           </a>
   	    </li>
 
@@ -46,9 +71,7 @@
         <li id="item-{{ category.id }}">
           <a href="{{ path('admin_products', {'category_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
-            <span class="context">{{ category.context }}</span>
             <span class="title">{{ category.title }}</span>
-            <span class="is_active">{{ category.is_active }}</span>
           </a>
         </li>
 
@@ -63,12 +86,6 @@
         <a href="{{ path('admin_product', {'id' : product.id}) }}" title="{{ product.sku }}">
           <span class="id">(#{{ product.id }})</span>
           <span class="sku">{{ product.sku }}</span>
-          <span class="master">{{ product.master }}</span>
-          <span class="size">{{ product.size }}</span>
-          <span class="color">{{ product.color }}</span>
-          <span class="unit">{{ product.unit }}</span>
-          <span class="is-out-of-stock">{{ product.is_out_of_stock }}</span>
-          <span class="is-active">{{ product.is_active }}</span>
         </a>
       </li>
 

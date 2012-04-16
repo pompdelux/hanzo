@@ -4,9 +4,16 @@ admin:
 admin_settings:
     pattern:  /admin/settings/
     defaults: { _controller: AdminBundle:Settings:index }
-admin_settingsdomain:
-    pattern:  /admin/settings/domain/
-    defaults: { _controller: AdminBundle:Settings:domain }
+admin_setting_add:
+    pattern:  /admin/settings/add/{domain_setting}
+    defaults: 
+        _controller: AdminBundle:Settings:addSetting
+        domain_setting: false
+admin_settings_domain:
+    pattern:  /admin/settings/domain/{domain_key}
+    defaults: 
+        _controller: AdminBundle:Settings:domain
+        domain_key: 'COM'
 admin_category:
     pattern:  /admin/category/
     defaults: { _controller: AdminBundle:Category:index }
@@ -70,6 +77,38 @@ admin_products_sort_update:
         _format: json
     requirements:
         _format: html|json
+admin_product_ref_add:
+    pattern:  /admin/products/add-reference/
+    defaults:
+        _controller: AdminBundle:Products:addReference
+        _format: json
+    requirements:
+        _format: html|json
+admin_product_ref_delete:
+    pattern:  /admin/products/delete-reference/{image_id}/{product_id}
+    defaults:
+        _controller: AdminBundle:Products:deleteReference
+        _format: json
+    requirements:
+        _format: html|json
+        image_id: \d+
+        product_id: \d+
+admin_product_cat_add:
+    pattern:  /admin/products/add-category/
+    defaults:
+        _controller: AdminBundle:Products:addCategory
+        _format: json
+    requirements:
+        _format: html|json
+admin_product_cat_delete:
+    pattern:  /admin/products/delete-category/{category_id}/{product_id}
+    defaults:
+        _controller: AdminBundle:Products:deleteCategory
+        _format: json
+    requirements:
+        _format: html|json
+        category_id: \d+
+        product_id: \d+
 admin_orders:
     pattern:  /admin/orders/
     defaults: { _controller: AdminBundle:Orders:index }
