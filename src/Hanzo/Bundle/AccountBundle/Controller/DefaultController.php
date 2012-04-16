@@ -12,6 +12,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
@@ -187,7 +188,7 @@ class DefaultController extends CoreController
         $customer = CustomersPeer::getCurrent();
         $country = $this->getCountryOrCountries();
 
-        $form = $this->createForm(new CustomersType(FALSE, new AddressesType( $country )), $customer);
+        $form = $this->createForm(new CustomersType(false, new AddressesType( $country )), $customer);
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -209,6 +210,176 @@ class DefaultController extends CoreController
             'form' => $form->createView(),
         ));
     }
+
+
+    public function editAddressAction($type = 'payment', $shipping_id = null)
+    {
+        $request = $this->getRequest();
+        $translator = $this->get('translator');
+
+        // hack...
+        if (isset($_POST)) {
+            if (isset($_POST['form']['type']) && $type != $_POST['form']['type']) {
+                $type = $_POST['form']['type'];
+            }
+            if (isset($_POST['form']['company_name'])) {
+                $shipping_id = 11;
+            }
+        }
+
+
+        $customer = CustomersPeer::getCurrent();
+        $address = AddressesQuery::create()
+            ->filterByType($type)
+            ->findOneByCustomersId($customer->getId())
+        ;
+
+        if (!$address instanceof Addresses) {
+            $address = new Addresses();
+            $address->setCustomersId($customer->getId());
+            $address->setType($type);
+            $address->setFirstName($customer->getFirstName());
+            $address->setLastName($customer->getLastName());
+        }
+
+        $validation_group = $type;
+        if ($shipping_id == 11) {
+            $validation_group = 'company_' . $type;
+        }
+
+        $builder = $this->createFormBuilder($address, array(
+            'validation_groups' => $validation_group
+        ));
+
+        $builder->add('type', 'hidden', array('data' => $type));
+
+        // TODO: fix the "11" (company spipping) hack
+        if (($type == 'shipping') && ($shipping_id == 11)) {
+            $builder->add('company_name', null, array(
+                'label' => 'company.name',
+                'required' => true,
+                'translation_domain' => 'account'
+            ));
+        }
+
+        $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
+        $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
+        $builder->add('postal_code', null, array('required' => true, 'translation_domain' => 'account'));
+        $builder->add('city', null, array('required' => true, 'translation_domain' => 'account'));
+
+        $countries = CountriesPeer::getAvailableDomainCountries(true);
+
+        if ('overnightbox' !== $type) {
+            $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account'));
+
+            if (count($countries) > 1) {
+                $builder->add('countries_id', 'choice', array(
+                    'empty_value' => 'choose.country',
+                    'choices' => $countries,
+                    'required' => true,
+                    'translation_domain' => 'account'
+                ));
+            } else {
+                list($country_id, $country_name) = each($countries);
+
+                $address->setCountriesId($country_id);
+                $address->setCountry($country_name);
+
+                $builder->add('countries_id', 'hidden', array('data' => $country_id));
+                $builder->add('country', null, array(
+                    'read_only' => true,
+                    'translation_domain' => 'account'
+                ));
+            }
+        } else {
+            list($country_id, $country_name) = each($countries);
+            $address->setCountriesId($country_id);
+            $address->setCountry($country_name);
+
+            $builder->add('countries_id', 'hidden', array('data' => $country_id));
+            $builder->add('address_line_1', null, array(
+                'label' => 'overnightbox.label',
+                'required' => true,
+                'translation_domain' => 'account'
+            ));
+        }
+
+        $form = $builder->getForm();
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+
+                $address->save();
+
+                // TODO, implement elsewhere
+                if ($type == 'shipping') {
+                    $order = OrdersPeer::getCurrent();
+                    if (false == $order->isNew()) {
+                        $order->setDeliveryFirstName($address->getFirstName());
+                        $order->setDeliveryLastName($address->getLastName());
+                        $order->setDeliveryAddressLine1($address->getAddressLine1());
+                        $order->setDeliveryAddressLine2($address->getAddressLine2());
+                        $order->setDeliveryPostalCode($address->getPostalCode());
+                        $order->setDeliveryCity($address->getCity());
+                        $order->setDeliveryCountry($address->getCountry());
+                        $order->setDeliveryCountriesId($address->getCountriesId());
+                        $order->setDeliveryStateProvince($address->getStateProvince());
+                        $order->setDeliveryCompanyName($address->getCompanyName());
+                        $order->setDeliveryMethod($shipping_id);
+                        $order->save();
+                    }
+                }
+
+                if ('json' === $this->getFormat()) {
+                    return $this->json_response(array(
+                        'status' => true,
+                        'message' => '',
+                        'data' => array(
+                            'address' => $address->toArray(\BasePeer::TYPE_FIELDNAME)
+                        ),
+                    ));
+                }
+            } else {
+                if ('json' === $this->getFormat()) {
+                    $errors = array();
+                    foreach ($form->getChildren() as $id => $element) {
+                        if ($element->hasErrors()) {
+                            foreach ($element->getErrors() as $error) {
+                                $errors[$id][] = $translator->trans($error->getMessageTemplate(), array(), 'account');
+                            }
+                        }
+                     }
+
+                    if (count($errors)) {
+                        return $this->json_response(array(
+                            'status' => false,
+                            'message' => $translator->trans('address.form.errors', array(), 'account'),
+                            'data' => $errors,
+                        ));
+                    }
+                }
+            }
+        }
+
+        $html = $this->render('AccountBundle:Default:address_form_block.html.twig', array(
+            'page_type' => 'edit-address-block',
+            'title' => ($address->isNew() ? 'add.address' : 'edit.address'),
+            'form' => $form->createView(),
+            'callback' => 'postal' // TODO only for dk, no and se
+        ));
+
+        if ('json' === $this->getFormat()) {
+            return $this->json_response(array(
+                'status' => true,
+                'message' => '',
+                'data' => array('html' => $html->getContent()),
+            ));
+        }
+
+        return $html;
+    }
+
+
 
     /**
      * getCountryOrCountries

@@ -24,25 +24,29 @@ class DefaultController extends CoreController
 
     /**
      * getCityFromZipAction
+     *
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function getCityFromZipAction($zip_code)
     {
+        $code = explode('.', $_SERVER['HTTP_HOST']);
+        $code = array_pop($code);
+
         $query = ZipToCityQuery::create()
-            ->filterByCountriesIso2('DK')
+            ->filterByCountriesIso2($code)
             ->filterByZip( $zip_code )
             ->findOne();
 
         if ( !($query instanceOf ZipToCity) )
         {
-            return $this->json_response(array( 
+            return $this->json_response(array(
                 'status' => false,
                 'message' => '',
             ));
         }
 
-        return $this->json_response(array( 
+        return $this->json_response(array(
             'status' => true,
             'message' => '',
             'data' => array('city' => $query->getCity())

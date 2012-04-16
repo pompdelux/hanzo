@@ -195,7 +195,7 @@ DROP TABLE IF EXISTS `addresses`;
 CREATE TABLE `addresses`
 (
 	`customers_id` INTEGER NOT NULL,
-	`type` VARCHAR(10) DEFAULT 'payment' NOT NULL,
+	`type` VARCHAR(32) DEFAULT 'payment' NOT NULL,
 	`first_name` VARCHAR(128) NOT NULL,
 	`last_name` VARCHAR(128) NOT NULL,
 	`address_line_1` VARCHAR(255) NOT NULL,

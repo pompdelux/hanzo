@@ -139,7 +139,7 @@
 
   <table name="addresses">
     <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="type" type="VARCHAR" size="10" primaryKey="true" required="true" defaultValue="payment"/>
+    <column name="type" type="VARCHAR" size="32" primaryKey="true" required="true" defaultValue="payment"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
     <column name="address_line_1" type="VARCHAR" size="255" required="true"/>

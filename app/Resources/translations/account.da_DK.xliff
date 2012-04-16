@@ -104,6 +104,14 @@
                 <source>Country</source>
                 <target>Land</target>
             </trans-unit>
+            <trans-unit id="countries_id">
+                <source>Countries id</source>
+                <target>Land</target>
+            </trans-unit>
+            <trans-unit id="choose.country">
+                <source>choose.country</source>
+                <target>Vælg land</target>
+            </trans-unit>
             <trans-unit id="64">
                 <source>account.created</source>
                 <target>Din konto er nu oprettet.</target>
@@ -203,6 +211,56 @@
             <trans-unit id="cancel">
                 <source>cancel</source>
                 <target>Annuller</target>
+            </trans-unit>
+            <trans-unit id="company.name">
+                <source>company.name</source>
+                <target>Firmanavn</target>
+            </trans-unit>
+            <trans-unit id="edit.address">
+                <source>edit.address</source>
+                <target>Ret adresse</target>
+            </trans-unit>
+            <trans-unit id="add.address">
+                <source>add.address</source>
+                <target>Opret ny adresse</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>save</source>
+                <target>Gem</target>
+            </trans-unit>
+
+            <trans-unit id="overnightbox.label">
+                <source>overnightbox.label</source>
+                <target>Døgnpost</target>
+            </trans-unit>
+
+            <trans-unit id="address.first_name.required">
+                <source>address.first_name.required</source>
+                <target>Fornavn skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required">
+                <source>address.last_name.required</source>
+                <target>Efternavn skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.address_line_1.required">
+                <source>address.address_line_1.required</source>
+                <target>Du skal udfylde din adresse</target>
+            </trans-unit>
+            <trans-unit id="address.postal_code.required">
+                <source>address.postal_code.required</source>
+                <target>Postnummer skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.city.required">
+                <source>address.city.required</source>
+                <target>By skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.countries_id.required">
+                <source>address.countries_id.required</source>
+                <target>Du skal vælge et land</target>
+            </trans-unit>
+            <trans-unit id="address.company_name.required">
+                <source>address.company_name.required</source>
+                <target>Du skal angive firmanavn</target>
             </trans-unit>
         </body>
     </file>

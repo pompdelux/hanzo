@@ -262,7 +262,10 @@ class DefaultController extends CoreController
             $attributes[$att->getNs()][$att->getCKey()] = $att->getCValue();
         }
 
-        $html = $this->render('CheckoutBundle:Default:summery.html.twig',array('order'=> $order, 'attributes' => $attributes));
+        $html = $this->render('CheckoutBundle:Default:summery.html.twig', array(
+            'order'=> $order,
+            'attributes' => $attributes
+        ));
 
         if ( $this->get('request')->isXmlHttpRequest() ) {
             if ($this->getFormat() == 'json') {
@@ -283,7 +286,7 @@ class DefaultController extends CoreController
      * @author Henrik Farre <hf@bellcom.dk>
      * @return void
      **/
-    public function addressesAction()
+    public function addressesAction($skip_empty = false, $order = null)
     {
         // TODO: should we take the addresses from the order?
         $customer = CustomersPeer::getCurrent();
@@ -319,6 +322,15 @@ class DefaultController extends CoreController
 
         // TODO: the address should be created here minus the fields
         $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
+
+        if ($skip_empty || ($order instanceof Orders)) {
+            if (empty($addresses['overnightbox'])) {
+                $hasOvernightBox = false;
+            }
+            if ($order->getDeliveryMethod() == 11) {
+                unset($addresses['shipping']);
+            }
+        }
 
         return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
     }

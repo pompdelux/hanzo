@@ -10,7 +10,7 @@
   {% render 'AccountBundle:NNO:widget' %}
 {% endif %}
 
-<form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create">
+<form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create" novalidate>
   <div id="customers">
     {{ form_row(form.first_name) }}
     {{ form_row(form.last_name) }}

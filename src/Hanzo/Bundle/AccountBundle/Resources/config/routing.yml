@@ -53,3 +53,10 @@ _account_edit:
     pattern: /account/edit
     defaults:
         _controller: AccountBundle:Default:edit
+
+_account_edit_address:
+    pattern: /account/edit/address/{type}/{shipping_id}
+    defaults:
+        _controller: AccountBundle:Default:editAddress
+        type: ''
+        shipping_id: ''

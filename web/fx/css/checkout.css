@@ -33,3 +33,40 @@
 .checkout-block .product-table {
   margin:0;
 }
+
+#cboxLoadedContent h2 {
+  padding-bottom: 7px;
+  border-bottom: 1px solid #7B7577;
+}
+#cboxLoadedContent form {
+  margin-top: 10px;
+}
+#cboxLoadedContent form input {
+  border: 1px solid #999;
+}
+
+#cboxLoadedContent form label {
+  color: #000;
+}
+#cboxLoadedContent form div {
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+#cboxLoadedContent form #form {
+  margin-bottom: 10px;
+}
+
+#cboxLoadedContent form input.left {
+  float: left;
+}
+#cboxLoadedContent form div.error {
+  color: #a10000;
+  padding-bottom: 10px;
+}
+#cboxLoadedContent form div .error {
+  border-color: #a10000;
+}
+
+#checkout-block-address .account-address-block {
+  padding: 10px 0px;
+}

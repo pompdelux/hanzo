@@ -13,7 +13,8 @@ form.create {
   text-decoration: underline;
 }
 
-form.create input {
+form.create input,
+form.create select {
   float: right;
 }
 

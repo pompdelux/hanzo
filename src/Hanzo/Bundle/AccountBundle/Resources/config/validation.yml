@@ -1,0 +1,40 @@
+Hanzo\Model\Addresses:
+    properties:
+        first_name:
+            - NotBlank:
+                message: address.first_name.required
+                groups: [shipping, company_shipping, payment, overnightbox]
+            - MinLength: 2
+        last_name:
+            - NotBlank:
+                message: address.last_name.required
+                groups: [shipping, company_shipping, payment, overnightbox]
+            - MinLength: 2
+        address_line_1:
+            - NotBlank:
+                message: address.address_line_1.required
+                groups: [shipping, company_shipping, payment, overnightbox]
+            - MinLength: 2
+        postal_code:
+            - NotBlank:
+                message: address.postal_code.required
+                groups: [shipping, company_shipping, payment, overnightbox]
+            - MinLength: 2
+        city:
+            - NotBlank:
+                message: address.city.required
+                groups: [shipping, company_shipping, payment, overnightbox]
+            - MinLength: 2
+        countries_id:
+            - NotBlank:
+                message: address.countries_id.required
+                groups: [shipping, company_shipping, payment, overnightbox]
+            - Type:
+                type: integer
+        country:
+            - NotBlank:
+                groups: [shipping, company_shipping, payment, overnightbox]
+        company_name:
+            - NotBlank:
+                message: address.company_name.required
+                groups: [company_shipping]

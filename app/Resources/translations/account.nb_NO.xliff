@@ -197,6 +197,56 @@
                 <source>cancel</source>
                 <target>Cancel</target>
             </trans-unit>
+            <trans-unit id="company.name">
+                <source>company.name</source>
+                <target>Company name</target>
+            </trans-unit>
+            <trans-unit id="edit.address">
+                <source>edit.address</source>
+                <target>Edit address</target>
+            </trans-unit>
+            <trans-unit id="add.address">
+                <source>add.address</source>
+                <target>Create new address</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>save</source>
+                <target>Save</target>
+            </trans-unit>
+
+            <trans-unit id="overnightbox.label">
+                <source>overnightbox.label</source>
+                <target>Night Depository</target>
+            </trans-unit>
+
+            <trans-unit id="address.first_name.required">
+                <source>address.first_name.required</source>
+                <target>You must provide your first name.</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required">
+                <source>address.last_name.required</source>
+                <target>You must provide your last name.</target>
+            </trans-unit>
+            <trans-unit id="address.address_line_1.required">
+                <source>address.address_line_1.required</source>
+                <target>You must provide your adderss.</target>
+            </trans-unit>
+            <trans-unit id="address.postal_code.required">
+                <source>address.postal_code.required</source>
+                <target>Postal code must be provided.</target>
+            </trans-unit>
+            <trans-unit id="address.city.required">
+                <source>address.city.required</source>
+                <target>City must be provided.</target>
+            </trans-unit>
+            <trans-unit id="address.countries_id.required">
+                <source>address.countries_id.required</source>
+                <target>Please choose your country.</target>
+            </trans-unit>
+            <trans-unit id="address.company_name.required">
+                <source>address.company_name.required</source>
+                <target>You must provide your company name.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

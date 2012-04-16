@@ -54,7 +54,7 @@ class ShippingApi
             ->find();
 
         // shipping fee check
-        $fee_limit = Hanzo::getInstance()->get('shipping.free_shipping', 10);
+        $fee_limit = Hanzo::getInstance()->get('shipping.free_shipping', 0);
         if ($fee_limit > 0) {
             $total = OrdersPeer::getCurrent()->getTotalPrice(true);
         }
