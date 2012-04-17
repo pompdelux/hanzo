@@ -234,7 +234,6 @@ class CustomersController extends Controller
     public function orderViewAction($order_id)
     {
         $order = OrdersQuery::create()
-            ->joinWithLanguages()
             ->findOneById($order_id)
         ;
 
