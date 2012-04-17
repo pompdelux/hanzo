@@ -184,6 +184,14 @@ admin_customer:
     requirements:
         id: \d+
 
+admin_customer_address:
+    pattern:  /admin/customer/address/{id}/{type}
+    defaults:
+        _controller: AdminBundle:Customers:editAddress
+        type: null
+    requirements:
+        id: \d+
+
 admin_customer_orders:
     pattern:  /admin/customer/orders/{id}/{pager}
     defaults:

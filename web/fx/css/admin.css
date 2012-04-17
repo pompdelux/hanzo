@@ -569,6 +569,7 @@ form#settings-list .button{
 
 /* Customers/Consultants/Orders List */
 table.list{
+  table-layout: fixed;
   margin:20px 0;
 }
 table.list th,
@@ -581,6 +582,7 @@ table.list tr{
 }
 table.list td,
 table.list th{
+  word-wrap: break-word;
   padding:5px;
   border-right:1px solid #D9D9D9;
 }
