@@ -47,7 +47,7 @@ class ConsultantsController extends Controller
                     ->orderByLastName()
                 ->endUse()
                 ->joinWithCustomers()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
             
         } else {
@@ -58,7 +58,7 @@ class ConsultantsController extends Controller
                     ->orderByLastName()
                 ->endUse()
                 ->joinWithCustomers()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
 
         }

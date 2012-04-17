@@ -43,7 +43,7 @@ class CustomersController extends Controller
                 ->filterById($q_clean)
                 ->orderByFirstName()
                 ->orderByLastName()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
         } else {
 
@@ -55,7 +55,7 @@ class CustomersController extends Controller
                 ->endUse()
                 ->orderByFirstName()
                 ->orderByLastName()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
         }
         $paginate = null;
