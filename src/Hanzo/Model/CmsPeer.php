@@ -3,7 +3,7 @@
 namespace Hanzo\Model;
 
 use Hanzo\Model\om\BaseCmsPeer,
-    Hanzo\Model\om\CmsI18nPeer;
+    Hanzo\Model\CmsI18nPeer;
 
 
 /**
