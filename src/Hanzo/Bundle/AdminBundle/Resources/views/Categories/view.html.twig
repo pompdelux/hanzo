@@ -35,7 +35,7 @@
     <span class="locale">{{ translation.locale }}</span>
     <span class="title">{{ translation.title }}</span>
     <span class="content">{{ translation.content }}</span>
-    <a href="{{ path('admin_category_add', {'id' : translation.id, 'locale' : translation.locale}) }}" class="right">
+    <a href="{{ path('admin_category_edit', {'id' : translation.id, 'locale' : translation.locale}) }}" class="right">
       {{ 'edit.category.translation'|trans({}, 'admin') }}
     </a>
     <a href="{{ path('admin_category_delete_translation', {'id' : translation.id, 'locale' : translation.locale}) }}" class="right delete">
@@ -49,8 +49,6 @@
 {% if id %}
 
 <h1>{{ 'admin.category.add.translations.header.text'|trans({}, 'admin') }}</h1>
-
-<p>{{ 'admin.category.add.translations.description.text'|trans({}, 'admin') }}</p>
 
 <form action="{{ path('admin_category_add', {'id' : id, 'locale' : locale}) }}" method="post" {{ form_enctype(form_add) }} id="category-edit-form">
   <div id="category-edit">

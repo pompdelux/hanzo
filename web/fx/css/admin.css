@@ -519,7 +519,7 @@ ul#product-list-sort .sortable-item span{
 /* Category List And Products list */
 ul#category-list li,
 ul#product-list li,
-ul.list li,{
+ul.list li{
   list-style-type: none;
   margin: 2px 0;
   padding: 5px;
