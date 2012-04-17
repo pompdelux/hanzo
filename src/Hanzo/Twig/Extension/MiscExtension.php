@@ -93,7 +93,7 @@ class MiscExtension extends Twig_Extension
      * @see Hanzo\Core\Tools\Tools::moneyFormat
      * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
-    public function moneyFormat($number, $format = '%i')
+    public function moneyFormat($number, $format = '%.2i')
     {
         return Tools::moneyFormat($number, $format);
     }

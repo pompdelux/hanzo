@@ -50,160 +50,141 @@
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
-        <target>Godkend</target>
+        <target>Confirmation</target>
       </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
-        <target>E-ordrenummer</target>
+        <target>Order Number</target>
       </trans-unit>
       <trans-unit id="addresses">
         <source>addresses</source>
-        <target>Adresser</target>
+        <target>Addresses</target>
       </trans-unit>
       <trans-unit id="no_addresses">
         <source>no_addresses</source>
-        <target>Der er ikke oprettet nogle adresser</target>
+        <target>No address exists</target>
       </trans-unit>
       <trans-unit id="shipping.address.edit">
         <source>shipping.address.edit</source>
-        <target>» Ret leveringsadresse</target>
+        <target>» Edit delivery address</target>
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Leveringsadresse</target>
-      </trans-unit>
-
-      <trans-unit id="shipping.address.overnight">
-        <source>shipping.address.overnight</source>
-        <target>Leveringsadresse</target>
-      </trans-unit>
-      <trans-unit id="shipping.address.overnight.edit">
-        <source>shipping.address.overnight.edit</source>
-        <target>» Ret døgnpostadresse</target>
-      </trans-unit>
-
-      <trans-unit id="shipping.address.no_overnight">
-        <source>shipping.address.no_overnight</source>
-        <target>Ingen døgn boks adresse oprettet</target>
+        <target>Delivery address</target>
       </trans-unit>
       <trans-unit id="payment.method">
         <source>payment.method</source>
-        <target>Betalingsmetode</target>
+        <target>Payment Method</target>
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Privatadresse</target>
+        <target>Private address</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
-        <target>Betalingsmåde</target>
+        <target>Payment method</target>
       </trans-unit>
       <trans-unit id="payment.text">
         <source>payment.text</source>
-        <target>Vælg hvordan du vil betale denne ordre.</target>
+        <target>Please select the preferred payment method to use on this order.</target>
       </trans-unit>
-
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
-        <target>Momsbeløb</target>
+        <target>VAT</target>
       </trans-unit>
       <trans-unit id="confirm.sub_total">
         <source>confirm.sub_total</source>
-        <target>Varer i alt</target>
+        <target>Sub total</target>
       </trans-unit>
       <trans-unit id="confirm.total">
         <source>confirm.total</source>
-        <target>Samlet Beløb</target>
+        <target>Total</target>
       </trans-unit>
-
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
-        <target>Betaling på konto</target>
+        <target>Pay by Bill</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
-        <target>Indbetal pengene på kontonummer: "yy-yy xx-xx-xx-xx-xx" senest 8 dage efter du bar modtaget varene.</target>
+        <target>Insert the amount into the account: xxxx-xxxxx within 8 days.</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
-        <target>Betaling på konto</target>
+        <target>Pay by Bill</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
-        <target>Betalingsid</target>
+        <target>Payment ID</target>
       </trans-unit>
       <trans-unit id="payment.transaction_id">
         <source>payment.transaction_id</source>
-        <target>Transaktionsnummer</target>
+        <target>Transaction number</target>
       </trans-unit>
       <trans-unit id="payment.fee">
         <source>payment.fee</source>
-        <target>Betalingsgebyr</target>
+        <target>Payment fee</target>
       </trans-unit>
 
       <trans-unit id="customer.id">
         <source>customer.id</source>
-        <target>Kundenummer</target>
+        <target>Customer ID</target>
       </trans-unit>
 
       <trans-unit id="quantity">
         <source>quantity</source>
-        <target>Antal</target>
+        <target>Quantity</target>
       </trans-unit>
       <trans-unit id="products">
         <source>products</source>
-        <target>Produkter</target>
+        <target>Products</target>
       </trans-unit>
       <trans-unit id="product.name">
         <source>product.name</source>
-        <target>Varenavn</target>
+        <target>Product name</target>
       </trans-unit>
       <trans-unit id="product.size">
         <source>product.size</source>
-        <target>Størrelse</target>
+        <target>Size</target>
       </trans-unit>
       <trans-unit id="product.color">
         <source>product.color</source>
-        <target>Farve</target>
+        <target>Color</target>
       </trans-unit>
       <trans-unit id="product.price">
         <source>product.price</source>
-        <target>Stk. pris</target>
+        <target>Qty. price</target>
       </trans-unit>
       <trans-unit id="product.total">
         <source>product.total</source>
-        <target>I alt</target>
+        <target>Total</target>
       </trans-unit>
-
       <trans-unit id="total.excl_vat">
         <source>total.excl_vat</source>
-        <target>Total ekskl. fragt og ekspeditionsgebyr</target>
+        <target>Subtotal excl. handling fee and shipping</target>
       </trans-unit>
       <trans-unit id="total.vat">
         <source>total.vat</source>
-        <target>Moms udgør</target>
+        <target>VAT</target>
       </trans-unit>
       <trans-unit id="total.incl_vat">
         <source>total.incl_vat</source>
-        <target>Total inkl. fragt, moms og ekspeditionsgebyr</target>
+        <target>Subtotal incl. VAT, handling fee and shipping</target>
       </trans-unit>
-
       <trans-unit id="expected_at">
         <source>expected_at</source>
-        <target>Forventet ekspeditionstid</target>
+        <target>Your order will be shipped from our warehouse at the latest</target>
       </trans-unit>
-
       <trans-unit id="my.account.info">
         <source>my.account.info</source>
-        <target>Se dine ordrer, ret dine personlige oplysninger, ret adgangskode og meget mere.</target>
+        <target>View your order and much more.</target>
       </trans-unit>
       <trans-unit id="my.account.username">
         <source>my.account.username</source>
-        <target>Brugernavn</target>
+        <target>User</target>
       </trans-unit>
       <trans-unit id="my.account.password">
         <source>my.account.password</source>
-        <target>Kodeord</target>
+        <target>Password</target>
       </trans-unit>
       <trans-unit id="shipping.fee">
         <source>shipping.fee</source>
@@ -212,6 +193,43 @@
       <trans-unit id="shipping.fee.description">
         <source>shipping.fee.description</source>
         <target>A handling fee of %amount% are added to all orders</target>
+      </trans-unit>
+
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Basket</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Continue shopping</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Proceed</target>
+      </trans-unit>
+      <trans-unit id="cart.is.empty">
+        <source>cart.is.empty</source>
+        <target>Your cart is currently empty.</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>no.such.product.in.cart</source>
+        <target>No such product in your cart.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Note:</strong> If your order contains items with shipping dates, we ship your order when all items are in stock.]]></target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Back</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Confirm Order</target>
       </trans-unit>
     </body>
   </file>

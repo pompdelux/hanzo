@@ -43,6 +43,14 @@
                 <source>My account - Login</source>
                 <target>My account - Login</target>
             </trans-unit>
+            <trans-unit id="my.account">
+                <source>my.account</source>
+                <target>Min side</target>
+            </trans-unit>
+            <trans-unit id="my.account.logout">
+                <source>my.account.logout</source>
+                <target>Log ud</target>
+            </trans-unit>
 
 <!-- create account -->
             <trans-unit id="51">
@@ -97,6 +105,10 @@
                 <source>Country</source>
                 <target>Country</target>
             </trans-unit>
+            <trans-unit id="Countries id">
+                <source>Countries id</source>
+                <target>Country</target>
+            </trans-unit>
             <trans-unit id="64" approved="no">
                 <source>account.created</source>
                 <target>Din konto er nu oprettet.</target>
@@ -133,9 +145,9 @@
                 <source>nno.fetch</source>
                 <target>Get</target>
             </trans-unit>
-            <trans-unit id="71">
+            <trans-unit id="create.accept">
                 <source>create.accept</source>
-                <target>I confirm the above order and confirm<br/>that I have read and accept POMPdeLUX terms and conditions</target>
+                <target><![CDATA[I confirm the above order and confirm<br>that I have read and accept POMPdeLUX terms and conditions]]></target>
             </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>
@@ -152,10 +164,6 @@
             <trans-unit id="75" approved="no">
                 <source>create.nno.no_address_found</source>
                 <target>Der blev ikke fundet nogen adresse på det indtastede telefonnummer.</target>
-            </trans-unit>
-            <trans-unit id="76">
-                <source>The password fields must match.</source>
-                <target>The password fields must match.</target>
             </trans-unit>
             <trans-unit id="77">
                 <source>The email fields must match.</source>
@@ -251,9 +259,3 @@
         </body>
     </file>
 </xliff>
-<!--
-            <trans-unit id="">
-                <source></source>
-                <target></target>
-            </trans-unit>
- -->

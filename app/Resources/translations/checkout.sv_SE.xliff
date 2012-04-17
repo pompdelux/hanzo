@@ -214,6 +214,43 @@
         <source>shipping.fee.description</source>
         <target>Det läggs på en expeditionsavgift på %amount% på alla ordrar.</target>
       </trans-unit>
+
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Korg</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Shoppa vidare</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Fortsätt</target>
+      </trans-unit>
+      <trans-unit id="cart.is.empty">
+        <source>cart.is.empty</source>
+        <target>Du har pt. ikke nogen vare i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="42" approved="no">
+        <source>no.such.product.in.cart</source>
+        <target>Det efterspurgte produkt er ikke i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Observera:</strong> Om din order innehåller varor med olika sändningsdatum, skickas din order först när samtliga varor finns på lager.]]></target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Tillbaka</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Ändra</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Bekräfta order</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

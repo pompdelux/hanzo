@@ -2,17 +2,7 @@
 
 {% block content %}
 
-  <ul id="checkout-steps">
-    <li class="current">{{ "1. Basket"|trans }}</li>
-    <li>{{ "2. Delivery options"|trans }}</li>
-    <li>{{ "3. Payment options"|trans }}</li>
-    <li>{{ "4. Confirm"|trans }}</li>
-    <li>{{ "5. Payment"|trans }}</li>
-    <li>{{ "6. Order confirmation"|trans }}</li>
-  </ul>
-
-  <h1>{{ "Step 1 of 6 - Basket"|trans }}</h1>
-
+  <h1>{{ "basket"|trans({}, 'checkout') }}</h1>
 
   {% include 'BasketBundle:Default:block.html.twig' %}
 

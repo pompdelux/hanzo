@@ -5,11 +5,11 @@
     <table class="product-table">
       <thead>
         <tr>
-          <th class="left">{{ "Products"|trans }}</th>
-          <th class="right">{{ "Latest shipment date"|trans }}</th>
-          <th class="right">{{ "Price"|trans }}</th>
-          <th class="center">{{ "Quantity"|trans }}</th>
-          <th class="right">{{ "Total"|trans }}</th>
+          <th class="left">{{ "products"|trans }}</th>
+          <th class="right">{{ "latest.shipment.date"|trans }}</th>
+          <th class="right">{{ "price"|trans }}</th>
+          <th class="center">{{ "quantity"|trans }}</th>
+          <th class="right">{{ "total"|trans }}</th>
         {% if embedded == false %}
           <th class=""></th>
         {% endif %}
@@ -23,11 +23,11 @@
             <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
               <a href="{{ product.url }}">{{ product.products_name }}</a>
               <div class="size">
-                <label>{{ "Size"|trans }}:</label>
+                <label>{{ "size"|trans }}:</label>
                 <span>{{ product.products_size }}</span>
               </div>
               <div class="color">
-                <label>{{ "Color"|trans }}:</label>
+                <label>{{ "color"|trans }}:</label>
                 <span>{{ product.products_color }}</span>
               </div>
             </div>
@@ -42,8 +42,8 @@
           <td class="right total">{{ (product.price * product.quantity)|money }}</td>
         {% if embedded == false %}
           <td class="actions">
-            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"Delete"|trans }) }}</a>
-            <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"Edit"|trans }) }}</a>
+            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"delete"|trans }) }}</a>
+            <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"edit"|trans }) }}</a>
           </td>
         {% endif %}
         </tr>
@@ -52,7 +52,7 @@
     {% if embedded == false %}
       <tfoot>
         <tr>
-          <td colspan="4">{{ "Total"|trans }}:</td>
+          <td colspan="4">{{ "total"|trans }}:</td>
           <td class="right total">{{ total|money }}</td>
           <td></td>
         </tr>
@@ -74,8 +74,8 @@
     {% endif %}
 
     <div class="buttons">
-      <a class="button left" href="{{ continue_shopping }}">{{ "Continue shopping"|trans }}</a>
-      <a class="button right proceed" href="{{ url('_checkout') }}">{{ "Proceed"|trans }}</a>
+      <a class="button left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
+      <a class="button right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
     </div>
   {% endif %}
 
@@ -84,8 +84,8 @@
   {% endif %}
 
 {% else %}
-  <p>{{ "Your cart is currently empty."|trans }}</p>
+  <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
   <div class="buttons">
-    <a class="button left" href="{{ continue_shopping }}">{{ "Continue shopping"|trans }}</a>
+    <a class="button left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
   </div>
 {% endif %}

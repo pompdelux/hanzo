@@ -10,7 +10,6 @@
         <source>err.unknown_shipping_method</source>
         <target>Ukendt leveringsform</target>
       </trans-unit>
-
       <trans-unit id="checkout.success.title">
         <source>checkout.success.title</source>
         <target>Ordrebekræftelse</target>
@@ -48,7 +47,6 @@
           </p>
         ]]></target>
       </trans-unit>
-
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
         <target>Godkend</target>
@@ -73,7 +71,6 @@
         <source>shipping.address</source>
         <target>Leveringsadresse</target>
       </trans-unit>
-
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
         <target>Leveringsadresse</target>
@@ -82,7 +79,6 @@
         <source>shipping.address.overnight.edit</source>
         <target>» Ret døgnpostadresse</target>
       </trans-unit>
-
       <trans-unit id="shipping.address.no_overnight">
         <source>shipping.address.no_overnight</source>
         <target>Ingen døgn boks adresse oprettet</target>
@@ -103,7 +99,6 @@
         <source>payment.text</source>
         <target>Vælg hvordan du vil betale denne ordre.</target>
       </trans-unit>
-
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
         <target>Momsbeløb</target>
@@ -116,7 +111,6 @@
         <source>confirm.total</source>
         <target>Samlet Beløb</target>
       </trans-unit>
-
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
         <target>Betaling på konto</target>
@@ -141,12 +135,10 @@
         <source>payment.fee</source>
         <target>Betalingsgebyr</target>
       </trans-unit>
-
       <trans-unit id="customer.id">
         <source>customer.id</source>
         <target>Kundenummer</target>
       </trans-unit>
-
       <trans-unit id="quantity">
         <source>quantity</source>
         <target>Antal</target>
@@ -175,7 +167,6 @@
         <source>product.total</source>
         <target>I alt</target>
       </trans-unit>
-
       <trans-unit id="total.excl_vat">
         <source>total.excl_vat</source>
         <target>Total ekskl. fragt og ekspeditionsgebyr</target>
@@ -188,12 +179,10 @@
         <source>total.incl_vat</source>
         <target>Total inkl. fragt, moms og ekspeditionsgebyr</target>
       </trans-unit>
-
       <trans-unit id="expected_at">
         <source>expected_at</source>
         <target>Forventet ekspeditionstid</target>
       </trans-unit>
-
       <trans-unit id="my.account.info">
         <source>my.account.info</source>
         <target>Se dine ordrer, ret dine personlige oplysninger, ret adgangskode og meget mere.</target>
@@ -213,6 +202,42 @@
       <trans-unit id="shipping.fee.description">
         <source>shipping.fee.description</source>
         <target>Alle ordrer pålægges et ekspeditionsgebyr på %amount%</target>
+      </trans-unit>
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Kurv</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Shop videre</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Fortsæt</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>cart.is.empty</source>
+        <target>Du har pt. ikke nogen vare i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="no.such.product.in.cart">
+          <source>no.such.product.in.cart</source>
+          <target>Det efterspurgte produkt er ikke i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Bemærk:</strong> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på vores lager.]]></target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Tilbage</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Ret</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Gå til betaling</target>
       </trans-unit>
     </body>
   </file>

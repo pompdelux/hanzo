@@ -32,7 +32,8 @@ class GothiaApi
 
         // FIXME: hardcoded vars:
         $this->settings['test'] = true;
-        $this->settings['active'] = true;
+
+        $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
         // Live settings
         /*$this->settings = array(

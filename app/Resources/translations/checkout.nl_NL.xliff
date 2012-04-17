@@ -212,6 +212,43 @@
         <source>shipping.fee.description</source>
         <target>Op alle orders worden %amount% administratiekosten gelegd.</target>
       </trans-unit>
+
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Winkelmandje</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Door met winkelen</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Ga door</target>
+      </trans-unit>
+      <trans-unit id="cart.is.empty">
+        <source>cart.is.empty</source>
+        <target>Du har pt. ikke nogen vare i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="no.such.product.in.cart">
+        <source>no.such.product.in.cart</source>
+        <target>Det efterspurgte produkt er ikke i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Let op:</strong> Als je order artikelen bevat die niet op voorraad zijn, versturen we je order pas als we alle artikelen op voorraad hebben.]]></target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Terug</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Wijzig</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Ga naar betalen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

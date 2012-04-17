@@ -2,183 +2,106 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-<!-- main -->
-            <trans-unit id="1">
-                <source>Home</source>
+            <trans-unit id="home">
+                <source>home</source>
                 <target>Til forsiden</target>
             </trans-unit>
-            <trans-unit id="2">
-                <source>my.account</source>
-                <target>Min side</target>
-            </trans-unit>
-            <trans-unit id="3">
-                <source>Show basket</source>
+            <trans-unit id="show.basket">
+                <source>show.basket</source>
                 <target>Vis kurv</target>
             </trans-unit>
-            <trans-unit id="4">
-                <source>Choose</source>
+            <trans-unit id="choose">
+                <source>choose</source>
                 <target>Vælg</target>
             </trans-unit>
-            <trans-unit id="5">
-                <source>Quantity</source>
+            <trans-unit id="quantity">
+                <source>quantity</source>
                 <target>Antal</target>
             </trans-unit>
-            <trans-unit id="32">
-                <source>Loading</source>
+            <trans-unit id="loading">
+                <source>loading</source>
                 <target>Loading</target>
             </trans-unit>
-
-<!-- category -->
-            <trans-unit id="12">
-                <source>Click for more information about %name%.</source>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
                 <target>Klik her for at mere information om %name%.</target>
             </trans-unit>
-            <trans-unit id="13">
-                <source>All products in this category is out of stock.</source>
+            <trans-unit id="all.products.out.of.stock">
+                <source>all.products.out.of.stock</source>
                 <target>Alle varer i denne kategori er udsolgte.</target>
             </trans-unit>
-            <trans-unit id="14">
-                <source>Show previous page</source>
+            <trans-unit id="pager.previous.page">
+                <source>pager.previous.page</source>
                 <target>Vis forige side</target>
             </trans-unit>
-            <trans-unit id="15">
-                <source>Previous</source>
+            <trans-unit id="previous">
+                <source>previous</source>
                 <target>Forige</target>
             </trans-unit>
-            <trans-unit id="16">
-                <source>Show page %page%</source>
+            <trans-unit id="pager.page">
+                <source>pager.page</source>
                 <target>Vis side %page%</target>
             </trans-unit>
-            <trans-unit id="17">
-                <source>Show next page</source>
+            <trans-unit id="pager.next.page">
+                <source>pager.next.page</source>
                 <target>Vis næste side</target>
             </trans-unit>
-            <trans-unit id="18">
-                <source>Next</source>
+            <trans-unit id="next">
+                <source>next</source>
                 <target>Næste</target>
             </trans-unit>
-
-<!-- product page -->
-            <trans-unit id="6">
-                <source>Product details</source>
+            <trans-unit id="product.details">
+                <source>product.details</source>
                 <target>Varebeskrivelse</target>
             </trans-unit>
-            <trans-unit id="7">
-                <source>Care instructions</source>
+            <trans-unit id="care.instructions">
+                <source>care.instructions</source>
                 <target>Vaskeanvisning</target>
             </trans-unit>
-
-
-<!-- basket -->
-            <trans-unit id="8">
-                <source>Add to basket</source>
+            <trans-unit id="add.to.basket">
+                <source>add.to.basket</source>
                 <target>Læg i kurv</target>
             </trans-unit>
-            <trans-unit id="9">
-                <source>"%product%" just added to your cart</source>
+            <trans-unit id="product.added.to.cart">
+                <source>product.added.to.cart</source>
                 <target>"%product%" er nu lagt i din kurv</target>
             </trans-unit>
-            <trans-unit id="11">
-                <source>"%product%" is out of stock</source>
+            <trans-unit id="product.out.of.stock">
+                <source>product.out.of.stock</source>
                 <target>"%product%" er desværre udsolgt</target>
             </trans-unit>
-
-            <trans-unit id="19">
-                <source>Products</source>
+            <trans-unit id="products">
+                <source>products</source>
                 <target>Produkt(er)</target>
             </trans-unit>
-            <trans-unit id="20">
-                <source>Latest shipment date</source>
+            <trans-unit id="latest.shipment.date">
+                <source>latest.shipment.date</source>
                 <target>Afsendes senest</target>
             </trans-unit>
-            <trans-unit id="21">
-                <source>Price</source>
+            <trans-unit id="price">
+                <source>price</source>
                 <target>Pris</target>
             </trans-unit>
-            <trans-unit id="22">
-                <source>Quantity</source>
-                <target>Antal</target>
-            </trans-unit>
-            <trans-unit id="23">
-                <source>Total</source>
+            <trans-unit id="total">
+                <source>total</source>
                 <target>Samlet Beløb</target>
             </trans-unit>
-            <trans-unit id="24">
-                <source>Edit</source>
+            <trans-unit id="edit">
+                <source>edit</source>
                 <target>Rediger</target>
             </trans-unit>
-            <trans-unit id="25">
-                <source>Delete</source>
+            <trans-unit id="delete">
+                <source>delete</source>
                 <target>Slet</target>
             </trans-unit>
-            <trans-unit id="26">
-                <source>Size</source>
+            <trans-unit id="size">
+                <source>size</source>
                 <target>Size</target>
             </trans-unit>
-            <trans-unit id="27">
-                <source>Color</source>
+            <trans-unit id="color">
+                <source>color</source>
                 <target>Color</target>
             </trans-unit>
-
-<!-- checkout -->
-            <trans-unit id="28">
-                <source>Step 1 of 6 - Basket</source>
-                <target>Trin 1 af 6 - Kurv</target>
-            </trans-unit>
-            <trans-unit id="29">
-                <source>1. Basket</source>
-                <target>1. Kurv</target>
-            </trans-unit>
-            <trans-unit id="30">
-                <source>2. Delivery options</source>
-                <target>2. Fragttype</target>
-            </trans-unit>
-            <trans-unit id="31">
-                <source>3. Payment options</source>
-                <target>3. Betalingsform</target>
-            </trans-unit>
-            <trans-unit id="33">
-                <source>4. Confirm</source>
-                <target>4. Godkend</target>
-            </trans-unit>
-            <trans-unit id="34">
-                <source>5. Payment</source>
-                <target>5. Betaling</target>
-            </trans-unit>
-            <trans-unit id="35">
-                <source>6. Order confirmation</source>
-                <target>6. Ordrebekræftelse</target>
-            </trans-unit>
-             <trans-unit id="36">
-                <source>Continue shopping</source>
-                <target>Shop videre</target>
-            </trans-unit>
-             <trans-unit id="37">
-                <source>Proceed</source>
-                <target>Fortsæt</target>
-            </trans-unit>
-             <trans-unit id="38">
-                <source>Your cart is currently empty.</source>
-                <target>Du har pt. ikke nogen vare i din kurv.</target>
-            </trans-unit>
-            <trans-unit id="39">
-                <source><![CDATA[<strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.]]></source>
-                <target><![CDATA[<strong>Bemærk:</strong> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på vores lager.]]></target>
-            </trans-unit>
-            <trans-unit id="40">
-                <source>If your order contains items with shipping dates, we ship your order when all items are in stock.</source>
-                <target>Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på lager.</target>
-            </trans-unit>
-            <trans-unit id="41">
-                <source><![CDATA[<p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>]]></source>
-                <target><![CDATA[<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.</p>]]></target>
-            </trans-unit>
-            <trans-unit id="42">
-                <source>No such product in your cart.</source>
-                <target>Det efterspurgte produkt er ikke i din kurv.</target>
-            </trans-unit>
-
-<!-- from account/create -->
             <trans-unit id="acc.1">
                 <source>Email address</source>
                 <target>E-mailadresse</target>
@@ -207,12 +130,10 @@
                 <source>event.id</source>
                 <target>Arrangenments nr.</target>
             </trans-unit>
-
             <trans-unit id="store.address">
                 <source>store.address</source>
                 <target>POMPdeLUX ApS · Møgelhøj 8 DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · +45 8678 7871</target>
             </trans-unit>
-
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
                 <target><![CDATA[
@@ -225,14 +146,6 @@
                   <p class="last">Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og følge trin 1 til 6. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.</p>
                 ]]></target>
             </trans-unit>
-
         </body>
     </file>
 </xliff>
-
-<!--
-            <trans-unit id="">
-                <source></source>
-                <target></target>
-            </trans-unit>
- -->

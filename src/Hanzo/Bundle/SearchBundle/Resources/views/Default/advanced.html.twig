@@ -31,7 +31,7 @@
     {% for product in result.products %}
 
       <div class="block block-num-{{ loop.index }}{% if loop.index is divisibleby(6) %} last{% endif %}">
-        <a href="{{ product.url }}" title="{{ "Click for more information about %name%."|trans({'%name%' : product.title}) }}">
+        <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
           {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
           <span class="title">{{ product.title }}</span>
           <span class="prices">

@@ -213,6 +213,43 @@
         <source>shipping.fee.description</source>
         <target>Alle ordrer pålegges et ekspedisjonsgebyr på %amount%</target>
       </trans-unit>
+
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Trinn 1 av 6 - Kurv</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Shop videre</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Fortsæt</target>
+      </trans-unit>
+      <trans-unit id="cart.is.empty">
+        <source>cart.is.empty</source>
+        <target>Du har pt. ikke nogen vare i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="no.such.product.in.cart">
+        <source>no.such.product.in.cart</source>
+        <target>Det efterspurgte produkt er ikke i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Bemærk:</strong> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på vores lager.]]></target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Tilbake</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Rett</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Bekreft ordren</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
