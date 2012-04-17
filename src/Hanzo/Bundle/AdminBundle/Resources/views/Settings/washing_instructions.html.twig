@@ -62,6 +62,7 @@
       <th>{{ 'admin.washing.locale'|trans({}, 'admin') }}</th>
       <th>{{ 'admin.washing.description'|trans({}, 'admin') }}</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -73,6 +74,11 @@
       <td>
         <a href="{{ path('admin_settings_washing_instructions_edit', {'id' : washing_instruction.id}) }}">
           {{ 'admin.washing.edit'|trans({}, 'admin') }}
+        </a>
+      </td>
+      <td>
+        <a href="{{ path('admin_settings_washing_instructions_delete', {'id' : washing_instruction.id, 'locale' : washing_instruction.locale }) }}" class="delete">
+          {{ 'admin.washing.delete'|trans({}, 'admin') }}
         </a>
       </td>
     </tr>
