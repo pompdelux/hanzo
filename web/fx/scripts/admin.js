@@ -26,6 +26,11 @@
         $("#select-category div").slideToggle();
       });
 
+      $("#select-code a.open-menu").click(function(e) {
+        e.preventDefault();
+        $("#select-code div").slideToggle();
+      });
+
       /* Admin Sortable list to show and update Cms pages' order*/
       $('#sortable-list').nestedSortable({
         listType: 'ul',

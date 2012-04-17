@@ -18,6 +18,25 @@ admin_settings_domain:
         _controller: AdminBundle:Settings:domain
         domain_key: 'COM'
 
+admin_settings_washing_instructions:
+    pattern:  /admin/settings/washinginstructions/{code}
+    defaults: 
+        _controller: AdminBundle:Settings:washingInstructionsIndex
+        code: null
+    requirements:
+        code: \d+
+admin_settings_washing_instructions_locale:
+    pattern:  /admin/settings/washinginstructions/locale/{locale}
+    defaults: { _controller: AdminBundle:Settings:washingInstructionsIndex }
+
+admin_settings_washing_instructions_edit:
+    pattern:  /admin/settings/washinginstructions/edit/{id}
+    defaults: 
+        _controller: AdminBundle:Settings:washingInstructionsEdit
+        id: null
+    requirements:
+        id: \d+
+
 admin_category:
     pattern:  /admin/category/
     defaults: { _controller: AdminBundle:Category:index }
