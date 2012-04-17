@@ -245,7 +245,7 @@ class Tools
      * @param string $format see php.net for format documentation
      * @return string
      */
-    public static function moneyFormat($number, $format = '%i')
+    public static function moneyFormat($number, $format = '%.2i')
     {
         return money_format($format, $number);
     }
