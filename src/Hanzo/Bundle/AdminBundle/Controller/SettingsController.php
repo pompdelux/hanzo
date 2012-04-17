@@ -77,7 +77,7 @@ class SettingsController extends Controller
         foreach ($global_settings as $setting) {
             $form->add($setting->getCKey() . '__' . $setting->getNs(), 'text',
                 array(
-                    'label' => $setting->getTitle(),
+                    'label' => $setting->getTitle() . ' (' . $setting->getCKey() . ' - ' . $setting->getNs() . ')',
                     'required' => false
                     )
                 );
@@ -111,16 +111,18 @@ class SettingsController extends Controller
 
                 if('_token' == $key_ns) continue;
 
-                $keys = explode('__',$key_ns);
-                $c_key = $keys[0];
-                $ns = $keys[1];
-                $domain_key = $keys[2];
+                $keys = explode('_',$key_ns);
+                // $keys = explode('__',$key_ns);
+                // $c_key = $keys[0];
+                // $ns = $keys[1];
+                // $domain_key = $keys[2];
 
                 try{
                     $setting = DomainsSettingsQuery::create()
-                        ->filterByNs($ns)
-                        ->filterByDomainKey($domain_key)
-                        ->findOneByCKey($c_key);
+                        // ->filterByNs($ns)
+                        // ->filterByDomainKey($domain_key)
+                        // ->findOneByCKey($c_key);
+                        ->findOneById($keys[1]);
 
                     if ($setting && '' === $c_value) {
 
@@ -157,24 +159,25 @@ class SettingsController extends Controller
             ->find()
         ;
 
-        //Fields names: CKEY__NS__DOMAIN
         $domain_settings_list = array();
         foreach ($domain_settings as $setting) {
-            $domain_settings_list[$setting->getCKey() . '__' . $setting->getNs() . '__' . $setting->getDomainKey()] = $setting->getCValue();
+            $domain_settings_list['key_'. $setting->getId()] = $setting->getCValue();
         }
 
         $form = $this->createFormBuilder($domain_settings_list);
         foreach ($domain_settings as $setting) {
-            $form->add($setting->getCKey() . '__' . $setting->getNs() . '__' . $setting->getDomainKey(), 'text',
-                array('required' => false)
-                );
+            $form->add('key_'. $setting->getId(), 'text',
+                array(
+                    'required' => false,
+                    'label' => $setting->getCKey() . ' - ' . $setting->getNs()
+                )
+            );
         }
 
         // End of domain settings Form
 
-        $domains_availible = DomainsQuery::Create()
-        ->find()
-        ;
+        $domains_availible = DomainsQuery::Create()->find();
+
         return $this->render('AdminBundle:Settings:domain.html.twig', array(
             'form'      => $form->getForm()->createView(),
             'add_domain_setting_form' => $form_add_domain_setting->createView(),
