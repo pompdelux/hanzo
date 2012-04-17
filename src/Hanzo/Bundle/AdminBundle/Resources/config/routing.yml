@@ -140,15 +140,16 @@ admin_customer:
 admin_customer_orders:
     pattern:  /admin/customer/orders/{id}/{pager}
     defaults:
-        _controller: AdminBundle:Customers:ordersList
+        _controller: AdminBundle:Orders:index
         pager: 1
+        id: null
     requirements:
         id: \d+
 
 admin_customer_order:
     pattern:  /admin/customer/orders/id/{order_id}
     defaults:
-        _controller: AdminBundle:Customers:orderView
+        _controller: AdminBundle:Orders:view
     requirements:
         order_id: \d+
 
@@ -164,10 +165,6 @@ admin_consultant:
         _controller: AdminBundle:Consultants:view
     requirements:
         id: \d+
-
-admin_orders:
-    pattern:  /admin/orders/
-    defaults: { _controller: AdminBundle:Orders:index }
 
 admin_cache:
     pattern:  /admin/cache/
