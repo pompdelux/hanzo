@@ -1,0 +1,73 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <form action="{{ path('admin_customers') }}" method="get">
+        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
+        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+      </form>
+    </li>
+    <li>
+      <a href="{{ path('admin_customers') }}">
+        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_consultants') }}">
+        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'admin.customers.orders.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+{% if orders|length > 0 %}
+
+<p>{{ 'admin.customers.orders.description.text'|trans({}, 'admin') }}</p>
+
+<table id="orders" class="list">
+  <thead>
+    <tr>
+      <th>{{ 'admin.customer.orders.orders_id'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.customer.orders.date'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.customer.orders.totallines'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.customer.orders.totalprice'|trans({}, 'admin') }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in orders %}
+    <tr>
+      <td>{{ order.id }}</td>
+      <td>{{ order.finishedat }}</td>
+      <td>{{ order.totallines }} {{ 'admin.customer.orders.pieces'|trans({}, 'admin') }}</td>
+      <td>{{ order.totalprice|number_format(2, ',', '.') }} ,-</td>
+      <th>
+        <a href="{{ path('admin_customer_order', {'order_id' : order.id}) }}">
+          {{ 'admin.customer.orders.view'|trans({}, 'admin') }}
+        </a>
+      </th>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+  {% if paginate %}
+    {% import "::macro.pager.html.twig" as p %}
+    {{ p.pager(paginate, 'orders') }}
+  {% endif %}
+
+{% else %}
+
+<p>{{ 'admin.customers.orders.no.orders.text'|trans({}, 'admin') }}</p>
+
+{% endif %}
+{% endblock %}
