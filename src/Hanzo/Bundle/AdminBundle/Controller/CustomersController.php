@@ -5,12 +5,12 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+Hanzo\Core\Tools;
 
 use Hanzo\Model\CustomersQuery,
-    Hanzo\Model\OrdersQuery,
-    Hanzo\Model\OrdersLinesQuery,
-    Hanzo\Model\OrdersAttributesQuery;
+Hanzo\Model\OrdersQuery,
+Hanzo\Model\OrdersLinesQuery,
+Hanzo\Model\OrdersAttributesQuery;
 
 class CustomersController extends Controller
 {
@@ -157,7 +157,6 @@ class CustomersController extends Controller
             if ($form->isValid()) {
                 
                 /**
-                 * @todo Skal der laves noget MD5 på password? hvad nu hvis man ændre i password_clear?
                  * @todo Synkronisering til AX
                  */
 
