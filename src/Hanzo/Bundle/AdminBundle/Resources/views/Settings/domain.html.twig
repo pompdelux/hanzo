@@ -36,7 +36,7 @@
 
 <div>
   <p>{{ 'admin.domain.settings.description.text'|trans({}, 'admin') }}</p>
-  <form id="settings-list" action="{{ path('admin_settings_domain') }}" method="post" {{ form_enctype(form) }}>
+  <form id="settings-list" action="{{ path('admin_settings_domain', {'domain_key' : domain}) }}" method="post" {{ form_enctype(form) }}>
     <div>
       {{ form_rest(form) }}
       {{ form_row(form._token) }}
