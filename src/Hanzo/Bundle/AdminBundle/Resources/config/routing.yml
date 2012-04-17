@@ -138,11 +138,19 @@ admin_customer:
         id: \d+
 
 admin_customer_orders:
-    pattern:  /admin/customer/orders/{id}
+    pattern:  /admin/customer/orders/{id}/{pager}
+    defaults:
+        _controller: AdminBundle:Customers:ordersList
+        pager: 1
+    requirements:
+        id: \d+
+
+admin_customer_order:
+    pattern:  /admin/customer/orders/id/{order_id}
     defaults:
         _controller: AdminBundle:Customers:orderView
     requirements:
-        id: \d+
+        order_id: \d+
 
 admin_consultants:
     pattern:  /admin/consultants/{pager}

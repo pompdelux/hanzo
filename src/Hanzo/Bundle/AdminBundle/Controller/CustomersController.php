@@ -7,7 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools;
 
-use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\CustomersQuery,
+    Hanzo\Model\OrdersQuery,
+    Hanzo\Model\OrdersLinesQuery,
+    Hanzo\Model\OrdersAttributesQuery;
 
 class CustomersController extends Controller
 {
@@ -19,7 +22,7 @@ class CustomersController extends Controller
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
         $customers = null;
-        
+
         if (isset($_GET['q'])) {
             $q = $this->getRequest()->get('q', null);
             $q = '%'.$q.'%';
@@ -167,6 +170,92 @@ class CustomersController extends Controller
         return $this->render('AdminBundle:Customers:view.html.twig', array(
             'form'      => $form->createView(),
             'customer'  => $customer
+        ));
+    }
+
+    public function ordersListAction($id, $pager)
+    {
+        $hanzo = Hanzo::getInstance();
+        $container = $hanzo->container;
+        $route = $container->get('request')->get('_route');
+        $router = $container->get('router');
+
+        $orders = OrdersQuery::create()
+            ->filterByCustomersId($id)
+            ->orderByCreatedAt()
+            ->orderById()
+            ->paginate($pager, 10)
+        ;
+
+        $order_data = array();
+
+        foreach ($orders as $order) {
+
+            $orders_count = OrdersLinesQuery::create()
+                ->filterByOrdersId($order->getId())
+                ->withColumn('SUM(orders_lines.quantity)','TotalLines')
+                ->withColumn('SUM(orders_lines.price)','TotalPrice')
+                ->groupByOrdersId()
+                ->findOne()
+            ;
+
+            $order_data[] = array(
+                'id' => $order->getId(),
+                'finishedat' => $order->getFinishedAt(),
+                'totallines' => $orders_count->getTotalLines(),
+                'totalprice' => $orders_count->getTotalPrice()
+            );
+
+        }
+
+        $paginate = null;
+        if ($orders->haveToPaginate()) {
+
+            $pages = array();
+            foreach ($orders->getLinks(20) as $page) {
+                $pages[$page] = $router->generate($route, array('id' => $id, 'pager' => $page), TRUE);
+
+            }
+            
+            $paginate = array(
+                'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('id' => $id, 'pager' => $orders->getNextPage()), TRUE)),
+                'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('id' => $id, 'pager' => $orders->getPreviousPage()), TRUE)),
+
+                'pages' => $pages,
+                'index' => $pager
+            );
+        }
+
+        return $this->render('AdminBundle:Customers:ordersList.html.twig', array(
+            'orders'  => $order_data,
+            'paginate' => $paginate
+        ));
+    }
+
+    public function orderViewAction($order_id)
+    {
+        $order = OrdersQuery::create()
+            ->joinWithLanguages()
+            ->findOneById($order_id)
+        ;
+
+        $order_lines = OrdersLinesQuery::create()
+            ->filterByOrdersId($order_id)
+            ->orderByProductsSku()
+            ->find()
+        ;
+
+        $order_attributes = OrdersAttributesQuery::create()
+            ->filterByOrdersId($order_id)
+            ->orderByNs()
+            ->orderByCKey()
+            ->find()
+        ;
+
+        return $this->render('AdminBundle:Customers:orderView.html.twig', array(
+            'order'  => $order,
+            'order_lines' => $order_lines,
+            'order_attributes' => $order_attributes
         ));
     }
 }
