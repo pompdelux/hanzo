@@ -178,6 +178,13 @@ admin_consultants:
         _controller: AdminBundle:Consultants:index
         pager: 1
 
+admin_consultants_export:
+    pattern:  /admin/consultants/export/{start}/{end}
+    defaults: 
+        _controller: AdminBundle:Consultants:export
+        start: null
+        end: null
+
 admin_consultant:
     pattern:  /admin/consultant/{id}
     defaults:
