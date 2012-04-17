@@ -81,11 +81,12 @@ jms_security_extra:
 propel:
     dbal:
         driver:               %database_driver%
-        user:                 %database_user%
-        password:             %database_password%
-        dsn:                  mysql:host=%database_host%;dbname=%database_name%
+        # user:                 %database_user%
+        # password:             %database_password%
+        # dsn:                  mysql:host=%database_host%;dbname=%database_name%
         options:              {}
         attributes:           {}
+
     path:       "%kernel.root_dir%/../vendor/propel"
     phing_path: "%kernel.root_dir%/../vendor/phing"
     logging:    %kernel.debug%
@@ -97,18 +98,6 @@ propel:
 
 # redis configuration
 snc_redis:
-    # connections:
-    #     default:
-    #         alias:    default
-    #         host:     %redis_cache1_host%
-    #         port:     %redis_cache1_port%
-    #         database: %redis_cache1_database%
-    #         logging:  %kernel.debug%
-    #     session:
-    #         alias:    session
-    #         host:     %redis_session_host%
-    #         port:     %redis_session_port%
-    #         database: %redis_session_database%
     clients:
         default:
             type:   predis
