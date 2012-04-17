@@ -205,6 +205,14 @@
         <source>my.account.password</source>
         <target>Kodeord</target>
       </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Handling fee</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee.description">
+        <source>shipping.fee.description</source>
+        <target>A handling fee of %amount% are added to all orders</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

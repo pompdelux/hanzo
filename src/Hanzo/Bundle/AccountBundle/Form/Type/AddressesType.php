@@ -33,7 +33,7 @@ class AddressesType extends AbstractType
         if ( $this->countries instanceOf \PropelObjectCollection ) // Show a list of all countries
         {
           $choices = array();
-          foreach ($this->countries as $country) 
+          foreach ($this->countries as $country)
           {
             $choices[$country->getId()] = $country->getName();
           }

@@ -13,6 +13,7 @@ use Hanzo\Model\om\BaseOrders;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\OrdersStateLog;
 
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesQuery;
@@ -56,6 +57,18 @@ class Orders extends BaseOrders
     const TYPE_OUTSIDE_EVENT    =  -4;
     const TYPE_NORMAL           = -10;
 
+    private $state_message_map = array(
+        self::STATE_ERROR_PAYMENT => 'Payment error',
+        self::STATE_ERROR => 'General error',
+        self::STATE_BUILDING => 'Building order',
+        self::STATE_PRE_CONFIRM => 'Order in pre confirm state',
+        self::STATE_PRE_PAYMENT => 'Order in pre payment state',
+        self::STATE_POST_PAYMENT => 'Order in post confirm state',
+        self::STATE_PAYMENT_OK => 'Order payment confirmed',
+        self::STATE_PENDING => 'Order pending',
+        self::STATE_BEING_PROCESSED => 'Order beeing processed',
+        self::STATE_SHIPPED => 'Order shipped/done',
+    );
 
     /**
      * Create a new version of the current order.
@@ -664,6 +677,7 @@ class Orders extends BaseOrders
 
     /**
      * setDeliveryAddress
+     *
      * @param Addresses $address
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -720,6 +734,25 @@ class Orders extends BaseOrders
         }
 
         return parent::setPaymentGatewayId($gateway_id);
+    }
+
+
+    /**
+     * Wrapping the setState method to log all state changes
+     *
+     * @param int $v state id
+     * @return Orders The current object (for fluent API support)
+     */
+    public function setState($v)
+    {
+        $log = new OrdersStateLog();
+        $log->setOrdersId($this->getId());
+        $log->setState($v);
+        $log->setMessage($state_message_map[$v]);
+
+        $this->addOrdersStateLog($log);
+
+        return parent::setState($v);
     }
 
 } // Orders

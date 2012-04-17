@@ -4,11 +4,12 @@ namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
 use Exception;
 
-use Symfony\Component\HttpFoundation\Request;
-
 use Hanzo\Model\Orders;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
+
+use Symfony\Component\HttpFoundation\Request;
+
 
 class DibsApi
 {

@@ -204,6 +204,14 @@
         <source>my.account.password</source>
         <target>Kodeord</target>
       </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Administratiekosten</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee.description">
+        <source>shipping.fee.description</source>
+        <target>Op alle orders worden %amount% administratiekosten gelegd.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

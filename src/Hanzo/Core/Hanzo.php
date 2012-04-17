@@ -2,11 +2,10 @@
 
 namespace Hanzo\Core;
 
-use Hanzo\Model,
-    Hanzo\Model\SettingsQuery,
-    Hanzo\Model\LanguagesQuery,
-    Hanzo\Model\DomainsSettingsQuery
-;
+use Hanzo\Model;
+use Hanzo\Model\SettingsQuery;
+use Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\DomainsSettingsQuery;
 
 use Symfony\Component\Yaml\Yaml;
 

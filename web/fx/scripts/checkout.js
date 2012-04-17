@@ -156,11 +156,13 @@ var checkout = (function($) {
       var self = this;
       this.data.addresses = [];
       $(this.data.selector).find(".account-address-block").each(function() {
-//        console.log($(this).data('type'));
-        self.data.addresses.push($(this).data('type'));
+        if ($(this).data('type')) {
+          self.data.addresses.push($(this).data('type'));
+        }
       });
     };
     blocks.address.reveal = function() {
+      var self = this;
       this.data.state = false;
       $(this.data.selector).slideDown();
       var shippingMethod = blocks.shipping.data.selectedMethod;
@@ -200,12 +202,98 @@ var checkout = (function($) {
           break;
         case '12':
           this.data.state = false;
+          if ($('.checkout-block-type-overnightbox').length) {
+            this.data.state = true;
+          }
           this.update();
           $(this.data.selector +" "+ ".checkout-block-type-shipping").hide();
           $(this.data.selector +" "+ ".checkout-block-type-overnightbox").show();
-          // if not ok hide payment
         break;
       }
+
+      $('#checkout-block-address a').on('click', function(event) {
+        dialoug.loading($(this));
+
+        var shipping_id = $('input[name="shipping"]:checked').val();
+        var url = this.href+'/'+shipping_id;
+        var $target = $(this).closest('td');
+        event.preventDefault();
+
+        $.getJSON(url, function(result) {
+          $.colorbox({
+            // 'overlayClose' : false,
+            'escKey' : false,
+            'close' : '',
+            'html': result.data.html
+          });
+
+          dialoug.stopLoading();
+
+          var $form = $('#cboxLoadedContent form');
+
+          $form.on('click', 'input.button.left', function(event) {
+            event.preventDefault();
+            $.colorbox.close();
+          });
+
+          // autofill the city in dk/no/se
+          if ($form.data('callback') == 'postal') {
+            var $city = $('input#form_city', $form);
+            $city.attr('readonly', 'readonly');
+
+            var last_zip = '';
+            $form.on('keyup', 'input#form_postal_code', function(event) {
+              if (this.value.length > 2 && last_zip != this.value) {
+                last_zip = this.value;
+                var url = base_url+'service/get-city-from-zip/'+this.value;
+                $.getJSON(url, function(result) {
+                  if (result.status) {
+                    $city.val(result.data.city);
+                  }
+                });
+              }
+            });
+          }
+
+          $form.on('submit', function(event) {
+            event.preventDefault();
+            $('input', $form).removeClass('error');
+            $('div.error', $form).remove();
+
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+              if (result.status) {
+
+                var tpl = {
+                  10 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
+                  11 : '%company_name%<br>Att: %first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
+                  12 : '%first_name% %last_name%<br>%postal_code% %city%<br>Box: %address_line_1%',
+                };
+
+                var address = tpl[shipping_id]
+                  .replace('%first_name%', result.data.address.first_name)
+                  .replace('%last_name%', result.data.address.last_name)
+                  .replace('%postal_code%', result.data.address.postal_code)
+                  .replace('%city%', result.data.address.city)
+                  .replace('%address_line_1%', result.data.address.address_line_1)
+                  .replace('%country%', result.data.address.country)
+                ;
+
+                $('div.account-address-block', $target).html(address);
+                $.colorbox.close();
+
+                self.data.state = true;
+                self.update();
+              } else {
+                $form.prepend('<div class="error">'+result.message+'</div>');
+                $.each(result.data, function(index, data) {
+                  $('input#form_'+index, $form).addClass('error');
+                });
+                $.colorbox.resize();
+              }
+            }, 'json');
+          });
+        });
+      });
     };
 
     /**
@@ -220,6 +308,8 @@ var checkout = (function($) {
         self.data.selectedPaytype = $(this).val();
         self.data.state           = true;
         self.update();
+
+        dialoug.loading($(this).parent(), '', 'append');
 
         var $selectedInput = $(this);
         $(self.data.selector+' form input[type=radio]').each(function(item) {
@@ -254,6 +344,7 @@ var checkout = (function($) {
       var self = this;
         $.getJSON(base_url + 'checkout/summery', function(result) {
 
+        dialoug.stopLoading();
 
         var $container = $('#main #checkout-block-summery');
         if($container.length) {
@@ -267,6 +358,7 @@ var checkout = (function($) {
             $(item.data.selector).slideUp();
           }
         });
+
         $('#continue-button').hide();
 
         $('#checkout-block-summery').slideDown();
@@ -309,8 +401,7 @@ var checkout = (function($) {
         event.preventDefault();
 
         $.each(blocks, function(item) {
-          if ( this.data.state !== true )
-          {
+          if ( this.data.state !== true ) {
             //console.log(this.data.name +" does not have a ok state");
             this.setMessage( i18n.t('Not filled correctly'), 'error' );
             this.error();
@@ -328,19 +419,15 @@ var checkout = (function($) {
           type: 'post',
           dataType: 'json',
           success: function(data) {
-            if ( data.status )
-            {
+            if ( data.status ) {
               $.each(blocks, function(item) {
                 this.hide();
               });
 
               blocks.payment.execute();
-            }
-            else
-            {
+            } else {
               $.each(blocks, function(item) {
-                if ( this.data.name === data.data.name )
-                {
+                if ( this.data.name === data.data.name ) {
                   this.setMessage( data.message, 'error' );
                   this.error();
                   self.data.state = false;
@@ -355,12 +442,9 @@ var checkout = (function($) {
 
     blocks.confirm.reveal = function() {
       $(this.data.selector).slideDown();
-      //console.log('confirm reveal');
       var self = this;
       $.each(blocks, function(item) {
-        if ( this.data.name !== self.data.name && this.data.state !== true )
-        {
-          //console.log(this.data.name +" does not have a ok state");
+        if ( this.data.name !== self.data.name && this.data.state !== true ) {
           this.setMessage( i18n.t('Not filled correctly'), 'error' );
           this.error();
           self.data.state = false;

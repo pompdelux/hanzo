@@ -205,6 +205,14 @@
         <source>my.account.password</source>
         <target>Kodeord</target>
       </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Ekspeditionsgebyr</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee.description">
+        <source>shipping.fee.description</source>
+        <target>Alle ordrer pålegges et ekspedisjonsgebyr på %amount%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

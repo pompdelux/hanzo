@@ -3,8 +3,10 @@
 namespace Hanzo\Bundle\PaymentBundle\PayByBill;
 
 use Exception;
-use Symfony\Component\HttpFoundation\Request;
+
 use Hanzo\Model\Orders;
+
+use Symfony\Component\HttpFoundation\Request;
 
 class PayByBillApi
 {
