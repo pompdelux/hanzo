@@ -24,8 +24,8 @@ class CustomersController extends Controller
         $customers = null;
 
         if (isset($_GET['q'])) {
-            $q = $this->getRequest()->get('q', null);
-            $q = '%'.$q.'%';
+            $q_clean = $this->getRequest()->get('q', null);
+            $q = '%'.$q_clean.'%';
             /**
              * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
              */
@@ -42,6 +42,8 @@ class CustomersController extends Controller
                 ->filterByEmail($q)
                 ->_or()
                 ->filterByPhone($q)
+                ->_or()
+                ->filterById($q_clean)
                 ->orderByFirstName()
                 ->orderByLastName()
                 ->paginate($pager, 10)

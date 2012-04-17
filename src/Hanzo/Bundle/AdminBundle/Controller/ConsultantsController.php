@@ -23,8 +23,8 @@ class ConsultantsController extends Controller
 
         // Search parameter
         if (isset($_GET['q'])) {
-            $q = $this->getRequest()->get('q', null);
-            $q = '%'.$q.'%';
+            $q_clean = $this->getRequest()->get('q', null);
+            $q = '%'.$q_clean.'%';
 
             /**
              * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
@@ -38,6 +38,8 @@ class ConsultantsController extends Controller
                     ->filterByEmail($q)
                     ->_or()
                     ->filterByPhone($q)
+                    ->_or()
+                    ->filterByCustomersId($q_clean)
                     ->orderByFirstName()
                     ->orderByLastName()
                 ->endUse()
@@ -206,7 +208,6 @@ class ConsultantsController extends Controller
             if ($form->isValid()) {
                 
                 /**
-                 * @todo Skal der laves noget MD5 på password? hvad nu hvis man ændre i password_clear?
                  * @todo Synkronisering til AX
                  */
                 $data = $form->getData();
