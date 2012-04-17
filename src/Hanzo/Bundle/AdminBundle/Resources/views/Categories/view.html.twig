@@ -1,7 +1,15 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">
+        {{ 'admin.add.category'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
 <h1>{{ 'admin.category.edit.header.text'|trans({}, 'admin') }}</h1>
 
 {% if app.session.hasFlash('notice') %}

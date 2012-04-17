@@ -146,6 +146,18 @@
         <source>admin.category.edit.header.text</source>
         <target>Rediger Kategori</target>
       </trans-unit>
+      <trans-unit id="admin.add.category">
+        <source>admin.add.category</source>
+        <target>Opret ny kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.edit-link.text">
+        <source>admin.categories.list.edit-link.text</source>
+        <target>Ret kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.delete-link.text">
+        <source>admin.categories.list.delete-link.text</source>
+        <target>Slet kategori</target>
+      </trans-unit>
       <trans-unit id="admin.category.edit.description.text">
         <source>admin.category.edit.description.text</source>
         <target>Her kan du redigere tekster og andet på en kategori.</target>
