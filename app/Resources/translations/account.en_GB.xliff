@@ -43,6 +43,14 @@
                 <source>My account - Login</source>
                 <target>My account - Login</target>
             </trans-unit>
+            <trans-unit id="my.account">
+                <source>my.account</source>
+                <target>Min side</target>
+            </trans-unit>
+            <trans-unit id="my.account.logout">
+                <source>my.account.logout</source>
+                <target>Log ud</target>
+            </trans-unit>
 
 <!-- create account -->
             <trans-unit id="51">
@@ -133,9 +141,9 @@
                 <source>nno.fetch</source>
                 <target>Get</target>
             </trans-unit>
-            <trans-unit id="71">
+            <trans-unit id="create.accept">
                 <source>create.accept</source>
-                <target>I confirm the above order and confirm<br/>that I have read and accept POMPdeLUX terms and conditions</target>
+                <target><![CDATA[I confirm the above order and confirm<br>that I have read and accept POMPdeLUX terms and conditions]]></target>
             </trans-unit>
             <trans-unit id="72">
                 <source>create.newsletter</source>

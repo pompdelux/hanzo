@@ -214,6 +214,39 @@
         <source>shipping.fee.description</source>
         <target>Alle ordrer pålægges et ekspeditionsgebyr på %amount%</target>
       </trans-unit>
+
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Kurv</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Shop videre</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Fortsæt</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>cart.is.empty</source>
+        <target>Du har pt. ikke nogen vare i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="41">
+          <source><![CDATA[<p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>]]></source>
+          <target><![CDATA[<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="42">
+          <source>No such product in your cart.</source>
+          <target>Det efterspurgte produkt er ikke i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source><![CDATA[<strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.]]></source>
+        <target><![CDATA[<strong>Bemærk:</strong> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på vores lager.]]></target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>If your order contains items with shipping dates, we ship your order when all items are in stock.</source>
+        <target>Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på lager.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

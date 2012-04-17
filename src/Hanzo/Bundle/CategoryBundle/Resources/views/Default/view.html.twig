@@ -8,7 +8,7 @@
   {% for product in products %}
 
     <div class="block block-num-{{ loop.index }}">
-      <a href="{{ product.url }}" title="{{ "Click for more information about %name%."|trans({'%name%' : product.title}) }}">
+      <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
         {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
         <span class="title">{{ product.title }}</span>
         <span class="prices">
@@ -25,7 +25,7 @@
   {% else %}
 
     <div class="out-of-stock">
-      {% trans %}All products in this category is out of stock.{% endtrans %}
+      {{ 'all.products.out.of.stock'|trans }}
     </div>
 
   {% endfor %}

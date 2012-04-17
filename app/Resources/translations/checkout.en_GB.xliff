@@ -213,6 +213,39 @@
         <source>shipping.fee.description</source>
         <target>A handling fee of %amount% are added to all orders</target>
       </trans-unit>
+
+      <trans-unit id="basket">
+          <source>basket</source>
+          <target>Basket</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Continue shopping</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Proceed</target>
+      </trans-unit>
+      <trans-unit id="cart.is.empty">
+        <source>cart.is.empty</source>
+        <target>Your cart is currently empty.</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source><![CDATA[<p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>]]></source>
+        <target><![CDATA[<p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be     shipped from our warehouse at the latest: <strong>%date%</strong>.</p>]]></target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>No such product in your cart.</source>
+        <target>No such product in your cart.</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source><![CDATA[<strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.]]></source>
+        <target><![CDATA[<strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.]]></target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>If your order contains items with shipping dates, we ship your order when all items are in stock.</source>
+        <target>If your order contains items with shipping dates, we ship your order when all items are in stock.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

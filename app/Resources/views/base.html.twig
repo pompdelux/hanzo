@@ -61,7 +61,7 @@ var cdn_url = '{{ cdn }}';
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
 
 <div id="container">
-  <a href="{{ path('_homepage') }}" title="{{ "Home"|trans }}">
+  <a href="{{ path('_homepage') }}" title="{{ "home"|trans }}">
     {{ fx_image_tag('images/POMPdeLUX_logo.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
   </a>
 
@@ -102,9 +102,9 @@ var cdn_url = '{{ cdn }}';
         </div>
       </li>
       <li id="mini-basket" class="basket">
-        <a href="{{ path('basket_view') }}" title="{{ "Show basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+        <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
-      <li><a href="{{ path('basket_view') }}">{{ "Show basket"|trans }}</a></li>
+      <li><a href="{{ path('basket_view') }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </aside>
 

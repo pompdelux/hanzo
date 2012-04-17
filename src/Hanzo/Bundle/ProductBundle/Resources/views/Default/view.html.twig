@@ -51,8 +51,8 @@
   <div class="productdescription">
 
     <ul class="tabs">
-      <li><a href="#">{{ "Product details"|trans }}</a></li>
-      <li><a href="#">{{ "Care instructions"|trans }}</a></li>
+      <li><a href="#">{{ "product.details"|trans }}</a></li>
+      <li><a href="#">{{ "care.instructions"|trans }}</a></li>
     </ul>
 
     <div class="panes">
@@ -73,7 +73,7 @@
       <form action="{{ url('basket_add', {}, true) }}" method="post" class="buy">
         <div class="options">
           <label for="size">
-            {{ "Size"|trans }}:
+            {{ "size"|trans }}:
             <select id="size" name="size">
               <option value="">{{ "Choose"|trans }}</<option>
             {% for size in product.sizes %}
@@ -83,7 +83,7 @@
           </label>
 
           <label for="color" class="off">
-            {{ "Color"|trans }}:
+            {{ "color"|trans }}:
             <select id="color" name="color">
               <option value="">{{ "Choose"|trans }}</<option>
             {% for color in product.colors %}
@@ -93,7 +93,7 @@
           </label>
 
           <label for="quantity" class="off">
-            {{ "Quantity"|trans }}:
+            {{ "quantity"|trans }}:
             <select id="quantity" name="quantity">
             {% for i in 1..10 %}
               <option value="{{ i }}">{{ i }}</option>
@@ -102,7 +102,7 @@
           </label>
         </div>
 
-        <input type="submit" value="{{ "Add to basket"|trans }}" class="button">
+        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button">
         <input type="hidden" id="master" name="master" value="{{ product.sku }}">
       </form>
     </div>
@@ -110,4 +110,3 @@
 </div>
 
 {% endblock %}
-

@@ -3,11 +3,11 @@
 
 <div class="pager ajax" data-target="{{ target }}">
   <ul>
-    <li class="prew {% if pager.prew is empty %}off{% endif %}"><a href="{{ pager.prew }}" title="{{ "Show previous page"|trans }}">{{ "Previous"|trans }}</a></li>
+    <li class="prew {% if pager.prew is empty %}off{% endif %}"><a href="{{ pager.prew }}" title="{{ "pager.previous.page"|trans }}">{{ "previous"|trans }}</a></li>
   {% for page, url in pager.pages %}
-    <li{% if page == pager.index %} class="current"{% endif %}><a href="{{ url }}" title="{{ "Show page %page%"|trans({'%page%' : page}) }}">{{ page }}</a></li>
+    <li{% if page == pager.index %} class="current"{% endif %}><a href="{{ url }}" title="{{ "pager.page"|trans({'%page%' : page}) }}">{{ page }}</a></li>
   {% endfor %}
-    <li class="next {% if pager.next is empty %}off{% endif %}"><a href="{{ pager.next }}" title="{{ "Show next page"|trans }}">{{ "Next"|trans }}</a></li>
+    <li class="next {% if pager.next is empty %}off{% endif %}"><a href="{{ pager.next }}" title="{{ "pager.next.page"|trans }}">{{ "next"|trans }}</a></li>
   </ul>
 </div>
 

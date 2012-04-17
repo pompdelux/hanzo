@@ -68,7 +68,7 @@ class DefaultController extends CoreController
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status' => TRUE,
-                        'message' => $translator->trans('"%product%" just added to your cart', array('%product%' => $product)),
+                        'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
                         'data' => $this->miniBasketAction(TRUE),
                     ));
                 }
@@ -78,7 +78,7 @@ class DefaultController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $translator->trans('"%product%" is out of stock', array('%product%' => $product)),
+                'message' => $translator->trans('product.out.of.stock', array('%product%' => $product)),
             ));
         }
 
