@@ -518,16 +518,19 @@ ul#product-list-sort .sortable-item span{
 
 /* Category List And Products list */
 ul#category-list li,
-ul#product-list li{
+ul#product-list li,
+ul.list li,{
   list-style-type: none;
   margin: 2px 0;
   padding: 5px;
   border: 1px solid #DBDBDB;
 }
-ul#category-list li a.sort-link{
+ul#category-list li a.right,
+ul.list li a.right{
   font-size:10px;
   font-weight:normal;
   float:right;
+  padding:0px 10px;
 }
 
 /* ProductToCategories list */

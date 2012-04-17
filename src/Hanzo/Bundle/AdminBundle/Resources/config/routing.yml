@@ -37,10 +37,6 @@ admin_settings_washing_instructions_edit:
     requirements:
         id: \d+
 
-admin_category:
-    pattern:  /admin/category/
-    defaults: { _controller: AdminBundle:Category:index }
-
 admin_cms:
     pattern:  /admin/cms/
     defaults: { _controller: AdminBundle:Cms:index }
@@ -142,6 +138,38 @@ admin_product_cat_delete:
         _format: html|json
         category_id: \d+
         product_id: \d+
+
+admin_category_edit:
+    pattern:  /admin/category/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Category:editCategory
+        id: null
+        locale: null
+    requirements:
+        id: \d+
+admin_category_add:
+    pattern:  /admin/category/add/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Category:addCategory
+        locale: null
+    requirements:
+        id: \d+
+admin_category_delete:
+    pattern:  /admin/category/delete/{id}
+    defaults:
+        _controller: AdminBundle:Category:deleteCategory
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+
+admin_category_delete_translation:
+    pattern:  /admin/category/delete-translation/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Category:deleteTranslation
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+
 
 admin_customers:
     pattern:  /admin/customers/{pager}
