@@ -156,7 +156,7 @@ class DefaultController extends CoreController
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $this->get('translator')->trans('No such product in your cart.'),
+                'message' => $this->get('translator')->trans('no.such.product.in.cart'),
             ));
         }
 

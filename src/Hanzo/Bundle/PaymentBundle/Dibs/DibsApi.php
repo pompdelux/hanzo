@@ -29,12 +29,9 @@ class DibsApi
     {
         // FIXME:
         // - define paytypes avaliable for domain
-        // - set active
         // TODO: check for missing settings
         $this->settings = $settings;
-
-        // FIXME: hardcode vars:
-        $this->settings['active'] = true;
+        $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
     }
 
     /**
