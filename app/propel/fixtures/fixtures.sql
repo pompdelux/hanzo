@@ -311,7 +311,7 @@ INSERT INTO `domains_settings` (`id`, `domain_key`, `c_key`, `ns`, `c_value`) VA
 (16, 'NL', 'language', 'core', 'nl'),
 (17, 'COM', 'currency', 'core', 'EUR'),
 (18, 'COM', 'country', 'core', ''),
-(19, 'COM', 'locale', 'core', 'en_EN'),
+(19, 'COM', 'locale', 'core', 'en_GB'),
 (20, 'COM', 'language', 'core', 'en'),
 (21, 'DK', 'consultants_map.lat', 'maps', '56.289216'),
 (22, 'DK', 'consultants_map.lng', 'maps', '11.235854'),
@@ -324,8 +324,32 @@ INSERT INTO `domains_settings` (`id`, `domain_key`, `c_key`, `ns`, `c_value`) VA
 (29, 'DK', 'description', 'meta', 'Luksuøst børnetøj til lave priser. Spændende børnetøjskoncept – direkte til dig. Vi tilbyder dansk design, god kvalitet og simple shopping muligheder uden fordyrende mellemled.'),
 (30, 'DK', 'keywords', 'meta', 'pompdelux, børnetøj, vild med børnetøj, dansk, design, lækkert, Pia Davids, Marianne Hoffmann, pomp de lux, pomp de luxe, pompdeluxe, pomp de lux, homeshopping, home shopping, home shopping arrangement, arrangemnet, homeparty, home party, direkte'),
 (31, 'DK', 'google-site-verification', 'meta', 'UofA3REZ5SFYNzo-zNzIHkhOUDo3qblDAQadaNRk_2s'),
-(32, 'DK', 'analytics_id', 'google', 'UA-1793665-1');
-
+(32, 'DK', 'analytics_id', 'google', 'UA-1793665-1'),
+(33, 'DK', 'methods_enabled', 'shippingapi', 'a:3:{i:0;i:10;i:1;i:11;i:2;i:12;}'),
+(34, 'DK', 'allowed_countries', 'limits', 'Denmark'),
+(35, 'COM', 'analytics_id', 'google', 'UA-1793665-1'),
+(36, 'COM', 'og:title', 'meta', 'POMPdeLUX - Cool clothes for kids!'),
+(37, 'COM', 'og:description', 'meta', 'You can buy the clothes in our web shop. Direct sale – giving you the best price!'),
+(38, 'COM', 'og:image', 'meta', 'images/FB/POMPdeLUX.jpg'),
+(39, 'COM', 'description', 'meta', 'Luxury kids clothing at low prices. Exciting concept in kids clothing – direct to you. We are offering Danish design, high quality and easy shopping at factory prices.'),
+(40, 'COM', 'keywords', 'meta', 'pompdelux, kids clothing, kids clothes, love kids clothing, love kids clothes, Danish, design, lovely, Pia Davids, Marianne Hoffmann, pomp de lux, pomp de luxe, pompdeluxe, pomp de lux, homeshopping, home shopping, home shopping party, party, homeparty, home party, direct, lystrup, århus, aarhus, luxury, prices'),
+(41, 'COM', 'google-site-verification', 'meta', 'pHWJ1LeG5mq3mITyz1TcTCpCpdNA72sr-UJ6cElk6B0'),
+(42, 'COM', 'methods_enabled', 'shippingapi', 'a:1:{i:0;i:10;}'),
+(48, 'COM', 'method_enabled', 'dibsapi', '1'),
+(49, 'DK', 'method_enabled', 'dibsapi', '1'),
+(50, 'NL', 'method_enabled', 'dibsapi', '1'),
+(51, 'NO', 'method_enabled', 'dibsapi', '1'),
+(52, 'SE', 'method_enabled', 'dibsapi', '1'),
+(53, 'COM', 'method_enabled', 'paybybillapi', '1'),
+(54, 'DK', 'method_enabled', 'paybybillapi', '1'),
+(55, 'NL', 'method_enabled', 'paybybillapi', '1'),
+(56, 'NO', 'method_enabled', 'paybybillapi', '1'),
+(57, 'SE', 'method_enabled', 'paybybillapi', '1'),
+(58, 'COM', 'method_enabled', 'gothiaapi', '0'),
+(59, 'DK', 'method_enabled', 'gothiaapi', '0'),
+(60, 'NL', 'method_enabled', 'gothiaapi', '0'),
+(61, 'NO', 'method_enabled', 'gothiaapi', '0'),
+(62, 'SE', 'method_enabled', 'gothiaapi', '1');
 --
 -- Dumping data for table `groups`
 --
