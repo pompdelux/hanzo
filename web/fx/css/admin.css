@@ -389,6 +389,24 @@ nav.sub li.dropdown-menu a span.cat-id,
   color: #000;
 }
 
+/* Pager */
+.pager li{
+  list-style-type: none;
+  float: left;
+  margin:5px;
+}
+.pager li a{
+  padding:5px;
+  border:1px solid #D9D9D9;
+  background-color: #E9E9E9;
+}
+.pager li.current a{
+  background-color: white;
+}
+.pager li a:hover{
+  background-color: white;
+}
+
 /* CMS page list sortable*/
 
 #sortable-list,
@@ -536,6 +554,57 @@ ul#product-categories li a.delete{
 form#add-setting div{
   display: inline-block;
   padding-right:10px;
+}
+
+form#settings-list input[type=text]{
+  width:50%;
+  margin:;
+}
+form#settings-list .button{
+  margin:5px;
+}
+
+/* Customers/Consultants/Orders List */
+table.list{
+  margin:20px 0;
+}
+table.list th,
+table.list tr:hover{
+  background-color: #EBEBEB;
+}
+table.list tr{
+  border-top:1px solid #D9D9D9;
+  border-bottom:1px solid #D9D9D9;
+}
+table.list td,
+table.list th{
+  padding:5px;
+  border-right:1px solid #D9D9D9;
+}
+table#order {
+  width:auto;
+}
+table.list th {
+  text-align: left;
+}
+table#order th.table-header {
+  text-align: center;
+}
+
+
+/* Customers/Consultants edit page */
+form#customer-edit-form input[type=text],
+form#consultant-edit-form input[type=text]{
+  width:50%;
+}
+form#customer-edit-form input[type=checkbox],
+form#consultant-edit-form input[type=checkbox]{
+  display: inline;
+}
+form#customer-edit-form textarea,
+form#consultant-edit-form textarea{
+  width:50%;
+  height:200px;
 }
 
 /* Product Image list with references */

@@ -1,0 +1,46 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <form action="{{ path('admin_customers') }}" method="get">
+        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
+        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+      </form>
+    </li>
+    <li>
+      <a href="{{ path('admin_customers') }}">
+        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'admin.customer.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>{{ 'admin.customer.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_customer', {'id' : customer.id}) }}" method="post" {{ form_enctype(form) }} id="customer-edit-form">
+  <div id="customer-edit">
+    {{ form_row(form.first_name) }}
+    {{ form_row(form.last_name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.discount) }}
+    {{ form_row(form.password_clear) }}
+    {{ form_row(form.is_active) }}
+    {{ form_row(form._token) }}
+    {{ form_rest(form) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'update.customer'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_customers') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}
