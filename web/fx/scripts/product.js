@@ -47,15 +47,19 @@
       $('.style-guide .' + small.id).show();
 
       product.initZoom();
+      product.initStyleGuide();
     };
 
     // style guides
     pub.initStyleGuide = function() {
       $('.productimage-large a').each(function() {
         var $id = $(this).data('id');
-        var $guide = $('.style-guide .'+ $id);
+        var $parent = $('.style-guide');
+        var $guide = $('.'+ $id, $parent);
+        $parent.hide();
+
         if ($guide.length) {
-          $guide.parent().show();
+          $parent.show();
           $guide.show();
         }
       });
