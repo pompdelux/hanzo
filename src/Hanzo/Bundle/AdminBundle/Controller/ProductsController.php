@@ -19,7 +19,7 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery,
 
 class ProductsController extends CoreController
 {
-    
+
     public function indexAction($category_id, $subcategory_id)
     {
         $categories = null;
@@ -28,7 +28,7 @@ class ProductsController extends CoreController
 
             $categories = CategoriesQuery::create()
                 ->where('categories.PARENT_ID IS NULL')
-                ->joinWithI18n()
+                ->joinWithI18n('en_GB')
                 ->orderById()
                 ->find()
             ;
@@ -38,13 +38,13 @@ class ProductsController extends CoreController
 
             $categories = CategoriesQuery::create()
                 ->filterByParentId($category_id)
-                ->joinWithI18n()
+                ->joinWithI18n('en_GB')
                 ->orderById()
                 ->find()
             ;
 
             $parent_category = CategoriesQuery::create()
-                ->joinWithI18n()
+                ->joinWithI18n('en_GB')
                 ->findOneById($category_id)
             ;
 
@@ -56,22 +56,21 @@ class ProductsController extends CoreController
                 ->endUse()
                 ->find()
             ;
-            
+
             $parent_category = CategoriesQuery::create()
-                ->joinWithI18n()
+                ->joinWithI18n('en_GB')
                 ->findOneById($subcategory_id)
             ;
         }
         $categories_list = array();
         $products_list = array();
         if ($categories) {
-
             foreach ($categories as $category) {
                 $categories_list[] = array(
                     'id' => $category->getId(),
                     'context' => $category->getContext(),
                     'is_active' => $category->getIsActive(),
-                    'title' => $category->getTitle()
+                    'title' => $category->getTitle(),
                 );
             }
 
@@ -91,7 +90,7 @@ class ProductsController extends CoreController
             }
 
         }
-        
+
         return $this->render('AdminBundle:Products:list.html.twig', array(
             'categories'        => $categories_list,
             'products'        => $products_list,
@@ -105,7 +104,7 @@ class ProductsController extends CoreController
     {
         $categories = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NOT NULL')
-            ->joinWithI18n()
+            ->joinWithI18n('en_GB')
             ->orderByContext()
             ->find()
         ;
@@ -302,11 +301,11 @@ class ProductsController extends CoreController
             ->filterByCategoriesId($category_id)
             ->find()
         ;
-		
+
 		$records = array();
         foreach ($products as $record) {
             $product = $record->getProducts();
-        
+
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),

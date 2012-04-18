@@ -15,7 +15,7 @@
   </nav>
 
   <h1>{{ 'admin.categories.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
-  
+
   <p>{{ 'admin.subcategories.list.description.text'|trans({}, 'admin') }}</p>
 
 {% elseif products|length > 0 %}
@@ -31,7 +31,7 @@
   </nav>
 
   <h1>{{ 'admin.products.list.header.text.%category-name%'|trans({'%category-name%' : parent_category.title}, 'admin') }}</h1>
-  
+
   <p>{{ 'admin.products.list.description.text'|trans({}, 'admin') }}</p>
 
 {% else %}
@@ -49,8 +49,8 @@
   {% if categories|length > 0 %}
     {% if parent_category %}
      <ul id="category-list">
-  	  {% for category in categories %}	
-  	  	
+  	  {% for category in categories %}
+
   	    <li id="item-{{ category.id }}">
           <a href="{{ path('admin_products', {'category_id' : parent_category.id, 'subcategory_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
@@ -65,8 +65,8 @@
   	 </ul>
     {% else %}
      <ul id="category-list">
-      {% for category in categories %}  
-        
+      {% for category in categories %}
+
         <li id="item-{{ category.id }}">
           <a href="{{ path('admin_products', {'category_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
@@ -79,8 +79,8 @@
     {% endif %}
   {% elseif products|length > 0 %}
    <ul id="product-list">
-    {% for product in products %} 
-      
+    {% for product in products %}
+
       <li id="item-{{ product.id }}">
         <a href="{{ path('admin_product', {'id' : product.id}) }}" title="{{ product.sku }}">
           <span class="id">(#{{ product.id }})</span>
@@ -91,7 +91,7 @@
     {% endfor %}
    </ul>
   {% else %}
-  	
+
   {% endif %}
 
 {% endblock %}
