@@ -30,10 +30,10 @@ class DefaultController extends CoreController
 
         if ($page instanceof Cms) {
             $type = $page->getType();
-        }
-        else {
+        } else {
             $page = CmsPeer::getByPK($id, $locale);
             $type = 'pages';
+
             if (is_null($page)) {
                 $page = 'implement 404 !';
             }
