@@ -386,6 +386,18 @@
         <source>admin.customers.no.addresses.text</source>
         <target>Der findes desværre ingen addresser i databasen.</target>
       </trans-unit>
+      <trans-unit id="admin.consultant.export.link">
+        <source>admin.consultant.export.link</source>
+        <target>Export</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.start.label">
+        <source>admin.consultant.export.start.label</source>
+        <target>Fra dato:</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.end.label">
+        <source>admin.consultant.export.end.label</source>
+        <target>Til dato:</target>
+      </trans-unit>
       <trans-unit id="admin.customer.edit">
         <source>admin.customer.edit</source>
         <target>Rediger kunde</target>
