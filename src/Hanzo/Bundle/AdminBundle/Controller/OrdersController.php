@@ -63,6 +63,13 @@ class OrdersController extends Controller
                     'totallines' => $orders_count->getVirtualColumn('TotalLines'),
                     'totalprice' => $orders_count->getVirtualColumn('TotalPrice')
                 );
+            }else{
+                $order_data[] = array(
+                    'id' => $order->getId(),
+                    'finishedat' => $order->getFinishedAt(),
+                    'totallines' => '0',
+                    'totalprice' => '0,00'
+                );
             }
 
         }
