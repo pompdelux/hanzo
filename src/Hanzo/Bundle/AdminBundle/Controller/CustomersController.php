@@ -147,7 +147,8 @@ class CustomersController extends Controller
             ->add('is_active', 'checkbox',
                 array(
                     'label' => 'admin.customer.is_active.label',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'required' => false
                 )
             )
             ->getForm()
