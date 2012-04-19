@@ -38,6 +38,7 @@
     <column name="content" type="LONGVARCHAR" defaultValue="null" />
     <column name="settings" type="LONGVARCHAR" defaultValue="null" />
     <column name="is_active" type="BOOLEAN" required="true" defaultValue="TRUE" />
+    <column name="is_restricted" type="BOOLEAN" required="true" defaultValue="FALSE" />
     <foreign-key foreignTable="cms_thread" name="fk_cms_1" onDelete="CASCADE">
       <reference local="cms_thread_id" foreign="id" />
     </foreign-key>
@@ -45,7 +46,7 @@
       <reference local="parent_id" foreign="id" />
     </foreign-key>
     <behavior name="i18n">
-      <parameter name="i18n_columns" value="title, path, content, settings" />
+      <parameter name="i18n_columns" value="title, path, content, settings, is_restricted" />
     </behavior>
     <behavior name="timestampable" />
   </table>

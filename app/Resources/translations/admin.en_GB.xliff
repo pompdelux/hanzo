@@ -58,6 +58,10 @@
         <source>cms.updated</source>
         <target>The page was succefull updated!</target>
       </trans-unit>
+      <trans-unit id="cms.edit.label.is_restricted">
+        <source>cms.edit.label.is_restricted</source>
+        <target>Approved IP required in offline mode</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

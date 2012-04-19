@@ -52,6 +52,7 @@ class AppKernel extends Kernel
     public function boot()
     {
         parent::boot();
+
         // TODO: figure out if this is good or bad..
         if ('cli' !== php_sapi_name()) {
             $hanzo = C\Hanzo::initialize($this->container, $this->getEnvironment());

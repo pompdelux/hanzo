@@ -52,6 +52,7 @@ class CacheService
                 $locale = strtolower(trim($item->getLocale()));
                 $type = trim($record->getType());
                 $title = trim($item->getTitle());
+                $is_restricted = (int) $item->getIsRestricted();
 
                 if ('' == $title) {
                     continue;
@@ -91,6 +92,7 @@ class CacheService
         cms_id: {$id}
         category_id: {$settings['category_id']}
         pager: 1
+        ip_restricted: true
     requirements:
         pager: \d+
         _format: html|json
@@ -103,6 +105,7 @@ class CacheService
         cms_id: {$id}
         category_id: {$settings['category_id']}
         title: ''
+        ip_restricted: true
     requirements:
         product_id: \d+
         _format: html|json
@@ -115,6 +118,7 @@ page_" . $id . "_" . $locale . ":
     defaults:
         _controller: HanzoCMSBundle:Default:view
         id: {$id}
+        ip_restricted: {$is_restricted}
 ")."\n";
                         break;
                     case 'system':
@@ -141,6 +145,7 @@ newsletter_" . $id . "_" . $locale . ":
                         case 'advanced_search':
                             $method = explode('_', $settings['type']);
                             $method = array_shift($method);
+                            $restricted = (($settings['type'] == 'category_search') ? 'true' : 'false');
                             $buffer[$locale] .= trim("
 search_" . $id . "_" . $locale . ":
     pattern: /{$path}
@@ -148,6 +153,7 @@ search_" . $id . "_" . $locale . ":
         _controller: HanzoSearchBundle:Default:{$method}
         _format: html
         id: {$id}
+        ip_restricted: {$restricted}
     requirements:
         _format: html|json
 ")."\n";
