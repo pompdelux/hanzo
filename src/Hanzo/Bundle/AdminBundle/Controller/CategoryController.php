@@ -191,7 +191,7 @@ class CategoryController extends CoreController
             ->findOneById($id)
         ;
 
-        if($categories_i18n)
+        if($categories_i18n instanceof CategoriesI18n)
             $categories_i18n->delete();
 
         if ($this->getFormat() == 'json') {
@@ -208,7 +208,7 @@ class CategoryController extends CoreController
             ->findOneById($id)
         ;
 
-        if($categories)
+        if($categories instanceof Categories)
             $categories->delete();
 
         if ($this->getFormat() == 'json') {
