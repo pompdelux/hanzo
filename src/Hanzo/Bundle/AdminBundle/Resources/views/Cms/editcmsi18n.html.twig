@@ -34,6 +34,7 @@
   <div id="cms-edit">
     {{ form_row(form.locale) }}
     {{ form_row(form.is_active) }}
+    {{ form_row(form.is_restricted) }}
     {{ form_row(form.title) }}
     {{ form_row(form.path) }}
     {{ form_row(form.content) }}
@@ -51,7 +52,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
       /* Pretty print the settings in the textarea */
-      var settings = $('#cms_settings').val(); 
+      var settings = $('#cms_settings').val();
       $('#cms_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
     });
 </script>

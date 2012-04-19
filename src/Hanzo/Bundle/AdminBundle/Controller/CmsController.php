@@ -41,9 +41,10 @@ class CmsController extends CoreController
         $node = CmsQuery::create()
             ->findPK($id);
 
-        if($node)
+        if($node) {
             $node->delete();
-        
+        }
+
         $cache->routerBuilder();
         $cache->clearRedisCache();
 
@@ -109,7 +110,7 @@ class CmsController extends CoreController
                     case 'category_search':
                         $node->setType('system');
                         $settings['type'] = 'category_search';
-                        $settings['param']['categories'] = ''; //Dummy Data? 
+                        $settings['param']['categories'] = ''; //Dummy Data?
                         $settings['param']['group'] = ''; //Dummy Data?
                         break;
                     case 'newsletter':
@@ -123,8 +124,8 @@ class CmsController extends CoreController
                     case 'mannequin':
                         $node->setType('system');
                         $settings['type'] = 'mannequin';
-                        $settings['param']['categories'] = ''; //Dummy Data? 
-                        $settings['param']['image'] = ''; //Dummy Data? 
+                        $settings['param']['categories'] = ''; //Dummy Data?
+                        $settings['param']['image'] = ''; //Dummy Data?
                         $settings['param']['title'] = ''; //Dummy Data?
                         $settings['param']['colorsheme'] = ''; //Dummy Data?
                         $settings['param']['ignore'] = ''; //Dummy Data?
@@ -139,19 +140,19 @@ class CmsController extends CoreController
                 $node->save();
 
                 $this->get('session')->setFlash('notice', 'cms.added');
-                return $this->redirect($this->generateUrl('admin_cms_edit', 
+                return $this->redirect($this->generateUrl('admin_cms_edit',
                     array(
                         'id' => $node->getId(),
                         'locale' => $locale
                     )
                 ));
             }
-        } 
+        }
         return $this->render('AdminBundle:Cms:addcms.html.twig', array(
             'form' => $form->createView(),
         ));
     }
-    public function editAction($id, $locale = 'en_EN')
+    public function editAction($id, $locale = 'da_DK')
     {
         $cache = $this->get('cache_manager');
 
@@ -161,28 +162,29 @@ class CmsController extends CoreController
         $node = CmsQuery::create()
             ->joinWithI18n($locale, 'INNER JOIN')
             ->findPK($id);
-        
-        if(!$node){ // Oversættelsen findes ikke for det givne ID
-            
+
+        if (!$node) { // Oversættelsen findes ikke for det givne ID
+
             /**
               * @todo Den har glemt hvad der skulle stå i indstillingerne.
-              * Vi kender ikke den tidligere? 
+              * Vi kender ikke den tidligere?
               */
 
             $node = CmsQuery::create()
                 ->findPk($id);
-            if($node)
+            if ($node) {
                 $node->setLocale($locale);
+            }
         }
 
         $form = $this->createForm(new CmsType(), $node);
-        
+
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                
+
                 $node->save();
 
                 if($node->getIsActive()){
@@ -198,7 +200,7 @@ class CmsController extends CoreController
             'node'      => $node,
             'languages' => $languages_availible
         ));
-        
+
     }
 
     public function updateCmsTreeAction()
@@ -224,7 +226,7 @@ class CmsController extends CoreController
                 $cmsNode->setParentId(null);
             else
                 $cmsNode->setParentId($node['parent_id']);
-            
+
             $cmsNode->setSort($sort[$node['parent_id']]);
             $cmsNode->save();
         }
@@ -275,6 +277,7 @@ class CmsController extends CoreController
         $menu = '';
         $query = CmsQuery::create()
             ->filterByIsActive(TRUE)
+            ->joinWithI18n('da_DK')
             ->orderBySort()
         ;
 
