@@ -19,6 +19,11 @@
         {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
       </a>
     </li>
+    <li>
+      <a href="{{ path('admin_consultants_events') }}">
+        {{ 'admin.consultants.events.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
   </ul>
 </nav>
 
@@ -97,4 +102,15 @@
 <p>{{ 'admin.consultants.no.consultants.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
+
+<h1>{{ 'admin.consultants.setting.header.text'|trans({}, 'admin') }}</h1>
+
+<p>{{ 'admin.consultants.setting.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_consultant_update_settings') }}" method="post" {{ form_enctype(consultant_settings) }} id="consultant-settings-edit-form">
+    {{ form_row(consultant_settings._token) }}
+    {{ form_rest(consultant_settings) }}
+  <input class="button" type="submit" value="{{ 'update.consultant.setting'|trans({}, 'admin') }}">
+</form>
+
 {% endblock %}

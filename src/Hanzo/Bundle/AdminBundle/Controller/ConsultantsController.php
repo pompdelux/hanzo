@@ -4,16 +4,21 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+use Symfony\Component\HttpFoundation\Response;
 
-use Hanzo\Model\ConsultantsQuery;
-use Hanzo\Model\CustomersQuery;
-use Hanzo\Model\EventsQuery;
+use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
+    Hanzo\Core\CoreController;
+
+use Hanzo\Model\ConsultantsQuery,
+    Hanzo\Model\CustomersQuery,
+    Hanzo\Model\SettingsQuery,
+    Hanzo\Model\Settings,
+    Hanzo\Model\EventsQuery;
 
 use Propel\Runtime\Parser\PropelCSVParser;
 
-class ConsultantsController extends Controller
+class ConsultantsController extends CoreController
 {
     
     public function indexAction($pager)
@@ -42,7 +47,7 @@ class ConsultantsController extends Controller
                     ->_or()
                     ->filterByPhone($q)
                     ->_or()
-                    ->filterByCustomersId($q_clean)
+                    ->filterById($q_clean)
                     ->orderByFirstName()
                     ->orderByLastName()
                 ->endUse()
@@ -92,9 +97,52 @@ class ConsultantsController extends Controller
                 );
         }
 
+        $consultant_settings = SettingsQuery::create()->findByNs('consultant');
+        $consultant_settings_data = array();
+        foreach ($consultant_settings as $consultant_setting) {
+            $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue(); 
+        }
+
+        $form_settings = $this->createFormBuilder($consultant_settings_data)
+            ->add('date', 'date',
+                array(
+                    'input'  => 'string',
+                    'widget' => 'choice',
+                    'label' => 'admin.consultant.date.label',
+                    'translation_domain' => 'admin'
+                )
+            )->add('max_amount', 'text',
+                array(
+                    'label' => 'admin.consultant.max_amount.label',
+                    'translation_domain' => 'admin'
+                )
+            )->getForm();
+        $form_export = $this->createFormBuilder(
+                array(
+                    'start' => date('Y-m-d', time()), 
+                    'end' => date('Y-m-d', strtotime('-1 month', time() ))
+                )
+            )->add('start', 'date', array(
+                    'input'  => 'string',
+                    'widget' => 'single_text',
+                    'format' => 'yy-MM-dd',
+                    'label' => 'admin.consultant.export.start.label',
+                    'translation_domain' => 'admin'
+                )
+            )->add('end', 'date', array(
+                    'input'  => 'string',
+                    'widget' => 'single_text',
+                    'format' => 'yy-MM-dd',
+                    'label' => 'admin.consultant.export.start.label',
+                    'translation_domain' => 'admin'
+                )
+            )->getForm()
+        ;
         return $this->render('AdminBundle:Consultants:list.html.twig', array(
             'consultants'     => $consultants,
-            'paginate'      => $paginate
+            'paginate'      => $paginate,
+            'consultant_settings' => $form_settings->createView(),
+            'form_export' => $form_export->createView()
         ));
 
     }
@@ -239,26 +287,65 @@ class ConsultantsController extends Controller
         ));
     }
 
-    public function exportAction($start, $end)
+    public function indexEventsAction($pager)
     {
-        $parser = new PropelCSVParser();
+        $hanzo = Hanzo::getInstance();
+        $container = $hanzo->container;
+        $route = $container->get('request')->get('_route');
+        $router = $container->get('router');
+        
+        $events = EventsQuery::create()
+            ->orderByEventDate()
+            ->paginate($pager, 50)
+        ;
+
+        $paginate = null;
+        if ($events->haveToPaginate()) {
+
+            $pages = array();
+            foreach ($events->getLinks(20) as $page) {
+                if (isset($_GET['q']))
+                    $pages[$page] = $router->generate($route, array('pager' => $page, 'q' => $_GET['q']), TRUE);
+                else
+                    $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+
+            }
+
+            $paginate = array(
+                'next' => ($events->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $events->getNextPage()), TRUE)),
+                'prew' => ($events->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $events->getPreviousPage()), TRUE)),
+
+                'pages' => $pages,
+                'index' => $pager
+            );
+        }
+        return $this->render('AdminBundle:Consultants:listEvents.html.twig', array(
+            'events'      => $events,
+            'paginate'      => $paginate,
+            'start' => date('Y-m-d', strtotime('-1 month', time() )),
+            'end' => date('Y-m-d', time())
+        ));
+    }
+
+    public function exportAction()
+    {
+        $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
+        if (isset($_GET['start']) && isset($_GET['end'])) {
+            $start = $this->getRequest()->get('start', null);
+            $end = $this->getRequest()->get('end', null);
+        }
         $date_filter = array();
         if($start && $end){
             $date_filter['min'] = strtotime($start);
             $date_filter['max'] = strtotime($end);
         }else{
-            if($start){
-                $date_filter['min'] = strtotime('-1 month', strtotime($end));
-                $date_filter['max'] = strtotime($end);
-            }elseif ($end) {
-                $date_filter['min'] = strtotime($end);
-                $date_filter['max'] = strtotime('+1 month', strtotime($start));
-            }else{
-                $date_filter['min'] = strtotime('-1 month', now());
-                $date_filter['max'] = strtotime(now());
-            }
+            $date_filter['min'] = strtotime('-1 month', time());
+            $start = $date_filter['min'];
+            $date_filter['max'] = time();
+            $end = $date_filter['max'];
+        
         }
         $data = array();
         $data[0]['consultant'] = 'consultant';
@@ -274,6 +361,7 @@ class ConsultantsController extends Controller
         for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) { 
             $data[0][$date] = date('Y-m-d', $date); // Header row with visible dates
         }
+
         foreach ($consultants as $consultant) {
             $customer_data = $consultant->getCustomers(); 
             $data[$consultant->getId()][0] = $customer_data->getFirstName(). ' ' . $customer_data->getLastName();
@@ -289,12 +377,55 @@ class ConsultantsController extends Controller
         }
 
         return new Response( 
-            $parser->toCSV($data), 
+            $parser->toCSV($data, true, false), 
             200, 
             array( 
                  'Content-Type' => 'text/csv', 
-                 'Content-Disposition' => sprintf('attachment; filename="export_' . $start . '-' . $end .'.csv"', 'export_' . $start . '-' . $end .'.csv') 
+                 'Content-Disposition' => sprintf('attachment; filename="export_' . $start . '_' . $end .'.csv"', 'export_' . $start . '_' . $end .'.csv') 
             ) 
         ); 
+    }
+
+    public function updateSettingAction()
+    {
+        $request = $this->getRequest();
+
+        $max_amount = SettingsQuery::create()
+            ->filterByNs('consultant')
+            ->findOneByCKey('max_amount')
+            
+        ;
+
+        $date = SettingsQuery::create()
+            ->filterByNs('consultant')
+            ->findOneByCKey('date')
+        ;
+
+        if(!$max_amount){
+            $max_amount = new Settings();
+            $max_amount->setNs('consultant');
+            $max_amount->setCKey('max_amount');
+            $max_amount->setTitle('Max Amount');
+        }
+
+        if(!$date){
+            $date = new Settings();
+            $date->setNs('consultant');
+            $date->setCKey('date');
+            $date->setTitle('Date for Max Amount');
+        }
+
+        $max_amount->setCValue($request->get('max_amount'))
+            ->save();
+
+        $date->setCValue($request->get('date'))
+            ->save();
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin'),
+            ));
+        }
     }
 }

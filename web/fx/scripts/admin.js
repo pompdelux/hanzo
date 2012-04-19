@@ -278,7 +278,7 @@
           }
         });
       });
-      
+
       $('#washing a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
@@ -299,7 +299,33 @@
           }
         });
       });
-
+      $('#consultant-settings-edit-form').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+          url: base_url + 'consultants/update-setting',
+          dataType: 'json',
+          type: 'POST',
+          data: {
+            max_amount : $(this).find('#form_max_amount').val(), 
+            date : $(this).find('#form_date_month').val() + '/' + $(this).find('#form_date_day').val() + '/' + $(this).find('#form_date_year').val()
+          },
+          async: false,
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(i18n.t('Notice!', response.message));
+              }
+            }else {
+              window.scrollTo(window.scrollMinX, window.scrollMinY);
+              dialoug.slideNotice(response.message);
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+          }
+        });
+        $(this).val(0);
+      });
       // ios class added to body
       switch (navigator.platform) {
       case 'iPad':

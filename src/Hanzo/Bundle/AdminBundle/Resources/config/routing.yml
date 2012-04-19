@@ -222,13 +222,20 @@ admin_consultants:
     defaults: 
         _controller: AdminBundle:Consultants:index
         pager: 1
+    requirements:
+        pager: \d+
+admin_consultants_events:
+    pattern:  /admin/consultants/events
+    defaults: 
+        _controller: AdminBundle:Consultants:indexEvents
+        pager: 1
+    requirements:
+        pager: \d+
 
 admin_consultants_export:
-    pattern:  /admin/consultants/export/{start}/{end}
+    pattern:  /admin/events/export
     defaults: 
         _controller: AdminBundle:Consultants:export
-        start: null
-        end: null
 
 admin_consultant:
     pattern:  /admin/consultant/{id}
@@ -236,6 +243,14 @@ admin_consultant:
         _controller: AdminBundle:Consultants:view
     requirements:
         id: \d+
+
+admin_consultant_update_settings:
+    pattern:  /admin/consultants/update-setting
+    defaults: 
+        _controller: AdminBundle:Consultants:updateSetting
+        _format: json
+    requirements:
+        _format: html|json
 
 admin_cache:
     pattern:  /admin/cache/
