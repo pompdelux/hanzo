@@ -195,6 +195,8 @@
 
 <h1>{{ 'admin.order.lines.header.text'|trans({}, 'admin') }}</h1>
 
+{% if order_lines|length > 0 %}
+
 <p>{{ 'admin.order.lines.description.text'|trans({}, 'admin') }}</p>
 
 <table id="orders-lines" class="list">
@@ -229,6 +231,12 @@
   {% endfor %}
   </tbody>
 </table>
+
+{% else %}
+
+<p>{{ 'admin.orders.no.order_lines.text'|trans({}, 'admin') }}</p>
+
+{% endif %}
 
 <h1>{{ 'admin.order.attributes.header.text'|trans({}, 'admin') }}</h1>
 

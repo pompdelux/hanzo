@@ -952,6 +952,10 @@
         <source>admin.order.order.description.text</source>
         <target>Denne tabel viser alle data som er gemt i databasen, for den valgte ordre.</target>
       </trans-unit>
+      <trans-unit id="admin.orders.no.order_lines.text">
+        <source>admin.orders.no.order_lines.text</source>
+        <target>Der er ikke tilknyttet nogle produkter til denne ordre.</target>
+      </trans-unit>
       <trans-unit id="admin.orders.no.order_attributes.text">
         <source>admin.orders.no.order_attributes.text</source>
         <target>Der findes ingen attributer for denne ordre.</target>
