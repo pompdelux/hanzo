@@ -7,8 +7,6 @@ use Symfony\Component\Form\FormBuilder;
 
 class CmsType extends AbstractType
 {
-    
-
     public function __construct()
     {
         // No Constructor
@@ -21,6 +19,12 @@ class CmsType extends AbstractType
 
       $builder->add('is_active', 'checkbox', array(
           'label'     => 'cms.edit.label.is_active',
+          'translation_domain' => 'admin',
+          'required'  => false
+      ));
+
+      $builder->add('is_restricted', 'checkbox', array(
+          'label'     => 'cms.edit.label.is_restricted',
           'translation_domain' => 'admin',
           'required'  => false
       ));

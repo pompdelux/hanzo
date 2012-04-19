@@ -33,9 +33,6 @@ abstract class BaseEventsPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\Events';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.Events';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'EventsTableMap';
 
@@ -498,7 +495,7 @@ abstract class BaseEventsPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = EventsPeer::getOMClass(false);
+		$cls = EventsPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = EventsPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -679,7 +676,7 @@ abstract class BaseEventsPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = EventsPeer::getOMClass(false);
+				$cls = EventsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -691,7 +688,7 @@ abstract class BaseEventsPeer {
 				$obj2 = CustomersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CustomersPeer::getOMClass(false);
+					$cls = CustomersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -745,7 +742,7 @@ abstract class BaseEventsPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = EventsPeer::getOMClass(false);
+				$cls = EventsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -757,7 +754,7 @@ abstract class BaseEventsPeer {
 				$obj2 = CustomersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CustomersPeer::getOMClass(false);
+					$cls = CustomersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -869,7 +866,7 @@ abstract class BaseEventsPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = EventsPeer::getOMClass(false);
+				$cls = EventsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -883,7 +880,7 @@ abstract class BaseEventsPeer {
 				$obj2 = CustomersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CustomersPeer::getOMClass(false);
+					$cls = CustomersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -901,7 +898,7 @@ abstract class BaseEventsPeer {
 				$obj3 = CustomersPeer::getInstanceFromPool($key3);
 				if (!$obj3) {
 
-					$cls = CustomersPeer::getOMClass(false);
+					$cls = CustomersPeer::getOMClass();
 
 					$obj3 = new $cls();
 					$obj3->hydrate($row, $startcol3);
@@ -1050,7 +1047,7 @@ abstract class BaseEventsPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = EventsPeer::getOMClass(false);
+				$cls = EventsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -1099,7 +1096,7 @@ abstract class BaseEventsPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = EventsPeer::getOMClass(false);
+				$cls = EventsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -1139,17 +1136,12 @@ abstract class BaseEventsPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? EventsPeer::CLASS_DEFAULT : EventsPeer::OM_CLASS;
+		return EventsPeer::OM_CLASS;
 	}
 
 	/**

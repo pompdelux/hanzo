@@ -85,6 +85,13 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	protected $settings;
 
 	/**
+	 * The value for the is_restricted field.
+	 * Note: this column has a database default value of: false
+	 * @var        boolean
+	 */
+	protected $is_restricted;
+
+	/**
 	 * @var        Cms
 	 */
 	protected $aCms;
@@ -112,6 +119,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	public function applyDefaultValues()
 	{
 		$this->locale = 'en_EN';
+		$this->is_restricted = false;
 	}
 
 	/**
@@ -182,6 +190,16 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	public function getSettings()
 	{
 		return $this->settings;
+	}
+
+	/**
+	 * Get the [is_restricted] column value.
+	 * 
+	 * @return     boolean
+	 */
+	public function getIsRestricted()
+	{
+		return $this->is_restricted;
 	}
 
 	/**
@@ -309,6 +327,34 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	} // setSettings()
 
 	/**
+	 * Sets the value of the [is_restricted] column.
+	 * Non-boolean arguments are converted using the following rules:
+	 *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+	 *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+	 * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+	 * 
+	 * @param      boolean|integer|string $v The new value
+	 * @return     CmsI18n The current object (for fluent API support)
+	 */
+	public function setIsRestricted($v)
+	{
+		if ($v !== null) {
+			if (is_string($v)) {
+				$v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+			} else {
+				$v = (boolean) $v;
+			}
+		}
+
+		if ($this->is_restricted !== $v) {
+			$this->is_restricted = $v;
+			$this->modifiedColumns[] = CmsI18nPeer::IS_RESTRICTED;
+		}
+
+		return $this;
+	} // setIsRestricted()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -319,6 +365,10 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	public function hasOnlyDefaultValues()
 	{
 			if ($this->locale !== 'en_EN') {
+				return false;
+			}
+
+			if ($this->is_restricted !== false) {
 				return false;
 			}
 
@@ -350,6 +400,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 			$this->path = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->content = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
 			$this->settings = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->is_restricted = ($row[$startcol + 6] !== null) ? (boolean) $row[$startcol + 6] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -358,7 +409,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 6; // 6 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 7; // 7 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating CmsI18n object", $e);
@@ -596,6 +647,9 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CmsI18nPeer::SETTINGS)) {
 			$modifiedColumns[':p' . $index++]  = '`SETTINGS`';
 		}
+		if ($this->isColumnModified(CmsI18nPeer::IS_RESTRICTED)) {
+			$modifiedColumns[':p' . $index++]  = '`IS_RESTRICTED`';
+		}
 
 		$sql = sprintf(
 			'INSERT INTO `cms_i18n` (%s) VALUES (%s)',
@@ -624,6 +678,9 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 						break;
 					case '`SETTINGS`':
 						$stmt->bindValue($identifier, $this->settings, PDO::PARAM_STR);
+						break;
+					case '`IS_RESTRICTED`':
+						$stmt->bindValue($identifier, (int) $this->is_restricted, PDO::PARAM_INT);
 						break;
 				}
 			}
@@ -778,6 +835,9 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 			case 5:
 				return $this->getSettings();
 				break;
+			case 6:
+				return $this->getIsRestricted();
+				break;
 			default:
 				return null;
 				break;
@@ -813,6 +873,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 			$keys[3] => $this->getPath(),
 			$keys[4] => $this->getContent(),
 			$keys[5] => $this->getSettings(),
+			$keys[6] => $this->getIsRestricted(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCms) {
@@ -867,6 +928,9 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 			case 5:
 				$this->setSettings($value);
 				break;
+			case 6:
+				$this->setIsRestricted($value);
+				break;
 		} // switch()
 	}
 
@@ -897,6 +961,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		if (array_key_exists($keys[3], $arr)) $this->setPath($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setContent($arr[$keys[4]]);
 		if (array_key_exists($keys[5], $arr)) $this->setSettings($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setIsRestricted($arr[$keys[6]]);
 	}
 
 	/**
@@ -914,6 +979,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CmsI18nPeer::PATH)) $criteria->add(CmsI18nPeer::PATH, $this->path);
 		if ($this->isColumnModified(CmsI18nPeer::CONTENT)) $criteria->add(CmsI18nPeer::CONTENT, $this->content);
 		if ($this->isColumnModified(CmsI18nPeer::SETTINGS)) $criteria->add(CmsI18nPeer::SETTINGS, $this->settings);
+		if ($this->isColumnModified(CmsI18nPeer::IS_RESTRICTED)) $criteria->add(CmsI18nPeer::IS_RESTRICTED, $this->is_restricted);
 
 		return $criteria;
 	}
@@ -989,6 +1055,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		$copyObj->setPath($this->getPath());
 		$copyObj->setContent($this->getContent());
 		$copyObj->setSettings($this->getSettings());
+		$copyObj->setIsRestricted($this->getIsRestricted());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -1104,6 +1171,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		$this->path = null;
 		$this->content = null;
 		$this->settings = null;
+		$this->is_restricted = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();

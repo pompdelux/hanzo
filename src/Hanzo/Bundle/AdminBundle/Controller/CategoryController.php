@@ -16,7 +16,7 @@ use Hanzo\Core\Hanzo,
 
 class CategoryController extends CoreController
 {
-    
+
     public function indexAction()
     {
         return $this->render('AdminBundle:Default:default.html.twig');
@@ -96,7 +96,7 @@ class CategoryController extends CoreController
 
         $parent_categories = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NULL')
-            ->joinWithCategoriesI18n('en_GB')
+            ->joinWithCategoriesI18n('da_DK')
             ->find()
         ;
 

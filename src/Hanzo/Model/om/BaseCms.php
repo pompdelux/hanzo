@@ -2090,6 +2090,29 @@ abstract class BaseCms extends BaseObject  implements Persistent
 	
 		return $this;
 	}
+	
+	
+	/**
+	 * Get the [is_restricted] column value.
+	 * 
+	 * @return     boolean
+	 */
+	public function getIsRestricted()
+	{	return $this->getCurrentTranslation()->getIsRestricted();
+	}
+	
+	
+	/**
+	 * Set the value of [is_restricted] column.
+	 * 
+	 * @param      boolean $v new value
+	 * @return     Cms The current object (for fluent API support)
+	 */
+	public function setIsRestricted($v)
+	{	$this->getCurrentTranslation()->setIsRestricted($v);
+	
+		return $this;
+	}
 
 	// timestampable behavior
 	

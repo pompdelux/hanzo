@@ -940,6 +940,7 @@ CREATE TABLE `cms_i18n`
 	`path` VARCHAR(255) NOT NULL,
 	`content` TEXT,
 	`settings` TEXT,
+	`is_restricted` TINYINT(1) DEFAULT 0 NOT NULL,
 	PRIMARY KEY (`id`,`locale`),
 	CONSTRAINT `cms_i18n_FK_1`
 		FOREIGN KEY (`id`)

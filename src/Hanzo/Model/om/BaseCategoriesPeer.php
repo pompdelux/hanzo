@@ -33,9 +33,6 @@ abstract class BaseCategoriesPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\Categories';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.Categories';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CategoriesTableMap';
 
@@ -436,7 +433,7 @@ abstract class BaseCategoriesPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = CategoriesPeer::getOMClass(false);
+		$cls = CategoriesPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = CategoriesPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -561,7 +558,7 @@ abstract class BaseCategoriesPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = CategoriesPeer::getOMClass(false);
+				$cls = CategoriesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -601,17 +598,12 @@ abstract class BaseCategoriesPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? CategoriesPeer::CLASS_DEFAULT : CategoriesPeer::OM_CLASS;
+		return CategoriesPeer::OM_CLASS;
 	}
 
 	/**

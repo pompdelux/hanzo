@@ -33,9 +33,6 @@ abstract class BaseProductsWashingInstructionsPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\ProductsWashingInstructions';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.ProductsWashingInstructions';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsWashingInstructionsTableMap';
 
@@ -420,7 +417,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = ProductsWashingInstructionsPeer::getOMClass(false);
+		$cls = ProductsWashingInstructionsPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = ProductsWashingInstructionsPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -551,7 +548,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = ProductsWashingInstructionsPeer::getOMClass(false);
+				$cls = ProductsWashingInstructionsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -563,7 +560,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 				$obj2 = LanguagesPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = LanguagesPeer::getOMClass(false);
+					$cls = LanguagesPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -668,7 +665,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = ProductsWashingInstructionsPeer::getOMClass(false);
+				$cls = ProductsWashingInstructionsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -682,7 +679,7 @@ abstract class BaseProductsWashingInstructionsPeer {
 				$obj2 = LanguagesPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = LanguagesPeer::getOMClass(false);
+					$cls = LanguagesPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -726,17 +723,12 @@ abstract class BaseProductsWashingInstructionsPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? ProductsWashingInstructionsPeer::CLASS_DEFAULT : ProductsWashingInstructionsPeer::OM_CLASS;
+		return ProductsWashingInstructionsPeer::OM_CLASS;
 	}
 
 	/**
