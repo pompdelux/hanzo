@@ -54,12 +54,12 @@ class OrdersController extends Controller
                 ->groupByOrdersId()
                 ->findOne()
             ;
-
+            
             $order_data[] = array(
                 'id' => $order->getId(),
                 'finishedat' => $order->getFinishedAt(),
-                'totallines' => $orders_count->getTotalLines(),
-                'totalprice' => $orders_count->getTotalPrice()
+                'totallines' => $orders_count->getVirtualColumn('TotalLines'),
+                'totalprice' => $orders_count->getVirtualColumn('TotalPrice')
             );
 
         }
