@@ -32,9 +32,6 @@ abstract class BaseOrdersStateLogPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\OrdersStateLog';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.OrdersStateLog';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'OrdersStateLogTableMap';
 
@@ -303,7 +300,7 @@ abstract class BaseOrdersStateLogPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getState(), (string) $obj->getCreatedAt('c')));
+				$key = serialize(array((string) $obj->getOrdersId(), (string) $obj->getState(), (string) $obj->getCreatedAt()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -323,7 +320,7 @@ abstract class BaseOrdersStateLogPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof OrdersStateLog) {
-				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getState(), (string) $value->getCreatedAt('c')));
+				$key = serialize(array((string) $value->getOrdersId(), (string) $value->getState(), (string) $value->getCreatedAt()));
 			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
 				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));
@@ -419,7 +416,7 @@ abstract class BaseOrdersStateLogPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = OrdersStateLogPeer::getOMClass(false);
+		$cls = OrdersStateLogPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = OrdersStateLogPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -550,7 +547,7 @@ abstract class BaseOrdersStateLogPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = OrdersStateLogPeer::getOMClass(false);
+				$cls = OrdersStateLogPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -562,7 +559,7 @@ abstract class BaseOrdersStateLogPeer {
 				$obj2 = OrdersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = OrdersPeer::getOMClass(false);
+					$cls = OrdersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -667,7 +664,7 @@ abstract class BaseOrdersStateLogPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = OrdersStateLogPeer::getOMClass(false);
+				$cls = OrdersStateLogPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -681,7 +678,7 @@ abstract class BaseOrdersStateLogPeer {
 				$obj2 = OrdersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = OrdersPeer::getOMClass(false);
+					$cls = OrdersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -725,17 +722,12 @@ abstract class BaseOrdersStateLogPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? OrdersStateLogPeer::CLASS_DEFAULT : OrdersStateLogPeer::OM_CLASS;
+		return OrdersStateLogPeer::OM_CLASS;
 	}
 
 	/**

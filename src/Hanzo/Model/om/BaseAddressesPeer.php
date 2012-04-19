@@ -33,9 +33,6 @@ abstract class BaseAddressesPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\Addresses';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.Addresses';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'AddressesTableMap';
 
@@ -494,7 +491,7 @@ abstract class BaseAddressesPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = AddressesPeer::getOMClass(false);
+		$cls = AddressesPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = AddressesPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -675,7 +672,7 @@ abstract class BaseAddressesPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = AddressesPeer::getOMClass(false);
+				$cls = AddressesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -687,7 +684,7 @@ abstract class BaseAddressesPeer {
 				$obj2 = CustomersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CustomersPeer::getOMClass(false);
+					$cls = CustomersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -741,7 +738,7 @@ abstract class BaseAddressesPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = AddressesPeer::getOMClass(false);
+				$cls = AddressesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -753,7 +750,7 @@ abstract class BaseAddressesPeer {
 				$obj2 = CountriesPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CountriesPeer::getOMClass(false);
+					$cls = CountriesPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -865,7 +862,7 @@ abstract class BaseAddressesPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = AddressesPeer::getOMClass(false);
+				$cls = AddressesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -879,7 +876,7 @@ abstract class BaseAddressesPeer {
 				$obj2 = CustomersPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CustomersPeer::getOMClass(false);
+					$cls = CustomersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -897,7 +894,7 @@ abstract class BaseAddressesPeer {
 				$obj3 = CountriesPeer::getInstanceFromPool($key3);
 				if (!$obj3) {
 
-					$cls = CountriesPeer::getOMClass(false);
+					$cls = CountriesPeer::getOMClass();
 
 					$obj3 = new $cls();
 					$obj3->hydrate($row, $startcol3);
@@ -1055,7 +1052,7 @@ abstract class BaseAddressesPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = AddressesPeer::getOMClass(false);
+				$cls = AddressesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -1069,7 +1066,7 @@ abstract class BaseAddressesPeer {
 					$obj2 = CountriesPeer::getInstanceFromPool($key2);
 					if (!$obj2) {
 	
-						$cls = CountriesPeer::getOMClass(false);
+						$cls = CountriesPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -1128,7 +1125,7 @@ abstract class BaseAddressesPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = AddressesPeer::getOMClass(false);
+				$cls = AddressesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -1142,7 +1139,7 @@ abstract class BaseAddressesPeer {
 					$obj2 = CustomersPeer::getInstanceFromPool($key2);
 					if (!$obj2) {
 	
-						$cls = CustomersPeer::getOMClass(false);
+						$cls = CustomersPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -1187,17 +1184,12 @@ abstract class BaseAddressesPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? AddressesPeer::CLASS_DEFAULT : AddressesPeer::OM_CLASS;
+		return AddressesPeer::OM_CLASS;
 	}
 
 	/**

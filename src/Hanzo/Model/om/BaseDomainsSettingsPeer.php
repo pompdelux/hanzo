@@ -32,9 +32,6 @@ abstract class BaseDomainsSettingsPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\DomainsSettings';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.DomainsSettings';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'DomainsSettingsTableMap';
 
@@ -424,7 +421,7 @@ abstract class BaseDomainsSettingsPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = DomainsSettingsPeer::getOMClass(false);
+		$cls = DomainsSettingsPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = DomainsSettingsPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -555,7 +552,7 @@ abstract class BaseDomainsSettingsPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = DomainsSettingsPeer::getOMClass(false);
+				$cls = DomainsSettingsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -567,7 +564,7 @@ abstract class BaseDomainsSettingsPeer {
 				$obj2 = DomainsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = DomainsPeer::getOMClass(false);
+					$cls = DomainsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -672,7 +669,7 @@ abstract class BaseDomainsSettingsPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = DomainsSettingsPeer::getOMClass(false);
+				$cls = DomainsSettingsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -686,7 +683,7 @@ abstract class BaseDomainsSettingsPeer {
 				$obj2 = DomainsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = DomainsPeer::getOMClass(false);
+					$cls = DomainsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -730,17 +727,12 @@ abstract class BaseDomainsSettingsPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? DomainsSettingsPeer::CLASS_DEFAULT : DomainsSettingsPeer::OM_CLASS;
+		return DomainsSettingsPeer::OM_CLASS;
 	}
 
 	/**

@@ -33,9 +33,6 @@ abstract class BaseProductsDomainsPricesPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\ProductsDomainsPrices';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.ProductsDomainsPrices';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'ProductsDomainsPricesTableMap';
 
@@ -319,7 +316,7 @@ abstract class BaseProductsDomainsPricesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId(), (string) $obj->getFromDate('c')));
+				$key = serialize(array((string) $obj->getProductsId(), (string) $obj->getDomainsId(), (string) $obj->getFromDate()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -339,7 +336,7 @@ abstract class BaseProductsDomainsPricesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof ProductsDomainsPrices) {
-				$key = serialize(array((string) $value->getProductsId(), (string) $value->getDomainsId(), (string) $value->getFromDate('c')));
+				$key = serialize(array((string) $value->getProductsId(), (string) $value->getDomainsId(), (string) $value->getFromDate()));
 			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
 				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));
@@ -435,7 +432,7 @@ abstract class BaseProductsDomainsPricesPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = ProductsDomainsPricesPeer::getOMClass(false);
+		$cls = ProductsDomainsPricesPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = ProductsDomainsPricesPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -616,7 +613,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = ProductsDomainsPricesPeer::getOMClass(false);
+				$cls = ProductsDomainsPricesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -628,7 +625,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				$obj2 = ProductsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = ProductsPeer::getOMClass(false);
+					$cls = ProductsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -682,7 +679,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = ProductsDomainsPricesPeer::getOMClass(false);
+				$cls = ProductsDomainsPricesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -694,7 +691,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				$obj2 = DomainsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = DomainsPeer::getOMClass(false);
+					$cls = DomainsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -806,7 +803,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = ProductsDomainsPricesPeer::getOMClass(false);
+				$cls = ProductsDomainsPricesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -820,7 +817,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				$obj2 = ProductsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = ProductsPeer::getOMClass(false);
+					$cls = ProductsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -838,7 +835,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				$obj3 = DomainsPeer::getInstanceFromPool($key3);
 				if (!$obj3) {
 
-					$cls = DomainsPeer::getOMClass(false);
+					$cls = DomainsPeer::getOMClass();
 
 					$obj3 = new $cls();
 					$obj3->hydrate($row, $startcol3);
@@ -996,7 +993,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = ProductsDomainsPricesPeer::getOMClass(false);
+				$cls = ProductsDomainsPricesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -1010,7 +1007,7 @@ abstract class BaseProductsDomainsPricesPeer {
 					$obj2 = DomainsPeer::getInstanceFromPool($key2);
 					if (!$obj2) {
 	
-						$cls = DomainsPeer::getOMClass(false);
+						$cls = DomainsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -1069,7 +1066,7 @@ abstract class BaseProductsDomainsPricesPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = ProductsDomainsPricesPeer::getOMClass(false);
+				$cls = ProductsDomainsPricesPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -1083,7 +1080,7 @@ abstract class BaseProductsDomainsPricesPeer {
 					$obj2 = ProductsPeer::getInstanceFromPool($key2);
 					if (!$obj2) {
 	
-						$cls = ProductsPeer::getOMClass(false);
+						$cls = ProductsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -1128,17 +1125,12 @@ abstract class BaseProductsDomainsPricesPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? ProductsDomainsPricesPeer::CLASS_DEFAULT : ProductsDomainsPricesPeer::OM_CLASS;
+		return ProductsDomainsPricesPeer::OM_CLASS;
 	}
 
 	/**

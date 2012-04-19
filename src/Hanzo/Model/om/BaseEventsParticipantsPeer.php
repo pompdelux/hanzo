@@ -32,9 +32,6 @@ abstract class BaseEventsParticipantsPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\EventsParticipants';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.EventsParticipants';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'EventsParticipantsTableMap';
 
@@ -479,7 +476,7 @@ abstract class BaseEventsParticipantsPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = EventsParticipantsPeer::getOMClass(false);
+		$cls = EventsParticipantsPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = EventsParticipantsPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -610,7 +607,7 @@ abstract class BaseEventsParticipantsPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = EventsParticipantsPeer::getOMClass(false);
+				$cls = EventsParticipantsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -622,7 +619,7 @@ abstract class BaseEventsParticipantsPeer {
 				$obj2 = EventsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = EventsPeer::getOMClass(false);
+					$cls = EventsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -727,7 +724,7 @@ abstract class BaseEventsParticipantsPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = EventsParticipantsPeer::getOMClass(false);
+				$cls = EventsParticipantsPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -741,7 +738,7 @@ abstract class BaseEventsParticipantsPeer {
 				$obj2 = EventsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = EventsPeer::getOMClass(false);
+					$cls = EventsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -785,17 +782,12 @@ abstract class BaseEventsParticipantsPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? EventsParticipantsPeer::CLASS_DEFAULT : EventsParticipantsPeer::OM_CLASS;
+		return EventsParticipantsPeer::OM_CLASS;
 	}
 
 	/**

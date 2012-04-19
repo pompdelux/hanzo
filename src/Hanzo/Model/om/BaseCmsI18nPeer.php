@@ -32,20 +32,17 @@ abstract class BaseCmsI18nPeer {
 	/** the related Propel class for this table */
 	const OM_CLASS = 'Hanzo\\Model\\CmsI18n';
 
-	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'src.Hanzo.Model.CmsI18n';
-
 	/** the related TableMap class for this table */
 	const TM_CLASS = 'CmsI18nTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 6;
+	const NUM_COLUMNS = 7;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 6;
+	const NUM_HYDRATE_COLUMNS = 7;
 
 	/** the column name for the ID field */
 	const ID = 'cms_i18n.ID';
@@ -64,6 +61,9 @@ abstract class BaseCmsI18nPeer {
 
 	/** the column name for the SETTINGS field */
 	const SETTINGS = 'cms_i18n.SETTINGS';
+
+	/** the column name for the IS_RESTRICTED field */
+	const IS_RESTRICTED = 'cms_i18n.IS_RESTRICTED';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
@@ -84,12 +84,12 @@ abstract class BaseCmsI18nPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'Content', 'Settings', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'content', 'settings', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::LOCALE, self::TITLE, self::PATH, self::CONTENT, self::SETTINGS, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'CONTENT', 'SETTINGS', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'content', 'settings', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'Content', 'Settings', 'IsRestricted', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'content', 'settings', 'isRestricted', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::LOCALE, self::TITLE, self::PATH, self::CONTENT, self::SETTINGS, self::IS_RESTRICTED, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'CONTENT', 'SETTINGS', 'IS_RESTRICTED', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'content', 'settings', 'is_restricted', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	/**
@@ -99,12 +99,12 @@ abstract class BaseCmsI18nPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'Content' => 4, 'Settings' => 5, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'content' => 4, 'settings' => 5, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::LOCALE => 1, self::TITLE => 2, self::PATH => 3, self::CONTENT => 4, self::SETTINGS => 5, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'CONTENT' => 4, 'SETTINGS' => 5, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'content' => 4, 'settings' => 5, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'Content' => 4, 'Settings' => 5, 'IsRestricted' => 6, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'content' => 4, 'settings' => 5, 'isRestricted' => 6, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::LOCALE => 1, self::TITLE => 2, self::PATH => 3, self::CONTENT => 4, self::SETTINGS => 5, self::IS_RESTRICTED => 6, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'CONTENT' => 4, 'SETTINGS' => 5, 'IS_RESTRICTED' => 6, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'content' => 4, 'settings' => 5, 'is_restricted' => 6, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
 	);
 
 	/**
@@ -182,6 +182,7 @@ abstract class BaseCmsI18nPeer {
 			$criteria->addSelectColumn(CmsI18nPeer::PATH);
 			$criteria->addSelectColumn(CmsI18nPeer::CONTENT);
 			$criteria->addSelectColumn(CmsI18nPeer::SETTINGS);
+			$criteria->addSelectColumn(CmsI18nPeer::IS_RESTRICTED);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.LOCALE');
@@ -189,6 +190,7 @@ abstract class BaseCmsI18nPeer {
 			$criteria->addSelectColumn($alias . '.PATH');
 			$criteria->addSelectColumn($alias . '.CONTENT');
 			$criteria->addSelectColumn($alias . '.SETTINGS');
+			$criteria->addSelectColumn($alias . '.IS_RESTRICTED');
 		}
 	}
 
@@ -429,7 +431,7 @@ abstract class BaseCmsI18nPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = CmsI18nPeer::getOMClass(false);
+		$cls = CmsI18nPeer::getOMClass();
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$key = CmsI18nPeer::getPrimaryKeyHashFromRow($row, 0);
@@ -560,7 +562,7 @@ abstract class BaseCmsI18nPeer {
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = CmsI18nPeer::getOMClass(false);
+				$cls = CmsI18nPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -572,7 +574,7 @@ abstract class BaseCmsI18nPeer {
 				$obj2 = CmsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CmsPeer::getOMClass(false);
+					$cls = CmsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
@@ -677,7 +679,7 @@ abstract class BaseCmsI18nPeer {
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = CmsI18nPeer::getOMClass(false);
+				$cls = CmsI18nPeer::getOMClass();
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
@@ -691,7 +693,7 @@ abstract class BaseCmsI18nPeer {
 				$obj2 = CmsPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = CmsPeer::getOMClass(false);
+					$cls = CmsPeer::getOMClass();
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
@@ -735,17 +737,12 @@ abstract class BaseCmsI18nPeer {
 	/**
 	 * The class that the Peer will make instances of.
 	 *
-	 * If $withPrefix is true, the returned path
-	 * uses a dot-path notation which is tranalted into a path
-	 * relative to a location on the PHP include_path.
-	 * (e.g. path.to.MyClass -> 'path/to/MyClass.php')
 	 *
-	 * @param      boolean $withPrefix Whether or not to return the path with the class name
-	 * @return     string path.to.ClassName
+	 * @return     string ClassName
 	 */
-	public static function getOMClass($withPrefix = true)
+	public static function getOMClass()
 	{
-		return $withPrefix ? CmsI18nPeer::CLASS_DEFAULT : CmsI18nPeer::OM_CLASS;
+		return CmsI18nPeer::OM_CLASS;
 	}
 
 	/**
