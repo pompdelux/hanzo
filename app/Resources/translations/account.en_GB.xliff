@@ -10,7 +10,6 @@
                 <source>account.details</source>
                 <target>Show or change my account details.</target>
             </trans-unit>
-
             <trans-unit id="43">
                 <source>» I wish to create an account at POMPdeLUX</source>
                 <target>» I wish to create an account at POMPdeLUX.</target>
@@ -45,11 +44,11 @@
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
-                <target>Min side</target>
+                <target>My account</target>
             </trans-unit>
             <trans-unit id="my.account.logout">
                 <source>my.account.logout</source>
-                <target>Log ud</target>
+                <target>Log off</target>
             </trans-unit>
 
 <!-- create account -->
