@@ -8,7 +8,10 @@ use Hanzo\Model\Settings,
 Hanzo\Model\DomainsSettings,
 Hanzo\Model\SettingsQuery,
 Hanzo\Model\DomainsSettingsQuery,
-Hanzo\Model\DomainsQuery;
+Hanzo\Model\DomainsQuery,
+Hanzo\Model\ProductsWashingInstructions,
+Hanzo\Model\ProductsWashingInstructionsQuery,
+Hanzo\Model\LanguagesQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\SettingsType;
 
@@ -236,5 +239,88 @@ class SettingsController extends Controller
 
             return $this->redirect($this->generateUrl('admin_settings'));
         }
+    }
+
+    public function washingInstructionsIndexAction($code = null, $locale = null)
+    {
+        $washing_instructions = ProductsWashingInstructionsQuery::create();
+
+        if($code)
+            $washing_instructions = $washing_instructions->filterByCode($code);
+
+        if($locale)
+            $washing_instructions = $washing_instructions->filterByLocale($locale);
+
+        $washing_instructions = $washing_instructions->orderByCode()
+            ->find()
+        ;
+
+        $codes_availible = ProductsWashingInstructionsQuery::create()
+            ->groupByCode()
+            ->find();
+        $languages_availible = LanguagesQuery::Create()
+            ->find();
+
+        return $this->render('AdminBundle:Settings:washing_instructions.html.twig', array(
+            'washing_instructions'  => $washing_instructions,
+            'languages_availible' => $languages_availible,
+            'codes_availible' => $codes_availible
+        ));
+    }
+
+    public function washingInstructionsEditAction($id)
+    {
+        $washing_instruction = null;
+        if ($id)
+            $washing_instruction = ProductsWashingInstructionsQuery::create()->findOneById($id);
+        else
+            $washing_instruction = new ProductsWashingInstructions();
+
+        $languages_availible = LanguagesQuery::Create()->find();
+
+        $languages = array();
+        foreach ($languages_availible as $language) {
+            $languages[$language->getLocale()] = $language->getName();
+        }
+
+        $form = $this->createFormBuilder($washing_instruction)
+            ->add('code', 'integer', 
+                array(
+                    'label' => 'admin.washing.instructions.code',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('locale', 'choice', 
+                array(
+                    'choices' => $languages,
+                    'label' => 'admin.washing.instructions.locale',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('description', 'textarea', 
+                array(
+                    'label' => 'admin.washing.instructions.description',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $washing_instruction->save();
+
+                $this->get('session')->setFlash('notice', 'admin.washing.instruction.inserted');
+            }
+        }
+
+        return $this->render('AdminBundle:Settings:washing_instructionsEdit.html.twig', array(
+            'form' => $form->createView(),
+            'id' => $id
+        ));
     }
 }

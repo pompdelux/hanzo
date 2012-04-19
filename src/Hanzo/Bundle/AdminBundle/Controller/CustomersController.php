@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Hanzo\Core\Hanzo,
 Hanzo\Core\Tools;
 
-use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\CustomersQuery,
+    Hanzo\Model\Addresses,
+    Hanzo\Model\AddressesQuery;
 
 class CustomersController extends Controller
 {
@@ -43,7 +45,7 @@ class CustomersController extends Controller
                 ->filterById($q_clean)
                 ->orderByFirstName()
                 ->orderByLastName()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
         } else {
 
@@ -55,7 +57,7 @@ class CustomersController extends Controller
                 ->endUse()
                 ->orderByFirstName()
                 ->orderByLastName()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
         }
         $paginate = null;
@@ -100,6 +102,8 @@ class CustomersController extends Controller
         $customer = CustomersQuery::create()
             ->findOneById($id)
         ;
+
+        $addresses = AddressesQuery::create()->findByCustomersId($id);
 
         $form = $this->createFormBuilder($customer)
             ->add('first_name', 'text',
@@ -167,7 +171,100 @@ class CustomersController extends Controller
 
         return $this->render('AdminBundle:Customers:view.html.twig', array(
             'form'      => $form->createView(),
-            'customer'  => $customer
+            'customer'  => $customer,
+            'addresses' => $addresses
+        ));
+    }
+
+    public function editAddressAction($id, $type)
+    {
+        $address = null;
+        if($type){
+            $address = AddressesQuery::create()
+                ->filterByType($type)
+                ->findOneByCustomersId($id);
+        }else{
+            $address = new Addresses();
+        }
+
+        $form = $this->createFormBuilder($address)
+            ->add('first_name', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.first_name',
+                    'translation_domain' => 'admin'
+                )
+            )->add('last_name', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.last_name',
+                    'translation_domain' => 'admin'
+                )
+            )->add('address_line_1', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.address_line_1',
+                    'translation_domain' => 'admin'
+                )
+            )->add('address_line_2', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.address_line_2',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->add('postal_code', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.postal_code',
+                    'translation_domain' => 'admin'
+                )
+            )->add('city', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.city',
+                    'translation_domain' => 'admin'
+                )
+            )->add('country', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.country',
+                    'translation_domain' => 'admin'
+                )
+            )->add('state_province', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.state_province',
+                    'translation_domain' => 'admin'
+                )
+            )->add('company_name', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.company_name',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->add('latitude', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.latitude',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->add('longitude', 'text',
+                array(
+                    'label' => 'admin.customers.addresses.longitude',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $address->save();
+
+                $this->get('session')->setFlash('notice', 'address.updated');
+            }
+        }
+
+        return $this->render('AdminBundle:Customers:editAddress.html.twig', array(
+            'form'      => $form->createView(),
+            'address'   => $address
         ));
     }
 }

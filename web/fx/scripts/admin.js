@@ -26,6 +26,11 @@
         $("#select-category div").slideToggle();
       });
 
+      $("#select-code a.open-menu").click(function(e) {
+        e.preventDefault();
+        $("#select-code div").slideToggle();
+      });
+
       /* Admin Sortable list to show and update Cms pages' order*/
       $('#sortable-list').nestedSortable({
         listType: 'ul',
@@ -223,6 +228,48 @@
               success : function(response, textStatus, jqXHR) {
                 if (response.status) {
                   $a.parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+                }
+              }
+            });
+          }
+        });
+      });
+
+      $('#translation-list a.delete').live('click',function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(i18n.t('Notice!'), i18n.t('Er du sikker på du vil <strong>slette</strong> oversættelsen til kategorien ?'),function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+                }
+              }
+            });
+          }
+        });
+      });
+
+      $('#category-list a.delete').live('click',function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(i18n.t('Notice!'), i18n.t('Er du sikker på du vil <strong>slette</strong> denne kategori ?'),function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().fadeOut(function() {
                     $(this).remove();
                   });
                 }

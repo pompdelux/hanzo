@@ -142,6 +142,82 @@
         <source>categories.selector</source>
         <target>Vælg kategori</target>
       </trans-unit>
+      <trans-unit id="admin.category.edit.header.text">
+        <source>admin.category.edit.header.text</source>
+        <target>Rediger Kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.add.category">
+        <source>admin.add.category</source>
+        <target>Opret ny kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.edit-link.text">
+        <source>admin.categories.list.edit-link.text</source>
+        <target>Ret kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.categories.list.delete-link.text">
+        <source>admin.categories.list.delete-link.text</source>
+        <target>Slet kategori</target>
+      </trans-unit>
+      <trans-unit id="admin.category.edit.description.text">
+        <source>admin.category.edit.description.text</source>
+        <target>Her kan du redigere tekster og andet på en kategori.</target>
+      </trans-unit>
+      <trans-unit id="admin.category.translations.header.text">
+        <source>admin.category.translations.header.text</source>
+        <target>Rediger Kategoriens oversættelser</target>
+      </trans-unit>
+      <trans-unit id="admin.category.translations.description.text">
+        <source>admin.category.translations.description.text</source>
+        <target>Her kan du redigere oversættelser der er tilknyttes denne kategori.</target>
+      </trans-unit>
+      <trans-unit id="admin.category.add.translations.header.text">
+        <source>admin.category.add.translations.header.text</source>
+        <target>Tilføj en ny oversættelse</target>
+      </trans-unit>
+      <trans-unit id="edit.category.translation"> 
+        <source>edit.category.translation</source>
+        <target>Rediger oversættelse</target>
+      </trans-unit>
+      <trans-unit id="delete.category.translation">
+        <source>delete.category.translation</source>
+        <target>Slet oversættelse</target>
+      </trans-unit>
+      <trans-unit id="update.category">
+        <source>update.category</source>
+        <target>Gem Kategori</target>
+      </trans-unit>
+      <trans-unit id="category.updated">
+        <source>category.updated</source>
+        <target>Kategorien er gemt!</target>
+      </trans-unit>
+      <trans-unit id="add.category.translation">
+        <source>add.category.translation</source>
+        <target>Gem oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.category.parent_id.label">
+        <source>admin.category.parent_id.label</source>
+        <target>Forældre ID</target>
+      </trans-unit>
+      <trans-unit id="admin.category.context.label">
+        <source>admin.category.context.label</source>
+        <target>Konteksten</target>
+      </trans-unit>
+      <trans-unit id="admin.category.is_active.label">
+        <source>admin.category.is_active.label</source>
+        <target>Skal kategorien aktiveres?</target>
+      </trans-unit>
+      <trans-unit id="admin.category.locale.label">
+        <source>admin.category.locale.label</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.category.title.label">
+        <source>admin.category.title.label</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="admin.category.content.label">
+        <source>admin.category.content.label</source>
+        <target>Indhold</target>
+      </trans-unit>
       <trans-unit id="admin.categories.list.header.text">
         <source>admin.categories.list.header.text</source>
         <target>Kategorier</target>
@@ -246,6 +322,14 @@
         <source>save.settings</source>
         <target>Gem indstillinger</target>
       </trans-unit>
+      <trans-unit id="save.customer.address">
+        <source>save.customer.address</source>
+        <target>Gem addresse</target>
+      </trans-unit>
+      <trans-unit id="address.updated">
+        <source>address.updated</source>
+        <target>Addressen er blevet gemt!</target>
+      </trans-unit>
       <trans-unit id="add.setting">
         <source>add.setting</source>
         <target>Opret indstilling</target>
@@ -266,6 +350,14 @@
         <source>admin.consultants.header.text</source>
         <target>Konsulenter</target>
       </trans-unit>
+      <trans-unit id="admin.customer.addresses.header.text">
+        <source>admin.customer.addresses.header.text</source>
+        <target>Adresser for kunden</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.address.header.text">
+        <source>admin.customer.address.header.text</source>
+        <target>Rediger addresse</target>
+      </trans-unit>
       <trans-unit id="admin.customers.description.text">
         <source>admin.customers.description.text</source>
         <target>I tabellen herunder vises alle kunder i databasen. Du kan rediger en kunde i linket ud for. Søg eventuelt efter en kunde i feltet til højre(fornavn, efternavn, email, telefon).</target>
@@ -274,6 +366,14 @@
         <source>admin.consultants.description.text</source>
         <target>I tabellen herunder vises alle konsulenter i databasen. Du kan rediger en konsulent i linket ud for. Søg eventuelt efter en konsulent i feltet til højre(fornavn, efternavn, email, telefon).</target>
       </trans-unit>
+      <trans-unit id="admin.customer.addresses.description.text">
+        <source>admin.customer.addresses.description.text</source>
+        <target>Her kan alle kundens gemte addresser ses. Du kan redigere dem med linket til højre.</target>
+      </trans-unit>
+      <trans-unit id="admin.customer.address.description.text">
+        <source>admin.customer.address.description.text</source>
+        <target>Rediger de informationer på kundens addresse og gem når du er færdig.</target>
+      </trans-unit>
       <trans-unit id="admin.customers.no.customers.text">
         <source>admin.customers.no.customers.text</source>
         <target>Der findes desværre ingen kunder i databasen.</target>
@@ -281,6 +381,10 @@
       <trans-unit id="admin.consultants.no.consultants.text">
         <source>admin.consultants.no.consultants.text</source>
         <target>Der findes desværre ingen konsulenter i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.no.addresses.text">
+        <source>admin.customers.no.addresses.text</source>
+        <target>Der findes desværre ingen addresser i databasen.</target>
       </trans-unit>
       <trans-unit id="admin.customer.edit">
         <source>admin.customer.edit</source>
@@ -293,6 +397,10 @@
       <trans-unit id="admin.consultant.edit">
         <source>admin.consultant.edit</source>
         <target>Rediger konsulent</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.address.edit">
+        <source>admin.customers.address.edit</source>
+        <target>Rediger addresse</target>
       </trans-unit>
       <trans-unit id="admin.customer.first_name">
         <source>admin.customer.first_name</source>
@@ -325,6 +433,54 @@
       <trans-unit id="admin.customer.deactivated">
         <source>admin.customer.deactivated</source>
         <target>Deaktiveret</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.type">
+        <source>admin.customers.addresses.type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.first_name">
+        <source>admin.customers.addresses.first_name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.last_name">
+        <source>admin.customers.addresses.last_name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.address_line_1">
+        <source>admin.customers.addresses.address_line_1</source>
+        <target>Adresse 1</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.address_line_2">
+        <source>admin.customers.addresses.address_line_2</source>
+        <target>Addresse 2</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.postal_code">
+        <source>admin.customers.addresses.postal_code</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.city">
+        <source>admin.customers.addresses.city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.country">
+        <source>admin.customers.addresses.country</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.state_province">
+        <source>admin.customers.addresses.state_province</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.company_name">
+        <source>admin.customers.addresses.company_name</source>
+        <target>Firma navn</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.latitude">
+        <source>admin.customers.addresses.latitude</source>
+        <target>Latitude</target>
+      </trans-unit>
+      <trans-unit id="admin.customers.addresses.longitude">
+        <source>admin.customers.addresses.longitude</source>
+        <target>Longitude</target>
       </trans-unit>
       <trans-unit id="admin.consultant.yes">
         <source>admin.consultant.yes</source>
@@ -713,7 +869,7 @@
         <target>Denne tabel viser alle gemte attributer for den ordren.</target>
       </trans-unit>
 
-      <trans-unit id="admin.back.button.text">
+      <trans-unit id="admin.back.button">
         <source>admin.back.button</source>
         <target>Tilbage</target>
       </trans-unit>

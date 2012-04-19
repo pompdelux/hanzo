@@ -18,9 +18,24 @@ admin_settings_domain:
         _controller: AdminBundle:Settings:domain
         domain_key: 'COM'
 
-admin_category:
-    pattern:  /admin/category/
-    defaults: { _controller: AdminBundle:Category:index }
+admin_settings_washing_instructions:
+    pattern:  /admin/settings/washinginstructions/{code}
+    defaults: 
+        _controller: AdminBundle:Settings:washingInstructionsIndex
+        code: null
+    requirements:
+        code: \d+
+admin_settings_washing_instructions_locale:
+    pattern:  /admin/settings/washinginstructions/locale/{locale}
+    defaults: { _controller: AdminBundle:Settings:washingInstructionsIndex }
+
+admin_settings_washing_instructions_edit:
+    pattern:  /admin/settings/washinginstructions/edit/{id}
+    defaults: 
+        _controller: AdminBundle:Settings:washingInstructionsEdit
+        id: null
+    requirements:
+        id: \d+
 
 admin_cms:
     pattern:  /admin/cms/
@@ -124,6 +139,38 @@ admin_product_cat_delete:
         category_id: \d+
         product_id: \d+
 
+admin_category_edit:
+    pattern:  /admin/category/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Category:editCategory
+        id: null
+        locale: null
+    requirements:
+        id: \d+
+admin_category_add:
+    pattern:  /admin/category/add/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Category:addCategory
+        locale: null
+    requirements:
+        id: \d+
+admin_category_delete:
+    pattern:  /admin/category/delete/{id}
+    defaults:
+        _controller: AdminBundle:Category:deleteCategory
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+
+admin_category_delete_translation:
+    pattern:  /admin/category/delete-translation/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Category:deleteTranslation
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+
+
 admin_customers:
     pattern:  /admin/customers/{pager}
     defaults: 
@@ -134,6 +181,14 @@ admin_customer:
     pattern:  /admin/customer/{id}
     defaults:
         _controller: AdminBundle:Customers:view
+    requirements:
+        id: \d+
+
+admin_customer_address:
+    pattern:  /admin/customer/address/{id}/{type}
+    defaults:
+        _controller: AdminBundle:Customers:editAddress
+        type: null
     requirements:
         id: \d+
 
@@ -158,6 +213,13 @@ admin_consultants:
     defaults: 
         _controller: AdminBundle:Consultants:index
         pager: 1
+
+admin_consultants_export:
+    pattern:  /admin/consultants/export/{start}/{end}
+    defaults: 
+        _controller: AdminBundle:Consultants:export
+        start: null
+        end: null
 
 admin_consultant:
     pattern:  /admin/consultant/{id}

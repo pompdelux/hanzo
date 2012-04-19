@@ -9,6 +9,9 @@ use Hanzo\Core\Hanzo,
 
 use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\EventsQuery;
+
+use Propel\Runtime\Parser\PropelCSVParser;
 
 class ConsultantsController extends Controller
 {
@@ -44,7 +47,7 @@ class ConsultantsController extends Controller
                     ->orderByLastName()
                 ->endUse()
                 ->joinWithCustomers()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
             
         } else {
@@ -55,7 +58,7 @@ class ConsultantsController extends Controller
                     ->orderByLastName()
                 ->endUse()
                 ->joinWithCustomers()
-                ->paginate($pager, 10)
+                ->paginate($pager, 50)
             ;
 
         }
@@ -116,12 +119,6 @@ class ConsultantsController extends Controller
             'event_notes' => $consultant->getEventNotes(),
             'max_notified' => $consultant->getMaxNotified()
         );
-
-        // $consultant = CustomersQuery::create()
-        //     ->joinConsultants()
-        //     ->with('Consultants')
-        //     ->findOneById($id)
-        // ;
 
         $form = $this->createFormBuilder($consultant_data)
             ->add('first_name', 'text',
@@ -240,5 +237,64 @@ class ConsultantsController extends Controller
             'form'      => $form->createView(),
             'consultant'  => $consultant
         ));
+    }
+
+    public function exportAction($start, $end)
+    {
+        $parser = new PropelCSVParser();
+        $parser->delimiter = ';';
+
+        $date_filter = array();
+        if($start && $end){
+            $date_filter['min'] = strtotime($start);
+            $date_filter['max'] = strtotime($end);
+        }else{
+            if($start){
+                $date_filter['min'] = strtotime('-1 month', strtotime($end));
+                $date_filter['max'] = strtotime($end);
+            }elseif ($end) {
+                $date_filter['min'] = strtotime($end);
+                $date_filter['max'] = strtotime('+1 month', strtotime($start));
+            }else{
+                $date_filter['min'] = strtotime('-1 month', now());
+                $date_filter['max'] = strtotime(now());
+            }
+        }
+        $data = array();
+        $data[0]['consultant'] = 'consultant';
+
+        $consultants = ConsultantsQuery::create()->joinCustomers()->find(); // Mangler i data[consultants id]
+
+        $events = EventsQuery::create()
+            ->filterByEventDate($date_filter)
+            ->orderByHost()
+            ->find()
+        ;
+
+        for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) { 
+            $data[0][$date] = date('Y-m-d', $date); // Header row with visible dates
+        }
+        foreach ($consultants as $consultant) {
+            $customer_data = $consultant->getCustomers(); 
+            $data[$consultant->getId()][0] = $customer_data->getFirstName(). ' ' . $customer_data->getLastName();
+
+            for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) { 
+                $data[$consultant->getId()][$date] = '-';
+            }
+
+        }
+
+        foreach ($events as $event) {
+            $data[$event->getConsultantsId()][strtotime($event->getEventDate())] = $event->getType();
+        }
+
+        return new Response( 
+            $parser->toCSV($data), 
+            200, 
+            array( 
+                 'Content-Type' => 'text/csv', 
+                 'Content-Disposition' => sprintf('attachment; filename="export_' . $start . '-' . $end .'.csv"', 'export_' . $start . '-' . $end .'.csv') 
+            ) 
+        ); 
     }
 }

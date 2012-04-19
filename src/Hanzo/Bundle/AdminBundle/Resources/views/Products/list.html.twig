@@ -9,8 +9,13 @@
       <li>
         <a href="{{ path('admin_products') }}" title="{{ 'admin.back.button'|trans({}, 'admin') }}">
           {{ 'admin.back.button'|trans({}, 'admin') }}
-      </a>
-    </li>
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">
+          {{ 'admin.add.category'|trans({}, 'admin') }}
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -56,8 +61,14 @@
             <span class="id">(#{{ category.id }})</span>
             <span class="title">{{ category.title }}</span>
           </a>
-          <a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}" class="sort-link" title="{{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}">
+          <a href="{{ path('admin_products_sort', {'category_id' : category.id}) }}" class="right" title="{{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}">
             {{ 'admin.categories.list.sort-link.text'|trans({}, 'admin') }}
+          </a>
+          <a href="{{ path('admin_category_edit', {'id' : category.id}) }}" class="right" title="{{ 'admin.categories.list.edit-link.text'|trans({}, 'admin') }}">
+            {{ 'admin.categories.list.edit-link.text'|trans({}, 'admin') }}
+          </a>
+          <a href="{{ path('admin_category_delete', {'id' : category.id}) }}" class="right delete" title="{{ 'admin.categories.list.delete-link.text'|trans({}, 'admin') }}">
+            {{ 'admin.categories.list.delete-link.text'|trans({}, 'admin') }}
           </a>
   	    </li>
 
@@ -71,6 +82,12 @@
           <a href="{{ path('admin_products', {'category_id' : category.id}) }}" title="{{ category.title }}">
             <span class="id">(#{{ category.id }})</span>
             <span class="title">{{ category.title }}</span>
+          </a>
+          <a href="{{ path('admin_category_edit', {'id' : category.id}) }}" class="right" title="{{ 'admin.categories.list.edit-link.text'|trans({}, 'admin') }}">
+            {{ 'admin.categories.list.edit-link.text'|trans({}, 'admin') }}
+          </a>
+          <a href="{{ path('admin_category_delete', {'id' : category.id}) }}" class="right delete" title="{{ 'admin.categories.list.delete-link.text'|trans({}, 'admin') }}">
+            {{ 'admin.categories.list.delete-link.text'|trans({}, 'admin') }}
           </a>
         </li>
 
