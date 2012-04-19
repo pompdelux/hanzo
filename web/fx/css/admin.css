@@ -616,14 +616,17 @@ form#consultant-export input {
 
 /* Customers/Consultants edit page */
 form#customer-edit-form input[type=text],
+form#washing-edit-form input[type=text],
 form#consultant-edit-form input[type=text]{
   width:50%;
 }
 form#customer-edit-form input[type=checkbox],
+form#washing-edit-form input[type=checkbox],
 form#consultant-edit-form input[type=checkbox]{
   display: inline;
 }
 form#customer-edit-form textarea,
+form#washing-edit-form textarea,
 form#consultant-edit-form textarea{
   width:50%;
   height:200px;

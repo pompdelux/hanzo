@@ -972,7 +972,71 @@
         <source>admin.order.attributes.description.text</source>
         <target>Denne tabel viser alle gemte attributer for den ordren.</target>
       </trans-unit>
-
+      
+      <trans-unit id="admin.washing.header.text">
+        <source>admin.washing.header.text</source>
+        <target>Vaskeanvisninger</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.edit.header.text">
+        <source>admin.washing.edit.header.text</source>
+        <target>Rediger vaskeanvisning</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.edit.description.text">
+        <source>admin.washing.edit.description.text</source>
+        <target>Herunder kan du redigere alle data for den valgte vaskeanvisning.</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.description.text">
+        <source>admin.washing.description.text</source>
+        <target>Herunder vises alle vaskeanvisninger der er gemt i databasen. Du kan filtrer med "Kode" eller "Sprog" for at få vist dem du har brug for.</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.no.washing.text">
+        <source>admin.washing.no.washing.text</source>
+        <target>Der findes ingen oversættelser for det valgte.</target>
+      </trans-unit>
+      <trans-unit id="update.washing">
+        <source>update.washing</source>
+        <target>Gem vaskeanvisning</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.inserted">
+        <source>admin.washing.inserted</source>
+        <target>Vaskeanvisning er blevet gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.washingcode.selector">
+        <source>admin.washingcode.selector</source>
+        <target>Vælg Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.washingcode.list.link">
+        <source>admin.washingcode.list.link</source>
+        <target>Alle vaskeanvisninger</target>
+      </trans-unit>
+      <trans-unit id="admin.washingcode.add_new.link">
+        <source>admin.washingcode.add_new.link</source>
+        <target>Opret ny Vaskeanvisning</target>
+      </trans-unit>
+      <trans-unit id="washing.language.selector">
+        <source>washing.language.selector</source>
+        <target>Vælg Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.code">
+        <source>admin.washing.code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.locale">
+        <source>admin.washing.locale</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.description">
+        <source>admin.washing.description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.edit">
+        <source>admin.washing.edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="admin.washing.delete">
+        <source>admin.washing.delete</source>
+        <target>Slet</target>
+      </trans-unit>
       <trans-unit id="admin.back.button">
         <source>admin.back.button</source>
         <target>Tilbage</target>

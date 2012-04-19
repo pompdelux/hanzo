@@ -1,7 +1,20 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_settings_washing_instructions') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_settings_washing_instructions_edit') }}">
+        {{ 'admin.washingcode.add_new.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
 <h1>{{ 'admin.washing.edit.header.text'|trans({}, 'admin') }}</h1>
 
 {% if app.session.hasFlash('notice') %}

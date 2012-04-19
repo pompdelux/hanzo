@@ -5,7 +5,7 @@
   <ul>
     <li id="select-language">
       <a class="open-menu" href="#">
-        {{ 'language.selector'|trans({}, 'admin') }}
+        {{ 'washing.language.selector'|trans({}, 'admin') }}
       </a>
       <div style="display:none;">
         <ul>
@@ -38,6 +38,11 @@
     <li>
       <a href="{{ path('admin_settings_washing_instructions') }}">
         {{ 'admin.washingcode.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_settings_washing_instructions_edit') }}">
+        {{ 'admin.washingcode.add_new.link'|trans({}, 'admin') }}
       </a>
     </li>
   </ul>
