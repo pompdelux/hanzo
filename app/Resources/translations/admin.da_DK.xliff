@@ -394,6 +394,10 @@
         <source>admin.message.inserted</source>
         <target>Oversættelse blev gemt!</target>
       </trans-unit>
+      <trans-unit id="admin.message.ns.inserted">
+        <source>admin.message.ns.inserted</source>
+        <target>Skabelon blev gemt!</target>
+      </trans-unit>
       <trans-unit id="delete.messages.success">
         <source>delete.messages.success</source>
         <target>Oversættelse blev slette!</target>

@@ -368,7 +368,11 @@ class SettingsController extends CoreController
         if($ns)
             $messages = $messages->filterByNs($ns);
 
-        $messages = $messages->find();
+        $messages = $messages
+            ->orderByNs()
+            ->orderByKey()
+            ->find()
+        ;
 
         $message_ns_availible = MessagesQuery::create()->find();
 
@@ -483,7 +487,7 @@ class SettingsController extends CoreController
 
                 $message->save();
 
-                $this->get('session')->setFlash('notice', 'admin.message.inserted');
+                $this->get('session')->setFlash('notice', 'admin.message.ns.inserted');
                 return $this->redirect($this->generateUrl('admin_settings_messages_edit', array('id' => $message->getId())));
             }
         }
