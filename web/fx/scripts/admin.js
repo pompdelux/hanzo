@@ -326,6 +326,27 @@
         });
       });
 
+      $('#redirects a.delete').live('click',function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(i18n.t('Notice!'), i18n.t('Er du sikker på du vil <strong>slette</strong> denne Redirect ?'),function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+                }
+              }
+            });
+          }
+        });
+      });
+
       $('#consultant-settings-edit-form').submit(function(e){
         e.preventDefault();
         $.ajax({

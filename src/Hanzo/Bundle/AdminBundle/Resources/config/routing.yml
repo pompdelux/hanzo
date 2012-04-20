@@ -116,6 +116,25 @@ admin_cms_update_tree:
     requirements:
         _format: html|json
 
+admin_cms_redirects:
+    pattern:  /admin/cms/redirects/
+    defaults: { _controller: AdminBundle:Cms:redirectsIndex }
+
+admin_cms_redirect_edit:
+    pattern:  /admin/cms/redirects/edit/{id}
+    defaults: 
+        _controller: AdminBundle:Cms:redirectEdit
+        id: null
+    requirements:
+        id: \d+
+
+admin_cms_redirect_delete:
+    pattern:  /admin/cms/redirects/delete/{id}
+    defaults: 
+        _controller: AdminBundle:Cms:redirectDelete
+    requirements:
+        id: \d+
+
 admin_products:
     pattern:  /admin/products/cat/{category_id}/{subcategory_id}
     defaults:

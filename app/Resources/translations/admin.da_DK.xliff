@@ -826,7 +826,15 @@
       </trans-unit>
       <trans-unit id="admin.order.state">
         <source>admin.order.state</source>
-        <target>state (transl?)</target>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="update.state">
+        <source>update.state</source>
+        <target>Opdater Status</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.state_log.inserted">
+        <source>admin.orders.state_log.inserted</source>
+        <target>Status opdateret!</target>
       </trans-unit>
       <trans-unit id="admin.order.in_edit">
         <source>admin.order.in_edit</source>
