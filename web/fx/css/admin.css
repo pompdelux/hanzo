@@ -657,6 +657,13 @@ form#consultant-edit-form textarea{
   height:200px;
 }
 
+form.edit-form.inline input,
+form.edit-form.inline select,
+form.edit-form.inline div {
+  display: inline;
+  float: left;
+}
+
 /* Product Image list with references */
 ul#product-images-list li{
   clear:both;

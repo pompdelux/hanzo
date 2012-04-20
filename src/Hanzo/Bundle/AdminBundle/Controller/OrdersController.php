@@ -117,10 +117,48 @@ class OrdersController extends Controller
             ->find()
         ;
 
+        $form_state = $this->createFormBuilder(array('state' => $order->getState()))
+            ->add('state', 'choice', 
+                array(
+                    'choices' => array(
+                        -110 => 'Payment error',
+                        -100 => 'General error',
+                        -50 => 'Building order',
+                        -30 => 'Order in pre confirm state',
+                        -20 => 'Order in pre payment state',
+                        10 => 'Order in post confirm state',
+                        20 => 'Order payment confirmed',
+                        30 => 'Order pending',
+                        40 => 'Order beeing processed',
+                        50 => 'Order shipped/done',
+                    ),
+                    'label' => 'admin.orders.state_log.state',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form_state->bindRequest($request);
+
+            if ($form_state->isValid()) {
+                
+                $form_data = $form_state->getData();
+
+                $order->setState($form_data['state']);
+                $order->save();
+
+                $this->get('session')->setFlash('notice', 'admin.orders.state_log.inserted');
+            }
+        }
+        
         return $this->render('AdminBundle:Orders:view.html.twig', array(
             'order'  => $order,
             'order_lines' => $order_lines,
-            'order_attributes' => $order_attributes
+            'order_attributes' => $order_attributes,
+            'form_state' => $form_state->createView()
         ));
     }
 }
