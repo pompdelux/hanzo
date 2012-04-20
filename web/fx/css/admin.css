@@ -266,6 +266,17 @@ nav.sub li:first-child {
 nav.sub li:last-child {
   background-image: none;
 }
+nav.sub li > a {
+  font-weight: normal;
+  color: black;
+  padding: 5px;
+  background: #D3C2A2;
+  border: 1px solid #C8B289;
+}
+nav.sub li > a:hover {
+  color: black;
+  background: #C8B289;
+}
 nav.sub a {
   font-weight: normal;
   color: black;
@@ -298,6 +309,7 @@ nav.sub li.dropdown-menu div ul li{
 nav.sub #select-language div a,
 nav.sub li.dropdown-menu div a{
   border: none;
+  display: block;
 }
 /* http://flag-sprites.com/ */
 span.flag{
@@ -614,17 +626,20 @@ form#consultant-export input {
 }
 
 
-/* Customers/Consultants edit page */
+/* Edit page */
+form.edit-form input[type=text],
 form#customer-edit-form input[type=text],
 form#washing-edit-form input[type=text],
 form#consultant-edit-form input[type=text]{
   width:50%;
 }
+form.edit-form input[type=checkbox],
 form#customer-edit-form input[type=checkbox],
 form#washing-edit-form input[type=checkbox],
 form#consultant-edit-form input[type=checkbox]{
   display: inline;
 }
+form.edit-form textarea,
 form#customer-edit-form textarea,
 form#washing-edit-form textarea,
 form#consultant-edit-form textarea{
