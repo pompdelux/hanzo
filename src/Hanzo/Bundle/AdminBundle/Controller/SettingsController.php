@@ -294,20 +294,20 @@ class SettingsController extends CoreController
         $form = $this->createFormBuilder($washing_instruction)
             ->add('code', 'integer', 
                 array(
-                    'label' => 'admin.washing.instructions.code',
+                    'label' => 'admin.washing.code',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
             )->add('locale', 'choice', 
                 array(
                     'choices' => $languages,
-                    'label' => 'admin.washing.instructions.locale',
+                    'label' => 'admin.washing.locale',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
             )->add('description', 'textarea', 
                 array(
-                    'label' => 'admin.washing.instructions.description',
+                    'label' => 'admin.washing.description',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
@@ -322,7 +322,7 @@ class SettingsController extends CoreController
 
                 $washing_instruction->save();
 
-                $this->get('session')->setFlash('notice', 'admin.washing.instruction.inserted');
+                $this->get('session')->setFlash('notice', 'admin.washing.inserted');
             }
         }
 
