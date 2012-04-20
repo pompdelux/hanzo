@@ -77,14 +77,14 @@
       <td>{{ message.key }}</td>
       <td>{{ message.locale }}</td>
       <td>{{ message.subject }}</td>
-      <td>
+      <th>
         <a href="{{ path('admin_settings_messages_edit', {'id' : message.id, 'locale' : message.locale}) }}">
           {{ 'admin.messages.edit'|trans({}, 'admin') }}
         </a>
         <a href="{{ path('admin_settings_messages_delete', {'id' : message.id, 'locale' : message.locale }) }}" class="delete">
           {{ 'admin.messages.delete'|trans({}, 'admin') }}
         </a>
-      </td>
+      </th>
     </tr>
   {% endfor %}
   </tbody>

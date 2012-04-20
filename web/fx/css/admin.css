@@ -579,7 +579,7 @@ form#settings-list .button{
   margin:5px;
 }
 
-/* Customers/Consultants/Orders List */
+/* Table List */
 table.list{
   table-layout: fixed;
   margin:20px 0;
@@ -603,6 +603,16 @@ table#order {
 }
 table.list th {
   text-align: left;
+}
+table.list th a{
+  background: #D3C2A2;
+  border: 1px solid #C8B289;
+  margin: 3px;
+  padding: 5px;
+  float: left;
+}
+table.list th a:hover{
+  background: #C8B289;
 }
 table#order th.table-header {
   text-align: center;
