@@ -130,6 +130,9 @@ class CmsController extends CoreController
                         $settings['param']['colorsheme'] = ''; //Dummy Data?
                         $settings['param']['ignore'] = ''; //Dummy Data?
                         break;
+                    case 'frontpage':
+                        $settings['param']['is_frontpage'] = true;
+                        break;
                     default:
                         $node->setType($cms_node->getType());
                         break;
