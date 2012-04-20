@@ -346,6 +346,10 @@
         <source>admin.consultants.list.link</source>
         <target>Alle Konsulenter</target>
       </trans-unit>
+      <trans-unit id="admin.consultants.events.list.link">
+        <source>admin.consultants.events.list.link</source>
+        <target>Events</target>
+      </trans-unit>
       <trans-unit id="admin.customers.header.text">
         <source>admin.customers.header.text</source>
         <target>Kunder</target>
@@ -361,6 +365,10 @@
       <trans-unit id="admin.customer.address.header.text">
         <source>admin.customer.address.header.text</source>
         <target>Rediger addresse</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.setting.header.text">
+        <source>admin.consultants.setting.header.text</source>
+        <target>Rediger konsulenters Max beløb for køb</target>
       </trans-unit>
       <trans-unit id="admin.customers.description.text">
         <source>admin.customers.description.text</source>
@@ -378,6 +386,10 @@
         <source>admin.customer.address.description.text</source>
         <target>Rediger de informationer på kundens addresse og gem når du er færdig.</target>
       </trans-unit>
+      <trans-unit id="admin.consultants.setting.description.text">
+        <source>admin.consultants.setting.description.text</source>
+        <target></target>
+      </trans-unit>
       <trans-unit id="admin.customers.no.customers.text">
         <source>admin.customers.no.customers.text</source>
         <target>Der findes desværre ingen kunder i databasen.</target>
@@ -389,6 +401,18 @@
       <trans-unit id="admin.customers.no.addresses.text">
         <source>admin.customers.no.addresses.text</source>
         <target>Der findes desværre ingen addresser i databasen.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.link">
+        <source>admin.consultant.export.link</source>
+        <target>Eksporter CSV</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.start.label">
+        <source>admin.consultant.export.start.label</source>
+        <target>Fra dato:</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.export.end.label">
+        <source>admin.consultant.export.end.label</source>
+        <target>Til dato:</target>
       </trans-unit>
       <trans-unit id="admin.customer.edit">
         <source>admin.customer.edit</source>
@@ -509,6 +533,82 @@
       <trans-unit id="admin.consultant.max_notified">
         <source>admin.consultant.max_notified</source>
         <target>Max notifikationer</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.header.text">
+        <source>admin.consultants.events.header.text</source>
+        <target>Se alle Events</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.description.text">
+        <source>admin.consultants.events.description.text</source>
+        <target>I denne tabel kan du se alle Events konsulenterne afholder. Du kan desuden exportere en csv fil fra en bestemt tidsinterval.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.code">
+        <source>admin.consultants.events.code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.key">
+        <source>admin.consultants.events.key</source>
+        <target>Nøgle</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.event_date">
+        <source>admin.consultants.events.event_date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.host">
+        <source>admin.consultants.events.host</source>
+        <target>Vært</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.address_line_1">
+        <source>admin.consultants.events.address_line_1</source>
+        <target>Addresse</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.address_line_2">
+        <source>admin.consultants.events.address_line_2</source>
+        <target>Addresse 2</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.postal_code">
+        <source>admin.consultants.events.postal_code</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.city">
+        <source>admin.consultants.events.city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.phone">
+        <source>admin.consultants.events.phone</source>
+        <target>Tlf.</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.email">
+        <source>admin.consultants.events.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.description">
+        <source>admin.consultants.events.description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.type">
+        <source>admin.consultants.events.type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.is_open">
+        <source>admin.consultants.events.is_open</source>
+        <target>Åben?</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.events.notify_hostess">
+        <source>admin.consultants.events.notify_hostess</source>
+        <target>Underret vært?</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.date.label">
+        <source>admin.consultant.date.label</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.consultant.max_amount.label">
+        <source>admin.consultant.max_amount.label</source>
+        <target>Maksbeløb fra dato</target>
+      </trans-unit>
+      <trans-unit id="update.consultant.setting">
+        <source>update.consultant.setting</source>
+        <target>Opdater Maksbeløb</target>
       </trans-unit>
       <trans-unit id="admin.consultant.header.text">
         <source>admin.consultant.header.text</source>

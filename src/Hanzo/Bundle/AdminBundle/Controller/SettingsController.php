@@ -4,6 +4,10 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
+    Hanzo\Core\CoreController;
+    
 use Hanzo\Model\Settings,
 Hanzo\Model\DomainsSettings,
 Hanzo\Model\SettingsQuery,
@@ -15,7 +19,7 @@ Hanzo\Model\LanguagesQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\SettingsType;
 
-class SettingsController extends Controller
+class SettingsController extends CoreController
 {
     /**
      * Shows all globale settings.
@@ -268,6 +272,10 @@ class SettingsController extends Controller
         ));
     }
 
+    /**
+     * Funktion to edit an instruction.
+     * @todo Slet en anvisning
+     */
     public function washingInstructionsEditAction($id)
     {
         $washing_instruction = null;
@@ -322,5 +330,23 @@ class SettingsController extends Controller
             'form' => $form->createView(),
             'id' => $id
         ));
+    }
+
+    public function washingInstructionsDeleteAction($id, $locale)
+    {
+        $washing_instruction = ProductsWashingInstructionsQuery::create()
+            ->filterByLocale($locale)
+            ->findOneById($id)
+        ;
+
+        if($washing_instruction)
+            $washing_instruction->delete();
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.washing_instruction.success', array(), 'admin'),
+            ));
+        }
     }
 }

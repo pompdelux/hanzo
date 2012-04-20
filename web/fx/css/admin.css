@@ -596,6 +596,23 @@ table#order th.table-header {
   text-align: center;
 }
 
+form#consultant-export div {
+  margin:15px;
+}
+form#consultant-export label,
+form#consultant-export div,
+form#consultant-export input {
+  display: inline-block;
+  float: left;
+}
+form#consultant-export label{
+  padding:0 5px;
+  line-height:9px;
+}
+form#consultant-export input {
+  margin: 0 5px;
+}
+
 
 /* Customers/Consultants edit page */
 form#customer-edit-form input[type=text],

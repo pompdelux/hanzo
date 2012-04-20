@@ -25,6 +25,7 @@ admin_settings_washing_instructions:
         code: null
     requirements:
         code: \d+
+
 admin_settings_washing_instructions_locale:
     pattern:  /admin/settings/washinginstructions/locale/{locale}
     defaults: { _controller: AdminBundle:Settings:washingInstructionsIndex }
@@ -35,6 +36,14 @@ admin_settings_washing_instructions_edit:
         _controller: AdminBundle:Settings:washingInstructionsEdit
         id: null
     requirements:
+        id: \d+
+admin_settings_washing_instructions_delete:
+    pattern:  /admin/settings/washinginstructions/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Settings:washingInstructionsDelete
+        _format: json
+    requirements:
+        _format: html|json
         id: \d+
 
 admin_cms:
@@ -213,13 +222,20 @@ admin_consultants:
     defaults: 
         _controller: AdminBundle:Consultants:index
         pager: 1
+    requirements:
+        pager: \d+
+admin_consultants_events:
+    pattern:  /admin/consultants/events
+    defaults: 
+        _controller: AdminBundle:Consultants:indexEvents
+        pager: 1
+    requirements:
+        pager: \d+
 
 admin_consultants_export:
-    pattern:  /admin/consultants/export/{start}/{end}
+    pattern:  /admin/events/export
     defaults: 
         _controller: AdminBundle:Consultants:export
-        start: null
-        end: null
 
 admin_consultant:
     pattern:  /admin/consultant/{id}
@@ -227,6 +243,14 @@ admin_consultant:
         _controller: AdminBundle:Consultants:view
     requirements:
         id: \d+
+
+admin_consultant_update_settings:
+    pattern:  /admin/consultants/update-setting
+    defaults: 
+        _controller: AdminBundle:Consultants:updateSetting
+        _format: json
+    requirements:
+        _format: html|json
 
 admin_cache:
     pattern:  /admin/cache/
