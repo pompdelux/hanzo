@@ -5,6 +5,7 @@ parameters:
     sms_manager.class: Hanzo\Bundle\ServiceBundle\Services\SmsService
     twig_string.class: Hanzo\Bundle\ServiceBundle\Services\TwigStringService
     cache_manager.class: Hanzo\Bundle\ServiceBundle\Services\CacheService
+    cleanup_manager.class: Hanzo\Bundle\ServiceBundle\Services\CleanupService
 
 services:
     service_factory:
@@ -33,7 +34,7 @@ services:
         factory_service: service_factory
         factory_method:  get
         arguments:
-            service:     mail
+            service:     twig_string
             parameters:  [@twig]
             class:       %twig_string.class%
 
@@ -45,3 +46,12 @@ services:
             service:     cache
             parameters:  [@snc_redis.default_client]
             class:       %cache_manager.class%
+
+    cleanup_manager:
+        class:           %cleanup_manager.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     cleanup
+            parameters:  ~
+            class:       %cleanup_manager.class%
