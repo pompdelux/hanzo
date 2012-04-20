@@ -15,7 +15,11 @@ Hanzo\Model\DomainsSettingsQuery,
 Hanzo\Model\DomainsQuery,
 Hanzo\Model\ProductsWashingInstructions,
 Hanzo\Model\ProductsWashingInstructionsQuery,
-Hanzo\Model\LanguagesQuery;
+Hanzo\Model\LanguagesQuery,
+Hanzo\Model\MessagesQuery,
+Hanzo\Model\Messages,
+Hanzo\Model\MessagesI18nQuery,
+Hanzo\Model\MessagesI18n;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\SettingsType;
 
@@ -339,13 +343,175 @@ class SettingsController extends CoreController
             ->findOneById($id)
         ;
 
-        if($washing_instruction)
+        if($washing_instruction instanceof ProductsWashingInstructions)
             $washing_instruction->delete();
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
                 'message' => $this->get('translator')->trans('delete.washing_instruction.success', array(), 'admin'),
+            ));
+        }
+    }
+
+    public function messagesIndexAction($ns = null, $locale = null)
+    {
+        $messages = MessagesQuery::create();
+        if($locale){
+            $messages = $messages->useMessagesI18nQuery()
+                    ->filterByLocale($locale)
+                ->endUse()
+            ;
+        }
+        $messages = $messages->joinWithMessagesI18n();
+
+        if($ns)
+            $messages = $messages->filterByNs($ns);
+
+        $messages = $messages->find();
+
+        $message_ns_availible = MessagesQuery::create()->find();
+
+        $languages_availible = LanguagesQuery::Create()->find();
+
+        $languages = array();
+        foreach ($languages_availible as $language) {
+            $languages[$language->getLocale()] = $language->getName();
+        }
+
+        return $this->render('AdminBundle:Settings:messagesList.html.twig', array(
+            'messages' => $messages,
+            'languages_availible' => $languages_availible,
+            'message_ns_availible' => $message_ns_availible
+        ));
+    }
+
+    public function messagesI18nViewAction($id, $locale = null)
+    {
+        $message = null;
+
+        if($locale)
+            $message = MessagesI18nQuery::create()
+                ->filterByLocale($locale)
+                ->findOneById($id)
+            ;
+        if(!$message) {
+            $message = new MessagesI18n();
+            $message->setId($id);
+        }
+
+        $languages_availible = LanguagesQuery::Create()->find();
+
+        $languages = array();
+        foreach ($languages_availible as $language) {
+            $languages[$language->getLocale()] = $language->getName();
+        }
+
+        $form = $this->createFormBuilder($message)
+            ->add('locale', 'choice', 
+                array(
+                    'choices' => $languages,
+                    'label' => 'admin.messages.locale',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('subject', 'text', 
+                array(
+                    'label' => 'admin.messages.subject',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->add('body', 'textarea', 
+                array(
+                    'label' => 'admin.messages.body',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->getForm()
+        ;
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $message->save();
+
+                $this->get('session')->setFlash('notice', 'admin.message.inserted');
+            }
+        }
+
+        return $this->render('AdminBundle:Settings:messageEdit.html.twig', array(
+            'form' => $form->createView(),
+            'message' => $message
+        ));
+    }
+
+    public function messagesViewNsAction($id = null)
+    {
+        $message = null;
+
+        if($id)
+            $message = MessagesQuery::create()
+                ->findOneById($id)
+            ;
+        else{
+            $message = new Messages();
+        }
+        $form = $this->createFormBuilder($message)
+            ->add('ns', 'choice', 
+                array(
+                    'choices' => array('email' => 'E-mail skabelon', 'sms' => 'SMS Skabelon'),
+                    'label' => 'admin.messages.ns',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('key', 'text', 
+                array(
+                    'label' => 'admin.messages.key',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $message->save();
+
+                $this->get('session')->setFlash('notice', 'admin.message.inserted');
+                return $this->redirect($this->generateUrl('admin_settings_messages_edit', array('id' => $message->getId())));
+            }
+        }
+
+        return $this->render('AdminBundle:Settings:messageNsEdit.html.twig', array(
+            'form' => $form->createView(),
+            'message' => $message
+        ));
+    }
+
+    public function messagesDeleteAction($id, $locale)
+    {
+        $message = MessagesI18nQuery::create();
+        
+        if($locale){
+            $message = $message->filterByLocale($locale);
+        }
+
+        $message = $message->findOneById($id);
+
+        if($message instanceof MessagesI18n){
+            $message->delete();
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.messages.success', array(), 'admin'),
             ));
         }
     }
