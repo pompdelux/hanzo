@@ -4,16 +4,17 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Hanzo\Core\Hanzo,
-Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
-use Hanzo\Model\OrdersQuery,
-Hanzo\Model\OrdersLinesQuery,
-Hanzo\Model\OrdersAttributesQuery;
+use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersLines;
+use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\OrdersAttributesQuery;
 
 class OrdersController extends Controller
 {
-    
+
     public function indexAction($id, $pager)
     {
         $hanzo = Hanzo::getInstance();
@@ -22,7 +23,7 @@ class OrdersController extends Controller
         $router = $container->get('router');
 
         $orders = OrdersQuery::create();
-        
+
         if(null != $id)
         	$orders = $orders->filterByCustomersId($id);
 
@@ -40,7 +41,7 @@ class OrdersController extends Controller
 
         $orders = $orders->orderByCreatedAt()
             ->orderById()
-            ->paginate($pager, 10)
+            ->paginate($pager, 20)
         ;
 
         $order_data = array();
@@ -54,13 +55,15 @@ class OrdersController extends Controller
                 ->groupByOrdersId()
                 ->findOne()
             ;
-            
-            $order_data[] = array(
-                'id' => $order->getId(),
-                'finishedat' => $order->getFinishedAt(),
-                'totallines' => $orders_count->getVirtualColumn('TotalLines'),
-                'totalprice' => $orders_count->getVirtualColumn('TotalPrice')
-            );
+
+            if ($orders_count instanceof OrdersLines) {
+                $order_data[] = array(
+                    'id' => $order->getId(),
+                    'finishedat' => $order->getFinishedAt(),
+                    'totallines' => $orders_count->getVirtualColumn('TotalLines'),
+                    'totalprice' => $orders_count->getVirtualColumn('TotalPrice')
+                );
+            }
 
         }
 
@@ -72,7 +75,7 @@ class OrdersController extends Controller
                 $pages[$page] = $router->generate($route, array('id' => $id, 'pager' => $page), TRUE);
 
             }
-            
+
             $paginate = array(
                 'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('id' => $id, 'pager' => $orders->getNextPage()), TRUE)),
                 'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('id' => $id, 'pager' => $orders->getPreviousPage()), TRUE)),
