@@ -274,6 +274,10 @@
         <source>admin.products.product.selector.description</source>
         <target>Vælg og tilføj et nyt produkt...</target>
       </trans-unit>
+      <trans-unit id="admin.payment_delivery.link">
+        <source>admin.payment_delivery.link</source>
+        <target>Fragt og betalingsindstillinger</target>
+      </trans-unit>
       <trans-unit id="settings.global.settings">
         <source>settings.global.settings</source>
         <target>Globale indstillinger</target>
@@ -313,6 +317,10 @@
       <trans-unit id="admin.domain.settings.add.description.text">
         <source>admin.domain.settings.add.description.text</source>
         <target>Du kan tilføje nye indstillinger til det valgte domæne, ved at udfylde nedenstående felter.</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.link">
+        <source>admin.messages.link</source>
+        <target>Email skabeloner</target>
       </trans-unit>
       <trans-unit id="admin.messages.header.text">
         <source>admin.messages.header.text</source>
