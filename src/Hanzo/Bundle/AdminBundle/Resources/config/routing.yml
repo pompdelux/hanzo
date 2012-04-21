@@ -317,6 +317,15 @@ admin_postalcode:
     defaults: 
         _controller: AdminBundle:PostalCode:index
         pager: 1
+        locale: null
+    requirements:
+        pager: \d+
+admin_postalcode_locale:
+    pattern:  /admin/settings/postalcode/locale/{locale}/{pager}
+    defaults: 
+        _controller: AdminBundle:PostalCode:index
+        pager: 1
+        locale: null
     requirements:
         pager: \d+
 
@@ -325,6 +334,12 @@ admin_postalcode_edit:
     defaults: 
         _controller: AdminBundle:PostalCode:view
         id: null
+    requirements:
+        id: \d+
+admin_postalcode_delete:
+    pattern:  /admin/settings/postalcode/delete/{id}
+    defaults: 
+        _controller: AdminBundle:PostalCode:delete
     requirements:
         id: \d+
 

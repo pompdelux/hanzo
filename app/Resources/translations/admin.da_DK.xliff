@@ -1209,6 +1209,102 @@
         <source>admin.washing.delete</source>
         <target>Slet</target>
       </trans-unit>
+      <trans-unit id="admin.zip_to_city.add.link">
+        <source>admin.zip_to_city.add.link</source>
+        <target>Tilføj nyt Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.list.link">
+        <source>admin.zip_to_city.list.link</source>
+        <target>Se alle Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.header.text">
+        <source>admin.zip_to_city.header.text</source>
+        <target>Post Numre</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit.header.text">
+        <source>admin.zip_to_city.edit.header.text</source>
+        <target>Rediger Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.description.text">
+        <source>admin.zip_to_city.description.text</source>
+        <target>Her kan du se alle post numre som er gemt. Rediger eller slet et Post Nr. med link ud for hvert nummer. Du kan søge med formularen øverst, eller vælge hvilket land du vil se Post numre fra.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit.description.text">
+        <source>admin.zip_to_city.edit.description.text</source>
+        <target>Rediger et Post nummer ved at udfylde felterne og derefter tryk på Gem</target>
+      </trans-unit>
+      <trans-unit id="update.zip_to_city">
+        <source>update.zip_to_city</source>
+        <target>Gem Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.zip">
+        <source>admin.zip_to_city.zip</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.countries_iso2">
+        <source>admin.zip_to_city.countries_iso2</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.city">
+        <source>admin.zip_to_city.city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_id">
+        <source>admin.zip_to_city.county_id</source>
+        <target>Region id</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_name">
+        <source>admin.zip_to_city.county_name</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.comment">
+        <source>admin.zip_to_city.comment</source>
+        <target>Kommentar</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit">
+        <source>admin.zip_to_city.edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="zip_to_city.updated">
+        <source>zip_to_city.updated</source>
+        <target>Post Nummer opdateret!</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.delete">
+        <source>admin.zip_to_city.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="delete.zip_to_city.success">
+        <source>delete.zip_to_city.success</source>
+        <target>Post nummer blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.no.zip_to_city.text">
+        <source>admin.zip_to_city.no.zip_to_city.text</source>
+        <target>Der findes ingen post numre for søgningen.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.zip.label">
+        <source>admin.zip_to_city.zip.label</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.countries_iso2.label">
+        <source>admin.zip_to_city.countries_iso2.label</source>
+        <target>Land ISO2</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.city.label">
+        <source>admin.zip_to_city.city.label</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_id.label">
+        <source>admin.zip_to_city.county_id.label</source>
+        <target>Region Id</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_name.label">
+        <source>admin.zip_to_city.county_name.label</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.comment.label">
+        <source>admin.zip_to_city.comment.label</source>
+        <target>Kommentar</target>
+      </trans-unit>
       <trans-unit id="admin.back.button">
         <source>admin.back.button</source>
         <target>Tilbage</target>
