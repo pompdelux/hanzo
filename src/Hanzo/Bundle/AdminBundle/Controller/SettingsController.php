@@ -71,10 +71,11 @@ class SettingsController extends CoreController
             ->add('c_value', 'text')
             ->getForm();
 
-        // Generate the Form for the global settings
-
+        // Generate the Form for the global settings excluding some namespaces used other places
+        $exclude_ns = array('consultant', 'delivery', 'payment');
         $global_settings = SettingsQuery::create()
             ->orderByNs()
+            ->where('settings.ns NOT IN ?', $exclude_ns)
             ->find()
         ;
 
@@ -115,6 +116,7 @@ class SettingsController extends CoreController
     public function domainAction($domain_key = 'COM')
     {
         $request = $this->getRequest();
+
         if ($request->getMethod() == 'POST') {
 
             $data = $request->get('form');
@@ -123,16 +125,9 @@ class SettingsController extends CoreController
                 if('_token' == $key_ns) continue;
 
                 $keys = explode('_',$key_ns);
-                // $keys = explode('__',$key_ns);
-                // $c_key = $keys[0];
-                // $ns = $keys[1];
-                // $domain_key = $keys[2];
 
                 try{
                     $setting = DomainsSettingsQuery::create()
-                        // ->filterByNs($ns)
-                        // ->filterByDomainKey($domain_key)
-                        // ->findOneByCKey($c_key);
                         ->findOneById($keys[1]);
 
                     if ($setting && '' === $c_value) {
@@ -163,8 +158,10 @@ class SettingsController extends CoreController
             ->getForm();
 
         // Generate the Form for the domain settings
+        $exclude_ns = array('consultant', 'delivery', 'payment');
 
         $domain_settings = DomainsSettingsQuery::create()
+            ->where('domains_settings.ns NOT IN ?', $exclude_ns)
             ->filterByDomainKey($domain_key)
             ->orderByNs()
             ->find()
@@ -196,6 +193,93 @@ class SettingsController extends CoreController
             'domain' => $domain_key
         ));
     }
+    /**
+     * Shows the payment and delivery settings for the chosed domain.
+     *
+     * @param domain_key The domain key to show example:'DA', default=COM
+     */
+    public function paymentdeliveryAction($domain_key = 'COM')
+    {
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+
+            $data = $request->get('form');
+            foreach ($data as $key_ns => $c_value) {
+
+                if('_token' == $key_ns) continue;
+
+                $keys = explode('_',$key_ns);
+
+                try{
+                    $setting = DomainsSettingsQuery::create()
+                        ->findOneById($keys[1]);
+
+                    if ($setting && '' === $c_value) {
+
+                        $setting->delete();
+
+                    }else{
+
+                        $setting->setCValue($c_value);
+                        $setting->save();
+
+                    }
+                }catch(PropelException $e){
+                    $this->get('session')->setFlash('notice', 'settings.updated.failed.'.$e);
+                }
+            }
+            $this->get('session')->setFlash('notice', 'settings.updated');
+        }
+
+        $domains_settings = new DomainsSettings();
+        $domains_settings->setDomainKey($domain_key);
+
+        $form_add_domain_setting = $this->createFormBuilder($domains_settings)
+            ->add('domain_key', 'text')
+            ->add('c_key', 'text')
+            ->add('ns', 'choice', array(
+                    'choices' => array('payment' => 'Betaling', 'delivery' => 'Fragt')
+                )
+            )
+            ->add('c_value', 'text')
+            ->getForm();
+
+        // Generate the Form for the domain settings
+        $include_ns = array('delivery', 'payment');
+
+        $domain_settings = DomainsSettingsQuery::create()
+            ->where('domains_settings.Ns IN ?', $include_ns)
+            ->filterByDomainKey($domain_key)
+            ->orderByNs()
+            ->find()
+        ;
+
+        $domain_settings_list = array();
+        foreach ($domain_settings as $setting) {
+            $domain_settings_list['key_'. $setting->getId()] = $setting->getCValue();
+        }
+
+        $form = $this->createFormBuilder($domain_settings_list);
+        foreach ($domain_settings as $setting) {
+            $form->add('key_'. $setting->getId(), 'text',
+                array(
+                    'required' => true,
+                    'label' => $setting->getCKey() . ' - ' . $setting->getNs()
+                )
+            );
+        }
+
+        // End of domain settings Form
+
+        $domains_availible = DomainsQuery::Create()->find();
+
+        return $this->render('AdminBundle:Settings:paymentdelivery.html.twig', array(
+            'form'      => $form->getForm()->createView(),
+            'add_domain_setting_form' => $form_add_domain_setting->createView(),
+            'domains_availible' => $domains_availible,
+            'domain' => $domain_key
+        ));
+    }
 
     /**
      * Function to add new setting to the settings tables. Either a domain specific or a global setting
@@ -205,6 +289,7 @@ class SettingsController extends CoreController
     public function addSettingAction($domain_setting = false)
     {
         $request = $this->getRequest();
+        $referer = $request->headers->get('referer');
         $data = $request->get('form');
         $c_key = $data['c_key'];
         $ns = $data['ns'];
@@ -225,9 +310,10 @@ class SettingsController extends CoreController
             } catch (PropelException $e) {
                 $this->get('session')->setFlash('notice', 'settings.update.failed');
             }
-            return $this->redirect($this->generateUrl('admin_settings_domain',
-                array('domain_key' => $domain_key)
-            ));
+            return $this->redirect($referer);
+            // return $this->redirect($this->generateUrl('admin_settings_domain',
+            //     array('domain_key' => $domain_key)
+            // ));
 
         }else{
 
@@ -245,7 +331,7 @@ class SettingsController extends CoreController
                 $this->get('session')->setFlash('notice', 'settings.update.failed');
             }
 
-            return $this->redirect($this->generateUrl('admin_settings'));
+            return $this->redirect($referer);
         }
     }
 

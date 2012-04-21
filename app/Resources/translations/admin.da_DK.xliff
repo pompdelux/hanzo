@@ -278,6 +278,18 @@
         <source>admin.payment_delivery.link</source>
         <target>Fragt og betalingsindstillinger</target>
       </trans-unit>
+      <trans-unit id="admin.settings.paymentdelivery.header.text.%domain_key%">
+        <source>admin.settings.paymentdelivery.header.text.%domain_key%</source>
+        <target>Fragt og betalingsindstillinger for domæne: %domain_key%</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.paymentdelivery.description.text">
+        <source>admin.settings.paymentdelivery.description.text</source>
+        <target>Herunder kan alle indstillinger angående Fragt og Betaling ændres. Alle indstillinger er domæne specifik. Øverst til højre an du ændre hvilken domæne du vil redigere.</target>
+      </trans-unit>
+      <trans-unit id="admin.settings.paymentdelivery.add.header.text.%domain_key%">
+        <source>admin.settings.paymentdelivery.add.header.text.%domain_key%</source>
+        <target>Tilføj en ny indstilling til fragt og betaling på domæne: %domain_key%</target>
+      </trans-unit>
       <trans-unit id="settings.global.settings">
         <source>settings.global.settings</source>
         <target>Globale indstillinger</target>
