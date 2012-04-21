@@ -18,6 +18,12 @@ admin_settings_domain:
         _controller: AdminBundle:Settings:domain
         domain_key: 'COM'
 
+admin_settings_payment_delivery:
+    pattern:  /admin/settings/paymentdelivery/{domain_key}
+    defaults: 
+        _controller: AdminBundle:Settings:paymentdelivery
+        domain_key: 'COM'
+
 admin_settings_washing_instructions:
     pattern:  /admin/settings/washinginstructions/{code}
     defaults: 
@@ -305,6 +311,22 @@ admin_consultant_update_settings:
         _format: json
     requirements:
         _format: html|json
+
+admin_postalcode:
+    pattern:  /admin/settings/postalcode/{pager}
+    defaults: 
+        _controller: AdminBundle:PostalCode:index
+        pager: 1
+    requirements:
+        pager: \d+
+
+admin_postalcode_edit:
+    pattern:  /admin/settings/postalcode/edit/{id}
+    defaults: 
+        _controller: AdminBundle:PostalCode:view
+        id: null
+    requirements:
+        id: \d+
 
 admin_cache:
     pattern:  /admin/cache/
