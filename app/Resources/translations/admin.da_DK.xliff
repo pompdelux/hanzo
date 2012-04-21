@@ -18,6 +18,58 @@
         <source>add.new.cmspage</source>
         <target>Opret nyt CMS node</target>
       </trans-unit>
+      <trans-unit id="admin.cms.redirects.link">
+        <source>admin.cms.redirects.link</source>
+        <target>Redirects</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirect.add.link">
+        <source>admin.cms.redirect.add.link</source>
+        <target>Opret Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.header.text">
+        <source>admin.cms.redirects.header.text</source>
+        <target>Alle Redirects</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit.header.text">
+        <source>admin.cms.redirects.edit.header.text</source>
+        <target>Rediger Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.description.text">
+        <source>admin.cms.redirects.description.text</source>
+        <target>Herunder kan du se alle aktive redirects. En redirect sørger for at kilde-stien vidersender besøgende til mål-stien.</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit.description.text">
+        <source>admin.cms.redirects.edit.description.text</source>
+        <target>Herunder kan du redigere eller oprette en Redirect. Udfyld alle felter og tryk på gem.</target>
+      </trans-unit>
+      <trans-unit id="update.redirect">
+        <source>update.redirect</source>
+        <target>Gem Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.inserted">
+        <source>admin.cms.redirects.inserted</source>
+        <target>Redirect er blevet gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.source">
+        <source>admin.cms.redirects.source</source>
+        <target>Kilde Sti</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.target">
+        <source>admin.cms.redirects.target</source>
+        <target>Kilde Sti</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit">
+        <source>admin.cms.redirects.edit</source>
+        <target>Rediger redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.delete">
+        <source>admin.cms.redirects.delete</source>
+        <target>Slet redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.no.redirects.text">
+        <source>admin.cms.redirects.no.redirects.text</source>
+        <target>Der findes ingen Redirects i øjeblikket. Du kan tilføj en ny på linket øverst.</target>
+      </trans-unit>
       <trans-unit id="admin_add_new_cmspage_success">
         <source>add.new.cmspage.success</source>
         <target>CMS siden blev oprettet! Du kan nu tilføje indhold og indstillinger.</target>
