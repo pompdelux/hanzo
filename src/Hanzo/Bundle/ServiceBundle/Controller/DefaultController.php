@@ -58,8 +58,8 @@ class DefaultController extends CoreController
     {
         // $cleanup = $this->get('cleanup_manager');
         // $cleanup->failedPaymentOrders();
-        $sms = $this->get('sms_manager');
-        $sms->eventReminder();
+        // $sms = $this->get('sms_manager');
+        // $sms->eventReminder();
 
         return $this->render('ServiceBundle:Default:test.html.twig', array(
             'page_type' => 'test',

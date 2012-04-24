@@ -33,6 +33,11 @@ propel:
                 dsn:                  mysql:host=%database_host%;dbname=%database_name%
                 options:              {}
                 attributes:           {}
+                slaves:
+                    slave_1:
+                        user:     %database_slave_1_user%
+                        password: %database_slave_1_password%
+                        dsn:      %database_slave_1_dsn%
             pdlfront_dk:
                 driver:               %database_driver%
                 user:                 %database_user%
