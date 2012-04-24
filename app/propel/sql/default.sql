@@ -266,7 +266,7 @@ DROP TABLE IF EXISTS `events`;
 
 CREATE TABLE `events`
 (
-	`id` INTEGER NOT NULL,
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`code` VARCHAR(32) NOT NULL,
 	`key` VARCHAR(64) NOT NULL,
 	`consultants_id` INTEGER NOT NULL,
@@ -306,7 +306,7 @@ DROP TABLE IF EXISTS `events_participants`;
 
 CREATE TABLE `events_participants`
 (
-	`id` INTEGER NOT NULL,
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`events_id` INTEGER NOT NULL,
 	`key` VARCHAR(64) NOT NULL,
 	`invited_by` INTEGER,
@@ -598,7 +598,7 @@ DROP TABLE IF EXISTS `redirects`;
 
 CREATE TABLE `redirects`
 (
-	`id` INTEGER NOT NULL,
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`source` VARCHAR(255) NOT NULL,
 	`target` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id`),

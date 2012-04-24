@@ -511,6 +511,10 @@ abstract class BaseRedirectsPeer {
 			$criteria = $values->buildCriteria(); // build Criteria from Redirects object
 		}
 
+		if ($criteria->containsKey(RedirectsPeer::ID) && $criteria->keyContainsValue(RedirectsPeer::ID) ) {
+			throw new PropelException('Cannot insert a value for auto-increment primary key ('.RedirectsPeer::ID.')');
+		}
+
 
 		// Set the correct dbName
 		$criteria->setDbName(self::DATABASE_NAME);

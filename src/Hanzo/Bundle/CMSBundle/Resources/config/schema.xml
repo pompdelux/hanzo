@@ -192,8 +192,8 @@
     </unique>
   </table>
 
-  <table name="events">
-    <column name="id" type="INTEGER" primaryKey="true" required="true"/>
+  <table name="events" allowPkInsert="true">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="code" type="VARCHAR" size="32" required="true"/>
     <column name="key" type="VARCHAR" size="64" required="true"/>
     <column name="consultants_id" type="INTEGER" required="true"/>
@@ -225,8 +225,8 @@
     <behavior name="timestampable" />
   </table>
 
-  <table name="events_participants">
-    <column name="id" type="INTEGER" primaryKey="true" required="true"/>
+  <table name="events_participants" allowPkInsert="true">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="events_id" type="INTEGER" required="true"/>
     <column name="key" type="VARCHAR" size="64" required="true"/>
     <column name="invited_by" type="INTEGER" required="false"/>
@@ -411,7 +411,7 @@
   </table>
 
   <table name="redirects">
-    <column name="id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="source" type="VARCHAR" size="255" required="true"/>
     <column name="target" type="VARCHAR" size="255" required="true"/>
     <index name="index2">

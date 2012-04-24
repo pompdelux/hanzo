@@ -40,7 +40,7 @@ class RedirectsTableMap extends TableMap
 		$this->setPhpName('Redirects');
 		$this->setClassname('Hanzo\\Model\\Redirects');
 		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
+		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addColumn('SOURCE', 'Source', 'VARCHAR', true, 255, null);

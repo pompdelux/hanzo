@@ -40,7 +40,7 @@ class EventsParticipantsTableMap extends TableMap
 		$this->setPhpName('EventsParticipants');
 		$this->setClassname('Hanzo\\Model\\EventsParticipants');
 		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
+		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addForeignKey('EVENTS_ID', 'EventsId', 'INTEGER', 'events', 'ID', true, null, null);
