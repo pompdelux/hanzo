@@ -77,6 +77,32 @@ class MailService
         $this->twig->endTransaction();
     }
 
+
+    /**
+     * set body part of an email
+     *
+     * @param string $body
+     * @param string $type encoding type
+     * @see Swift_Mime_Message::setBody
+     */
+    public function setBody($body, $type = 'text/plain')
+    {
+        return $this->swift->setBody($body, $type);
+    }
+
+
+    /**
+     * set mail subject
+     *
+     * @param string $subject
+     * @see Swift_Mime_Message::setSubject
+     */
+    public function setSubject($subject)
+    {
+        return $this->swift->setSubject($subject);
+    }
+
+
     /**
      * Set to address(es)
      * @see Swift_Mime_Message::setFrom

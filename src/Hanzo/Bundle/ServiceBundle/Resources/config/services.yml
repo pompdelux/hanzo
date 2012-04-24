@@ -6,6 +6,7 @@ parameters:
     twig_string.class: Hanzo\Bundle\ServiceBundle\Services\TwigStringService
     cache_manager.class: Hanzo\Bundle\ServiceBundle\Services\CacheService
     cleanup_manager.class: Hanzo\Bundle\ServiceBundle\Services\CleanupService
+    ax_manager.class: Hanzo\Bundle\ServiceBundle\Services\AxService
 
 services:
     service_factory:
@@ -53,5 +54,14 @@ services:
         factory_method:  get
         arguments:
             service:     cleanup
-            parameters:  ~
+            parameters:  [@payment.dibsapi]
             class:       %cleanup_manager.class%
+
+    ax_manager:
+        class:           %ax_manager.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     ax
+            parameters:  ~
+            class:       %ax_manager.class%

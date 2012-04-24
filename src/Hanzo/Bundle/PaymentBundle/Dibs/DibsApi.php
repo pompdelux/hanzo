@@ -106,6 +106,7 @@ class DibsApi
 
     /**
      * updateOrderSuccess
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/

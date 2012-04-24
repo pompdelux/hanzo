@@ -518,7 +518,7 @@ class ImportCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('dataio:import')
+            ->setName('hanzo:dataio:import')
             ->setDescription('Imports stuff')
             ->addArgument('import_type', InputArgument::REQUIRED, 'What to import')
             ->addArgument('database', InputArgument::REQUIRED, 'Which database to import from')

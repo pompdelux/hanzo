@@ -47,7 +47,7 @@ class ExportCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
-        $this->setName('dataio:export')
+        $this->setName('hanzo:dataio:export')
             ->setDescription('Exports stuff')
             ->addArgument('export_type', InputArgument::REQUIRED, 'What to import')
             ->addArgument('database', InputArgument::REQUIRED, 'Which database to export from')

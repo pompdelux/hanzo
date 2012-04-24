@@ -6,3 +6,7 @@ _get_city_from_zip:
     pattern: /service/get-city-from-zip/{zip_code}
     defaults: { _controller: ServiceBundle:Default:getCityFromZip, _format: json }
     requirements: { _format: (xml|json) }
+
+_services_test:
+    pattern: /service/test
+    defaults: { _controller: ServiceBundle:Default:test }

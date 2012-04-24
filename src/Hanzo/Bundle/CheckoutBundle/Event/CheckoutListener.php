@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\CheckoutBundle\Event;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
+use Hanzo\Bundle\ServiceBundle\Services\AxService;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
@@ -12,11 +13,13 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 class CheckoutListener
 {
     protected $mailer;
+    protected $ax;
     protected $translator;
 
-    public function __construct(MailService $mailer, Translator $translator)
+    public function __construct(MailService $mailer, AxService $ax, Translator $translator)
     {
         $this->mailer = $mailer;
+        $this->ax = $ax;
         $this->translator = $translator;
     }
 

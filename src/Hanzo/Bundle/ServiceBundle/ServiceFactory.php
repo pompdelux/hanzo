@@ -34,11 +34,8 @@ class ServiceFactory
         }
 
         try {
-            foreach (Hanzo::getInstance()->get('ALL') as $key => $value) {
-                list($ns, $key) = explode('.', $key, 2);
-                if ($ns == $settings_key) {
-                    $settings[$key] = $value;
-                }
+            foreach (Hanzo::getInstance()->getByNs($settings_key) as $key => $data) {
+                $settings[$key] = $data;
             }
         } catch(\Exception $e) {}
 

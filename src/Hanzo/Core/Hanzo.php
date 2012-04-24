@@ -193,8 +193,8 @@ class Hanzo
     {
         $settings = array();
         foreach ($this->settings as $key => $value) {
-            if (strpos($key, $ns.'.') === 0) {
-                $key = substr($key, strlen($ns) +1);
+            list($namespace, $key) = explode('.', $key, 2);
+            if ($namespace == $ns) {
                 $settings[$key] = $value;
             }
         }
