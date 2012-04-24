@@ -314,6 +314,94 @@
         <source>admin.domain.settings.add.description.text</source>
         <target>Du kan tilføje nye indstillinger til det valgte domæne, ved at udfylde nedenstående felter.</target>
       </trans-unit>
+      <trans-unit id="admin.messages.header.text">
+        <source>admin.messages.header.text</source>
+        <target>Oversigt over alle skabeloner</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.description.text">
+        <source>admin.messages.description.text</source>
+        <target>Herunder kan du se alle de oversættelser til skabeloner som er gemt i databasen. Du kan tilføje en oversættelse af en der allerede finde ved at trykke "Rediger/oversæt".</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.edit.header.text">
+        <source>admin.messages.edit.header.text</source>
+        <target>Redigering af oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.edit.description.text">
+        <source>admin.messages.edit.description.text</source>
+        <target>Her kan ud redigere en oversættelse. Udfyld Emne og Indhold og tryk på Gem når du er færdig.</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.ns.edit.header.text">
+        <source>admin.messages.ns.edit.header.text</source>
+        <target>Redigering af skabelon</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.ns.edit.description.text">
+        <source>admin.messages.ns.edit.description.text</source>
+        <target>Her kan ud redigere en skabelon. Tryk på Gem når du er færdig. Du vil så få mulighed for at indtaste indholdet til en oversættelse.</target>
+      </trans-unit>
+      <trans-unit id="messages.language.selector">
+        <source>messages.language.selector</source>
+        <target>Vælg sprog</target>
+      </trans-unit>
+      <trans-unit id="update.messages">
+        <source>update.messages</source>
+        <target>Gem oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.no.messages.text">
+        <source>admin.messages.no.messages.text</source>
+        <target>Der findes ingen oversættelse</target>
+      </trans-unit>
+      <trans-unit id="messages.ns.selector">
+        <source>messages.ns.selector</source>
+        <target>Ny oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.list.link">
+        <source>admin.messages.list.link</source>
+        <target>Se alle oversættelser</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.add_new.link">
+        <source>admin.messages.add_new.link</source>
+        <target>Tilføj ny skabelon</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.edit">
+        <source>admin.messages.edit</source>
+        <target>Rediger/Oversæt</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.delete">
+        <source>admin.messages.delete</source>
+        <target>Slet oversættelse</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.ns">
+        <source>admin.messages.ns</source>
+        <target>Namespace</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.key">
+        <source>admin.messages.key</source>
+        <target>Skabelon Navn</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.locale">
+        <source>admin.messages.locale</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.subject">
+        <source>admin.messages.subject</source>
+        <target>Emne</target>
+      </trans-unit>
+      <trans-unit id="admin.messages.body">
+        <source>admin.messages.body</source>
+        <target>Indhold</target>
+      </trans-unit>
+      <trans-unit id="admin.message.inserted">
+        <source>admin.message.inserted</source>
+        <target>Oversættelse blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.message.ns.inserted">
+        <source>admin.message.ns.inserted</source>
+        <target>Skabelon blev gemt!</target>
+      </trans-unit>
+      <trans-unit id="delete.messages.success">
+        <source>delete.messages.success</source>
+        <target>Oversættelse blev slette!</target>
+      </trans-unit>
       <trans-unit id="settings.updated">
         <source>settings.updated</source>
         <target>Indstillinger opdateret!</target>
@@ -738,7 +826,15 @@
       </trans-unit>
       <trans-unit id="admin.order.state">
         <source>admin.order.state</source>
-        <target>state (transl?)</target>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="update.state">
+        <source>update.state</source>
+        <target>Opdater Status</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.state_log.inserted">
+        <source>admin.orders.state_log.inserted</source>
+        <target>Status opdateret!</target>
       </trans-unit>
       <trans-unit id="admin.order.in_edit">
         <source>admin.order.in_edit</source>

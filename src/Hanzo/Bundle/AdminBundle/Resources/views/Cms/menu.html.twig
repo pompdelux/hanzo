@@ -4,6 +4,11 @@
 <nav class="sub">
   <ul>
     <li>
+        <a href="{{ path('admin_cms_redirects') }}">
+            {{ 'admin.cms.redirects.link'|trans({}, 'admin') }}
+        </a>
+    </li>
+    <li>
         <a href="{{ path('admin_cms_add') }}">
         	{{ 'add.new.cmspage'|trans({}, 'admin') }}
         </a>

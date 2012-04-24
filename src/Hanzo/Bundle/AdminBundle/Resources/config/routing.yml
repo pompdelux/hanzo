@@ -38,13 +38,48 @@ admin_settings_washing_instructions_edit:
     requirements:
         id: \d+
 admin_settings_washing_instructions_delete:
-    pattern:  /admin/settings/washinginstructions/{id}/{locale}
+    pattern:  /admin/settings/washinginstructions/delete/{id}/{locale}
     defaults:
         _controller: AdminBundle:Settings:washingInstructionsDelete
         _format: json
     requirements:
         _format: html|json
         id: \d+
+
+admin_settings_messages_edit:
+    pattern:  /admin/settings/messages/edit/{id}/{locale}
+    defaults: 
+        _controller: AdminBundle:Settings:messagesI18nView
+        locale: null
+    requirements:
+        id: \d+
+admin_settings_messages_edit_ns:
+    pattern:  /admin/settings/messages/edit-ns/{id}
+    defaults: 
+        _controller: AdminBundle:Settings:messagesViewNs
+        id: null
+    requirements:
+        id: \d+
+
+admin_settings_messages:
+    pattern:  /admin/settings/messages/{ns}
+    defaults: 
+        _controller: AdminBundle:Settings:messagesIndex
+        ns: null
+
+admin_settings_messages_locale:
+    pattern:  /admin/settings/messages/locale/{locale}
+    defaults: 
+        _controller: AdminBundle:Settings:messagesIndex
+admin_settings_messages_delete:
+    pattern:  /admin/settings/messages/delete/{id}/{locale}
+    defaults:
+        _controller: AdminBundle:Settings:messagesDelete
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+
+
 
 admin_cms:
     pattern:  /admin/cms/
@@ -80,6 +115,25 @@ admin_cms_update_tree:
         _format: json
     requirements:
         _format: html|json
+
+admin_cms_redirects:
+    pattern:  /admin/cms/redirects/
+    defaults: { _controller: AdminBundle:Cms:redirectsIndex }
+
+admin_cms_redirect_edit:
+    pattern:  /admin/cms/redirects/edit/{id}
+    defaults: 
+        _controller: AdminBundle:Cms:redirectEdit
+        id: null
+    requirements:
+        id: \d+
+
+admin_cms_redirect_delete:
+    pattern:  /admin/cms/redirects/delete/{id}
+    defaults: 
+        _controller: AdminBundle:Cms:redirectDelete
+    requirements:
+        id: \d+
 
 admin_products:
     pattern:  /admin/products/cat/{category_id}/{subcategory_id}

@@ -21,7 +21,9 @@ use Hanzo\Model\Cms,
     Hanzo\Model\CmsThreadI18n,
     Hanzo\Model\CmsThreadI18nPeer,
     Hanzo\Model\CmsThreadI18nQuery,
-    Hanzo\Model\LanguagesQuery;
+    Hanzo\Model\LanguagesQuery,
+    Hanzo\Model\Redirects,
+    Hanzo\Model\RedirectsQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
@@ -129,6 +131,9 @@ class CmsController extends CoreController
                         $settings['param']['title'] = ''; //Dummy Data?
                         $settings['param']['colorsheme'] = ''; //Dummy Data?
                         $settings['param']['ignore'] = ''; //Dummy Data?
+                        break;
+                    case 'frontpage':
+                        $settings['param']['is_frontpage'] = true;
                         break;
                     default:
                         $node->setType($cms_node->getType());
@@ -242,6 +247,81 @@ class CmsController extends CoreController
         }
     }
 
+    public function redirectsIndexAction()
+    {
+        $redirects = RedirectsQuery::create()
+            ->orderBySource()
+            ->orderByTarget()
+            ->find()
+        ;
+
+        return $this->render('AdminBundle:Cms:redirectsIndex.html.twig', array(
+            'redirects' => $redirects
+        ));
+    }
+
+    public function redirectEditAction($id = null)
+    {
+        $redirect = null;
+
+        if($id)
+            $redirect = RedirectsQuery::create()
+                ->findOneById($id)
+            ;
+        else{
+            $redirect = new Redirects();
+        }
+        $form = $this->createFormBuilder($redirect)
+            ->add('source', 'text', 
+                array(
+                    'label' => 'admin.cms.redirects.source',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('target', 'text', 
+                array(
+                    'label' => 'admin.cms.redirects.target',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $redirect->save();
+
+                $this->get('session')->setFlash('notice', 'admin.cms.redirects.inserted');
+                return $this->redirect($this->generateUrl('admin_cms_redirects'));
+            }
+        }
+
+        return $this->render('AdminBundle:Cms:redirectEdit.html.twig', array(
+            'form' => $form->createView(),
+            'redirect' => $redirect
+        ));
+    }
+
+    public function redirectDeleteAction($id)
+    {
+        $redirect = RedirectsQuery::create()
+            ->findOneById($id);
+
+        if($redirect instanceof Redirects){
+            $redirect->delete();
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.cms.redirects.success', array(), 'admin'),
+            ));
+        }
+    }
     /*
      * Alternative method under construction
     protected function getFlatCmsTree()
