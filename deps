@@ -61,7 +61,7 @@
 [PropelBundle]
     git=https://github.com/propelorm/PropelBundle.git
     target=/bundles/Propel/PropelBundle
-    version=origin/2.0
+    version=origin/1.0
 
 [phing]
     git=https://github.com/Xosofox/phing
