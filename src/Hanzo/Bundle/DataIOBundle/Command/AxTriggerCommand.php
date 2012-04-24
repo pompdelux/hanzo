@@ -1,0 +1,53 @@
+<?php /* vim: set sw=4: */
+
+namespace Hanzo\Bundle\DataIOBundle\Command;
+
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+use Propel;
+use PDO;
+
+use Hanzo\Model\Settings;
+
+use \Exception;
+use \PropelCollection;
+
+class AxTriggerCommand extends ContainerAwareCommand
+{
+    protected function configure()
+    {
+        $this->setName('hanzo:ax:stock-trigger')
+            ->setDescription('Ax stock sync trigger')
+            ->addArgument('endpoint', InputArgument::REQUIRED, 'What endpoint to trigger sync job for ?')
+        ;
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $endpoint = $input->getArgument('endpoint');
+
+        $output->writeln('Stoc sync trigger initiated for: <info>'.$endpoint.'</info>');
+        $ax = $this->getContainer()->get('ax_manager');
+
+        $status = $ax->triggerStockSync($endpoint);
+
+        if (true === $status) {
+            $output->writeln('<info>Trigger send, OK.</info>');
+            return;
+        }
+
+        if (false === $status) {
+            $error = 'AX not available.';
+            $output->writeln('Runtime error: <error>'.$error.'</error>');
+        } elseif ($status instanceof \SoapFault) {
+            $error = $status->getMessage();
+            $output->writeln('AX communication error: <error>'.$error.'</error>');
+        }
+
+        // TODO: send error mails to generic recipient
+    }
+}
