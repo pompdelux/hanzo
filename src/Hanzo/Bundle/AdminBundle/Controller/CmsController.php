@@ -21,6 +21,8 @@ use Hanzo\Model\Cms,
     Hanzo\Model\CmsThreadI18n,
     Hanzo\Model\CmsThreadI18nPeer,
     Hanzo\Model\CmsThreadI18nQuery,
+    Hanzo\Model\CmsI18n,
+    Hanzo\Model\CmsI18nQuery,
     Hanzo\Model\LanguagesQuery,
     Hanzo\Model\Redirects,
     Hanzo\Model\RedirectsQuery;
@@ -181,17 +183,20 @@ class CmsController extends CoreController
             ->joinWithI18n($locale, 'INNER JOIN')
             ->findPK($id);
 
-        if (!$node) { // Oversættelsen findes ikke for det givne ID
+        if ( !($node instanceof Cms)) { // Oversættelsen findes ikke for det givne ID
 
-            /**
-              * @todo Den har glemt hvad der skulle stå i indstillingerne.
-              * Vi kender ikke den tidligere?
-              */
+            // Vi laver en ny Oversættelse. Hent Settings fra en anden og brug dette.
+            $settings = CmsI18nQuery::create()
+                ->where('cms_i18n.settings IS NOT NULL')
+                ->findOneById($id);
 
             $node = CmsQuery::create()
                 ->findPk($id);
-            if ($node) {
+            if ($node instanceof Cms) {
                 $node->setLocale($locale);
+
+                if($settings instanceof CmsI18n)
+                    $node->setSettings($settings->getSettings());
             }
         }
 
