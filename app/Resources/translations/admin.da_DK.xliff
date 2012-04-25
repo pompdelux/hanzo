@@ -66,6 +66,30 @@
         <source>admin.cms.redirects.delete</source>
         <target>Slet redirect</target>
       </trans-unit>
+      <trans-unit id="admin.inactive_nodes.header.text">
+        <source>admin.inactive_nodes.header.text</source>
+        <target>Inaktive CMS noder</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.id">
+        <source>admin.cms.inactive_nodes.id</source>
+        <target>Node ID</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.title">
+        <source>admin.cms.inactive_nodes.title</source>
+        <target>Node Titel</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.type">
+        <source>admin.cms.inactive_nodes.type</source>
+        <target>Node Type</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.edit">
+        <source>admin.cms.inactive_nodes.edit</source>
+        <target>Rediger node</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.delete">
+        <source>admin.cms.inactive_nodes.delete</source>
+        <target>Slet node</target>
+      </trans-unit>
       <trans-unit id="admin.cms.redirects.no.redirects.text">
         <source>admin.cms.redirects.no.redirects.text</source>
         <target>Der findes ingen Redirects i øjeblikket. Du kan tilføj en ny på linket øverst.</target>

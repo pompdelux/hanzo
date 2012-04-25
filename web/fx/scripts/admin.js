@@ -102,6 +102,29 @@
           }
         });
       });
+      $('#inactive_nodes a.delete').click(function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(i18n.t('Notice!'), i18n.t('Er du sikker på du vil <strong>slette</strong> CMS noden?'),function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+
+                  window.scrollTo(window.scrollMinX, window.scrollMinY);
+                  dialoug.slideNotice(response.message);
+                }
+              }
+            });
+          }
+        });
+      });
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({
         axis : 'y',

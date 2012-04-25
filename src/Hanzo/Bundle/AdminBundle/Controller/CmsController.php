@@ -33,7 +33,19 @@ class CmsController extends CoreController
 
     public function indexAction()
     {
-        return $this->render('AdminBundle:Cms:menu.html.twig',array('tree'=>$this->getCmsTree()));
+        $inactive_nodes = CmsQuery::create()
+            ->filterByIsActive(FALSE)
+            ->joinWithCmsI18n(NULL, 'INNER JOIN')
+            ->groupById()
+            ->orderById()
+            ->find()
+        ;
+        return $this->render('AdminBundle:Cms:menu.html.twig',
+            array(
+                'tree'=>$this->getCmsTree(),
+                'inactive_nodes' => $inactive_nodes
+            )
+        );
     }
 
     public function deleteAction($id)
@@ -358,7 +370,9 @@ class CmsController extends CoreController
         $menu = '';
         $query = CmsQuery::create()
             ->filterByIsActive(TRUE)
-            ->joinWithI18n('da_DK')
+            ->joinCmsI18n(NULL, 'INNER JOIN')
+            ->groupById()
+            //->joinWithI18n('da_DK')
             ->orderBySort()
         ;
 
