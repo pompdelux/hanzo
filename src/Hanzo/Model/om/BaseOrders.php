@@ -138,10 +138,11 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	protected $languages_id;
 
 	/**
-	 * The value for the currency_id field.
-	 * @var        int
+	 * The value for the currency_code field.
+	 * Note: this column has a database default value of: ''
+	 * @var        string
 	 */
-	protected $currency_id;
+	protected $currency_code;
 
 	/**
 	 * The value for the billing_first_name field.
@@ -388,6 +389,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$this->version_id = 1;
 		$this->state = -50;
 		$this->in_edit = false;
+		$this->currency_code = '';
 	}
 
 	/**
@@ -521,13 +523,13 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [currency_id] column value.
+	 * Get the [currency_code] column value.
 	 * 
-	 * @return     int
+	 * @return     string
 	 */
-	public function getCurrencyId()
+	public function getCurrencyCode()
 	{
-		return $this->currency_id;
+		return $this->currency_code;
 	}
 
 	/**
@@ -1117,24 +1119,24 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	} // setLanguagesId()
 
 	/**
-	 * Set the value of [currency_id] column.
+	 * Set the value of [currency_code] column.
 	 * 
-	 * @param      int $v new value
+	 * @param      string $v new value
 	 * @return     Orders The current object (for fluent API support)
 	 */
-	public function setCurrencyId($v)
+	public function setCurrencyCode($v)
 	{
 		if ($v !== null) {
-			$v = (int) $v;
+			$v = (string) $v;
 		}
 
-		if ($this->currency_id !== $v) {
-			$this->currency_id = $v;
-			$this->modifiedColumns[] = OrdersPeer::CURRENCY_ID;
+		if ($this->currency_code !== $v) {
+			$this->currency_code = $v;
+			$this->modifiedColumns[] = OrdersPeer::CURRENCY_CODE;
 		}
 
 		return $this;
-	} // setCurrencyId()
+	} // setCurrencyCode()
 
 	/**
 	 * Set the value of [billing_first_name] column.
@@ -1672,6 +1674,10 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 				return false;
 			}
 
+			if ($this->currency_code !== '') {
+				return false;
+			}
+
 		// otherwise, everything was equal, so return TRUE
 		return true;
 	} // hasOnlyDefaultValues()
@@ -1706,7 +1712,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$this->email = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
 			$this->phone = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
 			$this->languages_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
-			$this->currency_id = ($row[$startcol + 12] !== null) ? (int) $row[$startcol + 12] : null;
+			$this->currency_code = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
 			$this->billing_first_name = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
 			$this->billing_last_name = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
 			$this->billing_address_line_1 = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
@@ -2125,8 +2131,8 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersPeer::LANGUAGES_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`LANGUAGES_ID`';
 		}
-		if ($this->isColumnModified(OrdersPeer::CURRENCY_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`CURRENCY_ID`';
+		if ($this->isColumnModified(OrdersPeer::CURRENCY_CODE)) {
+			$modifiedColumns[':p' . $index++]  = '`CURRENCY_CODE`';
 		}
 		if ($this->isColumnModified(OrdersPeer::BILLING_FIRST_NAME)) {
 			$modifiedColumns[':p' . $index++]  = '`BILLING_FIRST_NAME`';
@@ -2250,8 +2256,8 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 					case '`LANGUAGES_ID`':
 						$stmt->bindValue($identifier, $this->languages_id, PDO::PARAM_INT);
 						break;
-					case '`CURRENCY_ID`':
-						$stmt->bindValue($identifier, $this->currency_id, PDO::PARAM_INT);
+					case '`CURRENCY_CODE`':
+						$stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
 						break;
 					case '`BILLING_FIRST_NAME`':
 						$stmt->bindValue($identifier, $this->billing_first_name, PDO::PARAM_STR);
@@ -2561,7 +2567,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 				return $this->getLanguagesId();
 				break;
 			case 12:
-				return $this->getCurrencyId();
+				return $this->getCurrencyCode();
 				break;
 			case 13:
 				return $this->getBillingFirstName();
@@ -2679,7 +2685,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$keys[9] => $this->getEmail(),
 			$keys[10] => $this->getPhone(),
 			$keys[11] => $this->getLanguagesId(),
-			$keys[12] => $this->getCurrencyId(),
+			$keys[12] => $this->getCurrencyCode(),
 			$keys[13] => $this->getBillingFirstName(),
 			$keys[14] => $this->getBillingLastName(),
 			$keys[15] => $this->getBillingAddressLine1(),
@@ -2799,7 +2805,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 				$this->setLanguagesId($value);
 				break;
 			case 12:
-				$this->setCurrencyId($value);
+				$this->setCurrencyCode($value);
 				break;
 			case 13:
 				$this->setBillingFirstName($value);
@@ -2912,7 +2918,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if (array_key_exists($keys[9], $arr)) $this->setEmail($arr[$keys[9]]);
 		if (array_key_exists($keys[10], $arr)) $this->setPhone($arr[$keys[10]]);
 		if (array_key_exists($keys[11], $arr)) $this->setLanguagesId($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setCurrencyId($arr[$keys[12]]);
+		if (array_key_exists($keys[12], $arr)) $this->setCurrencyCode($arr[$keys[12]]);
 		if (array_key_exists($keys[13], $arr)) $this->setBillingFirstName($arr[$keys[13]]);
 		if (array_key_exists($keys[14], $arr)) $this->setBillingLastName($arr[$keys[14]]);
 		if (array_key_exists($keys[15], $arr)) $this->setBillingAddressLine1($arr[$keys[15]]);
@@ -2961,7 +2967,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersPeer::EMAIL)) $criteria->add(OrdersPeer::EMAIL, $this->email);
 		if ($this->isColumnModified(OrdersPeer::PHONE)) $criteria->add(OrdersPeer::PHONE, $this->phone);
 		if ($this->isColumnModified(OrdersPeer::LANGUAGES_ID)) $criteria->add(OrdersPeer::LANGUAGES_ID, $this->languages_id);
-		if ($this->isColumnModified(OrdersPeer::CURRENCY_ID)) $criteria->add(OrdersPeer::CURRENCY_ID, $this->currency_id);
+		if ($this->isColumnModified(OrdersPeer::CURRENCY_CODE)) $criteria->add(OrdersPeer::CURRENCY_CODE, $this->currency_code);
 		if ($this->isColumnModified(OrdersPeer::BILLING_FIRST_NAME)) $criteria->add(OrdersPeer::BILLING_FIRST_NAME, $this->billing_first_name);
 		if ($this->isColumnModified(OrdersPeer::BILLING_LAST_NAME)) $criteria->add(OrdersPeer::BILLING_LAST_NAME, $this->billing_last_name);
 		if ($this->isColumnModified(OrdersPeer::BILLING_ADDRESS_LINE_1)) $criteria->add(OrdersPeer::BILLING_ADDRESS_LINE_1, $this->billing_address_line_1);
@@ -3060,7 +3066,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$copyObj->setEmail($this->getEmail());
 		$copyObj->setPhone($this->getPhone());
 		$copyObj->setLanguagesId($this->getLanguagesId());
-		$copyObj->setCurrencyId($this->getCurrencyId());
+		$copyObj->setCurrencyCode($this->getCurrencyCode());
 		$copyObj->setBillingFirstName($this->getBillingFirstName());
 		$copyObj->setBillingLastName($this->getBillingLastName());
 		$copyObj->setBillingAddressLine1($this->getBillingAddressLine1());
@@ -4129,7 +4135,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$this->email = null;
 		$this->phone = null;
 		$this->languages_id = null;
-		$this->currency_id = null;
+		$this->currency_code = null;
 		$this->billing_first_name = null;
 		$this->billing_last_name = null;
 		$this->billing_address_line_1 = null;

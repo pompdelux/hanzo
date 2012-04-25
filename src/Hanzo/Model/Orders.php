@@ -297,7 +297,7 @@ class Orders extends BaseOrders
         $line->setProductsSize($product->getSize());
         $line->setQuantity($quantity);
         $line->setPrice($price['price']);
-        $line->setTax($price['vat']);
+        $line->setVat($price['vat']);
         $line->setType('product');
         $this->addOrdersLines($line);
     }
@@ -338,7 +338,7 @@ class Orders extends BaseOrders
                 $line->setProductsName( $name );
                 $line->setProductsId( $id );
                 $line->setPrice( $price );
-                $line->setTax( 0.00 );
+                $line->setVat( 0.00 );
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
 
@@ -352,7 +352,7 @@ class Orders extends BaseOrders
         $line->setProductsName( $name );
         $line->setQuantity(1);
         $line->setPrice( $price );
-        $line->setTax( 0.00 );
+        $line->setVat( 0.00 );
         $line->setType( $type );
         $this->addOrdersLines($line);
     }
@@ -404,13 +404,13 @@ class Orders extends BaseOrders
         return $total;
     }
 
-    public function getTotalTax()
+    public function getTotalVat()
     {
         $lines = $this->getOrdersLiness();
 
         $total = 0;
         foreach ($lines as $line) {
-            $total += ($line->getTax() * $line->getQuantity());
+            $total += ($line->getVat() * $line->getQuantity());
         }
 
         return $total;
@@ -495,12 +495,12 @@ class Orders extends BaseOrders
      *
      * @param string $name
      * @param float $price
-     * @param float $tax
+     * @param float $vat
      * @param string $id
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function setOrderLinePaymentFee( $name, $price, $tax, $id )
+    public function setOrderLinePaymentFee( $name, $price, $vat, $id )
     {
         $type = 'payment.fee';
 
@@ -512,7 +512,7 @@ class Orders extends BaseOrders
             {
                 $line->setProductsName( $name );
                 $line->setPrice( $price );
-                $line->setTax( $tax );
+                $line->setVat( $vat );
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
 
@@ -526,7 +526,7 @@ class Orders extends BaseOrders
         $line->setProductsName( $name );
         $line->setQuantity(1);
         $line->setPrice( $price );
-        $line->setTax( $tax );
+        $line->setVat( $vat );
         $line->setType( $type );
         $this->addOrdersLines($line);
     }
@@ -540,10 +540,10 @@ class Orders extends BaseOrders
      * @param int    $id    product id, must be set even for virtual lines
      * @param string $name  line description
      * @param float  $price price
-     * @param float  $tax   tax
+     * @param float  $vat   vat
      * @return object Orders object returned to keep the chain alive.
      */
-    public function setOrderLine($type, $id, $name, $price = 0.00, $tax = 0.00, $quantity = 1)
+    public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
     {
         $lines = $this->getOrdersLiness();
 
@@ -553,7 +553,7 @@ class Orders extends BaseOrders
                     $line->setProductsId( $id );
                     $line->setProductsName( $name );
                     $line->setPrice( $price );
-                    $line->setTax( $tax );
+                    $line->setVat( $vat );
                     $line->setQuantity( $quantity );
                     $lines[$index] = $line;
                     $this->setOrdersLiness($lines);
@@ -564,7 +564,7 @@ class Orders extends BaseOrders
                     if ($line->getProductsId() == $id) {
                         $line->setProductsName( $name );
                         $line->setPrice( $price );
-                        $line->setTax( $tax );
+                        $line->setVat( $vat );
                         $line->setQuantity( $quantity );
                         $lines[$index] = $line;
                         $this->setOrdersLiness($lines);
@@ -584,7 +584,7 @@ class Orders extends BaseOrders
         $line->setProductsName( $name );
         $line->setQuantity( $quantity );
         $line->setPrice( $price );
-        $line->setTax( $tax );
+        $line->setVat( $vat );
         $this->addOrdersLines($line);
 
         // maintain chain, return self

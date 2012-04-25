@@ -45,14 +45,15 @@ class OrdersLinesTableMap extends TableMap
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addForeignKey('ORDERS_ID', 'OrdersId', 'INTEGER', 'orders', 'ID', true, null, null);
 		$this->addColumn('TYPE', 'Type', 'VARCHAR', true, 12, null);
-		$this->addColumn('TAX', 'Tax', 'DECIMAL', false, 4, 0);
 		$this->addForeignKey('PRODUCTS_ID', 'ProductsId', 'INTEGER', 'products', 'ID', false, null, null);
 		$this->addColumn('PRODUCTS_SKU', 'ProductsSku', 'VARCHAR', false, 255, null);
 		$this->addColumn('PRODUCTS_NAME', 'ProductsName', 'VARCHAR', true, 255, null);
 		$this->addColumn('PRODUCTS_COLOR', 'ProductsColor', 'VARCHAR', false, 128, null);
 		$this->addColumn('PRODUCTS_SIZE', 'ProductsSize', 'VARCHAR', false, 32, null);
 		$this->addColumn('EXPECTED_AT', 'ExpectedAt', 'DATE', false, null, '1970-01-01');
+		$this->addColumn('ORIGINAL_PRICE', 'OriginalPrice', 'DECIMAL', false, 15, null);
 		$this->addColumn('PRICE', 'Price', 'DECIMAL', false, 15, null);
+		$this->addColumn('VAT', 'Vat', 'DECIMAL', false, 4, 0);
 		$this->addColumn('QUANTITY', 'Quantity', 'INTEGER', false, null, null);
 		// validators
 	} // initialize()

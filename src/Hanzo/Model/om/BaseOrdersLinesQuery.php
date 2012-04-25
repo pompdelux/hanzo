@@ -24,27 +24,29 @@ use Hanzo\Model\Products;
  * @method     OrdersLinesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method     OrdersLinesQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method     OrdersLinesQuery orderByType($order = Criteria::ASC) Order by the type column
- * @method     OrdersLinesQuery orderByTax($order = Criteria::ASC) Order by the tax column
  * @method     OrdersLinesQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  * @method     OrdersLinesQuery orderByProductsSku($order = Criteria::ASC) Order by the products_sku column
  * @method     OrdersLinesQuery orderByProductsName($order = Criteria::ASC) Order by the products_name column
  * @method     OrdersLinesQuery orderByProductsColor($order = Criteria::ASC) Order by the products_color column
  * @method     OrdersLinesQuery orderByProductsSize($order = Criteria::ASC) Order by the products_size column
  * @method     OrdersLinesQuery orderByExpectedAt($order = Criteria::ASC) Order by the expected_at column
+ * @method     OrdersLinesQuery orderByOriginalPrice($order = Criteria::ASC) Order by the original_price column
  * @method     OrdersLinesQuery orderByPrice($order = Criteria::ASC) Order by the price column
+ * @method     OrdersLinesQuery orderByVat($order = Criteria::ASC) Order by the vat column
  * @method     OrdersLinesQuery orderByQuantity($order = Criteria::ASC) Order by the quantity column
  *
  * @method     OrdersLinesQuery groupById() Group by the id column
  * @method     OrdersLinesQuery groupByOrdersId() Group by the orders_id column
  * @method     OrdersLinesQuery groupByType() Group by the type column
- * @method     OrdersLinesQuery groupByTax() Group by the tax column
  * @method     OrdersLinesQuery groupByProductsId() Group by the products_id column
  * @method     OrdersLinesQuery groupByProductsSku() Group by the products_sku column
  * @method     OrdersLinesQuery groupByProductsName() Group by the products_name column
  * @method     OrdersLinesQuery groupByProductsColor() Group by the products_color column
  * @method     OrdersLinesQuery groupByProductsSize() Group by the products_size column
  * @method     OrdersLinesQuery groupByExpectedAt() Group by the expected_at column
+ * @method     OrdersLinesQuery groupByOriginalPrice() Group by the original_price column
  * @method     OrdersLinesQuery groupByPrice() Group by the price column
+ * @method     OrdersLinesQuery groupByVat() Group by the vat column
  * @method     OrdersLinesQuery groupByQuantity() Group by the quantity column
  *
  * @method     OrdersLinesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -65,27 +67,29 @@ use Hanzo\Model\Products;
  * @method     OrdersLines findOneById(int $id) Return the first OrdersLines filtered by the id column
  * @method     OrdersLines findOneByOrdersId(int $orders_id) Return the first OrdersLines filtered by the orders_id column
  * @method     OrdersLines findOneByType(string $type) Return the first OrdersLines filtered by the type column
- * @method     OrdersLines findOneByTax(string $tax) Return the first OrdersLines filtered by the tax column
  * @method     OrdersLines findOneByProductsId(int $products_id) Return the first OrdersLines filtered by the products_id column
  * @method     OrdersLines findOneByProductsSku(string $products_sku) Return the first OrdersLines filtered by the products_sku column
  * @method     OrdersLines findOneByProductsName(string $products_name) Return the first OrdersLines filtered by the products_name column
  * @method     OrdersLines findOneByProductsColor(string $products_color) Return the first OrdersLines filtered by the products_color column
  * @method     OrdersLines findOneByProductsSize(string $products_size) Return the first OrdersLines filtered by the products_size column
  * @method     OrdersLines findOneByExpectedAt(string $expected_at) Return the first OrdersLines filtered by the expected_at column
+ * @method     OrdersLines findOneByOriginalPrice(string $original_price) Return the first OrdersLines filtered by the original_price column
  * @method     OrdersLines findOneByPrice(string $price) Return the first OrdersLines filtered by the price column
+ * @method     OrdersLines findOneByVat(string $vat) Return the first OrdersLines filtered by the vat column
  * @method     OrdersLines findOneByQuantity(int $quantity) Return the first OrdersLines filtered by the quantity column
  *
  * @method     array findById(int $id) Return OrdersLines objects filtered by the id column
  * @method     array findByOrdersId(int $orders_id) Return OrdersLines objects filtered by the orders_id column
  * @method     array findByType(string $type) Return OrdersLines objects filtered by the type column
- * @method     array findByTax(string $tax) Return OrdersLines objects filtered by the tax column
  * @method     array findByProductsId(int $products_id) Return OrdersLines objects filtered by the products_id column
  * @method     array findByProductsSku(string $products_sku) Return OrdersLines objects filtered by the products_sku column
  * @method     array findByProductsName(string $products_name) Return OrdersLines objects filtered by the products_name column
  * @method     array findByProductsColor(string $products_color) Return OrdersLines objects filtered by the products_color column
  * @method     array findByProductsSize(string $products_size) Return OrdersLines objects filtered by the products_size column
  * @method     array findByExpectedAt(string $expected_at) Return OrdersLines objects filtered by the expected_at column
+ * @method     array findByOriginalPrice(string $original_price) Return OrdersLines objects filtered by the original_price column
  * @method     array findByPrice(string $price) Return OrdersLines objects filtered by the price column
+ * @method     array findByVat(string $vat) Return OrdersLines objects filtered by the vat column
  * @method     array findByQuantity(int $quantity) Return OrdersLines objects filtered by the quantity column
  *
  * @package    propel.generator.src.Hanzo.Model.om
@@ -175,7 +179,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `TAX`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `PRICE`, `QUANTITY` FROM `orders_lines` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `ORIGINAL_PRICE`, `PRICE`, `VAT`, `QUANTITY` FROM `orders_lines` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -354,46 +358,6 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(OrdersLinesPeer::TYPE, $type, $comparison);
-	}
-
-	/**
-	 * Filter the query on the tax column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByTax(1234); // WHERE tax = 1234
-	 * $query->filterByTax(array(12, 34)); // WHERE tax IN (12, 34)
-	 * $query->filterByTax(array('min' => 12)); // WHERE tax > 12
-	 * </code>
-	 *
-	 * @param     mixed $tax The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    OrdersLinesQuery The current query, for fluid interface
-	 */
-	public function filterByTax($tax = null, $comparison = null)
-	{
-		if (is_array($tax)) {
-			$useMinMax = false;
-			if (isset($tax['min'])) {
-				$this->addUsingAlias(OrdersLinesPeer::TAX, $tax['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($tax['max'])) {
-				$this->addUsingAlias(OrdersLinesPeer::TAX, $tax['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(OrdersLinesPeer::TAX, $tax, $comparison);
 	}
 
 	/**
@@ -593,6 +557,46 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query on the original_price column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByOriginalPrice(1234); // WHERE original_price = 1234
+	 * $query->filterByOriginalPrice(array(12, 34)); // WHERE original_price IN (12, 34)
+	 * $query->filterByOriginalPrice(array('min' => 12)); // WHERE original_price > 12
+	 * </code>
+	 *
+	 * @param     mixed $originalPrice The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersLinesQuery The current query, for fluid interface
+	 */
+	public function filterByOriginalPrice($originalPrice = null, $comparison = null)
+	{
+		if (is_array($originalPrice)) {
+			$useMinMax = false;
+			if (isset($originalPrice['min'])) {
+				$this->addUsingAlias(OrdersLinesPeer::ORIGINAL_PRICE, $originalPrice['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($originalPrice['max'])) {
+				$this->addUsingAlias(OrdersLinesPeer::ORIGINAL_PRICE, $originalPrice['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(OrdersLinesPeer::ORIGINAL_PRICE, $originalPrice, $comparison);
+	}
+
+	/**
 	 * Filter the query on the price column
 	 *
 	 * Example usage:
@@ -630,6 +634,46 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(OrdersLinesPeer::PRICE, $price, $comparison);
+	}
+
+	/**
+	 * Filter the query on the vat column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByVat(1234); // WHERE vat = 1234
+	 * $query->filterByVat(array(12, 34)); // WHERE vat IN (12, 34)
+	 * $query->filterByVat(array('min' => 12)); // WHERE vat > 12
+	 * </code>
+	 *
+	 * @param     mixed $vat The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersLinesQuery The current query, for fluid interface
+	 */
+	public function filterByVat($vat = null, $comparison = null)
+	{
+		if (is_array($vat)) {
+			$useMinMax = false;
+			if (isset($vat['min'])) {
+				$this->addUsingAlias(OrdersLinesPeer::VAT, $vat['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($vat['max'])) {
+				$this->addUsingAlias(OrdersLinesPeer::VAT, $vat['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(OrdersLinesPeer::VAT, $vat, $comparison);
 	}
 
 	/**

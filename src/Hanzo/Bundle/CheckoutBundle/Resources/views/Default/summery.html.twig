@@ -26,11 +26,11 @@
     <tfoot>
       <tr>
         <td>{{ 'confirm.vat'|trans({}, 'checkout') }}</td>
-        <td class="right">{{ order.getTotalTax|money }}</td>
+        <td class="right">{{ order.getTotalVat|money }}</td>
       </tr>
       <tr>
         <td>{{ 'confirm.sub_total'|trans({}, 'checkout') }}</td>
-        <td class="right">{{ (order.getTotalPrice - order.getTotalTax)|money }}</td>
+        <td class="right">{{ (order.getTotalPrice - order.getTotalVat)|money }}</td>
       </tr>
       <tr>
         <td>{{ 'confirm.total'|trans({}, 'checkout') }}</td>
