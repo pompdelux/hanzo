@@ -71,13 +71,6 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	protected $type;
 
 	/**
-	 * The value for the tax field.
-	 * Note: this column has a database default value of: '0.00'
-	 * @var        string
-	 */
-	protected $tax;
-
-	/**
 	 * The value for the products_id field.
 	 * @var        int
 	 */
@@ -115,10 +108,23 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	protected $expected_at;
 
 	/**
+	 * The value for the original_price field.
+	 * @var        string
+	 */
+	protected $original_price;
+
+	/**
 	 * The value for the price field.
 	 * @var        string
 	 */
 	protected $price;
+
+	/**
+	 * The value for the vat field.
+	 * Note: this column has a database default value of: '0.00'
+	 * @var        string
+	 */
+	protected $vat;
 
 	/**
 	 * The value for the quantity field.
@@ -158,8 +164,8 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	 */
 	public function applyDefaultValues()
 	{
-		$this->tax = '0.00';
 		$this->expected_at = '1970-01-01';
+		$this->vat = '0.00';
 	}
 
 	/**
@@ -200,16 +206,6 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	public function getType()
 	{
 		return $this->type;
-	}
-
-	/**
-	 * Get the [tax] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getTax()
-	{
-		return $this->tax;
 	}
 
 	/**
@@ -301,6 +297,16 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Get the [original_price] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getOriginalPrice()
+	{
+		return $this->original_price;
+	}
+
+	/**
 	 * Get the [price] column value.
 	 * 
 	 * @return     string
@@ -308,6 +314,16 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	public function getPrice()
 	{
 		return $this->price;
+	}
+
+	/**
+	 * Get the [vat] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getVat()
+	{
+		return $this->vat;
 	}
 
 	/**
@@ -383,26 +399,6 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 
 		return $this;
 	} // setType()
-
-	/**
-	 * Set the value of [tax] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     OrdersLines The current object (for fluent API support)
-	 */
-	public function setTax($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->tax !== $v) {
-			$this->tax = $v;
-			$this->modifiedColumns[] = OrdersLinesPeer::TAX;
-		}
-
-		return $this;
-	} // setTax()
 
 	/**
 	 * Set the value of [products_id] column.
@@ -533,6 +529,26 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	} // setExpectedAt()
 
 	/**
+	 * Set the value of [original_price] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     OrdersLines The current object (for fluent API support)
+	 */
+	public function setOriginalPrice($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->original_price !== $v) {
+			$this->original_price = $v;
+			$this->modifiedColumns[] = OrdersLinesPeer::ORIGINAL_PRICE;
+		}
+
+		return $this;
+	} // setOriginalPrice()
+
+	/**
 	 * Set the value of [price] column.
 	 * 
 	 * @param      string $v new value
@@ -551,6 +567,26 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 
 		return $this;
 	} // setPrice()
+
+	/**
+	 * Set the value of [vat] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     OrdersLines The current object (for fluent API support)
+	 */
+	public function setVat($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->vat !== $v) {
+			$this->vat = $v;
+			$this->modifiedColumns[] = OrdersLinesPeer::VAT;
+		}
+
+		return $this;
+	} // setVat()
 
 	/**
 	 * Set the value of [quantity] column.
@@ -582,11 +618,11 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
-			if ($this->tax !== '0.00') {
+			if ($this->expected_at !== '1970-01-01') {
 				return false;
 			}
 
-			if ($this->expected_at !== '1970-01-01') {
+			if ($this->vat !== '0.00') {
 				return false;
 			}
 
@@ -615,15 +651,16 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->orders_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->type = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->tax = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->products_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
-			$this->products_sku = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->products_name = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->products_color = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-			$this->products_size = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->expected_at = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+			$this->products_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
+			$this->products_sku = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->products_name = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->products_color = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->products_size = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->expected_at = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->original_price = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
 			$this->price = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-			$this->quantity = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
+			$this->vat = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->quantity = ($row[$startcol + 12] !== null) ? (int) $row[$startcol + 12] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -632,7 +669,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 12; // 12 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 13; // 13 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating OrdersLines object", $e);
@@ -876,9 +913,6 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersLinesPeer::TYPE)) {
 			$modifiedColumns[':p' . $index++]  = '`TYPE`';
 		}
-		if ($this->isColumnModified(OrdersLinesPeer::TAX)) {
-			$modifiedColumns[':p' . $index++]  = '`TAX`';
-		}
 		if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
 		}
@@ -897,8 +931,14 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersLinesPeer::EXPECTED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`EXPECTED_AT`';
 		}
+		if ($this->isColumnModified(OrdersLinesPeer::ORIGINAL_PRICE)) {
+			$modifiedColumns[':p' . $index++]  = '`ORIGINAL_PRICE`';
+		}
 		if ($this->isColumnModified(OrdersLinesPeer::PRICE)) {
 			$modifiedColumns[':p' . $index++]  = '`PRICE`';
+		}
+		if ($this->isColumnModified(OrdersLinesPeer::VAT)) {
+			$modifiedColumns[':p' . $index++]  = '`VAT`';
 		}
 		if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) {
 			$modifiedColumns[':p' . $index++]  = '`QUANTITY`';
@@ -923,9 +963,6 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 					case '`TYPE`':
 						$stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
 						break;
-					case '`TAX`':
-						$stmt->bindValue($identifier, $this->tax, PDO::PARAM_STR);
-						break;
 					case '`PRODUCTS_ID`':
 						$stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
 						break;
@@ -944,8 +981,14 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 					case '`EXPECTED_AT`':
 						$stmt->bindValue($identifier, $this->expected_at, PDO::PARAM_STR);
 						break;
+					case '`ORIGINAL_PRICE`':
+						$stmt->bindValue($identifier, $this->original_price, PDO::PARAM_STR);
+						break;
 					case '`PRICE`':
 						$stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
+						break;
+					case '`VAT`':
+						$stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
 						break;
 					case '`QUANTITY`':
 						$stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
@@ -1108,30 +1151,33 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 				return $this->getType();
 				break;
 			case 3:
-				return $this->getTax();
-				break;
-			case 4:
 				return $this->getProductsId();
 				break;
-			case 5:
+			case 4:
 				return $this->getProductsSku();
 				break;
-			case 6:
+			case 5:
 				return $this->getProductsName();
 				break;
-			case 7:
+			case 6:
 				return $this->getProductsColor();
 				break;
-			case 8:
+			case 7:
 				return $this->getProductsSize();
 				break;
-			case 9:
+			case 8:
 				return $this->getExpectedAt();
+				break;
+			case 9:
+				return $this->getOriginalPrice();
 				break;
 			case 10:
 				return $this->getPrice();
 				break;
 			case 11:
+				return $this->getVat();
+				break;
+			case 12:
 				return $this->getQuantity();
 				break;
 			default:
@@ -1166,15 +1212,16 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getOrdersId(),
 			$keys[2] => $this->getType(),
-			$keys[3] => $this->getTax(),
-			$keys[4] => $this->getProductsId(),
-			$keys[5] => $this->getProductsSku(),
-			$keys[6] => $this->getProductsName(),
-			$keys[7] => $this->getProductsColor(),
-			$keys[8] => $this->getProductsSize(),
-			$keys[9] => $this->getExpectedAt(),
+			$keys[3] => $this->getProductsId(),
+			$keys[4] => $this->getProductsSku(),
+			$keys[5] => $this->getProductsName(),
+			$keys[6] => $this->getProductsColor(),
+			$keys[7] => $this->getProductsSize(),
+			$keys[8] => $this->getExpectedAt(),
+			$keys[9] => $this->getOriginalPrice(),
 			$keys[10] => $this->getPrice(),
-			$keys[11] => $this->getQuantity(),
+			$keys[11] => $this->getVat(),
+			$keys[12] => $this->getQuantity(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aOrders) {
@@ -1224,30 +1271,33 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 				$this->setType($value);
 				break;
 			case 3:
-				$this->setTax($value);
-				break;
-			case 4:
 				$this->setProductsId($value);
 				break;
-			case 5:
+			case 4:
 				$this->setProductsSku($value);
 				break;
-			case 6:
+			case 5:
 				$this->setProductsName($value);
 				break;
-			case 7:
+			case 6:
 				$this->setProductsColor($value);
 				break;
-			case 8:
+			case 7:
 				$this->setProductsSize($value);
 				break;
-			case 9:
+			case 8:
 				$this->setExpectedAt($value);
+				break;
+			case 9:
+				$this->setOriginalPrice($value);
 				break;
 			case 10:
 				$this->setPrice($value);
 				break;
 			case 11:
+				$this->setVat($value);
+				break;
+			case 12:
 				$this->setQuantity($value);
 				break;
 		} // switch()
@@ -1277,15 +1327,16 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setOrdersId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setType($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setTax($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setProductsId($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setProductsSku($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setProductsName($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setProductsColor($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setProductsSize($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setExpectedAt($arr[$keys[9]]);
+		if (array_key_exists($keys[3], $arr)) $this->setProductsId($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setProductsSku($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setProductsName($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setProductsColor($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setProductsSize($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setExpectedAt($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setOriginalPrice($arr[$keys[9]]);
 		if (array_key_exists($keys[10], $arr)) $this->setPrice($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setQuantity($arr[$keys[11]]);
+		if (array_key_exists($keys[11], $arr)) $this->setVat($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setQuantity($arr[$keys[12]]);
 	}
 
 	/**
@@ -1300,14 +1351,15 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersLinesPeer::ID)) $criteria->add(OrdersLinesPeer::ID, $this->id);
 		if ($this->isColumnModified(OrdersLinesPeer::ORDERS_ID)) $criteria->add(OrdersLinesPeer::ORDERS_ID, $this->orders_id);
 		if ($this->isColumnModified(OrdersLinesPeer::TYPE)) $criteria->add(OrdersLinesPeer::TYPE, $this->type);
-		if ($this->isColumnModified(OrdersLinesPeer::TAX)) $criteria->add(OrdersLinesPeer::TAX, $this->tax);
 		if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_ID)) $criteria->add(OrdersLinesPeer::PRODUCTS_ID, $this->products_id);
 		if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SKU)) $criteria->add(OrdersLinesPeer::PRODUCTS_SKU, $this->products_sku);
 		if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_NAME)) $criteria->add(OrdersLinesPeer::PRODUCTS_NAME, $this->products_name);
 		if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_COLOR)) $criteria->add(OrdersLinesPeer::PRODUCTS_COLOR, $this->products_color);
 		if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SIZE)) $criteria->add(OrdersLinesPeer::PRODUCTS_SIZE, $this->products_size);
 		if ($this->isColumnModified(OrdersLinesPeer::EXPECTED_AT)) $criteria->add(OrdersLinesPeer::EXPECTED_AT, $this->expected_at);
+		if ($this->isColumnModified(OrdersLinesPeer::ORIGINAL_PRICE)) $criteria->add(OrdersLinesPeer::ORIGINAL_PRICE, $this->original_price);
 		if ($this->isColumnModified(OrdersLinesPeer::PRICE)) $criteria->add(OrdersLinesPeer::PRICE, $this->price);
+		if ($this->isColumnModified(OrdersLinesPeer::VAT)) $criteria->add(OrdersLinesPeer::VAT, $this->vat);
 		if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) $criteria->add(OrdersLinesPeer::QUANTITY, $this->quantity);
 
 		return $criteria;
@@ -1373,14 +1425,15 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	{
 		$copyObj->setOrdersId($this->getOrdersId());
 		$copyObj->setType($this->getType());
-		$copyObj->setTax($this->getTax());
 		$copyObj->setProductsId($this->getProductsId());
 		$copyObj->setProductsSku($this->getProductsSku());
 		$copyObj->setProductsName($this->getProductsName());
 		$copyObj->setProductsColor($this->getProductsColor());
 		$copyObj->setProductsSize($this->getProductsSize());
 		$copyObj->setExpectedAt($this->getExpectedAt());
+		$copyObj->setOriginalPrice($this->getOriginalPrice());
 		$copyObj->setPrice($this->getPrice());
+		$copyObj->setVat($this->getVat());
 		$copyObj->setQuantity($this->getQuantity());
 
 		if ($deepCopy && !$this->startCopy) {
@@ -1544,14 +1597,15 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		$this->id = null;
 		$this->orders_id = null;
 		$this->type = null;
-		$this->tax = null;
 		$this->products_id = null;
 		$this->products_sku = null;
 		$this->products_name = null;
 		$this->products_color = null;
 		$this->products_size = null;
 		$this->expected_at = null;
+		$this->original_price = null;
 		$this->price = null;
+		$this->vat = null;
 		$this->quantity = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;

@@ -54,7 +54,7 @@ class OrdersTableMap extends TableMap
 		$this->addColumn('EMAIL', 'Email', 'VARCHAR', false, 255, null);
 		$this->addColumn('PHONE', 'Phone', 'VARCHAR', false, 32, null);
 		$this->addColumn('LANGUAGES_ID', 'LanguagesId', 'INTEGER', true, null, null);
-		$this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
+		$this->addColumn('CURRENCY_CODE', 'CurrencyCode', 'VARCHAR', true, 12, '');
 		$this->addColumn('BILLING_FIRST_NAME', 'BillingFirstName', 'VARCHAR', true, 128, null);
 		$this->addColumn('BILLING_LAST_NAME', 'BillingLastName', 'VARCHAR', true, 128, null);
 		$this->addColumn('BILLING_ADDRESS_LINE_1', 'BillingAddressLine1', 'VARCHAR', false, 255, null);
