@@ -1,7 +1,15 @@
 {% extends '::adminbase.html.twig' %}
 
 {% block content %}
-
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_cms') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
 <h1>{{ 'add.cms.header.text'|trans({}, 'admin') }}</h1>
 
 {% if app.session.hasFlash('notice') %}
