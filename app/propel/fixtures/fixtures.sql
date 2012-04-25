@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2012 at 08:43 AM
--- Server version: 5.1.58
+-- Generation Time: Apr 25, 2012 at 09:54 AM
+-- Server version: 5.1.62
 -- PHP Version: 5.3.6-13ubuntu3.6
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,262 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `hanzo`
 --
-
---
--- Dumping data for table `countries`
---
-
-INSERT INTO `countries` (`id`, `name`, `local_name`, `code`, `iso2`, `iso3`, `continent`, `currency_id`, `currency_code`, `currency_name`) VALUES
-(1, 'Afghanistan', 'Afghanistan', 4, 'AF', 'AFG', 'AS', 971, 'AFN', 'Afghani'),
-(2, 'Albania', 'Albania', 8, 'AL', 'ALB', 'EU', 8, 'ALL', 'Lek'),
-(3, 'Algeria', 'Algeria', 12, 'DZ', 'DZA', 'AF', 12, 'DZD', 'Algerian Dinar'),
-(4, 'American Samoa', 'American Samoa', 16, 'AS', 'ASM', 'OC', 840, 'USD', 'US Dollar'),
-(5, 'Andorra', 'Andorra', 20, 'AD', 'AND', 'EU', 978, 'EUR', 'Euro'),
-(6, 'Angola', 'Angola', 24, 'AO', 'AGO', 'AF', 973, 'AOA', 'Kwanza'),
-(7, 'Anguilla', 'Anguilla', 660, 'AI', 'AIA', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(8, 'Antarctica', 'Antarctica', 10, 'AQ', 'ATA', 'AN', 0, '', 'No universal currency'),
-(9, 'Antigua and Barbuda', 'Antigua and Barbuda', 28, 'AG', 'ATG', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(10, 'Argentina', 'Argentina', 32, 'AR', 'ARG', 'SA', 32, 'ARS', 'Argentine Peso'),
-(11, 'Armenia', 'Armenia', 51, 'AM', 'ARM', 'AS', 51, 'AMD', 'Armenian Dram'),
-(12, 'Aruba', 'Aruba', 533, 'AW', 'ABW', 'NA', 533, 'AWG', 'Aruban Florin'),
-(13, 'Australia', 'Australia', 36, 'AU', 'AUS', 'OC', 36, 'AUD', 'Australian Dollar'),
-(14, 'Austria', 'Austria', 40, 'AT', 'AUT', 'EU', 978, 'EUR', 'Euro'),
-(15, 'Azerbaijan', 'Azerbaijan', 31, 'AZ', 'AZE', 'AS', 944, 'AZN', 'Azerbaijanian Manat'),
-(16, 'Bahamas', 'Bahamas', 44, 'BS', 'BHS', 'NA', 44, 'BSD', 'Bahamian Dollar'),
-(17, 'Bahrain', 'Bahrain', 48, 'BH', 'BHR', 'AS', 48, 'BHD', 'Bahraini Dinar'),
-(18, 'Bangladesh', 'Bangladesh', 50, 'BD', 'BGD', 'AS', 50, 'BDT', 'Taka'),
-(19, 'Barbados', 'Barbados', 52, 'BB', 'BRB', 'NA', 52, 'BBD', 'Barbados Dollar'),
-(20, 'Belarus', 'Belarus', 112, 'BY', 'BLR', 'EU', 974, 'BYR', 'Belarussian Ruble'),
-(21, 'Belgium', 'Belgium', 56, 'BE', 'BEL', 'EU', 978, 'EUR', 'Euro'),
-(22, 'Belize', 'Belize', 84, 'BZ', 'BLZ', 'NA', 84, 'BZD', 'Belize Dollar'),
-(23, 'Benin', 'Benin', 204, 'BJ', 'BEN', 'AF', 952, 'XOF', 'CFA Franc BCEAO'),
-(24, 'Bermuda', 'Bermuda', 60, 'BM', 'BMU', 'NA', 60, 'BMD', 'Bermudian Dollar'),
-(25, 'Bhutan', 'Bhutan', 64, 'BT', 'BTN', 'AS', 64, 'BTN', 'Ngultrum'),
-(26, 'Bolivia', 'Bolivia', 68, 'BO', 'BOL', 'SA', 0, '', ''),
-(27, 'Bosnia and Herzegovina', 'Bosnia and Herzegovina', 70, 'BA', 'BIH', 'EU', 0, '', ''),
-(28, 'Botswana', 'Botswana', 72, 'BW', 'BWA', 'AF', 72, 'BWP', 'Pula'),
-(29, 'Bouvet Island', 'Bouvet Island', 74, 'BV', 'BVT', 'AN', 578, 'NOK', 'Norwegian Krone'),
-(30, 'Brazil', 'Brazil', 76, 'BR', 'BRA', 'SA', 986, 'BRL', 'Brazilian Real'),
-(31, 'British Indian Ocean Territory', 'British Indian Ocean Territory', 86, 'IO', 'IOT', 'AS', 840, 'USD', 'US Dollar'),
-(32, 'Brunei', 'Brunei', 96, 'BN', 'BRN', 'AS', 0, '', ''),
-(33, 'Bulgaria', 'Bulgaria', 100, 'BG', 'BGR', 'EU', 975, 'BGN', 'Bulgarian Lev'),
-(34, 'Burkina Faso', 'Burkina Faso', 854, 'BF', 'BFA', 'AF', 952, 'XOF', 'CFA Franc BCEAO'),
-(35, 'Burundi', 'Burundi', 108, 'BI', 'BDI', 'AF', 108, 'BIF', 'Burundi Franc'),
-(36, 'Cambodia', 'Cambodia', 116, 'KH', 'KHM', 'AS', 116, 'KHR', 'Riel'),
-(37, 'Cameroon', 'Cameroon', 120, 'CM', 'CMR', 'AF', 950, 'XAF', 'CFA Franc BEAC'),
-(38, 'Canada', 'Canada', 124, 'CA', 'CAN', 'NA', 124, 'CAD', 'Canadian Dollar'),
-(39, 'Cape Verde', 'Cape Verde', 132, 'CV', 'CPV', 'AF', 132, 'CVE', 'Cape Verde Escudo'),
-(40, 'Cayman Islands', 'Cayman Islands', 136, 'KY', 'CYM', 'NA', 136, 'KYD', 'Cayman Islands Dollar'),
-(41, 'Central African Republic', 'Central African Republic', 140, 'CF', 'CAF', 'AF', 950, 'XAF', 'CFA Franc BEAC'),
-(42, 'Chad', 'Chad', 148, 'TD', 'TCD', 'AF', 950, 'XAF', 'CFA Franc BEAC'),
-(43, 'Chile', 'Chile', 152, 'CL', 'CHL', 'SA', 990, 'CLF', 'Unidades de fomento'),
-(44, 'China', 'China', 156, 'CN', 'CHN', 'AS', 156, 'CNY', 'Yuan Renminbi'),
-(45, 'Christmas Island', 'Christmas Island', 162, 'CX', 'CXR', 'AS', 36, 'AUD', 'Australian Dollar'),
-(46, 'Cocos (Keeling) Islands', 'Cocos (Keeling) Islands', 166, 'CC', 'CCK', 'AS', 36, 'AUD', 'Australian Dollar'),
-(47, 'Colombia', 'Colombia', 170, 'CO', 'COL', 'SA', 970, 'COU', 'Unidad de Valor Real'),
-(48, 'Comoros', 'Comoros', 174, 'KM', 'COM', 'AF', 174, 'KMF', 'Comoro Franc'),
-(49, 'Congo (Brazzaville)', 'Congo (Brazzaville)', 178, 'CG', 'COG', 'AF', 0, '', ''),
-(50, 'Congo (Kinshasa)', 'Congo (Kinshasa)', 180, 'CD', 'COD', 'AF', 0, '', ''),
-(51, 'Cook Islands', 'Cook Islands', 184, 'CK', 'COK', 'OC', 554, 'NZD', 'New Zealand Dollar'),
-(52, 'Costa Rica', 'Costa Rica', 188, 'CR', 'CRI', 'NA', 188, 'CRC', 'Costa Rican Colon'),
-(53, 'Ivory Coast', 'Ivory Coast', 384, 'CI', 'CIV', 'AF', 0, '', ''),
-(54, 'Croatia', 'Croatia', 191, 'HR', 'HRV', 'EU', 191, 'HRK', 'Croatian Kuna'),
-(55, 'Cuba', 'Cuba', 192, 'CU', 'CUB', 'NA', 931, 'CUC', 'Peso Convertible'),
-(56, 'Cyprus', 'Cyprus', 196, 'CY', 'CYP', 'AS', 978, 'EUR', 'Euro'),
-(57, 'Czech Republic', 'Czech Republic', 203, 'CZ', 'CZE', 'EU', 203, 'CZK', 'Czech Koruna'),
-(58, 'Denmark', 'Denmark', 208, 'DK', 'DNK', 'EU', 208, 'DKK', 'Danish Krone'),
-(59, 'Djibouti', 'Djibouti', 262, 'DJ', 'DJI', 'AF', 262, 'DJF', 'Djibouti Franc'),
-(60, 'Dominica', 'Dominica', 212, 'DM', 'DMA', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(61, 'Dominican Republic', 'Dominican Republic', 214, 'DO', 'DOM', 'NA', 214, 'DOP', 'Dominican Peso'),
-(62, 'Ecuador', 'Ecuador', 218, 'EC', 'ECU', 'SA', 840, 'USD', 'US Dollar'),
-(63, 'Egypt', 'Egypt', 818, 'EG', 'EGY', 'AF', 818, 'EGP', 'Egyptian Pound'),
-(64, 'El Salvador', 'El Salvador', 222, 'SV', 'SLV', 'NA', 840, 'USD', 'US Dollar'),
-(65, 'Equatorial Guinea', 'Equatorial Guinea', 226, 'GQ', 'GNQ', 'AF', 950, 'XAF', 'CFA Franc BEAC'),
-(66, 'Eritrea', 'Eritrea', 232, 'ER', 'ERI', 'AF', 232, 'ERN', 'Nakfa'),
-(67, 'Estonia', 'Estonia', 233, 'EE', 'EST', 'EU', 978, 'EUR', 'Euro'),
-(68, 'Ethiopia', 'Ethiopia', 231, 'ET', 'ETH', 'AF', 230, 'ETB', 'Ethiopian Birr'),
-(69, 'Falkland Islands', 'Falkland Islands', 238, 'FK', 'FLK', 'SA', 0, '', ''),
-(70, 'Faroe Islands', 'Faroe Islands', 234, 'FO', 'FRO', 'EU', 208, 'DKK', 'Danish Krone'),
-(71, 'Fiji', 'Fiji', 242, 'FJ', 'FJI', 'OC', 242, 'FJD', 'Fiji Dollar'),
-(72, 'Finland', 'Finland', 246, 'FI', 'FIN', 'EU', 978, 'EUR', 'Euro'),
-(73, 'France', 'France', 250, 'FR', 'FRA', 'EU', 978, 'EUR', 'Euro'),
-(74, 'French Guiana', 'French Guiana', 254, 'GF', 'GUF', 'SA', 978, 'EUR', 'Euro'),
-(75, 'French Polynesia', 'French Polynesia', 258, 'PF', 'PYF', 'OC', 953, 'XPF', 'CFP Franc'),
-(76, 'French Southern Territories', 'French Southern Territories', 260, 'TF', 'ATF', 'AN', 978, 'EUR', 'Euro'),
-(77, 'Gabon', 'Gabon', 266, 'GA', 'GAB', 'AF', 950, 'XAF', 'CFA Franc BEAC'),
-(78, 'Gambia', 'Gambia', 270, 'GM', 'GMB', 'AF', 270, 'GMD', 'Dalasi'),
-(79, 'Georgia', 'Georgia', 268, 'GE', 'GEO', 'AS', 981, 'GEL', 'Lari'),
-(80, 'Germany', 'Germany', 276, 'DE', 'DEU', 'EU', 978, 'EUR', 'Euro'),
-(81, 'Ghana', 'Ghana', 288, 'GH', 'GHA', 'AF', 936, 'GHS', 'Cedi'),
-(82, 'Gibraltar', 'Gibraltar', 292, 'GI', 'GIB', 'EU', 292, 'GIP', 'Gibraltar Pound'),
-(83, 'Greece', 'Greece', 300, 'GR', 'GRC', 'EU', 978, 'EUR', 'Euro'),
-(84, 'Greenland', 'Greenland', 304, 'GL', 'GRL', 'NA', 208, 'DKK', 'Danish Krone'),
-(85, 'Grenada', 'Grenada', 308, 'GD', 'GRD', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(86, 'Guadeloupe', 'Guadeloupe', 312, 'GP', 'GLP', 'NA', 978, 'EUR', 'Euro'),
-(87, 'Guam', 'Guam', 316, 'GU', 'GUM', 'OC', 840, 'USD', 'US Dollar'),
-(88, 'Guatemala', 'Guatemala', 320, 'GT', 'GTM', 'NA', 320, 'GTQ', 'Quetzal'),
-(89, 'Guinea', 'Guinea', 324, 'GN', 'GIN', 'AF', 324, 'GNF', 'Guinea Franc'),
-(90, 'Guinea-Bissau', 'Guinea-Bissau', 624, 'GW', 'GNB', 'AF', 952, 'XOF', 'CFA Franc BCEAO'),
-(91, 'Guyana', 'Guyana', 328, 'GY', 'GUY', 'SA', 328, 'GYD', 'Guyana Dollar'),
-(92, 'Haiti', 'Haiti', 332, 'HT', 'HTI', 'NA', 840, 'USD', 'US Dollar'),
-(93, 'Heard Island and McDonald Islands', 'Heard Island and McDonald Islands', 334, 'HM', 'HMD', 'AN', 36, 'AUD', 'Australian Dollar'),
-(94, 'Vatican', 'Vatican', 336, 'VA', 'VAT', 'EU', 0, '', ''),
-(95, 'Honduras', 'Honduras', 340, 'HN', 'HND', 'NA', 340, 'HNL', 'Lempira'),
-(96, 'Hong Kong S.A.R., China', 'Hong Kong S.A.R., China', 344, 'HK', 'HKG', 'AS', 0, '', ''),
-(97, 'Hungary', 'Hungary', 348, 'HU', 'HUN', 'EU', 348, 'HUF', 'Forint'),
-(98, 'Iceland', 'Iceland', 352, 'IS', 'ISL', 'EU', 352, 'ISK', 'Iceland Krona'),
-(99, 'India', 'India', 356, 'IN', 'IND', 'AS', 356, 'INR', 'Indian Rupee'),
-(100, 'Indonesia', 'Indonesia', 360, 'ID', 'IDN', 'AS', 360, 'IDR', 'Rupiah'),
-(101, 'Iran', 'Iran', 364, 'IR', 'IRN', 'AS', 0, '', ''),
-(102, 'Iraq', 'Iraq', 368, 'IQ', 'IRQ', 'AS', 368, 'IQD', 'Iraqi Dinar'),
-(103, 'Ireland', 'Ireland', 372, 'IE', 'IRL', 'EU', 978, 'EUR', 'Euro'),
-(104, 'Israel', 'Israel', 376, 'IL', 'ISR', 'AS', 376, 'ILS', 'New Israeli Sheqel'),
-(105, 'Italy', 'Italy', 380, 'IT', 'ITA', 'EU', 978, 'EUR', 'Euro'),
-(106, 'Jamaica', 'Jamaica', 388, 'JM', 'JAM', 'NA', 388, 'JMD', 'Jamaican Dollar'),
-(107, 'Japan', 'Japan', 392, 'JP', 'JPN', 'AS', 392, 'JPY', 'Yen'),
-(108, 'Jordan', 'Jordan', 400, 'JO', 'JOR', 'AS', 400, 'JOD', 'Jordanian Dinar'),
-(109, 'Kazakhstan', 'Kazakhstan', 398, 'KZ', 'KAZ', 'AS', 398, 'KZT', 'Tenge'),
-(110, 'Kenya', 'Kenya', 404, 'KE', 'KEN', 'AF', 404, 'KES', 'Kenyan Shilling'),
-(111, 'Kiribati', 'Kiribati', 296, 'KI', 'KIR', 'OC', 36, 'AUD', 'Australian Dollar'),
-(112, 'North Korea', 'North Korea', 408, 'KP', 'PRK', 'AS', 0, '', ''),
-(113, 'South Korea', 'South Korea', 410, 'KR', 'KOR', 'AS', 0, '', ''),
-(114, 'Kuwait', 'Kuwait', 414, 'KW', 'KWT', 'AS', 414, 'KWD', 'Kuwaiti Dinar'),
-(115, 'Kyrgyzstan', 'Kyrgyzstan', 417, 'KG', 'KGZ', 'AS', 417, 'KGS', 'Som'),
-(116, 'Laos', 'Laos', 418, 'LA', 'LAO', 'AS', 0, '', ''),
-(117, 'Latvia', 'Latvia', 428, 'LV', 'LVA', 'EU', 428, 'LVL', 'Latvian Lats'),
-(118, 'Lebanon', 'Lebanon', 422, 'LB', 'LBN', 'AS', 422, 'LBP', 'Lebanese Pound'),
-(119, 'Lesotho', 'Lesotho', 426, 'LS', 'LSO', 'AF', 710, 'ZAR', 'Rand'),
-(120, 'Liberia', 'Liberia', 430, 'LR', 'LBR', 'AF', 430, 'LRD', 'Liberian Dollar'),
-(121, 'Libya', 'Libya', 434, 'LY', 'LBY', 'AF', 0, '', ''),
-(122, 'Liechtenstein', 'Liechtenstein', 438, 'LI', 'LIE', 'EU', 756, 'CHF', 'Swiss Franc'),
-(123, 'Lithuania', 'Lithuania', 440, 'LT', 'LTU', 'EU', 440, 'LTL', 'Lithuanian Litas'),
-(124, 'Luxembourg', 'Luxembourg', 442, 'LU', 'LUX', 'EU', 978, 'EUR', 'Euro'),
-(125, 'Macao S.A.R., China', 'Macao S.A.R., China', 446, 'MO', 'MAC', 'AS', 0, '', ''),
-(126, 'Macedonia', 'Macedonia', 807, 'MK', 'MKD', 'EU', 0, '', ''),
-(127, 'Madagascar', 'Madagascar', 450, 'MG', 'MDG', 'AF', 969, 'MGA', 'Malagasy Ariary'),
-(128, 'Malawi', 'Malawi', 454, 'MW', 'MWI', 'AF', 454, 'MWK', 'Kwacha'),
-(129, 'Malaysia', 'Malaysia', 458, 'MY', 'MYS', 'AS', 458, 'MYR', 'Malaysian Ringgit'),
-(130, 'Maldives', 'Maldives', 462, 'MV', 'MDV', 'AS', 462, 'MVR', 'Rufiyaa'),
-(131, 'Mali', 'Mali', 466, 'ML', 'MLI', 'AF', 952, 'XOF', 'CFA Franc BCEAO'),
-(132, 'Malta', 'Malta', 470, 'MT', 'MLT', 'EU', 978, 'EUR', 'Euro'),
-(133, 'Marshall Islands', 'Marshall Islands', 584, 'MH', 'MHL', 'OC', 840, 'USD', 'US Dollar'),
-(134, 'Martinique', 'Martinique', 474, 'MQ', 'MTQ', 'NA', 978, 'EUR', 'Euro'),
-(135, 'Mauritania', 'Mauritania', 478, 'MR', 'MRT', 'AF', 478, 'MRO', 'Ouguiya'),
-(136, 'Mauritius', 'Mauritius', 480, 'MU', 'MUS', 'AF', 480, 'MUR', 'Mauritius Rupee'),
-(137, 'Mayotte', 'Mayotte', 175, 'YT', 'MYT', 'AF', 978, 'EUR', 'Euro'),
-(138, 'Mexico', 'Mexico', 484, 'MX', 'MEX', 'NA', 979, 'MXV', 'Mexican Unidad de Inversion (UDI'),
-(139, 'Micronesia', 'Micronesia', 583, 'FM', 'FSM', 'OC', 0, '', ''),
-(140, 'Moldova', 'Moldova', 498, 'MD', 'MDA', 'EU', 0, '', ''),
-(141, 'Monaco', 'Monaco', 492, 'MC', 'MCO', 'EU', 978, 'EUR', 'Euro'),
-(142, 'Mongolia', 'Mongolia', 496, 'MN', 'MNG', 'AS', 496, 'MNT', 'Tugrik'),
-(143, 'Montenegro', 'Montenegro', 499, 'ME', 'MNE', 'EU', 978, 'EUR', 'Euro'),
-(144, 'Montserrat', 'Montserrat', 500, 'MS', 'MSR', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(145, 'Morocco', 'Morocco', 504, 'MA', 'MAR', 'AF', 504, 'MAD', 'Moroccan Dirham'),
-(146, 'Mozambique', 'Mozambique', 508, 'MZ', 'MOZ', 'AF', 943, 'MZN', 'Metical'),
-(147, 'Myanmar', 'Myanmar', 104, 'MM', 'MMR', 'AS', 104, 'MMK', 'Kyat'),
-(148, 'Namibia', 'Namibia', 516, 'NA', 'NAM', 'AF', 710, 'ZAR', 'Rand'),
-(149, 'Nauru', 'Nauru', 520, 'NR', 'NRU', 'OC', 36, 'AUD', 'Australian Dollar'),
-(150, 'Nepal', 'Nepal', 524, 'NP', 'NPL', 'AS', 524, 'NPR', 'Nepalese Rupee'),
-(151, 'Netherlands', 'Netherlands', 528, 'NL', 'NLD', 'EU', 978, 'EUR', 'Euro'),
-(152, 'Netherlands Antilles', 'Netherlands Antilles', 530, 'AN', 'ANT', 'NA', 0, '', ''),
-(153, 'New Caledonia', 'New Caledonia', 540, 'NC', 'NCL', 'OC', 953, 'XPF', 'CFP Franc'),
-(154, 'New Zealand', 'New Zealand', 554, 'NZ', 'NZL', 'OC', 554, 'NZD', 'New Zealand Dollar'),
-(155, 'Nicaragua', 'Nicaragua', 558, 'NI', 'NIC', 'NA', 558, 'NIO', 'Cordoba Oro'),
-(156, 'Niger', 'Niger', 562, 'NE', 'NER', 'AF', 952, 'XOF', 'CFA Franc BCEAO'),
-(157, 'Nigeria', 'Nigeria', 566, 'NG', 'NGA', 'AF', 566, 'NGN', 'Naira'),
-(158, 'Niue', 'Niue', 570, 'NU', 'NIU', 'OC', 554, 'NZD', 'New Zealand Dollar'),
-(159, 'Norfolk Island', 'Norfolk Island', 574, 'NF', 'NFK', 'OC', 36, 'AUD', 'Australian Dollar'),
-(160, 'Northern Mariana Islands', 'Northern Mariana Islands', 580, 'MP', 'MNP', 'OC', 840, 'USD', 'US Dollar'),
-(161, 'Norway', 'Norway', 578, 'NO', 'NOR', 'EU', 578, 'NOK', 'Norwegian Krone'),
-(162, 'Oman', 'Oman', 512, 'OM', 'OMN', 'AS', 512, 'OMR', 'Rial Omani'),
-(163, 'Pakistan', 'Pakistan', 586, 'PK', 'PAK', 'AS', 586, 'PKR', 'Pakistan Rupee'),
-(164, 'Palau', 'Palau', 585, 'PW', 'PLW', 'OC', 840, 'USD', 'US Dollar'),
-(165, 'Palestinian Territory', 'Palestinian Territory', 275, 'PS', 'PSE', 'AS', 0, '', ''),
-(166, 'Panama', 'Panama', 591, 'PA', 'PAN', 'NA', 840, 'USD', 'US Dollar'),
-(167, 'Papua New Guinea', 'Papua New Guinea', 598, 'PG', 'PNG', 'OC', 598, 'PGK', 'Kina'),
-(168, 'Paraguay', 'Paraguay', 600, 'PY', 'PRY', 'SA', 600, 'PYG', 'Guarani'),
-(169, 'Peru', 'Peru', 604, 'PE', 'PER', 'SA', 604, 'PEN', 'Nuevo Sol'),
-(170, 'Philippines', 'Philippines', 608, 'PH', 'PHL', 'AS', 608, 'PHP', 'Philippine Peso'),
-(171, 'Pitcairn', 'Pitcairn', 612, 'PN', 'PCN', 'OC', 554, 'NZD', 'New Zealand Dollar'),
-(172, 'Poland', 'Poland', 616, 'PL', 'POL', 'EU', 985, 'PLN', 'Zloty'),
-(173, 'Portugal', 'Portugal', 620, 'PT', 'PRT', 'EU', 978, 'EUR', 'Euro'),
-(174, 'Puerto Rico', 'Puerto Rico', 630, 'PR', 'PRI', 'NA', 840, 'USD', 'US Dollar'),
-(175, 'Qatar', 'Qatar', 634, 'QA', 'QAT', 'AS', 634, 'QAR', 'Qatari Rial'),
-(176, 'Reunion', 'Reunion', 638, 'RE', 'REU', 'AF', 0, '', ''),
-(177, 'Romania', 'Romania', 642, 'RO', 'ROU', 'EU', 946, 'RON', 'Leu'),
-(178, 'Russia', 'Russia', 643, 'RU', 'RUS', 'EU', 0, '', ''),
-(179, 'Rwanda', 'Rwanda', 646, 'RW', 'RWA', 'AF', 646, 'RWF', 'Rwanda Franc'),
-(180, 'Saint Helena', 'Saint Helena', 654, 'SH', 'SHN', 'AF', 0, '', ''),
-(181, 'Saint Kitts and Nevis', 'Saint Kitts and Nevis', 659, 'KN', 'KNA', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(182, 'Saint Lucia', 'Saint Lucia', 662, 'LC', 'LCA', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(183, 'Saint Pierre and Miquelon', 'Saint Pierre and Miquelon', 666, 'PM', 'SPM', 'NA', 978, 'EUR', 'Euro'),
-(184, 'Saint Vincent and the Grenadines', 'Saint Vincent and the Grenadines', 670, 'VC', 'VCT', 'NA', 951, 'XCD', 'East Caribbean Dollar'),
-(185, 'Samoa', 'Samoa', 882, 'WS', 'WSM', 'OC', 882, 'WST', 'Tala'),
-(186, 'San Marino', 'San Marino', 674, 'SM', 'SMR', 'EU', 978, 'EUR', 'Euro'),
-(187, 'Sao Tome and Principe', 'Sao Tome and Principe', 678, 'ST', 'STP', 'AF', 0, '', ''),
-(188, 'Saudi Arabia', 'Saudi Arabia', 682, 'SA', 'SAU', 'AS', 682, 'SAR', 'Saudi Riyal'),
-(189, 'Senegal', 'Senegal', 686, 'SN', 'SEN', 'AF', 952, 'XOF', 'CFA Franc BCEAO'),
-(190, 'Serbia', 'Serbia', 688, 'RS', 'SRB', 'EU', 941, 'RSD', 'Serbian Dinar'),
-(191, 'Seychelles', 'Seychelles', 690, 'SC', 'SYC', 'AF', 690, 'SCR', 'Seychelles Rupee'),
-(192, 'Sierra Leone', 'Sierra Leone', 694, 'SL', 'SLE', 'AF', 694, 'SLL', 'Leone'),
-(193, 'Singapore', 'Singapore', 702, 'SG', 'SGP', 'AS', 702, 'SGD', 'Singapore Dollar'),
-(194, 'Slovakia', 'Slovakia', 703, 'SK', 'SVK', 'EU', 978, 'EUR', 'Euro'),
-(195, 'Slovenia', 'Slovenia', 705, 'SI', 'SVN', 'EU', 978, 'EUR', 'Euro'),
-(196, 'Solomon Islands', 'Solomon Islands', 90, 'SB', 'SLB', 'OC', 90, 'SBD', 'Solomon Islands Dollar'),
-(197, 'Somalia', 'Somalia', 706, 'SO', 'SOM', 'AF', 706, 'SOS', 'Somali Shilling'),
-(198, 'South Africa', 'South Africa', 710, 'ZA', 'ZAF', 'AF', 710, 'ZAR', 'Rand'),
-(199, 'South Georgia and the South Sandwich Islands', 'South Georgia and the South Sandwich Islands', 239, 'GS', 'SGS', 'AN', 0, '', 'No universal currency'),
-(200, 'Spain', 'Spain', 724, 'ES', 'ESP', 'EU', 978, 'EUR', 'Euro'),
-(201, 'Sri Lanka', 'Sri Lanka', 144, 'LK', 'LKA', 'AS', 144, 'LKR', 'Sri Lanka Rupee'),
-(202, 'South Sudan', 'South Sudan', 728, 'SS', 'SSD', 'AF', 728, 'SSP', 'South Sudanese Pound'),
-(203, 'Sudan', 'Sudan', 729, 'SD', 'SDN', 'AF', 938, 'SDG', 'Sudanese Pound'),
-(204, 'Suriname', 'Suriname', 740, 'SR', 'SUR', 'SA', 968, 'SRD', 'Surinam Dollar'),
-(205, 'Svalbard and Jan Mayen', 'Svalbard and Jan Mayen', 744, 'SJ', 'SJM', 'EU', 578, 'NOK', 'Norwegian Krone'),
-(206, 'Swaziland', 'Swaziland', 748, 'SZ', 'SWZ', 'AF', 748, 'SZL', 'Lilangeni'),
-(207, 'Sweden', 'Sweden', 752, 'SE', 'SWE', 'EU', 752, 'SEK', 'Swedish Krona'),
-(208, 'Switzerland', 'Switzerland', 756, 'CH', 'CHE', 'EU', 948, 'CHW', 'WIR Franc'),
-(209, 'Syria', 'Syria', 760, 'SY', 'SYR', 'AS', 0, '', ''),
-(210, 'Taiwan', 'Taiwan', 158, 'TW', 'TWN', 'AS', 0, '', ''),
-(211, 'Tajikistan', 'Tajikistan', 762, 'TJ', 'TJK', 'AS', 972, 'TJS', 'Somoni'),
-(212, 'Tanzania', 'Tanzania', 834, 'TZ', 'TZA', 'AF', 0, '', ''),
-(213, 'Thailand', 'Thailand', 764, 'TH', 'THA', 'AS', 764, 'THB', 'Baht'),
-(214, 'Timor-Leste', 'Timor-Leste', 626, 'TL', 'TLS', 'AS', 840, 'USD', 'US Dollar'),
-(215, 'Togo', 'Togo', 768, 'TG', 'TGO', 'AF', 952, 'XOF', 'CFA Franc BCEAO'),
-(216, 'Tokelau', 'Tokelau', 772, 'TK', 'TKL', 'OC', 554, 'NZD', 'New Zealand Dollar'),
-(217, 'Tonga', 'Tonga', 776, 'TO', 'TON', 'OC', 776, 'TOP', 'PaÃ¢â?¬â?¢anga'),
-(218, 'Trinidad and Tobago', 'Trinidad and Tobago', 780, 'TT', 'TTO', 'NA', 780, 'TTD', 'Trinidad and Tobago Dollar'),
-(219, 'Tunisia', 'Tunisia', 788, 'TN', 'TUN', 'AF', 788, 'TND', 'Tunisian Dinar'),
-(220, 'Turkey', 'Turkey', 792, 'TR', 'TUR', 'AS', 949, 'TRY', 'Turkish Lira'),
-(221, 'Turkmenistan', 'Turkmenistan', 795, 'TM', 'TKM', 'AS', 934, 'TMT', 'New Manat'),
-(222, 'Turks and Caicos Islands', 'Turks and Caicos Islands', 796, 'TC', 'TCA', 'NA', 840, 'USD', 'US Dollar'),
-(223, 'Tuvalu', 'Tuvalu', 798, 'TV', 'TUV', 'OC', 36, 'AUD', 'Australian Dollar'),
-(224, 'Uganda', 'Uganda', 800, 'UG', 'UGA', 'AF', 800, 'UGX', 'Uganda Shilling'),
-(225, 'Ukraine', 'Ukraine', 804, 'UA', 'UKR', 'EU', 980, 'UAH', 'Hryvnia'),
-(226, 'United Arab Emirates', 'United Arab Emirates', 784, 'AE', 'ARE', 'AS', 784, 'AED', 'UAE Dirham'),
-(227, 'United States', 'United States', 840, 'US', 'USA', 'NA', 998, 'USS', 'US Dollar (Same day)'),
-(228, 'United States Minor Outlying Islands', 'United States Minor Outlying Islands', 581, 'UM', 'UMI', 'OC', 840, 'USD', 'US Dollar'),
-(229, 'Uruguay', 'Uruguay', 858, 'UY', 'URY', 'SA', 940, 'UYI', 'Uruguay Peso en Unidades Indexad'),
-(230, 'Uzbekistan', 'Uzbekistan', 860, 'UZ', 'UZB', 'AS', 860, 'UZS', 'Uzbekistan Sum'),
-(231, 'Vanuatu', 'Vanuatu', 548, 'VU', 'VUT', 'OC', 548, 'VUV', 'Vatu'),
-(232, 'Venezuela', 'Venezuela', 862, 'VE', 'VEN', 'SA', 0, '', ''),
-(233, 'Vietnam', 'Vietnam', 704, 'VN', 'VNM', 'AS', 0, '', ''),
-(234, 'British Virgin Islands', 'British Virgin Islands', 92, 'VG', 'VGB', 'NA', 0, '', ''),
-(235, 'U.S. Virgin Islands', 'U.S. Virgin Islands', 850, 'VI', 'VIR', 'NA', 0, '', ''),
-(236, 'Wallis and Futuna', 'Wallis and Futuna', 876, 'WF', 'WLF', 'OC', 953, 'XPF', 'CFP Franc'),
-(237, 'Western Sahara', 'Western Sahara', 732, 'EH', 'ESH', 'AF', 504, 'MAD', 'Moroccan Dirham'),
-(238, 'Yemen', 'Yemen', 887, 'YE', 'YEM', 'AS', 886, 'YER', 'Yemeni Rial'),
-(239, 'Zambia', 'Zambia', 894, 'ZM', 'ZMB', 'AF', 894, 'ZMK', 'Zambian Kwacha'),
-(240, 'Zimbabwe', 'Zimbabwe', 716, 'ZW', 'ZWE', 'AF', 932, 'ZWL', 'Zimbabwe Dollar'),
-(241, 'Aland Islands', 'Aland Islands', 248, 'AX', 'ALA', 'EU', 0, '', ''),
-(242, 'Guernsey', 'Guernsey', 831, 'GG', 'GGY', 'EU', 826, 'GBP', 'Pound Sterling'),
-(243, 'Isle of Man', 'Isle of Man', 833, 'IM', 'IMN', 'EU', 826, 'GBP', 'Pound Sterling'),
-(244, 'Jersey', 'Jersey', 832, 'JE', 'JEY', 'EU', 826, 'GBP', 'Pound Sterling'),
-(245, 'Saint BarthÃ©lemy', 'Saint BarthÃ©lemy', 652, 'BL', 'BLM', 'NA', 0, '', ''),
-(246, 'Saint Martin (French part)', 'Saint Martin (French part)', 663, 'MF', 'MAF', 'NA', 0, '', ''),
-(247, 'United Kingdom', 'United Kingdom', 826, 'GB', 'GBR', 'EU', 826, 'GBP', 'Pound Sterling'),
-(248, 'CuraÃ§ao', 'CuraÃ§ao', 531, 'CW', 'CUW', 'NA', 532, 'ANG', 'Netherlands Antillean Guilder'),
-(249, 'Sint Maarten (Dutch part)', 'Sint Maarten (Dutch part)', 534, 'SX', 'SXM', 'NA', 532, 'ANG', 'Netherlands Antillean Guilder'),
-(250, 'Bonaire, Sint Eustatius and Saba', 'Bonaire, Sint Eustatius and Saba', 535, 'BQ', 'BES', 'NA', 840, 'USD', 'US Dollar');
 
 --
 -- Dumping data for table `domains`
@@ -349,7 +93,25 @@ INSERT INTO `domains_settings` (`id`, `domain_key`, `c_key`, `ns`, `c_value`) VA
 (59, 'DK', 'method_enabled', 'gothiaapi', '0'),
 (60, 'NL', 'method_enabled', 'gothiaapi', '0'),
 (61, 'NO', 'method_enabled', 'gothiaapi', '0'),
-(62, 'SE', 'method_enabled', 'gothiaapi', '1');
+(62, 'SE', 'method_enabled', 'gothiaapi', '1'),
+(63, 'COM', 'closed', 'webshop', '0'),
+(64, 'DK', 'closed', 'webshop', '0'),
+(65, 'NL', 'closed', 'webshop', '0'),
+(66, 'NO', 'closed', 'webshop', '0'),
+(67, 'SE', 'closed', 'webshop', '0'),
+(68, 'COM', 'closed.allowed_ips', 'webshop', ''),
+(69, 'DK', 'closed.allowed_ips', 'webshop', ''),
+(70, 'NL', 'closed.allowed_ips', 'webshop', ''),
+(71, 'NO', 'closed.allowed_ips', 'webshop', ''),
+(72, 'SE', 'closed.allowed_ips', 'webshop', ''),
+(73, 'DK', 'provider.service', 'sms', 'unwire'),
+(74, 'DK', 'provider.user', 'sms', 'pompdelux'),
+(75, 'DK', 'provider.password', 'sms', 'fpgyhiu345'),
+(76, 'DK', 'provider.appnr', 'sms', '72445'),
+(77, 'DK', 'provider.mediacode', 'sms', 'pdl'),
+(78, 'DK', 'provider.price', 'sms', '0.00DKK'),
+(79, 'DK', 'provider.get_smsc', 'sms', '1');
+
 --
 -- Dumping data for table `groups`
 --
@@ -365,7 +127,7 @@ INSERT INTO `groups` (`id`, `name`, `discount`) VALUES
 
 INSERT INTO `languages` (`id`, `name`, `local_name`, `locale`, `iso2`, `direction`) VALUES
 (1, 'Danish', 'Dansk', 'da_DK', 'da', 'ltr'),
-(2, 'English', 'English', 'en_EN', 'en', 'ltr'),
+(2, 'English', 'English', 'en_GB', 'en', 'ltr'),
 (3, 'Swedish', 'Svenska', 'sv_SE', 'sv', 'ltr'),
 (4, 'Norway', 'Norsk', 'no_NB', 'no', 'ltr'),
 (5, 'Dutch', 'Nederlands', 'nl_NL', 'nl', 'ltr');
@@ -378,7 +140,10 @@ INSERT INTO `messages` (`id`, `ns`, `key`, `created_at`, `updated_at`) VALUES
 (1, 'email', 'account.create.txt', '2012-01-27 00:00:00', '2012-01-27 00:00:00'),
 (2, 'email', 'account.create.html', '2012-01-27 00:00:00', '2012-01-27 00:00:00'),
 (3, 'email', 'password.forgotten.txt', '2012-01-27 00:00:00', '2012-01-27 00:00:00'),
-(4, 'email', 'password.forgotten.html', '2012-01-27 00:00:00', '2012-01-27 00:00:00');
+(4, 'email', 'password.forgotten.html', '2012-01-27 00:00:00', '2012-01-27 00:00:00'),
+(5, 'email', 'order.confirmation.txt', '2012-03-22 00:00:00', '2012-03-22 00:00:00'),
+(6, 'email', 'order.confirmation.html', '2012-03-22 00:00:00', '2012-03-22 00:00:00'),
+(7, 'sms', 'event.reminder', '2012-04-23 00:00:00', '2012-04-23 00:00:00');
 
 --
 -- Dumping data for table `messages_i18n`
@@ -388,14 +153,17 @@ INSERT INTO `messages_i18n` (`id`, `locale`, `subject`, `body`) VALUES
 (1, 'da_DK', 'Du er nu oprettet som kunde hos POMPdeLX', 'Hej {{ name }},\r\n\r\nDu er nu oprettet som kunde hos POMPdeLUX. På Min side kan du se dine ordrer, rette dine personlige informationer, lave ny adgangskode og meget mere.\r\n\r\nDirekte link til Min side: {{ url(''_account'') }}\r\n\r\nBrugernavn: {{ username }}\r\nAdgangskode: {{ password }}\r\n\r\nPå gensyn\r\nPOMPdeLUX\r\n'),
 (2, 'da_DK', 'Du er nu oprettet som kunde hos POMPdeLX', '<h1>Hej {{ name }},</h1>\r\n\r\n<p>Du er nu oprettet som kunde hos POMPdeLUX. På Min side kan du se dine ordrer, rette dine personlige informationer, lave ny adgangskode og meget mere.</p>\r\n\r\n<p>Direkte link til <a href="{{ url(''_account'') }}">Min side</a></p>\r\n\r\n<p>Brugernavn: {{ username }}<br>\r\nAdgangskode: {{ password }}</p>\r\n\r\n<p>På gensyn<br>\r\nPOMPdeLUX</p>\r\n'),
 (3, 'da_DK', 'POMPdeLUX - adgangskode', 'Din adgangskode til POMPdeLUX Min side er:\r\n\r\nAdgangskode: {{ password }}\r\n\r\nHusk: Hvis din adgangskode indeholder mellemrum, skal disse også tastes.\r\n\r\nMvh\r\nPOMPdeLUX'),
-(4, 'da_DK', 'POMPdeLUX - adgangskode', '<p>Din adgangskode til POMPdeLUX Min side er:</p>\r\n\r\n<p>Adgangskode: {{ password }}</p>\r\n\r\n<p>Husk: Hvis din adgangskode indeholder mellemrum, skal disse også tastes.</p>\r\n\r\n<p>Mvh<br>\r\nPOMPdeLUX</p>');
+(4, 'da_DK', 'POMPdeLUX - adgangskode', '<p>Din adgangskode til POMPdeLUX Min side er:</p>\r\n\r\n<p>Adgangskode: {{ password }}</p>\r\n\r\n<p>Husk: Hvis din adgangskode indeholder mellemrum, skal disse også tastes.</p>\r\n\r\n<p>Mvh<br>\r\nPOMPdeLUX</p>'),
+(5, 'da_DK', 'Ordrebekræftelse', '{{ ''confirm.order_id''|trans({}, ''checkout'') }}: {{ order.id }}\r\n{% if payment_gateway_id is defined %}\r\n{{ ''payment.gateway_id''|trans({}, ''checkout'') }}: {{  payment_gateway_id }}\r\n{% endif %}\r\n{{ ''customer.id''|trans({}, ''checkout'') }}: {{ customer_id }}\r\n{% if event_id is defined %}\r\n{{ ''event.id''|trans() }}: {{ event_id }}\r\n{% endif %}\r\n{{ ''payment.method''|trans({}, ''checkout'') }}: {% if card_type is defined %}{{ card_type }}{% else %}{{ payment_method }}{% endif %}\r\n{% if transaction_id is defined %}\r\n{{ ''payment.transaction_id''|trans({}, ''checkout'') }} {{ transaction_id }}\r\n{% endif %}\r\n\r\n{{ ''date''|trans() }}: {{ order_date }}\r\n{{ ''expected_at''|trans({}, ''checkout'') }}: {{ expected_at }}\r\n\r\n{{ ''products''|trans({}, ''checkout'') }}\r\n------------------------------------------------------\r\n{% for product in order.getOrdersLiness %}\r\n{{ product.quantity }} x {{ product.productsSku }} = {{ (product.price * product.quantity)|money }}\r\n{% endfor %}\r\n------------------------------------------------------\r\n{{ ''total.excl_vat''|trans({}, ''checkout'') }}: {{ (order.getTotalPrice - order.getTotalTax)|money }}\r\n\r\n{% if coupon_amount is defined %}\r\n{{ coupon_name }}: {{ coupon_amount|money }}\r\n{% endif %}\r\n{% if hostess_discount is defined %}\r\n{{ hostess_discount_title }}: {{ hostess_discount }}\r\n{% endif %}\r\n{{ shipping_title }}: {{ shipping_cost|money }}\r\n{{ ''payment.fee''|trans({}, ''checkout'') }}: {{ payment_fee|money }}\r\n{{ ''total.vat''|trans({}, ''checkout'') }}: {{ order.getTotalTax|money }}\r\n\r\n------------------------------------------------------\r\n{{ ''total.incl_vat''|trans({}, ''checkout'') }}: {{ order.getTotalPrice|money }}\r\n\r\nLeveringsadresse:\r\n------------------------------------------------------\r\n{{ delivery_address }}\r\n\r\nBetalingsadresse:\r\n------------------------------------------------------\r\n{{ payment_address }}\r\n\r\n\r\nBetalingen er nu reserveret hos PBS.\r\nDu har betalt med: {{ card_type }}\r\n\r\nDin online betaling har fået transaktions-id: {{ transaction_id }}.\r\nNår ordren ekspederes bliver beløbet overført til POMPdeLUX'),
+(6, 'da_DK', 'Ordrebekræftelse', '<table width="800" border="0" cellspacing="0" cellpadding="0" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#000000;" align="center">\r\n  <tr>\r\n    <td colspan="2" style="height:10px;"></td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan="2" align="left" valign="top">\r\n      {{ fx_image_tag(''images/ordre/top.jpg'', '''', {\r\n        with: 800,\r\n        height: 70,\r\n        alt: "POMPdeLUX"}) }}\r\n    </td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan="2" style="height:10px;"></td>\r\n  </tr>\r\n  <tr>\r\n    <td align="left" valign="top">\r\n      <strong>{{ ''payment.address''|trans({}, ''checkout'') }}</strong><br>\r\n      {{ payment_address|nl2br }}\r\n    </td>\r\n    <td align="left" valign="top">\r\n      <strong>{{ ''company.address''|trans() }}</strong><br>\r\n      {{ company_address|nl2br }}\r\n    </td>\r\n  </tr>\r\n  <tr>\r\n    <td width="600" align="left" valign="top"><br>\r\n      <strong>{{ ''payment.address''|trans({}, ''checkout'') }}</strong><br>\r\n      {{ delivery_address|nl2br }}\r\n    </td>\r\n    <td width="200" align="left" valign="top"><br>\r\n      <strong>{{ ''confirm.order_id''|trans({}, ''checkout'') }} {{ order.id }}</strong><br>\r\n    {% if payment_gateway_id is defined %}\r\n      {{ ''payment.gateway_id''|trans({}, ''checkout'') }}: {{  payment_gateway_id }}<br>\r\n    {% endif %}\r\n      {{ ''customer.id''|trans({}, ''checkout'') }}: {{ customer_id }}<br>\r\n      {{ ''date''|trans() }}: {{ order_date }}<br>\r\n    {% if event_id is defined %}\r\n      {{ ''event.id''|trans() }}: {{ event_id }}<br>\r\n    {% endif %}\r\n      {{ ''payment.method''|trans({}, ''checkout'') }}: {% if card_type is defined %}{{ card_type }}{% else %}{{ payment_method }}{% endif %}<br>\r\n    {% if transaction_id is defined %}\r\n      {{ ''payment.transaction_id''|trans({}, ''checkout'') }} {{ transaction_id }}<br>\r\n    {% endif %}\r\n    </td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan="2" align="right" valign="top" style="height:10px;"></td>\r\n  </tr>\r\n</table>\r\n<table width="800" border="0" cellspacing="0" cellpadding="2" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#000000;" align="center">\r\n  <tr>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''quantity''|trans({}, ''checkout'') }}</strong></td>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''product.name''|trans({}, ''checkout'') }}</strong></td>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''product.size''|trans({}, ''checkout'') }}</strong></td>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''product.color''|trans({}, ''checkout'') }}</strong></td>\r\n    <td align="right" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''product.price''|trans({}, ''checkout'') }}</strong></td>\r\n    <td align="right" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''product.total''|trans({}, ''checkout'') }}</strong></td>\r\n  </tr>\r\n{% for product in order.getOrdersLiness %}\r\n  <tr>\r\n    <td align="left" valign="top">{{ product.quantity }}</td>\r\n    <td align="left" valign="top">{{ product.productsName }}</td>\r\n    <td align="left" valign="top">{{ product.productsSize }}</td>\r\n    <td align="left" valign="top">{{ product.productsColor }}</td>\r\n    <td align="right" valign="top">{{ product.price|money }}</td>\r\n    <td align="right" valign="top">{{ (product.price * product.quantity)|money }}</td>\r\n  </tr>\r\n{% endfor %}\r\n  <tr>\r\n    <td align="left" valign="top" style="border-top:1px solid #000">&nbsp;</td>\r\n    <td align="left" valign="top" style="border-top:1px solid #000">{{ ''product.total''|trans({}, ''checkout'') }}</td>\r\n    <td align="left" valign="top" style="border-top:1px solid #000">&nbsp;</td>\r\n    <td align="left" valign="top" style="border-top:1px solid #000">&nbsp;</td>\r\n    <td align="left" valign="top" style="border-top:1px solid #000">&nbsp;</td>\r\n    <td align="right" valign="top" style="border-top:1px solid #000">{{ (order.getTotalPrice - order.getTotalTax)|money }}</td>\r\n  </tr>\r\n{% if coupon_amount is defined %}\r\n  <tr>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">{{ coupon_name }}</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="right" valign="top">- {{ coupon_amount }}</td>\r\n  </tr>\r\n{% endif %}\r\n{% if hostess_discount is defined %}\r\n  <tr>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">{{ hostess_discount_title }}</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="right" valign="top">- {{ hostess_discount }}</td>\r\n  </tr>\r\n{% endif %}\r\n  <tr>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">{{ shipping_title }}</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="right" valign="top">{{ shipping_cost }}</td>\r\n  </tr>\r\n{% if gothia_fee is defined %}\r\n  <tr>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">{{ gothia_fee_title }}</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="left" valign="top">&nbsp;</td>\r\n    <td align="right" valign="top">{{ gothia_fee }}</td>\r\n  </tr>\r\n{% endif %}\r\n  <tr>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000">&nbsp;</td>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000">{{ ''payment.fee''|trans({}, ''checkout'') }}</td>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000">&nbsp;</td>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000">&nbsp;</td>\r\n    <td align="left" valign="top" style="border-bottom:1px solid #000">&nbsp;</td>\r\n    <td align="right" valign="top" style="border-bottom:1px solid #000">{{ payment_fee }}</td>\r\n  </tr>\r\n</table>\r\n<table width="800" border="0" cellspacing="0" cellpadding="2" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#000000;" align="center">\r\n  <tr>\r\n    <td width="250" align="left" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''total.excl_vat''|trans({}, ''checkout'') }} {{ (order.getTotalPrice - order.getTotalTax)|money }}</strong></td>\r\n    <td width="250" align="center" valign="top" style="border-bottom:1px solid #000">{{ ''total.vat''|trans({}, ''checkout'') }} {{ order.getTotalTax|money }}</td>\r\n    <td width="300" align="right" valign="top" style="border-bottom:1px solid #000"><strong>{{ ''total.incl_vat''|trans({}, ''checkout'') }} {{ order.getTotalPrice|money }}</strong></td>\r\n  </tr>\r\n</table>\r\n<table width="800" border="0" cellspacing="0" cellpadding="0" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#000000;" align="center">\r\n  <tr>\r\n    <td align="left" valign="top" style="height:20px;"></td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>{{ ''expected_at''|trans({}, ''checkout'') }}:</strong> {{ expected_at }}</td>\r\n  </tr>\r\n  <tr>\r\n    <td align="left" valign="top" style="height:20px;"></td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>{{ ''my.account''|trans() }}:</strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>\r\n      {{ ''my.account.info''|trans({}, ''checkout'') }}<br>\r\n      <a href="{{ url(''_account'') }}">» {{ ''my.account''|trans() }}</a>\r\n    </td>\r\n  </tr>\r\n  <tr>\r\n    <td>\r\n      <table border="0" cellspacing="0" cellpadding="2" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#000000;">\r\n        <tr>\r\n          <td>{{ ''my.account.username''|trans({}, ''checkout'') }}:</td>\r\n          <td>{{ username }}</td>\r\n        </tr>\r\n        <tr>\r\n          <td>{{ ''my.account.password''|trans({}, ''checkout'') }}:</td>\r\n          <td>{{ password }}</td>\r\n        </tr>\r\n      </table>\r\n    </td>\r\n  </tr>\r\n{% if conditions is defined %}\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n  </tr>\r\n  <tr>\r\n    <td>{{ conditions }}</td>\r\n  </tr>\r\n{% endif %}\r\n  <tr>\r\n    <td align="left" valign="top" style="height:10px;"></td>\r\n  </tr>\r\n  <tr>\r\n    <td align="left" valign="top">\r\n      {{ fx_image_tag(''images/ordre/bottom.jpg'', '''', {\r\n        with: 800,\r\n        height: 20,\r\n        alt: "POMPdeLUX"}) }}\r\n    </td>\r\n  </tr>\r\n  <tr>\r\n    <td align="center"><span style="color:#000000;">{{ ''store.address''|trans() }}</span></td>\r\n  </tr>\r\n</table>'),
+(7, 'da_DK', 'event reminder', 'Hej :first_name:\r\nHusk POMPdeLUX home shopping arrangementet den :event_date: kl. :event_time:\r\nPå adressen: :address:, :posta_code: :city:\r\nMvh POMPdeLUX');
 
 --
--- Dumping data for table `propel_migration`
+-- Dumping data for table `sequences`
 --
 
-INSERT INTO `propel_migration` (`version`) VALUES
-(1330946717);
+INSERT INTO `sequences` (`name`, `id`) VALUES
+('payment gateway', 140);
 
 --
 -- Dumping data for table `settings`
@@ -407,12 +175,22 @@ INSERT INTO `settings` (`c_key`, `ns`, `title`, `c_value`, `created_at`, `update
 ('clientID', 'gothiaapi', 'Client id', '7012', '2012-01-24 00:00:00', '2012-01-24 00:00:00'),
 ('from_email', 'email', 'from email', 'pompdelux@pompdelux.dk', '2012-01-27 00:00:00', '2012-01-27 00:00:00'),
 ('from_name', 'email', 'from name', 'POMPdeLUX', '2012-01-27 00:00:00', '2012-01-27 00:00:00'),
+('host', 'ax', 'host and port of the ax server', '91.193.136.197:8000', '2012-04-20 15:10:10', '2012-04-20 15:10:10'),
 ('md5key1', 'dibsapi', 'MD5 key 1', 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp', '2012-01-24 00:00:00', '2012-01-24 00:00:00'),
 ('md5key2', 'dibsapi', 'MD5 key 2', 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n[', '2012-01-24 00:00:00', '2012-01-24 00:00:00'),
 ('merchant', 'dibsapi', 'Merchant ID', '90057323', '2012-01-24 00:00:00', '2012-01-24 00:00:00'),
 ('password', 'gothiaapi', 'Password', 'o6K7IGPR', '2012-01-24 00:00:00', '2012-01-24 00:00:00'),
 ('test', 'dibsapi', 'Test mode enabled', 'YES', '2012-01-24 00:00:00', '2012-01-24 00:00:00'),
 ('username', 'gothiaapi', 'Username', 'EXTPompDeLuxSETest', '2012-01-24 00:00:00', '2012-01-24 00:00:00');
+
+--
+-- Dumping data for table `shipping_methods`
+--
+
+INSERT INTO `shipping_methods` (`id`, `carrier`, `external_id`, `calc_engine`, `price`, `fee`, `fee_external_id`, `is_active`, `method`) VALUES
+(1, 'Post Danmark', '10', 'flat', '59.0000', '15.0000', '90', 1, 'Privat'),
+(2, 'Post Danmark', '11', 'flat', '39.0000', '15.0000', '90', 1, 'Erhverv'),
+(3, 'Post Danmark', '12', 'flat', '45.0000', '15.0000', '90', 1, 'Døgnpost');
 
 --
 -- Dumping data for table `zip_to_city`
@@ -25098,15 +24876,8 @@ INSERT INTO `zip_to_city` (`id`, `zip`, `countries_iso2`, `city`, `county_id`, `
 (42965, '98494', 'SE', 'Lovikka', '2521', 'Pajala', NULL),
 (42966, '98495', 'SE', 'Muodoslompolo', '2521', 'Pajala', NULL),
 (42967, '98499', 'SE', 'Pajala', '2521', 'Pajala', NULL);
-
-INSERT INTO `shipping_methods` (`id`, `carrier`, `external_id`, `calc_engine`, `price`, `fee`, `fee_external_id`, `is_active`, `method`) VALUES
-(1, 'Post Danmark', '10', 'flat', '59.0000', '15.0000', '90', 1, 'Privat'),
-(2, 'Post Danmark', '11', 'flat', '39.0000', '15.0000', '90', 1, 'Erhverv'),
-(3, 'Post Danmark', '12', 'flat', '45.0000', '15.0000', '90', 1, 'Døgnpost');
-
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
