@@ -17,8 +17,8 @@
         <ul>
         {% for domain in domains_availible %}
           <li>
-            <a href="{{ path('admin_postalcode_locale', {'locale' : domain.domainkey}) }}">
-              {{ domain.domainkey }}
+            <a href="{{ path('admin_postalcode_locale', {'locale' : domain.countriesiso2}) }}">
+              {{ domain.countriesiso2 }}
             </a>
           </li>
         {% endfor %}

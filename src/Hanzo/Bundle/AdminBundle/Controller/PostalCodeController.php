@@ -82,7 +82,8 @@ class PostalCodeController extends CoreController
                 );
         }
 
-        $domains_availible = DomainsQuery::Create()
+        $domains_availible = ZipToCityQuery::Create()
+            ->groupByCountriesIso2()
             ->find()
         ;
 
