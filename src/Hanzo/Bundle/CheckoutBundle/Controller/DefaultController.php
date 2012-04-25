@@ -11,14 +11,17 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\ProductsDomainsPricesPeer;
 
 use Hanzo\Model\ShippingMethods;
 
 use Exception;
+use Propel;
 
 class DefaultController extends CoreController
 {
@@ -247,40 +250,6 @@ class DefaultController extends CoreController
     protected function validateShipping( Orders $order ){}
 
     /**
-     * summeryAction
-     *
-     * @author Henrik Farre <hf@bellcom.dk>
-     * @return Response
-     **/
-    public function summeryAction()
-    {
-        $order = OrdersPeer::getCurrent();
-        $orderAttributes = $order->getOrdersAttributess();
-
-        $attributes = array();
-        foreach ($orderAttributes as $att) {
-            $attributes[$att->getNs()][$att->getCKey()] = $att->getCValue();
-        }
-
-        $html = $this->render('CheckoutBundle:Default:summery.html.twig', array(
-            'order'=> $order,
-            'attributes' => $attributes
-        ));
-
-        if ( $this->get('request')->isXmlHttpRequest() ) {
-            if ($this->getFormat() == 'json') {
-                return $this->json_response(array(
-                    'status' => true,
-                    'message' => '',
-                    'data' => $html->getContent()
-                ));
-            }
-        }
-
-        return $html;
-    }
-
-    /**
      * addressesAction
      *
      * @author Henrik Farre <hf@bellcom.dk>
@@ -349,6 +318,85 @@ class DefaultController extends CoreController
 
 
     /**
+     * summeryAction
+     *
+     * @author Henrik Farre <hf@bellcom.dk>
+     * @return Response
+     **/
+    public function summeryAction()
+    {
+        // we only want the masterdata here, no slaves thank you...
+        Propel::setForceMasterConnection(true);
+
+        $order = OrdersPeer::getCurrent();
+        $hanzo = Hanzo::getInstance();
+
+        // first we finalize the order, aka. setting misc order attributes and updating lines ect.
+
+        // 1. order product lines
+        // - we need to set original_price and unit
+        $products = OrdersLinesQuery::create()
+            ->joinWithProducts()
+            ->filterByType('product')
+            ->findByOrdersId($order->getId())
+        ;
+
+        $product_ids = array();
+        $product_units = array();
+        foreach ($products as $product) {
+            $product_ids[] = $product->getProductsId();
+            $product_units[$product->getProductsId()] = $product->getProducts()->getUnit();
+        }
+
+        $product_prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+
+        foreach ($products as $product) {
+            $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['raw_price']);
+            $product->setUnit($product_units[$product->getProductsId()]);
+            $product->save();
+        }
+
+        // 2. set currency code
+        $order->setCurrencyCode($hanzo->get('core.currency'));
+
+        // 3. register domain et-al
+        $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
+        $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
+        $order->setAttribute('HomePartyId', 'global', 'Web ' . $hanzo->get('core.domain_key'));
+        $order->setAttribute('SalesResponsible', 'global', 'Web ' . $hanzo->get('core.domain_key'));
+
+        $order->save();
+
+        /* ------------------------------------------------- */
+
+        $attributes = array();
+        foreach ($order->getOrdersAttributess() as $att) {
+            $attributes[$att->getNs()][$att->getCKey()] = $att->getCValue();
+        }
+
+        $html = $this->render('CheckoutBundle:Default:summery.html.twig', array(
+            'order'=> $order,
+            'attributes' => $attributes
+        ));
+
+        // reset connection
+        Propel::setForceMasterConnection(false);
+
+        if ( $this->get('request')->isXmlHttpRequest() ) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => true,
+                    'message' => '',
+                    'data' => $html->getContent()
+                ));
+            }
+        }
+
+        return $html;
+    }
+
+
+    /**
      * success Action
      *
      * @return Response
@@ -356,13 +404,14 @@ class DefaultController extends CoreController
     public function successAction()
     {
         $order = OrdersPeer::getCurrent();
+        $hanzo = Hanzo::getInstance();
 
         if ($order->isNew()) {
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
         // the order is now complete, so we remove it from the session
-        $session = Hanzo::getInstance()->getSession();
+        $session = $hanzo->getSession();
         $session->remove('order_id');
 
         // one-to-one, we can only have one session_id or order in the database....

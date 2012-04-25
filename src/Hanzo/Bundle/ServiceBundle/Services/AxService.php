@@ -2,13 +2,23 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
+use Symfony\Bridge\Monolog\Logger;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
+
+use Hanzo\Model\Customers;
+use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\CountriesQuery;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersSyncLog;
 
 class AxService
 {
     protected $parameters;
     protected $settings;
+
+    protected $logger;
 
     protected $wsdl;
     protected $client;
@@ -16,8 +26,14 @@ class AxService
 
     public function __construct($parameters, $settings)
     {
+        if (!$parameters[0] instanceof Logger) {
+            throw new \InvalidArgumentException('Monolog\Logger expected as first parameter.');
+        }
+
         $this->parameters = $parameters;
         $this->settings = $settings;
+
+        $this->logger = $parameters[0];
 
         $this->wsdl = 'http://'.$settings['host'].'/DynamicsAxServices.asmx?wsdl';
     }
@@ -26,29 +42,308 @@ class AxService
     /**
      * trigger ax stock sync
      *
-     * @param  string $endpoint DK/NO/SE/...
-     * @return mixed true on success, false or \SoapFault on error
+     * @param  string   $endpoint  DK/NO/SE/...
+     * @param  boolean  $return    Returns the object we intend to send to AX.
+     * @return mixed    true on success, false or \SoapFault on error
      */
-    public function triggerStockSync($endpoint)
+    public function triggerStockSync($endpoint, $return = false)
     {
-        if (!$this->client) {
-            if (!$this->Connect()) {
-                // bail out
-                return false;
+        $data = new \stdClass();
+        $data->endpointDomain = $endpoint;
+
+        if ($return) {
+            return $data;
+        }
+
+        $result = $this->Send('SyncInventory', $data);
+        return true;
+    }
+
+
+    /**
+     * Build and send order to AX
+     *
+     * @param  Orders   $order
+     * @param  boolean  $return   Returns the object we intend to send to AX.
+     * @return boolean
+     */
+    public function sendOrder(Orders $order, $return = false)
+    {
+        Propel::setForceMasterConnection(true);
+
+        // TODO: cancel payment at the correct provider
+        if ($order->getInEdit()) {}
+
+        $attributes = $order->getAttributes();
+        $lines = $order->getOrdersLiness();
+
+        $products = array();
+        $shipping_cost = 0;
+        $payment_cost = 0;
+        $handeling_fee = 0;
+
+        foreach ($lines as $line) {
+            switch ($line->getType()) {
+                case 'product':
+                    $products[] = $line;
+                    break;
+
+                case 'shipping':
+                    $shipping_cost += $line->getPrice();
+                    break;
+
+                case 'payment':
+                    $payment_cost += $line->getPrice();
+                    break;
+
+                case 'shipping.fee':
+                case 'payment.fee':
+                    $handeling_fee += $line->getPrice();
+                    break;
             }
         }
 
-        $data = new stdClass();
-        $data->endpointDomain = $endpoint;
-        try {
-            $this->client->SyncInventory($data);
-        } catch (\SoapFault $e) {
-            return $e;
+        $discount_in_percent = 0; // kommer fra arrangementer (orders_attributes ??)
+
+        $salesLine = array();
+        foreach ($products as $product) {
+            $line = new \stdClass();
+            $line->ItemId = $product->getProductsSku();
+            $line->SalesPrice = $product->getPrice();
+            $line->SalesQty = $product->getQuantity();
+            $line->InventColorId = $product->getProductsColor();
+            $line->InventSizeId = $product->getProductsSize();
+            $line->SalesUnit = ''; // FIXME
+
+            $discount = $product->getOriginalPrice() - $product->getPrice();
+
+            if ($product->getOriginalPrice() && $discount != 0) {
+                $discount_in_percent = 100 / ($product->getOriginalPrice() / $discount);
+            }
+
+            if ($discount_in_percent) {
+                $line->LineDiscPercent = $discount_in_percent;
+            }
+
+            $line->lineText = $product->getProductsName();
+            $salesLine[] = $line;
+        }
+
+        // payment method
+        $custPaymMode = 'Bank';
+        if (!empty($order->getPaymentGatewayId()) && isset($attributes->payment->cc_type)) {
+            switch (strtoupper($attributes->payment->cc_type)) {
+                case 'VISA ELECTRON (DANIS': // DIBS
+                case 'VISA (SWEDISH CARD)':
+                case 'VISA':
+                case 'VISA-ELECTRON-DK':
+                case 'VISA CARD':
+                    $custPaymMode = 'VISA';
+                    break;
+                case 'MASTERCARD (DANISH C': // DIBS
+                case 'MASTERCARD (SWEDISH':
+                case 'MASTERCARD-DK':
+                case 'MASTERCARD':
+                    $custPaymMode = 'MasterCard';
+                    break;
+                case 'PAYBYBILL TEST':
+                case 'PAYBYBILL':
+                    $custPaymMode = 'PayByBill';
+                    break;
+                default:
+                    $custPaymMode = 'DanKort';
+                    break;
+            }
+        }
+
+        if (strtolower($attributes->payment->paytype) == 'gothia') {
+            $custPaymMode = 'PayByBill';
+        }
+
+        // FIXME, this should be set elsewhere
+        $freight_type = $order->getDeliveryMethod();
+        switch ($attributes->global->domain_key) {
+            case 'NO':
+                $freight_type = ($freight_type == 10) ? 'P' : 'S';
+                break;
+            case 'SE':
+                $freight_type = 30;
+                break;
+        }
+
+        $salesTable = new \stdClass();
+        $salesTable->CustAccount             = $order->getCustomersId();
+        $salesTable->EOrderNumber            = $order->getId();
+        $salesTable->PaymentId               = $order->getPaymentGatewayId();
+        $salesTable->HomePartyId             = $attributes->global->HomePartyId;
+        $salesTable->SalesResponsible        = $attributes->global->SalesResponsible;
+        $salesTable->CurrencyCode            = $order->getCurrencyCode();
+        $salesTable->SalesName               = $order->getFirstName() . ' ' . $order->getLastName();
+        $salesTable->SalesType               = 'Sales';
+        $salesTable->SalesLine               = $salesLine;
+        $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
+        $salesTable->DeliveryCity            = $order->getDeliveryCity();
+        $salesTable->DeliveryName            = $order->getFirstName() . ' ' . $order->getLastName();
+        $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine1();
+        $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
+        $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
+        $salesTable->InvoiceAccount          = $order->getCustomersId();
+        $salesTable->FreightFeeAmt           = $shipping_cost;
+        $salesTable->FreightType             = $freight_type;
+        $salesTable->HandlingFeeType         = 90;
+        $salesTable->HandlingFeeAmt          = $handeling_fee;
+        $salesTable->PayByBillFeeType        = 91;
+        $salesTable->PayByBillFeeAmt         = $payment_cost;
+        $salesTable->Completed               = 1;
+        $salesTable->TransactionType         = 'Write';
+        $salesTable->CustPaymMode            = $custPaymMode;
+        $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
+        $salesTable->SmoreContactInfo        = ''; // FIXME
+
+        $salesOrder = new \stdClass();
+        $salesOrder->SalesTable = $salesTable;
+
+        $syncSalesOrder = new \stdClass();
+        $syncSalesOrder->salesOrder = $salesOrder;
+        $syncSalesOrder->endpointDomain = $attributes->global->domain_key;
+
+        if ($return) {
+            return $syncSalesOrder;
+        }
+
+        $this->sendDebtor($order->getCustomers(), $return);
+        $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
+
+        $comment = '';
+        if ($result instanceof \Exception) {
+                $state = 'failed';
+                $comment = $result->getMessage();
+        } else {
+            if (strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
+                $state = 'ok';
+                $order->setState(Orders::STATE_BEING_PROCESSED);
+                $order->save();
+            } else {
+                $state = 'failed';
+                if (isset($result->SyncSalesOrderResult->Message)) {
+                    foreach ($result->SyncSalesOrderResult->Message as $msg) {
+                        $comment .= trim($msg) . "\n";
+                    }
+                }
+            }
+        }
+
+        // log ax transaction result
+        $entry = new OrdersSyncLog();
+        $entry->setOrdersId($order->getId());
+        $entry->setCreatedAt('now');
+        $entry->setContent(serialize($syncSalesOrder));
+        if ($comment) {
+            $entry->setComment($comment);
+        }
+        $entry->save();
+
+        if ($state == 'ok') {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Build and send debtor info to AX
+     *
+     * @param  Customers $debitor
+     * @param  boolean   $return    Returns the object we intend to send to AX.
+     * @return boolean
+     */
+    public function sendDebtor(Customers $debitor, $return = false)
+    {
+        $ct = new \stdClass();
+        $ct->AccountNum = $debitor->getId();
+
+        $address = AddressesQuery::create()
+            ->joinWithCountries()
+            ->filterByType('payment')
+            ->findOneByCustomersId($debitor->getId())
+        ;
+
+        $ct->AddressCity = $address->getCity();
+        $ct->AddressCountryRegionId = $address->getCountries()->getIso2();
+
+        $ct->AddressStreet = $address->getAddressLine1();
+        $ct->AddressZipCode = $address->getPostalCode();
+        $ct->CustName = $address->getFirstName() . ' ' . $address->getLastName();
+        $ct->Email = $debitor->getEmail();
+        if (2 == $debitor->getGroupsId()) {
+            $ct->InitialsId = $debitor->getInitials();
+        }
+        $ct->Phone = $debitor->getPhone();
+
+        $cu = new \stdClass();
+        $cu->CustTable = $ct;
+        $sc = new \stdClass();
+        $sc->customer = $cu;
+
+        // TODO: no hardcoded switches
+        $sc->endpointDomain = 'DK';
+        switch ($ct->AddressCountryRegionId) {
+            case 'SE':
+            case 'NO':
+                $sc->endpointDomain = $ct->AddressCountryRegionId;
+            break;
+        }
+
+        if ($return) {
+            return $sc;
+        }
+
+        $result = $this->Send('SyncCustomer', $sc);
+
+        if ($result instanceof \Exception) {
+            $message = sprintf('An error occured while synchronizing debitor "%s", error message: "%s"',
+                $debitor->getId(),
+                $result->getMethod()
+            );
+            $this->logger->addCritical($message);
+
+            return false;
         }
 
         return true;
     }
 
+
+    protected function getIso2CountryCode($country_id)
+    {
+        return CountriesQuery::create()
+            ->select('Iso2')
+            ->findOneById($country_id);
+    }
+
+
+    /**
+     * Performs the actiual communication with AX
+     *
+     * @param string $service Name of the service to call
+     * @param object $request Request parameters
+     * @return object.
+     */
+    protected function Send($service, $request)
+    {
+        // if (!$this->client) {
+        //     if (!$this->Connect()) {
+        //         return false;
+        //     }
+        // }
+
+        try {
+            return $this->client->{$service}($data);
+        } catch (\SoapFault $e) {
+            return $e;
+        }
+    }
 
     /**
      * test and initiate ax connection

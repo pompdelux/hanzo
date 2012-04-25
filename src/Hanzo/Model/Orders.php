@@ -214,11 +214,6 @@ class Orders extends BaseOrders
         }
         $this->setOrdersLiness($collection);
 
-        // set attribute lines
-        // OrdersAttributesQuery::create()
-        //     ->filterByOrdersId($this->getId())
-        //     ->delete()
-        // ;
         $collection = new PropelCollection();
         foreach ($data['attributes'] as $item) {
             $line = new OrdersAttributes();
@@ -719,6 +714,22 @@ class Orders extends BaseOrders
         }
 
         return $attachments;
+    }
+
+
+    public function getAttributes()
+    {
+        $attributes = new \stdClass();
+        foreach ($this->getOrdersAttributess() as $attr) {
+            $ns = str_replace(array(':', '.'), '_', $attr->getNs());
+
+            if (empty($attributes->{$ns})) {
+                $attributes->{$ns} = new \stdClass();
+            }
+            $attributes->{$ns}->{$attr->getCKey()} = $attr->getCValue();
+        }
+
+        return $attributes;
     }
 
     /**

@@ -35,6 +35,24 @@
         e.preventDefault();
         $("#select-ns-add div").slideToggle();
       });
+      
+
+      /* Cache controller */
+      $('.cache-clear').click(function(e){
+        e.preventDefault();
+        var $a = $(this);
+        $.ajax({
+          url : $a.attr('href'),
+          dataType: 'json',
+          async : false,
+          success : function(response, textStatus, jqXHR) {
+            if (response.status) {
+              window.scrollTo(window.scrollMinX, window.scrollMinY);
+              dialoug.slideNotice(response.message);
+            }
+          }
+        });
+      });
 
       /* Admin Sortable list to show and update Cms pages' order*/
       $('#sortable-list').nestedSortable({

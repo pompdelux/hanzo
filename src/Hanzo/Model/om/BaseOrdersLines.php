@@ -133,6 +133,12 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	protected $quantity;
 
 	/**
+	 * The value for the unit field.
+	 * @var        string
+	 */
+	protected $unit;
+
+	/**
 	 * @var        Orders
 	 */
 	protected $aOrders;
@@ -334,6 +340,16 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	public function getQuantity()
 	{
 		return $this->quantity;
+	}
+
+	/**
+	 * Get the [unit] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getUnit()
+	{
+		return $this->unit;
 	}
 
 	/**
@@ -609,6 +625,26 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 	} // setQuantity()
 
 	/**
+	 * Set the value of [unit] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     OrdersLines The current object (for fluent API support)
+	 */
+	public function setUnit($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->unit !== $v) {
+			$this->unit = $v;
+			$this->modifiedColumns[] = OrdersLinesPeer::UNIT;
+		}
+
+		return $this;
+	} // setUnit()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -661,6 +697,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 			$this->price = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
 			$this->vat = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
 			$this->quantity = ($row[$startcol + 12] !== null) ? (int) $row[$startcol + 12] : null;
+			$this->unit = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -669,7 +706,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 13; // 13 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 14; // 14 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating OrdersLines object", $e);
@@ -943,6 +980,9 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) {
 			$modifiedColumns[':p' . $index++]  = '`QUANTITY`';
 		}
+		if ($this->isColumnModified(OrdersLinesPeer::UNIT)) {
+			$modifiedColumns[':p' . $index++]  = '`UNIT`';
+		}
 
 		$sql = sprintf(
 			'INSERT INTO `orders_lines` (%s) VALUES (%s)',
@@ -992,6 +1032,9 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 						break;
 					case '`QUANTITY`':
 						$stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
+						break;
+					case '`UNIT`':
+						$stmt->bindValue($identifier, $this->unit, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -1180,6 +1223,9 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 			case 12:
 				return $this->getQuantity();
 				break;
+			case 13:
+				return $this->getUnit();
+				break;
 			default:
 				return null;
 				break;
@@ -1222,6 +1268,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 			$keys[10] => $this->getPrice(),
 			$keys[11] => $this->getVat(),
 			$keys[12] => $this->getQuantity(),
+			$keys[13] => $this->getUnit(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aOrders) {
@@ -1300,6 +1347,9 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 			case 12:
 				$this->setQuantity($value);
 				break;
+			case 13:
+				$this->setUnit($value);
+				break;
 		} // switch()
 	}
 
@@ -1337,6 +1387,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		if (array_key_exists($keys[10], $arr)) $this->setPrice($arr[$keys[10]]);
 		if (array_key_exists($keys[11], $arr)) $this->setVat($arr[$keys[11]]);
 		if (array_key_exists($keys[12], $arr)) $this->setQuantity($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setUnit($arr[$keys[13]]);
 	}
 
 	/**
@@ -1361,6 +1412,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersLinesPeer::PRICE)) $criteria->add(OrdersLinesPeer::PRICE, $this->price);
 		if ($this->isColumnModified(OrdersLinesPeer::VAT)) $criteria->add(OrdersLinesPeer::VAT, $this->vat);
 		if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) $criteria->add(OrdersLinesPeer::QUANTITY, $this->quantity);
+		if ($this->isColumnModified(OrdersLinesPeer::UNIT)) $criteria->add(OrdersLinesPeer::UNIT, $this->unit);
 
 		return $criteria;
 	}
@@ -1435,6 +1487,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		$copyObj->setPrice($this->getPrice());
 		$copyObj->setVat($this->getVat());
 		$copyObj->setQuantity($this->getQuantity());
+		$copyObj->setUnit($this->getUnit());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -1607,6 +1660,7 @@ abstract class BaseOrdersLines extends BaseObject  implements Persistent
 		$this->price = null;
 		$this->vat = null;
 		$this->quantity = null;
+		$this->unit = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();

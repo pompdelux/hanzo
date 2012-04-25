@@ -343,18 +343,39 @@ admin_postalcode_delete:
     requirements:
         id: \d+
 
-admin_cache:
-    pattern:  /admin/cache/
-    defaults: { _controller: AdminBundle:Cache:index }
-
 admin_cache_jscss:
-    pattern:  /admin/cache/
-    defaults: { _controller: AdminBundle:Cache:index }
+    pattern:  /admin/cache/jscss
+    defaults:
+        _controller: AdminBundle:Cache:clear
+        jscss: true
+        router: false
+        redis: false
+        file: false
+
+admin_cache_router:
+    pattern:  /admin/cache/router
+    defaults:
+        _controller: AdminBundle:Cache:clear
+        js_css: false
+        router: true
+        redis: false
+        file: false
 
 admin_cache_redis:
-    pattern:  /admin/cache/
-    defaults: { _controller: AdminBundle:Cache:index }
+    pattern:  /admin/cache/redis
+    defaults:
+        _controller: AdminBundle:Cache:clear
+        js_css: false
+        router: false
+        redis: true
+        file: false
 
-admin_cache_productpicture:
-    pattern:  /admin/cache/
-    defaults: { _controller: AdminBundle:Cache:index }
+admin_cache_file:
+    pattern:  /admin/cache/file
+    defaults:
+        _controller: AdminBundle:Cache:clear
+        js_css: false
+        router: false
+        redis: false
+        file: true
+

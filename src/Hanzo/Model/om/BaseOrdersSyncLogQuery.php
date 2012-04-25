@@ -24,11 +24,13 @@ use Hanzo\Model\OrdersSyncLogQuery;
  * @method     OrdersSyncLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     OrdersSyncLogQuery orderByState($order = Criteria::ASC) Order by the state column
  * @method     OrdersSyncLogQuery orderByContent($order = Criteria::ASC) Order by the content column
+ * @method     OrdersSyncLogQuery orderByComment($order = Criteria::ASC) Order by the comment column
  *
  * @method     OrdersSyncLogQuery groupByOrdersId() Group by the orders_id column
  * @method     OrdersSyncLogQuery groupByCreatedAt() Group by the created_at column
  * @method     OrdersSyncLogQuery groupByState() Group by the state column
  * @method     OrdersSyncLogQuery groupByContent() Group by the content column
+ * @method     OrdersSyncLogQuery groupByComment() Group by the comment column
  *
  * @method     OrdersSyncLogQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     OrdersSyncLogQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -45,11 +47,13 @@ use Hanzo\Model\OrdersSyncLogQuery;
  * @method     OrdersSyncLog findOneByCreatedAt(string $created_at) Return the first OrdersSyncLog filtered by the created_at column
  * @method     OrdersSyncLog findOneByState(string $state) Return the first OrdersSyncLog filtered by the state column
  * @method     OrdersSyncLog findOneByContent(string $content) Return the first OrdersSyncLog filtered by the content column
+ * @method     OrdersSyncLog findOneByComment(string $comment) Return the first OrdersSyncLog filtered by the comment column
  *
  * @method     array findByOrdersId(int $orders_id) Return OrdersSyncLog objects filtered by the orders_id column
  * @method     array findByCreatedAt(string $created_at) Return OrdersSyncLog objects filtered by the created_at column
  * @method     array findByState(string $state) Return OrdersSyncLog objects filtered by the state column
  * @method     array findByContent(string $content) Return OrdersSyncLog objects filtered by the content column
+ * @method     array findByComment(string $comment) Return OrdersSyncLog objects filtered by the comment column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -138,7 +142,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ORDERS_ID`, `CREATED_AT`, `STATE`, `CONTENT` FROM `orders_sync_log` WHERE `ORDERS_ID` = :p0 AND `CREATED_AT` = :p1';
+		$sql = 'SELECT `ORDERS_ID`, `CREATED_AT`, `STATE`, `CONTENT`, `COMMENT` FROM `orders_sync_log` WHERE `ORDERS_ID` = :p0 AND `CREATED_AT` = :p1';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -361,6 +365,34 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(OrdersSyncLogPeer::CONTENT, $content, $comparison);
+	}
+
+	/**
+	 * Filter the query on the comment column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByComment('fooValue');   // WHERE comment = 'fooValue'
+	 * $query->filterByComment('%fooValue%'); // WHERE comment LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $comment The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersSyncLogQuery The current query, for fluid interface
+	 */
+	public function filterByComment($comment = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($comment)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $comment)) {
+				$comment = str_replace('*', '%', $comment);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(OrdersSyncLogPeer::COMMENT, $comment, $comparison);
 	}
 
 	/**
