@@ -133,6 +133,7 @@ class CmsController extends CoreController
                         $settings['param']['ignore'] = ''; //Dummy Data?
                         break;
                     case 'frontpage':
+                        $node->setType('frontpage');
                         $settings['param']['is_frontpage'] = true;
                         break;
                     default:
