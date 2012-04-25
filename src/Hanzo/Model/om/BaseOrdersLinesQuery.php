@@ -34,6 +34,7 @@ use Hanzo\Model\Products;
  * @method     OrdersLinesQuery orderByPrice($order = Criteria::ASC) Order by the price column
  * @method     OrdersLinesQuery orderByVat($order = Criteria::ASC) Order by the vat column
  * @method     OrdersLinesQuery orderByQuantity($order = Criteria::ASC) Order by the quantity column
+ * @method     OrdersLinesQuery orderByUnit($order = Criteria::ASC) Order by the unit column
  *
  * @method     OrdersLinesQuery groupById() Group by the id column
  * @method     OrdersLinesQuery groupByOrdersId() Group by the orders_id column
@@ -48,6 +49,7 @@ use Hanzo\Model\Products;
  * @method     OrdersLinesQuery groupByPrice() Group by the price column
  * @method     OrdersLinesQuery groupByVat() Group by the vat column
  * @method     OrdersLinesQuery groupByQuantity() Group by the quantity column
+ * @method     OrdersLinesQuery groupByUnit() Group by the unit column
  *
  * @method     OrdersLinesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     OrdersLinesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -77,6 +79,7 @@ use Hanzo\Model\Products;
  * @method     OrdersLines findOneByPrice(string $price) Return the first OrdersLines filtered by the price column
  * @method     OrdersLines findOneByVat(string $vat) Return the first OrdersLines filtered by the vat column
  * @method     OrdersLines findOneByQuantity(int $quantity) Return the first OrdersLines filtered by the quantity column
+ * @method     OrdersLines findOneByUnit(string $unit) Return the first OrdersLines filtered by the unit column
  *
  * @method     array findById(int $id) Return OrdersLines objects filtered by the id column
  * @method     array findByOrdersId(int $orders_id) Return OrdersLines objects filtered by the orders_id column
@@ -91,6 +94,7 @@ use Hanzo\Model\Products;
  * @method     array findByPrice(string $price) Return OrdersLines objects filtered by the price column
  * @method     array findByVat(string $vat) Return OrdersLines objects filtered by the vat column
  * @method     array findByQuantity(int $quantity) Return OrdersLines objects filtered by the quantity column
+ * @method     array findByUnit(string $unit) Return OrdersLines objects filtered by the unit column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -179,7 +183,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `ORIGINAL_PRICE`, `PRICE`, `VAT`, `QUANTITY` FROM `orders_lines` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `ORIGINAL_PRICE`, `PRICE`, `VAT`, `QUANTITY`, `UNIT` FROM `orders_lines` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -714,6 +718,34 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(OrdersLinesPeer::QUANTITY, $quantity, $comparison);
+	}
+
+	/**
+	 * Filter the query on the unit column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByUnit('fooValue');   // WHERE unit = 'fooValue'
+	 * $query->filterByUnit('%fooValue%'); // WHERE unit LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $unit The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersLinesQuery The current query, for fluid interface
+	 */
+	public function filterByUnit($unit = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($unit)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $unit)) {
+				$unit = str_replace('*', '%', $unit);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(OrdersLinesPeer::UNIT, $unit, $comparison);
 	}
 
 	/**

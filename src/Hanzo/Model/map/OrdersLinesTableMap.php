@@ -55,6 +55,7 @@ class OrdersLinesTableMap extends TableMap
 		$this->addColumn('PRICE', 'Price', 'DECIMAL', false, 15, null);
 		$this->addColumn('VAT', 'Vat', 'DECIMAL', false, 4, 0);
 		$this->addColumn('QUANTITY', 'Quantity', 'INTEGER', false, null, null);
+		$this->addColumn('UNIT', 'Unit', 'VARCHAR', false, 12, null);
 		// validators
 	} // initialize()
 

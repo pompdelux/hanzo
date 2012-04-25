@@ -37,13 +37,13 @@ abstract class BaseOrdersLinesPeer {
 	const TM_CLASS = 'OrdersLinesTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 13;
+	const NUM_COLUMNS = 14;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 13;
+	const NUM_HYDRATE_COLUMNS = 14;
 
 	/** the column name for the ID field */
 	const ID = 'orders_lines.ID';
@@ -84,6 +84,9 @@ abstract class BaseOrdersLinesPeer {
 	/** the column name for the QUANTITY field */
 	const QUANTITY = 'orders_lines.QUANTITY';
 
+	/** the column name for the UNIT field */
+	const UNIT = 'orders_lines.UNIT';
+
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -103,12 +106,12 @@ abstract class BaseOrdersLinesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'OrdersId', 'Type', 'ProductsId', 'ProductsSku', 'ProductsName', 'ProductsColor', 'ProductsSize', 'ExpectedAt', 'OriginalPrice', 'Price', 'Vat', 'Quantity', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'ordersId', 'type', 'productsId', 'productsSku', 'productsName', 'productsColor', 'productsSize', 'expectedAt', 'originalPrice', 'price', 'vat', 'quantity', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::ORDERS_ID, self::TYPE, self::PRODUCTS_ID, self::PRODUCTS_SKU, self::PRODUCTS_NAME, self::PRODUCTS_COLOR, self::PRODUCTS_SIZE, self::EXPECTED_AT, self::ORIGINAL_PRICE, self::PRICE, self::VAT, self::QUANTITY, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'ORDERS_ID', 'TYPE', 'PRODUCTS_ID', 'PRODUCTS_SKU', 'PRODUCTS_NAME', 'PRODUCTS_COLOR', 'PRODUCTS_SIZE', 'EXPECTED_AT', 'ORIGINAL_PRICE', 'PRICE', 'VAT', 'QUANTITY', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'orders_id', 'type', 'products_id', 'products_sku', 'products_name', 'products_color', 'products_size', 'expected_at', 'original_price', 'price', 'vat', 'quantity', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'OrdersId', 'Type', 'ProductsId', 'ProductsSku', 'ProductsName', 'ProductsColor', 'ProductsSize', 'ExpectedAt', 'OriginalPrice', 'Price', 'Vat', 'Quantity', 'Unit', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'ordersId', 'type', 'productsId', 'productsSku', 'productsName', 'productsColor', 'productsSize', 'expectedAt', 'originalPrice', 'price', 'vat', 'quantity', 'unit', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::ORDERS_ID, self::TYPE, self::PRODUCTS_ID, self::PRODUCTS_SKU, self::PRODUCTS_NAME, self::PRODUCTS_COLOR, self::PRODUCTS_SIZE, self::EXPECTED_AT, self::ORIGINAL_PRICE, self::PRICE, self::VAT, self::QUANTITY, self::UNIT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'ORDERS_ID', 'TYPE', 'PRODUCTS_ID', 'PRODUCTS_SKU', 'PRODUCTS_NAME', 'PRODUCTS_COLOR', 'PRODUCTS_SIZE', 'EXPECTED_AT', 'ORIGINAL_PRICE', 'PRICE', 'VAT', 'QUANTITY', 'UNIT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'orders_id', 'type', 'products_id', 'products_sku', 'products_name', 'products_color', 'products_size', 'expected_at', 'original_price', 'price', 'vat', 'quantity', 'unit', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
 	);
 
 	/**
@@ -118,12 +121,12 @@ abstract class BaseOrdersLinesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'OrdersId' => 1, 'Type' => 2, 'ProductsId' => 3, 'ProductsSku' => 4, 'ProductsName' => 5, 'ProductsColor' => 6, 'ProductsSize' => 7, 'ExpectedAt' => 8, 'OriginalPrice' => 9, 'Price' => 10, 'Vat' => 11, 'Quantity' => 12, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'ordersId' => 1, 'type' => 2, 'productsId' => 3, 'productsSku' => 4, 'productsName' => 5, 'productsColor' => 6, 'productsSize' => 7, 'expectedAt' => 8, 'originalPrice' => 9, 'price' => 10, 'vat' => 11, 'quantity' => 12, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::ORDERS_ID => 1, self::TYPE => 2, self::PRODUCTS_ID => 3, self::PRODUCTS_SKU => 4, self::PRODUCTS_NAME => 5, self::PRODUCTS_COLOR => 6, self::PRODUCTS_SIZE => 7, self::EXPECTED_AT => 8, self::ORIGINAL_PRICE => 9, self::PRICE => 10, self::VAT => 11, self::QUANTITY => 12, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'ORDERS_ID' => 1, 'TYPE' => 2, 'PRODUCTS_ID' => 3, 'PRODUCTS_SKU' => 4, 'PRODUCTS_NAME' => 5, 'PRODUCTS_COLOR' => 6, 'PRODUCTS_SIZE' => 7, 'EXPECTED_AT' => 8, 'ORIGINAL_PRICE' => 9, 'PRICE' => 10, 'VAT' => 11, 'QUANTITY' => 12, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'orders_id' => 1, 'type' => 2, 'products_id' => 3, 'products_sku' => 4, 'products_name' => 5, 'products_color' => 6, 'products_size' => 7, 'expected_at' => 8, 'original_price' => 9, 'price' => 10, 'vat' => 11, 'quantity' => 12, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'OrdersId' => 1, 'Type' => 2, 'ProductsId' => 3, 'ProductsSku' => 4, 'ProductsName' => 5, 'ProductsColor' => 6, 'ProductsSize' => 7, 'ExpectedAt' => 8, 'OriginalPrice' => 9, 'Price' => 10, 'Vat' => 11, 'Quantity' => 12, 'Unit' => 13, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'ordersId' => 1, 'type' => 2, 'productsId' => 3, 'productsSku' => 4, 'productsName' => 5, 'productsColor' => 6, 'productsSize' => 7, 'expectedAt' => 8, 'originalPrice' => 9, 'price' => 10, 'vat' => 11, 'quantity' => 12, 'unit' => 13, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::ORDERS_ID => 1, self::TYPE => 2, self::PRODUCTS_ID => 3, self::PRODUCTS_SKU => 4, self::PRODUCTS_NAME => 5, self::PRODUCTS_COLOR => 6, self::PRODUCTS_SIZE => 7, self::EXPECTED_AT => 8, self::ORIGINAL_PRICE => 9, self::PRICE => 10, self::VAT => 11, self::QUANTITY => 12, self::UNIT => 13, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'ORDERS_ID' => 1, 'TYPE' => 2, 'PRODUCTS_ID' => 3, 'PRODUCTS_SKU' => 4, 'PRODUCTS_NAME' => 5, 'PRODUCTS_COLOR' => 6, 'PRODUCTS_SIZE' => 7, 'EXPECTED_AT' => 8, 'ORIGINAL_PRICE' => 9, 'PRICE' => 10, 'VAT' => 11, 'QUANTITY' => 12, 'UNIT' => 13, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'orders_id' => 1, 'type' => 2, 'products_id' => 3, 'products_sku' => 4, 'products_name' => 5, 'products_color' => 6, 'products_size' => 7, 'expected_at' => 8, 'original_price' => 9, 'price' => 10, 'vat' => 11, 'quantity' => 12, 'unit' => 13, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
 	);
 
 	/**
@@ -208,6 +211,7 @@ abstract class BaseOrdersLinesPeer {
 			$criteria->addSelectColumn(OrdersLinesPeer::PRICE);
 			$criteria->addSelectColumn(OrdersLinesPeer::VAT);
 			$criteria->addSelectColumn(OrdersLinesPeer::QUANTITY);
+			$criteria->addSelectColumn(OrdersLinesPeer::UNIT);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.ORDERS_ID');
@@ -222,6 +226,7 @@ abstract class BaseOrdersLinesPeer {
 			$criteria->addSelectColumn($alias . '.PRICE');
 			$criteria->addSelectColumn($alias . '.VAT');
 			$criteria->addSelectColumn($alias . '.QUANTITY');
+			$criteria->addSelectColumn($alias . '.UNIT');
 		}
 	}
 

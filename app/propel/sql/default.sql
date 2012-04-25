@@ -751,6 +751,7 @@ CREATE TABLE `orders_lines`
 	`price` DECIMAL(15,4),
 	`vat` DECIMAL(4,2) DEFAULT 0.00,
 	`quantity` INTEGER,
+	`unit` VARCHAR(12),
 	PRIMARY KEY (`id`),
 	INDEX `FI_orders_lines_1` (`orders_id`),
 	INDEX `FI_orders_lines_2` (`products_id`),
