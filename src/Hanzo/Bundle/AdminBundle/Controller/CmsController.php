@@ -18,6 +18,7 @@ use Hanzo\Core\Hanzo,
 use Hanzo\Model\Cms,
     Hanzo\Model\CmsPeer,
     Hanzo\Model\CmsQuery,
+    Hanzo\Model\CmsThreadQuery,
     Hanzo\Model\CmsThreadI18n,
     Hanzo\Model\CmsThreadI18nPeer,
     Hanzo\Model\CmsThreadI18nQuery,
@@ -37,7 +38,8 @@ class CmsController extends CoreController
     {
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
-            ->joinWithCmsI18n(NULL, 'INNER JOIN')
+            // ->joinWithCmsI18n(NULL, 'INNER JOIN')
+            ->joinI18n()
             ->groupById()
             ->orderById()
             ->find()
@@ -76,8 +78,8 @@ class CmsController extends CoreController
     {
         $cms_node = new CmsNode();
 
-        $cms_threads = CmsThreadI18nQuery::create()
-            ->filterByLocale($locale)
+        $cms_threads = CmsThreadQuery::create()
+            ->joinWithI18n($locale)
             ->find()
         ;
 
@@ -194,8 +196,8 @@ class CmsController extends CoreController
                 ->findPk($id);
 
             // Vi skal bruge titel på Thread til Path
-            $cms_thread = CmsThreadI18nQuery::create()
-                ->filterByLocale($locale)
+            $cms_thread = CmsThreadQuery::create()
+                ->joinWithI18n($locale)
                 ->findOneById($node->getCmsThreadId());
 
             if ($node instanceof Cms) {
