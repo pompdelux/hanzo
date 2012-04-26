@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="home">
+                <source>home</source>
+                <target>Til forsiden</target>
+            </trans-unit>
+            <trans-unit id="show.basket">
+                <source>show.basket</source>
+                <target>Visa korg</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Vålj</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Antal</target>
+            </trans-unit>
+            <trans-unit id="loading">
+                <source>loading</source>
+                <target>Loading</target>
+            </trans-unit>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
+                <target>Klik her for at mere information om %name%.</target>
+            </trans-unit>
+            <trans-unit id="all.products.out.of.stock">
+                <source>all.products.out.of.stock</source>
+                <target>Alla varor i denna kategori är utsålda.</target>
+            </trans-unit>
+            <trans-unit id="pager.previous.page">
+                <source>pager.previous.page</source>
+                <target>Vis forige side</target>
+            </trans-unit>
+            <trans-unit id="previous">
+                <source>previous</source>
+                <target>Forige</target>
+            </trans-unit>
+            <trans-unit id="pager.page">
+                <source>pager.page</source>
+                <target>Vis side %page%</target>
+            </trans-unit>
+            <trans-unit id="pager.next.page">
+                <source>pager.next.page</source>
+                <target>Vis næste side</target>
+            </trans-unit>
+            <trans-unit id="next">
+                <source>next</source>
+                <target>Nästa</target>
+            </trans-unit>
+            <trans-unit id="product.details">
+                <source>product.details</source>
+                <target>Varubeskrivning</target>
+            </trans-unit>
+            <trans-unit id="care.instructions">
+                <source>care.instructions</source>
+                <target>Tvättråd</target>
+            </trans-unit>
+            <trans-unit id="add.to.basket">
+                <source>add.to.basket</source>
+                <target>Læg i kurv</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.cart">
+                <source>product.added.to.cart</source>
+                <target>"%product%" er nu lagt i din kurv</target>
+            </trans-unit>
+            <trans-unit id="product.out.of.stock">
+                <source>product.out.of.stock</source>
+                <target>"%product%" er desværre udsolgt</target>
+            </trans-unit>
+            <trans-unit id="products">
+                <source>products</source>
+                <target>Produkter</target>
+            </trans-unit>
+            <trans-unit id="latest.shipment.date">
+                <source>latest.shipment.date</source>
+                <target>Skickas senast</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Pris</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Totalt belopp</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Redigera</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Radera</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Color</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadress</target>
+            </trans-unit>
+            <trans-unit id="acc.2" approved="no">
+                <source>Email address repeated</source>
+                <target>Gentag e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3" approved="no">
+                <source>Pass</source>
+                <target>Valgfrit adgangskode</target>
+            </trans-unit>
+            <trans-unit id="acc.4" approved="no">
+                <source>Pass repeated</source>
+                <target>Gentag adgangskode</target>
+            </trans-unit>
+            <trans-unit id="company.address">
+                <source>company.address</source>
+                <target>Firmanavn</target>
+            </trans-unit>
+            <trans-unit id="date">
+                <source>date</source>
+                <target>Dato</target>
+            </trans-unit>
+            <trans-unit id="event.id">
+                <source>event.id</source>
+                <target>Arrangenments nr.</target>
+            </trans-unit>
+            <trans-unit id="store.address">
+                <source>store.address</source>
+                <target>POMPdeLUX ApS · Møgelhøj 8 DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · +45 8678 7871</target>
+            </trans-unit>
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target><![CDATA[
+                    <h3>Observera:</h3>
+                    <p>
+                        Du kommer nu att redigera E-ordernummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
+                        Om du önskar att avbryta redigeringen av din order - <a href="%stop_url%" title="stop editering af ordren"> – klicka här.</a>
+                    </p>
+                    <p>Om du önskar att ändra en färg eller en storlek, ska du klicka på pennan i korgen. Om du önskar att lägga till varor, ska du klicka på menyn Webshop.</p>
+                    <p class="last">När du är färdig med dina ändringar, ska du klicka på "Visa korg" och följa steg 1 till 6. När du har genomfört din order med en ny kortbetalning, kommer den gamla betalningen automatiskt att bli raderad, och din första reservation blir tillgänglig på ditt konto igen efter ca 5 vardagar.</p>
+                ]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

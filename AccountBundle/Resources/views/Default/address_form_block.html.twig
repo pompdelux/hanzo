@@ -1,0 +1,8 @@
+<h2>{{ title|trans({}, 'account') }}</h2>
+
+<form action="{{ path('_account_edit_address') }}" method="post" {{ form_enctype(form) }} class="create" data-callback="{{ callback }}" novalidate>
+  {{ form_widget(form) }}
+
+  <input type="button" class="button left" value="{{ 'cancel'|trans({}, 'account') }}" />
+  <input type="submit" class="button right" value="{{ 'save'|trans({}, 'account') }}" />
+</form>

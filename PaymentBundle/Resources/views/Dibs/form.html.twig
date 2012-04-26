@@ -1,0 +1,15 @@
+<form name="dibs-payment" action="https://payment.architrade.com/paymentweb/start.action" method="post">
+  <input type="hidden" name="merchant" value="{{ merchant }}" />
+  <input type="hidden" name="orderid" value="{{ orderid }}" />
+  <input type="hidden" name="lang" value="{{ lang }}" />
+  <input type="hidden" name="amount" value="{{ amount }}" />
+  <input type="hidden" name="currency" value="{{ currency }}" />
+  <input type="hidden" name="cancelurl" value="{{ url('PaymentBundle_dibs_cancel') }}" />
+  <input type="hidden" name="callbackurl" value="{{ url('PaymentBundle_dibs_callback') }}" />
+  <input type="hidden" name="accepturl" value="{{ url('PaymentBundle_success') }}" />
+  <input type="hidden" name="skiplastpage" value="{{ skiplastpage }}" />
+  <input type="hidden" name="uniqueoid" value="{{ uniqueoid }}" />
+  <input type="hidden" name="test" value="{{ test }}" />
+  <input type="hidden" name="paytype" value="{{ paytype }}" />
+  <input type="hidden" name="md5key" value="{{ md5key }}" />
+</form>

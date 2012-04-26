@@ -1,0 +1,201 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
+<head>
+
+<title>POMPdeLUX - Vild med børnetøj {{ browser_title|default('') }}</title>
+<meta charset="utf-8">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="imagetoolbar" content="false">
+
+{{ meta_tags() }}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="all">
+
+<link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
+<link rel="dns-prefetch" href="//cdn.jquerytools.org">
+<link rel="dns-prefetch" href="//html5shim.googlecode.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
+
+<link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
+{% stylesheets
+  'fx/css/boilerplate.css'
+  'fx/css/faq.css'
+  'fx/css/colorbox/theme4/colorbox.css'
+  'fx/scripts/video-js/video-js.css'
+  'fx/scripts/vegas/jquery.vegas.css'
+
+  'fx/css/main.css'
+  'fx/css/category.css'
+  'fx/css/product.css'
+  'fx/css/cart.css'
+  'fx/css/account.css'
+  'fx/css/dialoug.css'
+  'fx/css/checkout.css'
+  'fx/css/maps.css'
+  'fx/css/search.css'
+
+  filter='?yui_css'
+  output='fx/cache/all.css'
+  combine=true
+%}
+<link rel="stylesheet" href="{{ asset_url }}" media="all">
+{% endstylesheets %}
+
+<script type="text/javascript" src="/fx/scripts/modernizr-2.0.6.min.js"></script>
+<script type="text/javascript">
+var base_url = '{{ url('_homepage') }}';
+var cdn_url = '{{ cdn }}';
+</script>
+
+</head>
+<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
+
+<div id="container">
+  <a href="{{ path('_homepage') }}" title="{{ "home"|trans }}">
+    {{ fx_image_tag('images/POMPdeLUX_logo.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
+  </a>
+
+  <div id="main" role="main">
+
+    {% if app.session.get('in_edit') %}
+      {{ 'order.edit.global.notice'|trans({
+        '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
+        '%order_id%' : app.session.get('order_id'),
+        '%stop_url%' : url('_account', {stop : 1})
+      })|raw }}
+    {% endif %}
+
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'sub', 'from': 400, 'offset': 482 } %}
+    {% block content %}
+    {% endblock %}
+
+  </div><!-- /div#main -->
+
+  <nav class="main">
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': 'main', 'from': 20 } %}
+  </nav><!-- /nav.main -->
+
+  <aside id="secondary-links">
+    <ul>
+      <li><a href="{{ path('_account') }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+    {% if is_granted('ROLE_USER') %}
+      <li><a href="{{ path('logout') }}">{{ 'my.account.logout'|trans({}, 'account') }}</a></li>
+    {% endif %}
+      <li id="select-domain">
+        <a class="open-menu" href="#">Change Country</a>
+        <div style="display: none">
+          <a href="http://www.pompdelux.dk/">Denmark</a><br><br>
+          <a href="http://www.pompdelux.com/">International</a><br><br>
+          <a href="http://www.pompdelux.nl/">Netherlands</a><br><br>
+          <a href="http://www.pompdelux.no/">Norway</a><br><br>
+          <a href="http://www.pompdelux.se/">Sweden</a><br>
+        </div>
+      </li>
+      <li id="mini-basket" class="basket">
+        <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+      </li>
+      <li><a href="{{ path('basket_view') }}">{{ "show.basket"|trans }}</a></li>
+    </ul>
+  </aside>
+
+{% if page_type == 'frontpage' %}
+  {{ front_page_teasers() }}
+{% endif %}
+
+</div>
+
+<footer>
+  <ul>
+    <li>{{ fx_image_tag('images/creditcards_dk.png', '', {'alt':'credit cards'}) }}</li>
+    <li>POMPdeLUX ApS</li>
+    <li>Møgelhøj 8</li>
+    <li>DK-8520 Lystrup</li>
+    <li>CVR-nr 29622035</li>
+    <li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
+    <li>+45 8678 7871</li>
+  </ul>
+</footer>
+
+<script type="text/javascript">
+var counter_offset = 1314691200;
+
+{% if page_type|default('page') == 'frontpage' %}
+var vegas_backgrounds = [
+  { src: '{{ image_path('/fx/images/bg/01.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/02.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/03.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/04.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/05.jpg') }}', fade:1000, loading: false, valign: 'top' },
+  { src: '{{ image_path('/fx/images/bg/06.jpg') }}', fade:1000, loading: false, valign: 'top' }
+];
+{% else %}
+var vegas_backgrounds = [
+  { src: '{{ image_path('/fx/images/bg/bg_pdl.jpg') }}', valign: 'top', loading: false }
+];
+{% endif %}
+
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="//cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
+
+{% javascripts
+  'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
+  'fx/scripts/zoom/jquery.zoom.js'
+
+  'fx/scripts/flowplayer/flowplayer-3.2.6.min.js'
+  'fx/scripts/countdown/jquery.countdown.js'
+  'fx/scripts/countdown/jquery.countdown-dk.js'
+  'fx/scripts/video-js/video.js'
+  'fx/scripts/vegas/jquery.vegas.js'
+  'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
+
+  'fx/scripts/i18n.js'
+  'fx/scripts/yatzy.js'
+
+  'fx/scripts/dialoug.js'
+  'fx/scripts/colorbox.js'
+  'fx/scripts/flowplayer.js'
+  'fx/scripts/video.js'
+  'fx/scripts/vegas.js'
+
+  'fx/scripts/category.js'
+  'fx/scripts/product.js'
+  'fx/scripts/cart.js'
+  'fx/scripts/account.js'
+  'fx/scripts/main.js'
+  'fx/scripts/checkout.js'
+
+  'fx/scripts/newsletter.js'
+
+  'fx/scripts/gothia.js'
+  'fx/scripts/maps.js'
+  'fx/scripts/search.js'
+
+  filter='?yui_js'
+  output='fx/cache/all.js'
+  combine=true
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% block javascript %}
+{% endblock %}
+
+{% if page_type == 'frontpage' %}
+{% render 'NewsletterBundle:Default:js' %}
+{% endif %}
+
+{{ google_analytics_tag() }}
+</body>
+</html>

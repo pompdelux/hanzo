@@ -1,0 +1,65 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li id="select-language">
+        <a class="open-menu" href="#">
+        	<span class="flag {{ node.locale }}"></span>{{ 'languages.selector'|trans({}, 'admin') }}
+        </a>
+        <div style="display:none;">
+        	<ul>
+		    {% for language in languages %}
+		      <li>
+		      	<a href="{{ path('admin_cms_edit', {'id' : node.id, 'locale' : language.locale}) }}">
+		      		<span class="flag {{ language.locale }}"></span>{{ language.name }}
+		      	</a>
+		      </li>
+		    {% endfor %}
+        	</ul>
+        </div>
+    </li>
+    <li>
+      <a href="{{ path('admin_cms') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'update.cms.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<form action="{{ path('admin_cms_edit', {'id' : node.id, 'locale' : node.locale}) }}" method="post" {{ form_enctype(form) }} id="cms-edit-form">
+  <div id="cms-edit">
+    {{ form_row(form.locale) }}
+    {{ form_row(form.is_active) }}
+    {{ form_row(form.is_restricted) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.path) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.settings) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'update.cms'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_cms') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      /* Pretty print the settings in the textarea */
+      var settings = $('#cms_settings').val();
+      $('#cms_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
+    });
+</script>
+
+{% endblock %}

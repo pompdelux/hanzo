@@ -1,0 +1,38 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_customers') }}">
+        {{ 'admin.customers.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_customer', {'id' : address.customersid }) }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'admin.customer.address.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>{{ 'admin.customer.address.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_customer_address', {'id' : address.customersid, 'type' : address.type}) }}" method="post" {{ form_enctype(form) }} id="customer-edit-form">
+  <div id="customeraddress-edit">
+    {{ form_rest(form) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'save.customer.address'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_customers') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}
