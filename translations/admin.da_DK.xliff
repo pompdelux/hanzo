@@ -174,6 +174,10 @@
         <source>cms.updated</source>
         <target>Siden blev succesfuldt opdateret!</target>
       </trans-unit>
+      <trans-unit id="cms.update.failed.dublicate.path">
+        <source>cms.update.failed.dublicate.path</source>
+        <target>Siden kunne ikke gemmes. Der findes allerede en aktiv side med det valgte URL!</target>
+      </trans-unit>
       <trans-unit id="admin_cms_page_type_page">
         <source>cms.edit.type.page</source>
         <target>Alm. Cms side</target>
