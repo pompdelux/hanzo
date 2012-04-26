@@ -11,6 +11,7 @@ use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersSyncLog;
 
 class AxService
 {
@@ -68,18 +69,18 @@ class AxService
      */
     public function sendOrder(Orders $order, $return = false)
     {
-        // Propel::setForceMasterConnection(true);
-        if ($order->getInEdit()) {
-            // cancel payment at the correct provider
-        }
-//Tools::log(get_class_methods($order));
-        $attributes = $order->getAttributes(); // TODO: create shortcut in Model\Orders::getAttributes()
-Tools::log($attributes);
+        Propel::setForceMasterConnection(true);
+
+        // TODO: cancel payment at the correct provider
+        if ($order->getInEdit()) {}
+
+        $attributes = $order->getAttributes();
         $lines = $order->getOrdersLiness();
 
         $products = array();
-        $shipping = array();
-        $payment = array();
+        $shipping_cost = 0;
+        $payment_cost = 0;
+        $handeling_fee = 0;
 
         foreach ($lines as $line) {
             switch ($line->getType()) {
@@ -88,13 +89,16 @@ Tools::log($attributes);
                     break;
 
                 case 'shipping':
-                case 'shipping.fee':
-                    $shipping[] = $line;
+                    $shipping_cost += $line->getPrice();
                     break;
 
                 case 'payment':
+                    $payment_cost += $line->getPrice();
+                    break;
+
+                case 'shipping.fee':
                 case 'payment.fee':
-                    $payment[] = $line;
+                    $handeling_fee += $line->getPrice();
                     break;
             }
         }
@@ -111,50 +115,72 @@ Tools::log($attributes);
             $line->InventSizeId = $product->getProductsSize();
             $line->SalesUnit = ''; // FIXME
 
-
-            if (0.00 != $product->getVat())
-            {
-                $line->SalesPrice = $line->SalesPrice * (($product->getVat() / 100) + 1);
-            }
-
             $discount = $product->getOriginalPrice() - $product->getPrice();
 
             if ($product->getOriginalPrice() && $discount != 0) {
-                $product_discount_in_prc = 100 / ($product->getOriginalPrice() / $discount);
-            } else {
-                $product_discount_in_prc = $discount_in_percent;
+                $discount_in_percent = 100 / ($product->getOriginalPrice() / $discount);
             }
 
-            if ($product_discount_in_prc)
-            {
-                $line->LineDiscPercent = $product_discount_in_prc;
+            if ($discount_in_percent) {
+                $line->LineDiscPercent = $discount_in_percent;
             }
 
             $line->lineText = $product->getProductsName();
             $salesLine[] = $line;
         }
 
-        // FIXME: hostess discount
-        if (0)
-        {
-            $line = new \stdClass();
-            $line->ItemId = 'HOSTESSDISCOUNT';
-            $line->SalesPrice = '-' . $attributes->event->hostessDiscount;
-            $line->SalesQty = 1;
-            $line->SalesUnit = 'Stk.';
-            $salesLine[] = $line;
+        // payment method
+        $custPaymMode = 'Bank';
+        if (!empty($order->getPaymentGatewayId()) && isset($attributes->payment->cc_type)) {
+            switch (strtoupper($attributes->payment->cc_type)) {
+                case 'VISA ELECTRON (DANIS': // DIBS
+                case 'VISA (SWEDISH CARD)':
+                case 'VISA':
+                case 'VISA-ELECTRON-DK':
+                case 'VISA CARD':
+                    $custPaymMode = 'VISA';
+                    break;
+                case 'MASTERCARD (DANISH C': // DIBS
+                case 'MASTERCARD (SWEDISH':
+                case 'MASTERCARD-DK':
+                case 'MASTERCARD':
+                    $custPaymMode = 'MasterCard';
+                    break;
+                case 'PAYBYBILL TEST':
+                case 'PAYBYBILL':
+                    $custPaymMode = 'PayByBill';
+                    break;
+                default:
+                    $custPaymMode = 'DanKort';
+                    break;
+            }
+        }
+
+        if (strtolower($attributes->payment->paytype) == 'gothia') {
+            $custPaymMode = 'PayByBill';
+        }
+
+        // FIXME, this should be set elsewhere
+        $freight_type = $order->getDeliveryMethod();
+        switch ($attributes->global->domain_key) {
+            case 'NO':
+                $freight_type = ($freight_type == 10) ? 'P' : 'S';
+                break;
+            case 'SE':
+                $freight_type = 30;
+                break;
         }
 
         $salesTable = new \stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
         $salesTable->PaymentId               = $order->getPaymentGatewayId();
-        $salesTable->HomePartyId             = ''; // FIXME "WEB .."
-        $salesTable->SalesResponsible        = ''; // FIXME
-        $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
-        $salesTable->CurrencyCode            = ''; // FIXME
+        $salesTable->HomePartyId             = $attributes->global->HomePartyId;
+        $salesTable->SalesResponsible        = $attributes->global->SalesResponsible;
+        $salesTable->CurrencyCode            = $order->getCurrencyCode();
         $salesTable->SalesName               = $order->getFirstName() . ' ' . $order->getLastName();
         $salesTable->SalesType               = 'Sales';
+        $salesTable->SalesLine               = $salesLine;
         $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
         $salesTable->DeliveryCity            = $order->getDeliveryCity();
         $salesTable->DeliveryName            = $order->getFirstName() . ' ' . $order->getLastName();
@@ -162,20 +188,66 @@ Tools::log($attributes);
         $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
         $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
         $salesTable->InvoiceAccount          = $order->getCustomersId();
-        $salesTable->FreightFeeAmt           = ''; // FIXME
-        $salesTable->FreightType             = ''; // FIXME
+        $salesTable->FreightFeeAmt           = $shipping_cost;
+        $salesTable->FreightType             = $freight_type;
         $salesTable->HandlingFeeType         = 90;
-        $salesTable->HandlingFeeAmt          = ''; // FIXME
+        $salesTable->HandlingFeeAmt          = $handeling_fee;
         $salesTable->PayByBillFeeType        = 91;
-        $salesTable->PayByBillFeeAmt         = 0; // FIXME
+        $salesTable->PayByBillFeeAmt         = $payment_cost;
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
-        $salesTable->CustPaymMode            = 'Bank'; // FIXME: Bank, VISA, MasterCard, PayByBill, DanKort
-        $salesTable->SalesLine               = $salesLine;
+        $salesTable->CustPaymMode            = $custPaymMode;
+        $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
         $salesTable->SmoreContactInfo        = ''; // FIXME
 
-Tools::log($salesTable);
+        $salesOrder = new \stdClass();
+        $salesOrder->SalesTable = $salesTable;
 
+        $syncSalesOrder = new \stdClass();
+        $syncSalesOrder->salesOrder = $salesOrder;
+        $syncSalesOrder->endpointDomain = $attributes->global->domain_key;
+
+        if ($return) {
+            return $syncSalesOrder;
+        }
+
+        $this->sendDebtor($order->getCustomers(), $return);
+        $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
+
+        $comment = '';
+        if ($result instanceof \Exception) {
+                $state = 'failed';
+                $comment = $result->getMessage();
+        } else {
+            if (strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
+                $state = 'ok';
+                $order->setState(Orders::STATE_BEING_PROCESSED);
+                $order->save();
+            } else {
+                $state = 'failed';
+                if (isset($result->SyncSalesOrderResult->Message)) {
+                    foreach ($result->SyncSalesOrderResult->Message as $msg) {
+                        $comment .= trim($msg) . "\n";
+                    }
+                }
+            }
+        }
+
+        // log ax transaction result
+        $entry = new OrdersSyncLog();
+        $entry->setOrdersId($order->getId());
+        $entry->setCreatedAt('now');
+        $entry->setContent(serialize($syncSalesOrder));
+        if ($comment) {
+            $entry->setComment($comment);
+        }
+        $entry->save();
+
+        if ($state == 'ok') {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -219,7 +291,7 @@ Tools::log($salesTable);
         switch ($ct->AddressCountryRegionId) {
             case 'SE':
             case 'NO':
-                $sc->endpointDomain = $$ct->AddressCountryRegionId;
+                $sc->endpointDomain = $ct->AddressCountryRegionId;
             break;
         }
 

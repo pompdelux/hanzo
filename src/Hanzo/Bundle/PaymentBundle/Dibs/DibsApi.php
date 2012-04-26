@@ -13,6 +13,28 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DibsApi
 {
+
+    /**
+     * map currencies to dibs currency codes
+     *
+     * @var array
+     */
+    protected $currency_map = array(
+        'DKK' => 208,
+        'EUR' => 978,
+        'USD' => 840,
+        'GBP' => 826,
+        'SEK' => 752,
+        'AUD' => 036,
+        'CAD' => 124,
+        'ISK' => 352,
+        'JPY' => 392,
+        'NZD' => 554,
+        'NOK' => 578,
+        'CHF' => 756,
+        'TRY' => 949,
+    );
+
     /**
      * undocumented class variable
      *
@@ -86,7 +108,7 @@ class DibsApi
             throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
         }
 
-        $currency = $order->getCurrencyId();
+        $currency = $this->currency_map[$order->getCurrencyCode()];
         $amount   = self::formatAmount( $order->getTotalPrice() );
 
         $calculated = $this->md5key( $order->getId(), $currency, $amount );
@@ -203,7 +225,7 @@ class DibsApi
     {
         $orderId  = $gateway_id;
         $amount   = self::formatAmount( $order->getTotalPrice() );
-        $currency = $order->getCurrencyId();
+        $currency = $this->currency_map[$order->getCurrencyCode()];
 
         // needed ? is set in the form...
         $payType  = 'DK';

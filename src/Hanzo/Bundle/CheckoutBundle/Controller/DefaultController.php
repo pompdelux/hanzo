@@ -21,6 +21,7 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ShippingMethods;
 
 use Exception;
+use Propel;
 
 class DefaultController extends CoreController
 {
@@ -350,7 +351,7 @@ class DefaultController extends CoreController
         $product_prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
         foreach ($products as $product) {
-            $product->setOriginalPrice($product_prices[$product->getId()]['normal']['raw_price']);
+            $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['raw_price']);
             $product->setUnit($product_units[$product->getProductsId()]);
             $product->save();
         }
@@ -361,6 +362,8 @@ class DefaultController extends CoreController
         // 3. register domain et-al
         $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
         $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
+        $order->setAttribute('HomePartyId', 'global', 'Web ' . $hanzo->get('core.domain_key'));
+        $order->setAttribute('SalesResponsible', 'global', 'Web ' . $hanzo->get('core.domain_key'));
 
         $order->save();
 

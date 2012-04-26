@@ -145,10 +145,8 @@ class DibsController extends CoreController
         $order->setPaymentGatewayId($gateway_id);
 
         // annoying, but performs better...
-        if (false === $order->getCurrencyId(false)) {
-            $c = new \Criteria();
-            $c->add(AddressesPeer::TYPE, 'payment');
-            $order->setCurrencyId(CustomersPeer::getCurrent()->getAddressess($c)->getFirst()->getCurrencyId());
+        if ('' == $order->getCurrencyCode()) {
+            $order->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
         }
 
         $settings = $api->buildFormFields(

@@ -37,7 +37,7 @@ class CheckoutListener
 
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shippinng = $this->get('translator')->trans('shipping_method_name_' . $order->getDeliveryMethod(), array(), 'shipping');
+        $shippinng = $this->translator->trans('shipping_method_name_' . $order->getDeliveryMethod(), array(), 'shipping');
 
         $params = array(
             'order' => $order,
@@ -81,6 +81,6 @@ class CheckoutListener
         }
 
         // trigger ax sync
-        Tools::log('TODO implement: order2ax->sync()');
+        $this->ax->sendOrder($order);
     }
 }
