@@ -17,6 +17,16 @@ class UpdateListener
     {
       $file = __DIR__.'/../../../../app/config/config.yml';
 
+      if ( !is_file($file) )
+      {
+        throw new Exception( 'UpdateListener: could not find config.yml at: "'.$file.'"' );
+      }
+
+      if ( !is_writeable($file) )
+      {
+        throw new Exception( 'UpdateListener: config.yml at: "'.$file.'" is not writeable' );
+      }
+
       $yaml = new Parser();
 
       try 
@@ -25,7 +35,7 @@ class UpdateListener
       } 
       catch (ParseException $e) 
       {
-          throw new Exception( 'Updatelistener: Unable to parse the YAML string: %s', $e->getMessage() );
+          throw new Exception( 'UpdateListener: Unable to parse the YAML string: %s', $e->getMessage() );
       }
 
       if ( isset( $value['framework']['templating'] ))
@@ -40,7 +50,7 @@ class UpdateListener
       }
       else
       {
-        throw new Exception( 'Updatelistener: config.yml is missing the framework -> templating block' );
+        throw new Exception( 'UpdateListener: config.yml is missing the framework -> templating block' );
       }
     }
 }
