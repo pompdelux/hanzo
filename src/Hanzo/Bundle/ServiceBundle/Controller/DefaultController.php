@@ -4,15 +4,13 @@ namespace Hanzo\Bundle\ServiceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Hanzo\Core\CoreController,
-    Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools
-    ;
+use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
-use Hanzo\Model\ZipToCity,
-    Hanzo\Model\ZipToCityPeer,
-    Hanzo\Model\ZipToCityQuery
-    ;
+use Hanzo\Model\ZipToCity;
+use Hanzo\Model\ZipToCityPeer;
+use Hanzo\Model\ZipToCityQuery;
 
 class DefaultController extends CoreController
 {
@@ -60,6 +58,11 @@ class DefaultController extends CoreController
         // $cleanup->failedPaymentOrders();
         // $sms = $this->get('sms_manager');
         // $sms->eventReminder();
+        $ax = $this->get('ax_manager');
+        //$result = $ax->sendDebtor(\Hanzo\Model\CustomersQuery::create()->findPk(129798), true);
+        $result = $ax->sendOrder(\Hanzo\Model\OrdersQuery::create()->findPk(569178), true);
+
+Tools::log($result);
 
         return $this->render('ServiceBundle:Default:test.html.twig', array(
             'page_type' => 'test',

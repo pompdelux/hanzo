@@ -45,6 +45,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
             $key = $price->getToDate() ? 'sales' : 'normal';
             $data[$price->getProductsId()][$key] = array(
                 'currency' => $price->getCurrencyId(),
+                'raw_price' => $price->getPrice(),
                 'price' => $price->getPrice() + $price->getVat(),
                 'vat' => $price->getVat(),
                 'formattet' => Tools::moneyFormat($price->getPrice() + $price->getVat())

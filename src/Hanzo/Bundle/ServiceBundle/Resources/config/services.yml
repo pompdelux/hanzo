@@ -63,5 +63,5 @@ services:
         factory_method:  get
         arguments:
             service:     ax
-            parameters:  ~
+            parameters:  [@logger]
             class:       %ax_manager.class%
