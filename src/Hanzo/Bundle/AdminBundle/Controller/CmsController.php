@@ -192,8 +192,15 @@ class CmsController extends CoreController
 
             $node = CmsQuery::create()
                 ->findPk($id);
+
+            // Vi skal bruge titel på Thread til Path
+            $cms_thread = CmsThreadI18nQuery::create()
+                ->filterByLocale($locale)
+                ->findOneById($node->getCmsThreadId());
+
             if ($node instanceof Cms) {
                 $node->setLocale($locale);
+                $node->setPath(Tools::stripText($cms_thread->getTitle()) . '/');
 
                 if($settings instanceof CmsI18n)
                     $node->setSettings($settings->getSettings());
@@ -375,7 +382,7 @@ class CmsController extends CoreController
         $menu = '';
         $query = CmsQuery::create()
             ->filterByIsActive(TRUE)
-            ->joinCmsI18n(NULL, 'INNER JOIN')
+            ->joinI18n()
             ->groupById()
             //->joinWithI18n('da_DK')
             ->orderBySort()
