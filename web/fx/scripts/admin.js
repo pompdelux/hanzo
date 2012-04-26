@@ -143,6 +143,17 @@
           }
         });
       });
+
+      // CMS edit page, title text field slug creation
+      $('#cms_title').blur(function(e){
+        $path = $('#cms_path').val();
+        $title = $('#cms_title').val();
+        $title = $title.replace(/[^a-zA-Z0-9\s]/g,"");
+        $title = $title.replace(/\s/g,'-');
+        $title = $title.toLowerCase();
+        $('#cms_path').val($path + $title);
+      });
+
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({
         axis : 'y',
