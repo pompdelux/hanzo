@@ -82,7 +82,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice'), response.message));
+                dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
               }
             }
             else {
