@@ -18,6 +18,82 @@
         <source>add.new.cmspage</source>
         <target>Opret nyt CMS node</target>
       </trans-unit>
+      <trans-unit id="admin.cms.redirects.link">
+        <source>admin.cms.redirects.link</source>
+        <target>Redirects</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirect.add.link">
+        <source>admin.cms.redirect.add.link</source>
+        <target>Opret Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.header.text">
+        <source>admin.cms.redirects.header.text</source>
+        <target>Alle Redirects</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit.header.text">
+        <source>admin.cms.redirects.edit.header.text</source>
+        <target>Rediger Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.description.text">
+        <source>admin.cms.redirects.description.text</source>
+        <target>Herunder kan du se alle aktive redirects. En redirect sørger for at kilde-stien vidersender besøgende til mål-stien.</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit.description.text">
+        <source>admin.cms.redirects.edit.description.text</source>
+        <target>Herunder kan du redigere eller oprette en Redirect. Udfyld alle felter og tryk på gem.</target>
+      </trans-unit>
+      <trans-unit id="update.redirect">
+        <source>update.redirect</source>
+        <target>Gem Redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.inserted">
+        <source>admin.cms.redirects.inserted</source>
+        <target>Redirect er blevet gemt!</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.source">
+        <source>admin.cms.redirects.source</source>
+        <target>Kilde Sti</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.target">
+        <source>admin.cms.redirects.target</source>
+        <target>Kilde Sti</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.edit">
+        <source>admin.cms.redirects.edit</source>
+        <target>Rediger redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.delete">
+        <source>admin.cms.redirects.delete</source>
+        <target>Slet redirect</target>
+      </trans-unit>
+      <trans-unit id="admin.inactive_nodes.header.text">
+        <source>admin.inactive_nodes.header.text</source>
+        <target>Inaktive CMS noder</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.id">
+        <source>admin.cms.inactive_nodes.id</source>
+        <target>Node ID</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.title">
+        <source>admin.cms.inactive_nodes.title</source>
+        <target>Node Titel</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.type">
+        <source>admin.cms.inactive_nodes.type</source>
+        <target>Node Type</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.edit">
+        <source>admin.cms.inactive_nodes.edit</source>
+        <target>Rediger node</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.inactive_nodes.delete">
+        <source>admin.cms.inactive_nodes.delete</source>
+        <target>Slet node</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.redirects.no.redirects.text">
+        <source>admin.cms.redirects.no.redirects.text</source>
+        <target>Der findes ingen Redirects i øjeblikket. Du kan tilføj en ny på linket øverst.</target>
+      </trans-unit>
       <trans-unit id="admin_add_new_cmspage_success">
         <source>add.new.cmspage.success</source>
         <target>CMS siden blev oprettet! Du kan nu tilføje indhold og indstillinger.</target>
@@ -1156,6 +1232,102 @@
       <trans-unit id="admin.washing.delete">
         <source>admin.washing.delete</source>
         <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.add.link">
+        <source>admin.zip_to_city.add.link</source>
+        <target>Tilføj nyt Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.list.link">
+        <source>admin.zip_to_city.list.link</source>
+        <target>Se alle Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.header.text">
+        <source>admin.zip_to_city.header.text</source>
+        <target>Post Numre</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit.header.text">
+        <source>admin.zip_to_city.edit.header.text</source>
+        <target>Rediger Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.description.text">
+        <source>admin.zip_to_city.description.text</source>
+        <target>Her kan du se alle post numre som er gemt. Rediger eller slet et Post Nr. med link ud for hvert nummer. Du kan søge med formularen øverst, eller vælge hvilket land du vil se Post numre fra.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit.description.text">
+        <source>admin.zip_to_city.edit.description.text</source>
+        <target>Rediger et Post nummer ved at udfylde felterne og derefter tryk på Gem</target>
+      </trans-unit>
+      <trans-unit id="update.zip_to_city">
+        <source>update.zip_to_city</source>
+        <target>Gem Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.zip">
+        <source>admin.zip_to_city.zip</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.countries_iso2">
+        <source>admin.zip_to_city.countries_iso2</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.city">
+        <source>admin.zip_to_city.city</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_id">
+        <source>admin.zip_to_city.county_id</source>
+        <target>Region id</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_name">
+        <source>admin.zip_to_city.county_name</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.comment">
+        <source>admin.zip_to_city.comment</source>
+        <target>Kommentar</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.edit">
+        <source>admin.zip_to_city.edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="zip_to_city.updated">
+        <source>zip_to_city.updated</source>
+        <target>Post Nummer opdateret!</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.delete">
+        <source>admin.zip_to_city.delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="delete.zip_to_city.success">
+        <source>delete.zip_to_city.success</source>
+        <target>Post nummer blev slettet!</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.no.zip_to_city.text">
+        <source>admin.zip_to_city.no.zip_to_city.text</source>
+        <target>Der findes ingen post numre for søgningen.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.zip.label">
+        <source>admin.zip_to_city.zip.label</source>
+        <target>Post Nr.</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.countries_iso2.label">
+        <source>admin.zip_to_city.countries_iso2.label</source>
+        <target>Land ISO2</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.city.label">
+        <source>admin.zip_to_city.city.label</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_id.label">
+        <source>admin.zip_to_city.county_id.label</source>
+        <target>Region Id</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.county_name.label">
+        <source>admin.zip_to_city.county_name.label</source>
+        <target>Region</target>
+      </trans-unit>
+      <trans-unit id="admin.zip_to_city.comment.label">
+        <source>admin.zip_to_city.comment.label</source>
+        <target>Kommentar</target>
       </trans-unit>
       <trans-unit id="admin.back.button">
         <source>admin.back.button</source>
