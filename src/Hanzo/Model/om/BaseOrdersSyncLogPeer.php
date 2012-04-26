@@ -36,13 +36,13 @@ abstract class BaseOrdersSyncLogPeer {
 	const TM_CLASS = 'OrdersSyncLogTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 4;
+	const NUM_COLUMNS = 5;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 4;
+	const NUM_HYDRATE_COLUMNS = 5;
 
 	/** the column name for the ORDERS_ID field */
 	const ORDERS_ID = 'orders_sync_log.ORDERS_ID';
@@ -55,6 +55,9 @@ abstract class BaseOrdersSyncLogPeer {
 
 	/** the column name for the CONTENT field */
 	const CONTENT = 'orders_sync_log.CONTENT';
+
+	/** the column name for the COMMENT field */
+	const COMMENT = 'orders_sync_log.COMMENT';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
@@ -75,12 +78,12 @@ abstract class BaseOrdersSyncLogPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'CreatedAt', 'State', 'Content', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'createdAt', 'state', 'content', ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::CREATED_AT, self::STATE, self::CONTENT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'CREATED_AT', 'STATE', 'CONTENT', ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'created_at', 'state', 'content', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('OrdersId', 'CreatedAt', 'State', 'Content', 'Comment', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId', 'createdAt', 'state', 'content', 'comment', ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID, self::CREATED_AT, self::STATE, self::CONTENT, self::COMMENT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID', 'CREATED_AT', 'STATE', 'CONTENT', 'COMMENT', ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id', 'created_at', 'state', 'content', 'comment', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	/**
@@ -90,12 +93,12 @@ abstract class BaseOrdersSyncLogPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'CreatedAt' => 1, 'State' => 2, 'Content' => 3, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'createdAt' => 1, 'state' => 2, 'content' => 3, ),
-		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::CREATED_AT => 1, self::STATE => 2, self::CONTENT => 3, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'CREATED_AT' => 1, 'STATE' => 2, 'CONTENT' => 3, ),
-		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'created_at' => 1, 'state' => 2, 'content' => 3, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+		BasePeer::TYPE_PHPNAME => array ('OrdersId' => 0, 'CreatedAt' => 1, 'State' => 2, 'Content' => 3, 'Comment' => 4, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('ordersId' => 0, 'createdAt' => 1, 'state' => 2, 'content' => 3, 'comment' => 4, ),
+		BasePeer::TYPE_COLNAME => array (self::ORDERS_ID => 0, self::CREATED_AT => 1, self::STATE => 2, self::CONTENT => 3, self::COMMENT => 4, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ORDERS_ID' => 0, 'CREATED_AT' => 1, 'STATE' => 2, 'CONTENT' => 3, 'COMMENT' => 4, ),
+		BasePeer::TYPE_FIELDNAME => array ('orders_id' => 0, 'created_at' => 1, 'state' => 2, 'content' => 3, 'comment' => 4, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
 	);
 
 	/**
@@ -171,11 +174,13 @@ abstract class BaseOrdersSyncLogPeer {
 			$criteria->addSelectColumn(OrdersSyncLogPeer::CREATED_AT);
 			$criteria->addSelectColumn(OrdersSyncLogPeer::STATE);
 			$criteria->addSelectColumn(OrdersSyncLogPeer::CONTENT);
+			$criteria->addSelectColumn(OrdersSyncLogPeer::COMMENT);
 		} else {
 			$criteria->addSelectColumn($alias . '.ORDERS_ID');
 			$criteria->addSelectColumn($alias . '.CREATED_AT');
 			$criteria->addSelectColumn($alias . '.STATE');
 			$criteria->addSelectColumn($alias . '.CONTENT');
+			$criteria->addSelectColumn($alias . '.COMMENT');
 		}
 	}
 

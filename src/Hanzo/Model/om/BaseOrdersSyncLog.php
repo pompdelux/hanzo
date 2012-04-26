@@ -76,6 +76,12 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 	protected $content;
 
 	/**
+	 * The value for the comment field.
+	 * @var        string
+	 */
+	protected $comment;
+
+	/**
 	 * @var        Orders
 	 */
 	protected $aOrders;
@@ -184,6 +190,16 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Get the [comment] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getComment()
+	{
+		return $this->comment;
+	}
+
+	/**
 	 * Set the value of [orders_id] column.
 	 * 
 	 * @param      int $v new value
@@ -270,6 +286,26 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 	} // setContent()
 
 	/**
+	 * Set the value of [comment] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     OrdersSyncLog The current object (for fluent API support)
+	 */
+	public function setComment($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->comment !== $v) {
+			$this->comment = $v;
+			$this->modifiedColumns[] = OrdersSyncLogPeer::COMMENT;
+		}
+
+		return $this;
+	} // setComment()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -309,6 +345,7 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 			$this->created_at = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->state = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->content = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->comment = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -317,7 +354,7 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 4; // 4 = OrdersSyncLogPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 5; // 5 = OrdersSyncLogPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating OrdersSyncLog object", $e);
@@ -549,6 +586,9 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersSyncLogPeer::CONTENT)) {
 			$modifiedColumns[':p' . $index++]  = '`CONTENT`';
 		}
+		if ($this->isColumnModified(OrdersSyncLogPeer::COMMENT)) {
+			$modifiedColumns[':p' . $index++]  = '`COMMENT`';
+		}
 
 		$sql = sprintf(
 			'INSERT INTO `orders_sync_log` (%s) VALUES (%s)',
@@ -571,6 +611,9 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 						break;
 					case '`CONTENT`':
 						$stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
+						break;
+					case '`COMMENT`':
+						$stmt->bindValue($identifier, $this->comment, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -719,6 +762,9 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 			case 3:
 				return $this->getContent();
 				break;
+			case 4:
+				return $this->getComment();
+				break;
 			default:
 				return null;
 				break;
@@ -752,6 +798,7 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 			$keys[1] => $this->getCreatedAt(),
 			$keys[2] => $this->getState(),
 			$keys[3] => $this->getContent(),
+			$keys[4] => $this->getComment(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aOrders) {
@@ -800,6 +847,9 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 			case 3:
 				$this->setContent($value);
 				break;
+			case 4:
+				$this->setComment($value);
+				break;
 		} // switch()
 	}
 
@@ -828,6 +878,7 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 		if (array_key_exists($keys[1], $arr)) $this->setCreatedAt($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setState($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setContent($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setComment($arr[$keys[4]]);
 	}
 
 	/**
@@ -843,6 +894,7 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersSyncLogPeer::CREATED_AT)) $criteria->add(OrdersSyncLogPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(OrdersSyncLogPeer::STATE)) $criteria->add(OrdersSyncLogPeer::STATE, $this->state);
 		if ($this->isColumnModified(OrdersSyncLogPeer::CONTENT)) $criteria->add(OrdersSyncLogPeer::CONTENT, $this->content);
+		if ($this->isColumnModified(OrdersSyncLogPeer::COMMENT)) $criteria->add(OrdersSyncLogPeer::COMMENT, $this->comment);
 
 		return $criteria;
 	}
@@ -916,6 +968,7 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setState($this->getState());
 		$copyObj->setContent($this->getContent());
+		$copyObj->setComment($this->getComment());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -1029,6 +1082,7 @@ abstract class BaseOrdersSyncLog extends BaseObject  implements Persistent
 		$this->created_at = null;
 		$this->state = null;
 		$this->content = null;
+		$this->comment = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();

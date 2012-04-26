@@ -796,6 +796,7 @@ CREATE TABLE `orders_sync_log`
 	`created_at` DATETIME NOT NULL,
 	`state` VARCHAR(12) DEFAULT 'ok' NOT NULL,
 	`content` TEXT,
+	`comment` TEXT,
 	PRIMARY KEY (`orders_id`,`created_at`),
 	CONSTRAINT `fk_orders_lines_3`
 		FOREIGN KEY (`orders_id`)

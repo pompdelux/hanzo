@@ -46,6 +46,7 @@ class OrdersSyncLogTableMap extends TableMap
 		$this->addPrimaryKey('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
 		$this->addColumn('STATE', 'State', 'VARCHAR', true, 12, 'ok');
 		$this->addColumn('CONTENT', 'Content', 'LONGVARCHAR', false, null, null);
+		$this->addColumn('COMMENT', 'Comment', 'LONGVARCHAR', false, null, null);
 		// validators
 	} // initialize()
 
