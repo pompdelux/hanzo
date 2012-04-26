@@ -156,7 +156,14 @@ class CmsController extends CoreController
                         $node->setType($cms_node->getType());
                         break;
                 }
+                // Vi skal bruge titel på Thread til Path
+                $cms_thread = CmsThreadQuery::create()
+                    ->joinWithI18n()
+                    ->findOneById($cms_node->getCmsThreadId());
+
                 $node->setCmsThreadId($cms_node->getCmsThreadId());
+                $node->setPath(Tools::stripText($cms_thread->getTitle()) . '/');
+
                 $node->setIsActive(FALSE);
                 $node->setSettings(json_encode($settings));
                 $node->save();
@@ -174,7 +181,7 @@ class CmsController extends CoreController
             'form' => $form->createView(),
         ));
     }
-    public function editAction($id, $locale = 'da_DK')
+    public function editAction($id, $locale)
     {
         $cache = $this->get('cache_manager');
 
@@ -217,14 +224,32 @@ class CmsController extends CoreController
 
             if ($form->isValid()) {
 
-                $node->save();
+                // Find dublicate URL'er
+                $urls = CmsQuery::create()
+                    ->useCmsI18nQuery()
+                        ->filterByPath($node->getPath())
+                    ->endUse()
+                    ->joinCmsI18n(NULL, 'INNER JOIN')
+                    ->filterByIsActive(TRUE)
+                    ->findOne()
+                ;
 
-                if($node->getIsActive()){
-                    $cache->routerBuilder();
-                    $cache->clearRedisCache();
+                // Findes der ikke nogle med samme url-path _eller_ er node IKKE aktiv
+                if( !($urls instanceof Cms) || !$node->getIsActive())
+                {
+                    $node->save();
+
+                    if($node->getIsActive()){
+                        $cache->routerBuilder();
+                        $cache->clearRedisCache();
+                    }
+
+                    $this->get('session')->setFlash('notice', 'cms.updated');
                 }
-
-                $this->get('session')->setFlash('notice', 'cms.updated');
+                else // Dublicate url-path
+                {
+                    $this->get('session')->setFlash('notice', 'cms.update.failed.dublicate.path');
+                }
             }
         }
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
