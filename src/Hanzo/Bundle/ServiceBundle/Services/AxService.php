@@ -131,7 +131,7 @@ class AxService
 
         // payment method
         $custPaymMode = 'Bank';
-        if (!empty($order->getPaymentGatewayId()) && isset($attributes->payment->cc_type)) {
+        if ( "" != $order->getPaymentGatewayId() && isset($attributes->payment->cc_type) ) {
             switch (strtoupper($attributes->payment->cc_type)) {
                 case 'VISA ELECTRON (DANIS': // DIBS
                 case 'VISA (SWEDISH CARD)':
