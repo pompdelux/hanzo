@@ -10,6 +10,3 @@
 [submodule "web/fx/scripts/history.js"]
 	path = web/fx/scripts/history.js
 	url = https://github.com/balupton/history.js.git
-[submodule "app/Resources"]
-	path = app/Resources
-	url = git@github.com:bellcom/resources.hanzo.git
