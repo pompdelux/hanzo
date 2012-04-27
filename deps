@@ -91,3 +91,8 @@
 [Smesg]
     git=git@github.com:mrbase/Smesg.git
     version=v1.0
+
+[ExposeTranslationBundle]
+    git=http://github.com/willdurand/BazingaExposeTranslationBundle.git
+    target=/bundles/Bazinga/ExposeTranslationBundle
+
