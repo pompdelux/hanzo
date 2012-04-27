@@ -37,8 +37,8 @@ var dialoug = (function($) {
     defaults.html = templates.confirm
       .replace('%title%', title)
       .replace('%message%', message)
-      .replace('%ok%', i18n.t('Ok'))
-      .replace('%cancel%', i18n.t('Cancel'))
+      .replace('%ok%', ExposeTranslation.get('js:ok'))
+      .replace('%cancel%', ExposeTranslation.get('js:cancel'))
     ;
 
     $.colorbox(defaults);

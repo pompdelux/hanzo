@@ -36,8 +36,8 @@
       if ($countdown) {
         $countdown.countdown({
           timezone: +1,
-          until: new Date(i18n.t('countdown date')),
-          layout: '<strong>' + i18n.t('countdown format') + '</strong>'
+          until: new Date(ExposeTranslation.get('js:countdown.date')),
+          layout: '<strong>' + ExposeTranslation.get('js:countdown.format') + '</strong>'
         });
       }
      }

@@ -43,7 +43,7 @@ var gothia = (function($) {
       var data = $(this).serialize();
       var url = $(this).attr('action');
 
-      dialoug.loading( '#form_social_security_num', i18n.t('Please wait') );
+      dialoug.loading( '#form_social_security_num', ExposeTranslation.get('js:please.wait') );
       $("#gothia-account-container form input").attr('disabled', 'disabled');
 
       $.ajax({
@@ -62,14 +62,14 @@ var gothia = (function($) {
           {
             $("#gothia-account-container form input").removeAttr('disabled');
             // FIXME: text
-            dialoug.error( 'Der opstod en fejl', data.message );
+            dialoug.error( ExposeTranslation.get('js:an.error.occured'), data.message );
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
           $("#gothia-account-container form input").removeAttr('disabled');
           dialoug.stopLoading();
           // FIXME: text
-          dialoug.error( 'Der opstod en fejl', errorThrown );
+          dialoug.error( ExposeTranslation.get('js:an.error.occured'), errorThrown );
         }
       });
     });

@@ -29,7 +29,7 @@ $(function()
 
     if ($(this).hasClass('active'))
     {
-      $(this).text(i18n.hideAll);
+      $(this).text(ExposeTranslation.get('js:hide.all');
       $(this).parent().find('img').each(function(x)
       {
         $(this).attr('src', '/templates/pompdelux/images/faqminus.gif');
@@ -38,7 +38,7 @@ $(function()
     }
     else
     {
-      $(this).text(i18n.showAll);
+      $(this).text(ExposeTranslation.get('js:show.all');
       $(this).parent().find('img').each(function(x)
       {
         $(this).attr('src', '/templates/pompdelux/images/faqplus.gif');

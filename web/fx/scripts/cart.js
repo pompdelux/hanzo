@@ -16,7 +16,7 @@
         var name = $a.closest('tr').find('.info a').text();
 
         // warn the user before removing the product.
-        dialoug.confirm('Notice', i18n.t('delete from basket warning', { '%product%' : name }), function(choice) {
+        dialoug.confirm(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:delete.from.basket.warning', { 'product' : name }), function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -61,7 +61,7 @@
           color  : $('div.color span', $info).text(),
         };
 
-        var $act = $('<div id="cart-edit-element"><a href="" class="button left">' + i18n.t('Cancel') + '</a></div>');
+        var $act = $('<div id="cart-edit-element"><a href="" class="button left">' + ExposeTranslation.get('js:cancel') + '</a></div>');
         var tr_offset = $tr.offset();
         var form_offset = $form.offset();
 
@@ -99,7 +99,7 @@
           async : false,
           success : function(response, textStatus, jqXHR) {
             if (response.status) {
-              var $size = $('<select id="size" name="size"><option value="">' + i18n.t('Choose') + '</option></select>');
+              var $size = $('<select id="size" name="size"><option value="">' + ExposeTranslation.get('js:choose') + '</option></select>');
 
               var used = [];
               $.each(response.data.products, function(index, product) {
@@ -139,7 +139,7 @@
             success : function(response, textStatus, jqXHR) {
               if (name == 'size') {
                 if (response.status) {
-                  var $color = $('<select id="color" name="color"><option value="">' + i18n.t('Choose') + '</option></select>');
+                  var $color = $('<select id="color" name="color"><option value="">' + ExposeTranslation.get('js:choose') + '</option></select>');
                   var used = [];
                   $.each(response.data.products, function(index, product) {
                     if (-1 == $.inArray(product.color, used)) {
@@ -154,14 +154,14 @@
                 if (response.status) {
                   var product = response.data.products[0];
                   if (product.date) {
-                    dialoug.confirm(i18n.t('Notice!'), response.message, function(c) {
+                    dialoug.confirm(ExposeTranslation.get('js:notice'), response.message, function(c) {
                       if (c != 'ok') {
                         return;
                       }
                     });
                   }
 
-                  $('.info', $edit).append('<div class="quantity"><label for="quantity">' + i18n.t('Quantity') + ':</label> <select name="quantity" id="quantity"><option value="">' + i18n.t('Choose') + '</option></select></div>');
+                  $('.info', $edit).append('<div class="quantity"><label for="quantity">' + ExposeTranslation.get('js:quantity') + ':</label> <select name="quantity" id="quantity"><option value="">' + ExposeTranslation.get('js:choose') + '</option></select></div>');
                   for (var i=1; i<11; i++) {
                     $('.info select#quantity', $edit).append('<option value="'+i+'">'+i+'</option>');
                   }
@@ -173,7 +173,7 @@
         });
 
         $edit.on('change', 'select#quantity', function() {
-          $(this).closest('div').after('<input type="button" class="button" value="'+i18n.t('Update')+'">');
+          $(this).closest('div').after('<input type="button" class="button" value="'+ExposeTranslation.get('js:update')+'">');
         });
 
         $edit.on('click', 'input.button', function() {
@@ -205,7 +205,7 @@
                   }
                   else {
                     if (product.date) {
-                      var notice = i18n.t('late delivery', {'%product%' : request_data.master+' '+request_data.color+' '+request_data.size , '%date%' : product.date});
+                      var notice = ExposeTranslation.get('js:late.delivery', {'product' : request_data.master+' '+request_data.color+' '+request_data.size , 'date' : product.date});
                       $act.append('<div class="delivery-notice">'+notice+'</div>');
                       $info.data('confirmed', true);
                       return;

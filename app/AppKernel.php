@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Propel\PropelBundle\PropelBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
             new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
+            new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
 
             new Hanzo\Bundle\CMSBundle\HanzoCMSBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),

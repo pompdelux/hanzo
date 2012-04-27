@@ -112,7 +112,7 @@
           success: function(responce, textStatus, jqXHR) {
             if (false === responce.status) {
               if (responce.message) {
-                dialoug.alert(i18n.t('Notice!'), responce.message);
+                dialoug.alert(ExposeTranslation.get('js:notice'), responce.message);
               }
               return;
             }
@@ -128,7 +128,7 @@
             if (name == 'color') {
               var product = responce.data.products[0];
               if (product.date) {
-                dialoug.confirm(i18n.t('Notice!'), responce.message, function(c) {
+                dialoug.confirm(ExposeTranslation.get('js:notice'), responce.message, function(c) {
                   if (c == 'ok') {
                     $('form.buy #quantity').closest('label').removeClass('off');
                     $form.find('.button').show();
@@ -158,7 +158,7 @@
           success: function(responce, textStatus, jqXHR) {
             if (false === responce.status) {
               if (responce.message) {
-                dialoug.alert(i18n.t('Notice!', responce.message));
+                dialoug.alert(ExposeTranslation.get('js:notice', responce.message));
               }
             }
             else {
@@ -169,7 +169,7 @@
             _resetForm();
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(i18n.t('Notice!'),i18n.t('An error occurred'));
+            dialoug.error(ExposeTranslation.get('js:notice!'), ExposeTranslation.get('js:an.error.occurred'));
           }
         });
       });

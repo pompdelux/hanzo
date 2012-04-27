@@ -76,7 +76,7 @@ var checkout = (function($) {
       success: function(data) {
         if ( !data.status )
         {
-          dialoug.alert( i18n.t('Notice!'), data.message);
+          dialoug.alert(ExposeTranslation.get('js:notice'), data.message);
         }
       }
     });
@@ -190,7 +190,7 @@ var checkout = (function($) {
           {
             this.data.state = false;
             this.update();
-            dialoug.alert( i18n.t('Notice!'), i18n.t('checkout.shipping_business') );
+            dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:checkout.shipping_business'));
           }
           else
           {
@@ -388,7 +388,7 @@ var checkout = (function($) {
         if ($button.length) {
           $button.show();
         } else {
-          $('#main').append('<div id="continue-button" class="checkout-block"><a href="" class="button right">'+i18n.t('forward')+'</a></div>');
+          $('#main').append('<div id="continue-button" class="checkout-block"><a href="" class="button right">'+ExposeTranslation.get('js:forward')+'</a></div>');
           $('#continue-button a').on('click', function(event) {
             event.preventDefault();
             blocks.summery.reveal();
@@ -403,7 +403,7 @@ var checkout = (function($) {
         $.each(blocks, function(item) {
           if ( this.data.state !== true ) {
             //console.log(this.data.name +" does not have a ok state");
-            this.setMessage( i18n.t('Not filled correctly'), 'error' );
+            this.setMessage(ExposeTranslation.get('js:not.filled.correctly'), 'error' );
             this.error();
             self.data.state = false;
             self.update();
@@ -445,7 +445,7 @@ var checkout = (function($) {
       var self = this;
       $.each(blocks, function(item) {
         if ( this.data.name !== self.data.name && this.data.state !== true ) {
-          this.setMessage( i18n.t('Not filled correctly'), 'error' );
+          this.setMessage(ExposeTranslation.get('js:not.filled.correctly'), 'error');
           this.error();
           self.data.state = false;
           self.update();

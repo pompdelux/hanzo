@@ -63,6 +63,9 @@ HanzoCMSBundle_cms:
     resource: "@HanzoCMSBundle/Resources/config/cms_routing.yml"
     prefix:   /
 
+_bazinga_exposetranslation:
+    resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

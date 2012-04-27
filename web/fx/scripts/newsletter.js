@@ -17,14 +17,14 @@ var newsletter = (function($) {
   };
 
   var subscriptionsUpdate = function( lists ) {
-    dialoug.loading( selectorName, i18n.t('Please wait') );
+    dialoug.loading( selectorName, ExposeTranslation.get('js:please.wait') );
     $.getJSON(base_url, {method: 'subscriptions:update', email: email, lists: lists}, function(data) {
       if ( data.is_error )
       {
-        dialoug.error( i18n.t('An error occurred'), data.content.msg  );
+        dialoug.error( ExposeTranslation.get('js:an.error.occurred'), data.content.msg  );
       }
       dialoug.stopLoading();
-      dialoug.notice( i18n.t( 'Your action was completed' ), 'info', 2000 );
+      dialoug.notice( ExposeTranslation.get('js:action.completed' ), 'info', 2000 );
     });
   };
 
@@ -54,11 +54,11 @@ var newsletter = (function($) {
   };
 
   pub.lists.get = function( id ) {
-      dialoug.loading( selectorName, i18n.t('Please wait') );
+      dialoug.loading( selectorName, ExposeTranslation.get('js:please.wait') );
       $.getJSON(base_url, {method: 'lists:get', email: email}, function(data) {
       if ( data.is_error )
       {
-        dialoug.error( i18n.t('An error occurred'), data.content.msg  );
+        dialoug.error( ExposeTranslation.get('js:an.error.occurred'), data.content.msg  );
       }
       else
       {

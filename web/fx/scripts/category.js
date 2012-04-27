@@ -35,7 +35,7 @@
           url = State.url;
 
         // start loading anim
-        dialoug.loading('.pager.ajax ul', i18n.t('Loading ...'));
+        dialoug.loading('.pager.ajax ul', ExposeTranslation.get('js:loading.std'));
 
         // fetch unknown pages via ajax
         if ( cache[url] === undefined ) {
