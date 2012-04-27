@@ -72,7 +72,7 @@ var dialoug = (function($) {
     $.colorbox({
       'top' : '25%',
       'maxWidth' : '400px',
-      'close' : i18n.t('Close'),
+      'close' : ExposeTranslation.get('js:close'),
       'html': templates.alert
                        .replace('%title%', title)
                        .replace('%message%', message)

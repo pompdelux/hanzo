@@ -19,7 +19,7 @@ $(function() {
         dataType: 'json',
         success: function(data) {
           $.each(data, function(i,item) {
-            var text = i18n.consultant + '<br />' + item.fullname + '<br />' + item.postcode + ' '+ item.city + '<br /><br /><p>' + i18n.phone + ': ' + item.phone + '<br />' + i18n.email + ': <a href="mailto:' + item.email + '">' + item.email + '</a><br /><br />' + item.notes;
+            var text = ExposeTranslation.get('js:consultant') + '<br />' + item.fullname + '<br />' + item.postcode + ' '+ item.city + '<br /><br /><p>' + ExposeTranslation.get('js:phone') + ': ' + item.phone + '<br />' + ExposeTranslation.get('js:email') + ': <a href="mailto:' + item.email + '">' + item.email + '</a><br /><br />' + item.notes;
             var point = new google.maps.LatLng(item.latitude, item.longitude);
             var infowindow = new google.maps.InfoWindow({ content: text });
             var markerParams = {
