@@ -53,4 +53,18 @@ class UpdateListener
         throw new Exception( 'UpdateListener: config.yml is missing the framework -> templating block' );
       }
     }
+
+    /**
+     * onUpdateTranslations
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function onUpdateTranslations(FilterUpdateEvent $event)
+    {
+        chdir( __DIR__.'/../../../../app/Resources/translations/' );
+        //$return = `/usr/bin/ls -l`;
+        $command = '/usr/bin/git status';
+        exec($command, $out, $return);
+        error_log(__LINE__.':'.__FILE__.' '.$return .' '.print_r($out,1)); // hf@bellcom.dk debugging
+    }
 }

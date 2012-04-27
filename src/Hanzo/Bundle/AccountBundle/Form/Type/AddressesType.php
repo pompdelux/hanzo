@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilder;
 
 class AddressesType extends AbstractType
 {
+    private $choices;
+
     public function __construct($countries = null)
     {
         $this->countries = $countries;
@@ -29,19 +31,19 @@ class AddressesType extends AbstractType
             'translation_domain' => 'account'
         ));
 
-        // Butt ugly... but it works for now
-        if ( $this->countries instanceOf \PropelObjectCollection ) // Show a list of all countries
+        if ( count( $this->countries ) > 1 )
         {
           $choices = array();
           foreach ($this->countries as $country)
           {
-            $choices[$country->getId()] = $country->getName();
+            $choices[$country->getId()] = $country->getLocalName();
           }
 
-          $builder->add('country', 'choice', array(
-            'choices'   => $choices,
+          $builder->add('countries_id', 'choice', array(
+            'choices'            => $choices,
             'translation_domain' => 'account',
           ));
+          $builder->add('country', 'hidden', array('translation_domain' => 'account'));
         }
         else
         {

@@ -49,17 +49,27 @@ class DefaultController extends CoreController
         $customer = new Customers();
         $addresses = new Addresses();
 
-        $country = $this->getCountryOrCountries();
+        $countries = CountriesPeer::getAvailableDomainCountries();
 
-        if ( $country instanceOf Countries ) // else it is probably a list (PropelObjectCollection)
+        if ( count( $countries ) == 1 ) // for .dk, .se, .no and maybe .nl
         {
-            $addresses->setCountry( $country->getLocalName() );
-            $addresses->setCountriesId( $country->getId() );
+            $addresses->setCountry( $countries[0]->getLocalName() );
+            $addresses->setCountriesId( $countries[0]->getId() );
+        }
+        else
+        {
+            $geoip = $this->get('geoip_manager');
+            $geoipResult = $geoip->lookup();
+            if ( !is_null( $geoipResult['country_id'] ) )
+            {
+                $addresses->setCountry( $geoipResult['country_localname'] );
+                $addresses->setCountriesId( $geoipResult['country_id'] );
+            }
         }
 
         $customer->addAddresses($addresses);
 
-        $form = $this->createForm(new CustomersType( true, new AddressesType( $country )), $customer);
+        $form = $this->createForm(new CustomersType( true, new AddressesType( $countries ) ), $customer);
 
         if ('POST' === $request->getMethod())
         {
@@ -81,23 +91,13 @@ class DefaultController extends CoreController
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                     if ( is_object($response) && $response->is_error )
                     {
-                        // TODO: do something?
+                        $this->get('session')->setFlash('warning', 'account.newsletter.warning');
                     }
                 }
 
-                if ( !isset($formData['addresses'][0]['countries_id']) && isset($formData['addresses'][0]['country']) )
-                {
-                    // TODO: can the first instance of addresses be used? is it pass by ref when addAddreses is called?
-                    $addresses = $customer->getAddresses();
-                    $address = $addresses[0];
-                    $country = CountriesPeer::retrieveByPK($formData['addresses'][0]['country']);
-                    $address->setCountriesId( $country->getId() );
-                    $address->setCountry( $country->getLocalName() );
-                    // TODO: delete existing??
-                    $customer->addAddresses($address);
-                }
-
                 $customer->save();
+                // FIXME: 
+                //$this->get('ax_manager')->sendDebtor($customer);
 
                 // login user
                 $user = new ProxyUser($customer);
@@ -106,14 +106,13 @@ class DefaultController extends CoreController
 
                 $this->get('session')->setFlash('notice', 'account.created');
 
-                // TODO: should all fields not have been trimmed?
-                $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
+                $name = $customer->getFirstName() . ' ' . $customer->getLastName();
 
                 try
                 {
                     $mailer = $this->get('mail_manager');
                     $mailer->setMessage('account.create', array(
-                        'name' => $name,
+                        'name'     => $name,
                         'username' => $customer->getEmail(),
                         'password' => $customer->getPasswordClear(),
                     ));
@@ -186,9 +185,9 @@ class DefaultController extends CoreController
     public function editAction()
     {
         $customer = CustomersPeer::getCurrent();
-        $country = $this->getCountryOrCountries();
+        $countries = CountriesPeer::getAvailableDomainCountries();
 
-        $form = $this->createForm(new CustomersType(false, new AddressesType( $country )), $customer);
+        $form = $this->createForm(new CustomersType(false, new AddressesType( $countries )), $customer);
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -199,6 +198,8 @@ class DefaultController extends CoreController
                     $customer->setPassword(sha1($customer->getPasswordClear()));
                 }
                 $customer->save();
+                // FIXME: 
+                //$this->get('ax_manager')->sendDebtor($customer);
 
                 $this->get('session')->setFlash('notice', 'account.updated');
                 return $this->redirect($this->generateUrl('_account'));
@@ -365,7 +366,7 @@ class DefaultController extends CoreController
             'page_type' => 'edit-address-block',
             'title' => ($address->isNew() ? 'add.address' : 'edit.address'),
             'form' => $form->createView(),
-            'callback' => 'postal' // TODO only for dk, no and se
+            'callback' => 'postal'
         ));
 
         if ('json' === $this->getFormat()) {
@@ -377,39 +378,5 @@ class DefaultController extends CoreController
         }
 
         return $html;
-    }
-
-
-
-    /**
-     * getCountryOrCountries
-     * @return mixed
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    protected function getCountryOrCountries()
-    {
-        $hanzo = Hanzo::getInstance();
-        $domainKey = $hanzo->get('core.domain_key');
-
-        switch ($domainKey)
-        {
-            case 'DK':
-                $country = CountriesPeer::retrieveByPK(58);
-                break;
-            case 'COM':
-                $country = CountriesQuery::create()->find(); // Note that .com returns all countries
-                break;
-            case 'SE':
-                $country = CountriesPeer::retrieveByPK(207);
-                break;
-            case 'NO':
-                $country = CountriesPeer::retrieveByPK(161);
-                break;
-            case 'NL':
-                $country = CountriesPeer::retrieveByPK(151);
-                break;
-        }
-
-        return $country;
     }
 }

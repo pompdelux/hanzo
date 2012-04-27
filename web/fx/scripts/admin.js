@@ -84,8 +84,7 @@
               if (response.message) {
                 dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
               }
-            }
-            else {
+            } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
               dialoug.slideNotice(response.message);
             }
@@ -449,12 +448,60 @@
       });
       // ios class added to body
       switch (navigator.platform) {
-      case 'iPad':
-      case 'iPhone':
-      case 'iPod':
-        $('html').addClass('ios');
-        break;
+        case 'iPad':
+        case 'iPhone':
+        case 'iPod':
+          $('html').addClass('ios');
+          break;
       }
+
+      // turn on colorbox for selected elements
+      $('a[rel="colorbox"]').each(function (){
+        var $element = $(this);
+        var iframe = false;
+        if ($element.hasClass('iframe')) {
+          iframe = true;
+        }
+        $(this).colorbox({iframe: iframe});
+      });
+
+      // preview and re-send orders
+      $('a.preview-order, a.resend-order').on('click', function(event) {
+        event.preventDefault();
+        var oid = $(this).closest('p').find('input').val();
+        if (undefined === oid) {
+          oid = '';
+        } else {
+          oid = '/'+oid;
+        }
+        $.getJSON(this.href+oid, function(result) {
+          if (result.status) {
+            if (result.message) {
+              dialoug.info(ExposeTranslation.get('js:notice'), result.message);
+            } else {
+              $.colorbox({html: result.data.html});
+            }
+          } else {
+            dialoug.alert(ExposeTranslation.get('js:notice'), result.message);
+          }
+        })
+      });
+
+      // confirm delete...
+      $('a[rel="confirm"]').each(function() {
+        var $this = $(this);
+        var msg = $this.data('confirm-message');
+        if (msg) {
+          $this.on('click', function(event) {
+            event.preventDefault();
+            dialoug.confirm('OBS !', msg, function(state) {
+              if (state == 'ok') {
+                document.location.href = $this.attr('href');
+              }
+            });
+          });
+        }
+      });
     }
 
     /**

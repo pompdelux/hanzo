@@ -2,12 +2,10 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Hanzo\Core\CoreController;
 
-
-class DefaultController extends Controller
+class DefaultController extends CoreController
 {
-    
     public function indexAction()
     {
         return $this->render('AdminBundle:Default:index.html.twig');

@@ -43,10 +43,14 @@ h4 {
 table {
   width: 100%;
   border-spacing: 0;
+  margin: 20px 0px;
 }
-
+th {
+  border-bottom: 1px solid #000;
+}
 td, th {
   vertical-align: top;
+  text-align: left;
 }
 
 th.left,
@@ -64,7 +68,9 @@ td.center {
   text-align: center;
   float: none;
 }
-
+table.bottom {
+  border-bottom: 1px solid #000;
+}
 p {
   margin-top: 0;
   padding-top: 0;
@@ -390,7 +396,7 @@ nav.sub li.dropdown-menu a span.cat-id,
 #main {
   position: relative;
 
-  margin: 75px 10px 45px 200px;
+  margin: 75px 10px 45px 230px;
   /*background-image: url(/fx/images/615e5f.png);*/
   background-color: white;
   padding: 20px;
