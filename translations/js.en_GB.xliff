@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update">
+                <source>update</source>
+                <target>Opdater</target>
+            </trans-unit>
+            <trans-unit id="forward">
+                <source>forward</source>
+                <target>Videre</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Skjul alle</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Vis alle</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Luk</target>
+            </trans-unit>
+            <trans-unit id="ok">
+                <source>ok</source>
+                <target>Ok</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Annuller</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Bemærk!</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Vælg</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Antal</target>
+            </trans-unit>
+            <trans-unit id="please.wait">
+                <source>please.wait</source>
+                <target>Vent venligst</target>
+            </trans-unit>
+            <trans-unit id="action.completed">
+                <source>action.completed</source>
+                <target>Din handling blev udført</target>
+            </trans-unit>
+            <trans-unit id="an.error.occured">
+                <source>an.error.occured</source>
+                <target>Der opstod en fejl</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>February 20, 2012 09:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target><![CDATA[<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning">
+                <source>delete.from.basket.warning</source>
+                <target><![CDATA[Er du sikker på du vil slette <strong>%product%</strong> fra din kurv ?]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target><![CDATA[<h2>Bemærk</h2><strong>"%product%"</strong> har vi ikke på lager i øjeblikket.<br>Hele din ordre forventes afsendt fra vores lager senest <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly">
+                <source>not.filled.correctly</source>
+                <target>Ikke udfyldt korrekt</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business">
+                <source>checkout.shipping_business</source>
+                <target>Du har valgt "Post Danmark Erhverv". Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).</target>
+            </trans-unit>
+            <trans-unit id="loading.std">
+                <source>loading.std</source>
+                <target>Indlæser ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search">
+                <source>loading.search</source>
+                <target>Søger ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products">
+                <source>loading.search.products</source>
+                <target>Finder produkter ...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target><![CDATA[<font color="#A10000"><b>Det er muligt at din ordres afsendelsesdato ændre sig til en senere afsendelsesdato ved redigering.</b></font><br><br>For at redigere din ordre skal du gøre følgende:<br><br>1) Klik på "Rediger" for at redigere ordren. Dine varer vil herefter blive lagt tilbage i kurven.<br><br>2) Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du at tilføje varer, skal du klikke på menuen Webshop.<br><br>3) Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og følge trin 1 til 5. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.<br><br><b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard skal du være opmærksom på følgende:<ul><li>Der foretages endnu en reservation af det fulde købs beløb når du redigerer din ordre. </li><li>Reservationen på din oprindelige ordre bliver straks annulleret af POMPdeLUX og vi har således kun reserveret købs beløbet på din redigerede ordre. Hos dit pengeinstitut kan der imidlertid gå op til 6 uger inden reservationen ophæves. </li></ul>]]></target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Konsulent</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-mail</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

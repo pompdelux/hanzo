@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="newsletter_1">
+        <source>block.subscribe.newsletter_heading</source>
+        <target>Newsletter</target>
+      </trans-unit>
+      <trans-unit id="newsletter_2">
+        <source>block.subscribe.name_label</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="newsletter_3">
+        <source>block.subscribe.email_label</source>
+        <target>E-mail address</target>
+      </trans-unit>
+      <trans-unit id="newsletter_4">
+        <source>block.subscribe.submit_button</source>
+        <target>Subscribe</target>
+      </trans-unit>
+      <trans-unit id="newsletter_5">
+        <source>block.your.newsletters_heading</source>
+        <target>My Newsletter Subscriptions</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

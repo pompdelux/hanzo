@@ -1,0 +1,18 @@
+{% extends layout %}
+{% block content %}
+
+{#
+  TODO: rewrite to use accordion
+  http://jquerytools.org/demos/tabs/accordion.html
+#}
+
+  {% render 'ShippingBundle:Default:block' %}
+  {% render 'CheckoutBundle:Default:addresses' %}
+  {% render 'PaymentBundle:Default:block' %}
+  {% render 'CheckoutBundle:Default:confirm' %}
+
+{% endblock %}
+
+{% block javascript %}
+<script>$(function () {checkout.init();});</script>
+{% endblock javascript %}

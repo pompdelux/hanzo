@@ -1,0 +1,32 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_cms_redirects') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+<h1>{{ 'admin.cms.redirects.edit.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>{{ 'admin.cms.redirects.edit.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_cms_redirect_edit', {'id' : redirect.id }) }}" method="post" {{ form_enctype(form) }} id="cms-redirect-edit-form" class="edit-form">
+  <div id="cms-redirect-edit">
+    {{ form_rest(form) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'update.redirect'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_cms_redirects') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}

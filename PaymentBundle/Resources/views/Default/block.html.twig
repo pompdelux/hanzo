@@ -1,0 +1,10 @@
+<div id="checkout-block-payment" class="checkout-block">
+  <h1>{{ 'payment.title'|trans({}, 'checkout') }}</h1>
+  <div class="msg hidden"></div>
+
+  <p>{{ 'payment.text'|trans({}, 'checkout') }}</p>
+
+  {% render 'PaymentBundle:Dibs:block' %}
+  {% render 'PaymentBundle:Gothia:block' %}
+  {% render 'PaymentBundle:PayByBill:block' %}
+</div>
