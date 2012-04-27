@@ -12,10 +12,11 @@ $ts = microtime(1);
 if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
     '90.185.183.84', // Bellcom office
     '85.236.67.1',
-    '87.104.21.83', // Ulrik home
+    '87.104.21.83', // Ulrik @home
     '192.168.42.52', // Ulrik local
-    '87.104.49.70', // Henrik home
+    '87.104.49.70', // Henrik @home
     '192.168.0.4', // Henrik local
+    '80.197.249.250', // Heinrich @home
     '127.0.0.1',
     '::1',
 ))) {
