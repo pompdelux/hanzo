@@ -23,6 +23,6 @@ $kernel = new AppCache($kernel);
 $handle = $kernel->handle(Request::createFromGlobals());
 
 header('X-hanzo-t: ' . (microtime(1) - $ts));
-header('X-hanzo-m: ' . $kernel::hrSize(memory_get_peak_usage()));
+header('X-hanzo-m: ' . $kernel->getKernel()->hrSize(memory_get_peak_usage()));
 
 $handle->send();
