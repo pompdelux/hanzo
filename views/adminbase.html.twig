@@ -83,8 +83,7 @@ var cdn_url = '{{ cdn }}';
         <div style="display: none">
           <a href="{{ path('admin_cache_jscss') }}">Ryd js + css</a><br><br>
           <a href="{{ path('admin_cache_redis') }}">Ryd Redis</a><br><br>
-          <a href="{{ path('admin_cache_router') }}">Genopbyg router</a><br><br>
-          <a href="{{ path('admin_cache_file') }}">Ryd filer</a><br><br>
+          <a href="{{ path('admin_cache_productpicture') }}">Ryd produktbilleder</a><br><br>
         </div>
       </li>
       <li id="select-domain">
@@ -118,6 +117,9 @@ var cdn_url = '{{ cdn }}';
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 <script src="//cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
 
+<script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js' }) }}"></script>
+
 {% javascripts
   'fx/scripts/jquery.ui.nestedSortable.js'
   'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
@@ -129,7 +131,6 @@ var cdn_url = '{{ cdn }}';
   'fx/scripts/video-js/video.js'
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
-  'fx/scripts/i18n.js'
   'fx/scripts/yatzy.js'
 
   'fx/scripts/dialoug.js'

@@ -149,6 +149,9 @@ var vegas_backgrounds = [
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script src="//cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
 
+<script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js' }) }}"></script>
+
 {% javascripts
   'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
   'fx/scripts/zoom/jquery.zoom.js'
@@ -160,7 +163,6 @@ var vegas_backgrounds = [
   'fx/scripts/vegas/jquery.vegas.js'
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
-  'fx/scripts/i18n.js'
   'fx/scripts/yatzy.js'
 
   'fx/scripts/dialoug.js'
