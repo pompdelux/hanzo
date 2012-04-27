@@ -1,5 +1,8 @@
 <?php
 
+// start parse time timer
+$ts = microtime(1);
+
 // if you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/book/installation.html#configuration-and-setup for more information
 //umask(0000);
@@ -27,5 +30,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
-$kernel->handle(Request::createFromGlobals())->send();
+$handle = $kernel->handle(Request::createFromGlobals());
 
+header('X-hanzo-t: ' . (microtime(1) - $ts));
+header('X-hanzo-m: ' . $kernel::hrSize(memory_get_peak_usage()));
+
+$handle->send();
