@@ -74,7 +74,7 @@ class CmsController extends CoreController
         }
     }
 
-    public function addAction($locale = 'en_EN')
+    public function addAction($locale = 'en_GB')
     {
         $cms_node = new CmsNode();
 

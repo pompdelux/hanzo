@@ -8,25 +8,25 @@ admin_settings:
 
 admin_setting_add:
     pattern:  /admin/settings/add/{domain_setting}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:addSetting
         domain_setting: false
 
 admin_settings_domain:
     pattern:  /admin/settings/domain/{domain_key}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:domain
         domain_key: 'COM'
 
 admin_settings_payment_delivery:
     pattern:  /admin/settings/paymentdelivery/{domain_key}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:paymentdelivery
         domain_key: 'COM'
 
 admin_settings_washing_instructions:
     pattern:  /admin/settings/washinginstructions/{code}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:washingInstructionsIndex
         code: null
     requirements:
@@ -38,7 +38,7 @@ admin_settings_washing_instructions_locale:
 
 admin_settings_washing_instructions_edit:
     pattern:  /admin/settings/washinginstructions/edit/{id}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:washingInstructionsEdit
         id: null
     requirements:
@@ -54,14 +54,14 @@ admin_settings_washing_instructions_delete:
 
 admin_settings_messages_edit:
     pattern:  /admin/settings/messages/edit/{id}/{locale}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:messagesI18nView
         locale: null
     requirements:
         id: \d+
 admin_settings_messages_edit_ns:
     pattern:  /admin/settings/messages/edit-ns/{id}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:messagesViewNs
         id: null
     requirements:
@@ -69,13 +69,13 @@ admin_settings_messages_edit_ns:
 
 admin_settings_messages:
     pattern:  /admin/settings/messages/{ns}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:messagesIndex
         ns: null
 
 admin_settings_messages_locale:
     pattern:  /admin/settings/messages/locale/{locale}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Settings:messagesIndex
 admin_settings_messages_delete:
     pattern:  /admin/settings/messages/delete/{id}/{locale}
@@ -93,22 +93,22 @@ admin_cms:
 
 admin_cms_add:
     pattern:  /admin/cms/add/{locale}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Cms:add
-        locale: 'en_EN'
+        locale: 'en_GB'
 
 admin_cms_edit:
     pattern:  /admin/cms/edit/{id}/{locale}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Cms:edit
         id: 0
-        locale: 'en_EN'
+        locale: 'en_GB'
     requirements:
         id: \d+
 
 admin_cms_delete:
     pattern:  /admin/cms/delete/{id}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Cms:delete
         id: 0
     requirements:
@@ -128,7 +128,7 @@ admin_cms_redirects:
 
 admin_cms_redirect_edit:
     pattern:  /admin/cms/redirects/edit/{id}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Cms:redirectEdit
         id: null
     requirements:
@@ -136,7 +136,7 @@ admin_cms_redirect_edit:
 
 admin_cms_redirect_delete:
     pattern:  /admin/cms/redirects/delete/{id}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Cms:redirectDelete
     requirements:
         id: \d+
@@ -242,7 +242,7 @@ admin_category_delete_translation:
 
 admin_customers:
     pattern:  /admin/customers/{pager}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Customers:index
         pager: 1
 
@@ -279,14 +279,14 @@ admin_customer_order:
 
 admin_consultants:
     pattern:  /admin/consultants/{pager}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Consultants:index
         pager: 1
     requirements:
         pager: \d+
 admin_consultants_events:
     pattern:  /admin/consultants/events
-    defaults: 
+    defaults:
         _controller: AdminBundle:Consultants:indexEvents
         pager: 1
     requirements:
@@ -294,7 +294,7 @@ admin_consultants_events:
 
 admin_consultants_export:
     pattern:  /admin/events/export
-    defaults: 
+    defaults:
         _controller: AdminBundle:Consultants:export
 
 admin_consultant:
@@ -306,7 +306,7 @@ admin_consultant:
 
 admin_consultant_update_settings:
     pattern:  /admin/consultants/update-setting
-    defaults: 
+    defaults:
         _controller: AdminBundle:Consultants:updateSetting
         _format: json
     requirements:
@@ -314,7 +314,7 @@ admin_consultant_update_settings:
 
 admin_postalcode:
     pattern:  /admin/settings/postalcode/{pager}
-    defaults: 
+    defaults:
         _controller: AdminBundle:PostalCode:index
         pager: 1
         locale: null
@@ -322,7 +322,7 @@ admin_postalcode:
         pager: \d+
 admin_postalcode_locale:
     pattern:  /admin/settings/postalcode/locale/{locale}/{pager}
-    defaults: 
+    defaults:
         _controller: AdminBundle:PostalCode:index
         pager: 1
         locale: null
@@ -331,14 +331,14 @@ admin_postalcode_locale:
 
 admin_postalcode_edit:
     pattern:  /admin/settings/postalcode/edit/{id}
-    defaults: 
+    defaults:
         _controller: AdminBundle:PostalCode:view
         id: null
     requirements:
         id: \d+
 admin_postalcode_delete:
     pattern:  /admin/settings/postalcode/delete/{id}
-    defaults: 
+    defaults:
         _controller: AdminBundle:PostalCode:delete
     requirements:
         id: \d+
