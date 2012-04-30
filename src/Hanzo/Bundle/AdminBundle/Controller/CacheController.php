@@ -15,17 +15,27 @@ use Hanzo\Bundle\DataIOBundle\Events,
 class CacheController extends CoreController
 {
     
-    public function clearAction($js_css = FALSE, $router = FALSE, $redis = FALSE, $file = FALSE)
+    public function clearAction($jscss = FALSE, $router = FALSE, $redis = FALSE, $file = FALSE)
     {
 
         $cache = $this->get('cache_manager');
 
-        if($js_css)
+        if($jscss)
         {
-        	// TODO do something with assetic. (Or does it do it by itself?)
-            $event = new FilterUpdateEvent();
-            $dispatcher = $this->getContainer()->get('event_dispatcher');
-            $dispatcher->dispatch(Events::incrementAssetsVersion, $event);
+            try{
+                $event = new FilterUpdateEvent();
+                $dispatcher = $this->get('event_dispatcher');
+                $dispatcher->dispatch(Events::incrementAssetsVersion, $event);
+            }catch(Exception $e){
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => FALSE,
+                        'message' => $this->get('translator')->trans('cache.clear.failed.' . $e, array(), 'admin'),
+                    ));
+                }
+
+                return $this->response($e);
+            }
         }
 
         if($router)
