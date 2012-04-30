@@ -326,6 +326,7 @@ span.flag{
   background:url(/fx/images/flags.png) no-repeat
 }
 span.flag.da_DK {background-position: -16px 0}
+span.flag.en_GB {background-position: -33px 0}
 span.flag.en_EN {background-position: -33px 0}
 span.flag.nl_NL {background-position: 0 -11px}
 span.flag.no_NB {background-position: -17px -12px}
