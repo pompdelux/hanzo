@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
+use Propel;
 use Symfony\Bridge\Monolog\Logger;
 
 use Hanzo\Core\Hanzo;

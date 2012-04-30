@@ -2,17 +2,17 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 
+use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributesQuery;
 
-class OrdersController extends Controller
+class OrdersController extends CoreController
 {
 
     public function indexAction($id, $pager)
@@ -118,7 +118,7 @@ class OrdersController extends Controller
         ;
 
         $form_state = $this->createFormBuilder(array('state' => $order->getState()))
-            ->add('state', 'choice', 
+            ->add('state', 'choice',
                 array(
                     'choices' => array(
                         -110 => 'Payment error',
@@ -144,7 +144,7 @@ class OrdersController extends Controller
             $form_state->bindRequest($request);
 
             if ($form_state->isValid()) {
-                
+
                 $form_data = $form_state->getData();
 
                 $order->setState($form_data['state']);
@@ -153,12 +153,92 @@ class OrdersController extends Controller
                 $this->get('session')->setFlash('notice', 'admin.orders.state_log.inserted');
             }
         }
-        
+
         return $this->render('AdminBundle:Orders:view.html.twig', array(
             'order'  => $order,
             'order_lines' => $order_lines,
             'order_attributes' => $order_attributes,
             'form_state' => $form_state->createView()
         ));
+    }
+
+
+
+    public function previewAction($order_id)
+    {
+        $order = OrdersQuery::create()->findOneById($order_id);
+        if (!$order instanceof Orders) {
+            if ('json' === $this->getFormat()) {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => 'Der findes ingen ordre med ID #' . $order_id
+                ));
+            }
+
+            return $this->response('Der findes ingen ordre med ID #' . $order_id);
+        }
+
+        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers(), true);
+        $order = $this->get('ax_manager')->sendOrder($order, true);
+
+        if ('json' === $this->getFormat()) {
+            $html = '<h2>Debtor:</h2><pre>'.print_r($debtor, 1).'</pre><h2>Order:</h2><pre>'.print_r($order,1).'</pre>';
+            return $this->json_response(array(
+                'status' => true,
+                'message' => '',
+                'data' => array('html' => $html)
+            ));
+        }
+    }
+
+    public function syncStatusAction($status = 'failed')
+    {
+        $orders = array(
+            array('id' => 1234, 'error' => 'test, 1.2.3', 'created_at' => time())
+        );
+        return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
+            'orders'  => $orders,
+        ));
+        //
+    }
+
+
+    public function resyncAction($order_id)
+    {
+        $order = OrdersQuery::create()->findOneById($order_id);
+        if (!$order instanceof Orders) {
+            if ('json' === $this->getFormat()) {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => 'Der findes ingen ordre med ID #' . $order_id
+                ));
+            }
+
+            return $this->response('Der findes ingen ordre med ID #' . $order_id);
+        }
+
+        $status = $this->get('ax_manager')->sendOrder($order);
+        $message = $status ?
+            'Ordren er nu sendt' :
+            'Ordren kunne ikke gensendes !'
+        ;
+
+        if ('json' === $this->getFormat()) {
+            return $this->json_response(array(
+                'status' => false,
+                'message' => 'Der findes ingen ordre med ID #' . $order_id
+            ));
+        }
+
+        return $this->response('Der findes ingen ordre med ID #' . $order_id);
+
+    }
+
+    public function deleteAction($order_id)
+    {
+        $order = OrdersQuery::create()->findOneById($order_id);
+        if ($order) {
+            $order->delete();
+        }
     }
 }

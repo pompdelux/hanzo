@@ -379,3 +379,32 @@ admin_cache_file:
         redis: false
         file: true
 
+admin_orders_sync_list_failed:
+    pattern: /admin/orders/sync/list-failed
+    defaults:
+        _controller: AdminBundle:Orders:syncStatus
+        status: 'failed'
+
+admin_orders_resync_sync:
+    pattern: /admin/orders/sync/{order_id}
+    defaults:
+        _controller: AdminBundle:Orders:resync
+        order_id: 0
+    requirements:
+        order_id: \d+
+
+admin_orders_preview:
+    pattern: /admin/orders/preview/{order_id}
+    defaults:
+        _controller: AdminBundle:Orders:preview
+        order_id: 0
+    requirements:
+        order_id: \d+
+
+admin_orders_delete:
+    pattern: /admin/orders/delete/{order_id}
+    defaults:
+        _controller: AdminBundle:Orders:delete
+        order_id: 0
+    requirements:
+        order_id: \d+
