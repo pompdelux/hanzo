@@ -22,6 +22,8 @@ class Tools
      */
     public function getIp($ip)
     {
+        error_log(__LINE__.':'.__FILE__.' deprecated, use geoip_manger service instead'); // hf@bellcom.dk debugging
+        return false;
         $cache = Hanzo::getInstance()->cache;
         $cache_key = $cache->id('geocache', $ip);
         $data = $cache->get($cache_key);
