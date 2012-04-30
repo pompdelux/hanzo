@@ -49,6 +49,9 @@ class DefaultController extends CoreController
         $customer = new Customers();
         $addresses = new Addresses();
 
+        $geoip = $this->get('geoip_manager');
+        $geoipResult = $geoip->lookup();
+
         $country = $this->getCountryOrCountries();
 
         if ( $country instanceOf Countries ) // else it is probably a list (PropelObjectCollection)
@@ -81,7 +84,7 @@ class DefaultController extends CoreController
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                     if ( is_object($response) && $response->is_error )
                     {
-                        // TODO: do something?
+                        $this->get('session')->setFlash('warning', 'account.newsletter.warning');
                     }
                 }
 
@@ -106,14 +109,13 @@ class DefaultController extends CoreController
 
                 $this->get('session')->setFlash('notice', 'account.created');
 
-                // TODO: should all fields not have been trimmed?
                 $name = trim($customer->getFirstName() . ' ' . $customer->getLastName());
 
                 try
                 {
                     $mailer = $this->get('mail_manager');
                     $mailer->setMessage('account.create', array(
-                        'name' => $name,
+                        'name'     => $name,
                         'username' => $customer->getEmail(),
                         'password' => $customer->getPasswordClear(),
                     ));
