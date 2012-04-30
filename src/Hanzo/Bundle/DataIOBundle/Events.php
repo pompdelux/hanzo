@@ -5,4 +5,5 @@ namespace Hanzo\Bundle\DataIOBundle;
 final class Events
 {
     const incrementAssetsVersion = 'hanzo.update.incrementAssetsVersion';
+    const updateTranslations     = 'hanzo.update.updateTranslations';
 }

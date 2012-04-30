@@ -1,8 +1,12 @@
 parameters:
-#    data_io.example.class: Hanzo\Bundle\DataIOBundle\Example
+    data_io.update.class: Hanzo\Bundle\DataIOBundle\UpdateListener
 
 services:
     data_io.update_listener:
-        class: Hanzo\Bundle\DataIOBundle\UpdateListener
+        class: %data_io.update.class%
         tags:
             - { name: kernel.event_listener, event: hanzo.update.incrementAssetsVersion, method: onIncrementAssetsVersion }
+    data_io.update_listener:
+        class: %data_io.update.class%
+        tags:
+            - { name: kernel.event_listener, event: hanzo.update.updateTranslations, method: onUpdateTranslations}
