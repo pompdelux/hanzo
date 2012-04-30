@@ -18,8 +18,8 @@ class CustomersType extends AbstractType
 
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('first_name', null, array('translation_domain' => 'account'));
-        $builder->add('last_name', null, array('translation_domain' => 'account'));
+        $builder->add('first_name', null, array('translation_domain' => 'account', 'trim' => true));
+        $builder->add('last_name', null, array('translation_domain' => 'account', 'trim' => true));
 
         $builder->add('addresses', 'collection', array(
             'type' => $this->addressType,
