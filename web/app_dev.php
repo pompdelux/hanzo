@@ -17,6 +17,7 @@ if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
     '87.104.49.70', // Henrik @home
     '192.168.0.4', // Henrik local
     '80.197.249.250', // Heinrich @home
+    '87.51.240.173', // Anders @home
     '127.0.0.1',
     '::1',
 ))) {
