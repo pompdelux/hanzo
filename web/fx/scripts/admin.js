@@ -143,14 +143,39 @@
         });
       });
 
+      var $cms_path = $('#cms_path').val();
       // CMS edit page, title text field slug creation
       $('#cms_title').blur(function(e){
-        $path = $('#cms_path').val();
+        var slug = new String();
+        var chars = {
+            'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A', 'Æ': 'AE', 'Ç':
+            'C', 'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E', 'Ì': 'I', 'Í': 'I', 'Î': 'I',
+            'Ï': 'I', 'Ð': 'D', 'Ñ': 'N', 'Ò': 'O', 'Ó': 'O', 'Ô': 'O', 'Õ': 'O', 'Ö':
+            'O', 'Ő': 'O', 'Ø': 'O', 'Ù': 'U', 'Ú': 'U', 'Û': 'U', 'Ü': 'U', 'Ű': 'U',
+            'Ý': 'Y', 'Þ': 'TH', 'ß': 'ss', 'à':'a', 'á':'a', 'â': 'a', 'ã': 'a', 'ä':
+            'a', 'å': 'a', 'æ': 'ae', 'ç': 'c', 'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+            'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i', 'ð': 'd', 'ñ': 'n', 'ò': 'o', 'ó':
+            'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ő': 'o', 'ø': 'o', 'ù': 'u', 'ú': 'u',
+            'û': 'u', 'ü': 'u', 'ű': 'u', 'ý': 'y', 'þ': 'th', 'ÿ': 'y'
+        };
         $title = $('#cms_title').val();
-        $title = $title.replace(/[^a-zA-Z0-9\s]/g,"");
-        $title = $title.replace(/\s/g,'-');
-        $title = $title.toLowerCase();
-        $('#cms_path').val($path + $title);
+
+        for (var i = 0; i < $title.length; i++) {
+            if ( chars[$title.charAt(i)] ) 
+            {
+              slug += chars[$title.charAt(i)]
+            }
+            else
+            {
+              slug += $title.charAt(i)
+            }
+        }
+        slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
+        slug = slug.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
+        slug = slug.replace(/[-\s]+/g, '-');   // convert spaces
+        slug = slug.replace(/-$/, '');         // remove trailing separator
+        slug = slug.toLowerCase();
+        $('#cms_path').val($cms_path + slug);
       });
 
       // Sortable list for products ind a category
