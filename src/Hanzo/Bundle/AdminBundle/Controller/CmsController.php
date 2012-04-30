@@ -34,20 +34,25 @@ use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
 class CmsController extends CoreController
 {
 
-    public function indexAction()
+    public function indexAction($locale)
     {
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
-            // ->joinWithCmsI18n(NULL, 'INNER JOIN')
-            ->joinI18n()
+            ->joinWithI18n($locale)
             ->groupById()
             ->orderById()
             ->find()
         ;
+
+        $languages_availible = LanguagesQuery::Create()
+            ->find();
+        
         return $this->render('AdminBundle:Cms:menu.html.twig',
             array(
-                'tree'=>$this->getCmsTree(),
-                'inactive_nodes' => $inactive_nodes
+                'tree'=>$this->getCmsTree(null,$locale),
+                'inactive_nodes' => $inactive_nodes,
+                'languages' => $languages_availible,
+                'current_language' => $locale
             )
         );
     }
@@ -403,15 +408,14 @@ class CmsController extends CoreController
      * @param $int parent_id The parents ID
      * @return html ordered list
      */
-    protected function getCmsTree($parent_id = NULL)
+    protected function getCmsTree($parent_id, $locale)
     {
         $t = $this->get('translator');
         $menu = '';
         $query = CmsQuery::create()
             ->filterByIsActive(TRUE)
-            ->joinI18n()
+            ->joinWithI18n($locale)
             ->groupById()
-            //->joinWithI18n('da_DK')
             ->orderBySort()
         ;
 
@@ -449,9 +453,9 @@ class CmsController extends CoreController
 
 
                 // Retrieve all this nodes leafs/childrens
-                $menu .= $this->getCmsTree($record->getId());
+                $menu .= $this->getCmsTree($record->getId(), $locale);
 
-                //$menu .= '</li>';
+                $menu .= '</li>';
             }
 
             $menu .= '</ul>';
