@@ -25,6 +25,8 @@ First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/refere
   2. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures_all.sql`
 7. `php bin/vendors install`
 8. `git submodule update --recursive --init`
+  1. cd app/Resources
+  2. git checkout master
 9. If you loaded the "full" fixtures you can do:
   1. `php app/console hanzo:router:builder`
 10. Setup apache, see `dosc/vhost.conf` for an example

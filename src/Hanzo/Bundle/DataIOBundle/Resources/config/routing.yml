@@ -1,3 +1,4 @@
 DataIOBundle_update_system:
     pattern:  /update-system/
     defaults: { _controller: DataIOBundle:Default:updateSystem }
+    requirements: { _format: (xml|json), _method: POST }

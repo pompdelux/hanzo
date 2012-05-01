@@ -62,8 +62,7 @@ class UpdateListener
     public function onUpdateTranslations(FilterUpdateEvent $event)
     {
         chdir( __DIR__.'/../../../../app/Resources/translations/' );
-        //$return = `/usr/bin/ls -l`;
-        $command = '/usr/bin/git status';
+        $command = '/usr/bin/git pull';
         exec($command, $out, $return);
         error_log(__LINE__.':'.__FILE__.' '.$return .' '.print_r($out,1)); // hf@bellcom.dk debugging
     }
