@@ -417,3 +417,8 @@ admin_orders_delete:
         order_id: 0
     requirements:
         order_id: \d+
+
+admin_statistics:
+    pattern: /admin/statistics
+    defaults:
+        _controller: AdminBundle:Statistics:index
