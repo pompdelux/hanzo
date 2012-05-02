@@ -40,7 +40,7 @@ class StatisticsController extends CoreController
             $date_filter['min'] = strtotime($start);
             $date_filter['max'] = strtotime($end);
         }else{
-            $date_filter['min'] = date('d-m-Y', strtotime('-1 month', time() ));
+            $date_filter['min'] = date('d-m-Y', time());
             $start = $date_filter['min'];
             $date_filter['max'] = date('d-m-Y', time());
             $end = $date_filter['max'];
