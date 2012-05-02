@@ -6,7 +6,8 @@ services:
         class: %data_io.update.class%
         tags:
             - { name: kernel.event_listener, event: hanzo.update.incrementAssetsVersion, method: onIncrementAssetsVersion }
-    data_io.update_listener:
+
+    data_io.update_listener2:
         class: %data_io.update.class%
         tags:
-            - { name: kernel.event_listener, event: hanzo.update.updateTranslations, method: onUpdateTranslations}
+            - { name: kernel.event_listener, event: hanzo.update.updateTranslations, method: onUpdateTranslations }
