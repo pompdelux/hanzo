@@ -269,6 +269,18 @@ admin_orders:
         _controller: AdminBundle:Orders:index
         pager: 1
         id: null
+        locale: null
+    requirements:
+        pager: \d+
+
+admin_orders_domain:
+    pattern:  /admin/orders/{domain_key}/{pager}
+    defaults:
+        _controller: AdminBundle:Orders:index
+        pager: 1
+        id: null
+    requirements:
+        pager: \d+
 
 admin_customer_orders:
     pattern:  /admin/customer/orders/{id}/{pager}
@@ -422,3 +434,19 @@ admin_statistics:
     pattern: /admin/statistics
     defaults:
         _controller: AdminBundle:Statistics:index
+
+admin_coupons:
+    pattern: /admin/coupons/{pager}
+    defaults:
+        _controller: AdminBundle:Coupons:index
+        pager: 1
+    requirements:
+        pager: \d+
+
+admin_coupons_edit:
+    pattern: /admin/coupons/id/{id}
+    defaults:
+        _controller: AdminBundle:Coupons:view
+        id: null
+    requirements:
+        id: \d+
