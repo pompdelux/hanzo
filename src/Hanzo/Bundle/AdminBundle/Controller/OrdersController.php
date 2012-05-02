@@ -198,9 +198,10 @@ class OrdersController extends CoreController
 
     public function syncStatusAction($status = 'failed')
     {
-        $orders = array(
-            array('id' => 1234, 'error' => 'test, 1.2.3', 'created_at' => time())
-        );
+
+        // $orders = OrdersQuery::create()->find();
+
+        $orders = array();
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
         ));

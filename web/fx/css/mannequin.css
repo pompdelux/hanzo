@@ -24,7 +24,7 @@ ul#mannequin-menu.tabs li a {
 	color: #000;
 	background: #CBC3BD;
 	display: block;
-	
+
 }
 ul#mannequin-menu.tabs li a:hover{
   color: #000000;
@@ -42,13 +42,6 @@ ul#mannequin-menu.tabs li a.current:hover {
   color: #000;
 }
 
-#loading {
-  margin: 30px;
-  background: #fff url(/templates/pompdelux/images/loading.gif) left center no-repeat;
-  padding: 10px 0 10px 40px;
-  font-size: 18px;
-}
-
 #mannequin-layers {
   float: left;
   min-height: 440px;
@@ -57,6 +50,12 @@ ul#mannequin-menu.tabs li a.current:hover {
 }
 #mannequin-layers .pane {
   padding: 0;
+}
+#mannequin-layers .pane h3 {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 10px;
 }
 #mannequin-layers .pane .item {
   height: 210px;
@@ -100,7 +99,7 @@ ul#mannequin-menu.tabs li a.current:hover {
 #mannequin-doll .layers img {
   height: 415px;
   width: 170px;
-  behavior: url(/shared-fx/iepngfix/iepngfix.htc);
+  behavior: url(/fx/scripts/iepngfix.htc);
 }
 
 #mannequin-basket {
