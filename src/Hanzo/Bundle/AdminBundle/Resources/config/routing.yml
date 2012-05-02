@@ -450,3 +450,26 @@ admin_coupons_edit:
         id: null
     requirements:
         id: \d+
+
+admin_coupons_delete:
+    pattern: /admin/coupons/delete/{id}
+    defaults:
+        _controller: AdminBundle:Coupons:delete
+        _format: json
+    requirements:
+        id: \d+
+        _format: html|json
+
+admin_coupon_delete_customer:
+    pattern: /admin/coupons/delete-customer/{coupon_id}/{customer_id}
+    defaults:
+        _controller: AdminBundle:Coupons:deleteCustomer
+        _format: json
+    requirements:
+        coupon_id: \d+
+        customer_id: \d+
+        _format: html|json
+admin_coupon_add_customer:
+    pattern: /admin/coupons/add-customer
+    defaults:
+        _controller: AdminBundle:Coupons:addCustomer

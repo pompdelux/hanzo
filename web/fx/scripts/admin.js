@@ -498,6 +498,53 @@
           }
         });
       });
+      $('#coupons-to-customers a.delete').live('click',function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne bruger ?',function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+                }
+              }
+            });
+          }
+        });
+      });
+      $('#coupon-customer-selector').change(function(){
+        selectedOption = $(this).find('option:selected');
+        reference = selectedOption.val().split('-');
+        customer = reference[0];
+        coupon = reference[1];
+        $.ajax({
+          url: base_url + 'coupons/add-customer',
+          dataType: 'json',
+          type: 'POST',
+          data: {customer : customer, coupon : coupon},
+          async: false,
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+              }
+            }
+            else {
+              $('#coupons-to-customers').append('<li><span class="actions"><a href="' + base_url + 'products/delete-category/' + customer + '/' + coupon + '" class="delete" title="Slet">Slet</a></span><span class="name"> ' + selectedOption.text() + '</span></li>');
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+          }
+        });
+        $(this).val(0);
+      });
       // ios class added to body
       switch (navigator.platform) {
         case 'iPad':
