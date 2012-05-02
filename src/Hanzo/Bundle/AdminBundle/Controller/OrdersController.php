@@ -15,7 +15,7 @@ use Hanzo\Model\OrdersAttributesQuery;
 class OrdersController extends CoreController
 {
 
-    public function indexAction($id, $pager)
+    public function indexAction($id, $domain, $pager)
     {
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
@@ -25,7 +25,9 @@ class OrdersController extends CoreController
         $orders = OrdersQuery::create();
 
         if(null != $id)
-        	$orders = $orders->filterByCustomersId($id);
+            $orders = $orders->filterByCustomersId($id);
+        if(null != $locale)
+        	//$orders = $orders->filterByCustomersId($id);
 
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
@@ -91,10 +93,13 @@ class OrdersController extends CoreController
                 'index' => $pager
             );
         }
+        
+        $domains_availible = DomainsQuery::Create()->find();
 
         return $this->render('AdminBundle:Orders:list.html.twig', array(
             'orders'  => $order_data,
-            'paginate' => $paginate
+            'paginate' => $paginate,
+            'domains_availible' => $domains_availible
         ));
     }
 
