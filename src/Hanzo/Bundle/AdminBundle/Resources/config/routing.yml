@@ -268,28 +268,28 @@ admin_orders:
     defaults:
         _controller: AdminBundle:Orders:index
         pager: 1
-        id: null
-        locale: null
+        customer_id: null
+        domain_key: null
     requirements:
         pager: \d+
 
 admin_orders_domain:
-    pattern:  /admin/orders/{domain_key}/{pager}
+    pattern:  /admin/orders/domain/{domain_key}/{pager}
     defaults:
         _controller: AdminBundle:Orders:index
         pager: 1
-        id: null
+        customer_id: null
     requirements:
         pager: \d+
 
 admin_customer_orders:
-    pattern:  /admin/customer/orders/{id}/{pager}
+    pattern:  /admin/customer/orders/{customer_id}/{pager}
     defaults:
         _controller: AdminBundle:Orders:index
         pager: 1
-        id: null
+        domain_key: null
     requirements:
-        id: \d+
+        customer_id: \d+
 
 admin_customer_order:
     pattern:  /admin/customer/orders/id/{order_id}
@@ -305,6 +305,7 @@ admin_consultants:
         pager: 1
     requirements:
         pager: \d+
+
 admin_consultants_events:
     pattern:  /admin/consultants/events
     defaults:
@@ -431,9 +432,10 @@ admin_orders_delete:
         order_id: \d+
 
 admin_statistics:
-    pattern: /admin/statistics
+    pattern: /admin/statistics/{domain_key}
     defaults:
         _controller: AdminBundle:Statistics:index
+        domain_key: null
 
 admin_coupons:
     pattern: /admin/coupons/{pager}
@@ -469,6 +471,7 @@ admin_coupon_delete_customer:
         coupon_id: \d+
         customer_id: \d+
         _format: html|json
+
 admin_coupon_add_customer:
     pattern: /admin/coupons/add-customer
     defaults:
