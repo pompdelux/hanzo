@@ -110,18 +110,18 @@ class CouponsController extends CoreController
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            // )->add('vat', 'number',
-            //     array(
-            //         'label' => 'admin.coupons.vat',
-            //         'translation_domain' => 'admin',
-            //         'required' => false
-            //     )
+            )->add('vat', 'number',
+                array(
+                    'label' => 'admin.coupons.vat',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
             )->add('currency_code', 'choice',
                 array(
                 	'choices' => $currencies_data,
                     'label' => 'admin.coupons.currency',
                     'translation_domain' => 'admin',
-                    'required' => false
+                    'required' => true
                 )
             )->add('uses_pr_coupon', 'integer',
                 array(
