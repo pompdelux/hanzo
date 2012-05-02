@@ -236,6 +236,8 @@ class CmsController extends CoreController
                     ->endUse()
                     ->joinCmsI18n(NULL, 'INNER JOIN')
                     ->filterByIsActive(TRUE)
+                    ->where('cms.id <> ?', $node->getId())
+                    //->filterById($node->getId(), Criteria::NOT_EQUAL)
                     ->findOne()
                 ;
 
