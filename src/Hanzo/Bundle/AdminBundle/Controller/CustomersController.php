@@ -9,18 +9,26 @@ Hanzo\Core\Tools;
 
 use Hanzo\Model\CustomersQuery,
     Hanzo\Model\Addresses,
-    Hanzo\Model\AddressesQuery;
+    Hanzo\Model\AddressesQuery,
+    Hanzo\Model\DomainsQuery;
 
 class CustomersController extends Controller
 {
     
-    public function indexAction($pager)
+    public function indexAction($domain_key, $pager)
     {
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
-        $customers = null;
+        
+        $customers = CustomersQuery::create()
+            ->useGroupsQuery()
+                ->filterByName('customer')
+                ->_or()
+                ->filterByName('consultant')
+            ->endUse()
+        ;
 
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
@@ -28,12 +36,7 @@ class CustomersController extends Controller
             /**
              * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
              */
-            $customers = CustomersQuery::create()
-                ->useGroupsQuery()
-                    ->filterByName('customer')
-                    ->_or()
-                    ->filterByName('consultant')
-                ->endUse()
+            $customers = $customers
                 ->filterByFirstname($q)
                 ->_or()
                 ->filterByLastname($q)
@@ -43,23 +46,28 @@ class CustomersController extends Controller
                 ->filterByPhone($q)
                 ->_or()
                 ->filterById($q_clean)
-                ->orderByFirstName()
-                ->orderByLastName()
-                ->paginate($pager, 50)
-            ;
-        } else {
-
-            $customers = CustomersQuery::create()
-                ->useGroupsQuery()
-                    ->filterByName('customer')
-                    ->_or()
-                    ->filterByName('consultant')
-                ->endUse()
-                ->orderByFirstName()
-                ->orderByLastName()
-                ->paginate($pager, 50)
             ;
         }
+
+        if($domain_key){
+            $customers = $customers
+                ->useOrdersQuery()
+                    ->useOrdersAttributesQuery()
+                        ->filterByCKey('domain_key')
+                        ->filterByCValue($domain_key)
+                    ->endUse()
+                    ->joinOrdersAttributes()
+                ->endUse()
+                ->groupById()
+            ;
+        }
+
+        $customers = $customers
+            ->orderByFirstName()
+            ->orderByLastName()
+            ->paginate($pager, 50)
+        ;
+
         $paginate = null;
         if ($customers->haveToPaginate()) {
 
@@ -90,9 +98,15 @@ class CustomersController extends Controller
                 );
         }
 
+        $domains_availible = DomainsQuery::Create()
+            ->find()
+        ;
+
         return $this->render('AdminBundle:Customers:list.html.twig', array(
             'customers'     => $customers,
-            'paginate'      => $paginate
+            'paginate'      => $paginate,
+            'domain_key' => $domain_key,
+            'domains_availible' => $domains_availible
         ));
 
     }

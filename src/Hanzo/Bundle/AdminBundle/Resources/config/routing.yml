@@ -247,6 +247,17 @@ admin_customers:
     defaults:
         _controller: AdminBundle:Customers:index
         pager: 1
+        domain_key: null
+    requirements:
+        pager: \d+
+
+admin_customers_domain:
+    pattern:  /admin/customers/{domain_key}/{pager}
+    defaults:
+        _controller: AdminBundle:Customers:index
+        pager: 1
+    requirements:
+        pager: \d+
 
 admin_customer:
     pattern:  /admin/customer/{id}
