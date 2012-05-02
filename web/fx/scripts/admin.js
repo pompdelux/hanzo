@@ -477,6 +477,27 @@
         });
         $(this).val(0);
       });
+
+      $('#coupons a.delete').live('click',function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Gavekortet ?',function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+                }
+              }
+            });
+          }
+        });
+      });
       // ios class added to body
       switch (navigator.platform) {
         case 'iPad':
