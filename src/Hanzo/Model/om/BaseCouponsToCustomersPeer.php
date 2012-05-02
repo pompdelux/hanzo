@@ -37,19 +37,22 @@ abstract class BaseCouponsToCustomersPeer {
 	const TM_CLASS = 'CouponsToCustomersTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 2;
+	const NUM_COLUMNS = 3;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 2;
+	const NUM_HYDRATE_COLUMNS = 3;
 
 	/** the column name for the COUPONS_ID field */
 	const COUPONS_ID = 'coupons_to_customers.COUPONS_ID';
 
 	/** the column name for the CUSTOMERS_ID field */
 	const CUSTOMERS_ID = 'coupons_to_customers.CUSTOMERS_ID';
+
+	/** the column name for the USE_COUNT field */
+	const USE_COUNT = 'coupons_to_customers.USE_COUNT';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
@@ -70,12 +73,12 @@ abstract class BaseCouponsToCustomersPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('CouponsId', 'CustomersId', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('couponsId', 'customersId', ),
-		BasePeer::TYPE_COLNAME => array (self::COUPONS_ID, self::CUSTOMERS_ID, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('COUPONS_ID', 'CUSTOMERS_ID', ),
-		BasePeer::TYPE_FIELDNAME => array ('coupons_id', 'customers_id', ),
-		BasePeer::TYPE_NUM => array (0, 1, )
+		BasePeer::TYPE_PHPNAME => array ('CouponsId', 'CustomersId', 'UseCount', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('couponsId', 'customersId', 'useCount', ),
+		BasePeer::TYPE_COLNAME => array (self::COUPONS_ID, self::CUSTOMERS_ID, self::USE_COUNT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('COUPONS_ID', 'CUSTOMERS_ID', 'USE_COUNT', ),
+		BasePeer::TYPE_FIELDNAME => array ('coupons_id', 'customers_id', 'use_count', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	/**
@@ -85,12 +88,12 @@ abstract class BaseCouponsToCustomersPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('CouponsId' => 0, 'CustomersId' => 1, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('couponsId' => 0, 'customersId' => 1, ),
-		BasePeer::TYPE_COLNAME => array (self::COUPONS_ID => 0, self::CUSTOMERS_ID => 1, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('COUPONS_ID' => 0, 'CUSTOMERS_ID' => 1, ),
-		BasePeer::TYPE_FIELDNAME => array ('coupons_id' => 0, 'customers_id' => 1, ),
-		BasePeer::TYPE_NUM => array (0, 1, )
+		BasePeer::TYPE_PHPNAME => array ('CouponsId' => 0, 'CustomersId' => 1, 'UseCount' => 2, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('couponsId' => 0, 'customersId' => 1, 'useCount' => 2, ),
+		BasePeer::TYPE_COLNAME => array (self::COUPONS_ID => 0, self::CUSTOMERS_ID => 1, self::USE_COUNT => 2, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('COUPONS_ID' => 0, 'CUSTOMERS_ID' => 1, 'USE_COUNT' => 2, ),
+		BasePeer::TYPE_FIELDNAME => array ('coupons_id' => 0, 'customers_id' => 1, 'use_count' => 2, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	/**
@@ -164,9 +167,11 @@ abstract class BaseCouponsToCustomersPeer {
 		if (null === $alias) {
 			$criteria->addSelectColumn(CouponsToCustomersPeer::COUPONS_ID);
 			$criteria->addSelectColumn(CouponsToCustomersPeer::CUSTOMERS_ID);
+			$criteria->addSelectColumn(CouponsToCustomersPeer::USE_COUNT);
 		} else {
 			$criteria->addSelectColumn($alias . '.COUPONS_ID');
 			$criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
+			$criteria->addSelectColumn($alias . '.USE_COUNT');
 		}
 	}
 

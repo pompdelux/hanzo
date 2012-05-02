@@ -62,6 +62,13 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 	protected $customers_id;
 
 	/**
+	 * The value for the use_count field.
+	 * Note: this column has a database default value of: 0
+	 * @var        int
+	 */
+	protected $use_count;
+
+	/**
 	 * @var        Customers
 	 */
 	protected $aCustomers;
@@ -86,6 +93,27 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 	protected $alreadyInValidation = false;
 
 	/**
+	 * Applies default values to this object.
+	 * This method should be called from the object's constructor (or
+	 * equivalent initialization method).
+	 * @see        __construct()
+	 */
+	public function applyDefaultValues()
+	{
+		$this->use_count = 0;
+	}
+
+	/**
+	 * Initializes internal state of BaseCouponsToCustomers object.
+	 * @see        applyDefaults()
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->applyDefaultValues();
+	}
+
+	/**
 	 * Get the [coupons_id] column value.
 	 * 
 	 * @return     int
@@ -103,6 +131,16 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 	public function getCustomersId()
 	{
 		return $this->customers_id;
+	}
+
+	/**
+	 * Get the [use_count] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getUseCount()
+	{
+		return $this->use_count;
 	}
 
 	/**
@@ -154,6 +192,26 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 	} // setCustomersId()
 
 	/**
+	 * Set the value of [use_count] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     CouponsToCustomers The current object (for fluent API support)
+	 */
+	public function setUseCount($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->use_count !== $v) {
+			$this->use_count = $v;
+			$this->modifiedColumns[] = CouponsToCustomersPeer::USE_COUNT;
+		}
+
+		return $this;
+	} // setUseCount()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -163,6 +221,10 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
+			if ($this->use_count !== 0) {
+				return false;
+			}
+
 		// otherwise, everything was equal, so return TRUE
 		return true;
 	} // hasOnlyDefaultValues()
@@ -187,6 +249,7 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 
 			$this->coupons_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->customers_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
+			$this->use_count = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -195,7 +258,7 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 2; // 2 = CouponsToCustomersPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 3; // 3 = CouponsToCustomersPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating CouponsToCustomers object", $e);
@@ -432,6 +495,9 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CouponsToCustomersPeer::CUSTOMERS_ID)) {
 			$modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
 		}
+		if ($this->isColumnModified(CouponsToCustomersPeer::USE_COUNT)) {
+			$modifiedColumns[':p' . $index++]  = '`USE_COUNT`';
+		}
 
 		$sql = sprintf(
 			'INSERT INTO `coupons_to_customers` (%s) VALUES (%s)',
@@ -448,6 +514,9 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 						break;
 					case '`CUSTOMERS_ID`':
 						$stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
+						break;
+					case '`USE_COUNT`':
+						$stmt->bindValue($identifier, $this->use_count, PDO::PARAM_INT);
 						break;
 				}
 			}
@@ -596,6 +665,9 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 			case 1:
 				return $this->getCustomersId();
 				break;
+			case 2:
+				return $this->getUseCount();
+				break;
 			default:
 				return null;
 				break;
@@ -627,6 +699,7 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 		$result = array(
 			$keys[0] => $this->getCouponsId(),
 			$keys[1] => $this->getCustomersId(),
+			$keys[2] => $this->getUseCount(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCustomers) {
@@ -672,6 +745,9 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 			case 1:
 				$this->setCustomersId($value);
 				break;
+			case 2:
+				$this->setUseCount($value);
+				break;
 		} // switch()
 	}
 
@@ -698,6 +774,7 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 
 		if (array_key_exists($keys[0], $arr)) $this->setCouponsId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setCustomersId($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setUseCount($arr[$keys[2]]);
 	}
 
 	/**
@@ -711,6 +788,7 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 
 		if ($this->isColumnModified(CouponsToCustomersPeer::COUPONS_ID)) $criteria->add(CouponsToCustomersPeer::COUPONS_ID, $this->coupons_id);
 		if ($this->isColumnModified(CouponsToCustomersPeer::CUSTOMERS_ID)) $criteria->add(CouponsToCustomersPeer::CUSTOMERS_ID, $this->customers_id);
+		if ($this->isColumnModified(CouponsToCustomersPeer::USE_COUNT)) $criteria->add(CouponsToCustomersPeer::USE_COUNT, $this->use_count);
 
 		return $criteria;
 	}
@@ -782,6 +860,7 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 	{
 		$copyObj->setCouponsId($this->getCouponsId());
 		$copyObj->setCustomersId($this->getCustomersId());
+		$copyObj->setUseCount($this->getUseCount());
 
 		if ($deepCopy && !$this->startCopy) {
 			// important: temporarily setNew(false) because this affects the behavior of
@@ -942,9 +1021,11 @@ abstract class BaseCouponsToCustomers extends BaseObject  implements Persistent
 	{
 		$this->coupons_id = null;
 		$this->customers_id = null;
+		$this->use_count = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
+		$this->applyDefaultValues();
 		$this->resetModified();
 		$this->setNew(true);
 		$this->setDeleted(false);

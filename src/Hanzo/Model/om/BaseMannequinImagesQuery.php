@@ -109,10 +109,10 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 	 * Go fast if the query is untouched.
 	 *
 	 * <code>
-	 * $obj  = $c->findPk(12, $con);
+	 * $obj = $c->findPk(array(12, 34), $con);
 	 * </code>
 	 *
-	 * @param     mixed $key Primary key to use for the query
+	 * @param     array[$master, $color] $key Primary key to use for the query
 	 * @param     PropelPDO $con an optional connection object
 	 *
 	 * @return    MannequinImages|array|mixed the result, formatted by the current formatter
@@ -122,7 +122,7 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 		if ($key === null) {
 			return null;
 		}
-		if ((null !== ($obj = MannequinImagesPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
+		if ((null !== ($obj = MannequinImagesPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
 			// the object is alredy in the instance pool
 			return $obj;
 		}
@@ -150,10 +150,11 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `MASTER`, `COLOR`, `LAYER`, `IMAGE`, `ICON`, `WEIGHT`, `IS_MAIN` FROM `mannequin_images` WHERE `MASTER` = :p0';
+		$sql = 'SELECT `MASTER`, `COLOR`, `LAYER`, `IMAGE`, `ICON`, `WEIGHT`, `IS_MAIN` FROM `mannequin_images` WHERE `MASTER` = :p0 AND `COLOR` = :p1';
 		try {
 			$stmt = $con->prepare($sql);
-			$stmt->bindValue(':p0', $key, PDO::PARAM_STR);
+			$stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);
+			$stmt->bindValue(':p1', $key[1], PDO::PARAM_STR);
 			$stmt->execute();
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -163,7 +164,7 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new MannequinImages();
 			$obj->hydrate($row);
-			MannequinImagesPeer::addInstanceToPool($obj, (string) $key);
+			MannequinImagesPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1])));
 		}
 		$stmt->closeCursor();
 
@@ -191,7 +192,7 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 	/**
 	 * Find objects by primary key
 	 * <code>
-	 * $objs = $c->findPks(array(12, 56, 832), $con);
+	 * $objs = $c->findPks(array(array(12, 56), array(832, 123), array(123, 456)), $con);
 	 * </code>
 	 * @param     array $keys Primary keys to use for the query
 	 * @param     PropelPDO $con an optional connection object
@@ -220,7 +221,10 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 	 */
 	public function filterByPrimaryKey($key)
 	{
-		return $this->addUsingAlias(MannequinImagesPeer::MASTER, $key, Criteria::EQUAL);
+		$this->addUsingAlias(MannequinImagesPeer::MASTER, $key[0], Criteria::EQUAL);
+		$this->addUsingAlias(MannequinImagesPeer::COLOR, $key[1], Criteria::EQUAL);
+
+		return $this;
 	}
 
 	/**
@@ -232,7 +236,17 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 	 */
 	public function filterByPrimaryKeys($keys)
 	{
-		return $this->addUsingAlias(MannequinImagesPeer::MASTER, $keys, Criteria::IN);
+		if (empty($keys)) {
+			return $this->add(null, '1<>1', Criteria::CUSTOM);
+		}
+		foreach ($keys as $key) {
+			$cton0 = $this->getNewCriterion(MannequinImagesPeer::MASTER, $key[0], Criteria::EQUAL);
+			$cton1 = $this->getNewCriterion(MannequinImagesPeer::COLOR, $key[1], Criteria::EQUAL);
+			$cton0->addAnd($cton1);
+			$this->addOr($cton0);
+		}
+
+		return $this;
 	}
 
 	/**
@@ -465,13 +479,13 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 	{
 		if ($products instanceof Products) {
 			return $this
-				->addUsingAlias(MannequinImagesPeer::MASTER, $products->getMaster(), $comparison);
+				->addUsingAlias(MannequinImagesPeer::MASTER, $products->getSku(), $comparison);
 		} elseif ($products instanceof PropelCollection) {
 			if (null === $comparison) {
 				$comparison = Criteria::IN;
 			}
 			return $this
-				->addUsingAlias(MannequinImagesPeer::MASTER, $products->toKeyValue('PrimaryKey', 'Master'), $comparison);
+				->addUsingAlias(MannequinImagesPeer::MASTER, $products->toKeyValue('PrimaryKey', 'Sku'), $comparison);
 		} else {
 			throw new PropelException('filterByProducts() only accepts arguments of type Products or PropelCollection');
 		}
@@ -537,7 +551,9 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
 	public function prune($mannequinImages = null)
 	{
 		if ($mannequinImages) {
-			$this->addUsingAlias(MannequinImagesPeer::MASTER, $mannequinImages->getMaster(), Criteria::NOT_EQUAL);
+			$this->addCond('pruneCond0', $this->getAliasedColName(MannequinImagesPeer::MASTER), $mannequinImages->getMaster(), Criteria::NOT_EQUAL);
+			$this->addCond('pruneCond1', $this->getAliasedColName(MannequinImagesPeer::COLOR), $mannequinImages->getColor(), Criteria::NOT_EQUAL);
+			$this->combine(array('pruneCond0', 'pruneCond1'), Criteria::LOGICAL_OR);
 		}
 
 		return $this;

@@ -111,8 +111,7 @@ CREATE TABLE `coupons`
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `code_UNIQUE` (`code`),
-	INDEX `index3` (`currency_id`),
-	INDEX `index4` (`code`)
+	INDEX `index3` (`currency_id`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -125,6 +124,7 @@ CREATE TABLE `coupons_to_customers`
 (
 	`coupons_id` INTEGER NOT NULL,
 	`customers_id` INTEGER NOT NULL,
+	`use_count` INTEGER DEFAULT 0 NOT NULL,
 	PRIMARY KEY (`coupons_id`,`customers_id`),
 	INDEX `FI_coupons_to_customers_1` (`customers_id`),
 	CONSTRAINT `fk_coupons_to_customers_1`
@@ -393,10 +393,10 @@ CREATE TABLE `mannequin_images`
 	`icon` VARCHAR(128) NOT NULL,
 	`weight` INTEGER DEFAULT 0 NOT NULL,
 	`is_main` TINYINT(1) DEFAULT 0 NOT NULL,
-	PRIMARY KEY (`master`),
+	PRIMARY KEY (`master`,`color`),
 	CONSTRAINT `fk_mannequin_images_1`
 		FOREIGN KEY (`master`)
-		REFERENCES `products` (`master`)
+		REFERENCES `products` (`sku`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

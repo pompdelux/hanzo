@@ -219,7 +219,7 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 			$this->modifiedColumns[] = MannequinImagesPeer::MASTER;
 		}
 
-		if ($this->aProducts !== null && $this->aProducts->getMaster() !== $v) {
+		if ($this->aProducts !== null && $this->aProducts->getSku() !== $v) {
 			$this->aProducts = null;
 		}
 
@@ -432,7 +432,7 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 	public function ensureConsistency()
 	{
 
-		if ($this->aProducts !== null && $this->master !== $this->aProducts->getMaster()) {
+		if ($this->aProducts !== null && $this->master !== $this->aProducts->getSku()) {
 			$this->aProducts = null;
 		}
 	} // ensureConsistency
@@ -861,10 +861,10 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 	 */
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
 	{
-		if (isset($alreadyDumpedObjects['MannequinImages'][$this->getPrimaryKey()])) {
+		if (isset($alreadyDumpedObjects['MannequinImages'][serialize($this->getPrimaryKey())])) {
 			return '*RECURSION*';
 		}
-		$alreadyDumpedObjects['MannequinImages'][$this->getPrimaryKey()] = true;
+		$alreadyDumpedObjects['MannequinImages'][serialize($this->getPrimaryKey())] = true;
 		$keys = MannequinImagesPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getMaster(),
@@ -996,28 +996,35 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 	{
 		$criteria = new Criteria(MannequinImagesPeer::DATABASE_NAME);
 		$criteria->add(MannequinImagesPeer::MASTER, $this->master);
+		$criteria->add(MannequinImagesPeer::COLOR, $this->color);
 
 		return $criteria;
 	}
 
 	/**
-	 * Returns the primary key for this object (row).
-	 * @return     string
+	 * Returns the composite primary key for this object.
+	 * The array elements will be in same order as specified in XML.
+	 * @return     array
 	 */
 	public function getPrimaryKey()
 	{
-		return $this->getMaster();
+		$pks = array();
+		$pks[0] = $this->getMaster();
+		$pks[1] = $this->getColor();
+
+		return $pks;
 	}
 
 	/**
-	 * Generic method to set the primary key (master column).
+	 * Set the [composite] primary key.
 	 *
-	 * @param      string $key Primary key.
+	 * @param      array $keys The elements of the composite key (order must match the order in XML file).
 	 * @return     void
 	 */
-	public function setPrimaryKey($key)
+	public function setPrimaryKey($keys)
 	{
-		$this->setMaster($key);
+		$this->setMaster($keys[0]);
+		$this->setColor($keys[1]);
 	}
 
 	/**
@@ -1026,7 +1033,7 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 	 */
 	public function isPrimaryKeyNull()
 	{
-		return null === $this->getMaster();
+		return (null === $this->getMaster()) && (null === $this->getColor());
 	}
 
 	/**
@@ -1042,6 +1049,7 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
+		$copyObj->setMaster($this->getMaster());
 		$copyObj->setColor($this->getColor());
 		$copyObj->setLayer($this->getLayer());
 		$copyObj->setImage($this->getImage());
@@ -1056,18 +1064,12 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 			// store object hash to prevent cycle
 			$this->startCopy = true;
 
-			$relObj = $this->getProducts();
-			if ($relObj) {
-				$copyObj->setProducts($relObj->copy($deepCopy));
-			}
-
 			//unflag object copy
 			$this->startCopy = false;
 		} // if ($deepCopy)
 
 		if ($makeNew) {
 			$copyObj->setNew(true);
-			$copyObj->setMaster(NULL); // this is a auto-increment column, so set to default value
 		}
 	}
 
@@ -1121,14 +1123,15 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 		if ($v === null) {
 			$this->setMaster(NULL);
 		} else {
-			$this->setMaster($v->getMaster());
+			$this->setMaster($v->getSku());
 		}
 
 		$this->aProducts = $v;
 
-		// Add binding for other direction of this 1:1 relationship.
+		// Add binding for other direction of this n:n relationship.
+		// If this object has already been added to the Products object, it will not be re-added.
 		if ($v !== null) {
-			$v->setMannequinImages($this);
+			$v->addMannequinImages($this);
 		}
 
 		return $this;
@@ -1148,8 +1151,13 @@ abstract class BaseMannequinImages extends BaseObject  implements Persistent
 			$this->aProducts = ProductsQuery::create()
 				->filterByMannequinImages($this) // here
 				->findOne($con);
-			// Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
-			$this->aProducts->setMannequinImages($this);
+			/* The following can be used additionally to
+				guarantee the related object contains a reference
+				to this object.  This level of coupling may, however, be
+				undesirable since it could result in an only partially populated collection
+				in the referenced object.
+				$this->aProducts->addMannequinImagess($this);
+			 */
 		}
 		return $this->aProducts;
 	}

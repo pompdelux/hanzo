@@ -44,6 +44,7 @@ class CouponsToCustomersTableMap extends TableMap
 		// columns
 		$this->addForeignPrimaryKey('COUPONS_ID', 'CouponsId', 'INTEGER' , 'coupons', 'ID', true, null, null);
 		$this->addForeignPrimaryKey('CUSTOMERS_ID', 'CustomersId', 'INTEGER' , 'customers', 'ID', true, null, null);
+		$this->addColumn('USE_COUNT', 'UseCount', 'INTEGER', true, null, 0);
 		// validators
 	} // initialize()
 

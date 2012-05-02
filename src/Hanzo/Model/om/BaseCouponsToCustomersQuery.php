@@ -23,9 +23,11 @@ use Hanzo\Model\Customers;
  *
  * @method     CouponsToCustomersQuery orderByCouponsId($order = Criteria::ASC) Order by the coupons_id column
  * @method     CouponsToCustomersQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
+ * @method     CouponsToCustomersQuery orderByUseCount($order = Criteria::ASC) Order by the use_count column
  *
  * @method     CouponsToCustomersQuery groupByCouponsId() Group by the coupons_id column
  * @method     CouponsToCustomersQuery groupByCustomersId() Group by the customers_id column
+ * @method     CouponsToCustomersQuery groupByUseCount() Group by the use_count column
  *
  * @method     CouponsToCustomersQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     CouponsToCustomersQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -44,9 +46,11 @@ use Hanzo\Model\Customers;
  *
  * @method     CouponsToCustomers findOneByCouponsId(int $coupons_id) Return the first CouponsToCustomers filtered by the coupons_id column
  * @method     CouponsToCustomers findOneByCustomersId(int $customers_id) Return the first CouponsToCustomers filtered by the customers_id column
+ * @method     CouponsToCustomers findOneByUseCount(int $use_count) Return the first CouponsToCustomers filtered by the use_count column
  *
  * @method     array findByCouponsId(int $coupons_id) Return CouponsToCustomers objects filtered by the coupons_id column
  * @method     array findByCustomersId(int $customers_id) Return CouponsToCustomers objects filtered by the customers_id column
+ * @method     array findByUseCount(int $use_count) Return CouponsToCustomers objects filtered by the use_count column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -135,7 +139,7 @@ abstract class BaseCouponsToCustomersQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `COUPONS_ID`, `CUSTOMERS_ID` FROM `coupons_to_customers` WHERE `COUPONS_ID` = :p0 AND `CUSTOMERS_ID` = :p1';
+		$sql = 'SELECT `COUPONS_ID`, `CUSTOMERS_ID`, `USE_COUNT` FROM `coupons_to_customers` WHERE `COUPONS_ID` = :p0 AND `CUSTOMERS_ID` = :p1';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -288,6 +292,46 @@ abstract class BaseCouponsToCustomersQuery extends ModelCriteria
 			$comparison = Criteria::IN;
 		}
 		return $this->addUsingAlias(CouponsToCustomersPeer::CUSTOMERS_ID, $customersId, $comparison);
+	}
+
+	/**
+	 * Filter the query on the use_count column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByUseCount(1234); // WHERE use_count = 1234
+	 * $query->filterByUseCount(array(12, 34)); // WHERE use_count IN (12, 34)
+	 * $query->filterByUseCount(array('min' => 12)); // WHERE use_count > 12
+	 * </code>
+	 *
+	 * @param     mixed $useCount The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CouponsToCustomersQuery The current query, for fluid interface
+	 */
+	public function filterByUseCount($useCount = null, $comparison = null)
+	{
+		if (is_array($useCount)) {
+			$useMinMax = false;
+			if (isset($useCount['min'])) {
+				$this->addUsingAlias(CouponsToCustomersPeer::USE_COUNT, $useCount['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($useCount['max'])) {
+				$this->addUsingAlias(CouponsToCustomersPeer::USE_COUNT, $useCount['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(CouponsToCustomersPeer::USE_COUNT, $useCount, $comparison);
 	}
 
 	/**

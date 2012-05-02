@@ -42,8 +42,8 @@ class MannequinImagesTableMap extends TableMap
 		$this->setPackage('src.Hanzo.Model');
 		$this->setUseIdGenerator(false);
 		// columns
-		$this->addForeignPrimaryKey('MASTER', 'Master', 'VARCHAR' , 'products', 'MASTER', true, 128, null);
-		$this->addColumn('COLOR', 'Color', 'VARCHAR', true, 32, null);
+		$this->addForeignPrimaryKey('MASTER', 'Master', 'VARCHAR' , 'products', 'SKU', true, 128, null);
+		$this->addPrimaryKey('COLOR', 'Color', 'VARCHAR', true, 32, null);
 		$this->addColumn('LAYER', 'Layer', 'INTEGER', true, null, null);
 		$this->addColumn('IMAGE', 'Image', 'VARCHAR', true, 128, null);
 		$this->addColumn('ICON', 'Icon', 'VARCHAR', true, 128, null);
@@ -57,7 +57,7 @@ class MannequinImagesTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'master', ), null, null);
+		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), null, null);
 	} // buildRelations()
 
 } // MannequinImagesTableMap

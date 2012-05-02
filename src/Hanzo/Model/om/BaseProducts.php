@@ -155,9 +155,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	protected $aProductsWashingInstructions;
 
 	/**
-	 * @var        MannequinImages one-to-one related MannequinImages object
+	 * @var        array MannequinImages[] Collection to store aggregation of MannequinImages objects.
 	 */
-	protected $singleMannequinImages;
+	protected $collMannequinImagess;
 
 	/**
 	 * @var        array Products[] Collection to store aggregation of Products objects.
@@ -901,7 +901,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 
 			$this->aProductsRelatedByMaster = null;
 			$this->aProductsWashingInstructions = null;
-			$this->singleMannequinImages = null;
+			$this->collMannequinImagess = null;
 
 			$this->collProductssRelatedBySku = null;
 
@@ -1081,9 +1081,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 				}
 			}
 
-			if ($this->singleMannequinImages !== null) {
-				if (!$this->singleMannequinImages->isDeleted()) {
-						$affectedRows += $this->singleMannequinImages->save($con);
+			if ($this->collMannequinImagess !== null) {
+				foreach ($this->collMannequinImagess as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
 				}
 			}
 
@@ -1463,9 +1465,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			}
 
 
-				if ($this->singleMannequinImages !== null) {
-					if (!$this->singleMannequinImages->validate($columns)) {
-						$failureMap = array_merge($failureMap, $this->singleMannequinImages->getValidationFailures());
+				if ($this->collMannequinImagess !== null) {
+					foreach ($this->collMannequinImagess as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
 					}
 				}
 
@@ -1659,8 +1663,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			if (null !== $this->aProductsWashingInstructions) {
 				$result['ProductsWashingInstructions'] = $this->aProductsWashingInstructions->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
 			}
-			if (null !== $this->singleMannequinImages) {
-				$result['MannequinImages'] = $this->singleMannequinImages->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
+			if (null !== $this->collMannequinImagess) {
+				$result['MannequinImagess'] = $this->collMannequinImagess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->collProductssRelatedBySku) {
 				$result['ProductssRelatedBySku'] = $this->collProductssRelatedBySku->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1896,9 +1900,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			// store object hash to prevent cycle
 			$this->startCopy = true;
 
-			$relObj = $this->getMannequinImages();
-			if ($relObj) {
-				$copyObj->setMannequinImages($relObj->copy($deepCopy));
+			foreach ($this->getMannequinImagess() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addMannequinImages($relObj->copy($deepCopy));
+				}
 			}
 
 			foreach ($this->getProductssRelatedBySku() as $relObj) {
@@ -2116,6 +2121,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 */
 	public function initRelation($relationName)
 	{
+		if ('MannequinImages' == $relationName) {
+			return $this->initMannequinImagess();
+		}
 		if ('ProductsRelatedBySku' == $relationName) {
 			return $this->initProductssRelatedBySku();
 		}
@@ -2146,39 +2154,151 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Gets a single MannequinImages object, which is related to this object by a one-to-one relationship.
+	 * Clears out the collMannequinImagess collection
 	 *
-	 * @param      PropelPDO $con optional connection object
-	 * @return     MannequinImages
-	 * @throws     PropelException
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addMannequinImagess()
 	 */
-	public function getMannequinImages(PropelPDO $con = null)
+	public function clearMannequinImagess()
 	{
-
-		if ($this->singleMannequinImages === null && !$this->isNew()) {
-			$this->singleMannequinImages = MannequinImagesQuery::create()->findPk($this->getPrimaryKey(), $con);
-		}
-
-		return $this->singleMannequinImages;
+		$this->collMannequinImagess = null; // important to set this to NULL since that means it is uninitialized
 	}
 
 	/**
-	 * Sets a single MannequinImages object as related to this object by a one-to-one relationship.
+	 * Initializes the collMannequinImagess collection.
 	 *
-	 * @param      MannequinImages $v MannequinImages
-	 * @return     Products The current object (for fluent API support)
+	 * By default this just sets the collMannequinImagess collection to an empty array (like clearcollMannequinImagess());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initMannequinImagess($overrideExisting = true)
+	{
+		if (null !== $this->collMannequinImagess && !$overrideExisting) {
+			return;
+		}
+		$this->collMannequinImagess = new PropelObjectCollection();
+		$this->collMannequinImagess->setModel('MannequinImages');
+	}
+
+	/**
+	 * Gets an array of MannequinImages objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this Products is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array MannequinImages[] List of MannequinImages objects
 	 * @throws     PropelException
 	 */
-	public function setMannequinImages(MannequinImages $v = null)
+	public function getMannequinImagess($criteria = null, PropelPDO $con = null)
 	{
-		$this->singleMannequinImages = $v;
+		if(null === $this->collMannequinImagess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collMannequinImagess) {
+				// return empty collection
+				$this->initMannequinImagess();
+			} else {
+				$collMannequinImagess = MannequinImagesQuery::create(null, $criteria)
+					->filterByProducts($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collMannequinImagess;
+				}
+				$this->collMannequinImagess = $collMannequinImagess;
+			}
+		}
+		return $this->collMannequinImagess;
+	}
 
-		// Make sure that that the passed-in MannequinImages isn't already associated with this object
-		if ($v !== null && $v->getProducts() === null) {
-			$v->setProducts($this);
+	/**
+	 * Sets a collection of MannequinImages objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $mannequinImagess A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setMannequinImagess(PropelCollection $mannequinImagess, PropelPDO $con = null)
+	{
+		$this->mannequinImagessScheduledForDeletion = $this->getMannequinImagess(new Criteria(), $con)->diff($mannequinImagess);
+
+		foreach ($mannequinImagess as $mannequinImages) {
+			// Fix issue with collection modified by reference
+			if ($mannequinImages->isNew()) {
+				$mannequinImages->setProducts($this);
+			}
+			$this->addMannequinImages($mannequinImages);
+		}
+
+		$this->collMannequinImagess = $mannequinImagess;
+	}
+
+	/**
+	 * Returns the number of related MannequinImages objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related MannequinImages objects.
+	 * @throws     PropelException
+	 */
+	public function countMannequinImagess(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collMannequinImagess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collMannequinImagess) {
+				return 0;
+			} else {
+				$query = MannequinImagesQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByProducts($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collMannequinImagess);
+		}
+	}
+
+	/**
+	 * Method called to associate a MannequinImages object to this object
+	 * through the MannequinImages foreign key attribute.
+	 *
+	 * @param      MannequinImages $l MannequinImages
+	 * @return     Products The current object (for fluent API support)
+	 */
+	public function addMannequinImages(MannequinImages $l)
+	{
+		if ($this->collMannequinImagess === null) {
+			$this->initMannequinImagess();
+		}
+		if (!$this->collMannequinImagess->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddMannequinImages($l);
 		}
 
 		return $this;
+	}
+
+	/**
+	 * @param	MannequinImages $mannequinImages The mannequinImages object to add.
+	 */
+	protected function doAddMannequinImages($mannequinImages)
+	{
+		$this->collMannequinImagess[]= $mannequinImages;
+		$mannequinImages->setProducts($this);
 	}
 
 	/**
@@ -3705,8 +3825,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
-			if ($this->singleMannequinImages) {
-				$this->singleMannequinImages->clearAllReferences($deep);
+			if ($this->collMannequinImagess) {
+				foreach ($this->collMannequinImagess as $o) {
+					$o->clearAllReferences($deep);
+				}
 			}
 			if ($this->collProductssRelatedBySku) {
 				foreach ($this->collProductssRelatedBySku as $o) {
@@ -3758,10 +3880,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		// i18n behavior
 		$this->currentLocale = 'en_EN';
 		$this->currentTranslations = null;
-		if ($this->singleMannequinImages instanceof PropelCollection) {
-			$this->singleMannequinImages->clearIterator();
+		if ($this->collMannequinImagess instanceof PropelCollection) {
+			$this->collMannequinImagess->clearIterator();
 		}
-		$this->singleMannequinImages = null;
+		$this->collMannequinImagess = null;
 		if ($this->collProductssRelatedBySku instanceof PropelCollection) {
 			$this->collProductssRelatedBySku->clearIterator();
 		}

@@ -838,7 +838,7 @@ abstract class BaseProductsQuery extends ModelCriteria
 	{
 		if ($mannequinImages instanceof MannequinImages) {
 			return $this
-				->addUsingAlias(ProductsPeer::MASTER, $mannequinImages->getMaster(), $comparison);
+				->addUsingAlias(ProductsPeer::SKU, $mannequinImages->getMaster(), $comparison);
 		} elseif ($mannequinImages instanceof PropelCollection) {
 			return $this
 				->useMannequinImagesQuery()

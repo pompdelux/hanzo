@@ -315,7 +315,7 @@ abstract class BaseMannequinImagesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = (string) $obj->getMaster();
+				$key = serialize(array((string) $obj->getMaster(), (string) $obj->getColor()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -335,10 +335,10 @@ abstract class BaseMannequinImagesPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof MannequinImages) {
-				$key = (string) $value->getMaster();
-			} elseif (is_scalar($value)) {
+				$key = serialize(array((string) $value->getMaster(), (string) $value->getColor()));
+			} elseif (is_array($value) && count($value) === 2) {
 				// assume we've been passed a primary key
-				$key = (string) $value;
+				$key = serialize(array((string) $value[0], (string) $value[1]));
 			} else {
 				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or MannequinImages object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
@@ -399,10 +399,10 @@ abstract class BaseMannequinImagesPeer {
 	public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
 	{
 		// If the PK cannot be derived from the row, return NULL.
-		if ($row[$startcol] === null) {
+		if ($row[$startcol] === null && $row[$startcol + 1] === null) {
 			return null;
 		}
-		return (string) $row[$startcol];
+		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1]));
 	}
 
 	/**
@@ -416,7 +416,7 @@ abstract class BaseMannequinImagesPeer {
 	 */
 	public static function getPrimaryKeyFromRow($row, $startcol = 0)
 	{
-		return (string) $row[$startcol];
+		return array((string) $row[$startcol], (string) $row[$startcol + 1]);
 	}
 	
 	/**
@@ -513,7 +513,7 @@ abstract class BaseMannequinImagesPeer {
 			$con = Propel::getConnection(MannequinImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::MASTER, $join_behavior);
+		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::SKU, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -549,7 +549,7 @@ abstract class BaseMannequinImagesPeer {
 		$startcol = MannequinImagesPeer::NUM_HYDRATE_COLUMNS;
 		ProductsPeer::addSelectColumns($criteria);
 
-		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::MASTER, $join_behavior);
+		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::SKU, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
@@ -582,8 +582,7 @@ abstract class BaseMannequinImagesPeer {
 				} // if obj2 already loaded
 
 				// Add the $obj1 (MannequinImages) to $obj2 (Products)
-				// one to one relationship
-				$obj1->setProducts($obj2);
+				$obj2->addMannequinImages($obj1);
 
 			} // if joined row was not null
 
@@ -630,7 +629,7 @@ abstract class BaseMannequinImagesPeer {
 			$con = Propel::getConnection(MannequinImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::MASTER, $join_behavior);
+		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::SKU, $join_behavior);
 
 		$stmt = BasePeer::doCount($criteria, $con);
 
@@ -668,7 +667,7 @@ abstract class BaseMannequinImagesPeer {
 		ProductsPeer::addSelectColumns($criteria);
 		$startcol3 = $startcol2 + ProductsPeer::NUM_HYDRATE_COLUMNS;
 
-		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::MASTER, $join_behavior);
+		$criteria->addJoin(MannequinImagesPeer::MASTER, ProductsPeer::SKU, $join_behavior);
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
@@ -702,7 +701,7 @@ abstract class BaseMannequinImagesPeer {
 				} // if obj2 loaded
 
 				// Add the $obj1 (MannequinImages) to the collection in $obj2 (Products)
-				$obj1->setProducts($obj2);
+				$obj2->addMannequinImages($obj1);
 			} // if joined row not null
 
 			$results[] = $obj1;
@@ -813,6 +812,14 @@ abstract class BaseMannequinImagesPeer {
 				$selectCriteria->setPrimaryTableName(MannequinImagesPeer::TABLE_NAME);
 			}
 
+			$comparison = $criteria->getComparison(MannequinImagesPeer::COLOR);
+			$value = $criteria->remove(MannequinImagesPeer::COLOR);
+			if ($value) {
+				$selectCriteria->add(MannequinImagesPeer::COLOR, $value, $comparison);
+			} else {
+				$selectCriteria->setPrimaryTableName(MannequinImagesPeer::TABLE_NAME);
+			}
+
 		} else { // $values is MannequinImages object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
@@ -885,10 +892,18 @@ abstract class BaseMannequinImagesPeer {
 			$criteria = $values->buildPkeyCriteria();
 		} else { // it's a primary key, or an array of pks
 			$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(MannequinImagesPeer::MASTER, (array) $values, Criteria::IN);
-			// invalidate the cache for this object(s)
-			foreach ((array) $values as $singleval) {
-				MannequinImagesPeer::removeInstanceFromPool($singleval);
+			// primary key is composite; we therefore, expect
+			// the primary key passed to be an array of pkey values
+			if (count($values) == count($values, COUNT_RECURSIVE)) {
+				// array is not multi-dimensional
+				$values = array($values);
+			}
+			foreach ($values as $value) {
+				$criterion = $criteria->getNewCriterion(MannequinImagesPeer::MASTER, $value[0]);
+				$criterion->addAnd($criteria->getNewCriterion(MannequinImagesPeer::COLOR, $value[1]));
+				$criteria->addOr($criterion);
+				// we can invalidate the cache for this single PK
+				MannequinImagesPeer::removeInstanceFromPool($value);
 			}
 		}
 
@@ -950,56 +965,28 @@ abstract class BaseMannequinImagesPeer {
 	}
 
 	/**
-	 * Retrieve a single object by pkey.
-	 *
-	 * @param      string $pk the primary key.
-	 * @param      PropelPDO $con the connection to use
+	 * Retrieve object using using composite pkey values.
+	 * @param      string $master
+	 * @param      string $color
+	 * @param      PropelPDO $con
 	 * @return     MannequinImages
 	 */
-	public static function retrieveByPK($pk, PropelPDO $con = null)
-	{
-
-		if (null !== ($obj = MannequinImagesPeer::getInstanceFromPool((string) $pk))) {
-			return $obj;
+	public static function retrieveByPK($master, $color, PropelPDO $con = null) {
+		$_instancePoolKey = serialize(array((string) $master, (string) $color));
+ 		if (null !== ($obj = MannequinImagesPeer::getInstanceFromPool($_instancePoolKey))) {
+ 			return $obj;
 		}
 
 		if ($con === null) {
 			$con = Propel::getConnection(MannequinImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
-
 		$criteria = new Criteria(MannequinImagesPeer::DATABASE_NAME);
-		$criteria->add(MannequinImagesPeer::MASTER, $pk);
-
+		$criteria->add(MannequinImagesPeer::MASTER, $master);
+		$criteria->add(MannequinImagesPeer::COLOR, $color);
 		$v = MannequinImagesPeer::doSelect($criteria, $con);
 
-		return !empty($v) > 0 ? $v[0] : null;
+		return !empty($v) ? $v[0] : null;
 	}
-
-	/**
-	 * Retrieve multiple objects by pkey.
-	 *
-	 * @param      array $pks List of primary keys
-	 * @param      PropelPDO $con the connection to use
-	 * @throws     PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
-	public static function retrieveByPKs($pks, PropelPDO $con = null)
-	{
-		if ($con === null) {
-			$con = Propel::getConnection(MannequinImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-		}
-
-		$objs = null;
-		if (empty($pks)) {
-			$objs = array();
-		} else {
-			$criteria = new Criteria(MannequinImagesPeer::DATABASE_NAME);
-			$criteria->add(MannequinImagesPeer::MASTER, $pks, Criteria::IN);
-			$objs = MannequinImagesPeer::doSelect($criteria, $con);
-		}
-		return $objs;
-	}
-
 } // BaseMannequinImagesPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
