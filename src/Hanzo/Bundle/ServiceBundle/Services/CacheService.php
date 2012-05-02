@@ -122,7 +122,7 @@ page_" . $id . "_" . $locale . ":
 ")."\n";
                         break;
                     case 'system':
-                        switch ($settings['type']) {
+                        switch ($settings['view']) {
                             case 'mannequin':
                             $buffer[$locale] .= trim("
 system_" . $id . "_" . $locale . ":
@@ -143,9 +143,9 @@ newsletter_" . $id . "_" . $locale . ":
                             break;
                         case 'category_search':
                         case 'advanced_search':
-                            $method = explode('_', $settings['type']);
+                            $method = explode('_', $settings['view']);
                             $method = array_shift($method);
-                            $restricted = (($settings['type'] == 'category_search') ? 'true' : 'false');
+                            $restricted = (($settings['view'] == 'category_search') ? 'true' : 'false');
                             $buffer[$locale] .= trim("
 search_" . $id . "_" . $locale . ":
     pattern: /{$path}

@@ -1,0 +1,118 @@
+Boy.png:
+    Navy:
+        - Navy
+        - White
+        - Blue
+        - Light Blue
+        - Red
+        - Blue Denim
+        - Black
+        - Khaki
+        - Navy Melange
+        - Off White/Navy
+        - Sand
+        - Grey Melange
+        - Black
+        - White
+    Grey:
+        - Grey Melange
+        - Grey
+        - Light Blue
+        - Light Grey Melange
+        - Blue Denim
+        - Khaki
+        - Sand
+        - Black
+        - White
+    Olive:
+        - Olive
+        - Khaki
+        - Sand
+        - White
+        - Dark Olive
+        - Blue Denim
+        - Black
+    Blue:
+        - Blue
+        - Light Blue
+        - Grey Melange
+        - Yellow
+        - Sand
+        - Khaki
+        - White
+        - Blue Denim
+        - Blue Ink
+        - Black
+    Green:
+        - Green
+        - Blue Denim
+        - Navy
+        - Khaki
+        - Sand
+        - White
+        - Black
+Girl.png:
+    Blue:
+        - Blue
+        - Navy
+        - White
+        - Cream
+        - Blue Denim
+        - Sand
+        - Off White
+        - Navy/White
+    Dusty Rose:
+        - Dusty Rose
+        - Cream
+        - Off White
+        - Blue Denim
+        - Grey
+        - Powder
+        - Sand
+        - Black
+        - Powder/Dusty Rose
+        - White
+    Grey:
+        - Grey
+        - Grey Melange
+        - Cream
+        - Blue Denim
+        - Blue Denim
+        - Off White
+        - Off White/Grey
+        - Black
+        - White
+    White:
+        - White
+        - Black
+        - Grey
+        - Grey Melange
+        - Blue Denim
+        - Off White
+    Peach:
+        - Peach
+        - Sand
+        - Blue Denim
+        - Brown
+        - White
+        - Cream
+        - Off White
+        - Peach/Grey Melange
+        - Grey Melange
+    Green:
+        - Green
+        - Brown
+        - Khaki
+        - Sand
+        - Blue Denim
+        - Olive
+        - Off White
+        - Off White/Green
+        - White
+    Brown:
+        - Brown
+        - Cream
+        - Khaki
+        - Sand
+        - Off White
+        - White

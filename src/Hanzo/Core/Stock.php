@@ -121,6 +121,28 @@ class Stock
         return FALSE;
     }
 
+    /**
+     * get total stock for a product
+     *
+     * @param mixed $product a product object or product id
+     * @return int
+     */
+    public function get($product)
+    {
+        if (is_object($product)) {
+            $id = $product->getId();
+        }
+        else {
+            $id = (int) $product;
+        }
+
+        if (empty($this->stock[$id])) {
+            $this->load($product);
+        }
+
+        return $this->stock[$id]['total'];
+    }
+
 
     /**
      * decrease the stock level for a product

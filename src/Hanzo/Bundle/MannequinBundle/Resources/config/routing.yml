@@ -1,3 +1,20 @@
 HanzoMannequinBundle_homepage:
     pattern:  /mm
     defaults: { _controller: HanzoMannequinBundle:Default:index }
+
+mannequin_cart_form:
+    pattern:    /mannequin/cart/get/form/{step}
+    defaults:
+        _controller: HanzoMannequinBundle:Default:cartForm
+        step: size
+
+mannequin_cart_add:
+    pattern:    /mannequin/cart/add
+    defaults:
+        _controller: HanzoMannequinBundle:Default:cartAdd
+
+mannequin_dress_form_add:
+    pattern:    /mannequin/dress_form/add
+    defaults:
+        _controller: HanzoMannequinBundle:Default:dressFormAdd
+

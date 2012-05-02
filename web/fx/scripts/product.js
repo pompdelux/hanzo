@@ -109,26 +109,26 @@
           dataType: 'json',
           data: $form.serialize(),
           async: false,
-          success: function(responce, textStatus, jqXHR) {
-            if (false === responce.status) {
-              if (responce.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice'), responce.message);
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
               }
               return;
             }
 
             // populate color select with options
             if (name === 'size') {
-              $.each(responce.data.products, function(index, product) {
+              $.each(response.data.products, function(index, product) {
                 $('form.buy #color').append('<option value="'+product.color+'">'+product.color+'</option>');
               });
               $('form.buy #color').closest('label').removeClass('off');
             }
 
             if (name == 'color') {
-              var product = responce.data.products[0];
+              var product = response.data.products[0];
               if (product.date) {
-                dialoug.confirm(ExposeTranslation.get('js:notice'), responce.message, function(c) {
+                dialoug.confirm(ExposeTranslation.get('js:notice'), response.message, function(c) {
                   if (c == 'ok') {
                     $('form.buy #quantity').closest('label').removeClass('off');
                     $form.find('.button').show();
@@ -155,16 +155,16 @@
           type: 'POST',
           data: $form.serialize(),
           async: false,
-          success: function(responce, textStatus, jqXHR) {
-            if (false === responce.status) {
-              if (responce.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', responce.message));
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
               }
             }
             else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
-              $('#mini-basket a').html(responce.data);
-              dialoug.slideNotice(responce.message);
+              $('#mini-basket a').html(response.data);
+              dialoug.slideNotice(response.message);
             }
             _resetForm();
           },

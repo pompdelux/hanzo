@@ -24,6 +24,7 @@ class AxService
     protected $wsdl;
     protected $client;
     protected $ax_state = false;
+    protected $skip_send = false;
 
     public function __construct($parameters, $settings)
     {
@@ -37,6 +38,11 @@ class AxService
         $this->logger = $parameters[0];
 
         $this->wsdl = 'http://'.$settings['host'].'/DynamicsAxServices.asmx?wsdl';
+
+        if (isset($settings['skip_send']) && $settings['skip_send'] == 1) {
+            $this->skip_send = true;
+        }
+
     }
 
 
@@ -333,6 +339,10 @@ class AxService
      */
     protected function Send($service, $request)
     {
+        if ($this->skip_send) {
+            return true;
+        }
+
         // if (!$this->client) {
         //     if (!$this->Connect()) {
         //         return false;
@@ -353,6 +363,10 @@ class AxService
      */
     protected function Connect()
     {
+        if ($this->skip_send) {
+            return true;
+        }
+
         // first we test the connection, soap has lousy timeout handeling
         $c = curl_init();
         curl_setopt_array($c, array(
@@ -374,11 +388,11 @@ class AxService
             return false;
         }
 
-        $this->client = new SoapClient($wsdl, array(
+        $this->client = new SoapClient($this->wsdl, array(
           'trace'      => true,
           'exceptions' => true,
         ));
-        $this->client->__setLocation(str_replace('?wsdl', '', $wsdl));
+        $this->client->__setLocation(str_replace('?wsdl', '', $this->wsdl));
 
         return true;
     }

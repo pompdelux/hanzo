@@ -766,4 +766,29 @@ class Orders extends BaseOrders
         return parent::setState($v);
     }
 
+
+    /**
+     * Check wether a product is in the "cart" or not
+     *
+     * @param  mixed $product_id id or sku of the product
+     * @return boolean             [description]
+     */
+    public function hasProduct($product_id)
+    {
+        $isInt = preg_match('/^[0-9]+$/', $product_id);
+        foreach ($this->getOrdersLiness() as $line) {
+            if ($isInt) {
+                if ($line->getProductsId() == $product_id) {
+                    return true;
+                }
+            } else {
+                // note the "name" here is the same as the master "sku"
+                if ($line->getProductsName() == $product_id) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 } // Orders
