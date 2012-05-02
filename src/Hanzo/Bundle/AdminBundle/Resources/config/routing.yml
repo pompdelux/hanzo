@@ -88,7 +88,7 @@ admin_settings_messages_delete:
 
 
 admin_cms:
-    pattern:  /admin/cms/{locale}
+    pattern:  /admin/cms/sort/{locale}
     defaults: 
         _controller: AdminBundle:Cms:index
         locale: 'en_GB'
