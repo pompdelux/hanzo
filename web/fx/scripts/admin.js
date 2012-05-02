@@ -36,6 +36,9 @@
         $("#select-ns-add div").slideToggle();
       });
 
+      $('.datepicker').datepicker({
+        dateFormat : "dd-mm-yy"
+      });
 
       /* Cache controller */
       $('.cache-clear').click(function(e){

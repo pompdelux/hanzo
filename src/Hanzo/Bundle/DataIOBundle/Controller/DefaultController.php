@@ -33,10 +33,23 @@ class DefaultController extends CoreController
      **/
     public function updateSystemAction()
     {
-        // TODO: Verify input
-        $event = new FilterUpdateEvent( 'translations' );
-        $dispatcher = $this->get('event_dispatcher');
-        $dispatcher->dispatch(Events::updateTranslations, $event);
-        return new Response();
+        $json = $this->get('request')->get('data');
+
+        if ( is_object($json) && isset($json->commits) )
+        {
+            foreach ($json->commits as $commit) 
+            {
+              error_log('[Github Webhook]: commit by '. $commit->author->email.' url: '.$commit->url); // hf@bellcom.dk debugging
+            }
+
+            $event = new FilterUpdateEvent( 'translations' );
+            $dispatcher = $this->get('event_dispatcher');
+            $dispatcher->dispatch(Events::updateTranslations, $event);
+            return new Response( print_r($json,1) );
+        }
+        else
+        {
+            return new Response( 'Could not verify request', 500,array('Content-Type' => 'text/plain'));
+        }
     }
 }
