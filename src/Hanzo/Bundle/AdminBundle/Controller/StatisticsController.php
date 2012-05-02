@@ -14,7 +14,7 @@ class StatisticsController extends CoreController
 {
     public function indexAction($domain_key)
     {
-    	// TODO : domain specific
+    	
         $date_filter = array();
     	if (!empty($_GET['select-periode'])) { // Select input from form
     		
@@ -40,9 +40,10 @@ class StatisticsController extends CoreController
             $date_filter['min'] = strtotime($start);
             $date_filter['max'] = strtotime($end);
         }else{
+        	// Default period is TODAY
             $date_filter['min'] = date('d-m-Y', time());
             $start = $date_filter['min'];
-            $date_filter['max'] = date('d-m-Y', time());
+            $date_filter['max'] = $date_filter['min'];
             $end = $date_filter['max'];
         
         }
