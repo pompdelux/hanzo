@@ -487,3 +487,11 @@ admin_coupon_add_customer:
     pattern: /admin/coupons/add-customer
     defaults:
         _controller: AdminBundle:Coupons:addCustomer
+
+admin_helpdesk:
+    pattern: /admin/helpdesk/{pager}
+    defaults:
+        _controller: AdminBundle:Helpdesk:index
+        pager: 1
+    requirements:
+        pager: \d+
