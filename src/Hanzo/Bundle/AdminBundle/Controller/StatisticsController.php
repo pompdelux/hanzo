@@ -7,11 +7,12 @@ use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools;
 
-use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\OrdersLinesQuery,
+	Hanzo\Model\DomainsQuery;
 
 class StatisticsController extends CoreController
 {
-    public function indexAction()
+    public function indexAction($domain_key)
     {
     	// TODO : domain specific
         $date_filter = array();
@@ -21,7 +22,7 @@ class StatisticsController extends CoreController
     			case 'thisweek':
     				$date_filter['min'] = date('d-m-Y',strtotime('Monday this week'));
 		            $start = $date_filter['min'];
-		            $date_filter['max'] = date('d-m-Y',strtotime('+6 day', $date_filter['min']));
+    				$date_filter['max'] = date('d-m-Y',strtotime('Sunday this week'));
 		            $end = $date_filter['max'];
     				break;
     			case 'thismonth':
@@ -50,18 +51,38 @@ class StatisticsController extends CoreController
     		->withColumn('SUM(orders_lines.price)','TotalAmount')
     		->withColumn('SUM(orders_lines.quantity)','TotalProducts')
     		->useOrdersQuery()
-    			->withColumn('COUNT(orders.id)','TotalOrders')
+    			->withColumn('COUNT( DISTINCT orders.id)','TotalOrders')
     			->withColumn('DATE(orders.finishedAt)','FinishedAt')
     			->filterByFinishedAt($date_filter)
     		->endUse()
+    	;
+
+    	if($domain_key){
+    		$orders_amount = $orders_amount
+    			->useOrdersQuery()
+    				->useOrdersAttributesQuery()
+    					->filterByCKey('domain_key')
+    					->filterByCValue($domain_key)
+    				->endUse()
+    				->joinOrdersAttributes()
+    			->endUse()
+    		;
+    	}
+    	$orders_amount = $orders_amount
     		->select(array('FinishedAt', 'TotalProducts', 'TotalOrders', 'TotalAmount'))
     		->groupBy('FinishedAt')
     		->orderBy('FinishedAt')
     		->find()
     	;
 
+		$domains_availible = DomainsQuery::Create()
+			->find()
+		;
+
         return $this->render('AdminBundle:Statistics:index.html.twig', array(
             'orders_amount'  => $orders_amount,
+            'domain_key' => $domain_key,
+            'domains_availible' => $domains_availible,
             'start' => $start,
             'end' => $end
         ));
