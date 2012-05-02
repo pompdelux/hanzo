@@ -48,6 +48,7 @@ class StatisticsController extends CoreController
         }
 
     	$orders_amount = OrdersLinesQuery::create()
+    		->filterByType('product')
     		->withColumn('SUM(orders_lines.price)','TotalAmount')
     		->withColumn('SUM(orders_lines.quantity)','TotalProducts')
     		->useOrdersQuery()
