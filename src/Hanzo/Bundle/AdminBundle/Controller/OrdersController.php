@@ -11,11 +11,12 @@ use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributesQuery;
+use Hanzo\Model\DomainsQuery;
 
 class OrdersController extends CoreController
 {
 
-    public function indexAction($id, $domain, $pager)
+    public function indexAction($customer_id, $domain_key, $pager)
     {
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
@@ -24,16 +25,23 @@ class OrdersController extends CoreController
 
         $orders = OrdersQuery::create();
 
-        if(null != $id)
-            $orders = $orders->filterByCustomersId($id);
-        if(null != $locale)
-        	//$orders = $orders->filterByCustomersId($id);
+        if(null != $customer_id)
+            $orders = $orders->filterByCustomersId($customer_id);
+
+        if(null != $domain_key){
+            $orders = $orders
+                ->useOrdersAttributesQuery()
+                    ->filterByCKey('domain_key')
+                    ->filterByCValue($domain_key)
+                ->endUse()
+                ->joinOrdersAttributes()
+            ;
+        }
 
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
             $q = '%'.$q_clean.'%';
-
-            $orders->filterByCustomersId($q_clean)
+            $orders = $orders->filterByCustomersId($q_clean)
             	->_or()
             	->filterById($q_clean)
             	->_or()
@@ -61,6 +69,7 @@ class OrdersController extends CoreController
             if ($orders_count instanceof OrdersLines) {
                 $order_data[] = array(
                     'id' => $order->getId(),
+                    'createdat' => $order->getCreatedAt(),
                     'finishedat' => $order->getFinishedAt(),
                     'totallines' => $orders_count->getVirtualColumn('TotalLines'),
                     'totalprice' => $orders_count->getVirtualColumn('TotalPrice')
@@ -68,6 +77,7 @@ class OrdersController extends CoreController
             }else{
                 $order_data[] = array(
                     'id' => $order->getId(),
+                    'createdat' => $order->getCreatedAt(),
                     'finishedat' => $order->getFinishedAt(),
                     'totallines' => '0',
                     'totalprice' => '0,00'
@@ -81,13 +91,13 @@ class OrdersController extends CoreController
 
             $pages = array();
             foreach ($orders->getLinks(20) as $page) {
-                $pages[$page] = $router->generate($route, array('id' => $id, 'pager' => $page), TRUE);
+                $pages[$page] = $router->generate($route, array('customer_id' => $customer_id, 'pager' => $page), TRUE);
 
             }
 
             $paginate = array(
-                'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('id' => $id, 'pager' => $orders->getNextPage()), TRUE)),
-                'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('id' => $id, 'pager' => $orders->getPreviousPage()), TRUE)),
+                'next' => ($orders->getNextPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'pager' => $orders->getNextPage()), TRUE)),
+                'prew' => ($orders->getPreviousPage() == $pager ? '' : $router->generate($route, array('customer_id' => $customer_id, 'pager' => $orders->getPreviousPage()), TRUE)),
 
                 'pages' => $pages,
                 'index' => $pager
