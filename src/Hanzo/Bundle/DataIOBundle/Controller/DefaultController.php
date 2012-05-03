@@ -33,7 +33,7 @@ class DefaultController extends CoreController
      **/
     public function updateSystemAction()
     {
-        $json = $this->get('request')->get('data');
+        $json = json_decode( $this->get('request')->get('payload'));
 
         if ( is_object($json) && isset($json->commits) )
         {
@@ -45,11 +45,11 @@ class DefaultController extends CoreController
             $event = new FilterUpdateEvent( 'translations' );
             $dispatcher = $this->get('event_dispatcher');
             $dispatcher->dispatch(Events::updateTranslations, $event);
-            return new Response( print_r($json,1) );
+            return new Response( 'Ok', 200, array('Content-Type' => 'text/plain') );
         }
         else
         {
-            return new Response( 'Could not verify request', 500,array('Content-Type' => 'text/plain'));
+            return new Response( 'Could not verify request', 500, array('Content-Type' => 'text/plain') );
         }
     }
 }
