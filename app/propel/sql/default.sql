@@ -102,7 +102,7 @@ CREATE TABLE `coupons`
 	`code` VARCHAR(12) NOT NULL,
 	`amount` DECIMAL(15,4) NOT NULL,
 	`vat` DECIMAL(2,2),
-	`currency_id` INTEGER NOT NULL,
+	`currency_code` VARCHAR(3) NOT NULL,
 	`uses_pr_coupon` INTEGER DEFAULT 1 NOT NULL,
 	`uses_pr_coustomer` INTEGER DEFAULT 1 NOT NULL,
 	`active_from` DATETIME,
@@ -111,7 +111,7 @@ CREATE TABLE `coupons`
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `code_UNIQUE` (`code`),
-	INDEX `index3` (`currency_id`)
+	INDEX `index3` (`currency_code`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

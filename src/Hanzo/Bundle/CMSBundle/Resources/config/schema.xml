@@ -78,7 +78,7 @@
     <column name="code" type="VARCHAR" size="12" required="true"/>
     <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
     <column name="vat" type="DECIMAL" size="2" scale="2" required="false"/>
-    <column name="currency_id" type="INTEGER" required="true"/>
+    <column name="currency_code" type="VARCHAR" size="3" required="true"/>
     <column name="uses_pr_coupon" type="INTEGER" required="true" defaultValue="1"/>
     <column name="uses_pr_coustomer" type="INTEGER" required="true" defaultValue="1"/>
     <column name="active_from" type="TIMESTAMP" required="false"/>
@@ -87,7 +87,7 @@
       <unique-column name="code"/>
     </unique>
     <index name="index3">
-      <index-column name="currency_id"/>
+      <index-column name="currency_code"/>
     </index>
     <behavior name="timestampable" />
   </table>

@@ -49,7 +49,7 @@ class CouponsController extends CoreController
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
 
             }
-            
+
             if (isset($_GET['q'])) // If search query, add it to the route
                 $paginate = array(
                     'next' => ($coupons->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $coupons->getNextPage(), 'q' => $_GET['q']), TRUE)),
@@ -98,44 +98,44 @@ class CouponsController extends CoreController
     	}
 
     	$form = $this->createFormBuilder($coupon)
-            ->add('code', 'text', 
+            ->add('code', 'text',
                 array(
                     'label' => 'admin.coupons.code',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('amount', 'number', 
+            )->add('amount', 'number',
                 array(
                     'label' => 'admin.coupons.amount',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('vat', 'number', 
-                array(
-                    'label' => 'admin.coupons.vat',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )->add('currency_code', 'choice', 
+            // )->add('vat', 'number',
+            //     array(
+            //         'label' => 'admin.coupons.vat',
+            //         'translation_domain' => 'admin',
+            //         'required' => false
+            //     )
+            )->add('currency_code', 'choice',
                 array(
                 	'choices' => $currencies_data,
                     'label' => 'admin.coupons.currency',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )->add('uses_pr_coupon', 'integer', 
+            )->add('uses_pr_coupon', 'integer',
                 array(
                     'label' => 'admin.coupons.uses_pr_coupon',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )->add('uses_pr_coustomer', 'integer', 
+            )->add('uses_pr_coustomer', 'integer',
                 array(
                     'label' => 'admin.coupons.uses_pr_customer',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )->add('active_from', 'date', 
+            )->add('active_from', 'date',
                 array(
                 	'input' => 'string',
                 	'widget' => 'single_text',
@@ -145,7 +145,7 @@ class CouponsController extends CoreController
                     'required' => false,
                     'attr' => array('class' => 'datepicker')
                 )
-            )->add('active_to', 'date', 
+            )->add('active_to', 'date',
                 array(
                 	'input' => 'string',
                 	'widget' => 'single_text',
@@ -157,7 +157,7 @@ class CouponsController extends CoreController
                 )
             )->getForm()
         ;
-        
+
         $customers = CustomersQuery::create()->find();
 
         $couponstocustomers = CouponsToCustomersQuery::create()
@@ -209,7 +209,7 @@ class CouponsController extends CoreController
             ));
         }
 
-        
+
     }
 
     public function addCustomerAction()

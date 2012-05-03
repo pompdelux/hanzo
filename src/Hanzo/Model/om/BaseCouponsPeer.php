@@ -56,8 +56,8 @@ abstract class BaseCouponsPeer {
 	/** the column name for the VAT field */
 	const VAT = 'coupons.VAT';
 
-	/** the column name for the CURRENCY_ID field */
-	const CURRENCY_ID = 'coupons.CURRENCY_ID';
+	/** the column name for the CURRENCY_CODE field */
+	const CURRENCY_CODE = 'coupons.CURRENCY_CODE';
 
 	/** the column name for the USES_PR_COUPON field */
 	const USES_PR_COUPON = 'coupons.USES_PR_COUPON';
@@ -96,11 +96,11 @@ abstract class BaseCouponsPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Amount', 'Vat', 'CurrencyId', 'UsesPrCoupon', 'UsesPrCoustomer', 'ActiveFrom', 'ActiveTo', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'amount', 'vat', 'currencyId', 'usesPrCoupon', 'usesPrCoustomer', 'activeFrom', 'activeTo', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::CODE, self::AMOUNT, self::VAT, self::CURRENCY_ID, self::USES_PR_COUPON, self::USES_PR_COUSTOMER, self::ACTIVE_FROM, self::ACTIVE_TO, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'AMOUNT', 'VAT', 'CURRENCY_ID', 'USES_PR_COUPON', 'USES_PR_COUSTOMER', 'ACTIVE_FROM', 'ACTIVE_TO', 'CREATED_AT', 'UPDATED_AT', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'amount', 'vat', 'currency_id', 'uses_pr_coupon', 'uses_pr_coustomer', 'active_from', 'active_to', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'Amount', 'Vat', 'CurrencyCode', 'UsesPrCoupon', 'UsesPrCoustomer', 'ActiveFrom', 'ActiveTo', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'amount', 'vat', 'currencyCode', 'usesPrCoupon', 'usesPrCoustomer', 'activeFrom', 'activeTo', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::CODE, self::AMOUNT, self::VAT, self::CURRENCY_CODE, self::USES_PR_COUPON, self::USES_PR_COUSTOMER, self::ACTIVE_FROM, self::ACTIVE_TO, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'AMOUNT', 'VAT', 'CURRENCY_CODE', 'USES_PR_COUPON', 'USES_PR_COUSTOMER', 'ACTIVE_FROM', 'ACTIVE_TO', 'CREATED_AT', 'UPDATED_AT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'amount', 'vat', 'currency_code', 'uses_pr_coupon', 'uses_pr_coustomer', 'active_from', 'active_to', 'created_at', 'updated_at', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
 	);
 
@@ -111,11 +111,11 @@ abstract class BaseCouponsPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Amount' => 2, 'Vat' => 3, 'CurrencyId' => 4, 'UsesPrCoupon' => 5, 'UsesPrCoustomer' => 6, 'ActiveFrom' => 7, 'ActiveTo' => 8, 'CreatedAt' => 9, 'UpdatedAt' => 10, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'vat' => 3, 'currencyId' => 4, 'usesPrCoupon' => 5, 'usesPrCoustomer' => 6, 'activeFrom' => 7, 'activeTo' => 8, 'createdAt' => 9, 'updatedAt' => 10, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::CODE => 1, self::AMOUNT => 2, self::VAT => 3, self::CURRENCY_ID => 4, self::USES_PR_COUPON => 5, self::USES_PR_COUSTOMER => 6, self::ACTIVE_FROM => 7, self::ACTIVE_TO => 8, self::CREATED_AT => 9, self::UPDATED_AT => 10, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'AMOUNT' => 2, 'VAT' => 3, 'CURRENCY_ID' => 4, 'USES_PR_COUPON' => 5, 'USES_PR_COUSTOMER' => 6, 'ACTIVE_FROM' => 7, 'ACTIVE_TO' => 8, 'CREATED_AT' => 9, 'UPDATED_AT' => 10, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'vat' => 3, 'currency_id' => 4, 'uses_pr_coupon' => 5, 'uses_pr_coustomer' => 6, 'active_from' => 7, 'active_to' => 8, 'created_at' => 9, 'updated_at' => 10, ),
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'Amount' => 2, 'Vat' => 3, 'CurrencyCode' => 4, 'UsesPrCoupon' => 5, 'UsesPrCoustomer' => 6, 'ActiveFrom' => 7, 'ActiveTo' => 8, 'CreatedAt' => 9, 'UpdatedAt' => 10, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'vat' => 3, 'currencyCode' => 4, 'usesPrCoupon' => 5, 'usesPrCoustomer' => 6, 'activeFrom' => 7, 'activeTo' => 8, 'createdAt' => 9, 'updatedAt' => 10, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::CODE => 1, self::AMOUNT => 2, self::VAT => 3, self::CURRENCY_CODE => 4, self::USES_PR_COUPON => 5, self::USES_PR_COUSTOMER => 6, self::ACTIVE_FROM => 7, self::ACTIVE_TO => 8, self::CREATED_AT => 9, self::UPDATED_AT => 10, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'AMOUNT' => 2, 'VAT' => 3, 'CURRENCY_CODE' => 4, 'USES_PR_COUPON' => 5, 'USES_PR_COUSTOMER' => 6, 'ACTIVE_FROM' => 7, 'ACTIVE_TO' => 8, 'CREATED_AT' => 9, 'UPDATED_AT' => 10, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'amount' => 2, 'vat' => 3, 'currency_code' => 4, 'uses_pr_coupon' => 5, 'uses_pr_coustomer' => 6, 'active_from' => 7, 'active_to' => 8, 'created_at' => 9, 'updated_at' => 10, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
 	);
 
@@ -192,7 +192,7 @@ abstract class BaseCouponsPeer {
 			$criteria->addSelectColumn(CouponsPeer::CODE);
 			$criteria->addSelectColumn(CouponsPeer::AMOUNT);
 			$criteria->addSelectColumn(CouponsPeer::VAT);
-			$criteria->addSelectColumn(CouponsPeer::CURRENCY_ID);
+			$criteria->addSelectColumn(CouponsPeer::CURRENCY_CODE);
 			$criteria->addSelectColumn(CouponsPeer::USES_PR_COUPON);
 			$criteria->addSelectColumn(CouponsPeer::USES_PR_COUSTOMER);
 			$criteria->addSelectColumn(CouponsPeer::ACTIVE_FROM);
@@ -204,7 +204,7 @@ abstract class BaseCouponsPeer {
 			$criteria->addSelectColumn($alias . '.CODE');
 			$criteria->addSelectColumn($alias . '.AMOUNT');
 			$criteria->addSelectColumn($alias . '.VAT');
-			$criteria->addSelectColumn($alias . '.CURRENCY_ID');
+			$criteria->addSelectColumn($alias . '.CURRENCY_CODE');
 			$criteria->addSelectColumn($alias . '.USES_PR_COUPON');
 			$criteria->addSelectColumn($alias . '.USES_PR_COUSTOMER');
 			$criteria->addSelectColumn($alias . '.ACTIVE_FROM');
