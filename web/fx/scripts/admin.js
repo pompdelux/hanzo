@@ -6,34 +6,9 @@
 
     pub.initUI = function() {
 
-      $("#select-cache a.open-menu").click(function(e) {
+      $("a.open-menu").click(function(e) {
         e.preventDefault();
-        $("#select-cache div").slideToggle();
-      });
-
-      $("#select-domain a.open-menu").click(function(e) {
-        e.preventDefault();
-        $("#select-domain div").slideToggle();
-      });
-
-      $("#select-language a.open-menu").click(function(e) {
-        e.preventDefault();
-        $("#select-language div").slideToggle();
-      });
-
-      $("#select-category a.open-menu").click(function(e) {
-        e.preventDefault();
-        $("#select-category div").slideToggle();
-      });
-
-      $("#select-code a.open-menu").click(function(e) {
-        e.preventDefault();
-        $("#select-code div").slideToggle();
-      });
-
-      $("#select-ns-add a.open-menu").click(function(e) {
-        e.preventDefault();
-        $("#select-ns-add div").slideToggle();
+        $(this).parent().find('div').slideToggle();
       });
 
       $('.datepicker').datepicker({
