@@ -290,9 +290,22 @@ nav.sub a {
 nav.sub a:hover {
   color: #574729;
 }
+table.list th ul {
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+table.list th li{
+  margin: 15px 0;
+  float:none;
+}
+table.list th li a{
+  float:none;
+}
 
 nav.sub #select-language div,
-nav.sub li.dropdown-menu div{
+nav.sub li.dropdown-menu div,
+li.dropdown-menu div{
   position: absolute;
   top: 40px;
   padding: 1em 0.5em;
@@ -301,11 +314,13 @@ nav.sub li.dropdown-menu div{
 }
 
 nav.sub #select-language div ul,
-nav.sub li.dropdown-menu div ul{
+nav.sub li.dropdown-menu div ul,
+li.dropdown-menu div ul{
   border:none;
 }
 nav.sub #select-language div ul li,
-nav.sub li.dropdown-menu div ul li{
+nav.sub li.dropdown-menu div ul li,
+li.dropdown-menu div ul li{
   float:left;
   clear: both;
   display: block;
@@ -313,7 +328,8 @@ nav.sub li.dropdown-menu div ul li{
   background:none;
 }
 nav.sub #select-language div a,
-nav.sub li.dropdown-menu div a{
+nav.sub li.dropdown-menu div a,
+li.dropdown-menu div a{
   border: none;
   display: block;
 }

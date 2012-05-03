@@ -442,24 +442,26 @@ class SettingsController extends CoreController
 
     public function messagesIndexAction($ns = null, $locale = null)
     {
-        $messages = MessagesQuery::create();
+
+        $messages = MessagesI18nQuery::create();
         if($locale){
-            $messages = $messages->useMessagesI18nQuery()
-                    ->filterByLocale($locale)
-                ->endUse()
+            $messages = $messages
+                ->filterByLocale($locale)
             ;
         }
-        $messages = $messages->joinWithMessagesI18n();
 
         if($ns)
             $messages = $messages->filterByNs($ns);
 
         $messages = $messages
-            ->orderByNs()
-            ->orderByKey()
+            ->useMessagesQuery()
+                ->orderByNs()
+                ->orderByKey()
+            ->endUse()
+            ->joinWithMessages()
             ->find()
         ;
-
+        
         $message_ns_availible = MessagesQuery::create()->find();
 
         $languages_availible = LanguagesQuery::Create()->find();
@@ -485,9 +487,12 @@ class SettingsController extends CoreController
                 ->filterByLocale($locale)
                 ->findOneById($id)
             ;
-        if(!$message) {
+        if( !($message instanceof MessagesI18n) ) {
             $message = new MessagesI18n();
             $message->setId($id);
+
+            if($locale)
+                $message->setLocale($locale);
         }
 
         $languages_availible = LanguagesQuery::Create()->find();
