@@ -58,8 +58,8 @@ end
 #
 namespace :deploy do
   desc "Update translations"
-  task :restart do
-    run "#{current_path}/tools/deploy/test.sh"
+  task :translations do
+    run "#{current_path}/tools/deploy/translations.sh"
   end
   
 # Other examples:
