@@ -274,5 +274,5 @@ class CouponsController extends CoreController
                 'message' => $this->get('translator')->trans('delete.coupon.customer.failed', array(), 'admin'),
             ));
         }
-}
+    }
 }

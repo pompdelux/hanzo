@@ -7,7 +7,10 @@ use Symfony\Component\EventDispatcher\Event,
     Symfony\Component\Yaml\Exception\ParseException
     ;
 
-use Hanzo\Bundle\DataIOBundle\FilterUpdateEvent;
+use Hanzo\Bundle\DataIOBundle\FilterUpdateEvent,
+    Hanzo\Model\Settings,
+    Hanzo\Model\SettingsQuery
+    ;
 
 use Exception;
 
@@ -15,43 +18,21 @@ class UpdateListener
 {
     public function onIncrementAssetsVersion(FilterUpdateEvent $event)
     {
-      $file = __DIR__.'/../../../../app/config/config.yml';
+        $assetsVersion = SettingsQuery::create()
+            ->filterByNs('core')
+            ->findOneByCKey('assets_version')
+            ;
 
-      if ( !is_file($file) )
-      {
-        throw new Exception( 'UpdateListener: could not find config.yml at: "'.$file.'"' );
-      }
+        if ( is_null( $assetsVersion ) )
+        {
+          $assetsVersion = new Settings();
+          $assetsVersion->setCKey('assets_version')
+              ->setNs('core')
+              ->setTitle('Assets version');
+        }
 
-      if ( !is_writeable($file) )
-      {
-        throw new Exception( 'UpdateListener: config.yml at: "'.$file.'" is not writeable' );
-      }
-
-      $yaml = new Parser();
-
-      try 
-      {
-          $value = $yaml->parse(file_get_contents($file));
-      } 
-      catch (ParseException $e) 
-      {
-          throw new Exception( 'UpdateListener: Unable to parse the YAML string: %s', $e->getMessage() );
-      }
-
-      if ( isset( $value['framework']['templating'] ))
-      {
-          $value['framework']['templating']['assets_version'] = time();
-
-          $dumper = new Dumper();
-
-          $yaml = $dumper->dump($value,3);
-
-          file_put_contents($file,$yaml);
-      }
-      else
-      {
-        throw new Exception( 'UpdateListener: config.yml is missing the framework -> templating block' );
-      }
+        $assetsVersion->setCValue( time() );
+        $assetsVersion->save();
     }
 
     /**
@@ -64,6 +45,5 @@ class UpdateListener
         chdir( __DIR__.'/../../../../app/Resources/translations/' );
         $command = '/usr/bin/git pull';
         exec($command, $out, $return);
-        error_log(__LINE__.':'.__FILE__.' '.$return .' '.print_r($out,1)); // hf@bellcom.dk debugging
     }
 }
