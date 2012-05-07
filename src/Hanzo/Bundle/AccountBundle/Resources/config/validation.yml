@@ -38,3 +38,32 @@ Hanzo\Model\Addresses:
             - NotBlank:
                 message: address.company_name.required
                 groups: [company_shipping]
+
+Hanzo\Model\Customers:
+    properties:
+        first_name:
+            - NotBlank:
+                message: first_name.required
+                groups: [add, edit]
+            - MinLength: 2
+        last_name:
+            - NotBlank:
+                message: last_name.required
+                groups: [add, edit]
+            - MinLength: 2
+        phone:
+            - NotBlank:
+                message: phone.required
+                groups: [add, edit]
+            - MinLength: 8
+        email:
+            - NotBlank:
+                message: email.required
+                groups: [add, edit]
+            - Email:
+                message: email.not.valid
+                groups: [add, edit]
+        accept:
+            - NotBlank:
+                message: confirm.terms
+                groups: [add, edit]

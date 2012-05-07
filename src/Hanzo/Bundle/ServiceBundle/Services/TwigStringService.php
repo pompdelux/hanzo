@@ -43,7 +43,7 @@ class TwigStringService
         try {
             $result = $this->twig->render($template, $parameters);
         } catch(Twig_Error_Runtime $e) {
-            Tools::log($e->getMessage());
+            //Tools::log($e->getMessage());
             $result = $template;
         }
 

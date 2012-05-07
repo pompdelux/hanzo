@@ -96,8 +96,6 @@ class DefaultController extends CoreController
                 }
 
                 $customer->save();
-                // FIXME: 
-                //$this->get('ax_manager')->sendDebtor($customer);
 
                 // login user
                 $user = new ProxyUser($customer);
@@ -198,7 +196,7 @@ class DefaultController extends CoreController
                     $customer->setPassword(sha1($customer->getPasswordClear()));
                 }
                 $customer->save();
-                // FIXME: 
+                // FIXME:
                 //$this->get('ax_manager')->sendDebtor($customer);
 
                 $this->get('session')->setFlash('notice', 'account.updated');
