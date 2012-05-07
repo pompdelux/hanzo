@@ -520,6 +520,26 @@
         });
         $(this).val(0);
       });
+      $('#helpdesk a.delete').live('click',function(e){
+        e.preventDefault();
+        var $a = $(this);
+        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne ?',function(choice) {
+          if (choice == 'ok') {
+            $.ajax({
+              url : $a.attr('href'),
+              dataType: 'json',
+              async : false,
+              success : function(response, textStatus, jqXHR) {
+                if (response.status) {
+                  $a.parent().parent().fadeOut(function() {
+                    $(this).remove();
+                  });
+                }
+              }
+            });
+          }
+        });
+      });
       // ios class added to body
       switch (navigator.platform) {
         case 'iPad':
@@ -601,6 +621,7 @@
     }
 
 
+
     return pub;
   })(jQuery);
 
@@ -608,3 +629,15 @@
   gui.initAnimatedMenu();
 
 })(document, jQuery);
+
+function helpdesk_open (key) {
+  var pptable = prettyPrint($.parseJSON(key), { maxDepth : 5 });
+  var defaults = {
+    'close' : ExposeTranslation.get('js:close'),
+    'overlayClose' : true,
+    'escKey' : true,
+    'html' : '<div class="dialoug alert info"><h2>' + ExposeTranslation.get('js:notice') + '</h2>' + pptable.innerHTML + '</div>'
+  };
+  $.colorbox(defaults);
+  return false;
+}

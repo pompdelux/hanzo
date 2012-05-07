@@ -495,3 +495,8 @@ admin_helpdesk:
         pager: 1
     requirements:
         pager: \d+
+
+admin_helpdesk_delete:
+    pattern: /admin/helpdesk/delete/{key}
+    defaults:
+        _controller: AdminBundle:Helpdesk:delete
