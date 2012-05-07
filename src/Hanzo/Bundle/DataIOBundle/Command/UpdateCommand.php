@@ -19,6 +19,7 @@ class UpdateCommand extends ContainerAwareCommand
     {
         $this->setName('hanzo:dataio:update')
             ->setDescription('Updates the system')
+            ->addArgument('element', InputArgument::REQUIRED, 'What should be updated? [translations] [assets_version]')
         ;
     }
 
@@ -30,8 +31,19 @@ class UpdateCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $element = $input->getArgument('element');
         $dispatcher = $this->getContainer()->get('event_dispatcher');
-        $event = new FilterUpdateEvent( 'assets_version' );
-        $dispatcher->dispatch(Events::incrementAssetsVersion, $event);
+
+        switch ($element) 
+        {
+          case 'translations':
+              $event = new FilterUpdateEvent( 'translations' );
+              $dispatcher->dispatch(Events::updateTranslations, $event);
+              break;
+          case 'assets_version':
+              $event = new FilterUpdateEvent( 'assets_version' );
+              $dispatcher->dispatch(Events::incrementAssetsVersion, $event);
+              break;
+        }
     }
 }

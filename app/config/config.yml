@@ -1,6 +1,6 @@
 imports:
-  -
-    resource: parameters.ini
+  - resource: parameters.ini
+  - resource: parameters.php
 framework:
   translator: null
   secret: '%secret%'
@@ -14,7 +14,7 @@ framework:
     enable_annotations: true
   templating:
     engines: [twig]
-    assets_version: 1335986810
+    assets_version: '%assets_version%' 
   session:
     default_locale: '%locale%'
     auto_start: false
