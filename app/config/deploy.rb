@@ -1,28 +1,41 @@
+# Links:
+# http://capifony.org/
+# http://stackoverflow.com/questions/8718259/capifony-and-directory-owners
+# http://blog.servergrove.com/2011/09/07/deploying-symfony2-projects-on-shared-hosting-with-capifony/
+# http://stackoverflow.com/questions/2633758/deploying-a-rails-app-to-multiple-servers-using-capistrano-best-practices
+# >>> http://www.zalas.eu/multistage-deployment-of-symfony-applications-with-capifony
+#
 set :application, "Hanzo"
-set :domain,      "debian1"
+set :domain,      "debian1" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
 set :deploy_to,   "/var/www/hanzo"
 set :app_path,    "app"
 
 set :repository,  "git@github.com:bellcom/hanzo.git"
 set :scm,         :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, `subversion` or `none`
 
 # set :deploy_via,  :rsync_with_remote_cache
 
 set :model_manager, "propel"
-# Or: `propel`
 
-role :web,        "debian1", "debian2" # Your HTTP server, Apache/etc
-role :app,        "debian1", "debian2" # This may be the same as your `Web` server
-# hf: æh, pas:
-role :db,         domain, :primary => true       # This is where Rails migrations will run
+# Your HTTP server, Apache/etc
+role(:web) do
+   frontend_list
+end
+# This may be the same as your `Web` server
+role(:app) do
+   frontend_list
+end
 
-set  :keep_releases,  3
+# hf@bellcom.dk: æh, pas:
+role :db, domain, :primary => true  # This is where Rails migrations will run
+
+set :keep_releases,  3
 
 set :shared_files,      ["app/config/parameters.ini"]
 
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor"]
 
+# hf@bellcom.dk: i en deploy skal den være true, ellers false, måske skal vi have den i en task
 #set :update_vendors, false
 set :update_vendors, true 
 
@@ -32,9 +45,32 @@ set :use_sudo, false
 
 ssh_options[:forward_agent] = true
 
-# Links:
-# http://capifony.org/
-# http://stackoverflow.com/questions/8718259/capifony-and-directory-owners
-# http://blog.servergrove.com/2011/09/07/deploying-symfony2-projects-on-shared-hosting-with-capifony/
-# http://stackoverflow.com/questions/2633758/deploying-a-rails-app-to-multiple-servers-using-capistrano-best-practices
-# >>> http://www.zalas.eu/multistage-deployment-of-symfony-applications-with-capifony
+# 
+# hf@bellcom.dk, read server list from file
+# 
+def frontend_list
+  contentsArray = Array.new
+  contentsArray = File.readlines("tools/deploy/frontend_list.txt")
+end
+
+#
+# hf@bellcom.dk, update translations and clear cache
+#
+namespace :deploy do
+  desc "Update translations"
+  task :restart do
+    run "#{current_path}/tools/deploy/test.sh"
+  end
+  
+# Other examples:
+#  desc "Symlink shared configs and folders on each release."
+#  task :symlink_shared do
+#    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+#    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+#  end
+#  
+#  desc "Sync the public/assets directory."
+#  task :assets do
+#    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:#{shared_path}/"
+#  end
+end
