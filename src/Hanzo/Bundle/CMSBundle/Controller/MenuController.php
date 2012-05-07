@@ -165,7 +165,6 @@ class MenuController extends CoreController
 
                         // handle frontpage urls
                         if ($params && isset($params['is_frontpage'])) {
-error_log($this->path);
                             if ($this->path == '/') {
                                 $class = 'active';
                             }
