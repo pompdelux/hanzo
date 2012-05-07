@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\CheckoutBundle\Event;
 
 use Hanzo\Core\Tools;
 
+use Hanzo\Model\Orders;
+
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 

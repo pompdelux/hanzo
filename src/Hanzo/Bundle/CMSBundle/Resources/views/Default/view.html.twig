@@ -2,7 +2,7 @@
 {% block content %}
 
 {% if page_type|default('page') != 'frontpage' %}
-  <h2>{{ page.title }}</h2>
+  <h1>{{ page.title }}</h1>
 {% endif %}
   <article>
     {{ parse(page.content) }}
@@ -15,7 +15,7 @@
 <script>
 (function($, document) {
   if ($('html').hasClass('mobile') == false) {
-    $('article a.button').data('text', i18n.t('Close'))
+    $('article a.button').data('text', ExposeTranslation.get('js:close'))
     $('article a.button').on('click', function(event) {
       event.preventDefault();
       var $a = $(this);

@@ -12,6 +12,8 @@ use Hanzo\Model\OrdersQuery;
 
 use \Criteria;
 
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
+
 class HistoryController extends CoreController
 {
     public function indexAction()
@@ -36,7 +38,7 @@ class HistoryController extends CoreController
             ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
             ->findOneById($order_id)
         ;
-        $this->get('event_dispatcher')->dispatch('order.edit.end', new FilterOrderEvent($order));
+        $this->get('event_dispatcher')->dispatch('order.edit.start', new FilterOrderEvent($order));
         return $this->redirect($this->generateUrl('basket_view'));
     }
 

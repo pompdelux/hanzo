@@ -5,7 +5,7 @@
 <h1>{{ 'My account - Login'|trans({}, 'account') }}</h1>
 
 {% if error %}
-    <div class="msg error">{{ error.message }}</div>
+    <div class="msg error">{{ error.message|trans({}, 'account') }}</div>
 {% endif %}
 
 

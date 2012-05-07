@@ -18,6 +18,12 @@ class CustomersType extends AbstractType
 
     public function buildForm(FormBuilder $builder, array $options)
     {
+        if ($this->is_new) {
+            $builder->setAttribute('validation_groups', 'add');
+        } else {
+            $builder->setAttribute('validation_groups', 'edit');
+        }
+
         $builder->add('first_name', null, array('translation_domain' => 'account', 'trim' => true));
         $builder->add('last_name', null, array('translation_domain' => 'account', 'trim' => true));
 

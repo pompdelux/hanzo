@@ -22,7 +22,7 @@ class Cms extends BaseCms
     {
         $settings = parent::getSettings();
         if (is_scalar($settings) && substr($settings, 0, 2) == 'a:') {
-            $settings = unserialize($settings);
+            $settings = unserialize(stripcslashes($settings));
             foreach ($settings as $key => $value) {
                 if (substr($value, 0, 2) == '{"') {
                     $settings[$key] = json_decode($value, TRUE);

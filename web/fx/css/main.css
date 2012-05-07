@@ -1,5 +1,5 @@
 body {
-  background-color: #4D4345;
+  background-color: #fff;
   color: #fff;
 }
 a {
@@ -183,8 +183,8 @@ nav.main ul li li {
   text-transform: none;
 }
 nav.main ul li a {
-  background-color: #fff;
-  color: #000;
+  background-color: #8E9092;
+  color: #fff;
   font-size: 14px;
   font-weight: normal;
   padding: 3px 20px;
@@ -194,7 +194,7 @@ nav.main ul li a:hover {
 }
 
 nav.main li.active a {
-  background-color: #2e2e2e;
+  background-color: #2E2A2A;
   color: #fff;
 }
 nav.main li.facebook a {
@@ -215,14 +215,17 @@ nav.main ul li li li {
 nav.main ul li li a,
 nav.main ul li li.inactive a {
   background-color: transparent;
+  color: #000;
 }
 nav.main ul li li.active a {
   background-color: transparent;
   color: #000;
+  font-weight: bold;
 }
 nav.main ul li li li.inactive a {
   background-image: none;
-  color: #fff;
+  color: #000;
+  font-weight: normal;
 }
 nav.main ul li li li a:hover,
 nav.main ul li li a:hover {
@@ -289,13 +292,13 @@ nav.sub a:hover {
 
 .teaser-box-1,
 .teaser-box-4 {
-  background-image: url(/fx/images/615e5f.png);
+  background-image: url(/fx/images/b4b5b6.png);
 }
 .teaser-box-2 {
-  background-image: url(/fx/images/997877.png);
+  background-image: url(/fx/images/c4bac0.png);
 }
 .teaser-box-3 {
-  background-image: url(/fx/images/778b9d.png);
+  background-image: url(/fx/images/a5b3be.png);
 }
 
 
@@ -303,7 +306,7 @@ nav.sub a:hover {
 #secondary-links {
   right: 0;
   top: 0;
-  background-image: url(/fx/images/ffffff.png);
+  background-image: url(/fx/images/b4b5b6.png);
   color: #000;
   padding: 5px;
 }
@@ -357,7 +360,7 @@ nav.sub a:hover {
   position: relative;
   width: 735px;
   margin: 75px auto 45px;
-  background-image: url(/fx/images/615e5f.png);
+  background-image: url(/fx/images/535354.png);
   padding: 20px;
   overflow: hidden;
 }
@@ -397,12 +400,12 @@ nav.sub a:hover {
   background-position: 0 20px;
   margin-top: 440px;
   margin-bottom: 40px;
-  padding: 20px 20px 40px 110px;
   width: 370px;
   position: relative;
+  padding: 20px 20px 40px 70px;
 }
 #body-frontpage #main article {
-  background-image: url(/fx/images/615e5f.png);
+  background-image: url(/fx/images/535354.png);
   height: 165px;
 }
 #body-frontpage #main div {

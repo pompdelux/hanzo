@@ -151,18 +151,24 @@ class MenuController extends CoreController
 
                 $class = 'inactive';
                 if ((isset($this->trail[$record->getId()])) ||
-                    ($record->getPath() == $this->path)
+                    ($path == $this->path)
                 ) {
                     $class = 'active';
                 }
+
                 if (in_array($record->getType(), array('page', 'url'))) {
                     $params = $record->getSettings('params');
                     if (is_array($params) && isset($params['class'])) {
                         $class .= ' ' . $params['class'];
                     }
                     else {
+
                         // handle frontpage urls
                         if ($params && isset($params['is_frontpage'])) {
+error_log($this->path);
+                            if ($this->path == '/') {
+                                $class = 'active';
+                            }
                             $path = '';
                         }
                     }

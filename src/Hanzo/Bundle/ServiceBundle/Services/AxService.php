@@ -3,6 +3,11 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Propel;
+use SoapClient;
+use SoapFault;
+use stdClass;
+use Exception;
+
 use Symfony\Bridge\Monolog\Logger;
 
 use Hanzo\Core\Hanzo;
@@ -55,7 +60,7 @@ class AxService
      */
     public function triggerStockSync($endpoint, $return = false)
     {
-        $data = new \stdClass();
+        $data = new stdClass();
         $data->endpointDomain = $endpoint;
 
         if ($return) {
@@ -114,7 +119,7 @@ class AxService
 
         $salesLine = array();
         foreach ($products as $product) {
-            $line = new \stdClass();
+            $line = new stdClass();
             $line->ItemId = $product->getProductsSku();
             $line->SalesPrice = $product->getPrice();
             $line->SalesQty = $product->getQuantity();
@@ -178,7 +183,7 @@ class AxService
                 break;
         }
 
-        $salesTable = new \stdClass();
+        $salesTable = new stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
         $salesTable->PaymentId               = $order->getPaymentGatewayId();
@@ -207,10 +212,10 @@ class AxService
         $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
         $salesTable->SmoreContactInfo        = ''; // FIXME
 
-        $salesOrder = new \stdClass();
+        $salesOrder = new stdClass();
         $salesOrder->SalesTable = $salesTable;
 
-        $syncSalesOrder = new \stdClass();
+        $syncSalesOrder = new stdClass();
         $syncSalesOrder->salesOrder = $salesOrder;
         $syncSalesOrder->endpointDomain = $attributes->global->domain_key;
 
@@ -222,7 +227,7 @@ class AxService
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
         $comment = '';
-        if ($result instanceof \Exception) {
+        if ($result instanceof Exception) {
                 $state = 'failed';
                 $comment = $result->getMessage();
         } else {
@@ -288,9 +293,9 @@ class AxService
         }
         $ct->Phone = $debitor->getPhone();
 
-        $cu = new \stdClass();
+        $cu = new stdClass();
         $cu->CustTable = $ct;
-        $sc = new \stdClass();
+        $sc = new stdClass();
         $sc->customer = $cu;
 
         // TODO: no hardcoded switches
@@ -308,7 +313,7 @@ class AxService
 
         $result = $this->Send('SyncCustomer', $sc);
 
-        if ($result instanceof \Exception) {
+        if ($result instanceof Exception) {
             $message = sprintf('An error occured while synchronizing debitor "%s", error message: "%s"',
                 $debitor->getId(),
                 $result->getMethod()
@@ -343,15 +348,15 @@ class AxService
             return true;
         }
 
-        // if (!$this->client) {
-        //     if (!$this->Connect()) {
-        //         return false;
-        //     }
-        // }
+        if (!$this->client) {
+            if (!$this->Connect()) {
+                return false;
+            }
+        }
 
         try {
             return $this->client->{$service}($data);
-        } catch (\SoapFault $e) {
+        } catch (SoapFault $e) {
             return $e;
         }
     }
