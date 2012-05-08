@@ -37,13 +37,15 @@ class UpdateListener
 
     /**
      * onUpdateTranslations
+     * This triggers Capifony's "deploy:translations" task
+     * For more info about this, check deploy.rb
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function onUpdateTranslations(FilterUpdateEvent $event)
     {
-        chdir( __DIR__.'/../../../../app/Resources/translations/' );
-        $command = '/usr/bin/git pull';
+        chdir( __DIR__.'/../../../../' );
+        $command = 'cap deploy:translations';
         exec($command, $out, $return);
     }
 }
