@@ -28,8 +28,11 @@ class DefaultController extends CoreController
         $domain_id = $hanzo->get('core.domain_id');
 
         $page = CmsPeer::getByPK($id, $locale);
-        $settings = unserialize(stripcslashes($page->getSettings()));
-        list($categories_string, $group) = explode('/', $settings['params']);
+
+        $settings = json_decode($page->getSettings());
+        $categories_string = $settings->category_ids;
+        $group = $settings->group;
+
         $categories  = array_map('trim', explode(',', $categories_string));
         $no_accessories = $categories;
         $accessories = array_shift($no_accessories);

@@ -47,7 +47,7 @@ while ($record = mysql_fetch_object($result)) {
 
     case 'category':
       $settings = unserialize($record->settings);
-      $data = json_encode(array('category_ids' => $settings['category_id']), JSON_FORCE_OBJECT);
+      $data = json_encode(array('category_id' => $settings['category_id']), JSON_FORCE_OBJECT);
       break;
 
     case 'system':
@@ -59,7 +59,13 @@ while ($record = mysql_fetch_object($result)) {
           case 'mannequin':
             $json = json_decode($settings['params']);
             if (!is_null($json)) {
-              $data = json_encode($json, JSON_FORCE_OBJECT);
+              $data = json_encode(array(
+                'category_ids' => $json->categories,
+                'image' => $json->image,
+                'title' => $json->title,
+                'colorscheme' => $json->colorscheme,
+                'ignore' => $json->ignore,
+              ), JSON_FORCE_OBJECT);
             }
             break 2;
 
@@ -91,7 +97,12 @@ while ($record = mysql_fetch_object($result)) {
     $sql = "UPDATE hanzo.cms SET type = '".mysql_real_escape_string($type)."' WHERE id = {$record->id}";
     mysql_query($sql);
   }
-  $sql = "UPDATE hanzo.cms_i18n SET settings = '".mysql_real_escape_string($data)."' WHERE id = {$record->id} AND locale = '{$record->locale}'";
+
+  $settings = 'NULL';
+  if ($data) {
+    $settings = "'".mysql_real_escape_string($data)."'";
+  }
+  $sql = "UPDATE hanzo.cms_i18n SET settings = {$settings} WHERE id = {$record->id} AND locale = '{$record->locale}'";
   mysql_query($sql);
 }
 

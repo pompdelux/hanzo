@@ -33,17 +33,16 @@ class DefaultController extends CoreController
         $data = $this->getCache($cache_key);
 
         if (!$data) {
-            $settings = unserialize($page->getSettings());
-            $settings = json_decode($settings['params'], true);
+            $settings = json_decode($page->getSettings());
 
             // TODO: move to db, teach hd format.
             $color_map = Yaml::parse(__DIR__ . '/../../../../../app/config/mannequin_color_scheme.yaml');
 
-            $settings['dress_form'] = $settings['image'];
-            $color_scheme = $color_map[str_replace('Little', '', $settings['dress_form'])][$settings['colorscheme']];
+            $settings->dress_form = $settings->image;
+            $color_scheme = $color_map[str_replace('Little', '', $settings->dress_form)][$settings->colorscheme];
 
-            $includes = explode(',', $settings['categories']);
-            $ignores = explode(',', $settings['ignore']);
+            $includes = explode(',', $settings->category_ids);
+            $ignores = explode(',', $settings->ignore);
 
             $categories = array();
             $resultset = CategoriesI18nQuery::create()
@@ -122,11 +121,11 @@ class DefaultController extends CoreController
         }
 
         return $this->render('HanzoMannequinBundle:Default:view.html.twig', array(
-            'title' => $settings['title'] . ' - ' . $settings['colorscheme'],
+            'title' => $settings->title . ' - ' . $settings->colorscheme,
             'products' => $products,
-            'dress_form' => $settings['dress_form'],
-            'page_type' => 'mannequin')
-        );
+            'dress_form' => $settings->dress_form,
+            'page_type' => 'mannequin'
+        ));
     }
 
     public function dressFormAddAction()
@@ -269,7 +268,4 @@ class DefaultController extends CoreController
 
         return $this->json_response($response);
     }
-
-    public function cartAddAction(){}
-
 }

@@ -98,4 +98,8 @@ $query = "
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
+// cleanup
+mysql_query("UPDATE hanzo.cms_i18n SET content = NULL WHERE content = 'null'") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+mysql_query("UPDATE hanzo.cms_i18n SET settings = NULL WHERE settings = ''") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');

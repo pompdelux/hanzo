@@ -157,19 +157,14 @@ class MenuController extends CoreController
                 }
 
                 if (in_array($record->getType(), array('page', 'url'))) {
-                    $params = $record->getSettings('params');
-                    if (is_array($params) && isset($params['class'])) {
-                        $class .= ' ' . $params['class'];
-                    }
-                    else {
-
-                        // handle frontpage urls
-                        if ($params && isset($params['is_frontpage'])) {
-                            if ($this->path == '/') {
-                                $class = 'active';
-                            }
-                            $path = '';
+                    $params = $record->getSettings();
+                    if (isset($params->class)) {
+                        $class .= ' ' . $params->class;
+                    } elseif (isset($params->is_frontpage)) {
+                        if ($this->path == '/') {
+                            $class = 'active';
                         }
+                        $path = '';
                     }
                 }
 
@@ -211,9 +206,9 @@ class MenuController extends CoreController
                     $class = 'active';
                 }
                 if (in_array($record->getType(), array('page', 'url'))) {
-                    $params = $record->getSettings('params');
-                    if (is_array($params) && isset($params['class'])) {
-                        $class .= ' ' . $params['class'];
+                    $params = $record->getSettings();
+                    if ($params && isset($params->class)) {
+                        $class .= ' ' . $params->class;
                     }
                 }
 
