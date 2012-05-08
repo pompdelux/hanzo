@@ -45,6 +45,16 @@ set :use_sudo, false
 
 ssh_options[:forward_agent] = true
 
+#
+# hf@bellcom.dk, run route builder before cache warm
+#
+before "symfony:cache:warmup", "route_builder"
+
+desc "Build hanzo routes"
+task :route_builder do
+  run("cd #{deploy_to}/current && php app/console hanzo:router:builder")
+end
+
 # 
 # hf@bellcom.dk, read server list from file
 # 
