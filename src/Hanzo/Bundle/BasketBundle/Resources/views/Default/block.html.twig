@@ -62,15 +62,9 @@
 
   {% if embedded == false %}
     {% if delivery_date %}
-      {% trans with { '%date%' : delivery_date|date('d-m-Y') } %}
-        <p>Your order includes item(s) we do not have in stock at the moment. The order will be packed, when all items are back in stock.</p><p>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.</p>
-      {% endtrans %}
+      {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout') }}
     {% else %}
-      <p>
-      {% trans %}
-        <strong>Note:</strong>If your order contains items with shipping dates, we ship your order when all items are in stock.
-      {% endtrans %}
-      </p>
+      {{ 'late.delivery.notice'|trans({}, 'checkout') }}
     {% endif %}
 
     <div class="buttons">
