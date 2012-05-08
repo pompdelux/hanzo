@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController;
@@ -15,6 +17,7 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery,
     Hanzo\Model\ProductsToCategories,
     Hanzo\Model\ProductsImagesQuery,
     Hanzo\Model\ProductsQuery,
+    Hanzo\Model\ProductsStockQuery,
     Hanzo\Model\CategoriesQuery;
 
 class ProductsController extends CoreController
@@ -351,5 +354,37 @@ class ProductsController extends CoreController
                 'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
             ));
         }
+    }
+
+    public function stockAction()
+    {
+        $parser = new \PropelCSVParser();
+        $parser->delimiter = ';';
+
+        $stocks = ProductsStockQuery::create()
+            ->useProductsQuery()
+                ->orderBySku()
+            ->endUse()
+            ->joinWithProducts()
+            ->withColumn('SUM(products_stock.quantity)', 'totalstock')
+            ->groupByProductsId()
+            ->find()
+        ;
+
+        $stock_data = array();
+        $stock_data[0] = array('SKU','STOCK');
+
+        foreach ($stocks as $stock) {
+            $stock_data[] = array($stock->getProducts()->getSku(), $stock->getVirtualColumn('totalstock'));
+        }
+
+        return new Response( 
+            $parser->toCSV($stock_data, true, false), 
+            200, 
+            array( 
+                 'Content-Type' => 'text/csv', 
+                 'Content-Disposition' => sprintf('attachment; filename="stock_' . date('Y-m-d', time()) . '.csv"', 'stock_' . date('Y-m-d', time()) .'.csv') 
+            ) 
+        );
     }
 }

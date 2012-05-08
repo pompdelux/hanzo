@@ -500,3 +500,8 @@ admin_helpdesk_delete:
     pattern: /admin/helpdesk/delete/{key}
     defaults:
         _controller: AdminBundle:Helpdesk:delete
+
+admin_stock:
+    pattern: /admin/products/stock
+    defaults:
+        _controller: AdminBundle:Products:stock
