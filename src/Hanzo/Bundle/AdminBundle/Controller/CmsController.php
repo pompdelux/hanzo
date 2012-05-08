@@ -46,7 +46,7 @@ class CmsController extends CoreController
 
         $languages_availible = LanguagesQuery::Create()
             ->find();
-        
+
         return $this->render('AdminBundle:Cms:menu.html.twig',
             array(
                 'tree'=>$this->getCmsTree(null,$locale),
@@ -79,7 +79,7 @@ class CmsController extends CoreController
         }
     }
 
-    public function addAction($locale = 'en_GB')
+    public function addAction($locale = 'da_DK')
     {
         $cms_node = new CmsNode();
 
@@ -127,35 +127,32 @@ class CmsController extends CoreController
                 switch ($cms_node->getType()) {
                     case 'category':
                         $node->setType('category');
-                        $settings['type'] = 'category';
+                        $settings['category_id'] = 'x';
                         // Noget med category_id
                         break;
                     case 'category_search':
-                        $node->setType('system');
-                        $settings['type'] = 'category_search';
-                        $settings['param']['categories'] = ''; //Dummy Data?
-                        $settings['param']['group'] = ''; //Dummy Data?
+                        $node->setType('search');
+                        $settings['category_ids'] = 'x,y,z';
+                        $settings['group'] = '';
                         break;
                     case 'newsletter':
-                        $node->setType('system');
-                        $settings['type'] = 'newsletter';
+                        $node->setType('newsletter');
                         break;
                     case 'advanced_search':
-                        $node->setType('system');
-                        $settings['type'] = 'advanced_search';
+                        $node->setType('search');
+                        $settings['type'] = 'advanced';
                         break;
                     case 'mannequin':
-                        $node->setType('system');
-                        $settings['type'] = 'mannequin';
-                        $settings['param']['categories'] = ''; //Dummy Data?
-                        $settings['param']['image'] = ''; //Dummy Data?
-                        $settings['param']['title'] = ''; //Dummy Data?
-                        $settings['param']['colorsheme'] = ''; //Dummy Data?
-                        $settings['param']['ignore'] = ''; //Dummy Data?
+                        $node->setType('mannequin');
+                        $settings['category_ids'] = '';
+                        $settings['image'] = '';
+                        $settings['title'] = '';
+                        $settings['colorsheme'] = '';
+                        $settings['ignore'] = '';
                         break;
                     case 'frontpage':
                         $node->setType('frontpage');
-                        $settings['param']['is_frontpage'] = true;
+                        $settings['is_frontpage'] = true;
                         break;
                     default:
                         $node->setType($cms_node->getType());
@@ -331,13 +328,13 @@ class CmsController extends CoreController
             $redirect = new Redirects();
         }
         $form = $this->createFormBuilder($redirect)
-            ->add('source', 'text', 
+            ->add('source', 'text',
                 array(
                     'label' => 'admin.cms.redirects.source',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('target', 'text', 
+            )->add('target', 'text',
                 array(
                     'label' => 'admin.cms.redirects.target',
                     'translation_domain' => 'admin',

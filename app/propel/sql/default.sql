@@ -901,7 +901,7 @@ DROP TABLE IF EXISTS `categories_i18n`;
 CREATE TABLE `categories_i18n`
 (
 	`id` INTEGER NOT NULL,
-	`locale` VARCHAR(5) DEFAULT 'en_EN' NOT NULL,
+	`locale` VARCHAR(5) DEFAULT 'da_DK' NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	`content` TEXT,
 	PRIMARY KEY (`id`,`locale`),
@@ -920,7 +920,7 @@ DROP TABLE IF EXISTS `cms_thread_i18n`;
 CREATE TABLE `cms_thread_i18n`
 (
 	`id` INTEGER NOT NULL,
-	`locale` VARCHAR(5) DEFAULT 'en_EN' NOT NULL,
+	`locale` VARCHAR(5) DEFAULT 'da_DK' NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id`,`locale`),
 	CONSTRAINT `cms_thread_i18n_FK_1`
@@ -938,7 +938,7 @@ DROP TABLE IF EXISTS `cms_i18n`;
 CREATE TABLE `cms_i18n`
 (
 	`id` INTEGER NOT NULL,
-	`locale` VARCHAR(5) DEFAULT 'en_EN' NOT NULL,
+	`locale` VARCHAR(5) DEFAULT 'da_DK' NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	`path` VARCHAR(255) NOT NULL,
 	`content` TEXT,
@@ -960,7 +960,7 @@ DROP TABLE IF EXISTS `products_i18n`;
 CREATE TABLE `products_i18n`
 (
 	`id` INTEGER NOT NULL,
-	`locale` VARCHAR(5) DEFAULT 'en_EN' NOT NULL,
+	`locale` VARCHAR(5) DEFAULT 'da_DK' NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	`content` TEXT,
 	PRIMARY KEY (`id`,`locale`),
@@ -979,7 +979,7 @@ DROP TABLE IF EXISTS `messages_i18n`;
 CREATE TABLE `messages_i18n`
 (
 	`id` INTEGER NOT NULL,
-	`locale` VARCHAR(5) DEFAULT 'en_EN' NOT NULL,
+	`locale` VARCHAR(5) DEFAULT 'da_DK' NOT NULL,
 	`subject` VARCHAR(255) NOT NULL,
 	`body` TEXT,
 	PRIMARY KEY (`id`,`locale`),

@@ -67,7 +67,7 @@ class MessagesTableMap extends TableMap
 	public function getBehaviors()
 	{
 		return array(
-			'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'subject, body', 'locale_column' => 'locale', 'default_locale' => '', 'locale_alias' => '', ),
+			'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'subject, body', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
 			'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', ),
 		);
 	} // getBehaviors()

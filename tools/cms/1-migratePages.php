@@ -2,16 +2,6 @@
 mysql_connect('localhost', 'root', '');
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
-
-// $x = mysql_query("SHOW SESSION VARIABLES LIKE 'character_set%'");
-// while ($r = mysql_fetch_array($x)) {
-//   print_r($r);
-// }
-// exit;
-
-#mysql_query('SET NAMES utf8');
-#mysql_query('SET NAMES latin1');
-
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');
 
 $query = "DELETE FROM hanzo.cms_thread WHERE id IN (10, 20, 21)";
@@ -19,7 +9,6 @@ mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 $query = "DELETE FROM hanzo.cms WHERE cms_thread_id IN (10, 20, 21)";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
-
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 
@@ -108,5 +97,9 @@ $query = "
     f.menu_item_id
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+
+// cleanup
+mysql_query("UPDATE hanzo.cms_i18n SET content = NULL WHERE content = 'null'") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+mysql_query("UPDATE hanzo.cms_i18n SET settings = NULL WHERE settings = ''") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');

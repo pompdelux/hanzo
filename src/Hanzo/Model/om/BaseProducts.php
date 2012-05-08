@@ -224,7 +224,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * Current locale
 	 * @var        string
 	 */
-	protected $currentLocale = 'en_EN';
+	protected $currentLocale = 'da_DK';
 	
 	/**
 	 * Current translation objects
@@ -3878,7 +3878,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		} // if ($deep)
 
 		// i18n behavior
-		$this->currentLocale = 'en_EN';
+		$this->currentLocale = 'da_DK';
 		$this->currentTranslations = null;
 		if ($this->collMannequinImagess instanceof PropelCollection) {
 			$this->collMannequinImagess->clearIterator();
@@ -3943,7 +3943,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 *
 	 * @return    Products The current object (for fluent API support)
 	 */
-	public function setLocale($locale = 'en_EN')
+	public function setLocale($locale = 'da_DK')
 	{
 		$this->currentLocale = $locale;
 	
@@ -3967,7 +3967,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @param     PropelPDO $con an optional connection object
 	 *
 	 * @return ProductsI18n */
-	public function getTranslation($locale = 'en_EN', PropelPDO $con = null)
+	public function getTranslation($locale = 'da_DK', PropelPDO $con = null)
 	{
 		if (!isset($this->currentTranslations[$locale])) {
 			if (null !== $this->collProductsI18ns) {
@@ -4001,7 +4001,7 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 *
 	 * @return    Products The current object (for fluent API support)
 	 */
-	public function removeTranslation($locale = 'en_EN', PropelPDO $con = null)
+	public function removeTranslation($locale = 'da_DK', PropelPDO $con = null)
 	{
 		if (!$this->isNew()) {
 			ProductsI18nQuery::create()

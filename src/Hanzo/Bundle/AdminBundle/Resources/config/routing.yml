@@ -89,22 +89,22 @@ admin_settings_messages_delete:
 
 admin_cms:
     pattern:  /admin/cms/sort/{locale}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Cms:index
-        locale: 'en_GB'
+        locale: 'da_DK'
 
 admin_cms_add:
     pattern:  /admin/cms/add/{locale}
     defaults:
         _controller: AdminBundle:Cms:add
-        locale: 'en_GB'
+        locale: 'da_DK'
 
 admin_cms_edit:
     pattern:  /admin/cms/edit/{id}/{locale}
     defaults:
         _controller: AdminBundle:Cms:edit
         id: 0
-        locale: 'en_GB'
+        locale: 'da_DK'
     requirements:
         id: \d+
 

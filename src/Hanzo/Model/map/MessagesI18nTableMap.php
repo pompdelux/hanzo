@@ -43,7 +43,7 @@ class MessagesI18nTableMap extends TableMap
 		$this->setUseIdGenerator(false);
 		// columns
 		$this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'messages', 'ID', true, null, null);
-		$this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'en_EN');
+		$this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'da_DK');
 		$this->addColumn('SUBJECT', 'Subject', 'VARCHAR', true, 255, null);
 		$this->getColumn('SUBJECT', false)->setPrimaryString(true);
 		$this->addColumn('BODY', 'Body', 'LONGVARCHAR', false, null, null);
