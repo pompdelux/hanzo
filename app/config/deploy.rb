@@ -6,13 +6,14 @@
 # >>> http://www.zalas.eu/multistage-deployment-of-symfony-applications-with-capifony
 #
 set :application, "Hanzo"
-set :domain,      "debian1" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
-set :deploy_to,   "/var/www/hanzo"
+set :domain,      "deployserver1" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
+set :deploy_to,   "/var/www/hanzo_deploy"
 set :app_path,    "app"
 
 set :repository,  "git@github.com:bellcom/hanzo.git"
 set :scm,         :git
 
+# mmh@bellcom.dk: use below to rsync the files instead of git clone. Requires capistrano_rsync_with_remote_cache installed (gem install)
 # set :deploy_via,  :rsync_with_remote_cache
 
 set :model_manager, "propel"
@@ -52,7 +53,7 @@ before "symfony:cache:warmup", "route_builder"
 
 desc "Build hanzo routes"
 task :route_builder do
-  run("cd #{deploy_to}/current && php app/console hanzo:router:builder")
+  run("cd #{latest_release} && php app/console hanzo:router:builder")
 end
 
 # 
@@ -69,7 +70,7 @@ end
 namespace :deploy do
   desc "Update translations"
   task :translations do
-    run "#{current_path}/tools/deploy/translations.sh"
+    run "#{current_path}/tools/deploy/translations.sh #{current_path}/app/Resources/ "
   end
   
 # Other examples:

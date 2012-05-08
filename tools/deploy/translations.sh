@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../../../../app/Resources
+cd $1
 
 BRANCH=`git branch`
 
