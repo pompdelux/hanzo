@@ -1,3 +1,6 @@
 [submodule "app/Resources"]
 	path = app/Resources
 	url = git@github.com:bellcom/resources.hanzo.git
+[submodule "web"]
+	path = web
+	url = git@github.com:bellcom/web.hanzo.git
