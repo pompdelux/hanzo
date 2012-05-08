@@ -105,6 +105,7 @@ class ProductsController extends CoreController
 
     public function viewAction($id)
     {
+
         $categories = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n('en_GB')
@@ -122,6 +123,12 @@ class ProductsController extends CoreController
 
         $current_product = ProductsQuery::create()
             ->findOneById($id)
+        ;
+
+        $styles = ProductsQuery::create()
+            ->filterByMaster($current_product->getSku())
+            ->orderBySku()
+            ->find()
         ;
 
         $all_products = ProductsQuery::create()
@@ -166,12 +173,74 @@ class ProductsController extends CoreController
             );
         }
         return $this->render('AdminBundle:Products:view.html.twig', array(
+            'styles'                => $styles,
             'product_categories'    => $product_categories,
             'categories'            => $categories,
             'current_product'       => $current_product,
             'product_images'        => $product_images_list,
             'products'              => $all_products
         ));
+    }
+
+    public function deleteStylesAction($id)
+    {
+        $master = ProductsQuery::create()
+            ->findOneById($id)
+        ;
+
+        $styles = ProductsQuery::create()
+            ->filterByMaster($master->getSku())
+            ->find()
+        ;
+
+        if($styles instanceof \PropelObjectCollection){
+            $styles->delete();
+
+            $this->get('session')->setFlash('notice', 'delete.products.styles.success');
+
+            return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
+        }
+
+        $this->get('session')->setFlash('notice', 'delete.products.styles.failed');
+
+        return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
+
+
+    }
+
+    public function deleteStyleAction($id)
+    {
+
+        $style = ProductsQuery::create()
+            ->findOneById($id)
+        ;
+
+        if($style instanceof ProductsQuery){
+            $style->delete();
+
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => TRUE,
+                    'message' => $this->get('translator')->trans('delete.products.style.success', array(), 'admin')
+                ));
+            }
+            $this->get('session')->setFlash('notice', 'delete.products.style.success');
+
+            return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.products.style.failed', array(), 'admin')
+            ));
+        }
+        
+        $this->get('session')->setFlash('notice', 'delete.products.style.failed');
+
+        return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
+
+
     }
 
     public function addCategoryAction()
@@ -277,7 +346,7 @@ class ProductsController extends CoreController
         ;
 
         $categories_result = CategoriesQuery::create()
-    		->where('categories.PARENT_ID IS NOT NULL')
+            ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n()
             ->orderByParentId()
             ->find()
@@ -305,7 +374,7 @@ class ProductsController extends CoreController
             ->find()
         ;
 
-		$records = array();
+        $records = array();
         foreach ($products as $record) {
             $product = $record->getProducts();
 
@@ -328,7 +397,7 @@ class ProductsController extends CoreController
 
     public function updateSortAction()
     {
-    	$requests = $this->get('request');
+        $requests = $this->get('request');
         $products = $requests->get('data');
 
         $sort = 0;
@@ -341,8 +410,8 @@ class ProductsController extends CoreController
                 ->filterByCategoriesId($category_id)
                 ->filterByProductsId($product_id)
                 ->findOneByProductsImagesId($picture_id)
-            	->setSort($sort)
-            	->save()
+                ->setSort($sort)
+                ->save()
             ;
 
             $sort++;
