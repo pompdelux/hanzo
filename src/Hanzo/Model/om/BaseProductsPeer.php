@@ -107,7 +107,7 @@ abstract class BaseProductsPeer {
 	 * The default locale to use for translations
 	 * @var        string
 	 */
-	const DEFAULT_LOCALE = 'en_EN';
+	const DEFAULT_LOCALE = 'da_DK';
 	/**
 	 * holds an array of fieldnames
 	 *

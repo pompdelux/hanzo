@@ -55,7 +55,7 @@ abstract class BaseCategoriesI18n extends BaseObject  implements Persistent
 
 	/**
 	 * The value for the locale field.
-	 * Note: this column has a database default value of: 'en_EN'
+	 * Note: this column has a database default value of: 'da_DK'
 	 * @var        string
 	 */
 	protected $locale;
@@ -99,7 +99,7 @@ abstract class BaseCategoriesI18n extends BaseObject  implements Persistent
 	 */
 	public function applyDefaultValues()
 	{
-		$this->locale = 'en_EN';
+		$this->locale = 'da_DK';
 	}
 
 	/**
@@ -246,7 +246,7 @@ abstract class BaseCategoriesI18n extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
-			if ($this->locale !== 'en_EN') {
+			if ($this->locale !== 'da_DK') {
 				return false;
 			}
 

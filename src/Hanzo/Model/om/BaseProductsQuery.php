@@ -1583,7 +1583,7 @@ abstract class BaseProductsQuery extends ModelCriteria
 	 *
 	 * @return    ProductsQuery The current query, for fluid interface
 	 */
-	public function joinI18n($locale = 'en_EN', $relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function joinI18n($locale = 'da_DK', $relationAlias = null, $joinType = Criteria::LEFT_JOIN)
 	{
 		$relationName = $relationAlias ? $relationAlias : 'ProductsI18n';
 		return $this
@@ -1600,7 +1600,7 @@ abstract class BaseProductsQuery extends ModelCriteria
 	 *
 	 * @return    ProductsQuery The current query, for fluid interface
 	 */
-	public function joinWithI18n($locale = 'en_EN', $joinType = Criteria::LEFT_JOIN)
+	public function joinWithI18n($locale = 'da_DK', $joinType = Criteria::LEFT_JOIN)
 	{
 		$this
 			->joinI18n($locale, null, $joinType)
@@ -1620,7 +1620,7 @@ abstract class BaseProductsQuery extends ModelCriteria
 	 *
 	 * @return    ProductsI18nQuery A secondary query class using the current class as primary query
 	 */
-	public function useI18nQuery($locale = 'en_EN', $relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	public function useI18nQuery($locale = 'da_DK', $relationAlias = null, $joinType = Criteria::LEFT_JOIN)
 	{
 		return $this
 			->joinI18n($locale, $relationAlias, $joinType)

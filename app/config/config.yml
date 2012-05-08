@@ -14,7 +14,7 @@ framework:
     enable_annotations: true
   templating:
     engines: [twig]
-    assets_version: '%assets_version%' 
+    assets_version: '%assets_version%'
   session:
     default_locale: '%locale%'
     auto_start: false

@@ -43,7 +43,7 @@ class CategoriesI18nTableMap extends TableMap
 		$this->setUseIdGenerator(false);
 		// columns
 		$this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'categories', 'ID', true, null, null);
-		$this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'en_EN');
+		$this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'da_DK');
 		$this->addColumn('TITLE', 'Title', 'VARCHAR', true, 255, null);
 		$this->getColumn('TITLE', false)->setPrimaryString(true);
 		$this->addColumn('CONTENT', 'Content', 'LONGVARCHAR', false, null, null);
