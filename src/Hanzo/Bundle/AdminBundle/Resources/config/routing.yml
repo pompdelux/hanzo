@@ -160,6 +160,21 @@ admin_product:
     requirements:
         id: \d+
 
+
+admin_product_delete_style:
+    pattern:  /admin/products/delete-style/{id}
+    defaults:
+        _controller: AdminBundle:Products:deleteStyle
+    requirements:
+        id: \d+
+
+admin_product_delete_styles:
+    pattern:  /admin/products/delete-styles/{id}
+    defaults:
+        _controller: AdminBundle:Products:deleteStyles
+    requirements:
+        id: \d+
+
 admin_products_sort:
     pattern:  /admin/products/sort/{category_id}/
     defaults:
