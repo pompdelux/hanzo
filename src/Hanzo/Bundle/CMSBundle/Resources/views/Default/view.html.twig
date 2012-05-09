@@ -14,7 +14,7 @@
 {% if page_type|default('page') == 'frontpage' %}
 <script>
 (function($, document) {
-  if ($('html').hasClass('mobile') == false) {
+  if ($('html').hasClass('touch') == false) {
     $('article a.button').data('text', ExposeTranslation.get('js:close'))
     $('article a.button').on('click', function(event) {
       event.preventDefault();
