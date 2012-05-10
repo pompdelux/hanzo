@@ -97,7 +97,6 @@ class GothiaApiCallResponse
 
                 if ( !$this->isError )
                 {
-                    // FIXME: check that it's call Reservation
                     foreach ($rawResponse['CancelReservationResult']['Reservation'] as $key => $value) 
                     {
                         $this->data[$key] = $value;
@@ -112,7 +111,6 @@ class GothiaApiCallResponse
 
                 if ( !$this->isError )
                 {
-                    // FIXME: check that it's call Reservation
                     foreach ($rawResponse['PlaceReservationResult']['Reservation'] as $key => $value) 
                     {
                         $this->data[$key] = $value;

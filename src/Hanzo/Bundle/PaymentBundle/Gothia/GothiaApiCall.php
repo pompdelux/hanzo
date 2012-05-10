@@ -8,12 +8,13 @@ use Hanzo\Core\Hanzo,
     Hanzo\Model\Orders,
     Hanzo\Model\Customers,
     Hanzo\Model\GothiaAccounts,
+    Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
     Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallResponse;
 
 // Great... fucking oldschool crap code:
 require 'AFWS.php';
 
-class GothiaApiCall
+class GothiaApiCall implements PaymentMethodApiCallInterface
 {
     /**
      * undocumented class variable
@@ -67,8 +68,6 @@ class GothiaApiCall
         try
         {
             $response = $client->call( $function, $request );
-            error_log(__LINE__.':'.__FILE__.' '.$request); // hf@bellcom.dk debugging
-            error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
         }
         catch (Exception $e)
         {
@@ -231,6 +230,16 @@ class GothiaApiCall
     }
 
     /**
+     * cancel
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function cancel( Customers $customer, Orders $order )
+    {
+        return $this->cancelReservation( $customer, $order );
+    }
+
+    /**
      * cancelReservation
      * @param Customers $customer
      * @param Orders $order
@@ -268,6 +277,6 @@ class GothiaApiCall
      **/
     private function userString()
     {
-        return AFSWS_User($this->settings['username'], $this->settings['password'], $this->settings['clientID']);
+        return AFSWS_User($this->settings['username'], $this->settings['password'], $this->settings['clientId']);
     }
 }

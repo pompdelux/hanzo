@@ -4,16 +4,16 @@ namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
 use Exception;
 
-use Hanzo\Model\Orders;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
+use Hanzo\Model\Orders,
+    Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface,
+    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall,
+    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException
+    ;
 
 use Symfony\Component\HttpFoundation\Request;
 
-
-class DibsApi
+class DibsApi implements PaymentMethodApiInterface
 {
-
     /**
      * map currencies to dibs currency codes
      *
@@ -47,13 +47,59 @@ class DibsApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct( $params, $settings )
+    public function __construct( $params, Array $settings )
     {
-        // FIXME:
-        // - define paytypes avaliable for domain
-        // TODO: check for missing settings
         $this->settings = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
+
+        if ( $this->settings['active'] === true)
+        {
+            $this->checkSettings($settings);
+        }
+
+        $this->settings['paytypes'] = unserialize($settings['paytypes']);
+    }
+
+    /**
+     * checkSettings
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function checkSettings(Array $settings)
+    {
+        $requiredFields = array(
+            'method_enabled',
+            'paytypes',
+            'merchant',
+            'test',
+            'md5key1',
+            'md5key2',
+            );
+
+        $missing = array();
+
+        foreach ($requiredFields as $field) 
+        {
+            if ( !isset($settings[$field]) )
+            {
+                $missing[] = $field;
+            }
+        }
+
+        if ( !empty($missing) )
+        {
+            throw new Exception( 'DibsApi: missing settings: '. implode(',',$missing) );
+        }
+    }
+
+    /**
+     * getEnabledPaytypes
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getEnabledPaytypes()
+    {
+        return $this->settings['paytypes'];
     }
 
     /**
@@ -108,7 +154,7 @@ class DibsApi
             throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
         }
 
-        $currency = $this->currency_map[$order->getCurrencyCode()];
+        $currency = $this->currencyCodeToNum($order->getCurrencyCode());
         $amount   = self::formatAmount( $order->getTotalPrice() );
 
         $calculated = $this->md5key( $order->getId(), $currency, $amount );
@@ -150,7 +196,7 @@ class DibsApi
 
         foreach ($fields as $field)
         {
-            $order->setAttribute( $field , 'payment:gateway', $request->get($field) );
+            $order->setAttribute( $field , 'payment', $request->get($field) );
         }
 
         $order->save();
@@ -225,10 +271,7 @@ class DibsApi
     {
         $orderId  = $gateway_id;
         $amount   = self::formatAmount( $order->getTotalPrice() );
-        $currency = $this->currency_map[$order->getCurrencyCode()];
-
-        // needed ? is set in the form...
-        $payType  = 'DK';
+        $currency = $this->currencyCodeToNum($order->getCurrencyCode());
 
         $settings = array(
             'orderid'      => $orderId,
@@ -242,7 +285,7 @@ class DibsApi
             "skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             "test"         => $this->getTest(),
-            "paytype"      => $payType,
+            "paytype"      => '', // This _most_ be set in the form
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
         );
 
@@ -258,5 +301,21 @@ class DibsApi
     {
         $amount = ( number_format( $amount, 2, '.', '') ) * 100 ;
         return $amount;
+    }
+
+    /**
+     * currencyCodeToNum
+     * Should at some point maybe use the currency_id set in the counties model
+     * @return int
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function currencyCodeToNum( $code )
+    {
+        if ( isset($this->currency_map[$code]) ) 
+        {
+            return $this->currency_map[$code];
+        }
+
+        throw new Exception('DibsApi: unknown currency code: '.$code);
     }
 }

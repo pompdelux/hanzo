@@ -33,7 +33,6 @@ class CheckoutListener
         }
 
         $order->setState( Orders::STATE_PENDING );
-        $order->save();
 
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
@@ -71,6 +70,19 @@ class CheckoutListener
             $params['gothia_fee_title'] = '';
         }
 
+        // Handle payment canceling of old order
+        if ( $order->getInEdit() )
+        {
+          $currentVersion = $order->getVersionId();
+
+          if ( !( $currentVersion < 2 ) ) // If the version number is less than 2 there is no previous version
+          {
+            $oldOrderVersion = ( $currentVersion - 1);
+            $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+            $oldOrder->cancelPayment();
+          }
+        }
+
         try {
             $this->mailer->setMessage('order.confirmation', $params);
             $this->mailer->setTo($email, $name);
@@ -82,5 +94,8 @@ class CheckoutListener
 
         // trigger ax sync
         $this->ax->sendOrder($order);
+
+        $order->setInEdit(false);
+        $order->save();
     }
 }

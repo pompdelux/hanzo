@@ -52,7 +52,6 @@ class DibsController extends CoreController
         try
         {
             $api->verifyCallback( $request, $order );
-            // TODO: is this the right way todo it? passing request seems wrong
             $api->updateOrderSuccess( $request, $order );
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         }
@@ -73,9 +72,8 @@ class DibsController extends CoreController
      **/
     public function cancelAction()
     {
-        error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
-        error_log(__LINE__.':'.__FILE__.' '.print_r($_GET,1)); // hf@bellcom.dk debugging
-        return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
+        $this->get('session')->setFlash('notice', 'payment.canceled');
+        return $this->redirect($this->generateUrl('_checkout'));
     }
 
     /**
@@ -138,8 +136,6 @@ class DibsController extends CoreController
             return new Response( '', 200, array('Content-Type' => 'text/html'));
         }
 
-        $api = $this->get('payment.dibsapi');
-
         $gateway_id = Tools::getPaymentGatewayId();
         $order = OrdersPeer::getCurrent();
         $order->setPaymentGatewayId($gateway_id);
@@ -155,13 +151,7 @@ class DibsController extends CoreController
             $order
         );
 
-        // FIXME: hardcoded vars
-        $cardtypes = array(
-            'DK' => true,
-            'VISA' => true,
-            'ELEC' => true,
-            'MC' => true
-        );
+        $cardtypes = $api->getEnabledPaytypes();
 
         return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes, 'form_fields' => $settings ));
     }

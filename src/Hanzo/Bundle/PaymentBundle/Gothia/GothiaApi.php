@@ -2,7 +2,11 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Gothia;
 
-class GothiaApi
+use Hanzo\Model\Orders;
+use Symfony\Component\HttpFoundation\Request;
+use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+
+class GothiaApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable
@@ -23,32 +27,62 @@ class GothiaApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct($params, $settings)
+    public function __construct($params, Array $settings)
     {
-        // FIXME: missing
-        // - set active
-        // TODO: check for missing settings
         $this->settings = $settings;
 
-        // FIXME: hardcoded vars:
-        $this->settings['test'] = true;
-
+        error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
-        // Live settings
-        /*$this->settings = array(
-            'username' => 'PompDeLuxExternalSE',
-            'password' => 'i4F1FfFJ',
-            'clientID' => 7757,
-        );*/
+        if ( $this->settings['active'] === true)
+        {
+            $this->checkSettings($settings);
+        }
 
-        // Test settings:
-        /*$this->settings = array(
-            'username' => 'EXTPompDeLuxSETest',
-            'password' => 'o6K7IGPR',
-            'clientID' => 7012,
-        );*/
+        /*
+        Live settings:
+        'username' = 'PompDeLuxExternalSE'
+        'password' = 'i4F1FfFJ'
+        'clientId' = 7757
+
+        Test settings:
+        'username' = 'EXTPompDeLuxSETest'
+        'password' = 'o6K7IGPR'
+        'clientId' = 7012
+        */
     }
+
+    /**
+     * checkSettings
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function checkSettings(Array $settings)
+    {
+        $requiredFields = array(
+            'method_enabled',
+            'test',
+            'username',
+            'password',
+            'clientId',
+            );
+
+        $missing = array();
+
+        foreach ($requiredFields as $field) 
+        {
+            if ( !isset($settings[$field]) )
+            {
+                $missing[] = $field;
+            }
+        }
+
+        if ( !empty($missing) )
+        {
+            throw new Exception( 'GothiaApi: missing settings: '. implode(',',$missing) );
+        }
+    }
+
 
     /**
      * isActive
@@ -70,5 +104,17 @@ class GothiaApi
     public function call()
     {
         return GothiaApiCall::getInstance($this->settings);
+    }
+
+    /**
+     * updateOrderSuccess
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function updateOrderSuccess( Request $request, Orders $order )
+    {
+        $order->setState( Orders::STATE_PAYMENT_OK );
+        $order->setAttribute( 'paytype' , 'payment', 'gothia' );
+        $order->save();
     }
 }

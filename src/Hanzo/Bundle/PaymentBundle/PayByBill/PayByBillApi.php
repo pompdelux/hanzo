@@ -4,11 +4,14 @@ namespace Hanzo\Bundle\PaymentBundle\PayByBill;
 
 use Exception;
 
-use Hanzo\Model\Orders;
+use Hanzo\Model\Orders,
+    Hanzo\Model\Customers;
+
+use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PayByBillApi
+class PayByBillApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable
@@ -30,6 +33,27 @@ class PayByBillApi
     }
 
     /**
+     * call
+     * Dummy implementation as this method does not use an api call
+     * @return boolean
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function call()
+    {
+        return $this;
+    }
+
+    /**
+     * cancel
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function cancel( Customers $customer, Orders $order )
+    {
+        // TODO: how should this be implemented?
+    }
+
+    /**
      * isActive
      * Checks if the api is active for the current configuration
      *
@@ -40,7 +64,6 @@ class PayByBillApi
     {
         return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
     }
-
 
     /**
      * updateOrderSuccess

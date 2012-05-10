@@ -23,6 +23,8 @@ use Hanzo\Model\OrdersVersionsQuery;
 
 use Hanzo\Model\ShippingMethods;
 
+use Hanzo\Model\CustomerQuery;
+
 use Exception;
 
 /**
@@ -227,6 +229,57 @@ class Orders extends BaseOrders
     }
 
     /**
+     * getOrderAtVersion
+     * Based on this->toVersion
+     * @param int $version_id
+     * @return Orders 
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getOrderAtVersion( $version_id )
+    {
+        // if it's the same version, just return self.
+        if ($this->getVersionId() == $version_id) {
+            return $this;
+        }
+
+        $version = OrdersVersionsQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->findOneByVersionId($version_id)
+            ;
+
+        if (!$version instanceof OrdersVersions) {
+            throw new OutOfBoundsException('No such version: ' . $version_id . ' of order nr: ' . $this->getId());
+        }
+
+        $data = unserialize($version->getContent());
+
+        $order = new Orders();
+        // start by setting the order.
+        $order->fromArray($data['order']);
+
+        // set product lines
+        $collection = new PropelCollection();
+        foreach ($data['products'] as $item) {
+            unset($item['Id']);
+            $line = new OrdersLines();
+            $line->fromArray($item);
+            $collection->prepend($line);
+        }
+        $order->setOrdersLiness($collection);
+
+        $collection = new PropelCollection();
+        foreach ($data['attributes'] as $item) {
+            $line = new OrdersAttributes();
+            $line->fromArray($item);
+            $collection->prepend($line);
+        }
+        $order->setOrdersAttributess($collection);
+
+        // save and return the version
+        return $order;
+    }
+
+    /**
      * Go one version back
      *
      * @return object Orders
@@ -243,7 +296,7 @@ class Orders extends BaseOrders
             ->filterByVersionId($this->getVersionId(), \Criteria::NOT_EQUAL)
             ->orderByVersionId('desc')
             ->findOne()
-        ;
+            ;
 
         return $this->toVersion($version->getVersionId());
     }
@@ -608,7 +661,7 @@ class Orders extends BaseOrders
     {
         if ( $address->getType() != 'payment' )
         {
-          throw new Exception( 'Address is not of type payment' );
+            throw new Exception( 'Address is not of type payment' );
         }
 
         $this->setBillingAddressLine1( $address->getAddressLine1() )
@@ -631,20 +684,20 @@ class Orders extends BaseOrders
      **/
     public function clearBillingAddress()
     {
-      $fields = array(
-          'BillingAddressLine1'  => null,
-          'BillingAddressLine2'  => null,
-          'BillingCity'          => null,
-          'BillingPostalCode'    => null,
-          'BillingCountry'       => null,
-          'BillingCountriesId'   => null,
-          'BillingStateProvince' => null,
-          'BillingCompanyName'   => null,
-          'BillingFirstName'     => null,
-          'BillingLastName'      => null,
-          );
+        $fields = array(
+            'BillingAddressLine1'  => null,
+            'BillingAddressLine2'  => null,
+            'BillingCity'          => null,
+            'BillingPostalCode'    => null,
+            'BillingCountry'       => null,
+            'BillingCountriesId'   => null,
+            'BillingStateProvince' => null,
+            'BillingCompanyName'   => null,
+            'BillingFirstName'     => null,
+            'BillingLastName'      => null,
+        );
 
-      $this->fromArray($fields);
+        $this->fromArray($fields);
     }
 
     /**
@@ -654,20 +707,20 @@ class Orders extends BaseOrders
      **/
     public function clearDeliveryAddress()
     {
-      $fields = array(
-          'DeliveryAddressLine1'  => null,
-          'DeliveryAddressLine2'  => null,
-          'DeliveryCity'          => null,
-          'DeliveryPostalCode'    => null,
-          'DeliveryCountry'       => null,
-          'DeliveryCountriesId'   => null,
-          'DeliveryStateProvince' => null,
-          'DeliveryCompanyName'   => null,
-          'DeliveryFirstName'     => null,
-          'DeliveryLastName'      => null,
-          );
+        $fields = array(
+            'DeliveryAddressLine1'  => null,
+            'DeliveryAddressLine2'  => null,
+            'DeliveryCity'          => null,
+            'DeliveryPostalCode'    => null,
+            'DeliveryCountry'       => null,
+            'DeliveryCountriesId'   => null,
+            'DeliveryStateProvince' => null,
+            'DeliveryCompanyName'   => null,
+            'DeliveryFirstName'     => null,
+            'DeliveryLastName'      => null,
+        );
 
-      $this->fromArray($fields);
+        $this->fromArray($fields);
     }
 
     /**
@@ -681,7 +734,7 @@ class Orders extends BaseOrders
     {
         if ( $address->getType() != 'shipping' )
         {
-          throw new Exception( 'Address is not of type shipping' );
+            throw new Exception( 'Address is not of type shipping' );
         }
 
         $this->setDeliveryAddressLine1( $address->getAddressLine1() )
@@ -715,7 +768,6 @@ class Orders extends BaseOrders
 
         return $attachments;
     }
-
 
     public function getAttributes()
     {
@@ -791,5 +843,44 @@ class Orders extends BaseOrders
         }
 
         return false;
+    }
+
+    /**
+     * cancelPayment
+     *
+     * Cancels the payment for the specific order, so you don't have to know which payment method was used
+     *
+     * @return bool
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function cancelPayment()
+    {
+        /*if ( $this->getState() != self::STATE_PENDING )
+        {
+            throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
+        }*/
+
+        $attributes = $this->getOrdersAttributess()->toArray();
+
+        $paytype = false;
+
+        foreach ($attributes as $attribute) 
+        {
+            if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' )
+            {
+                $paytype = $attribute['CValue'];
+            }
+        }
+
+        if ( $paytype === false) 
+        {
+            throw new Exception( 'No paytype registered on order with id: "'.$this->getId().'"' );
+        }
+
+        $api = Hanzo::getInstance()->container->get('payment.'.$paytype.'api');
+
+        $customer = CustomersQuery::create()->findOneById( $this->getCustomersId() );
+
+        $api->call()->cancel( $customer, $this );
     }
 } // Orders
