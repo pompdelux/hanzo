@@ -176,35 +176,54 @@ class GothiaController extends CoreController
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
         // it will fail because we have not removed the old reservation first, this should fix it
 
-        if ( $order->getState() == Orders::STATE_EDITING )
+        if ( $order->getInEdit() )
         {
-            // FIXME:
-            $oldOrder = OrdersPeer::retrieveByPK($_SESSION['editing_order']['edit_order_id']);
+            $currentVersion = $order->getVersionId();
 
-            // The new order amount is different from the old order amount
-            // We will remove the old reservation, and create a new one
-            if ( $order->getTotalPrice() != $oldOrder->getTotalPrice() )
+            if ( !( $currentVersion < 2 ) ) // If the version number is less than 2 there is no previous version
             {
-                try
-                {
-                    $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                }
-                catch( GothiaApiCallException $g )
-                {
-                    return $this->json_response(array(
-                        'status' => FALSE,
-                        'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
-                    ));
-                }
+              $oldOrderVersion = ( $currentVersion - 1);
+              $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
-                if ( $response->isError() )
-                {
-                    return $this->json_response(array(
-                        'status' => FALSE,
-                        'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
-                    ));
-                }
+              $attributes = $oldOrder->getOrdersAttributess()->toArray();
+
+              $paytype = false;
+
+              foreach ($attributes as $attribute) 
+              {
+                  if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' )
+                  {
+                      $paytype = $attribute['CValue'];
+                  }
+              }
+
+              // The new order amount is different from the old order amount
+              // We will remove the old reservation, and create a new one
+              // but only if the old paytype was gothia
+              if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
+              {
+                  try
+                  {
+                      $response = $api->call()->cancelReservation( $customer, $oldOrder );
+                  }
+                  catch( GothiaApiCallException $g )
+                  {
+                      return $this->json_response(array(
+                          'status' => FALSE,
+                          'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                      ));
+                  }
+
+                  if ( $response->isError() )
+                  {
+                      return $this->json_response(array(
+                          'status' => FALSE,
+                          'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
+                      ));
+                  }
+              }
             }
+
         }
 
         try

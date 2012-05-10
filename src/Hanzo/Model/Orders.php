@@ -769,7 +769,6 @@ class Orders extends BaseOrders
         return $attachments;
     }
 
-
     public function getAttributes()
     {
         $attributes = new \stdClass();

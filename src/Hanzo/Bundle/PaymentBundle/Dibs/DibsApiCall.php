@@ -151,9 +151,9 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancel( Customers $customer, Orders $order )
     {
-        // FIXME: missing vars
-        $transaction = $this->getTransactionId( $orderId );
-        $paymentGatewayId = $this->getPaymentGatewayId( $orderId );
+        $attributes = $order->getAttributes();
+        $transaction = $attributes->payment->transact;
+        $paymentGatewayId = $order->getPaymentGatewayId();
 
         $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction;
 
@@ -178,9 +178,9 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      */
     public function capture( Orders $order, $amount )
     {
-        // FIXME: missing vars
-        $transaction      = $this->getTransactionId( $orderId );
-        $paymentGatewayId = $this->getPaymentGatewayId( $orderId );
+        $attributes       = $order->getAttributes();
+        $transaction      = $attributes->payment->transact;
+        $paymentGatewayId = $order->getPaymentGatewayId();
 
         $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
@@ -208,10 +208,10 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      */
     public function refund( Orders $order, $amount )
     {
-        // FIXME: missing vars
-        $transaction         = $this->getTransactionId($orderId);
-        $paymentGatewayId    = $this->getPaymentGatewayId( $orderId );
-        $currency            = $this->getISO4217codeForOrder( $orderId );
+        $attributes       = $order->getAttributes();
+        $transaction      = $attributes->payment->transact;
+        $paymentGatewayId = $order->getPaymentGatewayId();
+        $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
 
         $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
 
@@ -239,9 +239,10 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function payinfo( Orders $order )
     {
-        // FIXME: missing vars
+        $attributes       = $order->getAttributes();
+        $transaction      = $attributes->payment->transact;
         $params = array(
-            'transact'  => $transactionID,
+            'transact'  => $transaction,
         );
 
         return $this->call( 'cgi-adm/payinfo.cgi', $params, self::USE_AUTH_HEADERS );
@@ -259,13 +260,15 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function transstatus( Orders $order )
     {
-        // FIXME: missing vars
+        $attributes       = $order->getAttributes();
+        $transaction      = $attributes->payment->transact;
+
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
-            'transact' => $transId,
+            'transact' => $transaction,
         );
 
-        // FIXME: not used here
+        // not used here
         $statusCodes = array(
             0 => 'transaction inserted (not approved)',
             1 => 'declined',
@@ -286,8 +289,6 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         return $this->call( 'transstatus.pml', $params);
     }
 
-    // FIXME: do we need ticketAuth ??
-
     /**
      * http://tech.dibs.dk/dibs_api/status_functions/callbackcgi/
      *
@@ -299,10 +300,12 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function callback( Orders $order )
     {
-        // FIXME: missing vars
+        $attributes       = $order->getAttributes();
+        $transaction      = $attributes->payment->transact;
+
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
-            'transact' => $transId,
+            'transact' => $transaction,
         );
 
         return $this->call( 'cgi-adm/callback.cgi', $params, self::USE_AUTH_HEADERS );
@@ -320,16 +323,17 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function transinfo( Orders $order )
     {
-        // FIXME: missing vars
-        $paymentGatewayId = $this->getPaymentGatewayId( $orderId );
-        $currency         = $this->getISO4217codeForOrder( $orderId );
-        $amount           = $this->getAmountForOrder( $orderId );
+        $attributes       = $order->getAttributes();
+        $transaction      = $attributes->payment->transact;
+        $paymentGatewayId = $order->getPaymentGatewayId();
+        $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
+        $amount           = $this->api->formatAmount( $order->getTotalPrice() );
 
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
             'amount'    => $amount,
             'orderid'   => $paymentGatewayId,
-            'currency'  => $this->currency_iso4217code[$currency],
+            'currency'  => $currency,
         );
 
         return $this->call( 'cgi-bin/transinfo.cgi', $params);

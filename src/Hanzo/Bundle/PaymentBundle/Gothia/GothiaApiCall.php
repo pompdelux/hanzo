@@ -68,8 +68,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         try
         {
             $response = $client->call( $function, $request );
-            error_log(__LINE__.':'.__FILE__.' '.$request); // hf@bellcom.dk debugging
-            error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
         }
         catch (Exception $e)
         {
@@ -279,6 +277,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     private function userString()
     {
-        return AFSWS_User($this->settings['username'], $this->settings['password'], $this->settings['clientID']);
+        return AFSWS_User($this->settings['username'], $this->settings['password'], $this->settings['clientId']);
     }
 }

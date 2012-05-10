@@ -30,8 +30,8 @@ class DefaultController extends CoreController
 
     public function testAction()
     {
-        $order = OrdersPeer::retrieveByPK(572846);
-        $order->cancelPayment();
+        //$order = OrdersPeer::retrieveByPK(572846);
+        //$order->cancelPayment();
 
         return new Response('Test');
         //return $this->render('PaymentBundle:Default:block.html.twig');
