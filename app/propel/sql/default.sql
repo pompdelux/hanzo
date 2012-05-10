@@ -527,6 +527,30 @@ CREATE TABLE `products_images_product_references`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- products_quantity_discount
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `products_quantity_discount`;
+
+CREATE TABLE `products_quantity_discount`
+(
+	`products_master` VARCHAR(128) NOT NULL,
+	`domains_id` INTEGER NOT NULL,
+	`span` INTEGER NOT NULL,
+	`discount` DECIMAL(15,4) NOT NULL,
+	PRIMARY KEY (`products_master`,`domains_id`),
+	INDEX `products_quantity_discount_FI_2` (`domains_id`),
+	CONSTRAINT `products_quantity_discount_FK_1`
+		FOREIGN KEY (`products_master`)
+		REFERENCES `products` (`sku`)
+		ON DELETE CASCADE,
+	CONSTRAINT `products_quantity_discount_FK_2`
+		FOREIGN KEY (`domains_id`)
+		REFERENCES `domains` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- products_stock
 -- ---------------------------------------------------------------------
 

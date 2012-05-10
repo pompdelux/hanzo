@@ -377,6 +377,19 @@
     </foreign-key>
   </table>
 
+  <table name="products_quantity_discount">
+    <column name="products_master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
+    <column name="domains_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="span" type="INTEGER" required="true"/>
+    <column name="discount" type="DECIMAL" size="15" scale="4" required="true"/>
+    <foreign-key foreignTable="products" onDelete="CASCADE">
+      <reference local="products_master" foreign="sku"/>
+    </foreign-key>
+    <foreign-key foreignTable="domains" onDelete="CASCADE">
+      <reference local="domains_id" foreign="id"/>
+    </foreign-key>
+  </table>
+
   <table name="products_stock">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="products_id" type="INTEGER" required="true"/>

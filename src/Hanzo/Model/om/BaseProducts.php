@@ -32,6 +32,8 @@ use Hanzo\Model\ProductsImagesProductReferences;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsPeer;
+use Hanzo\Model\ProductsQuantityDiscount;
+use Hanzo\Model\ProductsQuantityDiscountQuery;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsStockQuery;
@@ -185,6 +187,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	protected $collProductsImagesProductReferencess;
 
 	/**
+	 * @var        array ProductsQuantityDiscount[] Collection to store aggregation of ProductsQuantityDiscount objects.
+	 */
+	protected $collProductsQuantityDiscounts;
+
+	/**
 	 * @var        array ProductsStock[] Collection to store aggregation of ProductsStock objects.
 	 */
 	protected $collProductsStocks;
@@ -267,6 +274,12 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	 * @var		array
 	 */
 	protected $productsImagesProductReferencessScheduledForDeletion = null;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $productsQuantityDiscountsScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -913,6 +926,8 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 
 			$this->collProductsImagesProductReferencess = null;
 
+			$this->collProductsQuantityDiscounts = null;
+
 			$this->collProductsStocks = null;
 
 			$this->collProductsToCategoriess = null;
@@ -1168,6 +1183,23 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 
 			if ($this->collProductsImagesProductReferencess !== null) {
 				foreach ($this->collProductsImagesProductReferencess as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->productsQuantityDiscountsScheduledForDeletion !== null) {
+				if (!$this->productsQuantityDiscountsScheduledForDeletion->isEmpty()) {
+					ProductsQuantityDiscountQuery::create()
+						->filterByPrimaryKeys($this->productsQuantityDiscountsScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->productsQuantityDiscountsScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collProductsQuantityDiscounts !== null) {
+				foreach ($this->collProductsQuantityDiscounts as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -1513,6 +1545,14 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 					}
 				}
 
+				if ($this->collProductsQuantityDiscounts !== null) {
+					foreach ($this->collProductsQuantityDiscounts as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
 				if ($this->collProductsStocks !== null) {
 					foreach ($this->collProductsStocks as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
@@ -1680,6 +1720,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			}
 			if (null !== $this->collProductsImagesProductReferencess) {
 				$result['ProductsImagesProductReferencess'] = $this->collProductsImagesProductReferencess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			}
+			if (null !== $this->collProductsQuantityDiscounts) {
+				$result['ProductsQuantityDiscounts'] = $this->collProductsQuantityDiscounts->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->collProductsStocks) {
 				$result['ProductsStocks'] = $this->collProductsStocks->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1936,6 +1979,12 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 				}
 			}
 
+			foreach ($this->getProductsQuantityDiscounts() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addProductsQuantityDiscount($relObj->copy($deepCopy));
+				}
+			}
+
 			foreach ($this->getProductsStocks() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
 					$copyObj->addProductsStock($relObj->copy($deepCopy));
@@ -2138,6 +2187,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		}
 		if ('ProductsImagesProductReferences' == $relationName) {
 			return $this->initProductsImagesProductReferencess();
+		}
+		if ('ProductsQuantityDiscount' == $relationName) {
+			return $this->initProductsQuantityDiscounts();
 		}
 		if ('ProductsStock' == $relationName) {
 			return $this->initProductsStocks();
@@ -3142,6 +3194,179 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Clears out the collProductsQuantityDiscounts collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addProductsQuantityDiscounts()
+	 */
+	public function clearProductsQuantityDiscounts()
+	{
+		$this->collProductsQuantityDiscounts = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collProductsQuantityDiscounts collection.
+	 *
+	 * By default this just sets the collProductsQuantityDiscounts collection to an empty array (like clearcollProductsQuantityDiscounts());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initProductsQuantityDiscounts($overrideExisting = true)
+	{
+		if (null !== $this->collProductsQuantityDiscounts && !$overrideExisting) {
+			return;
+		}
+		$this->collProductsQuantityDiscounts = new PropelObjectCollection();
+		$this->collProductsQuantityDiscounts->setModel('ProductsQuantityDiscount');
+	}
+
+	/**
+	 * Gets an array of ProductsQuantityDiscount objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this Products is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array ProductsQuantityDiscount[] List of ProductsQuantityDiscount objects
+	 * @throws     PropelException
+	 */
+	public function getProductsQuantityDiscounts($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collProductsQuantityDiscounts || null !== $criteria) {
+			if ($this->isNew() && null === $this->collProductsQuantityDiscounts) {
+				// return empty collection
+				$this->initProductsQuantityDiscounts();
+			} else {
+				$collProductsQuantityDiscounts = ProductsQuantityDiscountQuery::create(null, $criteria)
+					->filterByProducts($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collProductsQuantityDiscounts;
+				}
+				$this->collProductsQuantityDiscounts = $collProductsQuantityDiscounts;
+			}
+		}
+		return $this->collProductsQuantityDiscounts;
+	}
+
+	/**
+	 * Sets a collection of ProductsQuantityDiscount objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $productsQuantityDiscounts A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setProductsQuantityDiscounts(PropelCollection $productsQuantityDiscounts, PropelPDO $con = null)
+	{
+		$this->productsQuantityDiscountsScheduledForDeletion = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
+
+		foreach ($productsQuantityDiscounts as $productsQuantityDiscount) {
+			// Fix issue with collection modified by reference
+			if ($productsQuantityDiscount->isNew()) {
+				$productsQuantityDiscount->setProducts($this);
+			}
+			$this->addProductsQuantityDiscount($productsQuantityDiscount);
+		}
+
+		$this->collProductsQuantityDiscounts = $productsQuantityDiscounts;
+	}
+
+	/**
+	 * Returns the number of related ProductsQuantityDiscount objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related ProductsQuantityDiscount objects.
+	 * @throws     PropelException
+	 */
+	public function countProductsQuantityDiscounts(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collProductsQuantityDiscounts || null !== $criteria) {
+			if ($this->isNew() && null === $this->collProductsQuantityDiscounts) {
+				return 0;
+			} else {
+				$query = ProductsQuantityDiscountQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByProducts($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collProductsQuantityDiscounts);
+		}
+	}
+
+	/**
+	 * Method called to associate a ProductsQuantityDiscount object to this object
+	 * through the ProductsQuantityDiscount foreign key attribute.
+	 *
+	 * @param      ProductsQuantityDiscount $l ProductsQuantityDiscount
+	 * @return     Products The current object (for fluent API support)
+	 */
+	public function addProductsQuantityDiscount(ProductsQuantityDiscount $l)
+	{
+		if ($this->collProductsQuantityDiscounts === null) {
+			$this->initProductsQuantityDiscounts();
+		}
+		if (!$this->collProductsQuantityDiscounts->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddProductsQuantityDiscount($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	ProductsQuantityDiscount $productsQuantityDiscount The productsQuantityDiscount object to add.
+	 */
+	protected function doAddProductsQuantityDiscount($productsQuantityDiscount)
+	{
+		$this->collProductsQuantityDiscounts[]= $productsQuantityDiscount;
+		$productsQuantityDiscount->setProducts($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Products is new, it will return
+	 * an empty collection; or if this Products has previously
+	 * been saved, it will retrieve related ProductsQuantityDiscounts from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Products.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array ProductsQuantityDiscount[] List of ProductsQuantityDiscount objects
+	 */
+	public function getProductsQuantityDiscountsJoinDomains($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = ProductsQuantityDiscountQuery::create(null, $criteria);
+		$query->joinWith('Domains', $join_behavior);
+
+		return $this->getProductsQuantityDiscounts($query, $con);
+	}
+
+	/**
 	 * Clears out the collProductsStocks collection
 	 *
 	 * This does not modify the database; however, it will remove any associated objects, causing
@@ -3855,6 +4080,11 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collProductsQuantityDiscounts) {
+				foreach ($this->collProductsQuantityDiscounts as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 			if ($this->collProductsStocks) {
 				foreach ($this->collProductsStocks as $o) {
 					$o->clearAllReferences($deep);
@@ -3904,6 +4134,10 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 			$this->collProductsImagesProductReferencess->clearIterator();
 		}
 		$this->collProductsImagesProductReferencess = null;
+		if ($this->collProductsQuantityDiscounts instanceof PropelCollection) {
+			$this->collProductsQuantityDiscounts->clearIterator();
+		}
+		$this->collProductsQuantityDiscounts = null;
 		if ($this->collProductsStocks instanceof PropelCollection) {
 			$this->collProductsStocks->clearIterator();
 		}

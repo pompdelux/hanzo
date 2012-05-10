@@ -13,6 +13,7 @@ use Hanzo\Model\Domains;
 use Hanzo\Model\DomainsPeer;
 use Hanzo\Model\DomainsSettingsPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\ProductsQuantityDiscountPeer;
 use Hanzo\Model\map\DomainsTableMap;
 
 /**
@@ -371,6 +372,9 @@ abstract class BaseDomainsPeer {
 		// Invalidate objects in ProductsDomainsPricesPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		ProductsDomainsPricesPeer::clearInstancePool();
+		// Invalidate objects in ProductsQuantityDiscountPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		ProductsQuantityDiscountPeer::clearInstancePool();
 	}
 
 	/**

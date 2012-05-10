@@ -15,6 +15,7 @@ use Hanzo\Model\DomainsPeer;
 use Hanzo\Model\DomainsQuery;
 use Hanzo\Model\DomainsSettings;
 use Hanzo\Model\ProductsDomainsPrices;
+use Hanzo\Model\ProductsQuantityDiscount;
 
 /**
  * Base class that represents a query for the 'domains' table.
@@ -40,6 +41,10 @@ use Hanzo\Model\ProductsDomainsPrices;
  * @method     DomainsQuery leftJoinProductsDomainsPrices($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsDomainsPrices relation
  * @method     DomainsQuery rightJoinProductsDomainsPrices($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsDomainsPrices relation
  * @method     DomainsQuery innerJoinProductsDomainsPrices($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsDomainsPrices relation
+ *
+ * @method     DomainsQuery leftJoinProductsQuantityDiscount($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsQuantityDiscount relation
+ * @method     DomainsQuery rightJoinProductsQuantityDiscount($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsQuantityDiscount relation
+ * @method     DomainsQuery innerJoinProductsQuantityDiscount($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsQuantityDiscount relation
  *
  * @method     Domains findOne(PropelPDO $con = null) Return the first Domains matching the query
  * @method     Domains findOneOrCreate(PropelPDO $con = null) Return the first Domains matching the query, or a new Domains object populated from the query conditions when no match is found
@@ -450,6 +455,79 @@ abstract class BaseDomainsQuery extends ModelCriteria
 		return $this
 			->joinProductsDomainsPrices($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'ProductsDomainsPrices', '\Hanzo\Model\ProductsDomainsPricesQuery');
+	}
+
+	/**
+	 * Filter the query by a related ProductsQuantityDiscount object
+	 *
+	 * @param     ProductsQuantityDiscount $productsQuantityDiscount  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    DomainsQuery The current query, for fluid interface
+	 */
+	public function filterByProductsQuantityDiscount($productsQuantityDiscount, $comparison = null)
+	{
+		if ($productsQuantityDiscount instanceof ProductsQuantityDiscount) {
+			return $this
+				->addUsingAlias(DomainsPeer::ID, $productsQuantityDiscount->getDomainsId(), $comparison);
+		} elseif ($productsQuantityDiscount instanceof PropelCollection) {
+			return $this
+				->useProductsQuantityDiscountQuery()
+				->filterByPrimaryKeys($productsQuantityDiscount->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByProductsQuantityDiscount() only accepts arguments of type ProductsQuantityDiscount or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the ProductsQuantityDiscount relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    DomainsQuery The current query, for fluid interface
+	 */
+	public function joinProductsQuantityDiscount($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('ProductsQuantityDiscount');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'ProductsQuantityDiscount');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the ProductsQuantityDiscount relation ProductsQuantityDiscount object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\ProductsQuantityDiscountQuery A secondary query class using the current class as primary query
+	 */
+	public function useProductsQuantityDiscountQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinProductsQuantityDiscount($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'ProductsQuantityDiscount', '\Hanzo\Model\ProductsQuantityDiscountQuery');
 	}
 
 	/**

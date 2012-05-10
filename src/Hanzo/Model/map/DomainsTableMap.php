@@ -55,6 +55,7 @@ class DomainsTableMap extends TableMap
 	{
 		$this->addRelation('DomainsSettings', 'Hanzo\\Model\\DomainsSettings', RelationMap::ONE_TO_MANY, array('domain_key' => 'domain_key', ), 'CASCADE', null, 'DomainsSettingss');
 		$this->addRelation('ProductsDomainsPrices', 'Hanzo\\Model\\ProductsDomainsPrices', RelationMap::ONE_TO_MANY, array('id' => 'domains_id', ), 'CASCADE', null, 'ProductsDomainsPricess');
+		$this->addRelation('ProductsQuantityDiscount', 'Hanzo\\Model\\ProductsQuantityDiscount', RelationMap::ONE_TO_MANY, array('id' => 'domains_id', ), 'CASCADE', null, 'ProductsQuantityDiscounts');
 	} // buildRelations()
 
 } // DomainsTableMap

@@ -19,6 +19,7 @@ use Hanzo\Model\ProductsImages;
 use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesProductReferences;
 use Hanzo\Model\ProductsPeer;
+use Hanzo\Model\ProductsQuantityDiscount;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsToCategories;
@@ -90,6 +91,10 @@ use Hanzo\Model\ProductsWashingInstructions;
  * @method     ProductsQuery leftJoinProductsImagesProductReferences($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsImagesProductReferences relation
  * @method     ProductsQuery rightJoinProductsImagesProductReferences($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsImagesProductReferences relation
  * @method     ProductsQuery innerJoinProductsImagesProductReferences($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsImagesProductReferences relation
+ *
+ * @method     ProductsQuery leftJoinProductsQuantityDiscount($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsQuantityDiscount relation
+ * @method     ProductsQuery rightJoinProductsQuantityDiscount($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsQuantityDiscount relation
+ * @method     ProductsQuery innerJoinProductsQuantityDiscount($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsQuantityDiscount relation
  *
  * @method     ProductsQuery leftJoinProductsStock($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsStock relation
  * @method     ProductsQuery rightJoinProductsStock($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsStock relation
@@ -1262,6 +1267,79 @@ abstract class BaseProductsQuery extends ModelCriteria
 		return $this
 			->joinProductsImagesProductReferences($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'ProductsImagesProductReferences', '\Hanzo\Model\ProductsImagesProductReferencesQuery');
+	}
+
+	/**
+	 * Filter the query by a related ProductsQuantityDiscount object
+	 *
+	 * @param     ProductsQuantityDiscount $productsQuantityDiscount  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function filterByProductsQuantityDiscount($productsQuantityDiscount, $comparison = null)
+	{
+		if ($productsQuantityDiscount instanceof ProductsQuantityDiscount) {
+			return $this
+				->addUsingAlias(ProductsPeer::SKU, $productsQuantityDiscount->getProductsMaster(), $comparison);
+		} elseif ($productsQuantityDiscount instanceof PropelCollection) {
+			return $this
+				->useProductsQuantityDiscountQuery()
+				->filterByPrimaryKeys($productsQuantityDiscount->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByProductsQuantityDiscount() only accepts arguments of type ProductsQuantityDiscount or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the ProductsQuantityDiscount relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function joinProductsQuantityDiscount($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('ProductsQuantityDiscount');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'ProductsQuantityDiscount');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the ProductsQuantityDiscount relation ProductsQuantityDiscount object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\ProductsQuantityDiscountQuery A secondary query class using the current class as primary query
+	 */
+	public function useProductsQuantityDiscountQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinProductsQuantityDiscount($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'ProductsQuantityDiscount', '\Hanzo\Model\ProductsQuantityDiscountQuery');
 	}
 
 	/**
