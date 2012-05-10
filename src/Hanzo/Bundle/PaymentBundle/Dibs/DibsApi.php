@@ -4,16 +4,16 @@ namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
 use Exception;
 
-use Hanzo\Model\Orders;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
+use Hanzo\Model\Orders,
+    Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface,
+    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall,
+    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException
+    ;
 
 use Symfony\Component\HttpFoundation\Request;
 
-
-class DibsApi
+class DibsApi implements PaymentMethodApiInterface
 {
-
     /**
      * map currencies to dibs currency codes
      *

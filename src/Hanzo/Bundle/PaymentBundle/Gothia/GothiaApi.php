@@ -2,7 +2,9 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Gothia;
 
-class GothiaApi
+use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+
+class GothiaApi implements PaymentMethodApiInterface
 {
     /**
      * undocumented class variable

@@ -3,11 +3,12 @@
 namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
 use Hanzo\Core\Hanzo,
+    Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApi,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallResponse
     ;
 
-class DibsApiCall
+class DibsApiCall implements PaymentMethodApiCallInterface
 {
     /**
      * undocumented class variable
@@ -148,7 +149,7 @@ class DibsApiCall
      * @return DibsApiCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function cancel( Orders $order )
+    public function cancel( Customers $customer, Orders $order )
     {
         // FIXME: missing vars
         $transaction = $this->getTransactionId( $orderId );

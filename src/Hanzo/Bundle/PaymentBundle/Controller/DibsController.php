@@ -138,8 +138,6 @@ class DibsController extends CoreController
             return new Response( '', 200, array('Content-Type' => 'text/html'));
         }
 
-        $api = $this->get('payment.dibsapi');
-
         $gateway_id = Tools::getPaymentGatewayId();
         $order = OrdersPeer::getCurrent();
         $order->setPaymentGatewayId($gateway_id);

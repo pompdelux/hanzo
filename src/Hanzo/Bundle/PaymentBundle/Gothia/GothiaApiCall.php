@@ -8,12 +8,13 @@ use Hanzo\Core\Hanzo,
     Hanzo\Model\Orders,
     Hanzo\Model\Customers,
     Hanzo\Model\GothiaAccounts,
+    Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
     Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallResponse;
 
 // Great... fucking oldschool crap code:
 require 'AFWS.php';
 
-class GothiaApiCall
+class GothiaApiCall implements PaymentMethodApiCallInterface
 {
     /**
      * undocumented class variable
@@ -228,6 +229,16 @@ class GothiaApiCall
         $response = $this->call('PlaceReservation', $callString);
 
         return $response;
+    }
+
+    /**
+     * cancel
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function cancel( Customers $customer, Orders $order )
+    {
+        return $this->cancelReservation( $customer, $order );
     }
 
     /**
