@@ -1,4 +1,11 @@
 <?php
+/**
+ * Form error helper class
+ *
+ * @see http://shout.setfive.com/2012/02/09/symfony2-getting-all-errors-from-a-form-in-a-controller/
+ * @author ulrik@bellcom.dk
+ * @todo figure out how to get validation errors from "getters"
+ */
 
 namespace Hanzo\Core;
 
