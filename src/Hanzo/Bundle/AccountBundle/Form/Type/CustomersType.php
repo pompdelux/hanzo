@@ -18,12 +18,6 @@ class CustomersType extends AbstractType
 
     public function buildForm(FormBuilder $builder, array $options)
     {
-        if ($this->is_new) {
-            $builder->setAttribute('validation_groups', 'add');
-        } else {
-            $builder->setAttribute('validation_groups', 'edit');
-        }
-
         $builder->add('first_name', null, array('translation_domain' => 'account', 'trim' => true));
         $builder->add('last_name', null, array('translation_domain' => 'account', 'trim' => true));
 
@@ -39,7 +33,7 @@ class CustomersType extends AbstractType
 
         $builder->add('email', 'repeated', array(
             'type' => 'email',
-            'invalid_message' => 'The email fields must match.',
+            'invalid_message' => 'email.invalid.match',
             'first_name' => 'email_address',
             'second_name' => 'email_address_repeated',
             'translation_domain' => 'account',
@@ -47,7 +41,7 @@ class CustomersType extends AbstractType
 
         $builder->add('password', 'repeated', array(
             'type' => 'password',
-            'invalid_message' => 'The password fields must match.',
+            'invalid_message' => 'password.invalid.match',
             'first_name' => 'pass',
             'second_name' => 'pass_repeated',
             'translation_domain' => 'account',

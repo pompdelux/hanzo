@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
+use Hanzo\Core\FormErrors;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
@@ -69,7 +70,12 @@ class DefaultController extends CoreController
 
         $customer->addAddresses($addresses);
 
-        $form = $this->createForm(new CustomersType( true, new AddressesType( $countries ) ), $customer);
+        $errors = '';
+        $form = $this->createForm(
+            new CustomersType(true, new AddressesType($countries)),
+            $customer,
+            array('validation_groups' => 'customer')
+        );
 
         if ('POST' === $request->getMethod())
         {
@@ -124,12 +130,16 @@ class DefaultController extends CoreController
                 }
 
                 return $this->redirect($this->generateUrl('_account'));
+            } else {
+                $errors = new FormErrors($form, $this->get('translator'), 'account');
+                $errors = $errors->toString();
             }
         }
 
         return $this->render('AccountBundle:Default:create.html.twig', array(
             'page_type' => 'create-account',
             'form' => $form->createView(),
+            'errors' => $errors,
             'domain_key' => $domainKey
         ));
     }
@@ -196,8 +206,6 @@ class DefaultController extends CoreController
                     $customer->setPassword(sha1($customer->getPasswordClear()));
                 }
                 $customer->save();
-                // FIXME:
-                //$this->get('ax_manager')->sendDebtor($customer);
 
                 $this->get('session')->setFlash('notice', 'account.updated');
                 return $this->redirect($this->generateUrl('_account'));

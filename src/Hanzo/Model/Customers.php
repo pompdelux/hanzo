@@ -3,6 +3,7 @@
 namespace Hanzo\Model;
 
 use Hanzo\Model\om\BaseCustomers;
+use Hanzo\Model\CustomersQuery;
 
 
 /**
@@ -89,5 +90,23 @@ class Customers extends BaseCustomers
     {
         return $this->accept = (bool) $value;
     }*/
+
+
+    /**
+     * validate uniq emails
+     *
+     * @return boolean
+     */
+    public function isEmailUniq()
+    {
+        if ($email = $this->getEmail()) {
+            $customer = CustomersQuery::create()->findOneByEmail($email);
+            if (!$customer instanceof Customers) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 } // Customers

@@ -16,7 +16,7 @@ class AddressesType extends AbstractType
 
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->setAttribute('validation_groups', 'payment');
+        $builder->setErrorBubbling(true);
 
         $builder->add('type', 'hidden', array('translation_domain' => 'account'));
 

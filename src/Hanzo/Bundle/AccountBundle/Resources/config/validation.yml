@@ -13,27 +13,27 @@ Hanzo\Model\Addresses:
         address_line_1:
             - NotBlank:
                 message: address.address_line_1.required
-                groups: [shipping, company_shipping, payment, overnightbox]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
         postal_code:
             - NotBlank:
                 message: address.postal_code.required
-                groups: [shipping, company_shipping, payment, overnightbox]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
         city:
             - NotBlank:
                 message: address.city.required
-                groups: [shipping, company_shipping, payment, overnightbox]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
         countries_id:
             - NotBlank:
                 message: address.countries_id.required
-                groups: [shipping, company_shipping, payment, overnightbox]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - Type:
                 type: integer
         country:
             - NotBlank:
-                groups: [shipping, company_shipping, payment, overnightbox]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
         company_name:
             - NotBlank:
                 message: address.company_name.required
@@ -43,27 +43,37 @@ Hanzo\Model\Customers:
     properties:
         first_name:
             - NotBlank:
-                message: first_name.required
-                groups: [add, edit]
+                message: address.first_name.required
+                groups: [customer]
             - MinLength: 2
         last_name:
             - NotBlank:
-                message: last_name.required
-                groups: [add, edit]
+                message: address.last_name.required
+                groups: [customer]
             - MinLength: 2
         phone:
             - NotBlank:
                 message: phone.required
-                groups: [add, edit]
+                groups: [customer]
             - MinLength: 8
         email:
             - NotBlank:
                 message: email.required
-                groups: [add, edit]
+                groups: [customer]
             - Email:
                 message: email.not.valid
-                groups: [add, edit]
-        accept:
+                groups: [customer]
+        password:
             - NotBlank:
-                message: confirm.terms
-                groups: [add, edit]
+                message: password.required
+                groups: [customer]
+            - MinLength:
+                limit: 5
+                message: password.min.length
+                groups: [customer]
+    # TODO: figure out why this does not trigger an error
+    getters:
+        emailUniq:
+            - "True":
+                message: email.exists
+                groups: [customer]
