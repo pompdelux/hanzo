@@ -12,6 +12,11 @@ PaymentBundle_dibs_callback:
     requirements:
         _method: POST
 
+PaymentBundle_dibs_form_update:
+    pattern:  /payment/dibs/formupdate
+    defaults: { _controller: PaymentBundle:Dibs:block}
+    requirements: { _format: (xml|json), _method: POST }
+
 PaymentBundle_dibs_cancel:
     pattern:  /payment/dibs/cancel
     defaults: { _controller: PaymentBundle:Dibs:cancel }

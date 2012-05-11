@@ -212,6 +212,7 @@ class Tools
         if (is_null($gateway_id)) {
             $gateway_id = self::getNextSequenceId('payment gateway');
 
+            // Should probably be handled by the payment method
             $env = Hanzo::getInstance()->container->get('kernel')->getEnvironment();
             if ($env != 'prod') {
                 $gateway_id = $env . '_' . $gateway_id;

@@ -39,6 +39,10 @@ class DibsController extends CoreController
             Tools::log( $_POST );
             return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
+        
+        if (false !== strpos($orderId, '_')) {
+            list($junk, $orderId) = explode('_', $orderId, 2);
+        }
 
         $order = OrdersPeer::retriveByPaymentGatewayId( $orderId );
 
@@ -74,7 +78,7 @@ class DibsController extends CoreController
     {
         $this->get('session')->setFlash('notice', 'payment.canceled');
         return $this->redirect($this->generateUrl('_checkout'));
-    }
+     }
 
     /**
      * apiTestAction
@@ -131,18 +135,40 @@ class DibsController extends CoreController
     {
         $api = $this->get('payment.dibsapi');
 
+        $isJson = ('json' === $this->getFormat() ) ? true : false;
+
         if ( !$api->isActive() )
         {
-            return new Response( '', 200, array('Content-Type' => 'text/html'));
+            if ( $isJson )
+            {
+                return $this->json_response( array('status' => false) );
+            }
+            else
+            {
+                return new Response( '', 200, array('Content-Type' => 'text/html'));
+            }
         }
 
-        $gateway_id = Tools::getPaymentGatewayId();
         $order = OrdersPeer::getCurrent();
-        $order->setPaymentGatewayId($gateway_id);
+        $gateway_id = $order->getPaymentGatewayId();
 
-        // annoying, but performs better...
-        if ('' == $order->getCurrencyCode()) {
-            $order->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
+        if ( empty($gateway_id) ) // The first time the form is rendered we set some ekstra stuff
+        {
+            $gateway_id = Tools::getPaymentGatewayId();
+            $order->setPaymentGatewayId($gateway_id);
+            $order->setState(Orders::STATE_PRE_PAYMENT);
+            // annoying, but performs better...
+            if ('' == $order->getCurrencyCode()) {
+                $order->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
+            }
+
+            $order->save();
+        }
+
+        // Should probably be handled by the payment method
+        $env = Hanzo::getInstance()->container->get('kernel')->getEnvironment();
+        if ($env != 'prod' && strpos($gateway_id,$env.'_') === false ) {
+            $gateway_id = $env . '_' . $gateway_id;
         }
 
         $settings = $api->buildFormFields(
@@ -153,6 +179,14 @@ class DibsController extends CoreController
 
         $cardtypes = $api->getEnabledPaytypes();
 
-        return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes, 'form_fields' => $settings ));
+        if ( $isJson )
+        {
+            error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debuggin
+            return $this->json_response( array('status' => true, 'fields' => $settings) );
+        }
+        else
+        {
+            return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes, 'form_fields' => $settings ));
+        }
     }
 }

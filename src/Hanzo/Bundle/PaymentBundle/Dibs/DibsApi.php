@@ -4,7 +4,8 @@ namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
 use Exception;
 
-use Hanzo\Model\Orders,
+use Hanzo\Core\Hanzo,
+    Hanzo\Model\Orders,
     Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException
@@ -157,10 +158,20 @@ class DibsApi implements PaymentMethodApiInterface
         $currency = $this->currencyCodeToNum($order->getCurrencyCode());
         $amount   = self::formatAmount( $order->getTotalPrice() );
 
-        $calculated = $this->md5key( $order->getId(), $currency, $amount );
+        // Should probably be handled by the payment method
+        $gateway_id = $order->getPaymentGatewayId();
+        $env = Hanzo::getInstance()->container->get('kernel')->getEnvironment();
+        if ($env != 'prod' && strpos($gateway_id,$env.'_') === false ) {
+            $gateway_id = $env . '_' . $gateway_id;
+        }
+
+        $calculated = $this->md5key( $gateway_id, $currency, $amount );
 
         if ( $callbackRequest->get('md5key') != $calculated )
         {
+            error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
+            error_log(__LINE__.':'.__FILE__.' '.$gateway_id); // hf@bellcom.dk debugging
+            error_log(__LINE__.':'.__FILE__.' '.$amount); // hf@bellcom.dk debugging
             throw new Exception( 'Md5 sum mismatch, got: "'. $callbackRequest->get('md5key') .'" expected: "'. $calculated .'"' );
         }
 
@@ -203,12 +214,12 @@ class DibsApi implements PaymentMethodApiInterface
     }
 
     /**
-     * updateOrdersFailed
+     * updateOrderFailed
      * @todo Should we save the same attributes as in updateOrderSuccess?
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function updateOrdersFailed( Request $request, Orders $order)
+    public function updateOrderFailed( Request $request, Orders $order)
     {
         $order->setState( Orders::STATE_ERROR_PAYMENT );
         $order->save();
@@ -285,7 +296,7 @@ class DibsApi implements PaymentMethodApiInterface
             "skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             "test"         => $this->getTest(),
-            "paytype"      => '', // This _most_ be set in the form
+            "paytype"      => '', // This _must_ be set in the form
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
         );
 

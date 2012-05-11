@@ -151,6 +151,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancel( Customers $customer, Orders $order )
     {
+        error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
         $attributes = $order->getAttributes();
         $transaction = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
