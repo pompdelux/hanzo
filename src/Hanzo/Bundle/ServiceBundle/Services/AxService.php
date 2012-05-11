@@ -352,7 +352,7 @@ class AxService
         }
 
         try {
-            return $this->client->{$service}($data);
+            return $this->client->{$service}($request);
         } catch (SoapFault $e) {
             return $e;
         }
