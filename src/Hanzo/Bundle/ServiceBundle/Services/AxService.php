@@ -83,9 +83,6 @@ class AxService
     {
         Propel::setForceMasterConnection(true);
 
-        // TODO: cancel payment at the correct provider
-        if ($order->getInEdit()) {}
-
         $attributes = $order->getAttributes();
         $lines = $order->getOrdersLiness();
 

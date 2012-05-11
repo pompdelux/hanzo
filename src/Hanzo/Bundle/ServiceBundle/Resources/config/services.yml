@@ -8,6 +8,7 @@ parameters:
     cleanup_manager.class: Hanzo\Bundle\ServiceBundle\Services\CleanupService
     ax_manager.class: Hanzo\Bundle\ServiceBundle\Services\AxService
     geoip_manager.class: Hanzo\Bundle\ServiceBundle\Services\GeoIPService
+    replication_manager.class: Hanzo\Bundle\ServiceBundle\Services\ReplicationService
 
 services:
     service_factory:
@@ -72,6 +73,15 @@ services:
         factory_service: service_factory
         factory_method:  get
         arguments:
-            service:     geoip 
+            service:     geoip
             parameters:  ~
             class:       %geoip_manager.class%
+
+    replication_manager:
+        class:           %replication_manager.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     replication
+            parameters:  [@propel.configuration]
+            class:       %replication_manager.class%

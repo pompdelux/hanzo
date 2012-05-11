@@ -235,7 +235,7 @@ class ProductsController extends CoreController
                 'message' => $this->get('translator')->trans('delete.products.style.failed', array(), 'admin')
             ));
         }
-        
+
         $this->get('session')->setFlash('notice', 'delete.products.style.failed');
 
         return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
@@ -302,6 +302,8 @@ class ProductsController extends CoreController
 
         try {
             $reference->save();
+            $this->get('replication_manager')->syncStyleGuide('add', $image_id, $product_id);
+
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -329,6 +331,7 @@ class ProductsController extends CoreController
 
         if($product_ref)
             $product_ref->delete();
+            $this->get('replication_manager')->syncStyleGuide('delete', $image_id, $product_id);
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -447,13 +450,13 @@ class ProductsController extends CoreController
             $stock_data[] = array($stock->getProducts()->getSku(), $stock->getVirtualColumn('totalstock'));
         }
 
-        return new Response( 
-            $parser->toCSV($stock_data, true, false), 
-            200, 
-            array( 
-                 'Content-Type' => 'text/csv', 
-                 'Content-Disposition' => sprintf('attachment; filename="stock_' . date('Y-m-d', time()) . '.csv"', 'stock_' . date('Y-m-d', time()) .'.csv') 
-            ) 
+        return new Response(
+            $parser->toCSV($stock_data, true, false),
+            200,
+            array(
+                 'Content-Type' => 'text/csv',
+                 'Content-Disposition' => sprintf('attachment; filename="stock_' . date('Y-m-d', time()) . '.csv"', 'stock_' . date('Y-m-d', time()) .'.csv')
+            )
         );
     }
 }
