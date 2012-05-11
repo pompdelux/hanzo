@@ -3,7 +3,8 @@
 # http://stackoverflow.com/questions/8718259/capifony-and-directory-owners
 # http://blog.servergrove.com/2011/09/07/deploying-symfony2-projects-on-shared-hosting-with-capifony/
 # http://stackoverflow.com/questions/2633758/deploying-a-rails-app-to-multiple-servers-using-capistrano-best-practices
-# >>> http://www.zalas.eu/multistage-deployment-of-symfony-applications-with-capifony
+# http://www.zalas.eu/multistage-deployment-of-symfony-applications-with-capifony
+# http://stackoverflow.com/questions/9454556/capifony-update-vendors-and-deps-file <- only update vendors on changes in deps
 #
 set :application, "Hanzo"
 #set :domain,      "pompdelux-test" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
