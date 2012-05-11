@@ -1,2 +1,2 @@
-debian1
-debian2
+pdlfront-dk3
+pdlstatic1
