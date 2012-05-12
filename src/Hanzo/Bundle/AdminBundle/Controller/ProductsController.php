@@ -18,6 +18,9 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery,
     Hanzo\Model\ProductsImagesQuery,
     Hanzo\Model\ProductsQuery,
     Hanzo\Model\ProductsStockQuery,
+    Hanzo\Model\ProductsQuantityDiscountQuery,
+    Hanzo\Model\ProductsQuantityDiscount,
+    Hanzo\Model\DomainsQuery,
     Hanzo\Model\CategoriesQuery;
 
 class ProductsController extends CoreController
@@ -182,6 +185,117 @@ class ProductsController extends CoreController
         ));
     }
 
+    public function quantityDiscountsAction($product_id)
+    {
+
+        $current_product = ProductsQuery::create()
+            ->findOneById($product_id)
+        ;
+
+        $domains_availible = DomainsQuery::Create()->find();
+
+        foreach ($domains_availible as $domain) {
+            $domains_availible_data[$domain->getId()] = $domain->getDomainKey();
+        }
+
+        $quantity_discount = new ProductsQuantityDiscount();
+        $quantity_discount->setProductsMaster($current_product->getSku());
+        $form = $this->createFormBuilder($quantity_discount)
+            ->add('domains_id', 'choice', array(
+                    'label'     => 'admin.products.discount.domains_id',
+                    'choices'   => $domains_availible_data,
+                    'required'  => TRUE,
+                    'translation_domain' => 'admin'
+                )
+            )->add('span', 'integer', array(
+                    'label' => 'admin.products.discount.span',
+                    'required' => TRUE,
+                    'translation_domain' => 'admin'
+                )
+            )->add('discount', 'number', array(
+                    'label' => 'admin.products.discount.discount',
+                    'required' => TRUE,
+                    'translation_domain' => 'admin'
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $duplicate = ProductsQuantityDiscountQuery::create()
+                    ->filterByProductsMaster($quantity_discount->getProductsMaster())
+                    ->findOneByDomainsId($quantity_discount->getDomainsId())
+                ;
+
+                if ($duplicate instanceof ProductsQuantityDiscount) {
+
+                    $duplicate->setSpan($quantity_discount->getSpan());
+                    $duplicate->setDiscount($quantity_discount->getDiscount());
+                    $duplicate->save();
+
+                }else{
+                    
+                    $quantity_discount->save();
+
+                }
+
+                $this->get('session')->setFlash('notice', 'admin.products.discount.saved');
+            }
+        }
+
+        $quantity_discounts = ProductsQuantityDiscountQuery::create()
+            ->joinWithDomains()
+            ->filterByProductsMaster($current_product->getSku())
+            ->orderByDomainsId()
+            ->find()
+        ;
+
+        return $this->render('AdminBundle:Products:discount.html.twig', array(
+            'quantity_discounts'    => $quantity_discounts,
+            'form'                  => $form->createView(),
+            'current_product'       => $current_product
+        ));
+    }
+
+    public function deleteQuantityDiscountAction($master, $domains_id)
+    {
+        $discount = ProductsQuantityDiscountQuery::create()
+            ->filterByProductsMaster($master)
+            ->findOneByDomainsId($domains_id)
+        ;
+
+        if($discount instanceof ProductsQuantityDiscount){
+            $discount->delete();
+
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => TRUE,
+                    'message' => $this->get('translator')->trans('delete.products.discount.success', array(), 'admin')
+                ));
+            }
+
+            $this->get('session')->setFlash('notice', 'delete.products.discount.success');
+
+            return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $this->get('translator')->trans('delete.products.discount.failed', array(), 'admin')
+            ));
+        }
+
+        $this->get('session')->setFlash('notice', 'delete.products.discount.failed');
+
+        return $this->redirect($this->generateUrl('admin_products_discount', array('product_id' => $master->getId())));
+
+    }
+
     public function deleteStylesAction($id)
     {
         $master = ProductsQuery::create()
@@ -204,7 +318,6 @@ class ProductsController extends CoreController
         $this->get('session')->setFlash('notice', 'delete.products.styles.failed');
 
         return $this->redirect($this->generateUrl('admin_product', array('id' => $id)));
-
 
     }
 
@@ -231,7 +344,7 @@ class ProductsController extends CoreController
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
-                'status' => TRUE,
+                'status' => FALSE,
                 'message' => $this->get('translator')->trans('delete.products.style.failed', array(), 'admin')
             ));
         }
