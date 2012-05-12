@@ -16,6 +16,7 @@ Hanzo\Model\DomainsQuery,
 Hanzo\Model\ProductsWashingInstructions,
 Hanzo\Model\ProductsWashingInstructionsQuery,
 Hanzo\Model\LanguagesQuery,
+Hanzo\Model\Languages,
 Hanzo\Model\MessagesQuery,
 Hanzo\Model\Messages,
 Hanzo\Model\MessagesI18nQuery,
@@ -607,6 +608,87 @@ class SettingsController extends CoreController
             return $this->json_response(array(
                 'status' => TRUE,
                 'message' => $this->get('translator')->trans('delete.messages.success', array(), 'admin'),
+            ));
+        }
+    }
+
+    public function languagesAction($id)
+    {
+        $language = null;
+        if ($id) {
+            $language = LanguagesQuery::create()->findOneById($id);
+        }else{
+            $language = new Languages();
+        }
+
+        $form = $this->createFormBuilder($language)
+            ->add('name', 'text', 
+                array(
+                    'label' => 'admin.languages.name',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('local_name', 'text', 
+                array(
+                    'label' => 'admin.languages.local_name',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('locale', 'text', 
+                array(
+                    'label' => 'admin.languages.locale',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('iso2', 'text', 
+                array(
+                    'label' => 'admin.languages.iso2',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('direction', 'choice', 
+                array(
+                    'choices' => array('ltr' => 'Left to Right', 'rtl' => 'Right to Left'),
+                    'label' => 'admin.languages.direction',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $language->save();
+
+                $this->get('session')->setFlash('notice', 'admin.languages.inserted');
+            }
+        }
+
+        $languages = LanguagesQuery::create()->find();
+
+        return $this->render('AdminBundle:Settings:languages.html.twig', array(
+            'form' => $form->createView(),
+            'languages' => $languages,
+            'language_id' => $id
+        ));
+    }
+
+    public function languagesDeleteAction($id)
+    {
+        $language = LanguagesQuery::create()->findOneById($id);
+
+        if($language instanceof Languages){
+            $language->delete();
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.languages.success', array(), 'admin'),
             ));
         }
     }

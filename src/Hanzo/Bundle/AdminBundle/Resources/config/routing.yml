@@ -405,6 +405,20 @@ admin_postalcode_delete:
     requirements:
         id: \d+
 
+admin_settings_languages:
+    pattern:  /admin/settings/languages/{id}
+    defaults:
+        _controller: AdminBundle:Settings:languages
+        id: null
+    requirements:
+        id: \d+
+admin_settings_languages_delete:
+    pattern:  /admin/settings/languages/delete/{id}
+    defaults:
+        _controller: AdminBundle:Settings:languagesDelete
+    requirements:
+        id: \d+
+
 admin_cache_jscss:
     pattern:  /admin/cache/jscss
     defaults:
