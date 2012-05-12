@@ -42,13 +42,22 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $order = OrdersPeer::retrieveByPK(572846);
-        echo $order->getVersionId()."\n";
+        $order = OrdersPeer::retrieveByPK(572871);
+        $currentVersion = $order->getVersionId();
 
-        $oldOrder = $order->getOrderAtVersion(1);
-        echo $oldOrder->getVersionId()."\n";
+        //var_dump($order->getOrdersAttributess());
+        //echo $order->getOrdersAttributess()->toArray()."\n";
 
-        //$oldOrder = $order->getOneVersion();
-        //$order->cancelPayment();
+        if ( !( $currentVersion < 2 ) ) // If the version number is less than 2 there is no previous version
+        {
+          $oldOrderVersion = ( $currentVersion - 1);
+          $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+
+
+          //var_dump($oldOrder->getOrdersAttributess());
+          //print_r($oldOrder->getOrdersAttributess()->toArray());
+
+          $oldOrder->cancelPayment($this->getContainer()->get('payment.paybybillapi'));
+        }
     }
 }

@@ -267,13 +267,14 @@ class Orders extends BaseOrders
         }
         $order->setOrdersLiness($collection);
 
-        $collection = new PropelCollection();
+        //$collection = new PropelObjectCollection();
         foreach ($data['attributes'] as $item) {
             $line = new OrdersAttributes();
             $line->fromArray($item);
-            $collection->prepend($line);
+            $order->addOrdersAttributes($line);
+            //$collection->prepend($line);
         }
-        $order->setOrdersAttributess($collection);
+        //$order->setOrdersAttributess($collection);
 
         // save and return the version
         return $order;
@@ -792,6 +793,7 @@ class Orders extends BaseOrders
      */
     public function setPaymentGatewayId($gateway_id = null)
     {
+        // Should probably be handled by the payment method
         if (false !== strpos($gateway_id, '_')) {
             list($junk, $gateway_id) = explode('_', $gateway_id, 2);
         }
@@ -853,22 +855,23 @@ class Orders extends BaseOrders
      * @return bool
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function cancelPayment()
+    public function cancelPayment( )
     {
+        // FIXME: enable
         /*if ( $this->getState() != self::STATE_PENDING )
         {
             throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
         }*/
 
-        $attributes = $this->getOrdersAttributess()->toArray();
+        $attributes = $this->getOrdersAttributess();
 
         $paytype = false;
 
         foreach ($attributes as $attribute) 
         {
-            if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' )
+            if ( $attribute->getNs() == 'payment' && $attribute->getCKey() == 'paytype' )
             {
-                $paytype = $attribute['CValue'];
+                $paytype = $attribute->getCValue();
             }
         }
 

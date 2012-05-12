@@ -26,7 +26,6 @@ class DefaultController extends CoreController
 
     public function viewAction($id, $page = NULL)
     {
-$this->get('replication_manager');
         $locale = Hanzo::getInstance()->get('core.locale');
 
         if ($page instanceof Cms) {
