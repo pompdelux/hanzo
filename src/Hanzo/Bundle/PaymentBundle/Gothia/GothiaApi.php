@@ -31,7 +31,6 @@ class GothiaApi implements PaymentMethodApiInterface
     {
         $this->settings = $settings;
 
-        error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
         if ( $this->settings['active'] === true)

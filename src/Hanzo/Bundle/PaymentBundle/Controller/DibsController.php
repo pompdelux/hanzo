@@ -181,7 +181,6 @@ class DibsController extends CoreController
 
         if ( $isJson )
         {
-            error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debuggin
             return $this->json_response( array('status' => true, 'fields' => $settings) );
         }
         else
