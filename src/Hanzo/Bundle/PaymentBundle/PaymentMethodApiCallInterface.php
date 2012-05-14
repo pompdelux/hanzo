@@ -2,6 +2,10 @@
 
 namespace Hanzo\Bundle\PaymentBundle;
 
+use Hanzo\Model\Customers,
+    Hanzo\Model\Orders
+    ;
+
 interface PaymentMethodApiCallInterface
 {
   /**

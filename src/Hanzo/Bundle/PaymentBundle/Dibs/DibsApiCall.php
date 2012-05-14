@@ -2,6 +2,10 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
+use Hanzo\Model\Customers,
+    Hanzo\Model\Orders
+    ;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApi,
@@ -80,7 +84,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     protected function call( $function, array $params, $useAuthHeaders = false )
     {
-        $logger = Hanzo::getInstance()->container->get('logger');
+        //$logger = Hanzo::getInstance()->container->get('logger');
 
         $ch = curl_init();
 
@@ -324,8 +328,8 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function transinfo( Orders $order )
     {
-        $attributes       = $order->getAttributes();
-        $transaction      = $attributes->payment->transact;
+        //$attributes       = $order->getAttributes();
+        //$transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
         $amount           = $this->api->formatAmount( $order->getTotalPrice() );

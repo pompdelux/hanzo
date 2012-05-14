@@ -58,7 +58,10 @@ class DibsApi implements PaymentMethodApiInterface
             $this->checkSettings($settings);
         }
 
-        $this->settings['paytypes'] = unserialize($settings['paytypes']);
+        if ( isset($settings['paytypes']) )
+        {
+            $this->settings['paytypes'] = unserialize($settings['paytypes']);
+        }
     }
 
     /**
@@ -323,7 +326,7 @@ class DibsApi implements PaymentMethodApiInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    protected static function formatAmount( $amount )
+    public static function formatAmount( $amount )
     {
         $amount = ( number_format( $amount, 2, '.', '') ) * 100 ;
         return $amount;
