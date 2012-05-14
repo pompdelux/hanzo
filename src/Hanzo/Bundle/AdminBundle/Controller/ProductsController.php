@@ -228,12 +228,12 @@ class ProductsController extends CoreController
 
                 $duplicate = ProductsQuantityDiscountQuery::create()
                     ->filterByProductsMaster($quantity_discount->getProductsMaster())
+                    ->filterBySpan($quantity_discount->getSpan())
                     ->findOneByDomainsId($quantity_discount->getDomainsId())
                 ;
 
                 if ($duplicate instanceof ProductsQuantityDiscount) {
 
-                    $duplicate->setSpan($quantity_discount->getSpan());
                     $duplicate->setDiscount($quantity_discount->getDiscount());
                     $duplicate->save();
 
@@ -261,10 +261,11 @@ class ProductsController extends CoreController
         ));
     }
 
-    public function deleteQuantityDiscountAction($master, $domains_id)
+    public function deleteQuantityDiscountAction($master, $domains_id, $span)
     {
         $discount = ProductsQuantityDiscountQuery::create()
             ->filterByProductsMaster($master)
+            ->filterBySpan($span)
             ->findOneByDomainsId($domains_id)
         ;
 

@@ -233,11 +233,12 @@ admin_products_discount:
         product_id: \d+
 
 admin_products_discount_delete:
-    pattern:  /admin/products/discounts/delete/{master}/{domains_id}
+    pattern:  /admin/products/discounts/delete/{master}/{domains_id}/{span}
     defaults:
         _controller: AdminBundle:Products:deleteQuantityDiscount
     requirements:
         domains_id: \d+
+        span: \d+
 
 admin_category_edit:
     pattern:  /admin/category/{id}/{locale}
