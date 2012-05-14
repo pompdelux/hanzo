@@ -66,6 +66,18 @@ class PayByBillApi implements PaymentMethodApiInterface
     }
 
     /**
+     * updateOrderFailed
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function updateOrderFailed( Request $request, Orders $order)
+    {
+        $order->setState( Orders::STATE_ERROR_PAYMENT );
+        $order->setAttribute( 'paytype' , 'payment', 'gothia' );
+        $order->save();
+    }
+
+    /**
      * updateOrderSuccess
      *
      * @return void

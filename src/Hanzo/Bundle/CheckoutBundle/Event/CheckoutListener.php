@@ -27,16 +27,12 @@ class CheckoutListener
     {
         $order = $event->getOrder();
 
-        error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
-
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
             // woopsan!
             return;
         }
 
         $order->setState( Orders::STATE_PENDING );
-
-        error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
 
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
@@ -101,6 +97,5 @@ class CheckoutListener
 
         $order->setInEdit(false);
         $order->save();
-        error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
     }
 }

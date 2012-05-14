@@ -132,6 +132,7 @@ class OrdersController extends CoreController
             ->find()
         ;
 
+        // FIXME: pull from orders object
         $form_state = $this->createFormBuilder(array('state' => $order->getState()))
             ->add('state', 'choice',
                 array(
