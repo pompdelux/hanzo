@@ -156,7 +156,8 @@ class DibsController extends CoreController
         {
             $gateway_id = Tools::getPaymentGatewayId();
             $order->setPaymentGatewayId($gateway_id);
-            $order->setState(Orders::STATE_PRE_PAYMENT);
+            // No need to set state here, it should be handled else where
+
             // annoying, but performs better...
             if ('' == $order->getCurrencyCode()) {
                 $order->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));

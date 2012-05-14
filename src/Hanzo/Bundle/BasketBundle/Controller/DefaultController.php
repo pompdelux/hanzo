@@ -1,25 +1,27 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\BasketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Core\Tools;
-use Hanzo\Core\Stock;
-use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
+    Hanzo\Core\Stock,
+    Hanzo\Core\CoreController
+    ;
 
-use Hanzo\Model\Products;
-use Hanzo\Model\ProductsPeer;
-use Hanzo\Model\ProductsQuery;
-use Hanzo\Model\ProductsStockQuery;
-use Hanzo\Model\ProductsDomainsPricesPeer;
-use Hanzo\Model\ProductsDomainsPricesQuery;
-use Hanzo\Model\ProductsToCategoriesQuery;
-
-use Hanzo\Model\OrdersPeer;
-use Hanzo\Model\OrdersQuery;
-use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\Products,
+    Hanzo\Model\ProductsPeer,
+    Hanzo\Model\ProductsQuery,
+    Hanzo\Model\ProductsStockQuery,
+    Hanzo\Model\ProductsDomainsPricesPeer,
+    Hanzo\Model\ProductsDomainsPricesQuery,
+    Hanzo\Model\ProductsToCategoriesQuery,
+    Hanzo\Model\Orders,
+    Hanzo\Model\OrdersPeer,
+    Hanzo\Model\OrdersQuery,
+    Hanzo\Model\OrdersLinesQuery
+    ;
 
 class DefaultController extends CoreController
 {
@@ -251,10 +253,10 @@ class DefaultController extends CoreController
             // find first products2category match
             $products2category = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
-                    ->filterBySku($line['products_name'])
+                ->filterBySku($line['products_name'])
                 ->endUse()
                 ->findOne()
-            ;
+                ;
             // find matching router
 
             $line['expected_at'] = new \DateTime($line['expected_at']);
@@ -273,7 +275,7 @@ class DefaultController extends CoreController
                 '_basket_' .
                 preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
                 '.jpg'
-            ;
+                ;
 
             $product_route = '';
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
@@ -294,6 +296,10 @@ class DefaultController extends CoreController
         if ($embed) {
             $template = 'BasketBundle:Default:block.html.twig';
         }
+
+        // Make sure that order state is building
+        $order->setState( Orders::STATE_BUILDING );
+        $order->save();
 
         return $this->render($template, array(
             'embedded' => $embed,

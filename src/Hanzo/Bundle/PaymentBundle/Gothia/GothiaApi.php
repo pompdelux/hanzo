@@ -116,4 +116,16 @@ class GothiaApi implements PaymentMethodApiInterface
         $order->setAttribute( 'paytype' , 'payment', 'gothia' );
         $order->save();
     }
+
+    /**
+     * updateOrderFailed
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function updateOrderFailed( Request $request, Orders $order)
+    {
+        $order->setState( Orders::STATE_ERROR_PAYMENT );
+        $order->setAttribute( 'paytype' , 'payment', 'gothia' );
+        $order->save();
+    }
 }

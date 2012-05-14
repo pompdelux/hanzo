@@ -27,9 +27,17 @@ interface PaymentMethodApiInterface
 
     /**
      * updateOrderSuccess
-     * Called when an order is success full completed
+     * Called when an order is successfull completed
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function updateOrderSuccess( Request $request, Orders $order );
+
+    /**
+     * updateOrderFailed
+     * Called when an order failed
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function updateOrderFailed( Request $request, Orders $order);
 }

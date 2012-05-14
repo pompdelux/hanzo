@@ -191,8 +191,6 @@ class DibsApi implements PaymentMethodApiInterface
      **/
     public function updateOrderSuccess( Request $request, Orders $order )
     {
-        $order->setState( Orders::STATE_PAYMENT_OK );
-
         $fields = array(
             'paytype',
             'cardnomask',
@@ -210,17 +208,34 @@ class DibsApi implements PaymentMethodApiInterface
             $order->setAttribute( $field , 'payment', $request->get($field) );
         }
 
+        $order->setState( Orders::STATE_PAYMENT_OK );
         $order->save();
     }
 
     /**
      * updateOrderFailed
-     * @todo Should we save the same attributes as in updateOrderSuccess?
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function updateOrderFailed( Request $request, Orders $order)
     {
+        $fields = array(
+            'paytype',
+            'cardnomask',
+            'cardprefix',
+            'acquirer',
+            'cardexpdate',
+            'currency',
+            'ip',
+            'approvalcode',
+            'transact',
+        );
+
+        foreach ($fields as $field)
+        {
+            $order->setAttribute( $field , 'payment', $request->get($field) );
+        }
+
         $order->setState( Orders::STATE_ERROR_PAYMENT );
         $order->save();
     }
