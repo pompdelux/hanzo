@@ -334,6 +334,9 @@ class Tools
         if (empty($params['alt']) && !empty($params['title'])) {
             $params['alt'] = $params['title'];
         }
+        if (!isset($params['alt'])) {
+            $params['alt'] = '';
+        }
 
         $extra = '';
 
