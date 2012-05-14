@@ -149,6 +149,9 @@ class ConsultantsController extends CoreController
 
     public function viewAction($id)
     {
+        $hanzo = Hanzo::getInstance();
+        $security = $hanzo->container->get('security.context');
+
         $consultant = ConsultantsQuery::create()
             ->joinWithCustomers()
             ->findOneById($id)
@@ -168,26 +171,24 @@ class ConsultantsController extends CoreController
             'max_notified' => $consultant->getMaxNotified()
         );
 
-        $form = $this->createFormBuilder($consultant_data)
-            ->add('first_name', 'text',
+        $form = $this->createFormBuilder($consultant_data);
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $form = $form->add('first_name', 'text',
                 array(
                     'label' => 'admin.customer.first_name.label',
                     'translation_domain' => 'admin'
                 )
-            )
-            ->add('last_name', 'text',
+            )->add('last_name', 'text',
                 array(
                     'label' => 'admin.customer.last_name.label',
                     'translation_domain' => 'admin'
                 )
-            )
-            ->add('email', 'email',
+            )->add('email', 'email',
                 array(
                     'label' => 'admin.customer.email.label',
                     'translation_domain' => 'admin'
                 )
-            )
-            ->add('phone', 'text',
+            )->add('phone', 'text',
                 array(
                     'label' => 'admin.customer.phone.label',
                     'translation_domain' => 'admin',
@@ -199,50 +200,45 @@ class ConsultantsController extends CoreController
                     'label' => 'admin.customer.discount.label',
                     'translation_domain' => 'admin'
                 )
-            )
-            ->add('password_clear', 'text', // Puha
+            )->add('password_clear', 'text', // Puha
                 array(
                     'label' => 'admin.customer.password_clear.label',
                     'read_only' => true,
                     'translation_domain' => 'admin'
                 )
-            )
-            ->add('is_active', 'checkbox',
-                array(
-                    'label' => 'admin.customer.is_active.label',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )
-            ->add('initials', 'text',
+            )->add('initials', 'text',
                 array(
                     'label' => 'admin.consultant.initials.label',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )
-            ->add('info', 'textarea',
+            )->add('info', 'textarea',
                 array(
                     'label' => 'admin.consultant.info.label',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )
-            ->add('event_notes', 'textarea',
-                array(
-                    'label' => 'admin.consultant.event_notes.label',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
-            )
-            ->add('max_notified', 'checkbox',
+            )->add('max_notified', 'checkbox',
                 array(
                     'label' => 'admin.consultant.max_notified.label',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )
-            ->getForm()
+            );
+        } // END ROLE_ADMIN
+        $form = $form->add('is_active', 'checkbox',
+                array(
+                    'label' => 'admin.customer.is_active.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->add('event_notes', 'textarea',
+                array(
+                    'label' => 'admin.consultant.event_notes.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->getForm()
         ;
 
 
