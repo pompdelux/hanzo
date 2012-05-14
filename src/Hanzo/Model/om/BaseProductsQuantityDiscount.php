@@ -832,6 +832,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject  implements Persi
 		$criteria = new Criteria(ProductsQuantityDiscountPeer::DATABASE_NAME);
 		$criteria->add(ProductsQuantityDiscountPeer::PRODUCTS_MASTER, $this->products_master);
 		$criteria->add(ProductsQuantityDiscountPeer::DOMAINS_ID, $this->domains_id);
+		$criteria->add(ProductsQuantityDiscountPeer::SPAN, $this->span);
 
 		return $criteria;
 	}
@@ -846,6 +847,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject  implements Persi
 		$pks = array();
 		$pks[0] = $this->getProductsMaster();
 		$pks[1] = $this->getDomainsId();
+		$pks[2] = $this->getSpan();
 
 		return $pks;
 	}
@@ -860,6 +862,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject  implements Persi
 	{
 		$this->setProductsMaster($keys[0]);
 		$this->setDomainsId($keys[1]);
+		$this->setSpan($keys[2]);
 	}
 
 	/**
@@ -868,7 +871,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject  implements Persi
 	 */
 	public function isPrimaryKeyNull()
 	{
-		return (null === $this->getProductsMaster()) && (null === $this->getDomainsId());
+		return (null === $this->getProductsMaster()) && (null === $this->getDomainsId()) && (null === $this->getSpan());
 	}
 
 	/**

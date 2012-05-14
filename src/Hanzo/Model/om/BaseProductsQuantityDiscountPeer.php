@@ -301,7 +301,7 @@ abstract class BaseProductsQuantityDiscountPeer {
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = serialize(array((string) $obj->getProductsMaster(), (string) $obj->getDomainsId()));
+				$key = serialize(array((string) $obj->getProductsMaster(), (string) $obj->getDomainsId(), (string) $obj->getSpan()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -321,10 +321,10 @@ abstract class BaseProductsQuantityDiscountPeer {
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
 			if (is_object($value) && $value instanceof ProductsQuantityDiscount) {
-				$key = serialize(array((string) $value->getProductsMaster(), (string) $value->getDomainsId()));
-			} elseif (is_array($value) && count($value) === 2) {
+				$key = serialize(array((string) $value->getProductsMaster(), (string) $value->getDomainsId(), (string) $value->getSpan()));
+			} elseif (is_array($value) && count($value) === 3) {
 				// assume we've been passed a primary key
-				$key = serialize(array((string) $value[0], (string) $value[1]));
+				$key = serialize(array((string) $value[0], (string) $value[1], (string) $value[2]));
 			} else {
 				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or ProductsQuantityDiscount object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
@@ -385,10 +385,10 @@ abstract class BaseProductsQuantityDiscountPeer {
 	public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
 	{
 		// If the PK cannot be derived from the row, return NULL.
-		if ($row[$startcol] === null && $row[$startcol + 1] === null) {
+		if ($row[$startcol] === null && $row[$startcol + 1] === null && $row[$startcol + 2] === null) {
 			return null;
 		}
-		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1]));
+		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1], (string) $row[$startcol + 2]));
 	}
 
 	/**
@@ -402,7 +402,7 @@ abstract class BaseProductsQuantityDiscountPeer {
 	 */
 	public static function getPrimaryKeyFromRow($row, $startcol = 0)
 	{
-		return array((string) $row[$startcol], (int) $row[$startcol + 1]);
+		return array((string) $row[$startcol], (int) $row[$startcol + 1], (int) $row[$startcol + 2]);
 	}
 	
 	/**
@@ -1193,6 +1193,14 @@ abstract class BaseProductsQuantityDiscountPeer {
 				$selectCriteria->setPrimaryTableName(ProductsQuantityDiscountPeer::TABLE_NAME);
 			}
 
+			$comparison = $criteria->getComparison(ProductsQuantityDiscountPeer::SPAN);
+			$value = $criteria->remove(ProductsQuantityDiscountPeer::SPAN);
+			if ($value) {
+				$selectCriteria->add(ProductsQuantityDiscountPeer::SPAN, $value, $comparison);
+			} else {
+				$selectCriteria->setPrimaryTableName(ProductsQuantityDiscountPeer::TABLE_NAME);
+			}
+
 		} else { // $values is ProductsQuantityDiscount object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
@@ -1274,6 +1282,7 @@ abstract class BaseProductsQuantityDiscountPeer {
 			foreach ($values as $value) {
 				$criterion = $criteria->getNewCriterion(ProductsQuantityDiscountPeer::PRODUCTS_MASTER, $value[0]);
 				$criterion->addAnd($criteria->getNewCriterion(ProductsQuantityDiscountPeer::DOMAINS_ID, $value[1]));
+				$criterion->addAnd($criteria->getNewCriterion(ProductsQuantityDiscountPeer::SPAN, $value[2]));
 				$criteria->addOr($criterion);
 				// we can invalidate the cache for this single PK
 				ProductsQuantityDiscountPeer::removeInstanceFromPool($value);
@@ -1341,11 +1350,12 @@ abstract class BaseProductsQuantityDiscountPeer {
 	 * Retrieve object using using composite pkey values.
 	 * @param      string $products_master
 	 * @param      int $domains_id
+	 * @param      int $span
 	 * @param      PropelPDO $con
 	 * @return     ProductsQuantityDiscount
 	 */
-	public static function retrieveByPK($products_master, $domains_id, PropelPDO $con = null) {
-		$_instancePoolKey = serialize(array((string) $products_master, (string) $domains_id));
+	public static function retrieveByPK($products_master, $domains_id, $span, PropelPDO $con = null) {
+		$_instancePoolKey = serialize(array((string) $products_master, (string) $domains_id, (string) $span));
  		if (null !== ($obj = ProductsQuantityDiscountPeer::getInstanceFromPool($_instancePoolKey))) {
  			return $obj;
 		}
@@ -1356,6 +1366,7 @@ abstract class BaseProductsQuantityDiscountPeer {
 		$criteria = new Criteria(ProductsQuantityDiscountPeer::DATABASE_NAME);
 		$criteria->add(ProductsQuantityDiscountPeer::PRODUCTS_MASTER, $products_master);
 		$criteria->add(ProductsQuantityDiscountPeer::DOMAINS_ID, $domains_id);
+		$criteria->add(ProductsQuantityDiscountPeer::SPAN, $span);
 		$v = ProductsQuantityDiscountPeer::doSelect($criteria, $con);
 
 		return !empty($v) ? $v[0] : null;

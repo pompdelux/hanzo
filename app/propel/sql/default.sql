@@ -538,7 +538,7 @@ CREATE TABLE `products_quantity_discount`
 	`domains_id` INTEGER NOT NULL,
 	`span` INTEGER NOT NULL,
 	`discount` DECIMAL(15,4) NOT NULL,
-	PRIMARY KEY (`products_master`,`domains_id`),
+	PRIMARY KEY (`products_master`,`domains_id`,`span`),
 	INDEX `products_quantity_discount_FI_2` (`domains_id`),
 	CONSTRAINT `products_quantity_discount_FK_1`
 		FOREIGN KEY (`products_master`)

@@ -44,7 +44,7 @@ class ProductsQuantityDiscountTableMap extends TableMap
 		// columns
 		$this->addForeignPrimaryKey('PRODUCTS_MASTER', 'ProductsMaster', 'VARCHAR' , 'products', 'SKU', true, 128, null);
 		$this->addForeignPrimaryKey('DOMAINS_ID', 'DomainsId', 'INTEGER' , 'domains', 'ID', true, null, null);
-		$this->addColumn('SPAN', 'Span', 'INTEGER', true, null, null);
+		$this->addPrimaryKey('SPAN', 'Span', 'INTEGER', true, null, null);
 		$this->addColumn('DISCOUNT', 'Discount', 'DECIMAL', true, 15, null);
 		// validators
 	} // initialize()

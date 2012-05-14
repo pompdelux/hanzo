@@ -102,10 +102,10 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 	 * Go fast if the query is untouched.
 	 *
 	 * <code>
-	 * $obj = $c->findPk(array(12, 34), $con);
+	 * $obj = $c->findPk(array(12, 34, 56), $con);
 	 * </code>
 	 *
-	 * @param     array[$products_master, $domains_id] $key Primary key to use for the query
+	 * @param     array[$products_master, $domains_id, $span] $key Primary key to use for the query
 	 * @param     PropelPDO $con an optional connection object
 	 *
 	 * @return    ProductsQuantityDiscount|array|mixed the result, formatted by the current formatter
@@ -115,7 +115,7 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 		if ($key === null) {
 			return null;
 		}
-		if ((null !== ($obj = ProductsQuantityDiscountPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1]))))) && !$this->formatter) {
+		if ((null !== ($obj = ProductsQuantityDiscountPeer::getInstanceFromPool(serialize(array((string) $key[0], (string) $key[1], (string) $key[2]))))) && !$this->formatter) {
 			// the object is alredy in the instance pool
 			return $obj;
 		}
@@ -143,11 +143,12 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `PRODUCTS_MASTER`, `DOMAINS_ID`, `SPAN`, `DISCOUNT` FROM `products_quantity_discount` WHERE `PRODUCTS_MASTER` = :p0 AND `DOMAINS_ID` = :p1';
+		$sql = 'SELECT `PRODUCTS_MASTER`, `DOMAINS_ID`, `SPAN`, `DISCOUNT` FROM `products_quantity_discount` WHERE `PRODUCTS_MASTER` = :p0 AND `DOMAINS_ID` = :p1 AND `SPAN` = :p2';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);
 			$stmt->bindValue(':p1', $key[1], PDO::PARAM_INT);
+			$stmt->bindValue(':p2', $key[2], PDO::PARAM_INT);
 			$stmt->execute();
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -157,7 +158,7 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$obj = new ProductsQuantityDiscount();
 			$obj->hydrate($row);
-			ProductsQuantityDiscountPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1])));
+			ProductsQuantityDiscountPeer::addInstanceToPool($obj, serialize(array((string) $key[0], (string) $key[1], (string) $key[2])));
 		}
 		$stmt->closeCursor();
 
@@ -216,6 +217,7 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 	{
 		$this->addUsingAlias(ProductsQuantityDiscountPeer::PRODUCTS_MASTER, $key[0], Criteria::EQUAL);
 		$this->addUsingAlias(ProductsQuantityDiscountPeer::DOMAINS_ID, $key[1], Criteria::EQUAL);
+		$this->addUsingAlias(ProductsQuantityDiscountPeer::SPAN, $key[2], Criteria::EQUAL);
 
 		return $this;
 	}
@@ -236,6 +238,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 			$cton0 = $this->getNewCriterion(ProductsQuantityDiscountPeer::PRODUCTS_MASTER, $key[0], Criteria::EQUAL);
 			$cton1 = $this->getNewCriterion(ProductsQuantityDiscountPeer::DOMAINS_ID, $key[1], Criteria::EQUAL);
 			$cton0->addAnd($cton1);
+			$cton2 = $this->getNewCriterion(ProductsQuantityDiscountPeer::SPAN, $key[2], Criteria::EQUAL);
+			$cton0->addAnd($cton2);
 			$this->addOr($cton0);
 		}
 
@@ -318,22 +322,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 	 */
 	public function filterBySpan($span = null, $comparison = null)
 	{
-		if (is_array($span)) {
-			$useMinMax = false;
-			if (isset($span['min'])) {
-				$this->addUsingAlias(ProductsQuantityDiscountPeer::SPAN, $span['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($span['max'])) {
-				$this->addUsingAlias(ProductsQuantityDiscountPeer::SPAN, $span['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
+		if (is_array($span) && null === $comparison) {
+			$comparison = Criteria::IN;
 		}
 		return $this->addUsingAlias(ProductsQuantityDiscountPeer::SPAN, $span, $comparison);
 	}
@@ -538,7 +528,8 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 		if ($productsQuantityDiscount) {
 			$this->addCond('pruneCond0', $this->getAliasedColName(ProductsQuantityDiscountPeer::PRODUCTS_MASTER), $productsQuantityDiscount->getProductsMaster(), Criteria::NOT_EQUAL);
 			$this->addCond('pruneCond1', $this->getAliasedColName(ProductsQuantityDiscountPeer::DOMAINS_ID), $productsQuantityDiscount->getDomainsId(), Criteria::NOT_EQUAL);
-			$this->combine(array('pruneCond0', 'pruneCond1'), Criteria::LOGICAL_OR);
+			$this->addCond('pruneCond2', $this->getAliasedColName(ProductsQuantityDiscountPeer::SPAN), $productsQuantityDiscount->getSpan(), Criteria::NOT_EQUAL);
+			$this->combine(array('pruneCond0', 'pruneCond1', 'pruneCond2'), Criteria::LOGICAL_OR);
 		}
 
 		return $this;
