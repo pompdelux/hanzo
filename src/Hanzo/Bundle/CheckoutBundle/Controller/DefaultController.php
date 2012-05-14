@@ -33,10 +33,6 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
-        // If the customer goes back to the basket, state is back to building
-        $order->setState( Orders::STATE_PRE_PAYMENT );
-        $order->save();
-
         return $this->render('CheckoutBundle:Default:index.html.twig', array(
             'page_type' => 'checkout'
         ));
@@ -212,6 +208,9 @@ class DefaultController extends CoreController
         if ( $data['selectedMethod'] == 'gothia' ) {
             $order->setOrderLinePaymentFee( 'gothia', 29.00, 0, 91 );
         }
+        // If the customer goes back to the basket, state is back to building
+        $order->setState( Orders::STATE_PRE_PAYMENT );
+        $order->save();
     }
 
     /**

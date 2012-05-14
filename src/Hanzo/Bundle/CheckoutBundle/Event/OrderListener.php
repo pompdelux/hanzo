@@ -26,7 +26,8 @@ class OrderListener
         // first we create the edit version.
         $order->createNewVersion();
         // then we update the new version with new states
-        $order->setState(Orders::STATE_BUILDING);
+        // - is done in the the basket
+        //$order->setState(Orders::STATE_BUILDING);
 
         $order->setSessionId(session_id());
         $order->setInEdit(true);

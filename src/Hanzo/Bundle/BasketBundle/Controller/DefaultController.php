@@ -296,11 +296,16 @@ class DefaultController extends CoreController
         if ($embed) {
             $template = 'BasketBundle:Default:block.html.twig';
         }
+        else
+        {
+            // Make sure that order state is building
+            // If embed is set, we do not set the state again (e.g. when embedded on the checkout page)
+            $order->setState( Orders::STATE_BUILDING );
+            $order->save();
 
-        // Make sure that order state is building
-        $order->setState( Orders::STATE_BUILDING );
-        $order->save();
+        }
 
+        
         return $this->render($template, array(
             'embedded' => $embed,
             'page_type' => 'basket',
