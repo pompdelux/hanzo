@@ -29,6 +29,21 @@ class ProxyUser implements UserInterface
             'ROLE_EMPLOYEE',
             'ROLE_USER',
         ),
+        'admin' => array(
+            'ROLE_ADMIN',
+            'ROLE_EMPLOYEE',
+            'ROLE_USER',
+        ),
+    );
+
+    // FIXME: should not be hardcoded
+    private $admins = array(
+        'hd@pompdelux.dk',
+        'hf@bellcom.dk',
+        'un@bellcom.dk',
+        'ulrik+pomp@bellcom.dk',
+        'andersbryrup@gmail.com',
+        'hanzo@bellcom.dk',
     );
 
     public function __construct(ModelUser $user)
@@ -42,7 +57,15 @@ class ProxyUser implements UserInterface
     public function getRoles()
     {
         $group = $this->getUser()->getGroups();
-        return $this->map[$group->getName()];
+        $roles = $this->map[$group->getName()];
+
+        // FIXME: should not be hardcoded
+        if (in_array($this->getUsername(), $this->admins)) {
+            $roles[] = 'ROLE_EMPLOYEE';
+            $roles[] = 'ROLE_ADMIN';
+        }
+
+        return $roles;
     }
 
     /**
@@ -77,9 +100,7 @@ class ProxyUser implements UserInterface
     /**
      * {@inheritDoc}
      */
-    public function eraseCredentials()
-    {
-    }
+    public function eraseCredentials(){}
 
     /**
      * {@inheritDoc}
