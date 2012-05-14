@@ -93,5 +93,17 @@ class AppKernel extends Kernel
         return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 
+
+    // http://blog.amalraghav.com/manipulating-config-files/
+    public function getCacheDir()
+    {
+        if (self::getStoreMode() == 'consultant') {
+            $cacheDir = $this->rootDir.'/cache/consultant/'.$this->environment;
+        } else {
+            $cacheDir = $this->rootDir.'/cache/'.$this->environment;
+        }
+
+        return $cacheDir;
+    }
 }
 
