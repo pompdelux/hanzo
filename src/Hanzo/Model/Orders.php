@@ -45,13 +45,13 @@ class Orders extends BaseOrders
     const STATE_ERROR_PAYMENT   = -110;
     const STATE_ERROR           = -100;
     const STATE_BUILDING        =  -50;
-    const STATE_PRE_CONFIRM     =  -30;
+    const STATE_PRE_CONFIRM     =  -30; // nuke ???
     const STATE_PRE_PAYMENT     =  -20;
-    const STATE_POST_PAYMENT    =   10;
+    const STATE_POST_PAYMENT    =   10; // nuke ??
     const STATE_PAYMENT_OK      =   20;
-    const STATE_PENDING         =   30;
-    const STATE_BEING_PROCESSED =   40;
-    const STATE_SHIPPED         =   50;
+    const STATE_PENDING         =   30; // sidste "edit" step
+    const STATE_BEING_PROCESSED =   40; // hos ax
+    const STATE_SHIPPED         =   50; // lukket
 
     const TYPE_PRIVATE          =  -1;
     const TYPE_GIFT             =  -2;
@@ -232,7 +232,7 @@ class Orders extends BaseOrders
      * getOrderAtVersion
      * Based on this->toVersion
      * @param int $version_id
-     * @return Orders 
+     * @return Orders
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function getOrderAtVersion( $version_id )
@@ -867,7 +867,7 @@ class Orders extends BaseOrders
 
         $paytype = false;
 
-        foreach ($attributes as $attribute) 
+        foreach ($attributes as $attribute)
         {
             if ( $attribute->getNs() == 'payment' && $attribute->getCKey() == 'paytype' )
             {
@@ -875,7 +875,7 @@ class Orders extends BaseOrders
             }
         }
 
-        if ( $paytype === false) 
+        if ( $paytype === false)
         {
             throw new Exception( 'No paytype registered on order with id: "'.$this->getId().'"' );
         }
