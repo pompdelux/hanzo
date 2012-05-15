@@ -16,6 +16,7 @@ use Hanzo\Model\Orders,
     Hanzo\Model\OrdersAttributesQuery
     ;
 
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
 use Exception;
 
@@ -27,7 +28,7 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
     {
         $this->setName('hanzo:dataio:clean_dead_orders')
             ->setDescription('Removes stale and dead orders')
-        ;
+            ;
     }
 
     /**
@@ -39,11 +40,35 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->dibsApi = $this->getContainer()->get('payment.dibsapi');
+
+        $toBeDeleted = array();
+
         $orders = $this->getOrders();
         foreach ($orders as $order) 
         {
+            echo "Processing: ".$order->getId()." (".$order->getPaymentGatewayId().")\n";
             $transId = $this->getTransactionId($order);
+            // TODO: set transaction id on order
+
+            if ( is_null($transId) )
+            {
+              $toBeDeleted[] = $order;
+              continue;
+            }
+
+            $status = $this->getStatus( $order );
+            // payinfo
         }
+    }
+
+    /**
+     * getStatus
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getStatus( Orders $order )
+    {
+        return $this->dibsApi->call()->payinfo($order);
     }
 
     /**
@@ -51,26 +76,28 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getTransactionId($order)
+    public function getTransactionId( Orders $order )
     {
-        $atts       = $order->getAttributes();
-        $hasTransId = false;
-        $transId    = null;
+        $atts = $order->getAttributes();
 
         foreach ($atts as $att)
         {
             if ( isset($att->transact) )
             {
-                $hasTransId = true;
-                $transId = $att->transact;
+                return $att->transact;
             }
         }
 
-        if ( !$hasTransId )
+        try
         {
             $result = $this->dibsApi->call()->transinfo($order);
-            print_r($result);
         }
+        catch (DibsApiCallException $e)
+        {
+            return null;
+        }
+
+        return $result->data['transact'];
     }
 
 

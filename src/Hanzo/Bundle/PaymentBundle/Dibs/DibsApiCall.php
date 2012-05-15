@@ -337,7 +337,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
             'amount'    => $amount,
-            'orderid'   => $paymentGatewayId,
+            'orderid'   => 'dev_'.$paymentGatewayId, // FIXME: remove dev_
             'currency'  => $currency,
         );
 

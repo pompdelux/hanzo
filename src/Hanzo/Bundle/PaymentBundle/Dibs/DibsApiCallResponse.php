@@ -47,6 +47,13 @@ class DibsApiCallResponse
      **/
     protected function parse( $rawResponse )
     {
+        $rawResponse = trim($rawResponse);
+
+        if ( strpos($rawResponse,'&') === false )
+        {
+            throw new DibsApiCallException( 'Could not parse response "'.$rawResponse.'" from DIBS' );
+        }
+
         $elements = explode('&', $rawResponse);
 
         foreach( $elements as $element )
