@@ -2,35 +2,40 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
-use Hanzo\Model\om\BaseCountriesPeer;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Model\CountriesQuery;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Model\CountriesQuery
-    ;
+use Symfony\Component\HttpFoundation\Request;
 
 class GeoIPService
 {
     protected $parameters;
     protected $settings;
+    protected $request;
 
     public function __construct($parameters, $settings)
     {
+        if (!$parameters[0] instanceof Request) {
+            throw new \InvalidArgumentException('Request object expected as first parameter.');
+        }
+
+        $this->request = array_shift($parameters);
         $this->parameters = $parameters;
         $this->settings = $settings;
     }
 
     /**
      * lookup
-     * @params string $ip Defaults to null and will use REMOTE_ADDR
-     * @return mixed Array if result found, false on error 
+     *
+     * @param string $ip Defaults to null and will use REMOTE_ADDR
+     * @return mixed Array if result found, false on error
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function lookup( $ip = null )
     {
-        if ( is_null($ip) )
-        {
-          $ip = $_SERVER['REMOTE_ADDR'];
+        if (is_null($ip)) {
+          $ip = $this->request->getClientIp();
           // For local testing:
           // $ip = '90.185.183.84';
         }

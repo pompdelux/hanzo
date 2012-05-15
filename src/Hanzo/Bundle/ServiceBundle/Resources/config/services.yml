@@ -74,8 +74,9 @@ services:
         factory_method:  get
         arguments:
             service:     geoip
-            parameters:  ~
+            parameters:  [@request]
             class:       %geoip_manager.class%
+        scope: request
 
     replication_manager:
         class:           %replication_manager.class%
