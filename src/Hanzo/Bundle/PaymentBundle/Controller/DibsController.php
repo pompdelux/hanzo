@@ -57,6 +57,7 @@ class DibsController extends CoreController
         {
             $api->verifyCallback( $request, $order );
             $api->updateOrderSuccess( $request, $order );
+            // TODO: priority: low, move event_dispatcher to updateOrderSuccess
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         }
         catch (Exception $e)

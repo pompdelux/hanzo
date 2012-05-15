@@ -36,7 +36,7 @@ class CheckoutListener
 
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shippinng = $this->translator->trans('shipping_method_name_' . $order->getDeliveryMethod(), array(), 'shipping');
+        $shipping = $this->translator->trans('shipping_method_name_' . $order->getDeliveryMethod(), array(), 'shipping');
 
         $params = array(
             'order' => $order,
@@ -46,7 +46,7 @@ class CheckoutListener
             'customer_id' => $order->getCustomersId(),
             'order_date' => $order->getCreatedAt('Y-m-d'),
             'payment_method' => $order->getBillingMethod(),
-            'shipping_title' => $shippinng,
+            'shipping_title' => $shipping,
             'shipping_cost' => 0.00, // TODO
             'payment_fee' => 0.00, // TODO
             'expected_at' => '', // TODO

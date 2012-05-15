@@ -102,7 +102,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
             ->findOne()
-        ;
+            ;
 
         if ($version_id) {
             $version_id = $version_id->getVersionId() + 1;
@@ -144,7 +144,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
             ->find()
-        ;
+            ;
 
         $id = $this->getVersionId();
         $ids = array(
@@ -175,7 +175,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->findOneByVersionId($version_id)
             ->delete()
-        ;
+            ;
     }
 
 
@@ -195,7 +195,7 @@ class Orders extends BaseOrders
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
             ->findOneByVersionId($version_id)
-        ;
+            ;
 
         if (!$version instanceof OrdersVersions) {
             throw new OutOfBoundsException('No such version: ' . $version_id . ' of order nr: ' . $this->getId());
@@ -429,6 +429,11 @@ class Orders extends BaseOrders
 
     public function postSave(PropelPDO $con = null)
     {
+        if ( PHP_SAPI == 'cli' )
+        {
+            return true;
+        }
+
         $session = Hanzo::getInstance()->getSession();
 
         if(FALSE === $session->has('order_id')) {
