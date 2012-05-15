@@ -231,9 +231,13 @@ class DefaultController extends CoreController
         return $this->response('update basket');
     }
 
-    public function viewAction($embed = false)
+    public function viewAction($embed = false, $orders_id = null)
     {
-        $order = OrdersPeer::getCurrent();
+        if ($orders_id) {
+            $order = OrdersQuery::create()->findOneById($orders_id);
+        } else {
+            $order = OrdersPeer::getCurrent();
+        }
 
         $router = $this->get('router');
         $router_keys = include __DIR__ . '/../Resources/config/category_map.php';
@@ -305,7 +309,6 @@ class DefaultController extends CoreController
 
         }
 
-        
         return $this->render($template, array(
             'embedded' => $embed,
             'page_type' => 'basket',

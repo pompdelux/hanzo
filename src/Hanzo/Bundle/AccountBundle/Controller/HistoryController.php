@@ -25,9 +25,31 @@ class HistoryController extends CoreController
 
     public function viewAction($order_id)
     {
+        $order = OrdersQuery::create()
+            ->joinWithOrdersLines()
+            ->findPk($order_id)
+        ;
+        $order_lines = $order->getOrdersLiness();
+        $order_attributes = $order->getOrdersAttributess();
+
+        $addresses = array();
+        foreach ($order->toArray() as $key => $value) {
+            if (substr($key, 0, 7) == 'Billing') {
+                $key = strtolower(substr($key, 7));
+                $addresses['billing'][$key] = $value;
+                $addresses['billing']['type'] = 'billing';
+            } elseif (substr($key, 0, 8) == 'Delivery') {
+                $key = strtolower(substr($key, 8));
+                $addresses['delivery'][$key] = $value;
+                $addresses['delivery']['type'] = 'delivery';
+            }
+        }
+
         return $this->render('AccountBundle:History:view.html.twig', array(
             'page_type' => 'account-history-view',
-            'order' => OrdersQuery::create()->findPk($order_id)
+            'order' => $order,
+            'order_lines' => $order_lines,
+            'addresses' => $addresses,
         ));
     }
 

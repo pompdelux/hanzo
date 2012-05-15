@@ -62,9 +62,9 @@
 
   {% if embedded == false %}
     {% if delivery_date %}
-      {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout') }}
+      {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout')|raw }}
     {% else %}
-      {{ 'late.delivery.notice'|trans({}, 'checkout') }}
+      {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
     {% endif %}
 
     <div class="buttons">
