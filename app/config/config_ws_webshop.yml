@@ -14,12 +14,14 @@ security:
                 invalidate_session: true
 
     access_control:
-        - { path: ^/account, roles: ROLE_USER }
         - { path: ^/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, roles: ROLE_EMPLOYEE }
+
+        - { path: ^/account, roles: ROLE_USER }
         - { path: ^/checkout, roles: ROLE_USER }
+
+        - { path: ^/admin, roles: ROLE_EMPLOYEE }
 
     providers:
         custom_provider:
