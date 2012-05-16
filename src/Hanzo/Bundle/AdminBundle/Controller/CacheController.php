@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
@@ -17,6 +18,9 @@ class CacheController extends CoreController
     
     public function clearAction($jscss = FALSE, $router = FALSE, $redis = FALSE, $file = FALSE)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
 
         $cache = $this->get('cache_manager');
 

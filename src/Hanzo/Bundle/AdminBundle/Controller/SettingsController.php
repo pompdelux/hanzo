@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController;
@@ -31,6 +33,10 @@ class SettingsController extends CoreController
      */
     public function indexAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
 
@@ -116,6 +122,10 @@ class SettingsController extends CoreController
      */
     public function domainAction($domain_key = 'COM')
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $request = $this->getRequest();
 
         if ($request->getMethod() == 'POST') {
@@ -201,6 +211,10 @@ class SettingsController extends CoreController
      */
     public function paymentdeliveryAction($domain_key = 'COM')
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
 
@@ -289,6 +303,10 @@ class SettingsController extends CoreController
      */
     public function addSettingAction($domain_setting = false)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $request = $this->getRequest();
         $referer = $request->headers->get('referer');
         $data = $request->get('form');
@@ -338,6 +356,10 @@ class SettingsController extends CoreController
 
     public function washingInstructionsIndexAction($code = null, $locale = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $washing_instructions = ProductsWashingInstructionsQuery::create();
 
         if($code)
@@ -369,6 +391,10 @@ class SettingsController extends CoreController
      */
     public function washingInstructionsEditAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $washing_instruction = null;
         if ($id)
             $washing_instruction = ProductsWashingInstructionsQuery::create()->findOneById($id);
@@ -425,6 +451,10 @@ class SettingsController extends CoreController
 
     public function washingInstructionsDeleteAction($id, $locale)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $washing_instruction = ProductsWashingInstructionsQuery::create()
             ->filterByLocale($locale)
             ->findOneById($id)
@@ -443,6 +473,9 @@ class SettingsController extends CoreController
 
     public function messagesIndexAction($ns = null, $locale = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
 
         $messages = MessagesI18nQuery::create();
         if($locale){
@@ -481,6 +514,10 @@ class SettingsController extends CoreController
 
     public function messagesI18nViewAction($id, $locale = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $message = null;
 
         if($locale)
@@ -545,6 +582,10 @@ class SettingsController extends CoreController
 
     public function messagesViewNsAction($id = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $message = null;
 
         if($id)
@@ -592,6 +633,10 @@ class SettingsController extends CoreController
 
     public function messagesDeleteAction($id, $locale)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $message = MessagesI18nQuery::create();
         
         if($locale){
@@ -614,6 +659,10 @@ class SettingsController extends CoreController
 
     public function languagesAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $language = null;
         if ($id) {
             $language = LanguagesQuery::create()->findOneById($id);
@@ -679,6 +728,10 @@ class SettingsController extends CoreController
 
     public function languagesDeleteAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $language = LanguagesQuery::create()->findOneById($id);
 
         if($language instanceof Languages){

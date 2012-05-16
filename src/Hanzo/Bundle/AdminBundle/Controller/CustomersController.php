@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Hanzo\Core\Hanzo,
 Hanzo\Core\Tools;
 
@@ -17,6 +19,10 @@ class CustomersController extends Controller
     
     public function indexAction($domain_key, $pager)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
@@ -113,6 +119,10 @@ class CustomersController extends Controller
 
     public function viewAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $customer = CustomersQuery::create()
             ->findOneById($id)
         ;
@@ -193,6 +203,10 @@ class CustomersController extends Controller
 
     public function editAddressAction($id, $type)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $address = null;
         if($type){
             $address = AddressesQuery::create()

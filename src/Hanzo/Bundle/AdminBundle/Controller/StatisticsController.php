@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Hanzo\Core\CoreController;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools;
 
@@ -14,7 +16,10 @@ class StatisticsController extends CoreController
 {
     public function indexAction($domain_key)
     {
-    	
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $date_filter = array();
     	if (!empty($_GET['select-periode'])) { // Select input from form
     		
