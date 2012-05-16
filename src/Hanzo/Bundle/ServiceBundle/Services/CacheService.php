@@ -132,7 +132,7 @@ mannequin_" . $id . "_" . $locale . ":
 newsletter_" . $id . "_" . $locale . ":
     pattern: /{$path}
     defaults:
-        _controller: HanzoNewsletterBundle:Default:view
+        _controller: NewsletterBundle:Default:view
         id: {$id}
 ")."\n";
                         break;
