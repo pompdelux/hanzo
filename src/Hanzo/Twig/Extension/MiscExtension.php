@@ -108,6 +108,11 @@ class MiscExtension extends Twig_Extension
      */
     public function parse($string, $parameters = array())
     {
+        $cdn = Hanzo::getInstance()->get('core.cdn');
+        $find = '~(background|src)="(../|/)~';
+        $replace = '$1="'.$cdn;
+        $string = preg_replace($find, $replace, $string);
+
         return $this->twig_string->parse($string, $parameters);
     }
 
