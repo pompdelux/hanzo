@@ -2,47 +2,32 @@
 
 namespace Hanzo\Bundle\NewsletterBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\EventDispatcher\Event,
-    Symfony\Component\EventDispatcher\EventDispatcher
-    ;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController,
-    Hanzo\Model\Customers,
-    Hanzo\Model\CustomersPeer,
-    Hanzo\Bundle\NewsletterBundle\TestEvents,
-    Hanzo\Bundle\NewsletterBundle\FilterTestEvent
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Model\CmsPeer;
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Bundle\NewsletterBundle\TestEvents;
+use Hanzo\Bundle\NewsletterBundle\FilterTestEvent;
+
 
 class DefaultController extends CoreController
 {
 
     public function indexAction()
     {
-        $event = new FilterTestEvent('hest');
-        $dispatcher = $this->get('event_dispatcher');
+        // $event = new FilterTestEvent('hest');
+        // $dispatcher = $this->get('event_dispatcher');
 
-        /*$dispatcher->addListener('hanzo.test', function (Event $event) {
-            error_log(__LINE__.':'.__FILE__.' '.$event->getData()); // hf@bellcom.dk debugging
-        });*/
-
-        //$listener = $this->get('hanzo.test_listener');
-        //$dispatcher->addListener('hanzo.test', array($listener, 'onTest'));
-
-        $dispatcher->dispatch(TestEvents::onHanzoTest, $event);
-
-        //$api = $this->get('newsletterapi');
-        //$api->subscribe( 'hf@bellcom.dk', 1 );
-
+        // $dispatcher->dispatch(TestEvents::onHanzoTest, $event);
         return new Response( 'Ok', 200, array('Content-Type' => 'text/html'));
-
-        /*return $this->render('NewsletterBundle:Default:index.html.twig', array(
-            'page_type' => 'newsletter'
-        ));*/
     }
 
     public function blockAction()
@@ -54,7 +39,7 @@ class DefaultController extends CoreController
 
     /**
      * jsAction
-     * @return Response 
+     * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function jsAction()
@@ -62,5 +47,16 @@ class DefaultController extends CoreController
         $api = $this->get('newsletterapi');
         $customer = CustomersPeer::getCurrent();
         return $this->render('NewsletterBundle:Default:js.html.twig', array( 'customer' => $customer, 'listid' => $api->getListIdAvaliableForDomain() ));
+    }
+
+    public function viewAction($id)
+    {
+        $page = CmsPeer::getByPK($id, Hanzo::getInstance()->get('core.locale'));
+
+        if (is_null($page)) {
+            $page = 'implement 404 !';
+        }
+
+        return $this->render('NewsletterBundle:Default:view.html.twig', array('page' => $page, 'page_type' => 'newsletter'));
     }
 }
