@@ -62,6 +62,7 @@ task :route_builder do
   run("cd #{latest_release} && php app/console hanzo:router:builder")
 end
 
+
 # 
 # hf@bellcom.dk, read server list from file
 # 
@@ -78,7 +79,12 @@ namespace :deploy do
   task :translations do
     run "#{current_path}/tools/deploy/translations.sh #{current_path}/app/Resources/ "
   end
-  
+
+ desc "Create logs and public_html symlinks"
+  task :symlinks do
+   run("cd #{deploy_to}/current;if [ ! -L logs ];then ln -s app/logs logs;fi;if [ ! -L public_html ];then ln -s web public_html;fi")
+  end
+
 # Other examples:
 #  desc "Symlink shared configs and folders on each release."
 #  task :symlink_shared do
@@ -91,3 +97,5 @@ namespace :deploy do
 #    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:#{shared_path}/"
 #  end
 end
+
+before 'deploy:restart', 'deploy:symlinks'
