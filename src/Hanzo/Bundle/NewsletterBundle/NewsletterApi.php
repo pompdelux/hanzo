@@ -2,8 +2,7 @@
 
 namespace Hanzo\Bundle\NewsletterBundle;
 
-use Hanzo\Core\Hanzo
-    ;
+use Hanzo\Core\Hanzo;
 
 /**
  * undocumented class
