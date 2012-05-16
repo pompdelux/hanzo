@@ -2,28 +2,26 @@
 
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand,
-    Symfony\Component\Console\Input\InputArgument,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Input\InputOption,
-    Symfony\Component\Console\Output\OutputInterface
-    ;
+use Propel;
+use PDO;
 
-use Propel,
-    PDO
-    ;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
-use Hanzo\Model\Customers,
-    Hanzo\Model\CustomersPeer,
-    Hanzo\Model\Consultants,
-    Hanzo\Model\Addresses,
-    Hanzo\Model\AddressesPeer,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Model\OrdersQuery,
-    Hanzo\Model\OrdersAttributes,
-    Hanzo\Model\OrdersLines
-    ;
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Consultants;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersAttributes;
+use Hanzo\Model\OrdersLines;
+
 class ImportCommand extends ContainerAwareCommand
 {
     static $oscomIdToCountryMap = array(
