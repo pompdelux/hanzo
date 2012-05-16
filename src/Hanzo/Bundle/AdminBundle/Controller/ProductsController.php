@@ -30,10 +30,6 @@ class ProductsController extends CoreController
 
     public function indexAction($category_id, $subcategory_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('admin'));
-        }
-
         $categories = null;
         $products = null;
         if (!$category_id){
@@ -114,10 +110,6 @@ class ProductsController extends CoreController
 
     public function viewAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('admin'));
-        }
-
         $categories = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n('en_GB')
@@ -436,10 +428,6 @@ class ProductsController extends CoreController
     }
     public function addReferenceAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException();
-        }
-        
         $requests = $this->get('request');
         $image_id = $requests->get('image');
         $product_id = $requests->get('product');
@@ -471,10 +459,6 @@ class ProductsController extends CoreController
 
     public function deleteReferenceAction($image_id, $product_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException();
-        }
-        
         $product_ref = ProductsImagesProductReferencesQuery::create()
             ->filterByProductsImagesId($image_id)
             ->findOneByProductsId($product_id)
@@ -494,10 +478,6 @@ class ProductsController extends CoreController
 
     public function sortAction($category_id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('admin'));
-        }
-
         $current_category = CategoriesQuery::create()
             ->joinWithI18n()
             ->findOneById($category_id)
@@ -555,10 +535,6 @@ class ProductsController extends CoreController
 
     public function updateSortAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            throw new AccessDeniedException();
-        }
-        
         $requests = $this->get('request');
         $products = $requests->get('data');
 
