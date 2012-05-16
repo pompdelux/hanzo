@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo,
@@ -108,7 +110,6 @@ class ProductsController extends CoreController
 
     public function viewAction($id)
     {
-
         $categories = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n('en_GB')
@@ -187,6 +188,9 @@ class ProductsController extends CoreController
 
     public function quantityDiscountsAction($product_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
 
         $current_product = ProductsQuery::create()
             ->findOneById($product_id)
@@ -263,6 +267,10 @@ class ProductsController extends CoreController
 
     public function deleteQuantityDiscountAction($master, $domains_id, $span)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $discount = ProductsQuantityDiscountQuery::create()
             ->filterByProductsMaster($master)
             ->filterBySpan($span)
@@ -299,6 +307,10 @@ class ProductsController extends CoreController
 
     public function deleteStylesAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $master = ProductsQuery::create()
             ->findOneById($id)
         ;
@@ -324,6 +336,9 @@ class ProductsController extends CoreController
 
     public function deleteStyleAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
 
         $style = ProductsQuery::create()
             ->findOneById($id)
@@ -359,6 +374,10 @@ class ProductsController extends CoreController
 
     public function addCategoryAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $requests = $this->get('request');
         $category_id = $requests->get('category');
         $product_id = $requests->get('product');
@@ -388,6 +407,9 @@ class ProductsController extends CoreController
 
     public function deleteCategoryAction($category_id, $product_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
 
         $category_to_product = ProductsToCategoriesQuery::create()
             ->filterByCategoriesId($category_id)
@@ -437,7 +459,6 @@ class ProductsController extends CoreController
 
     public function deleteReferenceAction($image_id, $product_id)
     {
-
         $product_ref = ProductsImagesProductReferencesQuery::create()
             ->filterByProductsImagesId($image_id)
             ->findOneByProductsId($product_id)
@@ -544,6 +565,10 @@ class ProductsController extends CoreController
 
     public function stockAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 

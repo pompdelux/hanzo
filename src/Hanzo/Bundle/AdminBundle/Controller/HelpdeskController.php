@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Hanzo\Core\CoreController;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use \PropelCollection;
 use Hanzo\Model\HelpdeskDataLogQuery;
 use Hanzo\Model\HelpdeskDataLog;
@@ -12,6 +14,13 @@ class HelpdeskController extends CoreController
 {
     public function indexAction($pager)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
 
     	$helpdesk_data = HelpdeskDataLogQuery::create()
     		->orderByCreatedAt('DESC')
@@ -56,6 +65,10 @@ class HelpdeskController extends CoreController
 
     public function deleteAction($key)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
     	$helpdesk_data = null;
     	if('ALL' == $key){
 			$helpdesk_data = HelpdeskDataLogQuery::create()

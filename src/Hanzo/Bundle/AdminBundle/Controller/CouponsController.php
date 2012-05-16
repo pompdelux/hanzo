@@ -6,6 +6,8 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Hanzo\Model\CouponsQuery,
 	Hanzo\Model\Coupons,
 	Hanzo\Model\CouponsToCustomersQuery,
@@ -17,6 +19,10 @@ class CouponsController extends CoreController
 {
     public function indexAction($pager)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
     	$hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
@@ -76,6 +82,10 @@ class CouponsController extends CoreController
 
     public function viewAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
     	$coupon = null;
 
     	if ($id) {
@@ -187,6 +197,10 @@ class CouponsController extends CoreController
 
     public function deleteAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
     	$coupon = CouponsQuery::create()
             ->findOneById($id);
 
@@ -214,6 +228,10 @@ class CouponsController extends CoreController
 
     public function addCustomerAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $requests = $this->get('request');
         $coupon_id = $requests->get('coupon');
         $customer_id = $requests->get('customer');
@@ -250,6 +268,10 @@ class CouponsController extends CoreController
 
     public function deleteCustomerAction($coupon_id, $customer_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
     	$coupon = CouponsToCustomersQuery::create()
     		->filterByCouponsId($coupon_id)
             ->filterByCustomersId($customer_id)

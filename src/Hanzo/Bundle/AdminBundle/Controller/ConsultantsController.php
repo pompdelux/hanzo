@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo,
@@ -285,6 +287,10 @@ class ConsultantsController extends CoreController
 
     public function indexEventsAction($pager)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
@@ -325,6 +331,10 @@ class ConsultantsController extends CoreController
 
     public function exportAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
@@ -384,6 +394,10 @@ class ConsultantsController extends CoreController
 
     public function updateSettingAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $request = $this->getRequest();
 
         $max_amount = SettingsQuery::create()

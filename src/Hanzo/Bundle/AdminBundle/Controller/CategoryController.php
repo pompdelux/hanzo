@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Hanzo\Model\CategoriesQuery,
     Hanzo\Model\Categories,
     Hanzo\Model\CategoriesI18nQuery,
@@ -24,6 +26,10 @@ class CategoryController extends CoreController
 
     public function addCategoryAction($id, $locale = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $languages_availible = array();
         $languages = LanguagesQuery::create()->find();
         foreach ($languages as $language) {
@@ -82,6 +88,10 @@ class CategoryController extends CoreController
      */
     public function editCategoryAction($id = null, $locale = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+
         $languages_availible = array();
         $languages = LanguagesQuery::create()->find();
         foreach ($languages as $language) {
@@ -186,6 +196,10 @@ class CategoryController extends CoreController
 
     public function deleteTranslationAction($id, $locale)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $categories_i18n = CategoriesI18nQuery::create()
             ->filterByLocale($locale)
             ->findOneById($id)
@@ -204,6 +218,10 @@ class CategoryController extends CoreController
 
     public function deleteCategoryAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $categories = CategoriesQuery::create()
             ->findOneById($id)
         ;

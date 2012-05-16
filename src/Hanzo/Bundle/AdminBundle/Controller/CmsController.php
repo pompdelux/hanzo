@@ -5,6 +5,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Locale\Locale;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,6 +38,10 @@ class CmsController extends CoreController
 
     public function indexAction($locale)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
             ->joinWithI18n($locale)
@@ -59,6 +65,10 @@ class CmsController extends CoreController
 
     public function deleteAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $cache = $this->get('cache_manager');
 
         $node = CmsQuery::create()
@@ -81,6 +91,10 @@ class CmsController extends CoreController
 
     public function addAction($locale = 'da_DK')
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $cms_node = new CmsNode();
 
         $cms_threads = CmsThreadQuery::create()
@@ -185,6 +199,10 @@ class CmsController extends CoreController
     }
     public function editAction($id, $locale)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $cache = $this->get('cache_manager');
 
         $languages_availible = LanguagesQuery::Create()
@@ -266,6 +284,10 @@ class CmsController extends CoreController
 
     public function updateCmsTreeAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $requests = $this->get('request');
         $nodes = $requests->get('data');
 
@@ -305,6 +327,10 @@ class CmsController extends CoreController
 
     public function redirectsIndexAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $redirects = RedirectsQuery::create()
             ->orderBySource()
             ->orderByTarget()
@@ -318,6 +344,10 @@ class CmsController extends CoreController
 
     public function redirectEditAction($id = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $redirect = null;
 
         if($id)
@@ -364,6 +394,10 @@ class CmsController extends CoreController
 
     public function redirectDeleteAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $redirect = RedirectsQuery::create()
             ->findOneById($id);
 

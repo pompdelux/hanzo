@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController;
@@ -19,6 +21,10 @@ class PostalCodeController extends CoreController
     
     public function indexAction($locale, $pager)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
@@ -97,6 +103,10 @@ class PostalCodeController extends CoreController
 
     public function viewAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
     	$zip_to_city = null;
     	if($id)
 			$zip_to_city = ZipToCityQuery::create()
@@ -170,6 +180,10 @@ class PostalCodeController extends CoreController
 
     public function deleteAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $zip_to_city = ZipToCityQuery::create()
         	->findOneById($id);
 

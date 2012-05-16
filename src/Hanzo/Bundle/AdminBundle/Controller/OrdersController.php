@@ -6,6 +6,8 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
@@ -18,6 +20,10 @@ class OrdersController extends CoreController
 
     public function indexAction($customer_id, $domain_key, $pager)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
@@ -115,6 +121,10 @@ class OrdersController extends CoreController
 
     public function viewAction($order_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
+        
         $order = OrdersQuery::create()
             ->findOneById($order_id)
         ;
@@ -182,6 +192,10 @@ class OrdersController extends CoreController
 
     public function previewAction($order_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $order = OrdersQuery::create()->findOneById($order_id);
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
@@ -209,6 +223,9 @@ class OrdersController extends CoreController
 
     public function syncStatusAction($status = 'failed')
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
 
         // $orders = OrdersQuery::create()->find();
 
@@ -222,6 +239,10 @@ class OrdersController extends CoreController
 
     public function resyncAction($order_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $order = OrdersQuery::create()->findOneById($order_id);
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
@@ -253,6 +274,10 @@ class OrdersController extends CoreController
 
     public function deleteAction($order_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $order = OrdersQuery::create()->findOneById($order_id);
         if ($order) {
             $order->delete();
