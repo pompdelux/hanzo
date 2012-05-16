@@ -1,0 +1,13 @@
+{% extends layout %}
+
+{% block content %}
+
+<h1>{{ page.title }}</h1>
+
+{% render 'NewsletterBundle:Default:block' %}
+
+{% endblock %}
+
+{% block javascript %}
+<script>$(function () { newsletter.init( '#newsletter-lists-container' ); newsletter.lists.get();});</script>
+{% endblock javascript %}
