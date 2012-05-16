@@ -4,6 +4,7 @@ namespace Hanzo\Twig\Extension;
 
 use Hanzo\Bundle\ServiceBundle\Services\TwigStringService;
 
+use Twig_Environment;
 use Twig_Extension;
 use Twig_Function_Method;
 use Twig_Function_Function;
@@ -17,6 +18,7 @@ use Hanzo\Model\CmsI18nQuery;
 class MiscExtension extends Twig_Extension
 {
     protected $twig_string;
+    protected $settings;
 
     public function __construct(TwigStringService $twig_string)
     {
@@ -54,6 +56,7 @@ class MiscExtension extends Twig_Extension
             'meta_tags' => new Twig_Function_Method($this, 'metaTags', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'google_analytics_tag' => new Twig_Function_Method($this, 'googleAnalyticsTag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'front_page_teasers' => new Twig_Function_Method($this, 'frontPageTeasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'parameter' => new Twig_Function_Method($this, 'parameter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
@@ -143,9 +146,9 @@ class MiscExtension extends Twig_Extension
       */
      public function googleAnalyticsTag()
      {
-            $google = Hanzo::getInstance()->getByNs('google');
-            if (!empty($google['analytics_id'])) {
-        return <<<DOC
+        $google = Hanzo::getInstance()->getByNs('google');
+        if (!empty($google['analytics_id'])) {
+            return <<<DOC
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', '{$google['analytics_id']}']);
@@ -196,5 +199,35 @@ DOC;
         }
 
         return ob_get_clean();
+     }
+
+
+     /**
+      * get a settings parameter
+      *
+      * @param  string $name       settings identifier
+      * @param  array  $parameters array of replacement parameters
+      * @return string
+      */
+     public function parameter($name, $parameters = array())
+     {
+        if (empty($this->settings)) {
+            $this->settings = Hanzo::getInstance()->get('ALL');
+        }
+
+        $out = '';
+        if (strpos($name, '.') === false) {
+            foreach ($this->settings as $key => $value) {
+                if (preg_match('/.'.$name.'$/i', $key)) {
+                    $out = $value;
+                }
+            }
+        } else {
+            if (isset($this->settings[$name])) {
+                $out = $value;
+            }
+        }
+
+        return strtr($out, $parameters);
      }
 }
