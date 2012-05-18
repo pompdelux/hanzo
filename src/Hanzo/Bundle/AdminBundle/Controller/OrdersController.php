@@ -1,4 +1,4 @@
-<?php
+<?php /* vim: set sw=4: */
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
@@ -282,5 +282,15 @@ class OrdersController extends CoreController
         if ($order) {
             $order->delete();
         }
+    }
+
+    /**
+     * viewFailedAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function viewDeadAction()
+    {
+        return $this->render('AdminBundle:Orders:dead_orders_list.html.twig');
     }
 }

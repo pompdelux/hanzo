@@ -339,6 +339,11 @@ admin_customer_order:
     requirements:
         order_id: \d+
 
+admin_orders_dead:
+  pattern:  /admin/orders/dead
+  defaults:
+      _controller: AdminBundle:Orders:viewDead
+
 admin_consultants:
     pattern:  /admin/consultants/{pager}
     defaults:
