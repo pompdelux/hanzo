@@ -344,6 +344,11 @@ admin_orders_dead:
   defaults:
       _controller: AdminBundle:Orders:viewDead
 
+admin_orders_dead_action:
+  pattern:  /admin/orders/dead/{action}
+  defaults: { _controller: AdminBundle:Orders:performDead, _format: json }
+  requirements: { _format: (xml|json), _method: POST }
+
 admin_consultants:
     pattern:  /admin/consultants/{pager}
     defaults:
