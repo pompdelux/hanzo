@@ -381,7 +381,8 @@ class SettingsController extends CoreController
         return $this->render('AdminBundle:Settings:washing_instructions.html.twig', array(
             'washing_instructions'  => $washing_instructions,
             'languages_availible' => $languages_availible,
-            'codes_availible' => $codes_availible
+            'codes_availible' => $codes_availible,
+            'locale' => $locale
         ));
     }
 
@@ -508,7 +509,8 @@ class SettingsController extends CoreController
         return $this->render('AdminBundle:Settings:messagesList.html.twig', array(
             'messages' => $messages,
             'languages_availible' => $languages_availible,
-            'message_ns_availible' => $message_ns_availible
+            'message_ns_availible' => $message_ns_availible,
+            'locale' => $locale
         ));
     }
 

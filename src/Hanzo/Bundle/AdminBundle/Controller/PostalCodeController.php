@@ -96,7 +96,8 @@ class PostalCodeController extends CoreController
         return $this->render('AdminBundle:PostalCode:index.html.twig', array(
             'zip_to_city'     => $zip_to_city,
             'paginate'      => $paginate,
-            'domains_availible' => $domains_availible
+            'domains_availible' => $domains_availible,
+            'locale' => $locale
         ));
 
     }

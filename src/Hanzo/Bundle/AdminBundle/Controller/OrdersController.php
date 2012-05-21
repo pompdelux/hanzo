@@ -115,7 +115,8 @@ class OrdersController extends CoreController
         return $this->render('AdminBundle:Orders:list.html.twig', array(
             'orders'  => $order_data,
             'paginate' => $paginate,
-            'domains_availible' => $domains_availible
+            'domains_availible' => $domains_availible,
+            'domain_key' => $domain_key
         ));
     }
 
