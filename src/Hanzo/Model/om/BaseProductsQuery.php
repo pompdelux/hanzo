@@ -24,6 +24,7 @@ use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsWashingInstructions;
+use Hanzo\Model\RelatedProducts;
 
 /**
  * Base class that represents a query for the 'products' table.
@@ -107,6 +108,14 @@ use Hanzo\Model\ProductsWashingInstructions;
  * @method     ProductsQuery leftJoinOrdersLines($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersLines relation
  * @method     ProductsQuery rightJoinOrdersLines($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersLines relation
  * @method     ProductsQuery innerJoinOrdersLines($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersLines relation
+ *
+ * @method     ProductsQuery leftJoinRelatedProductsRelatedByMaster($relationAlias = null) Adds a LEFT JOIN clause to the query using the RelatedProductsRelatedByMaster relation
+ * @method     ProductsQuery rightJoinRelatedProductsRelatedByMaster($relationAlias = null) Adds a RIGHT JOIN clause to the query using the RelatedProductsRelatedByMaster relation
+ * @method     ProductsQuery innerJoinRelatedProductsRelatedByMaster($relationAlias = null) Adds a INNER JOIN clause to the query using the RelatedProductsRelatedByMaster relation
+ *
+ * @method     ProductsQuery leftJoinRelatedProductsRelatedBySku($relationAlias = null) Adds a LEFT JOIN clause to the query using the RelatedProductsRelatedBySku relation
+ * @method     ProductsQuery rightJoinRelatedProductsRelatedBySku($relationAlias = null) Adds a RIGHT JOIN clause to the query using the RelatedProductsRelatedBySku relation
+ * @method     ProductsQuery innerJoinRelatedProductsRelatedBySku($relationAlias = null) Adds a INNER JOIN clause to the query using the RelatedProductsRelatedBySku relation
  *
  * @method     ProductsQuery leftJoinProductsI18n($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsI18n relation
  * @method     ProductsQuery rightJoinProductsI18n($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsI18n relation
@@ -1559,6 +1568,152 @@ abstract class BaseProductsQuery extends ModelCriteria
 		return $this
 			->joinOrdersLines($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'OrdersLines', '\Hanzo\Model\OrdersLinesQuery');
+	}
+
+	/**
+	 * Filter the query by a related RelatedProducts object
+	 *
+	 * @param     RelatedProducts $relatedProducts  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function filterByRelatedProductsRelatedByMaster($relatedProducts, $comparison = null)
+	{
+		if ($relatedProducts instanceof RelatedProducts) {
+			return $this
+				->addUsingAlias(ProductsPeer::SKU, $relatedProducts->getMaster(), $comparison);
+		} elseif ($relatedProducts instanceof PropelCollection) {
+			return $this
+				->useRelatedProductsRelatedByMasterQuery()
+				->filterByPrimaryKeys($relatedProducts->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByRelatedProductsRelatedByMaster() only accepts arguments of type RelatedProducts or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the RelatedProductsRelatedByMaster relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function joinRelatedProductsRelatedByMaster($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('RelatedProductsRelatedByMaster');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'RelatedProductsRelatedByMaster');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the RelatedProductsRelatedByMaster relation RelatedProducts object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\RelatedProductsQuery A secondary query class using the current class as primary query
+	 */
+	public function useRelatedProductsRelatedByMasterQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinRelatedProductsRelatedByMaster($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'RelatedProductsRelatedByMaster', '\Hanzo\Model\RelatedProductsQuery');
+	}
+
+	/**
+	 * Filter the query by a related RelatedProducts object
+	 *
+	 * @param     RelatedProducts $relatedProducts  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function filterByRelatedProductsRelatedBySku($relatedProducts, $comparison = null)
+	{
+		if ($relatedProducts instanceof RelatedProducts) {
+			return $this
+				->addUsingAlias(ProductsPeer::SKU, $relatedProducts->getSku(), $comparison);
+		} elseif ($relatedProducts instanceof PropelCollection) {
+			return $this
+				->useRelatedProductsRelatedBySkuQuery()
+				->filterByPrimaryKeys($relatedProducts->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByRelatedProductsRelatedBySku() only accepts arguments of type RelatedProducts or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the RelatedProductsRelatedBySku relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    ProductsQuery The current query, for fluid interface
+	 */
+	public function joinRelatedProductsRelatedBySku($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('RelatedProductsRelatedBySku');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'RelatedProductsRelatedBySku');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the RelatedProductsRelatedBySku relation RelatedProducts object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\RelatedProductsQuery A secondary query class using the current class as primary query
+	 */
+	public function useRelatedProductsRelatedBySkuQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinRelatedProductsRelatedBySku($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'RelatedProductsRelatedBySku', '\Hanzo\Model\RelatedProductsQuery');
 	}
 
 	/**

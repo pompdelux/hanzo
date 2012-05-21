@@ -74,6 +74,8 @@ class ProductsTableMap extends TableMap
 		$this->addRelation('ProductsStock', 'Hanzo\\Model\\ProductsStock', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsStocks');
 		$this->addRelation('ProductsToCategories', 'Hanzo\\Model\\ProductsToCategories', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsToCategoriess');
 		$this->addRelation('OrdersLines', 'Hanzo\\Model\\OrdersLines', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'SET NULL', null, 'OrdersLiness');
+		$this->addRelation('RelatedProductsRelatedByMaster', 'Hanzo\\Model\\RelatedProducts', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'RelatedProductssRelatedByMaster');
+		$this->addRelation('RelatedProductsRelatedBySku', 'Hanzo\\Model\\RelatedProducts', RelationMap::ONE_TO_MANY, array('sku' => 'sku', ), 'CASCADE', null, 'RelatedProductssRelatedBySku');
 		$this->addRelation('ProductsI18n', 'Hanzo\\Model\\ProductsI18n', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'ProductsI18ns');
 	} // buildRelations()
 

@@ -587,4 +587,15 @@
     <column name="name" type="VARCHAR" size="32" required="true" primaryKey="true" />
     <column name="id" type="BIGINT" required="true" />
   </table>
+
+  <table name="related_products">
+    <column name="master" type="VARCHAR" size="128" primaryKey="true" required="true"/>
+    <column name="sku" type="VARCHAR" size="128" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="products" onDelete="CASCADE">
+      <reference local="master" foreign="sku"/>
+    </foreign-key>
+    <foreign-key foreignTable="products" onDelete="CASCADE">
+      <reference local="sku" foreign="sku"/>
+    </foreign-key>
+  </table>
 </database>

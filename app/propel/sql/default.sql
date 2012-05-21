@@ -861,6 +861,28 @@ CREATE TABLE `sequences`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- related_products
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `related_products`;
+
+CREATE TABLE `related_products`
+(
+	`master` VARCHAR(128) NOT NULL,
+	`sku` VARCHAR(128) NOT NULL,
+	PRIMARY KEY (`master`,`sku`),
+	INDEX `related_products_FI_2` (`sku`),
+	CONSTRAINT `related_products_FK_1`
+		FOREIGN KEY (`master`)
+		REFERENCES `products` (`sku`)
+		ON DELETE CASCADE,
+	CONSTRAINT `related_products_FK_2`
+		FOREIGN KEY (`sku`)
+		REFERENCES `products` (`sku`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- gothia_accounts
 -- ---------------------------------------------------------------------
 
