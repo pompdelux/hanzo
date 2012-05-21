@@ -57,6 +57,7 @@ class MiscExtension extends Twig_Extension
             'google_analytics_tag' => new Twig_Function_Method($this, 'googleAnalyticsTag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'front_page_teasers' => new Twig_Function_Method($this, 'frontPageTeasers', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'parameter' => new Twig_Function_Method($this, 'parameter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'embed' => new Twig_Function_Method($this, 'embed', array('pre_escape' => 'html', 'is_safe' => array('html'), 'needs_environment' => true)),
         );
     }
 
@@ -229,5 +230,37 @@ DOC;
         }
 
         return strtr($out, $parameters);
+     }
+
+
+     /**
+      * [embed description]
+      * @param  Twig_Environment $env        [description]
+      * @param  [type]           $name       [description]
+      * @param  array            $parameters [description]
+      * @return [type]                       [description]
+      */
+     public function embed(Twig_Environment $env, $name, $parameters = array())
+     {
+        switch ($name) {
+            case 'newsletter_form':
+
+                $view = '';
+                $customer = null;
+                if (isset($parameters['view']) && $parameters['view'] == 'simple') {
+                    $view = 'simple-';
+                } else {
+                    $customer = \Hanzo\Model\CustomersPeer::getCurrent();
+                }
+
+                $template = 'NewsletterBundle:Default:'.$view.'block.html.twig';
+                $parameters = array(
+                    'customer' => $customer,
+                    'listid' => Hanzo::getInstance()->container->get('newsletterapi')->getListIdAvaliableForDomain(),
+                );
+                break;
+        }
+
+        return $env->render($template, $parameters);
      }
 }
