@@ -298,4 +298,14 @@ class OrdersController extends CoreController
               'orders' => $orders
             ));
     }
+
+    /**
+     * performDeadAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function performDeadAction( $action )
+    {
+        return $this->json_response( array('hest'=>true) );
+    }
 }
