@@ -23,7 +23,9 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery,
     Hanzo\Model\ProductsQuantityDiscountQuery,
     Hanzo\Model\ProductsQuantityDiscount,
     Hanzo\Model\DomainsQuery,
-    Hanzo\Model\CategoriesQuery;
+    Hanzo\Model\CategoriesQuery,
+    Hanzo\Model\RelatedProducts,
+    Hanzo\Model\RelatedProductsQuery;
 
 class ProductsController extends CoreController
 {
@@ -145,6 +147,10 @@ class ProductsController extends CoreController
             ->findByProductsId($id)
         ;
 
+        $related_products = RelatedProductsQuery::create()
+            ->findByMaster($current_product->getSku())
+        ;
+
         $product_images_list = array();
 
         foreach ($product_images as $record) {
@@ -182,7 +188,8 @@ class ProductsController extends CoreController
             'categories'            => $categories,
             'current_product'       => $current_product,
             'product_images'        => $product_images_list,
-            'products'              => $all_products
+            'products'              => $all_products,
+            'related_products'      => $related_products
         ));
     }
 
@@ -426,6 +433,62 @@ class ProductsController extends CoreController
             ));
         }
     }
+
+    public function addRelatedProductAction()
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
+        $requests = $this->get('request');
+        $master = $requests->get('master');
+        $sku = $requests->get('sku');
+
+        $related_products = new RelatedProducts();
+        $related_products->setMaster($master);
+        $related_products->setSku($sku);
+
+        try {
+            $related_products->save();
+        } catch (PropelException $e) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                ));
+            }
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+            ));
+        }
+    }
+
+    public function deleteRelatedProductAction($master, $sku)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $related_product = RelatedProductsQuery::create()
+            ->filterByMaster($master)
+            ->findOneBySku($sku)
+        ;
+
+        if($related_product instanceof RelatedProducts)
+            $related_product->delete();
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.changes.success', array(), 'admin'),
+            ));
+        }
+    }
+
     public function addReferenceAction()
     {
         $requests = $this->get('request');

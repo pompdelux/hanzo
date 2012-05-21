@@ -225,6 +225,22 @@ admin_product_cat_delete:
         category_id: \d+
         product_id: \d+
 
+admin_product_related_add:
+    pattern:  /admin/products/add-related/
+    defaults:
+        _controller: AdminBundle:Products:addRelatedProduct
+        _format: json
+    requirements:
+        _format: html|json
+
+admin_product_related_delete:
+    pattern:  /admin/products/delete-related/{master}/{sku}
+    defaults:
+        _controller: AdminBundle:Products:deleteRelatedProduct
+        _format: json
+    requirements:
+        _format: html|json
+
 admin_products_discount:
     pattern:  /admin/products/discounts/{product_id}
     defaults:
