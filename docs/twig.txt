@@ -1,0 +1,8 @@
+{{ SIMPLE_NEWSLETTER_FORM }}           {{ embed('newsletter_form',  {'view':'simple'}) }}
+
+{{ TEXT_EXPECTED_DELIVERY_DATE }}      {{ parameter('expected_delivery_date') }}
+{{ HD_COSTUMERSERVICE_CONTACT_INFO }}  {{ 'customer.service.contact.info'|trans }}
+
+{{ FILETIME_LONG ..../../*.xls }}      {{ !! }}
+{{ FILETIME_SHORT .../../*.pdf }}      {{ !! }}
+

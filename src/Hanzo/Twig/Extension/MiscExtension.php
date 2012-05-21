@@ -234,11 +234,12 @@ DOC;
 
 
      /**
-      * [embed description]
+      * embed html elements in cms pages
+      *
       * @param  Twig_Environment $env        [description]
-      * @param  [type]           $name       [description]
+      * @param  string           $name       [description]
       * @param  array            $parameters [description]
-      * @return [type]                       [description]
+      * @return string
       */
      public function embed(Twig_Environment $env, $name, $parameters = array())
      {
@@ -258,7 +259,26 @@ DOC;
                     'customer' => $customer,
                     'listid' => Hanzo::getInstance()->container->get('newsletterapi')->getListIdAvaliableForDomain(),
                 );
+
                 break;
+
+            // case 'file':
+
+            //     $out = '';
+            //     if (isset($parameters['format'])) {
+            //         $title = isset($parameters['title']) ? $parameters['title'] : '';
+            //         $class = isset($parameters['class']) ? $parameters['class'] : '';
+
+            //         $ts = '';
+            //         switch ($parameters['format']) {
+            //             case 'short':
+            //                 break;
+            //             case 'long':
+            //                 break;
+            //         }
+            //     }
+
+            //     break;
         }
 
         return $env->render($template, $parameters);
