@@ -31,9 +31,6 @@ Hanzo\Model\Addresses:
                 groups: [shipping, company_shipping, payment, overnightbox, customer]
             - Type:
                 type: integer
-        country:
-            - NotBlank:
-                groups: [shipping, company_shipping, payment, overnightbox, customer]
         company_name:
             - NotBlank:
                 message: address.company_name.required
