@@ -9,6 +9,7 @@ parameters:
     ax_manager.class: Hanzo\Bundle\ServiceBundle\Services\AxService
     geoip_manager.class: Hanzo\Bundle\ServiceBundle\Services\GeoIPService
     replication_manager.class: Hanzo\Bundle\ServiceBundle\Services\ReplicationService
+    deadorder_manager.class: Hanzo\Bundle\ServiceBundle\Services\DeadOrderService
 
 services:
     service_factory:
@@ -86,3 +87,12 @@ services:
             service:     replication
             parameters:  [@propel.configuration]
             class:       %replication_manager.class%
+
+    deadorder_manager:
+        class:           %deadorder_manager.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     deadorder
+            parameters:  [@payment.dibsapi]
+            class:       %deadorder_manager.class%

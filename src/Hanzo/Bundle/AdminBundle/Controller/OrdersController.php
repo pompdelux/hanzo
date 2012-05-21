@@ -291,6 +291,11 @@ class OrdersController extends CoreController
      **/
     public function viewDeadAction()
     {
-        return $this->render('AdminBundle:Orders:dead_orders_list.html.twig');
+        $deadOrderBuster = $this->get('deadorder_manager');
+        $orders = $deadOrderBuster->getOrdersToBeDeleted();
+
+        return $this->render('AdminBundle:Orders:dead_orders_list.html.twig', array(
+              'orders' => $orders
+            ));
     }
 }
