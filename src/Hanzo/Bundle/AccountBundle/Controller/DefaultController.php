@@ -12,6 +12,7 @@ use Hanzo\Core\FormErrors;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\Countries;
@@ -384,5 +385,38 @@ class DefaultController extends CoreController
         }
 
         return $html;
+    }
+
+
+    /**
+     * used to validate via ajax
+     *
+     * @param  string $type
+     * @return Response
+     */
+    public function checkAction($type)
+    {
+        $status = true;
+        $message = '';
+        $data = array();
+
+        if ('email' == $type) {
+            $translator = $this->get('translator');
+            $account = CustomersQuery::create()->findOneByEmail($this->getRequest()->get('email'));
+            if ($account instanceof Customers) {
+                $status = false;
+                $message = $translator->trans('email.already.in.use', array(), 'account');
+                $data = array('title' => $translator->trans('create.account.error.title', array(), 'account'));
+            }
+        }
+
+
+        if ('json' === $this->getFormat()) {
+            return $this->json_response(array(
+                'status' => $status,
+                'message' => $message,
+                'data' => $data,
+            ));
+        }
     }
 }

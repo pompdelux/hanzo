@@ -60,3 +60,8 @@ _account_edit_address:
         _controller: AccountBundle:Default:editAddress
         type: ''
         shipping_id: ''
+
+_account_check:
+    pattern: /account/check/{type}
+    defaults:
+        _controller: AccountBundle:Default:check

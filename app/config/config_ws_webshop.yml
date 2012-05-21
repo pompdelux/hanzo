@@ -16,6 +16,7 @@ security:
     access_control:
         - { path: ^/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/account/check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
         - { path: ^/account, roles: ROLE_USER }
