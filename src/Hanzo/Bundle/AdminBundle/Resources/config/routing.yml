@@ -16,13 +16,13 @@ admin_settings_domain:
     pattern:  /admin/settings/domain/{domain_key}
     defaults:
         _controller: AdminBundle:Settings:domain
-        domain_key: 'COM'
+        domain_key: 'DK'
 
 admin_settings_payment_delivery:
     pattern:  /admin/settings/paymentdelivery/{domain_key}
     defaults:
         _controller: AdminBundle:Settings:paymentdelivery
-        domain_key: 'COM'
+        domain_key: 'DK'
 
 admin_settings_washing_instructions:
     pattern:  /admin/settings/washinginstructions/{code}
