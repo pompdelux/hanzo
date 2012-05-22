@@ -117,12 +117,12 @@ class AxService
         $salesLine = array();
         foreach ($products as $product) {
             $line = new stdClass();
-            $line->ItemId = $product->getProductsSku();
-            $line->SalesPrice = $product->getPrice();
+            $line->ItemId = $product->getProductsName();
+            $line->SalesPrice = number_format($product->getPrice(), 4, '.', '');
             $line->SalesQty = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
             $line->InventSizeId = $product->getProductsSize();
-            $line->SalesUnit = ''; // FIXME
+            $line->SalesUnit = $product->getUnit();
 
             $discount = $product->getOriginalPrice() - $product->getPrice();
 
@@ -131,7 +131,7 @@ class AxService
             }
 
             if ($discount_in_percent) {
-                $line->LineDiscPercent = $discount_in_percent;
+                $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
             }
 
             $line->lineText = $product->getProductsName();
@@ -197,12 +197,12 @@ class AxService
         $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
         $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
         $salesTable->InvoiceAccount          = $order->getCustomersId();
-        $salesTable->FreightFeeAmt           = $shipping_cost;
+        $salesTable->FreightFeeAmt           = number_format($shipping_cost, 4, '.', '');
         $salesTable->FreightType             = $freight_type;
         $salesTable->HandlingFeeType         = 90;
-        $salesTable->HandlingFeeAmt          = $handeling_fee;
+        $salesTable->HandlingFeeAmt          = number_format($handeling_fee, 4, '.', '');
         $salesTable->PayByBillFeeType        = 91;
-        $salesTable->PayByBillFeeAmt         = $payment_cost;
+        $salesTable->PayByBillFeeAmt         = number_format($payment_cost, 4, '.', '');
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
@@ -354,6 +354,7 @@ class AxService
         try {
             return $this->client->{$service}($request);
         } catch (SoapFault $e) {
+            Tools::log($this->client->__getLastRequest());
             return $e;
         }
     }

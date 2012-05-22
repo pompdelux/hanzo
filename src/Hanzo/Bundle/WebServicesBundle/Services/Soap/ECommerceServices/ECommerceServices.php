@@ -294,12 +294,18 @@ class ECommerceServices extends SoapService
         foreach ($prices->SalesPrice as $entry)
         {
             $key = $prices->ItemId . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId;
+            $domain_key = self::getDomainKeyFromCurrencyKey($entry->CustAccount);
 
-            if (empty($domains[$entry->CustAccount])) {
-                $errors[] = sprintf("No domain setup for '%s'", $key);
+            if (empty($domain_key)) {
+                //$errors[] = sprintf("No domain setup for '%s'", $key);
                 continue;
             }
-            $domain_key = $domains[$entry->CustAccount];
+
+            // always have a from date on prices
+            if (empty($entry->PriceDate)) {
+                $entry->PriceDate = time();
+            }
+
 
             if (empty($products[$key])) {
                 $product = ProductsQuery::create()
@@ -337,7 +343,7 @@ class ECommerceServices extends SoapService
                 'amount' => $thePrice,
                 'vat' => $vat,
                 'from_date' => $entry->PriceDate,
-                'to_date' => $entry->PriceDateTo,
+                'to_date' => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
             );
 
             // this is here to maintain price info on the master product also
@@ -347,7 +353,7 @@ class ECommerceServices extends SoapService
                 'amount' => $thePrice,
                 'vat' => $vat,
                 'from_date' => $entry->PriceDate,
-                'to_date' => $entry->PriceDateTo,
+                'to_date' => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
             );
         }
 
@@ -863,4 +869,52 @@ $response->{$var}->Message[] = new \SoapVar($message, \XSD_STRING, "", "http://s
 
 return $response;
 }
+
+
+
+    /**
+     * tmp mapping of currency to domain.
+     * @fixme: skal laves om i både ax og web.
+     *
+     * @param  [type] $currencyKey [description]
+     * @return [type]              [description]
+     */
+    protected static function getDomainKeyFromCurrencyKey($currencyKey)
+    {
+        $domainKey = '';
+        switch (strtoupper($currencyKey)) {
+            case 'DKK':
+                $domainKey = 'DK';
+                break;
+            case 'SEK':
+                $domainKey = 'SE';
+                break;
+            case 'NOK':
+                $domainKey = 'NO';
+                break;
+            case 'NLD':
+                $domainKey = 'NL';
+                break;
+            case 'EUR':
+                $domainKey = 'COM';
+                break;
+            case 'ØVRIG':
+                $domainKey = 'COM';
+                break;
+
+            // case 'SALES':
+            // case 'SALESDK':
+            //     $domainKey = 'SalesDK';
+            //     $domainKey = 'SalesDK';
+            //     break;
+            // case 'SALESSE':
+            //     $domainKey = 'SalesSE';
+            //     break;
+            // case 'SALESNO':
+            //     $domainKey = 'SalesNO';
+            //     break;
+        }
+
+        return $domainKey;
+    }
 }
