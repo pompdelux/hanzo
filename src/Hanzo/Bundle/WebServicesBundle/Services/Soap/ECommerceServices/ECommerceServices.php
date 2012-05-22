@@ -297,7 +297,7 @@ class ECommerceServices extends SoapService
             $domain_key = self::getDomainKeyFromCurrencyKey($entry->CustAccount);
 
             if (empty($domain_key)) {
-                $errors[] = sprintf("No domain setup for '%s'", $key);
+                //$errors[] = sprintf("No domain setup for '%s'", $key);
                 continue;
             }
 
@@ -902,16 +902,17 @@ return $response;
                 $domainKey = 'COM';
                 break;
 
-            case 'SALES':
-            case 'SALESDK':
-                $domainKey = 'SalesDK';
-                break;
-            case 'SALESSE':
-                $domainKey = 'SalesSE';
-                break;
-            case 'SALESNO':
-                $domainKey = 'SalesNO';
-                break;
+            // case 'SALES':
+            // case 'SALESDK':
+            //     $domainKey = 'SalesDK';
+            //     $domainKey = 'SalesDK';
+            //     break;
+            // case 'SALESSE':
+            //     $domainKey = 'SalesSE';
+            //     break;
+            // case 'SALESNO':
+            //     $domainKey = 'SalesNO';
+            //     break;
         }
 
         return $domainKey;
