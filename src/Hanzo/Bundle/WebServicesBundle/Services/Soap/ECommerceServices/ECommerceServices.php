@@ -294,12 +294,18 @@ class ECommerceServices extends SoapService
         foreach ($prices->SalesPrice as $entry)
         {
             $key = $prices->ItemId . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId;
+            $domain_key = self::getDomainKeyFromCurrencyKey($entry->CustAccount);
 
-            if (empty($domains[$entry->CustAccount])) {
+            if (empty($domain_key)) {
                 $errors[] = sprintf("No domain setup for '%s'", $key);
                 continue;
             }
-            $domain_key = self::getDomainKeyFromCurrencyKey($entry->CustAccount);
+
+            // always have a from date on prices
+            if (empty($entry->PriceDate)) {
+                $entry->PriceDate = time();
+            }
+
 
             if (empty($products[$key])) {
                 $product = ProductsQuery::create()
@@ -337,7 +343,7 @@ class ECommerceServices extends SoapService
                 'amount' => $thePrice,
                 'vat' => $vat,
                 'from_date' => $entry->PriceDate,
-                'to_date' => $entry->PriceDateTo,
+                'to_date' => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
             );
 
             // this is here to maintain price info on the master product also
@@ -347,7 +353,7 @@ class ECommerceServices extends SoapService
                 'amount' => $thePrice,
                 'vat' => $vat,
                 'from_date' => $entry->PriceDate,
-                'to_date' => $entry->PriceDateTo,
+                'to_date' => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
             );
         }
 
