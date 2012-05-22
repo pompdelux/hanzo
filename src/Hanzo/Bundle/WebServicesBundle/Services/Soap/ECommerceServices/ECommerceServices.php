@@ -299,7 +299,7 @@ class ECommerceServices extends SoapService
                 $errors[] = sprintf("No domain setup for '%s'", $key);
                 continue;
             }
-            $domain_key = $domains[$entry->CustAccount];
+            $domain_key = self::getDomainKeyFromCurrencyKey($entry->CustAccount);
 
             if (empty($products[$key])) {
                 $product = ProductsQuery::create()
@@ -863,4 +863,51 @@ $response->{$var}->Message[] = new \SoapVar($message, \XSD_STRING, "", "http://s
 
 return $response;
 }
+
+
+
+    /**
+     * tmp mapping of currency to domain.
+     * @fixme: skal laves om i både ax og web.
+     *
+     * @param  [type] $currencyKey [description]
+     * @return [type]              [description]
+     */
+    protected static function getDomainKeyFromCurrencyKey($currencyKey)
+    {
+        $domainKey = '';
+        switch (strtoupper($currencyKey)) {
+            case 'DKK':
+                $domainKey = 'DK';
+                break;
+            case 'SEK':
+                $domainKey = 'SE';
+                break;
+            case 'NOK':
+                $domainKey = 'NO';
+                break;
+            case 'NLD':
+                $domainKey = 'NL';
+                break;
+            case 'EUR':
+                $domainKey = 'COM';
+                break;
+            case 'ØVRIG':
+                $domainKey = 'COM';
+                break;
+
+            case 'SALES':
+            case 'SALESDK':
+                $domainKey = 'SalesDK';
+                break;
+            case 'SALESSE':
+                $domainKey = 'SalesSE';
+                break;
+            case 'SALESNO':
+                $domainKey = 'SalesNO';
+                break;
+        }
+
+        return $domainKey;
+    }
 }
