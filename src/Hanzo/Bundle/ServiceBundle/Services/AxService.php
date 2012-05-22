@@ -122,7 +122,7 @@ class AxService
             $line->SalesQty = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
             $line->InventSizeId = $product->getProductsSize();
-            $line->SalesUnit = ''; // FIXME
+            $line->SalesUnit = $product->getUnit();
 
             $discount = $product->getOriginalPrice() - $product->getPrice();
 
