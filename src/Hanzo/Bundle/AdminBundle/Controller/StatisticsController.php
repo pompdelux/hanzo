@@ -82,12 +82,24 @@ class StatisticsController extends CoreController
     		->find()
     	;
 
+        $orders_total = array(
+            'sumprice' => 0,
+            'sumorders' => 0,
+            'sumproducts' => 0
+        );
+        foreach ($orders_amount as $order) {
+            $orders_total['sumprice'] += $order['TotalAmount'];
+            $orders_total['sumorders'] += $order['TotalOrders'];
+            $orders_total['sumproducts'] += $order['TotalProducts'];
+        }
+
 		$domains_availible = DomainsQuery::Create()
 			->find()
 		;
 
         return $this->render('AdminBundle:Statistics:index.html.twig', array(
             'orders_amount'  => $orders_amount,
+            'total' => $orders_total,
             'domain_key' => $domain_key,
             'domains_availible' => $domains_availible,
             'start' => $start,
