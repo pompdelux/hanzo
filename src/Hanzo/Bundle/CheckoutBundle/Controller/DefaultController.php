@@ -363,8 +363,8 @@ class DefaultController extends CoreController
         // 3. register domain et-al
         $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
         $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-        $order->setAttribute('HomePartyId', 'global', 'Web ' . $hanzo->get('core.domain_key'));
-        $order->setAttribute('SalesResponsible', 'global', 'Web ' . $hanzo->get('core.domain_key'));
+        $order->setAttribute('HomePartyId', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
+        $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
 
         $order->save();
 
