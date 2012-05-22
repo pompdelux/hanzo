@@ -57,7 +57,7 @@ class MannequinImagesTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), null, null);
+		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), 'CASCADE', null);
 	} // buildRelations()
 
 } // MannequinImagesTableMap

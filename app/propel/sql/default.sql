@@ -397,6 +397,7 @@ CREATE TABLE `mannequin_images`
 	CONSTRAINT `fk_mannequin_images_1`
 		FOREIGN KEY (`master`)
 		REFERENCES `products` (`sku`)
+		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -726,6 +727,7 @@ CREATE TABLE `orders`
 	CONSTRAINT `orders_FK_1`
 		FOREIGN KEY (`customers_id`)
 		REFERENCES `customers` (`id`)
+		ON UPDATE CASCADE
 		ON DELETE SET NULL,
 	CONSTRAINT `fk_customers_1`
 		FOREIGN KEY (`billing_countries_id`)
