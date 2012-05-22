@@ -352,13 +352,8 @@ class DefaultController extends CoreController
         $product_prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
         foreach ($products as $product) {
-            $unit = $product_units[$product->getProductsId()];
-            if (substr($unit, 0, 2) == '1 ') {
-                $unit = substr($unit, 2);
-            }
-
             $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['raw_price']);
-            $product->setUnit(preg_replace('/[^a-z]/i', '', $unit));
+            $product->setUnit(preg_replace('/[^a-z\.]/i', '', $product_units[$product->getProductsId()]));
             $product->save();
         }
 
