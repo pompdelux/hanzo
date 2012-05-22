@@ -117,7 +117,7 @@ class AxService
         $salesLine = array();
         foreach ($products as $product) {
             $line = new stdClass();
-            $line->ItemId = $product->getProductsSku();
+            $line->ItemId = $product->getProductsName();
             $line->SalesPrice = number_format($product->getPrice(), 4, '.', '');
             $line->SalesQty = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
@@ -354,6 +354,7 @@ class AxService
         try {
             return $this->client->{$service}($request);
         } catch (SoapFault $e) {
+            Tools::log($this->client->__getLastRequest());
             return $e;
         }
     }
