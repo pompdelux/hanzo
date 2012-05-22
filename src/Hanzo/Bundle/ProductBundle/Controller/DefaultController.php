@@ -125,11 +125,16 @@ class DefaultController extends CoreController
 
             $translation_key = 'description.' . Tools::stripText($product->getSku(), '_', false);
 
+            $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
+            $find = '~(background|src)="(../|/)~';
+            $replace = '$1="' . $hanzo->get('core.cdn');
+            $description = preg_replace($find, $replace, $description);
+
             $data = array(
                 'id' => $product->getId(),
                 'sku' => $product->getSku(),
                 'title' => $product->getSku(),
-                'description' => $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products'),
+                'description' => $description,
                 'washing' => stripslashes($product->getProductsWashingInstructions()->getDescription()),
                 'main_image' => $main_image,
                 'images' => $images,
