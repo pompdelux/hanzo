@@ -27,6 +27,9 @@ use Hanzo\Model\DomainsQuery;
 use Hanzo\Model\CategoriesQuery;
 use Hanzo\Model\LanguagesQuery;
 
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersQuery;
+
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 
 use \Exception;
@@ -369,7 +372,7 @@ class ECommerceServices extends SoapService
             $collection = new PropelCollection();
             foreach ($prices as $price) {
                 $data = new ProductsDomainsPrices();
-                $data->setDomainsId($price['domain']);
+                $data->setDomainsId($domains[$price['domain']]);
                 $data->setPrice($price['amount']);
                 $data->setVat($price['vat']);
                 $data->setFromDate($price['from_date']);
@@ -676,50 +679,53 @@ class ECommerceServices extends SoapService
         return self::responseStatus('Ok', 'SyncCustomerResult');
     }
 
+
+    /**
+     * set status to invoiced on a specific order.
+     *
+     * @todo
+     * @param object $data
+     * @return object SyncSalesOrderResult
+     */
+    public function SyncSalesOrder($data){}
+
+
 /**
-* delete a specific sales order.
-*
-* @param object $data
-* @return object DeleteSalesOrderResult
-*/
+ * delete a specific sales order.
+ *
+ * @param object $data
+ * @return object DeleteSalesOrderResult
+ */
 public function DeleteSalesOrder($data)
 {
-if (empty($data->eOrderNumber)) {
-$this->logger->addCritical('no eOrderNumber given.');
-return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
+    if (empty($data->eOrderNumber)) {
+        $this->logger->addCritical('no eOrderNumber given.');
+        return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
+    }
+
+    $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
+
+    if (!$order instanceof Orders) {
+        $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
+        $this->logger->addCritical($msg);
+        return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
+    }
+
+    // ....................
+    // .....<ze code>......
+    // ....................
+
+    // ....................
+    // .....</ze code>.....
+    // ....................
+
+    if (count($errors)) {
+        $this->logger->addCritical('DeleteSalesOrderResult failed with the following error(s)', $errors);
+        return self::responseStatus('Error', 'DeleteSalesOrderResult', $errors);
+    }
+
+    return self::responseStatus('Ok', 'DeleteSalesOrderResult');
 }
-
-//$order = bc_getOrderById($data->eOrderNumber);
-
-if (empty($order)) {
-$errors[] = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
-}
-
-// ....................
-// .....<ze code>......
-// ....................
-
-// ....................
-// .....</ze code>.....
-// ....................
-
-if (count($errors)) {
-$this->logger->addCritical('DeleteSalesOrderResult failed with the following error(s)', $errors);
-return self::responseStatus('Error', 'DeleteSalesOrderResult', $errors);
-}
-
-return self::responseStatus('Ok', 'DeleteSalesOrderResult');
-}
-
-
-/**
-* set status to invoiced on a specific order.
-*
-* @todo
-* @param object $data
-* @return object SyncSalesOrderResult
-*/
-public function SyncSalesOrder($data){}
 
 
 /**
