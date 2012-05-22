@@ -353,7 +353,7 @@ class DefaultController extends CoreController
 
         foreach ($products as $product) {
             $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['raw_price']);
-            $product->setUnit($product_units[$product->getProductsId()]);
+            $product->setUnit(trim('1 ', $product_units[$product->getProductsId()]));
             $product->save();
         }
 
