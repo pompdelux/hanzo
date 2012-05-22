@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
     Hanzo\Core\CoreController;
-    
+
 use Hanzo\Model\Settings,
 Hanzo\Model\DomainsSettings,
 Hanzo\Model\SettingsQuery,
@@ -79,7 +79,7 @@ class SettingsController extends CoreController
             ->getForm();
 
         // Generate the Form for the global settings excluding some namespaces used other places
-        $exclude_ns = array('consultant', 'delivery', 'payment');
+        $exclude_ns = array('consultant', 'shipping', 'payment');
         $global_settings = SettingsQuery::create()
             ->orderByNs()
             ->where('settings.ns NOT IN ?', $exclude_ns)
@@ -169,7 +169,7 @@ class SettingsController extends CoreController
             ->getForm();
 
         // Generate the Form for the domain settings
-        $exclude_ns = array('consultant', 'delivery', 'payment');
+        $exclude_ns = array('consultant', 'shipping', 'payment');
 
         $domain_settings = DomainsSettingsQuery::create()
             ->where('domains_settings.ns NOT IN ?', $exclude_ns)
@@ -253,14 +253,14 @@ class SettingsController extends CoreController
             ->add('domain_key', 'text')
             ->add('c_key', 'text')
             ->add('ns', 'choice', array(
-                    'choices' => array('payment' => 'Betaling', 'delivery' => 'Fragt')
+                    'choices' => array('payment' => 'Betaling', 'shipping' => 'Fragt')
                 )
             )
             ->add('c_value', 'text')
             ->getForm();
 
         // Generate the Form for the domain settings
-        $include_ns = array('delivery', 'payment');
+        $include_ns = array('shipping', 'payment');
 
         $domain_settings = DomainsSettingsQuery::create()
             ->where('domains_settings.Ns IN ?', $include_ns)
@@ -410,20 +410,20 @@ class SettingsController extends CoreController
         }
 
         $form = $this->createFormBuilder($washing_instruction)
-            ->add('code', 'integer', 
+            ->add('code', 'integer',
                 array(
                     'label' => 'admin.washing.code',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('locale', 'choice', 
+            )->add('locale', 'choice',
                 array(
                     'choices' => $languages,
                     'label' => 'admin.washing.locale',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('description', 'textarea', 
+            )->add('description', 'textarea',
                 array(
                     'label' => 'admin.washing.description',
                     'translation_domain' => 'admin',
@@ -455,7 +455,7 @@ class SettingsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $washing_instruction = ProductsWashingInstructionsQuery::create()
             ->filterByLocale($locale)
             ->findOneById($id)
@@ -496,7 +496,7 @@ class SettingsController extends CoreController
             ->joinWithMessages()
             ->find()
         ;
-        
+
         $message_ns_availible = MessagesQuery::create()->find();
 
         $languages_availible = LanguagesQuery::Create()->find();
@@ -543,20 +543,20 @@ class SettingsController extends CoreController
         }
 
         $form = $this->createFormBuilder($message)
-            ->add('locale', 'choice', 
+            ->add('locale', 'choice',
                 array(
                     'choices' => $languages,
                     'label' => 'admin.messages.locale',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('subject', 'text', 
+            )->add('subject', 'text',
                 array(
                     'label' => 'admin.messages.subject',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )->add('body', 'textarea', 
+            )->add('body', 'textarea',
                 array(
                     'label' => 'admin.messages.body',
                     'translation_domain' => 'admin',
@@ -598,14 +598,14 @@ class SettingsController extends CoreController
             $message = new Messages();
         }
         $form = $this->createFormBuilder($message)
-            ->add('ns', 'choice', 
+            ->add('ns', 'choice',
                 array(
                     'choices' => array('email' => 'E-mail skabelon', 'sms' => 'SMS Skabelon'),
                     'label' => 'admin.messages.ns',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('key', 'text', 
+            )->add('key', 'text',
                 array(
                     'label' => 'admin.messages.key',
                     'translation_domain' => 'admin',
@@ -638,9 +638,9 @@ class SettingsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $message = MessagesI18nQuery::create();
-        
+
         if($locale){
             $message = $message->filterByLocale($locale);
         }
@@ -673,31 +673,31 @@ class SettingsController extends CoreController
         }
 
         $form = $this->createFormBuilder($language)
-            ->add('name', 'text', 
+            ->add('name', 'text',
                 array(
                     'label' => 'admin.languages.name',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('local_name', 'text', 
+            )->add('local_name', 'text',
                 array(
                     'label' => 'admin.languages.local_name',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('locale', 'text', 
+            )->add('locale', 'text',
                 array(
                     'label' => 'admin.languages.locale',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('iso2', 'text', 
+            )->add('iso2', 'text',
                 array(
                     'label' => 'admin.languages.iso2',
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            )->add('direction', 'choice', 
+            )->add('direction', 'choice',
                 array(
                     'choices' => array('ltr' => 'Left to Right', 'rtl' => 'Right to Left'),
                     'label' => 'admin.languages.direction',
@@ -733,7 +733,7 @@ class SettingsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $language = LanguagesQuery::create()->findOneById($id);
 
         if($language instanceof Languages){
