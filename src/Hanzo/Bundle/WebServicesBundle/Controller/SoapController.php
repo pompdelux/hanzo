@@ -38,10 +38,18 @@ class SoapController extends CoreController
 
     public function testAction()
     {
+
         $handler = new \Hanzo\Bundle\WebServicesBundle\Services\Soap\ECommerceServices\ECommerceServices (
             $this->getRequest(),
             $this->get('Logger')
         );
+
+        $d = new \stdClass();
+        $d->eOrderNumber = 549453;
+        $d->fileName = 'xyz.pdf';
+        $handler->SalesOrderAddDocument($d);
+
+        return $this->response('test .. see log');
 
         $c = new \stdClass();
         $c->ItemId = 'Abby Little PANTSUIT';
