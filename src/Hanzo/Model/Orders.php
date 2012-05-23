@@ -494,7 +494,7 @@ class Orders extends BaseOrders
      * @param string $key Name of the attribute
      * @param string $ns Namespace of the attribute, e.g. payment
      * @param string $value The value of the attribute
-     * @return void
+     * @return object Orders object returned to keep the chain alive.
      * @author Henrik Farre <hf@bellcom.dk>
      */
     public function setAttribute( $key, $ns, $value )
@@ -507,7 +507,7 @@ class Orders extends BaseOrders
             if ( $attribute->getCKey() == $key && $attribute->getNs() == $ns )
             {
                 $attribute->setCValue( $value );
-                return;
+                return $this;
             }
         }
 
@@ -517,6 +517,8 @@ class Orders extends BaseOrders
         $attribute->setCValue( $value );
 
         $this->addOrdersAttributes($attribute);
+
+        return $this;
     }
 
     /**
