@@ -121,7 +121,7 @@ class HistoryController extends CoreController
 
             $orders[] = array(
                 'id' => $record->getId(),
-                'can_modify' => ($record->getState() <= Orders::STATE_PENDING ? true : false),
+                'can_modify' => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
                 'status' => str_replace('-', 'neg.', $record->getState()),
                 'created_at' => $record->getCreatedAt(),
                 'total' => $record->getTotalPrice(),

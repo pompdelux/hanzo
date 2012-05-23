@@ -324,6 +324,38 @@ class AxService
     }
 
 
+
+    /**
+    * lock orders in ax
+    *
+    * @param int $orderId
+    * @param bool $status true locks an order false unlocks
+    * @return bool
+    */
+    public function lockUnlockSalesOrder($order, $status = true)
+    {
+        $dom = str_replace('Sales', '', $order->getAttributes()->global->domain_key);
+
+        $lock = new stdClass();
+        $lock->eOrderNumber = $order->getId();
+        $lock->lockOrder = $status ? 1 : 0;
+        $lock->endpointDomain = $dom;
+        $result = $this->Send('SalesOrderLockUnlock', $lock);
+
+        if ($result instanceof Exception) {
+            $message = sprintf('An error occured while locking the order: "%s", error message: "%s"',
+                $order->getId(),
+                $result->getMethod()
+            );
+            $this->logger->addCritical($message);
+
+            return false;
+        }
+
+        return true;
+    }
+
+
     protected function getIso2CountryCode($country_id)
     {
         return CountriesQuery::create()
