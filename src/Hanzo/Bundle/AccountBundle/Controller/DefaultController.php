@@ -113,8 +113,7 @@ class DefaultController extends CoreController
 
                 $name = $customer->getFirstName() . ' ' . $customer->getLastName();
 
-                try
-                {
+                try {
                     $mailer = $this->get('mail_manager');
                     $mailer->setMessage('account.create', array(
                         'name'     => $name,
@@ -124,13 +123,17 @@ class DefaultController extends CoreController
 
                     $mailer->setTo($customer->getEmail(), $name);
                     $mailer->send();
-                }
-                catch (\Swift_TransportException $e)
-                {
+                } catch (\Swift_TransportException $e) {
                     error_log(__LINE__.':'.__FILE__.' '.print_r($e->getMessage(),1)); // hf@bellcom.dk debugging
                 }
 
-                return $this->redirect($this->generateUrl('_account'));
+                $order = OrdersPeer::getCurrent();
+
+                if ($order->isNew()) {
+                    return $this->redirect($this->generateUrl('_account'));
+                }
+                return $this->redirect($this->generateUrl('_checkout'));
+
             } else {
                 $errors = new FormErrors($form, $this->get('translator'), 'account');
                 $errors = $errors->toString();
