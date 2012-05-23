@@ -3,9 +3,9 @@
 namespace Hanzo\Core;
 
 use Propel;
-use Hanzo\Model\ProductsStockQuery,
-    Hanzo\Model\ProductsStockPeer
-;
+use Hanzo\Model\ProductsStockQuery;
+use Hanzo\Model\ProductsStockPeer;
+
 
 class Stock
 {
@@ -127,7 +127,7 @@ class Stock
      * @param mixed $product a product object or product id
      * @return int
      */
-    public function get($product)
+    public function get($product, $as_object = false)
     {
         if (is_object($product)) {
             $id = $product->getId();
@@ -138,6 +138,10 @@ class Stock
 
         if (empty($this->stock[$id])) {
             $this->load($product);
+        }
+
+        if ($as_object) {
+            return $this->stock[$id];
         }
 
         return $this->stock[$id]['total'];
@@ -160,7 +164,7 @@ class Stock
             return TRUE;
         }
 
-        $stock = $this->get($product);
+        $stock = $this->get($product, true);
         ksort($stock);
         $total = array_shift($stock);
 
