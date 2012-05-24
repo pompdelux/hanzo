@@ -626,6 +626,7 @@ CREATE TABLE `redirects`
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`source` VARCHAR(255) NOT NULL,
 	`target` VARCHAR(255) NOT NULL,
+	`domain_key` VARCHAR(12) NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `index2` (`source`)
 ) ENGINE=InnoDB;

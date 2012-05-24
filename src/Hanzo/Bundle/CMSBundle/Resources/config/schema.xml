@@ -428,6 +428,7 @@
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="source" type="VARCHAR" size="255" required="true"/>
     <column name="target" type="VARCHAR" size="255" required="true"/>
+    <column name="domain_key" type="VARCHAR" size="12" required="true"/>
     <index name="index2">
       <index-column name="source"/>
     </index>

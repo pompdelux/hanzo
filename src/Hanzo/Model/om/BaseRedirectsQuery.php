@@ -20,10 +20,12 @@ use Hanzo\Model\RedirectsQuery;
  * @method     RedirectsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method     RedirectsQuery orderBySource($order = Criteria::ASC) Order by the source column
  * @method     RedirectsQuery orderByTarget($order = Criteria::ASC) Order by the target column
+ * @method     RedirectsQuery orderByDomainKey($order = Criteria::ASC) Order by the domain_key column
  *
  * @method     RedirectsQuery groupById() Group by the id column
  * @method     RedirectsQuery groupBySource() Group by the source column
  * @method     RedirectsQuery groupByTarget() Group by the target column
+ * @method     RedirectsQuery groupByDomainKey() Group by the domain_key column
  *
  * @method     RedirectsQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     RedirectsQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -35,10 +37,12 @@ use Hanzo\Model\RedirectsQuery;
  * @method     Redirects findOneById(int $id) Return the first Redirects filtered by the id column
  * @method     Redirects findOneBySource(string $source) Return the first Redirects filtered by the source column
  * @method     Redirects findOneByTarget(string $target) Return the first Redirects filtered by the target column
+ * @method     Redirects findOneByDomainKey(string $domain_key) Return the first Redirects filtered by the domain_key column
  *
  * @method     array findById(int $id) Return Redirects objects filtered by the id column
  * @method     array findBySource(string $source) Return Redirects objects filtered by the source column
  * @method     array findByTarget(string $target) Return Redirects objects filtered by the target column
+ * @method     array findByDomainKey(string $domain_key) Return Redirects objects filtered by the domain_key column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -127,7 +131,7 @@ abstract class BaseRedirectsQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `SOURCE`, `TARGET` FROM `redirects` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `SOURCE`, `TARGET`, `DOMAIN_KEY` FROM `redirects` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -292,6 +296,34 @@ abstract class BaseRedirectsQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(RedirectsPeer::TARGET, $target, $comparison);
+	}
+
+	/**
+	 * Filter the query on the domain_key column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByDomainKey('fooValue');   // WHERE domain_key = 'fooValue'
+	 * $query->filterByDomainKey('%fooValue%'); // WHERE domain_key LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $domainKey The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    RedirectsQuery The current query, for fluid interface
+	 */
+	public function filterByDomainKey($domainKey = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($domainKey)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $domainKey)) {
+				$domainKey = str_replace('*', '%', $domainKey);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(RedirectsPeer::DOMAIN_KEY, $domainKey, $comparison);
 	}
 
 	/**
