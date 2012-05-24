@@ -18,6 +18,7 @@ class DefaultController extends CoreController
     public function indexAction()
     {
         $page = CmsPeer::getFrontpage(Hanzo::getInstance()->get('core.locale'));
+
         return $this->forward('HanzoCMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
@@ -36,6 +37,7 @@ class DefaultController extends CoreController
 
             if (is_null($page)) {
                 $page = 'implement 404 !';
+                throw $this->createNotFoundException('The page does not exist (id: '.$id.' )'); // FIXME: translation
             }
         }
 
