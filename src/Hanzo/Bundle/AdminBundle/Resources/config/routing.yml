@@ -125,8 +125,10 @@ admin_cms_update_tree:
         _format: html|json
 
 admin_cms_redirects:
-    pattern:  /admin/cms/redirects/
-    defaults: { _controller: AdminBundle:Cms:redirectsIndex }
+    pattern:  /admin/cms/redirects/index/{domain_key}
+    defaults: 
+        _controller: AdminBundle:Cms:redirectsIndex
+        domain_key: null
 
 admin_cms_redirect_edit:
     pattern:  /admin/cms/redirects/edit/{id}
