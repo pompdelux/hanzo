@@ -36,7 +36,6 @@ class DefaultController extends CoreController
             $type = 'pages';
 
             if (is_null($page)) {
-                $page = 'implement 404 !';
                 throw $this->createNotFoundException('The page does not exist (id: '.$id.' )'); // FIXME: translation
             }
         }
