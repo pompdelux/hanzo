@@ -2,15 +2,13 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
-use Hanzo\Model\Customers,
-    Hanzo\Model\Orders
-    ;
+use Hanzo\Model\Customers;
+use Hanzo\Model\Orders;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
-    Hanzo\Bundle\PaymentBundle\Dibs\DibsApi,
-    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallResponse
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallResponse;
 
 class DibsApiCall implements PaymentMethodApiCallInterface
 {
@@ -24,7 +22,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     /**
      * undocumented class variable
      *
-     * @var DibsApiCall instance 
+     * @var DibsApiCall instance
      **/
     private static $instance = null;
 

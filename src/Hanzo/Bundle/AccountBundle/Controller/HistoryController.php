@@ -152,12 +152,26 @@ class HistoryController extends CoreController
             ->findOneById($order_id)
         ;
 
-        if ($order instanceof Orders) {
+        if (!$order instanceof Orders) {
             $this->get('session')->setFlash('notice', 'unable.to.delete.order.in.current.state');
         } else {
-            $order->delete();
             $this->get('session')->setFlash('notice', 'order.deleted');
 
+            // send delete notification
+            $mailer = $this->get('mail_manager');
+            $mailer->setMessage('order.deleted', array(
+                'name'     => $order->getFirstName(),
+                'order_id' => $order->getEmail(),
+                'date' => date('d-m-Y'),
+                'time' => date('H:i'),
+            ));
+
+            $mailer->setTo($order->getEmail(), $order->getFirstName().' '.$order->getLastName());
+            $mailer->send();
+
+            // nuke order
+            $this->get('ax_manager')->deleteOrder($order);
+            $order->delete();
         }
 
         return $this->redirect($this->generateUrl('_account'));

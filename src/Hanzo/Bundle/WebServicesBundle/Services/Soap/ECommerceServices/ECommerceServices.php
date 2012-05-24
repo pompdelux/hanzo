@@ -31,6 +31,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
 
 use \Exception;
 use \PropelCollection;
@@ -690,191 +691,390 @@ class ECommerceServices extends SoapService
     public function SyncSalesOrder($data){}
 
 
-/**
- * delete a specific sales order.
- *
- * @param object $data
- * @return object DeleteSalesOrderResult
- */
-public function DeleteSalesOrder($data)
-{
-    if (empty($data->eOrderNumber)) {
-        $this->logger->addCritical('no eOrderNumber given.');
-        return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
+    /**
+     * delete a specific sales order.
+     *
+     * @param object $data
+     * @return object DeleteSalesOrderResult
+     */
+    public function DeleteSalesOrder($data)
+    {
+        if (empty($data->eOrderNumber)) {
+            $this->logger->addCritical('no eOrderNumber given.');
+            return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
+        }
+
+        // ....................
+        // .....<ze code>......
+        // ....................
+
+        $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
+
+        if (!$order instanceof Orders) {
+            $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
+            $this->logger->addCritical($msg);
+            return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
+        }
+
+        if ($order->getPaymentGatewayId()) {
+            $gateway = Hanzo::getInstance()->container->get('payment.dibsapi');
+            try {
+                $gateway->call()->cancel($order->getCustomers(), $order);
+            } catch (\Exception $e) {
+                $this->logger->addCritical('Could not cancel payment: "'.$e->getMessage().'"');
+                return self::responseStatus('Error', 'DeleteSalesOrderResult', array('Could not cancel payment: "'.$e->getMessage().'"'));
+            }
+        }
+
+        $order->delete();
+
+        // ....................
+        // .....</ze code>.....
+        // ....................
+
+        if (count($errors)) {
+            $this->logger->addCritical('DeleteSalesOrderResult failed with the following error(s)', $errors);
+            return self::responseStatus('Error', 'DeleteSalesOrderResult', $errors);
+        }
+
+        return self::responseStatus('Ok', 'DeleteSalesOrderResult');
     }
 
-    $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
 
-    if (!$order instanceof Orders) {
-        $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
-        $this->logger->addCritical($msg);
-        return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
+    /**
+     * capture or refund an amount on an order
+     * on success we update the order status to 4, and sends an email
+     *
+     * @see ECommerceServices::SalesOrderLockUnlock
+     * @param stdClass $data
+     *   $data->eOrderNumber; // string
+     *   $data->amount;       // decimal
+     *   $data->initials;     // string
+     * @return object SalesOrderCaptureOrRefundResult
+     */
+    public function SalesOrderCaptureOrRefund ($data)
+    {
+        $errors = array();
+
+        if (empty($data->eOrderNumber)) {
+            $this->logger->addCritical('no eOrderNumber given.');
+            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array('no eOrderNumber given.'));
+        }
+
+        $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
+
+        if (!$order instanceof Orders) {
+            $msg = 'no order found with eOrderNumber "' . $data->eOrderNumber . '".';
+            $this->logger->addCritical($msg);
+            return self::responseStatus('Error', 'DeleteSalesOrderResult', array($msg));
+        }
+
+        // ....................
+        // .....<ze code>......
+        // ....................
+
+        $this->sendStatusMail = true;
+        if ($data->amount && ($data->amount > 0)) {
+            // capture
+            if ($order->getPaymentGatewayId()) {
+                $result = $this->SalesOrderCapture($data, $order);
+            }
+        } else {
+            // refund
+            if (($data->amount < 0) && $order->getPaymentGatewayId()) {
+                $result = $this->SalesOrderRefund($data, $order);
+            }
+        }
+        // ....................
+        // .....</ze code>.....
+        // ....................
+
+
+        if (count($errors)) {
+            $this->logger->addCritical('SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
+            return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
+        }
+
+        $this->SalesOrderLockUnlock((object) array(
+            'eOrderNumber' => $data->eOrderNumber,
+            'orderStatus' => 4,
+            'sendMail' => $this->sendStatusMail,
+        ));
+
+        return self::responseStatus('Ok', 'SalesOrderCaptureOrRefundResult');
     }
 
-    // ....................
-    // .....<ze code>......
-    // ....................
 
-    // ....................
-    // .....</ze code>.....
-    // ....................
+    /**
+     * change status of an order, the method also sends statuschanges on request.
+     *
+     * @param stdCLass $data
+     *   $data->eOrderNumber; // string
+     *   $data->orderStatus;  // integer
+     *   $data->sendMail;     // bool
+     * @return object SalesOrderLockUnlockResult
+     */
+    public function SalesOrderLockUnlock ($data)
+    {
+        $errors = array();
 
-    if (count($errors)) {
-        $this->logger->addCritical('DeleteSalesOrderResult failed with the following error(s)', $errors);
-        return self::responseStatus('Error', 'DeleteSalesOrderResult', $errors);
+        if (empty($data->eOrderNumber)) {
+            $this->logger->addCritical('no eOrderNumber given.');
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('no eOrderNumber given.'));
+        }
+
+        if ($data->orderStatus < 1 || $data->orderStatus > 4) {
+            $this->logger->addCritical('order status id #' . $data->orderStatus . ' is not known.');
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order status id #' . $data->orderStatus . ' is not known.'));
+        }
+
+        $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
+
+        if (!$order instanceof Orders) {
+            $this->logger->addCritical('order #' . $data->eOrderNumber . ' does not exist.');
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+        }
+
+        // ....................
+        // .....<ze code>......
+        // ....................
+
+        $status_map = array(
+            1 => Orders::STATE_PENDING,
+            2 => Orders::STATE_BUILDING,
+            3 => Orders::STATE_BEING_PROCESSED,
+            4 => Orders::STATE_SHIPPED,
+        );
+
+        if ($data->sendMail) {
+            try {
+                $name = trim($order->getFirstName() . ' ' . $order->getLastName());
+                $mailer = Hanzo::getInstance()->container->get('mail_manager');
+                $mailer->setTo($order->getEmail(), $name);
+                $mailer->setMessage('order.status_processing', array(
+                    'order_id' => $order->getId()
+                ));
+                $mailer->send();
+            } catch (Exception $e) {
+                Tools::log($e->getMessage());
+            }
+        }
+
+        $order->setState($status_map[$data->orderStatus]);
+        $order->save();
+
+        // ....................
+        // .....</ze code>.....
+        // ....................
+
+        return self::responseStatus('Ok', 'SalesOrderLockUnlockResult');
     }
 
-    return self::responseStatus('Ok', 'DeleteSalesOrderResult');
-}
+
+    /**
+     * Attach a document to a sales order.
+     *
+     * @param object $data
+     * @return object SalesOrderAddDocumentResult
+     */
+    public function SalesOrderAddDocument($data)
+    {
+        $errors = array();
+
+        if (empty($data->eOrderNumber)) {
+            $this->logger->addCritical('no eOrderNumber given.');
+            return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
+        }
+
+        $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
+
+        if (!$order instanceof Orders) {
+            $this->logger->addCritical('order #' . $data->eOrderNumber . ' does not exist.');
+            return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
+        }
+
+        // ....................
+        // .....<ze code>......
+        // ....................
+
+        $attributes = $order->getAttributes();
+
+        $attachment_index = 0;
+        if (isset($attributes->attachment)) {
+            $attachment_index = count($attributes->attachment);
+        }
+
+        $order->setAttribute('attachment_'.$attachment_index, 'attachment', $data->fileName);
+        $order->save();
+
+        // ....................
+        // .....</ze code>.....
+        // ....................
+
+        return self::responseStatus('Ok', 'SalesOrderAddDocumentResult');
+    }
 
 
-/**
-* capture or refund an amout on an order
-* on success we update the order status to 4, and sends an email
-*
-* @see ECommerceServices::SalesOrderLockUnlock
-* @param stdClass $data
-*   $data->eOrderNumber; // string
-*   $data->amount;       // decimal
-*   $data->initials;     // string
-* @return object SalesOrderCaptureOrRefundResult
-*/
-public function SalesOrderCaptureOrRefund ($data)
-{
-$errors = array();
+    /**
+     * building responce message
+     *
+     * @param string $status
+     * @param string $var message type
+     * @param array $messages array of messages to send
+     *
+     * @return object
+     */
+    protected function responseStatus ($status, $var, $messages = array())
+    {
+        $response = new \stdClass();
+        $response->{$var} = new \stdClass();
+        $response->{$var}->Status = new \SoapVar($status, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");
 
-if (empty($data->eOrderNumber)) {
-$this->logger->addCritical('no eOrderNumber given.');
-return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array('no eOrderNumber given.'));
-}
+        foreach ($messages as $message) {
+            $response->{$var}->Message[] = new \SoapVar($message, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");
+        }
 
-//$order = bc_getOrderById($data->eOrderNumber);
-
-if (empty($order)) {
-$errors[] = 'order #' . $data->eOrderNumber . ' does not exist.';
-}
-else {
-
-// ....................
-// .....<ze code>......
-// ....................
-
-// ....................
-// .....</ze code>.....
-// ....................
-
-}
-
-if (count($errors)) {
-$this->logger->addCritical('SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
-return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
-}
-
-return self::responseStatus('Ok', 'SalesOrderCaptureOrRefundResult');
-}
+        return $response;
+    }
 
 
-/**
-* change status of an order, the method also sends statuschanges on request.
-*
-* @param stdCLass $data
-*   $data->eOrderNumber; // string
-*   $data->orderStatus;  // integer
-*   $data->sendMail;     // bool
-* @return object SalesOrderLockUnlockResult
-*/
-public function SalesOrderLockUnlock ($data)
-{
-$errors = array();
+    /**
+     * SalesOrderCapture - split out from SalesOrderCaptureOrRefund
+     *
+     * @see ECommerceServices::SalesOrderCaptureOrRefund
+     * @param stdClass $data  soap data object
+     * @param Order    $order order object
+     * @return mixed   true on success array of errors on error
+     */
+    protected function SalesOrderCapture($data, Order $order)
+    {
+        $error = array();
 
-if (empty($data->eOrderNumber)) {
-$this->logger->addCritical('no eOrderNumber given.');
-return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('no eOrderNumber given.'));
-}
+        try {
+            $tmpAmount = str_replace(',', '.', $data->amount);
+            list($large, $small) = explode('.', $tmpAmount);
+            $amount = $large . sprintf('%02d', $small);
 
-if ($data->orderStatus < 1 || $data->orderStatus > 4) {
-$this->logger->addCritical('order status id #' . $data->orderStatus . ' is not known.');
-return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order status id #' . $data->orderStatus . ' is not known.'));
-}
+            $gateway = $this->hanzo->container->get('payment.dibsapi');
 
-// $order = bc_getOrderById($data->eOrderNumber);
+            // TODO: remove when .nl gets its own site
+            if (in_array($order->getAttributes()->global->domain_name, array('pompdelux.nl','www.pompdelux.nl'))) {
+                $settings = $gateway->getSettings();
+                $settings['merchant'] = '90055039';
+                $settings['md5key1']  = '@6B@(-rfD:DiXYh}(76h6C1rexwZ)-cw';
+                $settings['md5key2']  = '-|FA8?[K3rb,T$:pJSr^lBsP;hMq&p,X';
+                $settings['api_user'] = 'pdl-nl-api-user';
+                $settings['api_pass'] = 'g7u6Ri&c';
 
-if (empty($order)) {
-$this->logger->addCritical('order #' . $data->eOrderNumber . ' does not exist.');
-return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
-}
+                $call = DibsApiCall::getInstance($settings, $gateway);
+                $response = $call->capture($order, $amount);
+            } else {
+                $response = $gateway->call()->capture($order, $amount);
+            }
 
-// ....................
-// .....<ze code>......
-// ....................
+            $result = $response->debug();
 
-// ....................
-// .....</ze code>.....
-// ....................
+            if ( $result['status'] ) {
+                $error = array(
+                    'cound not capture order #' . $data->eOrderNumber,
+                    'error: ' . $result['status_description']
+                );
+            }
+        } catch (Exception $e) {
+            $error = array(
+                'cound not capture order #' . $data->eOrderNumber,
+                'error: ' . $e->getMessage()
+            );
+        }
 
-
-if (count($errors)) {
-$this->logger->addCritical('SalesOrderLockUnlockResult failed with the following error(s)', $errors);
-return self::responseStatus('Error', 'SalesOrderLockUnlockResult', $errors);
-}
-
-return self::responseStatus('Ok', 'SalesOrderLockUnlockResult');
-}
-
-
-/**
-* Attach a document to a sales order.
-*
-* @param object $data
-* @return object SalesOrderAddDocumentResult
-*/
-public function SalesOrderAddDocument($data)
-{
-$errors = array();
-
-if (empty($data->eOrderNumber)) {
-$this->logger->addCritical('no eOrderNumber given.');
-return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
-}
-
-// ....................
-// .....<ze code>......
-// ....................
-
-// ....................
-// .....</ze code>.....
-// ....................
-
-if (count($errors)) {
-$this->logger->addCritical('SalesOrderAddDocumentResult failed with the following error(s)', $errors);
-return self::responseStatus('Error', 'SalesOrderAddDocumentResult', $errors);
-}
-
-return self::responseStatus('Ok', 'SalesOrderAddDocumentResult');
-}
+        return count($error) ? $error : true;
+    }
 
 
-/**
-* building responce message
-*
-* @param string $status
-* @param string $var message type
-* @param array $messages array of messages to send
-*
-* @return object
-*/
-protected function responseStatus ($status, $var, $messages = array())
-{
-$response = new \stdClass();
-$response->{$var} = new \stdClass();
-$response->{$var}->Status = new \SoapVar($status, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");
+    /**
+     * SalesOrderRefund - split out from SalesOrderCaptureOrRefund
+     *
+     * @see ECommerceServices::SalesOrderCaptureOrRefund
+     * @param [type] $data  [description]
+     * @param Order  $order [description]
+     * @return mixed   true on success array of errors on error
+     */
+    protected function SalesOrderRefund($data, Order $order)
+    {
+        $setStatus = false;
+        $error = array();
 
-foreach ($messages as $message) {
-$response->{$var}->Message[] = new \SoapVar($message, \XSD_STRING, "", "http://schemas.pompdelux.dk/webintegration/ResponseStatus");
-}
+        $amount = str_replace(',', '.', $data->amount);
+        list($large, $small) = explode('.', $amount);
+        $amount = $large . sprintf('%02d', $small);
 
-return $response;
-}
+        $gateway = $this->hanzo->container->get('payment.dibsapi');
+
+        try {
+            $response = $gateway->call()->refund($order, ($amount * -1));
+            $result = $response->debug();
+
+            if ($result['status'] != 0) {
+                $doSendError = true;
+                $error = array(
+                    'cound not refund order #' . $data->eOrderNumber,
+                    'error: ' . $result['status_description']
+                );
+            } else {
+                $name = $order->getFirstName() . ' ' . $order->getLastName();
+                $parameters = array(
+                    'order_id' => $order->getId(),
+                    'name' => $name,
+                    'amount' => $data->amount,
+                );
+
+                $mailer = $this->hanzo->container->get('mail_manager');
+                if ($order->getCurrencyCode() == 'EUR') {
+                    $mailer->setMessage('order.credited', null, 'en_GB');
+                } else {
+                    $mailer->setMessage('order.credited');
+                }
+
+                $mailer->setTo($order->getEmail(), $name);
+                $mailer->send();
+
+                $this->sendStatusMail = false;
+            }
+
+        } catch (Exception $e) {
+            $doSendError = true;
+            $error = array(
+                'cound not capture order #' . $data->eOrderNumber,
+                'error: ' . $e->getMessage()
+            );
+        }
+
+        if($doSendError) {
+            switch (substr($order->getAttributes()->global->domain_name, -2)) {
+                case 'dk':
+                case 'om':
+                    $to = 'retur@pompdelux.dk';
+                    break;
+                case 'se':
+                    $to = 'retur@pompdelux.se';
+                    break;
+                case 'nl':
+                    $to = 'retur@pompdelux.nl';
+                    break;
+                case 'no':
+                    $to = 'retur@pompdelux.no';
+                    break;
+            }
+
+            $mailer = $this->hanzo->container->get('mail_manager');
+            $mailer->setTo($to);
+            $mailer->setsubject('Refundering fejlede på ordre #' . $data->eOrderNumber);
+            $mailer->setBody("E-ordrenummer: ".$data->eOrderNumber." Transaktionsnummer: ".$order->getPaymentGatewayId()."\n\nMed venlig hilsen DIBS\n");
+            $mailer->send();
+        }
+
+        return count($error) ? $error : true;
+    }
 
 
 

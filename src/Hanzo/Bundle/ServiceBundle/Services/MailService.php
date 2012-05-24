@@ -38,12 +38,17 @@ class MailService
      *
      * @param string $template tis is the template identifier - excluding the .txt and/or .html postfix
      * @param mixed $parameters parameters send to the twig template
+     * @param string $locale use to override default (current) locale
      */
-    public function setMessage($template, $parameters = NULL)
+    public function setMessage($template, $parameters = null, $locale = null)
     {
+        if (empty($locale)) {
+            $locale = Hanzo::getInstance()->get('core.locale');
+        }
+
         $messages = MessagesI18nQuery::create()
             ->joinWithMessages()
-            ->filterByLocale(Hanzo::getInstance()->get('core.locale'))
+            ->filterByLocale($locale)
             ->useMessagesQuery()
                 ->filterByNs('email')
                 ->filterByKey($template.'.txt')

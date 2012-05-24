@@ -82,7 +82,7 @@ class DibsApi implements PaymentMethodApiInterface
 
         $missing = array();
 
-        foreach ($requiredFields as $field) 
+        foreach ($requiredFields as $field)
         {
             if ( !isset($settings[$field]) )
             {
@@ -94,6 +94,11 @@ class DibsApi implements PaymentMethodApiInterface
         {
             throw new Exception( 'DibsApi: missing settings: '. implode(',',$missing) );
         }
+    }
+
+    public function getSettings()
+    {
+        return $this->settings;
     }
 
     /**
@@ -340,7 +345,7 @@ class DibsApi implements PaymentMethodApiInterface
      **/
     public function currencyCodeToNum( $code )
     {
-        if ( isset($this->currency_map[$code]) ) 
+        if ( isset($this->currency_map[$code]) )
         {
             return $this->currency_map[$code];
         }
