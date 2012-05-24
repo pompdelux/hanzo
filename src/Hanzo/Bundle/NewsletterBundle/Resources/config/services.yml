@@ -9,3 +9,4 @@ services:
 
     newsletterapi:
         class: %newsletterapi.class%
+        arguments: [@mail_manager]

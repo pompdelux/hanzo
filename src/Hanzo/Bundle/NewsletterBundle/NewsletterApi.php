@@ -19,17 +19,50 @@ class NewsletterApi
      **/
     protected $domainKey = null;
 
+    protected $mailer = null;
+
     /**
      * __construct
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct()
+    public function __construct( $mailer )
     {
+        $this->mailer = $mailer;
         $this->domainKey = Hanzo::getInstance()->get('core.domain_key');
-        // FIXME: hardcoded
+        // TODO: priority: low, hardcoded vars
         $this->phplistUrl = 'http://phplist.pompdelux.dk/';
         $this->httpReferer = 'http://www.pompdelux.dk/';
+    }
+
+    /**
+     * sendNotificationEmail
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function sendNotificationEmail( $action, $email, $name = '' )
+    {
+        switch ($action) 
+        {
+            case 'subscribe':
+                $tpl = 'newsletter.subscribe';
+                break;
+            case 'unsubscribe':
+                $tpl = 'newsletter.unsubscribe';
+                break;
+            default:
+                return false;
+                break;
+        }
+
+        $this->mailer->setMessage($tpl, array(
+            'name'  => $name,
+            'email' => $email,
+        ));
+
+        $this->mailer->setTo( $email, $name );
+        $this->mailer->send();
+        return true;
     }
 
     /**
@@ -78,6 +111,7 @@ class NewsletterApi
     {
         $listid = 0;
 
+        // TODO: priority: low, hardcoded vars
         switch ($this->domainKey)
         {
             case 'DK':

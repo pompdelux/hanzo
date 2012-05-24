@@ -1,3 +1,4 @@
-NewsletterBundle_test:
-    pattern:  /newsletter/
-    defaults: { _controller: NewsletterBundle:Default:index }
+_newsletter_action:
+    pattern:  /newsletter/{action}
+    defaults: { _controller: NewsletterBundle:Default:handle, _format: json }
+    requirements: { _format: (xml|json), _method: POST }
