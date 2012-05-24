@@ -23,6 +23,14 @@ namespace :deploy do
   task :copy_prod_config do
     run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters.ini && wget -q --output-document=#{shared_path}/app/config/hanzo.yml http://tools.bellcom.dk/hanzo/hanzo.yml")
   end
+  desc "Roll out apc-clear.php"
+  task :copy_apcclear do
+    run("wget -q --output-document=/var/www/apc-clear.php http://tools.bellcom.dk/hanzo/apc-clear.php.txt")
+  end
+  desc "Clear apc cache on the local server"
+  task :apcclear do
+    run("wget -q -O /dev/null http://localhost/apc-clear.php")
+  end
 end
 
 
