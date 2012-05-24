@@ -50,6 +50,7 @@ class ConsultantsController extends CoreController
                     ->filterByPhone($q)
                     ->_or()
                     ->filterById($q_clean)
+                    ->orderByIsActive('DESC')
                     ->orderByFirstName()
                     ->orderByLastName()
                 ->endUse()
@@ -61,6 +62,7 @@ class ConsultantsController extends CoreController
 
             $consultants = ConsultantsQuery::create()
                 ->useCustomersQuery()
+                    ->orderByIsActive('DESC')
                     ->orderByFirstName()
                     ->orderByLastName()
                 ->endUse()
