@@ -1,5 +1,7 @@
 <?php // æåå
-mysql_connect('localhost', 'root', '');
+
+$db_name = 'hanzo_dk';
+mysql_connect('localhost', 'hanzo_dk', '');
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
@@ -11,9 +13,9 @@ $sql = "
     ci.settings,
     c.type
   FROM
-    hanzo.cms_i18n AS ci
+    {$db_name}.cms_i18n AS ci
   JOIN
-    hanzo.cms AS c
+    {$db_name}.cms AS c
     ON
       (c.id = ci.id)
   WHERE
@@ -94,7 +96,7 @@ while ($record = mysql_fetch_object($result)) {
   }
 
   if ($type) {
-    $sql = "UPDATE hanzo.cms SET type = '".mysql_real_escape_string($type)."' WHERE id = {$record->id}";
+    $sql = "UPDATE {$db_name}.cms SET type = '".mysql_real_escape_string($type)."' WHERE id = {$record->id}";
     mysql_query($sql);
   }
 
@@ -102,7 +104,7 @@ while ($record = mysql_fetch_object($result)) {
   if ($data) {
     $settings = "'".mysql_real_escape_string($data)."'";
   }
-  $sql = "UPDATE hanzo.cms_i18n SET settings = {$settings} WHERE id = {$record->id} AND locale = '{$record->locale}'";
+  $sql = "UPDATE {$db_name}.cms_i18n SET settings = {$settings} WHERE id = {$record->id} AND locale = '{$record->locale}'";
   mysql_query($sql);
 }
 
