@@ -110,7 +110,7 @@ INSERT INTO `domains_settings` (`id`, `domain_key`, `c_key`, `ns`, `c_value`) VA
 (76, 'DK', 'provider.appnr', 'sms', '72445'),
 (77, 'DK', 'provider.mediacode', 'sms', 'pdl'),
 (78, 'DK', 'provider.price', 'sms', '0.00DKK'),
-(79, 'DK', 'provider.get_smsc', 'sms', '1')
+(79, 'DK', 'provider.get_smsc', 'sms', '1'),
 (80, 'DK', 'paytypes', 'dibsapi', 'a:4:{s:2:"DK";b:1;s:4:"VISA";b:1;s:4:"ELEC";b:1;s:2:"MC";b:1;}'),
 (81, 'NL', 'paytypes', 'dibsapi', 'a:4:{s:2:"DK";b:0;s:4:"VISA";b:1;s:4:"ELEC";b:1;s:2:"MC";b:1;}'),
 (82, 'NO', 'paytypes', 'dibsapi', 'a:4:{s:2:"DK";b:0;s:4:"VISA";b:1;s:4:"ELEC";b:1;s:2:"MC";b:1;}'),
