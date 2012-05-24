@@ -245,7 +245,6 @@ DOC;
      {
         switch ($name) {
             case 'newsletter_form':
-
                 $view = '';
                 $customer = null;
                 if (isset($parameters['view']) && $parameters['view'] == 'simple') {
@@ -261,26 +260,18 @@ DOC;
                 );
 
                 break;
-
-            // case 'file':
-
-            //     $out = '';
-            //     if (isset($parameters['format'])) {
-            //         $title = isset($parameters['title']) ? $parameters['title'] : '';
-            //         $class = isset($parameters['class']) ? $parameters['class'] : '';
-
-            //         $ts = '';
-            //         switch ($parameters['format']) {
-            //             case 'short':
-            //                 break;
-            //             case 'long':
-            //                 break;
-            //         }
-            //     }
-
-            //     break;
         }
 
-        return $env->render($template, $parameters);
+        $html = '';
+        // "string mode" is on, so we disable it while parsing the "real" template.
+        $this->twig_string->endTransaction();
+        try {
+            $html = $env->render($template, $parameters);
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+        }
+        $this->twig_string->startTransaction();
+
+        return $html;
      }
 }
