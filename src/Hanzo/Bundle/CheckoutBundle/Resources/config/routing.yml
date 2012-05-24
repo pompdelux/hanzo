@@ -24,3 +24,8 @@ CheckoutBundle_summery:
 _checkout_success:
     pattern:  /checkout/success
     defaults: { _controller: CheckoutBundle:Default:success }
+
+_checkout_populate_order:
+    pattern:  /checkout/populate_order
+    defaults: { _controller: CheckoutBundle:Default:populateOrder, _format: json }
+    requirements: { _format: (xml|json), _method: POST }

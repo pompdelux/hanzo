@@ -112,9 +112,9 @@ class DefaultController extends CoreController
     protected function updateAddress( Orders $order, Request $request, $state )
     {
         if ( $state === false ) {
-          $order->clearBillingAddress();
-          $order->clearDeliveryAddress();
-          return;
+            $order->clearBillingAddress();
+            $order->clearDeliveryAddress();
+            return;
         }
 
         $customer = CustomersPeer::getCurrent();
@@ -146,7 +146,7 @@ class DefaultController extends CoreController
                 case 'shipping':
                     $order->setDeliveryAddress( $query );
                     break;
-                // TODO: Døgnpost?
+                    // TODO: Døgnpost?
             }
         }
     }
@@ -225,7 +225,7 @@ class DefaultController extends CoreController
         $order = OrdersPeer::getCurrent();
 
         try {
-          $this->validateShipping( $order );
+            $this->validateShipping( $order );
         } catch (Exception $e) {
             return $this->json_response(array(
                 'status' => false,
@@ -250,60 +250,60 @@ class DefaultController extends CoreController
      **/
     protected function validateShipping( Orders $order ){}
 
-    /**
-     * addressesAction
-     *
-     * @author Henrik Farre <hf@bellcom.dk>
-     * @return void
-     **/
-    public function addressesAction($skip_empty = false, $order = null)
-    {
-        // TODO: should we take the addresses from the order?
-        $customer = CustomersPeer::getCurrent();
-        $customerAddresses = $customer->getAddresses();
+        /**
+         * addressesAction
+         *
+         * @author Henrik Farre <hf@bellcom.dk>
+         * @return void
+         **/
+        public function addressesAction($skip_empty = false, $order = null)
+        {
+            // TODO: should we take the addresses from the order?
+            $customer = CustomersPeer::getCurrent();
+            $customerAddresses = $customer->getAddresses();
 
-        $addresses = array();
+            $addresses = array();
 
-        $shippingApi = $this->get('shipping.shippingapi');
+            $shippingApi = $this->get('shipping.shippingapi');
 
-        foreach ($customerAddresses as $address) {
-            $addresses[$address->getType()] = $address;
-        }
-
-        if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
-            return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
-        }
-
-        // Only a payment address exists, create a shipping address based on the payment address
-        if ( !isset($addresses['shipping']) && isset($addresses['payment']) ) {
-            $shipping = $addresses['payment']->copy();
-            $shipping->setType('shipping');
-            $shipping->save();
-            $addresses['shipping'] = $shipping;
-        }
-
-        // Same as above just for payment
-        if ( !isset($addresses['payment']) && isset($addresses['shipping']) ) {
-            $payment = $addresses['shipping']->copy();
-            $payment->setType('payment');
-            $payment->save();
-            $addresses['payment'] = $payment;
-        }
-
-        // TODO: the address should be created here minus the fields
-        $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
-
-        if ($skip_empty || ($order instanceof Orders)) {
-            if (empty($addresses['overnightbox'])) {
-                $hasOvernightBox = false;
+            foreach ($customerAddresses as $address) {
+                $addresses[$address->getType()] = $address;
             }
-            if ($order->getDeliveryMethod() == 11) {
-                unset($addresses['shipping']);
-            }
-        }
 
-        return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
-    }
+            if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
+                return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
+            }
+
+            // Only a payment address exists, create a shipping address based on the payment address
+            if ( !isset($addresses['shipping']) && isset($addresses['payment']) ) {
+                $shipping = $addresses['payment']->copy();
+                $shipping->setType('shipping');
+                $shipping->save();
+                $addresses['shipping'] = $shipping;
+            }
+
+            // Same as above just for payment
+            if ( !isset($addresses['payment']) && isset($addresses['shipping']) ) {
+                $payment = $addresses['shipping']->copy();
+                $payment->setType('payment');
+                $payment->save();
+                $addresses['payment'] = $payment;
+            }
+
+            // TODO: the address should be created here minus the fields
+            $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
+
+            if ($skip_empty || ($order instanceof Orders)) {
+                if (empty($addresses['overnightbox'])) {
+                    $hasOvernightBox = false;
+                }
+                if ($order->getDeliveryMethod() == 11) {
+                    unset($addresses['shipping']);
+                }
+            }
+
+            return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
+        }
 
 
     /**
@@ -340,7 +340,7 @@ class DefaultController extends CoreController
             ->joinWithProducts()
             ->filterByType('product')
             ->findByOrdersId($order->getId())
-        ;
+            ;
 
         $product_ids = array();
         $product_units = array();
@@ -427,5 +427,33 @@ class DefaultController extends CoreController
             'order_id' => $order->getId(),
             'expected_in' => 2
         ));
+    }
+
+    /**
+     * populateOrderAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function populateOrderAction()
+    { 
+        $orderObj      = OrdersPeer::getCurrent();
+        $attributesObj = $orderObj->getOrdersAttributess();
+        $order         = $orderObj->toArray();
+        $attributes    = $attributesObj->toArray();
+        $orderArray    = array();
+
+        foreach ($attributes as $attribute) 
+        {
+            if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) 
+            {
+                $orderArray['PaymentMethod'] = $attribute['CValue'];
+                break;
+            }
+        }
+
+        $orderArray['BillingMethod']  = $order['BillingMethod'];
+        $orderArray['DeliveryMethod'] = $order['DeliveryMethod'];
+
+        return $this->json_response( array('error' => false, 'order' => $orderArray) );
     }
 }
