@@ -88,7 +88,7 @@ class OrdersTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('customers_id' => 'id', ), 'SET NULL', null);
+		$this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('customers_id' => 'id', ), 'SET NULL', 'CASCADE');
 		$this->addRelation('CountriesRelatedByBillingCountriesId', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('billing_countries_id' => 'id', ), null, null);
 		$this->addRelation('CountriesRelatedByDeliveryCountriesId', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('delivery_countries_id' => 'id', ), null, null);
 		$this->addRelation('OrdersAttributes', 'Hanzo\\Model\\OrdersAttributes', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersAttributess');

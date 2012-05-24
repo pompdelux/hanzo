@@ -118,9 +118,9 @@ class SettingsController extends CoreController
     /**
      * Shows the settings for the chosed domain.
      *
-     * @param domain_key The domain key to show example:'DA', default=COM
+     * @param domain_key The domain key
      */
-    public function domainAction($domain_key = 'COM')
+    public function domainAction($domain_key = 'DK')
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
@@ -207,9 +207,9 @@ class SettingsController extends CoreController
     /**
      * Shows the payment and delivery settings for the chosed domain.
      *
-     * @param domain_key The domain key to show example:'DA', default=COM
+     * @param domain_key The domain key
      */
-    public function paymentdeliveryAction($domain_key = 'COM')
+    public function paymentdeliveryAction($domain_key = 'DK')
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));

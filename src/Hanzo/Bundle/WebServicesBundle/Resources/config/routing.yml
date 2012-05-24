@@ -49,3 +49,8 @@ ws_google_maps_consultants_map:
     pattern: /rest/{version}/gm/consultants
     defaults:
         _controller: WebServicesBundle:RestGoogle:consultants
+
+
+ws_soap_test:
+    pattern:  /soaptest/
+    defaults: { _controller: WebServicesBundle:Soap:test }

@@ -64,7 +64,7 @@ class ProductsTableMap extends TableMap
 	{
 		$this->addRelation('ProductsRelatedByMaster', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), 'CASCADE', null);
 		$this->addRelation('ProductsWashingInstructions', 'Hanzo\\Model\\ProductsWashingInstructions', RelationMap::MANY_TO_ONE, array('washing' => 'code', ), null, null);
-		$this->addRelation('MannequinImages', 'Hanzo\\Model\\MannequinImages', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), null, null, 'MannequinImagess');
+		$this->addRelation('MannequinImages', 'Hanzo\\Model\\MannequinImages', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'MannequinImagess');
 		$this->addRelation('ProductsRelatedBySku', 'Hanzo\\Model\\Products', RelationMap::ONE_TO_MANY, array('sku' => 'master', ), 'CASCADE', null, 'ProductssRelatedBySku');
 		$this->addRelation('ProductsDomainsPrices', 'Hanzo\\Model\\ProductsDomainsPrices', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsDomainsPricess');
 		$this->addRelation('ProductsImages', 'Hanzo\\Model\\ProductsImages', RelationMap::ONE_TO_MANY, array('id' => 'products_id', ), 'CASCADE', null, 'ProductsImagess');

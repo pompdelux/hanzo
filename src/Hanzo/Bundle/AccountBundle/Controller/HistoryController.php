@@ -121,6 +121,7 @@ class HistoryController extends CoreController
 
             $orders[] = array(
                 'id' => $record->getId(),
+                'can_modify' => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
                 'status' => str_replace('-', 'neg.', $record->getState()),
                 'created_at' => $record->getCreatedAt(),
                 'total' => $record->getTotalPrice(),
@@ -134,5 +135,31 @@ class HistoryController extends CoreController
             'link' => $link,
             'paginate' => $paginate
         ));
+    }
+
+
+    /**
+     * delete an order, but only if in a allowed state
+     *
+     * @param  int $order_id
+     * @return Response
+     */
+    public function deleteAction($order_id)
+    {
+        $order = OrdersQuery::create()
+            ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
+            ->filterByState(Orders::STATE_PENDING, Criteria::LESS_EQUAL)
+            ->findOneById($order_id)
+        ;
+
+        if ($order instanceof Orders) {
+            $this->get('session')->setFlash('notice', 'unable.to.delete.order.in.current.state');
+        } else {
+            $order->delete();
+            $this->get('session')->setFlash('notice', 'order.deleted');
+
+        }
+
+        return $this->redirect($this->generateUrl('_account'));
     }
 }

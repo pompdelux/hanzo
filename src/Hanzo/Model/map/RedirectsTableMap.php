@@ -45,6 +45,7 @@ class RedirectsTableMap extends TableMap
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addColumn('SOURCE', 'Source', 'VARCHAR', true, 255, null);
 		$this->addColumn('TARGET', 'Target', 'VARCHAR', true, 255, null);
+		$this->addColumn('DOMAIN_KEY', 'DomainKey', 'VARCHAR', true, 12, null);
 		// validators
 	} // initialize()
 

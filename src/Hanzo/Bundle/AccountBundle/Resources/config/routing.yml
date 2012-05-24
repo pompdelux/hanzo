@@ -49,6 +49,13 @@ _account_edit_order:
     requirements:
         order_id: \d+
 
+_account_delete_order:
+    pattern: /account/order/{order_id}/delete
+    defaults:
+        _controller: AccountBundle:History:delete
+    requirements:
+        order_id: \d+
+
 _account_edit:
     pattern: /account/edit
     defaults:

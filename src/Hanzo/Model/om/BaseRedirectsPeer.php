@@ -35,13 +35,13 @@ abstract class BaseRedirectsPeer {
 	const TM_CLASS = 'RedirectsTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 3;
+	const NUM_COLUMNS = 4;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 3;
+	const NUM_HYDRATE_COLUMNS = 4;
 
 	/** the column name for the ID field */
 	const ID = 'redirects.ID';
@@ -51,6 +51,9 @@ abstract class BaseRedirectsPeer {
 
 	/** the column name for the TARGET field */
 	const TARGET = 'redirects.TARGET';
+
+	/** the column name for the DOMAIN_KEY field */
+	const DOMAIN_KEY = 'redirects.DOMAIN_KEY';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
@@ -71,12 +74,12 @@ abstract class BaseRedirectsPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Source', 'Target', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'source', 'target', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::SOURCE, self::TARGET, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SOURCE', 'TARGET', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'source', 'target', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Source', 'Target', 'DomainKey', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'source', 'target', 'domainKey', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::SOURCE, self::TARGET, self::DOMAIN_KEY, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SOURCE', 'TARGET', 'DOMAIN_KEY', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'source', 'target', 'domain_key', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	/**
@@ -86,12 +89,12 @@ abstract class BaseRedirectsPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Source' => 1, 'Target' => 2, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'source' => 1, 'target' => 2, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SOURCE => 1, self::TARGET => 2, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SOURCE' => 1, 'TARGET' => 2, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'source' => 1, 'target' => 2, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Source' => 1, 'Target' => 2, 'DomainKey' => 3, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'source' => 1, 'target' => 2, 'domainKey' => 3, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SOURCE => 1, self::TARGET => 2, self::DOMAIN_KEY => 3, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SOURCE' => 1, 'TARGET' => 2, 'DOMAIN_KEY' => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'source' => 1, 'target' => 2, 'domain_key' => 3, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
 	/**
@@ -166,10 +169,12 @@ abstract class BaseRedirectsPeer {
 			$criteria->addSelectColumn(RedirectsPeer::ID);
 			$criteria->addSelectColumn(RedirectsPeer::SOURCE);
 			$criteria->addSelectColumn(RedirectsPeer::TARGET);
+			$criteria->addSelectColumn(RedirectsPeer::DOMAIN_KEY);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.SOURCE');
 			$criteria->addSelectColumn($alias . '.TARGET');
+			$criteria->addSelectColumn($alias . '.DOMAIN_KEY');
 		}
 	}
 

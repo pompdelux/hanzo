@@ -397,6 +397,7 @@ CREATE TABLE `mannequin_images`
 	CONSTRAINT `fk_mannequin_images_1`
 		FOREIGN KEY (`master`)
 		REFERENCES `products` (`sku`)
+		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -625,6 +626,7 @@ CREATE TABLE `redirects`
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`source` VARCHAR(255) NOT NULL,
 	`target` VARCHAR(255) NOT NULL,
+	`domain_key` VARCHAR(12) NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `index2` (`source`)
 ) ENGINE=InnoDB;
@@ -726,6 +728,7 @@ CREATE TABLE `orders`
 	CONSTRAINT `orders_FK_1`
 		FOREIGN KEY (`customers_id`)
 		REFERENCES `customers` (`id`)
+		ON UPDATE CASCADE
 		ON DELETE SET NULL,
 	CONSTRAINT `fk_customers_1`
 		FOREIGN KEY (`billing_countries_id`)

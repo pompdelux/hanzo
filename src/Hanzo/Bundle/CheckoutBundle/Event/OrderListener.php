@@ -3,8 +3,8 @@
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
 use Hanzo\Core\Tools;
-
 use Hanzo\Model\Orders;
+use Hanzo\Bundle\ServiceBundle\Services\AxService;
 
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
@@ -13,10 +13,12 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 class OrderListener
 {
     protected $session;
+    protected $ax;
 
-    public function __construct(Session $session)
+    public function __construct(Session $session, AxService $ax)
     {
         $this->session = $session;
+        $this->ax = $ax;
     }
 
     public function onEditStart(FilterOrderEvent $event)
@@ -25,9 +27,6 @@ class OrderListener
 
         // first we create the edit version.
         $order->createNewVersion();
-        // then we update the new version with new states
-        // - is done in the the basket
-        //$order->setState(Orders::STATE_BUILDING);
 
         $order->setSessionId(session_id());
         $order->setInEdit(true);
@@ -35,6 +34,8 @@ class OrderListener
 
         $this->session->set('in_edit', true);
         $this->session->set('order_id', $order->getId());
+
+        $this->ax->lockUnlockSalesOrder($order, true);
     }
 
     public function onEditCancel(FilterOrderEvent $event)
@@ -47,5 +48,7 @@ class OrderListener
         $this->session->remove('in_edit');
         $this->session->remove('order_id');
         $this->session->migrate();
+
+        $this->ax->lockUnlockSalesOrder($order, false);
     }
 }

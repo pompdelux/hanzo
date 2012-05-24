@@ -64,6 +64,12 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 	protected $target;
 
 	/**
+	 * The value for the domain_key field.
+	 * @var        string
+	 */
+	protected $domain_key;
+
+	/**
 	 * Flag to prevent endless save loop, if this object is referenced
 	 * by another object which falls in this transaction.
 	 * @var        boolean
@@ -105,6 +111,16 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 	public function getTarget()
 	{
 		return $this->target;
+	}
+
+	/**
+	 * Get the [domain_key] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getDomainKey()
+	{
+		return $this->domain_key;
 	}
 
 	/**
@@ -168,6 +184,26 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 	} // setTarget()
 
 	/**
+	 * Set the value of [domain_key] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Redirects The current object (for fluent API support)
+	 */
+	public function setDomainKey($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->domain_key !== $v) {
+			$this->domain_key = $v;
+			$this->modifiedColumns[] = RedirectsPeer::DOMAIN_KEY;
+		}
+
+		return $this;
+	} // setDomainKey()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -202,6 +238,7 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->source = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->target = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->domain_key = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -210,7 +247,7 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 3; // 3 = RedirectsPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 4; // 4 = RedirectsPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Redirects object", $e);
@@ -427,6 +464,9 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 		if ($this->isColumnModified(RedirectsPeer::TARGET)) {
 			$modifiedColumns[':p' . $index++]  = '`TARGET`';
 		}
+		if ($this->isColumnModified(RedirectsPeer::DOMAIN_KEY)) {
+			$modifiedColumns[':p' . $index++]  = '`DOMAIN_KEY`';
+		}
 
 		$sql = sprintf(
 			'INSERT INTO `redirects` (%s) VALUES (%s)',
@@ -446,6 +486,9 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 						break;
 					case '`TARGET`':
 						$stmt->bindValue($identifier, $this->target, PDO::PARAM_STR);
+						break;
+					case '`DOMAIN_KEY`':
+						$stmt->bindValue($identifier, $this->domain_key, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -586,6 +629,9 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 			case 2:
 				return $this->getTarget();
 				break;
+			case 3:
+				return $this->getDomainKey();
+				break;
 			default:
 				return null;
 				break;
@@ -617,6 +663,7 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getSource(),
 			$keys[2] => $this->getTarget(),
+			$keys[3] => $this->getDomainKey(),
 		);
 		return $result;
 	}
@@ -657,6 +704,9 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 			case 2:
 				$this->setTarget($value);
 				break;
+			case 3:
+				$this->setDomainKey($value);
+				break;
 		} // switch()
 	}
 
@@ -684,6 +734,7 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setSource($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setTarget($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setDomainKey($arr[$keys[3]]);
 	}
 
 	/**
@@ -698,6 +749,7 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 		if ($this->isColumnModified(RedirectsPeer::ID)) $criteria->add(RedirectsPeer::ID, $this->id);
 		if ($this->isColumnModified(RedirectsPeer::SOURCE)) $criteria->add(RedirectsPeer::SOURCE, $this->source);
 		if ($this->isColumnModified(RedirectsPeer::TARGET)) $criteria->add(RedirectsPeer::TARGET, $this->target);
+		if ($this->isColumnModified(RedirectsPeer::DOMAIN_KEY)) $criteria->add(RedirectsPeer::DOMAIN_KEY, $this->domain_key);
 
 		return $criteria;
 	}
@@ -762,6 +814,7 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 	{
 		$copyObj->setSource($this->getSource());
 		$copyObj->setTarget($this->getTarget());
+		$copyObj->setDomainKey($this->getDomainKey());
 		if ($makeNew) {
 			$copyObj->setNew(true);
 			$copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -814,6 +867,7 @@ abstract class BaseRedirects extends BaseObject  implements Persistent
 		$this->id = null;
 		$this->source = null;
 		$this->target = null;
+		$this->domain_key = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();

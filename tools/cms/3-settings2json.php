@@ -1,7 +1,8 @@
 <?php // æåå
 
 $db_name = 'hanzo_dk';
-mysql_connect('localhost', 'hanzo_dk', '');
+mysql_connect('localhost', 'root', '');
+mysql_select_db('dbname');
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');

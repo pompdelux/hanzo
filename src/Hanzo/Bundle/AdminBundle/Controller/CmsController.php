@@ -28,7 +28,8 @@ use Hanzo\Model\Cms,
     Hanzo\Model\CmsI18nQuery,
     Hanzo\Model\LanguagesQuery,
     Hanzo\Model\Redirects,
-    Hanzo\Model\RedirectsQuery;
+    Hanzo\Model\RedirectsQuery,
+    Hanzo\Model\DomainsQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
@@ -325,20 +326,31 @@ class CmsController extends CoreController
         }
     }
 
-    public function redirectsIndexAction()
+    public function redirectsIndexAction($domain_key)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        $redirects = RedirectsQuery::create();
+
+        if($domain_key){
+            $redirects = $redirects->filterByDomainKey($domain_key);
+        }
         
-        $redirects = RedirectsQuery::create()
+        $redirects = $redirects->orderByDomainKey()
             ->orderBySource()
             ->orderByTarget()
             ->find()
         ;
 
+        $domains_availible = DomainsQuery::Create()
+            ->find()
+        ;
         return $this->render('AdminBundle:Cms:redirectsIndex.html.twig', array(
-            'redirects' => $redirects
+            'redirects' => $redirects,
+            'domains_availible' => $domains_availible,
+            'domain_key' => $domain_key
         ));
     }
 
@@ -357,8 +369,23 @@ class CmsController extends CoreController
         else{
             $redirect = new Redirects();
         }
+
+        $domains_availible = DomainsQuery::Create()
+            ->find()
+        ;
+        $domains = array();
+        foreach ($domains_availible as $domain) {
+            $domains[$domain->getDomainKey()] = $domain->getDomainKey();
+        }
         $form = $this->createFormBuilder($redirect)
-            ->add('source', 'text',
+            ->add('domain_key', 'choice',
+                array(
+                    'choices' => $domains,
+                    'label' => 'admin.cms.redirects.domain_key',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('source', 'text',
                 array(
                     'label' => 'admin.cms.redirects.source',
                     'translation_domain' => 'admin',
@@ -388,7 +415,8 @@ class CmsController extends CoreController
 
         return $this->render('AdminBundle:Cms:redirectEdit.html.twig', array(
             'form' => $form->createView(),
-            'redirect' => $redirect
+            'redirect' => $redirect,
+            'domains_availible' => $domains_availible
         ));
     }
 

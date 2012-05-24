@@ -427,6 +427,9 @@ abstract class BaseProductsPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
+		// Invalidate objects in MannequinImagesPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		MannequinImagesPeer::clearInstancePool();
 		// Invalidate objects in ProductsPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		ProductsPeer::clearInstancePool();

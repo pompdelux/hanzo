@@ -49,13 +49,8 @@ class DefaultController extends CoreController
 
         $stock = $this->get('stock')->check($product, $quantity);
 
-        // $stock = Stock::check($product, $quantity);
-        // if ($stock) {
-        //     Stock::decrease($product, $quantity);
-        // }
-
         if ($stock) {
-            // Stock::decrease($product, $quantity);
+            $this->get('stock')->decrease($product, $quantity);
             $order = OrdersPeer::getCurrent();
 
             if ($order->isNew()) {

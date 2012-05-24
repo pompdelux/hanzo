@@ -61,7 +61,7 @@ class MailService
         $this->twig->startTransaction();
 
         foreach ($messages as $message) {
-            $subject = $message->getSubject();
+            $subject = $this->twig->parse($message->getSubject(), $parameters);
             $body = $this->twig->parse($message->getBody(), $parameters);
 
             if ('.txt' == substr($message->getMessages()->getKey(), -4)) {

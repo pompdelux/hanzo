@@ -10,7 +10,7 @@ services:
 
     hanzo.order:
         class: Hanzo\Bundle\CheckoutBundle\Event\OrderListener
-        arguments: [ @session ]
+        arguments: [ @session, @ax_manager ]
         tags:
             - { name: kernel.event_listener, event: order.edit.start, method: onEditStart }
             - { name: kernel.event_listener, event: order.edit.cancel, method: onEditCancel }
