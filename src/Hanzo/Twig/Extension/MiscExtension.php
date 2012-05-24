@@ -263,14 +263,11 @@ DOC;
         }
 
         $html = '';
-        // "string mode" is on, so we disable it while parsing the "real" template.
-        $this->twig_string->endTransaction();
         try {
             $html = $env->render($template, $parameters);
         } catch (\Exception $e) {
             Tools::log($e->getMessage());
         }
-        $this->twig_string->startTransaction();
 
         return $html;
      }
