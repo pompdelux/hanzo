@@ -324,6 +324,46 @@ class AxService
     }
 
 
+    /**
+     * deleteOrder from ax
+     *
+     * @param  Order $order
+     * @return boolean
+     */
+    public function deleteOrder($order)
+    {
+        $salesTable = new stdClass();
+        $salesTable->CustAccount = $order->getCustomersId();
+        $salesTable->EOrderNumber = $order->getId();
+        $salesTable->PaymentId = $order->getPaymentGatewayId();
+        $salesTable->SalesType = 'Sales';
+        $salesTable->Completed = 1;
+        $salesTable->TransactionType = 'Delete';
+
+        $salesOrder = new stdClass();
+        $salesOrder->SalesTable = $salesTable;
+
+        $syncSalesOrder = new stdClass();
+        $syncSalesOrder->salesOrder = $salesOrder;
+
+        $attributes = $order->getAttributes();
+        $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
+
+        $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
+
+        if ($result instanceof Exception) {
+            $message = sprintf('An error occured while synchronizing debitor "%s", error message: "%s"',
+                $debitor->getId(),
+                $result->getMethod()
+            );
+            $this->logger->addCritical($message);
+
+            return false;
+        }
+
+        return true;
+    }
+
 
     /**
     * lock orders in ax
