@@ -43,8 +43,8 @@ propel:
                         dsn:          %database_dk_slave_3_dsn%
             pdldbse1:
                 driver:               %database_driver%
-                user:                 %databasese_se_user%
-                password:             %databasese_se_password%
+                user:                 %database_se_user%
+                password:             %database_se_password%
                 dsn:                  mysql:host=%database_se_host%;dbname=%database_se_name%
                 options:              {}
                 attributes:           {}
