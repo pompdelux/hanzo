@@ -1,6 +1,6 @@
 set :domain,      "pdlfront-dk1" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
 set :deploy_to,   "/var/www/testpompdelux.dk" 
-set :symfony_env_prod, "prod"
+set :symfony_env_prod, "prod_dk"
 
 # Your HTTP server, Apache/etc
 role(:web) do
