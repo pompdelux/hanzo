@@ -70,15 +70,17 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         // first we load "store mode" configs
-        $loader->load(__DIR__.'/config/config_ws_'.self::getStoreMode().'.yml');
+        $loader->load(__DIR__.'/config/config_ws_'.$this->getStoreMode().'.yml');
+
         // then we load env configs, these should always be loaded last.
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 
 
-    protected static function getStoreMode()
+    protected function getStoreMode()
     {
         $mode = 'webshop';
+
         // use strpos to capture test.kons and friends
         if (isset($_SERVER['HTTP_HOST']) && (false !== strpos($_SERVER['HTTP_HOST'], 'kons'))) {
             $mode = 'consultant';
@@ -87,14 +89,19 @@ class AppKernel extends Kernel
         return $mode;
     }
 
-    public function hrSize($size)
+    public function humanReadableSize($size)
     {
         $unit = array('b','kb','mb','gb','tb','pb');
         return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 
 
-    // http://blog.amalraghav.com/manipulating-config-files/
+    /**
+     * allow us to override cache dir for the consultants section
+     *
+     * @see http://blog.amalraghav.com/manipulating-config-files/
+     * @return string
+     */
     public function getCacheDir()
     {
         if (self::getStoreMode() == 'consultant') {
