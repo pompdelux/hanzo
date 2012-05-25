@@ -22,10 +22,10 @@ propel:
         default_connection: default
         connections:
             default:
-                driver:               %database_driver%
-                user:                 %database_user%
-                password:             %database_password%
-                dsn:                  mysql:host=%database_host%;dbname=%database_name%
+                driver:               %database_se_driver%
+                user:                 %database_se_user%
+                password:             %database_se_password%
+                dsn:                  mysql:host=%database_se_host%;dbname=%database_se_name%
                 options:              {}
                 attributes:           {}
                 # slaves:
