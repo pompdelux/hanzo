@@ -41,7 +41,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
@@ -63,7 +63,7 @@ class AppKernel extends Kernel
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
 
         //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
-        $twig->addGlobal('store_mode', self::getStoreMode());
+        $twig->addGlobal('store_mode', $this->getStoreMode());
         $twig->addExtension(new Twig_Extension_Optimizer());
     }
 
