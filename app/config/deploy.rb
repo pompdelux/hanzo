@@ -37,8 +37,8 @@ set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml"]
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", web_path + "/images"]
 
 # hf@bellcom.dk: i en deploy skal den være true, ellers false, måske skal vi have den i en task
-#set :update_vendors, false
-set :update_vendors, true 
+set :update_vendors, false
+#set :update_vendors, true 
 
 set :git_enable_submodules, 1
 
@@ -49,7 +49,7 @@ ssh_options[:forward_agent] = true
 # hf@bellcom.dk, run route builder before cache warm
 desc "Build hanzo routes"
 task :route_builder do
-  run("cd #{latest_release} && php app/console hanzo:router:builder")
+  run("cd #{latest_release} && php app/console hanzo:router:builder --env=#{symfony_env_prod}")
 end
 
 # hf@bellcom.dk, update translations and clear cache
