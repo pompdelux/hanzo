@@ -22,7 +22,7 @@ propel:
         default_connection: default
         connections:
             default:
-                driver:               %database_no_driver%
+                driver:               %database_driver%
                 user:                 %database_no_user%
                 password:             %database_no_password%
                 dsn:                  mysql:host=%database_no_host%;dbname=%database_no_name%
