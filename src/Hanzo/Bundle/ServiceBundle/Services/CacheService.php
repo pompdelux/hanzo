@@ -74,6 +74,12 @@ class CacheService
                 switch ($type) {
                     case 'category':
 
+                        // test...
+                        if (!$settings instanceof \stdClass) {
+                            print_r($item->toArray());
+                            continue;
+                        }
+
                         $category_key = '_' . $locale . '_' . $settings->category_id;
                         $category_path = 'category_' . $id . '_' . $locale;
                         $product_path = 'product_' . $id . '_' . $locale ;

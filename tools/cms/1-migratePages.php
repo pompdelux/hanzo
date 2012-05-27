@@ -1,13 +1,17 @@
 <?php // æåå
+
+$from_db = 'pdl_dk';
+$to_db = 'hanzo';
+
 mysql_connect('localhost', 'root', '');
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');
 
-$query = "DELETE FROM hanzo.cms_thread WHERE id IN (10, 20, 21)";
+$query = "DELETE FROM {$to_db}.cms_thread WHERE id IN (10, 20, 21)";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
-$query = "DELETE FROM hanzo.cms WHERE cms_thread_id IN (10, 20, 21)";
+$query = "DELETE FROM {$to_db}.cms WHERE cms_thread_id IN (10, 20, 21)";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
@@ -16,7 +20,7 @@ mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 // recreate threads
 $query = "
   INSERT INTO
-    hanzo.cms_thread (
+    {$to_db}.cms_thread (
       id,
       is_active
     )
@@ -24,14 +28,14 @@ $query = "
     f.id,
     f.is_active
   FROM
-    pdl_dk.osc_simple_cms AS f
+    {$from_db}.osc_simple_cms AS f
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 // - i18n
 $query = "
   INSERT INTO
-    hanzo.cms_thread_i18n
+    {$to_db}.cms_thread_i18n
   SELECT
     f.menu_id,
     CASE f.language_id
@@ -41,7 +45,7 @@ $query = "
     END AS locale,
     f.title
   FROM
-    pdl_dk.osc_simple_cms_i18n AS f
+    {$from_db}.osc_simple_cms_i18n AS f
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
@@ -50,7 +54,7 @@ mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 // recreate items
 $query = "
   INSERT INTO
-    hanzo.cms (
+    {$to_db}.cms (
       id,
       parent_id,
       cms_thread_id,
@@ -70,7 +74,7 @@ $query = "
     f.created_at,
     f.sort_order
   FROM
-    pdl_dk.osc_simple_cms_item AS f
+    {$from_db}.osc_simple_cms_item AS f
   ORDER BY
     f.id, f.parent_id
 ";
@@ -79,7 +83,7 @@ mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 // - i18n
 $query = "
   INSERT INTO
-    hanzo.cms_i18n
+    {$to_db}.cms_i18n
   SELECT
     f.menu_item_id,
     CASE f.language_id
@@ -92,14 +96,14 @@ $query = "
     f.content,
     f.settings
   FROM
-    pdl_dk.osc_simple_cms_item_i18n AS f
+    {$from_db}.osc_simple_cms_item_i18n AS f
   ORDER BY
     f.menu_item_id
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 // cleanup
-mysql_query("UPDATE hanzo.cms_i18n SET content = NULL WHERE content = 'null'") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
-mysql_query("UPDATE hanzo.cms_i18n SET settings = NULL WHERE settings = ''") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+mysql_query("UPDATE {$to_db}.cms_i18n SET content = NULL WHERE content = 'null'") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+mysql_query("UPDATE {$to_db}.cms_i18n SET settings = NULL WHERE settings = ''") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');
