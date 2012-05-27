@@ -46,12 +46,6 @@ set :use_sudo, false
 
 ssh_options[:forward_agent] = true
 
-# hf@bellcom.dk, run route builder before cache warm
-desc "Build hanzo routes"
-task :route_builder do
-  run("cd #{latest_release} && php app/console hanzo:router:builder --env=#{symfony_env_prod}")
-end
-
 # hf@bellcom.dk, update translations and clear cache
 namespace :deploy do
   desc "Update translations"
@@ -70,8 +64,6 @@ desc "Create logs and public_html symlinks"
   end
 
 end
-
-before "symfony:cache:warmup", "route_builder"
 
 before 'deploy:restart', 'deploy:symlinks'
 
