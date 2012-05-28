@@ -358,7 +358,8 @@ class Orders extends BaseOrders
      *
      * Does not set products_id as the external id might clash with a real product + it may contain letters
      *
-     * @param ShippingMethod
+     * @param ShippingMethod $shippingMethod
+     * @param bool $isFee
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -548,16 +549,19 @@ class Orders extends BaseOrders
     /**
      * setOrderLinePaymentFee
      *
-     * TODO: rewrite to use self::setOrderLine
+     * Note, this only supports one line with payment fee
+     *
+     * @TODO: rewrite to use self::setOrderLine
+     * @see setOrderLineShipping
      *
      * @param string $name
      * @param float $price
      * @param float $vat
-     * @param string $id
+     * @param string $sku
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function setOrderLinePaymentFee( $name, $price, $vat, $id )
+    public function setOrderLinePaymentFee( $name, $price, $vat, $sku )
     {
         $type = 'payment.fee';
 
@@ -565,7 +569,7 @@ class Orders extends BaseOrders
         $lines = $this->getOrdersLiness();
         foreach ($lines as $index => $line)
         {
-            if ( $line->getProductsId() == $id && $line->getType() == $type )
+            if ( $line->getProductsSku() == $sku && $line->getType() == $type )
             {
                 $line->setProductsName( $name );
                 $line->setPrice( $price );
@@ -575,11 +579,17 @@ class Orders extends BaseOrders
 
                 return;
             }
+            else
+            {
+              // If it does not match, it might be from the previous order, so delete it
+              // Makes sence if the customer goes from using gothia as payment to dibs where there, currently, is no fee
+              $line->delete();
+            }
         }
 
         $line = new OrdersLines;
         $line->setOrdersId($this->getId());
-        $line->setProductsId( $id );
+        $line->setProductsSku( $sku );
         $line->setProductsName( $name );
         $line->setQuantity(1);
         $line->setPrice( $price );
@@ -588,6 +598,29 @@ class Orders extends BaseOrders
         $this->addOrdersLines($line);
     }
 
+    /**
+     * getPaymentFee
+     *
+     * Note: only supports one payment.fee line
+     *
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getPaymentFee()
+    {
+        $type = 'payment.fee';
+
+        $lines = $this->getOrdersLiness();
+        foreach ($lines as $index => $line)
+        {
+            if ( $line->getType() == $type )
+            {
+                return $line->price;
+            }
+        }
+
+        return 0.00;
+    }
 
     /**
      * set an orderline

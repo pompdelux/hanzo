@@ -204,10 +204,13 @@ class DefaultController extends CoreController
         $order->setPaymentMethod( $data['selectedMethod'] );
         $order->setPaymentPaytype( $data['selectedPaytype'] );
 
-        // Some payforms have a fee
-        if ( $data['selectedMethod'] == 'gothia' ) {
-            $order->setOrderLinePaymentFee( 'gothia', 29.00, 0, 91 );
-        }
+        $api = $this->get('payment.'.$data['selectedMethod'].'api');
+
+        // Handle payment fee
+        // Currently hardcoded to 0 vat
+        // It also only supports one order line with payment fee, as all others are deleted
+        $order->setOrderLinePaymentFee( $data['selectedMethod'], $api->getFee(), 0, $api->getFeeExternalId() );
+
         // If the customer goes back to the basket, state is back to building
         $order->setState( Orders::STATE_PRE_PAYMENT );
         $order->save();

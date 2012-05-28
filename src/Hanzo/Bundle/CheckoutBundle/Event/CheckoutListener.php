@@ -48,7 +48,7 @@ class CheckoutListener
             'payment_method' => $order->getBillingMethod(),
             'shipping_title' => $shipping,
             'shipping_cost' => 0.00, // TODO
-            'payment_fee' => 0.00, // TODO
+            'payment_fee' => $order->getPaymentFee(),
             'expected_at' => '', // TODO
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
@@ -59,6 +59,7 @@ class CheckoutListener
         );
 
         // TODO: only set if not null
+        // Note: Gothia now sets its fee in payment.fee, see order->getPaymentFee()
         if(0){
             $params['event_id'] = '';
             $params['payment_gateway_id'] = '';

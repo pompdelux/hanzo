@@ -119,7 +119,9 @@ INSERT INTO `domains_settings` (`id`, `domain_key`, `c_key`, `ns`, `c_value`) VA
 (85, 'SE', 'username', 'gothiaapi', 'EXTPompDeLuxSETest'),
 (86, 'SE', 'password', 'gothiaapi', 'o6K7IGPR'),
 (87, 'SE', 'clientId', 'gothiaapi', '7012'),
-(88, 'SE', 'test', 'gothiaapi', '1');
+(88, 'SE', 'test', 'gothiaapi', '1'),
+(89, 'SE', 'fee', 'gothiaapi', '29.00'),
+(90, 'SE', 'fee.id', 'gothiaapi', '91');
 
 --
 -- Dumping data for table `groups`

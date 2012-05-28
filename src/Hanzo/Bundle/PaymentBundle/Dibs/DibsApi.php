@@ -124,6 +124,26 @@ class DibsApi implements PaymentMethodApiInterface
     }
 
     /**
+     * getFee
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFee()
+    {
+        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
+    }
+
+    /**
+     * getFeeExternalId
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeExternalId()
+    {
+        return ( isset($this->settings['fee.id']) ) ? $this->settings['fee.id'] : null;
+    }
+
+    /**
      * getMerchant
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -194,6 +214,8 @@ class DibsApi implements PaymentMethodApiInterface
     /**
      * updateOrderSuccess
      *
+     * TODO: priority: low, should use shared methods between all payment methods
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -222,6 +244,9 @@ class DibsApi implements PaymentMethodApiInterface
 
     /**
      * updateOrderFailed
+     *
+     * TODO: priority: low, should use shared methods between all payment methods
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
