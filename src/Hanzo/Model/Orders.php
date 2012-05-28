@@ -356,6 +356,8 @@ class Orders extends BaseOrders
      *
      * TODO: rewrite to use self::setOrderLine
      *
+     * Does not set products_id as the external id might clash with a real product + it may contain letters
+     *
      * @param ShippingMethod
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -366,17 +368,16 @@ class Orders extends BaseOrders
         {
             $price = $shippingMethod->getFee();
             $name  = $shippingMethod->getName();
-            $id    = $shippingMethod->getFeeExternalId();
+            $sku    = $shippingMethod->getFeeExternalId();
             $type  = 'shipping.fee';
         }
         else
         {
             $price = $shippingMethod->getPrice();
             $name  = $shippingMethod->getName();
-            $id    = $shippingMethod->getExternalId();
+            $sku   = $shippingMethod->getExternalId();
             $type  = 'shipping';
         }
-
 
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
@@ -384,8 +385,8 @@ class Orders extends BaseOrders
         {
             if ( $line->getType() == $type )
             {
+                $line->setProductsSku( $sku );
                 $line->setProductsName( $name );
-                $line->setProductsId( $id );
                 $line->setPrice( $price );
                 $line->setVat( 0.00 );
                 $lines[$index] = $line;
@@ -397,7 +398,7 @@ class Orders extends BaseOrders
 
         $line = new OrdersLines;
         $line->setOrdersId($this->getId());
-        $line->setProductsId( $id );
+        $line->setProductsSku( $sku );
         $line->setProductsName( $name );
         $line->setQuantity(1);
         $line->setPrice( $price );
