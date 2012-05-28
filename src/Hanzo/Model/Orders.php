@@ -565,25 +565,21 @@ class Orders extends BaseOrders
     {
         $type = 'payment.fee';
 
-        // first update existing product lines, if any
+        // Payment fee should always be set by the payment modules, so we can just update it
+        // First update existing product lines, if any
         $lines = $this->getOrdersLiness();
         foreach ($lines as $index => $line)
         {
-            if ( $line->getProductsSku() == $sku && $line->getType() == $type )
+            if ( $line->getType() == $type ) // No check on sku, because it might be different, only look for type
             {
                 $line->setProductsName( $name );
+                $line->setProductsSku( $sku );
                 $line->setPrice( $price );
                 $line->setVat( $vat );
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
 
                 return;
-            }
-            elseif ( $line->getType() == $type )
-            {
-              // If it does not match, it might be from the previous order, so delete it
-              // Makes sence if the customer goes from using gothia as payment to dibs where there, currently, is no fee
-              $line->delete();
             }
         }
 
