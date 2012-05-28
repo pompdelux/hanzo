@@ -611,7 +611,7 @@ class Orders extends BaseOrders
         {
             if ( $line->getType() == $type )
             {
-                return $line->price;
+                return $line->getPrice();
             }
         }
 
