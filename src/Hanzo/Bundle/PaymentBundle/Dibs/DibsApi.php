@@ -338,9 +338,10 @@ class DibsApi implements PaymentMethodApiInterface
             'lang'         => $lang,
             "merchant"     => $this->getMerchant(),
             "currency"     => $currency,
-            "cancelurl"    => "/payment/dibs/cancel",
+            // Set in the template:
+            /*"cancelurl"    => "/payment/dibs/cancel",
             "callbackurl"  => "/payment/dibs/callback",
-            "accepturl"    => "/payment/dibs/ok",
+            "accepturl"    => "/payment/dibs/ok",*/
             "skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             "test"         => $this->getTest(),

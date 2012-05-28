@@ -433,6 +433,16 @@ class DefaultController extends CoreController
     }
 
     /**
+     * failedAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function failedAction()
+    {
+        return new Response('Ups'); // FIXME
+    }
+
+    /**
      * populateOrderAction
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
