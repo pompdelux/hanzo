@@ -68,9 +68,13 @@ class MapsExtension extends Twig_Extension
 
     public function consultants_near_you($type = 'near')
     {
+        $geoip = Hanzo::getInstance()->container->get('geoip_manager');
+        $result = $geoip->lookup();
         $template = file_get_contents($this->template_dir . 'consultants_near_you.html.twig');
         return $this->twig_string->parse($template, array(
             'type' => $type,
+            'lat' => $result['lat'],
+            'lon' => $result['lon'],
         ));
     }
 }
