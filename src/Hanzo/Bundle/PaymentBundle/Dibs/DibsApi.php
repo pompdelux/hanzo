@@ -186,12 +186,7 @@ class DibsApi implements PaymentMethodApiInterface
         $currency = $this->currencyCodeToNum($order->getCurrencyCode());
         $amount   = self::formatAmount( $order->getTotalPrice() );
 
-        // Should probably be handled by the payment method
         $gateway_id = $order->getPaymentGatewayId();
-        $env = Hanzo::getInstance()->container->get('kernel')->getEnvironment();
-        if ($env != 'prod' && strpos($gateway_id,$env.'_') === false ) {
-            $gateway_id = $env . '_' . $gateway_id;
-        }
 
         $calculated = $this->md5key( $gateway_id, $currency, $amount );
 

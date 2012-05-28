@@ -40,10 +40,6 @@ class DibsController extends CoreController
             return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
 
-        if (false !== strpos($orderId, '_')) {
-            list($junk, $orderId) = explode('_', $orderId, 2);
-        }
-
         $order = OrdersPeer::retriveByPaymentGatewayId( $orderId );
 
         if ( !($order instanceof Orders) )

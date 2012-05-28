@@ -153,7 +153,6 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancel( Customers $customer, Orders $order )
     {
-        error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
         $attributes = $order->getAttributes();
         $transaction = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
@@ -326,8 +325,6 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function transinfo( Orders $order )
     {
-        //$attributes       = $order->getAttributes();
-        //$transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
         $amount           = $this->api->formatAmount( $order->getTotalPrice() );
@@ -335,7 +332,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
             'amount'    => $amount,
-            'orderid'   => 'dev_'.$paymentGatewayId, // FIXME: remove dev_
+            'orderid'   => $paymentGatewayId,
             'currency'  => $currency,
         );
 
