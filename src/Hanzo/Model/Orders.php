@@ -579,7 +579,7 @@ class Orders extends BaseOrders
 
                 return;
             }
-            else
+            elseif ( $line->getType() == $type )
             {
               // If it does not match, it might be from the previous order, so delete it
               // Makes sence if the customer goes from using gothia as payment to dibs where there, currently, is no fee
