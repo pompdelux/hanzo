@@ -175,11 +175,13 @@ class DibsApi implements PaymentMethodApiInterface
         // The order must be in the pre payment state, if not it has not followed the correct flow
         if ( $order->getState() != Orders::STATE_PRE_PAYMENT )
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             throw new Exception( 'The order is not in the correct state "'. $order->getState() .'"' );
         }
 
         if ( $callbackRequest->get('merchant') != $this->settings['merchant'] )
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
         }
 
@@ -202,6 +204,7 @@ class DibsApi implements PaymentMethodApiInterface
 
         if ( $callbackRequest->get('authkey') != $calculated )
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             throw new Exception( 'Authkey md5 sum mismatch, got: "'. $callbackRequest->get('authkey') .'" expected: "'. $calculated .'"' );
         }
     }
