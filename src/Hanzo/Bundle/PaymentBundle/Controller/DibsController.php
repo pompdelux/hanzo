@@ -154,8 +154,10 @@ class DibsController extends CoreController
         $order = OrdersPeer::getCurrent();
         $gateway_id = $order->getPaymentGatewayId();
 
+        error_log(__LINE__.':'.__FILE__.' '.$gateway_id); // hf@bellcom.dk debugging
         if ( empty($gateway_id) ) // The first time the form is rendered we set some ekstra stuff
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             $gateway_id = Tools::getPaymentGatewayId();
             $order->setPaymentGatewayId($gateway_id);
             // No need to set state here, it should be handled else where
@@ -165,13 +167,9 @@ class DibsController extends CoreController
                 $order->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
             }
 
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             $order->save();
-        }
-
-        // Should probably be handled by the payment method
-        $env = Hanzo::getInstance()->container->get('kernel')->getEnvironment();
-        if ($env != 'prod' && strpos($gateway_id,$env.'_') === false ) {
-            $gateway_id = $env . '_' . $gateway_id;
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
         }
 
         $settings = $api->buildFormFields(

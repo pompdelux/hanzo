@@ -800,11 +800,6 @@ class Orders extends BaseOrders
      */
     public function setPaymentGatewayId($gateway_id = null)
     {
-        // Should probably be handled by the payment method
-        if (false !== strpos($gateway_id, '_')) {
-            list($junk, $gateway_id) = explode('_', $gateway_id, 2);
-        }
-
         return parent::setPaymentGatewayId($gateway_id);
     }
 
