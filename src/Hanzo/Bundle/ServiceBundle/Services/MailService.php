@@ -62,9 +62,6 @@ class MailService
             throw new \InvalidArgumentException('No messages exists for the [email]: "' . $template .'" key');
         }
 
-        // override the template loader so we can load strings from the database.
-        $this->twig->startTransaction();
-
         foreach ($messages as $message) {
             $subject = $this->twig->parse($message->getSubject(), $parameters);
             $body = $this->twig->parse($message->getBody(), $parameters);
@@ -78,8 +75,7 @@ class MailService
         }
         $this->swift->setSubject($subject);
 
-        // reset the loader, needed to not break the reset of the application
-        $this->twig->endTransaction();
+        return $this;
     }
 
 
@@ -92,7 +88,8 @@ class MailService
      */
     public function setBody($body, $type = 'text/plain')
     {
-        return $this->swift->setBody($body, $type);
+        $this->swift->setBody($body, $type);
+        return $this;
     }
 
 
@@ -104,7 +101,8 @@ class MailService
      */
     public function setSubject($subject)
     {
-        return $this->swift->setSubject($subject);
+        $this->swift->setSubject($subject);
+        return $this;
     }
 
 
@@ -114,7 +112,8 @@ class MailService
      */
     public function setTo($address, $name = null)
     {
-        return $this->swift->setTo($address, $name);
+        $this->swift->setTo($address, $name);
+        return $this;
     }
 
     /**
@@ -123,7 +122,8 @@ class MailService
      */
     public function setCc($address, $name = null)
     {
-        return $this->swift->setCc($address, $name);
+        $this->swift->setCc($address, $name);
+        return $this;
     }
 
     /**
@@ -132,7 +132,8 @@ class MailService
      */
     public function setBcc($address, $name = null)
     {
-        return $this->swift->setBcc($address, $name);
+        $this->swift->setBcc($address, $name);
+        return $this;
     }
 
     /**
@@ -142,6 +143,7 @@ class MailService
     public function setFrom($address)
     {
         $this->swift->setFrom($address);
+        return $this;
     }
 
 
