@@ -38,8 +38,7 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        error_log(__LINE__.':'.__FILE__.' '.$order->getState()); // hf@bellcom.dk debugging
-        if ( $order->getState() != Orders::STATE_PAYMENT_OK )
+        if ( $order->getState() <= Orders::STATE_PAYMENT_OK )
         {
             return $this->redirect($this->generateUrl('_checkout_failed'));
         }
