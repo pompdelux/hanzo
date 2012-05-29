@@ -56,7 +56,7 @@ class CmsController extends CoreController
 
         return $this->render('AdminBundle:Cms:menu.html.twig',
             array(
-                'tree'=>$this->getCmsTree(null,$locale),
+                'tree'=>$this->getCmsTree(null,null,$locale),
                 'inactive_nodes' => $inactive_nodes,
                 'languages' => $languages_availible,
                 'current_language' => $locale
@@ -295,23 +295,28 @@ class CmsController extends CoreController
         // $sort: Array to keep track on the sort number associated with the parent id.
         // NestedSortable jQuery Plugin doesnt have a sort number, but the array are sorted.
         $sort = array();
+        $cms_thread = null;
         foreach ($nodes as $node) {
             if("root" == $node['item_id'])
                 continue; // Root item from nestedSortable is not a page
 
+            if("root" == $node['parent_id']) { // Its a cms_thread
+                $cms_thread = substr($node['item_id'],1);
+                continue;
+            }
             if (empty($sort[$node['parent_id']])) // Init the sort number to 1 if its not already is set
                 $sort[$node['parent_id']] = 1;
             else // If sort number are set, increment it
                 $sort[$node['parent_id']]++;
 
             $cmsNode = CmsQuery::create()->findOneById($node['item_id']);
-
-            if("root" == $node['parent_id'])
+            if (substr($node['parent_id'],0,1) == 't') // Its a top level cms page. It has no parent_id. This parent_id is the id of which cms_thread
                 $cmsNode->setParentId(null);
             else
-                $cmsNode->setParentId($node['parent_id']);
+                $cmsNode->setParentId($node['parent_id']); // Its a normal page with a parent
 
             $cmsNode->setSort($sort[$node['parent_id']]);
+            $cmsNode->setCmsThreadId($cms_thread);
             $cmsNode->save();
         }
 
@@ -337,7 +342,7 @@ class CmsController extends CoreController
         if($domain_key){
             $redirects = $redirects->filterByDomainKey($domain_key);
         }
-        
+
         $redirects = $redirects->orderByDomainKey()
             ->orderBySource()
             ->orderByTarget()
@@ -469,60 +474,82 @@ class CmsController extends CoreController
      * @param $int parent_id The parents ID
      * @return html ordered list
      */
-    protected function getCmsTree($parent_id, $locale)
+    protected function getCmsTree($cms_thread, $parent_id, $locale)
     {
         $t = $this->get('translator');
         $menu = '';
-        $query = CmsQuery::create()
-            ->filterByIsActive(TRUE)
-            ->joinWithI18n($locale)
-            ->groupById()
-            ->orderBySort()
-        ;
 
-        if (empty($parent_id)) {
-            $query->filterByParentId(NULL, \Criteria::ISNULL);
-        }
-        else {
-            $query->filterByParentId($parent_id);
-        }
+        if (empty($cms_thread)) { // First level is the CMS_THREAD, next are CMS
+            $query = CmsThreadQuery::create()
+                ->joinWithI18n($locale)
+                ->orderById()
+            ;
+            $result = $query->find();
 
-        $result = $query->find();
-
-        if ($result->count()) {
-            if (empty($parent_id))
+            if ($result->count()) {
+                
                 $menu .= '<ul id="sortable-list">';
-            else
-                $menu .= '<ul>';
-            foreach($result as $record) {
+                foreach($result as $record) {
 
-                $path = $record->getPath();
-                if ($record->getType() == 'frontpage') {
-                    $path = ''; //Is not used.
+                    $menu .= '<li id="item-t' . $record->getId(). '" class="sortable-item ui-state-disabled">';
+                    $menu .= '<div class="sort-handle record">';
+                    $menu .= '<span class="record-id">'.$record->getId().'</span>';
+                    $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
+                    $menu .= '</div>';
+
+
+                    // Retrieve all this nodes leafs/childrens
+                    $menu .= $this->getCmsTree($record->getId(), null, $locale);
+
+                    $menu .= '</li>';
                 }
 
-                $menu .= '<li id="item-' . $record->getId(). '" class="sortable-item ' . $record->getType() . '">';
-                $menu .= '<div class="sort-handle record">';
-                $menu .= '<span class="record-id">'.$record->getId().'</span>';
-                $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
-                $menu .= '<span class="record-type">' . $record->getType() . '</span>';
-                $menu .= '<div class="actions">';
-                $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit">' . $t->trans('page.edit', array(), 'admin') . '</a>';
-                $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete">' . $t->trans('page.delete', array(), 'admin') . '</a>';
-                $menu .= '</div>';
-                $menu .= '</div>';
+                $menu .= '</ul>';
 
-
-                // Retrieve all this nodes leafs/childrens
-                $menu .= $this->getCmsTree($record->getId(), $locale);
-
-                $menu .= '</li>';
             }
+        } else {
+            $query = CmsQuery::create()
+                ->filterByIsActive(TRUE)
+                ->filterByCmsThreadId($cms_thread)
+                ->joinWithI18n($locale)
+                ->groupById()
+                ->orderBySort()
+            ;
 
-            $menu .= '</ul>';
+            if (empty($parent_id)) {
+                $query->filterByParentId(NULL, \Criteria::ISNULL);
+            }
+            else {
+                $query->filterByParentId($parent_id);
+            }
+            $result = $query->find();
 
+            if ($result->count()) {
+                
+                $menu .= '<ul>';
+                foreach($result as $record) {
+                    $menu .= '<li id="item-' . $record->getId(). '" class="sortable-item ' . $record->getType() . '">';
+                    $menu .= '<div class="sort-handle record">';
+                    $menu .= '<span class="record-id">'.$record->getId().'</span>';
+                    $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
+                    $menu .= '<span class="record-type">' . $record->getType() . '</span>';
+                    $menu .= '<div class="actions">';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit">' . $t->trans('page.edit', array(), 'admin') . '</a>';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete">' . $t->trans('page.delete', array(), 'admin') . '</a>';
+                    $menu .= '</div>';
+                    $menu .= '</div>';
+
+
+                    // Retrieve all this nodes leafs/childrens
+                    $menu .= $this->getCmsTree($cms_thread, $record->getId(), $locale);
+
+                    $menu .= '</li>';
+                }
+
+                $menu .= '</ul>';
+
+            }
         }
-
         return $menu;
     }
 
