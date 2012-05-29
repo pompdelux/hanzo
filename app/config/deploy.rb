@@ -57,8 +57,11 @@ namespace :deploy do
 
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions do
-    run "cd #{shared_path} && sudo chmod g+rwX -R app/config && sudo chmod g+rwX app/logs web"
-    run "cd #{shared_path} && sudo chgrp -R www-data cached-copy"
+    run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
+    run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
+    #run "cd #{shared_path} && sudo chmod g+rwX -R app/config && sudo chmod g+rwX app/logs web"
+    #run "cd #{shared_path} && sudo chmod g+rwX -R app/config && sudo chmod g+rwX app/logs web"
+    #run "cd #{shared_path} && sudo chgrp -R www-data cached-copy"
   end
  
 desc "Create logs and public_html symlinks"
