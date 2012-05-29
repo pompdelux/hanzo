@@ -199,15 +199,15 @@ class AxService
         $salesTable->InvoiceAccount          = $order->getCustomersId();
         $salesTable->FreightFeeAmt           = number_format($shipping_cost, 4, '.', '');
         $salesTable->FreightType             = $freight_type;
-        $salesTable->HandlingFeeType         = 90; // FIXME
+        $salesTable->HandlingFeeType         = 90;
         $salesTable->HandlingFeeAmt          = number_format($handeling_fee, 4, '.', '');
-        $salesTable->PayByBillFeeType        = 91; // FIXME
+        $salesTable->PayByBillFeeType        = 91;
         $salesTable->PayByBillFeeAmt         = number_format($payment_cost, 4, '.', '');
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
         $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
-        $salesTable->SmoreContactInfo        = ''; // FIXME
+        $salesTable->SmoreContactInfo        = '';
 
         $salesOrder = new stdClass();
         $salesOrder->SalesTable = $salesTable;
