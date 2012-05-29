@@ -1,8 +1,9 @@
 set :domain,      "pdlfront-dk1" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
-set :deploy_to,   "/var/www/testpompdelux.dk" 
+set :deploy_to,   "/var/www/testpompdelux" 
 set :symfony_env_prod, "prod_dk"
 symfony_env_prods = ["prod_se", "prod_dk"]
 
+# list of production frontend servers fetched from a file. If we dont need the list for other serivces/scripts, move it back here.
 # Your HTTP server, Apache/etc
 role(:web) do
    frontend_list
@@ -23,7 +24,6 @@ before "symfony:cache:warmup", "symfony:route_builder"
 
 # disabled while running with other prodtion sites on same servers
 #before 'deploy:restart', 'deploy:apcclear'
-
 
 namespace :deploy do
   desc "Copy default parameters.ini and hanzo.yml to shared dir"
@@ -196,7 +196,6 @@ namespace :symfony do
     end
   end
 
-    
   namespace :propel do
     namespace :database do
       desc "Create the configured databases."
