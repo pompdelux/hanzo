@@ -151,7 +151,7 @@ class Stock
     /**
      * decrease the stock level for a product
      *
-     * @todo throw execption on error ?
+     * @NICETO throw execption on error ?
      *
      * @param Products $product a product object
      * @param int $quantity the quantity by wich to decrease
@@ -169,13 +169,12 @@ class Stock
         $total = array_shift($stock);
 
         // return FALSE if we do not have enough ín stock
-        // TODO: throw exception ?
+        // NICETO: throw exception ?
         if ($total < $quantity) {
             return FALSE;
         }
 
         // force master connection, and do the rest as a transaction.
-        // TODO: should we use locks here ?
         $this->setMasterConnection();
         $con = Propel::getConnection(ProductsStockPeer::DATABASE_NAME);
         $con->beginTransaction();

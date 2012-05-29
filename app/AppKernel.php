@@ -41,7 +41,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\AdminBundle\AdminBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
@@ -63,22 +63,24 @@ class AppKernel extends Kernel
         $twig = $this->container->get('twig'); // ->addGlobal('', '');
 
         //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
-        $twig->addGlobal('store_mode', self::getStoreMode());
+        $twig->addGlobal('store_mode', $this->getStoreMode());
         $twig->addExtension(new Twig_Extension_Optimizer());
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         // first we load "store mode" configs
-        $loader->load(__DIR__.'/config/config_ws_'.self::getStoreMode().'.yml');
+        $loader->load(__DIR__.'/config/config_ws_'.$this->getStoreMode().'.yml');
+
         // then we load env configs, these should always be loaded last.
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 
 
-    protected static function getStoreMode()
+    protected function getStoreMode()
     {
         $mode = 'webshop';
+
         // use strpos to capture test.kons and friends
         if (isset($_SERVER['HTTP_HOST']) && (false !== strpos($_SERVER['HTTP_HOST'], 'kons'))) {
             $mode = 'consultant';
@@ -87,14 +89,19 @@ class AppKernel extends Kernel
         return $mode;
     }
 
-    public function hrSize($size)
+    public function humanReadableSize($size)
     {
         $unit = array('b','kb','mb','gb','tb','pb');
         return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
     }
 
 
-    // http://blog.amalraghav.com/manipulating-config-files/
+    /**
+     * allow us to override cache dir for the consultants section
+     *
+     * @see http://blog.amalraghav.com/manipulating-config-files/
+     * @return string
+     */
     public function getCacheDir()
     {
         if (self::getStoreMode() == 'consultant') {

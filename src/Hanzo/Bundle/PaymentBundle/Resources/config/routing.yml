@@ -1,10 +1,6 @@
-PaymentBundle_success:
-    pattern:  /payment/success
-    defaults: { _controller: PaymentBundle:Default:success }
-
-PaymentBundle_test:
-    pattern:  /payment/test
-    defaults: { _controller: PaymentBundle:Default:test }
+PaymentBundle_process:
+    pattern:  /payment/process
+    defaults: { _controller: PaymentBundle:Default:process }
 
 PaymentBundle_dibs_callback:
     pattern:  /payment/dibs/callback

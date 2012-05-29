@@ -82,7 +82,7 @@ class DibsApi implements PaymentMethodApiInterface
 
         $missing = array();
 
-        foreach ($requiredFields as $field) 
+        foreach ($requiredFields as $field)
         {
             if ( !isset($settings[$field]) )
             {
@@ -94,6 +94,11 @@ class DibsApi implements PaymentMethodApiInterface
         {
             throw new Exception( 'DibsApi: missing settings: '. implode(',',$missing) );
         }
+    }
+
+    public function getSettings()
+    {
+        return $this->settings;
     }
 
     /**
@@ -116,6 +121,26 @@ class DibsApi implements PaymentMethodApiInterface
     public function isActive()
     {
         return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
+    }
+
+    /**
+     * getFee
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFee()
+    {
+        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
+    }
+
+    /**
+     * getFeeExternalId
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeExternalId()
+    {
+        return ( isset($this->settings['fee.id']) ) ? $this->settings['fee.id'] : null;
     }
 
     /**
@@ -150,23 +175,20 @@ class DibsApi implements PaymentMethodApiInterface
         // The order must be in the pre payment state, if not it has not followed the correct flow
         if ( $order->getState() != Orders::STATE_PRE_PAYMENT )
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             throw new Exception( 'The order is not in the correct state "'. $order->getState() .'"' );
         }
 
         if ( $callbackRequest->get('merchant') != $this->settings['merchant'] )
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
         }
 
         $currency = $this->currencyCodeToNum($order->getCurrencyCode());
         $amount   = self::formatAmount( $order->getTotalPrice() );
 
-        // Should probably be handled by the payment method
         $gateway_id = $order->getPaymentGatewayId();
-        $env = Hanzo::getInstance()->container->get('kernel')->getEnvironment();
-        if ($env != 'prod' && strpos($gateway_id,$env.'_') === false ) {
-            $gateway_id = $env . '_' . $gateway_id;
-        }
 
         $calculated = $this->md5key( $gateway_id, $currency, $amount );
 
@@ -182,12 +204,15 @@ class DibsApi implements PaymentMethodApiInterface
 
         if ( $callbackRequest->get('authkey') != $calculated )
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             throw new Exception( 'Authkey md5 sum mismatch, got: "'. $callbackRequest->get('authkey') .'" expected: "'. $calculated .'"' );
         }
     }
 
     /**
      * updateOrderSuccess
+     *
+     * TODO: priority: low, should use shared methods between all payment methods
      *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -217,6 +242,9 @@ class DibsApi implements PaymentMethodApiInterface
 
     /**
      * updateOrderFailed
+     *
+     * TODO: priority: low, should use shared methods between all payment methods
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -308,9 +336,10 @@ class DibsApi implements PaymentMethodApiInterface
             'lang'         => $lang,
             "merchant"     => $this->getMerchant(),
             "currency"     => $currency,
-            "cancelurl"    => "/payment/dibs/cancel",
+            // Set in the template:
+            /*"cancelurl"    => "/payment/dibs/cancel",
             "callbackurl"  => "/payment/dibs/callback",
-            "accepturl"    => "/payment/dibs/ok",
+            "accepturl"    => "/payment/dibs/ok",*/
             "skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             "test"         => $this->getTest(),
@@ -340,7 +369,7 @@ class DibsApi implements PaymentMethodApiInterface
      **/
     public function currencyCodeToNum( $code )
     {
-        if ( isset($this->currency_map[$code]) ) 
+        if ( isset($this->currency_map[$code]) )
         {
             return $this->currency_map[$code];
         }

@@ -354,9 +354,12 @@ class Orders extends BaseOrders
     /**
      * setOrderLineShipping
      *
-     * TODO: rewrite to use self::setOrderLine
+     * NICETO: rewrite to use self::setOrderLine
      *
-     * @param ShippingMethod
+     * Does not set products_id as the external id might clash with a real product + it may contain letters
+     *
+     * @param ShippingMethod $shippingMethod
+     * @param bool $isFee
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -366,17 +369,16 @@ class Orders extends BaseOrders
         {
             $price = $shippingMethod->getFee();
             $name  = $shippingMethod->getName();
-            $id    = $shippingMethod->getFeeExternalId();
+            $sku    = $shippingMethod->getFeeExternalId();
             $type  = 'shipping.fee';
         }
         else
         {
             $price = $shippingMethod->getPrice();
             $name  = $shippingMethod->getName();
-            $id    = $shippingMethod->getExternalId();
+            $sku   = $shippingMethod->getExternalId();
             $type  = 'shipping';
         }
-
 
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
@@ -384,8 +386,8 @@ class Orders extends BaseOrders
         {
             if ( $line->getType() == $type )
             {
+                $line->setProductsSku( $sku );
                 $line->setProductsName( $name );
-                $line->setProductsId( $id );
                 $line->setPrice( $price );
                 $line->setVat( 0.00 );
                 $lines[$index] = $line;
@@ -397,7 +399,7 @@ class Orders extends BaseOrders
 
         $line = new OrdersLines;
         $line->setOrdersId($this->getId());
-        $line->setProductsId( $id );
+        $line->setProductsSku( $sku );
         $line->setProductsName( $name );
         $line->setQuantity(1);
         $line->setPrice( $price );
@@ -540,33 +542,37 @@ class Orders extends BaseOrders
      **/
     public function setPaymentPaytype( $paytype )
     {
-        // TODO: match CustPaymMode from old system?
         $this->setAttribute( 'paytype', 'payment', $paytype );
     }
 
     /**
      * setOrderLinePaymentFee
      *
-     * TODO: rewrite to use self::setOrderLine
+     * Note, this only supports one line with payment fee
+     *
+     * NICETO: rewrite to use self::setOrderLine
+     * @see setOrderLineShipping
      *
      * @param string $name
      * @param float $price
      * @param float $vat
-     * @param string $id
+     * @param string $sku
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function setOrderLinePaymentFee( $name, $price, $vat, $id )
+    public function setOrderLinePaymentFee( $name, $price, $vat, $sku )
     {
         $type = 'payment.fee';
 
-        // first update existing product lines, if any
+        // Payment fee should always be set by the payment modules, so we can just update it
+        // First update existing product lines, if any
         $lines = $this->getOrdersLiness();
         foreach ($lines as $index => $line)
         {
-            if ( $line->getProductsId() == $id && $line->getType() == $type )
+            if ( $line->getType() == $type ) // No check on sku, because it might be different, only look for type
             {
                 $line->setProductsName( $name );
+                $line->setProductsSku( $sku );
                 $line->setPrice( $price );
                 $line->setVat( $vat );
                 $lines[$index] = $line;
@@ -578,7 +584,7 @@ class Orders extends BaseOrders
 
         $line = new OrdersLines;
         $line->setOrdersId($this->getId());
-        $line->setProductsId( $id );
+        $line->setProductsSku( $sku );
         $line->setProductsName( $name );
         $line->setQuantity(1);
         $line->setPrice( $price );
@@ -587,6 +593,29 @@ class Orders extends BaseOrders
         $this->addOrdersLines($line);
     }
 
+    /**
+     * getPaymentFee
+     *
+     * Note: only supports one payment.fee line
+     *
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getPaymentFee()
+    {
+        $type = 'payment.fee';
+
+        $lines = $this->getOrdersLiness();
+        foreach ($lines as $index => $line)
+        {
+            if ( $line->getType() == $type )
+            {
+                return $line->getPrice();
+            }
+        }
+
+        return 0.00;
+    }
 
     /**
      * set an orderline
@@ -800,11 +829,6 @@ class Orders extends BaseOrders
      */
     public function setPaymentGatewayId($gateway_id = null)
     {
-        // Should probably be handled by the payment method
-        if (false !== strpos($gateway_id, '_')) {
-            list($junk, $gateway_id) = explode('_', $gateway_id, 2);
-        }
-
         return parent::setPaymentGatewayId($gateway_id);
     }
 
@@ -864,11 +888,10 @@ class Orders extends BaseOrders
      **/
     public function cancelPayment( )
     {
-        // FIXME: enable
-        /*if ( $this->getState() != self::STATE_PENDING )
+        if ( $this->getState() > self::STATE_PENDING )
         {
             throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
-        }*/
+        }
 
         $attributes = $this->getOrdersAttributess();
 

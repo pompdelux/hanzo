@@ -38,12 +38,17 @@ class MailService
      *
      * @param string $template tis is the template identifier - excluding the .txt and/or .html postfix
      * @param mixed $parameters parameters send to the twig template
+     * @param string $locale use to override default (current) locale
      */
-    public function setMessage($template, $parameters = NULL)
+    public function setMessage($template, $parameters = null, $locale = null)
     {
+        if (empty($locale)) {
+            $locale = Hanzo::getInstance()->get('core.locale');
+        }
+
         $messages = MessagesI18nQuery::create()
             ->joinWithMessages()
-            ->filterByLocale(Hanzo::getInstance()->get('core.locale'))
+            ->filterByLocale($locale)
             ->useMessagesQuery()
                 ->filterByNs('email')
                 ->filterByKey($template.'.txt')
@@ -56,9 +61,6 @@ class MailService
         if (0 == $messages->count()) {
             throw new \InvalidArgumentException('No messages exists for the [email]: "' . $template .'" key');
         }
-
-        // override the template loader so we can load strings from the database.
-        $this->twig->startTransaction();
 
         foreach ($messages as $message) {
             $subject = $this->twig->parse($message->getSubject(), $parameters);
@@ -73,8 +75,7 @@ class MailService
         }
         $this->swift->setSubject($subject);
 
-        // reset the loader, needed to not break the reset of the application
-        $this->twig->endTransaction();
+        return $this;
     }
 
 
@@ -87,7 +88,8 @@ class MailService
      */
     public function setBody($body, $type = 'text/plain')
     {
-        return $this->swift->setBody($body, $type);
+        $this->swift->setBody($body, $type);
+        return $this;
     }
 
 
@@ -99,7 +101,8 @@ class MailService
      */
     public function setSubject($subject)
     {
-        return $this->swift->setSubject($subject);
+        $this->swift->setSubject($subject);
+        return $this;
     }
 
 
@@ -109,7 +112,8 @@ class MailService
      */
     public function setTo($address, $name = null)
     {
-        return $this->swift->setTo($address, $name);
+        $this->swift->setTo($address, $name);
+        return $this;
     }
 
     /**
@@ -118,7 +122,8 @@ class MailService
      */
     public function setCc($address, $name = null)
     {
-        return $this->swift->setCc($address, $name);
+        $this->swift->setCc($address, $name);
+        return $this;
     }
 
     /**
@@ -127,7 +132,8 @@ class MailService
      */
     public function setBcc($address, $name = null)
     {
-        return $this->swift->setBcc($address, $name);
+        $this->swift->setBcc($address, $name);
+        return $this;
     }
 
     /**
@@ -137,6 +143,7 @@ class MailService
     public function setFrom($address)
     {
         $this->swift->setFrom($address);
+        return $this;
     }
 
 

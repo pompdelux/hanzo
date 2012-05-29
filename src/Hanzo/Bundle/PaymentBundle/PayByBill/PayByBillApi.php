@@ -50,7 +50,7 @@ class PayByBillApi implements PaymentMethodApiInterface
      **/
     public function cancel( Customers $customer, Orders $order )
     {
-        // TODO: how should this be implemented?
+        return;
     }
 
     /**
@@ -66,7 +66,30 @@ class PayByBillApi implements PaymentMethodApiInterface
     }
 
     /**
+     * getFee
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFee()
+    {
+        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
+    }
+
+    /**
+     * getFeeExternalId
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeExternalId()
+    {
+        return ( isset($this->settings['fee.id']) ) ? $this->settings['fee.id'] : null;
+    }
+
+    /**
      * updateOrderFailed
+     *
+     * TODO: priority: low, should use shared methods between all payment methods
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -79,6 +102,8 @@ class PayByBillApi implements PaymentMethodApiInterface
 
     /**
      * updateOrderSuccess
+     *
+     * TODO: priority: low, should use shared methods between all payment methods
      *
      * @return void
      * @author Ulrik Nielsen <un@bellcom.dk>

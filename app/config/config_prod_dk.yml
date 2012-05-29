@@ -1,0 +1,57 @@
+imports:
+    - { resource: config.yml }
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+
+framework:
+    templating:
+        assets_base_urls:
+            http: [ %cdn% ]
+
+propel:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:               %database_driver%
+                user:                 %database_dk_user%
+                password:             %database_dk_password%
+                dsn:                  mysql:host=%database_dk_host%;dbname=%database_dk_name%
+                options:              {}
+                attributes:           {}
+                slaves:
+                    pdldbdk2:
+                        user:         %database_dk_slave_1_user%
+                        password:     %database_dk_slave_1_password%
+                        dsn:          %database_dk_slave_1_dsn%
+                    pdldbdk3:
+                        user:         %database_dk_slave_2_user%
+                        password:     %database_dk_slave_2_password%
+                        dsn:          %database_dk_slave_2_dsn%
+                    pdldbdk4:
+                        user:         %database_dk_slave_3_user%
+                        password:     %database_dk_slave_3_password%
+                        dsn:          %database_dk_slave_3_dsn%
+            pdldbse1:
+                driver:               %database_driver%
+                user:                 %database_se_user%
+                password:             %database_se_password%
+                dsn:                  mysql:host=%database_se_host%;dbname=%database_se_name%
+                options:              {}
+                attributes:           {}
+            pdldbno1:
+                driver:               %database_driver%
+                user:                 %database_no_user%
+                password:             %database_no_password%
+                dsn:                  mysql:host=%database_no_host%;dbname=%database_no_name%
+                options:              {}
+                attributes:           {}

@@ -17,24 +17,21 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Bundle\NewsletterBundle\TestEvents;
 use Hanzo\Bundle\NewsletterBundle\FilterTestEvent;
 
-
 class DefaultController extends CoreController
 {
-
-    public function indexAction()
+    /**
+     * handleAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function handleAction( $action )
     {
-        // $event = new FilterTestEvent('hest');
-        // $dispatcher = $this->get('event_dispatcher');
+        $name     = $this->get('request')->get('name');
+        $email    = $this->get('request')->get('email');
+        $api      = $this->get('newsletterapi');
 
-        // $dispatcher->dispatch(TestEvents::onHanzoTest, $event);
-        return new Response( 'Ok', 200, array('Content-Type' => 'text/html'));
-    }
-
-    public function blockAction()
-    {
-        $api = $this->get('newsletterapi');
-        $customer = CustomersPeer::getCurrent();
-        return $this->render('NewsletterBundle:Default:block.html.twig', array( 'customer' => $customer, 'listid' => $api->getListIdAvaliableForDomain() ));
+        $api->sendNotificationEmail( $action, $email, $name );
+        return $this->json_response( array('error' => false) );
     }
 
     /**
@@ -44,19 +41,49 @@ class DefaultController extends CoreController
      **/
     public function jsAction()
     {
-        $api = $this->get('newsletterapi');
         $customer = CustomersPeer::getCurrent();
-        return $this->render('NewsletterBundle:Default:js.html.twig', array( 'customer' => $customer, 'listid' => $api->getListIdAvaliableForDomain() ));
+        $api      = $this->get('newsletterapi');
+        $listId   = $api->getListIdAvaliableForDomain();
+
+        return $this->render('NewsletterBundle:Default:js.html.twig', array( 
+            'customer' => $customer, 
+            'listid' => $listId, 
+            'newsletter_jsonp_url' => 'http://phplist.pompdelux.dk/integration/json.php?callback=?'
+        )
+    );
     }
 
+    /**
+     * blockAction 
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function blockAction()
+    {
+        $customer = CustomersPeer::getCurrent();
+        $api      = $this->get('newsletterapi');
+        $listId   = $api->getListIdAvaliableForDomain();
+
+        return $this->render('NewsletterBundle:Default:block.html.twig', array( 
+            'customer' => $customer, 
+            'listid' => $listId, 
+            )
+        );
+    }
+
+    /**
+     * viewAction 
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
     public function viewAction($id)
     {
         $page = CmsPeer::getByPK($id, Hanzo::getInstance()->get('core.locale'));
 
         if (is_null($page)) {
-            $page = 'implement 404 !';
+            throw $this->createNotFoundException('The page does not exist (id: '.$id.' )');
         }
 
-        return $this->render('NewsletterBundle:Default:view.html.twig', array('page' => $page, 'page_type' => 'newsletter'));
+        return $this->render('NewsletterBundle:Default:view.html.twig', array( 'page' => $page, 'page_type' => 'newsletter'));
     }
 }

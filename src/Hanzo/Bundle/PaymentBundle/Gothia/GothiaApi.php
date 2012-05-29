@@ -96,6 +96,26 @@ class GothiaApi implements PaymentMethodApiInterface
     }
 
     /**
+     * getFee
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFee()
+    {
+        return ( isset($this->settings['fee']) ) ? $this->settings['fee'] : 0.00;
+    }
+
+    /**
+     * getFeeExternalId
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeExternalId()
+    {
+        return ( isset($this->settings['fee.id']) ) ? $this->settings['fee.id'] : null;
+    }
+
+    /**
      * someFunc
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -107,6 +127,9 @@ class GothiaApi implements PaymentMethodApiInterface
 
     /**
      * updateOrderSuccess
+     *
+     * TODO: priority: low, should use shared methods between all payment methods
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -114,11 +137,15 @@ class GothiaApi implements PaymentMethodApiInterface
     {
         $order->setState( Orders::STATE_PAYMENT_OK );
         $order->setAttribute( 'paytype' , 'payment', 'gothia' );
+        // Fee is handled in the checkout controller, as we need the information in the summery
         $order->save();
     }
 
     /**
      * updateOrderFailed
+     *
+     * TODO: priority: low, should use shared methods between all payment methods
+     *
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/

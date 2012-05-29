@@ -17,9 +17,6 @@ use Hanzo\Model\AddressesQuery;
  */
 class RestGoogleController extends CoreController
 {
-    /**
-     * TODO: implement documentation in index actions.
-     */
     public function indexAction($name = '') {
 
         return $this->render('WebServicesBundle:Default:index.html.twig', array(
@@ -32,7 +29,7 @@ class RestGoogleController extends CoreController
     /**
      * prozy function for getting zip code coordinates from google.
      *
-     * TODO: implement caching, zip codes does not often change location
+     * NICETO: implement caching, zip codes does not often change location
      *
      * @param string $query
      * @param string $country
@@ -67,7 +64,7 @@ class RestGoogleController extends CoreController
         $latitude = (float) $latitude;
         $longitude = (float) $longitude;
 
-        // FIXME: un@bellcom.dk, fix sweedish koordinats for lerum - note this is a google maps issue!
+        // un@bellcom.dk, fix sweedish koordinats for lerum - note this is a google maps issue!
         if ($latitude == 57.5752035 && $longitude == 17.1677372) {
           $latitude = 57.815504;
           $longitude = 12.268982;

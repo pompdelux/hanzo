@@ -20,10 +20,8 @@ $results           = $stmt->fetchAll();
 // Default settings
 $container->setParameter('assets_version', 1);
 
-if ( !empty($results) )
-{
-    foreach ($results as $result) 
-    {
+if ( !empty($results) ) {
+    foreach ($results as $result) {
         $container->setParameter($result['c_key'], $result['c_value']);
     }
 }

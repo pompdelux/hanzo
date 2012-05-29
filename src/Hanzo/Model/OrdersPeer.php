@@ -75,11 +75,6 @@ class OrdersPeer extends BaseOrdersPeer
      */
     public static function retriveByPaymentGatewayId($gateway_id)
     {
-        // Should probably be handled by the payment method
-        if (false !== strpos($gateway_id, '_')) {
-            list($junk, $gateway_id) = explode('_', $gateway_id, 2);
-        }
-
         return OrdersQuery::create()->findOneByPaymentGatewayId($gateway_id);
     }
 

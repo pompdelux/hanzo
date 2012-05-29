@@ -12,7 +12,7 @@ mysql_select_db('hanzo');
 class mpf {
   public static $lang = '';
   public static $menuItems;
-
+  public static $map = array();
 
   protected static $cas = "
     SELECT
@@ -52,8 +52,14 @@ class mpf {
       if ($record->parent_id && isset(self::$menuItems[$record->parent_id][$record->locale])) {
         $prefix = self::$menuItems[$record->parent_id][$record->locale]['path'];
       }
+
+      $old = '/p/'.$record->path;
+      $new = strtolower(trim($prefix . '/' . self::stripText($record->title), '/'));
+
+      self::$map[$old] = $new;
+
       self::$menuItems[$record->id][$record->locale]['title'] = $record->title;
-      self::$menuItems[$record->id][$record->locale]['path'] = strtolower(trim($prefix . '/' . self::stripText($record->title), '/'));
+      self::$menuItems[$record->id][$record->locale]['path'] = $new;
 
       self::t('= ' . $record->id);
     }
@@ -115,4 +121,7 @@ class mpf {
 
 mpf::t();
 mpf::set();
+
+file_put_contents(__DIR__.'/pathmap.php', '<?php'."\n".'$map = '.var_export(mpf::$map, true).";\n");
+
 #print_r(mpf::$menuItems);

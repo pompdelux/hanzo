@@ -28,26 +28,23 @@ class DefaultController extends CoreController
         return $this->render('PaymentBundle:Default:block.html.twig');
     }
 
-    public function testAction()
-    {
-        //$order = OrdersPeer::retrieveByPK(572846);
-        //$order->cancelPayment();
-
-        return new Response('Test');
-        //return $this->render('PaymentBundle:Default:block.html.twig');
-    }
-
     /**
-     * successAction
+     * processAction
      *
      * @return object Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function successAction()
+    public function processAction()
     {
-        return $this->redirect($this->generateUrl('_checkout_success'));
-        // $customer = CustomersPeer::getCurrent();
-        // $order    = OrdersPeer::getCurrent();
-        // return $this->render('PaymentBundle:Default:success.html.twig', array('page_type' => 'checkout-success'));
+        $order = OrdersPeer::getCurrent();
+
+        if ( $order->getState() <= Orders::STATE_PAYMENT_OK )
+        {
+            return $this->redirect($this->generateUrl('_checkout_failed'));
+        }
+        else
+        {
+            return $this->redirect($this->generateUrl('_checkout_success'));
+        }
     }
 }

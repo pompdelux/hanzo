@@ -40,4 +40,20 @@ interface PaymentMethodApiInterface
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function updateOrderFailed( Request $request, Orders $order);
+
+    /**
+     * getFee
+     * Returns the fee for the current payment method, or 0 if none
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFee();
+
+    /**
+     * getFeeExternalId
+     * Returns the id used by the fee for AX, or null if there is no fee
+     * @return mixed
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getFeeExternalId();
 }

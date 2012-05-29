@@ -95,7 +95,7 @@ class MiscExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::moneyFormat
-     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * NICETO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function moneyFormat($number, $format = '%.2i')
     {
@@ -245,7 +245,6 @@ DOC;
      {
         switch ($name) {
             case 'newsletter_form':
-
                 $view = '';
                 $customer = null;
                 if (isset($parameters['view']) && $parameters['view'] == 'simple') {
@@ -261,26 +260,15 @@ DOC;
                 );
 
                 break;
-
-            // case 'file':
-
-            //     $out = '';
-            //     if (isset($parameters['format'])) {
-            //         $title = isset($parameters['title']) ? $parameters['title'] : '';
-            //         $class = isset($parameters['class']) ? $parameters['class'] : '';
-
-            //         $ts = '';
-            //         switch ($parameters['format']) {
-            //             case 'short':
-            //                 break;
-            //             case 'long':
-            //                 break;
-            //         }
-            //     }
-
-            //     break;
         }
 
-        return $env->render($template, $parameters);
+        $html = '';
+        try {
+            $html = $env->render($template, $parameters);
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+        }
+
+        return $html;
      }
 }

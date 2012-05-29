@@ -169,7 +169,7 @@ class AxService
             $custPaymMode = 'PayByBill';
         }
 
-        // FIXME, this should be set elsewhere
+        // NICETO, this should be set elsewhere
         $freight_type = $order->getDeliveryMethod();
         switch ($attributes->global->domain_key) {
             case 'NO':
@@ -199,9 +199,9 @@ class AxService
         $salesTable->InvoiceAccount          = $order->getCustomersId();
         $salesTable->FreightFeeAmt           = number_format($shipping_cost, 4, '.', '');
         $salesTable->FreightType             = $freight_type;
-        $salesTable->HandlingFeeType         = 90;
+        $salesTable->HandlingFeeType         = 90; // FIXME
         $salesTable->HandlingFeeAmt          = number_format($handeling_fee, 4, '.', '');
-        $salesTable->PayByBillFeeType        = 91;
+        $salesTable->PayByBillFeeType        = 91; // FIXME
         $salesTable->PayByBillFeeAmt         = number_format($payment_cost, 4, '.', '');
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
@@ -295,7 +295,7 @@ class AxService
         $sc = new stdClass();
         $sc->customer = $cu;
 
-        // TODO: no hardcoded switches
+        // NICETO: no hardcoded switches
         $sc->endpointDomain = 'DK';
         switch ($ct->AddressCountryRegionId) {
             case 'SE':
@@ -323,6 +323,46 @@ class AxService
         return true;
     }
 
+
+    /**
+     * deleteOrder from ax
+     *
+     * @param  Order $order
+     * @return boolean
+     */
+    public function deleteOrder($order)
+    {
+        $salesTable = new stdClass();
+        $salesTable->CustAccount = $order->getCustomersId();
+        $salesTable->EOrderNumber = $order->getId();
+        $salesTable->PaymentId = $order->getPaymentGatewayId();
+        $salesTable->SalesType = 'Sales';
+        $salesTable->Completed = 1;
+        $salesTable->TransactionType = 'Delete';
+
+        $salesOrder = new stdClass();
+        $salesOrder->SalesTable = $salesTable;
+
+        $syncSalesOrder = new stdClass();
+        $syncSalesOrder->salesOrder = $salesOrder;
+
+        $attributes = $order->getAttributes();
+        $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
+
+        $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
+
+        if ($result instanceof Exception) {
+            $message = sprintf('An error occured while synchronizing debitor "%s", error message: "%s"',
+                $debitor->getId(),
+                $result->getMethod()
+            );
+            $this->logger->addCritical($message);
+
+            return false;
+        }
+
+        return true;
+    }
 
 
     /**

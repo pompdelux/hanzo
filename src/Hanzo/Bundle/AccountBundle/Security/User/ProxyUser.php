@@ -36,7 +36,7 @@ class ProxyUser implements UserInterface
         ),
     );
 
-    // FIXME: should not be hardcoded
+    // NICETO: should not be hardcoded
     private $admins = array(
         'hd@pompdelux.dk',
         'hf@bellcom.dk',
@@ -59,7 +59,7 @@ class ProxyUser implements UserInterface
         $group = $this->getUser()->getGroups();
         $roles = $this->map[$group->getName()];
 
-        // FIXME: should not be hardcoded
+        // NICETO: should not be hardcoded
         if (in_array($this->getUsername(), $this->admins)) {
             $roles[] = 'ROLE_EMPLOYEE';
             $roles[] = 'ROLE_ADMIN';

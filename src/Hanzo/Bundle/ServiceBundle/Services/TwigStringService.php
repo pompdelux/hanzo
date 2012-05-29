@@ -2,9 +2,7 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
-use \Twig_Environment;
-use \Twig_Loader_String;
-use \Twig_Error_Runtime;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 use Hanzo\Core\Tools;
 
@@ -12,19 +10,18 @@ class TwigStringService
 {
     protected $twig;
     protected $settings;
-    protected $loader;
-    protected $overridden = FALSE;
-    protected $auto_end = TRUE;
+    protected $path;
 
     public function __construct($parameters, $settings)
     {
-        if (!$parameters[0] instanceof Twig_Environment) {
+        if (!$parameters[0] instanceof TwigEngine) {
             throw new \InvalidArgumentException('TwigEngine instance required.');
         }
 
         $this->twig = $parameters[0];
-        $this->loader = $this->twig->getLoader();
         $this->settings = $settings;
+
+        $this->path = __DIR__ . '/../Resources/views/TS/';
     }
 
     /**
@@ -34,63 +31,23 @@ class TwigStringService
      * @param array $parameters, array of parameters parsed to the template
      * @return string
      */
-    public function parse($template, $parameters = array())
+    public function parse($data, $parameters = array())
     {
-        if (FALSE === $this->overridden) {
-            $this->begin();
-        }
+        $template = md5($data).'.html.twig';
 
-        try {
-            $result = $this->twig->render($template, $parameters);
-        } catch(Twig_Error_Runtime $e) {
-            //Tools::log($e->getMessage());
-            $result = $template;
-        }
+        $file = $this->path.$template;
+        file_put_contents($file, $data);
 
+        // // cache ? if we do, we need some sort of cleanup thingy
+        // if (!file_exists($file)) {
+        //     file_put_contents($file, $data);
+        // } else {
+        //     touch($file);
+        // }
 
-        if (TRUE === $this->auto_end) {
-            $this->end();
-        }
+        $html = $this->twig->render('ServiceBundle:TS:'.$template, $parameters);
+        unlink($file);
 
-        return $result;
-    }
-
-    /**
-     * Start a transaction, use in loops to save loader switching
-     */
-    public function startTransaction()
-    {
-        $this->auto_end = FALSE;
-        $this->begin();
-    }
-
-    /**
-     * End a transaction.
-     *
-     * Note: failing to end the transaction will mess up the rest of the request flow.
-     */
-    public function endTransaction()
-    {
-        $this->auto_end = TRUE;
-        $this->end();
-    }
-
-    /**
-     * We override the template loader so we can load strings from the database.
-     */
-    protected function begin()
-    {
-        $this->twig->setLoader(new Twig_Loader_String());
-        $this->overridden = TRUE;
-    }
-
-    /**
-     * End a twig string transaction
-     * Reset the loader to it's default.
-     */
-    protected function end()
-    {
-        $this->twig->setLoader($this->loader);
-        $this->overridden = FALSE;
+        return $html;
     }
 }

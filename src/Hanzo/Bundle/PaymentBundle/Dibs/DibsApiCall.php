@@ -2,15 +2,13 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Dibs;
 
-use Hanzo\Model\Customers,
-    Hanzo\Model\Orders
-    ;
+use Hanzo\Model\Customers;
+use Hanzo\Model\Orders;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
-    Hanzo\Bundle\PaymentBundle\Dibs\DibsApi,
-    Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallResponse
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallResponse;
 
 class DibsApiCall implements PaymentMethodApiCallInterface
 {
@@ -24,7 +22,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     /**
      * undocumented class variable
      *
-     * @var DibsApiCall instance 
+     * @var DibsApiCall instance
      **/
     private static $instance = null;
 
@@ -155,7 +153,6 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancel( Customers $customer, Orders $order )
     {
-        error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
         $attributes = $order->getAttributes();
         $transaction = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
@@ -328,8 +325,6 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      **/
     public function transinfo( Orders $order )
     {
-        //$attributes       = $order->getAttributes();
-        //$transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
         $amount           = $this->api->formatAmount( $order->getTotalPrice() );
@@ -337,7 +332,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
             'amount'    => $amount,
-            'orderid'   => 'dev_'.$paymentGatewayId, // FIXME: remove dev_
+            'orderid'   => $paymentGatewayId,
             'currency'  => $currency,
         );
 

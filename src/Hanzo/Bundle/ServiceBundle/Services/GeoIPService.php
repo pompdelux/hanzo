@@ -35,9 +35,21 @@ class GeoIPService
     public function lookup( $ip = null )
     {
         if (is_null($ip)) {
-          $ip = $this->request->getClientIp();
-          // For local testing:
-          // $ip = '90.185.183.84';
+            $ip = $this->request->getClientIp();
+
+            // map local ip addresses to "kolding"
+            if (preg_match('/^(127.0.0.1|192.168.|10.)/', $ip)) {
+                return  array(
+                    'country' => 'DK',
+                    'country_name' => 'Denmark',
+                    'country_localname' => 'Danmark',
+                    'country_id' => 58,
+                    'state' => 21,
+                    'city' => 'Kolding',
+                    'lat' => 55.494099,
+                    'lon' => 9.459000,
+                );
+            }
         }
 
         $cache = Hanzo::getInstance()->cache;
@@ -63,8 +75,7 @@ class GeoIPService
                 $countryID        = null;
                 $countryName      = null;
                 $countryLocalName = null;
-                if ( !is_null($record) )
-                {
+                if ( !is_null($record) ) {
                     $countryID        = $record->getId();
                     $countryName      = $record->getName();
                     $countryLocalName = $record->getLocalName();

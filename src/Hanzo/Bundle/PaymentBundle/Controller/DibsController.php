@@ -40,10 +40,6 @@ class DibsController extends CoreController
             return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
 
-        if (false !== strpos($orderId, '_')) {
-            list($junk, $orderId) = explode('_', $orderId, 2);
-        }
-
         $order = OrdersPeer::retriveByPaymentGatewayId( $orderId );
 
         if ( !($order instanceof Orders) )
@@ -58,7 +54,6 @@ class DibsController extends CoreController
             $api->verifyCallback( $request, $order );
             $api->updateOrderSuccess( $request, $order );
 
-            // TODO: priority: low, move event_dispatcher to updateOrderSuccess
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         }
         catch (Exception $e)
@@ -168,12 +163,6 @@ class DibsController extends CoreController
             $order->save();
         }
 
-        // Should probably be handled by the payment method
-        $env = Hanzo::getInstance()->container->get('kernel')->getEnvironment();
-        if ($env != 'prod' && strpos($gateway_id,$env.'_') === false ) {
-            $gateway_id = $env . '_' . $gateway_id;
-        }
-
         $settings = $api->buildFormFields(
             $gateway_id,
             Hanzo::getInstance()->get('core.locale'),
@@ -181,6 +170,7 @@ class DibsController extends CoreController
         );
 
         $cardtypes = $api->getEnabledPaytypes();
+
 
         if ( $isJson )
         {

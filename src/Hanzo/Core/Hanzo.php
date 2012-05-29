@@ -115,8 +115,6 @@ class Hanzo
         ;
 
         if (0 == $settings->count()) {
-            // TODO: should we redirect the user to the default domain ?
-            // by dooing this, we just pretend that the user is on .com
             $settings = DomainsSettingsQuery::create()
                 ->joinWithDomains()
                 ->findByDomainKey($default)

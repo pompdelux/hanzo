@@ -85,7 +85,7 @@ class GothiaController extends CoreController
         {
             return $this->json_response(array(
                 'status' => FALSE,
-             'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
+                'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
             ));
         }
 
@@ -232,6 +232,7 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
+            $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
@@ -240,13 +241,15 @@ class GothiaController extends CoreController
 
         if ( $response->isError() )
         {
+            $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
 
-        // TODO: priority: low, move event_dispatcher to updateOrderSuccess, refacture gothia to look more like DibsController
+        // NICETO: priority: low, refacture gothia to look more like DibsController
+        $api->updateOrderSuccess( $request, $order );
         $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
         return $this->json_response(array(

@@ -112,9 +112,9 @@ class DefaultController extends CoreController
     protected function updateAddress( Orders $order, Request $request, $state )
     {
         if ( $state === false ) {
-          $order->clearBillingAddress();
-          $order->clearDeliveryAddress();
-          return;
+            $order->clearBillingAddress();
+            $order->clearDeliveryAddress();
+            return;
         }
 
         $customer = CustomersPeer::getCurrent();
@@ -146,7 +146,7 @@ class DefaultController extends CoreController
                 case 'shipping':
                     $order->setDeliveryAddress( $query );
                     break;
-                // TODO: Døgnpost?
+                    // TODO: Døgnpost?
             }
         }
     }
@@ -191,7 +191,6 @@ class DefaultController extends CoreController
      * updatePayment
      *
      * @author Henrik Farre <hf@bellcom.dk>
-     * @todo: should state be uses to something?
      * @param Orders $order
      * @param Request $request
      * @param bool $state
@@ -199,15 +198,22 @@ class DefaultController extends CoreController
      **/
     protected function updatePayment( Orders $order, Request $request, $state )
     {
+        if ( $state === 'false' )
+        {
+            throw new Exception( 'Payment state not valid' );
+        }
+
         $data = $request->get('data');
-        // TODO: match CustPaymMode from old system?
         $order->setPaymentMethod( $data['selectedMethod'] );
         $order->setPaymentPaytype( $data['selectedPaytype'] );
 
-        // Some payforms have a fee
-        if ( $data['selectedMethod'] == 'gothia' ) {
-            $order->setOrderLinePaymentFee( 'gothia', 29.00, 0, 91 );
-        }
+        $api = $this->get('payment.'.$data['selectedMethod'].'api');
+
+        // Handle payment fee
+        // Currently hardcoded to 0 vat
+        // It also only supports one order line with payment fee, as all others are deleted
+        $order->setOrderLinePaymentFee( $data['selectedMethod'], $api->getFee(), 0, $api->getFeeExternalId() );
+
         // If the customer goes back to the basket, state is back to building
         $order->setState( Orders::STATE_PRE_PAYMENT );
         $order->save();
@@ -221,11 +227,30 @@ class DefaultController extends CoreController
      **/
     public function validateAction()
     {
-        // TODO: make this usefull
         $order = OrdersPeer::getCurrent();
 
+        $data = $this->get('request')->get('data');
+        $grouped = array();
+
+        foreach ($data as $values) 
+        {
+            $grouped[$values['name']] = $values;
+        }
+
         try {
-          $this->validateShipping( $order );
+            $this->validateShipping( $order, $grouped['shipping'] );
+        } catch (Exception $e) {
+            return $this->json_response(array(
+                'status' => false,
+                'message' => $e->getMessage(),
+                'data' => array(
+                    'name' => 'shipping'
+                ),
+            ));
+        }
+
+        try {
+            $this->validatePayment( $order, $grouped['payment'] );
         } catch (Exception $e) {
             return $this->json_response(array(
                 'status' => false,
@@ -243,12 +268,44 @@ class DefaultController extends CoreController
     }
 
     /**
+     * validatePayment
+     * @NICETO: low priority: more validation
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function validatePayment( Orders $order, $data )
+    {
+        $api = $this->get('payment.'. $data['selectedMethod'] .'api');
+
+        if ( !$api->isActive() )
+        {
+            throw new Exception( 'Selected payment type is not avaliable' ); // todo: low priority: translation
+        }
+    }
+
+    /**
      * validateShipping
      *
      * @author Henrik Farre <hf@bellcom.dk>
      * @return void
      **/
-    protected function validateShipping( Orders $order ){}
+    protected function validateShipping( Orders $order, $data ) 
+    {
+        $t = $this->get('translator');
+
+        if ( $data['state'] !== 'true' )
+        {
+          throw new Exception( 'State is not correct' );  // todo: low priority: translation
+        }
+
+        $shippingApi = $this->get('shipping.shippingapi');
+
+        $methods = $shippingApi->getMethods();
+
+        if ( !isset($methods[ $data['selectedMethod']  ]) ) {
+            throw new Exception( $t->trans('err.unknown_shipping_method', array(), 'checkout') );
+        }
+    }
 
     /**
      * addressesAction
@@ -258,7 +315,6 @@ class DefaultController extends CoreController
      **/
     public function addressesAction($skip_empty = false, $order = null)
     {
-        // TODO: should we take the addresses from the order?
         $customer = CustomersPeer::getCurrent();
         $customerAddresses = $customer->getAddresses();
 
@@ -290,7 +346,6 @@ class DefaultController extends CoreController
             $addresses['payment'] = $payment;
         }
 
-        // TODO: the address should be created here minus the fields
         $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
 
         if ($skip_empty || ($order instanceof Orders)) {
@@ -340,7 +395,7 @@ class DefaultController extends CoreController
             ->joinWithProducts()
             ->filterByType('product')
             ->findByOrdersId($order->getId())
-        ;
+            ;
 
         $product_ids = array();
         $product_units = array();
@@ -427,5 +482,43 @@ class DefaultController extends CoreController
             'order_id' => $order->getId(),
             'expected_in' => 2
         ));
+    }
+
+    /**
+     * failedAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function failedAction()
+    {
+        return new Response('Ups'); // FIXME
+    }
+
+    /**
+     * populateOrderAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function populateOrderAction()
+    { 
+        $orderObj      = OrdersPeer::getCurrent();
+        $attributesObj = $orderObj->getOrdersAttributess();
+        $order         = $orderObj->toArray();
+        $attributes    = $attributesObj->toArray();
+        $orderArray    = array();
+
+        foreach ($attributes as $attribute) 
+        {
+            if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) 
+            {
+                $orderArray['PaymentMethod'] = $attribute['CValue'];
+                break;
+            }
+        }
+
+        $orderArray['BillingMethod']  = $order['BillingMethod'];
+        $orderArray['DeliveryMethod'] = $order['DeliveryMethod'];
+
+        return $this->json_response( array('error' => false, 'order' => $orderArray) );
     }
 }
