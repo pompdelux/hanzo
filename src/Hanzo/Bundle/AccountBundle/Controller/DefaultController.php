@@ -364,7 +364,7 @@ class DefaultController extends CoreController
                     if (count($errors)) {
                         return $this->json_response(array(
                             'status' => false,
-                            'message' => $translator->trans('address.form.errors', array(), 'account'),
+                            'message' => $translator->trans('create.account.error', array(), 'account'),
                             'data' => $errors,
                         ));
                     }
