@@ -33,7 +33,7 @@ class AssetExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::fxImageTag
-     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * NICETO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function fx_image_tag($src, $preset = '', array $params = array())
     {
@@ -42,7 +42,7 @@ class AssetExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::productImageTag
-     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * NICETO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function product_image_tag($src, $preset = '50x50', array $params = array())
     {
@@ -51,7 +51,7 @@ class AssetExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::productImageUrl
-     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * NICETO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function product_image_url($src, $preset = '50x50', array $params = array())
     {
@@ -60,7 +60,7 @@ class AssetExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::imageTag
-     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * NICETO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function image_tag($src, array $params = array())
     {
@@ -69,7 +69,7 @@ class AssetExtension extends Twig_Extension
 
     /**
      * @see Hanzo\Core\Tools\Tools::imagePath
-     * TODO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     * NICETO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
      */
     public function image_path($src, $preset = '')
     {

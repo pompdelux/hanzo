@@ -68,6 +68,8 @@ class CleanupService
      */
     public function failedPaymentOrders()
     {
+      return true;
+
         $orders = OrdersQuery::create()
             ->filterByState(0, Criteria::GREATER_THAN)
             ->filterByState(Orders::STATE_SHIPPED, Criteria::LESS_THAN)
@@ -89,7 +91,6 @@ class CleanupService
             if ($transaction) {
                 $transaction = $transaction->getCValue();
 
-                // TODO: yeah ... what to do ... must.talk.to.hf ...
             }
         }
     }

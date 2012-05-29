@@ -68,7 +68,7 @@ Hanzo\Model\Customers:
                 limit: 5
                 message: password.min.length
                 groups: [customer]
-    # TODO: figure out why this does not trigger an error
+    # NICETO: figure out why this does not trigger an error
     getters:
         emailUniq:
             - "True":

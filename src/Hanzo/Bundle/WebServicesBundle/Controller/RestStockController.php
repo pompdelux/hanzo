@@ -24,9 +24,6 @@ use Hanzo\Core\CoreController;
  */
 class RestStockController extends CoreController
 {
-    /**
-     * TODO: implement documentation in index actions.
-     */
     public function indexAction() {}
 
 

@@ -264,7 +264,7 @@ class DefaultController extends CoreController
 
         $builder->add('type', 'hidden', array('data' => $type));
 
-        // TODO: fix the "11" (company spipping) hack
+        // NICETO: fix the "11" (company spipping) hack
         if (($type == 'shipping') && ($shipping_id == 11)) {
             $builder->add('company_name', null, array(
                 'label' => 'company.name',
@@ -322,7 +322,7 @@ class DefaultController extends CoreController
 
                 $address->save();
 
-                // TODO, implement elsewhere
+                // NICETO, implement elsewhere
                 if ($type == 'shipping') {
                     $order = OrdersPeer::getCurrent();
                     if (false == $order->isNew()) {

@@ -50,7 +50,7 @@ class PayByBillApi implements PaymentMethodApiInterface
      **/
     public function cancel( Customers $customer, Orders $order )
     {
-        // TODO: how should this be implemented?
+        return;
     }
 
     /**

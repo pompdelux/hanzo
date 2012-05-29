@@ -81,7 +81,7 @@ class DefaultController extends CoreController
         $page = CmsPeer::getByPK($id, Hanzo::getInstance()->get('core.locale'));
 
         if (is_null($page)) {
-            throw $this->createNotFoundException('The page does not exist (id: '.$id.' )'); // FIXME: translation
+            throw $this->createNotFoundException('The page does not exist (id: '.$id.' )');
         }
 
         return $this->render('NewsletterBundle:Default:view.html.twig', array( 'page' => $page, 'page_type' => 'newsletter'));

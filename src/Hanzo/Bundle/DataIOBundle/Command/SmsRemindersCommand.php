@@ -28,7 +28,7 @@ class SmsRemindersCommand extends ContainerAwareCommand
     /**
      * executes the job
      *
-     * @todo: catch errors
+     * @NICETO: catch errors
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output

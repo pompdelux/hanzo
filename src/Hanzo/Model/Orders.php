@@ -354,7 +354,7 @@ class Orders extends BaseOrders
     /**
      * setOrderLineShipping
      *
-     * TODO: rewrite to use self::setOrderLine
+     * NICETO: rewrite to use self::setOrderLine
      *
      * Does not set products_id as the external id might clash with a real product + it may contain letters
      *
@@ -542,7 +542,6 @@ class Orders extends BaseOrders
      **/
     public function setPaymentPaytype( $paytype )
     {
-        // TODO: match CustPaymMode from old system?
         $this->setAttribute( 'paytype', 'payment', $paytype );
     }
 
@@ -551,7 +550,7 @@ class Orders extends BaseOrders
      *
      * Note, this only supports one line with payment fee
      *
-     * @TODO: rewrite to use self::setOrderLine
+     * NICETO: rewrite to use self::setOrderLine
      * @see setOrderLineShipping
      *
      * @param string $name
@@ -889,11 +888,10 @@ class Orders extends BaseOrders
      **/
     public function cancelPayment( )
     {
-        // FIXME: enable
-        /*if ( $this->getState() != self::STATE_PENDING )
+        if ( $this->getState() > self::STATE_PENDING )
         {
             throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
-        }*/
+        }
 
         $attributes = $this->getOrdersAttributess();
 

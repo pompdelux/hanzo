@@ -212,7 +212,7 @@ class Tools
 
     /**
      * image helpers
-     * @todo move to own class...
+     * @NICETO move to own class...
      */
 
     /**

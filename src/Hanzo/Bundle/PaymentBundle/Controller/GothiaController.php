@@ -248,7 +248,7 @@ class GothiaController extends CoreController
             ));
         }
 
-        // TODO: priority: low, refacture gothia to look more like DibsController
+        // NICETO: priority: low, refacture gothia to look more like DibsController
         $api->updateOrderSuccess( $request, $order );
         $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
