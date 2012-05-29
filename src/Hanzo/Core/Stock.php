@@ -21,20 +21,20 @@ class Stock
     protected function load($products)
     {
         if (!is_array($products) && (!$products instanceof \PropelObjectCollection)) {
-          $products = array($products);
+            $products = array($products);
         }
 
         $ids = array();
         foreach($products as $product) {
           if (is_object($product)) {
-            $id = $product->getId();
+              $id = $product->getId();
           }
           else {
-            $id = (int) $product;
+              $id = (int) $product;
           }
 
           if (isset($this->stock[$id])){
-            continue;
+              continue;
           }
 
           // catch out of stock
@@ -45,7 +45,7 @@ class Stock
         }
 
         if (empty($ids)) {
-          return;
+            return;
         }
 
         $this->setMasterConnection();
@@ -182,24 +182,26 @@ class Stock
         try {
             $left = $quantity;
             while ($left > 0) {
-              $current = array_shift($stock);
+                $current = array_shift($stock);
 
-              $item = ProductsStockQuery::create()->findPk($current['id'], $con);
-              if ($current['quantity'] <= $left) {
-                $item->delete();
-              }
-              else {
-                $item->setQuantity($item->getQuantity() - $left);
-                $item->save();
-              }
+                $item = ProductsStockQuery::create()->findPk($current['id'], $con);
+                if ($current['quantity'] <= $left) {
+                    $item->delete();
+                }
+                else {
+                    $item->setQuantity($item->getQuantity() - $left);
+                    $item->save();
+                }
 
-              $left = $left - $current['quantity'];
+                $left = $left - $current['quantity'];
+            }
+
+            if ($total == $quantity){
+                $product->getProducts($con)->setIsOutOfStock(true);
+                $product->save($con);
             }
 
             unset($this->stock[$product->getId()]);
-
-            // TODO: update is_out_of_stock
-
             $con->commit();
         }
         catch(Exception $e) {

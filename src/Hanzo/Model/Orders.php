@@ -916,4 +916,26 @@ class Orders extends BaseOrders
 
         $api->call()->cancel( $customer, $this );
     }
+
+
+    /**
+     * returns latest delivery date.
+     *
+     * @return string
+     */
+    public function getExpectedDeliveryDate($format = 'Y-m-d')
+    {
+        $now = date('Ymd');
+        $latest = 0;
+        $expected_at = '';
+        foreach ($this->getOrdersLiness() as $line) {
+            $date = $line->getExpectedAt('Ymd');
+            if (($date > $now) && ($date > $latest)) {
+                $latest = $date;
+                $expected_at = $line->getExpectedAt($format);
+            }
+        }
+
+        return $expected_at;
+    }
 } // Orders
