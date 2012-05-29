@@ -314,6 +314,15 @@ admin_customer:
     requirements:
         id: \d+
 
+admin_customer_delete:
+    pattern:  /admin/customer/delete/{id}
+    defaults:
+        _controller: AdminBundle:Customers:delete
+        _format: json
+    requirements:
+        id: \d+
+        _format: html|json
+
 admin_customer_address:
     pattern:  /admin/customer/address/{id}/{type}
     defaults:
