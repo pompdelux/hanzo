@@ -23,6 +23,8 @@ set :default_stage, "testing"
 
 # mmh@bellcom.dk: use below to rsync the files instead of git clone. Requires capistrano_rsync_with_remote_cache installed (gem install)
 set :deploy_via,  :rsync_with_remote_cache
+# use other rsync_options. Default is: -az --delete
+set :rsync_options, "-rlptoDzO --delete"
 
 #set :copy_exclude, [".git", "spec"]
 
@@ -55,7 +57,8 @@ namespace :deploy do
 
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions do
-    run "cd #{shared_path} && chmod g+rwX -R app/config && chmod g+rwX app/logs web"
+    run "cd #{shared_path} && sudo chmod g+rwX -R app/config && chmod g+rwX app/logs web"
+    run "cd #{shared_path} && sudo chgrp -R www-data cached-copy"
   end
  
 desc "Create logs and public_html symlinks"
@@ -68,5 +71,4 @@ end
 before 'deploy:restart', 'deploy:symlinks'
 
 after 'deploy', 'deploy:update_permissions'
-
 
