@@ -54,9 +54,6 @@ swiftmailer:
   host: '%mailer_host%'
   username: '%mailer_user%'
   password: '%mailer_password%'
-jms_security_extra:
-  secure_controllers: true
-  secure_all_services: false
 propel:
   dbal:
     driver: '%database_driver%'
@@ -65,10 +62,9 @@ propel:
   path: '%kernel.root_dir%/../vendor/propel'
   phing_path: '%kernel.root_dir%/../vendor/phing'
   logging: '%kernel.debug%'
-  build_properties:
-    propel.project: '%database_name%'
-    propel.addValidators: all
-    propel.namespace.autoPackage: true
+jms_security_extra:
+  secure_controllers: true
+  secure_all_services: false
 snc_redis:
   clients:
     default: { type: predis, alias: default, dsn: 'redis://%redis_cache1_host%:%redis_cache1_port%/%redis_cache1_database%' }

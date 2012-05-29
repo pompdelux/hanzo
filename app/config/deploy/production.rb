@@ -21,7 +21,8 @@ role :db, domain, :primary => true  # This is where Rails migrations will run
 
 before "symfony:cache:warmup", "symfony:route_builder"
 
-before 'deploy:restart', 'deploy:apcclear'
+# disabled while running with other prodtion sites on same servers
+#before 'deploy:restart', 'deploy:apcclear'
 
 
 namespace :deploy do
