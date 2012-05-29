@@ -7,14 +7,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Hanzo\Core\Hanzo,
-Hanzo\Core\Tools;
+    Hanzo\Core\CoreController,
+    Hanzo\Core\Tools;
 
 use Hanzo\Model\CustomersQuery,
     Hanzo\Model\Addresses,
     Hanzo\Model\AddressesQuery,
     Hanzo\Model\DomainsQuery;
 
-class CustomersController extends Controller
+class CustomersController extends CoreController
 {
     
     public function indexAction($domain_key, $pager)
@@ -199,6 +200,27 @@ class CustomersController extends Controller
             'customer'  => $customer,
             'addresses' => $addresses
         ));
+    }
+
+    public function deleteAction($id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
+        $customer = CustomersQuery::create()
+            ->findOneById($id);
+
+        if($customer instanceof Customers){
+            $customer->delete();
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.customer.success', array(), 'admin'),
+            ));
+        }
     }
 
     public function editAddressAction($id, $type)
