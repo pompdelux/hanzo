@@ -232,7 +232,7 @@ class DefaultController extends CoreController
         $data = $this->get('request')->get('data');
         $grouped = array();
 
-        foreach ($data as $values) 
+        foreach ($data as $values)
         {
             $grouped[$values['name']] = $values;
         }
@@ -289,7 +289,7 @@ class DefaultController extends CoreController
      * @author Henrik Farre <hf@bellcom.dk>
      * @return void
      **/
-    protected function validateShipping( Orders $order, $data ) 
+    protected function validateShipping( Orders $order, $data )
     {
         $t = $this->get('translator');
 
@@ -477,10 +477,9 @@ class DefaultController extends CoreController
         // one-to-one, we can only have one session_id or order in the database....
         $session->migrate();
 
-        // TODO: expected_in needs to be loaded from the database.
         return $this->render('CheckoutBundle:Default:success.html.twig', array(
             'order_id' => $order->getId(),
-            'expected_in' => 2
+            'expected_in' => $hanzo->get('shipping.days', 2),
         ));
     }
 
@@ -500,16 +499,16 @@ class DefaultController extends CoreController
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function populateOrderAction()
-    { 
+    {
         $orderObj      = OrdersPeer::getCurrent();
         $attributesObj = $orderObj->getOrdersAttributess();
         $order         = $orderObj->toArray();
         $attributes    = $attributesObj->toArray();
         $orderArray    = array();
 
-        foreach ($attributes as $attribute) 
+        foreach ($attributes as $attribute)
         {
-            if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) 
+            if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' )
             {
                 $orderArray['PaymentMethod'] = $attribute['CValue'];
                 break;
