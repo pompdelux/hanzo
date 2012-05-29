@@ -191,7 +191,7 @@ class DefaultController extends CoreController
      * updatePayment
      *
      * @author Henrik Farre <hf@bellcom.dk>
-     * @todo: should state be uses to something?
+     * @todo: lav priority: should state be uses to something?
      * @param Orders $order
      * @param Request $request
      * @param bool $state
@@ -224,11 +224,30 @@ class DefaultController extends CoreController
      **/
     public function validateAction()
     {
-        // TODO: make this usefull
         $order = OrdersPeer::getCurrent();
 
+        $data = $this->get('request')->get('data');
+        $grouped = array();
+
+        foreach ($data as $values) 
+        {
+            $grouped[$values['name']] = $values;
+        }
+
         try {
-            $this->validateShipping( $order );
+            $this->validateShipping( $order, $grouped['shipping'] );
+        } catch (Exception $e) {
+            return $this->json_response(array(
+                'status' => false,
+                'message' => $e->getMessage(),
+                'data' => array(
+                    'name' => 'shipping'
+                ),
+            ));
+        }
+
+        try {
+            $this->validatePayment( $order, $grouped['payment'] );
         } catch (Exception $e) {
             return $this->json_response(array(
                 'status' => false,
@@ -246,67 +265,99 @@ class DefaultController extends CoreController
     }
 
     /**
+     * validatePayment
+     * @todo: low priority: more validation
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function validatePayment( Orders $order, $data )
+    {
+        $api = $this->get('payment.'. $data['selectedMethod'] .'api');
+
+        if ( !$api->isActive() )
+        {
+            throw new Exception( 'Selected payment type is not avaliable' ); // todo: low priority: translation
+        }
+    }
+
+    /**
      * validateShipping
      *
      * @author Henrik Farre <hf@bellcom.dk>
      * @return void
      **/
-    protected function validateShipping( Orders $order ){}
+    protected function validateShipping( Orders $order, $data ) 
+    {
+        $t = $this->get('translator');
 
-        /**
-         * addressesAction
-         *
-         * @author Henrik Farre <hf@bellcom.dk>
-         * @return void
-         **/
-        public function addressesAction($skip_empty = false, $order = null)
+        if ( $data['state'] !== 'true' )
         {
-            // TODO: should we take the addresses from the order?
-            $customer = CustomersPeer::getCurrent();
-            $customerAddresses = $customer->getAddresses();
-
-            $addresses = array();
-
-            $shippingApi = $this->get('shipping.shippingapi');
-
-            foreach ($customerAddresses as $address) {
-                $addresses[$address->getType()] = $address;
-            }
-
-            if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
-                return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
-            }
-
-            // Only a payment address exists, create a shipping address based on the payment address
-            if ( !isset($addresses['shipping']) && isset($addresses['payment']) ) {
-                $shipping = $addresses['payment']->copy();
-                $shipping->setType('shipping');
-                $shipping->save();
-                $addresses['shipping'] = $shipping;
-            }
-
-            // Same as above just for payment
-            if ( !isset($addresses['payment']) && isset($addresses['shipping']) ) {
-                $payment = $addresses['shipping']->copy();
-                $payment->setType('payment');
-                $payment->save();
-                $addresses['payment'] = $payment;
-            }
-
-            // TODO: the address should be created here minus the fields
-            $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
-
-            if ($skip_empty || ($order instanceof Orders)) {
-                if (empty($addresses['overnightbox'])) {
-                    $hasOvernightBox = false;
-                }
-                if ($order->getDeliveryMethod() == 11) {
-                    unset($addresses['shipping']);
-                }
-            }
-
-            return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
+          throw new Exception( 'State is not correct' );  // todo: low priority: translation
         }
+
+        $shippingApi = $this->get('shipping.shippingapi');
+
+        $methods = $shippingApi->getMethods();
+
+        if ( !isset($methods[ $data['selectedMethod']  ]) ) {
+            throw new Exception( $t->trans('err.unknown_shipping_method', array(), 'checkout') );
+        }
+    }
+
+    /**
+     * addressesAction
+     *
+     * @author Henrik Farre <hf@bellcom.dk>
+     * @return void
+     **/
+    public function addressesAction($skip_empty = false, $order = null)
+    {
+        // TODO: should we take the addresses from the order?
+        $customer = CustomersPeer::getCurrent();
+        $customerAddresses = $customer->getAddresses();
+
+        $addresses = array();
+
+        $shippingApi = $this->get('shipping.shippingapi');
+
+        foreach ($customerAddresses as $address) {
+            $addresses[$address->getType()] = $address;
+        }
+
+        if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
+            return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
+        }
+
+        // Only a payment address exists, create a shipping address based on the payment address
+        if ( !isset($addresses['shipping']) && isset($addresses['payment']) ) {
+            $shipping = $addresses['payment']->copy();
+            $shipping->setType('shipping');
+            $shipping->save();
+            $addresses['shipping'] = $shipping;
+        }
+
+        // Same as above just for payment
+        if ( !isset($addresses['payment']) && isset($addresses['shipping']) ) {
+            $payment = $addresses['shipping']->copy();
+            $payment->setType('payment');
+            $payment->save();
+            $addresses['payment'] = $payment;
+        }
+
+        // TODO: the address should be created here minus the fields
+        $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
+
+        if ($skip_empty || ($order instanceof Orders)) {
+            if (empty($addresses['overnightbox'])) {
+                $hasOvernightBox = false;
+            }
+            if ($order->getDeliveryMethod() == 11) {
+                unset($addresses['shipping']);
+            }
+        }
+
+        return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
+    }
 
 
     /**
