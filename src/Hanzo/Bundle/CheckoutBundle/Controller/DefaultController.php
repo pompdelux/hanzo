@@ -191,7 +191,6 @@ class DefaultController extends CoreController
      * updatePayment
      *
      * @author Henrik Farre <hf@bellcom.dk>
-     * @todo: lav priority: should state be uses to something?
      * @param Orders $order
      * @param Request $request
      * @param bool $state
@@ -199,8 +198,12 @@ class DefaultController extends CoreController
      **/
     protected function updatePayment( Orders $order, Request $request, $state )
     {
+        if ( $state === 'false' )
+        {
+            throw new Exception( 'Payment state not valid' );
+        }
+
         $data = $request->get('data');
-        // TODO: match CustPaymMode from old system?
         $order->setPaymentMethod( $data['selectedMethod'] );
         $order->setPaymentPaytype( $data['selectedPaytype'] );
 
@@ -266,7 +269,7 @@ class DefaultController extends CoreController
 
     /**
      * validatePayment
-     * @todo: low priority: more validation
+     * @NICETO: low priority: more validation
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -312,7 +315,6 @@ class DefaultController extends CoreController
      **/
     public function addressesAction($skip_empty = false, $order = null)
     {
-        // TODO: should we take the addresses from the order?
         $customer = CustomersPeer::getCurrent();
         $customerAddresses = $customer->getAddresses();
 
@@ -344,7 +346,6 @@ class DefaultController extends CoreController
             $addresses['payment'] = $payment;
         }
 
-        // TODO: the address should be created here minus the fields
         $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
 
         if ($skip_empty || ($order instanceof Orders)) {

@@ -47,7 +47,7 @@ class MenuController extends CoreController
             if (empty($this->path)) {
                 $this->path = $request->getPathInfo();
 
-                // TODO this could be done better, but how ?
+                // NICETO this could be done better, but how ?
                 if (preg_match('~(?:/[0-9]+/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
                     $this->path = str_replace($matches[0], '', $this->path);
                 }
@@ -122,7 +122,6 @@ class MenuController extends CoreController
 
     protected function generateTree($parent_id = NULL, $type = 'main')
     {
-        // TODO: allow offline views from selected ip addresses/users
         $query = CmsQuery::create()
             ->joinWithI18n($this->locale)
             ->filterByCmsThreadId($this->cms_thread)
@@ -184,7 +183,6 @@ class MenuController extends CoreController
 
     protected function generateFlat($parent_id, $type)
     {
-        // TODO: allow offline views from selected ip addresses/users
         $result = CmsQuery::create()
             ->joinWithI18n($this->locale)
             ->filterByCmsThreadId($this->cms_thread)
