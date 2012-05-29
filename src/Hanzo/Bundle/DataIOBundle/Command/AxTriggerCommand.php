@@ -40,6 +40,7 @@ class AxTriggerCommand extends ContainerAwareCommand
             return;
         }
 
+        $error = '';
         if (false === $status) {
             $error = 'AX not available.';
             $output->writeln('Runtime error: <error>'.$error.'</error>');
@@ -48,6 +49,20 @@ class AxTriggerCommand extends ContainerAwareCommand
             $output->writeln('AX communication error: <error>'.$error.'</error>');
         }
 
-        // TODO: send error mails to generic recipient
+        // NICETO: not hardcoded ...
+        if ($error) {
+            $header = array(
+                "From: pompdelux@pompdelux.dk",
+                "Return-Path: pompdelux@pompdelux.dk",
+                "Errors-To: pompdelux@pompdelux.dk",
+            );
+
+            mail(
+                'hd@pompdelux.dk',
+                'Fejl fra lagersync cron (' . $endpoint . ')', "Fejlbesked:\n" . $error . "\n\n-- \nMr. Miyagi",
+                implode("\r\n", $header),
+                '-fpompdelux@pompdelux.dk'
+            );
+        }
     }
 }
