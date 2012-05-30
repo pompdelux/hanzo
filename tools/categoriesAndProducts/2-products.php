@@ -73,9 +73,10 @@ $query = "
   SELECT
     p.products_id,
     CASE p.language_id
-      WHEN 1 THEN 'en_EN'
+      WHEN 1 THEN 'en_GB'
       WHEN 7 THEN 'da_DK'
       WHEN 8 THEN 'nl_NL'
+      WHEN 9 THEN 'sv_SE'
     END AS locale,
     p.products_name,
     p.products_description
@@ -283,9 +284,10 @@ $query = "
     p.code,
     p.description,
     CASE p.languages_id
-      WHEN 1 THEN 'en_EN'
+      WHEN 1 THEN 'en_GB'
       WHEN 7 THEN 'da_DK'
       WHEN 8 THEN 'nl_NL'
+      WHEN 9 THEN 'sv_SE'
     END AS locale
   FROM
     {$from_db}.pdl_washing_instructions AS p
