@@ -24,28 +24,29 @@ First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/refere
   1. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures.sql`
   2. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures_all.sql`
 7. `git submodule update --recursive --init`
-8. `git submodule foreach git checkout master`
-9. `git submodule foreach git pull origin master`
+8. `git submodule foreach --recursive git checkout master`
+9. `git submodule foreach --recursive git pull origin master`
 10. `php bin/vendors install`
-11. If you loaded the "full" fixtures you can do:
-  1. `php app/console hanzo:router:builder`
-12. Setup apache, see `dosc/vhost.conf` for an example
+11. Setup apache, see `dosc/vhost.conf` for an example
 
 ## Configuration:
 
-The system relies heavily on domain names and tld's. So if you use none standard names, these should be mapped via `tld_map: {}` in app/config/hanzo.yml
+The system relies heavily on domain names and tld's. So if you use none standard names, these should be mapped in web/app_dev.php and web/app_test.php
 
 
 ## Misc
 
-Try to follow the [coding standards](http://symfony.com/doc/current/contributing/code/standards.html) as much as possible.
+Follow the [coding standards](http://symfony.com/doc/current/contributing/code/standards.html) as much as possible.
 
 symfony console:
 
 - `php app/console --help` for help on the cli interface for symfony
 - clearing caches
-  - `php app/console cache:clear`
-  - `php app/console cache:clear --env=prod`
+  - `php app/console cache:clear --env=dev_dk`
+  - `php app/console cache:clear --env=test_dk`
+  - `php app/console cache:clear --env=prod_dk`
+
+Note the env parameter, this is important, stuff vill break if not ... oh! and run the command as the web user
 
 redis:
 
