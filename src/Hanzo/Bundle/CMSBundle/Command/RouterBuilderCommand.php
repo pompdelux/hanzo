@@ -23,8 +23,13 @@ class RouterBuilderCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @deprecated here until stable
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        return;
+
         $cache = $this->getContainer()->get('cache_manager');
         $result = $cache->routerBuilder();
 
