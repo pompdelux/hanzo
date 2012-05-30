@@ -235,7 +235,7 @@ class DefaultController extends CoreController
         }
 
         $router = $this->get('router');
-        $router_keys = include __DIR__ . '/../Resources/config/category_map.php';
+        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
 
         $products = array();

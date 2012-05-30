@@ -173,7 +173,7 @@ class DefaultController extends CoreController
 
                 $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
-                $router_keys = include __DIR__ . '/../../BasketBundle/Resources/config/category_map.php';
+                $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
                 $router = $this->get('router');
 
                 foreach ($products as $product) {
@@ -250,7 +250,7 @@ class DefaultController extends CoreController
                 ->find()
             ;
 
-            $router_keys = include __DIR__ . '/../../BasketBundle/Resources/config/category_map.php';
+            $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
             $router = $this->get('router');
 
             $product_ids = array();

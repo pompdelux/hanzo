@@ -43,4 +43,10 @@ class DefaultController extends CoreController
         $this->get('twig')->addGlobal('page_type', $type);
         return $this->render('HanzoCMSBundle:Default:view.html.twig', array('page' => $page));
     }
+
+    public function testAction()
+    {
+        return $this->response('1.2.3 ... test');
+    }
+
 }

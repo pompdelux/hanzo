@@ -152,7 +152,7 @@ class DefaultController extends CoreController
             $in_cart = ' in-cart';
         }
 
-        $router_keys = include __DIR__ . '/../../BasketBundle/Resources/config/category_map.php';
+        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $router = $this->get('router');
         $product_route = $router_keys['_' . strtolower($locale) . '_' . $category_id];
         $url = $router->generate($product_route, array(
