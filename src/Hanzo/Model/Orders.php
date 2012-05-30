@@ -769,9 +769,9 @@ class Orders extends BaseOrders
      **/
     public function setDeliveryAddress( Addresses $address )
     {
-        if ( $address->getType() != 'shipping' )
+        if ( !in_array( $address->getType(), array('shipping','overnightbox') )  )
         {
-            throw new Exception( 'Address is not of type shipping' );
+            throw new Exception( 'Delivery address is not a valid type "'.$address->getType().'"' );
         }
 
         $this->setDeliveryAddressLine1( $address->getAddressLine1() )
