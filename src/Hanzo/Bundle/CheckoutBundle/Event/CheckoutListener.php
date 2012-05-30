@@ -34,9 +34,20 @@ class CheckoutListener
 
         $order->setState( Orders::STATE_PENDING );
 
+        $attributes = $order->getAttributes();
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shipping = $this->translator->trans('shipping_method_name_' . $order->getDeliveryMethod(), array(), 'shipping');
+        $shipping_title = $this->translator->trans('shipping_method_name_' . $order->getDeliveryMethod(), array(), 'shipping');
+
+        $shipping_cost = 0.00;
+        foreach ($order->getOrderLineShipping() as $line) {
+            $shipping_cost += $line->getPrice();
+        }
+
+        $card_type = '';
+        if (isset($attributes->payment->cc_type)) {
+            $card_type = $attributes->payment->cc_type;
+        }
 
         $params = array(
             'order' => $order,
@@ -46,48 +57,60 @@ class CheckoutListener
             'customer_id' => $order->getCustomersId(),
             'order_date' => $order->getCreatedAt('Y-m-d'),
             'payment_method' => $order->getBillingMethod(),
-            'shipping_title' => $shipping,
-            'shipping_cost' => 0.00, // TODO
+            'shipping_title' => $shipping_title,
+            'shipping_cost' => $shipping_cost,
             'payment_fee' => $order->getPaymentFee(),
-            'expected_at' => '', // TODO
+            'expected_at' => $order->getExpectedDeliveryDate(),
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
-            'conditions' => '', // TODO
-            'expected_at' => '',
-            'card_type' => '',
-            'transaction_id' => '',
+            'card_type' => $card_type,
+            'transaction_id' => $transaction_id,
         );
+
+        if (isset($attributes->event->id)) {
+            $params['event_id'] = $attributes->event->id;
+        }
+
+        if (isset($attributes->payment->transaction_id)) {
+            $params['payment_gateway_id'] = $attributes->payment->transaction_id;
+        }
+
+        if (isset($attributes->coupon->amount)) {
+            $params['coupon_amount'] = $attributes->coupon->amount;
+            $params['coupon_name'] = $attributes->coupon->text;
+        }
+
+
+        foreach ($order->getOrdersLiness() as $line) {
+            if ($line->gettype('discount') && $line->getProductsSku() == 'hostess_discount')
+            $params['hostess_discount'] = $line->getPrice();
+            $params['hostess_discount_title'] = $line->getProductsName();
+        }
 
         // TODO: only set if not null
         // Note: Gothia now sets its fee in payment.fee, see order->getPaymentFee()
         if(0){
-            $params['event_id'] = '';
-            $params['payment_gateway_id'] = '';
-            $params['coupon_amount'] = 0.00;
-            $params['coupon_name'] = '';
-            $params['hostess_discount'] = '';
-            $params['hostess_discount_title'] = '';
             $params['gothia_fee'] = 0.00;
             $params['gothia_fee_title'] = '';
         }
 
         // Handle payment canceling of old order
-        if ( $order->getInEdit() )
-        {
-          $currentVersion = $order->getVersionId();
+        if ($order->getInEdit()) {
+            $currentVersion = $order->getVersionId();
 
-          if ( !( $currentVersion < 2 ) ) // If the version number is less than 2 there is no previous version
-          {
-            $oldOrderVersion = ( $currentVersion - 1);
-            $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-            $oldOrder->cancelPayment();
-          }
+            // If the version number is less than 2 there is no previous version
+            if (!($currentVersion < 2)) {
+                $oldOrderVersion = ( $currentVersion - 1);
+                $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+                $oldOrder->cancelPayment();
+            }
         }
 
         try {
             $this->mailer->setMessage('order.confirmation', $params);
             $this->mailer->setTo($email, $name);
-            // TODO: send confirmation mail to customer and bcc to store owner
+            // NICETO: not hardcoded
+            $this->mailer->setBcc('order@pompdelux.dk');
             $this->mailer->send();
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
