@@ -59,9 +59,9 @@ HanzoCMSBundle:
     resource: "@HanzoCMSBundle/Resources/config/routing.yml"
     prefix:   /
 
-HanzoCMSBundle_cms:
-    resource: "@HanzoCMSBundle/Resources/config/cms_routing.yml"
-    prefix:   /
+HanzoCMSBundle_cms_dyn:
+    resource: .
+    type: cms
 
 _bazinga_exposetranslation:
     resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
