@@ -84,9 +84,10 @@ class Hanzo
         }
 
         $session = $this->container->get('session');
-        if ($session->getLocale() != $this->settings['core.locale']) {
-            $session->setLocale($this->settings['core.locale']);
-        }
+        // we now get our locale from config files
+        // if ($session->getLocale() != $this->settings['core.locale']) {
+        //     $session->setLocale($this->settings['core.locale']);
+        // }
 
         list($lang, ) = explode('_', $this->settings['core.locale'], 2);
         $this->container->get('twig')->addGlobal('html_lang', $lang);
