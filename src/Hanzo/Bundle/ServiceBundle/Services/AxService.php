@@ -140,8 +140,8 @@ class AxService
 
         // payment method
         $custPaymMode = 'Bank';
-        if ( "" != $order->getPaymentGatewayId() && isset($attributes->payment->cc_type) ) {
-            switch (strtoupper($attributes->payment->cc_type)) {
+        if ( "" != $order->getPaymentGatewayId() && isset($attributes->payment->card_type) ) {
+            switch (strtoupper($attributes->payment->card_type)) {
                 case 'VISA ELECTRON (DANIS': // DIBS
                 case 'VISA (SWEDISH CARD)':
                 case 'VISA':
@@ -207,7 +207,7 @@ class AxService
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
         $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
-        $salesTable->SmoreContactInfo        = '';
+        $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
 
         $salesOrder = new stdClass();
         $salesOrder->SalesTable = $salesTable;
