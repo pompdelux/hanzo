@@ -143,10 +143,10 @@ class DefaultController extends CoreController
                 case 'payment':
                     $order->setBillingAddress( $query );
                     break;
+                case 'overnightbox': // Note that setDeliveryAddress checks if the type is correct
                 case 'shipping':
                     $order->setDeliveryAddress( $query );
                     break;
-                    // TODO: Døgnpost?
             }
         }
     }
@@ -490,7 +490,9 @@ class DefaultController extends CoreController
      **/
     public function failedAction()
     {
-        return new Response('Ups'); // FIXME
+        return $this->render('CheckoutBundle:Default:failed.html.twig', array(
+            'error' => '', // NICETO: pass error from paymentmodule to this page
+            ));
     }
 
     /**

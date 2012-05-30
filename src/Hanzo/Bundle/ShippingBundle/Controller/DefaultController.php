@@ -22,8 +22,6 @@ class DefaultController extends CoreController
 
         $methods = $api->getMethods();
 
-        // TODO: set fee
-
         return $this->render('ShippingBundle:Default:block.html.twig', array( 'methods' => $methods ));
     }
 
