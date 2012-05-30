@@ -85,13 +85,12 @@ class CheckoutListener
             if ($line->gettype('discount') && $line->getProductsSku() == 'hostess_discount')
             $params['hostess_discount'] = $line->getPrice();
             $params['hostess_discount_title'] = $line->getProductsName();
-        }
 
-        // TODO: only set if not null
-        // Note: Gothia now sets its fee in payment.fee, see order->getPaymentFee()
-        if(0){
-            $params['gothia_fee'] = 0.00;
-            $params['gothia_fee_title'] = '';
+            if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') // or Sku == 91 ?
+            {
+              $params['gothia_fee'] = $line->getPrice();
+              $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title',array(),'checkout');
+            }
         }
 
         // Handle payment canceling of old order

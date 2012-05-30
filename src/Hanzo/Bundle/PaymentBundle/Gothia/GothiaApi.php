@@ -6,6 +6,8 @@ use Hanzo\Model\Orders;
 use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 
+use Exception;
+
 class GothiaApi implements PaymentMethodApiInterface
 {
     /**
