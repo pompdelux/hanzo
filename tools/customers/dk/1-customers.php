@@ -1,11 +1,12 @@
 <?php
+
+$from = 'tmp_oscom_dk';
+$to = 'tmp_hanzo_dk';
+
 mysql_connect('localhost', 'root', '');
+
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
-
-$from = 'tmp_oscom';
-$to = 'tmp_hanzo';
-
 
 // cleanup first.
 echo "[".date('Y-m-d H:i:s')."] truncating tables (customers, addresses, consultants)\n";
