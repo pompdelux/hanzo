@@ -43,6 +43,7 @@ before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 # also clear redis when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear'
 
+# own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
   desc "Copy default parameters.ini and hanzo.yml to shared dir"
   task :copy_prod_config do
@@ -65,6 +66,24 @@ namespace :symfony do
     task :redis_clear, :roles => :redis do
       symfony_env_prods.each do |i| 
         run("cd #{latest_release} && php app/console hanzo:redis:cache:clear --env=#{i}")
+      end
+    end
+  end
+end
+
+# own task. Run propel migrations
+namespace :propel do
+  namespace :migration do
+    desc "Run migrations"
+    task :migrate, :roles => :db do
+      symfony_env_prods.each do |i| 
+        run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
+      end
+    end
+    desc "Rigrations status"
+    task :status, :roles => :db do
+      symfony_env_prods.each do |i| 
+        run("cd #{latest_release} && php app/console propel:migration:status --env=#{i}")
       end
     end
   end
