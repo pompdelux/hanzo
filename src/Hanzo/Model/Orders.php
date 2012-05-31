@@ -408,6 +408,9 @@ class Orders extends BaseOrders
         $this->addOrdersLines($line);
     }
 
+    /**
+     * NICETO: create filter function that is used by getOrderLineXXX
+     */
     public function getOrderLineShipping()
     {
         $shipping = array();
@@ -418,6 +421,24 @@ class Orders extends BaseOrders
         }
 
         return $shipping;
+    }
+
+    /**
+     * getOrderLineDiscount
+     * NICETO: create filter function that is used by getOrderLineXXX
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getOrderLineDiscount()
+    {
+        $discounts = array();
+        foreach ($this->getOrdersLiness() as $index => $line) {
+            if (in_array($line->getType(), array('discount' ))) {
+                $discounts[] = $line;
+            }
+        }
+
+        return $discounts;
     }
 
     public function preSave(PropelPDO $con = null)

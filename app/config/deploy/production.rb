@@ -1,7 +1,7 @@
-set :domain,      "pdlfront-dk1" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
+set :domain,      "pdlfront-dk3" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
 set :deploy_to,   "/var/www/testpompdelux" 
 set :symfony_env_prod, "prod_dk"
-symfony_env_prods = ["prod_se", "prod_dk"]
+symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl"]
 
 # list of production frontend servers fetched from a file. If we dont need the list for other serivces/scripts, move it back here.
 # Your HTTP server, Apache/etc
@@ -20,9 +20,7 @@ end
 
 role :db, domain, :primary => true  # This is where Rails migrations will run
 
-before "symfony:cache:warmup", "symfony:route_builder"
-
-# disabled while running with other prodtion sites on same servers
+# disabled while running with other prodtion sites on same servers. FIXME
 #before 'deploy:restart', 'deploy:apcclear'
 
 namespace :deploy do
@@ -40,15 +38,16 @@ namespace :deploy do
   end
 end
 
-# own task. symfony route builder
-namespace :symfony do
-  desc "Build hanzo routes"
-  task :route_builder do
-    symfony_env_prods.each do |i| 
-      run("cd #{latest_release} && php app/console hanzo:router:builder --env=#{i}")
-    end
-  end
-end
+# own task. symfony route builder. NO LONGER NEEDED
+#before "symfony:cache:warmup", "symfony:route_builder"
+#namespace :symfony do
+#  desc "Build hanzo routes"
+#  task :route_builder do
+#    symfony_env_prods.each do |i| 
+#      run("cd #{latest_release} && php app/console hanzo:router:builder --env=#{i}")
+#    end
+#  end
+#end
 
 # from symfony2.rb. overrides that loops over synfony_env_prods
 namespace :symfony do

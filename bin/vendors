@@ -151,4 +151,5 @@ system(sprintf('%s %s %s', $interpreter, escapeshellarg($rootDir.'/vendor/bundle
 system(sprintf('%s %s assets:install %s', $interpreter, escapeshellarg($rootDir.'/app/console'), escapeshellarg($rootDir.'/web/')));
 
 // Remove the cache
-system(sprintf('%s %s cache:clear --no-warmup', $interpreter, escapeshellarg($rootDir.'/app/console')));
+// cache:clear commented out because it doesnt use an environment. We do cache clear later. Sideeffects? :) /mmh
+// system(sprintf('%s %s cache:clear --no-warmup', $interpreter, escapeshellarg($rootDir.'/app/console')));
