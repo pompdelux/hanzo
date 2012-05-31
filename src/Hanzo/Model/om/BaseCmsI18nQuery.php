@@ -24,6 +24,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method     CmsI18nQuery orderByLocale($order = Criteria::ASC) Order by the locale column
  * @method     CmsI18nQuery orderByTitle($order = Criteria::ASC) Order by the title column
  * @method     CmsI18nQuery orderByPath($order = Criteria::ASC) Order by the path column
+ * @method     CmsI18nQuery orderByOldPath($order = Criteria::ASC) Order by the old_path column
  * @method     CmsI18nQuery orderByContent($order = Criteria::ASC) Order by the content column
  * @method     CmsI18nQuery orderBySettings($order = Criteria::ASC) Order by the settings column
  * @method     CmsI18nQuery orderByIsRestricted($order = Criteria::ASC) Order by the is_restricted column
@@ -32,6 +33,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method     CmsI18nQuery groupByLocale() Group by the locale column
  * @method     CmsI18nQuery groupByTitle() Group by the title column
  * @method     CmsI18nQuery groupByPath() Group by the path column
+ * @method     CmsI18nQuery groupByOldPath() Group by the old_path column
  * @method     CmsI18nQuery groupByContent() Group by the content column
  * @method     CmsI18nQuery groupBySettings() Group by the settings column
  * @method     CmsI18nQuery groupByIsRestricted() Group by the is_restricted column
@@ -51,6 +53,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method     CmsI18n findOneByLocale(string $locale) Return the first CmsI18n filtered by the locale column
  * @method     CmsI18n findOneByTitle(string $title) Return the first CmsI18n filtered by the title column
  * @method     CmsI18n findOneByPath(string $path) Return the first CmsI18n filtered by the path column
+ * @method     CmsI18n findOneByOldPath(string $old_path) Return the first CmsI18n filtered by the old_path column
  * @method     CmsI18n findOneByContent(string $content) Return the first CmsI18n filtered by the content column
  * @method     CmsI18n findOneBySettings(string $settings) Return the first CmsI18n filtered by the settings column
  * @method     CmsI18n findOneByIsRestricted(boolean $is_restricted) Return the first CmsI18n filtered by the is_restricted column
@@ -59,6 +62,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method     array findByLocale(string $locale) Return CmsI18n objects filtered by the locale column
  * @method     array findByTitle(string $title) Return CmsI18n objects filtered by the title column
  * @method     array findByPath(string $path) Return CmsI18n objects filtered by the path column
+ * @method     array findByOldPath(string $old_path) Return CmsI18n objects filtered by the old_path column
  * @method     array findByContent(string $content) Return CmsI18n objects filtered by the content column
  * @method     array findBySettings(string $settings) Return CmsI18n objects filtered by the settings column
  * @method     array findByIsRestricted(boolean $is_restricted) Return CmsI18n objects filtered by the is_restricted column
@@ -150,7 +154,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `PATH`, `CONTENT`, `SETTINGS`, `IS_RESTRICTED` FROM `cms_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
+		$sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `PATH`, `OLD_PATH`, `CONTENT`, `SETTINGS`, `IS_RESTRICTED` FROM `cms_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -359,6 +363,34 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(CmsI18nPeer::PATH, $path, $comparison);
+	}
+
+	/**
+	 * Filter the query on the old_path column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByOldPath('fooValue');   // WHERE old_path = 'fooValue'
+	 * $query->filterByOldPath('%fooValue%'); // WHERE old_path LIKE '%fooValue%'
+	 * </code>
+	 *
+	 * @param     string $oldPath The value to use as filter.
+	 *              Accepts wildcards (* and % trigger a LIKE)
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CmsI18nQuery The current query, for fluid interface
+	 */
+	public function filterByOldPath($oldPath = null, $comparison = null)
+	{
+		if (null === $comparison) {
+			if (is_array($oldPath)) {
+				$comparison = Criteria::IN;
+			} elseif (preg_match('/[\%\*]/', $oldPath)) {
+				$oldPath = str_replace('*', '%', $oldPath);
+				$comparison = Criteria::LIKE;
+			}
+		}
+		return $this->addUsingAlias(CmsI18nPeer::OLD_PATH, $oldPath, $comparison);
 	}
 
 	/**

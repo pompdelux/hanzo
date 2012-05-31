@@ -6,7 +6,7 @@
 
 
 mysql_connect('localhost', 'root', '');
-mysql_select_db('hanzo');
+mysql_select_db('tmp_hanzo');
 
 
 class mpf {
@@ -53,10 +53,7 @@ class mpf {
         $prefix = self::$menuItems[$record->parent_id][$record->locale]['path'];
       }
 
-      $old = '/p/'.$record->path;
       $new = strtolower(trim($prefix . '/' . self::stripText($record->title), '/'));
-
-      self::$map[$old] = $new;
 
       self::$menuItems[$record->id][$record->locale]['title'] = $record->title;
       self::$menuItems[$record->id][$record->locale]['path'] = $new;
@@ -121,7 +118,3 @@ class mpf {
 
 mpf::t();
 mpf::set();
-
-file_put_contents(__DIR__.'/pathmap.php', '<?php'."\n".'$map = '.var_export(mpf::$map, true).";\n");
-
-#print_r(mpf::$menuItems);

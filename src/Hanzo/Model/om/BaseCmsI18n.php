@@ -73,6 +73,12 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	protected $path;
 
 	/**
+	 * The value for the old_path field.
+	 * @var        string
+	 */
+	protected $old_path;
+
+	/**
 	 * The value for the content field.
 	 * @var        string
 	 */
@@ -170,6 +176,16 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	public function getPath()
 	{
 		return $this->path;
+	}
+
+	/**
+	 * Get the [old_path] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getOldPath()
+	{
+		return $this->old_path;
 	}
 
 	/**
@@ -287,6 +303,26 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 	} // setPath()
 
 	/**
+	 * Set the value of [old_path] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     CmsI18n The current object (for fluent API support)
+	 */
+	public function setOldPath($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->old_path !== $v) {
+			$this->old_path = $v;
+			$this->modifiedColumns[] = CmsI18nPeer::OLD_PATH;
+		}
+
+		return $this;
+	} // setOldPath()
+
+	/**
 	 * Set the value of [content] column.
 	 * 
 	 * @param      string $v new value
@@ -398,9 +434,10 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 			$this->locale = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->title = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->path = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->content = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->settings = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->is_restricted = ($row[$startcol + 6] !== null) ? (boolean) $row[$startcol + 6] : null;
+			$this->old_path = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->content = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->settings = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->is_restricted = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -409,7 +446,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 7; // 7 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 8; // 8 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating CmsI18n object", $e);
@@ -641,6 +678,9 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CmsI18nPeer::PATH)) {
 			$modifiedColumns[':p' . $index++]  = '`PATH`';
 		}
+		if ($this->isColumnModified(CmsI18nPeer::OLD_PATH)) {
+			$modifiedColumns[':p' . $index++]  = '`OLD_PATH`';
+		}
 		if ($this->isColumnModified(CmsI18nPeer::CONTENT)) {
 			$modifiedColumns[':p' . $index++]  = '`CONTENT`';
 		}
@@ -672,6 +712,9 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 						break;
 					case '`PATH`':
 						$stmt->bindValue($identifier, $this->path, PDO::PARAM_STR);
+						break;
+					case '`OLD_PATH`':
+						$stmt->bindValue($identifier, $this->old_path, PDO::PARAM_STR);
 						break;
 					case '`CONTENT`':
 						$stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
@@ -830,12 +873,15 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 				return $this->getPath();
 				break;
 			case 4:
-				return $this->getContent();
+				return $this->getOldPath();
 				break;
 			case 5:
-				return $this->getSettings();
+				return $this->getContent();
 				break;
 			case 6:
+				return $this->getSettings();
+				break;
+			case 7:
 				return $this->getIsRestricted();
 				break;
 			default:
@@ -871,9 +917,10 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 			$keys[1] => $this->getLocale(),
 			$keys[2] => $this->getTitle(),
 			$keys[3] => $this->getPath(),
-			$keys[4] => $this->getContent(),
-			$keys[5] => $this->getSettings(),
-			$keys[6] => $this->getIsRestricted(),
+			$keys[4] => $this->getOldPath(),
+			$keys[5] => $this->getContent(),
+			$keys[6] => $this->getSettings(),
+			$keys[7] => $this->getIsRestricted(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCms) {
@@ -923,12 +970,15 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 				$this->setPath($value);
 				break;
 			case 4:
-				$this->setContent($value);
+				$this->setOldPath($value);
 				break;
 			case 5:
-				$this->setSettings($value);
+				$this->setContent($value);
 				break;
 			case 6:
+				$this->setSettings($value);
+				break;
+			case 7:
 				$this->setIsRestricted($value);
 				break;
 		} // switch()
@@ -959,9 +1009,10 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		if (array_key_exists($keys[1], $arr)) $this->setLocale($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setTitle($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setPath($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setContent($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setSettings($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setIsRestricted($arr[$keys[6]]);
+		if (array_key_exists($keys[4], $arr)) $this->setOldPath($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setContent($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setSettings($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setIsRestricted($arr[$keys[7]]);
 	}
 
 	/**
@@ -977,6 +1028,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CmsI18nPeer::LOCALE)) $criteria->add(CmsI18nPeer::LOCALE, $this->locale);
 		if ($this->isColumnModified(CmsI18nPeer::TITLE)) $criteria->add(CmsI18nPeer::TITLE, $this->title);
 		if ($this->isColumnModified(CmsI18nPeer::PATH)) $criteria->add(CmsI18nPeer::PATH, $this->path);
+		if ($this->isColumnModified(CmsI18nPeer::OLD_PATH)) $criteria->add(CmsI18nPeer::OLD_PATH, $this->old_path);
 		if ($this->isColumnModified(CmsI18nPeer::CONTENT)) $criteria->add(CmsI18nPeer::CONTENT, $this->content);
 		if ($this->isColumnModified(CmsI18nPeer::SETTINGS)) $criteria->add(CmsI18nPeer::SETTINGS, $this->settings);
 		if ($this->isColumnModified(CmsI18nPeer::IS_RESTRICTED)) $criteria->add(CmsI18nPeer::IS_RESTRICTED, $this->is_restricted);
@@ -1053,6 +1105,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		$copyObj->setLocale($this->getLocale());
 		$copyObj->setTitle($this->getTitle());
 		$copyObj->setPath($this->getPath());
+		$copyObj->setOldPath($this->getOldPath());
 		$copyObj->setContent($this->getContent());
 		$copyObj->setSettings($this->getSettings());
 		$copyObj->setIsRestricted($this->getIsRestricted());
@@ -1169,6 +1222,7 @@ abstract class BaseCmsI18n extends BaseObject  implements Persistent
 		$this->locale = null;
 		$this->title = null;
 		$this->path = null;
+		$this->old_path = null;
 		$this->content = null;
 		$this->settings = null;
 		$this->is_restricted = null;

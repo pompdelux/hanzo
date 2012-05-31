@@ -29,7 +29,7 @@ class DeadOrderService
         $this->settings = $settings;
 
         if (!$this->dibsApi instanceof DibsApi) {
-             throw new \InvalidArgumentException('DibsApi expected as first parameter.');
+            throw new \InvalidArgumentException('DibsApi expected as first parameter.');
         }
     }
 
@@ -62,94 +62,125 @@ class DeadOrderService
 
         foreach ($orders as $order) 
         {
-            $pgId = $order->getPaymentGatewayId();
-            //echo "Processing: ".$order->getId()." (".$pgId.")\n";
-
-            $transId = $this->getTransactionId($order);
-
-            if ( is_null($pgId) && !is_null($transId) )
-            {
-                // No payment gateway id, but an transId
-                try
-                {
-                    $callbackData = $this->dibsApi->call()->callback($order);
-                    if ( isset($callbackData['orderid']) )
-                    {
-                        $order->setPaymentGatewayId($callbackData['orderid']);
-                        $pgId = $callbackData['orderid'];
-                    }
-                }
-                catch (DibsApiCallException $e)
-                {
-                    continue;  
-                }
-            }
-
-            if ( is_null($transId) )
+            $status = $this->checkOrderForErrors($order);
+            if ( $status['is_error'] )
             {
                 $toBeDeleted[] = $order;
-                continue;
-            }
-
-            $order->setAttribute( 'transact', 'payment', $transId );
-            $order->save();
-
-            try
-            {
-                $status = $this->getStatus( $order );
-            }
-            catch (DibsApiCallException $e)
-            {
-                continue;  
-            }
-
-            if ( isset($status->data['status']) )
-            {
-                switch ($status->data['status']) 
-                {
-                    case 2:
-                        // Looks like payment is ok -> update order
-                        $order->setState( Orders::STATE_PAYMENT_OK );
-                        $order->setFinishedAt(time());
-
-                        $fields = array(
-                            'paytype',
-                            'cardnomask',
-                            'cardprefix',
-                            'acquirer',
-                            'cardexpdate',
-                            'currency',
-                            'ip',
-                            'approvalcode',
-                            'transact',
-                        );
-
-                        try
-                        {
-                            $callbackData = $this->dibsApi->call()->callback($order);
-                        }
-                        catch (DibsApiCallException $e)
-                        {
-                            continue;  
-                        }
-
-                        foreach ($fields as $field)
-                        {
-                            $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
-                        }
-                        $order->save();
-                        $this->getContainer()->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
-                        break;
-
-                    default:
-                        $toBeDeleted[] = $order;
-                        continue;
-                        break;
-                } 
             }
         }
 
         return $toBeDeleted;
+    }
+
+    /**
+     * checkOrderForErrors
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function checkOrderForErrors( $order )
+    {
+        $status = array(
+            'is_error'          => false,
+            'error_msg'         => '',
+            'id'                => $order->getId(),
+            'order_last_update' => $order->getUpdatedAt()
+        );
+
+        $pgId = $order->getPaymentGatewayId();
+        //echo "Processing: ".$order->getId()." (".$pgId.")\n";
+
+        $transId = $this->getTransactionId($order);
+
+        if ( is_null($pgId) && !is_null($transId) )
+        {
+            // No payment gateway id, but an transId
+            try
+            {
+                $callbackData = $this->dibsApi->call()->callback($order);
+                if ( isset($callbackData['orderid']) )
+                {
+                    $order->setPaymentGatewayId($callbackData['orderid']);
+                    $pgId = $callbackData['orderid'];
+                }
+            }
+            catch (DibsApiCallException $e)
+            {
+                $status['is_error'] = true;
+                $status['error_msg'] = $e->getMessage();
+                return $status;
+            }
+        }
+
+        if ( is_null($transId) )
+        {
+            $status['is_error'] = true;
+            $status['error_msg'] = 'Ingen transaktions id kunne findes';
+            return $status;
+        }
+
+        $order->setAttribute( 'transact', 'payment', $transId );
+        $order->save();
+
+        try
+        {
+            $orderStatus = $this->getStatus( $order );
+        }
+        catch (DibsApiCallException $e)
+        {
+            $status['is_error'] = true;
+            $status['error_msg'] = $e->getMessage();
+            return $status;
+        }
+
+        if ( isset($orderStatus->data['status']) )
+        {
+            switch ($orderStatus->data['status']) 
+            {
+                case 2:
+                    // Looks like payment is ok -> update order
+                    $order->setState( Orders::STATE_PAYMENT_OK );
+                    $order->setFinishedAt(time());
+
+                    $fields = array(
+                        'paytype',
+                        'cardnomask',
+                        'cardprefix',
+                        'acquirer',
+                        'cardexpdate',
+                        'currency',
+                        'ip',
+                        'approvalcode',
+                        'transact',
+                    );
+
+                    try
+                    {
+                        $callbackData = $this->dibsApi->call()->callback($order);
+                    }
+                    catch (DibsApiCallException $e)
+                    {
+                        $status['is_error'] = true;
+                        $status['error_msg'] = $e->getMessage();
+                        return $status;
+                    }
+
+                    foreach ($fields as $field)
+                    {
+                        $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
+                    }
+                    $order->save();
+                    $this->getContainer()->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
+                    break;
+
+                default:
+                    $status['is_error'] = true;
+                    $status['error_msg'] = 'Order status er '. $orderStatus->data['status'];
+                    return $status;
+                    break;
+            } 
+        }
+
+        return $status;
     }
 
     /**
@@ -211,12 +242,12 @@ class DeadOrderService
      *
      * Get all orders that are older than 3 hours, which have not been finished, payed via dibs, and have not reached a state heigher than 0
      *
-     * @TODO: priority: low, support limit
+     * NICETO: priority: low, support limit
      * @param int $limit
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    protected function getOrders( $limit = 0 )
+    public function getOrders( $limit = 0 )
     { 
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(array('max'=>strtotime('3 hours ago')))

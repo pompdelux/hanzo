@@ -36,13 +36,13 @@ abstract class BaseCmsI18nPeer {
 	const TM_CLASS = 'CmsI18nTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 7;
+	const NUM_COLUMNS = 8;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 7;
+	const NUM_HYDRATE_COLUMNS = 8;
 
 	/** the column name for the ID field */
 	const ID = 'cms_i18n.ID';
@@ -55,6 +55,9 @@ abstract class BaseCmsI18nPeer {
 
 	/** the column name for the PATH field */
 	const PATH = 'cms_i18n.PATH';
+
+	/** the column name for the OLD_PATH field */
+	const OLD_PATH = 'cms_i18n.OLD_PATH';
 
 	/** the column name for the CONTENT field */
 	const CONTENT = 'cms_i18n.CONTENT';
@@ -84,12 +87,12 @@ abstract class BaseCmsI18nPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'Content', 'Settings', 'IsRestricted', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'content', 'settings', 'isRestricted', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::LOCALE, self::TITLE, self::PATH, self::CONTENT, self::SETTINGS, self::IS_RESTRICTED, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'CONTENT', 'SETTINGS', 'IS_RESTRICTED', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'content', 'settings', 'is_restricted', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', 'Path', 'OldPath', 'Content', 'Settings', 'IsRestricted', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', 'path', 'oldPath', 'content', 'settings', 'isRestricted', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::LOCALE, self::TITLE, self::PATH, self::OLD_PATH, self::CONTENT, self::SETTINGS, self::IS_RESTRICTED, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', 'PATH', 'OLD_PATH', 'CONTENT', 'SETTINGS', 'IS_RESTRICTED', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', 'path', 'old_path', 'content', 'settings', 'is_restricted', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	/**
@@ -99,12 +102,12 @@ abstract class BaseCmsI18nPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'Content' => 4, 'Settings' => 5, 'IsRestricted' => 6, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'content' => 4, 'settings' => 5, 'isRestricted' => 6, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::LOCALE => 1, self::TITLE => 2, self::PATH => 3, self::CONTENT => 4, self::SETTINGS => 5, self::IS_RESTRICTED => 6, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'CONTENT' => 4, 'SETTINGS' => 5, 'IS_RESTRICTED' => 6, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'content' => 4, 'settings' => 5, 'is_restricted' => 6, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, 'Path' => 3, 'OldPath' => 4, 'Content' => 5, 'Settings' => 6, 'IsRestricted' => 7, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'oldPath' => 4, 'content' => 5, 'settings' => 6, 'isRestricted' => 7, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::LOCALE => 1, self::TITLE => 2, self::PATH => 3, self::OLD_PATH => 4, self::CONTENT => 5, self::SETTINGS => 6, self::IS_RESTRICTED => 7, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, 'PATH' => 3, 'OLD_PATH' => 4, 'CONTENT' => 5, 'SETTINGS' => 6, 'IS_RESTRICTED' => 7, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, 'path' => 3, 'old_path' => 4, 'content' => 5, 'settings' => 6, 'is_restricted' => 7, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	/**
@@ -180,6 +183,7 @@ abstract class BaseCmsI18nPeer {
 			$criteria->addSelectColumn(CmsI18nPeer::LOCALE);
 			$criteria->addSelectColumn(CmsI18nPeer::TITLE);
 			$criteria->addSelectColumn(CmsI18nPeer::PATH);
+			$criteria->addSelectColumn(CmsI18nPeer::OLD_PATH);
 			$criteria->addSelectColumn(CmsI18nPeer::CONTENT);
 			$criteria->addSelectColumn(CmsI18nPeer::SETTINGS);
 			$criteria->addSelectColumn(CmsI18nPeer::IS_RESTRICTED);
@@ -188,6 +192,7 @@ abstract class BaseCmsI18nPeer {
 			$criteria->addSelectColumn($alias . '.LOCALE');
 			$criteria->addSelectColumn($alias . '.TITLE');
 			$criteria->addSelectColumn($alias . '.PATH');
+			$criteria->addSelectColumn($alias . '.OLD_PATH');
 			$criteria->addSelectColumn($alias . '.CONTENT');
 			$criteria->addSelectColumn($alias . '.SETTINGS');
 			$criteria->addSelectColumn($alias . '.IS_RESTRICTED');

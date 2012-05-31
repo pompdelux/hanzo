@@ -58,7 +58,7 @@ class CmsTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('CmsThread', 'Hanzo\\Model\\CmsThread', RelationMap::MANY_TO_ONE, array('cms_thread_id' => 'id', ), 'CASCADE', null);
+		$this->addRelation('CmsThread', 'Hanzo\\Model\\CmsThread', RelationMap::MANY_TO_ONE, array('cms_thread_id' => 'id', ), 'CASCADE', 'CASCADE');
 		$this->addRelation('CmsRelatedByParentId', 'Hanzo\\Model\\Cms', RelationMap::MANY_TO_ONE, array('parent_id' => 'id', ), 'CASCADE', null);
 		$this->addRelation('CmsRelatedById', 'Hanzo\\Model\\Cms', RelationMap::ONE_TO_MANY, array('id' => 'parent_id', ), 'CASCADE', null, 'CmssRelatedById');
 		$this->addRelation('CmsI18n', 'Hanzo\\Model\\CmsI18n', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'CmsI18ns');
@@ -73,7 +73,7 @@ class CmsTableMap extends TableMap
 	public function getBehaviors()
 	{
 		return array(
-			'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title, path, content, settings, is_restricted', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
+			'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title, path, old_path, content, settings, is_restricted', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
 			'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', ),
 		);
 	} // getBehaviors()
