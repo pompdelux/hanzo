@@ -310,7 +310,7 @@ class DefaultController extends CoreController
             'products' => $products,
             'total' => $order->getTotalPrice(true),
             'delivery_date' => $delivery_date,
-            'continue_shopping' =>  $router->generate('page_400_' . $locale),
+            'continue_shopping' =>  $router->generate('page_400'),
         ));
     }
 }
