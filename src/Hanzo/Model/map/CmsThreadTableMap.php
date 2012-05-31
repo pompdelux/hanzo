@@ -52,7 +52,7 @@ class CmsThreadTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Cms', 'Hanzo\\Model\\Cms', RelationMap::ONE_TO_MANY, array('id' => 'cms_thread_id', ), 'CASCADE', null, 'Cmss');
+		$this->addRelation('Cms', 'Hanzo\\Model\\Cms', RelationMap::ONE_TO_MANY, array('id' => 'cms_thread_id', ), 'CASCADE', 'CASCADE', 'Cmss');
 		$this->addRelation('CmsThreadI18n', 'Hanzo\\Model\\CmsThreadI18n', RelationMap::ONE_TO_MANY, array('id' => 'id', ), 'CASCADE', null, 'CmsThreadI18ns');
 	} // buildRelations()
 

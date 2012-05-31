@@ -59,6 +59,7 @@ CREATE TABLE `cms`
 	CONSTRAINT `fk_cms_1`
 		FOREIGN KEY (`cms_thread_id`)
 		REFERENCES `cms_thread` (`id`)
+		ON UPDATE CASCADE
 		ON DELETE CASCADE,
 	CONSTRAINT `fk_cms_2`
 		FOREIGN KEY (`parent_id`)
@@ -990,6 +991,7 @@ CREATE TABLE `cms_i18n`
 	`locale` VARCHAR(5) DEFAULT 'da_DK' NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	`path` VARCHAR(255) NOT NULL,
+	`old_path` VARCHAR(255),
 	`content` TEXT,
 	`settings` TEXT,
 	`is_restricted` TINYINT(1) DEFAULT 0 NOT NULL,

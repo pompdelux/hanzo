@@ -2047,6 +2047,29 @@ abstract class BaseCms extends BaseObject  implements Persistent
 	
 	
 	/**
+	 * Get the [old_path] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getOldPath()
+	{	return $this->getCurrentTranslation()->getOldPath();
+	}
+	
+	
+	/**
+	 * Set the value of [old_path] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Cms The current object (for fluent API support)
+	 */
+	public function setOldPath($v)
+	{	$this->getCurrentTranslation()->setOldPath($v);
+	
+		return $this;
+	}
+	
+	
+	/**
 	 * Get the [content] column value.
 	 * 
 	 * @return     string
