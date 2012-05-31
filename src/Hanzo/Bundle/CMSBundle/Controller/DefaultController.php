@@ -17,7 +17,8 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
-        $page = CmsPeer::getFrontpage(Hanzo::getInstance()->get('core.locale'));
+        $hanzo = Hanzo::getInstance();
+        $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
         return $this->forward('HanzoCMSBundle:Default:view', array(
             'id'  => NULL,
@@ -27,7 +28,8 @@ class DefaultController extends CoreController
 
     public function viewAction($id, $page = NULL)
     {
-        $locale = Hanzo::getInstance()->get('core.locale');
+        $hanzo = Hanzo::getInstance();
+        $locale = $hanzo->get('core.locale');
 
         if ($page instanceof Cms) {
             $type = $page->getType();
@@ -39,6 +41,12 @@ class DefaultController extends CoreController
                 throw $this->createNotFoundException('The page does not exist (id: '.$id.' )');
             }
         }
+
+        $html = $page->getContent();
+        $find = '~(background|src)="(../|/)~';
+        $replace = '$1="' . $hanzo->get('core.cdn');
+        $html = preg_replace($find, $replace, $html);
+        $page->setContent($html);
 
         $this->get('twig')->addGlobal('page_type', $type);
         return $this->render('HanzoCMSBundle:Default:view.html.twig', array('page' => $page));
