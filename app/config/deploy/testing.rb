@@ -6,8 +6,7 @@ set :deploy_to,   "/var/www/testpompdelux"
 set :domain,      "pomp-test"
 #set :dbserver,    "pomptest-db"
 
-symfony_env_prods = ["prod_dk"]
-#symfony_env_prods = ["prod_dk", "prod_se"]
+symfony_env_prods = ["test_dk"]
 role :web,        domain
 role :app,        domain
 
