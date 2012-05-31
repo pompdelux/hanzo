@@ -42,7 +42,7 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
             ->joinWithI18n($locale)
@@ -69,7 +69,7 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $cache = $this->get('cache_manager');
 
         $node = CmsQuery::create()
@@ -79,7 +79,6 @@ class CmsController extends CoreController
             $node->delete();
         }
 
-        $cache->routerBuilder();
         $cache->clearRedisCache();
 
         if ($this->getFormat() == 'json') {
@@ -95,7 +94,7 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $cms_node = new CmsNode();
 
         $cms_threads = CmsThreadQuery::create()
@@ -203,7 +202,7 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $cache = $this->get('cache_manager');
 
         $languages_availible = LanguagesQuery::Create()
@@ -263,7 +262,6 @@ class CmsController extends CoreController
                     $node->save();
 
                     if($node->getIsActive()){
-                        $cache->routerBuilder();
                         $cache->clearRedisCache();
                     }
 
@@ -288,7 +286,7 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $requests = $this->get('request');
         $nodes = $requests->get('data');
 
@@ -364,7 +362,7 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $redirect = null;
 
         if($id)
@@ -430,7 +428,7 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $redirect = RedirectsQuery::create()
             ->findOneById($id);
 
@@ -487,7 +485,7 @@ class CmsController extends CoreController
             $result = $query->find();
 
             if ($result->count()) {
-                
+
                 $menu .= '<ul id="sortable-list">';
                 foreach($result as $record) {
 
@@ -525,7 +523,7 @@ class CmsController extends CoreController
             $result = $query->find();
 
             if ($result->count()) {
-                
+
                 $menu .= '<ul>';
                 foreach($result as $record) {
                     $menu .= '<li id="item-' . $record->getId(). '" class="sortable-item ' . $record->getType() . '">';

@@ -41,12 +41,14 @@ Follow the [coding standards](http://symfony.com/doc/current/contributing/code/s
 symfony console:
 
 - `php app/console --help` for help on the cli interface for symfony
-- clearing caches
+- clearing caches:
   - `php app/console cache:clear --env=dev_dk`
   - `php app/console cache:clear --env=test_dk`
   - `php app/console cache:clear --env=prod_dk`
+- clearing redis cache:
+  - `php app/console hanzo:redis:cache:clear --env=prod_dk`
 
-Note the env parameter, this is important, stuff vill break if not ... oh! and run the command as the web user
+Note the `env` parameter, this is important, stuff vill break if not ... oh! and run the command as the web user
 
 redis:
 
