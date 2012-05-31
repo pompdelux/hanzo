@@ -13,7 +13,7 @@ monolog:
             level: debug
 
 framework:
-    session: { default_locale: da_DK }
+    session: { default_locale: nl_NL }
     templating:
         assets_base_urls:
             http: [ %cdn% ]
@@ -42,17 +42,3 @@ propel:
                         user:         %prod_dk_database_slave_3_user%
                         password:     %prod_dk_database_slave_3_password%
                         dsn:          %prod_dk_database_slave_3_dsn%
-            pdldbse1:
-                driver:               %database_driver%
-                user:                 %prod_se_database_user%
-                password:             %prod_se_database_password%
-                dsn:                  mysql:host=%prod_se_database_host%;dbname=%prod_se_database_name%
-                options:              {}
-                attributes:           {}
-            pdldbno1:
-                driver:               %database_driver%
-                user:                 %prod_no_database_user%
-                password:             %prod_no_database_password%
-                dsn:                  mysql:host=%prod_no_database_host%;dbname=%prod_no_database_name%
-                options:              {}
-                attributes:           {}

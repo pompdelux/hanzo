@@ -24,9 +24,9 @@ propel:
         connections:
             default:
                 driver:               %database_driver%
-                user:                 %database_no_user%
-                password:             %database_no_password%
-                dsn:                  mysql:host=%database_no_host%;dbname=%database_no_name%
+                user:                 %prod_no_database_user%
+                password:             %prod_no_database_password%
+                dsn:                  mysql:host=%prod_no_database_host%;dbname=%prod_no_database_name%
                 options:              {}
                 attributes:           {}
                 # slaves:

@@ -1,0 +1,31 @@
+imports:
+    - { resource: config.yml }
+
+monolog:
+    handlers:
+        main:
+            type:                     fingers_crossed
+            action_level:             error
+            handler:                  nested
+        nested:
+            type:                     stream
+            path:                     %kernel.logs_dir%/%kernel.environment%.log
+            level:                    debug
+
+framework:
+    session: { default_locale: en_GB }
+    templating:
+        assets_base_urls:
+            http:                     [ %cdn% ]
+
+propel:
+    dbal:
+        default_connection:           default
+        connections:
+            default:
+                driver:               %database_driver%
+                user:                 %database_user%
+                password:             %database_password%
+                dsn:                  mysql:host=%database_host%;dbname=%database_name%
+                options:              {}
+                attributes:           {}

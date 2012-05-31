@@ -24,21 +24,21 @@ propel:
         connections:
             default:
                 driver:               %database_driver%
-                user:                 %database_dk_user%
-                password:             %database_dk_password%
-                dsn:                  mysql:host=%database_dk_host%;dbname=%database_dk_name%
+                user:                 %prod_dk_database_user%
+                password:             %prod_dk_database_password%
+                dsn:                  mysql:host=%prod_dk_database_host%;dbname=%prod_dk_database_name%
                 options:              {}
                 attributes:           {}
-                # slaves:
-                #     pdldbdk2:
-                #         user:         %database_slave_1_user%
-                #         password:     %database_slave_1_password%
-                #         dsn:          %database_slave_1_dsn%
-                #     pdldbdk3:
-                #         user:         %database_slave_2_user%
-                #         password:     %database_slave_2_password%
-                #         dsn:          %database_slave_2_dsn%
-                #     pdldbdk4:
-                #         user:         %database_slave_3_user%
-                #         password:     %database_slave_3_password%
-                #         dsn:          %database_slave_3_dsn%
+                slaves:
+                    pdldbdk2:
+                        user:         %prod_dk_database_slave_1_user%
+                        password:     %prod_dk_database_slave_1_password%
+                        dsn:          %prod_dk_database_slave_1_dsn%
+                    pdldbdk3:
+                        user:         %prod_dk_database_slave_2_user%
+                        password:     %prod_dk_database_slave_2_password%
+                        dsn:          %prod_dk_database_slave_2_dsn%
+                    pdldbdk4:
+                        user:         %prod_dk_database_slave_3_user%
+                        password:     %prod_dk_database_slave_3_password%
+                        dsn:          %prod_dk_database_slave_3_dsn%

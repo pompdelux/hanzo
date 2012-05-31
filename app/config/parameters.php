@@ -7,10 +7,27 @@
  * For currently avaliable vars, check: $container->getParameterBag()->all()
  */
 
-$dbUser     = $container->getParameter('database_user');
-$dbPassword = $container->getParameter('database_password');
-$dbName     = $container->getParameter('database_name');
-$dbHost     = $container->getParameter('database_host');
+$env = explode('_', $container->getParameter('kernel.environment'));
+
+switch ($env[1]) {
+  default:
+    $db_prefix = $env[0].'_dk_';
+    break;
+  case 'se':
+    $db_prefix = $env[0].'_se_';
+    break;
+  case 'no':
+    $db_prefix = $env[0].'_no_';
+    break;
+  // case 'nl':
+  //   $db_prefix = $env[0].'_se_';
+  //   break;
+}
+
+$dbUser     = $container->getParameter($db_prefix.'database_user');
+$dbPassword = $container->getParameter($db_prefix.'database_password');
+$dbName     = $container->getParameter($db_prefix.'database_name');
+$dbHost     = $container->getParameter($db_prefix.'database_host');
 
 $localDbConnection = new PDO( 'mysql:host='. $dbHost .';dbname='. $dbName , $dbUser, $dbPassword, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") );
 $stmt              = $localDbConnection->prepare( "SELECT * FROM settings WHERE ns = 'core'" );
