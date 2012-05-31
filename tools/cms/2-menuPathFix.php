@@ -6,7 +6,7 @@
 
 
 mysql_connect('localhost', 'root', '');
-mysql_select_db('hanzo');
+mysql_select_db('tmp_hanzo_se');
 
 
 class mpf {
@@ -55,8 +55,6 @@ class mpf {
 
       $old = '/p/'.$record->path;
       $new = strtolower(trim($prefix . '/' . self::stripText($record->title), '/'));
-
-      self::$map[$old] = $new;
 
       self::$menuItems[$record->id][$record->locale]['title'] = $record->title;
       self::$menuItems[$record->id][$record->locale]['path'] = $new;
