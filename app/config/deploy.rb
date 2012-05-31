@@ -1,16 +1,5 @@
-# Links:
-# http://capifony.org/
-# http://stackoverflow.com/questions/8718259/capifony-and-directory-owners
-# http://blog.servergrove.com/2011/09/07/deploying-symfony2-projects-on-shared-hosting-with-capifony/
-# http://stackoverflow.com/questions/2633758/deploying-a-rails-app-to-multiple-servers-using-capistrano-best-practices
-# http://www.zalas.eu/multistage-deployment-of-symfony-applications-with-capifony
-# http://stackoverflow.com/questions/9454556/capifony-update-vendors-and-deps-file <- only update vendors on changes in deps
-#
 
 set :application, "Hanzo"
-# below moved to specific files. production.rb and testing.rb
-#set :domain,      "pompdelux-test"
-#set :deploy_to,   "/var/www/hanzo_deploy"
 set :app_path,    "app"
 
 set :repository,  "git@github.com:bellcom/hanzo.git"
@@ -28,6 +17,7 @@ set :rsync_options, "-rlptoDzO --delete"
 
 #set :copy_exclude, [".git", "spec"]
 
+#set :deployed_user, "www-data"
 set :deployed_group, "www-data"
 
 set :model_manager, "propel"
@@ -38,13 +28,10 @@ set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml"]
 
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", web_path + "/images"]
 
-# hf@bellcom.dk: i en deploy skal den være true, ellers false, måske skal vi have den i en task
-set :update_vendors, false
-#set :update_vendors, true 
-
 set :git_enable_submodules, 1
 
 set :use_sudo, false
+#set :use_sudo, true
 
 ssh_options[:forward_agent] = true
 
@@ -60,7 +47,6 @@ namespace :deploy do
     run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
     run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
     #run "cd #{shared_path} && sudo chmod g+rwX -R app/config && sudo chmod g+rwX app/logs web"
-    #run "cd #{shared_path} && sudo chmod g+rwX -R app/config && sudo chmod g+rwX app/logs web"
     #run "cd #{shared_path} && sudo chgrp -R www-data cached-copy"
   end
  
@@ -73,5 +59,4 @@ end
 
 before 'deploy:restart', 'deploy:symlinks'
 
-after 'deploy', 'deploy:update_permissions'
-
+after 'deploy:restart', 'deploy:update_permissions'

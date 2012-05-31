@@ -1,27 +1,47 @@
-set :domain,      "pdlfront-dk3" # hf@bellcom.dk: _Skal_ være en af dem som er defineret i rollerne
-set :deploy_to,   "/var/www/testpompdelux" 
-set :symfony_env_prod, "prod_dk"
+#
+# Hanzo / Pompdelux production deploy. 
+#
+
+set :deploy_to,   "/var/www/pompdelux" 
+
 symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl"]
 
+set :adminserver, "pdladmin"
+
+# if we ever get other brances, specify which one to deploy here
+#set   :branch, "master"
+
+#set :update_vendors, true
+set :update_vendors, false
+
 # list of production frontend servers fetched from a file. If we dont need the list for other serivces/scripts, move it back here.
-# Your HTTP server, Apache/etc
 role(:web) do
    frontend_list
 end
-# This may be the same as your `Web` server
+# :app is the same list of servers as :web. its default and may be used internally.
 role(:app) do
    frontend_list
 end
 
+# our redis server. clear cache here
+role :redis, adminserver, :primary => true
+
+# where to run migrations. :db is also a default and may be used internally.
+role :db, adminserver, :primary => true  # where to run migrations
+
+# function to get web frontends from a file
 def frontend_list
   contentsArray = Array.new
   contentsArray = File.readlines("tools/deploy/frontend_list.txt")
 end
 
-role :db, domain, :primary => true  # This is where Rails migrations will run
-
 # disabled while running with other prodtion sites on same servers. FIXME
 #before 'deploy:restart', 'deploy:apcclear'
+
+before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
+
+# also clear redis when calling cache:clear
+after 'symfony:cache:clear', 'symfony:cache:redis_clear'
 
 namespace :deploy do
   desc "Copy default parameters.ini and hanzo.yml to shared dir"
@@ -38,18 +58,20 @@ namespace :deploy do
   end
 end
 
-# own task. symfony route builder. NO LONGER NEEDED
-#before "symfony:cache:warmup", "symfony:route_builder"
-#namespace :symfony do
-#  desc "Build hanzo routes"
-#  task :route_builder do
-#    symfony_env_prods.each do |i| 
-#      run("cd #{latest_release} && php app/console hanzo:router:builder --env=#{i}")
-#    end
-#  end
-#end
+# own task. Clear the redis cache
+namespace :symfony do
+  namespace :cache do
+    desc "Clear/Flush redis cache"
+    task :redis_clear, :roles => :redis do
+      symfony_env_prods.each do |i| 
+        run("cd #{latest_release} && php app/console hanzo:redis:cache:clear --env=#{i}")
+      end
+    end
+  end
+end
 
-# from symfony2.rb. overrides that loops over synfony_env_prods
+
+# below is from symfony2.rb. overrides that loops over synfony_env_prods
 namespace :symfony do
   desc "Runs custom symfony task"
   task :default do
