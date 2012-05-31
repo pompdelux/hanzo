@@ -17,6 +17,7 @@ $from_db = 'tmp_oscom_se';
 $to_db = 'tmp_hanzo_se';
 
 mysql_connect('localhost', 'root', '');
+
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 
@@ -73,9 +74,6 @@ $query = "
   SELECT
     p.products_id,
     CASE p.language_id
---      WHEN 1 THEN 'en_GB'
---      WHEN 7 THEN 'da_DK'
---      WHEN 8 THEN 'nl_NL'
       WHEN 9 THEN 'sv_SE'
     END AS locale,
     p.products_name,
@@ -122,24 +120,17 @@ $query = "
     p.products_id,
     CASE p.domain_id
       WHEN 1 THEN 3
---      WHEN 1 THEN 1
---      WHEN 3 THEN 5
---      WHEN 7 THEN 4
     END AS domains_id,
     p.price,
     (p.price / 100 * 25) vat,
     CASE p.domain_id
       WHEN 1 THEN 752
---      WHEN 1 THEN 208
---      WHEN 3 THEN 978
---      WHEN 7 THEN 978
     END AS currency,
     '2011-10-01 00:00:00'
   FROM
     {$from_db}.osc_products_to_domain AS p
   WHERE
     p.domain_id IN (1)
---    p.domain_id IN (1,3,7)
 ";
 mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 
@@ -160,17 +151,11 @@ $query = "
     p.products_id,
     CASE p.domain_id
       WHEN 1 THEN 3
---      WHEN 1 THEN 1
---      WHEN 3 THEN 5
---      WHEN 7 THEN 4
     END AS domains_id,
     p.discount_price,
     (p.discount_price / 100 * 25) vat,
     CASE p.domain_id
       WHEN 1 THEN 752
---      WHEN 1 THEN 208
---      WHEN 3 THEN 978
---      WHEN 7 THEN 978
     END AS currency,
     p.discount_from_date,
     p.discount_to_date
@@ -178,7 +163,6 @@ $query = "
     {$from_db}.osc_products_to_domain AS p
   WHERE
     p.domain_id IN (1)
---    p.domain_id IN (1,3,7)
     AND
     p.discount_price IS NOT NULL
 ";
@@ -290,9 +274,6 @@ $query = "
     p.code,
     p.description,
     CASE p.languages_id
---      WHEN 1 THEN 'en_GB'
---      WHEN 7 THEN 'da_DK'
---      WHEN 8 THEN 'nl_NL'
       WHEN 9 THEN 'sv_SE'
     END AS locale
   FROM

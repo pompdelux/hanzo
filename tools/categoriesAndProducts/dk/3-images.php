@@ -1,6 +1,6 @@
 <?php
 
-$to_db = 'tmp_hanzo_se';
+$to_db = 'tmp_hanzo_dk';
 
 mysql_connect('localhost', 'root', '');
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');

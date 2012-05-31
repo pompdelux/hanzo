@@ -4,6 +4,7 @@ $from_db = 'tmp_oscom_se';
 $to_db = 'tmp_hanzo_se';
 
 mysql_connect('localhost', 'root', '');
+
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 
@@ -30,9 +31,6 @@ $query = "
   SELECT
     c.categories_id,
     CASE c.language_id
---      WHEN 1 THEN 'en_GB'
---      WHEN 7 THEN 'da_DK'
---      WHEN 8 THEN 'nl_NL'
       WHEN 9 THEN 'sv_SE'
     END AS locale,
     c.categories_name,

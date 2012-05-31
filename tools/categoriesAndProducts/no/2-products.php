@@ -13,10 +13,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 SET FOREIGN_KEY_CHECKS = 1;
 */
 
-$from_db = 'tmp_oscom_se';
-$to_db = 'tmp_hanzo_se';
+$from_db = 'tmp_oscom_no';
+$to_db = 'tmp_hanzo_no';
 
 mysql_connect('localhost', 'root', '');
+
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 
@@ -73,10 +74,7 @@ $query = "
   SELECT
     p.products_id,
     CASE p.language_id
---      WHEN 1 THEN 'en_GB'
---      WHEN 7 THEN 'da_DK'
---      WHEN 8 THEN 'nl_NL'
-      WHEN 9 THEN 'sv_SE'
+      WHEN 8 THEN 'no_NB'
     END AS locale,
     p.products_name,
     p.products_description
@@ -121,25 +119,18 @@ $query = "
   SELECT
     p.products_id,
     CASE p.domain_id
-      WHEN 1 THEN 3
---      WHEN 1 THEN 1
---      WHEN 3 THEN 5
---      WHEN 7 THEN 4
+      WHEN 1 THEN 2
     END AS domains_id,
     p.price,
     (p.price / 100 * 25) vat,
     CASE p.domain_id
-      WHEN 1 THEN 752
---      WHEN 1 THEN 208
---      WHEN 3 THEN 978
---      WHEN 7 THEN 978
+      WHEN 1 THEN 578
     END AS currency,
     '2011-10-01 00:00:00'
   FROM
     {$from_db}.osc_products_to_domain AS p
   WHERE
     p.domain_id IN (1)
---    p.domain_id IN (1,3,7)
 ";
 mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 
@@ -159,18 +150,12 @@ $query = "
   SELECT
     p.products_id,
     CASE p.domain_id
-      WHEN 1 THEN 3
---      WHEN 1 THEN 1
---      WHEN 3 THEN 5
---      WHEN 7 THEN 4
+      WHEN 1 THEN 2
     END AS domains_id,
     p.discount_price,
     (p.discount_price / 100 * 25) vat,
     CASE p.domain_id
-      WHEN 1 THEN 752
---      WHEN 1 THEN 208
---      WHEN 3 THEN 978
---      WHEN 7 THEN 978
+      WHEN 1 THEN 578
     END AS currency,
     p.discount_from_date,
     p.discount_to_date
@@ -178,9 +163,8 @@ $query = "
     {$from_db}.osc_products_to_domain AS p
   WHERE
     p.domain_id IN (1)
---    p.domain_id IN (1,3,7)
     AND
-    p.discount_price IS NOT NULL
+      p.discount_price IS NOT NULL
 ";
 mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 
@@ -290,10 +274,7 @@ $query = "
     p.code,
     p.description,
     CASE p.languages_id
---      WHEN 1 THEN 'en_GB'
---      WHEN 7 THEN 'da_DK'
---      WHEN 8 THEN 'nl_NL'
-      WHEN 9 THEN 'sv_SE'
+      WHEN 8 THEN 'no_NB'
     END AS locale
   FROM
     {$from_db}.pdl_washing_instructions AS p
