@@ -4,8 +4,8 @@ $from_db = 'tmp_oscom_se';
 $to_db = 'tmp_hanzo_se';
 
 mysql_connect('localhost', 'root', '');
-mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
+mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 
 
@@ -14,7 +14,19 @@ mysql_query("TRUNCATE TABLE {$to_db}.cms_thread_i18n") or (die('Line: '.__LINE__
 mysql_query("TRUNCATE TABLE {$to_db}.cms") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
 mysql_query("TRUNCATE TABLE {$to_db}.cms_i18n") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
 
+mysql_query('SET FOREIGN_KEY_CHECKS = 1');
 
+mysql_query("DELETE FROM {$from_db}.osc_simple_cms WHERE id NOT IN (18, 20, 21)") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
+mysql_query("DELETE FROM {$from_db}.osc_simple_cms_i18n WHERE menu_id NOT IN (18, 20, 21)") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
+mysql_query("DELETE FROM {$from_db}.osc_simple_cms_item WHERE menu_id NOT IN (18, 20, 21)") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
+
+mysql_query('SET FOREIGN_KEY_CHECKS = 0');
+
+mysql_query("UPDATE {$from_db}.osc_simple_cms SET id = 10 WHERE id = 18") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
+mysql_query("UPDATE {$from_db}.osc_simple_cms_i18n SET menu_id = 10 WHERE menu_id = 18") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
+mysql_query("UPDATE {$from_db}.osc_simple_cms_item SET menu_id = 10 WHERE menu_id = 18") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
+
+// -----------------------------
 
 // recreate threads
 $query = "
@@ -28,6 +40,8 @@ $query = "
     f.is_active
   FROM
     {$from_db}.osc_simple_cms AS f
+  WHERE
+    f.id IN (10,20,21)
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
@@ -38,16 +52,19 @@ $query = "
   SELECT
     f.menu_id,
     CASE f.language_id
---      WHEN 1 THEN 'en_GB'
---      WHEN 7 THEN 'da_DK'
---      WHEN 8 THEN 'nl_NL'
-      WHEN 9 THEN 'sv_SE'
+      WHEN 9 THEN 'se_SV'
     END AS locale,
     f.title
   FROM
     {$from_db}.osc_simple_cms_i18n AS f
+  JOIN
+    {$from_db}.osc_simple_cms AS ff
+    ON
+      (f.menu_id = ff.id)
   WHERE
     f.language_id = 9
+    AND
+      ff.id IN (10,20,21)
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
@@ -66,7 +83,7 @@ $query = "
       updated_at,
       sort
     )
-  SELECT
+  SELECT DISTINCT
     f.id,
     f.parent_id,
     f.menu_id,
@@ -80,7 +97,11 @@ $query = "
   JOIN
     {$from_db}.osc_simple_cms_item_i18n AS i
     ON
-      (i.menu_item_id = f.id AND i.language_id = 9)
+      (i.menu_item_id = f.id)
+  WHERE
+    f.menu_id IN (10,20,21)
+    AND
+      i.language_id = 9
   ORDER BY
     f.id, f.parent_id
 ";
@@ -89,24 +110,37 @@ mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 // - i18n
 $query = "
   INSERT INTO
-    {$to_db}.cms_i18n
+    {$to_db}.cms_i18n(
+      id,
+      locale,
+      title,
+      path,
+      old_path,
+      content,
+      settings,
+      is_restricted
+    )
   SELECT
     f.menu_item_id,
     CASE f.language_id
---      WHEN 1 THEN 'en_GB'
---      WHEN 7 THEN 'da_DK'
---      WHEN 8 THEN 'nl_NL'
-      WHEN 9 THEN 'sv_SE'
+      WHEN 9 THEN 'se_SV'
     END AS locale,
     f.title,
     f.slug,
+    CONCAT('/p/', f.slug),
     f.content,
     f.settings,
     0
   FROM
     {$from_db}.osc_simple_cms_item_i18n AS f
+  JOIN
+    {$from_db}.osc_simple_cms_item AS ff
+    ON
+      (f.menu_item_id = ff.id)
   WHERE
     f.language_id = 9
+    AND
+      ff.menu_id IN (10,20,21)
   ORDER BY
     f.menu_item_id
 ";

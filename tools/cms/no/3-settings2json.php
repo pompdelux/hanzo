@@ -1,10 +1,10 @@
-<?php // æåå
+<?php
 
-$db_name = 'tmp_hanzo_se';
+$db_name = 'tmp_hanzo_no';
 
 mysql_connect('localhost', 'root', '');
-mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
+mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 
 $sql = "
@@ -108,27 +108,22 @@ while ($record = mysql_fetch_object($result)) {
   mysql_query($sql);
 }
 
+// extras:
+$query = "INSERT INTO {$db_name}.cms_thread (id, is_active) VALUES ('22' ,  '1')";
+mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
-// se extras:
-mysql_query("INSERT INTO {$db_name}.cms_thread (id, is_active) VALUES (NULL ,  '1')");
-mysql_query("INSERT INTO {$db_name}.cms_thread_i18n (id, locale, title) VALUES ('22', 'sv_SE', 'diverse sider')");
-mysql_query("INSERT INTO {$db_name}.cms (id, parent_id, cms_thread_id, sort, type, is_active, created_at, updated_at) VALUES (NULL, NULL, '22', '1', 'frontpage', '1', '2012-05-31 00:00:00', NULL)");
-mysql_query("INSERT INTO {$db_name}.cms_i18n (id, locale, title, path, content, settings, is_restricted) VALUES ('540', 'sv_SE', 'Forside', 'diverse-sider/forsiden', '<div>
-  <a href=\"/forside/webshop\"><img src=\"/images/pages/Spring_sale_large2.jpg\"></a><br>
-  pÃ¥ SPRING/SUMMER12 kollektionen. BestÃ¤ll nu och fÃ¥ en gratis POMP BAG.<br><br>
-  <h2>Om POMPdeLUX</h2>
-  Under 2006 startade vi POMPdeLUX, d&aring; vi saknade ett st&auml;lle d&auml;r man kunde k&ouml;pa kvalitetsbarnkl&auml;der utan att bli ruinerad. Vi hade b&aring;da tv&aring; arbetat med mode och design i m&aring;nga &aring;r, och efter en resa till Paris var id&egrave;n klar till ett helt nytt koncept: Vi skulle sj&auml;lva designa och producera kl&auml;derna, och f&ouml;r att h&aring;lla priserna nere skulle det inte s&auml;ljas i traditionella butiker utan p&aring; Home shopping arrangemang och i v&aring;r Webshop. <br><br>
-  <h2>I Danmark &ndash; och utlandet</h2>
-  Under namnet POMPdeLUX har vi s&aring;lt v&aring;ra klassiska, skandinaviskt inspirerade kl&auml;der i hela Danmark. Under 2010 utvidgade vi oss till Norge och Sverige, och planen &auml;r att g&aring; in i fler l&auml;nder under kommande &aring;r. <br>
-  <blockquote>Vi hade bÃ¥da tvÃ¥ arbetat med mode och design i mÃ¥nga Ã¥r, och efter en resa till Paris var idÃ¨n klar till ett helt nytt koncept.</blockquote>
-  <h2>Unik design</h2>
-  Ut&ouml;ver kvalitetskravet har det hela tiden varit v&aring;rt m&aring;l att leverera en unik stil, som understryker barnens personlighet. D&auml;rf&ouml;r designar vi sj&auml;lva allt fr&aring;n knappar till tyger och print. Vi ser till att det &auml;r ett snitt och en stil som l&aring;ter barn vara barn, samtidigt som de kan vara l&auml;ckert p&aring;kl&auml;dda. <br><br>
-  <h2>V&auml;lkommen till v&aring;rt POMPdeLUX universum</h2>
-  Marianne Hoffmann och Pia Davids
-</div>
-<a href=\"/forside/om-pompdelux\" class=\"button\">LÃ¤s mer...</a>
-', NULL, '0')");
+$query = "INSERT INTO {$db_name}.cms_thread_i18n (id, locale, title) VALUES (22, 'nb_NO', 'LÃ¸se sider'), (22, 'en_GB', 'Misc pages'), (22, 'nl_NL', 'Misc pages')";
+mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
+$query = "INSERT INTO {$db_name}.cms (id, parent_id, cms_thread_id, sort, type, is_active, created_at, updated_at) VALUES (NULL, NULL, '22', '1', 'frontpage', '1', '2012-05-31 00:00:00', NULL)";
+mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
+$id = mysql_insert_id();
+
+$query = "INSERT INTO {$db_name}.cms_i18n (id, locale, title, path, content, settings, is_restricted, old_path) VALUES
+({$id}, 'nb_NO', 'Forsiden', 'loese-sider/forsiden', '<div>\r\n<a href=\"/forside/webshop\"><img src=\"/images/pages/Spring_sale_large2.jpg\"></a><br>\r\npÃ¥ SPRING/SUMMER12 kolleksjonen. Bestill nÃ¥ og fÃ¥ en gratis POMP BAG. <br>\r\n<br>\r\n<h2>Om POMPdeLUX</h2>\r\nI 2006 startet vi POMPdeLUX, da vi virkelig savnet et sted hvor man kunne kjÃ¸pe kvalitetsbarneklÃ¦r uten Ã¥ bli ruinert. Vi hadde begge jobbet med mote og design gjennom flere Ã¥r, og etter en tur til Paris lÃ¥ ideen klar til et helt nytt konsept: Vi ville selv designe og produsere klÃ¦rne, og for Ã¥ holde prisen nede, skulle det ikke selges i tradisjonelle butikker, men via Home shopping arrangementer og i vÃ¥r Webshop.\r\n<br>\r\n<br>\r\n<h2>I Danmark â€“ og utlandet</h2>\r\nUnder navnet POMPdeLUX har vi solgt vÃ¥re klassiske, skandinavisk inspirerte klÃ¦r over hele Danmark. I 2010 utvidet vi til Norge og Sverige, og etter planen utvider vi til enda flere land de kommende Ã¥r. <br>\r\n<blockquote>Vi hadde begge jobbet med mote og design gjennom flere Ã¥r, og etter en tur til Paris lÃ¥ ideen klar til et helt nytt konsept.</blockquote>\r\n<h2>Unik design</h2>\r\nI tillegg til kvalitetskravet har det hele tiden vÃ¦ret vÃ¥rt mÃ¥l Ã¥ levere en unik stil som understreker barnas personlighet. Derfor designer vi selv alt fra knapper til stoff og trykk. Vi sÃ¸rger for et snitt og en stil som lar barn vÃ¦re barn, samtidig med at de gÃ¥r i lekre klÃ¦r. <br>\r\n<br>\r\n<h2>Velkommen til vÃ¥rt POMPdeLUX-univers</h2>\r\nMarianne Hoffmann og Pia Davids </div>\r\n<a href=\"/forside/om-pompdelux\" class=\"button\">Les mer...</a>\r\n', NULL, 0, NULL)";
+mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+
+mysql_query("UPDATE {$db_name}.cms_i18n SET settings = '{\"is_frontpage\":true}' WHERE id = 472");
 
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');
