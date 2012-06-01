@@ -114,7 +114,7 @@ class DeadOrderService
         if ( is_null($transId) )
         {
             $status['is_error'] = true;
-            $status['error_msg'] = 'Ingen transaktions id kunne findes';
+            $status['error_msg'] = 'Slet: Ingen transaktions id kunne findes';
             return $status;
         }
 
@@ -124,6 +124,7 @@ class DeadOrderService
         try
         {
             $orderStatus = $this->getStatus( $order );
+            error_log(__LINE__.':'.__FILE__.' '.print_r($orderStatus,1)); // hf@bellcom.dk debugging
         }
         catch (DibsApiCallException $e)
         {
