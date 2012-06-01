@@ -20,6 +20,8 @@ use Hanzo\Model\Events;
 use Hanzo\Model\GothiaAccounts;
 use Hanzo\Model\Groups;
 use Hanzo\Model\Orders;
+use Hanzo\Model\Wall;
+use Hanzo\Model\WallLikes;
 
 /**
  * Base class that represents a query for the 'customers' table.
@@ -79,6 +81,14 @@ use Hanzo\Model\Orders;
  * @method     CustomersQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
  * @method     CustomersQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
  * @method     CustomersQuery innerJoinOrders($relationAlias = null) Adds a INNER JOIN clause to the query using the Orders relation
+ *
+ * @method     CustomersQuery leftJoinWall($relationAlias = null) Adds a LEFT JOIN clause to the query using the Wall relation
+ * @method     CustomersQuery rightJoinWall($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Wall relation
+ * @method     CustomersQuery innerJoinWall($relationAlias = null) Adds a INNER JOIN clause to the query using the Wall relation
+ *
+ * @method     CustomersQuery leftJoinWallLikes($relationAlias = null) Adds a LEFT JOIN clause to the query using the WallLikes relation
+ * @method     CustomersQuery rightJoinWallLikes($relationAlias = null) Adds a RIGHT JOIN clause to the query using the WallLikes relation
+ * @method     CustomersQuery innerJoinWallLikes($relationAlias = null) Adds a INNER JOIN clause to the query using the WallLikes relation
  *
  * @method     CustomersQuery leftJoinGothiaAccounts($relationAlias = null) Adds a LEFT JOIN clause to the query using the GothiaAccounts relation
  * @method     CustomersQuery rightJoinGothiaAccounts($relationAlias = null) Adds a RIGHT JOIN clause to the query using the GothiaAccounts relation
@@ -1112,6 +1122,152 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinOrders($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'Orders', '\Hanzo\Model\OrdersQuery');
+	}
+
+	/**
+	 * Filter the query by a related Wall object
+	 *
+	 * @param     Wall $wall  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByWall($wall, $comparison = null)
+	{
+		if ($wall instanceof Wall) {
+			return $this
+				->addUsingAlias(CustomersPeer::ID, $wall->getCustomersId(), $comparison);
+		} elseif ($wall instanceof PropelCollection) {
+			return $this
+				->useWallQuery()
+				->filterByPrimaryKeys($wall->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByWall() only accepts arguments of type Wall or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the Wall relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function joinWall($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('Wall');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'Wall');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the Wall relation Wall object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\WallQuery A secondary query class using the current class as primary query
+	 */
+	public function useWallQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinWall($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'Wall', '\Hanzo\Model\WallQuery');
+	}
+
+	/**
+	 * Filter the query by a related WallLikes object
+	 *
+	 * @param     WallLikes $wallLikes  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByWallLikes($wallLikes, $comparison = null)
+	{
+		if ($wallLikes instanceof WallLikes) {
+			return $this
+				->addUsingAlias(CustomersPeer::ID, $wallLikes->getCustomersId(), $comparison);
+		} elseif ($wallLikes instanceof PropelCollection) {
+			return $this
+				->useWallLikesQuery()
+				->filterByPrimaryKeys($wallLikes->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByWallLikes() only accepts arguments of type WallLikes or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the WallLikes relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function joinWallLikes($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('WallLikes');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'WallLikes');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the WallLikes relation WallLikes object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\WallLikesQuery A secondary query class using the current class as primary query
+	 */
+	public function useWallLikesQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinWallLikes($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'WallLikes', '\Hanzo\Model\WallLikesQuery');
 	}
 
 	/**

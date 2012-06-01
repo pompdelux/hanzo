@@ -887,6 +887,59 @@ CREATE TABLE `related_products`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- wall
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `wall`;
+
+CREATE TABLE `wall`
+(
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`parent_id` INTEGER,
+	`customers_id` INTEGER NOT NULL,
+	`messate` LONGTEXT NOT NULL,
+	`status` TINYINT(1) DEFAULT 1 NOT NULL,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`),
+	INDEX `wall_FI_1` (`parent_id`),
+	INDEX `wall_FI_2` (`customers_id`),
+	CONSTRAINT `wall_FK_1`
+		FOREIGN KEY (`parent_id`)
+		REFERENCES `wall` (`id`)
+		ON DELETE CASCADE,
+	CONSTRAINT `wall_FK_2`
+		FOREIGN KEY (`customers_id`)
+		REFERENCES `customers` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- wall_likes
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `wall_likes`;
+
+CREATE TABLE `wall_likes`
+(
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`wall_id` INTEGER NOT NULL,
+	`customers_id` INTEGER NOT NULL,
+	`status` TINYINT(1) DEFAULT 1 NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `wall_likes_FI_1` (`wall_id`),
+	INDEX `wall_likes_FI_2` (`customers_id`),
+	CONSTRAINT `wall_likes_FK_1`
+		FOREIGN KEY (`wall_id`)
+		REFERENCES `wall` (`id`)
+		ON DELETE CASCADE,
+	CONSTRAINT `wall_likes_FK_2`
+		FOREIGN KEY (`customers_id`)
+		REFERENCES `customers` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- gothia_accounts
 -- ---------------------------------------------------------------------
 

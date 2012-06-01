@@ -600,4 +600,34 @@
       <reference local="sku" foreign="sku"/>
     </foreign-key>
   </table>
+
+  <table name="wall">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="parent_id" type="INTEGER" required="false" defaultValue="NULL"/>
+    <column name="customers_id" type="INTEGER" required="true"/>
+    <column name="messate" type="CLOB" required="true"/>
+    <column name="status" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+    <foreign-key foreignTable="wall" onDelete="CASCADE">
+      <reference local="parent_id" foreign="id" />
+    </foreign-key>
+    <foreign-key foreignTable="customers" onDelete="CASCADE">
+      <reference local="customers_id" foreign="id"/>
+    </foreign-key>
+    <behavior name="timestampable"/>
+  </table>
+
+  <table name="wall_likes">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="wall_id" type="INTEGER" required="true"/>
+    <column name="customers_id" type="INTEGER" required="true"/>
+    <column name="status" type="BOOLEAN" required="true" defaultValue="TRUE"/>
+    <foreign-key foreignTable="wall" onDelete="CASCADE">
+      <reference local="wall_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="customers" onDelete="CASCADE">
+      <reference local="customers_id" foreign="id"/>
+    </foreign-key>
+  </table>
+
 </database>
+

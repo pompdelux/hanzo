@@ -32,6 +32,10 @@ use Hanzo\Model\Groups;
 use Hanzo\Model\GroupsQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\Wall;
+use Hanzo\Model\WallLikes;
+use Hanzo\Model\WallLikesQuery;
+use Hanzo\Model\WallQuery;
 
 /**
  * Base class that represents a row from the 'customers' table.
@@ -168,6 +172,16 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $collOrderss;
 
 	/**
+	 * @var        array Wall[] Collection to store aggregation of Wall objects.
+	 */
+	protected $collWalls;
+
+	/**
+	 * @var        array WallLikes[] Collection to store aggregation of WallLikes objects.
+	 */
+	protected $collWallLikess;
+
+	/**
 	 * @var        GothiaAccounts one-to-one related GothiaAccounts object
 	 */
 	protected $singleGothiaAccounts;
@@ -220,6 +234,18 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var		array
 	 */
 	protected $orderssScheduledForDeletion = null;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $wallsScheduledForDeletion = null;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $wallLikessScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -828,6 +854,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			$this->collOrderss = null;
 
+			$this->collWalls = null;
+
+			$this->collWallLikess = null;
+
 			$this->singleGothiaAccounts = null;
 
 			$this->singleConsultants = null;
@@ -1055,6 +1085,40 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			if ($this->collOrderss !== null) {
 				foreach ($this->collOrderss as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->wallsScheduledForDeletion !== null) {
+				if (!$this->wallsScheduledForDeletion->isEmpty()) {
+					WallQuery::create()
+						->filterByPrimaryKeys($this->wallsScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->wallsScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collWalls !== null) {
+				foreach ($this->collWalls as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->wallLikessScheduledForDeletion !== null) {
+				if (!$this->wallLikessScheduledForDeletion->isEmpty()) {
+					WallLikesQuery::create()
+						->filterByPrimaryKeys($this->wallLikessScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->wallLikessScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collWallLikess !== null) {
+				foreach ($this->collWallLikess as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -1347,6 +1411,22 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					}
 				}
 
+				if ($this->collWalls !== null) {
+					foreach ($this->collWalls as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collWallLikess !== null) {
+					foreach ($this->collWallLikess as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
 				if ($this->singleGothiaAccounts !== null) {
 					if (!$this->singleGothiaAccounts->validate($columns)) {
 						$failureMap = array_merge($failureMap, $this->singleGothiaAccounts->getValidationFailures());
@@ -1488,6 +1568,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 			if (null !== $this->collOrderss) {
 				$result['Orderss'] = $this->collOrderss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			}
+			if (null !== $this->collWalls) {
+				$result['Walls'] = $this->collWalls->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			}
+			if (null !== $this->collWallLikess) {
+				$result['WallLikess'] = $this->collWallLikess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->singleGothiaAccounts) {
 				$result['GothiaAccounts'] = $this->singleGothiaAccounts->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
@@ -1732,6 +1818,18 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				}
 			}
 
+			foreach ($this->getWalls() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addWall($relObj->copy($deepCopy));
+				}
+			}
+
+			foreach ($this->getWallLikess() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addWallLikes($relObj->copy($deepCopy));
+				}
+			}
+
 			$relObj = $this->getGothiaAccounts();
 			if ($relObj) {
 				$copyObj->setGothiaAccounts($relObj->copy($deepCopy));
@@ -1864,6 +1962,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		}
 		if ('Orders' == $relationName) {
 			return $this->initOrderss();
+		}
+		if ('Wall' == $relationName) {
+			return $this->initWalls();
+		}
+		if ('WallLikes' == $relationName) {
+			return $this->initWallLikess();
 		}
 	}
 
@@ -2708,6 +2812,352 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Clears out the collWalls collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addWalls()
+	 */
+	public function clearWalls()
+	{
+		$this->collWalls = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collWalls collection.
+	 *
+	 * By default this just sets the collWalls collection to an empty array (like clearcollWalls());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initWalls($overrideExisting = true)
+	{
+		if (null !== $this->collWalls && !$overrideExisting) {
+			return;
+		}
+		$this->collWalls = new PropelObjectCollection();
+		$this->collWalls->setModel('Wall');
+	}
+
+	/**
+	 * Gets an array of Wall objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this Customers is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array Wall[] List of Wall objects
+	 * @throws     PropelException
+	 */
+	public function getWalls($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collWalls || null !== $criteria) {
+			if ($this->isNew() && null === $this->collWalls) {
+				// return empty collection
+				$this->initWalls();
+			} else {
+				$collWalls = WallQuery::create(null, $criteria)
+					->filterByCustomers($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collWalls;
+				}
+				$this->collWalls = $collWalls;
+			}
+		}
+		return $this->collWalls;
+	}
+
+	/**
+	 * Sets a collection of Wall objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $walls A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setWalls(PropelCollection $walls, PropelPDO $con = null)
+	{
+		$this->wallsScheduledForDeletion = $this->getWalls(new Criteria(), $con)->diff($walls);
+
+		foreach ($walls as $wall) {
+			// Fix issue with collection modified by reference
+			if ($wall->isNew()) {
+				$wall->setCustomers($this);
+			}
+			$this->addWall($wall);
+		}
+
+		$this->collWalls = $walls;
+	}
+
+	/**
+	 * Returns the number of related Wall objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related Wall objects.
+	 * @throws     PropelException
+	 */
+	public function countWalls(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collWalls || null !== $criteria) {
+			if ($this->isNew() && null === $this->collWalls) {
+				return 0;
+			} else {
+				$query = WallQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByCustomers($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collWalls);
+		}
+	}
+
+	/**
+	 * Method called to associate a Wall object to this object
+	 * through the Wall foreign key attribute.
+	 *
+	 * @param      Wall $l Wall
+	 * @return     Customers The current object (for fluent API support)
+	 */
+	public function addWall(Wall $l)
+	{
+		if ($this->collWalls === null) {
+			$this->initWalls();
+		}
+		if (!$this->collWalls->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddWall($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	Wall $wall The wall object to add.
+	 */
+	protected function doAddWall($wall)
+	{
+		$this->collWalls[]= $wall;
+		$wall->setCustomers($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Customers is new, it will return
+	 * an empty collection; or if this Customers has previously
+	 * been saved, it will retrieve related Walls from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Customers.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Wall[] List of Wall objects
+	 */
+	public function getWallsJoinWallRelatedByParentId($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = WallQuery::create(null, $criteria);
+		$query->joinWith('WallRelatedByParentId', $join_behavior);
+
+		return $this->getWalls($query, $con);
+	}
+
+	/**
+	 * Clears out the collWallLikess collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addWallLikess()
+	 */
+	public function clearWallLikess()
+	{
+		$this->collWallLikess = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collWallLikess collection.
+	 *
+	 * By default this just sets the collWallLikess collection to an empty array (like clearcollWallLikess());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initWallLikess($overrideExisting = true)
+	{
+		if (null !== $this->collWallLikess && !$overrideExisting) {
+			return;
+		}
+		$this->collWallLikess = new PropelObjectCollection();
+		$this->collWallLikess->setModel('WallLikes');
+	}
+
+	/**
+	 * Gets an array of WallLikes objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this Customers is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array WallLikes[] List of WallLikes objects
+	 * @throws     PropelException
+	 */
+	public function getWallLikess($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collWallLikess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collWallLikess) {
+				// return empty collection
+				$this->initWallLikess();
+			} else {
+				$collWallLikess = WallLikesQuery::create(null, $criteria)
+					->filterByCustomers($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collWallLikess;
+				}
+				$this->collWallLikess = $collWallLikess;
+			}
+		}
+		return $this->collWallLikess;
+	}
+
+	/**
+	 * Sets a collection of WallLikes objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $wallLikess A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setWallLikess(PropelCollection $wallLikess, PropelPDO $con = null)
+	{
+		$this->wallLikessScheduledForDeletion = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
+
+		foreach ($wallLikess as $wallLikes) {
+			// Fix issue with collection modified by reference
+			if ($wallLikes->isNew()) {
+				$wallLikes->setCustomers($this);
+			}
+			$this->addWallLikes($wallLikes);
+		}
+
+		$this->collWallLikess = $wallLikess;
+	}
+
+	/**
+	 * Returns the number of related WallLikes objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related WallLikes objects.
+	 * @throws     PropelException
+	 */
+	public function countWallLikess(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collWallLikess || null !== $criteria) {
+			if ($this->isNew() && null === $this->collWallLikess) {
+				return 0;
+			} else {
+				$query = WallLikesQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByCustomers($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collWallLikess);
+		}
+	}
+
+	/**
+	 * Method called to associate a WallLikes object to this object
+	 * through the WallLikes foreign key attribute.
+	 *
+	 * @param      WallLikes $l WallLikes
+	 * @return     Customers The current object (for fluent API support)
+	 */
+	public function addWallLikes(WallLikes $l)
+	{
+		if ($this->collWallLikess === null) {
+			$this->initWallLikess();
+		}
+		if (!$this->collWallLikess->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddWallLikes($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	WallLikes $wallLikes The wallLikes object to add.
+	 */
+	protected function doAddWallLikes($wallLikes)
+	{
+		$this->collWallLikess[]= $wallLikes;
+		$wallLikes->setCustomers($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Customers is new, it will return
+	 * an empty collection; or if this Customers has previously
+	 * been saved, it will retrieve related WallLikess from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Customers.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array WallLikes[] List of WallLikes objects
+	 */
+	public function getWallLikessJoinWall($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = WallLikesQuery::create(null, $criteria);
+		$query->joinWith('Wall', $join_behavior);
+
+		return $this->getWallLikess($query, $con);
+	}
+
+	/**
 	 * Gets a single GothiaAccounts object, which is related to this object by a one-to-one relationship.
 	 *
 	 * @param      PropelPDO $con optional connection object
@@ -2842,6 +3292,16 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collWalls) {
+				foreach ($this->collWalls as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
+			if ($this->collWallLikess) {
+				foreach ($this->collWallLikess as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 			if ($this->singleGothiaAccounts) {
 				$this->singleGothiaAccounts->clearAllReferences($deep);
 			}
@@ -2870,6 +3330,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->collOrderss->clearIterator();
 		}
 		$this->collOrderss = null;
+		if ($this->collWalls instanceof PropelCollection) {
+			$this->collWalls->clearIterator();
+		}
+		$this->collWalls = null;
+		if ($this->collWallLikess instanceof PropelCollection) {
+			$this->collWallLikess->clearIterator();
+		}
+		$this->collWallLikess = null;
 		if ($this->singleGothiaAccounts instanceof PropelCollection) {
 			$this->singleGothiaAccounts->clearIterator();
 		}
