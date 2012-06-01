@@ -15,6 +15,8 @@ use Hanzo\Model\Orders,
     Hanzo\Model\OrdersAttributesQuery
     ;
 
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
+
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
 class DeadOrderService
@@ -25,6 +27,7 @@ class DeadOrderService
     public function __construct($parameters, $settings)
     {
         $this->dibsApi = $parameters[0];
+        $this->eventDispatcher = $parameters[1];
         $this->parameters = $parameters;
         $this->settings = $settings;
 
@@ -170,7 +173,7 @@ class DeadOrderService
                         $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
                     }
                     $order->save();
-                    $this->getContainer()->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
+                    $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
                     break;
 
                 default:
