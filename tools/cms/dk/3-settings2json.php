@@ -1,10 +1,14 @@
-<?php // æåå
+<?php
 
-$db_name = 'tmp_hanzo';
+if (isset($argv[1]) && $argv[1] == 'live') {
+  $db_name = 'pdl_dk';
+  mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
+} else {
+  $db_name = 'tmp_hanzo_dk';
+  mysql_connect('localhost', 'root', '');
+}
 
-mysql_connect('localhost', 'root', '');
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
-
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
 
 $sql = "

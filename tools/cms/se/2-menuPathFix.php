@@ -1,12 +1,15 @@
 <?php
 
-/*
-  change path's to cms entries to use "/" over "-"
-*/
+if (isset($argv[1]) && $argv[1] == 'live') {
+  $to_db = 'pdl_se';
+  mysql_connect('192.168.2.137', 'pdl_se_migrate', 'TEMPMIGRATE111');
+} else {
+  $to_db = 'tmp_hanzo_se';
+  mysql_connect('localhost', 'root', '');
+}
 
-mysql_connect('localhost', 'root', '');
+mysql_select_db($to_db);
 
-mysql_select_db('tmp_hanzo_se');
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
 

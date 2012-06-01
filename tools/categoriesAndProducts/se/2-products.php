@@ -13,10 +13,15 @@ SET FOREIGN_KEY_CHECKS = 0;
 SET FOREIGN_KEY_CHECKS = 1;
 */
 
-$from_db = 'tmp_oscom_se';
-$to_db = 'tmp_hanzo_se';
-
-mysql_connect('localhost', 'root', '');
+if (isset($argv[1]) && $argv[1] == 'live') {
+  $from_db = 'pdl_se_migrate';
+  $to_db = 'pdl_se';
+  mysql_connect('192.168.2.137', 'pdl_se_migrate', 'TEMPMIGRATE111');
+} else {
+  $from_db = 'tmp_oscom_se';
+  $to_db = 'tmp_hanzo_se';
+  mysql_connect('localhost', 'root', '');
+}
 
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
@@ -278,6 +283,33 @@ $query = "
     END AS locale
   FROM
     {$from_db}.pdl_washing_instructions AS p
+";
+mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
+
+echo "- copying products mannequin images\n"; flush();
+// product washing instructions
+mysql_query("TRUNCATE TABLE {$to_db}.mannequin_images") OR die(mysql_error() . ' » ' . __LINE__ . "\n");
+$query = "
+  INSERT INTO
+    {$to_db}.mannequin_images (
+      master,
+      color,
+      layer,
+      image,
+      icon,
+      weight,
+      is_main
+    )
+  SELECT
+    p.variant_id,
+    p.color,
+    p.layer,
+    p.image,
+    p.icon,
+    p.weight,
+    p.is_main
+  FROM
+    {$from_db}.pdl_mannequin_images AS p
 ";
 mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 

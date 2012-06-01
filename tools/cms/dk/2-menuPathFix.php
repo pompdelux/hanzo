@@ -1,13 +1,14 @@
 <?php
 
-/*
-  change path's to cms entries to use "/" over "-"
-*/
+if (isset($argv[1]) && $argv[1] == 'live') {
+  $to_db = 'pdl_dk';
+  mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
+} else {
+  $to_db = 'tmp_hanzo_dk';
+  mysql_connect('localhost', 'root', '');
+}
 
-
-mysql_connect('localhost', 'root', '');
-mysql_select_db('tmp_hanzo');
-
+mysql_select_db($to_db);
 
 class mpf {
   public static $lang = '';

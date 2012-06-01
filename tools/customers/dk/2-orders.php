@@ -1,13 +1,17 @@
 <?php
 
-$from = 'tmp_oscom_dk';
-$to = 'tmp_hanzo_dk';
-
-mysql_connect('localhost', 'root', '');
+if (isset($argv[1]) && $argv[1] == 'live') {
+  $from = 'pdl_dk_migrate';
+  $to = 'pdl_dk';
+  mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
+} else {
+  $from = 'tmp_oscom_dk';
+  $to = 'tmp_hanzo_dk';
+  mysql_connect('localhost', 'root', '');
+}
 
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
-
 
 echo "[".date('Y-m-d H:i:s')."] empty tables first.\n";
 

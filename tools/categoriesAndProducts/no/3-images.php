@@ -1,8 +1,12 @@
 <?php
 
-$to_db = 'tmp_hanzo_no';
-
-mysql_connect('localhost', 'root', '');
+if (isset($argv[1]) && $argv[1] == 'live') {
+  $to_db = 'pdl_no';
+  mysql_connect('192.168.2.136', 'pdl_no_migrate', 'TEMPMIGRATE111');
+} else {
+  $to_db = 'tmp_hanzo_no';
+  mysql_connect('localhost', 'root', '');
+}
 
 mysql_query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 mysql_query('SET FOREIGN_KEY_CHECKS = 0');
