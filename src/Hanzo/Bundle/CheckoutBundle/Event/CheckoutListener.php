@@ -64,7 +64,6 @@ class CheckoutListener
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
             'card_type' => $card_type,
-            'transaction_id' => $transaction_id,
         );
 
         if (isset($attributes->event->id)) {
@@ -72,8 +71,13 @@ class CheckoutListener
         }
 
         if (isset($attributes->payment->transaction_id)) {
-            $params['payment_gateway_id'] = $attributes->payment->transaction_id;
+            $params['transaction_id'] = $attributes->payment->transaction_id;
         }
+
+        if ( !is_null($order->getPaymentGatewayId()) ) {
+          $params['payment_gateway_id'] = $order->getPaymentGatewayId();
+        }
+
 
         if (isset($attributes->coupon->amount)) {
             $params['coupon_amount'] = $attributes->coupon->amount;
