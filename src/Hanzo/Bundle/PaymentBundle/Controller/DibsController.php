@@ -148,12 +148,10 @@ class DibsController extends CoreController
 
         $order = OrdersPeer::getCurrent();
         $gateway_id = $order->getPaymentGatewayId();
-        error_log(__LINE__.':'.__FILE__.' '.$gateway_id); // hf@bellcom.dk debugging
 
         if ( empty($gateway_id) ) // The first time the form is rendered we set some ekstra stuff
         {
             $gateway_id = Tools::getPaymentGatewayId();
-            error_log(__LINE__.':'.__FILE__.' '.$gateway_id); // hf@bellcom.dk debugging
             $order->setPaymentGatewayId($gateway_id);
             // No need to set state here, it should be handled else where
 
@@ -168,7 +166,6 @@ class DibsController extends CoreController
         if ( $order->getInEdit() ) // New gateway id
         {
             $gateway_id = Tools::getPaymentGatewayId();
-            error_log(__LINE__.':'.__FILE__.' '.$gateway_id); // hf@bellcom.dk debugging
             $order->setPaymentGatewayId($gateway_id);
             $order->save();
         }
@@ -182,7 +179,6 @@ class DibsController extends CoreController
         error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
 
         $cardtypes = $api->getEnabledPaytypes();
-
 
         if ( $isJson )
         {
