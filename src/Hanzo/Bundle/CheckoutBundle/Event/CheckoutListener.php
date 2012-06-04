@@ -70,8 +70,8 @@ class CheckoutListener
             $params['event_id'] = $attributes->event->id;
         }
 
-        if (isset($attributes->payment->transaction_id)) {
-            $params['transaction_id'] = $attributes->payment->transaction_id;
+        if (isset($attributes->payment->transact)) {
+            $params['transaction_id'] = $attributes->payment->transact;
         }
 
         if ( !is_null($order->getPaymentGatewayId()) ) {
