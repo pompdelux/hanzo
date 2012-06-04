@@ -52,7 +52,9 @@ class DibsController extends CoreController
         try
         {
             $api->verifyCallback( $request, $order );
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             $api->updateOrderSuccess( $request, $order );
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
 
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         }
