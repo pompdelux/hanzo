@@ -163,7 +163,7 @@ class DibsController extends CoreController
             $order->save();
         }
 
-        if ( $order->getInEditing() ) // New gateway id
+        if ( $order->getInEdit() ) // New gateway id
         {
             $gateway_id = Tools::getPaymentGatewayId();
             $order->setPaymentGatewayId($gateway_id);
