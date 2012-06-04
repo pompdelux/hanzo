@@ -914,7 +914,7 @@ class Orders extends BaseOrders
             throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
         }
 
-        $attributes = $this->getOrdersAttributess();
+        /*$attributes = $this->getOrdersAttributess();
 
         $paytype = false;
 
@@ -929,9 +929,11 @@ class Orders extends BaseOrders
         if ( $paytype === false)
         {
             throw new Exception( 'No paytype registered on order with id: "'.$this->getId().'"' );
-        }
+        }*/
 
-        $api = Hanzo::getInstance()->container->get('payment.'.$paytype.'api');
+        $paymentMethod = $this->getBillingMethod();
+
+        $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
 
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId() );
 

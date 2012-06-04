@@ -40,12 +40,10 @@ class DefaultController extends CoreController
 
         if ( $order->getState() <= Orders::STATE_PAYMENT_OK )
         {
-            error_log(__LINE__.':'.__FILE__.' '.$order->getState()); // hf@bellcom.dk debugging
             return $this->redirect($this->generateUrl('_checkout_failed'));
         }
         else
         {
-            error_log(__LINE__.':'.__FILE__.' '.$order->getState()); // hf@bellcom.dk debugging
             return $this->redirect($this->generateUrl('_checkout_success'));
         }
     }

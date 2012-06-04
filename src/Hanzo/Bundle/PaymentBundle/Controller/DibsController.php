@@ -163,7 +163,7 @@ class DibsController extends CoreController
             $order->save();
         }
 
-        if ( $order->getInEdit() ) // New gateway id
+        if ( $order->getInEdit() && !$isJson) // New gateway id, but only when the request is not json
         {
             $gateway_id = Tools::getPaymentGatewayId();
             $order->setPaymentGatewayId($gateway_id);
@@ -175,8 +175,6 @@ class DibsController extends CoreController
             Hanzo::getInstance()->get('core.locale'),
             $order
         );
-
-        error_log(__LINE__.':'.__FILE__.' '.print_r($settings,1)); // hf@bellcom.dk debugging
 
         $cardtypes = $api->getEnabledPaytypes();
 

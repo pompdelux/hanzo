@@ -88,6 +88,30 @@ class DibsApiCallResponse
      **/
     protected function setStatus( $function )
     {
+        if ( !isset($this->data['status']) ) {
+            throw new DibsApiCallException( 'Missing status in response from Dibs' );
+        }
+
+        $this->getStatusCodesAndDescriptionForAction( $function );
+    }
+
+    /**
+     * debug
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function debug()
+    {
+        return $this->data;
+    }
+
+    /**
+     * getStatusCodesAndDescriptionForAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function getStatusCodesAndDescriptionForAction( $function )
+    {
         switch ($function)
         {
             case 'cgi-adm/payinfo.cgi':
@@ -160,31 +184,107 @@ class DibsApiCallResponse
                     15 => 'Capture was blocked by DIBS.',
                 );
                 break;
-
-            default:
-                // code...
-                return;
-                break;
         }
 
-        if ( !isset($this->data['status']) ) {
-            throw new DibsApiCallException( 'Missing status in response from Dibs' );
+        // These arrays indicate which of the above $codes are succes status codes
+        $successStatusCodes = array(
+            2, 5 , 11
+            );
+
+        $isError = true;
+        $desc    = null;
+
+        $aquireCodes = array(
+          'd01' => 'Communication problems - No response from acquirer',
+          'N0' => 'Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          'P9' => 'Declined: Call Acquirer Authorisation services',
+          'd04' => 'Credit card expired *OR* Rejected by acquirer',
+          '04' => 'Suspected fraud - Keep card if possible',
+          '05' => 'Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          'O6' => 'Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          'd07' => 'Order number not unique *OR* Amount too high',
+          '12' => 'Declined',
+          '14' => 'Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          '13' => 'Declined: Technical error - Call DIBS Helpdesk ',
+          '51' => 'Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          '54' => 'Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          '56' => '	Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          '62' => 'Declined',
+          '75' => 'Declined: Signature required',
+          '83' => 'Declined: Contact Card Issuer - Insufficient funds, Card expired, etc.',
+          '89' => 'Declined: Technical error - Call DIBS Helpdesk',
+          '91' => 'Declined: Technical error - Call DIBS Helpdesk',
+          '100' => 'Afvist Transaktionen er afvist af kortudsteder. Hvis kortholder søger grunden skal han/hun kontakte sin bank.',
+          '102' => 'Mistanke om svindel Denne kode returneres typisk hvis udløbsdatoen eller kontrolværdi er indtastet forkert. Forklaring kan være, at kortholder har byttet om på måned og år.',
+          '106' => 'Kortholder har indtastet for mange forkerte pin koder. Kortholder skal kontakte sin bank.',
+          '107' => 'Der henvises til kortudsteder',
+          '109' => 'Ukendt forretning: Forretningsnummeret er forkert. Kontakt support@dibs.dk.',
+          '118' => 'Ukendt kort  Det indtastede kortnummer er ugyldigt. Kortindløser kan ikke matche det indsendte kortnummer i sin kortnummerbase.',
+          '125' => 'Kortet er ikke aktiveret af banken. Kortholder skal kontakte sin bank.',
+          '200' => 'Kortet er spærret - kunden skal kontakte sin bank',
+          '208' => 'Spærret - kortet er tabt: Kortet er spærret på grund af at kortet er meldt tabt - kunden skal kontakte sin bank',
+        );
+
+        $statusId = $this->data['status'];
+
+        if ( isset($this->data['reason']) ) // An error
+        {
+            $desc = $codes[$this->data['reason']];
+            $isError = true;
+        }
+        elseif( $statusId == 'ACCEPTED' )
+        {
+            $desc = 'Accepted';
+            $isError = false;
+        }
+        else // An normal status/error
+        {
+            if ( in_array( $this->data['actioncode'], array('d00','000') )  )
+            {
+                if ( isset($successStatusCodes[$statusId]) )
+                {
+                    $isError = false;
+                    $desc = $codes[$statusId];
+                }
+                elseif ( isset($codes[$statusId]) )
+                {
+                    $isError = true;
+                    $desc = $codes[$statusId];
+                }
+                elseif ( in_array( $this->data['actioncode'],array_keys($aquireCodes) ) ) // Error
+                {
+                    if ( isset($codes[$statusId]) )
+                    {
+                        $desc = $codes[$statusId];
+                        $desc .= ' ('. $aquireCodes[$this->data['actioncode']] .')';
+                        $isError = true;
+                    }
+                }
+                elseif ( $this->data['actioncode'] != 'd100' )
+                {
+                    if ( isset($codes[$statusId]) )
+                    {
+                        $desc = $codes[$statusId];
+                        // Is it an error?
+                    }
+                }
+                else
+                {
+                    if ( isset($successStatusCodes[$statusId]) )
+                    {
+                        $desc = $codes[$statusId];
+                        $isError = false;
+                    }
+                }
+            }
         }
 
-        if ( !isset( $codes[$this->data['status']] ) ) {
+        $this->data['status_description'] = $desc;
+        $this->data['status_is_error'] = $isError;
+
+        if ( is_null( $this->data['status_description'] ) ) 
+        {
             throw new DibsApiCallException( 'Unknown status code: "'. $this->data['status'] .'" for: "'. $function .'"');
         }
-
-        $this->data['status_description'] = $codes[$this->data['status']];
-    }
-
-    /**
-     * debug
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function debug()
-    {
-        return $this->data;
     }
 }

@@ -17,8 +17,9 @@ use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
-
 use Hanzo\Model\ShippingMethods;
+
+use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 use Exception;
 use Propel;
