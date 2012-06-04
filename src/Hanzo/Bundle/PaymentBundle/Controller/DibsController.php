@@ -52,9 +52,7 @@ class DibsController extends CoreController
         try
         {
             $api->verifyCallback( $request, $order );
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             $api->updateOrderSuccess( $request, $order );
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
 
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
         }
@@ -162,6 +160,13 @@ class DibsController extends CoreController
                 $order->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
             }
 
+            $order->save();
+        }
+
+        if ( $order->getInEditing() ) // New gateway id
+        {
+            $gateway_id = Tools::getPaymentGatewayId();
+            $order->setPaymentGatewayId($gateway_id);
             $order->save();
         }
 
