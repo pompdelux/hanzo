@@ -165,7 +165,6 @@ class CustomersController extends CoreController
             ->add('password_clear', 'text', // Puha
                 array(
                     'label' => 'admin.customer.password_clear.label',
-                    'read_only' => true,
                     'translation_domain' => 'admin'
                 )
             )
@@ -188,6 +187,8 @@ class CustomersController extends CoreController
                 /**
                  * @todo Synkronisering til AX
                  */
+
+                $customer->setPassword(sha1($customer->getPasswordClear()));
 
                 $customer->save();
 
