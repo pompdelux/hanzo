@@ -73,7 +73,10 @@ class DibsController extends CoreController
      **/
     public function cancelAction()
     {
-        $this->get('session')->setFlash('notice', 'payment.canceled');
+        $translator = $this->get('translator');
+
+        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
+
         return $this->redirect($this->generateUrl('_checkout'));
      }
 
