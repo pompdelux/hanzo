@@ -1,0 +1,15 @@
+wall:
+    pattern:  /wall
+    defaults: { _controller: WallBundle:Default:index }
+
+get_wall:
+    pattern: /wall/get-wall/{pager}
+    defaults:
+        _controller: WallBundle:Default:getWall
+        pager: 0
+    requirements:
+        pager: \d+
+
+add_to_wall:
+    pattern: /wall/add-to-wall
+    defaults: { _controller: WallBundle:Default:getWall}

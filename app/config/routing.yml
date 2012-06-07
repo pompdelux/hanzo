@@ -1,3 +1,7 @@
+WallBundle:
+    resource: "@WallBundle/Resources/config/routing.yml"
+    prefix:   /
+
 
 AdminBundle:
     resource: "@AdminBundle/Resources/config/routing.yml"

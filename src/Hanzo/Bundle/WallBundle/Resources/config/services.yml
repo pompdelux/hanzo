@@ -1,0 +1,7 @@
+parameters:
+#    wall.example.class: Hanzo\Bundle\WallBundle\Example
+
+services:
+#    wall.example:
+#        class: %wall.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
