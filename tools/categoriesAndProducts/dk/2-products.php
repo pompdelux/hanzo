@@ -71,6 +71,15 @@ $query = "
 ";
 mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 
+// hf@bellcom.dk, 07-jun-2012: fixing sku/master -->>
+$query = "SELECT id, sku, master FROM ${to_db}.products WHERE sku = master";
+$result = mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
+while ($row = mysql_fetch_assoc($result)) 
+{
+  mysql_query("UPDATE ${to_db}.products SET master = NULL WHERE id = ".$row['id']);
+}
+// <<-- hf@bellcom.dk, 07-jun-2012: fixing sku/master
+
 echo "- copying products descriptions\n"; flush();
 // descriptions
 $query = "
