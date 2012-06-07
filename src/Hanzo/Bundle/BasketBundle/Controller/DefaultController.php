@@ -299,9 +299,11 @@ class DefaultController extends CoreController
         {
             // Make sure that order state is building
             // If embed is set, we do not set the state again (e.g. when embedded on the checkout page)
-            $order->setState( Orders::STATE_BUILDING );
-            $order->save();
-
+            if ( $order->getState !== Orders::STATE_BUILDING )
+            {
+                $order->setState( Orders::STATE_BUILDING );
+                $order->save();
+            }
         }
 
         return $this->render($template, array(
