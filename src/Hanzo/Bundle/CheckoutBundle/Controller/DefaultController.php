@@ -121,6 +121,12 @@ class DefaultController extends CoreController
         $customer = CustomersPeer::getCurrent();
 
         $data = $request->get('data');
+
+        if ( !isset($data['addresses']) )
+        {
+            throw new Exception( 'No address could be found' );
+        }
+
         $addressTypes = $data['addresses'];
 
         $order->setFirstName( $customer->getFirstName() )
@@ -263,7 +269,7 @@ class DefaultController extends CoreController
         }
 
         try {
-            $this->validateAddresses( $order, $grouped['shipping'] );
+            $this->validateAddresses( $order, $grouped['addresses'] );
         } catch (Exception $e) {
             return $this->json_response(array(
                 'status' => false,
