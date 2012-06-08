@@ -123,7 +123,9 @@ namespace :symfony do
     task :clear do
       symfony_env_prods.each do |i| 
         run "cd #{latest_release} && #{php_bin} #{symfony_console} cache:clear --env=#{i}"
-        run "chmod -R g+w #{latest_release}/#{cache_path}"
+# mmh. This chmod fails because some cache dirs and files are owned by www-data. Ignore the errors and continue, because the www-data dirs already seems to have g+w. Original line commented out below.
+        #run "chmod -R g+w #{latest_release}/#{cache_path}"
+        run "chmod -f -R g+w #{latest_release}/#{cache_path};true"
       end
     end
 
