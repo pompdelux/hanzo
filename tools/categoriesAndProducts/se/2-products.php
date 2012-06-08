@@ -14,7 +14,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 */
 
 if (isset($argv[1]) && $argv[1] == 'live') {
-  $from_db = 'pdl_se_migrate';
+  $from_db = 'pompdelux_se';
   $to_db = 'pdl_se';
   mysql_connect('192.168.2.137', 'pdl_se_migrate', 'TEMPMIGRATE111');
 } else {
