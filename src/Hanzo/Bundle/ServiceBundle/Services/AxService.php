@@ -242,6 +242,8 @@ class AxService
             }
         }
 
+        error_log(__LINE__.':'.__FILE__.' '.print_r($syncSalesOrder,1)); // hf@bellcom.dk debugging
+
         // log ax transaction result
         $entry = new OrdersSyncLog();
         $entry->setOrdersId($order->getId());

@@ -28,6 +28,7 @@ class CheckoutListener
         $order = $event->getOrder();
 
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
+            error_log(__LINE__.':'.__FILE__.' Could not sync order, state is: '.$order->getState()); // hf@bellcom.dk debugging 
             // woopsan!
             return;
         }
@@ -118,6 +119,8 @@ class CheckoutListener
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
         }
+
+        error_log(__LINE__.':'.__FILE__.' '.print_r($params,1)); // hf@bellcom.dk debugging
 
         // trigger ax sync
         $this->ax->sendOrder($order);
