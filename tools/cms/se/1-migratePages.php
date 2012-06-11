@@ -57,7 +57,7 @@ $query = "
   SELECT
     f.menu_id,
     CASE f.language_id
-      WHEN 9 THEN 'se_SV'
+      WHEN 9 THEN 'sv_SE'
     END AS locale,
     f.title
   FROM
@@ -128,7 +128,7 @@ $query = "
   SELECT
     f.menu_item_id,
     CASE f.language_id
-      WHEN 9 THEN 'se_SV'
+      WHEN 9 THEN 'sv_SE'
     END AS locale,
     f.title,
     f.slug,
