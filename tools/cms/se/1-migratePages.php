@@ -181,9 +181,9 @@ while($record = mysql_fetch_object($result)) {
   $content = str_replace($find, $replace, stripcslashes($record->content));
 
   mysql_query(sprintf("UPDATE {$to_db}.cms_i18n SET content = '%s' WHERE id = %d AND locale = '%s'",
+    mysql_real_escape_string($content),
     $record->id,
-    $record->locale,
-    mysql_real_escape_string($content)
+    $record->locale
   )) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 }
 

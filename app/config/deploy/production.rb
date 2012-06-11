@@ -22,6 +22,10 @@ end
 role(:app) do
    frontend_list
 end
+# :apache should contain our apache servers
+role(:apache) do
+   frontend_list #FIXME
+end
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true
@@ -56,6 +60,15 @@ namespace :deploy do
   desc "Clear apc cache on the local server"
   task :apcclear do
     run("wget -q -O /dev/null http://localhost/apc-clear.php")
+  end
+# own tasks. copy vhost and reload apache
+  desc "Copy default vhost from stat"
+  task :copy_vhost, :roles => :apache do
+    run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
+  end
+  desc "Reload apache"
+  task :reload_apache do
+    run("sudo /etc/init.d/apache2 reload")
   end
 end
 
