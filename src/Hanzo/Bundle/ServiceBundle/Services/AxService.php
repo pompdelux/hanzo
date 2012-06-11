@@ -384,6 +384,8 @@ class AxService
      */
     public function lockUnlockSalesOrder($order, $status = true)
     {
+        $attributes = $order->getAttributes();
+
         $lock = new stdClass();
         $lock->eOrderNumber = $order->getId();
         $lock->lockOrder = $status ? 1 : 0;
