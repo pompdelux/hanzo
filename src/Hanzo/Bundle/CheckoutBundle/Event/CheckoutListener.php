@@ -46,8 +46,25 @@ class CheckoutListener
         }
 
         $card_type = '';
-        if (isset($attributes->payment->cc_type)) {
-            $card_type = $attributes->payment->cc_type;
+        if (isset($attributes->payment->paytype)) {
+            switch ($attributes->payment->paytype) 
+            {
+              case 'V-DK':
+                  $card_type = 'VISA/DanKort';
+                break;
+              case 'DK':
+                  $card_type = 'DanKort';
+                  break;
+              case 'MC':
+                  $card_type = 'MasterCard';
+                  break;
+              case 'VISA':
+                  $card_type = 'Visa';
+                  break;
+              case 'ELEC':
+                  $card_type = 'Visa Electron';
+                  break;
+            }
         }
 
         $params = array(
@@ -76,7 +93,7 @@ class CheckoutListener
         }
 
         if ( !is_null($order->getPaymentGatewayId()) ) {
-          $params['payment_gateway_id'] = $order->getPaymentGatewayId();
+            $params['payment_gateway_id'] = $order->getPaymentGatewayId();
         }
 
 
@@ -95,8 +112,8 @@ class CheckoutListener
 
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') // or Sku == 91 ?
             {
-              $params['gothia_fee'] = $line->getPrice();
-              $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title',array(),'checkout');
+                $params['gothia_fee'] = $line->getPrice();
+                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title',array(),'checkout');
             }
         }
 
