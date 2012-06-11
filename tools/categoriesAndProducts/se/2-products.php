@@ -313,4 +313,92 @@ $query = "
 ";
 mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 
+echo " - fix master products: "; flush();
+
+$query1 = "SELECT * FROM {$to_db}.products WHERE master IS NULL";
+$query2 = "SELECT * FROM {$to_db}.products_domains_prices WHERE products_id = %d";
+$query3 = "SELECT * FROM {$to_db}.products_i18n WHERE id = %d";
+$query4 = "SELECT * FROM {$to_db}.products_images WHERE products_id = %d";
+$query5 = "SELECT * FROM {$to_db}.products_stock WHERE products_id = %d";
+
+$insert1 = "INSERT INTO {$to_db}.products (sku, master, size, color, unit, washing, has_video, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %d, %d, now(), now())";
+$insert2 = "INSERT INTO {$to_db}.products_domains_prices (products_id, domains_id, price, vat, currency_id, from_date, to_date) VALUES (%d, %d, %f, %f, %d, %s, %s)";
+$insert3 = "INSERT INTO {$to_db}.products_i18n (id, locale, title, content) VALUES (%d, '%s', '%s', '%s')";
+$insert4 = "INSERT INTO {$to_db}.products_images (products_id, image) VALUES (%d, '%s')";
+$insert5 = "INSERT INTO {$to_db}.products_stock (products_id, quantity, available_from) VALUES (%d, %d, '%s')";
+
+$result = mysql_query($query1) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+while ($product = mysql_fetch_object($result)) {
+  echo '.'; flush();
+
+  mysql_query(sprintf($insert1,
+    ($product->sku ? "'".$product->sku.' '.$product->color.' '.$product->size."'" : 'NULL'),
+    ($product->sku ? "'".$product->sku."'" : 'NULL'),
+    ($product->size ? "'".$product->size."'" : 'NULL'),
+    ($product->color ? "'".$product->color."'" : 'NULL'),
+    ($product->unit ? "'".$product->unit."'" : 'NULL'),
+    $product->washing,
+    $product->has_video
+  )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  $new_id = mysql_insert_id();
+
+
+  $prices_result = mysql_query(sprintf($query2, $product->id));
+
+  while ($price = mysql_fetch_object($prices_result)) {
+    mysql_query(sprintf($insert2,
+      $new_id,
+      $price->domains_id,
+      $price->price,
+      ($price->vat ?: 'NULL'),
+      $price->currency_id,
+      ($price->from_date ? "'".$price->from_date."'" : 'NULL'),
+      ($price->to_date ? "'".$price->to_date."'" : 'NULL')
+    )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  }
+
+  $r = mysql_query(sprintf($query3, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+
+  while ($lang = mysql_fetch_object($r)) {
+    mysql_query(sprintf($insert3,
+      $new_id,
+      $lang->locale,
+      $lang->title,
+      $lang->content
+    )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  }
+
+  // don't think we need this one...
+  // $r = mysql_query(sprintf($query4, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  //
+  // while ($image = mysql_fetch_object($r)) {
+  //   mysql_query(sprintf($insert4,
+  //     $new_id,
+  //     $image->image
+  //   )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  // }
+
+  $r = mysql_query(sprintf($query5, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+
+  while ($stock = mysql_fetch_object($r)) {
+    mysql_query(sprintf($insert5,
+      $new_id,
+      $stock->quantity,
+      $stock->available_from
+    )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  }
+
+  mysql_query("
+    UPDATE
+      {$to_db}.products
+    SET
+      master = NULL,
+      color = NULL,
+      size = NULL
+    WHERE id = " . $product->id
+  ) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+}
+
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');
+
+echo "\n\ndone\n"; flush();
