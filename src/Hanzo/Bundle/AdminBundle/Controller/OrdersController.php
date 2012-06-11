@@ -13,6 +13,7 @@ use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributesQuery;
+use Hanzo\Model\OrdersSyncLogQuery;
 use Hanzo\Model\DomainsQuery;
 
 class OrdersController extends CoreController
@@ -23,7 +24,7 @@ class OrdersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
@@ -109,7 +110,7 @@ class OrdersController extends CoreController
                 'index' => $pager
             );
         }
-        
+
         $domains_availible = DomainsQuery::Create()->find();
 
         return $this->render('AdminBundle:Orders:list.html.twig', array(
@@ -125,7 +126,7 @@ class OrdersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $order = OrdersQuery::create()
             ->findOneById($order_id)
         ;
@@ -196,7 +197,7 @@ class OrdersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $order = OrdersQuery::create()->findOneById($order_id);
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
@@ -228,13 +229,13 @@ class OrdersController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        // $orders = OrdersQuery::create()->find();
+        $orders = OrdersSyncLogQuery::create()
+            ->filterByState('failed')
+            ->find();
 
-        $orders = array();
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
         ));
-        //
     }
 
 
@@ -243,7 +244,7 @@ class OrdersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $order = OrdersQuery::create()->findOneById($order_id);
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
@@ -278,7 +279,7 @@ class OrdersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $order = OrdersQuery::create()->findOneById($order_id);
         if ($order) {
             $order->delete();
@@ -297,7 +298,7 @@ class OrdersController extends CoreController
 
         $deadOrderStatus = array();
 
-        foreach ($orders as $order) 
+        foreach ($orders as $order)
         {
             $status = $deadOrderBuster->checkOrderForErrors($order);
             if ( $status['is_error'] )

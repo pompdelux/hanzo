@@ -135,7 +135,7 @@ class AxService
             }
 
             if ($discount_in_percent) {
-                $line->LineDiscPercent = (float) number_format($discount_in_percent, 4, '.', '');
+                $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
             }
 
             $line->lineText = $product->getProductsName();
