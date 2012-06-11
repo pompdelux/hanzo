@@ -88,8 +88,10 @@ class CheckoutListener
 
         foreach ($order->getOrdersLiness() as $line) {
             if ($line->gettype('discount') && $line->getProductsSku() == 'hostess_discount')
-            $params['hostess_discount'] = $line->getPrice();
-            $params['hostess_discount_title'] = $line->getProductsName();
+            {
+                $params['hostess_discount'] = $line->getPrice();
+                $params['hostess_discount_title'] = $line->getProductsName();
+            }
 
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') // or Sku == 91 ?
             {
@@ -119,8 +121,6 @@ class CheckoutListener
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
         }
-
-        error_log(__LINE__.':'.__FILE__.' '.print_r($params,1)); // hf@bellcom.dk debugging
 
         // trigger ax sync
         $this->ax->sendOrder($order);

@@ -146,7 +146,6 @@ class AxService
         // payment method
         $custPaymMode = 'Bank';
 
-        error_log(__LINE__.':'.__FILE__.' '.print_r($attributes,1)); // hf@bellcom.dk debugging
         switch ($order->getBillingMethod()) 
         {
           case 'dibs':
@@ -248,8 +247,6 @@ class AxService
                 }
             }
         }
-
-        error_log(__LINE__.':'.__FILE__.' '.print_r($syncSalesOrder,1)); // hf@bellcom.dk debugging
 
         // log ax transaction result
         $entry = new OrdersSyncLog();
