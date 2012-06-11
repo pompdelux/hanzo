@@ -118,7 +118,7 @@ class AxService
         foreach ($products as $product) {
             $line = new stdClass();
             $line->ItemId        = $product->getProductsName();
-            $line->SalesPrice    = number_format($product->getPrice(), 4, '.', '');
+            $line->SalesPrice    = (float) number_format($product->getPrice(), 4, '.', '');
             $line->SalesQty      = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
             $line->InventSizeId  = $product->getProductsSize();
@@ -136,7 +136,7 @@ class AxService
             }
 
             if ($discount_in_percent) {
-                $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
+                $line->LineDiscPercent = (float) number_format($discount_in_percent, 4, '.', '');
             }
 
             $line->lineText = $product->getProductsName();
@@ -191,7 +191,7 @@ class AxService
         $salesTable = new stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
-        $salesTable->PaymentId               = $attributes->payment->transact;
+        $salesTable->PaymentId               = isset( $attributes->payment->transact ) ? $attributes->payment->transact : '';
         $salesTable->HomePartyId             = $attributes->global->HomePartyId;
         $salesTable->SalesResponsible        = $attributes->global->SalesResponsible;
         $salesTable->CurrencyCode            = $order->getCurrencyCode();
@@ -222,7 +222,7 @@ class AxService
 
         $syncSalesOrder = new stdClass();
         $syncSalesOrder->salesOrder = $salesOrder;
-        $syncSalesOrder->endpointDomain = $attributes->global->domain_key;
+        $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
 
         if ($return) {
             return $syncSalesOrder;
@@ -236,7 +236,7 @@ class AxService
             $state = 'failed';
             $comment = $result->getMessage();
         } else {
-            if (strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
+            if ( isset($result->SyncSalesOrderResult->Status) && strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
                 $state = 'ok';
                 $order->setState(Orders::STATE_BEING_PROCESSED);
                 $order->save();
@@ -304,6 +304,7 @@ class AxService
         $sc->customer = $cu;
 
         // NICETO: no hardcoded switches
+        // Use: $syncSalesOrder->endpointDomain = $attributes->global->domain_key; ??
         $sc->endpointDomain = 'DK';
         switch ($ct->AddressCountryRegionId) {
             case 'SE':
@@ -340,10 +341,12 @@ class AxService
      */
     public function deleteOrder($order)
     {
+        $attributes = $order->getAttributes();
+
         $salesTable = new stdClass();
         $salesTable->CustAccount = $order->getCustomersId();
         $salesTable->EOrderNumber = $order->getId();
-        $salesTable->PaymentId = $order->getPaymentGatewayId();
+        $salesTable->PaymentId = isset( $attributes->payment->transact ) ? $attributes->payment->transact : '';
         $salesTable->SalesType = 'Sales';
         $salesTable->Completed = 1;
         $salesTable->TransactionType = 'Delete';
@@ -354,7 +357,6 @@ class AxService
         $syncSalesOrder = new stdClass();
         $syncSalesOrder->salesOrder = $salesOrder;
 
-        $attributes = $order->getAttributes();
         $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
 
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
@@ -382,12 +384,12 @@ class AxService
      */
     public function lockUnlockSalesOrder($order, $status = true)
     {
-        $dom = str_replace('Sales', '', $order->getAttributes()->global->domain_key);
+        $attributes = $order->getAttributes();
 
         $lock = new stdClass();
         $lock->eOrderNumber = $order->getId();
         $lock->lockOrder = $status ? 1 : 0;
-        $lock->endpointDomain = $dom;
+        $lock->endpointDomain = substr($attributes->global->domain_key, -2);
         $result = $this->Send('SalesOrderLockUnlock', $lock);
 
         if ($result instanceof Exception) {

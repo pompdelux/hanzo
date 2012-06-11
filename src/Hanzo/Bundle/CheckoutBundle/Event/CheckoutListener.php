@@ -96,12 +96,10 @@ class CheckoutListener
             $params['payment_gateway_id'] = $order->getPaymentGatewayId();
         }
 
-
         if (isset($attributes->coupon->amount)) {
             $params['coupon_amount'] = $attributes->coupon->amount;
             $params['coupon_name'] = $attributes->coupon->text;
         }
-
 
         foreach ($order->getOrdersLiness() as $line) {
             if ($line->gettype('discount') && $line->getProductsSku() == 'hostess_discount')
