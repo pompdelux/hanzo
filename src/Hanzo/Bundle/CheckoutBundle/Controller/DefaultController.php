@@ -530,7 +530,7 @@ class DefaultController extends CoreController
         $session->remove('order_id');
 
         if ($session->has('in_edit')) {
-            $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent($order));
+            $this->get('event_dispatcher')->dispatch('order.edit.done', new FilterOrderEvent($order));
         }
 
         // one-to-one, we can only have one session_id or order in the database....

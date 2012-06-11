@@ -51,4 +51,18 @@ class OrderListener
 
         $this->ax->lockUnlockSalesOrder($order, false);
     }
+
+    public function onEditDone(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+
+        // unset session vars.
+        $this->session->remove('in_edit');
+        $this->session->remove('order_id');
+        // only place this function is called is in CheckoutBundle > DefaultController > successAction
+        // and there migrate is called after this function
+        //$this->session->migrate();
+
+        $this->ax->lockUnlockSalesOrder($order, false);
+    }
 }

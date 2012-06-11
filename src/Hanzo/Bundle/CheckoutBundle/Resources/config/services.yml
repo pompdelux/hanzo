@@ -14,3 +14,4 @@ services:
         tags:
             - { name: kernel.event_listener, event: order.edit.start, method: onEditStart }
             - { name: kernel.event_listener, event: order.edit.cancel, method: onEditCancel }
+            - { name: kernel.event_listener, event: order.edit.done, method: onEditDone }
