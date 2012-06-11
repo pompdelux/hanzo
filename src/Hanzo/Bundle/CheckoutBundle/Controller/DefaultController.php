@@ -50,7 +50,6 @@ class DefaultController extends CoreController
      **/
     public function updateAction($block, $state)
     {
-        error_log(__LINE__.':'.__FILE__.' '.$block); // hf@bellcom.dk debugging
         $order = OrdersPeer::getCurrent();
         $t = $this->get('translator');
 
@@ -81,7 +80,6 @@ class DefaultController extends CoreController
                     // code...
                     break;
                 default:
-                    error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                     throw new Exception( 'Unknown block' );
                     break;
             }
@@ -93,7 +91,6 @@ class DefaultController extends CoreController
                 'message' => '',
             ));
         } catch ( Exception $e ) {
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             return $this->json_response(array(
                 'status' => false,
                 'message' => $e->getMessage(),
