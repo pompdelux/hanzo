@@ -118,7 +118,7 @@ class AxService
         foreach ($products as $product) {
             $line = new stdClass();
             $line->ItemId        = $product->getProductsName();
-            $line->SalesPrice    = number_format($product->getPrice(), 4, '.', '');
+            $line->SalesPrice    = (float) number_format($product->getPrice(), 4, '.', '');
             $line->SalesQty      = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
             $line->InventSizeId  = $product->getProductsSize();
@@ -136,7 +136,7 @@ class AxService
             }
 
             if ($discount_in_percent) {
-                $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
+                $line->LineDiscPercent = (float) number_format($discount_in_percent, 4, '.', '');
             }
 
             $line->lineText = $product->getProductsName();
