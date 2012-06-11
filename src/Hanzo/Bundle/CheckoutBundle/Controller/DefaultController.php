@@ -572,6 +572,11 @@ class DefaultController extends CoreController
             if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' )
             {
                 $orderArray['PaymentMethod'] = $attribute['CValue'];
+                // Dibs call it V-DK, we call it DK :)
+                if ( strtoupper( $orderArray['PaymentMethod'] ) == 'V-DK' )
+                {
+                    $orderArray['PaymentMethod'] = 'DK';
+                }
                 break;
             }
         }
