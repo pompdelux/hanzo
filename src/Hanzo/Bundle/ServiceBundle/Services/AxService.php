@@ -106,7 +106,7 @@ class AxService
                     break;
 
                 case 'shipping.fee':
-                case 'payment.fee':
+                case 'payment.fee': // TODO: hf@bellcom.dk: eh... only for gothia?
                     $handeling_fee += $line->getPrice();
                     break;
             }
@@ -117,15 +117,20 @@ class AxService
         $salesLine = array();
         foreach ($products as $product) {
             $line = new stdClass();
-            $line->ItemId = $product->getProductsName();
-            $line->SalesPrice = number_format($product->getPrice(), 4, '.', '');
-            $line->SalesQty = $product->getQuantity();
+            $line->ItemId        = $product->getProductsName();
+            $line->SalesPrice    = number_format($product->getPrice(), 4, '.', '');
+            $line->SalesQty      = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
-            $line->InventSizeId = $product->getProductsSize();
-            $line->SalesUnit = $product->getUnit();
+            $line->InventSizeId  = $product->getProductsSize();
+            $line->SalesUnit     = $product->getUnit();
 
             $discount = $product->getOriginalPrice() - $product->getPrice();
-
+/*
+            if ( $discount < 0 ) // hf@bellcom.dk, check for discount fubar :)
+            {
+              throw new Exception( 'Discount is negative: '.$discount .', product item id: '. $line->ItemId. ', order id: '. $order->getId() );
+            }
+*/
             if ($product->getOriginalPrice() && $discount != 0) {
                 $discount_in_percent = 100 / ($product->getOriginalPrice() / $discount);
             }
@@ -140,45 +145,47 @@ class AxService
 
         // payment method
         $custPaymMode = 'Bank';
-        if ( "" != $order->getPaymentGatewayId() && isset($attributes->payment->card_type) ) {
-            switch (strtoupper($attributes->payment->card_type)) {
-                case 'VISA ELECTRON (DANIS': // DIBS
-                case 'VISA (SWEDISH CARD)':
-                case 'VISA':
-                case 'VISA-ELECTRON-DK':
-                case 'VISA CARD':
-                    $custPaymMode = 'VISA';
-                    break;
-                case 'MASTERCARD (DANISH C': // DIBS
-                case 'MASTERCARD (SWEDISH':
-                case 'MASTERCARD-DK':
-                case 'MASTERCARD':
-                    $custPaymMode = 'MasterCard';
-                    break;
-                case 'PAYBYBILL TEST':
-                case 'PAYBYBILL':
-                    $custPaymMode = 'PayByBill';
-                    break;
-                default:
-                    $custPaymMode = 'DanKort';
-                    break;
-            }
+
+        error_log(__LINE__.':'.__FILE__.' '.print_r($attributes,1)); // hf@bellcom.dk debugging
+        switch ($order->getBillingMethod()) 
+        {
+          case 'dibs':
+              switch (strtoupper($attributes->payment->paytype)) {
+                  case 'VISA':
+                  case 'ELEC':
+                      $custPaymMode = 'VISA';
+                      break;
+                  case 'MC':
+                      $custPaymMode = 'MasterCard';
+                      break;
+                  case 'V-DK':
+                  case 'DK':
+                      $custPaymMode = 'DanKort';
+                      break;
+              }
+            break;
+
+          case 'gothia':
+              $custPaymMode = 'PayByBill';
+              break;
+
+          case 'paybybill': // Should be COD, is _not_ Gothia
+              $custPaymMode = 'Bank';
+              break;
         }
 
-        if (strtolower($attributes->payment->paytype) == 'gothia') {
-            $custPaymMode = 'PayByBill';
-        }
-
-        // NICETO, this should be set elsewhere
         $freight_type = $order->getDeliveryMethod();
-        switch ($attributes->global->domain_key) {
+        
+        // NICETO, this should be set elsewhere
+        // hf@bellcom.dk: I think this is allready set to P or S..., e.g. external_id is P or S
+        /*switch ($attributes->global->domain_key) {
             case 'NO':
                 $freight_type = ($freight_type == 10) ? 'P' : 'S';
                 break;
             case 'SE':
                 $freight_type = 30;
                 break;
-        }
+        }*/
 
         $salesTable = new stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
@@ -202,7 +209,7 @@ class AxService
         $salesTable->HandlingFeeType         = 90;
         $salesTable->HandlingFeeAmt          = number_format($handeling_fee, 4, '.', '');
         $salesTable->PayByBillFeeType        = 91;
-        $salesTable->PayByBillFeeAmt         = number_format($payment_cost, 4, '.', '');
+        $salesTable->PayByBillFeeAmt         = number_format($payment_cost, 4, '.', ''); // TODO: only for gothia?
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
@@ -225,8 +232,8 @@ class AxService
 
         $comment = '';
         if ($result instanceof Exception) {
-                $state = 'failed';
-                $comment = $result->getMessage();
+            $state = 'failed';
+            $comment = $result->getMessage();
         } else {
             if (strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
                 $state = 'ok';
@@ -278,7 +285,7 @@ class AxService
             ->joinWithCountries()
             ->filterByType('payment')
             ->findOneByCustomersId($debitor->getId())
-        ;
+            ;
 
         $ct->AddressCity = $address->getCity();
         $ct->AddressCountryRegionId = $address->getCountries()->getIso2();
@@ -303,7 +310,7 @@ class AxService
             case 'SE':
             case 'NO':
                 $sc->endpointDomain = $ct->AddressCountryRegionId;
-            break;
+                break;
         }
 
         if ($return) {
@@ -368,12 +375,12 @@ class AxService
 
 
     /**
-    * lock orders in ax
-    *
-    * @param int $orderId
-    * @param bool $status true locks an order false unlocks
-    * @return bool
-    */
+     * lock orders in ax
+     *
+     * @param int $orderId
+     * @param bool $status true locks an order false unlocks
+     * @return bool
+     */
     public function lockUnlockSalesOrder($order, $status = true)
     {
         $dom = str_replace('Sales', '', $order->getAttributes()->global->domain_key);
@@ -466,8 +473,8 @@ class AxService
         }
 
         $this->client = new SoapClient($this->wsdl, array(
-          'trace'      => true,
-          'exceptions' => true,
+            'trace'      => true,
+            'exceptions' => true,
         ));
         $this->client->__setLocation(str_replace('?wsdl', '', $this->wsdl));
 

@@ -38,7 +38,7 @@ class CheckoutListener
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shipping_title = $this->translator->trans('shipping_method_name_' . $order->getDeliveryMethod(), array(), 'shipping');
+        $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), array(), 'shipping');
 
         $shipping_cost = 0.00;
         foreach ($order->getOrderLineShipping() as $line) {
