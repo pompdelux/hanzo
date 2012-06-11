@@ -130,7 +130,7 @@ class AxService
               throw new Exception( 'Discount is negative: '.$discount .', product item id: '. $line->ItemId. ', order id: '. $order->getId() );
             }
 */
-            if ($product->getOriginalPrice() && $discount != 0) {
+            if ($product->getOriginalPrice() && $discount > 0) {
                 $discount_in_percent = 100 / ($product->getOriginalPrice() / $discount);
             }
 
