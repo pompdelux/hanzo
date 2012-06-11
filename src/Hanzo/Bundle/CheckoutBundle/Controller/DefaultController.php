@@ -269,7 +269,7 @@ class DefaultController extends CoreController
         }
 
         try {
-            $this->validateAddresses( $order, $grouped['addresses'] );
+            $this->validateAddresses( $order, $grouped['address'] );
         } catch (Exception $e) {
             return $this->json_response(array(
                 'status' => false,
