@@ -4,7 +4,7 @@ if (isset($argv[1]) && $argv[1] == 'live') {
   $to_db = 'pdl_dk';
   mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
 } else {
-  $to_db = 'tmp_hanzo_dk';
+  $to_db = 'hanzo';
   mysql_connect('localhost', 'root', '');
 }
 

@@ -75,7 +75,12 @@ echo "- copying products descriptions\n"; flush();
 // descriptions
 $query = "
   INSERT INTO
-    {$to_db}.products_i18n
+    {$to_db}.products_i18n (
+      id,
+      locale,
+      title,
+      content,
+    )
   SELECT
     p.products_id,
     CASE p.language_id
@@ -177,7 +182,10 @@ echo "- copying products to categories\n"; flush();
 // products to categories
 $query = "
   INSERT INTO
-    {$to_db}.products_to_categories
+    {$to_db}.products_to_categories (
+      products_id,
+      categories_id
+    )
   SELECT
     p.products_id,
     p.categories_id
@@ -191,7 +199,11 @@ echo "- copying products images\n"; flush();
 // product images
 $query = "
   INSERT INTO
-    {$to_db}.products_images
+    {$to_db}.products_images (
+      id,
+      products_id,
+      image
+    )
   SELECT
     NULL,
     p.products_id,
@@ -254,7 +266,12 @@ $result = mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 while ($record = mysql_fetch_object($result)) {
   $query = "
     INSERT INTO
-      {$to_db}.products_images_categories_sort
+      {$to_db}.products_images_categories_sort (
+        products_id,
+        categories_id,
+        products_images_id,
+        sort
+      )
     SELECT
       " . $record->products_id . ",
       " . $record->categories_id . ",
@@ -273,7 +290,12 @@ echo "- copying products washing instructions\n"; flush();
 mysql_query("TRUNCATE TABLE {$to_db}.products_washing_instructions") OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 $query = "
   INSERT INTO
-    {$to_db}.products_washing_instructions
+    {$to_db}.products_washing_instructions (
+      id,
+      code,
+      description,
+      locale
+    )
   SELECT
     p.id,
     p.code,
@@ -368,15 +390,14 @@ while ($product = mysql_fetch_object($result)) {
     )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
   }
 
-  // don't think we need this one...
-  // $r = mysql_query(sprintf($query4, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
-  //
-  // while ($image = mysql_fetch_object($r)) {
-  //   mysql_query(sprintf($insert4,
-  //     $new_id,
-  //     $image->image
-  //   )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
-  // }
+  $r = mysql_query(sprintf($query4, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+
+  while ($image = mysql_fetch_object($r)) {
+    mysql_query(sprintf($insert4,
+      $new_id,
+      $image->image
+    )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  }
 
   $r = mysql_query(sprintf($query5, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
 

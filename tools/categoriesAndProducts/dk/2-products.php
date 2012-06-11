@@ -19,7 +19,7 @@ if (isset($argv[1]) && $argv[1] == 'live') {
   mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
 } else {
   $from_db = 'tmp_oscom';
-  $to_db = 'tmp_hanzo';
+  $to_db = 'hanzo';
   mysql_connect('localhost', 'root', '');
 }
 
@@ -71,19 +71,16 @@ $query = "
 ";
 mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 
-// hf@bellcom.dk, 07-jun-2012: fixing sku/master -->>
-$query = "SELECT id, sku, master FROM ${to_db}.products WHERE sku = master";
-$result = mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
-while ($row = mysql_fetch_assoc($result)) {
-  mysql_query("UPDATE ${to_db}.products SET master = NULL WHERE id = ".$row['id']);
-}
-// <<-- hf@bellcom.dk, 07-jun-2012: fixing sku/master
-
 echo "- copying products descriptions\n"; flush();
 // descriptions
 $query = "
   INSERT INTO
-    {$to_db}.products_i18n
+    {$to_db}.products_i18n (
+      id,
+      locale,
+      title,
+      content,
+    )
   SELECT
     p.products_id,
     CASE p.language_id
@@ -195,7 +192,10 @@ echo "- copying products to categories\n"; flush();
 // products to categories
 $query = "
   INSERT INTO
-    {$to_db}.products_to_categories
+    {$to_db}.products_to_categories (
+      products_id,
+      categories_id
+    )
   SELECT
     p.products_id,
     p.categories_id
@@ -209,7 +209,11 @@ echo "- copying products images\n"; flush();
 // product images
 $query = "
   INSERT INTO
-    {$to_db}.products_images
+    {$to_db}.products_images (
+      id,
+      products_id,
+      image
+    )
   SELECT
     NULL,
     p.products_id,
@@ -272,7 +276,12 @@ $result = mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 while ($record = mysql_fetch_object($result)) {
   $query = "
     INSERT INTO
-      {$to_db}.products_images_categories_sort
+      {$to_db}.products_images_categories_sort (
+        products_id,
+        categories_id,
+        products_images_id,
+        sort
+      )
     SELECT
       " . $record->products_id . ",
       " . $record->categories_id . ",
@@ -291,7 +300,12 @@ echo "- copying products washing instructions\n"; flush();
 mysql_query("TRUNCATE TABLE {$to_db}.products_washing_instructions") OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 $query = "
   INSERT INTO
-    {$to_db}.products_washing_instructions
+    {$to_db}.products_washing_instructions (
+      id,
+      code,
+      description,
+      locale
+    )
   SELECT
     p.id,
     p.code,
@@ -388,15 +402,14 @@ while ($product = mysql_fetch_object($result)) {
     )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
   }
 
-  // don't think we need this one...
-  // $r = mysql_query(sprintf($query4, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
-  //
-  // while ($image = mysql_fetch_object($r)) {
-  //   mysql_query(sprintf($insert4,
-  //     $new_id,
-  //     $image->image
-  //   )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
-  // }
+  $r = mysql_query(sprintf($query4, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+
+  while ($image = mysql_fetch_object($r)) {
+    mysql_query(sprintf($insert4,
+      $new_id,
+      $image->image
+    )) or die(mysql_error() . ' » ' . __LINE__ . "\n");
+  }
 
   $r = mysql_query(sprintf($query5, $product->id)) or die(mysql_error() . ' » ' . __LINE__ . "\n");
 
