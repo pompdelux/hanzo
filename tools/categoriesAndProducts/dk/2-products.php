@@ -14,7 +14,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 */
 
 if (isset($argv[1]) && $argv[1] == 'live') {
-  $from_db = 'pdl_dk_migrate';
+  $from_db = 'pdlfront_bellcom_dk';
   $to_db = 'pdl_dk';
   mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
 } else {

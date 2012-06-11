@@ -1,7 +1,7 @@
 <?php
 
 if (isset($argv[1]) && $argv[1] == 'live') {
-  $from = 'pdl_se_migrate';
+  $from = 'pompdelux_dk';
   $to = 'pdl_se';
   mysql_connect('192.168.2.137', 'pdl_se_migrate', 'TEMPMIGRATE111');
 } else {

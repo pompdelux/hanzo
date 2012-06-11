@@ -1,7 +1,7 @@
 <?php
 
 if (isset($argv[1]) && $argv[1] == 'live') {
-  $from = 'pdl_dk_migrate';
+  $from = 'pdlfront_bellcom_dkWAIT';
   $to = 'pdl_dk';
   mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
 } else {

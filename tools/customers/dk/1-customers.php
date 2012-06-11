@@ -1,7 +1,7 @@
 <?php
 
 if (isset($argv[1]) && $argv[1] == 'live') {
-  $from = 'pdl_dk_migrate';
+  $from = 'pdlfront_bellcom_dk';
   $to = 'pdl_dk';
   mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
 } else {
@@ -67,6 +67,7 @@ $query = "
     phone = c.customers_telephone
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+
 
 // migrate customer addresses
 echo "[".date('Y-m-d H:i:s')."] porting addresses ....\n";
