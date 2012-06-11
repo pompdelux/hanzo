@@ -36,7 +36,7 @@ $query = "
   SELECT
     c.categories_id,
     CASE c.language_id
-      WHEN 8 THEN 'no_NB'
+      WHEN 8 THEN 'nb_NO'
     END AS locale,
     c.categories_name,
     c.categories_description
