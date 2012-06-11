@@ -13,7 +13,8 @@ set :default_stage, "testing"
 # mmh@bellcom.dk: use below to rsync the files instead of git clone. Requires capistrano_rsync_with_remote_cache installed (gem install)
 set :deploy_via,  :rsync_with_remote_cache
 # use other rsync_options. Default is: -az --delete
-set :rsync_options, "-rlptoDzO --delete"
+#set :rsync_options, "-rltoDzO --delete"
+set :rsync_options, "-rltzO --delete"
 
 #set :copy_exclude, [".git", "spec"]
 
@@ -28,7 +29,9 @@ set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml"]
 
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", web_path + "/images"]
 
-set :git_enable_submodules, 1
+# see https://github.com/morhekil/capistrano-deepmodules
+require 'capistrano/deepmodules'
+#set :git_enable_submodules, 1
 
 set :use_sudo, false
 #set :use_sudo, true
