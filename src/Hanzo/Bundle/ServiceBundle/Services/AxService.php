@@ -47,7 +47,6 @@ class AxService
         if (isset($settings['skip_send']) && $settings['skip_send'] == 1) {
             $this->skip_send = true;
         }
-
     }
 
 
@@ -146,7 +145,7 @@ class AxService
         // payment method
         $custPaymMode = 'Bank';
 
-        switch ($order->getBillingMethod()) 
+        switch ($order->getBillingMethod())
         {
           case 'dibs':
               switch (strtoupper($attributes->payment->paytype)) {
@@ -174,7 +173,7 @@ class AxService
         }
 
         $freight_type = $order->getDeliveryMethod();
-        
+
         // NICETO, this should be set elsewhere
         // hf@bellcom.dk: I think this is allready set to P or S..., e.g. external_id is P or S
         /*switch ($attributes->global->domain_key) {
@@ -254,6 +253,7 @@ class AxService
         $entry = new OrdersSyncLog();
         $entry->setOrdersId($order->getId());
         $entry->setCreatedAt('now');
+        $entry->setState($state);
         $entry->setContent(serialize($syncSalesOrder));
         if ($comment) {
             $entry->setComment($comment);

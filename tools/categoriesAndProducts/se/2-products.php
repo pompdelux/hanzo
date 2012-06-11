@@ -337,7 +337,7 @@ mysql_query($query) OR die(mysql_error() . ' » ' . __LINE__ . "\n");
 
 echo " - fix master products: "; flush();
 
-$query1 = "SELECT * FROM {$to_db}.products WHERE master sku = master";
+$query1 = "SELECT * FROM {$to_db}.products WHERE sku = master";
 $query2 = "SELECT * FROM {$to_db}.products_domains_prices WHERE products_id = %d";
 $query3 = "SELECT * FROM {$to_db}.products_i18n WHERE id = %d";
 $query4 = "SELECT * FROM {$to_db}.products_images WHERE products_id = %d";
