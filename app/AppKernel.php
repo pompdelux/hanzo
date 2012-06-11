@@ -66,6 +66,7 @@ class AppKernel extends Kernel
         //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
         $twig->addGlobal('store_mode', $this->getStoreMode());
         $twig->addExtension(new Twig_Extension_Optimizer());
+        #$twig->addExtension(new Twig_Extension_Debug());
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
