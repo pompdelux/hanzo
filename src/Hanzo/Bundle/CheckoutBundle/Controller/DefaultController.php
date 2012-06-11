@@ -23,6 +23,7 @@ use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 use Exception;
 use Propel;
+use BasePeer;
 
 class DefaultController extends CoreController
 {
@@ -49,6 +50,7 @@ class DefaultController extends CoreController
      **/
     public function updateAction($block, $state)
     {
+        error_log(__LINE__.':'.__FILE__.' '.$block); // hf@bellcom.dk debugging
         $order = OrdersPeer::getCurrent();
         $t = $this->get('translator');
 
@@ -79,6 +81,7 @@ class DefaultController extends CoreController
                     // code...
                     break;
                 default:
+                    error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                     throw new Exception( 'Unknown block' );
                     break;
             }
@@ -90,6 +93,7 @@ class DefaultController extends CoreController
                 'message' => '',
             ));
         } catch ( Exception $e ) {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             return $this->json_response(array(
                 'status' => false,
                 'message' => $e->getMessage(),
@@ -293,19 +297,36 @@ class DefaultController extends CoreController
      **/
     public function validateAddresses( Orders $order, $data )
     {
-        $billingAddress = $order->getBillingAddress();
+      $fields = $order->toArray(BasePeer::TYPE_FIELDNAME);
 
-        if ( !is_object($billingAddress) || $billingAddress->isNew() )
-        {
-            throw new exception( 'Der mangler en faktura adresse' );
-        }
+      $check = array(
+          'billing_first_name',
+          'billing_last_name',
+          'billing_address_line_1',
+          'billing_postal_code',
+          'billing_city',
 
-        $shippingAddress = $order->getShippingAddress();
+          'delivery_first_name',
+          'delivery_last_name',
+          'delivery_address_line_1',
+          'delivery_postal_code',
+          'delivery_city',
+          );
 
-        if ( !is_object($shippingAddress) || $shippingAddress->isNew() )
-        {
-            throw new exception( 'Der mangler en modtager adresse' );
-        }
+      $missing = array();
+      foreach ($check as $field) 
+      {
+          if ( !isset( $fields[$field] ) )
+          {
+            $missing[] = $field;    
+          }
+      }
+
+      // TODO: translation
+      if ( !empty($missing) )
+      {
+        throw new Exception( 'Et, eller flere felter mangler i dine adresser' );
+      }
     }
 
     /**
