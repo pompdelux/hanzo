@@ -189,7 +189,7 @@ class AxService
         $salesTable = new stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
-        $salesTable->PaymentId               = $order->getPaymentGatewayId();
+        $salesTable->PaymentId               = $attributes->payment->transact;
         $salesTable->HomePartyId             = $attributes->global->HomePartyId;
         $salesTable->SalesResponsible        = $attributes->global->SalesResponsible;
         $salesTable->CurrencyCode            = $order->getCurrencyCode();
