@@ -13,7 +13,7 @@ monolog:
             level: debug
 
 framework:
-    session: { default_locale: sv_SE }
+    session: { default_locale: se_SV }
     templating:
         assets_base_urls:
             http: [ %cdn% ]
