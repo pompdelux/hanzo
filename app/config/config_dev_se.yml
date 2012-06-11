@@ -2,7 +2,7 @@ imports:
     - { resource: config.yml }
 
 framework:
-    session: { default_locale: sv_SE }
+    session: { default_locale: se_SV }
     router:
         resource:           "%kernel.root_dir%/config/routing_dev.yml"
     profiler:

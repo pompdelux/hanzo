@@ -121,6 +121,12 @@ class DefaultController extends CoreController
         $customer = CustomersPeer::getCurrent();
 
         $data = $request->get('data');
+
+        if ( !isset($data['addresses']) )
+        {
+            throw new Exception( 'No address could be found' );
+        }
+
         $addressTypes = $data['addresses'];
 
         $order->setFirstName( $customer->getFirstName() )
@@ -262,10 +268,44 @@ class DefaultController extends CoreController
             ));
         }
 
+        try {
+            $this->validateAddresses( $order, $grouped['address'] );
+        } catch (Exception $e) {
+            return $this->json_response(array(
+                'status' => false,
+                'message' => $e->getMessage(),
+                'data' => array(
+                    'name' => 'shipping'
+                ),
+            ));
+        }
+
         return $this->json_response(array(
             'status' => true,
             'message' => 'Ok',
         ));
+    }
+
+    /**
+     * validateAddresses
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function validateAddresses( Orders $order, $data )
+    {
+        $billingAddress = $order->getBillingAddress();
+
+        if ( !is_object($billingAddress) || $billingAddress->isNew() )
+        {
+            throw new exception( 'Der mangler en faktura adresse' );
+        }
+
+        $shippingAddress = $order->getShippingAddress();
+
+        if ( !is_object($shippingAddress) || $shippingAddress->isNew() )
+        {
+            throw new exception( 'Der mangler en modtager adresse' );
+        }
     }
 
     /**
