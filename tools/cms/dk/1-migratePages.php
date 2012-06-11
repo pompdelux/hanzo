@@ -5,8 +5,8 @@ if (isset($argv[1]) && $argv[1] == 'live') {
   $to_db = 'pdl_dk';
   mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
 } else {
-  $from_db = 'tmp_oscom_dk';
-  $to_db = 'tmp_hanzo_dk';
+  $from_db = 'tmp_oscom';
+  $to_db = 'hanzo';
   mysql_connect('localhost', 'root', '');
 }
 
@@ -163,11 +163,13 @@ $find = array(
   '{{ SIMPLE_NEWSLETTER_FORM }}',
   '{{ TEXT_EXPECTED_DELIVERY_DATE }}',
   '{{ HD_COSTUMERSERVICE_CONTACT_INFO }}',
+  '/templates/pompdelux/images/',
 );
 $replace = array(
   "{{ embed('newsletter_form', {'view':'simple'}) }}",
   "{{ parameter('expected_delivery_date') }}",
   "{{ 'customer.service.contact.info'|trans }}",
+  '/fx/images/',
 );
 
 $result = mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));

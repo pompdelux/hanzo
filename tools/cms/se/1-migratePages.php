@@ -1,4 +1,4 @@
-<?php
+<<?php
 
 if (isset($argv[1]) && $argv[1] == 'live') {
   $from_db = 'pompdelux_se';
@@ -169,11 +169,13 @@ $find = array(
   '{{ SIMPLE_NEWSLETTER_FORM }}',
   '{{ TEXT_EXPECTED_DELIVERY_DATE }}',
   '{{ HD_COSTUMERSERVICE_CONTACT_INFO }}',
+  '/templates/pompdelux/images/',
 );
 $replace = array(
   "{{ embed('newsletter_form', {'view':'simple'}) }}",
   "{{ parameter('expected_delivery_date') }}",
   "{{ 'customer.service.contact.info'|trans }}",
+  '/fx/images/',
 );
 
 $result = mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
