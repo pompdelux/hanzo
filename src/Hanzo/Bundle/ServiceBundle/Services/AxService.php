@@ -186,6 +186,8 @@ class AxService
                 break;
         }*/
 
+        // Avoid sending stuff like 15.0000, cast to float fixes that... no really
+
         $salesTable = new stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
@@ -203,12 +205,12 @@ class AxService
         $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
         $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
         $salesTable->InvoiceAccount          = $order->getCustomersId();
-        $salesTable->FreightFeeAmt           = number_format($shipping_cost, 4, '.', '');
+        $salesTable->FreightFeeAmt           = (float) number_format($shipping_cost, 4, '.', '');
         $salesTable->FreightType             = $freight_type;
         $salesTable->HandlingFeeType         = 90;
-        $salesTable->HandlingFeeAmt          = number_format($handeling_fee, 4, '.', '');
+        $salesTable->HandlingFeeAmt          = (float) number_format($handeling_fee, 4, '.', '');
         $salesTable->PayByBillFeeType        = 91;
-        $salesTable->PayByBillFeeAmt         = number_format($payment_cost, 4, '.', ''); // TODO: only for gothia?
+        $salesTable->PayByBillFeeAmt         = (float) number_format($payment_cost, 4, '.', ''); // TODO: only for gothia?
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
