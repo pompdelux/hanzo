@@ -84,7 +84,7 @@ $query = "
   SELECT
     p.products_id,
     CASE p.language_id
-      WHEN 8 THEN 'no_NB'
+      WHEN 8 THEN 'nb_NO'
     END AS locale,
     p.products_name,
     p.products_description
@@ -301,7 +301,7 @@ $query = "
     p.code,
     p.description,
     CASE p.languages_id
-      WHEN 8 THEN 'no_NB'
+      WHEN 8 THEN 'nb_NO'
     END AS locale
   FROM
     {$from_db}.pdl_washing_instructions AS p
