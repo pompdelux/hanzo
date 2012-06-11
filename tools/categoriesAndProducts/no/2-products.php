@@ -79,7 +79,7 @@ $query = "
       id,
       locale,
       title,
-      content,
+      content
     )
   SELECT
     p.products_id,
