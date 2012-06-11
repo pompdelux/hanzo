@@ -311,11 +311,11 @@ class DefaultController extends CoreController
           );
 
       $missing = array();
-      foreach ($check as $field) 
+      foreach ($check as $field)
       {
           if ( !isset( $fields[$field] ) )
           {
-            $missing[] = $field;    
+            $missing[] = $field;
           }
       }
 
