@@ -148,32 +148,34 @@ class MenuController extends CoreController
                     $path = '';
                 }
 
-                $class = 'inactive';
-                if ((isset($this->trail[$record->getId()])) ||
-                    ($path == $this->path)
-                ) {
-                    $class = 'active';
-                }
-
-                if (in_array($record->getType(), array('page', 'url'))) {
-                    $params = $record->getSettings();
-                    if (isset($params->class)) {
-                        $class .= ' ' . $params->class;
-                    } elseif (isset($params->is_frontpage)) {
-                        if ($this->path == '/') {
-                            $class = 'active';
-                        }
-                        $path = '';
+                if ($record->getTitle()) {
+                    $class = 'inactive';
+                    if ((isset($this->trail[$record->getId()])) ||
+                        ($path == $this->path)
+                    ) {
+                        $class = 'active';
                     }
+
+                    if (in_array($record->getType(), array('page', 'url'))) {
+                        $params = $record->getSettings();
+                        if (isset($params->class)) {
+                            $class .= ' ' . $params->class;
+                        } elseif (isset($params->is_frontpage)) {
+                            if ($this->path == '/') {
+                                $class = 'active';
+                            }
+                            $path = '';
+                        }
+                    }
+
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $path . '" rel="'.$record->getId().'">' . $record->getTitle() . '</a>';
+
+                    if (isset($this->trail[$record->getId()])) {
+                        $this->generateTree($record->getId(), $type);
+                    }
+
+                    $this->menu[$type] .= '</li>';
                 }
-
-                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $path . '" rel="'.$record->getId().'">' . $record->getTitle() . '</a>';
-
-                if (isset($this->trail[$record->getId()])) {
-                    $this->generateTree($record->getId(), $type);
-                }
-
-                $this->menu[$type] .= '</li>';
             }
 
             $this->menu[$type] .= '</ul>';
