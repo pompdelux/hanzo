@@ -934,6 +934,19 @@ class Orders extends BaseOrders
 
         $paymentMethod = $this->getBillingMethod();
 
+        // hf@bellcom.dk, 12-jun-2012: handle old junk -->>
+        switch ($paymentMethod) 
+        {
+            case 'DIBS Payment Services (Credit Ca':
+            case 'DIBS Betaling (Kredittkort)':
+                $paymentMethod = 'dibs';
+                break;
+            case 'Gothia':
+                $paymentMethod = 'gothia';
+                break;
+        }
+        // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
+
         $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
 
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId() );
