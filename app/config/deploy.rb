@@ -27,11 +27,11 @@ set :keep_releases,  5
 
 set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml"]
 
-set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", web_path + "/images"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", web_path + "/images", web_path + "/video", web_path + "/pdfupload"]
 
 # see https://github.com/morhekil/capistrano-deepmodules
 require 'capistrano/deepmodules'
-#set :git_enable_submodules, 1
+set :git_enable_submodules, 1
 
 set :use_sudo, false
 #set :use_sudo, true

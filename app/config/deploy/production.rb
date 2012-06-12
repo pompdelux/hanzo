@@ -39,13 +39,15 @@ def frontend_list
   contentsArray = File.readlines("tools/deploy/frontend_list.txt")
 end
 
-# disabled while running with other prodtion sites on same servers. FIXME
-#before 'deploy:restart', 'deploy:apcclear'
+before 'deploy:restart', 'deploy:apcclear'
 
 before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 
 # also clear redis when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear'
+# also clear apc when clearing cache
+after 'symfony:cache:clear', 'deploy:apcclear'
+
 
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do

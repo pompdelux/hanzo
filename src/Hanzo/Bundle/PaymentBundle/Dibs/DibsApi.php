@@ -342,10 +342,14 @@ class DibsApi implements PaymentMethodApiInterface
             "accepturl"    => "/payment/dibs/ok",*/
             "skiplastpage" => "YES",
             "uniqueoid"    => "YES",
-            "test"         => $this->getTest(),
             "paytype"      => '', // This _must_ be set in the form
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
         );
+
+        if ($this->getTest() == 'YES')
+        {
+            $settings["test"] = 'YES';
+        }
 
         return $settings;
     }
