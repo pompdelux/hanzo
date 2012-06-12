@@ -237,8 +237,6 @@ class AxService
         } else {
             if ( isset($result->SyncSalesOrderResult->Status) && strtoupper($result->SyncSalesOrderResult->Status) == 'OK') {
                 $state = 'ok';
-                $order->setState(Orders::STATE_BEING_PROCESSED);
-                $order->save();
             } else {
                 $state = 'failed';
                 if (isset($result->SyncSalesOrderResult->Message)) {
