@@ -223,7 +223,7 @@ class DefaultController extends CoreController
         $domain_id = $hanzo->get('core.domain_id');
 
         $page = CmsPeer::getByPK($id, $locale);
-        $settings = unserialize(stripcslashes($page->getSettings()));
+        //$settings = json_decode($page->getSettings());
 
         $result = array(
             'products' => array(),
