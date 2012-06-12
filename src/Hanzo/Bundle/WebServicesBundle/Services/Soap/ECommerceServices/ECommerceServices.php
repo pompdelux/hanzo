@@ -694,6 +694,12 @@ class ECommerceServices extends SoapService
     /**
      * delete a specific sales order.
      *
+     * (17:05:32) Enrique: virker det fra ax?
+     * (17:05:41) Heinrich: kommer det aldrig til
+     * (17:05:46) Enrique: ok?
+     * (17:05:53) Enrique: men der er bare en DeleteSalesOrder
+     * (17:05:54) Heinrich: det bruger vi ikke
+     *
      * @param object $data
      * @return object DeleteSalesOrderResult
      */
@@ -717,11 +723,10 @@ class ECommerceServices extends SoapService
         }
 
         if ($order->getPaymentGatewayId()) {
-          error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
-            $gateway = Hanzo::getInstance()->container->get('payment.dibsapi');
+            //$gateway = Hanzo::getInstance()->container->get('payment.dibsapi');
             try {
-                $callResult = $gateway->call()->cancel($order->getCustomers(), $order);
-                error_log(__LINE__.':'.__FILE__.' '.print_r($callResult,1)); // hf@bellcom.dk debugging
+                $callResult = $order->cancelPayment();
+                //$callResult = $gateway->call()->cancel($order->getCustomers(), $order);
             } catch (\Exception $e) {
                 $this->logger->addCritical('Could not cancel payment: "'.$e->getMessage().'"');
                 return self::responseStatus('Error', 'DeleteSalesOrderResult', array('Could not cancel payment: "'.$e->getMessage().'"'));

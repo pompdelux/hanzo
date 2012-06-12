@@ -938,7 +938,7 @@ Tools::log($price);
 
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId() );
 
-        $api->call()->cancel( $customer, $this );
+        return $api->call()->cancel( $customer, $this );
     }
 
 
