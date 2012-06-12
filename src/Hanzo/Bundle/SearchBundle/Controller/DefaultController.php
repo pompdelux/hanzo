@@ -177,6 +177,10 @@ class DefaultController extends CoreController
                 $router = $this->get('router');
 
                 foreach ($products as $product) {
+                    if (!$product->getSku()) {
+                        continue;
+                    }
+
                     foreach ($category_map as $category => $map) {
                         foreach ($map as $id) {
                             if ($id == $product->getId()) {
@@ -219,7 +223,7 @@ class DefaultController extends CoreController
         $domain_id = $hanzo->get('core.domain_id');
 
         $page = CmsPeer::getByPK($id, $locale);
-        $settings = unserialize(stripcslashes($page->getSettings()));
+        //$settings = json_decode($page->getSettings());
 
         $result = array(
             'products' => array(),
@@ -255,6 +259,10 @@ class DefaultController extends CoreController
 
             $product_ids = array();
             foreach ($products as $product) {
+                if (!$product->getSku()) {
+                    continue;
+                }
+
                 $product_ids[$product->getId()] = $product->getId();
 
                 $product_route = '';
@@ -307,7 +315,8 @@ class DefaultController extends CoreController
                 $result['pages'][] = array(
                     'title' => $page->getTitle(),
                     'summery' => mb_substr(Tools::stripTags($page->getContent()), 0, 200),
-                    'url' => $router->generate('page_'.$page->getId().'_'.strtolower($locale))
+                    'url' => $router->generate('page_'.$page->getId())
+                    #'url' => $router->generate('page_'.$page->getId().'_'.strtolower($locale))
                 );
             }
         }

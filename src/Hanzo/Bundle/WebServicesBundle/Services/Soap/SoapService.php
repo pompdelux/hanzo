@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Monolog;
 
+use Hanzo\Core\Hanzo;
+
 class SoapService
 {
     protected $request;

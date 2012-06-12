@@ -33,7 +33,8 @@ class SoapController extends CoreController
 
         $service = new \SoapServer($wsdl);
         $service->setObject($handler);
-        return $handler->exec($service);
+        $handler->exec($service);
+        exit;
     }
 
     public function testAction()
