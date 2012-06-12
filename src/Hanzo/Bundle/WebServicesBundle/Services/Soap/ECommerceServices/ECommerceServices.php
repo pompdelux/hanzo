@@ -437,7 +437,7 @@ class ECommerceServices extends SoapService
 
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
-            $this->logger->addCritical('Unknown product');
+            $this->logger->addCritical('Unknown product, ItemId: ' . $stock->ItemId);
             return self::responseStatus('Error', 'SyncPriceListResult', array('Unknown ItemId: ' . $stock->ItemId));
         }
 
