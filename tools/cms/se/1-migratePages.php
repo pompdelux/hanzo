@@ -166,22 +166,28 @@ $query = "
 ";
 
 $find = array(
-  '{{ SIMPLE_NEWSLETTER_FORM }}',
-  '{{ TEXT_EXPECTED_DELIVERY_DATE }}',
-  '{{ HD_COSTUMERSERVICE_CONTACT_INFO }}',
   '/templates/pompdelux/images/',
-  '{{PDL_GEO_CONSULTANTS_ZIP hus}}',
-  '{{PDL_GEO_CONSULTANTS hus}}',
-  '{{CONSULTANT_MATRIX}}',
+  'SIMPLE_NEWSLETTER_FORM',
+  'TEXT_EXPECTED_DELIVERY_DATE',
+  'HD_COSTUMERSERVICE_CONTACT_INFO',
+  'PDL_GEO_CONSULTANTS_ZIP hus',
+  'PDL_GEO_CONSULTANTS hus',
+  'PDL_GEO_CONSULTANTS_ZIP',
+  'PDL_GEO_CONSULTANTS',
+  'CONSULTANT_MATRIX',
+  'PDL_GMAP',
 );
 $replace = array(
-  "{{ embed('newsletter_form', {'view':'simple'}) }}",
-  "{{ parameter('expected_delivery_date') }}",
-  "{{ 'customer.service.contact.info'|trans|raw }}",
   '/fx/images/',
-  '{{ geo_zip_code_form() }}',
-  '{{ consultants_near_you() }}',
-  '{{ consultants_map() }}',
+  " embed('newsletter_form', {'view':'simple'}) ",
+  " parameter('expected_delivery_date') ",
+  " 'customer.service.contact.info'|trans|raw ",
+  ' geo_zip_code_form("hus") ',
+  ' consultants_near_you() ',
+  ' geo_zip_code_form() ',
+  ' consultants_near_you() ',
+  ' consultants_map() ',
+  ' consultants_map() ',
 );
 
 $result = mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
