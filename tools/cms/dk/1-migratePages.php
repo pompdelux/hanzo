@@ -149,44 +149,4 @@ mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 mysql_query("UPDATE {$to_db}.cms_i18n SET content = NULL WHERE content = 'null'") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 mysql_query("UPDATE {$to_db}.cms_i18n SET settings = NULL WHERE settings = ''") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
-// replace hd tags
-$query = "
-  SELECT
-    id,
-    locale,
-    content
-  FROM
-    {$to_db}.cms_i18n
-";
-
-$find = array(
-  '{{ SIMPLE_NEWSLETTER_FORM }}',
-  '{{ TEXT_EXPECTED_DELIVERY_DATE }}',
-  '{{ HD_COSTUMERSERVICE_CONTACT_INFO }}',
-  '/templates/pompdelux/images/',
-  '{{PDL_GEO_CONSULTANTS_ZIP hus}}',
-  '{{PDL_GEO_CONSULTANTS hus}}',
-  '{{CONSULTANT_MATRIX}}',
-);
-$replace = array(
-  "{{ embed('newsletter_form', {'view':'simple'}) }}",
-  "{{ parameter('expected_delivery_date') }}",
-  "{{ 'customer.service.contact.info'|trans|raw }}",
-  '/fx/images/',
-  '{{ geo_zip_code_form() }}',
-  '{{ consultants_near_you() }}',
-  '{{ consultants_map() }}',
-);
-
-$result = mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
-while($record = mysql_fetch_object($result)) {
-  $content = str_replace($find, $replace, stripcslashes($record->content));
-
-  mysql_query(sprintf("UPDATE {$to_db}.cms_i18n SET content = '%s' WHERE id = %d AND locale = '%s'",
-    mysql_real_escape_string($content),
-    $record->id,
-    $record->locale
-  )) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
-}
-
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');
