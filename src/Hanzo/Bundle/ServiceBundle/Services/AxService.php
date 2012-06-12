@@ -117,7 +117,7 @@ class AxService
         foreach ($products as $product) {
             $line = new stdClass();
             $line->ItemId        = $product->getProductsName();
-            $line->SalesPrice    = (float) number_format($product->getOriginalPrice(), 4, '.', '');
+            $line->SalesPrice    = number_format($product->getOriginalPrice(), 4, '.', '');
             $line->SalesQty      = $product->getQuantity();
             $line->InventColorId = $product->getProductsColor();
             $line->InventSizeId  = $product->getProductsSize();

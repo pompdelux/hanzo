@@ -240,7 +240,7 @@ while ($record = mysql_fetch_object($result)) {
     ),(
       {$orders_id},
       'payment',
-      'card_transactionid',
+      'transact',
       '{$record->cc_transactionid}'
     )
   ";
@@ -272,7 +272,7 @@ while ($record = mysql_fetch_object($result)) {
   }
 
   if (isset($orders_attributes['domain_id']) && $orders_attributes['domain_id']) {
-    mysql_query(sprintf($attributes_sql, $orders_id, 'global', 'domain_id', $orders_attributes['domain_id'])) or die('Line: '.__LINE__."\n".mysql_error());
+    mysql_query(sprintf($attributes_sql, $orders_id, 'global', 'domain_keu', $orders_attributes['domain_id'])) or die('Line: '.__LINE__."\n".mysql_error());
   }
 
   // handling
