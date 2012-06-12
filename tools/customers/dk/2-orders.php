@@ -152,14 +152,14 @@ $query = "
     p.products_id,
     IF(p.products_model = '', CONCAT(p.products_name, ' ', p.products_id), CONCAT(p.products_name, ' ', p.products_model)),
     p.products_name,
-    NULL,
-    NULL,
+    (SELECT x.products_attribute_2_value FROM {$from}.osc_products AS x WHERE x.products_id = p.products_id),
+    (SELECT x.products_attribute_1_value FROM {$from}.osc_products AS x WHERE x.products_id = p.products_id),
     p.products_expected,
     p.products_price,
     p.final_price,
     p.products_tax,
     p.products_quantity,
-    NULL
+    (SELECT SUBSTRING(x.products_attribute_3_value, 2) FROM {$from}.osc_products AS x WHERE x.products_id = p.products_id)
   FROM
     {$from}.osc_orders_products AS p
   INNER JOIN
@@ -258,7 +258,6 @@ while ($record = mysql_fetch_object($result)) {
     if(substr($key, 0, 12) == 'attatchment_') {
       mysql_query(sprintf($attributes_sql, $orders_id, 'attachment', $key, $value)) or die('Line: '.__LINE__."\n".mysql_error());
     }
-
 
     if (in_array($key, array('event_id', 'event_type', 'hostessDiscount', 'consultants_id'))) {
       if ($value) {

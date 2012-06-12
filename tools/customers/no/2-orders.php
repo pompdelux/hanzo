@@ -153,14 +153,14 @@ $query = "
     p.products_id,
     IF(p.products_model = '', CONCAT(p.products_name, ' ', p.products_id), CONCAT(p.products_name, ' ', p.products_model)),
     p.products_name,
-    NULL,
-    NULL,
+    (SELECT x.products_attribute_2_value FROM {$from}.osc_products AS x WHERE x.products_id = p.products_id),
+    (SELECT x.products_attribute_1_value FROM {$from}.osc_products AS x WHERE x.products_id = p.products_id),
     p.products_expected,
     p.products_price,
     p.final_price,
     p.products_tax,
     p.products_quantity,
-    NULL
+    (SELECT x.products_attribute_3_value FROM {$from}.osc_products AS x WHERE x.products_id = p.products_id)
   FROM {$from}.osc_orders_products AS p
   INNER JOIN
     {$from}.osc_orders AS o
