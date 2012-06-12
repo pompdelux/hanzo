@@ -56,10 +56,12 @@ class CheckoutListener
                   $card_type = 'DanKort';
                   break;
               case 'MC':
+              case 'MC(DK)':
+              case 'MC(SE)':
                   $card_type = 'MasterCard';
                   break;
               case 'VISA':
-                  $card_type = 'Visa';
+                  $card_type =')Visa';
                   break;
               case 'ELEC':
                   $card_type = 'Visa Electron';
@@ -67,10 +69,15 @@ class CheckoutListener
             }
         }
 
+        // hf@bellcom.dk, 13-jun-2012: hack... I'm tired -->>
+        $company_address = $this->translator->trans('store.address',array());
+        $company_address = str_replace( ' · ', '<br>', $company_address );
+        // <<-- hf@bellcom.dk, 13-jun-2012: hack... I'm tired
+
         $params = array(
             'order' => $order,
             'payment_address' => Tools::orderAddress('payment', $order),
-            'company_address' => '',
+            'company_address' => $company_address,
             'delivery_address' => Tools::orderAddress('shipping', $order),
             'customer_id' => $order->getCustomersId(),
             'order_date' => $order->getCreatedAt('Y-m-d'),
