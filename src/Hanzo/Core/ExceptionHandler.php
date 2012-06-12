@@ -12,6 +12,8 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
+use Hanzo\Core\Hanzo;
+
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\Redirects;
@@ -57,15 +59,16 @@ class ExceptionHandler
                     $event->setResponse($response);
                 }
             } else {
+                // test for redirects
                 $redirect = RedirectsQuery::create()
-                    ->filterByLocale($this->service_container->get('session')->getLocale())
+                    ->filterByDomainKey(Hanzo::getInstance()->get('core.domain_key'))
                     ->findOneBySource($path)
                 ;
 
                 if ($redirect instanceof Redirects) {
                     $url = $redirect->getTarget();
                     if (substr($url, 0, 4) != 'http') {
-                        $url = $request->getBaseUrl().'/'.$url;
+                        $url = $request->getBaseUrl().''.$url;
                     }
 
                     $response = new Response('', 302, array('Location' => $url));
