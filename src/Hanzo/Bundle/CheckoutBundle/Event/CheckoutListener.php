@@ -71,7 +71,7 @@ class CheckoutListener
 
         // hf@bellcom.dk, 13-jun-2012: hack... I'm tired -->>
         $company_address = $this->translator->trans('store.address',array());
-        $company_address = str_replace( ' · ', '<br>', $company_address );
+        $company_address = str_replace( ' · ', "\n", $company_address );
         // <<-- hf@bellcom.dk, 13-jun-2012: hack... I'm tired
 
         $params = array(
