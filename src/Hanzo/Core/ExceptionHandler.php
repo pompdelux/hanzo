@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\Redirects;
+use Hanzo\Model\RedirectsQuery;
 
 class ExceptionHandler
 {
@@ -42,14 +44,31 @@ class ExceptionHandler
         if ($exception instanceof NotFoundHttpException) {
             $request = $this->service_container->get('request');
 
+            $path = $request->getPathInfo();
+
             // try to map old shop ulr's to new ones
-            if (substr($request->getPathInfo(), 0, 3) == '/p/') {
+            if (substr($path, 0, 3) == '/p/') {
                 $page = CmsI18nQuery::create()
                     ->filterByLocale($this->service_container->get('session')->getLocale())
-                    ->findOneByOldPath($request->getPathInfo())
+                    ->findOneByOldPath($path)
                 ;
                 if ($page instanceof CmsI18n) {
                     $response = new Response('', 301, array('Location' => $request->getBaseUrl().'/'.$page->getPath()));
+                    $event->setResponse($response);
+                }
+            } else {
+                $redirect = RedirectsQuery::create()
+                    ->filterByLocale($this->service_container->get('session')->getLocale())
+                    ->findOneBySource($path)
+                ;
+
+                if ($redirect instanceof Redirects) {
+                    $url = $redirect->getTarget();
+                    if (substr($url, 0, 4) != 'http') {
+                        $url = $request->getBaseUrl().'/'.$url;
+                    }
+
+                    $response = new Response('', 302, array('Location' => $url));
                     $event->setResponse($response);
                 }
             }

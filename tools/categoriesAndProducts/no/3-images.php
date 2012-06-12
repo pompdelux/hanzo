@@ -22,6 +22,8 @@ $result = mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".
 $products = array();
 
 echo "Fixing image port ";
+
+$used = array();
 while ($image = mysql_fetch_object($result)) {
   echo '.';
 
@@ -50,11 +52,15 @@ while ($image = mysql_fetch_object($result)) {
   $product_id = $products[$id]['id'];
   $categories = $products[$id]['categories'];
 
-  mysql_query("INSERT INTO {$to_db}.products_images SET products_id = ".$product_id.", image = '".mysql_real_escape_string($image->image)."'") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
-  $image_id = mysql_insert_id();
+  if (!isset($used[$product_id.$image->image])) {
+    $used[$product_id.$image->image] = $image->image;
 
-  foreach ($categories as $category_id) {
-    mysql_query("INSERT INTO {$to_db}.products_images_categories_sort SET products_id = ".$product_id.", categories_id = " . $category_id . ", products_images_id = ".$image_id.", sort = ".rand(1, 10)) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+    mysql_query("INSERT INTO {$to_db}.products_images SET products_id = ".$product_id.", image = '".mysql_real_escape_string($image->image)."'") or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+    $image_id = mysql_insert_id();
+
+    foreach ($categories as $category_id) {
+      mysql_query("INSERT INTO {$to_db}.products_images_categories_sort SET products_id = ".$product_id.", categories_id = " . $category_id . ", products_images_id = ".$image_id.", sort = ".rand(1, 10)) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+    }
   }
 }
 echo "\n\n - done\n";
