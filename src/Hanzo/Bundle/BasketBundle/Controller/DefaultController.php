@@ -214,6 +214,7 @@ class DefaultController extends CoreController
                     $response['data'][$key] = Tools::moneyFormat($price['price']);
                 }
                 $response['data']['basket'] = $this->miniBasketAction(TRUE);
+                $response['data']['product_id'] = $product->getId();
             }
         }
 
