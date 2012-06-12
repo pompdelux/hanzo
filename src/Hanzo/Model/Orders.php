@@ -334,7 +334,7 @@ class Orders extends BaseOrders
 
         // fetch price information
         $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
-Tools::log($price);
+
         $price = array_shift($price);
         $price = array_shift($price);
 

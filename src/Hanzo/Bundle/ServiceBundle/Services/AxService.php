@@ -328,7 +328,7 @@ class AxService
         if ($result instanceof Exception) {
             $message = sprintf('An error occured while synchronizing debitor "%s", error message: "%s"',
                 $debitor->getId(),
-                $result->getMethod()
+                $result->getMessage()
             );
             $this->logger->addCritical($message);
 
@@ -378,7 +378,7 @@ class AxService
         if ($result instanceof Exception) {
             $message = sprintf('An error occured while deleting order "%s", error message: "%s"',
                 $order->getId(),
-                $result->getMethod()
+                $result->getMessage()
             );
             $this->logger->addCritical($message);
 
@@ -409,7 +409,7 @@ class AxService
         if ($result instanceof Exception) {
             $message = sprintf('An error occured while locking the order: "%s", error message: "%s"',
                 $order->getId(),
-                $result->getMethod()
+                $result->getMessage()
             );
             $this->logger->addCritical($message);
 
