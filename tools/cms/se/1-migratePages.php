@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 if (isset($argv[1]) && $argv[1] == 'live') {
   $from_db = 'pompdelux_se';
