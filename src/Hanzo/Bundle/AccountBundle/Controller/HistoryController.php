@@ -171,6 +171,7 @@ class HistoryController extends CoreController
 
             // nuke order
             $this->get('ax_manager')->deleteOrder($order);
+            $order->cancelPayment();
             $order->delete();
         }
 
