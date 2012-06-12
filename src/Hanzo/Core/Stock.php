@@ -197,7 +197,7 @@ class Stock
             }
 
             if ($total == $quantity){
-                $product->getProducts($con)->setIsOutOfStock(true);
+                $product->setIsOutOfStock(true);
                 $product->save($con);
             }
 
