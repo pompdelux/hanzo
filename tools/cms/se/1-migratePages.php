@@ -177,7 +177,7 @@ $find = array(
 $replace = array(
   "{{ embed('newsletter_form', {'view':'simple'}) }}",
   "{{ parameter('expected_delivery_date') }}",
-  "{{ 'customer.service.contact.info'|trans }}",
+  "{{ 'customer.service.contact.info'|trans|raw }}",
   '/fx/images/',
   '{{ geo_zip_code_form() }}',
   '{{ consultants_near_you() }}',
