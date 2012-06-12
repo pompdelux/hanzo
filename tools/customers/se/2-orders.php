@@ -119,6 +119,8 @@ $query = "
     o.currency
   FROM
     {$from}.osc_orders AS o
+  WHERE
+    o.orders_status < 4
   ORDER BY
     o.orders_id DESC
   ON DUPLICATE KEY UPDATE
@@ -160,13 +162,31 @@ $query = "
     p.products_quantity,
     NULL
   FROM {$from}.osc_orders_products AS p
+  INNER JOIN
+    {$from}.osc_orders AS o
+    ON
+      (p.orders_id = o.orders_id)
+  WHERE
+    o.orders_status < 4
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 echo "[".date('Y-m-d H:i:s')."] migrating order lines (end).\n";
 echo "[".date('Y-m-d H:i:s')."] migrating order attributes (start).\n";
 
-$query = "SELECT orders_id, cc_type, cc_number, cc_transactionid FROM {$from}.osc_orders ORDER BY orders_id";
+$query = "
+  SELECT
+    orders_id,
+    cc_type,
+    cc_number,
+    cc_transactionid
+  FROM
+    {$from}.osc_orders
+  WHERE
+    orders_status < 4
+  ORDER BY
+    orders_id
+";
 $result = mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 $attributes_sql = "
@@ -211,17 +231,17 @@ while ($record = mysql_fetch_object($result)) {
       {$orders_id},
       'payment',
       'card_type',
-      '{$order->cc_type}'
+      '{$record->cc_type}'
     ),(
       {$orders_id},
       'payment',
       'card_number',
-      '{$order->cc_number}'
+      '{$record->cc_number}'
     ),(
       {$orders_id},
       'payment',
       'card_transactionid',
-      '{$order->cc_transactionid}'
+      '{$record->cc_transactionid}'
     )
   ";
   mysql_query($sql) or die('Line: '.__LINE__."\n".mysql_error());
@@ -306,5 +326,6 @@ echo "[".date('Y-m-d H:i:s')."] migrating order attributes (end).\n";
 
 // </code>
 
+mysql_query("ALTER TABLE {$to}.orders AUTO_INCREMENT = 80000");
 mysql_query('SET FOREIGN_KEY_CHECKS = 1');
 echo "\n- done -\n\n";
