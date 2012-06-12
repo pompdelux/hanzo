@@ -167,6 +167,8 @@ class DibsApiCall implements PaymentMethodApiCallInterface
             'orderid'   => $paymentGatewayId,
         );
 
+        error_log(__LINE__.':'.__FILE__.' '.print_r($params,1)); // hf@bellcom.dk debugging
+
         return $this->call('cgi-adm/cancel.cgi', $params, self::USE_AUTH_HEADERS );
     }
 

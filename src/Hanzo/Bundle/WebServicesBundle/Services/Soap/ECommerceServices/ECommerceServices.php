@@ -717,9 +717,11 @@ class ECommerceServices extends SoapService
         }
 
         if ($order->getPaymentGatewayId()) {
+          error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             $gateway = Hanzo::getInstance()->container->get('payment.dibsapi');
             try {
-                $gateway->call()->cancel($order->getCustomers(), $order);
+                $callResult = $gateway->call()->cancel($order->getCustomers(), $order);
+                error_log(__LINE__.':'.__FILE__.' '.print_r($callResult,1)); // hf@bellcom.dk debugging
             } catch (\Exception $e) {
                 $this->logger->addCritical('Could not cancel payment: "'.$e->getMessage().'"');
                 return self::responseStatus('Error', 'DeleteSalesOrderResult', array('Could not cancel payment: "'.$e->getMessage().'"'));
