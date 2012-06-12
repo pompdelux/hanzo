@@ -22,7 +22,7 @@ class StatisticsController extends CoreController
 
         $date_filter = array();
     	if (!empty($_GET['select-periode'])) { // Select input from form
-    		
+
     		switch ($this->getRequest()->get('select-periode', null)) {
     			case 'thisweek':
     				$date_filter['min'] = date('d-m-Y',strtotime('Monday this week'));
@@ -50,7 +50,7 @@ class StatisticsController extends CoreController
             $start = $date_filter['min'];
             $date_filter['max'] = $date_filter['min'];
             $end = $date_filter['max'];
-        
+
         }
 
     	$orders_amount = OrdersLinesQuery::create()

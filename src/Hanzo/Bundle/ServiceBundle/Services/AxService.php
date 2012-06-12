@@ -223,6 +223,14 @@ class AxService
         $syncSalesOrder->salesOrder = $salesOrder;
         $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
 
+        // NICETO, would be nice if this was not static..
+        switch (strtoupper($syncSalesOrder->endpointDomain)) {
+            case 'OM':
+            case 'NL': // FIXME: when .nl get's it's own domain, this will go
+                $syncSalesOrder->endpointDomain = 'DK';
+                break;
+        }
+
         if ($return) {
             return $syncSalesOrder;
         }
