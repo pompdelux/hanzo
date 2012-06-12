@@ -31,7 +31,7 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->isNew() === true ) {
+        if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
