@@ -161,12 +161,18 @@ $find = array(
   '{{ TEXT_EXPECTED_DELIVERY_DATE }}',
   '{{ HD_COSTUMERSERVICE_CONTACT_INFO }}',
   '/templates/pompdelux/images/',
+  '{{PDL_GEO_CONSULTANTS_ZIP hus}}',
+  '{{PDL_GEO_CONSULTANTS hus}}',
+  '{{CONSULTANT_MATRIX}}',
 );
 $replace = array(
   "{{ embed('newsletter_form', {'view':'simple'}) }}",
   "{{ parameter('expected_delivery_date') }}",
   "{{ 'customer.service.contact.info'|trans }}",
   '/fx/images/',
+  '{{ geo_zip_code_form() }}',
+  '{{ consultants_near_you() }}',
+  '{{ consultants_map() }}',
 );
 
 $result = mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
