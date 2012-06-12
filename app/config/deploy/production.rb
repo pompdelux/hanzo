@@ -22,9 +22,9 @@ end
 role(:app) do
    frontend_list
 end
-# :apache should contain our apache servers
+# :apache should contain our apache servers. NICETO. Bare drop pdlstatic1 fra frontend_list array'et i stedet for endnu en fil
 role(:apache) do
-   frontend_list #FIXME
+   frontend_list_apache
 end
 
 # our redis server. clear cache here
@@ -38,6 +38,10 @@ def frontend_list
   contentsArray = Array.new
   contentsArray = File.readlines("tools/deploy/frontend_list.txt")
 end
+def frontend_list_apache
+  contentsArray = Array.new
+  contentsArray = File.readlines("tools/deploy/frontend_list_apache.txt")
+end
 
 before 'deploy:restart', 'deploy:apcclear'
 
@@ -48,6 +52,7 @@ after 'symfony:cache:clear', 'symfony:cache:redis_clear'
 # also clear apc when clearing cache
 after 'symfony:cache:clear', 'deploy:apcclear'
 
+after 'deploy:restart', 'deploy:update_permissions'
 
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
@@ -56,7 +61,7 @@ namespace :deploy do
     run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters.ini && wget -q --output-document=#{shared_path}/app/config/hanzo.yml http://tools.bellcom.dk/hanzo/hanzo.yml")
   end
   desc "Roll out apc-clear.php"
-  task :copy_apcclear do
+  task :copy_apcclear, :roles => :apache do
     run("wget -q --output-document=/var/www/apc-clear.php http://tools.bellcom.dk/hanzo/apc-clear.php.txt")
   end
   desc "Clear apc cache on the local server"
@@ -71,6 +76,12 @@ namespace :deploy do
   desc "Reload apache"
   task :reload_apache do
     run("sudo /etc/init.d/apache2 reload")
+  end
+# fix permissions. shouldnt run on static because of pdfs and ftp?
+  desc "Update permissions on shared app logs and web dirs to be group writeable"
+  task :update_permissions, :roles => :apache do
+    run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
+    run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
   end
 end
 

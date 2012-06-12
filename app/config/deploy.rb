@@ -44,22 +44,12 @@ namespace :deploy do
   task :translations do
     run "#{current_path}/tools/deploy/translations.sh #{current_path}/app/Resources/ "
   end
-
-  desc "Update permissions on shared app logs and web dirs to be group writeable"
-  task :update_permissions do
-    run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
-    run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
-    #run "cd #{shared_path} && sudo chmod g+rwX -R app/config && sudo chmod g+rwX app/logs web"
-    #run "cd #{shared_path} && sudo chgrp -R www-data cached-copy"
-  end
- 
-desc "Create logs and public_html symlinks"
+# create symlinks 
+  desc "Create logs and public_html symlinks"
   task :symlinks do
-   run("cd #{deploy_to}/current;if [ ! -L logs ];then ln -s app/logs logs;fi;if [ ! -L public_html ];then ln -s web public_html;fi")
+    run("cd #{deploy_to}/current;if [ ! -L logs ];then ln -s app/logs logs;fi;if [ ! -L public_html ];then ln -s web public_html;fi")
   end
-
 end
 
 before 'deploy:restart', 'deploy:symlinks'
 
-after 'deploy:restart', 'deploy:update_permissions'
