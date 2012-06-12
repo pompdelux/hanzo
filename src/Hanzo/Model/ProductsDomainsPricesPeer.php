@@ -46,7 +46,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
             $data[$price->getProductsId()][$key] = array(
                 'currency' => $price->getCurrencyId(),
                 'raw_price' => $price->getPrice(),
-                'price' => $price->getPrice() + $price->getVat(),
+                'price' => number_format($price->getPrice() + $price->getVat(), 4, '.', ''),
                 'vat' => $price->getVat(),
                 'formattet' => Tools::moneyFormat($price->getPrice() + $price->getVat())
             );
