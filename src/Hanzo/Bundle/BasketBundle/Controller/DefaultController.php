@@ -260,8 +260,10 @@ class DefaultController extends CoreController
             // find matching router
 
             $line['expected_at'] = new \DateTime($line['expected_at']);
-            if ($line['expected_at']->getTimestamp() > 0) {
-                $line['expected_at'] = $line['expected_at']->getTimestamp();
+
+            $t = $line['expected_at']->getTimestamp();
+            if (($t > 0) && ($t > time())) {
+                $line['expected_at'] = $t;
                 if ($delivery_date < $line['expected_at']) {
                     $delivery_date = $line['expected_at'];
                 }
