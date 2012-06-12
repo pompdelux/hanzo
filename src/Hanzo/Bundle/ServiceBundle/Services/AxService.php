@@ -365,11 +365,19 @@ class AxService
 
         $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
 
+        // NICETO, would be nice if this was not static..
+        switch (strtoupper($syncSalesOrder->endpointDomain)) {
+            case 'OM':
+            case 'NL': // FIXME: when .nl get's it's own domain, this will go
+                $syncSalesOrder->endpointDomain = 'DK';
+                break;
+        }
+
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
         if ($result instanceof Exception) {
-            $message = sprintf('An error occured while synchronizing debitor "%s", error message: "%s"',
-                $debitor->getId(),
+            $message = sprintf('An error occured while deleting order "%s", error message: "%s"',
+                $order->getId(),
                 $result->getMethod()
             );
             $this->logger->addCritical($message);
