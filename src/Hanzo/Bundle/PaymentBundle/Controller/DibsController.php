@@ -173,9 +173,11 @@ class DibsController extends CoreController
             $order->save();
         }
 
+        $lang = substr( Hanzo::getInstance()->get('core.locale'), 0, 2 );
+
         $settings = $api->buildFormFields(
             $order->getPaymentGatewayId(),
-            Hanzo::getInstance()->get('core.locale'),
+            $lang,
             $order
         );
 
