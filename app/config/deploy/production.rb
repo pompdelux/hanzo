@@ -45,6 +45,8 @@ end
 
 before 'deploy:restart', 'deploy:apcclear'
 
+before 'symfony:cache:warmup', 'symfony:cache:assets_update'
+
 before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 
 # also clear redis when calling cache:clear
@@ -53,6 +55,7 @@ after 'symfony:cache:clear', 'symfony:cache:redis_clear'
 after 'symfony:cache:clear', 'deploy:apcclear'
 
 after 'deploy:restart', 'deploy:update_permissions'
+after 'deploy:restart', 'deploy:update_permissions_shared'
 
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
@@ -79,8 +82,12 @@ namespace :deploy do
   end
 # fix permissions. shouldnt run on static because of pdfs and ftp?
   desc "Update permissions on shared app logs and web dirs to be group writeable"
-  task :update_permissions, :roles => :apache do
+  task :update_permissions do
     run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
+  end
+# fix permissions. shouldnt run on static because of pdfs and ftp?
+  desc "Update permissions on shared app logs and web dirs to be group writeable"
+  task :update_permissions_shared, :roles => :apache do
     run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
   end
 end
@@ -90,8 +97,16 @@ namespace :symfony do
   namespace :cache do
     desc "Clear/Flush redis cache"
     task :redis_clear, :roles => :redis do
-      symfony_env_prods.each do |i| 
+      symfony_env_prods.each do |i|
         run("cd #{latest_release} && php app/console hanzo:redis:cache:clear --env=#{i}")
+      end
+    end
+  end
+  namespace :cache do
+    desc "Update assets version"
+    task :assets_update do
+      symfony_env_prods.each do |i|
+        run("cd #{latest_release} && php app/console hanzo:dataio:update assets_version --env=#{i}")
       end
     end
   end
