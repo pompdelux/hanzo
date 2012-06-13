@@ -13,7 +13,8 @@ use Hanzo\Core\Hanzo,
 use Hanzo\Model\CustomersQuery,
     Hanzo\Model\Addresses,
     Hanzo\Model\AddressesQuery,
-    Hanzo\Model\DomainsQuery;
+    Hanzo\Model\DomainsQuery,
+    Hanzo\Model\GroupsQuery;
 
 class CustomersController extends CoreController
 {
@@ -130,6 +131,13 @@ class CustomersController extends CoreController
 
         $addresses = AddressesQuery::create()->findByCustomersId($id);
 
+        $groups = GroupsQuery::create()->find();
+
+        $group_choices = array();
+        foreach ($groups as $group) {
+            $group_choices[$group->getId()] = $group->getName();
+        }
+
         $form = $this->createFormBuilder($customer)
             ->add('first_name', 'text',
                 array(
@@ -140,6 +148,13 @@ class CustomersController extends CoreController
             ->add('last_name', 'text',
                 array(
                     'label' => 'admin.customer.last_name.label',
+                    'translation_domain' => 'admin'
+                )
+            )
+            ->add('groups_id', 'choice',
+                array(
+                    'choices' => $group_choices,
+                    'label' => 'admin.customer.group.label',
                     'translation_domain' => 'admin'
                 )
             )
