@@ -28,7 +28,7 @@ class CheckoutListener
         $order = $event->getOrder();
 
         if ($order->getState() < Orders::STATE_PAYMENT_OK ) {
-            error_log(__LINE__.':'.__FILE__.' Could not sync order, state is: '.$order->getState()); // hf@bellcom.dk debugging 
+            error_log(__LINE__.':'.__FILE__.' Could not sync order, state is: '.$order->getState()); // hf@bellcom.dk debugging
             // woopsan!
             return;
         }
@@ -47,7 +47,7 @@ class CheckoutListener
 
         $card_type = '';
         if (isset($attributes->payment->paytype)) {
-            switch ($attributes->payment->paytype) 
+            switch ($attributes->payment->paytype)
             {
               case 'V-DK':
                   $card_type = 'VISA/DanKort';
@@ -135,10 +135,22 @@ class CheckoutListener
         }
 
         try {
+            switch ($attributes->global->domain_key) {
+                case 'SE':
+                    $bcc = 'order@pompdelux.se';
+                    break;
+                case 'NO':
+                    $bcc = 'order@pompdelux.no';
+                    break;
+                default:
+                    $bcc = 'order@pompdelux.dk';
+                    break;
+            }
+
             $this->mailer->setMessage('order.confirmation', $params);
             $this->mailer->setTo($email, $name);
             // NICETO: not hardcoded
-            $this->mailer->setBcc('order@pompdelux.dk');
+            $this->mailer->setBcc($bcc);
             $this->mailer->send();
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
