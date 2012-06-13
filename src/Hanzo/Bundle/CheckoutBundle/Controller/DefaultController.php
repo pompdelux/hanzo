@@ -577,6 +577,14 @@ class DefaultController extends CoreController
                 {
                     $orderArray['PaymentMethod'] = 'DK';
                 }
+                if ( strtoupper( $orderArray['PaymentMethod'] ) == 'MC(DK)' )
+                {
+                    $orderArray['PaymentMethod'] = 'MC';
+                }
+                if ( strtoupper( $orderArray['PaymentMethod'] ) == 'MC(SE)' )
+                {
+                    $orderArray['PaymentMethod'] = 'MC';
+                }
                 break;
             }
         }
