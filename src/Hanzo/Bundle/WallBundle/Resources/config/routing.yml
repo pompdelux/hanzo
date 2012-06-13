@@ -10,6 +10,22 @@ get_wall:
     requirements:
         pager: \d+
 
-add_to_wall:
-    pattern: /wall/add-to-wall
-    defaults: { _controller: WallBundle:Default:getWall}
+edit_entry:
+    pattern: /wall/edit-entry/{id}
+    defaults:
+        _controller: WallBundle:Default:editEntry
+    requirements:
+        id: \d+
+
+add_entry:
+    pattern: /wall/add-entry
+    defaults:
+        _controller: WallBundle:Default:addEntry
+        id: null
+
+add_comment:
+    pattern: /wall/add-comment/{id}
+    defaults:
+        _controller: WallBundle:Default:addEntry
+    requirements:
+        id: \d+

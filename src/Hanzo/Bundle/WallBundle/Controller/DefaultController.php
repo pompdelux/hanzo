@@ -79,7 +79,7 @@ class DefaultController extends CoreController
                 $sub_posts_arr[] = array(
                     'id' => $sub_post->getId(),
                     'message' => $this->wallEmo($sub_post->getMessate()),
-                    'created_at' => $sub_post->getCreatedAt(),
+                    'created_at' => date('j. M Y - H:i', strtotime($sub_post->getCreatedAt())),
                     'author' => $sub_post->getAuthor(),
                     'customers_id' => $sub_post->getCustomersId(),
                     'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $sub_post->getCustomersId()) ? true : false,
@@ -90,7 +90,7 @@ class DefaultController extends CoreController
 
             $posts[] = array(
                 'id' => $wall_post->getId(),
-                'message' => $wall_post->getMessate(),
+                'message' => $this->wallEmo($wall_post->getMessate()),
                 'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
                 'author' => $wall_post->getAuthor(),
                 'customers_id' => $wall_post->getCustomersId(),
@@ -98,8 +98,8 @@ class DefaultController extends CoreController
                 'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
                 'is_first' => $wall_posts->isFirst(),
                 'is_last' => $wall_posts->isLast(),
-                'num_likes' => ($total_likes > 1) ? $this->get('translator')->trans('wall.likes.plural.%likes%', array('%likes%' => $total_likes), 'wall') : $this->get('translator')->trans('wall.likes.single.%likes%', array('%likes%' => $total_likes), 'wall'),
-                'num_dislikes' => ($total_dislikes > 1) ? $this->get('translator')->trans('wall.dislikes.plural.%dislikes%', array('%dislikes%' => $total_dislikes), 'wall') : $this->get('translator')->trans('wall.dislikes.single.%dislikes%', array('%dislikes%' => $total_dislikes), 'wall'),
+                'num_likes' => $total_likes,
+                'num_dislikes' => $total_dislikes,
                 'likes' => $likes_arr,
                 'number_of_subposts' => $sub_posts->count(),
                 'sub_posts' => $sub_posts_arr
@@ -124,6 +124,108 @@ class DefaultController extends CoreController
             ));
         }
     }
+
+    public function editEntryAction($id)
+    {
+        $wall_entry = WallQuery::create()->findOneById($id);
+
+        if($wall_entry instanceof Wall) {
+            $request = $this->get('request');
+            if ('POST' === $request->getMethod()) {
+
+                $wall_entry->setMessate($request->get('message')); // messate = message :-)
+                $wall_entry->save();
+
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => true,
+                        'message' => $this->get('translator')->trans('wall.edit.entry.success', array(), 'wall'),
+                        'input' => $request->get('message'),
+                        'id' => $id
+                    ));
+                }
+            }
+        }else{
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => $this->get('translator')->trans('wall.edit.entry.failed', array(), 'wall')
+                ));
+            }
+        }
+    }
+
+    /**
+     * @param $id the id of the parent entry(comment). Default null(new entry)
+     */
+    public function addEntryAction($id)
+    {
+
+        $request = $this->get('request');
+        if ('POST' === $request->getMethod()) {
+
+            $wall_entry = new Wall();
+
+            if ($id) { // Its a comment to a parent entry
+                $wall_entry->setParentId($id);
+            }
+
+            $wall_entry->setCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+            $wall_entry->setMessate($request->get('message')); // messate = message :-)
+            $wall_entry->setStatus(true);
+
+            $wall_entry->save();
+
+            $wall_post = WallQuery::create()
+                ->join('Customers')
+                ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
+                ->findOneById($wall_entry->getId())
+            ;
+
+            $post = null;
+
+            if ($id) {
+                $post[] = array(
+                    'parent_id' => $id,
+                    'id' => $wall_post->getId(),
+                    'message' => $this->wallEmo($wall_post->getMessate()),
+                    'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
+                    'author' => $wall_post->getAuthor(),
+                    'customers_id' => $wall_post->getCustomersId(),
+                    'is_liked' => false,
+                    'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
+                    'is_first' => false,
+                    'is_last' => false,
+                    'num_likes' => 0,
+                    'num_dislikes' => 0,
+                    'likes' => null,
+                    'number_of_subposts' => 0,
+                    'sub_posts' => null
+                );
+            }else{
+                $post[] = array(
+                    'id' => $wall_post->getId(),
+                    'message' => $this->wallEmo($wall_post->getMessate()),
+                    'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
+                    'author' => $wall_post->getAuthor(),
+                    'customers_id' => $wall_post->getCustomersId(),
+                    'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
+                    'is_first' => false,
+                    'is_last' => false,
+                );
+            }
+
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => true,
+                    'message' => $id ? $this->get('translator')->trans('wall.add.comment.success', array(), 'wall') : $this->get('translator')->trans('wall.add.entry.success', array(), 'wall'),
+                    'data' => $post,
+
+                ));
+            }
+        }
+    }
+
     private function wallEmo($text) {
         $text = nl2br(htmlspecialchars($text));
 
