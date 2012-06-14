@@ -144,10 +144,14 @@ class AxService
           case 'dibs':
               switch (strtoupper($attributes->payment->paytype)) {
                   case 'VISA':
+                  case 'VISA(DK)':
+                  case 'VISA(SE)':
                   case 'ELEC':
                       $custPaymMode = 'VISA';
                       break;
                   case 'MC':
+                  case 'MC(DK)':
+                  case 'MC(SE)':
                       $custPaymMode = 'MasterCard';
                       break;
                   case 'V-DK':

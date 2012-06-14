@@ -367,11 +367,27 @@ class DibsApi implements PaymentMethodApiInterface
             "accepturl"    => "/payment/dibs/ok",*/
             //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
-            "paytype"      => '', // This _must_ be set in the form
+            //"paytype"      => '', // This _must_ be set in the form
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
+            'color'        => 'gray',
+            'decorator'    => 'Own decorator',
         );
 
-        if ($this->getTest() == 'YES')
+        // Only send these fields, to many fields result in hitting a post limit or something
+        $settings['delivery01.Firstname']     = $order->getBillingFirstName();
+        $settings['delivery02.Lastname']      = $order->getBillingLastName();
+        $settings['delivery03.Company']       = $order->getBillingCompanyName();
+        $settings['delivery04.Address1']      = $order->getBillingAddressLine1();
+        $settings['delivery05.Address2']      = $order->getBillingAddressLine2();
+        $settings['delivery06.City']          = $order->getBillingCity();
+        $settings['delivery07.Postcode']      = $order->getBillingPostalCode();
+        $settings['delivery08.StateProvince'] = $order->getBillingStateProvince();
+        $settings['delivery09.Country']       = $order->getBillingCountry();
+        $settings['delivery10.Telephone']     = $order->getPhone();
+        $settings['delivery11.Email']         = $order->getEmail();
+        $settings['delivery12.OrderId']       = $order->getId();
+
+        if ( strtoupper( $this->getTest() ) == 'YES')
         {
             $settings["test"] = 'YES';
         }

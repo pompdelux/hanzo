@@ -595,6 +595,10 @@ class DefaultController extends CoreController
                 {
                     $orderArray['PaymentMethod'] = 'MC';
                 }
+                if ( strtoupper( $orderArray['PaymentMethod'] ) == 'VISA(SE)' )
+                {
+                    $orderArray['PaymentMethod'] = 'VISA';
+                }
                 break;
             }
         }

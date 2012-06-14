@@ -76,7 +76,7 @@ class ECommerceServices extends SoapService
         $item = $data->item->InventTable;
 
         if (!$item->ItemGroupId OR !$item->ItemId OR !$item->ItemName) {
-            $this->logger->addCritical('no ItemGroupId OR ItemId OR ItemName given');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemGroupId OR ItemId OR ItemName given');
 
             return self::responseStatus('Error', 'SyncItemResult', array(
                 'no ItemGroupId OR ItemId OR ItemName given'
@@ -89,7 +89,7 @@ class ECommerceServices extends SoapService
                 'InventId: ' . $item->ItemId,
                 'WebEnabled set to "' . $item->WebEnabled . '" it should be set to "1"'
             );
-            $this->logger->addCritical('WebEnabled set to "' . $item->WebEnabled . '", it should be set to "1"', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': WebEnabled set to "' . $item->WebEnabled . '", it should be set to "1"', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
         }
@@ -100,7 +100,7 @@ class ECommerceServices extends SoapService
                 'InventId: ' . $item->ItemId,
                 'WebDomain empty, we need at lest one domain to create/update the product.'
             );
-            $this->logger->addCritical('No WebDomain parameters', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': No WebDomain parameters', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
         }
@@ -216,7 +216,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical('SyncItem failed with the following error(s)', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncItem failed with the following error(s)', $errors);
 
             return self::responseStatus('Error', 'SyncItemResult', $errors);
         }
@@ -255,7 +255,7 @@ class ECommerceServices extends SoapService
         $prices = $data->priceList;
 
         if (!$prices->ItemId) {
-            $this->logger->addCritical('no ItemId given');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemId given');
             return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
         }
 
@@ -394,7 +394,7 @@ class ECommerceServices extends SoapService
 
 
         if (count($errors)) {
-            $this->logger->addCritical('SyncPriceList failed with the following error(s)', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncPriceList failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'SyncPriceListResult', $errors);
         }
 
@@ -431,13 +431,13 @@ class ECommerceServices extends SoapService
         $stock = $data->inventoryOnHand->InventSum;
 
         if (!$stock->ItemId) {
-            $this->logger->addCritical('no ItemId given');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no ItemId given');
             return self::responseStatus('Error', 'SyncPriceListResult', array('no ItemId given'));
         }
 
         $master = ProductsQuery::create()->findOneBySku($stock->ItemId);
         if (!$master instanceof Products) {
-            $this->logger->addCritical('Unknown product, ItemId: ' . $stock->ItemId);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': Unknown product, ItemId: ' . $stock->ItemId);
             return self::responseStatus('Error', 'SyncPriceListResult', array('Unknown ItemId: ' . $stock->ItemId));
         }
 
@@ -527,7 +527,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical('SyncInventoryOnHand failed with the following error(s)', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncInventoryOnHand failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'SyncInventoryOnHandResult', $errors);
         }
 
@@ -570,7 +570,7 @@ class ECommerceServices extends SoapService
         $errors = array();
 
         if (!$data instanceof \stdClass || empty($data->customer->CustTable)) {
-            $this->logger->addCritical('not a customer object');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': not a customer object');
             return self::responseStatus('Error', 'SyncCustomerResult', array('not a customer object'));
         }
 
@@ -583,7 +583,7 @@ class ECommerceServices extends SoapService
         $country = CountriesQuery::create()->findOneByIso2($data->AddressCountryRegionId);
 
         if (!$country instanceof Countries) {
-            $this->logger->addCritical('unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum);
             return self::responseStatus('Error', 'SyncCustomerResult', array('unknown country reference: ' . $data->AddressCountryRegionId . ' for account: #' . $data->AccountNum));
         }
 
@@ -603,6 +603,9 @@ class ECommerceServices extends SoapService
                 $consultant = new Consultants();
             } else {
                 $consultant = $customer->getConsultants();
+                if (!$Consultants instanceof Consultants) {
+                    $consultant = new Consultants();
+                }
             }
             $consultant->setInitials($data->InitialsId);
             $customer->setConsultants($consultant);
@@ -673,7 +676,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical('SyncCustomerResult failed with the following error(s)', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SyncCustomerResult failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'SyncCustomerResult', $errors);
         }
 
@@ -706,7 +709,7 @@ class ECommerceServices extends SoapService
     public function DeleteSalesOrder($data)
     {
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical('no eOrderNumber given.');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'DeleteSalesOrderResult', array('no eOrderNumber given.'));
         }
 
@@ -728,7 +731,7 @@ class ECommerceServices extends SoapService
                 $callResult = $order->cancelPayment();
                 //$callResult = $gateway->call()->cancel($order->getCustomers(), $order);
             } catch (\Exception $e) {
-                $this->logger->addCritical('Could not cancel payment: "'.$e->getMessage().'"');
+                $this->logger->addCritical(__METHOD__.' '.__LINE__.': Could not cancel payment: "'.$e->getMessage().'"');
                 return self::responseStatus('Error', 'DeleteSalesOrderResult', array('Could not cancel payment: "'.$e->getMessage().'"'));
             }
         }
@@ -740,7 +743,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         if (count($errors)) {
-            $this->logger->addCritical('DeleteSalesOrderResult failed with the following error(s)', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': DeleteSalesOrderResult failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'DeleteSalesOrderResult', $errors);
         }
 
@@ -764,7 +767,7 @@ class ECommerceServices extends SoapService
         $errors = array();
 
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical('no eOrderNumber given.');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', array('no eOrderNumber given.'));
         }
 
@@ -798,7 +801,7 @@ class ECommerceServices extends SoapService
 
 
         if (count($errors)) {
-            $this->logger->addCritical('SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
         }
 
@@ -826,19 +829,19 @@ class ECommerceServices extends SoapService
         $errors = array();
 
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical('no eOrderNumber given.');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('no eOrderNumber given.'));
         }
 
         if ($data->orderStatus < 1 || $data->orderStatus > 4) {
-            $this->logger->addCritical('order status id #' . $data->orderStatus . ' is not known.');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order status id #' . $data->orderStatus . ' is not known.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order status id #' . $data->orderStatus . ' is not known.'));
         }
 
         $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
 
         if (!$order instanceof Orders) {
-            $this->logger->addCritical('order #' . $data->eOrderNumber . ' does not exist.');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
         }
 
@@ -889,14 +892,14 @@ class ECommerceServices extends SoapService
         $errors = array();
 
         if (empty($data->eOrderNumber)) {
-            $this->logger->addCritical('no eOrderNumber given.');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': no eOrderNumber given.');
             return self::responseStatus('Error', 'SalesOrderAddDocumentResult', array('no eOrderNumber given.'));
         }
 
         $order = OrdersQuery::create()->findOneById($data->eOrderNumber);
 
         if (!$order instanceof Orders) {
-            $this->logger->addCritical('order #' . $data->eOrderNumber . ' does not exist.');
+            $this->logger->addCritical(__METHOD__.' '.__LINE__.': order #' . $data->eOrderNumber . ' does not exist.');
             return self::responseStatus('Error', 'SalesOrderLockUnlockResult', array('order #' . $data->eOrderNumber . ' does not exist.'));
         }
 
@@ -953,7 +956,7 @@ class ECommerceServices extends SoapService
      * @param Order    $order order object
      * @return mixed   true on success array of errors on error
      */
-    protected function SalesOrderCapture($data, Order $order)
+    protected function SalesOrderCapture($data, Orders $order)
     {
         $error = array();
 
@@ -965,7 +968,7 @@ class ECommerceServices extends SoapService
             $gateway = $this->hanzo->container->get('payment.dibsapi');
 
             // TODO: remove when .nl gets its own site
-            if (in_array($order->getAttributes()->global->domain_name, array('pompdelux.nl','www.pompdelux.nl'))) {
+            if (in_array($order->getAttributes()->global->domain_key, array('NL'))) {
                 $settings = $gateway->getSettings();
                 $settings['merchant'] = '90055039';
                 $settings['md5key1']  = '@6B@(-rfD:DiXYh}(76h6C1rexwZ)-cw';
@@ -1006,7 +1009,7 @@ class ECommerceServices extends SoapService
      * @param Order  $order [description]
      * @return mixed   true on success array of errors on error
      */
-    protected function SalesOrderRefund($data, Order $order)
+    protected function SalesOrderRefund($data, Orders $order)
     {
         $setStatus = false;
         $error = array();
@@ -1037,9 +1040,9 @@ class ECommerceServices extends SoapService
 
                 $mailer = $this->hanzo->container->get('mail_manager');
                 if ($order->getCurrencyCode() == 'EUR') {
-                    $mailer->setMessage('order.credited', null, 'en_GB');
+                    $mailer->setMessage('order.credited', $parameters, 'en_GB');
                 } else {
-                    $mailer->setMessage('order.credited');
+                    $mailer->setMessage('order.credited', $parameters);
                 }
 
                 $mailer->setTo($order->getEmail(), $name);
