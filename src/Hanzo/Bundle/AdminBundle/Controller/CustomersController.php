@@ -71,6 +71,7 @@ class CustomersController extends CoreController
         }
 
         $customers = $customers
+            ->orderByUpdatedAt('DESC')
             ->orderByFirstName()
             ->orderByLastName()
             ->paginate($pager, 50)

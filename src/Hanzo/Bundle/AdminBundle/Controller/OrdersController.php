@@ -56,8 +56,7 @@ class OrdersController extends CoreController
             ;
         }
 
-        $orders = $orders->orderByCreatedAt()
-            ->orderById()
+        $orders = $orders->orderByCreatedAt('DESC')
             ->paginate($pager, 20)
         ;
 
