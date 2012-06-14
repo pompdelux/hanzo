@@ -246,6 +246,7 @@ class OrdersController extends CoreController
         }
 
         $order = OrdersQuery::create()->findOneById($order_id);
+
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -257,16 +258,22 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
+        // delete old log entry
+        OrdersSyncLogQuery::create()
+            ->filterByState('failed')
+            ->filterByOrdersId($order_id)
+            ->delete();
+
         $status = $this->get('ax_manager')->sendOrder($order);
         $message = $status ?
-            'Ordren er nu sendt' :
-            'Ordren kunne ikke gensendes !'
+            'Ordren #%d er nu sendt' :
+            'Ordren #%d kunne ikke gensendes !'
         ;
 
         if ('json' === $this->getFormat()) {
             return $this->json_response(array(
                 'status' => false,
-                'message' => 'Der findes ingen ordre med ID #' . $order_id
+                'message' => sprintf($message, $order_id),
             ));
         }
 
