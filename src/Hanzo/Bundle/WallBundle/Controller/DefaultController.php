@@ -79,6 +79,7 @@ class DefaultController extends CoreController
                 $sub_posts_arr[] = array(
                     'id' => $sub_post->getId(),
                     'message' => $this->wallEmo($sub_post->getMessate()),
+                    'clean_message' => $sub_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($sub_post->getCreatedAt())),
                     'author' => $sub_post->getAuthor(),
                     'customers_id' => $sub_post->getCustomersId(),
@@ -91,6 +92,7 @@ class DefaultController extends CoreController
             $posts[] = array(
                 'id' => $wall_post->getId(),
                 'message' => $this->wallEmo($wall_post->getMessate()),
+                'clean_message' => $wall_post->getMessate(),
                 'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
                 'author' => $wall_post->getAuthor(),
                 'customers_id' => $wall_post->getCustomersId(),
@@ -189,6 +191,7 @@ class DefaultController extends CoreController
                     'parent_id' => $id,
                     'id' => $wall_post->getId(),
                     'message' => $this->wallEmo($wall_post->getMessate()),
+                    'clean_message' => $wall_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
                     'author' => $wall_post->getAuthor(),
                     'customers_id' => $wall_post->getCustomersId(),
@@ -206,6 +209,7 @@ class DefaultController extends CoreController
                 $post[] = array(
                     'id' => $wall_post->getId(),
                     'message' => $this->wallEmo($wall_post->getMessate()),
+                    'clean_message' => $wall_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
                     'author' => $wall_post->getAuthor(),
                     'customers_id' => $wall_post->getCustomersId(),
@@ -288,7 +292,7 @@ class DefaultController extends CoreController
         if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             $wall_entry = $wall_entry->filterByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
         }
-        
+
         $wall_entry = $wall_entry->findOneById($id);
 
         if ($wall_entry instanceof Wall) {
