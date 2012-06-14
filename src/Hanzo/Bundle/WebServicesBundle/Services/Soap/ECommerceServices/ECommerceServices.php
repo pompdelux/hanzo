@@ -965,7 +965,7 @@ class ECommerceServices extends SoapService
             $gateway = $this->hanzo->container->get('payment.dibsapi');
 
             // TODO: remove when .nl gets its own site
-            if (in_array($order->getAttributes()->global->domain_name, array('pompdelux.nl','www.pompdelux.nl'))) {
+            if (in_array($order->getAttributes()->global->domain_key, array('NL'))) {
                 $settings = $gateway->getSettings();
                 $settings['merchant'] = '90055039';
                 $settings['md5key1']  = '@6B@(-rfD:DiXYh}(76h6C1rexwZ)-cw';
