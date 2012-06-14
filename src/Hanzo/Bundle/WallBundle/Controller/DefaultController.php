@@ -225,6 +225,89 @@ class DefaultController extends CoreController
             }
         }
     }
+    /**
+     * @param id the id of the story to like/dislike
+     * @param status the status of the action. Like=1, dislike=0
+     */
+    public function likeEntryAction($id, $status)
+    {
+        $is_liked = WallLikesQuery::create()
+            ->filterByWallId($id)
+            ->findOneByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
+        ;
+
+        if($is_liked instanceof WallLikes){
+
+            if($is_liked->getStatus() === $status){
+                // If the status are the same, its a toggle. Then delete it.
+
+                $is_liked->delete();
+
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => true,
+                        'message' => $this->get('translator')->trans('wall.entry.like.remove', array(), 'wall')
+                    ));
+                }
+
+            }else{
+                // If they are not the same, its a change from like <> dislike.
+                $is_liked->setStatus($status);
+                $is_liked->save();
+                
+                if ($this->getFormat() == 'json') {
+                    return $this->json_response(array(
+                        'status' => true,
+                        'message' => $this->get('translator')->trans('wall.entry.like.toggle', array(), 'wall')
+                    ));
+                }
+            }
+
+
+        }else{
+            $is_liked = new WallLikes();
+            $is_liked->setWallId($id);
+            $is_liked->setCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+            $is_liked->setStatus($status);
+            $is_liked->save();
+
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => true,
+                    'message' => $this->get('translator')->trans('wall.entry.like.add', array(), 'wall')
+                ));
+            }
+        }
+
+    }
+
+    public function deleteEntryAction($id)
+    {
+        $wall_entry = WallQuery::create();
+        
+        if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $wall_entry = $wall_entry->filterByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+        }
+        
+        $wall_entry = $wall_entry->findOneById($id);
+
+        if ($wall_entry instanceof Wall) {
+            $wall_entry->delete();
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => true,
+                    'message' => $this->get('translator')->trans('wall.entry.delete.success', array(), 'wall')
+                ));
+            }
+        }else{
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => $this->get('translator')->trans('wall.entry.delete.failed', array(), 'wall')
+                ));
+            }
+        }
+    }
 
     private function wallEmo($text) {
         $text = nl2br(htmlspecialchars($text));

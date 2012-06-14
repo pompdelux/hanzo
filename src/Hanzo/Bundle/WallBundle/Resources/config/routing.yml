@@ -29,3 +29,18 @@ add_comment:
         _controller: WallBundle:Default:addEntry
     requirements:
         id: \d+
+
+like_toggle:
+    pattern: /wall/like-entry/{id}/{status}
+    defaults:
+        _controller: WallBundle:Default:likeEntry
+    requirements:
+        id: \d+
+        status: \d+
+
+delete_entry:
+    pattern: /wall/delete-entry/{id}
+    defaults:
+        _controller: WallBundle:Default:deleteEntry
+    requirements:
+        id: \d+
