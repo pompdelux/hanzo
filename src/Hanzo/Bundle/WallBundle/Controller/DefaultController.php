@@ -18,6 +18,10 @@ class DefaultController extends CoreController
     
     public function indexAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            return $this->redirect($this->generateUrl('login'));
+        }
+
         return $this->render('WallBundle:Default:wall.html.twig', array(
             'page_type'     => 'wall'
         ));
@@ -25,6 +29,11 @@ class DefaultController extends CoreController
 
     public function getWallAction($pager)
     {
+
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            throw new AccessDeniedException();
+        }
+        
         $wall_posts = WallQuery::create()
             ->join('Customers')
             ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
@@ -129,6 +138,9 @@ class DefaultController extends CoreController
 
     public function editEntryAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            throw new AccessDeniedException();
+        }
         $wall_entry = WallQuery::create()->findOneById($id);
 
         if($wall_entry instanceof Wall) {
@@ -163,6 +175,9 @@ class DefaultController extends CoreController
     public function addEntryAction($id)
     {
 
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            throw new AccessDeniedException();
+        }
         $request = $this->get('request');
         if ('POST' === $request->getMethod()) {
 
@@ -235,6 +250,9 @@ class DefaultController extends CoreController
      */
     public function likeEntryAction($id, $status)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            throw new AccessDeniedException();
+        }
         $is_liked = WallLikesQuery::create()
             ->filterByWallId($id)
             ->findOneByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
@@ -287,6 +305,9 @@ class DefaultController extends CoreController
 
     public function deleteEntryAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            throw new AccessDeniedException();
+        }
         $wall_entry = WallQuery::create();
         
         if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN')) {
