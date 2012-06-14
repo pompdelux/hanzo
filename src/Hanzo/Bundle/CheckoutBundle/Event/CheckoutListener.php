@@ -85,7 +85,7 @@ class CheckoutListener
             'shipping_title' => $shipping_title,
             'shipping_cost' => $shipping_cost,
             'payment_fee' => $order->getPaymentFee(),
-            'expected_at' => $order->getExpectedDeliveryDate(),
+            'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
             'card_type' => $card_type,

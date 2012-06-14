@@ -25,6 +25,8 @@ use Hanzo\Model\ShippingMethods;
 
 use Hanzo\Model\CustomerQuery;
 
+use Hanzo\Model\SettingsQuery;
+
 use Exception;
 
 /**
@@ -964,7 +966,14 @@ class Orders extends BaseOrders
     {
         $now = date('Ymd');
         $latest = 0;
-        $expected_at = '';
+
+        $result = SettingsQuery::create()
+            ->filterByNs('HD')
+            ->findOneByCKey('expected_delivery_date')
+            ;  
+
+        $expected_at = is_null( $result ) ? '' : $result->getCValue();
+
         foreach ($this->getOrdersLiness() as $line) {
             $date = $line->getExpectedAt('Ymd');
             if (($date > $now) && ($date > $latest)) {
