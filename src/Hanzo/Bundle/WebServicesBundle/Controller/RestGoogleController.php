@@ -124,9 +124,9 @@ class RestGoogleController extends CoreController
         $data = array();
         foreach ($result as $record) {
 
-            $info = $record['info'];
+            $info = $record['event_notes'];
             if ($type == 'hus') {
-                $info = str_replace("\n", "<br>", $record['event_notes']);
+                $info = str_replace("\n", "<br>", $record['info']);
             }
 
             $info = preg_replace_callback('/src="(.+)"/Ui', function($matches) {
