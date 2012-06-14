@@ -124,12 +124,6 @@ class AxService
             $line->SalesUnit     = $product->getUnit();
 
             $discount = $product->getOriginalPrice() - $product->getPrice();
-/*
-            if ( $discount < 0 ) // hf@bellcom.dk, check for discount fubar :)
-            {
-              throw new Exception( 'Discount is negative: '.$discount .', product item id: '. $line->ItemId. ', order id: '. $order->getId() );
-            }
-*/
             if ($product->getOriginalPrice() && $discount > 0) {
                 $discount_in_percent = 100 / ($product->getOriginalPrice() / $discount);
             }
@@ -221,11 +215,11 @@ class AxService
 
         $syncSalesOrder = new stdClass();
         $syncSalesOrder->salesOrder = $salesOrder;
-        $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
+        $syncSalesOrder->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
 
         // NICETO, would be nice if this was not static..
-        switch (strtoupper($syncSalesOrder->endpointDomain)) {
-            case 'OM':
+        switch ($syncSalesOrder->endpointDomain) {
+            case 'COM':
             case 'NL': // FIXME: when .nl get's it's own domain, this will go
                 $syncSalesOrder->endpointDomain = 'DK';
                 break;
@@ -363,11 +357,11 @@ class AxService
         $syncSalesOrder = new stdClass();
         $syncSalesOrder->salesOrder = $salesOrder;
 
-        $syncSalesOrder->endpointDomain = substr($attributes->global->domain_key, -2);
+        $syncSalesOrder->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
 
         // NICETO, would be nice if this was not static..
-        switch (strtoupper($syncSalesOrder->endpointDomain)) {
-            case 'OM':
+        switch ($syncSalesOrder->endpointDomain) {
+            case 'COM':
             case 'NL': // FIXME: when .nl get's it's own domain, this will go
                 $syncSalesOrder->endpointDomain = 'DK';
                 break;
@@ -403,7 +397,16 @@ class AxService
         $lock = new stdClass();
         $lock->eOrderNumber = $order->getId();
         $lock->lockOrder = $status ? 1 : 0;
-        $lock->endpointDomain = substr($attributes->global->domain_key, -2);
+        $lock->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
+
+        // NICETO, would be nice if this was not static..
+        switch (strtoupper($lock->endpointDomain)) {
+            case 'COM':
+            case 'NL': // FIXME: when .nl get's it's own domain, this will go
+                $lock->endpointDomain = 'DK';
+                break;
+        }
+
         $result = $this->Send('SalesOrderLockUnlock', $lock);
 
         if ($result instanceof Exception) {
