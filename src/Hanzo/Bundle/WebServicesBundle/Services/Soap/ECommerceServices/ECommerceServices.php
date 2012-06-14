@@ -603,6 +603,9 @@ class ECommerceServices extends SoapService
                 $consultant = new Consultants();
             } else {
                 $consultant = $customer->getConsultants();
+                if (!$Consultants instanceof Consultants) {
+                    $consultant = new Consultants();
+                }
             }
             $consultant->setInitials($data->InitialsId);
             $customer->setConsultants($consultant);
