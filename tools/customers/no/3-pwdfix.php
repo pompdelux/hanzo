@@ -1,8 +1,8 @@
 <?php
 
 if (isset($argv[1]) && $argv[1] == 'live') {
-  $db = 'pdl_dk';
-  mysql_connect('192.168.2.118', 'pdl_dk_migrate', 'TEMPMIGRATE111');
+  $db = 'pdl_no';
+  mysql_connect('192.168.2.136', 'pdl_no_migrate', 'TEMPMIGRATE111');
 } else {
   $db = 'hanzo';
   mysql_connect('localhost', 'root', '');
