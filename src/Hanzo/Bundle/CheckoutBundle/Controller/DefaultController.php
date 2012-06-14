@@ -480,6 +480,16 @@ class DefaultController extends CoreController
         $order->setAttribute('HomePartyId', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
         $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
 
+        if (!$order->getDeliveryMethod()) {
+          $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));
+
+          if (('DKK' == $order->getCurrencyCode()) && $order->getDeliveryCompanyName()) {
+            $order->setDeliveryMethod(11);
+          } else {
+            $order->setDeliveryMethod($shipping_methods[0]);
+          }
+        }
+
         $order->save();
 
         /* ------------------------------------------------- */
