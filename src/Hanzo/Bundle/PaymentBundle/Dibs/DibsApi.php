@@ -37,6 +37,27 @@ class DibsApi implements PaymentMethodApiInterface
     );
 
     /**
+     * Maps locales to dibs languages
+     *
+     * @var array
+     **/
+    protected $language_map = array(
+        'da_DK' => 'da', // Danish
+        'en_GB' => 'en', // English
+        'fi_FI' => 'fi', // Finnish
+        'nl_NL' => 'nl', //Dutch
+        'nb_NO' => 'no', //Norwegian
+        'sv_SE' => 'sv', // Swedish
+        //pl=Polish (simplified)
+        //de=German
+        //es=Spanish
+        //fo=Faroese
+        //fr=French
+        //it=Italian
+        //kl=Greenlandic
+        );
+
+    /**
      * undocumented class variable
      *
      * @var array
@@ -320,15 +341,19 @@ class DibsApi implements PaymentMethodApiInterface
 
     /**
      * buildFormFields
+     * @param string $gateway_id
      * @param Orders $order
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function buildFormFields( $gateway_id, $lang, Orders $order )
+    public function buildFormFields( $gateway_id, Orders $order )
     {
         $orderId  = $gateway_id;
         $amount   = self::formatAmount( $order->getTotalPrice() );
         $currency = $this->currencyCodeToNum($order->getCurrencyCode());
+
+        $locale = Hanzo::getInstance()->get('core.locale');
+        $lang = ( isset($this->language_map[$locale]) ? $this->language_map[$locale] : 'en' );
 
         $settings = array(
             'orderid'      => $orderId,
@@ -340,7 +365,7 @@ class DibsApi implements PaymentMethodApiInterface
             /*"cancelurl"    => "/payment/dibs/cancel",
             "callbackurl"  => "/payment/dibs/callback",
             "accepturl"    => "/payment/dibs/ok",*/
-            "skiplastpage" => "YES",
+            //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             "paytype"      => '', // This _must_ be set in the form
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),

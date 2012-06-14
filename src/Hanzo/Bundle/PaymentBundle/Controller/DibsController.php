@@ -81,51 +81,6 @@ class DibsController extends CoreController
      }
 
     /**
-     * apiTestAction
-     *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function apiTestAction($method)
-    {
-        $api = $this->get('payment.dibsapi');
-
-        //$api = new DibsApi();
-        //$apiResponse = $api->call()->acquirersStatus();
-        //$apiResponse = $api->call()->payinfo( 527221861 );
-        //error_log(__LINE__.':'.__FILE__.' '.print_r($_SESSION,1)); // hf@bellcom.dk debugging
-
-        return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
-    }
-
-    /**
-     * formTestAdction
-     *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function formTestAction()
-    {
-        $api = $this->get('payment.dibsapi');
-
-        $order = OrdersPeer::getCurrent();
-        $settings = $api->buildFormFields( $order );
-
-        $form = '<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-            <html lang="da">
-            <head>
-            <title>POMPdeLUX - TEST</title>
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-            </head>
-            <body>
-            '. $this->renderView('PaymentBundle:Dibs:form.html.twig',$settings) .'
-            </body>
-            </html>';
-
-        return new Response( $form, 200, array('Content-Type' => 'text/html'));
-    }
-
-    /**
      * blockAction
      *
      * @return void
@@ -173,11 +128,8 @@ class DibsController extends CoreController
             $order->save();
         }
 
-        $lang = substr( Hanzo::getInstance()->get('core.locale'), 0, 2 );
-
         $settings = $api->buildFormFields(
             $order->getPaymentGatewayId(),
-            $lang,
             $order
         );
 
