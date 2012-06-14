@@ -953,7 +953,7 @@ class ECommerceServices extends SoapService
      * @param Order    $order order object
      * @return mixed   true on success array of errors on error
      */
-    protected function SalesOrderCapture($data, Order $order)
+    protected function SalesOrderCapture($data, Orders $order)
     {
         $error = array();
 
@@ -1006,7 +1006,7 @@ class ECommerceServices extends SoapService
      * @param Order  $order [description]
      * @return mixed   true on success array of errors on error
      */
-    protected function SalesOrderRefund($data, Order $order)
+    protected function SalesOrderRefund($data, Orders $order)
     {
         $setStatus = false;
         $error = array();
