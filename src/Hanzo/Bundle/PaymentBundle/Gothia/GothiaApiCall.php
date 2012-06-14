@@ -84,6 +84,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if ( !empty($errors) )
         {
             error_log(__LINE__.':'.__FILE__.' '.print_r($errors,1)); // hf@bellcom.dk debugging
+            error_log(__LINE__.':'.__FILE__.' '.print_r($this->settings,1)); // hf@bellcom.dk debugging
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
