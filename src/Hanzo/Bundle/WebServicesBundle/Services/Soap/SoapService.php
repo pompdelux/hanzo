@@ -18,6 +18,7 @@ class SoapService
     {
         $this->request  = $request;
         $this->logger   = $logger;
+
         $logger->addDebug('Soap call ... initialized.');
         $this->hanzo = Hanzo::getInstance();
     }
