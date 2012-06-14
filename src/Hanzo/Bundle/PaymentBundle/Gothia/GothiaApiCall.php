@@ -56,7 +56,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     {
         $errorReporting = error_reporting(0);
 
-        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) == 'YES' )
         {
             $client = AFSWS_Init( 'test' );
         }

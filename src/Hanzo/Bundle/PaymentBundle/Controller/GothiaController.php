@@ -48,6 +48,12 @@ class GothiaController extends CoreController
     public function paymentAction()
     {
         $customer = CustomersPeer::getCurrent();
+
+        if ( $customer->isNew() )
+        {
+            return $this->redirect($this->generateUrl('_checkout'));
+        }
+
         $order    = OrdersPeer::getCurrent();
         $gothiaAccount = $customer->getGothiaAccounts();
 
@@ -61,7 +67,10 @@ class GothiaController extends CoreController
 
         // Build the form where the customer can enter his/hers information
         $form = $this->createFormBuilder( $gothiaAccount )
-            ->add( 'social_security_num', 'text' )
+            ->add( 'social_security_num', 'text', array(
+                'label' => 'social_security_num',
+                'required' => true, 
+                'translation_domain' => 'gothia' ) )
             ->getForm();
 
         return $this->render('PaymentBundle:Gothia:payment.html.twig',array('page_type' => 'gothia','step' => $step, 'form' => $form->createView()));
