@@ -1,4 +1,5 @@
 <?php
+die(" - do not run again!\n");
 
 if (isset($argv[1]) && $argv[1] == 'live') {
   $from = 'pdlfront_bellcom_dkWAIT';

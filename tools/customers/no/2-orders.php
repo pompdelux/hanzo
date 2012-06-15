@@ -1,7 +1,8 @@
 <?php
+die(" - do not run again!\n");
 
 if (isset($argv[1]) && $argv[1] == 'live') {
-  $from = 'pompdelux_seWAIT';
+  $from = 'pompdelux_onWAIT';
   $to = 'pdl_no';
   mysql_connect('192.168.2.136', 'pdl_no_migrate', 'TEMPMIGRATE111');
 } else {
