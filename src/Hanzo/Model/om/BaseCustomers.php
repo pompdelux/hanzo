@@ -22,8 +22,6 @@ use Hanzo\Model\Consultants;
 use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\CouponsToCustomersQuery;
-use Hanzo\Model\CustomersGotiaAttributes;
-use Hanzo\Model\CustomersGotiaAttributesQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
@@ -189,11 +187,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $singleGothiaAccounts;
 
 	/**
-	 * @var        array CustomersGotiaAttributes[] Collection to store aggregation of CustomersGotiaAttributes objects.
-	 */
-	protected $collCustomersGotiaAttributess;
-
-	/**
 	 * @var        Consultants one-to-one related Consultants object
 	 */
 	protected $singleConsultants;
@@ -259,12 +252,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var		array
 	 */
 	protected $gothiaAccountssScheduledForDeletion = null;
-
-	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $customersGotiaAttributessScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -873,8 +860,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			$this->singleGothiaAccounts = null;
 
-			$this->collCustomersGotiaAttributess = null;
-
 			$this->singleConsultants = null;
 
 		} // if (deep)
@@ -1152,23 +1137,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			if ($this->singleGothiaAccounts !== null) {
 				if (!$this->singleGothiaAccounts->isDeleted()) {
 						$affectedRows += $this->singleGothiaAccounts->save($con);
-				}
-			}
-
-			if ($this->customersGotiaAttributessScheduledForDeletion !== null) {
-				if (!$this->customersGotiaAttributessScheduledForDeletion->isEmpty()) {
-					CustomersGotiaAttributesQuery::create()
-						->filterByPrimaryKeys($this->customersGotiaAttributessScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->customersGotiaAttributessScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->collCustomersGotiaAttributess !== null) {
-				foreach ($this->collCustomersGotiaAttributess as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
 				}
 			}
 
@@ -1465,14 +1433,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					}
 				}
 
-				if ($this->collCustomersGotiaAttributess !== null) {
-					foreach ($this->collCustomersGotiaAttributess as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
 				if ($this->singleConsultants !== null) {
 					if (!$this->singleConsultants->validate($columns)) {
 						$failureMap = array_merge($failureMap, $this->singleConsultants->getValidationFailures());
@@ -1617,9 +1577,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 			if (null !== $this->singleGothiaAccounts) {
 				$result['GothiaAccounts'] = $this->singleGothiaAccounts->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
-			}
-			if (null !== $this->collCustomersGotiaAttributess) {
-				$result['CustomersGotiaAttributess'] = $this->collCustomersGotiaAttributess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->singleConsultants) {
 				$result['Consultants'] = $this->singleConsultants->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
@@ -1878,12 +1835,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				$copyObj->setGothiaAccounts($relObj->copy($deepCopy));
 			}
 
-			foreach ($this->getCustomersGotiaAttributess() as $relObj) {
-				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addCustomersGotiaAttributes($relObj->copy($deepCopy));
-				}
-			}
-
 			$relObj = $this->getConsultants();
 			if ($relObj) {
 				$copyObj->setConsultants($relObj->copy($deepCopy));
@@ -2017,9 +1968,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		}
 		if ('WallLikes' == $relationName) {
 			return $this->initWallLikess();
-		}
-		if ('CustomersGotiaAttributes' == $relationName) {
-			return $this->initCustomersGotiaAttributess();
 		}
 	}
 
@@ -3246,154 +3194,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Clears out the collCustomersGotiaAttributess collection
-	 *
-	 * This does not modify the database; however, it will remove any associated objects, causing
-	 * them to be refetched by subsequent calls to accessor method.
-	 *
-	 * @return     void
-	 * @see        addCustomersGotiaAttributess()
-	 */
-	public function clearCustomersGotiaAttributess()
-	{
-		$this->collCustomersGotiaAttributess = null; // important to set this to NULL since that means it is uninitialized
-	}
-
-	/**
-	 * Initializes the collCustomersGotiaAttributess collection.
-	 *
-	 * By default this just sets the collCustomersGotiaAttributess collection to an empty array (like clearcollCustomersGotiaAttributess());
-	 * however, you may wish to override this method in your stub class to provide setting appropriate
-	 * to your application -- for example, setting the initial array to the values stored in database.
-	 *
-	 * @param      boolean $overrideExisting If set to true, the method call initializes
-	 *                                        the collection even if it is not empty
-	 *
-	 * @return     void
-	 */
-	public function initCustomersGotiaAttributess($overrideExisting = true)
-	{
-		if (null !== $this->collCustomersGotiaAttributess && !$overrideExisting) {
-			return;
-		}
-		$this->collCustomersGotiaAttributess = new PropelObjectCollection();
-		$this->collCustomersGotiaAttributess->setModel('CustomersGotiaAttributes');
-	}
-
-	/**
-	 * Gets an array of CustomersGotiaAttributes objects which contain a foreign key that references this object.
-	 *
-	 * If the $criteria is not null, it is used to always fetch the results from the database.
-	 * Otherwise the results are fetched from the database the first time, then cached.
-	 * Next time the same method is called without $criteria, the cached collection is returned.
-	 * If this Customers is new, it will return
-	 * an empty collection or the current collection; the criteria is ignored on a new object.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array CustomersGotiaAttributes[] List of CustomersGotiaAttributes objects
-	 * @throws     PropelException
-	 */
-	public function getCustomersGotiaAttributess($criteria = null, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomersGotiaAttributess || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomersGotiaAttributess) {
-				// return empty collection
-				$this->initCustomersGotiaAttributess();
-			} else {
-				$collCustomersGotiaAttributess = CustomersGotiaAttributesQuery::create(null, $criteria)
-					->filterByCustomers($this)
-					->find($con);
-				if (null !== $criteria) {
-					return $collCustomersGotiaAttributess;
-				}
-				$this->collCustomersGotiaAttributess = $collCustomersGotiaAttributess;
-			}
-		}
-		return $this->collCustomersGotiaAttributess;
-	}
-
-	/**
-	 * Sets a collection of CustomersGotiaAttributes objects related by a one-to-many relationship
-	 * to the current object.
-	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-	 * and new objects from the given Propel collection.
-	 *
-	 * @param      PropelCollection $customersGotiaAttributess A Propel collection.
-	 * @param      PropelPDO $con Optional connection object
-	 */
-	public function setCustomersGotiaAttributess(PropelCollection $customersGotiaAttributess, PropelPDO $con = null)
-	{
-		$this->customersGotiaAttributessScheduledForDeletion = $this->getCustomersGotiaAttributess(new Criteria(), $con)->diff($customersGotiaAttributess);
-
-		foreach ($customersGotiaAttributess as $customersGotiaAttributes) {
-			// Fix issue with collection modified by reference
-			if ($customersGotiaAttributes->isNew()) {
-				$customersGotiaAttributes->setCustomers($this);
-			}
-			$this->addCustomersGotiaAttributes($customersGotiaAttributes);
-		}
-
-		$this->collCustomersGotiaAttributess = $customersGotiaAttributess;
-	}
-
-	/**
-	 * Returns the number of related CustomersGotiaAttributes objects.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct
-	 * @param      PropelPDO $con
-	 * @return     int Count of related CustomersGotiaAttributes objects.
-	 * @throws     PropelException
-	 */
-	public function countCustomersGotiaAttributess(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-	{
-		if(null === $this->collCustomersGotiaAttributess || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCustomersGotiaAttributess) {
-				return 0;
-			} else {
-				$query = CustomersGotiaAttributesQuery::create(null, $criteria);
-				if($distinct) {
-					$query->distinct();
-				}
-				return $query
-					->filterByCustomers($this)
-					->count($con);
-			}
-		} else {
-			return count($this->collCustomersGotiaAttributess);
-		}
-	}
-
-	/**
-	 * Method called to associate a CustomersGotiaAttributes object to this object
-	 * through the CustomersGotiaAttributes foreign key attribute.
-	 *
-	 * @param      CustomersGotiaAttributes $l CustomersGotiaAttributes
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function addCustomersGotiaAttributes(CustomersGotiaAttributes $l)
-	{
-		if ($this->collCustomersGotiaAttributess === null) {
-			$this->initCustomersGotiaAttributess();
-		}
-		if (!$this->collCustomersGotiaAttributess->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddCustomersGotiaAttributes($l);
-		}
-
-		return $this;
-	}
-
-	/**
-	 * @param	CustomersGotiaAttributes $customersGotiaAttributes The customersGotiaAttributes object to add.
-	 */
-	protected function doAddCustomersGotiaAttributes($customersGotiaAttributes)
-	{
-		$this->collCustomersGotiaAttributess[]= $customersGotiaAttributes;
-		$customersGotiaAttributes->setCustomers($this);
-	}
-
-	/**
 	 * Gets a single Consultants object, which is related to this object by a one-to-one relationship.
 	 *
 	 * @param      PropelPDO $con optional connection object
@@ -3505,11 +3305,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			if ($this->singleGothiaAccounts) {
 				$this->singleGothiaAccounts->clearAllReferences($deep);
 			}
-			if ($this->collCustomersGotiaAttributess) {
-				foreach ($this->collCustomersGotiaAttributess as $o) {
-					$o->clearAllReferences($deep);
-				}
-			}
 			if ($this->singleConsultants) {
 				$this->singleConsultants->clearAllReferences($deep);
 			}
@@ -3547,10 +3342,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->singleGothiaAccounts->clearIterator();
 		}
 		$this->singleGothiaAccounts = null;
-		if ($this->collCustomersGotiaAttributess instanceof PropelCollection) {
-			$this->collCustomersGotiaAttributess->clearIterator();
-		}
-		$this->collCustomersGotiaAttributess = null;
 		if ($this->singleConsultants instanceof PropelCollection) {
 			$this->singleConsultants->clearIterator();
 		}

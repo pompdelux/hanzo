@@ -11,13 +11,4 @@
     </foreign-key>
   </table>
 
-  <table name="customers_gotia_attributes">
-    <column name="customers_id" primaryKey="true" required="true" type="INTEGER"/>
-    <column name="c_key" primaryKey="true" type="VARCHAR" size="255" required="true"/>
-    <column name="c_value" type="VARCHAR" size="255" required="true"/>
-    <foreign-key foreignTable="customers" onDelete="CASCADE">
-      <reference local="customers_id" foreign="id"/>
-    </foreign-key>
-  </table>
-
 </database>

@@ -960,24 +960,6 @@ CREATE TABLE `gothia_accounts`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- customers_gotia_attributes
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `customers_gotia_attributes`;
-
-CREATE TABLE `customers_gotia_attributes`
-(
-	`customers_id` INTEGER NOT NULL,
-	`c_key` VARCHAR(255) NOT NULL,
-	`c_value` VARCHAR(255) NOT NULL,
-	PRIMARY KEY (`customers_id`,`c_key`),
-	CONSTRAINT `customers_gotia_attributes_FK_1`
-		FOREIGN KEY (`customers_id`)
-		REFERENCES `customers` (`id`)
-		ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- ---------------------------------------------------------------------
 -- messages
 -- ---------------------------------------------------------------------
 
