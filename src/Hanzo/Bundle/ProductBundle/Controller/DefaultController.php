@@ -32,7 +32,7 @@ class DefaultController extends CoreController
                 ->joinWithProducts()
                 ->filterByLocale($hanzo->get('core.locale'))
                 ->useProductsQuery()
-                    ->filterByIsOutOfStock(FALSE)
+//                    ->filterByIsOutOfStock(FALSE)
                     ->filterByIsActive(TRUE)
                     ->useProductsDomainsPricesQuery()
                         ->filterByDomainsId($hanzo->get('core.domain_id'))
@@ -53,9 +53,6 @@ class DefaultController extends CoreController
             ;
 
             $product = $products[0]->getProducts();
-
-            // find and calculate prices
-            $prices = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
             // find all product images
             $images = array();
@@ -142,7 +139,7 @@ class DefaultController extends CoreController
                 'washing' => $washing,
                 'main_image' => $main_image,
                 'images' => $images,
-                'prices' => array_shift($prices),
+                'prices' => array(),
                 'out_of_stock' => $product->getIsOutOfStock(),
                 'colors' => $colors,
                 'sizes' => $sizes,
@@ -151,6 +148,10 @@ class DefaultController extends CoreController
 
             $this->setCache($cache_id, $data, 60);
         }
+
+        // find and calculate prices
+        $prices = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+        $data['prices'] = array_shift($prices);
 
         $images_references = $data['images_references'];
         unset($data['images_references']);

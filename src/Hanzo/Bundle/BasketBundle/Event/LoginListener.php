@@ -49,9 +49,9 @@ class LoginListener
         $c->add(AddressesPeer::TYPE, 'payment');
         $order->setBillingAddress($customer->getAddressess($c)->getFirst());
 
-        if ($order->getTotalPrice(true) && ('COM' == $hanzo->get('core.domain_id'))) {
+        if ($order->getTotalPrice(true) && ('COM' == $hanzo->get('core.domain_key'))) {
             $country = $order->getCountriesRelatedByBillingCountriesId();
-            if (!$country->getVat()) {
+            if ($country->getVat()) {
                 return;
             }
 
@@ -77,7 +77,7 @@ class LoginListener
                     }
 
                     $line->setPrice($sales['price']);
-                    $line->setVat($sales['vat']);
+                    $line->setVat(0);
                     $line->setOriginalPrice($price['normal']['price']);
                 }
 

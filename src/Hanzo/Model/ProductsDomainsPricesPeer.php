@@ -31,7 +31,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
     {
         $hanzo = Hanzo::getInstance();
         $domain_id = $hanzo->get('core.domain_id');
-        $domain_key = $hanzo->get('core.domain_id');
+        $domain_key = $hanzo->get('core.domain_key');
 
         $prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)
@@ -42,16 +42,15 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
             ->find()
         ;
 
-
         $override_vat_pct = 0;
         $override_vat = false;
         if ('COM' == $domain_key) {
-            $override_vat = true;
             $order = OrdersPeer::getCurrent();
             if (!$order->isNew()) {
                 $country = CountriesQuery::create()->findOneById($order->getBillingCountriesId());
-                if (($country instanceof Countries) && $country->getVat()) {
-                    $vat = $country->getVat();
+                if (($country instanceof Countries) && !$country->getVat()) {
+                    $override_vat = true;
+                    $override_vat_pct = 0;
                 }
             }
         }
@@ -62,6 +61,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
 
             $vat = $price->getVat();
             $p = $price->getPrice() + $vat;
+
             if ($override_vat) {
                 $vat = 0;
                 $p = $price->getPrice();
