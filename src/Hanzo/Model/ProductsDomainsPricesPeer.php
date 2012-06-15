@@ -2,14 +2,14 @@
 
 namespace Hanzo\Model;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
-use Hanzo\Twig\Extension\HanzoTwigExtension;
-
-use Hanzo\Model\om\BaseProductsDomainsPricesPeer,
-    Hanzo\Model\ProductsDomainsPricesQuery
-;
+use Hanzo\Model\om\BaseProductsDomainsPricesPeer;
+use Hanzo\Model\ProductsDomainsPricesQuery;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Countries;
+use Hanzo\Model\CountriesQuery;
 
 use \Criteria;
 
@@ -29,7 +29,9 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
 
     public static function getProductsPrices(array $products)
     {
-        $domain_id = Hanzo::getInstance()->get('core.domain_id');
+        $hanzo = Hanzo::getInstance();
+        $domain_id = $hanzo->get('core.domain_id');
+        $domain_key = $hanzo->get('core.domain_id');
 
         $prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)
@@ -40,15 +42,42 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
             ->find()
         ;
 
+
+        $override_vat_pct = 0;
+        $override_vat = false;
+        if ('COM' == $domain_key) {
+            $override_vat = true;
+            $order = OrdersPeer::getCurrent();
+            if (!$order->isNew()) {
+                $country = CountriesQuery::create()->findOneById($order->getBillingCountriesId());
+                if (($country instanceof Countries) && $country->getVat()) {
+                    $vat = $country->getVat();
+                }
+            }
+        }
+
         $data = array();
         foreach ($prices as $price) {
             $key = $price->getToDate() ? 'sales' : 'normal';
+
+            $vat = $price->getVat();
+            $p = $price->getPrice() + $vat;
+            if ($override_vat) {
+                $vat = 0;
+                $p = $price->getPrice();
+                if ($override_vat_pct > 0) {
+                    $save_price = $p;
+                    $p = $p * (($override_vat_pct / 100) + 1);
+                    $vat = $price - $save_price;
+                }
+            }
+
             $data[$price->getProductsId()][$key] = array(
                 'currency' => $price->getCurrencyId(),
                 'raw_price' => $price->getPrice(),
-                'price' => number_format($price->getPrice() + $price->getVat(), 4, '.', ''),
-                'vat' => $price->getVat(),
-                'formattet' => Tools::moneyFormat($price->getPrice() + $price->getVat())
+                'price' => number_format($p, 4, '.', ''),
+                'vat' => $vat,
+                'formattet' => Tools::moneyFormat($p)
             );
         }
 

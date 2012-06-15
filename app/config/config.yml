@@ -32,19 +32,28 @@ services:
         class: Hanzo\Twig\Extension\MapsExtension
         arguments: ['@twig_string']
         tags: [{ name: twig.extension }]
-    hanzo.boot:
-        class: Hanzo\Core\HanzoBoot
-        arguments: ['@router']
-        tags: [{ name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -10 }]
+
     hanzo.routing_loader:
         class: Hanzo\Bundle\CMSBundle\CMSRouterLoader
         arguments: ['@session', '%kernel.cache_dir%']
         tags: [{ name: routing.loader }]
-    cmt_admin.exception.action_listener:
+
+    hanzo.boot_listener:
+        class: Hanzo\Core\HanzoBoot
+        arguments: ['@router']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -10 }
+    hanzo.exception_listener:
         class: Hanzo\Core\ExceptionHandler
         arguments: [@service_container]
         tags:
-            -   { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+    hanzo.login_listener:
+        class: Hanzo\Bundle\BasketBundle\Event\LoginListener
+        arguments: [@security.context]
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login }
+
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'

@@ -85,6 +85,7 @@ CREATE TABLE `countries`
 	`currency_id` INTEGER NOT NULL,
 	`currency_code` VARCHAR(3) NOT NULL,
 	`currency_name` VARCHAR(32) NOT NULL,
+	`vat` DECIMAL(4,2),
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `index2` (`code`),
 	UNIQUE INDEX `index3` (`iso2`),

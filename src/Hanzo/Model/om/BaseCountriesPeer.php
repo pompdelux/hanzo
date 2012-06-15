@@ -38,13 +38,13 @@ abstract class BaseCountriesPeer {
 	const TM_CLASS = 'CountriesTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 10;
+	const NUM_COLUMNS = 11;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 10;
+	const NUM_HYDRATE_COLUMNS = 11;
 
 	/** the column name for the ID field */
 	const ID = 'countries.ID';
@@ -76,6 +76,9 @@ abstract class BaseCountriesPeer {
 	/** the column name for the CURRENCY_NAME field */
 	const CURRENCY_NAME = 'countries.CURRENCY_NAME';
 
+	/** the column name for the VAT field */
+	const VAT = 'countries.VAT';
+
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -95,12 +98,12 @@ abstract class BaseCountriesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'LocalName', 'Code', 'Iso2', 'Iso3', 'Continent', 'CurrencyId', 'CurrencyCode', 'CurrencyName', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'localName', 'code', 'iso2', 'iso3', 'continent', 'currencyId', 'currencyCode', 'currencyName', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::NAME, self::LOCAL_NAME, self::CODE, self::ISO2, self::ISO3, self::CONTINENT, self::CURRENCY_ID, self::CURRENCY_CODE, self::CURRENCY_NAME, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'LOCAL_NAME', 'CODE', 'ISO2', 'ISO3', 'CONTINENT', 'CURRENCY_ID', 'CURRENCY_CODE', 'CURRENCY_NAME', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'local_name', 'code', 'iso2', 'iso3', 'continent', 'currency_id', 'currency_code', 'currency_name', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'LocalName', 'Code', 'Iso2', 'Iso3', 'Continent', 'CurrencyId', 'CurrencyCode', 'CurrencyName', 'Vat', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'localName', 'code', 'iso2', 'iso3', 'continent', 'currencyId', 'currencyCode', 'currencyName', 'vat', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::NAME, self::LOCAL_NAME, self::CODE, self::ISO2, self::ISO3, self::CONTINENT, self::CURRENCY_ID, self::CURRENCY_CODE, self::CURRENCY_NAME, self::VAT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'LOCAL_NAME', 'CODE', 'ISO2', 'ISO3', 'CONTINENT', 'CURRENCY_ID', 'CURRENCY_CODE', 'CURRENCY_NAME', 'VAT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'local_name', 'code', 'iso2', 'iso3', 'continent', 'currency_id', 'currency_code', 'currency_name', 'vat', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
 	);
 
 	/**
@@ -110,12 +113,12 @@ abstract class BaseCountriesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'LocalName' => 2, 'Code' => 3, 'Iso2' => 4, 'Iso3' => 5, 'Continent' => 6, 'CurrencyId' => 7, 'CurrencyCode' => 8, 'CurrencyName' => 9, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'localName' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currencyId' => 7, 'currencyCode' => 8, 'currencyName' => 9, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NAME => 1, self::LOCAL_NAME => 2, self::CODE => 3, self::ISO2 => 4, self::ISO3 => 5, self::CONTINENT => 6, self::CURRENCY_ID => 7, self::CURRENCY_CODE => 8, self::CURRENCY_NAME => 9, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'LOCAL_NAME' => 2, 'CODE' => 3, 'ISO2' => 4, 'ISO3' => 5, 'CONTINENT' => 6, 'CURRENCY_ID' => 7, 'CURRENCY_CODE' => 8, 'CURRENCY_NAME' => 9, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'local_name' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currency_id' => 7, 'currency_code' => 8, 'currency_name' => 9, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'LocalName' => 2, 'Code' => 3, 'Iso2' => 4, 'Iso3' => 5, 'Continent' => 6, 'CurrencyId' => 7, 'CurrencyCode' => 8, 'CurrencyName' => 9, 'Vat' => 10, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'localName' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currencyId' => 7, 'currencyCode' => 8, 'currencyName' => 9, 'vat' => 10, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::NAME => 1, self::LOCAL_NAME => 2, self::CODE => 3, self::ISO2 => 4, self::ISO3 => 5, self::CONTINENT => 6, self::CURRENCY_ID => 7, self::CURRENCY_CODE => 8, self::CURRENCY_NAME => 9, self::VAT => 10, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'LOCAL_NAME' => 2, 'CODE' => 3, 'ISO2' => 4, 'ISO3' => 5, 'CONTINENT' => 6, 'CURRENCY_ID' => 7, 'CURRENCY_CODE' => 8, 'CURRENCY_NAME' => 9, 'VAT' => 10, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'local_name' => 2, 'code' => 3, 'iso2' => 4, 'iso3' => 5, 'continent' => 6, 'currency_id' => 7, 'currency_code' => 8, 'currency_name' => 9, 'vat' => 10, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
 	);
 
 	/**
@@ -197,6 +200,7 @@ abstract class BaseCountriesPeer {
 			$criteria->addSelectColumn(CountriesPeer::CURRENCY_ID);
 			$criteria->addSelectColumn(CountriesPeer::CURRENCY_CODE);
 			$criteria->addSelectColumn(CountriesPeer::CURRENCY_NAME);
+			$criteria->addSelectColumn(CountriesPeer::VAT);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.NAME');
@@ -208,6 +212,7 @@ abstract class BaseCountriesPeer {
 			$criteria->addSelectColumn($alias . '.CURRENCY_ID');
 			$criteria->addSelectColumn($alias . '.CURRENCY_CODE');
 			$criteria->addSelectColumn($alias . '.CURRENCY_NAME');
+			$criteria->addSelectColumn($alias . '.VAT');
 		}
 	}
 

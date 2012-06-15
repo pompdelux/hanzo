@@ -32,6 +32,7 @@ use Hanzo\Model\ZipToCity;
  * @method     CountriesQuery orderByCurrencyId($order = Criteria::ASC) Order by the currency_id column
  * @method     CountriesQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
  * @method     CountriesQuery orderByCurrencyName($order = Criteria::ASC) Order by the currency_name column
+ * @method     CountriesQuery orderByVat($order = Criteria::ASC) Order by the vat column
  *
  * @method     CountriesQuery groupById() Group by the id column
  * @method     CountriesQuery groupByName() Group by the name column
@@ -43,6 +44,7 @@ use Hanzo\Model\ZipToCity;
  * @method     CountriesQuery groupByCurrencyId() Group by the currency_id column
  * @method     CountriesQuery groupByCurrencyCode() Group by the currency_code column
  * @method     CountriesQuery groupByCurrencyName() Group by the currency_name column
+ * @method     CountriesQuery groupByVat() Group by the vat column
  *
  * @method     CountriesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     CountriesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -77,6 +79,7 @@ use Hanzo\Model\ZipToCity;
  * @method     Countries findOneByCurrencyId(int $currency_id) Return the first Countries filtered by the currency_id column
  * @method     Countries findOneByCurrencyCode(string $currency_code) Return the first Countries filtered by the currency_code column
  * @method     Countries findOneByCurrencyName(string $currency_name) Return the first Countries filtered by the currency_name column
+ * @method     Countries findOneByVat(string $vat) Return the first Countries filtered by the vat column
  *
  * @method     array findById(int $id) Return Countries objects filtered by the id column
  * @method     array findByName(string $name) Return Countries objects filtered by the name column
@@ -88,6 +91,7 @@ use Hanzo\Model\ZipToCity;
  * @method     array findByCurrencyId(int $currency_id) Return Countries objects filtered by the currency_id column
  * @method     array findByCurrencyCode(string $currency_code) Return Countries objects filtered by the currency_code column
  * @method     array findByCurrencyName(string $currency_name) Return Countries objects filtered by the currency_name column
+ * @method     array findByVat(string $vat) Return Countries objects filtered by the vat column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -176,7 +180,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURRENCY_CODE`, `CURRENCY_NAME` FROM `countries` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURRENCY_CODE`, `CURRENCY_NAME`, `VAT` FROM `countries` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -561,6 +565,46 @@ abstract class BaseCountriesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(CountriesPeer::CURRENCY_NAME, $currencyName, $comparison);
+	}
+
+	/**
+	 * Filter the query on the vat column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByVat(1234); // WHERE vat = 1234
+	 * $query->filterByVat(array(12, 34)); // WHERE vat IN (12, 34)
+	 * $query->filterByVat(array('min' => 12)); // WHERE vat > 12
+	 * </code>
+	 *
+	 * @param     mixed $vat The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CountriesQuery The current query, for fluid interface
+	 */
+	public function filterByVat($vat = null, $comparison = null)
+	{
+		if (is_array($vat)) {
+			$useMinMax = false;
+			if (isset($vat['min'])) {
+				$this->addUsingAlias(CountriesPeer::VAT, $vat['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($vat['max'])) {
+				$this->addUsingAlias(CountriesPeer::VAT, $vat['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(CountriesPeer::VAT, $vat, $comparison);
 	}
 
 	/**

@@ -52,6 +52,7 @@ class CountriesTableMap extends TableMap
 		$this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
 		$this->addColumn('CURRENCY_CODE', 'CurrencyCode', 'VARCHAR', true, 3, null);
 		$this->addColumn('CURRENCY_NAME', 'CurrencyName', 'VARCHAR', true, 32, null);
+		$this->addColumn('VAT', 'Vat', 'DECIMAL', false, 4, null);
 		// validators
 	} // initialize()
 

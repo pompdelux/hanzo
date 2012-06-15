@@ -66,6 +66,7 @@
     <column name="currency_id" type="INTEGER" required="true"/>
     <column name="currency_code" type="VARCHAR" size="3" required="true"/>
     <column name="currency_name" type="VARCHAR" size="32" required="true"/>
+    <column name="vat" type="DECIMAL" size="4" scale="2" required="false" defaultValue="NULL"/>
     <unique name="index2">
       <unique-column name="code"/>
     </unique>
