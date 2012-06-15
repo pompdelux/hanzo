@@ -37,6 +37,8 @@ $result = mysql_query("
   JOIN
     {$from}.osc_customers_attributes AS a3
       ON(c.customers_id = a3.customers_id AND a3.attribute_key = 'DistributionType')
+  ON DUPLICATE KEY UPDATE
+    social_security_num = social_security_num
 ") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
 
 
