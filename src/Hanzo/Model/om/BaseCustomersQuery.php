@@ -14,6 +14,7 @@ use Hanzo\Model\Addresses;
 use Hanzo\Model\Consultants;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersGotiaAttributes;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
@@ -93,6 +94,10 @@ use Hanzo\Model\WallLikes;
  * @method     CustomersQuery leftJoinGothiaAccounts($relationAlias = null) Adds a LEFT JOIN clause to the query using the GothiaAccounts relation
  * @method     CustomersQuery rightJoinGothiaAccounts($relationAlias = null) Adds a RIGHT JOIN clause to the query using the GothiaAccounts relation
  * @method     CustomersQuery innerJoinGothiaAccounts($relationAlias = null) Adds a INNER JOIN clause to the query using the GothiaAccounts relation
+ *
+ * @method     CustomersQuery leftJoinCustomersGotiaAttributes($relationAlias = null) Adds a LEFT JOIN clause to the query using the CustomersGotiaAttributes relation
+ * @method     CustomersQuery rightJoinCustomersGotiaAttributes($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CustomersGotiaAttributes relation
+ * @method     CustomersQuery innerJoinCustomersGotiaAttributes($relationAlias = null) Adds a INNER JOIN clause to the query using the CustomersGotiaAttributes relation
  *
  * @method     CustomersQuery leftJoinConsultants($relationAlias = null) Adds a LEFT JOIN clause to the query using the Consultants relation
  * @method     CustomersQuery rightJoinConsultants($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Consultants relation
@@ -1341,6 +1346,79 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinGothiaAccounts($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'GothiaAccounts', '\Hanzo\Model\GothiaAccountsQuery');
+	}
+
+	/**
+	 * Filter the query by a related CustomersGotiaAttributes object
+	 *
+	 * @param     CustomersGotiaAttributes $customersGotiaAttributes  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByCustomersGotiaAttributes($customersGotiaAttributes, $comparison = null)
+	{
+		if ($customersGotiaAttributes instanceof CustomersGotiaAttributes) {
+			return $this
+				->addUsingAlias(CustomersPeer::ID, $customersGotiaAttributes->getCustomersId(), $comparison);
+		} elseif ($customersGotiaAttributes instanceof PropelCollection) {
+			return $this
+				->useCustomersGotiaAttributesQuery()
+				->filterByPrimaryKeys($customersGotiaAttributes->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByCustomersGotiaAttributes() only accepts arguments of type CustomersGotiaAttributes or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the CustomersGotiaAttributes relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function joinCustomersGotiaAttributes($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('CustomersGotiaAttributes');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'CustomersGotiaAttributes');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the CustomersGotiaAttributes relation CustomersGotiaAttributes object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\CustomersGotiaAttributesQuery A secondary query class using the current class as primary query
+	 */
+	public function useCustomersGotiaAttributesQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinCustomersGotiaAttributes($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'CustomersGotiaAttributes', '\Hanzo\Model\CustomersGotiaAttributesQuery');
 	}
 
 	/**
