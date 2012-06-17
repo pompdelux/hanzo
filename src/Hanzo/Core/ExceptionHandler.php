@@ -48,6 +48,12 @@ class ExceptionHandler
 
             $path = $request->getPathInfo();
 
+            // attempt to fix images in old newsletters. Redirect to static
+            if (substr($path, 0, 19) == '/images/nyhedsbrev/') {
+               $response = new Response('', 301, array('Location' => 'http://static.pompdelux.dk'.$path));
+               $event->setResponse($response);
+            }
+
             // try to map old shop ulr's to new ones
             if (substr($path, 0, 3) == '/p/') {
                 $page = CmsI18nQuery::create()
