@@ -508,9 +508,9 @@ class ECommerceServices extends SoapService
                     $collection->prepend($data);
                 }
                 $product->setProductsStocks($collection);
+                $product->setIsOutOfStock(false);
                 $allout = false;
-            }
-            else {
+            } else {
                 $product->setIsOutOfStock(true);
             }
 
