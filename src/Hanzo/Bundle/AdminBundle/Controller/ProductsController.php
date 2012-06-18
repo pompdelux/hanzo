@@ -34,7 +34,23 @@ class ProductsController extends CoreController
     {
         $categories = null;
         $products = null;
-        if (!$category_id){
+        $q_clean = null;
+        if (isset($_GET['q'])) {
+            $q_clean = $this->getRequest()->get('q', null);
+            $q = '%'.$q_clean.'%';
+            /**
+             * @todo Lav søgning så man kan søge på hele navn. Sammenkobling på for og efternavn.
+             */
+            $products = ProductsQuery::create()
+                ->filterBySku($q)
+                ->_or()
+                ->filterById($q_clean)
+                ->find()
+            ;
+
+            $parent_category = null;
+
+        }elseif (!$category_id){
 
             $categories = CategoriesQuery::create()
                 ->where('categories.PARENT_ID IS NULL')
@@ -106,7 +122,8 @@ class ProductsController extends CoreController
             'products'        => $products_list,
             'parent_category'   => $parent_category,
             'category_id' => $category_id,
-            'subcategory_id' => $subcategory_id
+            'subcategory_id' => $subcategory_id,
+            'search_query' => $q_clean
         ));
     }
 
