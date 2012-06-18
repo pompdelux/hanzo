@@ -3,6 +3,8 @@
 namespace Hanzo\Core;
 
 use Propel;
+use Criteria;
+use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsStockPeer;
 
@@ -199,6 +201,24 @@ class Stock
             if ($total == $quantity){
                 $product->setIsOutOfStock(true);
                 $product->save($con);
+
+                // if all variants is out of stock, set it on the master product.
+                $total_stock = ProductsStockQuery::create()
+                  ->withColumn('SUM('.ProductsStockPeer::QUANTITY.')', 'total_stock')
+                  ->select(array('total_stock'))
+                  ->useProductsQuery()
+                    ->filterByMaster($product->getMaster(), $con)
+                  ->endUse()
+                  ->findOne()
+                ;
+
+                if (0 === $total_stock) {
+                  $master = ProductsQuery::create()
+                    ->findOneBySku($product->getMaster(), $con)
+                  ;
+                  $master->setIsOutOfStock(true);
+                  $master->save();
+                }
             }
 
             unset($this->stock[$product->getId()]);
@@ -213,7 +233,6 @@ class Stock
 
         return $current['date'];
     }
-
 
 
     /**
