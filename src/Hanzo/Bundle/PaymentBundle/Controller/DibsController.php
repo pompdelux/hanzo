@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
+use Propel;
 use Exception;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -104,34 +105,15 @@ class DibsController extends CoreController
             }
         }
 
+        Propel::setForceMasterConnection(TRUE);
+
         $order = OrdersPeer::getCurrent();
-        $gateway_id = $order->getPaymentGatewayId();
-
-        if ( empty($gateway_id) ) // The first time the form is rendered we set some ekstra stuff
-        {
-            $gateway_id = Tools::getPaymentGatewayId();
-            $order->setPaymentGatewayId($gateway_id);
-            // No need to set state here, it should be handled else where
-
-            // annoying, but performs better...
-            if ('' == $order->getCurrencyCode()) {
-                $order->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
-            }
-
-            $order->save();
-        }
-
-        if ( $order->getInEdit() && !$isJson) // New gateway id, but only when the request is not json
-        {
-            $gateway_id = Tools::getPaymentGatewayId();
-            $order->setPaymentGatewayId($gateway_id);
-            $order->save();
-        }
 
         $settings = $api->buildFormFields(
-            $order->getPaymentGatewayId(),
             $order
         );
+
+        Propel::setForceMasterConnection(FALSE);
 
         $cardtypes = $api->getEnabledPaytypes();
 
