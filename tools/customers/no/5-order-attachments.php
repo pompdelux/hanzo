@@ -26,7 +26,7 @@ $attributes_sql = "
     c_key = '%s',
     c_value = '%s'
   ON DUPLICATE KEY UPDATE
-    c_value = '%4$'
+    c_value = '%4\$s'
 ";
 
 while ($r = mysql_fetch_object($res)) {
