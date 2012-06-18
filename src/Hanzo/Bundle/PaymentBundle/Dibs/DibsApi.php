@@ -341,14 +341,13 @@ class DibsApi implements PaymentMethodApiInterface
 
     /**
      * buildFormFields
-     * @param string $gateway_id
      * @param Orders $order
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function buildFormFields( $gateway_id, Orders $order )
+    public function buildFormFields( Orders $order )
     {
-        $orderId  = $gateway_id;
+        $orderId  = $order->getPaymentGatewayId();
         $amount   = self::formatAmount( $order->getTotalPrice() );
         $currency = $this->currencyCodeToNum($order->getCurrencyCode());
 
