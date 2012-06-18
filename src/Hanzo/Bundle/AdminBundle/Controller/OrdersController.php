@@ -290,6 +290,13 @@ class OrdersController extends CoreController
         if ($order) {
             $order->delete();
         }
+
+        if ('json' === $this->getFormat()) {
+            return $this->json_response(array(
+                'status' => true,
+                'message' => 'Ordren blev slettet!',
+            ));
+        }
     }
 
     /**

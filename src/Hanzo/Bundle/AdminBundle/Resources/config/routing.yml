@@ -359,6 +359,15 @@ admin_customer_orders:
     requirements:
         customer_id: \d+
 
+admin_customer_order_delete:
+    pattern:  /admin/customer/orders/delete/{order_id}
+    defaults:
+        _controller: AdminBundle:Orders:delete
+        _format: json
+    requirements:
+        order_id: \d+
+        _format: (xml|json)
+
 admin_customer_order:
     pattern:  /admin/customer/orders/id/{order_id}
     defaults:
