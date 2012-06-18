@@ -55,6 +55,7 @@ class OrderListener
     public function onEditDone(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
+        $order->setSessionId($order->getId());
 
         // unset session vars.
         $this->session->remove('in_edit');
