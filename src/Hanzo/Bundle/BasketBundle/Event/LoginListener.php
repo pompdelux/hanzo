@@ -49,6 +49,12 @@ class LoginListener
         $c->add(AddressesPeer::TYPE, 'payment');
         $order->setBillingAddress($customer->getAddressess($c)->getFirst());
 
+        // FIXME: un, flyttes, kun når man opretter en ordre -->>
+        $order->setCurrencyCode($hanzo->get('core.currency'));
+        $gateway_id = Tools::getPaymentGatewayId();
+        $order->setPaymentGatewayId($gateway_id);
+        // <<-- FIXME: un, flyttes, kun når man opretter en ordre
+
         if ($order->getTotalPrice(true) && ('COM' == $hanzo->get('core.domain_key'))) {
             $country = $order->getCountriesRelatedByBillingCountriesId();
             if ($country->getVat()) {
