@@ -207,9 +207,9 @@ class Stock
                   ->withColumn('SUM('.ProductsStockPeer::QUANTITY.')', 'total_stock')
                   ->select(array('total_stock'))
                   ->useProductsQuery()
-                    ->filterByMaster($product->getMaster(), $con)
+                    ->filterByMaster($product->getMaster())
                   ->endUse()
-                  ->findOne()
+                  ->findOne($con)
                 ;
 
                 if (0 === $total_stock) {
