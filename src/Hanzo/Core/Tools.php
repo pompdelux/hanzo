@@ -164,7 +164,7 @@ class Tools
     }
 
     /**
-     * Wrapping the setPaymentGatewayId method to auto-generate gateway id's
+     * Wrapping the getPaymentGatewayId method to auto-generate gateway id's
      *
      * @param int $gateway_id if specified, this is used over the auto generated one
      * @return $gateway_id;
