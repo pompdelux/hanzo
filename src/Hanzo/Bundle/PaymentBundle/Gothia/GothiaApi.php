@@ -35,6 +35,12 @@ class GothiaApi implements PaymentMethodApiInterface
 
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
+        // Debugging
+        if ( $_SERVER['REMOTE_ADDR'] == '90.185.183.84' )
+        {
+          $this->settings['active'] = true;
+        }
+
         if ( $this->settings['active'] === true)
         {
             $this->checkSettings($settings);

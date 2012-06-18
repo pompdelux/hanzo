@@ -309,11 +309,12 @@ class Orders extends BaseOrders
      * set quantity on a product line in the current order
      *
      * @param Product $product
-     * @param int $quantity can be positive to increase the quantity of the order or negative to decrease
-     * @param bool $exact if set to true, the quantity send is the quantity used, otherwise the quantity is calculated using the existing as offset.
+     * @param int     $quantity can be positive to increase the quantity of the order or negative to decrease
+     * @param bool    $exact    if set to true, the quantity send is the quantity used, otherwise the quantity is calculated using the existing as offset.
+     * @param string  $date     availability date
      * @return OrdersLines
      */
-    public function setOrderLineQty($product, $quantity, $exact = FALSE)
+    public function setOrderLineQty($product, $quantity, $exact = FALSE, $date = '1970-01-01')
     {
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
@@ -327,6 +328,7 @@ class Orders extends BaseOrders
                 $line->setQuantity($offset + $quantity);
                 $lines[$index] = $line;
                 $this->setOrdersLiness($lines);
+                $line->setExpectedAt($date);
 
                 return;
             }
@@ -351,6 +353,7 @@ class Orders extends BaseOrders
         $line->setPrice($price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
+        $line->setExpectedAt($date);
         $this->addOrdersLines($line);
     }
 
@@ -937,7 +940,7 @@ class Orders extends BaseOrders
         $paymentMethod = $this->getBillingMethod();
 
         // hf@bellcom.dk, 12-jun-2012: handle old junk -->>
-        switch ($paymentMethod) 
+        switch ($paymentMethod)
         {
             case 'DIBS Payment Services (Credit Ca':
             case 'DIBS Betaling (Kredittkort)':
@@ -970,7 +973,7 @@ class Orders extends BaseOrders
         $result = SettingsQuery::create()
             ->filterByNs('HD')
             ->findOneByCKey('expected_delivery_date')
-            ;  
+            ;
 
         $expected_at = is_null( $result ) ? '' : $result->getCValue();
 

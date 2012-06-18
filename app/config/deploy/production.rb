@@ -9,7 +9,7 @@ symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl"]
 set :adminserver, "pdladmin"
 
 # if we ever get other brances, specify which one to deploy here
-#set   :branch, "master"
+set   :branch, "master"
 
 #set :update_vendors, true
 set :update_vendors, false
@@ -56,6 +56,7 @@ after 'symfony:cache:clear', 'deploy:apcclear'
 
 after 'deploy:restart', 'deploy:update_permissions'
 after 'deploy:restart', 'deploy:update_permissions_shared'
+after 'deploy:restart', 'deploy:send_email'
 
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
@@ -89,6 +90,10 @@ namespace :deploy do
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions_shared, :roles => :apache do
     run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
+  end
+  desc "Send email after deploy"
+  task :send_email do
+    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`'. By user: '`whoami` | mail -s 'Hanzo deployed' mmh@bellcom.dk"
   end
 end
 

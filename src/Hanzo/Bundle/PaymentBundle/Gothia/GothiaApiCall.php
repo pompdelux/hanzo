@@ -84,7 +84,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if ( !empty($errors) )
         {
             error_log(__LINE__.':'.__FILE__.' '.print_r($errors,1)); // hf@bellcom.dk debugging
-            error_log(__LINE__.':'.__FILE__.' '.print_r($this->settings,1)); // hf@bellcom.dk debugging
+            //error_log(__LINE__.':'.__FILE__.' '.print_r($this->settings,1)); // hf@bellcom.dk debugging
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
@@ -167,7 +167,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $gothiaAccount = $customer->getGothiaAccounts();
         $customerId    = $customer->getId();
 
-        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) === 'YES' )
         {
             $customerId = '100001';
         }
@@ -210,10 +210,10 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function placeReservation( Customers $customer, Orders $order )
     {
-        $amount     = $order->getTotalPrice();
+        $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
         $customerId = $customer->getId();
 
-        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) === 'YES' )
         {
             $customerId = '00100001';
         }
@@ -249,10 +249,10 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancelReservation( Customers $customer, Orders $order )
     {
-        $amount     = $order->getTotalPrice();
+        $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
         $customerId = $customer->getId();
 
-        if ( isset( $this->settings['test'] ) && $this->settings['test'] )
+        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) === 'YES' )
         {
             $customerId = '00100001';
         }

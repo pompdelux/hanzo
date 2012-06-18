@@ -43,7 +43,8 @@ class StatisticsController extends CoreController
             $end = $this->getRequest()->get('end', null);
 
             $date_filter['min'] = strtotime($start);
-            $date_filter['max'] = strtotime($end);
+            //$date_filter['max'] = strtotime($end);
+            $date_filter['max'] = strtotime(date("Y-m-d", strtotime($end)) . " +1 day");
         }else{
         	// Default period is TODAY
             $date_filter['min'] = date('d-m-Y', time());

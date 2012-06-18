@@ -548,7 +548,7 @@ class DefaultController extends CoreController
 
         return $this->render('CheckoutBundle:Default:success.html.twig', array(
             'order_id' => $order->getId(),
-            'expected_in' => $hanzo->get('shipping.days', 2),
+            'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
         ));
     }
 

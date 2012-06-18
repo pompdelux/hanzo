@@ -160,6 +160,7 @@ class CheckoutListener
         $this->ax->sendOrder($order);
 
         $order->setInEdit(false);
+        $order->setSessionId($order->getId());
         $order->save();
     }
 }
