@@ -30,8 +30,7 @@ class OrderListener
 
         $order->setSessionId(session_id());
         $order->setInEdit(true);
-        $gateway_id = Tools::getPaymentGatewayId();
-        $order->setPaymentGatewayId($gateway_id);
+        $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
         $order->save();
 
         $this->session->set('in_edit', true);

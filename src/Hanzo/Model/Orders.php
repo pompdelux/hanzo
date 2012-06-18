@@ -2,9 +2,10 @@
 
 namespace Hanzo\Model;
 
-use \BasePeer;
-use \PropelPDO;
-use \PropelCollection;
+use BasePeer;
+use Criteria;
+use PropelPDO;
+use PropelCollection;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -24,6 +25,8 @@ use Hanzo\Model\OrdersVersionsQuery;
 use Hanzo\Model\ShippingMethods;
 
 use Hanzo\Model\CustomerQuery;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\AddressesPeer;
 
 use Hanzo\Model\SettingsQuery;
 
@@ -318,6 +321,23 @@ class Orders extends BaseOrders
     {
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
+
+        // add meta info to the order
+        if (0 == $lines->count()) {
+            $this->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
+            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
+        }
+
+        // set billing address - if not already set.
+        if ('' == $this->getBillingFirstName()) {
+            $customer = CustomersPeer::getCurrent();
+            if (!$customer->isNew()) {
+                $c = new Criteria;
+                $c->add(AddressesPeer::TYPE, 'payment');
+                $this->setBillingAddress($customer->getAddressess($c)->getFirst());
+            }
+        }
+
         foreach ($lines as $index => $line) {
             if ($product->getId() == $line->getProductsId()) {
                 $offset = 0;
