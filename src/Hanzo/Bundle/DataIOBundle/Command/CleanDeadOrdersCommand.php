@@ -1,13 +1,19 @@
 <?php /* vim: set sw=4: */
 
+/**
+ * usage:
+ *     php /path/to/symfony/console --env=prod_dk --quiet hanzo:dataio:clean_dead_orders
+ *     php /path/to/symfony/console --env=prod_no --quiet hanzo:dataio:clean_dead_orders
+ *     php /path/to/symfony/console --env=prod_se --quiet hanzo:dataio:clean_dead_orders
+ */
+
 namespace Hanzo\Bundle\DataIOBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand,
-    Symfony\Component\Console\Input\InputArgument,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Input\InputOption,
-    Symfony\Component\Console\Output\OutputInterface
-    ;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class CleanDeadOrdersCommand extends ContainerAwareCommand
 {
