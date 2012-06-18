@@ -256,7 +256,11 @@ class DefaultController extends CoreController
                 ->filterBySku($line['products_name'])
                 ->endUse()
                 ->findOne()
-                ;
+            ;
+
+if (!$products2category) {
+    Tools::log($locale.' -> '.$line['products_name']);
+}
             // find matching router
 
             $line['expected_at'] = new \DateTime($line['expected_at']);

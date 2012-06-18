@@ -12,6 +12,7 @@ use Hanzo\Model\Cms;
 use Hanzo\Model\CmsPeer;
 
 use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\ProductsStockPeer;
 
 class DefaultController extends CoreController
 {
@@ -56,7 +57,7 @@ class DefaultController extends CoreController
     {
         // if all variants is out of stock, set it on the master product.
         $result = \Hanzo\Model\ProductsStockQuery::create()
-          ->withColumn('SUM('.\Hanzo\Model\ProductsStockPeer::QUANTITY.')', 'total_stock')
+          ->withColumn('SUM('.ProductsStockPeer::QUANTITY.')', 'total_stock')
           ->select(array('total_stock'))
           ->useProductsQuery()
             ->filterByMaster('Todd Little SLEEPER')
