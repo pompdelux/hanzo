@@ -1,3 +1,6 @@
 _homepage:
     pattern:  /
     defaults: { _controller: HanzoCMSBundle:Default:index }
+_test_123:
+    pattern: /test123
+    defaults: { _controller: HanzoCMSBundle:Default:test }

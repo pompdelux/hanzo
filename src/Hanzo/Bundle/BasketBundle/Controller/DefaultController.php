@@ -50,14 +50,14 @@ class DefaultController extends CoreController
         $stock = $this->get('stock')->check($product, $quantity);
 
         if ($stock) {
-            $this->get('stock')->decrease($product, $quantity);
+            $date = $this->get('stock')->decrease($product, $quantity);
             $order = OrdersPeer::getCurrent();
 
             if ($order->isNew()) {
                 $order->setLanguagesId(Hanzo::getInstance()->get('core.language_id'));
             }
 
-            $order->setOrderLineQty($product, $quantity);
+            $order->setOrderLineQty($product, $quantity, false, $date);
 
             if ($order->validate()) {
                 $order->save();

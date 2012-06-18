@@ -150,7 +150,7 @@ class DefaultController extends CoreController
         }
 
         // find and calculate prices
-        $prices = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+        $prices = ProductsDomainsPricesPeer::getProductsPrices(array($data['id']));
         $data['prices'] = array_shift($prices);
 
         $images_references = $data['images_references'];
