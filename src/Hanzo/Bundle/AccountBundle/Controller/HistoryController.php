@@ -113,7 +113,7 @@ class HistoryController extends CoreController
         foreach ($result as $record) {
             $attachments = array();
             foreach ($record->getAttachments() as $key => $attachment) {
-                $attachments[] = $hanzo->get('core.cdn') . 'dl.php?' . http_build_query(array(
+                $attachments[] = $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
                     'file' => $attachment,
                     'key' => $this->get('session')->getId()
                 ));
