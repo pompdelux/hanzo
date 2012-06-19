@@ -336,7 +336,7 @@ class Orders extends BaseOrders
                 $c->add(AddressesPeer::TYPE, 'payment');
                 $address = $customer->getAddressess($c)->getFirst();
                 if ($address) {
-                    $this->setBillingAddress();
+                    $this->setBillingAddress($address);
                 } else {
                     Tools::log('Missing payment address: '.$customer->getId());
                 }
