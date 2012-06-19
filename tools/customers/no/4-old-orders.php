@@ -120,7 +120,7 @@ $query = "
   ON DUPLICATE KEY UPDATE
     version_id = version_id + 1
 ";
-mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
+#mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
 echo "[".date('Y-m-d H:i:s')."] migrating orders (end).\n";
 echo "[".date('Y-m-d H:i:s')."] migrating order lines (start).\n";
@@ -161,7 +161,7 @@ $query = "
     ON
       (p.orders_id = o.orders_id)
   WHERE
-    o.orders_status 0 4
+    o.orders_status = 4
 ";
 mysql_query($query) or (die('Line: '.__LINE__."\n".mysql_error()."\n".$query));
 
