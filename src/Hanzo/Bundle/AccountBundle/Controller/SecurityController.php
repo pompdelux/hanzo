@@ -4,10 +4,10 @@ namespace Hanzo\Bundle\AccountBundle\Controller;
 
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\Stock,
-    Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\Stock;
+use Hanzo\Core\CoreController;
 
 class SecurityController extends CoreController
 {

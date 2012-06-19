@@ -59,6 +59,8 @@ class AxService
      */
     public function triggerStockSync($endpoint, $return = false)
     {
+        ini_set("default_socket_timeout", 600);
+
         $data = new stdClass();
         $data->endpointDomain = $endpoint;
 
@@ -67,6 +69,12 @@ class AxService
         }
 
         $result = $this->Send('SyncInventory', $data);
+
+        if ($result instanceof Exception) {
+            $this->logger->addCritical($result->getMessage());
+            $this->logger->addCritical($this->client->__getLastRequest());
+        }
+
         return true;
     }
 
@@ -477,9 +485,9 @@ class AxService
         $c = curl_init();
         curl_setopt_array($c, array(
             CURLOPT_URL            => $this->wsdl,
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CONNECTTIMEOUT => 5, // connection
             CURLOPT_TIMEOUT        => 6, // execution timeout
-            CURLOPT_RETURNTRANSFER => true,
         ));
 
         $file = curl_exec($c);
@@ -495,8 +503,9 @@ class AxService
         }
 
         $this->client = new SoapClient($this->wsdl, array(
-            'trace'      => true,
+            'trace' => true,
             'exceptions' => true,
+            'connection_timeout' => 600,
         ));
         $this->client->__setLocation(str_replace('?wsdl', '', $this->wsdl));
 
