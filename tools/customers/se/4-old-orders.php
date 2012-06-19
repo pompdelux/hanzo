@@ -1,5 +1,5 @@
 <?php
-die(" - do not run again!\n");
+#die(" - do not run again!\n");
 
 if (isset($argv[1]) && $argv[1] == 'live') {
   $from = 'pompdelux_se';

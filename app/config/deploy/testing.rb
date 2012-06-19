@@ -1,44 +1,84 @@
 #
-# Hanzo / Pompdelux testing deploy.
+# Hanzo / Pompdelux testing deploy. 
 #
 
 set :deploy_to,   "/var/www/testpompdelux" 
-set :domain,      "pomp-test"
-#set :dbserver,    "pomptest-db"
 
+#symfony_env_prods = ["test_dk", "test_se", "test_no", "test_com", "test_nl"]
 symfony_env_prods = ["test_dk"]
-role :web,        domain
-role :app,        domain
 
 set :adminserver, "pomp-test"
 
 # if we ever get other brances, specify which one to deploy here
-#set   :branch, "master"
+set   :branch, "testing"
 
-#set :update_vendors, true
-set :update_vendors, false
+set :update_vendors, true
+#set :update_vendors, false
+
+role(:web) do
+   frontend_test_list
+end
+# :app is the same list of servers as :web. its default and may be used internally?
+role(:app) do
+   frontend_test_list
+end
+
+role :apache, "pomp-test"
 
 # our redis server. clear cache here
-role :redis, domain, :primary => true
+role :redis, adminserver, :primary => true
 
 # where to run migrations. :db is also a default and may be used internally.
-#role :db, dbserver, :primary => true  # where to run migrations
+role :db, adminserver, :primary => true  # where to run migrations
+
+# function to get web frontends from a file
+def frontend_test_list
+  contentsArray = Array.new
+  contentsArray = File.readlines("tools/deploy/frontend_test_list.txt")
+end
 
 before 'deploy:restart', 'deploy:apcclear'
+
+before 'symfony:cache:warmup', 'symfony:cache:assets_update'
 
 before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 
 # also clear redis when calling cache:clear
 after 'symfony:cache:clear', 'symfony:cache:redis_clear'
+# also clear apc when clearing cache
+after 'symfony:cache:clear', 'deploy:apcclear'
 
+after 'deploy:restart', 'deploy:update_permissions'
+after 'deploy:restart', 'deploy:update_permissions_shared'
+after 'deploy:restart', 'deploy:send_email'
+
+# own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
+  desc "Copy default parameters.ini and hanzo.yml to shared dir"
+  task :copy_test_config do
+    run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters_testing.ini && wget -q --output-document=#{shared_path}/app/config/hanzo.yml http://tools.bellcom.dk/hanzo/hanzo_testing.yml")
+  end
   desc "Roll out apc-clear.php"
-  task :copy_apcclear do
+  task :copy_apcclear, :roles => :apache do
     run("wget -q --output-document=/var/www/apc-clear.php http://tools.bellcom.dk/hanzo/apc-clear.php.txt")
   end
   desc "Clear apc cache on the local server"
   task :apcclear do
     run("wget -q -O /dev/null http://localhost/apc-clear.php")
+  end
+# fix permissions. shouldnt run on static because of pdfs and ftp?
+  desc "Update permissions on shared app logs and web dirs to be group writeable"
+  task :update_permissions do
+    run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
+  end
+# fix permissions. shouldnt run on static because of pdfs and ftp?
+  desc "Update permissions on shared app logs and web dirs to be group writeable"
+  task :update_permissions_shared do
+    run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
+  end
+  desc "Send email after deploy"
+  task :send_email do
+    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`'. By user: '`whoami` | mail -s 'Hanzo deployed' mmh@bellcom.dk"
   end
 end
 
@@ -47,8 +87,34 @@ namespace :symfony do
   namespace :cache do
     desc "Clear/Flush redis cache"
     task :redis_clear, :roles => :redis do
-      symfony_env_prods.each do |i| 
+      symfony_env_prods.each do |i|
         run("cd #{latest_release} && php app/console hanzo:redis:cache:clear --env=#{i}")
+      end
+    end
+  end
+  namespace :cache do
+    desc "Update assets version"
+    task :assets_update do
+      symfony_env_prods.each do |i|
+        run("cd #{latest_release} && php app/console hanzo:dataio:update assets_version --env=#{i}")
+      end
+    end
+  end
+end
+
+# own task. Run propel migrations
+namespace :propel do
+  namespace :migration do
+    desc "Run migrations"
+    task :migrate, :roles => :db do
+      symfony_env_prods.each do |i| 
+        run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
+      end
+    end
+    desc "Rigrations status"
+    task :status, :roles => :db do
+      symfony_env_prods.each do |i| 
+        run("cd #{latest_release} && php app/console propel:migration:status --env=#{i}")
       end
     end
   end
@@ -88,7 +154,9 @@ namespace :symfony do
     task :clear do
       symfony_env_prods.each do |i| 
         run "cd #{latest_release} && #{php_bin} #{symfony_console} cache:clear --env=#{i}"
-        run "chmod -R g+w #{latest_release}/#{cache_path}"
+# mmh. This chmod fails because some cache dirs and files are owned by www-data. Ignore the errors and continue, because the www-data dirs already seems to have g+w. Original line commented out below.
+        #run "chmod -R g+w #{latest_release}/#{cache_path}"
+        run "chmod -f -R g+w #{latest_release}/#{cache_path};true"
       end
     end
 
