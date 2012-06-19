@@ -1020,6 +1020,7 @@ class ECommerceServices extends SoapService
 
         $gateway = $this->hanzo->container->get('payment.dibsapi');
 
+        $doSendError = false;
         try {
             $response = $gateway->call()->refund($order, ($amount * -1));
             $result = $response->debug();
