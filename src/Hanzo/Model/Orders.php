@@ -670,6 +670,30 @@ class Orders extends BaseOrders
     }
 
     /**
+     * getShippingFee
+     *
+     * Note: only supports one shipping.fee line
+     *
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getShippingFee()
+    {
+        $type = 'shipping.fee';
+
+        $lines = $this->getOrdersLiness();
+        foreach ($lines as $index => $line)
+        {
+            if ( $line->getType() == $type )
+            {
+                return $line->getPrice();
+            }
+        }
+
+        return 0.00;
+    }
+
+    /**
      * set an orderline
      * note if the type is not "product" only one line pr. type is handled
      *
