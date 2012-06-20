@@ -121,6 +121,10 @@ class HanzoBoot
      */
     protected static function setDeviceCookie($device)
     {
+        if (isset($_COOKIE['_x_device']) && $_COOKIE['_x_device'] == $device) {
+            return;
+        }
+
         setcookie("_x_device", $device, 0, '/', '', false, true);
     }
 }
