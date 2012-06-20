@@ -10,7 +10,8 @@ use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools;
 
 use Hanzo\Model\OrdersLinesQuery,
-	Hanzo\Model\DomainsQuery;
+    Hanzo\Model\DomainsQuery,
+	Hanzo\Model\Orders;
 
 class StatisticsController extends CoreController
 {
@@ -59,8 +60,9 @@ class StatisticsController extends CoreController
     		->withColumn('SUM(orders_lines.quantity)','TotalProducts')
     		->useOrdersQuery()
     			->withColumn('COUNT( DISTINCT orders.id)','TotalOrders')
-    			->withColumn('DATE(orders.finishedAt)','FinishedAt')
-    			->filterByFinishedAt($date_filter)
+    			->withColumn('DATE(orders.createdAt)','CreatedAt')
+    			->filterByCreatedAt($date_filter)
+                ->filterByState(array('min' => Orders::STATE_PENDING))
     		->endUse()
     	;
 
@@ -68,42 +70,43 @@ class StatisticsController extends CoreController
     		$orders_amount = $orders_amount
     			->useOrdersQuery()
     				->useOrdersAttributesQuery()
-    					->filterByCKey('domain_id')
-    					->filterByCValue('Sales'.$domain_key)
+    					->filterByCKey('domain_key')
+    					->filterByCValue($domain_key)
     				->endUse()
     				->joinOrdersAttributes()
     			->endUse()
     		;
     	}
     	$orders_amount = $orders_amount
-    		->select(array('FinishedAt', 'TotalProducts', 'TotalOrders'))
-    		->groupBy('FinishedAt')
-    		->orderBy('FinishedAt')
+    		->select(array('CreatedAt', 'TotalProducts', 'TotalOrders'))
+    		->groupBy('CreatedAt')
+    		->orderBy('CreatedAt')
     		->find()
     	;
 
         $orders_price = OrdersLinesQuery::create()
             ->withColumn('SUM(orders_lines.price)','TotalPrice')
             ->useOrdersQuery()
-                ->withColumn('DATE(orders.finishedAt)','FinishedAt')
-                ->filterByFinishedAt($date_filter)
+                ->withColumn('DATE(orders.createdAt)','CreatedAt')
+                ->filterByCreatedAt($date_filter)
+                ->filterByState(array('min' => Orders::STATE_PENDING))
             ->endUse()
         ;
         if($domain_key){
             $orders_price = $orders_price
                 ->useOrdersQuery()
                     ->useOrdersAttributesQuery()
-                        ->filterByCKey('domain_id')
-                        ->filterByCValue('Sales'.$domain_key)
+                        ->filterByCKey('domain_key')
+                        ->filterByCValue($domain_key)
                     ->endUse()
                     ->joinOrdersAttributes()
                 ->endUse()
             ;
         }
         $orders_price = $orders_price
-            ->select(array('FinishedAt', 'TotalPrice'))
-            ->groupBy('FinishedAt')
-            ->orderBy('FinishedAt')
+            ->select(array('CreatedAt', 'TotalPrice'))
+            ->groupBy('CreatedAt')
+            ->orderBy('CreatedAt')
             ->find()
         ;
 
@@ -115,21 +118,23 @@ class StatisticsController extends CoreController
             'sumproducts' => 0
         );
         foreach ($orders_amount as $order) {
-            $orders_array[$order['FinishedAt']]['TotalProducts'] = $order['TotalProducts']; 
-            $orders_array[$order['FinishedAt']]['TotalOrders'] = $order['TotalOrders'];
-            $orders_array[$order['FinishedAt']]['FinishedAt'] = $order['FinishedAt'];
+            $orders_array[$order['CreatedAt']]['TotalProducts'] = $order['TotalProducts']; 
+            $orders_array[$order['CreatedAt']]['TotalOrders'] = $order['TotalOrders'];
+            $orders_array[$order['CreatedAt']]['CreatedAt'] = $order['CreatedAt'];
+
             $orders_total['sumorders'] += $order['TotalOrders'];
             $orders_total['sumproducts'] += $order['TotalProducts'];
         }
         foreach ($orders_price as $order) {
-            $orders_array[$order['FinishedAt']]['TotalPrice'] = $order['TotalPrice']; 
+            $orders_array[$order['CreatedAt']]['TotalPrice'] = $order['TotalPrice'];
+
             $orders_total['sumprice'] += $order['TotalPrice'];
         }
 
 		$domains_availible = DomainsQuery::Create()
 			->find()
 		;
-
+        
         return $this->render('AdminBundle:Statistics:index.html.twig', array(
             'orders_array' => $orders_array,
             'total' => $orders_total,
