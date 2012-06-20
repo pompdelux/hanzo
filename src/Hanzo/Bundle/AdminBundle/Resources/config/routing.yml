@@ -350,6 +350,11 @@ admin_orders_domain:
     requirements:
         pager: \d+
 
+admin_orders_change_state:
+    pattern:  /admin/orders/changestate
+    defaults:
+        _controller: AdminBundle:Orders:changeState
+
 admin_customer_orders:
     pattern:  /admin/customer/orders/{customer_id}/{pager}
     defaults:

@@ -280,6 +280,10 @@ class OrdersController extends CoreController
 
     }
 
+    /**
+     * deleteOrder
+     * @return void
+     **/
     public function deleteAction($order_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -297,6 +301,90 @@ class OrdersController extends CoreController
                 'message' => 'Ordren blev slettet!',
             ));
         }
+    }
+
+    public function changeStateAction()
+    {
+        // FIXME: pull from orders object
+        $form_state = $this->createFormBuilder()
+            ->add('state-from', 'choice',
+                array(
+                    'choices' => array(
+                        -110 => 'Payment error',
+                        -100 => 'General error',
+                        -50 => 'Building order',
+                        -30 => 'Order in pre confirm state',
+                        -20 => 'Order in pre payment state',
+                        10 => 'Order in post confirm state',
+                        20 => 'Order payment confirmed',
+                        30 => 'Order pending',
+                        40 => 'Order beeing processed',
+                        50 => 'Order shipped/done',
+                    ),
+                    'label' => 'admin.orders.state_from.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->add('state-to', 'choice',
+                array(
+                    'choices' => array(
+                        -110 => 'Payment error',
+                        -100 => 'General error',
+                        -50 => 'Building order',
+                        -30 => 'Order in pre confirm state',
+                        -20 => 'Order in pre payment state',
+                        10 => 'Order in post confirm state',
+                        20 => 'Order payment confirmed',
+                        30 => 'Order pending',
+                        40 => 'Order beeing processed',
+                        50 => 'Order shipped/done',
+                    ),
+                    'label' => 'admin.orders.state_to.label',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('id-from', 'integer',
+                array(
+                    'label' => 'admin.orders.id_from.label',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->add('id-to', 'integer',
+                array(
+                    'label' => 'admin.orders.id_to.label',
+                    'translation_domain' => 'admin',
+                    'required' => true
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form_state->bindRequest($request);
+
+            if ($form_state->isValid()) {
+
+                $form_data = $form_state->getData();
+                $orders = OrdersQuery::create()
+                    ->where('orders.id >= ?', $form_data['id-from'])
+                    ->where('orders.id <= ?', $form_data['id-to'])
+                ;
+                if($form_data['state-from'] != '')
+                    $orders = $orders->filterByState($form_data['state-from']);
+                
+                $orders = $orders->find();
+
+                foreach ($orders as $order) {
+                    $order->setState($form_data['state-to']);
+                    $order->save();
+                }
+
+                $this->get('session')->setFlash('notice', 'admin.orders.state_log.changed');
+            }
+        }
+        return $this->render('AdminBundle:Orders:change_state.html.twig', array(
+          'form' => $form_state->createView()
+        ));
     }
 
     /**
