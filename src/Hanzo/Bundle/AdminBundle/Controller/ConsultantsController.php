@@ -215,12 +215,6 @@ class ConsultantsController extends CoreController
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )->add('info', 'textarea',
-                array(
-                    'label' => 'admin.consultant.info.label',
-                    'translation_domain' => 'admin',
-                    'required' => false
-                )
             )->add('max_notified', 'checkbox',
                 array(
                     'label' => 'admin.consultant.max_notified.label',
@@ -235,9 +229,15 @@ class ConsultantsController extends CoreController
                     'translation_domain' => 'admin',
                     'required' => false
                 )
-            )->add('event_notes', 'textarea',
+            )->add('info', 'textarea',
                 array(
                     'label' => 'admin.consultant.event_notes.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->add('event_notes', 'textarea',
+                array(
+                    'label' => 'admin.consultant.info.label',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
