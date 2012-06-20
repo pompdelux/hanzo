@@ -390,6 +390,14 @@ admin_orders_dead_action:
   defaults: { _controller: AdminBundle:Orders:performDead, _format: json }
   requirements: { _format: (xml|json), _method: POST }
 
+admin_employees:
+    pattern:  /admin/employees/{pager}
+    defaults:
+        _controller: AdminBundle:Employees:index
+        pager: 1
+    requirements:
+        pager: \d+
+
 admin_consultants:
     pattern:  /admin/consultants/{pager}
     defaults:
