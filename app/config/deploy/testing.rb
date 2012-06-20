@@ -12,8 +12,8 @@ set :adminserver, "pomp-test"
 # if we ever get other brances, specify which one to deploy here
 set   :branch, "testing"
 
-set :update_vendors, true
-#set :update_vendors, false
+#set :update_vendors, true
+set :update_vendors, false
 
 role(:web) do
    frontend_test_list
