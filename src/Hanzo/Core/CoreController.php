@@ -17,6 +17,14 @@ class CoreController extends Controller
         "*/*" => 'html'
     );
 
+    /**
+     * Maps language id's of an order to endpoint folders for pdf files, defaults to 'DK'
+     * @var array
+     */
+    protected $pdf_language_to_code = array(
+        3 => 'SE',
+        4 => 'NO',
+    );
 
     protected function getFormat()
     {
@@ -113,5 +121,21 @@ class CoreController extends Controller
     public function setTerminateEvent($event, $parameters)
     {
         $this->container->get('kernel')->setTerminateEvent($event, $parameters);
+    }
+
+
+    /**
+     * try to map language ids to folders, this is not a 1-1 match, so we need this little hack.
+     *
+     * @param  [type] $language_id [description]
+     * @return [type]              [description]
+     */
+    protected function mapLanguageToPdfDir($language_id)
+    {
+        if (isset($this->pdf_language_to_code[$language_id])) {
+            return $this->pdf_language_to_code[$language_id];
+        }
+
+        return 'DK';
     }
 }

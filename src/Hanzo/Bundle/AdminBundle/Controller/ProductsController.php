@@ -266,7 +266,7 @@ class ProductsController extends CoreController
                     $duplicate->save();
 
                 }else{
-                    
+
                     $quantity_discount->save();
 
                 }
@@ -401,7 +401,7 @@ class ProductsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $requests = $this->get('request');
         $category_id = $requests->get('category');
         $product_id = $requests->get('product');
@@ -456,7 +456,7 @@ class ProductsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $requests = $this->get('request');
         $master = $requests->get('master');
         $sku = $requests->get('sku');

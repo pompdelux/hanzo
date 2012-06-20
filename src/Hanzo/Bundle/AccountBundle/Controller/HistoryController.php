@@ -111,9 +111,12 @@ class HistoryController extends CoreController
 
         $orders = array();
         foreach ($result as $record) {
+            $folder = $this->mapLanguageToPdfDir($record->getLanguagesId()).'_'.$record->getCreatedAt('Y');
+
             $attachments = array();
             foreach ($record->getAttachments() as $key => $attachment) {
                 $attachments[] = $hanzo->get('core.cdn') . 'pdf.php?' . http_build_query(array(
+                    'folder' => $folder,
                     'file' => $attachment,
                     'key' => $this->get('session')->getId()
                 ));

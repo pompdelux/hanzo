@@ -64,7 +64,7 @@ class AppKernel extends Kernel
             $this->container->get('translator')->setLocale($hanzo->get('core.locale'));
         }
 
-        $twig = $this->container->get('twig'); // ->addGlobal('', '');
+        $twig = $this->container->get('twig');
 
         //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
         $twig->addGlobal('store_mode', $this->getStoreMode());
