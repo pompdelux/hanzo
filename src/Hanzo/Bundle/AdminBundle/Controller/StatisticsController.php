@@ -56,7 +56,6 @@ class StatisticsController extends CoreController
 
     	$orders_amount = OrdersLinesQuery::create()
     		->filterByType('product')
-    		->withColumn('SUM(orders_lines.price)','TotalAmount')
     		->withColumn('SUM(orders_lines.quantity)','TotalProducts')
     		->useOrdersQuery()
     			->withColumn('COUNT( DISTINCT orders.id)','TotalOrders')
@@ -69,29 +68,62 @@ class StatisticsController extends CoreController
     		$orders_amount = $orders_amount
     			->useOrdersQuery()
     				->useOrdersAttributesQuery()
-    					->filterByCKey('domain_key')
-    					->filterByCValue($domain_key)
+    					->filterByCKey('domain_id')
+    					->filterByCValue('Sales'.$domain_key)
     				->endUse()
     				->joinOrdersAttributes()
     			->endUse()
     		;
     	}
     	$orders_amount = $orders_amount
-    		->select(array('FinishedAt', 'TotalProducts', 'TotalOrders', 'TotalAmount'))
+    		->select(array('FinishedAt', 'TotalProducts', 'TotalOrders'))
     		->groupBy('FinishedAt')
     		->orderBy('FinishedAt')
     		->find()
     	;
 
+        $orders_price = OrdersLinesQuery::create()
+            ->withColumn('SUM(orders_lines.price)','TotalPrice')
+            ->useOrdersQuery()
+                ->withColumn('DATE(orders.finishedAt)','FinishedAt')
+                ->filterByFinishedAt($date_filter)
+            ->endUse()
+        ;
+        if($domain_key){
+            $orders_price = $orders_price
+                ->useOrdersQuery()
+                    ->useOrdersAttributesQuery()
+                        ->filterByCKey('domain_id')
+                        ->filterByCValue('Sales'.$domain_key)
+                    ->endUse()
+                    ->joinOrdersAttributes()
+                ->endUse()
+            ;
+        }
+        $orders_price = $orders_price
+            ->select(array('FinishedAt', 'TotalPrice'))
+            ->groupBy('FinishedAt')
+            ->orderBy('FinishedAt')
+            ->find()
+        ;
+
+        // Build the array for every day with orders and the array for the sum.
+        $orders_array = array();
         $orders_total = array(
             'sumprice' => 0,
             'sumorders' => 0,
             'sumproducts' => 0
         );
         foreach ($orders_amount as $order) {
-            $orders_total['sumprice'] += $order['TotalAmount'];
+            $orders_array[$order['FinishedAt']]['TotalProducts'] = $order['TotalProducts']; 
+            $orders_array[$order['FinishedAt']]['TotalOrders'] = $order['TotalOrders'];
+            $orders_array[$order['FinishedAt']]['FinishedAt'] = $order['FinishedAt'];
             $orders_total['sumorders'] += $order['TotalOrders'];
             $orders_total['sumproducts'] += $order['TotalProducts'];
+        }
+        foreach ($orders_price as $order) {
+            $orders_array[$order['FinishedAt']]['TotalPrice'] = $order['TotalPrice']; 
+            $orders_total['sumprice'] += $order['TotalPrice'];
         }
 
 		$domains_availible = DomainsQuery::Create()
@@ -99,7 +131,7 @@ class StatisticsController extends CoreController
 		;
 
         return $this->render('AdminBundle:Statistics:index.html.twig', array(
-            'orders_amount'  => $orders_amount,
+            'orders_array' => $orders_array,
             'total' => $orders_total,
             'domain_key' => $domain_key,
             'domains_availible' => $domains_availible,

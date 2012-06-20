@@ -193,6 +193,33 @@ class DefaultController extends CoreController
 
             $wall_entry->save();
 
+            if($id){ // If its a comment to another post, inform all participants of the entry by mail.
+                $users = WallQuery::create()
+                    ->useCustomersQuery()
+                        ->groupByEmail()
+                    ->endUse()
+                    ->joinWithCustomers()
+                    ->filterById($id)
+                    ->_or()
+                    ->filterByParentId($id)
+                    ->find()
+                ;
+                $mailer = $this->get('mail_manager');
+                $message = "Der er skrevet en kommentar til en tråd du deltager i på POMPdeWALL\n";
+                $message += $this->get('security.context')->getToken()->getUser()->getUserName()." skrev:\n";
+                $message += $wall_entry->getMessate();
+                foreach ($users as $user) {
+                    try{
+                        $mailer->setBody($message);
+                        $mailer->setTo($user->getCustomers()->getEmail(), $user->getCustomers()->getFirstName());
+                        $mailer->send();
+                    }
+                    catch (Exception $e) {
+                        print_r($e);
+                    }
+                }
+            }
+
             $wall_post = WallQuery::create()
                 ->join('Customers')
                 ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')

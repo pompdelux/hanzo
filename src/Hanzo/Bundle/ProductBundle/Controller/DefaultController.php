@@ -45,7 +45,7 @@ class DefaultController extends CoreController
                     ->useProductsWashingInstructionsQuery()
                         ->filterByLocale($hanzo->get('core.locale'))
                     ->endUse()
-                    ->joinWithProductsWashingInstructions()
+                    ->leftJoinWithProductsWashingInstructions()
                     ->joinWithProductsImages()
                 ->endUse()
                 ->findById($product_id)
