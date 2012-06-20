@@ -101,4 +101,17 @@ class CoreController extends Controller
 
         return $this->response($data, $code, array('Content-Type' => 'application/json'));
     }
+
+
+    /**
+     * Shortcut for AppKernel::setTerminateEvent
+     *
+     * @see                      AppKernel::setTerminateEvent
+     * @param string $event      event key
+     * @param mixed  $parameters parameters to send to the event
+     */
+    public function setTerminateEvent($event, $parameters)
+    {
+        $this->container->get('kernel')->setTerminateEvent($event, $parameters);
+    }
 }
