@@ -207,7 +207,6 @@ class ConsultantsController extends CoreController
             )->add('password_clear', 'text', // Puha
                 array(
                     'label' => 'admin.customer.password_clear.label',
-                    'read_only' => true,
                     'translation_domain' => 'admin'
                 )
             )->add('initials', 'text',
@@ -265,6 +264,7 @@ class ConsultantsController extends CoreController
                     ->setPhone($data['phone'])
                     ->setDiscount($data['discount'])
                     ->setPasswordClear($data['password_clear'])
+                    ->setPassword(sha1($data['password_clear']))
                     ->setIsActive($data['is_active'])
                     ->save()
                 ;
