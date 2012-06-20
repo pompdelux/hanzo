@@ -231,13 +231,13 @@ class ConsultantsController extends CoreController
                 )
             )->add('info', 'textarea',
                 array(
-                    'label' => 'admin.consultant.info.label',
+                    'label' => 'admin.consultant.event_notes.label',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
             )->add('event_notes', 'textarea',
                 array(
-                    'label' => 'admin.consultant.event_notes.label',
+                    'label' => 'admin.consultant.info.label',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
