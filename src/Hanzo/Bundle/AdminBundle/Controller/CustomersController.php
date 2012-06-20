@@ -30,13 +30,7 @@ class CustomersController extends CoreController
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
         
-        $customers = CustomersQuery::create()
-            ->useGroupsQuery()
-                ->filterByName('customer')
-                ->_or()
-                ->filterByName('consultant')
-            ->endUse()
-        ;
+        $customers = CustomersQuery::create();
 
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
