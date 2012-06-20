@@ -41,6 +41,7 @@ class ProxyUser implements UserInterface
         'hd@pompdelux.dk',
         'hf@bellcom.dk',
         'un@bellcom.dk',
+        'mmh@bellcom.dk',
         'ulrik+pomp@bellcom.dk',
         'andersbryrup@gmail.com',
         'hanzo@bellcom.dk',
