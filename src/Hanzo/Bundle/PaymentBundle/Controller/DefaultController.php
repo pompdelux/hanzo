@@ -38,7 +38,7 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->getState() <= Orders::STATE_PAYMENT_OK )
+        if ( $order->getState() <= Orders::STATE_PAYMENT_OK ) // State should be pending by now (set if event order.payment.collected is triggered)
         {
             return $this->redirect($this->generateUrl('_checkout_failed'));
         }

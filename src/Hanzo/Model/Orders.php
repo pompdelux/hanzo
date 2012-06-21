@@ -365,6 +365,7 @@ class Orders extends BaseOrders
         $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
         $price = array_shift($price);
+        $original_price = $price['normal'];
         $price = array_shift($price);
 
         $line = new OrdersLines;
@@ -376,6 +377,7 @@ class Orders extends BaseOrders
         $line->setProductsSize($product->getSize());
         $line->setQuantity($quantity);
         $line->setPrice($price['price']);
+        $line->setOriginalPrice($original_price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
         $line->setExpectedAt($date);
@@ -834,6 +836,54 @@ class Orders extends BaseOrders
         );
 
         $this->fromArray($fields);
+    }
+
+    /**
+     * clearPaymentAttributes
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearPaymentAttributes()
+    {
+        $this->clearAttributesByNS( 'payment' );
+    }
+
+    /**
+     * clearAttributesByKey
+     * @param string $key
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function clearAttributesByKey( $key )
+    {
+        $attributes = $this->getOrdersAttributess();
+
+        foreach ($attributes as $index => $attribute)
+        {
+            if ( $attribute->getCKey() == $key )
+            {
+                $attribute->delete();
+            }
+        }
+    }
+
+    /**
+     * clearAttributesByNS
+     * @param string $ns
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function clearAttributesByNS( $ns )
+    {
+        $attributes = $this->getOrdersAttributess();
+
+        foreach ($attributes as $index => $attribute)
+        {
+            if ( $attribute->getNs() == $ns )
+            {
+                $attribute->delete();
+            }
+        }
     }
 
     /**

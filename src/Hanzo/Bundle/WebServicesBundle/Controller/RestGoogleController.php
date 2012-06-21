@@ -73,9 +73,14 @@ class RestGoogleController extends CoreController
         $radius = 100;
         $num_items = 10;
 
+        $filter = '';
         if ($type == 'hus') {
           $radius = 150;
           $num_items = 18;
+          $filter = "
+            AND
+                cn.event_notes != ''
+          ";
         }
 
         $query = "
@@ -110,6 +115,7 @@ class RestGoogleController extends CoreController
                     c.email NOT LIKE ('%@bellcom.dk')
                 AND
                     c.email NOT IN ('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk')
+            {$filter}
             HAVING
                 distance < {$radius}
             ORDER BY
@@ -118,21 +124,23 @@ class RestGoogleController extends CoreController
                 {$num_items}
         ";
 
+        $cdn = Hanzo::getInstance()->get('core.cdn');
         $con = \Propel::getConnection();
         $result = $con->query($query);
 
         $data = array();
         foreach ($result as $record) {
 
-            $info = $record['event_notes'];
+            $info = $record['info'];
             if ($type == 'hus') {
-                $info = str_replace("\n", "<br>", $record['info']);
+                $info = str_replace("\n", "<br>", $record['event_notes']);
             }
 
-            $info = preg_replace_callback('/src="(.+)"/Ui', function($matches) {
-                $img = Hanzo::getInstance()->get('core.cdn') . substr($matches[1], 1);
-                return 'src="'.$img.'"';
-            }, $info);
+            $info = str_replace('src="/', 'src="'.$cdn, $info);
+
+            if ($info == 'null') {
+                $info = '';
+            }
 
             $data[] = array(
                 'id' => $record['id'],
@@ -167,14 +175,20 @@ class RestGoogleController extends CoreController
             ->find()
         ;
 
+        $cdn = Hanzo::getInstance()->get('core.cdn');
+
         $data = array();
         foreach ($consultants as $consultant) {
             $address = $consultant->getAddresses()->getFirst();
+
+            $info = $consultant->getInfo();
+            $info = str_replace('src="/', 'src="'.$cdn, $info);
+
             $data[] = array(
                 'fullname' => $consultant->getName(),
                 'email' => $consultant->getEmail(),
                 'phone' => $consultant->getPhone(),
-                'notes' => $consultant->getInfo(),
+                'notes' => $info,
                 'address' => $address->getAddressLine1(),
                 'postcode' => $address->getPostalCode(),
                 'city' => $address->getCity(),

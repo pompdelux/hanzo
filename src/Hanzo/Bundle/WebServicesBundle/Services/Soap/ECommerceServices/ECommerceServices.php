@@ -788,11 +788,17 @@ class ECommerceServices extends SoapService
             // capture
             if ($order->getPaymentGatewayId()) {
                 $result = $this->SalesOrderCapture($data, $order);
+                if ($result !== true) {
+                    $errors = $result;
+                }
             }
         } else {
             // refund
             if (($data->amount < 0) && $order->getPaymentGatewayId()) {
                 $result = $this->SalesOrderRefund($data, $order);
+                if ($result !== true) {
+                    $errors = $result;
+                }
             }
         }
         // ....................
@@ -984,7 +990,7 @@ class ECommerceServices extends SoapService
 
             $result = $response->debug();
 
-            if ( $result['status'] ) {
+            if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
                 $error = array(
                     'cound not capture order #' . $data->eOrderNumber,
                     'error: ' . $result['status_description']

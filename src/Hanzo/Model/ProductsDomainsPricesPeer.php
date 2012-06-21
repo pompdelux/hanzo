@@ -45,9 +45,16 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
         $override_vat_pct = 0;
         $override_vat = false;
         if ('COM' == $domain_key) {
-            $order = OrdersPeer::getCurrent();
-            if (!$order->isNew()) {
-                $country = CountriesQuery::create()->findOneById($order->getBillingCountriesId());
+            $customer = CustomersPeer::getCurrent();
+            if (!$customer->isNew()) {
+                $country = CountriesQuery::create()
+                    ->useAddressesQuery()
+                        ->filterByType('payment')
+                        ->filterByCustomersId($customer->getId())
+                    ->endUse()
+                    ->findOne()
+                ;
+
                 if (($country instanceof Countries) && !$country->getVat()) {
                     $override_vat = true;
                     $override_vat_pct = 0;

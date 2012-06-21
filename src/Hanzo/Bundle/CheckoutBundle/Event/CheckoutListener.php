@@ -34,6 +34,9 @@ class CheckoutListener
         }
 
         $order->setState( Orders::STATE_PENDING );
+        $order->setInEdit(false);
+        $order->setSessionId($order->getId());
+        $order->save();
 
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
@@ -42,9 +45,9 @@ class CheckoutListener
 
         $shipping_cost = 0.00;
         $shipping_fee = 0.00;
-        foreach ($order->getOrderLineShipping() as $line) 
+        foreach ($order->getOrderLineShipping() as $line)
         {
-            switch ($line->getType()) 
+            switch ($line->getType())
             {
               case 'shipping':
                 $shipping_cost += $line->getPrice();
@@ -169,9 +172,5 @@ class CheckoutListener
 
         // trigger ax sync
         $this->ax->sendOrder($order);
-
-        $order->setInEdit(false);
-        $order->setSessionId($order->getId());
-        $order->save();
     }
 }

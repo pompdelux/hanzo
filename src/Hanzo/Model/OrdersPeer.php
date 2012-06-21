@@ -2,10 +2,11 @@
 
 namespace Hanzo\Model;
 
-use Hanzo\Model\om\BaseOrdersPeer,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersQuery
-    ;
+use Propel;
+
+use Hanzo\Model\om\BaseOrdersPeer;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersQuery;
 
 use Hanzo\Model\CustomersPeer;
 
@@ -37,6 +38,7 @@ class OrdersPeer extends BaseOrdersPeer
         $session = $hanzo->getSession();
 
         if ($session->has('order_id')) {
+            Propel::setForceMasterConnection(true);
             $query = OrdersQuery::create()
                 ->useOrdersLinesQuery()
                     ->orderByType()
@@ -60,6 +62,7 @@ class OrdersPeer extends BaseOrdersPeer
                     self::$current->save();
                 }
             }
+            Propel::setForceMasterConnection(false);
         }
 
         self::$current = self::$current ?: new Orders;

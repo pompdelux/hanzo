@@ -44,6 +44,9 @@ class UpdateCommand extends ContainerAwareCommand
               $event = new FilterUpdateEvent( 'assets_version' );
               $dispatcher->dispatch(Events::incrementAssetsVersion, $event);
               break;
+          default:
+              throw new Exception( 'Unknown argument' );
+              break;
         }
     }
 }
