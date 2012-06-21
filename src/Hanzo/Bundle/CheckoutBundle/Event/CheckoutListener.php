@@ -172,6 +172,7 @@ class CheckoutListener
 
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
+        // Hm, what happens if something fails?
         $order->save();
     }
 }
