@@ -365,6 +365,7 @@ class Orders extends BaseOrders
         $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
         $price = array_shift($price);
+        $original_price = $price['normal'];
         $price = array_shift($price);
 
         $line = new OrdersLines;
@@ -376,6 +377,7 @@ class Orders extends BaseOrders
         $line->setProductsSize($product->getSize());
         $line->setQuantity($quantity);
         $line->setPrice($price['price']);
+        $line->setOriginalPrice($original_price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
         $line->setExpectedAt($date);
