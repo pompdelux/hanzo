@@ -32,6 +32,7 @@ class ProxyUser implements UserInterface
         'admin' => array(
             'ROLE_ADMIN',
             'ROLE_EMPLOYEE',
+            'ROLE_SALES',
             'ROLE_USER',
         ),
     );
@@ -46,6 +47,14 @@ class ProxyUser implements UserInterface
         'andersbryrup@gmail.com',
         'hanzo@bellcom.dk',
     );
+
+    private $sales = array(
+        'kk@pompdelux.dk',
+        'ak@pompdelux.dk',
+        'sj@pompdelux.dk',
+        'pc@pompdelux.dk',
+        'nj@pompdelux.dk',
+     );
 
     public function __construct(ModelUser $user)
     {
@@ -64,6 +73,11 @@ class ProxyUser implements UserInterface
         if (in_array($this->getUsername(), $this->admins)) {
             $roles[] = 'ROLE_EMPLOYEE';
             $roles[] = 'ROLE_ADMIN';
+        }
+
+        // NICETO: should not be hardcoded
+        if (in_array($this->getUsername(), $this->sales)) {
+            $roles[] = 'ROLE_SALES';
         }
 
         return $roles;
