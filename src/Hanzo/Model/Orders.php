@@ -837,6 +837,54 @@ class Orders extends BaseOrders
     }
 
     /**
+     * clearPaymentAttributes
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearPaymentAttributes()
+    {
+        $this->clearAttributesByNS( 'payment' );
+    }
+
+    /**
+     * clearAttributesByKey
+     * @param string $key
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function clearAttributesByKey( $key )
+    {
+        $attributes = $this->getOrdersAttributess();
+
+        foreach ($attributes as $index => $attribute)
+        {
+            if ( $attribute->getCKey() == $key )
+            {
+                $attribute->delete();
+            }
+        }
+    }
+
+    /**
+     * clearAttributesByNS
+     * @param string $ns
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function clearAttributesByNS( $ns )
+    {
+        $attributes = $this->getOrdersAttributess();
+
+        foreach ($attributes as $index => $attribute)
+        {
+            if ( $attribute->getNs() == $ns )
+            {
+                $attribute->delete();
+            }
+        }
+    }
+
+    /**
      * setDeliveryAddress
      *
      * @param Addresses $address
