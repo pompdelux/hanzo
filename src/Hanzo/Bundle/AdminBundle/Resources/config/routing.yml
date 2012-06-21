@@ -350,6 +350,11 @@ admin_orders_domain:
     requirements:
         pager: \d+
 
+admin_orders_change_state:
+    pattern:  /admin/orders/changestate
+    defaults:
+        _controller: AdminBundle:Orders:changeState
+
 admin_customer_orders:
     pattern:  /admin/customer/orders/{customer_id}/{pager}
     defaults:
@@ -384,6 +389,14 @@ admin_orders_dead_action:
   pattern:  /admin/orders/dead/{action}
   defaults: { _controller: AdminBundle:Orders:performDead, _format: json }
   requirements: { _format: (xml|json), _method: POST }
+
+admin_employees:
+    pattern:  /admin/employees/{pager}
+    defaults:
+        _controller: AdminBundle:Employees:index
+        pager: 1
+    requirements:
+        pager: \d+
 
 admin_consultants:
     pattern:  /admin/consultants/{pager}

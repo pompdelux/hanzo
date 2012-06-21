@@ -17,9 +17,6 @@ class HelpdeskController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('admin'));
-        }
         
 
     	$helpdesk_data = HelpdeskDataLogQuery::create()

@@ -42,51 +42,55 @@ class LoginListener
         $hanzo = Hanzo::getInstance();
         $order = OrdersPeer::getCurrent();
 
-        $customer = $this->context->getToken()->getUser()->getUser();
+        if ($order->getTotalPrice(true)) {
 
-        // add billing address to order
-        $c = new Criteria;
-        $c->add(AddressesPeer::TYPE, 'payment');
-        $order->setBillingAddress($customer->getAddressess($c)->getFirst());
-
-        if ($order->getTotalPrice(true) && ('COM' == $hanzo->get('core.domain_key'))) {
-            $country = $order->getCountriesRelatedByBillingCountriesId();
-            if ($country->getVat()) {
-                return;
+            if ('' == $order->getBillingFirstName()) {
+                $customer = $this->context->getToken()->getUser()->getUser();
+                $c = new Criteria;
+                $c->add(AddressesPeer::TYPE, 'payment');
+                $order->setBillingAddress($customer->getAddressess($c)->getFirst());
             }
 
-            $lines = $order->getOrdersLiness();
-            $collection = new PropelCollection();
-
-            $product_ids = array();
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $product_ids[] = $line->getProductsId();
+            if ('COM' == $hanzo->get('core.domain_key')) {
+                $country = $order->getCountriesRelatedByBillingCountriesId();
+                if ($country->getVat()) {
+                    return;
                 }
-            }
 
-            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+                $lines = $order->getOrdersLiness();
+                $collection = new PropelCollection();
 
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $price = $prices[$line->getProductsId()];
+                $product_ids = array();
+                foreach ($lines as $line) {
+                    if('product' == $line->getType()) {
+                        $product_ids[] = $line->getProductsId();
+                    }
+                }
 
-                    $sales = $price['normal'];
-                    if (isset($price['sales'])) {
-                        $sales = $price['sales'];
+                $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+
+                foreach ($lines as $line) {
+                    if('product' == $line->getType()) {
+                        $price = $prices[$line->getProductsId()];
+
+                        $sales = $price['normal'];
+                        if (isset($price['sales'])) {
+                            $sales = $price['sales'];
+                        }
+
+                        $line->setPrice($sales['price']);
+                        $line->setVat(0);
+                        $line->setOriginalPrice($price['normal']['price']);
                     }
 
-                    $line->setPrice($sales['price']);
-                    $line->setVat(0);
-                    $line->setOriginalPrice($price['normal']['price']);
+                    $collection->prepend($line);
                 }
 
-                $collection->prepend($line);
+                $order->setOrdersLiness($collection);
             }
 
-            $order->setOrdersLiness($collection);
+            $order->save();
         }
 
-        $order->save();
     }
 }

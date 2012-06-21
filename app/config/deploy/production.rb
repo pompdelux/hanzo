@@ -81,19 +81,19 @@ namespace :deploy do
   task :reload_apache do
     run("sudo /etc/init.d/apache2 reload")
   end
-# fix permissions. shouldnt run on static because of pdfs and ftp?
+# fix permissions
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions do
     run "sudo chmod -R g+rwX #{current_release} && sudo chgrp -R www-data #{current_release}"
   end
 # fix permissions. shouldnt run on static because of pdfs and ftp?
   desc "Update permissions on shared app logs and web dirs to be group writeable"
-  task :update_permissions_shared, :roles => :apache do
+  task :update_permissions_shared do
     run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
   end
   desc "Send email after deploy"
   task :send_email do
-    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`'. By user: '`whoami` | mail -s 'Hanzo deployed' mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo deployed' mmh@bellcom.dk"
   end
 end
 

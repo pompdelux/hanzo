@@ -29,7 +29,10 @@ class OrderListener
         $order->createNewVersion();
 
         $order->setSessionId(session_id());
+        $order->setState( Orders::STATE_BUILDING ); // Old order state is probably payment ok
+        $order->clearPaymentAttributes();
         $order->setInEdit(true);
+        $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
         $order->save();
 
         $this->session->set('in_edit', true);

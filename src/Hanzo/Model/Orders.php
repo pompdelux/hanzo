@@ -2,9 +2,10 @@
 
 namespace Hanzo\Model;
 
-use \BasePeer;
-use \PropelPDO;
-use \PropelCollection;
+use BasePeer;
+use Criteria;
+use PropelPDO;
+use PropelCollection;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -24,6 +25,8 @@ use Hanzo\Model\OrdersVersionsQuery;
 use Hanzo\Model\ShippingMethods;
 
 use Hanzo\Model\CustomerQuery;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\AddressesPeer;
 
 use Hanzo\Model\SettingsQuery;
 
@@ -318,6 +321,28 @@ class Orders extends BaseOrders
     {
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
+
+        // add meta info to the order
+        if (0 == $lines->count()) {
+            $this->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
+            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
+        }
+
+        // set billing address - if not already set.
+        if ('' == $this->getBillingFirstName()) {
+            $customer = CustomersPeer::getCurrent();
+            if (!$customer->isNew()) {
+                $c = new Criteria;
+                $c->add(AddressesPeer::TYPE, 'payment');
+                $address = $customer->getAddressess($c)->getFirst();
+                if ($address) {
+                    $this->setBillingAddress($address);
+                } else {
+                    Tools::log('Missing payment address: '.$customer->getId());
+                }
+            }
+        }
+
         foreach ($lines as $index => $line) {
             if ($product->getId() == $line->getProductsId()) {
                 $offset = 0;
@@ -645,6 +670,30 @@ class Orders extends BaseOrders
     }
 
     /**
+     * getShippingFee
+     *
+     * Note: only supports one shipping.fee line
+     *
+     * @return float
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getShippingFee()
+    {
+        $type = 'shipping.fee';
+
+        $lines = $this->getOrdersLiness();
+        foreach ($lines as $index => $line)
+        {
+            if ( $line->getType() == $type )
+            {
+                return $line->getPrice();
+            }
+        }
+
+        return 0.00;
+    }
+
+    /**
      * set an orderline
      * note if the type is not "product" only one line pr. type is handled
      *
@@ -785,6 +834,54 @@ class Orders extends BaseOrders
         );
 
         $this->fromArray($fields);
+    }
+
+    /**
+     * clearPaymentAttributes
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearPaymentAttributes()
+    {
+        $this->clearAttributesByNS( 'payment' );
+    }
+
+    /**
+     * clearAttributesByKey
+     * @param string $key
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function clearAttributesByKey( $key )
+    {
+        $attributes = $this->getOrdersAttributess();
+
+        foreach ($attributes as $index => $attribute)
+        {
+            if ( $attribute->getCKey() == $key )
+            {
+                $attribute->delete();
+            }
+        }
+    }
+
+    /**
+     * clearAttributesByNS
+     * @param string $ns
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    protected function clearAttributesByNS( $ns )
+    {
+        $attributes = $this->getOrdersAttributess();
+
+        foreach ($attributes as $index => $attribute)
+        {
+            if ( $attribute->getNs() == $ns )
+            {
+                $attribute->delete();
+            }
+        }
     }
 
     /**

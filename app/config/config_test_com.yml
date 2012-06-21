@@ -24,8 +24,8 @@ propel:
         connections:
             default:
                 driver:               %database_driver%
-                user:                 %test_com_database_user%
-                password:             %test_com_database_password%
-                dsn:                  mysql:host=%test_com_database_host%;dbname=%test_com_database_name%
+                user:                 %test_dk_database_user%
+                password:             %test_dk_database_password%
+                dsn:                  mysql:host=%test_dk_database_host%;dbname=%test_dk_database_name%
                 options:              {}
                 attributes:           {}

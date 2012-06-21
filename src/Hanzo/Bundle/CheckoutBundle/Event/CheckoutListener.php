@@ -34,6 +34,9 @@ class CheckoutListener
         }
 
         $order->setState( Orders::STATE_PENDING );
+        $order->setInEdit(false);
+        $order->setSessionId($order->getId());
+        $order->save();
 
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
@@ -41,8 +44,18 @@ class CheckoutListener
         $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), array(), 'shipping');
 
         $shipping_cost = 0.00;
-        foreach ($order->getOrderLineShipping() as $line) {
-            $shipping_cost += $line->getPrice();
+        $shipping_fee = 0.00;
+        foreach ($order->getOrderLineShipping() as $line)
+        {
+            switch ($line->getType())
+            {
+              case 'shipping':
+                $shipping_cost += $line->getPrice();
+                break;
+              case 'shipping.fee':
+                $shipping_fee += $line->getPrice();
+                break;
+            }
         }
 
         $card_type = '';
@@ -61,7 +74,7 @@ class CheckoutListener
                   $card_type = 'MasterCard';
                   break;
               case 'VISA':
-                  $card_type =')Visa';
+                  $card_type ='Visa';
                   break;
               case 'ELEC':
                   $card_type = 'Visa Electron';
@@ -85,6 +98,7 @@ class CheckoutListener
             'shipping_title' => $shipping_title,
             'shipping_cost' => $shipping_cost,
             'payment_fee' => $order->getPaymentFee(),
+            'shipping_fee' => $shipping_fee,
             'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
@@ -158,9 +172,5 @@ class CheckoutListener
 
         // trigger ax sync
         $this->ax->sendOrder($order);
-
-        $order->setInEdit(false);
-        $order->setSessionId($order->getId());
-        $order->save();
     }
 }

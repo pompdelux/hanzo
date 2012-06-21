@@ -1,1 +1,2 @@
-pompdelux-test
+pomp-test
+pomptest-db

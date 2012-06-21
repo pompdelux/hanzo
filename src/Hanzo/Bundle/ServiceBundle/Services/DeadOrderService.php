@@ -94,7 +94,7 @@ class DeadOrderService
 
         $transId = $this->getTransactionId($order);
 
-        if ( is_null($pgId) && !is_null($transId) )
+        if ( empty($pgId) && !is_null($transId) )
         {
             // No payment gateway id, but an transId
             try
