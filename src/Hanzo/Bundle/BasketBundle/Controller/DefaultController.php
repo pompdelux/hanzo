@@ -304,9 +304,9 @@ if (!$products2category) {
         }
         else
         {
-            // Make sure that order state is building
+            // Make sure that order state is building, but only if state has not passed state payment ok
             // If embed is set, we do not set the state again (e.g. when embedded on the checkout page)
-            if ( $order->getState() !== Orders::STATE_BUILDING )
+            if ( $order->getState() !== Orders::STATE_BUILDING && $order->getState() < Orders::STATE_PAYMENT_OK )
             {
                 $order->setState( Orders::STATE_BUILDING );
                 $order->save();
