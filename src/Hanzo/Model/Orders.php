@@ -1073,14 +1073,14 @@ class Orders extends BaseOrders
     /**
      * wrap delete() to cleanup payment and ax
      */
-    public function delete()
+    public function delete(PropelPDO $con = null)
     {
         if ($this->getState() >= self::STATE_PAYMENT_OK) {
             $this->cancelPayment();
             Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($order);
         }
 
-        return parent::delete();
+        return parent::delete($con);
     }
 
 } // Orders
