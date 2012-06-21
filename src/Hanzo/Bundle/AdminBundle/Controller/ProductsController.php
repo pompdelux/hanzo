@@ -45,7 +45,7 @@ class ProductsController extends CoreController
                 ->filterBySku($q)
                 ->_or()
                 ->filterById($q_clean)
-                ->find()
+                ->find($this->getDbConnection())
             ;
 
             $parent_category = null;
@@ -56,7 +56,7 @@ class ProductsController extends CoreController
                 ->where('categories.PARENT_ID IS NULL')
                 ->joinWithI18n('en_GB')
                 ->orderById()
-                ->find()
+                ->find($this->getDbConnection())
             ;
             $parent_category = null;
 
@@ -66,12 +66,12 @@ class ProductsController extends CoreController
                 ->filterByParentId($category_id)
                 ->joinWithI18n('en_GB')
                 ->orderById()
-                ->find()
+                ->find($this->getDbConnection())
             ;
 
             $parent_category = CategoriesQuery::create()
                 ->joinWithI18n('en_GB')
-                ->findOneById($category_id)
+                ->findOneById($category_id, $this->getDbConnection())
             ;
 
         } else { // Both $category_id and $subcategory_id are set. Show some products!
@@ -80,12 +80,12 @@ class ProductsController extends CoreController
                 ->useProductsToCategoriesQuery()
                     ->filterByCategoriesId($subcategory_id)
                 ->endUse()
-                ->find()
+                ->find($this->getDbConnection())
             ;
 
             $parent_category = CategoriesQuery::create()
                 ->joinWithI18n('en_GB')
-                ->findOneById($subcategory_id)
+                ->findOneById($subcategory_id, $this->getDbConnection())
             ;
         }
         $categories_list = array();
@@ -123,7 +123,8 @@ class ProductsController extends CoreController
             'parent_category'   => $parent_category,
             'category_id' => $category_id,
             'subcategory_id' => $subcategory_id,
-            'search_query' => $q_clean
+            'search_query' => $q_clean,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -133,7 +134,7 @@ class ProductsController extends CoreController
             ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n('en_GB')
             ->orderByContext()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $product_categories = CategoriesQuery::create()
@@ -141,7 +142,7 @@ class ProductsController extends CoreController
                 ->filterByProductsId($id)
             ->endUse()
             ->orderById()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $current_product = ProductsQuery::create()
@@ -151,21 +152,21 @@ class ProductsController extends CoreController
         $styles = ProductsQuery::create()
             ->filterByMaster($current_product->getSku())
             ->orderBySku()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $all_products = ProductsQuery::create()
             ->filterByMaster(NULL)
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $product_images = ProductsImagesQuery::create()
             ->joinProducts()
-            ->findByProductsId($id)
+            ->findByProductsId($id, $this->getDbConnection())
         ;
 
         $related_products = RelatedProductsQuery::create()
-            ->findByMaster($current_product->getSku())
+            ->findByMaster($current_product->getSku(), $this->getDbConnection())
         ;
 
         $product_images_list = array();
@@ -176,7 +177,7 @@ class ProductsController extends CoreController
                 ->joinWithProducts()
                 ->joinWithProductsImages()
                 ->filterByProductsImagesId($record->getId())
-                ->find()
+                ->find($this->getDbConnection())
             ;
 
             $products_refs_list = array();
@@ -206,7 +207,8 @@ class ProductsController extends CoreController
             'current_product'       => $current_product,
             'product_images'        => $product_images_list,
             'products'              => $all_products,
-            'related_products'      => $related_products
+            'related_products'      => $related_products,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -217,10 +219,10 @@ class ProductsController extends CoreController
         }
 
         $current_product = ProductsQuery::create()
-            ->findOneById($product_id)
+            ->findOneById($product_id, $this->getDbConnection())
         ;
 
-        $domains_availible = DomainsQuery::Create()->find();
+        $domains_availible = DomainsQuery::Create()->find($this->getDbConnection());
 
         foreach ($domains_availible as $domain) {
             $domains_availible_data[$domain->getId()] = $domain->getDomainKey();
@@ -257,17 +259,17 @@ class ProductsController extends CoreController
                 $duplicate = ProductsQuantityDiscountQuery::create()
                     ->filterByProductsMaster($quantity_discount->getProductsMaster())
                     ->filterBySpan($quantity_discount->getSpan())
-                    ->findOneByDomainsId($quantity_discount->getDomainsId())
+                    ->findOneByDomainsId($quantity_discount->getDomainsId(), $this->getDbConnection())
                 ;
 
                 if ($duplicate instanceof ProductsQuantityDiscount) {
 
                     $duplicate->setDiscount($quantity_discount->getDiscount());
-                    $duplicate->save();
+                    $duplicate->save($this->getDbConnection());
 
                 }else{
 
-                    $quantity_discount->save();
+                    $quantity_discount->save($this->getDbConnection());
 
                 }
 
@@ -279,13 +281,14 @@ class ProductsController extends CoreController
             ->joinWithDomains()
             ->filterByProductsMaster($current_product->getSku())
             ->orderByDomainsId()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         return $this->render('AdminBundle:Products:discount.html.twig', array(
             'quantity_discounts'    => $quantity_discounts,
             'form'                  => $form->createView(),
-            'current_product'       => $current_product
+            'current_product'       => $current_product,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -298,11 +301,11 @@ class ProductsController extends CoreController
         $discount = ProductsQuantityDiscountQuery::create()
             ->filterByProductsMaster($master)
             ->filterBySpan($span)
-            ->findOneByDomainsId($domains_id)
+            ->findOneByDomainsId($domains_id, $this->getDbConnection())
         ;
 
         if($discount instanceof ProductsQuantityDiscount){
-            $discount->delete();
+            $discount->delete($this->getDbConnection());
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -336,16 +339,16 @@ class ProductsController extends CoreController
         }
 
         $master = ProductsQuery::create()
-            ->findOneById($id)
+            ->findOneById($id, $this->getDbConnection())
         ;
 
         $styles = ProductsQuery::create()
             ->filterByMaster($master->getSku())
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         if($styles instanceof \PropelObjectCollection){
-            $styles->delete();
+            $styles->delete($this->getDbConnection());
 
             $this->get('session')->setFlash('notice', 'delete.products.styles.success');
 
@@ -365,11 +368,11 @@ class ProductsController extends CoreController
         }
 
         $style = ProductsQuery::create()
-            ->findOneById($id)
+            ->findOneById($id, $this->getDbConnection())
         ;
 
         if($style instanceof ProductsQuery){
-            $style->delete();
+            $style->delete($this->getDbConnection());
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -411,7 +414,7 @@ class ProductsController extends CoreController
         $category_to_product->setProductsId($product_id);
 
         try {
-            $category_to_product->save();
+            $category_to_product->save($this->getDbConnection());
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -437,11 +440,11 @@ class ProductsController extends CoreController
 
         $category_to_product = ProductsToCategoriesQuery::create()
             ->filterByCategoriesId($category_id)
-            ->findOneByProductsId($product_id)
+            ->findOneByProductsId($product_id, $this->getDbConnection())
         ;
 
         if($category_to_product)
-            $category_to_product->delete();
+            $category_to_product->delete($this->getDbConnection());
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -466,7 +469,7 @@ class ProductsController extends CoreController
         $related_products->setSku($sku);
 
         try {
-            $related_products->save();
+            $related_products->save($this->getDbConnection());
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -492,11 +495,11 @@ class ProductsController extends CoreController
 
         $related_product = RelatedProductsQuery::create()
             ->filterByMaster($master)
-            ->findOneBySku($sku)
+            ->findOneBySku($sku, $this->getDbConnection())
         ;
 
         if($related_product instanceof RelatedProducts)
-            $related_product->delete();
+            $related_product->delete($this->getDbConnection());
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -517,7 +520,7 @@ class ProductsController extends CoreController
         $reference->setProductsId($product_id);
 
         try {
-            $reference->save();
+            $reference->save($this->getDbConnection());
             $this->get('replication_manager')->syncStyleGuide('add', $image_id, $product_id);
 
         } catch (PropelException $e) {
@@ -541,11 +544,11 @@ class ProductsController extends CoreController
     {
         $product_ref = ProductsImagesProductReferencesQuery::create()
             ->filterByProductsImagesId($image_id)
-            ->findOneByProductsId($product_id)
+            ->findOneByProductsId($product_id, $this->getDbConnection())
         ;
 
         if($product_ref)
-            $product_ref->delete();
+            $product_ref->delete($this->getDbConnection());
             $this->get('replication_manager')->syncStyleGuide('delete', $image_id, $product_id);
 
         if ($this->getFormat() == 'json') {
@@ -560,14 +563,14 @@ class ProductsController extends CoreController
     {
         $current_category = CategoriesQuery::create()
             ->joinWithI18n()
-            ->findOneById($category_id)
+            ->findOneById($category_id, $this->getDbConnection())
         ;
 
         $categories_result = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NOT NULL')
             ->joinWithI18n()
             ->orderByParentId()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $categories = array();
@@ -589,7 +592,7 @@ class ProductsController extends CoreController
             ->joinWithProductsImages()
             ->orderBySort()
             ->filterByCategoriesId($category_id)
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $records = array();
@@ -609,7 +612,8 @@ class ProductsController extends CoreController
         return $this->render('AdminBundle:Products:sort.html.twig', array(
             'products'          => $records,
             'current_category'  => $current_category,
-            'categories'        => $categories
+            'categories'        => $categories,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -627,9 +631,9 @@ class ProductsController extends CoreController
             $result = ProductsImagesCategoriesSortQuery::create()
                 ->filterByCategoriesId($category_id)
                 ->filterByProductsId($product_id)
-                ->findOneByProductsImagesId($picture_id)
+                ->findOneByProductsImagesId($picture_id, $this->getDbConnection())
                 ->setSort($sort)
-                ->save()
+                ->save($this->getDbConnection())
             ;
 
             $sort++;
@@ -659,7 +663,7 @@ class ProductsController extends CoreController
             ->joinWithProducts()
             ->withColumn('SUM(products_stock.quantity)', 'totalstock')
             ->groupByProductsId()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $stock_data = array();

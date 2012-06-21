@@ -55,7 +55,7 @@ class ConsultantsController extends CoreController
                     ->orderByLastName()
                 ->endUse()
                 ->joinWithCustomers()
-                ->paginate($pager, 50)
+                ->paginate($pager, 50, $this->getDbConnection())
             ;
             
         } else {
@@ -67,7 +67,7 @@ class ConsultantsController extends CoreController
                     ->orderByLastName()
                 ->endUse()
                 ->joinWithCustomers()
-                ->paginate($pager, 50)
+                ->paginate($pager, 50, $this->getDbConnection())
             ;
 
         }
@@ -101,7 +101,7 @@ class ConsultantsController extends CoreController
                 );
         }
 
-        $consultant_settings = SettingsQuery::create()->findByNs('consultant');
+        $consultant_settings = SettingsQuery::create()->findByNs('consultant', $this->getDbConnection());
         $consultant_settings_data = array();
         foreach ($consultant_settings as $consultant_setting) {
             $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue(); 
@@ -146,7 +146,8 @@ class ConsultantsController extends CoreController
             'consultants'     => $consultants,
             'paginate'      => $paginate,
             'consultant_settings' => $form_settings->createView(),
-            'form_export' => $form_export->createView()
+            'form_export' => $form_export->createView(),
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
 
     }
@@ -158,7 +159,7 @@ class ConsultantsController extends CoreController
 
         $consultant = ConsultantsQuery::create()
             ->joinWithCustomers()
-            ->findOneById($id)
+            ->findOneById($id, $this->getDbConnection())
         ;
         $customer = $consultant->getCustomers();
         $consultant_data = array(
@@ -266,7 +267,7 @@ class ConsultantsController extends CoreController
                     ->setPasswordClear($data['password_clear'])
                     ->setPassword(sha1($data['password_clear']))
                     ->setIsActive($data['is_active'])
-                    ->save()
+                    ->save($this->getDbConnection())
                 ;
                 ConsultantsQuery::create()
                     ->findOneById($id)
@@ -274,7 +275,7 @@ class ConsultantsController extends CoreController
                     ->setInfo($data['info'])
                     ->setEventNotes($data['event_notes'])
                     ->setMaxNotified($data['max_notified'])
-                    ->save()
+                    ->save($this->getDbConnection())
                 ;
 
                 $this->get('session')->setFlash('notice', 'consultant.updated');
@@ -283,7 +284,8 @@ class ConsultantsController extends CoreController
 
         return $this->render('AdminBundle:Consultants:view.html.twig', array(
             'form'      => $form->createView(),
-            'consultant'  => $consultant
+            'consultant'  => $consultant,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -300,7 +302,7 @@ class ConsultantsController extends CoreController
         
         $events = EventsQuery::create()
             ->orderByEventDate()
-            ->paginate($pager, 50)
+            ->paginate($pager, 50, $this->getDbConnection())
         ;
 
         $paginate = null;
@@ -327,7 +329,8 @@ class ConsultantsController extends CoreController
             'events'      => $events,
             'paginate'      => $paginate,
             'start' => date('Y-m-d', strtotime('-1 month', time() )),
-            'end' => date('Y-m-d', time())
+            'end' => date('Y-m-d', time()),
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -358,12 +361,12 @@ class ConsultantsController extends CoreController
         $data = array();
         $data[0]['consultant'] = 'consultant';
 
-        $consultants = ConsultantsQuery::create()->joinCustomers()->find(); // Mangler i data[consultants id]
+        $consultants = ConsultantsQuery::create()->joinCustomers()->find($this->getDbConnection()); // Mangler i data[consultants id]
 
         $events = EventsQuery::create()
             ->filterByEventDate($date_filter)
             ->orderByHost()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) { 
@@ -404,13 +407,13 @@ class ConsultantsController extends CoreController
 
         $max_amount = SettingsQuery::create()
             ->filterByNs('consultant')
-            ->findOneByCKey('max_amount')
+            ->findOneByCKey('max_amount', $this->getDbConnection())
             
         ;
 
         $date = SettingsQuery::create()
             ->filterByNs('consultant')
-            ->findOneByCKey('date')
+            ->findOneByCKey('date', $this->getDbConnection())
         ;
 
         if(!$max_amount){
@@ -428,10 +431,10 @@ class ConsultantsController extends CoreController
         }
 
         $max_amount->setCValue($request->get('max_amount'))
-            ->save();
+            ->save($this->getDbConnection());
 
         $date->setCValue($request->get('date'))
-            ->save();
+            ->save($this->getDbConnection());
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(

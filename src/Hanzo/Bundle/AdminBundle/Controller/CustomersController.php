@@ -21,6 +21,7 @@ class CustomersController extends CoreController
     
     public function indexAction($domain_key, $pager)
     {
+
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
@@ -68,7 +69,7 @@ class CustomersController extends CoreController
             ->orderByUpdatedAt('DESC')
             ->orderByFirstName()
             ->orderByLastName()
-            ->paginate($pager, 50)
+            ->paginate($pager, 50, $this->getDbConnection())
         ;
 
         $paginate = null;
@@ -102,14 +103,15 @@ class CustomersController extends CoreController
         }
 
         $domains_availible = DomainsQuery::Create()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         return $this->render('AdminBundle:Customers:list.html.twig', array(
             'customers'     => $customers,
             'paginate'      => $paginate,
             'domain_key' => $domain_key,
-            'domains_availible' => $domains_availible
+            'domains_availible' => $domains_availible,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
 
     }
@@ -121,12 +123,12 @@ class CustomersController extends CoreController
         }
         
         $customer = CustomersQuery::create()
-            ->findOneById($id)
+            ->findOneById($id, $this->getDbConnection())
         ;
 
-        $addresses = AddressesQuery::create()->findByCustomersId($id);
+        $addresses = AddressesQuery::create()->findByCustomersId($id, $this->getDbConnection());
 
-        $groups = GroupsQuery::create()->find();
+        $groups = GroupsQuery::create()->find($this->getDbConnection());
 
         $group_choices = array();
         foreach ($groups as $group) {
@@ -200,7 +202,7 @@ class CustomersController extends CoreController
 
                 $customer->setPassword(sha1($customer->getPasswordClear()));
 
-                $customer->save();
+                $customer->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'customer.updated');
             }
@@ -209,7 +211,8 @@ class CustomersController extends CoreController
         return $this->render('AdminBundle:Customers:view.html.twig', array(
             'form'      => $form->createView(),
             'customer'  => $customer,
-            'addresses' => $addresses
+            'addresses' => $addresses,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -220,11 +223,9 @@ class CustomersController extends CoreController
         }
         
         $customer = CustomersQuery::create()
-            ->findOneById($id);
-
-        if($customer instanceof Customers){
-            $customer->delete();
-        }
+            ->filterById($id)
+            ->delete($this->getDbConnection())
+        ;
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -244,7 +245,7 @@ class CustomersController extends CoreController
         if($type){
             $address = AddressesQuery::create()
                 ->filterByType($type)
-                ->findOneByCustomersId($id);
+                ->findOneByCustomersId($id, $this->getDbConnection());
         }else{
             $address = new Addresses();
         }
@@ -318,7 +319,7 @@ class CustomersController extends CoreController
 
             if ($form->isValid()) {
 
-                $address->save();
+                $address->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'address.updated');
             }
@@ -326,7 +327,8 @@ class CustomersController extends CoreController
 
         return $this->render('AdminBundle:Customers:editAddress.html.twig', array(
             'form'      => $form->createView(),
-            'address'   => $address
+            'address'   => $address,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 }

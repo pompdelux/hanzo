@@ -48,18 +48,19 @@ class CmsController extends CoreController
             ->joinWithI18n($locale)
             ->groupById()
             ->orderById()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $languages_availible = LanguagesQuery::Create()
-            ->find();
+            ->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Cms:menu.html.twig',
             array(
                 'tree'=>$this->getCmsTree(null,null,$locale),
                 'inactive_nodes' => $inactive_nodes,
                 'languages' => $languages_availible,
-                'current_language' => $locale
+                'current_language' => $locale,
+                'database' => $this->getRequest()->getSession()->get('database')
             )
         );
     }
@@ -73,10 +74,10 @@ class CmsController extends CoreController
         $cache = $this->get('cache_manager');
 
         $node = CmsQuery::create()
-            ->findPK($id);
+            ->findPK($id, $this->getDbConnection());
 
         if($node) {
-            $node->delete();
+            $node->delete($this->getDbConnection());
         }
 
         $cache->clearRedisCache();
@@ -99,7 +100,7 @@ class CmsController extends CoreController
 
         $cms_threads = CmsThreadQuery::create()
             ->joinWithI18n($locale)
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $cms_thread_choices = array();
@@ -175,14 +176,14 @@ class CmsController extends CoreController
                 // Vi skal bruge titel på Thread til Path
                 $cms_thread = CmsThreadQuery::create()
                     ->joinWithI18n()
-                    ->findOneById($cms_node->getCmsThreadId());
+                    ->findOneById($cms_node->getCmsThreadId(), $this->getDbConnection());
 
                 $node->setCmsThreadId($cms_node->getCmsThreadId());
                 $node->setPath(Tools::stripText($cms_thread->getTitle()) . '/');
 
                 $node->setIsActive(FALSE);
                 $node->setSettings(json_encode($settings));
-                $node->save();
+                $node->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'cms.added');
                 return $this->redirect($this->generateUrl('admin_cms_edit',
@@ -195,6 +196,7 @@ class CmsController extends CoreController
         }
         return $this->render('AdminBundle:Cms:addcms.html.twig', array(
             'form' => $form->createView(),
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
     public function editAction($id, $locale)
@@ -206,26 +208,26 @@ class CmsController extends CoreController
         $cache = $this->get('cache_manager');
 
         $languages_availible = LanguagesQuery::Create()
-            ->find();
+            ->find($this->getDbConnection());
 
         $node = CmsQuery::create()
             ->joinWithI18n($locale, 'INNER JOIN')
-            ->findPK($id);
+            ->findPK($id, $this->getDbConnection());
 
         if ( !($node instanceof Cms)) { // Oversættelsen findes ikke for det givne ID
 
             // Vi laver en ny Oversættelse. Hent Settings fra en anden og brug dette.
             $settings = CmsI18nQuery::create()
                 ->where('cms_i18n.settings IS NOT NULL')
-                ->findOneById($id);
+                ->findOneById($id, $this->getDbConnection());
 
             $node = CmsQuery::create()
-                ->findPk($id);
+                ->findPk($id, $this->getDbConnection());
 
             // Vi skal bruge titel på Thread til Path
             $cms_thread = CmsThreadQuery::create()
                 ->joinWithI18n($locale)
-                ->findOneById($node->getCmsThreadId());
+                ->findOneById($node->getCmsThreadId(), $this->getDbConnection());
 
             if ($node instanceof Cms) {
                 $node->setLocale($locale);
@@ -253,13 +255,13 @@ class CmsController extends CoreController
                     ->filterByIsActive(TRUE)
                     ->where('cms.id <> ?', $node->getId())
                     //->filterById($node->getId(), Criteria::NOT_EQUAL)
-                    ->findOne()
+                    ->findOne($this->getDbConnection())
                 ;
 
                 // Findes der ikke nogle med samme url-path _eller_ er node IKKE aktiv
                 if( !($urls instanceof Cms) || !$node->getIsActive())
                 {
-                    $node->save();
+                    $node->save($this->getDbConnection());
 
                     if($node->getIsActive()){
                         $cache->clearRedisCache();
@@ -276,7 +278,8 @@ class CmsController extends CoreController
         return $this->render('AdminBundle:Cms:editcmsi18n.html.twig', array(
             'form'      => $form->createView(),
             'node'      => $node,
-            'languages' => $languages_availible
+            'languages' => $languages_availible,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
 
     }
@@ -307,7 +310,7 @@ class CmsController extends CoreController
             else // If sort number are set, increment it
                 $sort[$node['parent_id']]++;
 
-            $cmsNode = CmsQuery::create()->findOneById($node['item_id']);
+            $cmsNode = CmsQuery::create()->findOneById($node['item_id'], $this->getDbConnection());
             if (substr($node['parent_id'],0,1) == 't') // Its a top level cms page. It has no parent_id. This parent_id is the id of which cms_thread
                 $cmsNode->setParentId(null);
             else
@@ -315,7 +318,7 @@ class CmsController extends CoreController
 
             $cmsNode->setSort($sort[$node['parent_id']]);
             $cmsNode->setCmsThreadId($cms_thread);
-            $cmsNode->save();
+            $cmsNode->save($this->getDbConnection());
         }
 
         $cache = $this->get('cache_manager');
@@ -344,16 +347,17 @@ class CmsController extends CoreController
         $redirects = $redirects->orderByDomainKey()
             ->orderBySource()
             ->orderByTarget()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $domains_availible = DomainsQuery::Create()
-            ->find()
+            ->find($this->getDbConnection())
         ;
         return $this->render('AdminBundle:Cms:redirectsIndex.html.twig', array(
             'redirects' => $redirects,
             'domains_availible' => $domains_availible,
-            'domain_key' => $domain_key
+            'domain_key' => $domain_key,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -367,14 +371,14 @@ class CmsController extends CoreController
 
         if($id)
             $redirect = RedirectsQuery::create()
-                ->findOneById($id)
+                ->findOneById($id, $this->getDbConnection())
             ;
         else{
             $redirect = new Redirects();
         }
 
         $domains_availible = DomainsQuery::Create()
-            ->find()
+            ->find($this->getDbConnection())
         ;
         $domains = array();
         foreach ($domains_availible as $domain) {
@@ -409,7 +413,7 @@ class CmsController extends CoreController
 
             if ($form->isValid()) {
 
-                $redirect->save();
+                $redirect->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'admin.cms.redirects.inserted');
                 return $this->redirect($this->generateUrl('admin_cms_redirects'));
@@ -419,7 +423,8 @@ class CmsController extends CoreController
         return $this->render('AdminBundle:Cms:redirectEdit.html.twig', array(
             'form' => $form->createView(),
             'redirect' => $redirect,
-            'domains_availible' => $domains_availible
+            'domains_availible' => $domains_availible,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -430,10 +435,10 @@ class CmsController extends CoreController
         }
 
         $redirect = RedirectsQuery::create()
-            ->findOneById($id);
+            ->findOneById($id, $this->getDbConnection());
 
         if($redirect instanceof Redirects){
-            $redirect->delete();
+            $redirect->delete($this->getDbConnection());
         }
 
         if ($this->getFormat() == 'json') {
@@ -482,7 +487,7 @@ class CmsController extends CoreController
                 ->joinWithI18n($locale)
                 ->orderById()
             ;
-            $result = $query->find();
+            $result = $query->find($this->getDbConnection());
 
             if ($result->count()) {
 
@@ -520,7 +525,7 @@ class CmsController extends CoreController
             else {
                 $query->filterByParentId($parent_id);
             }
-            $result = $query->find();
+            $result = $query->find($this->getDbConnection());
 
             if ($result->count()) {
 

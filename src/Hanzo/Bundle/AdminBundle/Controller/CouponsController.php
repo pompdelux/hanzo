@@ -42,7 +42,7 @@ class CouponsController extends CoreController
 	    	$coupons = $coupons->filterByCode($q);
 	    }
 
-	    $coupons = $coupons->paginate($pager, 20);
+	    $coupons = $coupons->paginate($pager, 20, $this->getDbConnection());
 
 		$paginate = null;
         if ($coupons->haveToPaginate()) {
@@ -76,7 +76,8 @@ class CouponsController extends CoreController
 
         return $this->render('AdminBundle:Coupons:index.html.twig', array(
             'coupons'     => $coupons,
-            'paginate'    => $paginate
+            'paginate'    => $paginate,
+            'database'    => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -90,7 +91,7 @@ class CouponsController extends CoreController
 
     	if ($id) {
     		$coupon = CouponsQuery::create()
-    			->findOneById($id)
+    			->findOneById($id, $this->getDbConnection())
     		;
     	}else{
     		$coupon = new Coupons();
@@ -100,7 +101,7 @@ class CouponsController extends CoreController
     	$currencies = DomainsSettingsQuery::create()
     		->filterByNs('core')
     		->filterByCKey('currency')
-    		->find()
+    		->find($this->getDbConnection())
     	;
 
     	foreach ($currencies as $currency) {
@@ -168,11 +169,11 @@ class CouponsController extends CoreController
             )->getForm()
         ;
 
-        $customers = CustomersQuery::create()->find();
+        $customers = CustomersQuery::create()->find($this->getDbConnection());
 
         $couponstocustomers = CouponsToCustomersQuery::create()
         	->joinWithCustomers()
-        	->findByCouponsId($coupon->getId())
+        	->findByCouponsId($coupon->getId(), $this->getDbConnection())
         ;
 
         $request = $this->getRequest();
@@ -181,7 +182,7 @@ class CouponsController extends CoreController
 
             if ($form->isValid()) {
 
-                $coupon->save();
+                $coupon->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'admin.coupon.inserted');
             }
@@ -191,7 +192,8 @@ class CouponsController extends CoreController
             'form' => $form->createView(),
             'couponstocustomers' => $couponstocustomers,
             'customers' => $customers,
-            'coupon' => $coupon
+            'coupon' => $coupon,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -202,10 +204,10 @@ class CouponsController extends CoreController
         }
         
     	$coupon = CouponsQuery::create()
-            ->findOneById($id);
+            ->findOneById($id, $this->getDbConnection());
 
         if($coupon instanceof Coupons){
-            $coupon->delete();
+            $coupon->delete($this->getDbConnection());
 
 
             if ($this->getFormat() == 'json') {
@@ -239,7 +241,7 @@ class CouponsController extends CoreController
         $customer = CouponsToCustomersQuery::create()
             ->filterByCouponsId($coupon_id)
             ->filterByCustomersId($customer_id)
-            ->findOne()
+            ->findOne($this->getDbConnection())
         ;
 
         if (!($customer instanceof CouponsToCustomers)) {
@@ -247,7 +249,7 @@ class CouponsController extends CoreController
             $customer = new CouponsToCustomers();
             $customer->setCouponsId($coupon_id);
             $customer->setCustomersId($customer_id);
-            $customer->save();
+            $customer->save($this->getDbConnection());
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -275,10 +277,10 @@ class CouponsController extends CoreController
     	$coupon = CouponsToCustomersQuery::create()
     		->filterByCouponsId($coupon_id)
             ->filterByCustomersId($customer_id)
-            ->findOne();
+            ->findOne($this->getDbConnection());
 
         if($coupon instanceof CouponsToCustomers){
-            $coupon->delete();
+            $coupon->delete($this->getDbConnection());
 
 
 	        if ($this->getFormat() == 'json') {
