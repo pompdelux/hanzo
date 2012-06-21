@@ -1012,29 +1012,12 @@ class Orders extends BaseOrders
      * @return bool
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function cancelPayment( )
+    public function cancelPayment()
     {
         if ( $this->getState() > self::STATE_PENDING )
         {
             throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
         }
-
-        /*$attributes = $this->getOrdersAttributess();
-
-        $paytype = false;
-
-        foreach ($attributes as $attribute)
-        {
-            if ( $attribute->getNs() == 'payment' && $attribute->getCKey() == 'paytype' )
-            {
-                $paytype = $attribute->getCValue();
-            }
-        }
-
-        if ( $paytype === false)
-        {
-            throw new Exception( 'No paytype registered on order with id: "'.$this->getId().'"' );
-        }*/
 
         $paymentMethod = $this->getBillingMethod();
 
@@ -1086,4 +1069,18 @@ class Orders extends BaseOrders
 
         return $expected_at;
     }
+
+    /**
+     * wrap delete() to cleanup payment and ax
+     */
+    public function delete(PropelPDO $con = null)
+    {
+        if ($this->getState() >= self::STATE_PAYMENT_OK) {
+            $this->cancelPayment();
+            Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($order);
+        }
+
+        return parent::delete($con);
+    }
+
 } // Orders
