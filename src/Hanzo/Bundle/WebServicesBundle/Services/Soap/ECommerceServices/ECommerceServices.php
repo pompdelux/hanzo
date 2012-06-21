@@ -788,11 +788,17 @@ class ECommerceServices extends SoapService
             // capture
             if ($order->getPaymentGatewayId()) {
                 $result = $this->SalesOrderCapture($data, $order);
+                if ($result !== true) {
+                    $errors = $result;
+                }
             }
         } else {
             // refund
             if (($data->amount < 0) && $order->getPaymentGatewayId()) {
                 $result = $this->SalesOrderRefund($data, $order);
+                if ($result !== true) {
+                    $errors = $result;
+                }
             }
         }
         // ....................
