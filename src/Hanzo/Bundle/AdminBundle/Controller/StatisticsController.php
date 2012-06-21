@@ -59,7 +59,7 @@ class StatisticsController extends CoreController
     		->filterByType('product')
     		->withColumn('SUM(orders_lines.quantity)','TotalProducts')
     		->useOrdersQuery()
-    			->withColumn('COUNT( DISTINCT orders.id)','TotalOrders')
+    			//->withColumn('COUNT( DISTINCT orders.id)','TotalOrders')
     			->withColumn('DATE(orders.createdAt)','CreatedAt')
     			->filterByCreatedAt($date_filter)
                 ->filterByState(array('min' => Orders::STATE_PENDING))
@@ -70,16 +70,28 @@ class StatisticsController extends CoreController
     		$orders_amount = $orders_amount
     			->useOrdersQuery()
     				->useOrdersAttributesQuery()
+                        ->filterByNs('global')
     					->filterByCKey('domain_key')
     					->filterByCValue($domain_key)
     				->endUse()
     				->joinOrdersAttributes()
     			->endUse()
     		;
-    	}
+    	}else{
+            $orders_amount = $orders_amount
+                ->useOrdersQuery()
+                    ->useOrdersAttributesQuery()
+                        ->filterByNs('global')
+                        ->filterByCKey('domain_key')
+                        ->where('orders_attributes.c_value IS NOT NULL')
+                    ->endUse()
+                    ->joinOrdersAttributes()
+                ->endUse()
+            ;
+        }
     	$orders_amount = $orders_amount
-    		->select(array('CreatedAt', 'TotalProducts', 'TotalOrders'))
-    		->groupBy('CreatedAt')
+    		->select(array('CreatedAt', 'TotalProducts', 'Orders.Id', 'OrdersAttributes.CValue'))
+            ->groupBy('Id')
     		->orderBy('CreatedAt')
     		->find()
     	;
@@ -96,15 +108,27 @@ class StatisticsController extends CoreController
             $orders_price = $orders_price
                 ->useOrdersQuery()
                     ->useOrdersAttributesQuery()
+                        ->filterByNs('global')
                         ->filterByCKey('domain_key')
                         ->filterByCValue($domain_key)
                     ->endUse()
                     ->joinOrdersAttributes()
                 ->endUse()
             ;
+        }else{
+            $orders_price = $orders_price
+                ->useOrdersQuery()
+                    ->useOrdersAttributesQuery()
+                        ->filterByNs('global')
+                        ->filterByCKey('domain_key')
+                        ->where('orders_attributes.c_value IS NOT NULL')
+                    ->endUse()
+                    ->joinOrdersAttributes()
+                ->endUse()
+            ;
         }
         $orders_price = $orders_price
-            ->select(array('CreatedAt', 'TotalPrice'))
+            ->select(array('CreatedAt', 'TotalPrice', 'Orders.CurrencyCode'))
             ->groupBy('CreatedAt')
             ->orderBy('CreatedAt')
             ->find()
@@ -118,17 +142,29 @@ class StatisticsController extends CoreController
             'sumproducts' => 0
         );
         foreach ($orders_amount as $order) {
-            $orders_array[$order['CreatedAt']]['TotalProducts'] = $order['TotalProducts']; 
-            $orders_array[$order['CreatedAt']]['TotalOrders'] = $order['TotalOrders'];
-            $orders_array[$order['CreatedAt']]['CreatedAt'] = $order['CreatedAt'];
+            if(!isset($orders_array[$order['CreatedAt']]))
+                $orders_array[$order['CreatedAt']] = array(
+                    'TotalProducts' => 0,
+                    'TotalOrders' => 0,
+                    'CreatedAt' => $order['CreatedAt']
+                );
+            $orders_array[$order['CreatedAt']]['TotalProducts'] += $order['TotalProducts']; 
+            $orders_array[$order['CreatedAt']]['TotalOrders'] += 1; //$order['TotalOrders'];
+            //$orders_array[$order['CreatedAt']]['CreatedAt'] = $order['CreatedAt'];
 
-            $orders_total['sumorders'] += $order['TotalOrders'];
+            $orders_total['sumorders'] += 1; //$order['TotalOrders'];
             $orders_total['sumproducts'] += $order['TotalProducts'];
         }
         foreach ($orders_price as $order) {
-            $orders_array[$order['CreatedAt']]['TotalPrice'] = $order['TotalPrice'];
+            if(!$domain_key && $order['Orders.CurrencyCode'] == 'EUR'){
+                $orders_array[$order['CreatedAt']]['TotalPrice'] = $order['TotalPrice'] * 7.5;
+                $orders_total['sumprice'] += $order['TotalPrice'] * 7.5;
+                
+            }else{
+                $orders_array[$order['CreatedAt']]['TotalPrice'] = $order['TotalPrice'];
+                $orders_total['sumprice'] += $order['TotalPrice'];
+            }
 
-            $orders_total['sumprice'] += $order['TotalPrice'];
         }
 
 		$domains_availible = DomainsQuery::Create()
