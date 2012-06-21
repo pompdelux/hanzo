@@ -150,16 +150,16 @@ class OrdersController extends CoreController
             ->add('state', 'choice',
                 array(
                     'choices' => array(
-                        -110 => 'Payment error',
-                        -100 => 'General error',
-                        -50 => 'Building order',
-                        -30 => 'Order in pre confirm state',
-                        -20 => 'Order in pre payment state',
-                        10 => 'Order in post confirm state',
-                        20 => 'Order payment confirmed',
-                        30 => 'Order pending',
-                        40 => 'Order beeing processed',
-                        50 => 'Order shipped/done',
+                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+                        Orders::STATE_ERROR             => 'General error',
+                        Orders::STATE_BUILDING          => 'Building order',
+                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+                        Orders::STATE_PENDING           => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+                        Orders::STATE_SHIPPED           => 'Order shipped/done',
                     ),
                     'label' => 'admin.orders.state_log.state',
                     'translation_domain' => 'admin',
@@ -314,16 +314,16 @@ class OrdersController extends CoreController
             ->add('state-from', 'choice',
                 array(
                     'choices' => array(
-                        -110 => 'Payment error',
-                        -100 => 'General error',
-                        -50 => 'Building order',
-                        -30 => 'Order in pre confirm state',
-                        -20 => 'Order in pre payment state',
-                        10 => 'Order in post confirm state',
-                        20 => 'Order payment confirmed',
-                        30 => 'Order pending',
-                        40 => 'Order beeing processed',
-                        50 => 'Order shipped/done',
+                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+                        Orders::STATE_ERROR             => 'General error',
+                        Orders::STATE_BUILDING          => 'Building order',
+                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+                        Orders::STATE_PENDING           => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+                        Orders::STATE_SHIPPED           => 'Order shipped/done',
                     ),
                     'label' => 'admin.orders.state_from.label',
                     'translation_domain' => 'admin',
@@ -332,16 +332,16 @@ class OrdersController extends CoreController
             )->add('state-to', 'choice',
                 array(
                     'choices' => array(
-                        -110 => 'Payment error',
-                        -100 => 'General error',
-                        -50 => 'Building order',
-                        -30 => 'Order in pre confirm state',
-                        -20 => 'Order in pre payment state',
-                        10 => 'Order in post confirm state',
-                        20 => 'Order payment confirmed',
-                        30 => 'Order pending',
-                        40 => 'Order beeing processed',
-                        50 => 'Order shipped/done',
+                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+                        Orders::STATE_ERROR             => 'General error',
+                        Orders::STATE_BUILDING          => 'Building order',
+                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+                        Orders::STATE_PENDING           => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+                        Orders::STATE_SHIPPED           => 'Order shipped/done',
                     ),
                     'label' => 'admin.orders.state_to.label',
                     'translation_domain' => 'admin',
@@ -402,21 +402,53 @@ class OrdersController extends CoreController
         $deadOrderBuster = $this->get('deadorder_manager');
         $orders = $deadOrderBuster->getOrders();
 
-        $deadOrderStatus = array();
+        $states = array(
+            Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+            Orders::STATE_ERROR             => 'General error',
+            Orders::STATE_BUILDING          => 'Building order',
+            Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+            Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+            Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+            Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+            Orders::STATE_PENDING           => 'Order pending',
+            Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+            Orders::STATE_SHIPPED           => 'Order shipped/done',
+        );
 
-        foreach ($orders as $order)
-        {
-            $status = $deadOrderBuster->checkOrderForErrors($order);
-            if ( $status['is_error'] )
-            {
-                $deadOrderStatus[] = $status;
-            }
+        foreach ($orders as $order) {
+            $order->statemessage = $states[$order->getState()];
         }
 
         return $this->render('AdminBundle:Orders:dead_orders_list.html.twig', array(
-              'orders' => $deadOrderStatus,
+              'orders' => $orders,
               'database' => $this->getRequest()->getSession()->get('database')
             ));
+    }
+
+    /**
+     * checkDeadOrderAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function checkDeadOrderAction( $id )
+    {
+        $deadOrderBuster = $this->get('deadorder_manager');
+        $order = OrdersQuery::create()->findPK($id);
+        $status = $deadOrderBuster->checkOrderForErrors($order);
+
+        if ( $status['is_error'] )
+        {
+            return $this->json_response(array(
+                'status' => false,
+                'data'   => $status
+                )
+            );
+        }
+        return $this->json_response(array(
+            'status' => true,
+            'data'   => $status
+            )
+        );
     }
 
     /**
