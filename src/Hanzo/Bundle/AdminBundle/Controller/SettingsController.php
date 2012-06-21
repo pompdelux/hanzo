@@ -52,16 +52,16 @@ class SettingsController extends CoreController
                 try{
                     $setting = SettingsQuery::create()
                     ->filterByNs($ns)
-                    ->findOneByCKey($c_key);
+                    ->findOneByCKey($c_key, $this->getDbConnection());
 
                     if ($setting && '' === $c_value) {
 
-                        $setting->delete();
+                        $setting->delete($this->getDbConnection());
 
                     }else{
 
                         $setting->setCValue($c_value);
-                        $setting->save();
+                        $setting->save($this->getDbConnection());
 
                     }
                 }catch(PropelException $e){
@@ -83,7 +83,7 @@ class SettingsController extends CoreController
         $global_settings = SettingsQuery::create()
             ->orderByNs()
             ->where('settings.ns NOT IN ?', $exclude_ns)
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         //Fields names: CKEY__NS << Double underscored
@@ -105,13 +105,14 @@ class SettingsController extends CoreController
         // End of global settings Form
 
         $domains_availible = DomainsQuery::Create()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         return $this->render('AdminBundle:Settings:global.html.twig', array(
             'form'      => $form->getForm()->createView(),
             'add_global_setting_form' => $form_add_global_setting->createView(),
-            'domains_availible' => $domains_availible
+            'domains_availible' => $domains_availible,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -139,16 +140,16 @@ class SettingsController extends CoreController
 
                 try{
                     $setting = DomainsSettingsQuery::create()
-                        ->findOneById($keys[1]);
+                        ->findOneById($keys[1], $this->getDbConnection());
 
                     if ($setting && '' === $c_value) {
 
-                        $setting->delete();
+                        $setting->delete($this->getDbConnection());
 
                     }else{
 
                         $setting->setCValue($c_value);
-                        $setting->save();
+                        $setting->save($this->getDbConnection());
 
                     }
                 }catch(PropelException $e){
@@ -175,7 +176,7 @@ class SettingsController extends CoreController
             ->where('domains_settings.ns NOT IN ?', $exclude_ns)
             ->filterByDomainKey($domain_key)
             ->orderByNs()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $domain_settings_list = array();
@@ -195,13 +196,14 @@ class SettingsController extends CoreController
 
         // End of domain settings Form
 
-        $domains_availible = DomainsQuery::Create()->find();
+        $domains_availible = DomainsQuery::Create()->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Settings:domain.html.twig', array(
             'form'      => $form->getForm()->createView(),
             'add_domain_setting_form' => $form_add_domain_setting->createView(),
             'domains_availible' => $domains_availible,
-            'domain' => $domain_key
+            'domain' => $domain_key,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
     /**
@@ -227,16 +229,16 @@ class SettingsController extends CoreController
 
                 try{
                     $setting = DomainsSettingsQuery::create()
-                        ->findOneById($keys[1]);
+                        ->findOneById($keys[1], $this->getDbConnection());
 
                     if ($setting && '' === $c_value) {
 
-                        $setting->delete();
+                        $setting->delete($this->getDbConnection());
 
                     }else{
 
                         $setting->setCValue($c_value);
-                        $setting->save();
+                        $setting->save($this->getDbConnection());
 
                     }
                 }catch(PropelException $e){
@@ -266,7 +268,7 @@ class SettingsController extends CoreController
             ->where('domains_settings.Ns IN ?', $include_ns)
             ->filterByDomainKey($domain_key)
             ->orderByNs()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $domain_settings_list = array();
@@ -292,7 +294,8 @@ class SettingsController extends CoreController
             'form'      => $form->getForm()->createView(),
             'add_domain_setting_form' => $form_add_domain_setting->createView(),
             'domains_availible' => $domains_availible,
-            'domain' => $domain_key
+            'domain' => $domain_key,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -325,7 +328,7 @@ class SettingsController extends CoreController
             $setting->setCValue($c_value);
 
             try {
-                $setting->save();
+                $setting->save($this->getDbConnection());
             } catch (PropelException $e) {
                 $this->get('session')->setFlash('notice', 'settings.update.failed');
             }
@@ -345,7 +348,7 @@ class SettingsController extends CoreController
             $setting->setTitle($title);
 
             try {
-                $setting->save();
+                $setting->save($this->getDbConnection());
             } catch (PropelException $e) {
                 $this->get('session')->setFlash('notice', 'settings.update.failed');
             }
@@ -369,20 +372,21 @@ class SettingsController extends CoreController
             $washing_instructions = $washing_instructions->filterByLocale($locale);
 
         $washing_instructions = $washing_instructions->orderByCode()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $codes_availible = ProductsWashingInstructionsQuery::create()
             ->groupByCode()
-            ->find();
+            ->find($this->getDbConnection());
         $languages_availible = LanguagesQuery::Create()
-            ->find();
+            ->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Settings:washing_instructions.html.twig', array(
             'washing_instructions'  => $washing_instructions,
             'languages_availible' => $languages_availible,
             'codes_availible' => $codes_availible,
-            'locale' => $locale
+            'locale' => $locale,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -398,11 +402,11 @@ class SettingsController extends CoreController
 
         $washing_instruction = null;
         if ($id)
-            $washing_instruction = ProductsWashingInstructionsQuery::create()->findOneById($id);
+            $washing_instruction = ProductsWashingInstructionsQuery::create()->findOneById($id, $this->getDbConnection());
         else
             $washing_instruction = new ProductsWashingInstructions();
 
-        $languages_availible = LanguagesQuery::Create()->find();
+        $languages_availible = LanguagesQuery::Create()->find($this->getDbConnection());
 
         $languages = array();
         foreach ($languages_availible as $language) {
@@ -438,7 +442,7 @@ class SettingsController extends CoreController
 
             if ($form->isValid()) {
 
-                $washing_instruction->save();
+                $washing_instruction->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'admin.washing.inserted');
             }
@@ -446,7 +450,8 @@ class SettingsController extends CoreController
 
         return $this->render('AdminBundle:Settings:washing_instructionsEdit.html.twig', array(
             'form' => $form->createView(),
-            'id' => $id
+            'id' => $id,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -458,11 +463,11 @@ class SettingsController extends CoreController
 
         $washing_instruction = ProductsWashingInstructionsQuery::create()
             ->filterByLocale($locale)
-            ->findOneById($id)
+            ->findOneById($id, $this->getDbConnection())
         ;
 
         if($washing_instruction instanceof ProductsWashingInstructions)
-            $washing_instruction->delete();
+            $washing_instruction->delete($this->getDbConnection());
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -494,12 +499,12 @@ class SettingsController extends CoreController
                 ->orderByKey()
             ->endUse()
             ->joinWithMessages()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
-        $message_ns_availible = MessagesQuery::create()->find();
+        $message_ns_availible = MessagesQuery::create()->find($this->getDbConnection());
 
-        $languages_availible = LanguagesQuery::Create()->find();
+        $languages_availible = LanguagesQuery::Create()->find($this->getDbConnection());
 
         $languages = array();
         foreach ($languages_availible as $language) {
@@ -510,7 +515,8 @@ class SettingsController extends CoreController
             'messages' => $messages,
             'languages_availible' => $languages_availible,
             'message_ns_availible' => $message_ns_availible,
-            'locale' => $locale
+            'locale' => $locale,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -525,7 +531,7 @@ class SettingsController extends CoreController
         if($locale)
             $message = MessagesI18nQuery::create()
                 ->filterByLocale($locale)
-                ->findOneById($id)
+                ->findOneById($id, $this->getDbConnection())
             ;
         if( !($message instanceof MessagesI18n) ) {
             $message = new MessagesI18n();
@@ -535,7 +541,7 @@ class SettingsController extends CoreController
                 $message->setLocale($locale);
         }
 
-        $languages_availible = LanguagesQuery::Create()->find();
+        $languages_availible = LanguagesQuery::Create()->find($this->getDbConnection());
 
         $languages = array();
         foreach ($languages_availible as $language) {
@@ -570,7 +576,7 @@ class SettingsController extends CoreController
 
             if ($form->isValid()) {
 
-                $message->save();
+                $message->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'admin.message.inserted');
             }
@@ -578,7 +584,8 @@ class SettingsController extends CoreController
 
         return $this->render('AdminBundle:Settings:messageEdit.html.twig', array(
             'form' => $form->createView(),
-            'message' => $message
+            'message' => $message,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -592,7 +599,7 @@ class SettingsController extends CoreController
 
         if($id)
             $message = MessagesQuery::create()
-                ->findOneById($id)
+                ->findOneById($id, $this->getDbConnection())
             ;
         else{
             $message = new Messages();
@@ -620,7 +627,7 @@ class SettingsController extends CoreController
 
             if ($form->isValid()) {
 
-                $message->save();
+                $message->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'admin.message.ns.inserted');
                 return $this->redirect($this->generateUrl('admin_settings_messages_edit', array('id' => $message->getId())));
@@ -629,7 +636,8 @@ class SettingsController extends CoreController
 
         return $this->render('AdminBundle:Settings:messageNsEdit.html.twig', array(
             'form' => $form->createView(),
-            'message' => $message
+            'message' => $message,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -645,10 +653,10 @@ class SettingsController extends CoreController
             $message = $message->filterByLocale($locale);
         }
 
-        $message = $message->findOneById($id);
+        $message = $message->findOneById($id, $this->getDbConnection());
 
         if($message instanceof MessagesI18n){
-            $message->delete();
+            $message->delete($this->getDbConnection());
         }
 
         if ($this->getFormat() == 'json') {
@@ -667,7 +675,7 @@ class SettingsController extends CoreController
 
         $language = null;
         if ($id) {
-            $language = LanguagesQuery::create()->findOneById($id);
+            $language = LanguagesQuery::create()->findOneById($id, $this->getDbConnection());
         }else{
             $language = new Languages();
         }
@@ -713,18 +721,19 @@ class SettingsController extends CoreController
 
             if ($form->isValid()) {
 
-                $language->save();
+                $language->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'admin.languages.inserted');
             }
         }
 
-        $languages = LanguagesQuery::create()->find();
+        $languages = LanguagesQuery::create()->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Settings:languages.html.twig', array(
             'form' => $form->createView(),
             'languages' => $languages,
-            'language_id' => $id
+            'language_id' => $id,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -734,10 +743,10 @@ class SettingsController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $language = LanguagesQuery::create()->findOneById($id);
+        $language = LanguagesQuery::create()->findOneById($id, $this->getDbConnection());
 
         if($language instanceof Languages){
-            $language->delete();
+            $language->delete($this->getDbConnection());
         }
 
         if ($this->getFormat() == 'json') {

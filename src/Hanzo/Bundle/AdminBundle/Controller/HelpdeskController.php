@@ -21,7 +21,7 @@ class HelpdeskController extends CoreController
 
     	$helpdesk_data = HelpdeskDataLogQuery::create()
     		->orderByCreatedAt('DESC')
-            ->paginate($pager, 50)
+            ->paginate($pager, 50, $this->getDbConnection())
     	;
 
     	$paginate = null;
@@ -56,7 +56,8 @@ class HelpdeskController extends CoreController
 
         return $this->render('AdminBundle:Helpdesk:index.html.twig', array(
             'helpdesk_data'  => $helpdesk_data,
-            'paginate'      => $paginate
+            'paginate'      => $paginate,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -70,16 +71,16 @@ class HelpdeskController extends CoreController
     	if('ALL' == $key){
 			$helpdesk_data = HelpdeskDataLogQuery::create()
 				->filterByCreatedAt(array('max' => strtotime('-2 days', time())))
-				->find()
+				->find($this->getDbConnection())
 			;
     	}else{
 			$helpdesk_data = HelpdeskDataLogQuery::create()
-				->findOneByKey($key)
+				->findOneByKey($key, $this->getDbConnection())
 			;	
     	}
 
         if($helpdesk_data instanceof HelpdeskDataLog || $helpdesk_data instanceof PropelCollection){
-            $helpdesk_data->delete();
+            $helpdesk_data->delete($this->getDbConnection());
 
 
 	        if ($this->getFormat() == 'json') {

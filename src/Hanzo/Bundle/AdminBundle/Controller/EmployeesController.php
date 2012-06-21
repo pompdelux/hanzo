@@ -51,7 +51,7 @@ class EmployeesController extends CoreController
                 ->orderByIsActive('DESC')
                 ->orderByFirstName()
                 ->orderByLastName()
-                ->paginate($pager, 50)
+                ->paginate($pager, 50, $this->getDbConnection())
             ;
             
         } else {
@@ -63,7 +63,7 @@ class EmployeesController extends CoreController
                 ->orderByIsActive('DESC')
                 ->orderByFirstName()
                 ->orderByLastName()
-                ->paginate($pager, 50)
+                ->paginate($pager, 50, $this->getDbConnection())
             ;
 
         }
@@ -99,7 +99,8 @@ class EmployeesController extends CoreController
 
         return $this->render('AdminBundle:Employees:list.html.twig', array(
             'employees'     => $employees,
-            'paginate'      => $paginate
+            'paginate'      => $paginate,
+            'database'      => $this->getRequest()->getSession()->get('database')
         ));
     }
 }

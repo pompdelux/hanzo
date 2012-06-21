@@ -4,6 +4,9 @@ namespace Hanzo\Core;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+use Propel;
 
 class CoreController extends Controller
 {
@@ -137,5 +140,19 @@ class CoreController extends Controller
         }
 
         return 'DK';
+    }
+
+    /**
+     * Gets the connection for which database to use
+     *
+     * @return Propel connection              [description]
+     */
+    public function getDbConnection()
+    {
+        if($this->getRequest()->getSession()->get('database')){
+            return Propel::getConnection( $this->getRequest()->getSession()->get('database') , Propel::CONNECTION_WRITE );
+        }else{
+            return Propel::getConnection();
+        }
     }
 }

@@ -31,7 +31,7 @@ class CategoryController extends CoreController
         }
 
         $languages_availible = array();
-        $languages = LanguagesQuery::create()->find();
+        $languages = LanguagesQuery::create()->find($this->getDbConnection());
         foreach ($languages as $language) {
             $languages_availible[$language->getLocale()] = $language->getLocale();
         }
@@ -41,7 +41,7 @@ class CategoryController extends CoreController
         if($locale)
             $categories_i18n = CategoriesI18nQuery::create()
                 ->filterByLocale($locale)
-                ->findOneById($id)
+                ->findOneById($id, $this->getDbConnection())
             ;
         else
             $categories_i18n = new CategoriesI18n();
@@ -73,7 +73,7 @@ class CategoryController extends CoreController
             if ($form_add->isValid()) {
 
                 $categories_i18n->setId($id);
-                $categories_i18n->save();
+                $categories_i18n->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'category.updated');
             }
@@ -93,21 +93,21 @@ class CategoryController extends CoreController
         }
 
         $languages_availible = array();
-        $languages = LanguagesQuery::create()->find();
+        $languages = LanguagesQuery::create()->find($this->getDbConnection());
         foreach ($languages as $language) {
             $languages_availible[$language->getLocale()] = $language->getLocale();
         }
 
         $category = null;
         if($id)
-            $category = CategoriesQuery::create()->findOneById($id);
+            $category = CategoriesQuery::create()->findOneById($id, $this->getDbConnection());
         else
             $category = new Categories();
 
         $parent_categories = CategoriesQuery::create()
             ->where('categories.PARENT_ID IS NULL')
             ->joinWithCategoriesI18n('da_DK')
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $parent_categories_data = array('null' => '--');
@@ -139,13 +139,13 @@ class CategoryController extends CoreController
 
         $categories_i18n = CategoriesI18nQuery::create()
             ->filterById($id)
-            ->find()
+            ->find($this->getDbConnection())
         ;
         $categories_i18n_to_change = null;
         if($locale)
             $categories_i18n_to_change = CategoriesI18nQuery::create()
                 ->filterByLocale($locale)
-                ->findOneById($id)
+                ->findOneById($id, $this->getDbConnection())
             ;
         else
             $categories_i18n_to_change = new CategoriesI18n();
@@ -176,7 +176,7 @@ class CategoryController extends CoreController
 
             if ($form->isValid()) {
 
-                $category->save();
+                $category->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'category.updated');
 
@@ -190,7 +190,8 @@ class CategoryController extends CoreController
             'form_add'  => $form_add->createView(),
             'translations' => $categories_i18n,
             'locale'    => $locale,
-            'id'        => $id
+            'id'        => $id,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -202,11 +203,9 @@ class CategoryController extends CoreController
 
         $categories_i18n = CategoriesI18nQuery::create()
             ->filterByLocale($locale)
-            ->findOneById($id)
+            ->filterById($id)
+            ->delete($this->getDbConnection())
         ;
-
-        if($categories_i18n instanceof CategoriesI18n)
-            $categories_i18n->delete();
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -223,11 +222,9 @@ class CategoryController extends CoreController
         }
         
         $categories = CategoriesQuery::create()
-            ->findOneById($id)
+            ->filterById($id)
+            ->delete($this->getDbConnection())
         ;
-
-        if($categories instanceof Categories)
-            $categories->delete();
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(

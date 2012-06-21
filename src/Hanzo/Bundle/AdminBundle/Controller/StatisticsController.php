@@ -93,7 +93,7 @@ class StatisticsController extends CoreController
     		->select(array('CreatedAt', 'TotalProducts', 'Orders.Id', 'OrdersAttributes.CValue'))
             ->groupBy('Id')
     		->orderBy('CreatedAt')
-    		->find()
+    		->find($this->getDbConnection())
     	;
 
         $orders_price = OrdersLinesQuery::create()
@@ -131,7 +131,7 @@ class StatisticsController extends CoreController
             ->select(array('CreatedAt', 'TotalPrice', 'Orders.CurrencyCode'))
             ->groupBy('CreatedAt')
             ->orderBy('CreatedAt')
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         // Build the array for every day with orders and the array for the sum.
@@ -159,7 +159,6 @@ class StatisticsController extends CoreController
             if(!$domain_key && $order['Orders.CurrencyCode'] == 'EUR'){
                 $orders_array[$order['CreatedAt']]['TotalPrice'] = $order['TotalPrice'] * 7.5;
                 $orders_total['sumprice'] += $order['TotalPrice'] * 7.5;
-                
             }else{
                 $orders_array[$order['CreatedAt']]['TotalPrice'] = $order['TotalPrice'];
                 $orders_total['sumprice'] += $order['TotalPrice'];
@@ -168,7 +167,7 @@ class StatisticsController extends CoreController
         }
 
 		$domains_availible = DomainsQuery::Create()
-			->find()
+			->find($this->getDbConnection())
 		;
         
         return $this->render('AdminBundle:Statistics:index.html.twig', array(
@@ -177,7 +176,8 @@ class StatisticsController extends CoreController
             'domain_key' => $domain_key,
             'domains_availible' => $domains_availible,
             'start' => $start,
-            'end' => $end
+            'end' => $end,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 }
