@@ -20,9 +20,29 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('hanzo_cms');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('twig')
+                    ->children()
+                        ->arrayNode('left_menu')
+                            ->children()
+                                ->scalarNode('type')->defaultValue('main')->end()
+                                ->scalarNode('from')->defaultValue(20)->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                    ->children()
+                        ->arrayNode('sub_menu')
+                            ->children()
+                                ->scalarNode('type')->defaultValue('sub')->end()
+                                ->scalarNode('from')->defaultValue(400)->end()
+                                ->scalarNode('offset')->defaultValue(482)->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
