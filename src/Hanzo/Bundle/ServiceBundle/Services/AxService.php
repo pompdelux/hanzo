@@ -243,7 +243,7 @@ class AxService
             return $syncSalesOrder;
         }
 
-        $this->sendDebtor($order->getCustomers($con), $return);
+        $this->sendDebtor($order->getCustomers($con), $return, $con);
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
         $comment = '';
@@ -303,7 +303,7 @@ class AxService
             ->filterByType('payment')
             ->filterByCustomersId($debitor->getId())
             ->findOne($con)
-            ;
+        ;
 
         $ct->AddressCity = $address->getCity();
         $ct->AddressCountryRegionId = $address->getCountries()->getIso2();
