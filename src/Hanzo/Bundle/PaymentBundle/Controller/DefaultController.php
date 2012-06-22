@@ -31,12 +31,16 @@ class DefaultController extends CoreController
     /**
      * processAction
      *
+     * This shows the customer a page that checks the state of the ordre until it is correct (<= payment ok ) or fails
+     *
      * @return object Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function processAction()
     {
-        $order = OrdersPeer::getCurrent();
+        return $this->render('PaymentBundle:Default:process.html.twig');
+
+        /*$order = OrdersPeer::getCurrent();
 
         if ( $order->getState() <= Orders::STATE_PAYMENT_OK ) // State should be pending by now (set if event order.payment.collected is triggered)
         {
@@ -45,6 +49,6 @@ class DefaultController extends CoreController
         else
         {
             return $this->redirect($this->generateUrl('_checkout_success'));
-        }
+        }*/
     }
 }
