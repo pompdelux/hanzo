@@ -24,6 +24,9 @@ class DeadOrderService
     protected $parameters;
     protected $settings;
 
+    protected $dryrun = false;
+    protected $debug  = false;
+
     public function __construct($parameters, $settings)
     {
         $this->dibsApi = $parameters[0];
@@ -41,11 +44,18 @@ class DeadOrderService
      *
      * Finds and deletes all orders that are dead
      *
+     * @param bool $dryrun Avoid changing orders
+     * @param bool $debug Output debugging info
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function autoCleanup()
+    public function autoCleanup( $dryrun, $debug )
     {
+        $this->dryrun = $dryrun;
+        $this->debug  = $debug;
+
+        $this->debug("Starting DeadOrderService Auto Clean");
+
         $toBeDeleted = array();
         $toBeDeleted = $this->getOrdersToBeDeleted();
         $this->deleteOrders( $toBeDeleted );
@@ -62,6 +72,8 @@ class DeadOrderService
         $toBeDeleted = array();
 
         $orders = $this->getOrders( $limit );
+
+        $this->debug("Found ".count($orders)." that matches filter");
 
         foreach ($orders as $order) 
         {
@@ -90,13 +102,14 @@ class DeadOrderService
         );
 
         $pgId = $order->getPaymentGatewayId();
-        //echo "Processing: ".$order->getId()." (".$pgId.")\n";
+        $this->debug("Processing: order id: ".$order->getId()." (payment gateway id:".$pgId.")");
 
         $transId = $this->getTransactionId($order);
 
         if ( empty($pgId) && !is_null($transId) )
         {
             // No payment gateway id, but an transId
+            $this->debug("Has no payment gateway id, but an transId: ". $transId);
             try
             {
                 $callbackData = $this->dibsApi->call()->callback($order);
@@ -122,12 +135,18 @@ class DeadOrderService
         }
 
         $order->setAttribute( 'transact', 'payment', $transId );
-        $order->save();
+        $this->debug("Setting transId: ". $transId);
+
+        if ( !$this->dryrun )
+        {
+          $order->save();
+        }
 
         try
         {
             $orderStatus = $this->getStatus( $order );
-            error_log(__LINE__.':'.__FILE__.' '.print_r($orderStatus,1)); // hf@bellcom.dk debugging
+            $this->debug( "Order status:");
+            $this->debug( print_r($orderStatus,1) );
         }
         catch (DibsApiCallException $e)
         {
@@ -142,6 +161,7 @@ class DeadOrderService
             {
                 case 2:
                     // Looks like payment is ok -> update order
+                    $this->debug( "Payment looks ok, updating order:");
                     $order->setState( Orders::STATE_PAYMENT_OK );
                     $order->setFinishedAt(time());
 
@@ -170,10 +190,16 @@ class DeadOrderService
 
                     foreach ($fields as $field)
                     {
+                        $this->debug( "Setting field ".$field." to ".$callbackData->data[$field]);
                         $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
                     }
-                    $order->save();
-                    $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
+
+                    if ( !$this->dryrun )
+                    {
+                      $order->save();
+                      $this->debug( "Dispatching order.payment.collected event" );
+                      $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
+                    }
                     break;
 
                 default:
@@ -196,9 +222,19 @@ class DeadOrderService
     {
         foreach ($toBeDeleted as $order) 
         {
-            //echo "Deleting order: ".$order->getId()."\n";
+            $this->debug("Deleting order: ".$order->getId());
             $order->delete();
         }
+    }
+
+    /**
+     * debug
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function debug( $msg )
+    {
+      $this->debug ? error_log('[DEBUG]: '.$msg) : '';
     }
 
     /**
@@ -255,9 +291,9 @@ class DeadOrderService
     { 
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(array('max'=>strtotime('3 hours ago')))
-            ->filterByFinishedAt(null)
+            //->filterByFinishedAt(null)
             ->filterByBillingMethod('dibs')
-            ->filterByState(array('max'=>0))
+            ->filterByState(array('max'>Orders::STATE_PENDING))
             ->find();
 
         return $orders;
