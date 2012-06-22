@@ -77,6 +77,8 @@ class Orders extends BaseOrders
         self::STATE_SHIPPED => 'Order shipped/done',
     );
 
+    protected $ignore_delete_constraints = false;
+
     /**
      * Create a new version of the current order.
      *
@@ -1018,8 +1020,7 @@ class Orders extends BaseOrders
      **/
     public function cancelPayment()
     {
-        if ( $this->getState() > self::STATE_PENDING )
-        {
+        if ( ($this->getState() > self::STATE_PENDING) && (false === $this->getIgnoreDeleteConstraints()) ) {
             throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
         }
 
@@ -1074,12 +1075,22 @@ class Orders extends BaseOrders
         return $expected_at;
     }
 
+    public function setIgnoreDeleteConstraints($v)
+    {
+        $this->ignore_delete_constraints = (bool) $v;
+    }
+
+    public function getIgnoreDeleteConstraints()
+    {
+        return $this->ignore_delete_constraints;
+    }
+
     /**
      * wrap delete() to cleanup payment and ax
      */
     public function delete(PropelPDO $con = null)
     {
-        if ($this->getState() >= self::STATE_PAYMENT_OK) {
+        if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             $this->cancelPayment();
             Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($order);
         }

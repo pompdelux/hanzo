@@ -296,6 +296,7 @@ class OrdersController extends CoreController
 
         $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
         if ($order) {
+            $order->setIgnoreDeleteConstraints(true);
             $order->delete($this->getDbConnection());
         }
 
@@ -375,7 +376,7 @@ class OrdersController extends CoreController
                 ;
                 if($form_data['state-from'] != '')
                     $orders = $orders->filterByState($form_data['state-from']);
-                
+
                 $orders = $orders->find($this->getDbConnection());
 
                 foreach ($orders as $order) {
