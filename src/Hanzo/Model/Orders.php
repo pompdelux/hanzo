@@ -938,10 +938,10 @@ class Orders extends BaseOrders
         return $attachments;
     }
 
-    public function getAttributes()
+    public function getAttributes($con = null)
     {
         $attributes = new \stdClass();
-        foreach ($this->getOrdersAttributess() as $attr) {
+        foreach ($this->getOrdersAttributess(null, $con) as $attr) {
             $ns = str_replace(array(':', '.'), '_', $attr->getNs());
 
             if (empty($attributes->{$ns})) {

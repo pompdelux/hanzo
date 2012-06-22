@@ -86,12 +86,12 @@ class AxService
      * @param  boolean  $return   Returns the object we intend to send to AX.
      * @return boolean
      */
-    public function sendOrder(Orders $order, $return = false)
+    public function sendOrder(Orders $order, $return = false, $con = null)
     {
         Propel::setForceMasterConnection(true);
 
-        $attributes = $order->getAttributes();
-        $lines = $order->getOrdersLiness();
+        $attributes = $order->getAttributes($con);
+        $lines = $order->getOrdersLiness(null, $con);
 
         $products = array();
         $shipping_cost = 0;
@@ -241,7 +241,7 @@ class AxService
             return $syncSalesOrder;
         }
 
-        $this->sendDebtor($order->getCustomers(), $return);
+        $this->sendDebtor($order->getCustomers($con), $return);
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
         $comment = '';
@@ -287,7 +287,7 @@ class AxService
      * @param  boolean   $return    Returns the object we intend to send to AX.
      * @return boolean
      */
-    public function sendDebtor(Customers $debitor, $return = false)
+    public function sendDebtor(Customers $debitor, $return = false, $con = null)
     {
         $ct = new \stdClass();
         $ct->AccountNum = $debitor->getId();
@@ -295,7 +295,8 @@ class AxService
         $address = AddressesQuery::create()
             ->joinWithCountries()
             ->filterByType('payment')
-            ->findOneByCustomersId($debitor->getId())
+            ->filterByCustomersId($debitor->getId())
+            ->findOne($con)
             ;
 
         $ct->AddressCity = $address->getCity();

@@ -39,6 +39,8 @@ class UnlockOrdersCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        Propel::setForceMasterConnection(true);
+
         $orders = OrdersQuery::create()
             ->filterByInEdit(true)
             ->filterByUpdatedAt(array('max' => '-3 hours'))
@@ -66,6 +68,7 @@ class UnlockOrdersCommand extends ContainerAwareCommand
             $order->save();
         }
 
+        Propel::setForceMasterConnection(false);
         // $q = Propel::getConnection()->getLastExecutedQuery();
         // $output->writeln('<info>'.$q.'</info>');
     }

@@ -248,7 +248,10 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
+        $order = OrdersQuery::create()
+            ->filterById($order_id)
+            ->findOne($this->getDbConnection())
+        ;
 
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
@@ -267,7 +270,7 @@ class OrdersController extends CoreController
             ->filterByOrdersId($order_id)
             ->delete($this->getDbConnection());
 
-        $status = $this->get('ax_manager')->sendOrder($order);
+        $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
         $message = $status ?
             'Ordren #%d er nu sendt' :
             'Ordren #%d kunne ikke gensendes !'
