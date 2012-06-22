@@ -7,6 +7,7 @@ services:
         arguments: [ @mail_manager, @ax_manager, @translator ]
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected }
+            - { name: kernel.event_listener, event: order.payment.failed, method: onPaymentFailed }
 
     hanzo.order:
         class: Hanzo\Bundle\CheckoutBundle\Event\OrderListener
