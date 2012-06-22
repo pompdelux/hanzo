@@ -126,4 +126,19 @@ class DibsController extends CoreController
             return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes, 'form_fields' => $settings ));
         }
     }
+
+    /**
+     * stateCheckAction
+     *
+     * Checks the current state of the order, this should allow the callback from dibs to be completed
+     *
+     * @return array
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function stateCheckAction()
+    {
+        $order = OrdersPeer::getCurrent();
+
+        return $this->json_response( array('state' => $order->getState() ) );
+    }
 }
