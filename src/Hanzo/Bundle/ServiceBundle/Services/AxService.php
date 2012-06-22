@@ -88,7 +88,9 @@ class AxService
      */
     public function sendOrder(Orders $order, $return = false, $con = null)
     {
-        Propel::setForceMasterConnection(true);
+        if (null === $con) {
+            Propel::setForceMasterConnection(true);
+        }
 
         $attributes = $order->getAttributes($con);
         $lines = $order->getOrdersLiness(null, $con);
@@ -197,8 +199,8 @@ class AxService
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
         $salesTable->PaymentId               = isset( $attributes->payment->transact ) ? $attributes->payment->transact : '';
-        $salesTable->HomePartyId             = $attributes->global->HomePartyId;
-        $salesTable->SalesResponsible        = $attributes->global->SalesResponsible;
+        $salesTable->HomePartyId             = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
+        $salesTable->SalesResponsible        = isset($attributes->global->SalesResponsible) ? $attributes->global->SalesResponsible : '';
         $salesTable->CurrencyCode            = $order->getCurrencyCode();
         $salesTable->SalesName               = $order->getFirstName() . ' ' . $order->getLastName();
         $salesTable->SalesType               = 'Sales';
@@ -271,6 +273,10 @@ class AxService
             $entry->setComment($comment);
         }
         $entry->save();
+
+        if (null === $con) {
+            Propel::setForceMasterConnection(false);
+        }
 
         if ($state == 'ok') {
             return true;
