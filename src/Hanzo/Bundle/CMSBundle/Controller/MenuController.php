@@ -9,11 +9,11 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
-use Hanzo\Model\Cms,
-    Hanzo\Model\CmsPeer,
-    Hanzo\Model\CmsQuery,
-    Hanzo\Model\CmsI18n,
-    Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\Cms;
+use Hanzo\Model\CmsPeer;
+use Hanzo\Model\CmsQuery;
+use Hanzo\Model\CmsI18n;
+use Hanzo\Model\CmsI18nQuery;
 
 class MenuController extends CoreController
 {
@@ -22,7 +22,6 @@ class MenuController extends CoreController
     protected $path = NULL;
 
     protected $cms_thread = 20;
-
     protected $menu = array();
 
     public function menuAction($type, $thread = NULL, $from = NULL, $offset = NULL)
