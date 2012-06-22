@@ -322,6 +322,10 @@ class Orders extends BaseOrders
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
 
+        if ($this->getState() !== self::STATE_BUILDING) {
+            $this->setState(self::STATE_BUILDING);
+        }
+
         // add meta info to the order
         if (0 == $lines->count()) {
             $this->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));

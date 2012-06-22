@@ -33,6 +33,9 @@ class CheckoutListener
             return;
         }
 
+        // need copy for later
+        $in_edit = $order->getInEdit();
+
         $order->setState( Orders::STATE_PENDING );
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
@@ -137,7 +140,7 @@ class CheckoutListener
         }
 
         // Handle payment canceling of old order
-        if ($order->getInEdit()) {
+        if ($in_edit) {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
