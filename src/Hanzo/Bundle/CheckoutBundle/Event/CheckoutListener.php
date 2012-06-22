@@ -23,6 +23,35 @@ class CheckoutListener
         $this->translator = $translator;
     }
 
+    /**
+     * onPaymentFailed
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function onPaymentFailed(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+
+        $message = 'Order id: '.$order->getID().'<br>
+            Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br> 
+            Kunde email: '. $order->getEmail() .'<br> 
+            ';
+
+        try
+        {
+            $this->mailer->setSubject( sprintf('[FEJL] Ordre nr: %d fejlede', $order->getId()) )
+            ->setBody('Beskeden er i HTML format')
+            ->addPart($message,'text/html')
+            ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
+            ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
+            ->send();
+        } 
+        catch (\Swift_TransportException $e) 
+        {
+            Tools::log($e->getMessage());
+        }
+    }
+
     public function onPaymentCollected(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
