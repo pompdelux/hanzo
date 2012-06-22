@@ -146,6 +146,16 @@ class MailService
         return $this;
     }
 
+    /**
+     * addPart
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function addPart($message,$mime)
+    {
+        $this->swift->addPart($message,$mime);
+        return $this;
+    }
 
     /**
      * Send the email

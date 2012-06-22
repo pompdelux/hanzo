@@ -559,8 +559,12 @@ class DefaultController extends CoreController
      **/
     public function failedAction()
     {
+        $order = OrdersPeer::getCurrent();
+        $this->get('event_dispatcher')->dispatch('order.payment.failed', new FilterOrderEvent($order));
+
         return $this->render('CheckoutBundle:Default:failed.html.twig', array(
             'error' => '', // NICETO: pass error from paymentmodule to this page
+            'order_id' => $order->getId()
             ));
     }
 
