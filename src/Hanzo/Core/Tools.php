@@ -238,7 +238,7 @@ class Tools
             $env = 'dk';
         }
 
-        if (($sub == 'konsulent') || ($sub == 'kons')) {
+        if ($sub == 'c') {
             $env = $env.'_kons';
         }
 
