@@ -154,6 +154,12 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     public function cancel( Customers $customer, Orders $order )
     {
         $attributes = $order->getAttributes();
+
+        if ( !isset($attributes->payment->transact) )
+        {
+            throw new DibsApiCallException( 'DIBS api cancel action: order contains no transaction id, order id was: '.$order->getId() );
+        }
+
         $transaction = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
 
@@ -166,8 +172,6 @@ class DibsApiCall implements PaymentMethodApiCallInterface
             'md5key'    => $this->api->md5keyFromString( $stringToHash ),
             'orderid'   => $paymentGatewayId,
         );
-
-        error_log(__LINE__.':'.__FILE__.' '.print_r($params,1)); // hf@bellcom.dk debugging
 
         return $this->call('cgi-adm/cancel.cgi', $params, self::USE_AUTH_HEADERS );
     }
