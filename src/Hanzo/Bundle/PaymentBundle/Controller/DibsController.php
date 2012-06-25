@@ -76,6 +76,10 @@ class DibsController extends CoreController
     {
         $translator = $this->get('translator');
 
+        $order = OrdersPeer::getCurrent();
+        $order->setState( Orders::STATE_PRE_PAYMENT );
+        $order->save();
+
         $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
 
         return $this->redirect($this->generateUrl('_checkout'));
