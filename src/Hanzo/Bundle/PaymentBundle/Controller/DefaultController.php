@@ -36,11 +36,18 @@ class DefaultController extends CoreController
      * @return object Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function processAction()
+    public function processAction($order_id)
     {
+        $order = OrdersPeer::getCurrent();
+
+        if ( $order->getId() !== $order_id )
+        {
+          error_log(__LINE__.':'.__FILE__.' WTF '); // hf@bellcom.dk debugging 
+        }
+
         return $this->render('PaymentBundle:Default:process.html.twig');
 
-        /*$order = OrdersPeer::getCurrent();
+        /*;
 
         if ( $order->getState() <= Orders::STATE_PAYMENT_OK ) // State should be pending by now (set if event order.payment.collected is triggered)
         {

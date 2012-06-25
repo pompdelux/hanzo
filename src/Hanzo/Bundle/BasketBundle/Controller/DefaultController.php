@@ -54,7 +54,7 @@ class DefaultController extends CoreController
             $order = OrdersPeer::getCurrent();
 
             // hf@bellcom.dk, 23-jun-2012: check order state -->>
-            if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
+            if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
             {
                 return $this->json_response(array(
                     'status' => FALSE,
