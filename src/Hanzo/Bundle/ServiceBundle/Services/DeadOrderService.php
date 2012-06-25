@@ -293,7 +293,7 @@ class DeadOrderService
             ->filterByUpdatedAt(array('max'=>strtotime('3 hours ago')))
             //->filterByFinishedAt(null)
             ->filterByBillingMethod('dibs')
-            ->filterByState(array('max'>Orders::STATE_PENDING))
+            ->filterByState(array( 'max' => Orders::STATE_PENDING) )
             ->find();
 
         return $orders;
