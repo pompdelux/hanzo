@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
@@ -31,11 +32,17 @@ class CheckoutListener
     public function onPaymentFailed(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
+        $host  = gethostname();
+        $domainKey = Hanzo::getInstance()->get('core.domain_key');
 
         $message = 'Order id: '.$order->getID().'<br>
             Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br> 
             Kunde email: '. $order->getEmail() .'<br> 
+            Host name: '.$host.'<br>
+            Domain key: '.$domainKey.'<br>
             ';
+
+        Tools::log('Payment failed: '.str_replace('<br>',"\n", $message ));
 
         try
         {
@@ -176,7 +183,14 @@ class CheckoutListener
             if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                $oldOrder->cancelPayment();
+                try 
+                {
+                  $oldOrder->cancelPayment();
+                }
+                catch (\Exception $e)
+                {
+                  Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                }
             }
         }
 
