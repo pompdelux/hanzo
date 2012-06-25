@@ -66,12 +66,21 @@ class DibsApi implements PaymentMethodApiInterface
     protected $settings = array();
 
     /**
+     * undocumented class variable
+     *
+     * @var Router
+     **/
+    protected $router;
+
+    /**
      * __construct
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct( $params, Array $settings )
+    public function __construct( $parameters, Array $settings )
     {
+        $this->router = $parameters[0];
+
         $this->settings = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
@@ -363,9 +372,9 @@ class DibsApi implements PaymentMethodApiInterface
             "merchant"     => $this->getMerchant(),
             "currency"     => $currency,
             // Set in the template:
-            /*"cancelurl"    => "/payment/dibs/cancel",
-            "callbackurl"  => "/payment/dibs/callback",
-            "accepturl"    => "/payment/dibs/ok",*/
+            "cancelurl"    => $this->router->generate('PaymentBundle_dibs_cancel'),
+            "callbackurl"  => $this->router->generate('PaymentBundle_dibs_callback'),
+            "accepturl"    => $this->router->generate('PaymentBundle_process', array( 'order_id' => $orderId )),
             //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             //"paytype"      => '', // This _must_ be set in the form
