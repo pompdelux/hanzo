@@ -212,7 +212,7 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers(), true);
+        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers($this->getDbConnection()), true);
         $order = $this->get('ax_manager')->sendOrder($order, true);
 
         if ('json' === $this->getFormat()) {
