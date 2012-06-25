@@ -207,7 +207,13 @@ class DefaultController extends CoreController
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
+                    error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                     $customer->setPassword(sha1($customer->getPasswordClear()));
+                }
+                else
+                {
+                    $customer->setPasswordClear($customer->getPassword());
+                    $customer->setPassword(sha1($customer->getPassword()));
                 }
                 $customer->save();
 

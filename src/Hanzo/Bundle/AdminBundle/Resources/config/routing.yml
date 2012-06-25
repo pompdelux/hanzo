@@ -2,6 +2,12 @@ admin:
     pattern:  /admin/
     defaults: { _controller: AdminBundle:Default:index }
 
+admin_database:
+    pattern:  /admin/database/{name}
+    defaults: 
+        _controller: AdminBundle:Default:setDatabaseConnection
+        name: default
+
 admin_settings:
     pattern:  /admin/settings/
     defaults: { _controller: AdminBundle:Settings:index }
@@ -389,6 +395,11 @@ admin_orders_dead_action:
   pattern:  /admin/orders/dead/{action}
   defaults: { _controller: AdminBundle:Orders:performDead, _format: json }
   requirements: { _format: (xml|json), _method: POST }
+
+admin_orders_check_order:
+  pattern:  /admin/orders/dead/check/{id}
+  defaults: { _controller: AdminBundle:Orders:checkDeadOrder, _format: json, id: null }
+  requirements: { _format: (xml|json) }
 
 admin_employees:
     pattern:  /admin/employees/{pager}

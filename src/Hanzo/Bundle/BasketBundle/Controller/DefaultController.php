@@ -53,6 +53,16 @@ class DefaultController extends CoreController
             $date = $this->get('stock')->decrease($product, $quantity);
             $order = OrdersPeer::getCurrent();
 
+            // hf@bellcom.dk, 23-jun-2012: check order state -->>
+            if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
+            {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('order.state_pre_payment.locked', array(), 'checkout')
+                ));
+            }
+            // <<-- hf@bellcom.dk, 23-jun-2012: check order state
+
             if ($order->isNew()) {
                 $order->setLanguagesId(Hanzo::getInstance()->get('core.language_id'));
             }
@@ -302,16 +312,19 @@ if (!$products2category) {
         if ($embed) {
             $template = 'BasketBundle:Default:block.html.twig';
         }
-        else
-        {
-            // Make sure that order state is building, but only if state has not passed state payment ok
-            // If embed is set, we do not set the state again (e.g. when embedded on the checkout page)
-            if ( $order->getState() !== Orders::STATE_BUILDING && $order->getState() < Orders::STATE_PAYMENT_OK )
-            {
-                $order->setState( Orders::STATE_BUILDING );
-                $order->save();
-            }
-        }
+        // else
+        // {
+        //     // Make sure that order state is building, but only if state has not passed state payment ok
+        //     // If embed is set, we do not set the state again (e.g. when embedded on the checkout page)
+        //     if ( ($order->getState() !== Orders::STATE_BUILDING) && ($order->getState() < Orders::STATE_PAYMENT_OK) )
+        //     {
+        //         $attributes = $order->getAttributes();
+        //         if (empty($attributes->payment->transact)) {
+        //             $order->setState( Orders::STATE_BUILDING );
+        //             $order->save();
+        //         }
+        //     }
+        // }
 
         return $this->render($template, array(
             'embedded' => $embed,

@@ -65,8 +65,10 @@ assetic:
     java: /usr/bin/java
     filters:
         cssrewrite: null
-        yui_css: { jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar' }
-        yui_js: { jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar' }
+        yui_css:
+            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+        yui_js:
+            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
 swiftmailer:
     transport: '%mailer_transport%'
     host: '%mailer_host%'
@@ -85,10 +87,31 @@ jms_security_extra:
     secure_all_services: false
 snc_redis:
     clients:
-        default: { type: predis, alias: default, dsn: 'redis://%redis_cache1_host%:%redis_cache1_port%/%redis_cache1_database%' }
-        session: { type: predis, alias: session, dsn: 'redis://%redis_session_host%:%redis_session_port%/%redis_session_database%' }
+        default:
+            type: predis
+            alias: default
+            dsn: 'redis://%redis_cache1_host%:%redis_cache1_port%/%redis_cache1_database%'
+            options:
+                connection_persistent: true
+        session:
+            type: predis
+            alias: session
+            dsn: 'redis://%redis_session_host%:%redis_session_port%/%redis_session_database%'
+            options:
+                connection_persistent: true
     session:
         client: session
         prefix: hanzo.session
 simple_things_form_extra:
     translation_domain_forward_compat: true
+
+# settings for the cms bundle.
+hanzo_cms:
+    twig:
+        left_menu:
+            type: main
+            from: 20
+        sub_menu:
+            type: sub
+            from: 400
+            offset: 482

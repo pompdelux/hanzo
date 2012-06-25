@@ -1,8 +1,0 @@
-{% extends '::adminbase.html.twig' %}
-
-{% block content %}
-
-<h2>Ordresynkronisering</h2>
-<p><a href="{{ path('admin_ordrs_failed_sync') }}">» Vis liste over fejlede ordre synkroniseringer</a></p>
-
-{% endblock %}

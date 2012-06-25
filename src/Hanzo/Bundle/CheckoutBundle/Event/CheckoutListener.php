@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
+use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
@@ -23,6 +24,41 @@ class CheckoutListener
         $this->translator = $translator;
     }
 
+    /**
+     * onPaymentFailed
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function onPaymentFailed(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+        $host  = gethostname();
+        $domainKey = Hanzo::getInstance()->get('core.domain_key');
+
+        $message = 'Order id: '.$order->getID().'<br>
+            Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br> 
+            Kunde email: '. $order->getEmail() .'<br> 
+            Host name: '.$host.'<br>
+            Domain key: '.$domainKey.'<br>
+            ';
+
+        Tools::log('Payment failed: '.str_replace('<br>',"\n", $message ));
+
+        try
+        {
+            $this->mailer->setSubject( sprintf('[FEJL] Ordre nr: %d fejlede', $order->getId()) )
+            ->setBody('Beskeden er i HTML format')
+            ->addPart($message,'text/html')
+            ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
+            ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
+            ->send();
+        } 
+        catch (\Swift_TransportException $e) 
+        {
+            Tools::log($e->getMessage());
+        }
+    }
+
     public function onPaymentCollected(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
@@ -32,6 +68,9 @@ class CheckoutListener
             // woopsan!
             return;
         }
+
+        // need copy for later
+        $in_edit = $order->getInEdit();
 
         $order->setState( Orders::STATE_PENDING );
         $order->setInEdit(false);
@@ -137,14 +176,21 @@ class CheckoutListener
         }
 
         // Handle payment canceling of old order
-        if ($order->getInEdit()) {
+        if ($in_edit) {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
             if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                $oldOrder->cancelPayment();
+                try 
+                {
+                  $oldOrder->cancelPayment();
+                }
+                catch (\Exception $e)
+                {
+                  Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                }
             }
         }
 

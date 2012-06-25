@@ -221,9 +221,6 @@ class DefaultController extends CoreController
         // Currently hardcoded to 0 vat
         // It also only supports one order line with payment fee, as all others are deleted
         $order->setOrderLinePaymentFee( $data['selectedMethod'], $api->getFee(), 0, $api->getFeeExternalId() );
-
-        // If the customer goes back to the basket, state is back to building
-        $order->setState( Orders::STATE_PRE_PAYMENT );
         $order->save();
     }
 
@@ -280,6 +277,12 @@ class DefaultController extends CoreController
                 ),
             ));
         }
+
+
+        // If the customer cancels payment, state is back to building
+        // Customer is only allowed to add products to the basket if state is >= pre payment 
+        $order->setState( Orders::STATE_PRE_PAYMENT );
+        $order->save();
 
         return $this->json_response(array(
             'status' => true,
@@ -559,8 +562,12 @@ class DefaultController extends CoreController
      **/
     public function failedAction()
     {
+        $order = OrdersPeer::getCurrent();
+        $this->get('event_dispatcher')->dispatch('order.payment.failed', new FilterOrderEvent($order));
+
         return $this->render('CheckoutBundle:Default:failed.html.twig', array(
             'error' => '', // NICETO: pass error from paymentmodule to this page
+            'order_id' => $order->getId()
             ));
     }
 

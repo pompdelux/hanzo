@@ -7,6 +7,8 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
+use Hanzo\Core\Tools;
+
 /**
  * This is the class that loads and manages your bundle configuration
  *
@@ -22,7 +24,28 @@ class HanzoCMSExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        foreach($config as $key => $value) {
+            $container->setParameter('hanzo_cms.'.$key, $value);
+        }
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+
+
+
+    /**
+     * Returns the base path for the XSD files.
+     *
+     * @return string The XSD base path
+     */
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/schema';
+    }
+
+    public function getNamespace()
+    {
+        return 'http://symfony.com/schema/dic/hanzo_cms';
     }
 }

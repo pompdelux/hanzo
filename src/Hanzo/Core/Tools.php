@@ -211,6 +211,42 @@ class Tools
 
 
     /**
+     * Figure out wich environment to use for the requested domain
+     *
+     * @return string
+     */
+    public static function mapDomainToEnvironment()
+    {
+        // we use environments to switch domain configurations.
+        $env_map = array(
+            'com' => 'com',
+            'dk' => 'dk',
+            'fi' => 'fi',
+            'nl' => 'nl',
+            'no' => 'no',
+            'se' => 'se',
+        );
+
+        $pcs = explode('.', $_SERVER['HTTP_HOST']);
+
+        $sub = array_shift($pcs);
+        $tld = array_pop($pcs);
+
+        if (isset($env_map[$tld])) {
+            $env = $env_map[$tld];
+        } else {
+            $env = 'dk';
+        }
+
+        if ($sub == 'c') {
+            $env = $env.'_kons';
+        }
+
+        return $env;
+    }
+
+
+    /**
      * image helpers
      * @NICETO move to own class...
      */

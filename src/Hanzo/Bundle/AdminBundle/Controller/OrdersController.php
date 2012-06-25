@@ -7,7 +7,7 @@ use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
+use Propel;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
@@ -21,6 +21,7 @@ class OrdersController extends CoreController
 
     public function indexAction($customer_id, $domain_key, $pager)
     {
+
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
@@ -57,7 +58,7 @@ class OrdersController extends CoreController
         }
 
         $orders = $orders->orderByCreatedAt('DESC')
-            ->paginate($pager, 20)
+            ->paginate($pager, 20, $this->getDbConnection())
         ;
 
         $order_data = array();
@@ -69,7 +70,7 @@ class OrdersController extends CoreController
                 ->withColumn('SUM(orders_lines.quantity)','TotalLines')
                 ->withColumn('SUM(orders_lines.price)','TotalPrice')
                 ->groupByOrdersId()
-                ->findOne()
+                ->findOne($this->getDbConnection())
             ;
 
             if ($orders_count instanceof OrdersLines) {
@@ -110,13 +111,14 @@ class OrdersController extends CoreController
             );
         }
 
-        $domains_availible = DomainsQuery::Create()->find();
+        $domains_availible = DomainsQuery::Create()->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Orders:list.html.twig', array(
             'orders'  => $order_data,
             'paginate' => $paginate,
             'domains_availible' => $domains_availible,
-            'domain_key' => $domain_key
+            'domain_key' => $domain_key,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -127,20 +129,20 @@ class OrdersController extends CoreController
         }
 
         $order = OrdersQuery::create()
-            ->findOneById($order_id)
+            ->findOneById($order_id, $this->getDbConnection())
         ;
 
         $order_lines = OrdersLinesQuery::create()
             ->filterByOrdersId($order_id)
             ->orderByProductsSku()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         $order_attributes = OrdersAttributesQuery::create()
             ->filterByOrdersId($order_id)
             ->orderByNs()
             ->orderByCKey()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         // FIXME: pull from orders object
@@ -148,16 +150,16 @@ class OrdersController extends CoreController
             ->add('state', 'choice',
                 array(
                     'choices' => array(
-                        -110 => 'Payment error',
-                        -100 => 'General error',
-                        -50 => 'Building order',
-                        -30 => 'Order in pre confirm state',
-                        -20 => 'Order in pre payment state',
-                        10 => 'Order in post confirm state',
-                        20 => 'Order payment confirmed',
-                        30 => 'Order pending',
-                        40 => 'Order beeing processed',
-                        50 => 'Order shipped/done',
+                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+                        Orders::STATE_ERROR             => 'General error',
+                        Orders::STATE_BUILDING          => 'Building order',
+                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+                        Orders::STATE_PENDING           => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+                        Orders::STATE_SHIPPED           => 'Order shipped/done',
                     ),
                     'label' => 'admin.orders.state_log.state',
                     'translation_domain' => 'admin',
@@ -175,7 +177,7 @@ class OrdersController extends CoreController
                 $form_data = $form_state->getData();
 
                 $order->setState($form_data['state']);
-                $order->save();
+                $order->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'admin.orders.state_log.inserted');
             }
@@ -185,7 +187,8 @@ class OrdersController extends CoreController
             'order'  => $order,
             'order_lines' => $order_lines,
             'order_attributes' => $order_attributes,
-            'form_state' => $form_state->createView()
+            'form_state' => $form_state->createView(),
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -197,7 +200,7 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id);
+        $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -209,7 +212,7 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers(), true);
+        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers($this->getDbConnection()), true);
         $order = $this->get('ax_manager')->sendOrder($order, true);
 
         if ('json' === $this->getFormat()) {
@@ -230,10 +233,11 @@ class OrdersController extends CoreController
 
         $orders = OrdersSyncLogQuery::create()
             ->filterByState('failed')
-            ->find();
+            ->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -244,7 +248,10 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id);
+        $order = OrdersQuery::create()
+            ->filterById($order_id)
+            ->findOne($this->getDbConnection())
+        ;
 
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
@@ -261,9 +268,9 @@ class OrdersController extends CoreController
         OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->filterByOrdersId($order_id)
-            ->delete();
+            ->delete($this->getDbConnection());
 
-        $status = $this->get('ax_manager')->sendOrder($order);
+        $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
         $message = $status ?
             'Ordren #%d er nu sendt' :
             'Ordren #%d kunne ikke gensendes !'
@@ -290,9 +297,10 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id);
+        $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
         if ($order) {
-            $order->delete();
+            $order->setIgnoreDeleteConstraints(true);
+            $order->delete($this->getDbConnection());
         }
 
         if ('json' === $this->getFormat()) {
@@ -310,16 +318,16 @@ class OrdersController extends CoreController
             ->add('state-from', 'choice',
                 array(
                     'choices' => array(
-                        -110 => 'Payment error',
-                        -100 => 'General error',
-                        -50 => 'Building order',
-                        -30 => 'Order in pre confirm state',
-                        -20 => 'Order in pre payment state',
-                        10 => 'Order in post confirm state',
-                        20 => 'Order payment confirmed',
-                        30 => 'Order pending',
-                        40 => 'Order beeing processed',
-                        50 => 'Order shipped/done',
+                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+                        Orders::STATE_ERROR             => 'General error',
+                        Orders::STATE_BUILDING          => 'Building order',
+                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+                        Orders::STATE_PENDING           => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+                        Orders::STATE_SHIPPED           => 'Order shipped/done',
                     ),
                     'label' => 'admin.orders.state_from.label',
                     'translation_domain' => 'admin',
@@ -328,16 +336,16 @@ class OrdersController extends CoreController
             )->add('state-to', 'choice',
                 array(
                     'choices' => array(
-                        -110 => 'Payment error',
-                        -100 => 'General error',
-                        -50 => 'Building order',
-                        -30 => 'Order in pre confirm state',
-                        -20 => 'Order in pre payment state',
-                        10 => 'Order in post confirm state',
-                        20 => 'Order payment confirmed',
-                        30 => 'Order pending',
-                        40 => 'Order beeing processed',
-                        50 => 'Order shipped/done',
+                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+                        Orders::STATE_ERROR             => 'General error',
+                        Orders::STATE_BUILDING          => 'Building order',
+                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+                        Orders::STATE_PENDING           => 'Order pending',
+                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+                        Orders::STATE_SHIPPED           => 'Order shipped/done',
                     ),
                     'label' => 'admin.orders.state_to.label',
                     'translation_domain' => 'admin',
@@ -371,19 +379,20 @@ class OrdersController extends CoreController
                 ;
                 if($form_data['state-from'] != '')
                     $orders = $orders->filterByState($form_data['state-from']);
-                
-                $orders = $orders->find();
+
+                $orders = $orders->find($this->getDbConnection());
 
                 foreach ($orders as $order) {
                     $order->setState($form_data['state-to']);
-                    $order->save();
+                    $order->save($this->getDbConnection());
                 }
 
                 $this->get('session')->setFlash('notice', 'admin.orders.state_log.changed');
             }
         }
         return $this->render('AdminBundle:Orders:change_state.html.twig', array(
-          'form' => $form_state->createView()
+          'form' => $form_state->createView(),
+          'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -397,20 +406,53 @@ class OrdersController extends CoreController
         $deadOrderBuster = $this->get('deadorder_manager');
         $orders = $deadOrderBuster->getOrders();
 
-        $deadOrderStatus = array();
+        $states = array(
+            Orders::STATE_ERROR_PAYMENT     => 'Payment error',
+            Orders::STATE_ERROR             => 'General error',
+            Orders::STATE_BUILDING          => 'Building order',
+            Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
+            Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
+            Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
+            Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
+            Orders::STATE_PENDING           => 'Order pending',
+            Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
+            Orders::STATE_SHIPPED           => 'Order shipped/done',
+        );
 
-        foreach ($orders as $order)
-        {
-            $status = $deadOrderBuster->checkOrderForErrors($order);
-            if ( $status['is_error'] )
-            {
-                $deadOrderStatus[] = $status;
-            }
+        foreach ($orders as $order) {
+            $order->statemessage = $states[$order->getState()];
         }
 
         return $this->render('AdminBundle:Orders:dead_orders_list.html.twig', array(
-              'orders' => $deadOrderStatus
+              'orders' => $orders,
+              'database' => $this->getRequest()->getSession()->get('database')
             ));
+    }
+
+    /**
+     * checkDeadOrderAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function checkDeadOrderAction( $id )
+    {
+        $deadOrderBuster = $this->get('deadorder_manager');
+        $order = OrdersQuery::create()->findPK($id);
+        $status = $deadOrderBuster->checkOrderForErrors($order);
+
+        if ( $status['is_error'] )
+        {
+            return $this->json_response(array(
+                'status' => false,
+                'data'   => $status
+                )
+            );
+        }
+        return $this->json_response(array(
+            'status' => true,
+            'data'   => $status
+            )
+        );
     }
 
     /**

@@ -10,7 +10,7 @@ services:
         factory_method:  get
         arguments:
             service:     dibsapi
-            parameters:  ~
+            parameters:  [@router]
             class:       %payment.dibsapi.class%
 
     payment.gothiaapi:

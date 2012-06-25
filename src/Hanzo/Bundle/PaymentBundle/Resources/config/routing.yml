@@ -1,6 +1,8 @@
 PaymentBundle_process:
-    pattern:  /payment/process
+    pattern:  /payment/process/{order_id}
     defaults: { _controller: PaymentBundle:Default:process }
+    requirements:
+        page:  \d+
 
 PaymentBundle_dibs_callback:
     pattern:  /payment/dibs/callback
@@ -38,3 +40,8 @@ PaymentBundle_gothia_payment_confirm:
 _paybybill_callback:
     pattern:  /payment/paybybill/callback
     defaults: { _controller: PaymentBundle:PayByBill:callback }
+
+_order_state_check:
+    pattern: /payment/dibs/state-check
+    defaults: { _controller: PaymentBundle:Dibs:stateCheck, _format: json }
+    requirements: { _format: (xml|json), _method: POST }

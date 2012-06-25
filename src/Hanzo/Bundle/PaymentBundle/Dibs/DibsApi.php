@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\PaymentBundle\Dibs;
 use Exception;
 
 use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
     Hanzo\Model\Orders,
     Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface,
     Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall,
@@ -65,12 +66,21 @@ class DibsApi implements PaymentMethodApiInterface
     protected $settings = array();
 
     /**
+     * undocumented class variable
+     *
+     * @var Router
+     **/
+    protected $router;
+
+    /**
      * __construct
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function __construct( $params, Array $settings )
+    public function __construct( $parameters, Array $settings )
     {
+        $this->router = $parameters[0];
+
         $this->settings = $settings;
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
@@ -196,8 +206,9 @@ class DibsApi implements PaymentMethodApiInterface
         // The order must be in the pre payment state, if not it has not followed the correct flow
         if ( $order->getState() != Orders::STATE_PRE_PAYMENT )
         {
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
-            throw new Exception( 'The order is not in the correct state "'. $order->getState() .'"' );
+            $msg = 'The order is not in the correct state "'. $order->getState() .'"';
+            Tools::log( $msg );
+            throw new Exception( $msg );
         }
 
         if ( $callbackRequest->get('merchant') != $this->settings['merchant'] )
@@ -361,9 +372,9 @@ class DibsApi implements PaymentMethodApiInterface
             "merchant"     => $this->getMerchant(),
             "currency"     => $currency,
             // Set in the template:
-            /*"cancelurl"    => "/payment/dibs/cancel",
-            "callbackurl"  => "/payment/dibs/callback",
-            "accepturl"    => "/payment/dibs/ok",*/
+            "cancelurl"    => $this->router->generate('PaymentBundle_dibs_cancel'),
+            "callbackurl"  => $this->router->generate('PaymentBundle_dibs_callback'),
+            "accepturl"    => $this->router->generate('PaymentBundle_process', array( 'order_id' => $orderId )),
             //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             //"paytype"      => '', // This _must_ be set in the form

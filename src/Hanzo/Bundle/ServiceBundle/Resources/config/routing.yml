@@ -1,7 +1,3 @@
-ServiceBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ServiceBundle:Default:index }
-
 _get_city_from_zip:
     pattern: /service/get-city-from-zip/{zip_code}
     defaults: { _controller: ServiceBundle:Default:getCityFromZip, _format: json }
@@ -10,3 +6,7 @@ _get_city_from_zip:
 _services_test:
     pattern: /service/test
     defaults: { _controller: ServiceBundle:Default:test }
+
+_services_dead:
+    pattern: /service/dead
+    defaults: { _controller: ServiceBundle:Default:dead }

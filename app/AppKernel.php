@@ -65,6 +65,12 @@ class AppKernel extends Kernel
         }
 
         $twig = $this->container->get('twig');
+        $twig_vars = $this->container->getParameter('hanzo_cms.twig');
+        if (count($twig_vars)) {
+            foreach ($twig_vars as $key => $value) {
+                $twig->addGlobal($key, $value);
+            }
+        }
 
         //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
         $twig->addGlobal('store_mode', $this->getStoreMode());
@@ -109,13 +115,7 @@ class AppKernel extends Kernel
      */
     public function getCacheDir()
     {
-        if (self::getStoreMode() == 'consultant') {
-            $cacheDir = $this->rootDir.'/cache/consultant/'.$this->environment;
-        } else {
-            $cacheDir = $this->rootDir.'/cache/'.$this->environment;
-        }
-
-        return $cacheDir;
+        return parent::getCacheDir();
     }
 
 

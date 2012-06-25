@@ -68,4 +68,14 @@ Tools::log($result);
             'page_type' => 'test',
         ));
     }
+
+    /**
+     * deadAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function deadAction()
+    {
+        return new Response('Ok','text/html'); 
+    }
 }

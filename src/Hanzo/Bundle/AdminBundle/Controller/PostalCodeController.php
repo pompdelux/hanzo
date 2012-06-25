@@ -48,14 +48,14 @@ class PostalCodeController extends CoreController
                 ->filterByComment($q)
                 ->orderByZip()
                 ->orderByCity()
-                ->paginate($pager, 50)
+                ->paginate($pager, 50, $this->getDbConnection())
             ;
         } else {
 
             $zip_to_city = $zip_to_city
                 ->orderByZip()
                 ->orderByCity()
-                ->paginate($pager, 50)
+                ->paginate($pager, 50, $this->getDbConnection())
             ;
         }
         $paginate = null;
@@ -90,14 +90,15 @@ class PostalCodeController extends CoreController
 
         $domains_availible = ZipToCityQuery::Create()
             ->groupByCountriesIso2()
-            ->find()
+            ->find($this->getDbConnection())
         ;
 
         return $this->render('AdminBundle:PostalCode:index.html.twig', array(
             'zip_to_city'     => $zip_to_city,
             'paginate'      => $paginate,
             'domains_availible' => $domains_availible,
-            'locale' => $locale
+            'locale' => $locale,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
 
     }
@@ -111,13 +112,13 @@ class PostalCodeController extends CoreController
     	$zip_to_city = null;
     	if($id)
 			$zip_to_city = ZipToCityQuery::create()
-	            ->findOneById($id)
+	            ->findOneById($id, $this->getDbConnection())
 	        ;
 	    else
 	    	$zip_to_city = new ZipToCity();
 
         $countries_availible = CountriesQuery::Create()
-            ->find()
+            ->find($this->getDbConnection())
         ;
         $countries_availible_data = array();
         foreach ($countries_availible as $country) {
@@ -167,7 +168,7 @@ class PostalCodeController extends CoreController
 
             if ($form->isValid()) {
               
-                $zip_to_city->save();
+                $zip_to_city->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'zip_to_city.updated');
             }
@@ -175,7 +176,8 @@ class PostalCodeController extends CoreController
 
         return $this->render('AdminBundle:PostalCode:view.html.twig', array(
             'form'      => $form->createView(),
-            'zip_to_city'  => $zip_to_city
+            'zip_to_city'  => $zip_to_city,
+            'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -186,10 +188,10 @@ class PostalCodeController extends CoreController
         }
         
         $zip_to_city = ZipToCityQuery::create()
-        	->findOneById($id);
+        	->findOneById($id, $this->getDbConnection());
 
         if($zip_to_city instanceof ZipToCity){
-            $zip_to_city->delete();
+            $zip_to_city->delete($this->getDbConnection());
         }
 
         if ($this->getFormat() == 'json') {

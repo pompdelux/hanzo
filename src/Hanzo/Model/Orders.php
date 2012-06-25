@@ -77,6 +77,8 @@ class Orders extends BaseOrders
         self::STATE_SHIPPED => 'Order shipped/done',
     );
 
+    protected $ignore_delete_constraints = false;
+
     /**
      * Create a new version of the current order.
      *
@@ -322,6 +324,10 @@ class Orders extends BaseOrders
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness();
 
+        if ($this->getState() !== self::STATE_BUILDING) {
+            $this->setState(self::STATE_BUILDING);
+        }
+
         // add meta info to the order
         if (0 == $lines->count()) {
             $this->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
@@ -365,6 +371,7 @@ class Orders extends BaseOrders
         $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
         $price = array_shift($price);
+        $original_price = $price['normal'];
         $price = array_shift($price);
 
         $line = new OrdersLines;
@@ -376,6 +383,7 @@ class Orders extends BaseOrders
         $line->setProductsSize($product->getSize());
         $line->setQuantity($quantity);
         $line->setPrice($price['price']);
+        $line->setOriginalPrice($original_price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
         $line->setExpectedAt($date);
@@ -930,10 +938,10 @@ class Orders extends BaseOrders
         return $attachments;
     }
 
-    public function getAttributes()
+    public function getAttributes($con = null)
     {
         $attributes = new \stdClass();
-        foreach ($this->getOrdersAttributess() as $attr) {
+        foreach ($this->getOrdersAttributess(null, $con) as $attr) {
             $ns = str_replace(array(':', '.'), '_', $attr->getNs());
 
             if (empty($attributes->{$ns})) {
@@ -1010,29 +1018,11 @@ class Orders extends BaseOrders
      * @return bool
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function cancelPayment( )
+    public function cancelPayment()
     {
-        if ( $this->getState() > self::STATE_PENDING )
-        {
+        if ( ($this->getState() > self::STATE_PENDING) && (false === $this->getIgnoreDeleteConstraints()) ) {
             throw new Exception('Not possible to cancel payment on an order in state "'.$this->getState().'"');
         }
-
-        /*$attributes = $this->getOrdersAttributess();
-
-        $paytype = false;
-
-        foreach ($attributes as $attribute)
-        {
-            if ( $attribute->getNs() == 'payment' && $attribute->getCKey() == 'paytype' )
-            {
-                $paytype = $attribute->getCValue();
-            }
-        }
-
-        if ( $paytype === false)
-        {
-            throw new Exception( 'No paytype registered on order with id: "'.$this->getId().'"' );
-        }*/
 
         $paymentMethod = $this->getBillingMethod();
 
@@ -1084,4 +1074,28 @@ class Orders extends BaseOrders
 
         return $expected_at;
     }
+
+    public function setIgnoreDeleteConstraints($v)
+    {
+        $this->ignore_delete_constraints = (bool) $v;
+    }
+
+    public function getIgnoreDeleteConstraints()
+    {
+        return $this->ignore_delete_constraints;
+    }
+
+    /**
+     * wrap delete() to cleanup payment and ax
+     */
+    public function delete(PropelPDO $con = null)
+    {
+        if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
+            $this->cancelPayment();
+            Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);
+        }
+
+        return parent::delete($con);
+    }
+
 } // Orders

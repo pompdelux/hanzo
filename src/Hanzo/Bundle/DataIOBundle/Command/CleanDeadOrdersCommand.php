@@ -17,12 +17,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CleanDeadOrdersCommand extends ContainerAwareCommand
 {
-    protected $dibsApi = null;
-
     protected function configure()
     {
         $this->setName('hanzo:dataio:clean_dead_orders')
             ->setDescription('Removes stale and dead orders')
+            ->addOption('dryrun', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders')
+            ->addOption('debug', null, InputOption::VALUE_NONE, 'If set, output debugging info')
             ;
     }
 
@@ -34,7 +34,19 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $dryrun = false;
+        if ( $input->getOption('dryrun') ) 
+        {
+            $dryrun = true;
+        }
+
+        $debug = false;
+        if ( $input->getOption('debug') ) 
+        {
+            $debug = true;
+        }
+
         $deadOrderBuster = $this->getContainer()->get('deadorder_manager');
-        $deadOrderBuster->autoCleanup();
+        $deadOrderBuster->autoCleanup( $dryrun, $debug );
     }
 }

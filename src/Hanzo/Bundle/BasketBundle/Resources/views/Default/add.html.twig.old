@@ -1,9 +1,0 @@
-{% extends layout %}
-
-{% block content %}
-
-<pre>
-  {{ print_r(x, 1) }}
-</pre>
-
-{% endblock %}
