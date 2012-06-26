@@ -61,8 +61,9 @@ class CMSRouterLoader implements LoaderInterface
 
         foreach ($pages as $page) {
             $id = $page->getId();
-            $path = trim($page->getPath());
-            $locale = strtolower(trim($page->getLocale()));
+            $locale = trim($page->getLocale());
+            $locale_lower = strtolower($locale);
+            $path = '{_locale}/'.trim($page->getPath());
             $type = trim($page->getCms()->getType());
             $title = trim($page->getTitle());
             $is_restricted = (int) $page->getIsRestricted();
@@ -91,9 +92,9 @@ class CMSRouterLoader implements LoaderInterface
                         continue;
                     }
 
-                    $category_key = '_' . $locale . '_' . $settings->category_id;
-                    $category_path = 'category_' . $id . '_' . $locale;
-                    $product_path = 'product_' . $id . '_' . $locale ;
+                    $category_key = '_' . $locale_lower . '_' . $settings->category_id;
+                    $category_path = 'category_' . $id . '_' . $locale_lower;
+                    $product_path = 'product_' . $id . '_' . $locale_lower ;
 
                     $categories[$category_key] = $product_path;
 

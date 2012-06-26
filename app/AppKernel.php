@@ -9,6 +9,7 @@ use Hanzo\Core AS C;
 class AppKernel extends Kernel
 {
     protected $terminate_events = array();
+    public $locale;
 
     public function registerBundles()
     {
@@ -58,13 +59,9 @@ class AppKernel extends Kernel
     {
         parent::boot();
 
-        // TODO: figure out if this is good or bad..
-        if ('cli' !== php_sapi_name()) {
-            $hanzo = C\Hanzo::initialize($this->container, $this->getEnvironment());
-            $this->container->get('translator')->setLocale($hanzo->get('core.locale'));
-        }
-
         $twig = $this->container->get('twig');
+        $twig->addGlobal('cdn', $this->container->getParameter('cdn'));
+
         $twig_vars = $this->container->getParameter('hanzo_cms.twig');
         if (count($twig_vars)) {
             foreach ($twig_vars as $key => $value) {
@@ -80,10 +77,7 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        // first we load "store mode" configs
         $loader->load(__DIR__.'/config/config_ws_'.$this->getStoreMode().'.yml');
-
-        // then we load env configs, these should always be loaded last.
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 
@@ -93,7 +87,7 @@ class AppKernel extends Kernel
         $mode = 'webshop';
 
         // use strpos to capture test.kons and friends
-        if (isset($_SERVER['HTTP_HOST']) && (false !== strpos($_SERVER['HTTP_HOST'], 'kons'))) {
+        if (isset($_SERVER['HTTP_HOST']) && (false !== strpos($_SERVER['HTTP_HOST'], 'c.'))) {
             $mode = 'consultant';
         }
 

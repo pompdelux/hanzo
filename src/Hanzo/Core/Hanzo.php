@@ -5,6 +5,7 @@ namespace Hanzo\Core;
 use Hanzo\Model;
 use Hanzo\Model\SettingsQuery;
 use Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\DomainsQuery;
 use Hanzo\Model\DomainsSettingsQuery;
 
 use Symfony\Component\Yaml\Yaml;
@@ -13,6 +14,7 @@ class Hanzo
 {
     protected $domain;
     protected $settings = array();
+    protected $ns_settings = array();
 
     public $cache;
     public $container;
@@ -44,26 +46,28 @@ class Hanzo
     private function __construct($container, $environment = NULL)
     {
         $this->container = $container;
-        $this->settings['core.env'] = $environment;
+        $this->settings['core']['env'] = $environment;
+        $session = $this->container->get('session');
 
-        $this->domain = empty($_SERVER['HTTP_HOST']) ? 'localhost.locale' : $_SERVER['HTTP_HOST'];
-        $this->domain_fragments = explode('.', $this->domain);
-        $this->settings['core.tld'] = array_pop($this->domain_fragments);
+        $domain = DomainsQuery::create()
+            ->joinWithDomainsSettings()
+            ->useDomainsSettingsQuery()
+                ->filterByCKey('locale')
+                ->filterByCValue($session->getLocale())
+            ->endUse()
+            ->findOne()
+        ;
 
-        $this->cache = new RedisCache($this);
+        $this->settings['core']['tld'] = strtolower($domain->getDomainKey());
+        $this->cache = $this->container->get('hanzo.cache');
 
         $config = Yaml::parse( __DIR__ . '/../../../app/config/hanzo.yml' );
 
-        if (isset($config['core']['cdn'])) {
-            $this->settings['core.cdn'] = $config['core']['cdn'];
-            $this->container->get('twig')->addGlobal('cdn', $config['core']['cdn']);
-        }
-
         // translate locale dev tld's
         if (isset($config['core']['tld_map']) &&
-            isset($config['core']['tld_map'][$this->settings['core.tld']])
+            isset($config['core']['tld_map'][$this->settings['core']['tld']])
         ) {
-            $this->settings['core.tld'] = $config['core']['tld_map'][$this->settings['core.tld']];
+            $this->settings['core']['tld'] = $config['core']['tld_map'][$this->settings['core.tld']];
         }
 
         if ($cache = $this->cache->get($this->cache->id('core.settings'))) {
@@ -75,28 +79,31 @@ class Hanzo
             $this->cache->set($this->cache->id('core.settings'), $this->settings);
         }
 
-        unset($config['core']['cdn'], $config['core']['tld_map'], $config['core']['default_tld']);
+        unset($config['core']['tld_map'], $config['core']['default_tld']);
+
+        $config['core']['cdn'] = $this->container->getParameter('cdn');
 
         foreach ($config as $section => $settings) {
             foreach ($settings as $key => $value) {
-                $this->settings[$section.'.'.$key] = $value;
+                $this->settings[$section][$key] = $value;
             }
         }
 
-        $session = $this->container->get('session');
-        // we now get our locale from config files
-        // if ($session->getLocale() != $this->settings['core.locale']) {
-        //     $session->setLocale($this->settings['core.locale']);
-        // }
+        foreach($this->settings as $key => $value) {
+            foreach ($value as $ns => $data) {
+                $this->ns_settings[$key.'.'.$ns] = $data;
+            }
+        }
 
-        list($lang, ) = explode('_', $this->settings['core.locale'], 2);
+        list($lang, ) = explode('_', $this->get('core.locale'), 2);
         $this->container->get('twig')->addGlobal('html_lang', $lang);
+        //$this->container->get('translator')->setLocale($this->get('core.locale'));
 
         setLocale(LC_ALL, $session->getLocale().'.utf-8');
 
         // we piggybag on nl to show euros, even for none euro countries
         // note the locale has to be installed, and er need duch anyway, so...
-        if ($this->settings['core.currency'] == 'EUR') {
+        if ($this->get('core.currency') == 'EUR') {
             setlocale(LC_MONETARY, 'nl_NL.utf8');
         }
     }
@@ -112,33 +119,21 @@ class Hanzo
     {
         $settings = DomainsSettingsQuery::create()
             ->joinWithDomains()
-            ->findByDomainKey($this->settings['core.tld'])
+            ->findByDomainKey($this->settings['core']['tld'])
         ;
 
-        if (0 == $settings->count()) {
-            $settings = DomainsSettingsQuery::create()
-                ->joinWithDomains()
-                ->findByDomainKey($default)
-            ;
-        }
-
         foreach ($settings as $record) {
-            $this->settings[$record->getNs() . '.' . $record->getCKey()] = $record->getCValue();
+            $this->settings[$record->getNs()][$record->getCKey()] = $record->getCValue();
         }
 
         if ($record) {
-            $language = LanguagesQuery::create()->findOneByLocale($this->settings['core.locale']);
-            $this->settings['core.language_id'] = $language->getId();
+            $language = LanguagesQuery::create()
+                ->findOneByLocale($this->settings['core']['locale'])
+            ;
+            $this->settings['core']['language_id'] = $language->getId();
 
-            $this->settings['core.domain_id'] = $record->getDomains()->getId();
-            $this->settings['core.domain_key'] = $record->getDomainKey();
-
-            // handle sales donains
-            if ((count($this->domain_fragments) > 1) &&
-                (substr($this->domain_fragments[0], 0, 4) == 'kons')
-            ) {
-                $this->settings['core.domain_key'] = 'Sales' . $this->settings['core.domain_key'];
-            }
+            $this->settings['core']['domain_id'] = $record->getDomains()->getId();
+            $this->settings['core']['domain_key'] = $record->getDomainKey();
         }
     }
 
@@ -158,7 +153,7 @@ class Hanzo
                 $data = unserialize(substr($data), 5);
             }
 
-            $this->settings[$record->getNs().'.'.$record->getCKey()] = $data;
+            $this->settings[$record->getNs()][$record->getCKey()] = $data;
         }
     }
 
@@ -172,11 +167,11 @@ class Hanzo
     public function get($key, $default = NULL)
     {
         if ($key == 'ALL') {
-            return $this->settings;
+            return $this->ns_settings;
         }
 
-        if (isset($this->settings[$key])) {
-            return $this->settings[$key];
+        if (isset($this->ns_settings[$key])) {
+            return $this->ns_settings[$key];
         }
 
         return $default;
@@ -190,15 +185,10 @@ class Hanzo
      */
     public function getByNs($ns)
     {
-        $settings = array();
-        foreach ($this->settings as $key => $value) {
-            list($namespace, $key) = explode('.', $key, 2);
-            if ($namespace == $ns) {
-                $settings[$key] = $value;
-            }
+        if (isset($this->settings[$ns])) {
+            return $this->settings[$ns];
         }
-
-        return $settings;
+        return array();
     }
 
 

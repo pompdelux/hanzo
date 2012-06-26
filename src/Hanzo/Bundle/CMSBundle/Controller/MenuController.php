@@ -44,7 +44,7 @@ class MenuController extends CoreController
             }
 
             if (empty($this->path)) {
-                $this->path = $request->getPathInfo();
+                $this->path = str_replace($this->locale, '', $request->getPathInfo());
 
                 // NICETO this could be done better, but how ?
                 if (preg_match('~(?:/[0-9]+/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
@@ -167,7 +167,7 @@ class MenuController extends CoreController
                         }
                     }
 
-                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $path . '" rel="'.$record->getId().'">' . $record->getTitle() . '</a>';
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $this->locale . '/' . $path . '" class="page-'.$record->getId().'">' . $record->getTitle() . '</a>';
 
                     if (isset($this->trail[$record->getId()])) {
                         $this->generateTree($record->getId(), $type);
@@ -216,7 +216,7 @@ class MenuController extends CoreController
                     $path = '';
                 }
 
-                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $path . '">' . $record->getTitle() . '</a></li>';
+                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $this->locale . '/' . $path . '">' . $record->getTitle() . '</a></li>';
             }
 
             $this->menu[$type] .= '</ul></nav>';

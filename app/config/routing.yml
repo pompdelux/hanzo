@@ -1,6 +1,6 @@
 WallBundle:
     resource: "@WallBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 
 AdminBundle:
@@ -13,55 +13,55 @@ DataIOBundle:
 
 ShippingBundle:
     resource: "@ShippingBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 ServiceBundle:
     resource: "@ServiceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 CheckoutBundle:
     resource: "@CheckoutBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 AccountBundle:
     resource: "@AccountBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 NewsletterBundle:
     resource: "@NewsletterBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 PaymentBundle:
     resource: "@PaymentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 BasketBundle:
     resource: "@BasketBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 HanzoSearchBundle:
     resource: "@HanzoSearchBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 HanzoProductBundle:
     resource: "@HanzoProductBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 HanzoMannequinBundle:
     resource: "@HanzoMannequinBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 HanzoCategoryBundle:
     resource: "@HanzoCategoryBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 WebServicesBundle:
     resource: "@WebServicesBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 HanzoCMSBundle:
     resource: "@HanzoCMSBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 HanzoCMSBundle_cms_dyn:
     resource: .
@@ -69,6 +69,12 @@ HanzoCMSBundle_cms_dyn:
 
 _bazinga_exposetranslation:
     resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
+    prefix:   /
+
+_splash:
+    pattern:  /
+    defaults: { _controller: HanzoCMSBundle:Default:splash }
+
 
 # Internal routing configuration to handle ESI
 #_internal:
