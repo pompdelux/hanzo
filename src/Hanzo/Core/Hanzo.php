@@ -16,7 +16,7 @@ class Hanzo
     protected $settings = array();
     protected $ns_settings = array();
 
-    public $cache;
+    public $cache = null;
     public $container;
 
     protected static $hanzo;
@@ -59,7 +59,10 @@ class Hanzo
         ;
 
         $this->settings['core']['tld'] = strtolower($domain->getDomainKey());
-        $this->cache = $this->container->get('hanzo.cache');
+
+        if ('cli' !== PHP_SAPI) {
+            $this->cache = $this->container->get('hanzo.cache');
+        }
 
         $config = Yaml::parse( __DIR__ . '/../../../app/config/hanzo.yml' );
 
@@ -70,13 +73,16 @@ class Hanzo
             $this->settings['core']['tld'] = $config['core']['tld_map'][$this->settings['core.tld']];
         }
 
-        if ($cache = $this->cache->get($this->cache->id('core.settings'))) {
+        if ($this->cache && ($cache = $this->cache->get($this->cache->id('core.settings')))) {
              $this->settings = $cache;
         }
         else {
             $this->initSettings();
             $this->initDomain($config['core']['default_tld'], $config['core']['tld_map']);
-            $this->cache->set($this->cache->id('core.settings'), $this->settings);
+
+            if ($this->cache) {
+                $this->cache->set($this->cache->id('core.settings'), $this->settings);
+            }
         }
 
         unset($config['core']['tld_map'], $config['core']['default_tld']);
