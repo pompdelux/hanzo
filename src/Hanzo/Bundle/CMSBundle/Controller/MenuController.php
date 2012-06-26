@@ -156,7 +156,7 @@ class MenuController extends CoreController
                     }
 
                     if (in_array($record->getType(), array('page', 'url'))) {
-                        $params = $record->getSettings();
+                        $params = $record->getSettings(null, false);
                         if (isset($params->class)) {
                             $class .= ' ' . $params->class;
                         } elseif (isset($params->is_frontpage)) {
@@ -205,7 +205,7 @@ class MenuController extends CoreController
                     $class = 'active';
                 }
                 if (in_array($record->getType(), array('page', 'url'))) {
-                    $params = $record->getSettings();
+                    $params = $record->getSettings(null, false);
                     if ($params && isset($params->class)) {
                         $class .= ' ' . $params->class;
                     }
