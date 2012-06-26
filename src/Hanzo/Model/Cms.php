@@ -18,9 +18,13 @@ use Hanzo\Model\om\BaseCms;
  */
 class Cms extends BaseCms
 {
-    public function getSettings($key = NULL)
+    public function getSettings($key = NULL, $raw = true)
     {
         $settings = parent::getSettings();
+
+        if ($raw) {
+            return $settings;
+        }
 
         if (is_scalar($settings) && substr($settings, 0, 2) == '{"') {
             $settings = json_decode(stripcslashes($settings));
