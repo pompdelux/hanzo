@@ -9,10 +9,10 @@ class RedisCache
     protected $cache = NULL;
     protected static $prefix = 'hanzo.cache.';
 
-    public function __construct($hanzo)
+    public function __construct($client, $environment)
     {
-        self::$prefix .= $hanzo->get('core.env') . '.' . $hanzo->get('core.tld') . ':';
-        $this->cache = $hanzo->container->get('snc_redis.default_client');
+        self::$prefix .= $environment.':';
+        $this->cache = $client;
     }
 
 

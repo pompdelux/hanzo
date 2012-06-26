@@ -2,13 +2,20 @@
 namespace Hanzo\Bundle\ServiceBundle;
 
 use Hanzo\Bundle\ServiceBundle\Services;
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
 use Hanzo\Model\SettingsQuery;
 
 class ServiceFactory
 {
+    protected $hanzo;
+
+    public function __construct($environment, $container)
+    {
+        $this->hanzo = Hanzo::initialize($container, $environment);
+    }
+
     public function get($service, $parameters = NULL, $class = NULL)
     {
         // figure out where to load the class from.
@@ -23,23 +30,7 @@ class ServiceFactory
             $service =  __NAMESPACE__ . '\\Services\\' . $service;
         }
 
-        // load settings from the database - if any
-        $result = SettingsQuery::create()
-            ->filterByNs($settings_key)
-            ->find();
-
-        $settings = array();
-        foreach ($result as $record) {
-            $settings[$record->getCKey()] = $record->getCValue();
-        }
-
-        try {
-            foreach (Hanzo::getInstance()->getByNs($settings_key) as $key => $data) {
-                $settings[$key] = $data;
-            }
-        } catch(\Exception $e) {}
-
         // return the instance
-        return new $service($parameters, $settings);
+        return new $service($parameters, $this->hanzo->getByNs($settings_key));
     }
 }
