@@ -404,7 +404,7 @@ class OrdersController extends CoreController
     public function viewDeadAction()
     {
         $deadOrderBuster = $this->get('deadorder_manager');
-        $orders = $deadOrderBuster->getOrders();
+        $orders = $deadOrderBuster->getOrders(null, $this->getDbConnection());
 
         $states = array(
             Orders::STATE_ERROR_PAYMENT     => 'Payment error',
@@ -437,7 +437,7 @@ class OrdersController extends CoreController
     public function checkDeadOrderAction( $id )
     {
         $deadOrderBuster = $this->get('deadorder_manager');
-        $order = OrdersQuery::create()->findPK($id);
+        $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
         $status = $deadOrderBuster->checkOrderForErrors($order);
 
         if ( $status['is_error'] )

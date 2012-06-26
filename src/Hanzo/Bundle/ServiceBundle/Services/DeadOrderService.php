@@ -8,6 +8,8 @@ use Hanzo\Core\Hanzo,
 
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
 
+use Propel;
+
 use Hanzo\Model\Orders,
     Hanzo\Model\OrdersPeer,
     Hanzo\Model\OrdersQuery,
@@ -287,14 +289,17 @@ class DeadOrderService
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getOrders( $limit = 0 )
-    { 
+    public function getOrders( $limit = 0 , $con = null)
+    {
+        if(!$con)
+            $con = Propel::getConnection();
+
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(array('max'=>strtotime('3 hours ago')))
             //->filterByFinishedAt(null)
             ->filterByBillingMethod('dibs')
             ->filterByState(array( 'max' => Orders::STATE_PENDING) )
-            ->find();
+            ->find($con);
 
         return $orders;
     }
