@@ -8,5 +8,5 @@ _services_test:
     defaults: { _controller: ServiceBundle:Default:test }
 
 _services_dead:
-    pattern: /service/dead
+    pattern: /service/dead/{dryrun}/{debug}
     defaults: { _controller: ServiceBundle:Default:dead }
