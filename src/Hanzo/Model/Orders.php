@@ -503,6 +503,15 @@ class Orders extends BaseOrders
         }
     }
 
+    /**
+     * getTotalProductPrice
+     * @return float 
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getTotalProductPrice()
+    {
+        return $this->getTotalPrice( true );
+    }
 
     public function getTotalPrice($products_only = false)
     {

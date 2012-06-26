@@ -226,7 +226,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
         $params = array(
             'merchant'  => $this->settings[ 'merchant' ],
             'amount'    => $amount,
-            'currency'  => $this->currency_iso4217code[$currency],
+            'currency'  => $currency,
             'transact'  => $transaction,
             'textreply' => 'true',
             'md5key'    => $this->api->md5keyFromString( $stringToHash ),
