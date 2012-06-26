@@ -38,24 +38,13 @@ class DefaultController extends CoreController
      **/
     public function processAction($order_id)
     {
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );
 
-        if ( $order->getId() !== $order_id )
+        if ( $order->getId() !== $this->get('session')->get('order_id') )
         {
-          error_log(__LINE__.':'.__FILE__.' WTF '); // hf@bellcom.dk debugging 
+            error_log(__LINE__.':'.__FILE__.' Id from dibs does not match session order id: '. $order->getId().' != '. $this->get('session')->get('order_id')); // hf@bellcom.dk debugging
         }
 
         return $this->render('PaymentBundle:Default:process.html.twig');
-
-        /*;
-
-        if ( $order->getState() <= Orders::STATE_PAYMENT_OK ) // State should be pending by now (set if event order.payment.collected is triggered)
-        {
-            return $this->redirect($this->generateUrl('_checkout_failed'));
-        }
-        else
-        {
-            return $this->redirect($this->generateUrl('_checkout_success'));
-        }*/
     }
 }
