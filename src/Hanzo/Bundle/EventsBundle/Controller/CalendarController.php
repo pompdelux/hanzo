@@ -11,7 +11,9 @@ use Hanzo\Core\Hanzo,
     Hanzo\Core\CoreController;
 
 use Hanzo\Model\EventsQuery,
-	Hanzo\Model\Events;
+	Hanzo\Model\Events,
+	Hanzo\Model\CustomersQuery,
+	Hanzo\Model\Customers;
 
 class CalendarController extends CoreController
 {
@@ -76,10 +78,12 @@ class CalendarController extends CoreController
     		$event = new Events();
     	}
     	$form = $this->createFormBuilder($event)
-            ->add('event_date', 'date',
+    		->add('customers_id', 'hidden')
+    		->add('event_date', 'datetime',
                 array(
                 	'input' => 'string',
                 	'widget' => 'single_text',
+    				'date_format' => 'yyyy-MM-dd hh:mm',
                 	'attr' => array('class' => 'datepicker'),
                     'label' => 'events.event_date.label',
                     'translation_domain' => 'events'
@@ -97,9 +101,10 @@ class CalendarController extends CoreController
             )->add('address_line_2', 'text',
                 array(
                     'label' => 'events.address_line_2.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'required' => false
                 )
-            )->add('postal_code', 'integer',
+            )->add('postal_code', 'text',
                 array(
                     'label' => 'events.postal_code.label',
                     'translation_domain' => 'events'
@@ -122,7 +127,8 @@ class CalendarController extends CoreController
             )->add('description', 'textarea',
                 array(
                     'label' => 'events.description.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'required' => false
                 )
             )->add('type', 'choice',
                 array(
@@ -136,12 +142,14 @@ class CalendarController extends CoreController
             )->add('is_open', 'checkbox',
                 array(
                     'label' => 'events.is_open.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'required' => false
                 )
             )->add('notify_hostess', 'checkbox',
                 array(
                     'label' => 'events.notify_hostess.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'required' => false
                 )
             )->getForm()
         ;
@@ -151,10 +159,68 @@ class CalendarController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-              
+
+            	// Der er ikke tilknyttet nogle Customers. Gør et forsøg at finde en, eller opret en ny
+            	$customers_id = $event->getCustomersId();
+            	$customer = null;
+            	if(!empty($customers_id)){
+
+            		$customer = CustomersQuery::create()
+            			->findByEmail($event->getEmail())
+            		;
+
+            		if(!$customer instanceof Customers){
+            			$customer = new Customers();
+		                $customer->setPasswordClear($event->getPhone());
+		                $customer->setPassword(sha1($event->getPhone()));
+		                $customer->setEmail($event->getEmail());
+
+		                $customer->save();
+            		}
+            		$event->setCustomersId($customer->getId());
+            	}
+                
                 $event->save();
 
-                $this->get('session')->setFlash('notice', 'zip_to_city.updated');
+                // Send some emails for the host and participants
+                if($event->getNotifyHostess()){
+	                // Find all participants.
+	            	$participants = EventsParticipantsQuery::create()
+	            		->filterByEventsId($event->getId)
+	            		->filterByHasAccepted(true)
+	            		->find()
+	            	;
+	            	$participants_array = array();
+
+	            	foreach ($participants as $participant) {
+	            		$participants_array[$participant->getEmail()] = $participant->getFirstName(). ' ' .$participant->getLastName();
+	            	}
+
+	            	// Now send out some emails!
+					$mailer = $this->get('mail_manager');
+
+					// The event is new, set message
+					if(!$id){
+						$mailer->setMessage('events.created', array(
+		                    'name'     => $event->getHost(),
+		                ));
+					}else{
+		                $mailer->setMessage('events.updated', array(
+		                    'name'     => $event->getHost(),
+		                ));
+					}
+	                $mailer->setTo(array($event->getEmail() => $event->getHost()));
+	                $mailer->setBcc($participants_array);
+	                $mailer->send();
+           		}
+
+                $this->get('session')->setFlash('notice', 'events.created');
+
+                // Its a new event. Redirect to correct url.
+                if(!$id)
+                	return $this->redirect($this->generateUrl('events_create', 
+                		array('id' => $event->getId())
+                	));
             }
         }
 
@@ -163,5 +229,32 @@ class CalendarController extends CoreController
             'form'      => $form->createView(),
             'id' 		=> $id
         ));
+    }
+
+    public function getCustomerAction($email)
+    {
+    	$customer = CustomersQuery::create()->findOneByEmail($email);
+
+    	if($customer instanceof Customers){
+    		if ($this->getFormat() == 'json') {
+	            return $this->json_response(array(
+	            	'status' => true,
+	            	'message' => $this->get('translator')->trans('events.customer.found', array(), 'events'),
+	            	'data' => array(
+	            		'id' => $customer->getId(),
+	            		'name' => $customer->getFirstName().' '.$customer->getLastName(),
+	            		'phone' => $customer->getPhone(),
+	            		'email' => $customer->getEmail()
+	            	)
+	            ));
+	        }
+    	}
+
+    	if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+            	'status' => false,
+            	'message' => $this->get('translator')->trans('events.customer.notfound', array(), 'events')
+            ));
+        }
     }
 }

@@ -26,3 +26,11 @@ events_get_feed:
         _format: json
     requirements:
         _format: html|json
+
+events_get_customer:
+    pattern:  /events/getcustomer/{email}
+    defaults:
+        _controller: EventsBundle:Calendar:getCustomer
+        _format: json
+    requirements:
+        _format: html|json
