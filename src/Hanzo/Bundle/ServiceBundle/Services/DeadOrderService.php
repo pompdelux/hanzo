@@ -102,7 +102,7 @@ class DeadOrderService
         );
 
         $pgId = $order->getPaymentGatewayId();
-        $this->debug("Processing: order id: ".$order->getId()." (payment gateway id:".$pgId.")");
+        $this->debug("Processing: order id: ".$order->getId()." (payment gateway id:".$pgId."), in state: ".$order->getState());
 
         $transId = $this->getTransactionId($order);
 
@@ -145,8 +145,7 @@ class DeadOrderService
         try
         {
             $orderStatus = $this->getStatus( $order );
-            $this->debug( "Order status:");
-            $this->debug( print_r($orderStatus,1) );
+            $this->debug( "Order status by dibs, desc: ". $orderStatus->data['status_description'] .' status: '. $orderStatus->data['status'] );
         }
         catch (DibsApiCallException $e)
         {
@@ -161,7 +160,7 @@ class DeadOrderService
             {
                 case 2:
                     // Looks like payment is ok -> update order
-                    $this->debug( "Payment looks ok, updating order:");
+                    $this->debug( "Payment looks ok, updating order, state ok");
                     $order->setState( Orders::STATE_PAYMENT_OK );
                     $order->setFinishedAt(time());
 
@@ -199,6 +198,10 @@ class DeadOrderService
                       $order->save();
                       $this->debug( "Dispatching order.payment.collected event" );
                       $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
+                    }
+                    else
+                    {
+                      $this->debug( "Not dispatching order.payment.collected event (dryrun)" );
                     }
                     break;
 
@@ -293,7 +296,7 @@ class DeadOrderService
             ->filterByUpdatedAt(array('max'=>strtotime('3 hours ago')))
             //->filterByFinishedAt(null)
             ->filterByBillingMethod('dibs')
-            ->filterByState(array( 'max' => Orders::STATE_PENDING) )
+            ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
             ->find();
 
         return $orders;
