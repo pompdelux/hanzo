@@ -187,7 +187,7 @@ DOC;
         ob_start();
         if ($pages->count()) {
 ?>
-  <aside id="teasers" role="teasers">
+  <aside id="teasers" role="complementary">
     <ul>
 <?php $i=1; foreach ($pages as $page): ?>
       <li class="teaser-box-<?php echo $i ?>">

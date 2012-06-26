@@ -69,4 +69,8 @@ class DefaultController extends CoreController
         return $this->response('1.2.3 ... test');
     }
 
+    public function splashAction()
+    {
+        return $this->render('HanzoCMSBundle:Default:splash.html.twig');
+    }
 }
