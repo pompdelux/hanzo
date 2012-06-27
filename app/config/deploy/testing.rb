@@ -51,6 +51,7 @@ after 'symfony:cache:clear', 'deploy:apcclear'
 after 'deploy:restart', 'deploy:update_permissions'
 after 'deploy:restart', 'deploy:update_permissions_shared'
 after 'deploy:restart', 'deploy:send_email'
+after 'deploy:restart', 'deploy:cleanup'
 
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
