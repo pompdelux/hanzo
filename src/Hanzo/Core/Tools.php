@@ -109,7 +109,7 @@ class Tools
             case 'shipping':
                 if ($fields['delivery_company_name']) {
                     $address[] = $fields['delivery_company_name'];
-                    $address[] = 'Att: ' . trim($fields['first_name'] . ' ' . $fields['last_name']);
+                    $address[] = 'Att: ' . trim($fields['delivery_first_name'] . ' ' . $fields['delivery_last_name']);
                 } else {
                     $address[] = trim($fields['first_name'] . ' ' . $fields['last_name']);
                 }

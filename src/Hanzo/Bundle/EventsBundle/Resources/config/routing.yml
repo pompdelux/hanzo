@@ -1,0 +1,36 @@
+EventsBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: EventsBundle:Default:index }
+
+events_index:
+    pattern: /events
+    defaults: { _controller: EventsBundle:Calendar:index }
+
+events_view:
+    pattern: /events/{id}
+    defaults: { _controller: EventsBundle:Calendar:view }
+    requirements: { id: \d+ }
+
+events_create:
+    pattern: /events/create/{id}
+    defaults:
+        _controller: EventsBundle:Calendar:create
+        id: null
+    requirements:
+        id: \d+
+
+events_get_feed:
+    pattern:  /events/getevents
+    defaults:
+        _controller: EventsBundle:Calendar:getEvents
+        _format: json
+    requirements:
+        _format: html|json
+
+events_get_customer:
+    pattern:  /events/getcustomer/{email}
+    defaults:
+        _controller: EventsBundle:Calendar:getCustomer
+        _format: json
+    requirements:
+        _format: html|json

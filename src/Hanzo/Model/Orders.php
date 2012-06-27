@@ -64,7 +64,7 @@ class Orders extends BaseOrders
     const TYPE_OUTSIDE_EVENT    =  -4;
     const TYPE_NORMAL           = -10;
 
-    private $state_message_map = array(
+    public static $state_message_map = array(
         self::STATE_ERROR_PAYMENT => 'Payment error',
         self::STATE_ERROR => 'General error',
         self::STATE_BUILDING => 'Building order',
@@ -503,6 +503,15 @@ class Orders extends BaseOrders
         }
     }
 
+    /**
+     * getTotalProductPrice
+     * @return float 
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getTotalProductPrice()
+    {
+        return $this->getTotalPrice( true );
+    }
 
     public function getTotalPrice($products_only = false)
     {

@@ -239,7 +239,7 @@ class DibsApiCallResponse
         }
         else // An normal status/error
         {
-            if ( in_array( $this->data['actioncode'], array('d00','000') )  )
+            if ( isset($this->data['actioncode']) && in_array( $this->data['actioncode'], array('d00','000') )  )
             {
                 if ( isset($successStatusCodes[$statusId]) )
                 {

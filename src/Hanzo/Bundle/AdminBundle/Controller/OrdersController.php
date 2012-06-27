@@ -145,22 +145,10 @@ class OrdersController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        // FIXME: pull from orders object
         $form_state = $this->createFormBuilder(array('state' => $order->getState()))
             ->add('state', 'choice',
                 array(
-                    'choices' => array(
-                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
-                        Orders::STATE_ERROR             => 'General error',
-                        Orders::STATE_BUILDING          => 'Building order',
-                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
-                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
-                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
-                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
-                        Orders::STATE_PENDING           => 'Order pending',
-                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
-                        Orders::STATE_SHIPPED           => 'Order shipped/done',
-                    ),
+                    'choices' => Orders::$state_message_map,
                     'label' => 'admin.orders.state_log.state',
                     'translation_domain' => 'admin',
                     'required' => true
@@ -317,36 +305,14 @@ class OrdersController extends CoreController
         $form_state = $this->createFormBuilder()
             ->add('state-from', 'choice',
                 array(
-                    'choices' => array(
-                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
-                        Orders::STATE_ERROR             => 'General error',
-                        Orders::STATE_BUILDING          => 'Building order',
-                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
-                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
-                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
-                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
-                        Orders::STATE_PENDING           => 'Order pending',
-                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
-                        Orders::STATE_SHIPPED           => 'Order shipped/done',
-                    ),
+                    'choices' => Orders::$state_message_map,
                     'label' => 'admin.orders.state_from.label',
                     'translation_domain' => 'admin',
                     'required' => false
                 )
             )->add('state-to', 'choice',
                 array(
-                    'choices' => array(
-                        Orders::STATE_ERROR_PAYMENT     => 'Payment error',
-                        Orders::STATE_ERROR             => 'General error',
-                        Orders::STATE_BUILDING          => 'Building order',
-                        Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
-                        Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
-                        Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
-                        Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
-                        Orders::STATE_PENDING           => 'Order pending',
-                        Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
-                        Orders::STATE_SHIPPED           => 'Order shipped/done',
-                    ),
+                    'choices' => Orders::$state_message_map,
                     'label' => 'admin.orders.state_to.label',
                     'translation_domain' => 'admin',
                     'required' => true
@@ -404,23 +370,10 @@ class OrdersController extends CoreController
     public function viewDeadAction()
     {
         $deadOrderBuster = $this->get('deadorder_manager');
-        $orders = $deadOrderBuster->getOrders();
-
-        $states = array(
-            Orders::STATE_ERROR_PAYMENT     => 'Payment error',
-            Orders::STATE_ERROR             => 'General error',
-            Orders::STATE_BUILDING          => 'Building order',
-            Orders::STATE_PRE_CONFIRM       => 'Order in pre confirm state',
-            Orders::STATE_PRE_PAYMENT       => 'Order in pre payment state',
-            Orders::STATE_POST_PAYMENT      => 'Order in post confirm state',
-            Orders::STATE_PAYMENT_OK        => 'Order payment confirmed',
-            Orders::STATE_PENDING           => 'Order pending',
-            Orders::STATE_BEING_PROCESSED   => 'Order beeing processed',
-            Orders::STATE_SHIPPED           => 'Order shipped/done',
-        );
+        $orders = $deadOrderBuster->getOrders(null, $this->getDbConnection());
 
         foreach ($orders as $order) {
-            $order->statemessage = $states[$order->getState()];
+            $order->statemessage = Orders::$state_message_map[$order->getState()];
         }
 
         return $this->render('AdminBundle:Orders:dead_orders_list.html.twig', array(
@@ -437,7 +390,7 @@ class OrdersController extends CoreController
     public function checkDeadOrderAction( $id )
     {
         $deadOrderBuster = $this->get('deadorder_manager');
-        $order = OrdersQuery::create()->findPK($id);
+        $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
         $status = $deadOrderBuster->checkOrderForErrors($order);
 
         if ( $status['is_error'] )
