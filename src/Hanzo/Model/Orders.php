@@ -64,7 +64,7 @@ class Orders extends BaseOrders
     const TYPE_OUTSIDE_EVENT    =  -4;
     const TYPE_NORMAL           = -10;
 
-    private $state_message_map = array(
+    public static $state_message_map = array(
         self::STATE_ERROR_PAYMENT => 'Payment error',
         self::STATE_ERROR => 'General error',
         self::STATE_BUILDING => 'Building order',
