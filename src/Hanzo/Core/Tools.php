@@ -219,18 +219,21 @@ class Tools
     {
         // we use environments to switch domain configurations.
         $env_map = array(
-            'com' => 'com',
-            'dk' => 'dk',
-            'fi' => 'fi',
-            'nl' => 'nl',
-            'no' => 'no',
-            'se' => 'se',
+            'da_dk' => 'dk',
+            'en_gb' => 'com',
+            'fi_fi' => 'fi',
+            'nb_no' => 'no',
+            'nl_nl' => 'nl',
+            'sv_se' => 'se',
         );
 
-        $pcs = explode('.', $_SERVER['HTTP_HOST']);
+        $path = explode('/', trim(str_replace($_SERVER['SCRIPT_NAME'], '', strtolower($_SERVER['REQUEST_URI'])), '/'));
 
-        $sub = array_shift($pcs);
-        $tld = array_pop($pcs);
+        // redirect to splash screen
+        if (empty($path[0]) || !isset($env_map[$path[0]])) {
+            $path[0] = 'da_dk';
+        }
+        $tld = $path[0];
 
         if (isset($env_map[$tld])) {
             $env = $env_map[$tld];
@@ -238,7 +241,7 @@ class Tools
             $env = 'dk';
         }
 
-        if ($sub == 'c') {
+        if (substr($_SERVER['HTTP_HOST'], 0, 2) == 'c.') {
             $env = $env.'_kons';
         }
 

@@ -2,7 +2,9 @@
 
 namespace Hanzo\Core;
 
+use AppKernel;
 use Hanzo\Core\Tools;
+use Hanzo\Core\RedisCache;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -10,21 +12,18 @@ use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class HanzoBoot
 {
-    /**
-     * Holds the router service object
-     *
-     * @var Router
-     */
     protected $router;
+    protected $kernel;
 
     /**
      * __construct
      *
      * @param Router $router
      */
-    public function __construct(Router $router)
+    public function __construct(Router $router, AppKernel $kernel)
     {
         $this->router = $router;
+        $this->kernel = $kernel;
     }
 
 

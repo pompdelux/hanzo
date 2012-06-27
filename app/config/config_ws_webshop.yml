@@ -6,21 +6,21 @@ security:
             pattern: .*
             anonymous: ~
             form_login:
-                login_path:  /login
-                check_path:  /login_check
+                login_path:  login
+                check_path:  login_check
             logout:
-                path:   /logout
+                path:   logout
                 target: /
                 invalidate_session: true
 
     access_control:
-        - { path: ^/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/account/check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/account/nno, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: _account_lost_password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: _account_create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: _account_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: _account_nno, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: ^/account, roles: ROLE_USER }
-        - { path: ^/checkout, roles: ROLE_USER }
+        - { path: ^/.*/account, roles: ROLE_USER }
+        - { path: ^/.*/checkout, roles: ROLE_USER }
 
         - { path: ^/admin, roles: ROLE_EMPLOYEE }
 

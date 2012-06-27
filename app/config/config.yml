@@ -1,6 +1,7 @@
 imports:
     - resource: parameters.ini
     - resource: parameters.php
+
 framework:
     translator: null
     secret: '%secret%'
@@ -18,47 +19,57 @@ framework:
     session:
         # default_locale: '%locale%'
         auto_start: false
+
 services:
     stock:
         class: Hanzo\Core\Stock
+
+    hanzo.cache:
+        class: Hanzo\Core\RedisCache
+        arguments: [ '@snc_redis.default_client', '%kernel.environment%' ]
     hanzo.misc.twig.extension:
         class: Hanzo\Twig\Extension\MiscExtension
         arguments: ['@twig_string']
-        tags: [{ name: twig.extension }]
+        tags:
+            -   { name: twig.extension }
     hanzo.asset.twig.extension:
         class: Hanzo\Twig\Extension\AssetExtension
-        tags: [{ name: twig.extension }]
+        tags:
+            -   { name: twig.extension }
     hanzo.maps.twig.extension:
         class: Hanzo\Twig\Extension\MapsExtension
         arguments: ['@twig_string']
-        tags: [{ name: twig.extension }]
+        tags:
+            -   { name: twig.extension }
 
     hanzo.routing_loader:
         class: Hanzo\Bundle\CMSBundle\CMSRouterLoader
         arguments: ['@session', '%kernel.cache_dir%']
-        tags: [{ name: routing.loader }]
+        tags:
+            -   { name: routing.loader }
 
     hanzo.boot_listener:
         class: Hanzo\Core\HanzoBoot
-        arguments: ['@router']
+        arguments: ['@router', '@kernel']
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -10 }
+            -   { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -10 }
     hanzo.exception_listener:
         class: Hanzo\Core\ExceptionHandler
         arguments: [@service_container]
         tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+            -   { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
     hanzo.login_listener:
         class: Hanzo\Bundle\BasketBundle\Event\LoginListener
         arguments: [@security.context]
         tags:
-            - { name: kernel.event_listener, event: security.interactive_login }
+            -   { name: kernel.event_listener, event: security.interactive_login }
 
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form:
         resources: ['SimpleThingsFormExtraBundle:Form:translation_domain.html.twig']
+
 assetic:
     debug: '%kernel.debug%'
     use_controller: false
@@ -69,11 +80,13 @@ assetic:
             jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
         yui_js:
             jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+
 swiftmailer:
     transport: '%mailer_transport%'
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
+
 propel:
     dbal:
         driver: '%database_driver%'
@@ -82,9 +95,11 @@ propel:
     path: '%kernel.root_dir%/../vendor/propel'
     phing_path: '%kernel.root_dir%/../vendor/phing'
     logging: '%kernel.debug%'
+
 jms_security_extra:
     secure_controllers: true
     secure_all_services: false
+
 snc_redis:
     clients:
         default:
@@ -102,6 +117,7 @@ snc_redis:
     session:
         client: session
         prefix: hanzo.session
+
 simple_things_form_extra:
     translation_domain_forward_compat: true
 

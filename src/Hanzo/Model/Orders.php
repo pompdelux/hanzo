@@ -985,7 +985,7 @@ class Orders extends BaseOrders
         $log = new OrdersStateLog();
         $log->setOrdersId($this->getId());
         $log->setState($v);
-        $log->setMessage($this->state_message_map[$v]);
+        $log->setMessage(self::$state_message_map[$v]);
         $log->setCreatedAt(time());
 
         $this->addOrdersStateLog($log);
