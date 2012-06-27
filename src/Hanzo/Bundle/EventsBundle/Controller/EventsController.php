@@ -32,6 +32,9 @@ class EventsController extends CoreController
 
     public function getEventsAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
     	$start = $this->getRequest()->get('start', null);
     	$end = $this->getRequest()->get('end', null);
 
@@ -66,6 +69,10 @@ class EventsController extends CoreController
 
     public function viewAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('login'));
+        }
+
     	$event = EventsQuery::create()->findPK($id);
 
         return $this->render('EventsBundle:Calendar:view.html.twig', array(
@@ -77,6 +84,10 @@ class EventsController extends CoreController
 
     public function createAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('login'));
+        }
+
         $hanzo = Hanzo::getInstance();
 
     	$event = null;
@@ -259,6 +270,9 @@ class EventsController extends CoreController
 
     public function getCustomerAction($email)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
     	$customer = CustomersQuery::create()->findOneByEmail($email);
 
     	if($customer instanceof Customers){
@@ -286,6 +300,9 @@ class EventsController extends CoreController
 
     public function deleteAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
     	$event = EventsQuery::create()->findPK($id);
 
     	if($event instanceof Events){
