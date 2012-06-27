@@ -238,7 +238,6 @@ class EventsController extends CoreController
 	                //$mailer->setTo(array($event->getEmail() => $event->getHost()));
 	                $mailer->setBcc($participants_array);
 	                $mailer->send();
-	                print_r($participants_array);
            		}
 
                 $this->get('session')->setFlash('notice', 'events.created');
@@ -290,6 +289,29 @@ class EventsController extends CoreController
     	$event = EventsQuery::create()->findPK($id);
 
     	if($event instanceof Events){
+    		// Send some emails for the host and participants
+        	$participants = EventsParticipantsQuery::create()
+        		->filterByEventsId($event->getId())
+        		->filterByHasAccepted(true)
+        		->find()
+        	;
+        	$participants_array = array($event->getEmail() => $event->getHost());
+
+        	foreach ($participants as $participant) {
+        		$participants_array[$participant->getEmail()] = $participant->getFirstName(). ' ' .$participant->getLastName();
+        	}
+
+        	// Now send out some emails!
+			$mailer = $this->get('mail_manager');
+
+            $mailer->setMessage('events.deleted', array(
+                'name'     => $event->getHost(),
+            ));
+			
+            //$mailer->setTo(array($event->getEmail() => $event->getHost()));
+            $mailer->setBcc($participants_array);
+            $mailer->send();
+            
     		$event->delete();
     	}
 
