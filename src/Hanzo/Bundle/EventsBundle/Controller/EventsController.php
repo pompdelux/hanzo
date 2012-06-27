@@ -17,7 +17,7 @@ use Hanzo\Model\EventsQuery,
 	Hanzo\Model\CustomersQuery,
 	Hanzo\Model\Customers;
 
-class CalendarController extends CoreController
+class EventsController extends CoreController
 {
 	public function indexAction()
 	{
