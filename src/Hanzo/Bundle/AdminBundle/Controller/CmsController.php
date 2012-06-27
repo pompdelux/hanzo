@@ -234,7 +234,7 @@ class CmsController extends CoreController
                 $node->setPath(Tools::stripText($cms_thread->getTitle()) . '/');
 
                 if($settings instanceof CmsI18n)
-                    $node->setSettings($settings->getSettings());
+                    $node->setSettings($settings->getSettings(null, true));
             }
         }
 

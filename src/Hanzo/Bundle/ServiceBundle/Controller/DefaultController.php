@@ -75,8 +75,11 @@ Tools::log($result);
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function deadAction()
+    public function deadAction( $dryrun, $debug )
     {
+        $deadOrderBuster = $this->get('deadorder_manager');
+        $deadOrderBuster->autoCleanup( $dryrun, $debug );
+
         return new Response('Ok','text/html'); 
     }
 }

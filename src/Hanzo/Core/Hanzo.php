@@ -214,3 +214,37 @@ class Hanzo
         return $this->container->get('request')->getSession();
     }
 }
+
+// # da
+//         $domain = new Domains();
+//         $domain->setDomainName('dk');
+//         $domain->setDomainKey(strtoupper($domain->getDomainName()));
+
+//         $setting = new DomainsSettings();
+//         $setting->setDomainKey($domain->getDomainKey());
+//         $setting->setNs('core');
+//         $setting->setCKey('currency');
+//         $setting->setCValue('DKK');
+//         $domain->addDomainsSettings($setting);
+
+//         $setting = new DomainsSettings();
+//         $setting->setDomainKey($domain->getDomainKey());
+//         $setting->setNs('core');
+//         $setting->setCKey('country');
+//         $setting->setCValue('dk');
+//         $domain->addDomainsSettings($setting);
+
+//         $setting = new DomainsSettings();
+//         $setting->setDomainKey($domain->getDomainKey());
+//         $setting->setNs('core');
+//         $setting->setCKey('locale');
+//         $setting->setCValue('da_DK');
+//         $domain->addDomainsSettings($setting);
+
+//         $setting = new DomainsSettings();
+//         $setting->setDomainKey($domain->getDomainKey());
+//         $setting->setNs('core');
+//         $setting->setCKey('language');
+//         $setting->setCValue('da');
+//         $domain->addDomainsSettings($setting);
+//         $domain->save();
