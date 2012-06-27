@@ -67,9 +67,15 @@ HanzoCMSBundle_cms_dyn:
     resource: .
     type: cms
 
-_bazinga_exposetranslation:
-    resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
-    prefix:   /
+# note we rewrote this to acommodate the locale neded in the start of the url
+# _bazinga_exposetranslation:
+#     resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
+bazinga_exposetranslation_js:
+    pattern:  /{_locale}/i18n/{domain_name}.{_format}
+    defaults: { _controller: bazinga.exposetranslation.controller:exposeTranslationAction, domain_name: "messages", _format: "js" }
+    requirements:
+        _format: js
+
 
 _splash:
     pattern:  /
