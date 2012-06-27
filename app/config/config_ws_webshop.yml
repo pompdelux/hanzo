@@ -22,7 +22,7 @@ security:
         - { path: ^/.*/account, roles: ROLE_USER }
         - { path: ^/.*/checkout, roles: ROLE_USER }
 
-        - { path: ^/admin, roles: ROLE_EMPLOYEE }
+        - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
 
     providers:
         custom_provider:
