@@ -15,7 +15,7 @@ monolog:
 framework:
     session:
         default_locale: fi_FI
-        path: '/app_test.php/%locale%'
+        path: '/app_test.php/fi_FI'
     templating:
         assets_base_urls:
             http:                     [ %cdn% ]
