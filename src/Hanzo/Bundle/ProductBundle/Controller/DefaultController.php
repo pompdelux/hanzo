@@ -69,11 +69,9 @@ class DefaultController extends CoreController
             }
 
             // set focus image
-            if ($focus = $this->get('request')->get('focus', FALSE)) {
-                if (isset($images[$focus])) {
-                    $main_image = $images[$focus];
-                    unset($images[$focus]);
-                }
+            if (($focus = $this->get('request')->get('focus', FALSE)) && isset($images[$focus])) {
+                $main_image = $images[$focus];
+                unset($images[$focus]);
             }
             else {
                 $main_image = array_shift($images);
