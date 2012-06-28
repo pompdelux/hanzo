@@ -37,7 +37,7 @@ class RestGoogleController extends CoreController
      */
     public function proxyAction($query = null, $country = null)
     {
-        $request = sprintf('http://maps.google.com/maps/geo?q=%s&output=json&oe=utf8', urlencode($query . ',' . $country));
+        $request = sprintf('http://maps.google.com/maps/geo?q=%s&output=json&oe=utf8', utf8_encode($query) . ',' . $country);
         $response = array(
             'status' => TRUE,
             'data' => json_decode(file_get_contents($request))
