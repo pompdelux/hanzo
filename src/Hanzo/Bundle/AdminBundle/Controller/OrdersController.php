@@ -188,7 +188,7 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
+        $order = OrdersQuery::create()->findOneById($order_id);
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -200,7 +200,7 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers($this->getDbConnection()), true);
+        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers(), true);
         $order = $this->get('ax_manager')->sendOrder($order, true);
 
         if ('json' === $this->getFormat()) {
@@ -221,7 +221,7 @@ class OrdersController extends CoreController
 
         $orders = OrdersSyncLogQuery::create()
             ->filterByState('failed')
-            ->find($this->getDbConnection());
+            ->find();
 
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
@@ -238,7 +238,7 @@ class OrdersController extends CoreController
 
         $order = OrdersQuery::create()
             ->filterById($order_id)
-            ->findOne($this->getDbConnection())
+            ->findOne()
         ;
 
         if (!$order instanceof Orders) {
@@ -256,9 +256,9 @@ class OrdersController extends CoreController
         OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->filterByOrdersId($order_id)
-            ->delete($this->getDbConnection());
+            ->delete();
 
-        $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+        $status = $this->get('ax_manager')->sendOrder($order, false);
         $message = $status ?
             'Ordren #%d er nu sendt' :
             'Ordren #%d kunne ikke gensendes !'
@@ -285,10 +285,10 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
+        $order = OrdersQuery::create()->findOneById($order_id);
         if ($order) {
             $order->setIgnoreDeleteConstraints(true);
-            $order->delete($this->getDbConnection());
+            $order->delete();
         }
 
         if ('json' === $this->getFormat()) {
@@ -301,7 +301,9 @@ class OrdersController extends CoreController
 
     public function changeStateAction()
     {
-        // FIXME: pull from orders object
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('admin'));
+        }
         $form_state = $this->createFormBuilder()
             ->add('state-from', 'choice',
                 array(
@@ -370,7 +372,7 @@ class OrdersController extends CoreController
     public function viewDeadAction()
     {
         $deadOrderBuster = $this->get('deadorder_manager');
-        $orders = $deadOrderBuster->getOrders(null, $this->getDbConnection());
+        $orders = $deadOrderBuster->getOrders(null);
 
         foreach ($orders as $order) {
             $order->statemessage = Orders::$state_message_map[$order->getState()];
@@ -390,7 +392,7 @@ class OrdersController extends CoreController
     public function checkDeadOrderAction( $id )
     {
         $deadOrderBuster = $this->get('deadorder_manager');
-        $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
+        $order = OrdersQuery::create()->findPK($id);
         $status = $deadOrderBuster->checkOrderForErrors($order);
 
         if ( $status['is_error'] )

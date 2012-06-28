@@ -12,6 +12,8 @@ use Hanzo\Core\Hanzo,
 
 use Hanzo\Model\EventsQuery,
 	Hanzo\Model\Events,
+	Hanzo\Model\EventsParticipantsQuery,
+	Hanzo\Model\ConsultantsQuery,
 	Hanzo\Model\CustomersQuery,
 	Hanzo\Model\Customers;
 
@@ -19,6 +21,10 @@ class CalendarController extends CoreController
 {
 	public function indexAction()
 	{
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('login'));
+        }
+
         return $this->render('EventsBundle:Calendar:index.html.twig', array(
         	'page_type' => 'calendar'
         ));
@@ -71,6 +77,8 @@ class CalendarController extends CoreController
 
     public function createAction($id)
     {
+        $hanzo = Hanzo::getInstance();
+
     	$event = null;
     	if($id){
     		$event = EventsQuery::create()->findPK($id);
@@ -160,16 +168,16 @@ class CalendarController extends CoreController
 
             if ($form->isValid()) {
 
-            	// Der er ikke tilknyttet nogle Customers. Gør et forsøg at finde en, eller opret en ny
             	$customers_id = $event->getCustomersId();
             	$customer = null;
-            	if(!empty($customers_id)){
+            	// Der er ikke tilknyttet nogle Customers som vært. Gør et forsøg at finde en, eller opret en ny
+            	if(empty($customers_id)){
 
             		$customer = CustomersQuery::create()
-            			->findByEmail($event->getEmail())
+            			->findOneByEmail($event->getEmail())
             		;
 
-            		if(!$customer instanceof Customers){
+            		if(!($customer instanceof Customers)){
             			$customer = new Customers();
 		                $customer->setPasswordClear($event->getPhone());
 		                $customer->setPassword(sha1($event->getPhone()));
@@ -179,6 +187,24 @@ class CalendarController extends CoreController
             		}
             		$event->setCustomersId($customer->getId());
             	}
+
+            	$consultant = ConsultantsQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+
+            	$event->setConsultantsId($consultant->getId());
+
+            	// Its a new event. generate a key to send out to host
+            	if(!$id){
+            		$event->setKey(sha1(time()));
+            	}
+
+                $event->save();
+            	// Generate the Code of the event YYYY MM DD INIT TYPE ID DOMAIN
+            	$code = date('Ymd', strtotime($event->getEventDate()));
+            	$code = $code . $consultant->getInitials();
+            	$code = $code . $event->getType();
+            	$code = $code . $event->getId();
+            	$code = $code . $hanzo->get('core.domain_key');
+            	$event->setCode(strtoupper($code));
                 
                 $event->save();
 
@@ -186,11 +212,11 @@ class CalendarController extends CoreController
                 if($event->getNotifyHostess()){
 	                // Find all participants.
 	            	$participants = EventsParticipantsQuery::create()
-	            		->filterByEventsId($event->getId)
+	            		->filterByEventsId($event->getId())
 	            		->filterByHasAccepted(true)
 	            		->find()
 	            	;
-	            	$participants_array = array();
+	            	$participants_array = array($event->getEmail() => $event->getHost());
 
 	            	foreach ($participants as $participant) {
 	            		$participants_array[$participant->getEmail()] = $participant->getFirstName(). ' ' .$participant->getLastName();
@@ -209,9 +235,10 @@ class CalendarController extends CoreController
 		                    'name'     => $event->getHost(),
 		                ));
 					}
-	                $mailer->setTo(array($event->getEmail() => $event->getHost()));
+	                //$mailer->setTo(array($event->getEmail() => $event->getHost()));
 	                $mailer->setBcc($participants_array);
 	                $mailer->send();
+	                print_r($participants_array);
            		}
 
                 $this->get('session')->setFlash('notice', 'events.created');
@@ -256,5 +283,25 @@ class CalendarController extends CoreController
             	'message' => $this->get('translator')->trans('events.customer.notfound', array(), 'events')
             ));
         }
+    }
+
+    public function deleteAction($id)
+    {
+    	$event = EventsQuery::create()->findPK($id);
+
+    	if($event instanceof Events){
+    		$event->delete();
+    	}
+
+    	if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+            	'status' => true,
+            	'message' => $this->get('translator')->trans('events.delete.success', array(), 'events')
+            ));
+        }
+        
+        $this->get('session')->setFlash('notice', 'events.delete.success');
+
+        return $this->redirect($this->generateUrl('events_index'));
     }
 }

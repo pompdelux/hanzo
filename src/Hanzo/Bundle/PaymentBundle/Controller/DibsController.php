@@ -145,4 +145,24 @@ class DibsController extends CoreController
 
         return $this->json_response( array('state' => $order->getState() ) );
     }
+
+    /**
+     * processAction
+     *
+     * This shows the customer a page that checks the state of the ordre until it is correct (<= payment ok ) or fails
+     *
+     * @return object Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function processAction($order_id)
+    {
+        $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );
+
+        if ( $order->getId() !== $this->get('session')->get('order_id') )
+        {
+          error_log(__LINE__.':'.__FILE__.' Order id mismatch, in url: '.$order_id. ' in session: '. $this->get('session')->get('order_id') ); // hf@bellcom.dk debugging 
+        }
+
+        return $this->render('PaymentBundle:Default:process.html.twig');
+    }
 }

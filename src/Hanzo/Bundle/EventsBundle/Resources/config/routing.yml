@@ -34,3 +34,12 @@ events_get_customer:
         _format: json
     requirements:
         _format: html|json
+
+events_delete:
+    pattern:  /events/delete/{id}
+    defaults:
+        _controller: EventsBundle:Calendar:delete
+        _format: json
+    requirements:
+        _format: html|json
+        id: \d+

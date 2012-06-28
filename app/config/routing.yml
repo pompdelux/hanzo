@@ -1,6 +1,6 @@
 EventsBundle:
     resource: "@EventsBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 WallBundle:
     resource: "@WallBundle/Resources/config/routing.yml"
@@ -9,7 +9,7 @@ WallBundle:
 
 AdminBundle:
     resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 DataIOBundle:
     resource: "@DataIOBundle/Resources/config/routing.yml"
