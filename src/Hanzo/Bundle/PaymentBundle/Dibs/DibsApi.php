@@ -133,6 +133,16 @@ class DibsApi implements PaymentMethodApiInterface
     }
 
     /**
+     * mergeSettings
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function mergeSettings( Array $settings )
+    {
+        $this->settings = array_merge($this->settings,$settings);
+    }
+
+    /**
      * getEnabledPaytypes
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
