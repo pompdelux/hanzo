@@ -972,15 +972,15 @@ class ECommerceServices extends SoapService
 
             // TODO: remove when .nl gets its own site
             if (in_array($order->getAttributes()->global->domain_key, array('NL'))) {
-                $settings = $gateway->getSettings();
+                $settings = array();
                 $settings['merchant'] = '90055039';
                 $settings['md5key1']  = '@6B@(-rfD:DiXYh}(76h6C1rexwZ)-cw';
                 $settings['md5key2']  = '-|FA8?[K3rb,T$:pJSr^lBsP;hMq&p,X';
                 $settings['api_user'] = 'pdl-nl-api-user';
                 $settings['api_pass'] = 'g7u6Ri&c';
 
-                $call = DibsApiCall::getInstance($settings, $gateway);
-                $response = $call->capture($order, $amount);
+                $gateway->mergeSettings( $settings );
+                $response = $gateway->call()->capture($order, $amount);
             } else {
                 $response = $gateway->call()->capture($order, $amount);
             }

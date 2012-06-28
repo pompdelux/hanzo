@@ -35,12 +35,6 @@ class GothiaApi implements PaymentMethodApiInterface
 
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
 
-        // Debugging
-        if ( $_SERVER['REMOTE_ADDR'] == '90.185.183.84' )
-        {
-          $this->settings['active'] = true;
-        }
-
         if ( $this->settings['active'] === true)
         {
             $this->checkSettings($settings);
@@ -114,6 +108,16 @@ class GothiaApi implements PaymentMethodApiInterface
     }
 
     /**
+     * getTest
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getTest()
+    {
+        return ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) == 'YES' ) ? true : false;
+    }
+
+    /**
      * getFeeExternalId
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -130,7 +134,7 @@ class GothiaApi implements PaymentMethodApiInterface
      **/
     public function call()
     {
-        return GothiaApiCall::getInstance($this->settings);
+        return GothiaApiCall::getInstance($this->settings, $this);
     }
 
     /**

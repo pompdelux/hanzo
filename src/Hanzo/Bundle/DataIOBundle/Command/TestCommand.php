@@ -43,21 +43,19 @@ class TestCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $order = OrdersPeer::retrieveByPK(572871);
-        $currentVersion = $order->getVersionId();
 
-        //var_dump($order->getOrdersAttributess());
-        //echo $order->getOrdersAttributess()->toArray()."\n";
+        $gateway = $this->get('payment.dibsapi');
 
-        if ( !( $currentVersion < 2 ) ) // If the version number is less than 2 there is no previous version
-        {
-          $oldOrderVersion = ( $currentVersion - 1);
-          $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+        $settings = $gateway->getSettings();
+        $settings['merchant'] = '90057323';
+        $settings['md5key1']  = 'd|y3,Wxe5dydME)q4+0^BilEVfT[WuSp';
+        $settings['md5key2']  = 'Q+]FJ]0FMvsyT,_GEap39LlgIr1Kx&n[';
+        $settings['api_user'] = 'bellcom_test_api_user';
+        $settings['api_pass'] = '7iuTR8EZ';
 
+        $call = DibsApiCall::getInstance($settings, $gateway);
+        $response = $call->capture($order, $amount);
 
-          //var_dump($oldOrder->getOrdersAttributess());
-          //print_r($oldOrder->getOrdersAttributess()->toArray());
-
-          $oldOrder->cancelPayment($this->getContainer()->get('payment.paybybillapi'));
-        }
+        print_r($response);
     }
 }

@@ -133,6 +133,16 @@ class DibsApi implements PaymentMethodApiInterface
     }
 
     /**
+     * mergeSettings
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function mergeSettings( Array $settings )
+    {
+        $this->settings = array_merge($this->settings,$settings);
+    }
+
+    /**
      * getEnabledPaytypes
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -191,7 +201,7 @@ class DibsApi implements PaymentMethodApiInterface
      **/
     public function getTest()
     {
-        return $this->settings['test'];
+        return ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) == 'YES' ) ? true : false;
     }
 
     /**
@@ -374,7 +384,7 @@ class DibsApi implements PaymentMethodApiInterface
             // Set in the template:
             "cancelurl"    => $this->router->generate('PaymentBundle_dibs_cancel', array(), true),
             "callbackurl"  => $this->router->generate('PaymentBundle_dibs_callback', array(), true),
-            "accepturl"    => $this->router->generate('PaymentBundle_process', array( 'order_id' => $orderId ), true),
+            "accepturl"    => $this->router->generate('PaymentBundle_dibs_process', array( 'order_id' => $orderId ), true),
             //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             //"paytype"      => '', // This _must_ be set in the form
@@ -397,7 +407,7 @@ class DibsApi implements PaymentMethodApiInterface
         $settings['delivery11.Email']         = $order->getEmail();
         $settings['delivery12.OrderId']       = $order->getId();
 
-        if ( strtoupper( $this->getTest() ) == 'YES')
+        if ( $this->getTest() )
         {
             $settings["test"] = 'YES';
         }

@@ -46,6 +46,7 @@ class DefaultController extends CoreController
             // find masters
             $products = ProductsToCategoriesQuery::create()
                 ->useProductsQuery()
+                    ->filterByIsOutOfStock(FALSE)
                     ->useProductsDomainsPricesQuery()
                         ->filterByDomainsId($domain_id)
                     ->endUse()
@@ -58,7 +59,7 @@ class DefaultController extends CoreController
             foreach ($products as $product) {
                 $variants = ProductsQuery::create()
                     // out due to caching issues, maby we have to reinsert...
-                    // ->filterByIsOutOfStock(FALSE)
+                    ->filterByIsOutOfStock(FALSE)
                     ->filterBySize(array('one size', '20-22', '23-26', 'l', 'm', 's'), \Criteria::NOT_IN)
                     ->findByMaster($product->getProducts()->getSku())
                 ;
@@ -106,7 +107,7 @@ class DefaultController extends CoreController
                 }
             }
 
-            $this->setCache($cache_key, $sizes); // cache for an hour
+            $this->setCache($cache_key, $sizes, 60); // cache one minute
         }
 
         $result_set = array();
@@ -177,7 +178,7 @@ class DefaultController extends CoreController
                 $router = $this->get('router');
 
                 foreach ($products as $product) {
-                    if (!$product->getSku()) {
+                    if (!$product->getSku() || $product->getIsOutOfStock()) {
                         continue;
                     }
 

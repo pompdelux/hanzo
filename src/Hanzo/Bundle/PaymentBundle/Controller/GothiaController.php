@@ -258,13 +258,28 @@ class GothiaController extends CoreController
         }
 
         // NICETO: priority: low, refacture gothia to look more like DibsController
-        $api->updateOrderSuccess( $request, $order );
-        $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
-        return $this->json_response(array(
-            'status' => TRUE,
-            'message' => '',
-        ));
+        try
+        {
+            $api->updateOrderSuccess( $request, $order );
+            $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
+
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => '',
+            ));
+        }
+        catch (Exception $e)
+        {
+            Tools::log( $e->getMessage() );
+            $api->updateOrderFailed( $request, $order );
+
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
+            ));
+        }
+
     }
 
     /**
@@ -278,5 +293,25 @@ class GothiaController extends CoreController
         $addresses = $customer->getAddresses();
 
         return new Response( 'Test completed', 200, array('Content-Type' => 'text/html'));
+    }
+
+    /**
+     * processAction
+     *
+     * @return object Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function processAction()
+    {
+        $order = OrdersPeer::getCurrent();
+
+        if ( $order->getState() < Orders::STATE_PAYMENT_OK )
+        {
+            return $this->redirect($this->generateUrl('_checkout_failed'));
+        }
+        else
+        {
+            return $this->redirect($this->generateUrl('_checkout_success'));
+        }
     }
 }

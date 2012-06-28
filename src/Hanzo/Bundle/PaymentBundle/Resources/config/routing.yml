@@ -1,8 +1,12 @@
-PaymentBundle_process:
-    pattern:  /payment/process/{order_id}
-    defaults: { _controller: PaymentBundle:Default:process }
+PaymentBundle_gothia_process:
+    pattern:  /payment/gothia/process
+    defaults: { _controller: PaymentBundle:Gothia:process }
+
+PaymentBundle_dibs_process:
+    pattern:  /payment/dibs/process/{order_id}
+    defaults: { _controller: PaymentBundle:Dibs:process }
     requirements:
-        page:  \d+
+        order_id:  \d+
 
 PaymentBundle_dibs_callback:
     pattern:  /payment/dibs/callback
