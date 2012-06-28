@@ -134,7 +134,7 @@ class GothiaApi implements PaymentMethodApiInterface
      **/
     public function call()
     {
-        return GothiaApiCall::getInstance($this->settings);
+        return GothiaApiCall::getInstance($this->settings, $this);
     }
 
     /**

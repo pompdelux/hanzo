@@ -263,7 +263,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         // <<-- hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function
 
         if ( $this->api->getTest() )
-        {
+        { 
             error_log(__LINE__.':'.__FILE__.' placeReservation: '. $callString ); // hf@bellcom.dk debugging
         }
 
