@@ -279,4 +279,24 @@ class GothiaController extends CoreController
 
         return new Response( 'Test completed', 200, array('Content-Type' => 'text/html'));
     }
+
+    /**
+     * processAction
+     *
+     * @return object Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function processAction()
+    {
+        $order = OrdersPeer::getCurrent();
+
+        if ( $order->getState() != Orders::STATE_PAYMENT_OK )
+        {
+            return $this->redirect($this->generateUrl('_checkout_failed'));
+        }
+        else
+        {
+            return $this->redirect($this->generateUrl('_checkout_success'));
+        }
+    }
 }

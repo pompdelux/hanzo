@@ -374,7 +374,7 @@ class DibsApi implements PaymentMethodApiInterface
             // Set in the template:
             "cancelurl"    => $this->router->generate('PaymentBundle_dibs_cancel', array(), true),
             "callbackurl"  => $this->router->generate('PaymentBundle_dibs_callback', array(), true),
-            "accepturl"    => $this->router->generate('PaymentBundle_process', array( 'order_id' => $orderId ), true),
+            "accepturl"    => $this->router->generate('PaymentBundle_dibs_process', array( 'order_id' => $orderId ), true),
             //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             //"paytype"      => '', // This _must_ be set in the form
