@@ -33,16 +33,22 @@ class CheckoutListener
     {
         $order = $event->getOrder();
         $host  = gethostname();
-        $domainKey = Hanzo::getInstance()->get('core.domain_key');
+        $hanzo = Hanzo::getInstance();
+        $session = $hanzo->getSession();
+        $domainKey = $hanzo->get('core.domain_key');
 
         $message = 'Order id: '.$order->getID().'<br>
+            Order id i session: '. $session->get('order_id') .'<br>
             Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br> 
             Kunde email: '. $order->getEmail() .'<br> 
             Host name: '.$host.'<br>
             Domain key: '.$domainKey.'<br>
+            Order state: '. $order->getState() .'<br>
+            Billing method: '. $order->getBillingMethod() .'<br>
+            In edit: '. $order->getInEdit() .'<br>
             ';
 
-        Tools::log('Payment failed: '.str_replace('<br>',"\n", $message ));
+        Tools::log('Payment failed: '.str_replace('<br>',"", $message ));
 
         try
         {
