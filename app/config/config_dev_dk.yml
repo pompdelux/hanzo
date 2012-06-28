@@ -2,7 +2,9 @@ imports:
     - { resource: config.yml }
 
 framework:
-    session: { default_locale: da_DK }
+    session:
+        default_locale: da_DK
+        path: '/app_dev.php/%locale%'
     router:
         resource:           "%kernel.root_dir%/config/routing_dev.yml"
     profiler:
