@@ -13,7 +13,9 @@ monolog:
             level: debug
 
 framework:
-    session: { default_locale: en_GB }
+    session:
+        default_locale: en_GB
+        path: '/en_GB'
     templating:
         assets_base_urls:
             http: [ %cdn% ]
