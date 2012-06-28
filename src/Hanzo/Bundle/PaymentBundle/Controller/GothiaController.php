@@ -305,7 +305,7 @@ class GothiaController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->getState() > Orders::STATE_PAYMENT_OK )
+        if ( $order->getState() < Orders::STATE_PAYMENT_OK )
         {
             return $this->redirect($this->generateUrl('_checkout_failed'));
         }
