@@ -51,9 +51,11 @@ class DefaultController extends CoreController
                 ->findById($product_id)
             ;
 
-if ($products->count() == 0) {
-    Tools::log($hanzo->get('core.domain_key') . ': ' . $product_id);
-}
+            // if no product matched the query, throw a 404 exception
+            if ($products->count() == 0) {
+                throw $this->createNotFoundException($translator->trans('product.not.found'));
+            }
+
             $product = $products[0]->getProducts();
 
             // find all product images
@@ -77,25 +79,28 @@ if ($products->count() == 0) {
                 $main_image = array_shift($images);
             }
 
-            // find the sizes and colors on stock
-            $variants = ProductsQuery::create()
-                ->select(array('Id', 'Size', 'Color'))
-                ->distinct()
-                ->findByMaster($product->getSku())
-            ;
-
             $colors = $sizes = array();
             $product_ids = array();
-            foreach ($variants as $v) {
-                $product_ids[] = $v['Id'];
-            }
 
-            $stock = $this->get('stock');
-            $stock->prime($product_ids);
-            foreach ($variants as $v) {
-                if ($stock->check($v['Id'])) {
-                    $colors[$v['Color']] = $v['Color'];
-                    $sizes[$v['Size']] = $v['Size'];
+            // find the sizes and colors on stock
+            if (!$product->getIsOutOfStock()) {
+                $variants = ProductsQuery::create()
+                    ->select(array('Id', 'Size', 'Color'))
+                    ->distinct()
+                    ->findByMaster($product->getSku())
+                ;
+
+                foreach ($variants as $v) {
+                    $product_ids[] = $v['Id'];
+                }
+
+                $stock = $this->get('stock');
+                $stock->prime($product_ids);
+                foreach ($variants as $v) {
+                    if ($stock->check($v['Id'])) {
+                        $colors[$v['Color']] = $v['Color'];
+                        $sizes[$v['Size']] = $v['Size'];
+                    }
                 }
             }
 
