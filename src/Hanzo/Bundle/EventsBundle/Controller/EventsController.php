@@ -58,7 +58,7 @@ class EventsController extends CoreController
     			'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
     			'className' => $event->getType(),
     			'editable' => false,
-    			'color' => ($event->getIsOpen() == true) ? 'green': 'red'
+    			'color' => (strtotime($event->getEventDate()) >= strtotime('+1 day')) ? 'green': 'red'
     		);
     	}
 
@@ -104,7 +104,7 @@ class EventsController extends CoreController
                 	'input' => 'string',
                 	'widget' => 'single_text',
     				'date_format' => 'yyyy-MM-dd hh:mm',
-                	'attr' => array('class' => 'datepicker'),
+                	'attr' => array('class' => 'datetimepicker'),
                     'label' => 'events.event_date.label',
                     'translation_domain' => 'events'
                 )
@@ -177,7 +177,7 @@ class EventsController extends CoreController
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
 
-        	$changed = $id ? true : false; // Keep track of which this is a new event or an old event
+        	$changed = isset($id) ? true : false; // Keep track of which this is a new event or an old event
         	if($changed)
         		$old_event = $event->copy(); // Keep a copy of the old data before we bind the request
 
@@ -185,27 +185,30 @@ class EventsController extends CoreController
 
             if ($form->isValid()) {
 
-            	$customers_id = $event->getCustomersId();
-            	$host = null;
-            	// Der er ikke tilknyttet nogle Customers som vært. Gør et forsøg at finde en, eller opret en ny
+            	$customers_id = $event->getCustomersId(); // from the form
+            	$host = null; // Customers Object
+            	$changed_host = false; // Bool wheter the host has changed
+            	$new_host = false; // Bool wheter a new Customers have been created
+
             	// Hvis der er ændret i email = ny host
-            	if(empty($customers_id) || ( $old_event->getEmail() === $event->getEmail() )){
-            		$new_host = true; // Keep track if the host is new/changed
-            		$host = CustomersQuery::create()
-            			->findOneByEmail($event->getEmail())
-            		;
+        		if($changed && ($old_event->getEmail() != $event->getEmail()))
+        			$changed_host = true; // Keep track if the host is new/changed
+        		$host = CustomersQuery::create()
+        			->findOneByEmail($event->getEmail())
+        		;
 
-            		if(!($host instanceof Customers)){
-            			$host = new Customers();
-		                $host->setPasswordClear($event->getPhone());
-		                $host->setPassword(sha1($event->getPhone()));
-		                $host->setEmail($event->getEmail());
+            	// Der er ikke tilknyttet nogle Customers som vært, opret en ny
+        		if(!($host instanceof Customers)){
+        			$new_host = true;
+        			$host = new Customers();
+	                $host->setPasswordClear($event->getPhone());
+	                $host->setPassword(sha1($event->getPhone()));
+	                $host->setEmail($event->getEmail());
 
-		                $host->save();
-            		}
-            		$event->setCustomersId($host->getId());
-            	}
-
+	                $host->save();
+        		}
+        		$event->setCustomersId($host->getId());
+            	
             	$consultant = ConsultantsQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
             	$event->setConsultantsId($consultant->getId());
@@ -215,7 +218,8 @@ class EventsController extends CoreController
             		$event->setKey(sha1(time()));
             	}
 
-                $event->save();
+                $event->save(); // Needs to save before we can retrieve the ID for the code :-?
+
             	// Generate the Code of the event YYYY MM DD INIT TYPE ID DOMAIN
             	$code = 		date('Ymd', strtotime($event->getEventDate()));
             	$code = $code . $consultant->getInitials();
@@ -226,9 +230,9 @@ class EventsController extends CoreController
                 
                 $event->save();
 
+				$mailer = $this->get('mail_manager');
                 if($changed){
-					$mailer = $this->get('mail_manager');
-                	if($new_host && $changed){ // If the event has changed and its a new host, send specific mails to all
+                	if($changed_host){ // If the event has changed and its a new host, send specific mails to all
                 		if($event->getNotifyHostess()){
 
                 			// Send an email to the old Host
@@ -244,6 +248,7 @@ class EventsController extends CoreController
 				                'to_zip'			=> $event->getPostalCode(),
 				                'to_city'			=> $event->getCity(),
 				                'to_phone'			=> $event->getPhone(),
+								'link'				=> $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
 				                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
 				                'consultant_email'	=> $consultant->getCustomers()->getEmail()
 				            ));
@@ -266,6 +271,7 @@ class EventsController extends CoreController
 				                'email'				=> $host->getEmail(),
 				                'password'			=> $host->getPasswordClear(),
 				                'phone'				=> $event->getPhone(),
+								'link'				=> $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
 				                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
 				                'consultant_email'	=> $consultant->getCustomers()->getEmail()
 				            ));
@@ -293,14 +299,35 @@ class EventsController extends CoreController
 				                'city'				=> $event->getCity(),
 				                'phone'				=> $event->getPhone(),
 				                'email'				=> $event->getEmail(),
-				                'link'				=> $this->generateUrl('events_rsvp', array('key' => $participant->getKey())),
+				                'link'				=> $this->generateUrl('events_rsvp', array('key' => $participant->getKey()), true),
 				                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
 				                'consultant_email'	=> $consultant->getCustomers()->getEmail()
 				            ));
-				            $mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName();));
+				            $mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()));
 				            $mailer->send();
                 		}
                 	}
+                }else{
+					if($event->getNotifyHostess()){
+
+			            // Send an email to the new Host
+            			$mailer->setMessage('events.hostess.create', array(
+			                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
+			                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+			                'to_name'    	 	=> $event->getHost(),
+			                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
+			                'zip'				=> $event->getPostalCode(),
+			                'city'				=> $event->getCity(),
+			                'email'				=> $host->getEmail(),
+			                'password'			=> $host->getPasswordClear(),
+			                'phone'				=> $event->getPhone(),
+							'link'				=> $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
+			                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
+			                'consultant_email'	=> $consultant->getCustomers()->getEmail()
+			            ));
+			            $mailer->setTo(array($event->getEmail() => $event->getHost()));
+			            $mailer->send();
+            		}
                 }
 
                 $this->get('session')->setFlash('notice', 'events.created');
@@ -417,9 +444,11 @@ class EventsController extends CoreController
     		->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
     		->findOneByKey($key)
     	;
+    	
     	$events_participants = null;
     	$form = null;
     	if($event instanceof Events){
+    		$consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
     		$events_participant = new EventsParticipants();
 
 	    	$form = $this->createFormBuilder($events_participant)
@@ -465,9 +494,19 @@ class EventsController extends CoreController
 	            	// Now send out some emails!
 					$mailer = $this->get('mail_manager');
 
-		            $mailer->setMessage('events.invite', array(
-		                'name'  => $event->getHost(),
-		                'key'	=> $events_participant->getKey()
+		            $mailer->setMessage('events.participant.invited', array(
+		                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
+		                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+		                'to_name'     		=> $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
+		                'hostess'			=> $event->getHost(),
+		                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
+		                'zip'				=> $event->getPostalCode(),
+		                'city'				=> $event->getCity(),
+		                'email'				=> $event->getEmail(),
+		                'phone'				=> $event->getPhone(),
+						'link'				=> $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
+		                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
+		                'consultant_email'	=> $consultant->getCustomers()->getEmail()
 		            ));
 					
 		            $mailer->setTo(
@@ -601,6 +640,10 @@ class EventsController extends CoreController
     	;
 
     	if($friend instanceof EventsParticipants){
+	    	$event = EventsQuery::create()
+	    		->findOneById($friend->getEventsId())
+	    	;
+    		$consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
     		$events_participant = new EventsParticipants();
 
 			$form = $this->createFormBuilder($events_participant)
@@ -640,9 +683,19 @@ class EventsController extends CoreController
 	            	// Now send out some emails!
 					$mailer = $this->get('mail_manager');
 
-		            $mailer->setMessage('events.invite', array(
-		                'name'  => $events_participant->getFirstName(),
-		                'key'	=> $events_participant->getKey()
+		            $mailer->setMessage('events.participant.invited', array(
+		                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
+		                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+		                'to_name'     		=> $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
+		                'hostess'			=> $event->getHost(),
+		                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
+		                'zip'				=> $event->getPostalCode(),
+		                'city'				=> $event->getCity(),
+		                'email'				=> $event->getEmail(),
+		                'phone'				=> $event->getPhone(),
+						'link'				=> $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
+		                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
+		                'consultant_email'	=> $consultant->getCustomers()->getEmail()
 		            ));
 					
 		            $mailer->setTo(
