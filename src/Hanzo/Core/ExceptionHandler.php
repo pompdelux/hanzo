@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
 use Hanzo\Model\CmsI18n;
 use Hanzo\Model\CmsI18nQuery;
@@ -45,7 +46,6 @@ class ExceptionHandler
         // 404 hangeling
         if ($exception instanceof NotFoundHttpException) {
             $request = $this->service_container->get('request');
-
             $path = $request->getPathInfo();
 
             // attempt to fix images in old newsletters. Redirect to static
@@ -55,13 +55,13 @@ class ExceptionHandler
             }
 
             // try to map old shop ulr's to new ones
-            if (substr($path, 0, 3) == '/p/') {
+            if (substr($path, 6, 3) == '/p/') {
                 $page = CmsI18nQuery::create()
-                    ->filterByLocale($this->service_container->get('session')->getLocale())
-                    ->findOneByOldPath($path)
+                    ->filterByLocale($request->getLocale())
+                    ->findOneByOldPath(substr($path, 6))
                 ;
                 if ($page instanceof CmsI18n) {
-                    $response = new Response('', 301, array('Location' => $request->getBaseUrl().'/'.$page->getPath()));
+                    $response = new Response('', 301, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/'.$page->getPath()));
                     $event->setResponse($response);
                 }
             } else {
