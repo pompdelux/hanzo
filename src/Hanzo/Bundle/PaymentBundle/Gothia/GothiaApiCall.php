@@ -9,6 +9,7 @@ use Hanzo\Core\Hanzo,
     Hanzo\Model\Customers,
     Hanzo\Model\GothiaAccounts,
     Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
+    Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi,
     Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallResponse;
 
 // Great... fucking oldschool crap code:
@@ -24,6 +25,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     private static $instance = null;
 
     /**
+     * undocumented class variable
+     *
+     * @var GothiaApi
+     **/
+    protected $api = null;
+
+    /**
      * __construct
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
@@ -35,7 +43,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public static function getInstance($settings)
+    public static function getInstance( Array $settings, GothiaApi $api)
     {
         if ( self::$instance === null )
         {
@@ -43,6 +51,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         }
 
         self::$instance->settings = $settings;
+        self::$instance->api = $api;
 
         return self::$instance;
     }
@@ -56,7 +65,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     {
         $errorReporting = error_reporting(0);
 
-        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) == 'YES' )
+        if ( $this->api->getTest() )
         {
             $client = AFSWS_Init( 'test' );
         }
@@ -167,9 +176,9 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $gothiaAccount = $customer->getGothiaAccounts();
         $customerId    = $customer->getId();
 
-        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) === 'YES' )
+        if ( $this->api->getTest() )
         {
-            $customerId = '100001';
+            $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
         $callString = AFSWS_CheckCustomer(
@@ -196,9 +205,36 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             )
         );
 
+        if ( $this->api->getTest() )
+        {
+            error_log(__LINE__.':'.__FILE__.' Checkcustomer: '. $callString ); // hf@bellcom.dk debugging
+        }
+
         $response = $this->call('CheckCustomer', $callString);
 
         return $response;
+    }
+
+    /**
+     * getTestCustomerId
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function getTestCustomerId( $ssn )
+    {
+        $customerId = false;
+
+        switch ($ssn) 
+        {
+          case 4409291111:
+              $customerId = 100010;
+            break;
+          case 4402181111:
+              $customerId = '00100000';
+              break;
+        }
+
+        return $customerId;
     }
 
     /**
@@ -213,9 +249,10 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
         $customerId = $customer->getId();
 
-        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) === 'YES' )
+        if ( $this->api->getTest() )
         {
-            $customerId = '00100001';
+            $gothiaAccount = $customer->getGothiaAccounts();
+            $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
@@ -224,6 +261,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             AFSWS_Reservation('NoAccountOffer', $amount, 'SEK', $customerId, null) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function
+
+        if ( $this->api->getTest() )
+        {
+            error_log(__LINE__.':'.__FILE__.' placeReservation: '. $callString ); // hf@bellcom.dk debugging
+        }
 
         $response = $this->call('PlaceReservation', $callString);
 
@@ -252,9 +294,10 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
         $customerId = $customer->getId();
 
-        if ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) === 'YES' )
+        if ( $this->api->getTest() )
         {
-            $customerId = '00100001';
+            $gothiaAccount = $customer->getGothiaAccounts();
+            $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
         // Gothia uses tns:CancelReservation which contains a tns:cancelReservation, therefore the 2 functions with almost the same name

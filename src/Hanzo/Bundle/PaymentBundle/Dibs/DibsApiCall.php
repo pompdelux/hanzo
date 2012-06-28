@@ -59,7 +59,7 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public static function getInstance( array $settings, DibsApi $api )
+    public static function getInstance( Array $settings, DibsApi $api )
     {
         if ( self::$instance === null )
         {

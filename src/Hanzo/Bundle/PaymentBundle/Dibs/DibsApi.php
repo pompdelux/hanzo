@@ -201,7 +201,7 @@ class DibsApi implements PaymentMethodApiInterface
      **/
     public function getTest()
     {
-        return $this->settings['test'];
+        return ( isset( $this->settings['test'] ) && strtoupper( $this->settings['test'] ) == 'YES' ) ? true : false;
     }
 
     /**
@@ -407,7 +407,7 @@ class DibsApi implements PaymentMethodApiInterface
         $settings['delivery11.Email']         = $order->getEmail();
         $settings['delivery12.OrderId']       = $order->getId();
 
-        if ( strtoupper( $this->getTest() ) == 'YES')
+        if ( $this->getTest() )
         {
             $settings["test"] = 'YES';
         }
