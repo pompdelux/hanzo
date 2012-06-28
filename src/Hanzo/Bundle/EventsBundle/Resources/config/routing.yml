@@ -43,3 +43,21 @@ events_delete:
     requirements:
         _format: html|json
         id: \d+
+
+events_invite:
+    pattern: /events/invite/{key}
+    defaults: 
+        _controller: EventsBundle:Events:invite
+        key: null
+
+events_rsvp:
+    pattern: /events/rsvp/{key}
+    defaults: 
+        _controller: EventsBundle:Events:rsvp
+        key: null
+
+events_tell_a_friend:
+    pattern: /events/tellafriend/{key}
+    defaults: 
+        _controller: EventsBundle:Events:tellAFriend
+        key: null
