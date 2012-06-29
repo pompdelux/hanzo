@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="checkout_json_err_no_order">
+        <source>json.err.no_order</source>
+        <target>Ordren finnes ikke</target>
+      </trans-unit>
+      <trans-unit id="checkout_err_unknown_shipping_method">
+        <source>err.unknown_shipping_method</source>
+        <target>Ukjent leveringsform</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.title">
+        <source>checkout.success.title</source>
+        <target>Ordrebekreftelse</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.text">
+        <source>checkout.success.text</source>
+        <target><![CDATA[
+          <h2>E-ordrenummer</h2>
+          <p>E-ordrenummer: <b>%id%</b></p>
+
+          <h2>Leveringstid</h2>
+          <p>Den aktuelle leveringstiden er i øyeblikket: %date% ukedager.</p>
+
+          <h2>Kontakt</h2>
+          <p>Kontakt oss gjerne dersom du har spørsmål.</p>
+          <p>Telefon  +47 2274 2600</p>
+          <p>E-post: <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a></p>
+
+          <h2>Min side</h2>
+          <p>
+            Se din ordre og mye mer <br>
+            <a href="%account%">&raquo; Min side</a>
+          </p>
+
+          <h2>FAQ</h2>
+          <p>
+            Her kan du finne ofte stilte spørsmål og svar om POMPdeLUX.<br>
+            <a href="/p/forside-kundeservice-fakta">&raquo; FAQ</a>
+          </p>
+
+          <h2>Nyheter</h2>
+          <p>
+            Under menyen Nyheter kan du holde deg oppdatert med seneste aktuelle nyheter.<br>
+            <a href="/p/forside-nyheter">&raquo; Nyheter</a>
+          </p>
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="checkout.failed.title">
+        <source>checkout.failed.title</source>
+        <target>Betaling feilet</target>
+      </trans-unit>
+      <trans-unit id="checkout.failed.text">
+        <source>checkout.failed.text</source>
+        <target><![CDATA[
+            Det oppstod en feil ved betaling / ordrebehandling. Kontakt vennligst kundeservice<br><br>
+            <p>E-ordrenummer: <b>%order_id%</b></p>
+            ]]></target>
+      </trans-unit>
+      <trans-unit id="confirm.title">
+        <source>confirm.title</source>
+        <target>Godkjenn</target>
+      </trans-unit>
+      <trans-unit id="confirm.order_id">
+        <source>confirm.order_id</source>
+        <target>E-ordrenummer</target>
+      </trans-unit>
+      <trans-unit id="addresses">
+        <source>addresses</source>
+        <target>Adresser</target>
+      </trans-unit>
+      <trans-unit id="no_addresses">
+        <source>no_addresses</source>
+        <target>Det er ikke oprettet noen adresser</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.edit">
+        <source>shipping.address.edit</source>
+        <target>» Rett leveringsadresse</target>
+      </trans-unit>
+      <trans-unit id="shipping.address">
+        <source>shipping.address</source>
+        <target>Leveringsadresse</target>
+      </trans-unit>
+
+      <trans-unit id="shipping.address.overnight">
+        <source>shipping.address.overnight</source>
+        <target>Leveringsadresse</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.overnight.edit">
+        <source>shipping.address.overnight.edit</source>
+        <target>» Rett døgnpostadresse</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.no_overnight">
+        <source>shipping.address.no_overnight</source>
+        <target>Ingen døgnboksadresse opprettet</target>
+      </trans-unit>
+      <trans-unit id="payment.method">
+        <source>payment.method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="payment.address">
+        <source>payment.address</source>
+        <target>Privatadresse</target>
+      </trans-unit>
+      <trans-unit id="payment.title">
+        <source>payment.title</source>
+        <target>Betalingsmåte</target>
+      </trans-unit>
+      <trans-unit id="payment.text">
+        <source>payment.text</source>
+        <target>Velg hvordan du vil betale denne ordren.</target>
+      </trans-unit>
+      <trans-unit id="confirm.vat">
+        <source>confirm.vat</source>
+        <target>Momsbeløp</target>
+      </trans-unit>
+      <trans-unit id="confirm.sub_total">
+        <source>confirm.sub_total</source>
+        <target>Varer i alt</target>
+      </trans-unit>
+      <trans-unit id="confirm.total">
+        <source>confirm.total</source>
+        <target>Samlet beløp</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.title">
+        <source>payment.paybybill.title</source>
+        <target>Betaling på konto</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.text">
+        <source>payment.paybybill.text</source>
+        <target>Innbetal pengene på kontonummer: "yy-yy xx-xx-xx-xx-xx" senest 8 dager etter at du har mottatt varene.</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.label">
+        <source>payment.paybybill.label</source>
+        <target>Betaling på konto</target>
+      </trans-unit>
+      <trans-unit id="payment.gateway_id">
+        <source>payment.gateway_id</source>
+        <target>Betalings-ID</target>
+      </trans-unit>
+      <trans-unit id="payment.transaction_id">
+        <source>payment.transaction_id</source>
+        <target>Transaksjonsnummer</target>
+      </trans-unit>
+      <trans-unit id="payment.fee">
+        <source>payment.fee</source>
+        <target>Betalingsgebyr</target>
+      </trans-unit>
+      <trans-unit id="payment.canceled">
+        <source>payment.canceled</source>
+        <target>Din betaling ble avbrutt</target>
+      </trans-unit>
+      <trans-unit id="customer.id">
+        <source>customer.id</source>
+        <target>Kundenummer</target>
+      </trans-unit>
+      <trans-unit id="quantity">
+        <source>quantity</source>
+        <target>Antall</target>
+      </trans-unit>
+      <trans-unit id="products">
+        <source>products</source>
+        <target>Produkter</target>
+      </trans-unit>
+      <trans-unit id="product.name">
+        <source>product.name</source>
+        <target>Varenavn</target>
+      </trans-unit>
+      <trans-unit id="product.size">
+        <source>product.size</source>
+        <target>Størrelse</target>
+      </trans-unit>
+      <trans-unit id="product.color">
+        <source>product.color</source>
+        <target>Farge</target>
+      </trans-unit>
+      <trans-unit id="product.price">
+        <source>product.price</source>
+        <target>Stk. pris</target>
+      </trans-unit>
+      <trans-unit id="product.total">
+        <source>product.total</source>
+        <target>I alt</target>
+      </trans-unit>
+      <trans-unit id="total.excl_vat">
+        <source>total.excl_vat</source>
+        <target>Total ekskl. frakt og ekspedisjonsgebyr</target>
+      </trans-unit>
+      <trans-unit id="total.vat">
+        <source>total.vat</source>
+        <target>Moms utgjør</target>
+      </trans-unit>
+      <trans-unit id="total.incl_vat">
+        <source>total.incl_vat</source>
+        <target>Total inkl. frakt, moms og ekspedisjonsgebyr</target>
+      </trans-unit>
+      <trans-unit id="expected_at">
+        <source>expected_at</source>
+        <target>Forventet ekspedisjonstid</target>
+      </trans-unit>
+      <trans-unit id="my.account.info">
+        <source>my.account.info</source>
+        <target>Se ordrene dine, rett i dine personlige opplysninger, rett adgangskode og mye mer.</target>
+      </trans-unit>
+      <trans-unit id="my.account.username">
+        <source>my.account.username</source>
+        <target>Brukernavn</target>
+      </trans-unit>
+      <trans-unit id="my.account.password">
+        <source>my.account.password</source>
+        <target>Kodeord</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Ekspedisjonsgebyr</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee.description">
+        <source>shipping.fee.description</source>
+        <target>Alle ordrer pålegges et ekspedisjonsgebyr på %amount%</target>
+      </trans-unit>
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Trinn 1 av 6 - Kurv</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Shop videre</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Fortsett</target>
+      </trans-unit>
+      <trans-unit id="cart.is.empty">
+        <source>cart.is.empty</source>
+        <target>Du har ikke noen varer i kurven for øyeblikket.</target>
+      </trans-unit>
+      <trans-unit id="no.such.product.in.cart">
+        <source>no.such.product.in.cart</source>
+        <target>Det etterspurte produktet er ikke i kurven.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Merk:</strong> Hvis ordren din inneholder varer med avsendelsesdatoer, så sender vi først ordren når vi har alle varene på lager.]]></target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Tilbake</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Rett</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Bekreft ordren</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.date.notice">
+        <source>late.delivery.date.notice</source>
+        <target><![CDATA[
+          <p>Din ordre inneholder vare(r) som vi ikke har på lager for øyeblikket. Ordren pakkes når vi har alle varene på lager. Vi forventer å sende hele ordren fra lageret senest: <strong>%date%</strong>.</p>
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="status.20" approved="no">
+        <source>status.20</source>
+        <target>Betaling godkjent</target>
+      </trans-unit>
+      <trans-unit id="status.30">
+        <source>status.30</source>
+        <target>Venter</target>
+      </trans-unit>
+      <trans-unit id="status.40">
+        <source>status.40</source>
+        <target>Under behandling</target>
+      </trans-unit>
+      <trans-unit id="status.50">
+        <source>status.50</source>
+        <target>Fakturert</target>
+        </trans-unit>
+       <trans-unit id="payment.gothia.title">
+        <source>payment.gothia.title</source>
+        <target>Gothia faktura</target>
+      </trans-unit>
+      <trans-unit id="payment.gothia.desc">
+        <source>payment.gothia.desc</source>
+        <target>Gothia faktura (Velger du å betale med PayByBill så kommer en ekstra avgift)</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.title">
+        <source>payment.dibs.title</source>
+        <target>Dibs</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.dk">
+        <source>payment.dibs.paytype.dk</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.visa">
+        <source>payment.dibs.paytype.visa</source>
+        <target>Visa</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.visa_elec">
+        <source>payment.dibs.paytype.visa_elec</source>
+        <target>Visa Electron</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.master">
+        <source>payment.dibs.paytype.master</source>
+        <target>Mastercard/Eurocard</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.processing.title">
+        <source>payment.dibs.processing.title</source>
+        <target>Din ordre behandles av Webshoppen</target>
+      </trans-unit>
+      <trans-unit id="order.state_pre_payment.locked">
+        <source>order.state_pre_payment.locked</source>
+        <target>Din ordre er under betaling. Du kan først redigere i ordren din igjen når betalingen er godkjent.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

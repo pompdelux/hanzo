@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="admin_home_text">
+        <source>admin.home.text</source>
+        <target>Admin</target>
+      </trans-unit>
+      <trans-unit id="admin_language_selector">
+        <source>languages.selector</source>
+        <target>Choose language to translate</target>
+      </trans-unit>
+      <trans-unit id="admin_page_edit_text">
+        <source>page.edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="admin_page_delete_text">
+        <source>page.delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="admin_save_cms_page_tree">
+        <source>save.cms.page_tree</source>
+        <target>Save tree</target>
+      </trans-unit>
+      <trans-unit id="admin_save_changes_success">
+        <source>save.changes.success</source>
+        <target>The changes was saved</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_node_delete_success">
+        <source>delete.node.success</source>
+        <target>The CMS node was deleted</target>
+      </trans-unit>
+      <trans-unit id="admin_cms_edit_isActive_text">
+        <source>cms.edit.is_active</source>
+        <target>Show public</target>
+      </trans-unit>
+      <trans-unit id="admin.cancel">
+        <source>cancel</source>
+        <target>Cancel</target>
+      </trans-unit>
+      <trans-unit id="admin.update.cms.header.text">
+        <source>update.cms.header.text</source>
+        <target>Edit CMS page.</target>
+      </trans-unit>
+      <trans-unit id="admin.add.cms.header.text">
+        <source>add.cms.header.text</source>
+        <target>Create new CMS page.</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.update">
+        <source>update.cms</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.add">
+        <source>add.cms</source>
+        <target>Create</target>
+      </trans-unit>
+      <trans-unit id="admin.cms.update.success">
+        <source>cms.updated</source>
+        <target>The page was succefull updated!</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.label.is_restricted">
+        <source>cms.edit.label.is_restricted</source>
+        <target>Approved IP required in offline mode</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.dead_list.link">
+        <source>admin.orders.dead_list.link</source>
+        <target>Dead orders</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

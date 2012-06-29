@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Mix Match: %title%</target>
+            </trans-unit>
+            <trans-unit id="product">
+                <source>product</source>
+                <target>Artikel</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Prijs</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Kleur</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Maat</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Totaal</target>
+            </trans-unit>
+            <trans-unit id="basket.notes">
+                <source>basket.notes</source>
+                <target><![CDATA[
+                    <h6>Let op</h6>
+                    1) Kies eerst een maat voordat je een artikel in je winkelmandje doet <img src="/fx/images/pencil.png" alt=""><br>
+                    2) Klik daarna op Doe in je winkelmandje <img src="/fx/images/basket_put.png" alt=""><br>
+                    3) Wil je een artikel van de pop verwijderen, klik dan op Verwijder <img src="/fx/images/delete.png" alt=""><br>
+                    4) Heb je het artikel al in je winkelmandje gedaan, dan is dit symbool te zien <img src="/fx/images/bullet_green.png" alt="">
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="no.products.in.category">
+                <source>no.products.in.category</source>
+                <target>Alle artikelen in deze categorie zijn uitverkocht.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

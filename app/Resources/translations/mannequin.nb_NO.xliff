@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Mix Match: %title%</target>
+            </trans-unit>
+            <trans-unit id="product">
+                <source>product</source>
+                <target>Produkt</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Pris</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Farge</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Totalt</target>
+            </trans-unit>
+            <trans-unit id="basket.notes">
+                <source>basket.notes</source>
+                <target><![CDATA[
+                    <h6>Merk</h6>
+                    1) For å tilføye en vare til kurven, skal du først velge størrelse <img src="/fx/images/pencil.png" alt=""><br>
+                    2) Heretter skal du klikke på Tilføy til kurv <img src="/fx/images/basket_put.png" alt=""><br>
+                    3) Ønsker du å fjerne en vare fra kurven, skal du klikke på Slett <img src="/fx/images/delete.png" alt=""><br>
+                    4) Har du allerede lagt varen i kurven, kommer dette symbolet frem  <img src="/fx/images/bullet_green.png" alt="">
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="no.products.in.category">
+                <source>no.products.in.category</source>
+                <target>Alle varer i denne kategorien er utsolgt.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

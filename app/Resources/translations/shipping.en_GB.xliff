@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="shipping_10">
+        <source>page.heading</source>
+        <target>Checkout</target>
+      </trans-unit>
+      <trans-unit id="shipping_20">
+        <source>page.desc</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.20">
+        <source>shipping_method.name.20</source>
+        <target>Post Danmark - Private priority</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.20">
+        <source>shipping_method.desc.20</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.20">
+        <source>shipping_method.label.20</source>
+        <target>Post Danmark - Private priority %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.name">
+        <source>shipping_fee.name</source>
+        <target>Handling fee</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.desc">
+        <source>shipping_fee.desc</source>
+        <target>A handling fee of %price% are added to all orders</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.label">
+        <source>shipping_fee.label</source>
+        <target>Handling fee %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Handling fee</target>
+      </trans-unit>
+      <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
+        <source>page.desc.after_methods</source>
+        <target>Handling charge 0.00 EUR</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update" approved="no">
+                <source>update</source>
+                <target>Opdater</target>
+            </trans-unit>
+            <trans-unit id="forward" approved="no">
+                <source>forward</source>
+                <target>Videre</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Dölj alla</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Visa alla</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Stäng</target>
+            </trans-unit>
+            <trans-unit id="ok">
+                <source>ok</source>
+                <target>Ok</target>
+            </trans-unit>
+            <trans-unit id="cancel" approved="no">
+                <source>cancel</source>
+                <target>Annuller</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Observera</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Välj</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Antal</target>
+            </trans-unit>
+            <trans-unit id="please.wait">
+                <source>please.wait</source>
+                <target>Vent venligst</target>
+            </trans-unit>
+            <trans-unit id="action.completed" approved="no">
+                <source>action.completed</source>
+                <target>Din handling blev udført</target>
+            </trans-unit>
+            <trans-unit id="an.error.occurred" approved="no">
+                <source>an.error.occurred</source>
+                <target>Der opstod en fejl</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>February 20, 2012 09:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target><![CDATA[<p><b>Observera:</b> Om din order innehåller varor med olika sändningsdatum, skickas din order först när samtliga varor finns på lager.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning">
+                <source>delete.from.basket.warning</source>
+                <target><![CDATA[Er du sikker på du vil slette <strong>%product%</strong> fra din kurv ?]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target><![CDATA[<h2 style="color:#A10000">Observera</h2><strong>"%product%"</strong> har vi inte på lager för tillfället.<br>Hela din order förväntas att bli skickad från vårt lager senast <strong>%date%</strong>]]></target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly" approved="no">
+                <source>not.filled.correctly</source>
+                <target>Ikke udfyldt korrekt</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business">
+                <source>checkout.shipping_business</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="loading.std" approved="no">
+                <source>loading.std</source>
+                <target>Läser in ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search" approved="no">
+                <source>loading.search</source>
+                <target>Søger ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products" approved="no">
+                <source>loading.search.products</source>
+                <target>Finder produkter ...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target><![CDATA[<font color="#A10000"><b>Observera</b> att vid ändring av sin order, ska man registrera sitt betalkort och genomföra betalningen en gång till för att den nya ordern ska bli registrerad. Även det nya beloppet blir reserverat på ditt konto. Det kommer alltså ligga två reservationer på kontot fram tills banken släpper den första reservationen efter max 5 vardagar.</font><br><br>För att redigera din order ska du göra följande:<br><br>1) Klicka på "redigera" för att redigera ordern. Därefter läggs dina varor tillbaka i korgen.<br><br>2) Om du önskar att ändra en färg eller en storlek, ska du klicka på pennan i korgen. Om du önskar att lägga till varor, ska du klicka på menyn Webshop.<br><br>3) När du är färdig med dina ändringar, ska du klicka på "Visa korg" och följa steg 1 till 5. När du har genomfört din order med en ny kortbetalning, kommer den gamla betalningen automatiskt att bli raderad, och din första reservation blir tillgänglig på ditt konto igen efter ca 5 vardagar.]]></target>
+            </trans-unit>
+            <trans-unit id="delete.order.notice">
+                <source>delete.order.notice</source>
+                <target><![CDATA['Du är på väg att radera din order, är du helt säker på att du vill radera hela ordern?<br><br>Om du raderar din order, blir din kreditkortbetalning automatiskt raderad.]]></target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Säljare</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="mannequin.empty" approved="no">
+                <source>mannequin.empty</source>
+                <target>Der er ikke valgt produkter</target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Utsåld</target>
+            </trans-unit>
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
+                <target>The e-mail address "%email%" is not subscribed</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

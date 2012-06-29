@@ -1,0 +1,360 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="fetch.invoice">
+                <source>fetch.invoice</source>
+                <target>Toon factuur als pdf</target>
+            </trans-unit>
+            <trans-unit id="fetch.credit_note">
+                <source>fetch.credit_note</source>
+                <target>Toon creditnota als pdf</target>
+            </trans-unit>
+            <trans-unit id="my.account">
+                <source>my.account</source>
+                <target>Mijn pagina</target>
+            </trans-unit>
+            <trans-unit id="previous.orders">
+                <source>previous.orders</source>
+                <target>Eerdere orders</target>
+            </trans-unit>
+            <trans-unit id="account.details">
+                <source>account.details</source>
+                <target>Toon of wijzig mijn gegevens..</target>
+            </trans-unit>
+            <trans-unit id="create.account.link">
+                <source>create.account.link</source>
+                <target>» Ik wil me registreren als klant bij POMPdeLUX.</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten">
+                <source>password.forgotten</source>
+                <target>Ik ben mijn wachtwoord vergeten</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.text">
+                <source>password.forgotten.text</source>
+                <target><![CDATA[
+                    <h2>Ben je je wachtwoord vergeten?</h2>
+                    <p>Typ hieronder je e-mailadres en klik op de knop "Ga door". Binnen een paar minuten ontvang je een e-mail van POMPdeLUX met je wachtwoord.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.not_found">
+                <source>password.forgotten.not_found</source>
+                <target><![CDATA[
+                    <p>We konden het e-mailadres dat je ingevuld hebt helaas niet vinden. Probeer het nogmaals en controleer dat je het juiste e-mailadres ingevuld hebt.</p>
+                    <p>Heb je het juiste e-mailadres ingevuld en dit bericht blijft verschijnen, dan ben je niet geregistreerd in ons systeem. Neem contact op met de klantenservice – het kan namelijk zijn dat je verkeerd geregistreerd bent.</p>
+                    <a href="/voorpagina/klantenservice">» Klantenservice</a>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.resend">
+                <source>password.forgotten.resend</source>
+                <target><![CDATA[
+                    <p>Je wachtwoord is naar het ingevulde e-mailadres gestuurd.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Ga door</target>
+            </trans-unit>
+            <trans-unit id="back">
+                <source>back</source>
+                <target>Terug</target>
+            </trans-unit>
+            <trans-unit id="retrive.password">
+                <source>retrive.password</source>
+                <target>» Ontvang je wachtwoord per e-mail</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.notice">
+                <source>my.account.login.notice</source>
+                <target><![CDATA[Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.]]></target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>New customer</source>
+                <target>Nieuwe klant</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-mailadres</target>
+            </trans-unit>
+            <trans-unit id="password">
+                <source>password</source>
+                <target>Wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.title">
+                <source>my.account.login.title</source>
+                <target>Mijn pagina - Login</target>
+            </trans-unit>
+            <trans-unit id="my.account.login">
+                <source>my.account.login</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>First name</source>
+                <target>Voornaam</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Last name</source>
+                <target>Achternaam</target>
+            </trans-unit>
+            <trans-unit id="53" approved="no">
+                <source>Initials</source>
+                <target>Voorletters</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>Phone</source>
+                <target>Telefoonnummer</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>Address line 1</source>
+                <target>Straatnaam (denk om huisnummer en verdieping/deur)</target>
+            </trans-unit>
+            <trans-unit id="56" approved="no">
+                <source>Address line 2</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Postal code</source>
+                <target>Postcode</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>City</source>
+                <target>Woonplaats</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Password repeated</source>
+                <target>Bevestig het wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match" approved="no">
+                <source>password.invalid.match</source>
+                <target>Je moet in beide velden hetzelfde wachtwoord invullen.</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>Email repeated</source>
+                <target>Herhaal het e-mailadres</target>
+            </trans-unit>
+            <trans-unit id="email.invalid.match" approved="no">
+                <source>email.invalid.match</source>
+                <target>Je moet in beide velden hetzelfde e-mailadres invullen.</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>Country</source>
+                <target>Land</target>
+            </trans-unit>
+            <trans-unit id="64" approved="no">
+                <source>account.created</source>
+                <target>Je account is nu aangemaakt.</target>
+            </trans-unit>
+            <trans-unit id="account_newsletter_warning">
+                <source>account.newsletter.warning</source>
+                <target>Je e-mail is niet aangemeld voor de nieuwsbrief</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>create.account</source>
+                <target>Maak account aan</target>
+            </trans-unit>
+            <trans-unit id="edit.account">
+                <source>edit.account</source>
+                <target>Wijzig account</target>
+            </trans-unit>
+            <trans-unit id="update.account">
+                <source>update.account</source>
+                <target>Werk je account bij</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Email repeated</source>
+                <target>Herhaal het e-mailadres</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>create.notice</source>
+                <target><![CDATA[<strong>Let op:</strong> Heb je al een account bij ons, dan moet je inloggen op <a href="%url%">Mijn pagina</a><br><br>]]></target>
+            </trans-unit>
+            <trans-unit id="68" approved="no">
+                <source>nno.title</source>
+                <target>Kopieer je adresgegevens uit De Telefoongids (KPN).</target>
+            </trans-unit>
+            <trans-unit id="69" approved="no">
+                <source>nno.description</source>
+                <target>Typ je telefoonnummer en je adres wordt automatisch ingevuld.</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>nno.fetch</source>
+                <target>Toon</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>create.accept</source>
+                <target>Ik bevestig dat ik de heb gelezen en geaccepteerd.</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>create.newsletter</source>
+                <target>Meld je aan voor de nieuwsbrief</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>create.terms</source>
+                <target>POMPdeLUX Voorwaarden</target>
+            </trans-unit>
+            <trans-unit id="74" approved="no">
+                <source>create.nno.address_found</source>
+                <target>Het adres dat bij het ingetypte telefoonnummer hoort, is in het onderstaande formulier ingevuld.</target>
+            </trans-unit>
+            <trans-unit id="75" approved="no">
+                <source>create.nno.no_address_found</source>
+                <target>Er was geen adres voor het ingetypte telefoonnummer.</target>
+            </trans-unit>
+            <trans-unit id="76" approved="no">
+                <source>The password fields must match.</source>
+                <target>De twee velden met het wachtwoord moeten hetzelfde zijn.</target>
+            </trans-unit>
+            <trans-unit id="77" approved="no">
+                <source>The email fields must match.</source>
+                <target>De twee velden met de e-mailadressen moeten hetzelfde zijn.</target>
+            </trans-unit>
+            <trans-unit id="order.number">
+                <source>order.number</source>
+                <target>Ordernummer</target>
+            </trans-unit>
+            <trans-unit id="order.date">
+                <source>order.date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="order.status">
+                <source>order.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="order.total">
+                <source>order.total</source>
+                <target>Totaal</target>
+            </trans-unit>
+            <trans-unit id="order.invoice">
+                <source>order.invoice</source>
+                <target>Factuur</target>
+            </trans-unit>
+            <trans-unit id="order.invoice.title">
+                <source>order.invoice.title</source>
+                <target>Toon gegevens</target>
+            </trans-unit>
+            <trans-unit id="order.edit.title">
+                <source>order.edit.title</source>
+                <target>Wijzig order</target>
+            </trans-unit>
+            <trans-unit id="order.delete.title">
+                <source>order.delete.title</source>
+                <target>Wis order</target>
+            </trans-unit>
+            <trans-unit id="order.actions">
+                <source>order.actions</source>
+                <target>Handelingen</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Annuleer</target>
+            </trans-unit>
+            <trans-unit id="company.name">
+                <source>company.name</source>
+                <target>Bedrijfsnaam</target>
+            </trans-unit>
+            <trans-unit id="edit.address">
+                <source>edit.address</source>
+                <target>Wijzig adres</target>
+            </trans-unit>
+            <trans-unit id="add.address">
+                <source>add.address</source>
+                <target>Voeg een nieuw adres toe</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>save</source>
+                <target>Sla op</target>
+            </trans-unit>
+            <trans-unit id="overnightbox.label">
+                <source>overnightbox.label</source>
+                <target>Postbus adres</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.required">
+                <source>address.first_name.required</source>
+                <target>Vermeld je voornaam.</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required">
+                <source>address.last_name.required</source>
+                <target>Vermeld je achternaam.</target>
+            </trans-unit>
+            <trans-unit id="address.address_line_1.required">
+                <source>address.address_line_1.required</source>
+                <target>Vermeld je adres.</target>
+            </trans-unit>
+            <trans-unit id="address.postal_code.required">
+                <source>address.postal_code.required</source>
+                <target>Vermeld je postcode.</target>
+            </trans-unit>
+            <trans-unit id="address.city.required">
+                <source>address.city.required</source>
+                <target>Vermeld je woonplaats.</target>
+            </trans-unit>
+            <trans-unit id="address.countries_id.required">
+                <source>address.countries_id.required</source>
+                <target>Kies je land.</target>
+            </trans-unit>
+            <trans-unit id="address.company_name.required">
+                <source>address.company_name.required</source>
+                <target>Vermeld je bedrijfsnaam.</target>
+            </trans-unit>
+            <trans-unit id="Bad credentials" approved="no">
+                <source>Bad credentials</source>
+                <target>We kunnen je e-mailadres en/of wachtwoord niet vinden.</target>
+            </trans-unit>
+            <trans-unit id="update.notice" approved="no">
+                <source>update.notice</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="update.password_notice" approved="no">
+                <source>update.password_notice</source>
+                <target>Vul dit alleen in als je je huidige wachtwoord wilt wijzigen.</target>
+            </trans-unit>
+            <trans-unit id="history.empty" approved="no">
+                <source>history.empty</source>
+                <target>Je hebt nog geen orders bij ons geplaatst.</target>
+            </trans-unit>
+            <trans-unit id="account.updated" approved="no">
+                <source>account.updated</source>
+                <target>Je accountgegevens zijn bijgewerkt.</target>
+            </trans-unit>
+            <trans-unit id="create.account.error.title" approved="no">
+                <source>create.account.error.title</source>
+                <target>Er ging iets fout</target>
+            </trans-unit>
+            <trans-unit id="create.account.error" approved="no">
+                <source>create.account.error</source>
+                <target>Je hebt het formulier verkeerd ingevuld, zie de gegevens hieronder:</target>
+            </trans-unit>
+            <trans-unit id="phone.required" approved="no">
+                <source>phone.required</source>
+                <target>Vermeld je telefoonnummer</target>
+            </trans-unit>
+            <trans-unit id="email.required" approved="no">
+                <source>email.required</source>
+                <target>Vermeld je e-mailadres</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
+            </trans-unit>
+            <trans-unit id="my.account.order.view" approved="no">
+                <source>my.account.order.view</source>
+                <target>Mijn account - order #%order_id%</target>
+            </trans-unit>
+            <trans-unit id="address.delivery">
+                <source>address.delivery</source>
+                <target>Verzendadres</target>
+            </trans-unit>
+            <trans-unit id="address.billing">
+                <source>address.billing</source>
+                <target>Huisadres</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
+            </trans-unit>
+            <trans-unit id="email.already.in.use">
+                <source>email.already.in.use</source>
+                <target>Dit e-mailadres bestaat al!</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

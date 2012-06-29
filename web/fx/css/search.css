@@ -1,0 +1,13 @@
+#body-category-search .product-list {
+  height: auto;
+}
+.product-list h3 {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+form.search {
+  margin: 20px 0;
+}

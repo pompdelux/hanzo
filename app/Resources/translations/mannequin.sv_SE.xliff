@@ -1,0 +1,45 @@
+﻿<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Omklädningsrum: %title%</target>
+            </trans-unit>
+            <trans-unit id="product">
+                <source>product</source>
+                <target>Produkt</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Pris</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Färg</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Storlek</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Totalt</target>
+            </trans-unit>
+            <trans-unit id="basket.notes">
+                <source>basket.notes</source>
+                <target><![CDATA[
+                    <h6>Observera</h6>
+                    1) För att lägga varan i korgen, ska du först välja storlek <img src="/fx/images/pencil.png" alt=""><br>
+                    2) Därefter ska du klicka på Lägg i korg <img src="/fx/images/basket_put.png" alt=""><br>
+                    3) Önskar du att ta bort en vara från dockan, ska du klicka på Radera <img src="/fx/images/delete.png" alt=""><br>
+                    4) Om du redan har lagt varan i korgen, kommer denna symbol fram  <img src="/fx/images/bullet_green.png" alt="">
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="no.products.in.category">
+                <source>no.products.in.category</source>
+                <target>Alla varor i denna kategorin är utsålda.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

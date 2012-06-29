@@ -1,0 +1,450 @@
+#main h1, #main h2, #main h3, #main h4 {
+  color: white;
+  clear: both;
+}
+table.bottom {
+  border-bottom: 1px solid #000;
+}
+
+label {
+  display: block;
+  margin-top:5px;
+}
+
+form #cms-edit textarea{
+  width:90%;
+  height:350px;
+}
+form #cms-edit{
+  margin:20px 0px;
+}
+
+nav.sub li {
+  float: right;
+  background-image: none;
+}
+nav.sub li > a {
+  font-weight: normal;
+  padding: 5px;
+  background: #242424;
+  border: 1px solid #ccc;
+}
+nav.sub li > a:hover {
+  background: #000;
+}
+nav.sub li:first-child {
+  padding-left: 10px;
+}
+table.list th ul {
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+table.list th li{
+  margin: 15px 0;
+  float:none;
+}
+table.list th li a{
+  float:none;
+}
+
+nav.sub #select-language div,
+nav.sub li.dropdown-menu div,
+li.dropdown-menu div{
+  position: absolute;
+  top: 40px;
+  padding: 1em 0.5em;
+  background:#242424;
+}
+
+nav.sub #select-language div ul,
+nav.sub li.dropdown-menu div ul,
+li.dropdown-menu div ul{
+  border:none;
+}
+nav.sub #select-language div ul li,
+nav.sub li.dropdown-menu div ul li,
+li.dropdown-menu div ul li{
+  float:left;
+  clear: both;
+  display: block;
+  padding:0;
+  background:none;
+}
+nav.sub #select-language div a,
+nav.sub li.dropdown-menu div a,
+li.dropdown-menu div a{
+  border: none;
+  display: block;
+}
+
+span.domain-key{
+  font-weight:bold;
+}
+/* http://flag-sprites.com/ */
+span.flag{
+  margin-right:5px;
+  display:inline-block;
+  width: 16px;
+  height: 11px;
+  background:url(/fx/images/flags.png) no-repeat
+}
+span.flag.da_DK, span.flag.DK {background-position: -16px 0}
+span.flag.en_GB, span.flag.UK {background-position: -33px 0}
+span.flag.en_EN, span.flag.COM {background-position: -33px 0}
+span.flag.nl_NL, span.flag.NL {background-position: 0 -11px}
+span.flag.no_NB, span.flag.NO {background-position: -17px -12px}
+span.flag.sv_SE, span.flag.SE {background-position: -33px -12px}
+
+nav.sub li.dropdown-menu a span.cat-id,
+#categories-list a span.cat-id{
+  color:grey; font-size:8pt;
+}
+
+#secondary-links #select-domain div,
+#secondary-links #select-database div,
+#secondary-links #select-cache div {
+  position: absolute;
+  top: 40px;
+  background:white;
+  padding: 1em 0.5em;
+  border:1px solid #D3C2A2;
+}
+
+#secondary-links #select-domain div a,
+#secondary-links #select-database div a,
+#secondary-links #select-cache div a {
+  border: none;
+}
+
+#main {
+  position: relative;
+  margin: 75px 10px 45px 230px;
+  width:auto;
+  background-color: #535354;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Pager */
+.pager li{
+  list-style-type: none;
+  float: left;
+  margin:5px;
+}
+.pager li a{
+  padding:5px;
+  border:1px solid #D9D9D9;
+  background-color: #242424;
+}
+.pager li.current a{
+  background-color: white;
+  color:black;
+}
+.pager li a:hover{
+  background-color: white;
+}
+
+/* CMS page list sortable*/
+
+#sortable-list,
+#sortable-list ul{
+  list-style-type: none;
+  margin:0;
+  padding:5px;
+  width:500px;
+}
+#sortable-list ul{
+  width:auto;
+  padding:0;
+}
+#sortable-list .sortable-item{
+  margin: 0.25em 0 0 0;
+  padding: 5px 0px 5px 10px;
+}
+#sortable-list .sortable-item:not(.ui-state-disabled){
+  cursor:move;
+}
+#sortable-list .sortable-item li{
+  border-left:1px dashed #D9D9D9;
+}
+#sortable-list .sortable-item div.record{
+  border:1px solid grey;
+  border-radius:5px;
+  height:25px;
+}
+#sortable-list .sortable-item:not(.ui-state-disabled) div.record:hover{
+  border:1px dashed grey;
+}
+#sortable-list li.helper{
+  border:2px dashed black;
+  border-left:2px dashed black;
+  margin: 5px 0px 5px 10px;
+  height:20px;
+}
+#sortable-list li > div{
+  font-size: 14px;
+}
+#sortable-list ul li div{
+  font-size: 12px;
+}
+#sortable-list .sortable-item div span{
+  border-right: 1px solid grey;
+  line-height: 23px;
+  padding: 0 10px;
+}
+#sortable-list .sortable-item .actions{
+  display: inline;
+  float: right;
+  height:100%;
+}
+
+#sortable-list .sortable-item .actions .delete,
+#sortable-list .sortable-item .actions .edit{
+  text-indent: -9999px;
+  width:23px;
+  display: inline-block;
+  height:100%;
+}
+#sortable-list .sortable-item .actions .delete{
+  background: url(/fx/images/delete_icon.png) no-repeat center center;
+}
+#sortable-list .sortable-item .actions .edit{
+  background: url(/fx/images/edit_icon.png) no-repeat center center;
+}
+
+.actions .delete,
+.actions .edit{
+  text-indent: -9999px;
+  width:23px;
+  display: inline-block;
+  height:100%;
+}
+.actions .delete{
+  background: url(/fx/images/delete_icon.png) no-repeat center center;
+}
+.actions .edit{
+  background: url(/fx/images/edit_icon.png) no-repeat center center;
+}
+
+.ui-state-disabled{ /* override the jquery ui css */
+  opacity: 1;
+  filter: Alpha(Opacity=100);
+}
+.ui-state-disabled > div{
+  opacity: .35;
+  filter: Alpha(Opacity=35);
+  background-image: none;
+}
+
+/* Product Category sortable list */
+
+ul#product-list-sort {
+  list-style-type:none;
+}
+ul#product-list-sort .sortable-item {
+  padding:10px;
+  cursor:move;
+}
+ul#product-list-sort .placeholder{
+  border:2px dashed #4D4345;
+}
+ul#product-list-sort .sortable-item img{
+  padding:5px;
+  border:1px solid #E6E6E6;
+  background:#EDEDED;
+  width:60px;
+  height:115px;
+}
+ul#product-list-sort li:nth-child(even){
+  background:#D9D9D9;
+}
+ul#product-list-sort li:nth-child(12n){
+  border-bottom:5px dashed #4D4345;
+}
+ul#product-list-sort .sortable-item span{
+  display: block;
+}
+
+/* Category List And Products list */
+ul#category-list li,
+ul#product-list li,
+ul.list li{
+  list-style-type: none;
+  margin: 2px 0;
+  padding: 5px;
+  border: 1px solid #DBDBDB;
+}
+ul#category-list li a.right,
+ul.list li a.right{
+  font-size:10px;
+  font-weight:normal;
+  float:right;
+  padding:0px 10px;
+}
+
+/* ProductToCategories list 
+ * RelatedProducts list
+ * CouponsToCustomers list 
+ */
+select#product-category-selector,
+select#product-related-products-selector,
+select#coupon-customer-selector{
+  display: block;
+  margin:15px 40px;
+}
+ul#product-categories,
+ul#product-related-products,
+ul#coupons-to-customers {
+  display: inline-block;
+}
+ul#product-categories li,
+ul#product-related-products li,
+ul#coupons-to-customers li {
+  list-style-type: none;
+  border: 1px solid #DBDBDB;
+  margin: 2px 0;
+  padding: 2px 5px;
+  position: relative;
+}
+ul#product-categories li a.delete,
+ul#product-related-products li a.delete,
+ul#coupons-to-customers li a.delete {
+  position: absolute;
+  right: -23px;
+}
+
+/* Settings page */
+form#add-setting div{
+  display: inline-block;
+  padding-right:10px;
+}
+
+form#settings-list input[type=text]{
+  width:50%;
+  margin:;
+}
+form#settings-list .button{
+  margin:5px;
+}
+
+/* Table List */
+table.list{
+  margin:20px 0;
+}
+table.list th,
+table.list tr:hover{
+  background-color: #242424;
+}
+table.list tr{
+  border-top:1px solid #D9D9D9;
+  border-bottom:1px solid #D9D9D9;
+}
+table.list td,
+table.list th{
+  word-wrap: break-word;
+  padding:5px;
+  border-right:1px solid #D9D9D9;
+}
+table#order {
+  width:auto;
+}
+table.list th {
+  text-align: left;
+}
+table.list th a{
+  background: #242424;
+  border: 1px solid #C8B289;
+  margin: 3px;
+  padding: 5px;
+  float: left;
+}
+table.list th a:hover{
+  background: black;
+  color:white;
+}
+table#order th.table-header {
+  text-align: center;
+}
+
+form.inline {
+  display: block;
+}
+
+form.inline div {
+  margin:15px;
+  display: inline;
+}
+form.inline label,
+form.inline input,
+form.inline select {
+  display: inline-block;
+}
+form.inline label{
+  padding:0 5px;
+  line-height:9px;
+}
+form.inline input {
+  margin: 0 5px;
+}
+
+
+/* Edit page */
+form.edit-form input[type=text],
+form#customer-edit-form input[type=text],
+form#washing-edit-form input[type=text],
+form#consultant-edit-form input[type=text]{
+  width:50%;
+}
+form.edit-form input[type=checkbox],
+form#customer-edit-form input[type=checkbox],
+form#washing-edit-form input[type=checkbox],
+form#consultant-edit-form input[type=checkbox]{
+  display: inline;
+}
+form.edit-form textarea,
+form#customer-edit-form textarea,
+form#washing-edit-form textarea,
+form#consultant-edit-form textarea{
+  width:50%;
+  height:200px;
+}
+
+form.edit-form.inline input,
+form.edit-form.inline select,
+form.edit-form.inline div {
+  display: inline;
+  float: left;
+}
+
+/* Product Image list with references */
+ul#product-images-list li{
+  clear:both;
+  list-style-type: none;
+}
+ul#product-images-list li div.image,
+ul#product-images-list li div.references {
+  float: left;
+  padding:20px;
+}
+ul.product-references {
+  padding: 0px;
+}
+ul#product-images-list li li{
+  border: 1px solid #DBDBDB;
+  margin: 2px 0;
+  padding: 2px 0;
+  position: relative;
+}
+ul#product-images-list li li span.id,
+ul#product-images-list li li span.sku{
+  margin:0 5px;
+}
+ul#product-images-list li li a.delete{
+  position: absolute;
+  right: -23px;
+}
+
+#cboxLoadedContent pre {
+  color: #000;
+}

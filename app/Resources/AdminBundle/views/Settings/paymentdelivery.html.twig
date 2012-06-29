@@ -1,0 +1,60 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li id="select-language">
+      <a class="open-menu" href="#">
+        {% if domain %}
+          <span class="flag {{ domain }}"></span> |
+        {% endif %}
+        {{ 'domain.selector'|trans({}, 'admin') }}
+      </a>
+      <div style="display:none;">
+        <ul>
+        {% for domain in domains_availible %}
+          <li>
+            <a href="{{ path('admin_settings_payment_delivery', {'domain_key' : domain.domainkey}) }}">
+              <span class="flag {{ domain.domainkey }}"></span>{{ domain.domainkey }}
+            </a>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </li>
+    <li>
+      <a href="{{ path('admin_settings') }}">
+        {{ 'settings.global.settings'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+<h1>{{ 'admin.settings.paymentdelivery.header.text.%domain_key%'|trans({'%domain_key%' : domain}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<div>
+  <p>{{ 'admin.settings.paymentdelivery.description.text'|trans({}, 'admin') }}</p>
+  <form id="settings-list" action="{{ path('admin_settings_payment_delivery', {'domain_key' : domain}) }}" method="post" {{ form_enctype(form) }}>
+    <div>
+      {{ form_rest(form) }}
+      {{ form_row(form._token) }}
+    </div>
+    <input class="button right" type="submit" value="{{ 'save.settings'|trans({}, 'admin') }}">
+  </form>
+</div>
+<h1>{{ 'admin.settings.paymentdelivery.add.header.text.%domain_key%'|trans({'%domain_key%' : domain}, 'admin') }}</h1>
+<div>
+  <form id="add-setting" action="{{ path('admin_setting_add', {'domain_setting' : true}) }}" method="post" {{ form_enctype(add_domain_setting_form) }}>
+    <div>
+      {{ form_rest(add_domain_setting_form) }}
+      {{ form_row(add_domain_setting_form._token) }}
+    </div>
+    <input class="button" type="submit" value="{{ 'add.setting'|trans({}, 'admin') }}">
+  </form>
+</div>
+{% endblock %}

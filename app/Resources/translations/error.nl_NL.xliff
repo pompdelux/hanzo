@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="404.title">
+                <source>404.title</source>
+                <target>Pagina niet gevonden.</target>
+            </trans-unit>
+            <trans-unit id="404.description">
+                <source>404.description</source>
+                <target><![CDATA[De pagina die je zocht, bestaat niet.<br><br>Probeer te browsen in de categorieën of gebruik het onderstaande zoekveld.]]></target>
+            </trans-unit>
+            <trans-unit id="500.title">
+                <source>500.title</source>
+                <target>Oeps!</target>
+            </trans-unit>
+            <trans-unit id="500.description">
+                <source>500.description</source>
+                <target><![CDATA[
+                    <p>Je bent nu beland op de afdeling voor technische problemen, onze excuses daarvoor.</p>
+                    <p>Blijft het probleem zich voordoen of gaat er opnieuw iets fout, dan kun je contact opnemen met de klantenservice via telefoonnummer: +45 8678 7871, of schrijven naar <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
+                ]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

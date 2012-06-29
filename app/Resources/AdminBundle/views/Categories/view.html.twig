@@ -1,0 +1,72 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_category_edit') }}" title="{{ 'admin.add.category'|trans({}, 'admin') }}">
+        {{ 'admin.add.category'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+<h1>{{ 'admin.category.edit.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>{{ 'admin.category.edit.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_category_edit', {'id' : id}) }}" method="post" {{ form_enctype(form) }} id="category-edit-form">
+  <div id="category-edit">
+    {{ form_row(form.parent_id) }}
+    {{ form_row(form.context) }}
+    {{ form_row(form.is_active) }}
+    {{ form_row(form._token) }}
+    {{ form_rest(form) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'update.category'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_products') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+<h1>{{ 'admin.category.translations.header.text'|trans({}, 'admin') }}</h1>
+
+<p>{{ 'admin.category.translations.description.text'|trans({}, 'admin') }}</p>
+
+{% if translations|length > 0 %}
+<ul id="translation-list" class="list">
+  {% for translation in translations %}
+  <li>
+    <span class="locale">{{ translation.locale }}</span>
+    <span class="title">{{ translation.title }}</span>
+    <span class="content">{{ translation.content }}</span>
+    <a href="{{ path('admin_category_edit', {'id' : translation.id, 'locale' : translation.locale}) }}" class="right">
+      {{ 'edit.category.translation'|trans({}, 'admin') }}
+    </a>
+    <a href="{{ path('admin_category_delete_translation', {'id' : translation.id, 'locale' : translation.locale}) }}" class="right delete">
+      {{ 'delete.category.translation'|trans({}, 'admin') }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if id %}
+
+<h1>{{ 'admin.category.add.translations.header.text'|trans({}, 'admin') }}</h1>
+
+<form action="{{ path('admin_category_add', {'id' : id, 'locale' : locale}) }}" method="post" {{ form_enctype(form_add) }} id="category-edit-form">
+  <div id="category-edit">
+    {{ form_row(form_add.locale) }}
+    {{ form_row(form_add.title) }}
+    {{ form_row(form_add.content) }}
+    {{ form_row(form_add._token) }}
+    {{ form_rest(form_add) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'add.category.translation'|trans({}, 'admin') }}">
+</form>
+{% endif %}
+{% endblock %}
