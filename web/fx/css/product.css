@@ -1,0 +1,126 @@
+#body-product #main .left,
+#body-product #main .right {
+  width: 49%;
+}
+
+#cboxLoadedContent p.note {
+  color: #000;
+  margin-top: 20px;
+}
+
+.buybox {
+  margin-top: 15px;
+}
+.buybox .prices {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.buybox .prices .strike {
+  display: block;
+  text-decoration: line-through;
+}
+
+.buybox select {
+  width: 150px;
+}
+.buybox #btn-submit {
+  margin-top: 10px;
+}
+.f-left {
+  height: 30px;
+}
+.f-left label {
+  float: left;
+  width: 50px;
+}
+
+/* - tabs */
+#main ul.tabs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 25px;
+}
+#main ul.tabs li {
+  float: left;
+  margin-right: 15px;
+}
+#main ul.tabs li a {
+  background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
+  padding-left: 20px;
+}
+#main ul.tabs li a.current {
+  background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
+}
+
+/* - product images */
+.productimages {
+  position: relative;
+  overflow: hidden;
+}
+.productimages .productimage-large {
+  float: left;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+}
+.productimages .productimage-large a {
+  position: relative;
+  display: inline-block;
+}
+.productimages .productimage-small {
+  width: 100px;
+  float: left;
+}
+
+.productimages .productimage-large img {
+  display: block;
+}
+.productimages .productimage-large p {
+  position:absolute;
+  top:3px;
+  right:28px;
+  color:#555;
+  font:bold 13px/1 sans-serif;
+}
+
+
+.productimages .productimage-small .productimage-small-padding {
+  float: left;
+  padding-right: 10px;
+}
+
+
+.style-guide,
+.style-guide .element {
+  display: none;
+}
+
+form.buy label {
+  width: 220px;
+  display: block;
+  margin-bottom: 10px;
+}
+form.buy label select {
+  float: right;
+}
+form.buy .button {
+  display: none;
+  margin-top: 10px;
+}
+form.buy label.off {
+  display: none;
+}
+
+/* zoom and colorbox */
+.productimages .zoomIcon {
+  width:33px;
+  height:33px;
+  position:absolute;
+  top:0;
+  right:0;
+  background:url(/fx/scripts/zoom/icon.png);
+}
+.productimages .zoomImg {
+  cursor: pointer;
+}

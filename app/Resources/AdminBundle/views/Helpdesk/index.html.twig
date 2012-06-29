@@ -1,0 +1,61 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+<h1>{{ 'admin.helpdesk.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+{% if helpdesk_data|length > 0 %}
+
+<p>{{ 'admin.helpdesk.description.text'|trans({}, 'admin') }}</p>
+
+<p><a href="{{ path('admin_helpdesk_delete', {'key' : 'ALL'}) }}">{{ 'admin.helpdesk.delete.all'|trans({}, 'admin') }}</a></p>
+
+<table id="helpdesk" class="list">
+  <thead>
+    <tr>
+      <th>{{ 'admin.helpdesk.key'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.helpdesk.created_at'|trans({}, 'admin') }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for helpdesk in helpdesk_data %}
+    <tr>
+      <td>{{ helpdesk.key }}</td>
+      <td>{{ helpdesk.createdat }}</td>
+      <th>
+        <script>
+          var {{ helpdesk.key }} = '{{ helpdesk.data|raw }}';
+        </script>
+        <a href="#" onclick="helpdesk_open({{ helpdesk.key }});return false;">
+          {{ 'admin.helpdesk.view'|trans({}, 'admin') }}
+        </a>
+        <a href="{{ path('admin_helpdesk_delete', {'key' : helpdesk.key }) }}" class="delete">
+          {{ 'admin.helpdesk.delete'|trans({}, 'admin') }}
+        </a>
+      </th>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+  {% if paginate %}
+    {% import "::macro.pager.html.twig" as p %}
+    {{ p.pager(paginate, 'helpdesk') }}
+  {% endif %}
+
+{% else %}
+
+<p>{{ 'admin.helpdesk.no.helpdesk.text'|trans({}, 'admin') }}</p>
+
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/fx/scripts/prettyprint.js"></script>
+{% endblock %}

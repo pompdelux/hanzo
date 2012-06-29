@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="shipping_10">
+        <source>page.heading</source>
+        <target>Check out</target>
+      </trans-unit>
+      <trans-unit id="shipping_20">
+        <source>page.desc</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.60">
+        <source>shipping_method.name.60</source>
+        <target>DPD</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.60">
+        <source>shipping_method.desc.60</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.60">
+        <source>shipping_method.label.60</source>
+        <target>DPD %prijs%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.name">
+        <source>shipping_fee.name</source>
+        <target>Administratiekosten</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.desc">
+        <source>shipping_fee.desc</source>
+        <target>Administratiekosten %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.label">
+        <source>shipping_fee.label</source>
+        <target>Administratiekosten %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Administratiekosten</target>
+      </trans-unit>
+      <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
+        <source>page.desc.after_methods</source>
+        <target>Administratiekosten 0.00 EUR</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

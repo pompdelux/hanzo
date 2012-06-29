@@ -1,0 +1,88 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <form action="{{ path('admin_coupons') }}" method="get">
+        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
+        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+      </form>
+    </li>
+    <li>
+      <a href="{{ path('admin_coupons') }}">
+        {{ 'admin.coupons.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_coupons_edit') }}">
+        {{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'admin.coupons.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+
+<p>{{ 'admin.coupons.description.text'|trans({}, 'admin') }}</p>
+
+
+{% if coupons|length > 0 %}
+
+<table id="coupons" class="list">
+  <thead>
+    <tr>
+      <th>{{ 'admin.coupons.id'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupons.code'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupons.amount'|trans({}, 'admin') }}</th>
+    {# <th>{{ 'admin.coupons.vat'|trans({}, 'admin') }}</th> #}
+      <th>{{ 'admin.coupons.currency'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupons.uses_pr_coupon'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupons.uses_pr_customer'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupons.active_from'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.coupons.active_to'|trans({}, 'admin') }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for coupon in coupons %}
+    <tr>
+      <td>{{ coupon.id }}</td>
+      <td>{{ coupon.code }}</td>
+      <td>{{ coupon.amount|number_format(2, ',', '.') }}</td>
+    {# <td>{{ coupon.vat|number_format(2, ',', '.') }}</td> #}
+      <td>{{ coupon.currencycode }}</td>
+      <td>{{ coupon.usesprcoupon }}</td>
+      <td>{{ coupon.usesprcoustomer }}</td>
+      <td>{{ coupon.activefrom|date("d-m-Y") }}</td>
+      <td>{{ coupon.activeto|date("d-m-Y") }}</td>
+      <th>
+        <a href="{{ path('admin_coupons_edit', {'id' : coupon.id }) }}">
+          {{ 'admin.coupons.edit.link'|trans({}, 'admin') }}
+        </a>
+        <a href="{{ path('admin_coupons_delete', {'id' : coupon.id }) }}" class="delete">
+          {{ 'admin.coupons.delete.link'|trans({}, 'admin') }}
+        </a>
+      </th>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+  {% if paginate %}
+    {% import "::macro.pager.html.twig" as p %}
+    {{ p.pager(paginate, 'events') }}
+  {% endif %}
+{% else %}
+
+<p>{{ 'admin.coupons.no.coupons.text'|trans({}, 'admin') }}</p>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,1513 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+<trans-unit id="Adrian Little LS SHIRT">
+  <source>description.Adrian_Little_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Fin smalrandig skjorta med bondkrage, bröstficka, armbågsdetaljer och knappar halvt ner framtill. Finns också till storebror: Adrian LS SHIRT<br><br>Fås i: Khaki och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Adrian LS SHIRT">
+  <source>description.Adrian_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Fin smalrandig skjorta med bondkrage, bröstficka, armbågsdetaljer och knappar halvt ner framtill. Finns också till lillebror: Adrian Little LS SHIRT. <br><br>Fås i: Khaki och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Agnes SS TSHIRT">
+  <source>description.Agnes_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Söt kortärmad t-shirt med fotoprint framtill. Med kontrastfärgade stickningar vid ärmar och hals. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: White (vit) och Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Amalie Little DRESS">
+  <source>description.Amalie_Little_DRESS</source>
+  <target>
+    <![CDATA[ Söt och feminin klänning med fina spetsdetaljer. Med smock på brottarryggen och små pärlemorsknappar framtill. Klänningen är sydd i en lätt och småblommig kvalitet. Samma kvalitet är också använd till Amalie Little SS TUNIC samt Amalie STRAP DRESS och TOP till storasyster.<br><br>Fås i: Blue (blå), Dusty Rose (gammelrosa), Green (grön) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Amalie Little SS TUNIC">
+  <source>description.Amalie_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Söt och feminin tunika med volangärmar och pärlemorsknappar i ryggen. Tunikan är sydd i en lätt och småblommig kvalitet. Samma kvalitet är också använd till Amalie Little DRESS samt Amalie STRAP DRESS och TOP till storasyster. <br><br>Fås i: Blue (blå), Dusty Rose (gammelrosa), Green (grön) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Amalie STRAP DRESS">
+  <source>description.Amalie_STRAP_DRESS</source>
+  <target>
+    <![CDATA[ Söt och feminin strapklänning med foder, volangdetaljer och smock på ryggen för bra passform. Klänningen är sydd i en lätt och småblommig kvalitet. Samma kvalitet är också använd till Amalie TOP samt Amalie Little DRESS och Little TUNIC till lillasyster. <br><br>Fås i: Blue (blå), Dusty Rose (gammelrosa), Green (grön) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Amalie TOP">
+  <source>description.Amalie_TOP</source>
+  <target>
+    <![CDATA[ Söt och feminin top med fina spetsdetaljer och smock på brottarryggen för bra passform. Toppen är öppen hela vägen ner framtill och är därför perfekt med Maja TOP under. Toppen är sydd i en lätt och småblommig kvalitet. Samma kvalitet är också använd till Amalie STRAP DRESS samt Amalie Little Dress och Little TUNIC till lillasyster. <br><br>Fås i: Blue (blå), Dusty Rose (gammelrosa), Green (grön) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Andy Little SHORTS">
+  <source>description.Andy_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Läckra denimshorts med fina stickningsdetaljer och behaglig ribkant vid linningen med snörning. Stora bakfickor med tryckknappar och broderi vid framficka. Finns också som Andy LONG SHORTS till storebror. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 97% Bomull, 3% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Andy LONG SHORTS">
+  <source>description.Andy_LONG_SHORTS</source>
+  <target>
+    <![CDATA[ Läckra denimshorts med fina stickningsdetaljer och behaglig ribkant vid linningen med snörning. Stora bakfickor med tryckknappar och broderi vid framficka. Finns också som Andy Little SHORTS till lillebror. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 97% Bomull, 3% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Angel BAGGY JEANS">
+  <source>description.Angel_BAGGY_JEANS</source>
+  <target>
+    <![CDATA[ Läckra baggy jeans med trendiga utvändiga knappar, badge, broderi och tuffa bakfickor med hjärtstickningar. Med justerbar midja och trendiga rynk och tvätt. I samma läckra denim finns också Angel SHORTALLS. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 97% Bomull, 3% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Angel SHORTALLS">
+  <source>description.Angel_SHORTALLS</source>
+  <target>
+    <![CDATA[ Superfina korta snickarbyxor med smala justerbara band, knappar i sidorna samt fickor med fina hjärtstickningar. Med trendiga rynk och tvätt. I samma läckra denim finns också Angel BAGGY JEANS. <br><br>Fås i:Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 97% Bomull, 3% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Anna ANORAK">
+  <source>description.Anna_ANORAK</source>
+  <target>
+    <![CDATA[ Supermjuk fleeceanorak med sned halsstängning och fickor. Ribavslut vid fickor och handled. Fin övergångströja eller under overallen när det är riktigt kallt. Finns också till lillasyster: Anna Little ANORAK. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och Khaki. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Anna Little ANORAK">
+  <source>description.Anna_Little_ANORAK</source>
+  <target>
+    <![CDATA[ Supermjuk fleeceanorak med sned halsstängning och fickor. Ribavslut vid fickor och handled. Fin övergångströja eller under overallen när det är riktigt kallt. Finns också till storasyster: Anna ANORAK. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och Khaki. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Anthony Little LS SHIRT">
+  <source>description.Anthony_Little_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Fin och enkel pojkskjorta med seglarinspirerad dekoration framtill. Med mönster på insidan av knappstängningen och på insidan av kragen. Ärmar som kan kavlas upp med knappfunktion. Finns också till storebror: Anthony LS SHIRT. <br><br>Fås i: Blue (blå)<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Anthony LS SHIRT">
+  <source>description.Anthony_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Fin och enkel pojkskjorta med seglarinspirerad dekoration framtill. Med mönster på insidan av knappstängningen och på insidan av kragen. Ärmar som kan kavlas upp med knappfunktion. Finns också till lillebror: Anthony Little LS SHIRT. <br><br>Fås i: Blue (blå)<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Arlene LS TUNIC">
+  <source>description.Arlene_LS_TUNIC</source>
+  <target>
+    <![CDATA[ Läcker mjuk oversize tunika med smala ärmar. Sammansatt av två olika breda ränder. Finns också som TSHIRT och PANTS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande färger i kombination med vit: Grey (mörkgrå), Grey Melange (gråmelerad) och Black (svart). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Arlene PANTS">
+  <source>description.Arlene_PANTS</source>
+  <target>
+    <![CDATA[ Läckra mjuka haremsbyxor i smala ränder. Med band i midjan samt fickor. Finns också som TSHIRT och TUNIC. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande färger i kombination med vit: Grey (mörkgrå), Grey Melange (gråmelerad) och Black (svart). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Arlene SS TSHIRT">
+  <source>description.Arlene_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Läcker mjuk t-shirt med smala ränder och söta volangärmar. Finns också som TUNIC och PANTS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande färger i kombination med vit: Grey (mörkgrå), Grey Melange (gråmelerad) och Black (svart). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bella Little PANTS">
+  <source>description.Bella_Little_PANTS</source>
+  <target>
+    <![CDATA[ Romantiska mamelucker med broderi längst ner i benet och band i midjan och över ankeln. Behaglig rib i midjan. Finns också som shorts till storasyster: Bella SHORTS. <br><br>Fås i: Offwhite (råvit), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bella SHORTS">
+  <source>description.Bella_SHORTS</source>
+  <target>
+    <![CDATA[ Romantiska shorts med broderi längst ner i benet. Med band i midjan (inte möjligt att justera) samt behaglig rib i midjan. Finns också som byxor till lillasyster: Bella Little PANTS. <br><br>Fås i: Offwhite (råvit), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ben Little SS TSHIRT">
+  <source>description.Ben_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Läcker mjuk t-shirt med printad flagga på bröstet och kontrastrib vid hals och ärmar. Med ränder på ärmrib. Finns också som Ben TANKTOP och Ben SS TSHIRT till storebror. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Offwhite (råvit), Blue (blå), Olive (oliv) och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ben SS TSHIRT">
+  <source>description.Ben_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Läcker mjuk t-shirt med printad flagga på bröstet och kontrastrib vid hals och ärmar. Med ränder på ärmrib. Finns också som TANKTOP och till lillebror: Ben Little SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Offwhite (råvit), Blue (blå), Olive (oliv) och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ben TANKTOP">
+  <source>description.Ben_TANKTOP</source>
+  <target>
+    <![CDATA[ Läcker mjuk tanktop med printad flagga på bröstet och kontrastrib vid hals och ärmar. Finns också som Ben TSHIRT och till lillebror: Ben Little SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Offwhite (råvit), Blue (blå), Olive (oliv) och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bess SS LONG TSHIRT">
+  <source>description.Bess_SS_LONG_TSHIRT</source>
+  <target>
+    <![CDATA[ Randig t-shirt med fladdermusärmar och trendig påsydd rosett vid halsen. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande färgkombinationer: Grey Melange (gråmelerad), Dusty Rose (gammelrosa) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bianca Little SS TUNIC">
+  <source>description.Bianca_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Underbar liten klänning med puffärmar och broderidetaljer nertill. Superfin med Maja eller Cilla basic set under. I samma kvalitet finns också Bianca Little STRAP DRESS och till storasyster: Bianca SKIRT samt TOP. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bianca Little STRAP DRESS">
+  <source>description.Bianca_Little_STRAP_DRESS</source>
+  <target>
+    <![CDATA[ Underbar liten strapklänning med volanger och broderade spetsdetaljer. Superfin med Maja eller Cilla basic set under. I samma kvalitet finns också Bianca Little SS TUNIC och till storasyster: Bianca SKIRT samt TOP. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bianca SKIRT">
+  <source>description.Bianca_SKIRT</source>
+  <target>
+    <![CDATA[ Underbar liten kjol med broderad spetsdetalj och fickor. Med gummiband i midjan för bra passform. I samma kvalitet finns också Bianca TOP och till lillasyster: Bianca Little SS TUNIC samt Little STRAP DRESS. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bianca TOP">
+  <source>description.Bianca_TOP</source>
+  <target>
+    <![CDATA[ Underbar liten straptop med broderad spetsdetalj nertill och volang över bröstet. Med smock i ryggen för bra passform. I samma kvalitet finns också Bianca SKIRT och till lillasyster: Bianca Little SS TUNIC samt Little STRAP DRESS. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bibi JACKET">
+  <source>description.Bibi_JACKET</source>
+  <target>
+    <![CDATA[ Härlig prickig fleecejacka med feminina detaljer och fickor med rib. Ribavslut vid ärmar och vid höften. Med blixtlås framtill. Finns också till lillasyster: Bibi Little JACKET. <br><br>Fås i följande färgkombinationer: Grey Melange (gråmelerad), Dusty Rose (gammelrosa) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bibi Little JACKET">
+  <source>description.Bibi_Little_JACKET</source>
+  <target>
+    <![CDATA[ Härlig prickig fleecejacka med feminina detaljer och fickor med rib. Ribavslut vid ärmar och vid höften. Med blixtlås framtill. Finns också till storasyster: Bibi JACKET. <br><br>Fås i följande färgkombinationer: Grey Melange (gråmelerad), Dusty Rose (gammelrosa) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Brett Little SS TSHIRT">
+  <source>description.Brett_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Cool ekologisk t-shirt med breda ränder och printat nummer på ryggen. Snygg med en långärmad t-shirt under till de kalla dagarna. Finns också till storebror: Brett SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1 och GOTS certificerad. (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue Ink (klarblå), Olive (oliv) och Navy.<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Brett SS TSHIRT">
+  <source>description.Brett_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Cool ekologisk t-shirt med breda ränder och printat nummer på ryggen. Snygg med en långärmad t-shirt under till de kalla dagarna. Finns också till lillebror: Brett Little SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1 och GOTS certificerad. (Global Organic Textile Standard). <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue Ink (klarblå), Olive (oliv) och Navy.<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bruno Little LS TSHIRT">
+  <source>description.Bruno_Little_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ 2-pack med långärmade ekologiska t-shirts i två olika breda ränder som inte går att undvara. Finns också till storebror: Bruno LS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1 och GOTS certificerad. (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande färgkombinationer: Green (grön), Navy och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Bruno LS TSHIRT">
+  <source>description.Bruno_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ 2-pack med långärmade ekologiska t-shirts i två olika breda ränder som inte går att undvara. Finns också till lillebror: Bruno Little LS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1 och GOTS certificerad. (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande färgkombinationer: Green (grön), Navy och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Carl Little LS SHIRT">
+  <source>description.Carl_Little_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Härlig lätt sommarskjorta i linne med bondkrage och bröstficka. Med knappstängning halvt ner framtill. Ärmar som kan kavlas upp med knappfunktion. Finns också till storebror: Carl LS SHIRT. <br><br>Fås i: Blue (blå), Grey (grå), Light Blue (ljusblå) och White (vit).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Linne. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Carl LS SHIRT">
+  <source>description.Carl_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Härlig lätt sommarskjorta i linne med bondkrage och bröstficka. Med knappstängning halvt ner framtill. Ärmar som kan kavlas upp med knappfunktion. Finns också till lillebror: Carl Little LS SHIRT. <br><br>Fås i: Blue (blå), Grey (grå), Light Blue (ljusblå) och White (vit).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Linne. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Carola Little SS BODY">
+  <source>description.Carola_Little_SS_BODY</source>
+  <target>
+    <![CDATA[ Superfeminin fin liten bodystocking med jersey på kroppen och korta ärmar i läckert vävd bomull. Liten rund knapp i nacken och söta puffärmar med elastik avslut. Finns också som blus till storasyster: Carola SS TSHIRT. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Carola SS TSHIRT">
+  <source>description.Carola_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Underbar och feminin liten blus med jerseyfront och rygg samt korta puffärmar i läckert vävd bomull. Liten rund knapp i nacken och söta puffärmar med elastik avslut. Finns också som bodystocking till lillasyster: Carola Little SS BODY. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Celina Little SS TOP">
+  <source>description.Celina_Little_SS_TOP</source>
+  <target>
+    <![CDATA[ Den mest underbara lilla toppen med dubbelt lager av spets på ärmarna. Supersöt till både jeans och finare kjolar. Finns också till storasyster: Celina SS TOP. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa), Grey (grå) och Khaki. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Viskos, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Celina SS TOP">
+  <source>description.Celina_SS_TOP</source>
+  <target>
+    <![CDATA[ Den mest underbara lilla toppen med dubbelt lager av spets på ärmarna. Supersöt till både jeans och finare kjolar. Finns också till lillasyster: Celina Little SS TOP. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa), Grey (grå) och Khaki. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Viskos, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Chris CHINOS">
+  <source>description.Chris_CHINOS</source>
+  <target>
+    <![CDATA[ Trendig smal byxa med tuffa rynkeffekter på lår och vid anklarna. Med nitar, fram- och bakfickor och läderbadge baktill. Med justerbar midja. Fås också till lillebror: Chris Little CHINOS. <br><br>Fås i: Khaki, Navy, Olive (oliv) och Sand. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Chris Little CHINOS">
+  <source>description.Chris_Little_CHINOS</source>
+  <target>
+    <![CDATA[ Trendig byxa med riblinning och tuffa rynkeffekter på lår och vid anklarna. Med nitar, fram- och bakfickor och broderi bak. Fås också till storebror: Chris CHINOS. <br><br>Fås i: Khaki, Navy, Olive (oliv) och Sand. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Cilla LEGGINGS">
+  <source>description.Cilla_LEGGINGS</source>
+  <target>
+    <![CDATA[ Läckra ribbade basic leggings med knappar längst ner bak. I exklusiv och supermjuk kvalitet. I samma metervara finns också Cilla LS TSHIRT och TOP samt Cilla Little LS TSHIRT och Little LEGGINGS till lillasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Green (grön), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Cilla Little LEGGINGS">
+  <source>description.Cilla_Little_LEGGINGS</source>
+  <target>
+    <![CDATA[ Läckra ribbade basic leggings med knappar längst ner bak. I exklusiv och supermjuk kvalitet. I samma metervara finns också Cilla Little LS TSHIRT samt Cilla LS TSHIRT, TOP och LEGGINGS till storasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Green (grön), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Cilla Little LS TSHIRT">
+  <source>description.Cilla_Little_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Skön åtsittande smalrandig basic t-shirt med långa ärmar. I exklusiv, ribbad och supermjuk kvalitet. I samma metervara finns också Cilla Little LEGGINGS samt Cilla LS TSHIRT, TOP och LEGGINGS till storasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Green (grön), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Cilla LS TSHIRT">
+  <source>description.Cilla_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Skön åtsittande smalrandig basic t-shirt med långa ärmar. I exklusiv, ribbad och supermjuk kvalitet. I samma metervara finns också Cilla TOP och LEGGINGS samt Cilla Little LS TSHIRT och Little LEGGINGS till lillasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Green (grön), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Cilla TOP">
+  <source>description.Cilla_TOP</source>
+  <target>
+    <![CDATA[ Skön åtsittande smalrandig basic top. I exklusiv, ribbad och supermjuk kvalitet. I samma metervara finns också Cilla LS TSHIRT och LEGGINGS samt Cilla Little LS TSHIRT och Little LEGGINGS till lillasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Green (grön), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Cliff SS TSHIRT">
+  <source>description.Cliff_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Läcker sport t-shirt i två olika färger med emblem framtill samt printat nummer på ryggen. Med mjuk rib i halsen och som ärmavslut. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue (blå), Navy och Red (röd). <br><br>Finns endast i en storlek (Onesize). <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Daisy DRESS">
+  <source>description.Daisy_DRESS</source>
+  <target>
+    <![CDATA[ Härlig feminin sommarklänning i lätt kvalitet med foder och fina vävda kanter. Fantastisk och användbar etageklänning. Finns också som tunika: Daisy SS TUNIC. <br><br>Fås i: Dusty Rose (gammelrosa), Peach (persika) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Daisy SS TUNIC">
+  <source>description.Daisy_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Härlig feminin sommarklänning i lätt kvalitet med små veck och kinakrage. Kan stylas feminint med ett fint bälte till, eller i en rå stil med ett par jeans eller en jeanskjol. Finns också som klänning: Daisy DRESS.  <br><br>Fås i: Dusty Rose (gammelrosa), Peach (persika) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Dalton Little LS TSHIRT">
+  <source>description.Dalton_Little_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Klassisk långärmad granddad t-shirt i läcker, mjuk och ribbad bomullskvalitet. Med poplin-stolpstängning och fint broderi på bröstet. Finns också som kortärmad och till storebror: Dalton LS TSHIRT och SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad), Navy och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Dalton Little SS TSHIRT">
+  <source>description.Dalton_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Klassisk kortärmad granddad t-shirt i läcker, mjuk och ribbad bomullskvalitet. Med poplin-stolpstängning och fint broderi på bröstet. Finns också som långärmad och till storebror: Dalton LS TSHIRT och SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad), Navy och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Dalton LS TSHIRT">
+  <source>description.Dalton_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Klassisk långärmad granddad t-shirt i läcker, mjuk och ribbad bomullskvalitet. Med poplin-stolpstängning och fint broderi på bröstet. Finns också som kortärmad och till lillebror: Dalton Little LS TSHIRT och Little SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad), Navy och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Dalton SS TSHIRT">
+  <source>description.Dalton_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Klassisk kortärmad granddad t-shirt i läcker, mjuk och ribbad bomullskvalitet. Med poplin-stolpstängning och fint broderi på bröstet. Finns också som långärmad och till lillebror: Dalton Little LS TSHIRT och Little SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad), Navy och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Delora LEGGINGS">
+  <source>description.Delora_LEGGINGS</source>
+  <target>
+    <![CDATA[ Sköna stretch denimleggnings som inte går att undvara. Med jeansstickningar och blixtlås i sidan. En klassiker som passar under det mesta. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 98% Bomull, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Diana DRESS">
+  <source>description.Diana_DRESS</source>
+  <target>
+    <![CDATA[ Underbar och lätt klänning med massor av vidd och med ett lätt foder i. Det är sytt ett tunt metallband i kanten för att ge en fin vågig avslutning. Med fina volangdetaljer och knappar i ryggen. Samma fina kvalitet finns också som Diana TUNIC och till lillasyster: Diana Little DRESS. <br><br>Fås i: Green (grön), Peach (persika), Powder (puder) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Diana Little DRESS">
+  <source>description.Diana_Little_DRESS</source>
+  <target>
+    <![CDATA[ Underbar och lätt klänning med massor av vidd och med ett lätt foder i. Med fina volanger vid hals- och ärmar. Knappar framtill. Samma fina kvalitet finns också som Diana TUNIC och DRESS till storasyster. <br><br>Fås i: Green (grön), Peach (persika), Powder (puder) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Diana TUNIC">
+  <source>description.Diana_TUNIC</source>
+  <target>
+    <![CDATA[ Underbar och lätt klänning med massor av vidd och med ett lätt foder i. Med fina volanger vid hals- och ärmar. Knappar framtill. Samma fina kvalitet finns också som Diana DRESS och till lillasyster: Diana Little DRESS. <br><br>Fås i: Green (grön), Peach (persika), Powder (puder) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Earl BAGGY LONG SHORTS">
+  <source>description.Earl_BAGGY_LONG_SHORTS</source>
+  <target>
+    <![CDATA[ Klassiska mjölkpojke-randiga shorts med tuff tvätt, nitar och badge på bakficka. Med trendiga synliga knappar och justerbar midja. Finns också som byxor och shorts till lillebror: Earl Little PANTS och Little SHORTS. <br><br>Fås i följande kombinationer: Olive (oliv) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 70% Bomull, 28% Polyester, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Earl Little PANTS">
+  <source>description.Earl_Little_PANTS</source>
+  <target>
+    <![CDATA[ Klassiska mjölkpojke-randiga byxor med tuff tvätt, nitar och coola bakfickor. Med mjuk rib i benet och justerbar midja. Finns också som Earl Little SHORTS samt LONG SHORTS till storebror.  <br><br>Fås i följande kombinationer: Olive (oliv) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 70% Bomull, 28% Polyester, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Earl Little SHORTS">
+  <source>description.Earl_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Klassiska mjölkpojke-randiga shorts med tuff tvätt, nitar och mjuk rib i ben och midja. Finns också som Earl Little PANTS samt LONG SHORTS till storebror.  <br><br>Fås i följande kombinationer: Olive (oliv) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 70% Bomull, 28% Polyester, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ellen DRESS">
+  <source>description.Ellen_DRESS</source>
+  <target>
+    <![CDATA[ Bedårande tyllkjol i flera lager med mjukt bärstycke i viskosjersey och brett band med rosett i kontrastfärg över bröstet. Finns också som Ellen SKIRT och båda delar även till lillasyster. <br><br>Fås i: Cream (creme), Khaki, Grey (grå) och Dusty Rose (gammelrosa).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: (kjol): 100% Polyester. Kvalitet (bärstycke) 95% Viskos, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ellen Little DRESS">
+  <source>description.Ellen_Little_DRESS</source>
+  <target>
+    <![CDATA[ Bedårande tyllkjol i flera lager med mjukt bärstycke i viskosjersey och brett band med rosett i kontrastfärg över bröstet. Finns också som Ellen Little SKIRT och båda delar även till storasyster. <br><br>Fås i: Cream (creme), Khaki, Grey (grå) och Dusty Rose (gammelrosa).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: (kjol): 100% Polyester. Kvalitet (bärstycke) 95% Viskos, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ellen Little SKIRT">
+  <source>description.Ellen_Little_SKIRT</source>
+  <target>
+    <![CDATA[ Bedårande tyllkjol i flera lager med mjukt bärstycke i viskosjersey och brett band med rosett i kontrastfärg över bröstet. Finns också som Ellen Little DRESS och båda delar även till storasyster. <br><br>Fås i: Cream (creme), Khaki, Grey (grå) och Dusty Rose (gammelrosa).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: (kjol): 100% Polyester. Kvalitet (bärstycke) 95% Viskos, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ellen SKIRT">
+  <source>description.Ellen_SKIRT</source>
+  <target>
+    <![CDATA[ Bedårande tyllkjol i flera lager med mjuk jerseylinning och romantiska spetsavslutningar. Finns också som Ellen DRESS och båda delar även till lillasyster. <br><br>Fås i: Cream (creme), Khaki, Grey (grå) och Dusty Rose (gammelrosa).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: (kjol): 100% Polyester. Kvalitet (bärstycke) 95% Viskos, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Enzo CARDIGAN">
+  <source>description.Enzo_CARDIGAN</source>
+  <target>
+    <![CDATA[ Trendigt randig stickad cardigan med armbågslappar, v-hals med knappstängning framtill och litet broderat flygplan på bröstet. Fås också till lillebror: Enzo Little CARDIGAN. <br><br>Fås i: Grey Melange (gråmelerad), Offwhite/Navy (råvit/navy). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Enzo Little CARDIGAN">
+  <source>description.Enzo_Little_CARDIGAN</source>
+  <target>
+    <![CDATA[ Trendig randig stickad cardigan med armbågslappar, påstickade fickor, v-hals med knappstängning framtill och litet broderat flygplan på bröstet. Fås också till storebror: Enzo CARDIGAN. <br><br>Fås i: Grey Melange (gråmelerad), Offwhite/Navy (råvit/navy). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Erika HAIRDECO">
+  <source>description.Erika_HAIRDECO</source>
+  <target>
+    <![CDATA[ Superfint hårpynt i 3-pack: Diadem med rosett, diadem med blomma och elastik-brosch med blomma. Finns i 4 fina färgkombinationer som passar till hela kollektionen. <br><br>Fås i: Dusty Rose Mix (gammelrosa), Green Mix (grön), Peach Mix (persika) och OffWhite Mix (råvit).<br><br>Onesize. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Feline BLOUSE">
+  <source>description.Feline_BLOUSE</source>
+  <target>
+    <![CDATA[ Mjuk jerseyblus med smockkrage. Utan ärmar och med fina klädda knappar framtill. Fin att ta på tillsammans med ett par leggings eller chinos, med en cardigan över. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Flynn JACKET">
+  <source>description.Flynn_JACKET</source>
+  <target>
+    <![CDATA[ Cool retro sportjacka/cardigan med broderade badges och blixtlås nertill och vid fickorna. Rib med ränder i krage, ärmar och vid midjan. Mjukt foder i bomullsjersey. <br><br>Fås i: Green (grön), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Garth SS TSHIRT">
+  <source>description.Garth_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Supermjuk kortärmad t-shirt. Fås i tre härliga sommarfärger med coolt gitarrprint framtill. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Green (grön), Red (röd) och Yellow (gul). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Graham Little LS PULLOVER">
+  <source>description.Graham_Little_LS_PULLOVER</source>
+  <target>
+    <![CDATA[ Läcker stickad tröja med v-hals. Påsydd ficka på bröstet och trendiga lappar på armbågarna. Fås också till storebror: Graham LS PULLOVER. <br><br>Fås i: Grey Melange (gråmelerad) och Navy Melange. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Graham LS PULLOVER">
+  <source>description.Graham_LS_PULLOVER</source>
+  <target>
+    <![CDATA[ Läcker stickad tröja med rund hals och två knappar framtill. Liten broderad stjärna på bröstet och stickade lappar på armbågarna. Fås också till lillebror: Graham Little LS PULLOVER. <br><br>Fås i: Grey Melange (gråmelerad) och Navy Melange. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Hansi HAT">
+  <source>description.Hansi_HAT</source>
+  <target>
+    <![CDATA[ Läcker sommarhatt i linnekvalitet med foder. I samma serie finns också: Hansi Little PANTS till lillebror samt Hansi LONG SHORTS till storebror. <br><br>Fås i: Khaki och Navy. <br><br>Storleken är omkretsen på barnets huvud i cm. <br><br>Kvalitet: 55% Linne, 45% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Hansi Little PANTS">
+  <source>description.Hansi_Little_PANTS</source>
+  <target>
+    <![CDATA[ Tuffa byxor i linnekvalitet med cool tvätt och mjuk rib med invändigt snöre som linning och även rib längst ner i benen. Massor av tuffa detaljer som broderi, stickningar och nitar. Med foder. I samma serie finns också: Hansi HAT samt Hansi LONG SHORTS till storebror. <br><br>Fås i: Khaki och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 55% Linne, 45% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Hansi LONG SHORTS">
+  <source>description.Hansi_LONG_SHORTS</source>
+  <target>
+    <![CDATA[ Tuffa shorts i linnekvalitet med cool tvätt och mjuk rib med invändigt snöre som linning. Massor av tuffa detaljer som broderi, stickningar och nitar. I samma serie finns också: Hansi HAT samt Hansi Little PANTS till lillebror. <br><br>Fås i: Khaki och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 55% Linne, 45% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Heather DRESS">
+  <source>description.Heather_DRESS</source>
+  <target>
+    <![CDATA[ Söt sommarklänning i linne med fin spets samt band som korsas på ryggen och slutar i ett smockstycke för bra passform. Lätt bomullsfoder under kjolen. Samma metervara finns också som Heather PANTS och till lillasyster: Heather Little SS DRESS och Little PANTS. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Linne. Foder: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Heather Little PANTS">
+  <source>description.Heather_Little_PANTS</source>
+  <target>
+    <![CDATA[ Söt sommarbyxa i linne med elastisk smock i midjan och vid anklarna. Lätt påsbyxa med fickor som har mjuka ribavslut. Samma metervara finns också som Heather Little SS DRESS och till storasyster: Heather DRESS och PANTS. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Linne. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Heather Little SS DRESS">
+  <source>description.Heather_Little_SS_DRESS</source>
+  <target>
+    <![CDATA[ Söt sommarklänning i linne med små ärmar med elastikavslut, fin spets vid halsen och knappar nertill. Samma metervara finns också som Heather Little PANTS och till storasyster: Heather DRESS och PANTS. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Linne. Foder: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Heather PANTS">
+  <source>description.Heather_PANTS</source>
+  <target>
+    <![CDATA[ Söt sommarbyxa i linne med elastisk smock i midjan och mjuk rib vid anklarna. Lätt påsbyxa med fickor som har mjuka ribavslut. Samma metervara finns också som Heather DRESS och till lillasyster: Heather Little SS DRESS och Little PANTS.  <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Linne. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Herbie Little SHORTS">
+  <source>description.Herbie_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Coola printade shorts med massor av fickor och tufft rutigt foder i linningen. Passar perfekt till strand och beachvolley. Med justerbar midja. Finns också till storebror: Herbie SHORTS. <br><br>Fås i följande kombinationer: Green (grön), Navy och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Herbie SHORTS">
+  <source>description.Herbie_SHORTS</source>
+  <target>
+    <![CDATA[ Coola printade shorts med massor av fickor och tufft rutigt foder i linningen. Passar perfekt till strand och beachvolley. Med justerbar midja. Finns också till lillebror: Herbie Little SHORTS. <br><br>Fås i följande kombinationer: Green (grön), Navy och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Hubert SHORTS">
+  <source>description.Hubert_SHORTS</source>
+  <target>
+    <![CDATA[ Coola cargoshorts med tuffa fickor och kraftiga tygdetaljer. Med justerbar midja. <br><br>Fås i:  Dark Olive (oliv), Khaki och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ike CARDIGAN">
+  <source>description.Ike_CARDIGAN</source>
+  <target>
+    <![CDATA[ Trendig stickad cardigan med massor av detaljer t.ex vävd badge, broderi på bröstet och i nacken, ribeffekt i sidorna och metallknappar nertill. Finns också som slipover till lillebror: Ike Little SLIPOVER. <br><br>Fås i: Grey (grå) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ike Little SLIPOVER">
+  <source>description.Ike_Little_SLIPOVER</source>
+  <target>
+    <![CDATA[ Trendig stickad slipover med massor av detaljer t.ex. vävd badge på bröstet, broderi i nacken, ribeffekt i sidorna och kontrastkanter vid ärmar, v-hals och midjan. Finns som cardigan till storebror: Ike CARDIGAN. <br><br>Fås i: Grey (grå) och Navy. <br><br>Storlek: 65x165cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Irma Little CARDIGAN">
+  <source>description.Irma_Little_CARDIGAN</source>
+  <target>
+    <![CDATA[ Superfin stickad cardigan med bred rib i midjan, fin nitblomma på bröstet och litet fint broderi i nacken. Med feminint satinband vid öppning framtill. Finns också till storasyster: Irma LS CARDIGAN. <br><br>Fås i: Green (grön), Grey (grå), Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 82% Viskos, 18% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Irma CARDIGAN">
+  <source>description.Irma_CARDIGAN</source>
+  <target>
+    <![CDATA[ Superfin stickad cardigan med bred rib i midjan, fina nitstjärnor på bröst och armbågar. Med feminint satinband vid öppning framtill. Finns också till lillasyster: Irma Little LS CARDIGAN. <br><br>Fås i: Green (grön), Grey (grå), Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 82% Viskos, 18% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Irvin Little PULLOVER">
+  <source>description.Irvin_Little_PULLOVER</source>
+  <target>
+    <![CDATA[ Läcker klassisk pullover med smala ränder. Liten knappöppning vid hals och smalt ribavslut vid ärmar och höfter. Finns också till storebror: Irvin PULLOVER. <br><br>Fås i följande kombinationer: Grey Melange (gråmelerad), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Irvin PULLOVER">
+  <source>description.Irvin_PULLOVER</source>
+  <target>
+    <![CDATA[ Läcker klassisk pullover med smala ränder. Rund hals och smalt ribavslut vid ärmar och höfter. Påsydd ficka med knapp. Finns också till lillebror: Irvin Little PULLOVER.  <br><br>Fås i följande kombinationer: Grey Melange (gråmelerad), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Isabel Little TOP">
+  <source>description.Isabel_Little_TOP</source>
+  <target>
+    <![CDATA[ Underbar mjuk top med rosettprint och söta volanger vid hals och ärmar. Med 3 söta satinrosetter på bröstet. Samma läckra material finns också som STRAP DRESS och TOP till storasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå), Brown (brun), Dusty Rose (gammelrosa) och Offwhite (råvit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Isabel STRAP DRESS">
+  <source>description.Isabel_STRAP_DRESS</source>
+  <target>
+    <![CDATA[ Underbar mjuk och lätt sommarklänning med rosettprint. Med smock i ryggen för en bra passform. Finns också som TOP till både lilla- och storasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå), Brown (brun), Dusty Rose (gammelrosa) och Offwhite (råvit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Isabel TOP">
+  <source>description.Isabel_TOP</source>
+  <target>
+    <![CDATA[ Underbar mjuk top med rosettprint och söta volanger vid hals och ärmar. Med 3 söta satinrosetter på bröstet. Finns också som Isabel STRAP DRESS och till lillasyster: Isabel Little TOP. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå), Brown (brun), Dusty Rose (gammelrosa) och Offwhite (råvit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Isolde BLOUSE">
+  <source>description.Isolde_BLOUSE</source>
+  <target>
+    <![CDATA[ Söt ärmlös blus med knytband på axel och med print framtill. Elastik i midjan så att den kan placeras i midjan eller på höften för olika uttryck. Supermjuk kvalitet som också finns som TSHIRT till lillasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Isolde Little SS TSHIRT">
+  <source>description.Isolde_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Superfin t-shirt med söta små ärmar med rynk. Sött print med liten flicka och fågel framtill. Supermjuk kvalitet som också finns som BLOUSE till storasyster. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Viskos, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Janet BIKINI">
+  <source>description.Janet_BIKINI</source>
+  <target>
+    <![CDATA[ Bedårande randig bikini med volangkant på både underdel och top. Toppen har halterneck med spänne och knytband på ryggen. Finns också som baddräkt och båda delar även till lillasyster. <br><br>Fås i följande kombinationer: Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Nylon, 10% elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Janet Little BIKINI">
+  <source>description.Janet_Little_BIKINI</source>
+  <target>
+    <![CDATA[ Bedårande randig bikini med volangkant på både underdel och top. Toppen har band som korsar på ryggen. Finns också som baddräkt och båda delar även till storasyster. <br><br>Fås i följande kombinationer: Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Nylon, 10% elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Janet Little SWIMSUIT">
+  <source>description.Janet_Little_SWIMSUIT</source>
+  <target>
+    <![CDATA[ Underbar baddräkt med volanger vid halsen och knytband i nacken. Finns också som bikini och båda delar även till storasyster. <br><br>Fås i följande kombinationer: Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Nylon, 10% elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Janet SWIMSUIT">
+  <source>description.Janet_SWIMSUIT</source>
+  <target>
+    <![CDATA[ Underbar baddräkt med volanger vid halsen och knytband i nacken. Finns också som bikini och båda delar även till storasyster. <br><br>Fås i följande kombinationer: Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Nylon, 10% elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Jason Little SWIM TRUNKS">
+  <source>description.Jason_Little_SWIM_TRUNKS</source>
+  <target>
+    <![CDATA[ Fantastiska små badbyxor med ränder på. Justerbar midja med snörning och fin kontrastrand i sidan. <br><br>Fås i: Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Nylon, 10% elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Joan Little LS TUNIC">
+  <source>description.Joan_Little_LS_TUNIC</source>
+  <target>
+    <![CDATA[ Otroligt söt och diskret printad tunika med långa ärmar. Med knappar halvt nertill med fina fyrkantiga pärlemorsknappar. Läcker lätt bomullskvalitet. I samma serie finns också Joan LS TUNIC och LONG TUNIC, båda delar till storasyster. <br><br>Fås i följande kombinationer: Blue (blå), Grey (grå) och Powder (puder). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Joan LONG TUNIC">
+  <source>description.Joan_LONG_TUNIC</source>
+  <target>
+    <![CDATA[ Otroligt söt kortärmad klänning. Med liten knappstängning framtill med fina fyrkantiga pärlemorsknappar. Läcker lätt bomullskvalitet. Sött satinbälte i midjan. I samma serie finns också Joan LS TUNIC och till lillasyster: Joan Little LS TUNIC. <br><br>Fås i följande kombinationer: Blue (blue), Grey (grå) och Powder (puder). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Joan LS TUNIC">
+  <source>description.Joan_LS_TUNIC</source>
+  <target>
+    <![CDATA[ Otroligt söt och diskret printad tunika med långa ärmar. Med knappar halvt nertill med fina fyrkantiga pärlemorsknappar. Läcker lätt bomullskvalitet. I samma serie finns också Joan LONG TUNIC och till lillasyster: Joan Little LS TUNIC.  <br><br>Fås i följande kombinationer: Blue (blue), Grey (grå) och Powder (puder). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="John BOARD SHORTS">
+  <source>description.John_BOARD_SHORTS</source>
+  <target>
+    <![CDATA[ Supercoola badshorts med flera fickor och justerbart gummiband i midjan. Shortsen har innerbyxor i mesh. <br><br>Fås i följande kombinationer: Green/navy (grön/navy) och Red/navy (röd/navy). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 60% Bomull, 40% Polyester. Foder: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Judy Little PANTS">
+  <source>description.Judy_Little_PANTS</source>
+  <target>
+    <![CDATA[ Feminina småblommiga ballongbyxor med smockelastik i midjan och i benen. Med ett lätt foder och små pärlemorsknappar vid anklarna. I samma serie finns också: Judy Little SS TUNIC samt Judy SHORTS och LS BLOUSE till storasyster. <br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Judy Little SS TUNIC">
+  <source>description.Judy_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Feminin småblommig tunika med en fin volangkant vid halsen och knappar i nacken. Med ett lätt foder. I samma serie finns också: Judy Little PANTS samt Judy SHORTS och LS BLOUSE till storasyster. <br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Judy LS BLOUSE">
+  <source>description.Judy_LS_BLOUSE</source>
+  <target>
+    <![CDATA[ Feminin småblommig skjortblus med elastiksmock på axlar och i midjan. Med knappstängning halvt ner och små pärlemorsknappar. I samma serie finns också: Judy SHORTS samt Judy Little PANTS och Little SS TUNIC till lillasyster. <br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Judy SHORTS">
+  <source>description.Judy_SHORTS</source>
+  <target>
+    <![CDATA[ Feminina småblommiga ballongshorts med smockelastik bak i midjan och fina veck framtill. Med ett lätt foder. I samma serie finns också: Judy LS BLOUSE samt Judy Little SS TUNIC och Little PANTS till lillasyster.  <br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Karin SOCKS">
+  <source>description.Karin_SOCKS</source>
+  <target>
+    <![CDATA[ Söta ankelstrumpor med prickar i 2-pack med två identiska par. Matchar hela flickkollektionen. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Black (svart), Brown (brun), Dusty Rose (gammelrosa), Green (grön), Grey (grå), Peach (persika) och White (vit). <br><br>Storleken är barnets skostorlek. <br><br>Kvalitet: 80% Bomull, 15% Polyamid, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Karoline Little SS TUNIC">
+  <source>description.Karoline_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Söt och feminin kortärmad tunika med halv knappstängning framtill och massor av vidd. Fina volanger i hals och längs knappstängning. Finns också till storasyster: Karoline LS SHIRT. <br><br>Fås i: Blue (blå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Karoline LS SHIRT">
+  <source>description.Karoline_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Söt och feminin 3/4 ärmad skjorta med halv knappstängning framtill och massor av vidd. Fina volanger i hals och längs knappstängning. Finns också till lillasyster: Karoline Little SS TUNIC. <br><br>Fås i: Blue (blå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Katie KNEE SOCKS">
+  <source>description.Katie_KNEE_SOCKS</source>
+  <target>
+    <![CDATA[ Sköna knästrumpor i 2-pack i en randig och en prickig utgåva. Med en liten spets som avslut. I fina färger som matchar resten av flickkollektionen. I samma serie finns också LEGGINGS till både lilla- och storasyster. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Black (svart). Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 79% Bomull, 18% Polyamid, 2% Elastan, 1% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Katie LEGGINGS">
+  <source>description.Katie_LEGGINGS</source>
+  <target>
+    <![CDATA[ Fina leggings i 2-pack i en randig och en prickig utgåva. Med en liten spets som avslut vid ankeln. I fina färger som matchar resten av flickkollektionen. Fås också som ankelstrumpor och till lillasyster: Katie Little LEGGINGS. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Black (svart). Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 79% Bomull, 18% Polyamid, 2% Elastan, 1% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Katie Little LEGGINGS">
+  <source>description.Katie_Little_LEGGINGS</source>
+  <target>
+    <![CDATA[ Fina leggings i 2-pack i en randig och en prickig utgåva. Med en liten spets som avslut vid ankeln. I fina färger som matchar resten av flickkollektionen. Fås också som ankelstrumpor och till lillasyster: Katie Little LEGGINGS. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Black (svart). Dusty Rose (gammelrosa), Grey (grå) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 79% Bomull, 18% Polyamid, 2% Elastan, 1% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kelly Little SS DRESS">
+  <source>description.Kelly_Little_SS_DRESS</source>
+  <target>
+    <![CDATA[ Bedårande stickad klänning med många fina detaljer som dubbelärmar med randig struktur och spetsavslut. Liten knappstängning framtill med färgade pärlemorsknappar. Superfin med ett par leggings eller jeans under. Finns också till storasyster: Kelly SS DRESS. <br><br>Fås i: Dusty Rose (gammelrosa), Green (grön) och Grey Melange (gråmelerad). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kelly SS DRESS">
+  <source>description.Kelly_SS_DRESS</source>
+  <target>
+    <![CDATA[ Bedårande liten stickad klänning med många fina detaljer som dubbelärmar med randig struktur och spetsavslut. Fin stickad rosett på bröstet. Superfin med ett par leggings eller jeans under. Finns också till lillasyster: Kelly Little SS DRESS. <br><br>Fås i: Dusty Rose (gammelrosa), Green (grön) och Grey Melange (gråmelerad). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ken FOOTIES">
+  <source>description.Ken_FOOTIES</source>
+  <target>
+    <![CDATA[ Coola footies i 2-pack med randiga och enfärgade. Med kontrast-tå och häl på den randiga utgåvan. I färger som matchar resten av pojkkollektionen. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Green (grön), Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets skostorlek. <br><br>Kvalitet: 80% Bomull, 15% Polyamid, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ken SOCKS">
+  <source>description.Ken_SOCKS</source>
+  <target>
+    <![CDATA[ Läckra ankelstrumpor i 2-pack med randiga och enfärgade strumpor. Den enfärgade strumpan har en fin stjärna på ankeln. Färgerna matchar resten av pojkkollektionen. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (klarblå), Grey Melange (gråmelerad), Navy och Olive (oliv). <br><br>Storleken är barnets skostorlek. <br><br>Kvalitet: 80% Bomull, 15% Polyamid, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kerstin LEGGINGS">
+  <source>description.Kerstin_LEGGINGS</source>
+  <target>
+    <![CDATA[ Läckra strukturstickade leggings med volangavslut vid ankeln. Finns i 2-pack med två fina färger som matchar resten av flickkollektionen. Finns också till lillasyster: Kerstin Little LEGGINGS. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Navy/white (navy/vit), Offwhite/green (råvit/grön), Peach/Grey Melange (persika/gråmelerad) och Powder/Dusty Rose<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 75% Bomuld, 24% Polyamid, 1% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kerstin Little LEGGINGS">
+  <source>description.Kerstin_Little_LEGGINGS</source>
+  <target>
+    <![CDATA[ Läckra strukturstickade leggings med volangavslut vid ankeln. Finns i 2-pack med två fina färger som matchar resten av flickkollektionen. Finns också till storasyster: Kerstin LEGGINGS. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Navy/white (navy/vit), Offwhite/green (råvit/grön), Peach/Grey Melange (persika/gråmelerad) och Powder/Dusty Rose<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 75% Bomull, 24% Polyamid, 1% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kirsten CARDIGAN">
+  <source>description.Kirsten_CARDIGAN</source>
+  <target>
+    <![CDATA[ Exklusiv långärmad cardigan med broderade prickar. Brett ribavslut i midjan och på ärmar. V-hals och knappstängning framtill. Finns också till lillasyster: Kirsten Little CARDIGAN. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa), Peach (persika) och Sand. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 82% Viskos, 18% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kirsten Little CARDIGAN">
+  <source>description.Kirsten_Little_CARDIGAN</source>
+  <target>
+    <![CDATA[ Exklusiv långärmad cardigan med broderade prickar. Fina avslut med en liten rullkant. V-hals och knappstängning framtill. Finns också till storasyster: Kirsten CARDIGAN. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa), Peach (persika) och Sand. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 82% Viskos, 18% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kristina Little TIGHTS">
+  <source>description.Kristina_Little_TIGHTS</source>
+  <target>
+    <![CDATA[ Strumpbyxor man inte kan vara utan i strukturstickning i läckra färger som matchar resten av flickkollektionen. Ligger i en 2-pack i fyra olika färgkombinationer. Finns också till storasyster: Kristina TIGHTS. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Black (svart), Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 15% Polyamid, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Kristina TIGHTS">
+  <source>description.Kristina_TIGHTS</source>
+  <target>
+    <![CDATA[ Strumpbyxor man inte kan vara utan i strukturstickning i läckra färger som matchar resten av flickkollektionen. Ligger i en 2-pack i fyra olika färgkombinationer. Finns också till lillasyster: Kristina Little TIGHTS. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Black (svart), Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 15% Polyamid, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Krystal LEGGINGS">
+  <source>description.Krystal_LEGGINGS</source>
+  <target>
+    <![CDATA[ Fantastiskt söta strumpbyxor med fjärilar i läckra färger som matchar resten av flickkollektionen. Ligger i en 2-pack i tre olika färgkombinationer. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Brown (brun), Dusty Rose (gammelrosa) och Offwhite/Grey (råvit/grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 66% Bomull, 33% Polyamid, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Leon Little SS TSHIRT">
+  <source>description.Leon_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Fantastiskt läcker och mjuk t-shirt med retro-sportlook. Med coolt print på bröstet och i nacken. Även till storebror: Leon SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue (klarblå), Navy och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Bomull, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Leon SS TSHIRT">
+  <source>description.Leon_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Fantastiskt läcker och mjuk t-shirt med retro-sportlook. Med coolt print på bröstet och i nacken. Även till lillebror: Leon Little SS TSHIRT. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue (klarblå), Navy och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 92% Bomull, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Lisa BLAZER">
+  <source>description.Lisa_BLAZER</source>
+  <target>
+    <![CDATA[ Tuff, superfin sweat-kavaj med klädda knappar och fint hjärta av små runda guldnitar på ryggen. Superfin till ett par jeans. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Lola PANTS">
+  <source>description.Lola_PANTS</source>
+  <target>
+    <![CDATA[ Supertuffa flickbyxor med massor av detaljer som fickor och trendig synlig blixtlås, elastisk smock vid ankeln, nitar, badge bak och cool sluttande överlappande stängning framtill. Med justerbar midja. <br><br>Fås i: Khaki, Grey (grå) och Sand.<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 98% Bomull, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Louis Little SHORTS">
+  <source>description.Louis_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Superfunky rutiga shorts med flera fickor, trendiga vridna sidosömmar och randigt fickfoder. Med justerbar midja. Även till storebror: Louis SHORTS. <br><br>Fås i följande kombinationer: Blue (blå) och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Louis SHORTS">
+  <source>description.Louis_SHORTS</source>
+  <target>
+    <![CDATA[ Superfunky rutiga shorts med flera fickor, trendiga vridna sidosömmar och randigt fickfoder. Med justerbar midja. Även till lillebror: Louis Little SHORTS. <br><br>Fås i följande kombinationer: Blue (blå) och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Macy Little SS TUNIC">
+  <source>description.Macy_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Söt A-formad tunika med volanger nertill vid knapparna, elastisk smock runt hals och i ärmar. Söta små blomknappar. Även till storasyster: Macy SS TUNIC. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Macy SS TUNIC">
+  <source>description.Macy_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Söt A-formad tunika med volanger nertill vid knapparna, elastisk smock runt hals och i ärmar. Söta små blomknappar. Även till lillasyster: Macy Little SS TUNIC. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Maja CAPRI LEGGINGS">
+  <source>description.Maja_CAPRI_LEGGINGS</source>
+  <target>
+    <![CDATA[ Läckra ribbade basic capri leggings med fin liten satinrosett på sidan under knät. I exklusiv och supermjuk modalkvalitet. I samma metervara finns också Maja TOP, LS TSHIRT och till lillasyster: Maja Little LS TSHIRT och Little CAPRI LEGGINGS.  Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Brown (brun), Cream (creme), Dusty Rose (gammelrosa) och Grey (grå).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Maja Little CAPRI LEGGINGS">
+  <source>description.Maja_Little_CAPRI_LEGGINGS</source>
+  <target>
+    <![CDATA[ Läckra ribbade basic capri leggings med fin liten satinrosett på sidan under knät. I exklusiv och supermjuk modalkvalitet. I samma metervara finns också Maja Little LS TSHIRT och till storasyster: Maja LS TSHIRT, TOP och CAPRI LEGGINGS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Brown (brun), Cream (creme), Dusty Rose (gammelrosa) och Grey (grå).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Maja Little LS TSHIRT">
+  <source>description.Maja_Little_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Skön åtsittande basic t-shirt med långa ärmar. I exklusiv, ribbad och supermjuk modalkvalitet. I samma metervara finns också Maja Little CAPRI LEGGINGS och till storasyster: Maja LS TSHIRT, TOP och CAPRI LEGGINGS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Brown (brun), Cream (creme), Dusty Rose (gammelrosa) och Grey (grå).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Maja LS TSHIRT">
+  <source>description.Maja_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Skön åtsittande basic t-shirt med långa ärmar. I exklusiv, ribbad och supermjuk modalkvalitet. I samma metervara finns också Maja CAPRI LEGGINGS, TOP och till lillasyster: Maja Little LS TSHIRT och Little CAPRI LEGGINGS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Brown (brun), Cream (creme), Dusty Rose (gammelrosa) och Grey (grå).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Maja TOP">
+  <source>description.Maja_TOP</source>
+  <target>
+    <![CDATA[ Skön åtsittande basic top med den sötaste spetsen vid hals och ärmöppning. I exklusiv, ribbad och supermjuk modalkvaliet. I samma metervara finns också Maja CAPRI LEGGINGS, LS TSHIRT och till lillasyster: Maja Little LS TSHIRT och Little CAPRI LEGGINGS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Brown (brun), Cream (creme), Dusty Rose (gammelrosa) och Grey (grå).<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 46% Bomull, 46% Modal, 8% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Mallory Little SS TUNIC">
+  <source>description.Mallory_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Söt prickig A-formad tunika med volanger nertill vid knappar, elastisk smock runt hals och ärmar. Supersöta små knappar. Även till storasyster: Mallory SS LONG TUNIC. <br><br>Fås i följande kombinationer: Grey (grå), Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Mallory SS LONG TUNIC">
+  <source>description.Mallory_SS_LONG_TUNIC</source>
+  <target>
+    <![CDATA[ Söt prickig tunika med volanger framtill vid knappar, elastisk smock runt hals och ärmar. Supersöta små knappar och elastik med knytband i midjan. Även till lillasyster: Mallory Little SS TUNIC. <br><br>Fås i följande kombinationer: Grey (grå), Navy och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Maryann SS LONG TSHIRT">
+  <source>description.Maryann_SS_LONG_TSHIRT</source>
+  <target>
+    <![CDATA[ Läcker lång t-shirt i en supermjuk viskoskvalitet. Superfin till ett par leggings eller byxor. Med sött och tjejigt litet motiv printat på magen. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa), Grey (grå) och Khaki. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Viskos. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Matilda Little SKIRT">
+  <source>description.Matilda_Little_SKIRT</source>
+  <target>
+    <![CDATA[ Bedårande liten kjol med spetsbroderi framtill och bred elastik i midjan. Med trendig synlig blixtlås bak. I samma serie finns också Matilda Little TOP samt Matilda SKIRT och TOP till storasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Matilda Little TOP">
+  <source>description.Matilda_Little_TOP</source>
+  <target>
+    <![CDATA[ Underbar liten top med spetsbroderi framtill och trendig synlig blixtlås i nacken. I samma serie finns också Matilda Little SKIRT samt Matilda SKIRT och TOP till storasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Matilda SKIRT">
+  <source>description.Matilda_SKIRT</source>
+  <target>
+    <![CDATA[ Bedårande liten kjol med spetsbroderi framtill och bred elastik i midjan. Med trendig synlig blixtlås bak. I samma serie finns också Matilda TOP samt Matilda Little SKIRT och Little TOP till lillasyster.  <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Matilda TOP">
+  <source>description.Matilda_TOP</source>
+  <target>
+    <![CDATA[ Bedårande liten top med spetsbroderi framtill och trendig synlig blixtlås i nacken. I samma serie finns också Matilda SKIRT samt Matilda Little SKIRT och Little TOP till lillasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Mickey Little SHORTS">
+  <source>description.Mickey_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Tuffa shorts i läckra färger som passar perfekt till resten av pojkkollektionens t-shirts. Fina detaljer både in- och utvändigt. Justerbar midja. Finns också till storebror: Mickey SHORTS. <br><br>Fås i: Blue (blå), Khaki och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Mickey SHORTS">
+  <source>description.Mickey_SHORTS</source>
+  <target>
+    <![CDATA[ Tuffa shorts i läckra färger som passar perfekt till resten av pojkkollektionens t-shirts. Fina detaljer både in- och utvändigt. Justerbar midja. Finns också till lillebror: Mickey Little SHORTS. <br><br>Fås i: Blue (blå), Khaki och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Milly CHINOS">
+  <source>description.Milly_CHINOS</source>
+  <target>
+    <![CDATA[ Supercoola chinos i läcker bomullskvalitet. Med fyra olika coola knappar fram, rynkeffekter och badge bak. Med justerbar midja. I samma serie finns också Milly SHORTS. <br><br>Fås i: Grey (grå), Sand och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Milly SHORTS">
+  <source>description.Milly_SHORTS</source>
+  <target>
+    <![CDATA[ Superfina och trendiga flickshorts med flätat band i livet, veck och fickor både fram och bak. Med justerbar midja. I samma serie finns också Milly CHINOS. <br><br>Fås i: Grey (grå), Sand och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Miriam DRESS">
+  <source>description.Miriam_DRESS</source>
+  <target>
+    <![CDATA[ Underbar sommarklänning med massor av vidd. Synlig blixtlås i nacken och med fin rynkeffekt över bröst och rygg. Med ett lätt foder. Finns också till lillasyster: Miriam Little DRESS. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och Offwhite (råvit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 60% Viskos, 40% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Miriam little DRESS">
+  <source>description.Miriam_Little_DRESS</source>
+  <target>
+    <![CDATA[ Bedårande sommarklänning med massor av vidd. Synlig blixtlås vid hals och med en fin rynkeffekt över bröst och rygg. Med ett lätt foder. Finns också till storasyster: Miriam DRESS. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och Offwhite (råvit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 60% Viskos, 40% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nana Little PANTS">
+  <source>description.Nana_Little_PANTS</source>
+  <target>
+    <![CDATA[ Den klassiska POMPdeLUX ballongbyxan i denim med smockelastik i midjan och vid anklarna. Superskön byxa som är behaglig och lätt att sätta till både tshirts, skjortor och tunikor. I samma metervara finns också: Nana Little PANTSUIT samt Nana PANTS till storasyster. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nana Little PANTSUIT">
+  <source>description.Nana_Little_PANTSUIT</source>
+  <target>
+    <![CDATA[ Underbar liten byxdräkt i denim med tryckknappar framtill, som gör det lätt för barnet att ta av sig själv. Med smock vid halsen och i benen samt små volangärmar. I samma metervara finns också: Nana Little PANTS samt Nana PANTS till storasyster. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nana PANTS">
+  <source>description.Nana_PANTS</source>
+  <target>
+    <![CDATA[ Den klassiska POMPdeLUX ballongbyxan i denim med smockelastik i midjan och vid anklarna. Superskön byxa som är behaglig och lätt att sätta till både tshirts, skjortor och tunikor. I samma metervara finns också: Nana Little PANTSUIT och Little PANTS till lillasyster. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nico Little LS SHIRT">
+  <source>description.Nico_Little_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Läcker och extremt mjuk denimskjorta med bondkrage och halv knappstängning framtill. Fint broderi i nacken. Ärmar som kan kavlas upp med knappfunktion. Finns också till storebror: Nico LS SHIRT. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nico LS SHIRT">
+  <source>description.Nico_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Läcker och extremt mjuk denimskjorta med krage och knappar framtill. Fint broderi i nacken. Ärmar som kan kavlas upp med knappfunktion. Finns också till lillebror: Nico Little LS SHIRT. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nina DRESS">
+  <source>description.Nina_DRESS</source>
+  <target>
+    <![CDATA[ Otroligt söt denimklänning i supermjukt material med stora fickor, volangkrage och möjlighet att knyta i midjan bak. I samma serie finns också Nina PANTS, SHORTS samt Nina Little PANTS, Little DRESS och Little SHORTS till lillasyster. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nina Little DRESS">
+  <source>description.Nina_Little_DRESS</source>
+  <target>
+    <![CDATA[ Otroligt söt denimklänning i supermjukt material med stora fickor, volangdetaljer och band samt tryckknappar framtill. I samma serie finns också Nina Little PANTS, Little DRESS samt Nina PANTS, DRESS och SHORTS till storasyster.  <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nina Little PANTS">
+  <source>description.Nina_Little_PANTS</source>
+  <target>
+    <![CDATA[ Supermjuka byxor med den klassiska POMPdeLUX ballongsilhuetten. Med mjukt foder och elastik i midjan. Justerbar midja. I samma serie finns också Nina Little SHORTS, Little DRESS samt Nina PANTS, DRESS och SHORTS till storasyster. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nina Little SHORTS">
+  <source>description.Nina_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Supermjuka shorts med vidd, söta volanger och elastisk smock i midjan. I samma fina serie finns också Nina Little PANTS, Little DRESS samt Nina PANTS, DRESS och SHORTS till storasyster. <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nina PANTS">
+  <source>description.Nina_PANTS</source>
+  <target>
+    <![CDATA[ Supermjuka byxor med den klassiska POMPdeLUX ballongsilhuetten. Med mjukt foder, stora fickor och elastik i midjan. I samma serie finns också Nina DRESS, SHORTS samt Nina Little PANTS, Little DRESS och Little SHORTS till lillasyster.  <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Nina SHORTS">
+  <source>description.Nina_SHORTS</source>
+  <target>
+    <![CDATA[ Supermjuka shorts med vidd, söta volanger och elastisk smock i midjan. I samma fina serie finns också Nina DRESS, PANTS samt Nina Little PANTS, Little DRESS och Little SHORTS till lillasyster.  <br><br>Fås i: Blue Denim. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Norma Little SS CARDIGAN">
+  <source>description.Norma_Little_SS_CARDIGAN</source>
+  <target>
+    <![CDATA[ Härlig kortärmad cardigan i olika stickade mönster och med fina pärlemorsknappar framtill. Med en liten stickad rosett på ärmen. I samma mjuka stickning finns också till storasyster: Norma TOP och SS CARDIGAN. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa) och Grey Melange (gråmelerad). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 65% Bambu, 18% Polyamid, 17% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Norma SS CARDIGAN">
+  <source>description.Norma_SS_CARDIGAN</source>
+  <target>
+    <![CDATA[ Härlig kortärmad cardigan i olika stickade mönster och med fina pärlemorsknappar framtill. Med en liten stickad rosett på ärmen. I samma mjuka stickning finns också Norma TOP samt Norma Little SS CARDIGAN till lillasyster.  <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa) och Grey Melange (gråmelerad). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 65% Bambu, 18% Polyamid, 17% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Norma TOP">
+  <source>description.Norma_TOP</source>
+  <target>
+    <![CDATA[ Härlig stickad top med en stickad fin rosett framtill. I samma mjuka stickning finns också Norma CARDIGAN och Norma Little SS CARDIGAN till lillasyster. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa) och Grey Melange (gråmelerad). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 65% Bambu, 18% Polyamid, 17% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Olivia Little LS TSHIRT">
+  <source>description.Olivia_Little_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Vacker hålmönstrad t-shirt med långa ärmar, knapp i nacken och fin liten metallbadge i kanten nertill. Användbar basic t-shirt som passar till det mesta. I samma serie finns också Olivia Little SS TSHIRT samt Olivia LS TSHIRT och SS TSHIRT till storasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey Melange (gråmelerad), Offwhite (råvit) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Bomull, 8% Polyester, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Olivia Little SS TSHIRT">
+  <source>description.Olivia_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Vacker hålmönstrad t-shirt med korta ärmar, knapp i nacken och fin liten metallbadge i kanten nertill. Användbar basic t-shirt som passar till det mesta. I samma serie finns också Olivia Little LS TSHIRT samt Olivia LS TSHIRT och SS TSHIRT till storasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey Melange (gråmelerad), Offwhite (råvit) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Bomull, 8% Polyester, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Olivia LS TSHIRT">
+  <source>description.Olivia_LS_TSHIRT</source>
+  <target>
+    <![CDATA[ Vacker hålmönstrad t-shirt med långa ärmar och fin liten metallbadge i kanten nertill. Användbar basic t-shirt som passar till det mesta. I samma serie finns också Olivia SS TSHIRT samt Olivia Little LS TSHIRT och Little SS TSHIRT till lillasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey Melange (gråmelerad), Offwhite (råvit) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Bomull, 8% Polyester, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Olivia SS TSHIRT">
+  <source>description.Olivia_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Vacker hålmönstrad t-shirt med korta ärmar och fin liten metallbadge i kanten nertill. Användbar basic t-shirt som passar till det mesta. I samma serie finns också Olivia LS TSHIRT samt Olivia Little LS TSHIRT och Little SS TSHIRT till lillasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey Melange (gråmelerad), Offwhite (råvit) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 90% Bomull, 8% Polyester, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Oswald JACKET">
+  <source>description.Oswald_JACKET</source>
+  <target>
+    <![CDATA[ Läcker sportig nylonjacka med många tuffa kontraster, broderier och print. Med supermjukt foder i bomullsjersey, blixtlås nertill och rib i både hals, ärmar och midja. Finns också till lillebror: Oswald Little JACKET<br><br>Fås i: Green (grön), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. Foder: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Oswald Little JACKET">
+  <source>description.Oswald_Little_JACKET</source>
+  <target>
+    <![CDATA[ Läcker sportig nylonjacka med många tuffa kontraster, broderier och print. Med supermjukt foder i bomullsjersey, blixtlås nertill och rib i både hals, ärmar och midja. Finns också till storebror: Oswald JACKET. <br><br>Fås i: Green (grön), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. Foder: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Pamela Little PANTS">
+  <source>description.Pamela_Little_PANTS</source>
+  <target>
+    <![CDATA[ Läckra mjuka bomullsbyxor i den klassiska POMPdeLUX ballongsilhuetten med supermjukt foder och elastik i midjan. Skön byxa som är söta med både t-shirt och klänning till. Med justerbar midja. I samma serie finns också: Pamela Little SKIRT samt Pamela PANTS och SHORTS till storasyster. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Pamela Little SKIRT">
+  <source>description.Pamela_Little_SKIRT</source>
+  <target>
+    <![CDATA[ Läcker ballongkjol med elastik i midjan och mjukt foder inuti. Med justerbar midja. I samma serie finns också: Pamela Little PANTS samt Pamela PANTS och SHORTS till storasyster. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Pamela PANTS">
+  <source>description.Pamela_PANTS</source>
+  <target>
+    <![CDATA[ Läckra mjuka bomullsbyxor i den klassiska POMPdeLUX ballongsilhuetten med supermjukt foder och elastik i midjan. Skön byxa som är söta med både t-shirt och klänning till. Med justerbar midja. I samma serie finns också: Pamela SHORTS samt Pamela Little PANTS och Little SKIRT till lillasyster. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Pamela SHORTS">
+  <source>description.Pamela_SHORTS</source>
+  <target>
+    <![CDATA[ Läckra ballongshorts med linning, blixtlås och fina fickor. Med justerbar midja. I samma serie finns också: Pamela PANTS samt Pamela Little PANTS och Little SKIRT till lillasyster. <br><br>Fås i: Brown (brun), Dusty Rose (gammelrosa) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Pennie Little SS TUNIC">
+  <source>description.Pennie_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Underbar liten tunika med vackert broderi vid halsen. Korta ärmar med elastikavslut och liten pärlemorsknapp i nacken. I samma läckra bomullskvalitet finns också: Pennie TOP och SS LONG TUNIC, båda till storasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Pennie SS LONG TUNIC">
+  <source>description.Pennie_SS_LONG_TUNIC</source>
+  <target>
+    <![CDATA[ Underbar tunika med vackert broderi vid halsen. Korta ärmar med elastikavslut och liten pärlemorsknapp i nacken. I samma läckra bomullskvalitet finns också: Pennie TOP samt Pennie Little SS TUNIC till lillasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Längd: 30 cm, diameter: 38 cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Pennie TOP">
+  <source>description.Pennie_TOP</source>
+  <target>
+    <![CDATA[ Bedårande liten top med ett vackert broderi vid halsen. Med elastisk smock i midjan och liten pärlemorsknapp i nacken. I samma läckra bomullskvalitet finns också: Pennie SS LONG TUNIC samt Pennie Little SS TUNIC till lillasyster. <br><br>Fås i: Dusty Rose (gammelrosa), Grey (grå) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="POMP BAG">
+  <source>description.POMP_BAG</source>
+  <target>
+    <![CDATA[ Vår läckra och kraftiga POMP BAG, som bland annat är superbra att ha till stranden, dagis eller helgturen. BAGèn är vattentät och gjord av ett miljövänligt material som inte friger några skadliga ämnen. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Rasmus Little JACKET">
+  <source>description.Rasmus_Little_JACKET</source>
+  <target>
+    <![CDATA[ Cool sweatjacka med blixtlås och luva. I luvan är det mjukt jersey foder. Utöver det har den många tuffa detaljer som applikationer, kraftiga stickningar på axlarna samt fickor med nitar. I samma kvalitet finns också Rasmus Little PANTS samt till storebror: Rasmus SHORTS och PANTS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Rasmus Little PANTS">
+  <source>description.Rasmus_Little_PANTS</source>
+  <target>
+    <![CDATA[ Tuffa trendiga sweatpants med mjuk rib i midjan och grovt snöre. Cool bakficka med kraftiga stickningar. I samma kvalitet finns också Rasmus Little JACKET samt till storebror: Rasmus SHORTS och PANTS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Rasmus PANTS">
+  <source>description.Rasmus_PANTS</source>
+  <target>
+    <![CDATA[ Tuffa trendiga sweatpants med mjuk rib i midjan och grovt snöre. Cool bakficka med kraftiga stickningar. Kvaliteten finns också som SHORTS samt till lillebror: Rasmus Little JACKET och Little PANTS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Rasmus SHORTS">
+  <source>description.Rasmus_SHORTS</source>
+  <target>
+    <![CDATA[ Tuffa trendiga sweatshorts med mjuk rib i midjan och grovt snöre. Cool bakficka med kraftiga stickningar. Kvaliteten finns också som PANTS samt till lillebror: Rasmus Little JACKET och Little PANTS. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Richie JACKET">
+  <source>description.Richie_JACKET</source>
+  <target>
+    <![CDATA[ Mjuk fleecejacka med coola detaljer som badge på höften, kontrastkanter och blixtlås, applikation på bröstet och påsydda quiltade fält i sidan och på axlarna. I samma läckra fleecekvalitet finns också Richie Little JACKET. <br><br>Fås i: Grey (grå), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Richie Little JACKET">
+  <source>description.Richie_Little_JACKET</source>
+  <target>
+    <![CDATA[ Mjuk fleecejacka med coola detaljer som kontrast på ribkant vid hals, i ärmen och i midjan. Med applikation på ryggen och påsydda quiltade fält i sidan och på axlarna. I samma läckra fleecekvalitet finns också Richie JACKET. <br><br>Fås i: Grey (grå), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Roberta Little RAIN SET">
+  <source>description.Roberta_Little_RAIN_SET</source>
+  <target>
+    <![CDATA[ Vind- och vattentätt regnset med fina små prickar. Med avtagbar luva, svetsade sömmar och i mjuk gummikvalitet samt är testad mot ett vattentryck på 10.000 mm. Den innehåller inte PVC, phthalater, metall eller nickel. Foder i jackan och reflexer vid ärmar både fram och bak. Hängslebyxor med gummiband i benet. Även till storasyster: Roberta RAIN SET. <br><br>Fås i: Dusty Rose (gammelrosa) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester PU. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Roberta RAIN SET">
+  <source>description.Roberta_RAIN_SET</source>
+  <target>
+    <![CDATA[ Vind- och vattentätt regnset med fina små prickar. Med avtagbar luva, svetsade sömmar och i mjuk gummikvalitet samt är testad mot ett vattentryck på 10.000 mm. Den innehåller inte PVC, phthalater, metall eller nickel. Foder i jackan och reflexer vid ärmar både fram och bak. Hängslebyxor med gummiband i benet. Även till storasyster: Roberta RAIN SET. <br><br>Fås i: Dusty Rose (gammelrosa) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester PU. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Rodolf JACKET">
+  <source>description.Rodolf_JACKET</source>
+  <target>
+    <![CDATA[ Tuff sweat med ränder och blixtlås framtill. Med coolt gummiprint nummer fram på bröstet och delad kängruficka. Supermjukt foder i luvan. Finns också till lillebror: Rodolf Little JACKET. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Rodolf Little JACKET">
+  <source>description.Rodolf_Little_JACKET</source>
+  <target>
+    <![CDATA[ Tuff sweat med ränder och blixtlås framtill. Med coolt gummiprint nummer fram på bröstet och delad kängruficka. Supermjukt foder i luvan. Finns också till storebror: Rodolf JACKET. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Roger Little RAIN SET">
+  <source>description.Roger_Little_RAIN_SET</source>
+  <target>
+    <![CDATA[ Vind- och vattentätt regnset med coolt korsmönster på jackan och enfärgade byxor. Med avtagbar luva, svetsade sömmar och i mjuk gummikvalitet samt är testad mot ett vattentryck på 10.000 mm. Den innehåller inte PVC, phthalater, metall eller nickel. Foder i jackan och reflexer vid ärmar både fram och bak. Hängslebyxor med gummiband i benet och print på låret. Även till storebror: Roger RAIN SET. <br><br>Fås i: Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester PU. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Roger RAIN SET">
+  <source>description.Roger_RAIN_SET</source>
+  <target>
+    <![CDATA[ Vind- och vattentätt regnset med coolt korsmönster på jackan och enfärgade byxor. Med avtagbar luva, svetsade sömmar och i mjuk gummikvalitet samt är testad mot ett vattentryck på 10.000 mm. Den innehåller inte PVC, phthalater, metall eller nickel. Foder i jackan och reflexer vid ärmar både fram och bak. Hängslebyxor med gummiband i benet och print på låret. Även till lillebror: Roger Little RAIN SET. <br><br>Fås i: Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester PU. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Rolf HOODIE">
+  <source>description.Rolf_HOODIE</source>
+  <target>
+    <![CDATA[ Cool sweat i läckra färger. Med tufft stort applicerat P framtill, tryckknappar vid hals och kraftiga kontraststickningar på axlar. Med mjukt jerseyfoder i luvan. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue (blå), Green (grön), Navy och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 80% Bomull, 20% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ronald Little SS TSHIRT">
+  <source>description.Ronald_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Supertuff kortärmad t-shirt med stjärnprint framtill och kontrastkanter i hals och ärmar. Läcker till alla jeans och chinos.  I samma serie finns också Ronald SS TSHIRT till storebror. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Ronald SS TSHIRT">
+  <source>description.Ronald_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Supercool kortärmad t-shirt med tufft print framtill och i nacken. Läcker till alla jeans och chinos. I samma serie finns också Ronald Little SS TSHIRT till lillebror. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey Melange (gråmelerad), Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sabina JUMPSUIT">
+  <source>description.Sabina_JUMPSUIT</source>
+  <target>
+    <![CDATA[ Helt fantastiskt söt shortsdräkt i fjärilsprintad bomull med tunna band, knappar och elastik i livet. I samma serie finns också: Sabina SS TUNIC samt Sabina Little PANTS, Little PANTSUIT och Little SS TUNIC till lillasyster. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sabina Little PANTS">
+  <source>description.Sabina_Little_PANTS</source>
+  <target>
+    <![CDATA[ Helt fantastiskt söta ballongbyxor i fjärilsprintad bomull med elastik i livet. Med foder och justerbar midja. I samma serie finns också: Sabina Little PANTSUIT och Little SS TUNIC samt Sabina JUMPSUIT och SS TUNIC till storasyster. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sabina Little PANTSUIT">
+  <source>description.Sabina_Little_PANTSUIT</source>
+  <target>
+    <![CDATA[ Helt fantastiskt söt byxdräkt i fjärilsprintad bomull med breda band, knappar nertill och elastisk smock i benen. I samma serie finns också: Sabina Little PANTS och Little SS TUNIC samt Sabina JUMPSUIT och SS TUNIC till storasyster. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sabina Little SS TUNIC">
+  <source>description.Sabina_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Helt fantastiskt söt tunika i fjärilsprintad bomull med fin smock vid halsen. Små påsade ärmar med elastikavslut. I samma serie finns också: Sabina Little PANTS och Little PANTSUIT samt Sabina JUMPSUIT och SS TUNIC till storasyster. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sabina SS TUNIC">
+  <source>description.Sabina_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Helt fantastiskt söt tunika i fjärilsprintad bomull med fin smock vid halsen. Små påsade ärmar med elastikavslut. I samma serie finns också: Sabina JUMPSUIT samt Sabina Little PANTS, Little PANTSUIT och Little SS TUNIC till lillasyster.  <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sally PANTSUIT">
+  <source>description.Sally_PANTSUIT</source>
+  <target>
+    <![CDATA[ Fantastiskt skön heldräkt med luva, blixtlås framtill, fickor samt smock med knyt i livet. Materialet är superläckert och med smala ränder. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Grey (grå) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Samson BAGGY JEANS">
+  <source>description.Samson_BAGGY_JEANS</source>
+  <target>
+    <![CDATA[ Tuffa baggy jeans med vridna ben för trendig passform samt sandfärgade stickningar. Med knappar och blixtlås fram, cool badge bak på linningen och rynk- och tvätteffekter. Justerbar  midja. I samma läckra denim finns också Samson BAGGY LONG SHORTS, REGULAR JEANS, REGULAR LONG SHORTS samt Samson Little JEANS och Little SHORTS till lillebror. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Samson BAGGY LONG SHORTS">
+  <source>description.Samson_BAGGY_LONG_SHORTS</source>
+  <target>
+    <![CDATA[ Coola baggy shorts med vridna ben för trendig passform samt sandfärgade stickningar. Med knappar och blixtlås fram, cool badge bak på linningen och rynk- och tvätteffekter. Justerbar midja. I samma läckra denim finns också Samson BAGGY JEANS, REGULAR JEANS, REGULAR LONG SHORTS samt Samson Little JEANS och Little SHORTS till lillebror.<br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Samson Little JEANS">
+  <source>description.Samson_Little_JEANS</source>
+  <target>
+    <![CDATA[ Coola jeans med knappar och blixtlås framtill, kraftiga stickningar på bakfickorna och tuffa rynk- och tvätteffekter. Justerbar midja. I samma läckra denim finns också Samson Little SHORTS samt Samson BAGGY JEANS,  BAGGY LONG SHORTS, REGULAR JEANS och REGULAR LONG SHORTS till storebror.<br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Samson Little SHORTS">
+  <source>description.Samson_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Tuffa denimshorts med tryckknapp, kraftiga stickningar och badge på bakfickorna samt coola rynk- och tvätteffekter. Justerbar midja. I samma läckra denim finns också Samson Little JEANS samt Samson BAGGY JEANS, BAGGY LONG SHORTS, REGULAR JEANS och REGULAR LONG SHORTS till storebror.<br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Samson REGULAR JEANS">
+  <source>description.Samson_REGULAR_JEANS</source>
+  <target>
+    <![CDATA[ Coola jeans med knappar och blixtlås framtill, kraftiga stickningar på bakfickorna och tuffa rynk- och tvätteffekter. Justerbar midja. I samma läckra denim finns också Samson BAGGY JEANS, BAGGY LONG SHORTS, REGULAR LONG SHORTS samt Samson Little JEANS och Little SHORTS till lillebror.<br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Samson REGULAR LONG SHORTS">
+  <source>description.Samson_REGULAR_LONG_SHORTS</source>
+  <target>
+    <![CDATA[ Coola denimshorts med knappar och blixtlås framtill, kraftiga stickningar och badge på bakfickor samt tuffa rynk- och tvätteffekter. Justerbar midja. I samma läckra denim finns också Samson BAGGY JEANS,  BAGGY LONG SHORTS, REGULAR JEANS samt Samson Little JEANS och Little SHORTS till lillebror.<br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sarah CARDIGAN">
+  <source>description.Sarah_CARDIGAN</source>
+  <target>
+    <![CDATA[ Skön mjuk stickad cardigan med hålmönster från bröstet och ner. Knappar nertill och fin liten spets invändigt i nacken. Bedårande vågig avslutning både i halsen, på ärmarna och i midjan. <br><br>Fås i följande kombinationer: Black (svart), Brown (brun), Grey Melange (gråmelerad) och Dusty Rose (gammelrosa). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sean SLIMFIT JEANS">
+  <source>description.Sean_SLIMFIT_JEANS</source>
+  <target>
+    <![CDATA[ Coola slimfit jeans i mörk denimkvalitet med lite stretch i för bra passform. Med tuffa rynk- och tvätteffekter samt kraftiga stickningar på bakfickorna. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 98% Bomull, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Shane REGULAR JEANS">
+  <source>description.Shane_REGULAR_JEANS</source>
+  <target>
+    <![CDATA[ Läckra basic jeans i ljus denim med knappar och blixtlås, cool label bak på linningen och rynk- och tvätteffekter. Justerbar midja. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sharon PANTS">
+  <source>description.Sharon_PANTS</source>
+  <target>
+    <![CDATA[ Feminina fjärilsprintade haremsbyxor i satinvävd bomull. Byxan har överlappad och asymetrisk stängning med knappar framtill och elastik i midjan och vid anklarna. Observera: Sharon PANTS levereras i bomull med fjärilsprintet som Sabina SS TUNIC och inte som på modellerna. Närbilderna visar det rätta printet.<br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sheena Little SLIMFIT JEANS">
+  <source>description.Sheena_Little_SLIMFIT_JEANS</source>
+  <target>
+    <![CDATA[ Coola stretch jeans i mörk denim med rynk och tvätt. Blixtlås och knappar fram samt broderi på höften. I samma serie finns också: Sheena SLIMFIT JEANS och SKIRT till storasyster. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 98% Bomull, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sheena SKIRT">
+  <source>description.Sheena_SKIRT</source>
+  <target>
+    <![CDATA[ Fantastisk liten denimkjol i mörk denim med utvändiga knappar, rynk och tvätt, samt fina bakfickor med hjärtstickningar. I samma serie finns också: Sheena SLIMFIT JEANS samt Sheena Little SLIMFIT JEANS till lillasyster. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 98% Bomull, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sheena SLIMFIT JEANS">
+  <source>description.Sheena_SLIMFIT_JEANS</source>
+  <target>
+    <![CDATA[ Tuffa stretch jeans i mörk denim med rynk och tvätt. Utvändiga knappar och badge bak på linningen. I samma serie finns också: Sheena SKIRT samt Sheena Little SLIMFIT JEANS till lillasyster. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 98% Bomull, 2% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Shirley COAT">
+  <source>description.Shirley_COAT</source>
+  <target>
+    <![CDATA[ Fantastiskt vacker jacka i A-form med blixtlås och tryckknappar fram, samt fint fjärilsprintat foder invändigt. Med fickor och innerfickor formade som ett hjärta. Vattenavvisande coatat yttertyg. Fås också till lillasyster: Shirley Little COAT. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Khaki. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 65% Polyester, 35% Bomull. Foder: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Shirley Little COAT">
+  <source>description.Shirley_Little_COAT</source>
+  <target>
+    <![CDATA[ Fantastiskt vacker jacka i A-form med blixtlås och tryckknappar fram, samt fint fjärilsprintat foder invändigt. Med fickor och innerfickor formade som ett hjärta. Vattenavvisande coatat yttertyg. Fås också till storasyster: Shirley COAT. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Khaki. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 65% Polyester, 35% Bomull. Foder: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sophia Little SS TUNIC">
+  <source>description.Sophia_Little_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Feminin tunika i A-form med lätt foder och superfin blomspets runt halsen. Med små volanger framtill och knapp i nacken. Finns också till storasyster: Sophia SS TUNIC. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa), Peach (persika) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Sophia SS TUNIC">
+  <source>description.Sophia_SS_TUNIC</source>
+  <target>
+    <![CDATA[ Feminin tunika i A-form med lätt foder och superfin blomspets runt halsen. Med små volanger framtill och knapp i nacken. Finns också till lillasyster: Sophia Little SS TUNIC. <br><br>Fås i: Cream (creme), Dusty Rose (gammelrosa), Peach (persika) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Stan BAGGY LONG SHORTS">
+  <source>description.Stan_BAGGY_LONG_SHORTS</source>
+  <target>
+    <![CDATA[ Tuffa baggy shorts i mörk denim med tvätt- och rynkeffekter. Rymliga i låren och med stora bakfickor och badge. Justerbar midja. I samma serie finns också: Stan REGULAR JEANS samt Stan Little JEANS och Little SHORTS till lillebror. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Stan Little JEANS">
+  <source>description.Stan_Little_JEANS</source>
+  <target>
+    <![CDATA[ Läckra basic jeans med knappar och blixtlås fram, cool label bak på linningen och tuffa rynk- och tvätteffekter. Justerbar midja. I samma serie finns också: Stan Little SHORTS samt Stan BAGGY LONG SHORTS och REGULAR JEANS till storebror. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Stan Little SHORTS">
+  <source>description.Stan_Little_SHORTS</source>
+  <target>
+    <![CDATA[ Coola baggy shorts i mörk denim med tvätt- och rynkeffekter. Rymliga i låren och med stora bakfickor och broderi på. Justerbar midja. I samma serie finns också: Stan Little JEANS samt Stan BAGGY LONG SHORTS och REGULAR JEANS till storebror. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Stan REGULAR JEANS">
+  <source>description.Stan_REGULAR_JEANS</source>
+  <target>
+    <![CDATA[ Läckra basic jeans med knappar och blixtlås fram, cool label bak på linningen och tuffa rynk- och tvätteffekter. Justerbar midja. I samma serie finns också: Stan BAGGY LONG SHORTS samt Stan Little JEANS och Little SHORTS till lillebror.  <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Stefan BAGGY JEANS">
+  <source>description.Stefan_BAGGY_JEANS</source>
+  <target>
+    <![CDATA[ Coola baggy jeans i mellanblå denim med lätt vridna byxben för trendig passform samt sandfärgade stickningar. Med knappar och blixtlås fram, badge bak på fickan och rynk- och tvätteffekter. Justerbar midja. I samma läckra denim finns också Stefan REGULAR LONG SHORTS. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 89% Bomull, 11% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Stefan REGULAR LONG SHORTS">
+  <source>description.Stefan_REGULAR_LONG_SHORTS</source>
+  <target>
+    <![CDATA[ Tuffa baggy shorts i mellanblå denim med knappar och blixtlås fram, badge bak på linningen och rynk- och tvätteffekter. Justerbar midja. I samma läckra denim finns också Stefan BAGGY JEANS. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 89% Bomull, 11% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Susan SHORTS">
+  <source>description.Susan_SHORTS</source>
+  <target>
+    <![CDATA[ Läckra mörkblå denim shorts med tuffa rynk- och tvätteffekter samt knappar och blixtlås. Tuff badge med nitar. Coola med både uppvikta eller inte uppvikta ben. Justerbar midja. <br><br>Fås i: Blue Denim<br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Talulla SET">
+  <source>description.Talulla_SET</source>
+  <target>
+    <![CDATA[ Feminint termoset som inte går att undvara och anpassat till det nordiska klimatet. Det är både vindtätt och isolerande, men samtidigt luftigt och lätt att röra sig i. Läcker under overallen eller regnkläderna för extra värme eller som övergångskläder. Med randig rib och blixtlås. Termotyget består av 3 lager tyg: Ytterst en vindtät siliconbehandlad rib, som fyllning ett isolerande lager polyestervaddering (80 gr), innerst nylontricot som gör att huden kan andas.  <br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Thilda Little SS TSHIRT">
+  <source>description.Thilda_Little_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Skön t-shirt i behaglig mjuk och stretch bomullsjersey. Små korta ärmar med lätt puff och elastikrynk. Med fint litet broderi på höften och tryckknapp i nacken. Finns också till storasyster: Thilda SS TSHIRT. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Green (grön), Peach (persika) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Thilda SS TSHIRT">
+  <source>description.Thilda_SS_TSHIRT</source>
+  <target>
+    <![CDATA[ Skön t-shirt i behaglig mjuk och stretch bomullsjersey. Små korta ärmar med lätt puff och elastikrynk. Med fint litet broderi på höften och tryckknapp i nacken. Finns också till lillasyster: Thilda Little SS TSHIRT. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Green (grön), Peach (persika) och White (vit). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tibby HIPSTER">
+  <source>description.Tibby_HIPSTER</source>
+  <target>
+    <![CDATA[ Åtsittande ekologiska hipsters i en läcker mjuk stretch jerseykvalitet. 2-pack i olika mönster. I samma serie finns också Tibby TOP, SS NIGHT DRESS, PANTIES och LS PY samt Tibby Little LS BODY, Little LS SET och Little LS SLEEPER till lillasyster. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Light Blue (ljusblå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tibby Little LS BODY">
+  <source>description.Tibby_Little_LS_BODY</source>
+  <target>
+    <![CDATA[ Ekologisk långärmad bodystocking i en läcker mjuk stretch jerseykvalitet. 2-pack i olika mönster. I samma serie finns också Tibby Little LS SET, Little LS SET, Little LS SLEEPER samt Tibby TOP, SS NIGHT DRESS, PY, PANTIES och HIPSTER till storasyster. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Light Blue (ljusblå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tibby Little LS SET">
+  <source>description.Tibby_Little_LS_SET</source>
+  <target>
+    <![CDATA[ Skön ekologisk pyjamas med byxor och långärmad t-shirt med tryckknapp i nacken i läcker mjuk stretch jerseykvalitet. I samma serie finns också Tibby Little LS BODY, Little LS SLEEPER samt Tibby TOP, SS NIGHT DRESS, PANTIES, HIPSTER och PY till storasyster. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Light Blue (ljusblå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tibby Little LS SLEEPER">
+  <source>description.Tibby_Little_LS_SLEEPER</source>
+  <target>
+    <![CDATA[ Skön ekologisk nattdräkt med tryckknappar nertill och längs innersidan av benen, i en läcker mjuk stretch jerseykvalitet. I samma serie finns också Tibby Little LS BODY, Little LS SET samt Tibby TOP, SS NIGHT DRESS, PANTIES, HIPSTER och PY till storasyster. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Light Blue (ljusblå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tibby PANTIES">
+  <source>description.Tibby_PANTIES</source>
+  <target>
+    <![CDATA[ Ekologiska trosor i en läcker mjuk stretch jerseykvalitet. 2-pack i olika mönster. I samma serie finns också Tibby TOP, SS NIGHT DRESS, HIPSTERS och LS PY samt Tibby Little LS BODY, Little LS SET och Little LS SLEEPER till lillasyster. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Light Blue (ljusblå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tibby SS NIGHT DRESS">
+  <source>description.Tibby_SS_NIGHT_DRESS</source>
+  <target>
+    <![CDATA[ Skön ekologisk kortärmat nattlinne i läcker stretch jerseykvalitet. Med sött printat mönster. I samma serie finns också Tibby TOP, PANTIES, HIPSTERS och LS PY samt Tibby Little LS BODY, Little LS SET och Little LS SLEEPER till lillasyster. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Light Blue (ljusblå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tibby TOP">
+  <source>description.Tibby_TOP</source>
+  <target>
+    <![CDATA[ Skön ekologisk top i en läcker mjuk stretch jerseykvalitet. 2-pack i olika mönster. I samma serie finns också Tibby SS NIGHT DRESS, HIPSTERS, PANTIES och LS PY samt Tibby Little LS BODY, Little LS SET och Little LS SLEEPER till lillasyster. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Dusty Rose (gammelrosa) och Light Blue (ljusblå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Todd BOXER">
+  <source>description.Todd_BOXER</source>
+  <target>
+    <![CDATA[ Åtsittande ekologiska boxershorts i en läcker mjuk stretch jerseykvalitet. 2-pack i olika kombinationer som matchar varandra. I samma serie finns också Todd SS PY och TOP samt Todd Little LS BODY, Little LS SET och Little SLEEPER till lillebror. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå) och Green (grön). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Todd Little LS BODY">
+  <source>description.Todd_Little_LS_BODY</source>
+  <target>
+    <![CDATA[ Ekologisk långärmad bodystocking i en läcker mjuk stretch jerseykvalitet. 2-pack i olika mönster. I samma serie finns också Todd Little LS SET och Little SLEEPER samt Todd TOP, SS PY och BOXER till storebror. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå) och Green (grön). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Todd Little LS SET">
+  <source>description.Todd_Little_LS_SET</source>
+  <target>
+    <![CDATA[ Skön ekologisk pyjamas med byxor och långärmad t-shirt med tryckknappar i läcker mjuk stretch jerseykvalitet. I samma serie finns också Todd Little LS BODY, Little SLEEPER samt Todd TOP, BOXER och SS PY till storebror. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard).  <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå) och Green (grön). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Todd SS PY">
+  <source>description.Todd_Little_SLEEPER</source>
+  <target>
+    <![CDATA[ Skön ekologisk pyjamas med byxor i longjohn-stil och kortärmad t-shirt i läcker mjuk stretch jerseykvalitet. I samma serie finns också Todd TOP och BOXER samt Todd Little LS BODY, Little LS SET och SLEEPER till lillebror. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard). <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå) och Green (grön). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Todd TOP">
+  <source>description.Todd_SS_PY</source>
+  <target>
+    <![CDATA[ Skön ekologisk brottartop i en läcker mjuk stretch jerseykvalitet. 2-pack i olika mönster. I samma serie finns också Todd SS PY och BOXER samt Todd Little LS BODY, Little LS SET och SLEEPER till lillebror. Oeko-Tex Standard 100 certificerad produktklass 1 och GOTS certificerad (Global Organic Textile Standard). <br><br><img src="%cdn%/images/pages/GOTS.jpg" width="150" height="150" border="0" title="POMPdeLUX" />  <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå) och Green (grön). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Ekologisk bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tori WAISTCOAT">
+  <source>description.Todd_TOP</source>
+  <target>
+    <![CDATA[ Supertuff och feminin väst i läcker shiny metervara med prickigt foder, klädda knappar och rosetter i sidorna som kan dras åt för en mer slim silhuett. <br><br>Fås i: Black (svart) och Grey (grå). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 52% Bomull, 45% Polyester, 3% Elastan. Foder: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Trevor Little SS POLO">
+  <source>description.Tori_WAISTCOAT</source>
+  <target>
+    <![CDATA[ Kortärmad pikè med cool applikation och print fram. Med klassisk pikèkrage och knappar. Kontrastdetaljer på axeln och invändigt påsytt band i nacken. Finns också till storebror: Trevor SS POLO. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue (blå), Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Trevor SS POLO">
+  <source>description.Trevor_Little_SS_POLO</source>
+  <target>
+    <![CDATA[ Kortärmad pikè med cool applikation och print fram. Med klassisk pikèkrage och knappar. Kontrastdetaljer på axeln och invändigt påsytt band i nacken. Finns också till lillebror: Trevor Little SS POLO. Oeko-Tex Standard 100 certificerad produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i: Blue (blå), Grey Melange (gråmelerad) och Navy. <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Trudy PANTS">
+  <source>description.Trevor_SS_POLO</source>
+  <target>
+    <![CDATA[ Fina haremsbyxor i prickigt mönster i viskos med satinrosett fram på den elastiska linningen. Med fickor samt smock längst ner i benen. Justerbar midja. Finns också som Trudy SKIRT. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Viskos. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Trudy SKIRT">
+  <source>description.Trudy_PANTS</source>
+  <target>
+    <![CDATA[ Fin volangkjol i prickigt mönster i viskos med elastisk linning och ett lätt foder. Finns också som Trudy PANTS. <br><br>Fås i följande kombinationer: Grey (grå), Dusty Rose (gammelrosa) och Peach (persika). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Viskos. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Tyson SET">
+  <source>description.Trudy_SKIRT</source>
+  <target>
+    <![CDATA[ Superläckert termoset som inte går att undvara och anpassat till det nordiska klimatet. Det är både vindtätt och isolerande, men samtidigt luftigt och lätt att röra sig i. Läcker under overallen eller regnkläderna för extra värme eller som övergångskläder. Med banddetalj ner längs med ärmarna, broderi på bröstet och rib i ärmarna, längst ner och som krage. Elastik i midjan på byxorna. Termotyget består av 3 lager tyg: Ytterst en vindtät siliconbehandlad rib, som fyllning ett isolerande lager polyestervaddering (80 gr), innerst nylontricot som gör att huden kan andas.  <br><br>Fås i: Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Polyester. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Walter Little LS SHIRT">
+  <source>description.Tyson_SET</source>
+  <target>
+    <![CDATA[ Cool storrutig skjorta med knappar fram, ärmar som kan kavlas upp med knappfunktion, bröstficka och tufft print överst på ryggen. Finns också till storebror: Walter LS SHIRT. <br><br>Fås i följande kombinationer: Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Walter LS SHIRT">
+  <source>description.Walter_Little_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Cool storrutig skjorta med knappar fram, ärmar som kan kavlas upp med knappfunktion, bröstficka och tufft, kraftigt broderi överst på ryggen. Finns också till lillebror: Walter Little LS SHIRT. <br><br>Fås i följande kombinationer: Navy och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Wayne Little LS SHIRT">
+  <source>description.Walter_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Tuff smårutig skjorta med knappar fram, ärmar som kan kavlas upp med knappfunktion, bröstficka och cool badge på bröstet. Finns också till storebror: Wayne LS SHIRT. <br><br>Fås i följande kombinationer: Blue (blå), Green (grön) och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Wayne LS SHIRT">
+  <source>description.Wayne_Little_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Tuff smårutig skjorta med knappar fram, trendiga lappar på ärmbågarna, ärmar som kan kavlas upp med knappfunktion, bröstficka och cool badge på bröstet. Finns också till lillebror: Wayne Little LS SHIRT. <br><br>Fås i följande kombinationer: Blue (blå), Green (grön) och Red (röd). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Zach Little SS GRANDDAD">
+  <source>description.Wayne_LS_SHIRT</source>
+  <target>
+    <![CDATA[ Läcker kortärmad farfars-undertröja med coolt hajprint och enfärgade kanter och knappar fram. I supermjuk bomullskvalitet. Finns också till storebror: Zach SS GRANDDAD. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå), Green (grön) och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Zach SS GRANDDAD">
+  <source>description.Zach_Little_SS_GRANDDAD</source>
+  <target>
+    <![CDATA[ Läcker kortärmad farfars-undertröja med coolt hajprint och enfärgade kanter och knappar fram. I supermjuk bomullskvalitet. Finns också till lillebror: Zach Little SS GRANDDAD. Oeko-Tex Standard 100 certificerad i produktklass 1. <br><br><img src="%cdn%/images/pages/Okotex.jpg" width="130" height="86" border="0" title="POMPdeLUX" /><br><br>Fås i följande kombinationer: Blue (blå), Green (grön) och Olive (oliv). <br><br>Storleken är barnets längd i cm. <br><br>Kvalitet: 95% Bomull, 5% Elastan. ]]>
+  </target>
+</trans-unit>
+<trans-unit id="Gabby SS LONG TUNIC">
+  <source>description.Zach_SS_GRANDDAD</source>
+  <target>
+    <![CDATA[ Romantisk tunika med helt underbara volanger och knappstängning framtill. Med bred volang nertill. Sätt ett par jeans under och få en tuffare look.<br><br>Fås i Blue (blå), Olive (grön) och Black (svart). <br><br>Storleken är barnets längd angett i cm. <br><br>Kvalitet: 100% Bomull. ]]>
+  </target>
+</trans-unit>
+        </body>
+    </file>
+</xliff>

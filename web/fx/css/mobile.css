@@ -1,0 +1,38 @@
+html.touch body {
+  /* Stops Mobile Safari from auto-adjusting font-sizes */
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+  width: 970px;
+}
+
+html.touch footer,
+html.touch #container {
+  margin: 0 auto;
+  width: 970px;
+}
+
+html.touch footer {
+ height: 16px;
+}
+
+html.touch #main {
+  margin: 75px 0 45px 190px;
+}
+
+html.touch #body-frontpage #main {
+  margin-top: 75px;
+  width: 470px;
+  height: auto;
+}
+html.touch #body-frontpage #main article div,
+html.touch #body-frontpage #main article {
+  height: auto;
+}
+html.touch #body-frontpage #main a.button,
+html.touch #body-frontpage #main div.btn {
+  display: none;
+}
+html.touch #cms-page {
+  overflow: hidden;
+}

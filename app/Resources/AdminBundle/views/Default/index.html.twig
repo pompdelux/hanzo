@@ -1,0 +1,22 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<h2>Ordresynkronisering</h2>
+<div>
+  {% render "AdminBundle:Orders:syncStatus" %}
+</div>
+<p><br>
+  <label>
+    Indtast ordre #:
+    <input name="orders_id" id="form_orders_id">
+  </label>
+  <a href="{{ path('admin_orders_preview') }}" class="preview-order">Gennemse</a>
+  <a href="{{ path('admin_orders_resync_sync') }}" class="resend-order">Gensend</a>
+</p>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,154 @@
+/*	Less Framework 4
+	http://lessframework.com
+	by Joni Korpi
+	License: http://opensource.org/licenses/mit-license.php	*/
+
+
+
+/* Default Layout */
+body {
+  /* Stops Mobile Safari from auto-adjusting font-sizes */
+	-webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+#container {
+  margin: 0 auto;
+}
+
+nav.main,
+#teasers,
+#teasers ul,
+#main,
+footer,
+#body-index #main {
+  left: inherit;
+  right: inherit;
+  top: inherit;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#main {
+  padding: 10px;
+}
+#body-index #main {
+  padding-bottom: 10px;
+}
+#body-index #main div {
+  height: inherit;
+}
+#body-index #main div.btn,  
+#body-index #main a.button {
+  display: none;
+}
+
+nav.main,
+#teasers,
+#secondary-links {
+  margin-bottom: 10px;
+}
+
+#teasers,
+#secondary-links {
+  position: static;
+  overflow: hidden;
+}
+#secondary-links ul {
+  text-align: center;
+}
+#secondary-links ul li {
+  float: none;
+  display: inline;
+  white-space: nowrap;  
+}
+#secondary-links ul li.basket  {
+  background-image: none;
+  padding: 8px 10px 8px 0;
+}
+#secondary-links ul li.basket a {
+  padding-left: 10px;
+}
+footer {
+  background-image: url(../images/ffffff.png);
+  background-color: inherit;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+}
+footer ul {
+  width: auto;
+  text-align: center;
+}
+footer ul li {
+  float: none;
+  display: inline;
+  white-space: nowrap;
+}
+
+nav.main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+nav.main ul li {
+  margin: 0;
+  padding: 0 0 2px 0; 
+  display: block;
+}
+nav.main ul li a {
+  display: block;
+}
+
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #container {
+    position: static;
+		width: 768px;
+	}
+  #main,
+  #body-index #main {
+    width: 748px;
+  }
+}
+
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+  #container {
+    position: static;
+		width: 320px;
+	}
+  #main  {
+    width:300px;
+  }
+  #body-index #main {
+    320px;
+  }
+}
+
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  #container {
+    position: static;
+		width: 480px;
+	}
+  #main,
+  #body-index #main  {
+    width: 460px;
+  }
+}
+
+
+/*	Retina media query.
+	Overrides styles for devices with a 
+	device-pixel-ratio of 2+, such as iPhone 4.
+-----------------------------------------------    */
+@media 
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (min-device-pixel-ratio: 2) {
+	body {
+	}
+}

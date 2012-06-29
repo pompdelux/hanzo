@@ -1,0 +1,65 @@
+{% extends layout %}
+
+{% block content %}
+
+<div class="product-list clearfix">
+  <div class="wrapper old-item">
+
+  {% for product in products %}
+
+    <div class="block block-num-{{ loop.index }}">
+      <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
+        {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
+        <span class="title">{{ product.title }}</span>
+        <span class="prices">
+        {% if product.prices.sales is defined %}
+          <span class="normal strike">{{ product.prices.normal.price|money }}</span>
+          <span class="discount">{{ product.prices.sales.price|money }}</span>
+        {% else %}
+          <span class="normal">{{ product.prices.normal.price|money }}</span>
+        {% endif %}
+        </span>
+      </a>
+    </div>
+
+  {% else %}
+
+    <div class="out-of-stock">
+      {{ 'all.products.out.of.stock'|trans }}
+    </div>
+
+  {% endfor %}
+
+  </div>
+</div>
+
+{% if paginate %}
+  {% import "::macro.pager.html.twig" as p %}
+  {{ p.pager(paginate, 'product-list') }}
+{% endif %}
+
+{#  yatzy js template used by the pager, do not delete ! #}
+{% raw %}
+<script type="text/html" id="productItems">
+<div class="wrapper new-item">
+<? for(i=0, l=data.length; i<l; i++) {?>
+  <div class="block block-num-<?=(i+1)?>">
+    <a href="<?=data[i].url?>" title="">
+      <img src="<?=data[i].image?>" alt="<?=data[i].title?>">
+      <span class="title"><?=data[i].title?></span>
+      <span class="prices">
+      <? if(undefined === data[i].prices.sales) {?>
+        <span class="normal"><?=data[i].prices.normal.formattet?></span>
+      <?}else{?>
+        <span class="normal strike"><?=data[i].prices.normal.formattet?></span>
+        <span class="discount"><?=data[i].prices.sales.formattet?></span>
+      <? }?>
+      </span>
+    </a>
+  </div>
+  <? }?>
+</div>
+</script>
+{% endraw %}
+
+{% endblock %}

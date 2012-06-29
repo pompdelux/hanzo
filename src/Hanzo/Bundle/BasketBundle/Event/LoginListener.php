@@ -39,10 +39,10 @@ class LoginListener
      */
     public function onSecurityInteractiveLogin(Event $event)
     {
-        $hanzo = Hanzo::getInstance();
         $order = OrdersPeer::getCurrent();
 
         if ($order->getTotalPrice(true)) {
+            $hanzo = Hanzo::getInstance();
 
             if ('' == $order->getBillingFirstName()) {
                 $customer = $this->context->getToken()->getUser()->getUser();

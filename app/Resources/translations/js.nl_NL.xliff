@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update" approved="no">
+                <source>update</source>
+                <target>Werk bij</target>
+            </trans-unit>
+            <trans-unit id="forward" approved="no">
+                <source>forward</source>
+                <target>Ga door</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Verberg alles</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Toon alles</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Sluit</target>
+            </trans-unit>
+            <trans-unit id="ok">
+                <source>ok</source>
+                <target>Ok</target>
+            </trans-unit>
+            <trans-unit id="cancel" approved="no">
+                <source>cancel</source>
+                <target>Annuleer</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Let op</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Kies</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Aantal</target>
+            </trans-unit>
+            <trans-unit id="please.wait">
+                <source>please.wait</source>
+                <target>Wacht even</target>
+            </trans-unit>
+            <trans-unit id="action.completed" approved="no">
+                <source>action.completed</source>
+                <target>De handeling is nu uitgevoerd</target>
+            </trans-unit>
+            <trans-unit id="an.error.occurred" approved="no">
+                <source>an.error.occurred</source>
+                <target>Er ging iets fout</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>1 maart 2012 10:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target><![CDATA[<p><b>Let op:</b> Als je order artikelen bevat die niet op voorraad zijn, versturen we je order pas als we alle artikelen op voorraad hebben.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning" approved="no">
+                <source>delete.from.basket.warning</source>
+                <target><![CDATA[Weet je zeker dat je <strong>%product%</strong> uit je mandje wilt halen ?]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target><![CDATA[<h2 style="color:#A10000">Let op</h2><strong>"%product%"</strong> hebben we op het moment niet op voorraad.<br>Je order wordt uiterlijk verstuurd op<strong>%date%</strong>]]></target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly" approved="no">
+                <source>not.filled.correctly</source>
+                <target>Verkeerd/Onjuist ingevuld</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business" approved="no">
+                <source>checkout.shipping_business</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="loading.std" approved="no">
+                <source>loading.std</source>
+                <target>Aan het laden ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search" approved="no">
+                <source>loading.search</source>
+                <target>Aan het zoeken ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products" approved="no">
+                <source>loading.search.products</source>
+                <target>Producten aan het vinden ...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target><![CDATA[<font color="#A10000"><b>Als je je order wijzigt worden je artikelen misschien later verzonden.</b></font><br><br>Om je order te wijzigen moet je het volgende doen:<br><br>1) Klik op "Wijzig" om je order te wijzigen. Je artikelen worden hierna weer in je winkelmandje gedaan.<br><br>2) Wil je een andere kleur of maat, klik dan op het potloodje in je winkelmandje. Wil je artikelen toevoegen, klik dan op het menupunt Webshop.<br><br>3) Als je klaar bent met je wijzigingen, klik dan op "Toon winkelmandje" en doorloop daarna stappen 1 tot 5. Betaal je je order weer met een creditcard, dan wordt je eerdere betaling automatisch gewist.<br><br><b>Let op:</b> Als je Visa Electron of MasterCard gebruikt, moet je letten op het volgende:<ul><li>Er wordt nogmaals geld gereserveerd op je creditcard als je je order wijzigt. </li><li>Het eerdere bedrag wordt meteen geannuleerd door POMPdeLUX, waardoor we allleen het bedrag van je gewijzigde order hebben. Bij je bank kan het echter 6 weken duren voordat de reservering verwijderd wordt. </li></ul>]]></target>
+            </trans-unit>
+            <trans-unit id="delete.order.notice">
+                <source>delete.order.notice</source>
+                <target><![CDATA[Je bent je order aan het wissen. Weet je zeker dat je je hele order wilt wissen?<br><br>Wis je je order, dan wordt je creditcardbetaling automatisch ook gewist.<br><br>Klik op "Wis" om je order te wissen.]]></target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Consulente</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Telefoon</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="mannequin.empty" approved="no">
+                <source>mannequin.empty</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Uitverkocht</target>
+            </trans-unit>
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
+                <target>Dit e-mailadres "%email%" is niet aangemeld voor de nieuwsbrief</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

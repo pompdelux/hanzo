@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update">
+                <source>update</source>
+                <target>Update</target>
+            </trans-unit>
+            <trans-unit id="forward">
+                <source>forward</source>
+                <target>Forward</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Hide All</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Show All</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Close</target>
+            </trans-unit>
+            <trans-unit id="ok">
+                <source>ok</source>
+                <target>Ok</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Cancel</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Notice</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Choose</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Quantity</target>
+            </trans-unit>
+            <trans-unit id="please.wait">
+                <source>please.wait</source>
+                <target>Please wait</target>
+            </trans-unit>
+            <trans-unit id="action.completed" approved="no">
+                <source>action.completed</source>
+                <target>Action completed</target>
+            </trans-unit>
+            <trans-unit id="an.error.occurred" approved="no">
+                <source>an.error.occurred</source>
+                <target>An error occurred</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>March 1, 2012 10:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice" approved="no">
+                <source>late.delivery.notice</source>
+                <target><![CDATA[<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning" approved="no">
+                <source>delete.from.basket.warning</source>
+                <target><![CDATA[Are you shure you want to remove <strong>%product%</strong> from your cart ?]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target><![CDATA[<h2>Notice</h2><strong>"%product%"</strong> currently not in stock.<br>Your order will be shipped from our warehouse at the latest: <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly" approved="no">
+                <source>not.filled.correctly</source>
+                <target>Not filled correctly</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business" approved="no">
+                <source>checkout.shipping_business</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="loading.std" approved="no">
+                <source>loading.std</source>
+                <target>Loading ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search" approved="no">
+                <source>loading.search</source>
+                <target>Searching ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products" approved="no">
+                <source>loading.search.products</source>
+                <target>Finding products ...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target><![CDATA[<p>To edit your order you have to do the following:</p><p>1) Click on "Edit" to edit the order. Your items will then be returned to the basket.</p><p>2) If you wish to change colour or size, click on the pencil in the basket. If you wish to add items, click on the menu Webshop.<br><br>3) When you have finished editing, click on "Show basket" and follow step 1 to 5. When you have completed your order with new credit card payment, the old payment will automatically be cancelled.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="delete.order.notice">
+                <source>delete.order.notice</source>
+                <target><![CDATA[You are about to cancel your order. Are you sure you want to cancel the order?<br><br>If you cancel your order, your credit card payment will automatically be deleted.<br><br>Click on "Cancel" to cancel the order.]]></target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Consultant</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="mannequin.empty">
+                <source>mannequin.empty</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Out of stock</target>
+            </trans-unit>
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
+                <target>The email address "%email%" is not subscribed</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,31 @@
+{% extends layout %}
+
+{% block content %}
+
+  <h1>{{ "basket"|trans({}, 'checkout') }}</h1>
+
+  {% include 'BasketBundle:Default:block.html.twig' %}
+
+{% endblock %}
+
+
+{##
+ # adding javascript trigger to the page, but only if the delivery date is late.
+ # notice the block wraps the if, not the other way around - this is important!
+ #}
+
+{% block javascript %}
+  {% if delivery_date > 0 %}
+  <script type="text/javascript">
+  $(function () {
+    var $button = $(".buttons a.button.proceed");
+    $button.hide();
+    dialoug.confirm('Notice', ExposeTranslation.get('js:late.delivery.notice', { 'date' : '{{ delivery_date|date('d-m-Y') }}' }), function(choice) {
+      if (choice == 'ok') {
+        $button.show();
+      }
+    });
+  });
+  </script>
+  {% endif %}
+{% endblock javascript %}

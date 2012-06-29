@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Utsolgt</target>
+            </trans-unit>
+            <trans-unit id="home">
+                <source>home</source>
+                <target>Til forsiden</target>
+            </trans-unit>
+            <trans-unit id="show.basket">
+                <source>show.basket</source>
+                <target>Vis kurv</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Velg</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Antall</target>
+            </trans-unit>
+            <trans-unit id="loading">
+                <source>loading</source>
+                <target>Loading</target>
+            </trans-unit>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
+                <target>Klikk her for å få mer informasjon om %name%.</target>
+            </trans-unit>
+            <trans-unit id="all.products.out.of.stock">
+                <source>all.products.out.of.stock</source>
+                <target>Alle varene i denne kategorien er utsolgt.</target>
+            </trans-unit>
+            <trans-unit id="pager.previous.page">
+                <source>pager.previous.page</source>
+                <target>Vis forrige side</target>
+            </trans-unit>
+            <trans-unit id="previous">
+                <source>previous</source>
+                <target>Forrige</target>
+            </trans-unit>
+            <trans-unit id="pager.page">
+                <source>pager.page</source>
+                <target>Vis side %page%</target>
+            </trans-unit>
+            <trans-unit id="pager.next.page">
+                <source>pager.next.page</source>
+                <target>Vis neste side</target>
+            </trans-unit>
+            <trans-unit id="next">
+                <source>next</source>
+                <target>Neste</target>
+            </trans-unit>
+            <trans-unit id="product.details">
+                <source>product.details</source>
+                <target>Varebeskrivelse</target>
+            </trans-unit>
+            <trans-unit id="care.instructions">
+                <source>care.instructions</source>
+                <target>Vaskeanvisning</target>
+            </trans-unit>
+            <trans-unit id="add.to.basket">
+                <source>add.to.basket</source>
+                <target>Legg i kurv</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.cart">
+                <source>product.added.to.cart</source>
+                <target>"%product%" er nå lagt i kurven</target>
+            </trans-unit>
+            <trans-unit id="product.out.of.stock">
+                <source>product.out.of.stock</source>
+                <target>"%product%" er dessverre utsolgt</target>
+            </trans-unit>
+            <trans-unit id="products" >
+                <source>products</source>
+                <target>Produkt(er)</target>
+            </trans-unit>
+            <trans-unit id="latest.shipment.date">
+                <source>latest.shipment.date</source>
+                <target>Sendes senest</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Pris</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Samlet beløp</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Redigere</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Slett</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Farge</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-post</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Gjenta e-postadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3" approved="no">
+                <source>Pass</source>
+                <target>Valgfri adgangskode</target>
+            </trans-unit>
+            <trans-unit id="acc.4" approved="no">
+                <source>Pass repeated</source>
+                <target>Gjenta adgangskode</target>
+            </trans-unit>
+            <trans-unit id="company.address">
+                <source>company.address</source>
+                <target>Firmanavn</target>
+            </trans-unit>
+            <trans-unit id="date">
+                <source>date</source>
+                <target>Dato</target>
+            </trans-unit>
+            <trans-unit id="event.id">
+                <source>event.id</source>
+                <target>Arrangenment-nr.</target>
+            </trans-unit>
+            <trans-unit id="store.address">
+                <source>store.address</source>
+                <target>Administrasjon: POMPdeLUX • c/o Granly Økonomiservice AS • Nordseterveien 14 • NO-1176 Oslo • Org.nr. 994798510 • mail@pompdelux.no • +47 2274 2600</target>
+            </trans-unit>
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target><![CDATA[
+                    <h3>Merk:</h3>
+                    <p>
+                        Du er i gang med å redigere E-ordrenummer <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
+                        Ønsker du å avbryte redigeringen av ordre - <a href="%stop_url%" title="stop editering af ordren">klikk her.</a>
+                    </p>
+                    <p>Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du å legge til flere varer, skal du klikke på menyen Webshop.</p>
+                    <p class="last">Når du er ferdig med dine endringer, skal du klikke på "Vis kurv" og følge trinn 1 til 6. Når du har gjennomført din ordre med ny kredittkortbetaling, vil den gamle betalingen blir slettet automatisk.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="customer.service.contact.info">
+                <source>customer.service.contact.info</source>
+                <target><![CDATA[
+                    <strong>Kundeservice</strong><br>
+                    Mandag til torsdag kl. 9 - 15<br>
+                    Fredag 9 - 14<br>
+                    Stengt 12 - 12.45<br>
+                    Lørdag og søndag stengt.<br>
+                    Tlf. nr.: +47 2274 2600 <br>
+                    <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.address">
+                <source>footer.address</source>
+                <target><![CDATA[
+                    <ul>
+                        <li>Administrasjon: POMPdeLUX</li>
+                        <li>c/o Granly Økonomiservice AS</li>
+                        <li>Nordseterveien 14</li>
+                        <li>NO-1176 Oslo</li>
+                        <li>Org.nr. 994798510</li>
+                        <li>mail@pompdelux.no</li>
+                        <li>+47 2274 2600</li>
+                    </ul>
+                    <ul style="width:610px;">
+                        <li>Retur av varer: POMPdeLUX C/O Tollpost Globe</li>
+                        <li>Postens Godssenter</li>
+                        <li>NO-0668 Oslo</li>
+                    </ul>
+                    <ul style="width:280px;">
+                        <li><a name="fb_share" type="icon_link">Del med vennene dine</a></li>
+                        <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
+                    </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="order.deleted">
+                <source>order.deleted</source>
+                <target>E-ordrenummer %id% er slettet</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

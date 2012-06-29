@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="checkout_json_err_no_order">
+        <source>json.err.no_order</source>
+        <target>De order is er niet</target>
+      </trans-unit>
+      <trans-unit id="checkout_err_unknown_shipping_method">
+        <source>err.unknown_shipping_method</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="checkout.success.title">
+        <source>checkout.success.title</source>
+        <target>Orderbevestiging</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.text">
+        <source>checkout.success.text</source>
+        <target><![CDATA[
+          <h2>E-ordernummer</h2>
+          <p>E-ordernummer: <b>%id%</b></p>
+
+          <h2>Levertijd</h2>
+          <p>Verwachte levertijd: %date% werkdag(en).</p>
+
+          <h2>Contact</h2>
+          <p>Heb je vragen, neem dan contact op met ons.</p>
+          <p>E-mailadres: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
+
+          <h2>Mijn pagina</h2>
+          <p>
+            Bekijk je order e.d.<br>
+            <a href="%account%">&raquo; Mijn pagina</a>
+          </p>
+
+          <h2>FAQ</h2>
+          <p>
+            Hier kun je veelgestelde vragen zien over POMPdeLUX.<br>
+            <a href="/p/voorpagina-klantenservice">&raquo; FAQ</a>
+          </p>
+
+          <h2>Nieuws</h2>
+          <p>
+            Onder het menupunt Nieuws staat het laatste nieuws.<br>
+            <a href="/p/voorpagina-nieuw">&raquo; Nieuws</a>
+          </p>
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="checkout.failed.title">
+        <source>checkout.failed.title</source>
+        <target>De betaling is mislukt</target>
+      </trans-unit>
+      <trans-unit id="checkout.failed.text">
+        <source>checkout.failed.text</source>
+        <target>Er ging iets fout bij de betaling / orderbehandeling. Gelieve contact op te nemen met de klantenservice</target>
+      </trans-unit>
+      <trans-unit id="confirm.title">
+        <source>confirm.title</source>
+        <target>Keur goed</target>
+      </trans-unit>
+      <trans-unit id="confirm.order_id">
+        <source>confirm.order_id</source>
+        <target>E-ordernummer</target>
+      </trans-unit>
+      <trans-unit id="addresses">
+        <source>addresses</source>
+        <target>Adressen</target>
+      </trans-unit>
+      <trans-unit id="no_addresses">
+        <source>no_addresses</source>
+        <target>Er zijn geen adressen ingevuld</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.edit">
+        <source>shipping.address.edit</source>
+        <target>» Wijzig verzendadres</target> 
+      </trans-unit>
+      <trans-unit id="shipping.address">
+        <source>shipping.address</source>
+        <target>Verzendadres</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.overnight">
+        <source>shipping.address.overnight</source>
+        <target>Verzendadres</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.overnight.edit">
+        <source>shipping.address.overnight.edit</source>
+        <target>» Wijzig verzendadres postbus</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.no_overnight">
+        <source>shipping.address.no_overnight</source>
+        <target>Geen verzendadres postbus ingevuld</target>
+      </trans-unit>
+      <trans-unit id="payment.method">
+        <source>payment.method</source>
+        <target>Betaalmethode</target>
+      </trans-unit>
+      <trans-unit id="payment.address">
+        <source>payment.address</source>
+        <target>Huisadres</target>
+      </trans-unit>
+      <trans-unit id="payment.title">
+        <source>payment.title</source>
+        <target>Betaalwijze</target>
+      </trans-unit>
+      <trans-unit id="payment.text">
+        <source>payment.text</source>
+        <target>Kies hoe je deze order wilt betalen.</target>
+      </trans-unit>
+      <trans-unit id="confirm.vat">
+        <source>confirm.vat</source>
+        <target>Bedrag BTW</target>
+      </trans-unit>
+      <trans-unit id="confirm.sub_total">
+        <source>confirm.sub_total</source>
+        <target>Totaal artikelen</target>
+      </trans-unit>
+      <trans-unit id="confirm.total">
+        <source>confirm.total</source>
+        <target>Totale bedrag</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.title">
+        <source>payment.paybybill.title</source>
+        <target>Geld overmaken per bank</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.text">
+        <source>payment.paybybill.text</source>
+        <target>Maak het geld uiterlijk 8 dagen nadat je de artikelen hebt ontvangen over naar rekeningnummer: "yy-yy xx-xx-xx-xx-xx".</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.label">
+        <source>payment.paybybill.label</source>
+        <target>Geld overmaken per bank</target>
+      </trans-unit>
+      <trans-unit id="payment.gateway_id">
+        <source>payment.gateway_id</source>
+        <target>Betaal ID</target>
+      </trans-unit>
+      <trans-unit id="payment.transaction_id">
+        <source>payment.transaction_id</source>
+        <target>Transactienummer</target>
+      </trans-unit>
+      <trans-unit id="payment.fee">
+        <source>payment.fee</source>
+        <target>Betaalkosten</target>
+      </trans-unit>
+      <trans-unit id="payment.canceled">
+        <source>payment.canceled</source>
+        <target>Je betaling werd afgebroken</target>
+      </trans-unit>
+      <trans-unit id="customer.id">
+        <source>customer.id</source>
+        <target>Klantennummer</target>
+      </trans-unit>
+      <trans-unit id="quantity">
+        <source>quantity</source>
+        <target>Aantal</target>
+      </trans-unit>
+      <trans-unit id="products">
+        <source>products</source>
+        <target>Producten</target>
+      </trans-unit>
+      <trans-unit id="product.name">
+        <source>product.name</source>
+        <target>Naam artikel</target>
+      </trans-unit>
+      <trans-unit id="product.size">
+        <source>product.size</source>
+        <target>Maat</target>
+      </trans-unit>
+      <trans-unit id="product.color">
+        <source>product.color</source>
+        <target>Kleur</target>
+      </trans-unit>
+      <trans-unit id="product.price">
+        <source>product.price</source>
+        <target>Prijs per stuk</target>
+      </trans-unit>
+      <trans-unit id="product.total">
+        <source>product.total</source>
+        <target>Totaal</target>
+      </trans-unit>
+      <trans-unit id="total.excl_vat">
+        <source>total.excl_vat</source>
+        <target>Totaal excl. verzend- en administratiekosten</target>
+      </trans-unit>
+      <trans-unit id="total.vat">
+        <source>total.vat</source>
+        <target>BTW is</target>
+      </trans-unit>
+      <trans-unit id="total.incl_vat">
+        <source>total.incl_vat</source>
+        <target>Totaal incl. verzend- en administratiekosten</target>
+      </trans-unit>
+      <trans-unit id="expected_at">
+        <source>expected_at</source>
+        <target>Verwachte behandeltijd</target>
+      </trans-unit>
+      <trans-unit id="my.account.info">
+        <source>my.account.info</source>
+        <target>Bekijk je orders, wijzig je persoonlijke gegevens, je wachtwoord en nog veel meer.</target>
+      </trans-unit>
+      <trans-unit id="my.account.username">
+        <source>my.account.username</source>
+        <target>Gebruikersnaam</target>
+      </trans-unit>
+      <trans-unit id="my.account.password">
+        <source>my.account.password</source>
+        <target>Wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Administratiekosten</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee.description">
+        <source>shipping.fee.description</source>
+        <target>Op alle orders worden %amount% administratiekosten gelegd.</target>
+      </trans-unit>
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Winkelmandje</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Door met winkelen</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Ga door</target>
+      </trans-unit>
+      <trans-unit id="cart.is.empty">
+        <source>cart.is.empty</source>
+        <target>Je winkelmandje is leeg.</target>
+      </trans-unit>
+      <trans-unit id="no.such.product.in.cart">
+        <source>no.such.product.in.cart</source>
+        <target>Het gewenste product zit niet in je winkelmandjeDet efterspurgte produkt er ikke i din kurv.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target><![CDATA[<strong>Let op:</strong> Als je order artikelen bevat die niet op voorraad zijn, versturen we je order pas als we alle artikelen op voorraad hebben.]]></target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Terug</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Wijzig</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Ga naar betalen</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.date.notice">
+        <source>late.delivery.date.notice</source>
+        <target><![CDATA[
+          <p>Je order bevat (een) artikel(en) (dat)die we op het moment niet op voorraad hebben. Je order wordt gepakt als we alle artikelen op voorraad hebben.</p
+          <p>Je order wordt uiterlijk verstuurd op: <strong>%date%</strong>.</p>
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="status.20" approved="no">
+        <source>status.20</source>
+        <target>Betaling goedgekeurd</target>
+      </trans-unit>
+      <trans-unit id="status.30">
+        <source>status.30</source>
+        <target>Afwachten</target>
+      </trans-unit>
+      <trans-unit id="status.40">
+        <source>status.40</source>
+        <target>In behandeling</target>
+      </trans-unit>
+      <trans-unit id="status.50">
+        <source>status.50</source>
+        <target>Gefactureerd</target>
+      </trans-unit>
+      <trans-unit id="payment.gothia.title">
+        <source>payment.gothia.title</source>
+        <target>Gothia factuur</target>
+      </trans-unit>
+      <trans-unit id="payment.gothia.desc">
+        <source>payment.gothia.desc</source>
+        <target>Gothia factuur (Kies je ervoor om met PayByBill te betalen, dan kost dit 29,00 SEK extra)</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.title">
+        <source>payment.dibs.title</source>
+        <target>Dibs</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.dk">
+        <source>payment.dibs.paytype.dk</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.visa">
+        <source>payment.dibs.paytype.visa</source>
+        <target>Visa</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.visa_elec">
+        <source>payment.dibs.paytype.visa_elec</source>
+        <target>Visa Electron</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.master">
+        <source>payment.dibs.paytype.master</source>
+        <target>Mastercard/Eurocard</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

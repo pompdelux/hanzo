@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="shipping_10">
+        <source>page.heading</source>
+        <target>Sjekk ut</target>
+      </trans-unit>
+      <trans-unit id="shipping_20">
+        <source>page.desc</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.S">
+        <source>shipping_method.name.S</source>
+        <target>Post Danmark - Servicepakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.S">
+        <source>shipping_method.desc.S</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.S">
+        <source>shipping_method.label.S</source>
+        <target>Post Danmark - Servicepakke %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.name">
+        <source>shipping_fee.name</source>
+        <target>Ekspedisjonsgebyr</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.desc">
+        <source>shipping_fee.desc</source>
+        <target>Ekspedisjonsgebyr %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.label">
+        <source>shipping_fee.label</source>
+        <target>Ekspedisjonsgebyr %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Ekspedisjonsgebyr</target>
+      </trans-unit>
+      <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
+        <source>page.desc.after_methods</source>
+        <target>Ekspedisjonsgebyr NOK 0,00</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

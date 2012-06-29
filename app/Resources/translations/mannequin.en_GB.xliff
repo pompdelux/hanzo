@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Dressing room: %title%</target>
+            </trans-unit>
+            <trans-unit id="product">
+                <source>product</source>
+                <target>Product</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Price</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Color</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="basket.notes">
+                <source>basket.notes</source>
+                <target><![CDATA[
+                    <h6>Please note</h6>
+                    1) If you wish to add an item to the basket, you must select size <img src="/fx/images/pencil.png" alt=""><br>
+                    2) Then click on Add to basket <img src="/fx/images/basket_put.png" alt=""><br>
+                    3) If you wish to remove an item from the model, click on Delete <img src="/fx/images/delete.png" alt=""><br>
+                    4) If you have already added the item to the basket, a green dot appears in front of the product name <img src="/fx/images/bullet_green.png" alt="">
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="no.products.in.category">
+                <source>no.products.in.category</source>
+                <target>All items in this category are sold out.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

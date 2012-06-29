@@ -1,0 +1,44 @@
+body {
+  background: #fff url(/fx/images/POMPdeLUX_logo_SS12.png) no-repeat 25px 24px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Merriweather', Verdana;
+  margin-top: 0;
+  padding-top: 0;
+  color: #000;
+}
+h1 {
+  text-transform: uppercase;
+  font-size: 18px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  border-bottom: 2px solid #7b7577;
+}
+
+#selector {
+  position: absolute;
+  top: 127px;
+  left: 180px;
+  background: #fff url(/fx/images/splash_bg.jpg) no-repeat center center;
+  width: 700px;
+  height: 585px;
+}
+
+#selector ul {
+  position: relative;
+  left: 30px;
+  top: 30px;
+  list-style: none;
+}
+#selector ul li {
+  line-height: 2em;
+}
+
+li a {
+  color: #000;
+  text-decoration: none;
+}
+li a:hover {
+  font-weight: bold;
+}

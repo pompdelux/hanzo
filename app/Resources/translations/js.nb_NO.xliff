@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update" approved="no">
+                <source>update</source>
+                <target>Oppdater</target>
+            </trans-unit>
+            <trans-unit id="forward" approved="no">
+                <source>forward</source>
+                <target>Videre</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Lukk alle</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Vis alle</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Lukk</target>
+            </trans-unit>
+            <trans-unit id="ok" approved="no">
+                <source>ok</source>
+                <target>OK</target>
+            </trans-unit>
+            <trans-unit id="cancel" approved="no">
+                <source>cancel</source>
+                <target>Avbryt</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Merk!</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Velg</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Antall</target>
+            </trans-unit>
+            <trans-unit id="please.wait" approved="no">
+                <source>please.wait</source>
+                <target>Vennligst vent</target>
+            </trans-unit>
+            <trans-unit id="action.completed" approved="no">
+                <source>action.completed</source>
+                <target>Din handling ble utført</target>
+            </trans-unit>
+            <trans-unit id="an.error.occurred" approved="no">
+                <source>an.error.occurred</source>
+                <target>Det oppstod en feil</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>29. februar, 2012 10:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target><![CDATA[<b>Merk:</b> Hvis din ordre inneholder varer med avsendingsdatoer, så sender vi først ordren når alle varene er på lageret.]]></target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning" approved="no">
+                <source>delete.from.basket.warning</source>
+                <target><![CDATA[Er du sikker på du vil slette <strong>%product%</strong> fra kurven ?]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target><![CDATA[<h2>Merk</h2><strong>"%product%"</strong> har vi ikke på lager for  øyeblikket.<br>Ordren pakkes når vi har alle varene på lager. Vi forventer å sende hele ordren fra lageret senest: <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly" approved="no">
+                <source>not.filled.correctly</source>
+                <target>Ikke utfylt korrekt</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business" approved="no">
+                <source>checkout.shipping_business</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="loading.std" approved="no">
+                <source>loading.std</source>
+                <target>Leser inn ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search" approved="no">
+                <source>loading.search</source>
+                <target>Søker ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products" approved="no">
+                <source>loading.search.products</source>
+                <target>Finner produkter ...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target><![CDATA[<p><strong>Merk:</strong> Ved redigering av ordren er det mulig at avsendingsdatoen endrer seg til en senere dato.</p><p>For å redigere din ordre skal du gjøre følgende:</p><p>1) Klikk på "Rediger" for å redigere ordren. Dine varer vil deretter legges tilbake i handlekurven.</p><p>2) Ønsker du å endre en farge eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du å legge til flere varer, skal du klikke på menyen Webshop.</p><p>3) Når du er ferdig med endringene skal du klikke på "Vis kurv" og følge trinn 1 til 5. Når du har gjennomført ordren med ny kredittkortbetaling, vil den gamle betalingen bli slettet automatisk.</p><p><b style="color:#A10000">Merk: Hvis du redigerer i ordren, må du være oppmerksom på at selv om POMPdeLUX har annullert din første betaling, vil beløpet stå som reservert i opptil 6 virkedager før banken opphever reservasjonen og beløpet igjen blir disponibelt på din konto.</b></p>]]></target>
+            </trans-unit>
+            <trans-unit id="delete.order.notice">
+                <source>delete.order.notice</source>
+                <target><![CDATA[Din ordre vil nå bli slettet. Er du helt sikker på at du vil slette hele ordren?<br><br>Hvis du sletter din ordre, vil din bankkortbetaling automatisk bli slettet.<br><br>Klikk på "Slett" for å slette ordren.]]></target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Konsulent</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-post</target>
+            </trans-unit>
+            <trans-unit id="mannequin.empty" approved="no">
+                <source>mannequin.empty</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Utsolgt</target>
+            </trans-unit>
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
+                <target>E-postadressen "%email%" er ikke registrert</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

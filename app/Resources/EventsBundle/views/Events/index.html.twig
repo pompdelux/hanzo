@@ -1,0 +1,64 @@
+{% extends layout %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('events_create') }}">
+        {{ 'events.create_event.link'|trans({}, 'events') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'events.calendar.header.text'|trans({}, 'events') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'events') }}
+</div>
+{% endif %}
+
+
+<p>{{ 'events.calendar.description.text'|trans({}, 'events') }}</p>
+<div id="calendar"></div>
+{% endblock %}
+
+{% block javascript %}
+<script src="/fx/scripts/fullcalendar/fullcalendar.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+  	$('#calendar').fullCalendar({
+  		firstDay: 1,
+  		events: base_url+ 'events/getevents',
+  		timeFormat: 'H:mm',
+  		monthNames: [
+	  		ExposeTranslation.get('js:month.Januar'),
+	  		ExposeTranslation.get('js:month.February'),
+	  		ExposeTranslation.get('js:month.March'),
+	  		ExposeTranslation.get('js:month.April'),
+	  		ExposeTranslation.get('js:month.May'),
+	  		ExposeTranslation.get('js:month.June'),
+	  		ExposeTranslation.get('js:month.July'),
+	  		ExposeTranslation.get('js:month.August'),
+	  		ExposeTranslation.get('js:month.September'),
+	  		ExposeTranslation.get('js:month.October'),
+	  		ExposeTranslation.get('js:month.November'),
+	  		ExposeTranslation.get('js:month.December')
+  		],
+  		dayNamesShort: [
+	  		ExposeTranslation.get('js:day.short.Sun'),
+	  		ExposeTranslation.get('js:day.short.Mon'),
+	  		ExposeTranslation.get('js:day.short.Tue'),
+	  		ExposeTranslation.get('js:day.short.Wed'),
+	  		ExposeTranslation.get('js:day.short.Thu'),
+	  		ExposeTranslation.get('js:day.short.Fri'),
+	  		ExposeTranslation.get('js:day.short.Sat')
+  		],
+  		buttonText: {
+    		today:    ExposeTranslation.get('js:today'),
+  		}
+  	});
+  });
+</script>
+{% endblock %}

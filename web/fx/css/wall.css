@@ -1,0 +1,256 @@
+/*.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+* html .clearfix             { zoom: 1; }
+*:first-child+html .clearfix { zoom: 1; }
+*/
+.clearfix { overflow: hidden; zoom: 1; }
+
+#wall-entry-form textarea {
+  width: 40em;
+  height: 0;
+  margin: 0;
+}
+
+#wall-posts textarea,
+#wall-entry-form textarea {
+  border: 1px #acacac solid;
+  color: #959595;
+}
+
+#wall-posts textarea.focused,
+#wall-entry-form textarea.focused {
+  color: #000;
+}
+
+#wall-posts dt,
+#wall-entry-form dt {
+  float: left;
+  padding:0;
+  margin:0;
+}
+
+#wall-posts dd,
+#wall-entry-form dd {
+  float: left;
+  padding:0;
+  margin: 0 0 0 5px;
+}
+#wall-posts {
+  width: 45em;
+}
+#wall-posts .wall-post {
+  min-height: 80px;
+  margin-top: 5px;
+  border-bottom: 1px solid #acacac;
+}
+#wall-posts .wall-post img {
+  float: left;
+  margin-right: 5px;
+}
+#wall-posts .wall-post span.author {
+  display: block;
+  font-weight: 900;
+  color: #817C73;
+}
+#wall-posts .wall-post .meta {
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+#wall-posts .wall-post .meta .date {
+  margin-right: 10px;
+}
+#wall-posts .wall-post .meta .links {
+  display: block;
+}
+#wall-posts .wall-post .wall-subpost {
+  padding: 5px 0 10px 100px;
+}
+#wall-posts .wall-post .wall-subpost .meta .links {
+  display: inline;
+}
+#wall-posts .wall-post .wall-subpost .wall-post {
+  min-height: 55px;
+}
+#wall-posts .wall-post .wall-subpost .wall-post img {
+  width: 55px;
+}
+#wall-posts .wall-post dl {
+  margin-left: 55px;
+}
+#wall-posts .wall-post .wall-subpost {
+  clear: left;
+}
+#wall-posts .wall-post .wall-subpost dl {
+  margin-left: 40px;
+}
+#wall-posts .wall-post .wall-subpost.likes {
+  padding: 5px 0 0 100px;
+}
+#wall-posts .wall-post .wall-subpost.likes .like {
+  color: #fff;
+  background-color: #ACACAC;
+  padding: 2px 0 2px 2px;
+  cursor: pointer;
+}
+#wall-posts .wall-post .wall-subpost.likes .like i,
+#wall-posts .wall-post .wall-subpost.likes .like u {
+  display: block;
+  margin-right: 4px;
+  padding: 1px 0 1px 20px;
+  font-style: italic;
+  text-decoration: none;
+}
+#wall-posts .wall-post .wall-subpost.likes .like i {
+  background: #ACACAC url(/fx/images/wall/like.png) center left no-repeat;
+}
+#wall-posts .wall-post .wall-subpost.likes .like u {
+  background: #ACACAC url(/fx/images/wall/dislike.png) center left no-repeat;
+}
+#wall-posts .wall-post .wall-edit .dialoug,
+#wall-posts .wall-post .wall-add-comment .dialoug,
+#wall-posts .wall-post .wall-subpost.likes .like div.like-pop {
+  display: none;
+}
+div.dialoug.like-pop {}
+div.dialoug.like-pop h3 {
+}
+div.dialoug.like-pop ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+div.dialoug.like-pop li {
+  border-bottom: 1px solid #ccc;
+  padding-top: 20px;
+}
+div.dialoug.like-pop li.like {
+  background: url(/fx/images/wall/like.png) center right no-repeat;  
+}
+div.dialoug.like-pop li.dislike {
+  background: url(/fx/images/wall/dislike.png) center right no-repeat;  
+}
+
+div.dialoug.like-pop li img,
+div.dialoug.like-pop li div {
+  float: left;
+  margin-right: 20px;
+}
+div.dialoug.like-pop li img {
+  width: 55px;
+  margin-bottom: 5px;
+}
+div.dialoug.like-pop li div {
+  padding-top: 15px;
+  font-weight: 900;
+}
+
+#wall-posts .last {
+  border-bottom: none;
+}
+#wall-posts .wall-post .cell {
+  display: table-cell;
+}
+#wall-posts .wall-loading-data {
+  margin: 10px 0 20px 120px;
+  border: 1px solid #acacac;
+}
+#wall-posts .wall-loading-data img {
+  padding: 5px;
+}
+#wall-posts .wall-loading-data span {
+  font-weight: 900;
+  color: #817C73;
+  float: left;
+  padding: 5px 10px 0 10px;
+}
+#wall-container dd input {
+  display: none;
+}
+.wall-subpost a {
+  margin-left: 60px
+}
+.wall-subpost .show-all {
+  cursor: pointer;
+  color: #fff;
+  background-color: #ACACAC;
+  padding: 2px 0 2px 2px;
+}
+.wall-subpost .show-all i {
+ width: 16px;
+ display: block;
+ float: left;
+ margin-right: 4px;
+ /*background: #ACACAC url(/fx/images/comments_small.png) center left no-repeat;*/
+}
+.wall-subpost .hide {
+  display: none;
+}
+
+#colorbox .wall-subentry-form textarea {
+  padding: 3px;
+  height: 150px;
+  width: 500px;
+}
+#colorbox .wall-subentry-form dl {
+  text-align:center;
+}
+#colorbox .wall-subentry-form dt,
+#colorbox .wall-subentry-form dd {
+  display: inline-block;
+  margin: 0px;
+}
+
+#wall-posts .entry {
+  line-height: 16px;
+}
+#wall-posts .entry em {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-color: #fff;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  text-indent: -10000px;
+}
+.emo-1 {
+  background-image: url(/fx/images/wall/emo/1.png);
+}
+.emo-2 {
+  background-image: url(/fx/images/wall/emo/2.png);
+}
+.emo-3 {
+  background-image: url(/fx/images/wall/emo/3.png);
+}
+.emo-4 {
+  background-image: url(/fx/images/wall/emo/4.png);
+}
+.emo-5 {
+  background-image: url(/fx/images/wall/emo/5.png);
+}
+.emo-6 {
+  background-image: url(/fx/images/wall/emo/6.png);
+}
+.emo-7 {
+  background-image: url(/fx/images/wall/emo/7.png);
+}
+.emo-8 {
+  background-image: url(/fx/images/wall/emo/8.png);
+}
+.emo-9 {
+  background-image: url(/fx/images/wall/emo/9.png);
+}
+.emo-10 {
+  background-image: url(/fx/images/wall/emo/10.png);
+}
+.emo-11 {
+  background-image: url(/fx/images/wall/emo/11.png);
+}
+.emo-12 {
+  background-image: url(/fx/images/wall/emo/12.png);
+}

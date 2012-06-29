@@ -1,0 +1,40 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_settings_washing_instructions') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_settings_washing_instructions_edit') }}">
+        {{ 'admin.washingcode.add_new.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+<h1>{{ 'admin.washing.edit.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>{{ 'admin.washing.edit.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_settings_washing_instructions_edit', {'id' : id}) }}" method="post" {{ form_enctype(form) }} id="washing-edit-form">
+  <div id="washing-edit">
+    {{ form_row(form.code) }}
+    {{ form_row(form.locale) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form._token) }}
+    {{ form_rest(form) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'update.washing'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_settings_washing_instructions') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}

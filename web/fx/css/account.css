@@ -1,0 +1,109 @@
+#body-account h2 {
+  margin-top: 10px;
+}
+
+#body-create-account form {
+  margin: 20px 0px;
+}
+form.create {
+  width: 450px;
+}
+
+#body-create-account p a {
+  text-decoration: underline;
+}
+
+form.create input,
+form.create select {
+  float: right;
+}
+
+form.create label {
+  display: block;
+  float: left;
+}
+form.create label:after {
+  content: ":";
+}
+
+form.create label.required:after {
+  content: ": *";
+}
+
+form.create input[type=checkbox] {
+  margin-right: 146px;
+}
+
+form.create #customers div {
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+form.create #customers div.dialoug-loading {
+  margin-bottom: 0;
+}
+
+form.create #customers {
+  margin-top: 20px;
+}
+form.create #customers ul {
+  display: none;
+}
+
+#body-account #main ul {
+  list-style: none;
+  margin: 5px 0 15px 10px;
+  padding: 0;
+}
+
+#order-status td.pdf {
+  float: none;
+}
+#order-status td.pdf a {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/fx/images/pdficon.png) no-repeat top left;
+}
+#order-status td a {
+  margin-left: 10px;
+}
+#order-status td a.show {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/fx/images/page_white_text.png) no-repeat top left;
+}
+#order-status td a.edit {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/fx/images/edit_icon.png) no-repeat top left;
+}
+#order-status td a.delete {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/fx/images/delete_icon.png) no-repeat 0px 5px;
+}
+
+#body-account #cboxLoadedContent ul {
+  list-style: square;
+  margin: 5px 0 15px 20px;
+}
+#body-account #cboxLoadedContent ul li {
+  padding-bottom: 5px;
+}
+
+#body-account-history-view div.address {
+  marin-top: 10px;
+  margin-right: 20px;
+}
+#body-account-history-view div.products {
+  margin-top: 30px;
+  width: 100%;
+}
+
+form.create #dialoug-message.error {
+  border-color: #f00;
+}

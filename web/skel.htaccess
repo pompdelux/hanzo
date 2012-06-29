@@ -1,0 +1,88 @@
+# should only be in the vhost file, or the image scaling will fail !
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteRule ^(.*)$ app.php [QSA,L]
+#</IfModule>
+
+AuthType Basic
+AuthName "Please Login"
+AuthUserFile /var/www/.htpasswd
+Satisfy Any
+
+<limit GET PUT POST>
+  require valid-user
+</limit>
+
+Order deny,allow
+Deny from all
+
+# allow internal traffic
+Allow from 127.0.0.1
+Allow from 192.168.1.0/24
+Allow from 192.168.2.0/24
+Allow from 192.168.42.0/24
+
+# allow from responsefabrikken
+Allow from 84.16.163.
+
+# allow from office ip without passwd
+Allow from 90.185.182.239
+Allow from 90.185.182.193
+Allow from 90.185.183.84
+
+# allow requests from quickpay !
+Allow from 193.162.142.172
+
+# allow from validator.w3.org
+Allow from 128.30.52.
+
+# allow from localhost
+Allow from 127.0.0.1
+
+# Allow from PompDeLux
+Allow from 193.89.255.250
+
+# Allow from thy:data
+Allow from 62.242.207.130
+
+# allow from webservice@gp
+Allow from 195.41.114.158
+Allow from 195.41.114.159
+
+# allow from webservice@thy
+Allow from 91.193.136.196
+Allow from 91.193.136.197
+Allow from 91.193.136.192
+
+# allow from Henrik@home
+Allow from 85.81.254.228
+
+#allow from hasse@home
+Allow from 83.92.88.97
+
+#allow from mmh@home
+Allow from 85.218.151.48
+
+#allow from un@home
+Allow from 87.104.21.83
+
+#allow from anders@home
+Allow from 87.51.240.173
+
+#allow from xen15 (jmeter test)
+Allow from 192.168.1.150
+
+#allow soap test
+Allow from 192.168.2.251
+
+#allow dibs
+Allow from 85.236.67.1
+
+#allow inmobile
+Allow from 195.190.18.26
+
+#allow github
+Allow from 207.97.227.253
+Allow from 50.57.128.197
+Allow from 108.171.174.178
