@@ -6,10 +6,11 @@
 First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/reference/requirements.html), besides this, we have these addons:
 
 1. [redis](http://redis.io/) must be installed and working
-2. [cdn.hanzo](https://github.com/bellcom/cdn.hanzo) must be setup
+2. [cdn](https://github.com/bellcom/hanzo) must be setup (this is the same repos as hanzo see docs/vhost.cdn.conf)
 3. Java must be installed (to compile compressed js and css files - we use yuicompressor)
 4. Apache must be setup with mod_rewrite
 5. Apc for php is also a must-have module.
+
 
 ## Install:
 
@@ -23,15 +24,15 @@ First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/refere
 6. add fixture data, here we have a "clean" and a "full" version, the full version includes testdata.
   1. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures.sql`
   2. `mysql -u xxx -p yyy hanzo < app/propel/fixtures/fixtures_all.sql`
-7. `git submodule update --recursive --init`
-8. `git submodule foreach --recursive git checkout master`
-9. `git submodule foreach --recursive git pull origin master`
-10. `php bin/vendors install`
-11. Setup apache, see `dosc/vhost.conf` for an example
+7. `php bin/vendors install`
+8. Setup apache, see `dosc/vhost.conf` for an example
+
 
 ## Configuration:
 
-The system relies heavily on domain names and tld's. So if you use none standard names, these should be mapped in web/app_dev.php and web/app_test.php
+To access a dev page, the structure is as follows, {locale} is one of the configured locales: `http://yourdomain.tld/app_dev.php/{locale}` or `http://yourdomain.tld/app_test.php/{locale}` prod is never used, well - in production but else...
+
+At the moment `da_DK`, `sv_SE`, `nb_NO`, `nl_NL` and `en_GB` is configued.
 
 
 ## Misc
@@ -57,4 +58,3 @@ redis:
 - flushing the cache: `FLUSHALL`
 - find a key: `KEYS *xx*`
 - help, well: `HELP` or go see the [docs](http://redis.io/documentation), they are great.
-
