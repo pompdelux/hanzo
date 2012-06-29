@@ -76,10 +76,10 @@ var account = (function($) {
      * auto complete city names when entering zip codes.
      * only works for se/no/dk so if the request is made via .com we skip this step
      */
-    var tld_match = /\.([a-z,A-Z]{2,6})$/;
-    var tld = document.location.hostname.match(tld_match);
+    var tld_match = /\/([a-z]{2}_[A-Z]{2})\//;
+    var tld = document.location.href.match(tld_match);
     try {
-      if (tld[1] != 'com' && tld[1] != 'nl') {
+      if (tld[1] == 'da_DK' || tld[1] == 'sv_SE' || tld[1] == 'nb_NO' ) {
         $('#customers_addresses_0_city').attr('readonly', 'readonly');
 
         // set city to readonly
