@@ -4,17 +4,17 @@ EventsBundle_homepage:
 
 events_index:
     pattern: /events
-    defaults: { _controller: EventsBundle:Calendar:index }
+    defaults: { _controller: EventsBundle:Events:index }
 
 events_view:
     pattern: /events/{id}
-    defaults: { _controller: EventsBundle:Calendar:view }
+    defaults: { _controller: EventsBundle:Events:view }
     requirements: { id: \d+ }
 
 events_create:
     pattern: /events/create/{id}
     defaults:
-        _controller: EventsBundle:Calendar:create
+        _controller: EventsBundle:Events:create
         id: null
     requirements:
         id: \d+
@@ -22,7 +22,7 @@ events_create:
 events_get_feed:
     pattern:  /events/getevents
     defaults:
-        _controller: EventsBundle:Calendar:getEvents
+        _controller: EventsBundle:Events:getEvents
         _format: json
     requirements:
         _format: html|json
@@ -30,7 +30,7 @@ events_get_feed:
 events_get_customer:
     pattern:  /events/getcustomer/{email}
     defaults:
-        _controller: EventsBundle:Calendar:getCustomer
+        _controller: EventsBundle:Events:getCustomer
         _format: json
     requirements:
         _format: html|json
@@ -38,8 +38,26 @@ events_get_customer:
 events_delete:
     pattern:  /events/delete/{id}
     defaults:
-        _controller: EventsBundle:Calendar:delete
+        _controller: EventsBundle:Events:delete
         _format: json
     requirements:
         _format: html|json
         id: \d+
+
+events_invite:
+    pattern: /events/invite/{key}
+    defaults: 
+        _controller: EventsBundle:Events:invite
+        key: null
+
+events_rsvp:
+    pattern: /events/rsvp/{key}
+    defaults: 
+        _controller: EventsBundle:Events:rsvp
+        key: null
+
+events_tell_a_friend:
+    pattern: /events/tellafriend/{key}
+    defaults: 
+        _controller: EventsBundle:Events:tellAFriend
+        key: null
