@@ -1,5 +1,4 @@
 <?php /* vim: set sw=4: */
-
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -107,8 +106,8 @@ class DefaultController extends CoreController
                 // login user
                 $user = new ProxyUser($customer);
                 $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
-                $this->container->get('security.context')->setToken($token);
 
+                $this->container->get('security.context')->setToken($token);
                 $this->get('session')->setFlash('notice', 'account.created');
 
                 $name = $customer->getFirstName() . ' ' . $customer->getLastName();
@@ -132,6 +131,13 @@ class DefaultController extends CoreController
                 if ($order->isNew()) {
                     return $this->redirect($this->generateUrl('_account'));
                 }
+
+                // if needed, recalculate the order.
+                if ($order->getTotalPrice(true)) {
+                    $order->recalculate();
+                    $order->save();
+                }
+
                 return $this->redirect($this->generateUrl('_checkout'));
 
             } else {
