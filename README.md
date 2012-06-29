@@ -1,6 +1,5 @@
 # Hanzo - PDL shop v2
 
-## Episode IV: Revenge of osCommerce
 
 ## Requirements:
 
