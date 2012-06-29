@@ -4,7 +4,7 @@ imports:
 framework:
     session:
         default_locale: sv_SE
-        path: '/app_dev.php/%locale%'
+        path: '/app_dev.php/sv_SE'
     router:
         resource:           "%kernel.root_dir%/config/routing_dev.yml"
     profiler:
