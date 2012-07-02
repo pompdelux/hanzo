@@ -307,7 +307,7 @@ class ECommerceServices extends SoapService
 
             // always have a from date on prices
             if (empty($entry->PriceDate)) {
-                $entry->PriceDate = time();
+                $entry->PriceDate = strtotime('-1 day');
             }
 
 
