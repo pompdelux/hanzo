@@ -221,7 +221,7 @@ class OrdersController extends CoreController
 
         $orders = OrdersSyncLogQuery::create()
             ->filterByState('failed')
-            ->find();
+            ->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
@@ -238,7 +238,7 @@ class OrdersController extends CoreController
 
         $order = OrdersQuery::create()
             ->filterById($order_id)
-            ->findOne()
+            ->findOne($this->getDbConnection())
         ;
 
         if (!$order instanceof Orders) {
@@ -256,9 +256,9 @@ class OrdersController extends CoreController
         OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->filterByOrdersId($order_id)
-            ->delete();
+            ->delete($this->getDbConnection());
 
-        $status = $this->get('ax_manager')->sendOrder($order, false);
+        $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
         $message = $status ?
             'Ordren #%d er nu sendt' :
             'Ordren #%d kunne ikke gensendes !'
@@ -285,10 +285,13 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id);
+        $order = OrdersQuery::create()
+            ->filterById($order_id)
+            ->findOne($this->getDbConnection())
+        ;
         if ($order) {
             $order->setIgnoreDeleteConstraints(true);
-            $order->delete();
+            $order->delete($this->getDbConnection());
         }
 
         if ('json' === $this->getFormat()) {

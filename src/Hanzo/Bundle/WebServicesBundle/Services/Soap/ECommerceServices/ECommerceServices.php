@@ -340,24 +340,28 @@ class ECommerceServices extends SoapService
                     break;
             }
 
+            // fix decimals in db...
+            $vat = number_format( $vat, 2, '.', '' );
+            $thePrice = number_format( $thePrice, 2, '.', '' );
+
             // perhaps we could skip this, pompdelux does not use alternative prices pr. variant
             $products[$key]['prices'][] = array(
-                'domain' => $domain_key,
-                'currency' => $currencies[$entry->Currency],
-                'amount' => $thePrice,
-                'vat' => $vat,
+                'domain'    => $domain_key,
+                'currency'  => $currencies[$entry->Currency],
+                'amount'    => $thePrice,
+                'vat'       => $vat,
                 'from_date' => $entry->PriceDate,
-                'to_date' => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
+                'to_date'   => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
             );
 
             // this is here to maintain price info on the master product also
             $products[$prices->ItemId]['prices'][$domain_key.$entry->PriceDate] = array(
-                'domain' => $domain_key,
-                'currency' => $currencies[$entry->Currency],
-                'amount' => $thePrice,
-                'vat' => $vat,
+                'domain'    => $domain_key,
+                'currency'  => $currencies[$entry->Currency],
+                'amount'    => $thePrice,
+                'vat'       => $vat,
                 'from_date' => $entry->PriceDate,
-                'to_date' => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
+                'to_date'   => (isset($entry->PriceDateTo) ? $entry->PriceDateTo : null),
             );
         }
 
