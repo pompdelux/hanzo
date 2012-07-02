@@ -29,7 +29,7 @@ class DefaultController extends CoreController
      **/
     public function getCityFromZipAction($zip_code)
     {
-        $code = explode('.', $_SERVER['HTTP_HOST']);
+        $code = explode('_', $this->get('session')->getLocale());
         $code = array_pop($code);
 
         $query = ZipToCityQuery::create()
@@ -80,6 +80,6 @@ Tools::log($result);
         $deadOrderBuster = $this->get('deadorder_manager');
         $deadOrderBuster->autoCleanup( $dryrun, $debug );
 
-        return new Response('Ok','text/html'); 
+        return new Response('Ok','text/html');
     }
 }

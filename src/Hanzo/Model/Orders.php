@@ -505,7 +505,7 @@ class Orders extends BaseOrders
 
     /**
      * getTotalProductPrice
-     * @return float 
+     * @return float
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function getTotalProductPrice()
@@ -1105,6 +1105,60 @@ class Orders extends BaseOrders
         }
 
         return parent::delete($con);
+    }
+
+
+    public function recalculate()
+    {
+        $hanzo = Hanzo::getInstance();
+
+        if ('' == $this->getBillingFirstName()) {
+            // $customer = CustomersPeer::getCurrent();
+            $customer = $this->getCustomers();
+            $c = new Criteria;
+            $c->add(AddressesPeer::TYPE, 'payment');
+            $this->setBillingAddress($customer->getAddressess($c)->getFirst());
+        }
+
+        if ('COM' == $hanzo->get('core.domain_key')) {
+            $country = $this->getCountriesRelatedByBillingCountriesId();
+            if ($country->getVat()) {
+                return;
+            }
+
+            $lines = $this->getOrdersLiness();
+
+            $product_ids = array();
+            foreach ($lines as $line) {
+                if('product' == $line->getType()) {
+                    $product_ids[] = $line->getProductsId();
+                }
+            }
+
+            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+            $collection = new PropelCollection();
+
+            foreach ($lines as $line) {
+                if('product' == $line->getType()) {
+                    $price = $prices[$line->getProductsId()];
+
+                    $sales = $price['normal'];
+                    if (isset($price['sales'])) {
+                        $sales = $price['sales'];
+                    }
+
+                    $line->setPrice($sales['price']);
+                    $line->setVat(0);
+                    $line->setOriginalPrice($price['normal']['price']);
+                }
+
+                $collection->prepend($line);
+            }
+
+            $this->setOrdersLiness($collection);
+        }
+
+        return $this;
     }
 
 } // Orders

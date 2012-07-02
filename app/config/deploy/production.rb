@@ -79,7 +79,7 @@ namespace :deploy do
     run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
   end
   desc "Reload apache"
-  task :reload_apache do
+  task :reload_apache, :roles => :apache do
     run("sudo /etc/init.d/apache2 reload")
   end
 # fix permissions
@@ -90,7 +90,10 @@ namespace :deploy do
 # fix permissions. shouldnt run on static because of pdfs and ftp?
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions_shared do
-    run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
+    run "sudo chmod -R g+rwX #{shared_path}/app && sudo chgrp -R www-data #{shared_path}/app"
+    run "sudo chmod -R g+rwX #{shared_path}/cached-copy && sudo chgrp -R www-data #{shared_path}/cached-copy"
+    run "sudo chmod -R g+rwX #{shared_path}/logs && sudo chgrp -R www-data #{shared_path}/logs"
+    run "sudo chmod -R g+rwX #{shared_path}/vendor && sudo chgrp -R www-data #{shared_path}/vendor"
   end
   desc "Send email after deploy"
   task :send_email do
