@@ -97,7 +97,7 @@ admin_cms:
     pattern:  /admin/cms/sort/{locale}
     defaults:
         _controller: AdminBundle:Cms:index
-        locale: 'da_DK'
+        locale: null
 
 admin_cms_add:
     pattern:  /admin/cms/add/{locale}

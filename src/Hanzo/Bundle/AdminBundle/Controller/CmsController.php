@@ -42,7 +42,8 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-
+        if(!$locale)
+            $locale = $this->getRequest()->getSession()->getLocale();
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
             ->joinWithI18n($locale)

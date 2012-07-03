@@ -18,6 +18,23 @@
     		{{ 'save.changes'|trans({}, 'admin') }}
     	</a>
     </li>
+    <li id="select-language">
+        <a class="open-menu" href="#">
+          <span class="flag {{ current_language }}"></span>{{ 'languages.selector'|trans({}, 'admin') }}
+        </a>
+        <div style="display:none;">
+          <ul>
+        {% for language in languages %}
+          <li>
+            <a href="{{ path('admin_cms', {'locale' : language.locale}) }}">
+              <span class="flag {{ language.locale }}"></span>{{ language.name }}
+            </a>
+          </li>
+        {% endfor %}
+          </ul>
+        </div>
+    </current_
+    </li>
   </ul>
 </nav>
 
