@@ -29,10 +29,14 @@ use Hanzo\Model\LanguagesQuery;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersLines;
+use Hanzo\Model\OrdersLinesPeer;
+use Hanzo\Model\OrdersLinesQuery;
 
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
 
+use Criteria;
 use \Exception;
 use \PropelCollection;
 
@@ -473,6 +477,24 @@ class ECommerceServices extends SoapService
                 }
 
                 $products[$key]['product'] = $product;
+                $products[$key]['qty_in_use'] = 0;
+
+                // get any open orders product quantity
+                $qty = OrdersLinesQuery::create()
+                    ->withColumn('SUM('.OrdersLinesPeer::QUANTITY.')', 'qty')
+                    ->filterByProductsId($product->getId())
+                    ->groupByProductsId()
+                    ->useOrdersQuery()
+                        ->filterByState(0, Criteria::LESS_THAN)
+                        ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
+                        ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
+                    ->endUse()
+                    ->findOne()
+                ;
+
+                if ($qty && $qty->getVirtualColumn('qty')) {
+                    $products[$key]['qty_in_use'] = $qty->getVirtualColumn('qty');
+                }
             }
 
             $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate ? $item->InventQtyAvailOrderedDate : 0;
@@ -481,6 +503,12 @@ class ECommerceServices extends SoapService
             $quantity = $item->InventQtyAvailPhysical;
             if (($incomming > $now) && ($item->InventQtyAvailOrdered > 0)) {
                 $quantity = $item->InventQtyAvailOrdered;
+            }
+
+            // subtract "reservations"
+            if ($products[$key]['qty_in_use'] && ($products[$key]['qty_in_use'] >= $quantity)) {
+                $products[$key]['qty_in_use'] = $products[$key]['qty_in_use'] - $quantity;
+                continue;
             }
 
             // no need to add empty entries
@@ -501,10 +529,10 @@ class ECommerceServices extends SoapService
         $allout = true;
         foreach ($products as $item) {
             $product = $item['product'];
+            $collection = new PropelCollection();
 
             if (isset($item['inventory'])) {
                 // inventory to products
-                $collection = new PropelCollection();
                 foreach ($item['inventory'] as $s) {
                     $data = new ProductsStock();
                     $data->setQuantity($s['stock']);
@@ -515,6 +543,7 @@ class ECommerceServices extends SoapService
                 $product->setIsOutOfStock(false);
                 $allout = false;
             } else {
+                $product->setProductsStocks($collection);
                 $product->setIsOutOfStock(true);
             }
 
