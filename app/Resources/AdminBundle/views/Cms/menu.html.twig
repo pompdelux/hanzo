@@ -63,7 +63,7 @@
         <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}">
           {{ 'admin.cms.inactive_nodes.edit'|trans({}, 'admin') }}
         </a>
-        <a href="{{ path('admin_cms_delete', {'id' : node.id }) }}" class="delete">
+        <a href="{{ path('admin_cms_delete', {'id' : node.id , 'locale' : node.locale}) }}" class="delete">
           {{ 'admin.cms.inactive_nodes.delete'|trans({}, 'admin') }}
         </a>
       </th>
