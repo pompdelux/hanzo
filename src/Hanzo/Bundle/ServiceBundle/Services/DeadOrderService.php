@@ -22,7 +22,6 @@ use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
 class DeadOrderService
 {
-    protected $parameters;
     protected $settings;
 
     protected $dryrun = false;
@@ -30,10 +29,10 @@ class DeadOrderService
 
     public function __construct($parameters, $settings)
     {
-        $this->dibsApi = $parameters[0];
+        $this->dibsApi         = $parameters[0];
         $this->eventDispatcher = $parameters[1];
-        $this->parameters = $parameters;
-        $this->settings = $settings;
+        $this->ax              = $parameters[2];
+        $this->settings        = $settings;
 
         if (!$this->dibsApi instanceof DibsApi) {
             throw new \InvalidArgumentException('DibsApi expected as first parameter.');
@@ -230,13 +229,39 @@ class DeadOrderService
                         $this->debug( '  Order has not been synced to AX' );
                         if ( !$this->dryrun )
                         {
+                            $in_edit = $order->getInEdit();
+                            $order->setState( Orders::STATE_PENDING );
+                            $order->setInEdit(false);
+                            $order->setSessionId($order->getId());
                             $order->save();
-                            $this->debug( "  Dispatching order.payment.collected event" );
-                            $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
-                        }
-                        else
-                        {
-                            $this->debug( "  (Dryrun) Dispatching order.payment.collected event" );
+
+                            if ($in_edit) 
+                            {
+                                $this->debug( '  Order was in edit mode' );
+                                $currentVersion = $order->getVersionId();
+
+                                // If the version number is less than 2 there is no previous version
+                                if (!($currentVersion < 2)) {
+                                    $oldOrderVersion = ( $currentVersion - 1);
+                                    $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+                                    try 
+                                    {
+                                        $this->debug( '  Canceling old payment' );
+                                        $oldOrder->cancelPayment();
+                                    }
+                                    catch (\Exception $e)
+                                    {
+                                        $this->debug( '  Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                                        Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                                    }
+                                }
+                            }
+
+
+                            $this->debug( '  Syncing to ax...' );
+                            $this->ax->sendOrder($order);
+                            //$this->debug( "  Dispatching order.payment.collected event" );
+                            //$this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
                         }
                     }
 
