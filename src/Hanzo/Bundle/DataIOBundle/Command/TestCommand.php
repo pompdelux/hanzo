@@ -19,7 +19,12 @@ use Hanzo\Model\Orders,
     Hanzo\Model\OrdersAttributesQuery,
     Hanzo\Model\OrdersVersions,
     Hanzo\Model\OrdersVersionsQuery,
-    Hanzo\Model\ShippingMethods
+    Hanzo\Model\ShippingMethods,
+    Hanzo\Model\Products,
+    Hanzo\Model\ProductsQuery,
+    Hanzo\Model\ProductsDomainsPrices,
+    Hanzo\Model\ProductsDomainsPricesPeer,
+    Hanzo\Model\ProductsDomainsPricesQuery
     ;
 
 
@@ -42,7 +47,22 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $order = OrdersPeer::retrieveByPK(572871);
+
+        $prices = ProductsDomainsPricesQuery::create()
+            ->filterByProductsId( array(1) )
+            ->filterByDomainsId( 1)
+            ->orderByProductsId()
+            ->find()
+        ;
+
+        foreach ($prices as $price) 
+        {
+          $vat = ( $price->getPrice() * 1.25 ) - $price->getPrice();
+          $price->setVat( number_format( $vat, 2, '.', '' ) );
+          $price->save();
+        }
+
+        /*$order = OrdersPeer::retrieveByPK(572871);
 
         $gateway = $this->get('payment.dibsapi');
 
@@ -56,6 +76,6 @@ class TestCommand extends ContainerAwareCommand
         $call = DibsApiCall::getInstance($settings, $gateway);
         $response = $call->capture($order, $amount);
 
-        print_r($response);
+        print_r($response);*/
     }
 }
