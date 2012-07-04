@@ -45,7 +45,12 @@ class CleanOrdersCommand extends ContainerAwareCommand
         $dry_run = $input->getOption('dry_run');
         $cleanup_manager = $container->get('cleanup_manager');
 
-        $cleanup_manager->cancelStaleOrderEdit($container, $dry_run);
-        $cleanup_manager->deleteStaleOrders($dry_run);
+        $cancel_count = $cleanup_manager->cancelStaleOrderEdit($container, $dry_run);
+        $delete_count = $cleanup_manager->deleteStaleOrders($dry_run);
+
+        if ($dry_run) {
+            error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancel_count.' stale orders.');
+            error_log('['.date('Y-m-d H:i:s').'] Would delete '.$delete_count.' stale orders.');
+        }
     }
 }

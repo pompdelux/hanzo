@@ -57,8 +57,10 @@ class CleanupService
             ->find()
         ;
 
+        $count = 0;
         foreach ($orders as $order) {
             if (isset($order->getAttributes()->payment) && empty($order->getAttributes()->payment->transact)) {
+                $count++;
                 if ($dry_run) {
                     error_log('['.date('Y-m-d H:i:s').'] Order: #'.$order->getId().' will be deleted, state is: '.$order->getState());
                     continue;
@@ -67,6 +69,8 @@ class CleanupService
                 $order->delete();
             }
         }
+
+        return $count;
 
         Propel::setForceMasterConnection(false);
     }
@@ -90,7 +94,9 @@ class CleanupService
             ->find()
         ;
 
+        $count = 0;
         foreach ($orders as $order) {
+            $count++;
             if ($dry_run) {
                 error_log('['.date('Y-m-d H:i:s').'] Order: #'.$order->getId().' will be roled back one version and unlocked in AX.');
                 continue;
@@ -99,6 +105,8 @@ class CleanupService
             $order->toPreviousVersion();
             $container->get('ax_manager')->lockUnlockSalesOrder($order, false);
         }
+
+        return $count;
 
         // // should _not_ be necessary, but...
         // $orders = OrdersQuery::create()
