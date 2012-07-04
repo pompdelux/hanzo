@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block javascript %}
-{% if page_type|default('page') == 'frontpage' %}
+{% if page_type|default('page') == 'frontpage' and store_mode == 'webshop' %}
 <script src="{{ cdn|replace({'http:':''}) }}fx/scripts/frontpage.js"></script>
 {% endif %}
 {% endblock %}
