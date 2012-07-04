@@ -56,6 +56,10 @@ class DeadOrderService
         $this->debug  = $debug;
 
         $this->debug("Starting DeadOrderService Auto Clean");
+        if ( $this->dryrun )
+        {
+          $this->debug("Dry run mode");
+        }
 
         $toBeDeleted = array();
         $toBeDeleted = $this->getOrdersToBeDeleted();
@@ -81,6 +85,7 @@ class DeadOrderService
             $status = $this->checkOrderForErrors($order);
             if ( $status['is_error'] )
             {
+                $this->debug("Order queued to be deleted (".$order->getId().")");
                 $toBeDeleted[] = $order;
             }
         }
@@ -220,7 +225,7 @@ class DeadOrderService
                       }
                       else
                       {
-                        $this->debug( "Not dispatching order.payment.collected event (dryrun)" );
+                        $this->debug( "(Dryrun) Dispatching order.payment.collected event" );
                       }
                     }
 
@@ -246,8 +251,15 @@ class DeadOrderService
     {
         foreach ($toBeDeleted as $order) 
         {
-            $this->debug("Deleting order: ".$order->getId());
-            $order->delete();
+            if ( !$this->dryrun )
+            {
+              $this->debug("Deleting order: ".$order->getId());
+              $order->delete();
+            }
+            else
+            {
+              $this->debug("(Dryrun) Deleting order: ".$order->getId());
+            }
         }
     }
 
