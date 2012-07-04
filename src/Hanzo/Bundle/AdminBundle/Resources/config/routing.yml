@@ -22,13 +22,13 @@ admin_settings_domain:
     pattern:  /admin/settings/domain/{domain_key}
     defaults:
         _controller: AdminBundle:Settings:domain
-        domain_key: 'DK'
+        domain_key: null
 
 admin_settings_payment_delivery:
     pattern:  /admin/settings/paymentdelivery/{domain_key}
     defaults:
         _controller: AdminBundle:Settings:paymentdelivery
-        domain_key: 'DK'
+        domain_key: null
 
 admin_settings_washing_instructions:
     pattern:  /admin/settings/washinginstructions/{code}
@@ -103,14 +103,14 @@ admin_cms_add:
     pattern:  /admin/cms/add/{locale}
     defaults:
         _controller: AdminBundle:Cms:add
-        locale: 'da_DK'
+        locale: null
 
 admin_cms_edit:
     pattern:  /admin/cms/edit/{id}/{locale}
     defaults:
         _controller: AdminBundle:Cms:edit
         id: 0
-        locale: 'da_DK'
+        locale: null
     requirements:
         id: \d+
 

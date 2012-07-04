@@ -42,8 +42,10 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
         if(!$locale)
-            $locale = $this->getRequest()->getSession()->getLocale();
+            $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
+
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
             ->joinWithI18n($locale)
@@ -91,11 +93,14 @@ class CmsController extends CoreController
         }
     }
 
-    public function addAction($locale = 'da_DK')
+    public function addAction($locale)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+        
+        if(!$locale)
+            $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
 
         $cms_node = new CmsNode();
 
@@ -205,6 +210,9 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+        
+        if(!$locale)
+            $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
 
         $cache = $this->get('cache_manager');
 
