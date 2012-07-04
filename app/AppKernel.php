@@ -79,9 +79,10 @@ class AppKernel extends Kernel
         }
     }
 
+
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        list($dir, $lang, ) = explode('_', $this->getEnvironment());
+        list($dir, $lang,) = explode('_', $this->getEnvironment());
 
         $base_dir = __DIR__.'/config/';
         $config_dir = $base_dir.$dir.'/';
@@ -93,7 +94,7 @@ class AppKernel extends Kernel
         $loader->load($config_dir.'_'.$lang.'.yml');
 
         if ('consultant' == $mode) {
-            $file = $config_dir.'_consultant_'.$lang.'.yml';
+            $file = $config_dir.'_'.$lang.'_consultant.yml';
             if (is_file($file)) {
                 $loader->load($file);
             }
@@ -101,7 +102,7 @@ class AppKernel extends Kernel
     }
 
 
-    protected function getStoreMode()
+    public function getStoreMode()
     {
         $mode = 'webshop';
 
