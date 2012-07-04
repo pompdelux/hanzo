@@ -158,7 +158,7 @@ class DeadOrderService
         if ( is_null($transId) )
         {
             $this->debug( '  No trans id found' );
-            $status['is_error'] = false;
+            $status['is_error'] = true;
             $status['error_msg'] = 'Slet: Ingen transaktions id kunne findes';
             return $status;
         }
