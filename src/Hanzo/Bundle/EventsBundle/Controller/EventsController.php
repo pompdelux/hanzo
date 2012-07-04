@@ -208,7 +208,7 @@ class EventsController extends CoreController
 	                $host->save();
         		}
         		$event->setCustomersId($host->getId());
-            	
+
             	$consultant = ConsultantsQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
             	$event->setConsultantsId($consultant->getId());
@@ -227,7 +227,7 @@ class EventsController extends CoreController
             	$code = $code . $event->getId();
             	$code = $code . $hanzo->get('core.domain_key');
             	$event->setCode(strtoupper($code));
-                
+
                 $event->save();
 
 				$mailer = $this->get('mail_manager');
@@ -288,7 +288,7 @@ class EventsController extends CoreController
 
                 		// Send an email to all participants
                 		foreach ($participants as $participant) {
-                			
+
 	            			$mailer->setMessage('events.participant.eventchanged', array(
 				                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
 				                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
@@ -334,7 +334,7 @@ class EventsController extends CoreController
 
                 // Its a new event. Redirect to correct url.
                 if(!$changed)
-                	return $this->redirect($this->generateUrl('events_create', 
+                	return $this->redirect($this->generateUrl('events_create',
                 		array('id' => $event->getId())
                 	));
             }
@@ -422,7 +422,7 @@ class EventsController extends CoreController
 	            $mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
 	            $mailer->send();
         	}
-            
+
     		$event->delete();
     	}
 
@@ -432,7 +432,7 @@ class EventsController extends CoreController
             	'message' => $this->get('translator')->trans('events.delete.success', array(), 'events')
             ));
         }
-        
+
         $this->get('session')->setFlash('notice', 'events.delete.success');
 
         return $this->redirect($this->generateUrl('events_index'));
@@ -444,7 +444,7 @@ class EventsController extends CoreController
     		->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
     		->findOneByKey($key)
     	;
-    	
+
     	$events_participants = null;
     	$form = null;
     	if($event instanceof Events){
@@ -508,9 +508,9 @@ class EventsController extends CoreController
 		                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
 		                'consultant_email'	=> $consultant->getCustomers()->getEmail()
 		            ));
-					
+
 		            $mailer->setTo(
-		            	$events_participant->getEmail(), 
+		            	$events_participant->getEmail(),
 		            	$events_participant->getFirstName(). ' ' .$events_participant->getLastName()
 		            );
 		            $mailer->send();
@@ -633,7 +633,7 @@ class EventsController extends CoreController
 
     public function tellAFriendAction($key)
     {
-    	
+
     	$friend = EventsParticipantsQuery::create()
     		->filterByTellAFriend(true)
     		->findOneByKey($key)
@@ -697,9 +697,9 @@ class EventsController extends CoreController
 		                'consultant_name'	=> $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
 		                'consultant_email'	=> $consultant->getCustomers()->getEmail()
 		            ));
-					
+
 		            $mailer->setTo(
-		            	$events_participant->getEmail(), 
+		            	$events_participant->getEmail(),
 		            	$events_participant->getFirstName(). ' ' .$events_participant->getLastName()
 		            );
 		            $mailer->send();
