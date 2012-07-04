@@ -30,6 +30,9 @@ class SecurityController extends CoreController
                 break;
             default:
                 $target = '_account';
+                if ('consultant' == $this->get('kernel')->getStoreMode()) {
+                    $target = '_homepage';
+                }
                 break;
         }
 
