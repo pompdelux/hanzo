@@ -46,18 +46,18 @@ events_delete:
 
 events_invite:
     pattern: /events/invite/{key}
-    defaults: 
+    defaults:
         _controller: EventsBundle:Events:invite
         key: null
 
 events_rsvp:
     pattern: /events/rsvp/{key}
-    defaults: 
+    defaults:
         _controller: EventsBundle:Events:rsvp
         key: null
 
 events_tell_a_friend:
     pattern: /events/tellafriend/{key}
-    defaults: 
+    defaults:
         _controller: EventsBundle:Events:tellAFriend
         key: null
