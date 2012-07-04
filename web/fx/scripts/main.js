@@ -58,6 +58,20 @@
           });
         });
       }
+
+      var media_files = $('a.media_file.rewrite');
+      if (media_files.length) {
+        var data = [];
+        media_files.each(function(index, element) {
+          $(element).addClass('index-'+index);
+          data.push({
+            index: index,
+            file: element.href,
+          });
+        });
+        $.post(cdn_url+'filetime.php', {payload: {data: data}}, 'json');
+      }
+
     };
 
     /**
