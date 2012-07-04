@@ -285,6 +285,14 @@ class DibsApiCallResponse
                     }
                 }
             }
+            else
+            {
+                if ( isset($codes[$statusId]) ) 
+                {
+                    $desc = $codes[$statusId];
+                    $isError = false;
+                }
+            }
         }
 
         $this->data['status_description'] = $desc;

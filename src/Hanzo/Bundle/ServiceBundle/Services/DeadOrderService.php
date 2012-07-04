@@ -62,18 +62,17 @@ class DeadOrderService
           $this->debug("Dry run mode");
         }
 
-        $toBeDeleted = array();
-        $toBeDeleted = $this->getOrdersToBeDeleted();
-        $this->deleteOrders( $toBeDeleted );
+        $this->getOrdersToBeDeleted( 0, true);
     }
 
     /**
      * getOrdersToBeDeleted
      * @param int $limit
+     * @param bool $instanceDelete
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getOrdersToBeDeleted( $limit = 0 )
+    public function getOrdersToBeDeleted( $limit = 0, $instanceDelete = false )
     {
         $toBeDeleted = array();
 
@@ -90,9 +89,25 @@ class DeadOrderService
             $status = $this->checkOrderForErrors($order);
             if ( isset($status['is_error']) && $status['is_error'] === true )
             {
-                $this->debug("Order queued to be deleted (".$order->getId()."): ");
+                if ( $instanceDelete )
+                {
+                  if ( !$this->dryrun )
+                  {
+                      $this->debug("  Deleting order: ".$order->getId());
+                      $order->delete();
+                  }
+                  else
+                  {
+                      $this->debug("  (Dryrun) Deleting order: ".$order->getId());
+                  }
+                }
+                else
+                {
+                  $this->debug("  Order queued to be deleted (".$order->getId()."): ");
+                  $toBeDeleted[] = $order;
+                }
+
                 $this->debug(print_r($status,1));
-                $toBeDeleted[] = $order;
             }
         }
 
@@ -134,7 +149,7 @@ class DeadOrderService
             catch (DibsApiCallException $e)
             {
                 $this->debug( '  Dibs call failed: '. $e->getMessage() );
-                $status['is_error'] = true;
+                $status['is_error'] = false;
                 $status['error_msg'] = $e->getMessage();
                 return $status;
             }
@@ -164,7 +179,7 @@ class DeadOrderService
         catch (DibsApiCallException $e)
         {
             $this->debug( '  Dibs call failed: '. $e->getMessage() );
-            $status['is_error'] = true;
+            $status['is_error'] = false;
             $status['error_msg'] = $e->getMessage();
             return $status;
         }
@@ -198,7 +213,7 @@ class DeadOrderService
                     catch (DibsApiCallException $e)
                     {
                         $this->debug( '  Dibs call failed: '. $e->getMessage() );
-                        $status['is_error'] = true;
+                        $status['is_error'] = false;
                         $status['error_msg'] = $e->getMessage();
                         return $status;
                     }
