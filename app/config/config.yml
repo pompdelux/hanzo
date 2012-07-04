@@ -124,6 +124,7 @@ simple_things_form_extra:
 
 # settings for the cms bundle.
 hanzo_cms:
+    frontpage: 556
     twig:
         left_menu:
             type: main

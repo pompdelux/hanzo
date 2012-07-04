@@ -1,3 +1,6 @@
+hanzo_cms:
+    frontpage: 556
+
 framework:
     session:
         default_locale: nb_NO

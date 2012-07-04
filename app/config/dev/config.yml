@@ -40,4 +40,5 @@ propel:
       propel.addValidators: all
       propel.namespace.autoPackage: true
 
-
+hanzo_cms:
+    frontpage: 550

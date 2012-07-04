@@ -1,3 +1,6 @@
+hanzo_cms:
+    frontpage: 540
+
 framework:
     session:
         default_locale: sv_SE
