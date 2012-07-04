@@ -12,7 +12,8 @@ use Hanzo\Model\Orders,
     Hanzo\Model\OrdersPeer,
     Hanzo\Model\OrdersQuery,
     Hanzo\Model\OrdersAttributes,
-    Hanzo\Model\OrdersAttributesQuery
+    Hanzo\Model\OrdersAttributesQuery,
+    Hanzo\Model\OrdersSyncLogQuery
     ;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
@@ -193,16 +194,36 @@ class DeadOrderService
                         $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
                     }
 
-                    if ( !$this->dryrun )
+                    $state = OrdersSyncLogQuery::create()
+                      ->filterByOrdersId( $order->getId() )
+                      ->filterByState( 'ok' )
+                      ->findOne();
+
+                    print_r($state);
+
+                    if ( $state !== null ) // Already synced to AX
                     {
-                      $order->save();
-                      $this->debug( "Dispatching order.payment.collected event" );
-                      $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
+                      $this->debug( 'Order has been synced to AX -> setting state to pending' );
+                      if ( !$this->dryrun )
+                      {
+                        $order->setState( Orders::STATE_PENDING );
+                        $order->save();
+                      }
                     }
                     else
                     {
-                      $this->debug( "Not dispatching order.payment.collected event (dryrun)" );
+                      if ( !$this->dryrun )
+                      {
+                        $order->save();
+                        $this->debug( "Dispatching order.payment.collected event" );
+                        $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
+                      }
+                      else
+                      {
+                        $this->debug( "Not dispatching order.payment.collected event (dryrun)" );
+                      }
                     }
+
                     break;
 
                 default:
