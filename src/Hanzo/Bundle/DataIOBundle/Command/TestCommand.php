@@ -47,8 +47,23 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $order = new Orders();
+        $order->setAttribute( 'transact', 'payment', '596022444' );
 
-        $prices = ProductsDomainsPricesQuery::create()
+        $gateway = $this->getContainer()->get('payment.dibsapi');
+
+        $settings['merchant'] = '90052482';
+        $settings['md5key1']  = 'Y[?Eh|QAA?&PPwwDB[CalMSHaQ.M?CKz';
+        $settings['md5key2']  = '8IBaYSmjDLkZz.+hKhNtcb]~XikRAqFF';
+        $settings['api_user'] = 'pdl-dk-api-user';
+        $settings['api_pass'] = 'D!An6aYlUf*l';
+        
+        $gateway->mergeSettings($settings);
+
+        print_r($gateway->call()->payinfo($order));
+
+
+        /*$prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId( array(1) )
             ->filterByDomainsId( 1)
             ->orderByProductsId()
@@ -60,7 +75,7 @@ class TestCommand extends ContainerAwareCommand
           $vat = ( $price->getPrice() * 1.25 ) - $price->getPrice();
           $price->setVat( number_format( $vat, 2, '.', '' ) );
           $price->save();
-        }
+        }*/
 
         /*$order = OrdersPeer::retrieveByPK(572871);
 
