@@ -39,37 +39,7 @@ class UnlockOrdersCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        Propel::setForceMasterConnection(true);
-
-        $orders = OrdersQuery::create()
-            ->filterByInEdit(true)
-            ->filterByUpdatedAt(array('max' => '-3 hours'))
-            ->filterByState(Orders::STATE_PENDING, Criteria::LESS_THAN)
-            ->find()
-        ;
-
-        foreach ($orders as $order) {
-            $order->toPreviousVersion();
-            $this->getContainer()->get('ax_manager')->lockUnlockSalesOrder($order, false);
-        }
-
-        // should _not_ be necessary, but...
-        $orders = OrdersQuery::create()
-            ->filterByInEdit(true)
-            ->filterByState(array(
-                Orders::STATE_BEING_PROCESSED,
-                Orders::STATE_SHIPPED,
-            ))
-            ->find()
-        ;
-
-        foreach ($orders as $order) {
-            $order->setInEdit(false);
-            $order->save();
-        }
-
-        Propel::setForceMasterConnection(false);
-        // $q = Propel::getConnection()->getLastExecutedQuery();
-        // $output->writeln('<info>'.$q.'</info>');
+        $container = $this->getContainer();
+        $container->get('cleanup_manager')->cancelStaleOrderEdit($container);
     }
 }

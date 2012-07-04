@@ -234,6 +234,19 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
+        $trans = $this->get('translator');
+
+        if ( $order->getState() >= Orders::STATE_PRE_PAYMENT  )
+        {
+            return $this->json_response(array(
+                'status' => false,
+                'message' => $trans->trans('order.state_pre_payment.locked', array(), 'checkout'),
+                'data' => array(
+                    'name' => 'payment'
+                ),
+            ));
+        }
+
         $data = $this->get('request')->get('data');
         $grouped = array();
 
@@ -261,7 +274,7 @@ class DefaultController extends CoreController
                 'status' => false,
                 'message' => $e->getMessage(),
                 'data' => array(
-                    'name' => 'shipping'
+                    'name' => 'payment'
                 ),
             ));
         }
