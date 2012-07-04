@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
+use Exception;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools
     ;
@@ -230,11 +232,6 @@ class DeadOrderService
                         if ( !$this->dryrun )
                         {
                             $in_edit = $order->getInEdit();
-                            $order->setState( Orders::STATE_PENDING );
-                            $order->setInEdit(false);
-                            $order->setSessionId($order->getId());
-                            $order->save();
-
                             if ($in_edit) 
                             {
                                 $this->debug( '  Order was in edit mode' );
@@ -257,11 +254,19 @@ class DeadOrderService
                                 }
                             }
 
-
-                            $this->debug( '  Syncing to ax...' );
-                            $this->ax->sendOrder($order);
-                            //$this->debug( "  Dispatching order.payment.collected event" );
-                            //$this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
+                            try
+                            {
+                              $this->debug( '  Syncing to ax...' );
+                              $this->ax->sendOrder($order);
+                              $order->setState( Orders::STATE_PENDING );
+                              $order->setInEdit(false);
+                              $order->setSessionId($order->getId());
+                              $order->save();
+                            }
+                            catch (Exception $e)
+                            {
+                              $this->debug( '  Sync failed: '.$e->getMessage() );
+                            }
                         }
                     }
 
