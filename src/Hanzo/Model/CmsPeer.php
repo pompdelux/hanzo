@@ -22,12 +22,16 @@ class CmsPeer extends BaseCmsPeer
 
     public static function getByPK($id, $locale)
     {
-        $result = CmsI18nQuery::create()
-            ->filterByLocale($locale)
-            ->findOneById($id)
+        $result = CmsQuery::create()
+            ->joinWithI18n()
+            ->useCmsI18nQuery()
+                ->filterByLocale($locale)
+            ->endUse()
+            ->filterById($id)
+            ->findOne()
         ;
 
-        if ($result instanceof CmsI18n) {
+        if ($result instanceof Cms) {
             return $result;
         }
 
