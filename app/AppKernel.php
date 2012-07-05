@@ -94,6 +94,9 @@ class AppKernel extends Kernel
         $loader->load($config_dir.'_'.$lang.'.yml');
 
         if ('consultant' == $mode) {
+            $file = $config_dir.'_consultant.yml';
+            $loader->load($file);
+
             $file = $config_dir.'_'.$lang.'_consultant.yml';
             if (is_file($file)) {
                 $loader->load($file);
