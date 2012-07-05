@@ -159,6 +159,7 @@ class DibsController extends CoreController
         $session = $this->get('session');
         if ( $session->has('last_successful_order_id') && $session->get('last_successful_order_id') == $order_id )
         {
+            error_log(__LINE__.':'.__FILE__.' Performing redirect to basket on last successful order id: '. $order_id ); // hf@bellcom.dk debugging
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
