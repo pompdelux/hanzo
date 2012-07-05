@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>title</source>
+                <target>Etsi</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>description</source>
+                <target>Jos etsit tietoa, jota ei löydy meidän sivuiltamme, kirjoita hakusana alla olevaan kenttään ja paina &quot;etsi&quot;.</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>button.label</source>
+                <target>Etsi</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>result.products</source>
+                <target>%count% tuotetta löytyi</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>result.pages</source>
+                <target>%count% sivua löytyi</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

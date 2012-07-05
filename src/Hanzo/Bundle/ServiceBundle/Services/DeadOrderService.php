@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
+use Exception;
+
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools
     ;
@@ -22,7 +24,6 @@ use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
 class DeadOrderService
 {
-    protected $parameters;
     protected $settings;
 
     protected $dryrun = false;
@@ -30,10 +31,10 @@ class DeadOrderService
 
     public function __construct($parameters, $settings)
     {
-        $this->dibsApi = $parameters[0];
+        $this->dibsApi         = $parameters[0];
         $this->eventDispatcher = $parameters[1];
-        $this->parameters = $parameters;
-        $this->settings = $settings;
+        $this->ax              = $parameters[2];
+        $this->settings        = $settings;
 
         if (!$this->dibsApi instanceof DibsApi) {
             throw new \InvalidArgumentException('DibsApi expected as first parameter.');
@@ -61,18 +62,17 @@ class DeadOrderService
           $this->debug("Dry run mode");
         }
 
-        $toBeDeleted = array();
-        $toBeDeleted = $this->getOrdersToBeDeleted();
-        $this->deleteOrders( $toBeDeleted );
+        $this->getOrdersToBeDeleted( 0, true);
     }
 
     /**
      * getOrdersToBeDeleted
      * @param int $limit
+     * @param bool $instanceDelete
      * @return array
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getOrdersToBeDeleted( $limit = 0 )
+    public function getOrdersToBeDeleted( $limit = 0, $instanceDelete = false )
     {
         $toBeDeleted = array();
 
@@ -80,13 +80,34 @@ class DeadOrderService
 
         $this->debug("Found ".count($orders)." that matches filter");
 
+        $i = 1;
+
         foreach ($orders as $order) 
         {
+            $this->debug( $i++ .' of '. count($orders) );
+            $status = array();
             $status = $this->checkOrderForErrors($order);
-            if ( $status['is_error'] )
+            if ( isset($status['is_error']) && $status['is_error'] === true )
             {
-                $this->debug("Order queued to be deleted (".$order->getId().")");
-                $toBeDeleted[] = $order;
+                if ( $instanceDelete )
+                {
+                  if ( !$this->dryrun )
+                  {
+                      $this->debug("  Deleting order: ".$order->getId());
+                      $order->delete();
+                  }
+                  else
+                  {
+                      $this->debug("  (Dryrun) Deleting order: ".$order->getId());
+                  }
+                }
+                else
+                {
+                  $this->debug("  Order queued to be deleted (".$order->getId()."): ");
+                  $toBeDeleted[] = $order;
+                }
+
+                $this->debug(print_r($status,1));
             }
         }
 
@@ -115,7 +136,7 @@ class DeadOrderService
         if ( empty($pgId) && !is_null($transId) )
         {
             // No payment gateway id, but an transId
-            $this->debug("Has no payment gateway id, but an transId: ". $transId);
+            $this->debug("  Has no payment gateway id, but an transId: ". $transId);
             try
             {
                 $callbackData = $this->dibsApi->call()->callback($order);
@@ -127,7 +148,8 @@ class DeadOrderService
             }
             catch (DibsApiCallException $e)
             {
-                $status['is_error'] = true;
+                $this->debug( '  Dibs call failed: '. $e->getMessage() );
+                $status['is_error'] = false;
                 $status['error_msg'] = $e->getMessage();
                 return $status;
             }
@@ -135,13 +157,14 @@ class DeadOrderService
 
         if ( is_null($transId) )
         {
+            $this->debug( '  No trans id found' );
             $status['is_error'] = true;
             $status['error_msg'] = 'Slet: Ingen transaktions id kunne findes';
             return $status;
         }
 
         $order->setAttribute( 'transact', 'payment', $transId );
-        $this->debug("Setting transId: ". $transId);
+        $this->debug("  Setting transId: ". $transId);
 
         if ( !$this->dryrun )
         {
@@ -151,11 +174,12 @@ class DeadOrderService
         try
         {
             $orderStatus = $this->getStatus( $order );
-            $this->debug( "Order status by dibs, desc: ". $orderStatus->data['status_description'] .' status: '. $orderStatus->data['status'] );
+            $this->debug( "  Order status by dibs, desc: ". $orderStatus->data['status_description'] .' status: '. $orderStatus->data['status'] );
         }
         catch (DibsApiCallException $e)
         {
-            $status['is_error'] = true;
+            $this->debug( '  Dibs call failed: '. $e->getMessage() );
+            $status['is_error'] = false;
             $status['error_msg'] = $e->getMessage();
             return $status;
         }
@@ -166,7 +190,7 @@ class DeadOrderService
             {
                 case 2:
                     // Looks like payment is ok -> update order
-                    $this->debug( "Payment looks ok, updating order, state ok");
+                    $this->debug( "  Payment looks ok, updating order, state ok");
                     $order->setState( Orders::STATE_PAYMENT_OK );
                     $order->setFinishedAt(time());
 
@@ -188,50 +212,83 @@ class DeadOrderService
                     }
                     catch (DibsApiCallException $e)
                     {
-                        $status['is_error'] = true;
+                        $this->debug( '  Dibs call failed: '. $e->getMessage() );
+                        $status['is_error'] = false;
                         $status['error_msg'] = $e->getMessage();
                         return $status;
                     }
 
                     foreach ($fields as $field)
                     {
-                        $this->debug( "Setting field ".$field." to ".$callbackData->data[$field]);
-                        $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
+                        if ( isset($callbackData->data[$field]) )
+                        {
+                            $this->debug( "  Setting field ".$field." to ".$callbackData->data[$field]);
+                            $order->setAttribute( $field , 'payment', $callbackData->data[$field] );
+                        }
                     }
 
                     $state = OrdersSyncLogQuery::create()
-                      ->filterByOrdersId( $order->getId() )
-                      ->filterByState( 'ok' )
-                      ->findOne();
-
-                    print_r($state);
+                        ->filterByOrdersId( $order->getId() )
+                        ->filterByState( 'ok' )
+                        ->findOne();
 
                     if ( $state !== null ) // Already synced to AX
                     {
-                      $this->debug( 'Order has been synced to AX -> setting state to pending' );
-                      if ( !$this->dryrun )
-                      {
-                        $order->setState( Orders::STATE_PENDING );
-                        $order->save();
-                      }
+                        $this->debug( '  Order has been synced to AX -> setting state to pending' );
+                        if ( !$this->dryrun )
+                        {
+                            $order->setState( Orders::STATE_PENDING );
+                            $order->save();
+                        }
                     }
                     else
                     {
-                      if ( !$this->dryrun )
-                      {
-                        $order->save();
-                        $this->debug( "Dispatching order.payment.collected event" );
-                        $this->eventDispatcher->dispatch('order.payment.collected', new FilterOrderEvent($order));
-                      }
-                      else
-                      {
-                        $this->debug( "(Dryrun) Dispatching order.payment.collected event" );
-                      }
+                        $this->debug( '  Order has not been synced to AX' );
+                        if ( !$this->dryrun )
+                        {
+                            $in_edit = $order->getInEdit();
+                            if ($in_edit) 
+                            {
+                                $this->debug( '  Order was in edit mode' );
+                                $currentVersion = $order->getVersionId();
+
+                                // If the version number is less than 2 there is no previous version
+                                if (!($currentVersion < 2)) {
+                                    $oldOrderVersion = ( $currentVersion - 1);
+                                    $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+                                    try 
+                                    {
+                                        $this->debug( '  Canceling old payment' );
+                                        $oldOrder->cancelPayment();
+                                    }
+                                    catch (\Exception $e)
+                                    {
+                                        $this->debug( '  Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                                        Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                                    }
+                                }
+                            }
+
+                            try
+                            {
+                              $this->debug( '  Syncing to ax...' );
+                              $this->ax->sendOrder($order);
+                              $order->setState( Orders::STATE_PENDING );
+                              $order->setInEdit(false);
+                              $order->setSessionId($order->getId());
+                              $order->save();
+                            }
+                            catch (Exception $e)
+                            {
+                              $this->debug( '  Sync failed: '.$e->getMessage() );
+                            }
+                        }
                     }
 
                     break;
 
                 default:
+                    $this->debug( '  Order status er '. $orderStatus->data['status'] );
                     $status['is_error'] = true;
                     $status['error_msg'] = 'Order status er '. $orderStatus->data['status'];
                     return $status;
@@ -253,12 +310,12 @@ class DeadOrderService
         {
             if ( !$this->dryrun )
             {
-              $this->debug("Deleting order: ".$order->getId());
-              $order->delete();
+                $this->debug("Deleting order: ".$order->getId());
+                $order->delete();
             }
             else
             {
-              $this->debug("(Dryrun) Deleting order: ".$order->getId());
+                $this->debug("(Dryrun) Deleting order: ".$order->getId());
             }
         }
     }
@@ -270,7 +327,7 @@ class DeadOrderService
      **/
     public function debug( $msg )
     {
-      $this->debug ? error_log('[DEBUG]: '.$msg) : '';
+        $this->debug ? error_log('[DEBUG]: '.$msg) : '';
     }
 
     /**

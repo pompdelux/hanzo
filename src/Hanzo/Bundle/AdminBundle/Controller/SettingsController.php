@@ -121,11 +121,14 @@ class SettingsController extends CoreController
      *
      * @param domain_key The domain key
      */
-    public function domainAction($domain_key = 'DK')
+    public function domainAction($domain_key)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        if(!$domain_key)
+            $domain_key = DomainsQuery::create()->orderById()->findOne($this->getDbConnection())->getDomainKey();
 
         $request = $this->getRequest();
 
@@ -211,11 +214,14 @@ class SettingsController extends CoreController
      *
      * @param domain_key The domain key
      */
-    public function paymentdeliveryAction($domain_key = 'DK')
+    public function paymentdeliveryAction($domain_key)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        if(!$domain_key)
+            $domain_key = DomainsQuery::create()->orderById()->findOne($this->getDbConnection())->getDomainKey();
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
@@ -288,7 +294,7 @@ class SettingsController extends CoreController
 
         // End of domain settings Form
 
-        $domains_availible = DomainsQuery::Create()->find();
+        $domains_availible = DomainsQuery::Create()->find($this->getDbConnection());
 
         return $this->render('AdminBundle:Settings:paymentdelivery.html.twig', array(
             'form'      => $form->getForm()->createView(),

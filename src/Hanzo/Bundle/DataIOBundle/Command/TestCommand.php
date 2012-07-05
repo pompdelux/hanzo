@@ -19,7 +19,12 @@ use Hanzo\Model\Orders,
     Hanzo\Model\OrdersAttributesQuery,
     Hanzo\Model\OrdersVersions,
     Hanzo\Model\OrdersVersionsQuery,
-    Hanzo\Model\ShippingMethods
+    Hanzo\Model\ShippingMethods,
+    Hanzo\Model\Products,
+    Hanzo\Model\ProductsQuery,
+    Hanzo\Model\ProductsDomainsPrices,
+    Hanzo\Model\ProductsDomainsPricesPeer,
+    Hanzo\Model\ProductsDomainsPricesQuery
     ;
 
 
@@ -42,7 +47,37 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $order = OrdersPeer::retrieveByPK(572871);
+        $order = new Orders();
+        $order->setAttribute( 'transact', 'payment', '596022444' );
+
+        $gateway = $this->getContainer()->get('payment.dibsapi');
+
+        $settings['merchant'] = '90052482';
+        $settings['md5key1']  = 'Y[?Eh|QAA?&PPwwDB[CalMSHaQ.M?CKz';
+        $settings['md5key2']  = '8IBaYSmjDLkZz.+hKhNtcb]~XikRAqFF';
+        $settings['api_user'] = 'pdl-dk-api-user';
+        $settings['api_pass'] = 'D!An6aYlUf*l';
+        
+        $gateway->mergeSettings($settings);
+
+        print_r($gateway->call()->payinfo($order));
+
+
+        /*$prices = ProductsDomainsPricesQuery::create()
+            ->filterByProductsId( array(1) )
+            ->filterByDomainsId( 1)
+            ->orderByProductsId()
+            ->find()
+        ;
+
+        foreach ($prices as $price) 
+        {
+          $vat = ( $price->getPrice() * 1.25 ) - $price->getPrice();
+          $price->setVat( number_format( $vat, 2, '.', '' ) );
+          $price->save();
+        }*/
+
+        /*$order = OrdersPeer::retrieveByPK(572871);
 
         $gateway = $this->get('payment.dibsapi');
 
@@ -56,6 +91,6 @@ class TestCommand extends ContainerAwareCommand
         $call = DibsApiCall::getInstance($settings, $gateway);
         $response = $call->capture($order, $amount);
 
-        print_r($response);
+        print_r($response);*/
     }
 }

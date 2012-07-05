@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="checkout_json_err_no_order">
+        <source>json.err.no_order</source>
+        <target>Tilausta ei löydy</target>
+      </trans-unit>
+      <trans-unit id="checkout_err_unknown_shipping_method">
+        <source>err.unknown_shipping_method</source>
+        <target>Tuntematon lähetysmuoto</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.title">
+        <source>checkout.success.title</source>
+        <target>Tilausvahvistus</target>
+      </trans-unit>
+      <trans-unit id="checkout.success.text">
+        <source>checkout.success.text</source>
+        <target>
+          &lt;h2&gt;E-tilausnumero&lt;/h2&gt; &lt;p&gt;E-tilausnumero: &lt;b&gt;%id%&lt;/b&gt;&lt;/p&gt;
+
+          &lt;h2&gt;Toimitusaika&lt;/h2&gt; &lt;p&gt;Odotettu toimitusaika: %date%.&lt;/p&gt;
+
+          &lt;h2&gt;Yhteystiedot&lt;/h2&gt; &lt;p&gt;Tarvittaessa voit ottaa yhteyttä meihin.&lt;/p&gt; &lt;p&gt;Puhelin +45-86-78 7871&lt;/p&gt; &lt;p&gt;Sähköposti: &lt;a href=&quot;mailto:mail@pompdelux.dk&quot;&gt;mail@pompdelux.dk&lt;/a&gt;&lt;/p&gt;
+
+          &lt;h2&gt;Oma sivu&lt;/h2&gt; &lt;p&gt; Tilausten tarkastelu ja paljon muuta&lt;br&gt; &lt;a href=&quot;%account%&quot;&gt;&amp;raquo; Min side&lt;/a&gt; &lt;/p&gt;
+
+          &lt;h2&gt;FAQ&lt;/h2&gt; &lt;p&gt; Tästä löydät yleisimmät kysymykset ja vastaukset POMPdeLUXista.&lt;br&gt; &lt;a href=&quot;/p/forside-kundeservice-faq&quot;&gt;&amp;raquo; FAQ&lt;/a&gt; &lt;/p&gt;
+
+          &lt;h2&gt;Uutiset&lt;/h2&gt; &lt;p&gt; Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.&lt;br&gt; &lt;a href=&quot;/p/forside-nyheder&quot;&gt;&amp;raquo; Nyheder&lt;/a&gt; &lt;/p&gt;
+        </target>
+      </trans-unit>
+      <trans-unit id="checkout.failed.title">
+        <source>checkout.failed.title</source>
+        <target>Maksu ei onnistunut</target>
+      </trans-unit>
+      <trans-unit id="checkout.failed.text">
+        <source>checkout.failed.text</source>
+        <target>
+            Maksussa/tilauksen käsittelyssä tapahtui virhe. Ota yhteyttä asiakaspalveluun&lt;br&gt;&lt;br&gt; &lt;p&gt;E-tilausnumero: &lt;b&gt;%order_id%&lt;/b&gt;&lt;/p&gt;
+        </target>
+      </trans-unit>
+      <trans-unit id="confirm.title">
+        <source>confirm.title</source>
+        <target>Hyväksytty</target>
+      </trans-unit>
+      <trans-unit id="confirm.order_id">
+        <source>confirm.order_id</source>
+        <target>E-tilausnumero</target>
+      </trans-unit>
+      <trans-unit id="addresses">
+        <source>addresses</source>
+        <target>Osoitteet</target>
+      </trans-unit>
+      <trans-unit id="no_addresses">
+        <source>no_addresses</source>
+        <target>Yhtään osoitetta ei ole annettu</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.edit">
+        <source>shipping.address.edit</source>
+        <target>» Muuta toimitusosoitetta</target>
+      </trans-unit>
+      <trans-unit id="shipping.address">
+        <source>shipping.address</source>
+        <target>Toimitusosoite</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.overnight">
+        <source>shipping.address.overnight</source>
+        <target>Toimitusosoite</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.overnight.edit">
+        <source>shipping.address.overnight.edit</source>
+        <target>» Muuta døgnpost-osoitetta</target>
+      </trans-unit>
+      <trans-unit id="shipping.address.no_overnight">
+        <source>shipping.address.no_overnight</source>
+        <target>Døgnpost-osoitetta ei ole luotu</target>
+      </trans-unit>
+      <trans-unit id="payment.method">
+        <source>payment.method</source>
+        <target>Maksutapa</target>
+      </trans-unit>
+      <trans-unit id="payment.address">
+        <source>payment.address</source>
+        <target>Yksityisosoite</target>
+      </trans-unit>
+      <trans-unit id="payment.title">
+        <source>payment.title</source>
+        <target>Maksutapa</target>
+      </trans-unit>
+      <trans-unit id="payment.text">
+        <source>payment.text</source>
+        <target>Valitse tilauksen maksutapa.</target>
+      </trans-unit>
+      <trans-unit id="confirm.vat">
+        <source>confirm.vat</source>
+        <target>ALV-summa</target>
+      </trans-unit>
+      <trans-unit id="confirm.sub_total">
+        <source>confirm.sub_total</source>
+        <target>Tuotteita yhteensä</target>
+      </trans-unit>
+      <trans-unit id="confirm.total">
+        <source>confirm.total</source>
+        <target>Kokonaissumma</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.title">
+        <source>payment.paybybill.title</source>
+        <target>Maksu tilille</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.text">
+        <source>payment.paybybill.text</source>
+        <target>Maksa tilaus tilille: &quot;yy-yy xx-xx-xx-xx-xx&quot; 8 päivän kuluessa tavaroiden vastaanottamisesta.</target>
+      </trans-unit>
+      <trans-unit id="payment.paybybill.label">
+        <source>payment.paybybill.label</source>
+        <target>Maksu tilille</target>
+      </trans-unit>
+      <trans-unit id="payment.gateway_id">
+        <source>payment.gateway_id</source>
+        <target>Maksutunnus</target>
+      </trans-unit>
+      <trans-unit id="payment.transaction_id">
+        <source>payment.transaction_id</source>
+        <target>Tapahtumanumero</target>
+      </trans-unit>
+      <trans-unit id="payment.fee">
+        <source>payment.fee</source>
+        <target>Maksukulu</target>
+      </trans-unit>
+      <trans-unit id="payment.canceled">
+        <source>payment.canceled</source>
+        <target>Maksu keskeytyi</target>
+      </trans-unit>
+      <trans-unit id="customer.id">
+        <source>customer.id</source>
+        <target>Asiakasnumero</target>
+      </trans-unit>
+      <trans-unit id="quantity">
+        <source>quantity</source>
+        <target>Määrä</target>
+      </trans-unit>
+      <trans-unit id="products">
+        <source>products</source>
+        <target>Tuotteet</target>
+      </trans-unit>
+      <trans-unit id="product.name">
+        <source>product.name</source>
+        <target>Tuotteen nimi</target>
+      </trans-unit>
+      <trans-unit id="product.size">
+        <source>product.size</source>
+        <target>Koko</target>
+      </trans-unit>
+      <trans-unit id="product.color">
+        <source>product.color</source>
+        <target>Väri</target>
+      </trans-unit>
+      <trans-unit id="product.price">
+        <source>product.price</source>
+        <target>Kappalehinta</target>
+      </trans-unit>
+      <trans-unit id="product.total">
+        <source>product.total</source>
+        <target>Yhteensä</target>
+      </trans-unit>
+      <trans-unit id="total.excl_vat">
+        <source>total.excl_vat</source>
+        <target>Yhteensä ilman rahtia ja toimituskuluja</target>
+      </trans-unit>
+      <trans-unit id="total.vat">
+        <source>total.vat</source>
+        <target>ALV</target>
+      </trans-unit>
+      <trans-unit id="total.incl_vat">
+        <source>total.incl_vat</source>
+        <target>Yhteensä sis. rahti, alv ja toimituskulut</target>
+      </trans-unit>
+      <trans-unit id="expected_at">
+        <source>expected_at</source>
+        <target>Odotettu toimitusaika</target>
+      </trans-unit>
+      <trans-unit id="my.account.info">
+        <source>my.account.info</source>
+        <target>Tarkastele tilauksia, korjaa henkilötietojasi, muuta salasana ja paljon muuta.</target>
+      </trans-unit>
+      <trans-unit id="my.account.username">
+        <source>my.account.username</source>
+        <target>Käyttäjänimi</target>
+      </trans-unit>
+      <trans-unit id="my.account.password">
+        <source>my.account.password</source>
+        <target>Salasana</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Toimituskulut</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee.description">
+        <source>shipping.fee.description</source>
+        <target>Kaikkiin tilauksiin lisätään toimituskulut, %amount%</target>
+      </trans-unit>
+      <trans-unit id="basket">
+        <source>basket</source>
+        <target>Ostoskori</target>
+      </trans-unit>
+      <trans-unit id="continue.shopping">
+        <source>continue.shopping</source>
+        <target>Jatka ostoksia</target>
+      </trans-unit>
+      <trans-unit id="proceed">
+        <source>proceed</source>
+        <target>Jatka</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>cart.is.empty</source>
+        <target>Ostoskorisi on tyhjä.</target>
+      </trans-unit>
+      <trans-unit id="no.such.product.in.cart">
+          <source>no.such.product.in.cart</source>
+          <target>Haluamasi tuote ei ole ostoskorissasi.</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.notice">
+        <source>late.delivery.notice</source>
+        <target>&lt;strong&gt;Huomaa:&lt;/strong&gt; Mikäli tilaus sisältää jälkitoimituksessa olevia tuotteita, lähetämme tilauksen vasta, kun kaikki tuotteet ovat saapuneet varastoomme.</target>
+      </trans-unit>
+      <trans-unit id="button.back">
+        <source>button.back</source>
+        <target>Takaisin</target>
+      </trans-unit>
+      <trans-unit id="button.edit">
+        <source>button.edit</source>
+        <target>Muuta</target>
+      </trans-unit>
+      <trans-unit id="button.process">
+        <source>button.process</source>
+        <target>Siirry maksamaan</target>
+      </trans-unit>
+      <trans-unit id="late.delivery.date.notice">
+        <source>late.delivery.date.notice</source>
+        <target>
+          &lt;p&gt;Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.&lt;/p&gt; &lt;p&gt;Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: &lt;strong&gt;%date%&lt;/strong&gt;.&lt;/p&gt;
+        </target>
+      </trans-unit>
+      <trans-unit id="status.20" approved="no">
+        <source>status.20</source>
+        <target>Maksu hyväksytty</target>
+      </trans-unit>
+      <trans-unit id="status.30">
+        <source>status.30</source>
+        <target>Odottaa</target>
+      </trans-unit>
+      <trans-unit id="status.40">
+        <source>status.40</source>
+        <target>Käsittelyssä</target>
+      </trans-unit>
+      <trans-unit id="status.50">
+        <source>status.50</source>
+        <target>Laskutettu</target>
+      </trans-unit>
+      <trans-unit id="payment.gothia.title">
+        <source>payment.gothia.title</source>
+        <target>Gothia-lasku</target>
+      </trans-unit>
+      <trans-unit id="payment.gothia.desc">
+        <source>payment.gothia.desc</source>
+        <target>Gothia-lasku (PayByBill-maksusta veloitetaan lisämaksu 29,00 SEK)</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.title">
+        <source>payment.dibs.title</source>
+        <target>Dibs</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.dk">
+        <source>payment.dibs.paytype.dk</source>
+        <target>DK-kort</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.visa">
+        <source>payment.dibs.paytype.visa</source>
+        <target>Visa</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.visa_elec">
+        <source>payment.dibs.paytype.visa_elec</source>
+        <target>Visa Electron</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.paytype.master">
+        <source>payment.dibs.paytype.master</source>
+        <target>Mastercard/Eurocard</target>
+      </trans-unit>
+      <trans-unit id="payment.dibs.processing.title">
+        <source>payment.dibs.processing.title</source>
+        <target>Verkkokauppa käsittelee tilaustasi</target>
+      </trans-unit>
+      <trans-unit id="order.state_pre_payment.locked">
+        <source>order.state_pre_payment.locked</source>
+        <target>Tilaustasi käsitellään. Voit muuttaa tilausta uudelleen vasta maksun hyväksymisen jälkeen.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
