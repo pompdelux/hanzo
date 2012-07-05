@@ -507,9 +507,14 @@ class ECommerceServices extends SoapService
             }
 
             // subtract "reservations"
-            if ($products[$key]['qty_in_use'] && ($products[$key]['qty_in_use'] >= $quantity)) {
-                $products[$key]['qty_in_use'] = $products[$key]['qty_in_use'] - $quantity;
-                continue;
+            if ($products[$key]['qty_in_use']) {
+                if ($products[$key]['qty_in_use'] >= $quantity) {
+                    $products[$key]['qty_in_use'] = $products[$key]['qty_in_use'] - $quantity;
+                    continue;
+                }
+
+               $quantity = $quantity -  $products[$key]['qty_in_use'];
+               $products[$key]['qty_in_use'] = 0;
             }
 
             // no need to add empty entries
