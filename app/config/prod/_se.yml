@@ -1,24 +1,10 @@
-imports:
-    - { resource: config.yml }
-
-monolog:
-    handlers:
-        main:
-            type:         fingers_crossed
-            action_level: error
-            handler:      nested
-        nested:
-            type:  stream
-            path:  %kernel.logs_dir%/%kernel.environment%.log
-            level: debug
+hanzo_cms:
+    frontpage: 540
 
 framework:
     session:
         default_locale: sv_SE
         path: '/sv_SE'
-    templating:
-        assets_base_urls:
-            http: [ %cdn% ]
 
 propel:
     dbal:

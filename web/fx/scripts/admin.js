@@ -180,7 +180,6 @@
       // Sortable list for products ind a category
       $('ul#product-list-sort').sortable({
         axis : 'y',
-        delay : 500,
         distance : 30,
         forceHelperSize : true,
         forcePlaceholderSize : true,

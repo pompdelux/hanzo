@@ -14,6 +14,9 @@ security:
                 invalidate_session: true
 
     access_control:
+        - { path: ^/fx/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
         - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/.*/account/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/.*/account/check/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

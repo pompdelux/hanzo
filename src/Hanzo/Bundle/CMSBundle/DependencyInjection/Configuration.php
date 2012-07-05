@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('frontpage')->defaultValue('')->end()
                 ->arrayNode('twig')
                     ->children()
                         ->arrayNode('left_menu')

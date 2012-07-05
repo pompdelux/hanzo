@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -43,14 +44,23 @@ class DefaultController extends CoreController
             }
         }
 
+        $response = new Response();
+        $response->setLastModified($page->getUpdatedAt(null));
+
+        if ($response->isNotModified($this->getRequest())) {
+            return $response;
+        }
+
+        $response->setMaxAge(60);
+        $response->setSharedMaxAge(60);
+
         $html = $page->getContent();
         $find = '~(background|src)="(../|/)~';
         $replace = '$1="' . $hanzo->get('core.cdn');
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
-        $this->get('twig')->addGlobal('page_type', $type);
-        return $this->render('HanzoCMSBundle:Default:view.html.twig', array('page' => $page));
+        return $this->render('HanzoCMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
     }
 
     public function testAction()

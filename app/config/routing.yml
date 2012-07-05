@@ -6,7 +6,6 @@ WallBundle:
     resource: "@WallBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-
 AdminBundle:
     resource: "@AdminBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

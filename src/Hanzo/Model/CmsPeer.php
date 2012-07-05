@@ -22,12 +22,16 @@ class CmsPeer extends BaseCmsPeer
 
     public static function getByPK($id, $locale)
     {
-        $result = CmsI18nQuery::create()
-            ->filterByLocale($locale)
-            ->findOneById($id)
+        $result = CmsQuery::create()
+            ->joinWithI18n()
+            ->useCmsI18nQuery()
+                ->filterByLocale($locale)
+            ->endUse()
+            ->filterById($id)
+            ->findOne()
         ;
 
-        if ($result instanceof CmsI18n) {
+        if ($result instanceof Cms) {
             return $result;
         }
 
@@ -36,9 +40,12 @@ class CmsPeer extends BaseCmsPeer
 
     public static function getFrontpage($locale)
     {
+        $frontpage_id = \Hanzo\Core\Hanzo::getInstance()->container->getParameter('hanzo_cms.frontpage');
+
         $result = CmsQuery::create()
             ->joinWithI18n($locale)
-            ->filterByType('frontpage')
+            // ->filterByType('frontpage')
+            ->filterById($frontpage_id)
             ->findOne()
         ;
 

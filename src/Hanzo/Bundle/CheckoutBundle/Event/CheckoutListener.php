@@ -10,18 +10,21 @@ use Hanzo\Bundle\ServiceBundle\Services\AxService;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpFoundation\Session;
 
 class CheckoutListener
 {
     protected $mailer;
     protected $ax;
     protected $translator;
+    protected $session;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator)
+    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session)
     {
-        $this->mailer = $mailer;
-        $this->ax = $ax;
+        $this->mailer     = $mailer;
+        $this->ax         = $ax;
         $this->translator = $translator;
+        $this->session    = $session;
     }
 
     /**
@@ -31,6 +34,11 @@ class CheckoutListener
      **/
     public function onPaymentFailed(FilterOrderEvent $event)
     {
+        if ( $this->session->has('failed_order_mail_sent') )
+        {
+            return;
+        }
+
         $order = $event->getOrder();
         $host  = gethostname();
         $hanzo = Hanzo::getInstance();
@@ -53,16 +61,18 @@ class CheckoutListener
         try
         {
             $this->mailer->setSubject( sprintf('[FEJL] Ordre nr: %d fejlede', $order->getId()) )
-            ->setBody('Beskeden er i HTML format')
-            ->addPart($message,'text/html')
-            ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
-            ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
-            ->send();
+                ->setBody('Beskeden er i HTML format')
+                ->addPart($message,'text/html')
+                ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
+                ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
+                ->send();
         } 
         catch (\Swift_TransportException $e) 
         {
             Tools::log($e->getMessage());
         }
+
+        $this->session->set('failed_order_mail_sent', true);
     }
 
     public function onPaymentCollected(FilterOrderEvent $event)
@@ -94,12 +104,12 @@ class CheckoutListener
         {
             switch ($line->getType())
             {
-              case 'shipping':
-                $shipping_cost += $line->getPrice();
-                break;
-              case 'shipping.fee':
-                $shipping_fee += $line->getPrice();
-                break;
+                case 'shipping':
+                    $shipping_cost += $line->getPrice();
+                    break;
+                case 'shipping.fee':
+                    $shipping_fee += $line->getPrice();
+                    break;
             }
         }
 
@@ -107,23 +117,23 @@ class CheckoutListener
         if (isset($attributes->payment->paytype)) {
             switch ($attributes->payment->paytype)
             {
-              case 'V-DK':
-                  $card_type = 'VISA/DanKort';
-                break;
-              case 'DK':
-                  $card_type = 'DanKort';
-                  break;
-              case 'MC':
-              case 'MC(DK)':
-              case 'MC(SE)':
-                  $card_type = 'MasterCard';
-                  break;
-              case 'VISA':
-                  $card_type ='Visa';
-                  break;
-              case 'ELEC':
-                  $card_type = 'Visa Electron';
-                  break;
+                case 'V-DK':
+                    $card_type = 'VISA/DanKort';
+                    break;
+                case 'DK':
+                    $card_type = 'DanKort';
+                    break;
+                case 'MC':
+                case 'MC(DK)':
+                case 'MC(SE)':
+                    $card_type = 'MasterCard';
+                    break;
+                case 'VISA':
+                    $card_type ='Visa';
+                    break;
+                case 'ELEC':
+                    $card_type = 'Visa Electron';
+                    break;
             }
         }
 
@@ -191,11 +201,11 @@ class CheckoutListener
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
                 try 
                 {
-                  $oldOrder->cancelPayment();
+                    $oldOrder->cancelPayment();
                 }
                 catch (\Exception $e)
                 {
-                  Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                    Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                 }
             }
         }

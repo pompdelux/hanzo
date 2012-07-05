@@ -141,9 +141,16 @@ class DibsController extends CoreController
      **/
     public function stateCheckAction()
     {
-        $order = OrdersPeer::getCurrent();
+        $order   = OrdersPeer::getCurrent();
+        $goto    = false;
+        $session = $this->get('session');
 
-        return $this->json_response( array('state' => $order->getState() ) );
+        if ( $session->has('last_successful_order_id') )
+        {
+            $goto = true;
+        }
+
+        return $this->json_response( array('state' => $order->getState(), 'redirect_to_basket' => $goto ) );
     }
 
     /**
@@ -158,7 +165,7 @@ class DibsController extends CoreController
     {
         $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );
 
-        if ( $order->getId() !== $this->get('session')->get('order_id') )
+        if ( !empty($order) && $order->getId() !== $this->get('session')->get('order_id') )
         {
           error_log(__LINE__.':'.__FILE__.' Order id mismatch, in url: '.$order_id. ' in session: '. $this->get('session')->get('order_id') ); // hf@bellcom.dk debugging 
         }

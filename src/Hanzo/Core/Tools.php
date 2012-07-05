@@ -242,7 +242,7 @@ class Tools
         }
 
         if (substr($_SERVER['HTTP_HOST'], 0, 2) == 'c.') {
-            $env = $env.'_kons';
+            $env = $env.'_consultant';
         }
 
         return $env;

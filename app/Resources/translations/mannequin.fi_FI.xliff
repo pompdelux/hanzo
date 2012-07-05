@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Pukeutumishuone: %title%</target>
+            </trans-unit>
+            <trans-unit id="product">
+                <source>product</source>
+                <target>Tuote</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Hinta</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Väri</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Koko</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Yhteensä</target>
+            </trans-unit>
+            <trans-unit id="basket.notes">
+                <source>basket.notes</source>
+                <target>
+                    &lt;h6&gt;Huomaa&lt;/h6&gt; 1) Voit lisätä tuotteen ostoskoriin sen jälkeen, kun olet valinnut halutun koon &lt;img src=&quot;/fx/images/pencil.png&quot; alt=&quot;&quot;&gt;&lt;br&gt; 2) Napsauta sen jälkeen Lisää ostoskoriin &lt;img src=&quot;/fx/images/basket_put.png&quot; alt=&quot;&quot;&gt;&lt;br&gt; 3) Jos halut poistaa tuotteen nukelta, napsauta Poista &lt;img src=&quot;/fx/images/delete.png&quot; alt=&quot;&quot;&gt;&lt;br&gt; 4) Jos olet lisännyt tuotteen jo ostoskoriin, esiin tulee tämä symboli &lt;img src=&quot;/fx/images/bullet_green.png&quot; alt=&quot;&quot;&gt;
+                </target>
+            </trans-unit>
+            <trans-unit id="no.products.in.category">
+                <source>no.products.in.category</source>
+                <target>Kaikki tämän kategorian tuotteet on jo myyty.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

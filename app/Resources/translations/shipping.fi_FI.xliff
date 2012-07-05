@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="shipping_10">
+        <source>page.heading</source>
+        <target>Toimitustapa</target>
+      </trans-unit>
+      <trans-unit id="shipping_20">
+        <source>page.desc</source>
+        <target>Valitse oikea toimitustapa.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.10">
+        <source>shipping_method.name.10</source>
+        <target>Yksityinen paketti</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.10">
+        <source>shipping_method.desc.10</source>
+        <target>Tilauksesi lähetetään henkilökohtaiseen osoitteeseesi. Jos haluat lähettää tilauksesi toiseen yksityisosoitteeseen (esim. naapurille), muuta toimitusosoite kohdassa &quot;Muuta toimitusosoitetta&quot;.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.10">
+        <source>shipping_method.label.10</source>
+        <target>Post Danmark Privat %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.11">
+        <source>shipping_method.name.11</source>
+        <target>Yrityspaketti</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.11">
+        <source>shipping_method.desc.11</source>
+        <target>Jos sinulla on mahdollisuus tilata lähetys työpaikallesi, voit valita yrityspaketin. Muista vaihtaa toimitusosoite napsauttamalla &quot;Muuta toimitusosoitetta&quot; (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.11">
+        <source>shipping_method.label.11</source>
+        <target>Post Danmark Erhverv %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.12">
+        <source>shipping_method.name.12</source>
+        <target>Døgnpost-lähetys</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.12">
+        <source>shipping_method.desc.12</source>
+        <target>
+          Døgnpost-lähetys edellyttää nimen ja Døgnpost-kirjautumisen yhteydessä saadun tunnuksen lisäämistä. Kirjoita Døgnpost-tunnus ja -osoite toimitusosoitteeksi ja oma osoitteesi laskutusosoitteeksi.&lt;br&gt; &lt;a href=&quot;http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx&quot; rel=&quot;external&quot;&gt;» Lue lisää Døgnpostista&lt;/a&gt;
+      </target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.12">
+        <source>shipping_method.label.12</source>
+        <target>Døgnpost %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.name">
+        <source>shipping_fee.name</source>
+        <target>Toimituskulut</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.desc">
+        <source>shipping_fee.desc</source>
+        <target>Kaikkiin tilauksiin lisätään toimituskulut, %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.label">
+        <source>shipping_fee.label</source>
+        <target>Toimituskulut %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Toimituskulut</target>
+      </trans-unit>
+      <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
+        <source>page.desc.after_methods</source>
+        <target>Kaikkiin tilauksiin lisätään toimituskulut, 0 euroa</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

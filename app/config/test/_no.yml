@@ -1,24 +1,7 @@
-imports:
-    - { resource: config.yml }
-
-monolog:
-    handlers:
-        main:
-            type:                     fingers_crossed
-            action_level:             error
-            handler:                  nested
-        nested:
-            type:                     stream
-            path:                     %kernel.logs_dir%/%kernel.environment%.log
-            level:                    debug
-
 framework:
     session:
         default_locale: nb_NO
         path: '/app_test.php/nb_NO'
-    templating:
-        assets_base_urls:
-            http:                     [ %cdn% ]
 
 propel:
     dbal:

@@ -35,6 +35,7 @@ use Hanzo\Model\OrdersLinesQuery;
 
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
+use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
 use Criteria;
 use \Exception;
@@ -1013,12 +1014,17 @@ class ECommerceServices extends SoapService
                 $settings['api_pass'] = 'g7u6Ri&c';
 
                 $gateway->mergeSettings( $settings );
-                $response = $gateway->call()->capture($order, $amount);
-            } else {
-                $response = $gateway->call()->capture($order, $amount);
             }
 
-            $result = $response->debug();
+            try {
+                $response = $gateway->call()->capture($order, $amount);
+                $result = $response->debug();
+            } catch (DibsApiCallException $e) {
+                $error = array(
+                    'cound not capture order #' . $data->eOrderNumber,
+                    'error: ' . $e->getMessage()
+                );
+            }
 
             if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
                 $error = array(

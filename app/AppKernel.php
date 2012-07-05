@@ -73,17 +73,39 @@ class AppKernel extends Kernel
         //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
         $twig->addGlobal('store_mode', $this->getStoreMode());
         $twig->addExtension(new Twig_Extension_Optimizer());
-        #$twig->addExtension(new Twig_Extension_Debug());
+
+        if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
+            $twig->addExtension(new Twig_Extension_Debug());
+        }
     }
+
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_ws_'.$this->getStoreMode().'.yml');
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        list($dir, $lang,) = explode('_', $this->getEnvironment());
+
+        $base_dir = __DIR__.'/config/';
+        $config_dir = $base_dir.$dir.'/';
+
+        $mode = $this->getStoreMode();
+
+        $loader->load($base_dir.'firewall_'.$mode.'.yml');
+        $loader->load($config_dir.'config.yml');
+        $loader->load($config_dir.'_'.$lang.'.yml');
+
+        if ('consultant' == $mode) {
+            $file = $config_dir.'_consultant.yml';
+            $loader->load($file);
+
+            $file = $config_dir.'_'.$lang.'_consultant.yml';
+            if (is_file($file)) {
+                $loader->load($file);
+            }
+        }
     }
 
 
-    protected function getStoreMode()
+    public function getStoreMode()
     {
         $mode = 'webshop';
 
