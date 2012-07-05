@@ -40,6 +40,8 @@ class MenuController extends CoreController
             $this->base_url = $request->getBaseUrl();
 
             if ($thread) {
+                $this->cms_thread = $thread;
+            } else {
                 $this->cms_thread = $hanzo->get('core.main_menu_thread');
             }
 

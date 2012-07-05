@@ -82,14 +82,21 @@ class MiscExtension extends Twig_Extension
     {
         $hanzo = Hanzo::getInstance();
         $device = $hanzo->container->get('request')->attributes->get('_x_device');
+        $mode = $hanzo->container->get('kernel')->getStoreMode();
+
+        if ('webshop' == $mode) {
+            $mode = '';
+        }
 
         // TODO: implement the mobile layout
         $device_map = array(
-            'pc' => '::base.html.twig',
+            'pc' => 'base.html.twig',
             // 'mobile' => '::base_mobile.html.twig',
         );
 
-        return isset($device_map[$device]) ? $device_map[$device] : $device_map['pc'];
+        $layout = isset($device_map[$device]) ? $device_map[$device] : $device_map['pc'];
+
+        return '::'.$mode.$layout;
     }
 
 
@@ -258,6 +265,33 @@ DOC;
                     'customer' => $customer,
                     'listid' => Hanzo::getInstance()->container->get('newsletterapi')->getListIdAvaliableForDomain(),
                 );
+
+                break;
+
+            // {{ embed('media_file', {
+            //   'file': 'xhjkpiydjns/MissionVision.pdf',
+            //   'date_format': 'long',
+            //   'text': '» Mission, vision og idégrundlag (pdf)'
+            // }) }}
+            case 'media_file':
+                $cdn = Hanzo::getInstance()->get('core.cdn');
+
+                $parameters['file'] = isset($parameters['file']) ? $parameters['file'] : '';
+                $parameters['text'] = isset($parameters['text']) ? $parameters['text'] : '';
+                $parameters['date_format'] = isset($parameters['date_format']) ? $parameters['date_format'] : 'Y-m-d H:i';
+                $parameters['date_label'] = isset($parameters['date_label']) ? $parameters['date_label'] : '';
+
+                if (empty($parameters['file']) || empty($parameters['text'])) {
+                    return '';
+                }
+
+                $ext = pathinfo($parameters['file'], PATHINFO_EXTENSION);
+
+                #if (empty($parameters['date_label'])) {
+                    return '<a href="'.$cdn.'images/'.$parameters['file'].'" rel="external" class="media_file filetype-'.$ext.'">'.$parameters['text'].'</a>';
+                #}
+
+                return '<a href="'.$cdn.'images/'.$parameters['file'].'" rel="external" class="media_file rewrite filetype-'.$ext.'" data-dateformat="'.$parameters['date_format'].'" data-datelabel="'.$parameters['date_label'].'">'.$parameters['text'].'</a> <em></em> ';
 
                 break;
         }

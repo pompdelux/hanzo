@@ -1,10 +1,7 @@
 imports:
-    - { resource: config.yml }
+    - { resource: ../config.yml }
 
 framework:
-    session:
-        default_locale: nl_NL
-        path: '/app_dev.php/nl_NL'
     router:
         resource:           "%kernel.root_dir%/config/routing_dev.yml"
     profiler:
@@ -38,3 +35,10 @@ propel:
                 dsn:        mysql:host=%database_host%;dbname=%database_name%
                 options:    {}
                 attributes: {}
+    build_properties:
+      propel.project: '%database_name%'
+      propel.addValidators: all
+      propel.namespace.autoPackage: true
+
+hanzo_cms:
+    frontpage: 550

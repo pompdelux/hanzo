@@ -71,3 +71,4 @@ events_sms_test:
         _controller: EventsBundle:Sms:sendtest
     requirements:
         _method:  GET
+
