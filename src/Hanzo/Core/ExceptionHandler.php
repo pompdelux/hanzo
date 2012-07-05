@@ -49,9 +49,10 @@ class ExceptionHandler
             $path = $request->getPathInfo();
 
             // attempt to fix images in old newsletters. Redirect to static
-            if (substr($path, 0, 19) == '/images/nyhedsbrev/') {
-               $response = new Response('', 301, array('Location' => 'http://static.pompdelux.dk'.$path));
-               $event->setResponse($response);
+            if (substr($path, 6, 19) == '/images/nyhedsbrev/') {
+                $newpath = substr($path, 6);
+                $response = new Response('', 301, array('Location' => 'http://static.pompdelux.com'.$newpath));
+                $event->setResponse($response);
             }
 
             // try to map old shop ulr's to new ones

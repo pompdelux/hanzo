@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Loppuunmyyty</target>
+            </trans-unit>
+            <trans-unit id="home">
+                <source>home</source>
+                <target>Etusivulle</target>
+            </trans-unit>
+            <trans-unit id="show.basket">
+                <source>show.basket</source>
+                <target>Näytä ostoskori</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Valitse</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Määrä</target>
+            </trans-unit>
+            <trans-unit id="loading">
+                <source>loading</source>
+                <target>Ladataan</target>
+            </trans-unit>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
+                <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
+            </trans-unit>
+            <trans-unit id="all.products.out.of.stock">
+                <source>all.products.out.of.stock</source>
+                <target>Kaikki tämän kategorian tuotteet on jo myyty.</target>
+            </trans-unit>
+            <trans-unit id="pager.previous.page">
+                <source>pager.previous.page</source>
+                <target>Näytä edellinen sivu</target>
+            </trans-unit>
+            <trans-unit id="previous">
+                <source>previous</source>
+                <target>Edellinen</target>
+            </trans-unit>
+            <trans-unit id="pager.page">
+                <source>pager.page</source>
+                <target>Näytä sivu %page%</target>
+            </trans-unit>
+            <trans-unit id="pager.next.page">
+                <source>pager.next.page</source>
+                <target>Näytä seuraava sivu</target>
+            </trans-unit>
+            <trans-unit id="next">
+                <source>next</source>
+                <target>Seuraava</target>
+            </trans-unit>
+            <trans-unit id="product.details">
+                <source>product.details</source>
+                <target>Tuotteen kuvaus</target>
+            </trans-unit>
+            <trans-unit id="care.instructions">
+                <source>care.instructions</source>
+                <target>Pesuohjeet</target>
+            </trans-unit>
+            <trans-unit id="add.to.basket">
+                <source>add.to.basket</source>
+                <target>Lisää ostoskoriin</target>
+            </trans-unit>
+            <trans-unit id="product.added.to.cart">
+                <source>product.added.to.cart</source>
+                <target>&quot;%product%&quot; on nyt lisätty ostoskoriisi</target>
+            </trans-unit>
+            <trans-unit id="product.out.of.stock">
+                <source>product.out.of.stock</source>
+                <target>&quot;%product%&quot; on valitettavasti loppuunmyyty</target>
+            </trans-unit>
+            <trans-unit id="products">
+                <source>products</source>
+                <target>Tuote/Tuotteet</target>
+            </trans-unit>
+            <trans-unit id="latest.shipment.date">
+                <source>latest.shipment.date</source>
+                <target>Lähetetään viimeistään</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>price</source>
+                <target>Hinta</target>
+            </trans-unit>
+            <trans-unit id="total">
+                <source>total</source>
+                <target>Kokonaissumma</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Muokkaa</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Poista</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Koko</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Väri</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>Sähköpostiosoite</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Kirjoita sähköpostiosoite uudelleen</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Valinnan salasana</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Anna salasana uudelleen</target>
+            </trans-unit>
+            <trans-unit id="company.address">
+                <source>company.address</source>
+                <target>Yritys</target>
+            </trans-unit>
+            <trans-unit id="date">
+                <source>date</source>
+                <target>Päivämäärä</target>
+            </trans-unit>
+            <trans-unit id="event.id">
+                <source>event.id</source>
+                <target>Tapahtuma nro</target>
+            </trans-unit>
+            <trans-unit id="store.address">
+                <source>store.address</source>
+                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · Y-tunnus 29622035 · mail@pompdelux.dk · +45 8678 7871</target>
+            </trans-unit>
+            <trans-unit id="order.edit.global.notice">
+                <source>order.edit.global.notice</source>
+                <target>
+                  &lt;h2&gt;Huomaa:&lt;/h2&gt; &lt;p&gt; Olet muokkaamassa E-tilausnumeroa&lt;a href=&quot;%history_url%&quot; title=&quot;se ordren&quot;&gt;%order_id%&lt;/a&gt;.&lt;br&gt; Jos haluat keskeyttää tilauksen muokkaamisen - &lt;a href=&quot;%stop_url%&quot; title=&quot;stop editering af ordren&quot;&gt;napsauta tästä.&lt;/a&gt; &lt;/p&gt; &lt;p&gt;Jos haluat muuttaa väriä tai kokoa, klikkaa ostoskorissa olevaa kynää. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita. &lt;/p&gt; &lt;p class=&quot;last&quot;&gt;Kun muutokset ovat valmiit, napsauta &quot;Näytä ostoskori&quot; ja seuraa vaihteita 1 – 6. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.&lt;/p&gt;
+                </target>
+            </trans-unit>
+            <trans-unit id="customer.service.contact.info">
+                <source>customer.service.contact.info</source>
+                <target>
+                    &lt;strong&gt;Asiakaspalvelu&lt;/strong&gt;&lt;br&gt; Puhelin: 8678 7871&lt;br&gt; Sähköposti: &lt;a href=&quot;mailto:mail@pompdelux.dk&quot;&gt;mail@pompdelux.dk&lt;/a&gt;&lt;br&gt; Maanantaista torstaihin klo 9 - 15&lt;br&gt; Perjantaisin 9 - 14&lt;br&gt; Lounastauko klo 12 - 12.45&lt;br&gt; Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä.
+                </target>
+            </trans-unit>
+            <trans-unit id="footer.address">
+                <source>footer.address</source>
+                <target>
+                    &lt;ul&gt; &lt;li&gt;POMPdeLUX ApS&lt;/li&gt; &lt;li&gt;Møgelhøj 8&lt;/li&gt; &lt;li&gt;DK-8520 Lystrup&lt;/li&gt; &lt;li&gt;CVR-nr 29622035&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;mailto:mail@pompdelux.dk&quot;&gt;mail@pompdelux.dk&lt;/a&gt;&lt;/li&gt; &lt;li&gt;+45 8678 7871&lt;/li&gt; &lt;/ul&gt; &lt;ul style=&quot;width:280px;&quot;&gt; &lt;li&gt;&lt;a name=&quot;fb_share&quot; type=&quot;icon_link&quot;&gt;Del med dine venner&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;img src=&quot;%cdn%fx/images/creditcards_dk.png&quot; alt=&quot;credit cards&quot; title=&quot;credit cards&quot;&gt;&lt;/li&gt; &lt;/ul&gt;
+                </target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

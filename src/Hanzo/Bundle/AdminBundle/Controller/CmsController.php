@@ -43,6 +43,9 @@ class CmsController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
+        if(!$locale)
+            $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
+
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
             ->joinWithI18n($locale)
@@ -65,7 +68,7 @@ class CmsController extends CoreController
         );
     }
 
-    public function deleteAction($id)
+    public function deleteAction($id, $locale)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
@@ -73,8 +76,9 @@ class CmsController extends CoreController
 
         $cache = $this->get('cache_manager');
 
-        $node = CmsQuery::create()
-            ->findPK($id, $this->getDbConnection());
+        $node = CmsI18nQuery::create()
+            ->filterByLocale($locale)
+            ->findOneById($id, $this->getDbConnection());
 
         if($node) {
             $node->delete($this->getDbConnection());
@@ -90,11 +94,14 @@ class CmsController extends CoreController
         }
     }
 
-    public function addAction($locale = 'da_DK')
+    public function addAction($locale)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+
+        if(!$locale)
+            $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
 
         $cms_node = new CmsNode();
 
@@ -204,6 +211,9 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
+        
+        if(!$locale)
+            $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
 
         $cache = $this->get('cache_manager');
 
@@ -538,7 +548,7 @@ class CmsController extends CoreController
                     $menu .= '<span class="record-type">' . $record->getType() . '</span>';
                     $menu .= '<div class="actions">';
                     $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit">' . $t->trans('page.edit', array(), 'admin') . '</a>';
-                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete">' . $t->trans('page.delete', array(), 'admin') . '</a>';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete">' . $t->trans('page.delete', array(), 'admin') . '</a>';
                     $menu .= '</div>';
                     $menu .= '</div>';
 

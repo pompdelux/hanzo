@@ -18,6 +18,23 @@
     		{{ 'save.changes'|trans({}, 'admin') }}
     	</a>
     </li>
+    <li id="select-language">
+        <a class="open-menu" href="#">
+          <span class="flag {{ current_language }}"></span>{{ 'languages.selector'|trans({}, 'admin') }}
+        </a>
+        <div style="display:none;">
+          <ul>
+        {% for language in languages %}
+          <li>
+            <a href="{{ path('admin_cms', {'locale' : language.locale}) }}">
+              <span class="flag {{ language.locale }}"></span>{{ language.name }}
+            </a>
+          </li>
+        {% endfor %}
+          </ul>
+        </div>
+    </current_
+    </li>
   </ul>
 </nav>
 
@@ -46,7 +63,7 @@
         <a href="{{ path('admin_cms_edit', {'id' : node.id }) }}">
           {{ 'admin.cms.inactive_nodes.edit'|trans({}, 'admin') }}
         </a>
-        <a href="{{ path('admin_cms_delete', {'id' : node.id }) }}" class="delete">
+        <a href="{{ path('admin_cms_delete', {'id' : node.id , 'locale' : node.locale}) }}" class="delete">
           {{ 'admin.cms.inactive_nodes.delete'|trans({}, 'admin') }}
         </a>
       </th>

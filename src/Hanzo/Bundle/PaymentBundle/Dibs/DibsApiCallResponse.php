@@ -26,7 +26,15 @@ class DibsApiCallResponse
     public function __construct( $rawResponse, $function )
     {
         $this->parse( $rawResponse );
-        $this->setStatus( $function );
+        switch ($function) 
+        {
+          case 'cgi-adm/callback.cgi': // function that does not contain status field
+            // code...
+            break;
+          default:
+              $this->setStatus( $function );
+            break;
+        }
     }
 
     /**
@@ -275,6 +283,14 @@ class DibsApiCallResponse
                         $desc = $codes[$statusId];
                         $isError = false;
                     }
+                }
+            }
+            else
+            {
+                if ( isset($codes[$statusId]) ) 
+                {
+                    $desc = $codes[$statusId];
+                    $isError = false;
                 }
             }
         }
