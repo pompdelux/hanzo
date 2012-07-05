@@ -88,8 +88,8 @@ class AppKernel extends Kernel
         $config_dir = $base_dir.$dir.'/';
 
         $mode = $this->getStoreMode();
-        $loader->load($base_dir.'firewall_'.$mode.'.yml');
 
+        $loader->load($base_dir.'firewall_'.$mode.'.yml');
         $loader->load($config_dir.'config.yml');
         $loader->load($config_dir.'_'.$lang.'.yml');
 
