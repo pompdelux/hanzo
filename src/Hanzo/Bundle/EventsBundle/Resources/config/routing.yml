@@ -1,7 +1,3 @@
-EventsBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EventsBundle:Default:index }
-
 events_index:
     pattern: /events
     defaults: { _controller: EventsBundle:Events:index }
@@ -46,18 +42,32 @@ events_delete:
 
 events_invite:
     pattern: /events/invite/{key}
-    defaults: 
+    defaults:
         _controller: EventsBundle:Events:invite
         key: null
 
 events_rsvp:
     pattern: /events/rsvp/{key}
-    defaults: 
+    defaults:
         _controller: EventsBundle:Events:rsvp
         key: null
 
 events_tell_a_friend:
     pattern: /events/tellafriend/{key}
-    defaults: 
+    defaults:
         _controller: EventsBundle:Events:tellAFriend
         key: null
+
+events_sms_rsvp:
+    pattern: /events/sms/rsvp
+    defaults:
+        _controller: EventsBundle:Sms:rsvp
+    requirements:
+        _method:  GET
+
+events_sms_test:
+    pattern: /events/sms/test-123
+    defaults:
+        _controller: EventsBundle:Sms:sendtest
+    requirements:
+        _method:  GET
