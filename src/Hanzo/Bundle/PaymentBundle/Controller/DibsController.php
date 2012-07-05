@@ -156,9 +156,15 @@ class DibsController extends CoreController
      **/
     public function processAction($order_id)
     {
+        $session = $this->get('session');
+        if ( $session->has('last_successful_order_id') && $session->get('last_successful_order_id') == $order_id )
+        {
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
         $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );
 
-        if ( $order->getId() !== $this->get('session')->get('order_id') )
+        if ( !empty($order) && $order->getId() !== $this->get('session')->get('order_id') )
         {
           error_log(__LINE__.':'.__FILE__.' Order id mismatch, in url: '.$order_id. ' in session: '. $this->get('session')->get('order_id') ); // hf@bellcom.dk debugging 
         }

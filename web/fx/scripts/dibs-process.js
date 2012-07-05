@@ -2,7 +2,7 @@ var dibs_process = (function($) {
   var pub = {};
   var intervalID;
   var currentTimeSpend = 0;
-  var maxttl = 30000;
+  var maxttl = 60000;
   var interval = 5000;
 
   function checkState() {

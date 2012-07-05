@@ -4,7 +4,7 @@ parameters:
 services:
     hanzo.checkout:
         class: Hanzo\Bundle\CheckoutBundle\Event\CheckoutListener
-        arguments: [ @mail_manager, @ax_manager, @translator ]
+        arguments: [ @mail_manager, @ax_manager, @translator, @session ]
         tags:
             - { name: kernel.event_listener, event: order.payment.collected, method: onPaymentCollected }
             - { name: kernel.event_listener, event: order.payment.failed, method: onPaymentFailed }

@@ -562,6 +562,9 @@ class DefaultController extends CoreController
         // one-to-one, we can only have one session_id or order in the database....
         $session->migrate();
 
+        // hf@bellcom.dk: used to avoid user pressing back on success page to get back to process, which then sends the customer to failed
+        $session->set('last_successful_order_id',$order->getId());
+
         return $this->render('CheckoutBundle:Default:success.html.twig', array(
             'order_id' => $order->getId(),
             'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
