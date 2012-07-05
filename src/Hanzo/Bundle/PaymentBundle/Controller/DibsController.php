@@ -150,7 +150,7 @@ class DibsController extends CoreController
             $goto = true;
         }
 
-        return $this->json_response( array('state' => $order->getState(), 'redirect_to_basket', $goto ) );
+        return $this->json_response( array('state' => $order->getState(), 'redirect_to_basket' => $goto ) );
     }
 
     /**
