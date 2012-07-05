@@ -141,9 +141,16 @@ class DibsController extends CoreController
      **/
     public function stateCheckAction()
     {
-        $order = OrdersPeer::getCurrent();
+        $order   = OrdersPeer::getCurrent();
+        $goto    = false;
+        $session = $this->get('session');
 
-        return $this->json_response( array('state' => $order->getState() ) );
+        if ( $session->has('last_successful_order_id') )
+        {
+            $goto = true;
+        }
+
+        return $this->json_response( array('state' => $order->getState(), 'redirect_to_basket', $goto ) );
     }
 
     /**
@@ -156,13 +163,6 @@ class DibsController extends CoreController
      **/
     public function processAction($order_id)
     {
-        $session = $this->get('session');
-        if ( $session->has('last_successful_order_id') && $session->get('last_successful_order_id') == $order_id )
-        {
-            error_log(__LINE__.':'.__FILE__.' Performing redirect to basket on last successful order id: '. $order_id ); // hf@bellcom.dk debugging
-            return $this->redirect($this->generateUrl('basket_view'));
-        }
-
         $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );
 
         if ( !empty($order) && $order->getId() !== $this->get('session')->get('order_id') )
