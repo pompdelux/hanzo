@@ -287,11 +287,11 @@ DOC;
 
                 $ext = pathinfo($parameters['file'], PATHINFO_EXTENSION);
 
-                if (empty($parameters['date_label'])) {
-                    return '<a href="'.$cdn.'files/'.$parameters['file'].'" rel="external" class="media_file filetype-'.$ext.'">'.$parameters['text'].'</a>';
-                }
+                #if (empty($parameters['date_label'])) {
+                    return '<a href="'.$cdn.'images/'.$parameters['file'].'" rel="external" class="media_file filetype-'.$ext.'">'.$parameters['text'].'</a>';
+                #}
 
-                return '<a href="'.$cdn.'files/'.$parameters['file'].'" rel="external" class="media_file rewrite filetype-'.$ext.'" data-dateformat="'.$parameters['date_format'].'" data-datelabel="'.$parameters['date_label'].'">'.$parameters['text'].'</a> <em></em> ';
+                return '<a href="'.$cdn.'images/'.$parameters['file'].'" rel="external" class="media_file rewrite filetype-'.$ext.'" data-dateformat="'.$parameters['date_format'].'" data-datelabel="'.$parameters['date_label'].'">'.$parameters['text'].'</a> <em></em> ';
 
                 break;
         }

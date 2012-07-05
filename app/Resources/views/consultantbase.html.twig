@@ -70,8 +70,8 @@
   </div><!-- /div#main -->
 
   <nav class="main">
-    {% render 'HanzoCMSBundle:Menu:menu' with {'type': left_menu.type, 'from': left_menu.from, 'thread': 10 } %}
   {% if is_granted('ROLE_CONSULTANT') %}
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': left_menu.type, 'from': left_menu.from, 'thread': 10 } %}
   {% endif %}
   </nav><!-- /nav.main -->
 
