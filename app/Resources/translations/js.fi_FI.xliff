@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update">
+                <source>update</source>
+                <target>Päivitä</target>
+            </trans-unit>
+            <trans-unit id="forward">
+                <source>forward</source>
+                <target>Jatka</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Piilota kaikki</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Näytä kaikki</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Sulje</target>
+            </trans-unit>
+            <trans-unit id="ok">
+                <source>ok</source>
+                <target>Ok</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Peruuta</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Huomaa!</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Valitse</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Määrä</target>
+            </trans-unit>
+            <trans-unit id="please.wait">
+                <source>please.wait</source>
+                <target>Odota, ole hyvä</target>
+            </trans-unit>
+            <trans-unit id="action.completed">
+                <source>action.completed</source>
+                <target>Pyyntösi suoritettiin</target>
+            </trans-unit>
+            <trans-unit id="an.error.occurred">
+                <source>an.error.occurred</source>
+                <target>Tapahtui virhe</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>Helmikuu 20, 2012 09:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target>{d&lt;}{dn} {dl} {d&gt;} {hn} {hl} {mn} {ml} {sn} {sl}</target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target>&lt;p&gt;Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.&lt;/p&gt;&lt;p&gt;Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: &lt;strong&gt;%date%&lt;/strong&gt;.</target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning">
+                <source>delete.from.basket.warning</source>
+                <target>Haluatko varmasti poistaa tuotteen &lt;strong&gt;%product%&lt;/strong&gt; ostoskoristasi?</target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target>&lt;h2&gt;Huomaa: tuotetta &lt;/h2&gt;&lt;strong&gt;&quot;%product%&quot;&lt;/strong&gt; ei ole tällä hetkellä varastossa.&lt;br&gt;Koko tilauksesi arvioidaan lähtevän varastostamme viimeistään &lt;strong&gt;%date%&lt;/strong&gt;.</target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly">
+                <source>not.filled.correctly</source>
+                <target>Kentän täytössä on virhe</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business">
+                <source>checkout.shipping_business</source>
+                <target>Olet valinnut vaihtoehdon &quot;Post Danmark Erhverv&quot;. Muista vaihtaa toimitusosoite napsauttamalla &quot;Muuta toimitusosoitetta&quot; (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_overnightbox">
+                <source>checkout.shipping_overnightbox</source>
+                <target>Olet valinnut lähetystavaksi døgnpost-toimituksen, mutta et ole antanut døgnpost-osoitetta. Korjaa virhe napsauttamalla &quot;Muuta døgnpost-osoitetta&quot;.</target>
+            </trans-unit>
+            <trans-unit id="loading.std">
+                <source>loading.std</source>
+                <target>Luetaan ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search">
+                <source>loading.search</source>
+                <target>Haetaan ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products">
+                <source>loading.search.products</source>
+                <target>Etsitään tuotteita ...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target>&lt;font color=&quot;#A10000&quot;&gt;&lt;b&gt;Tilauksen lähetyspäivä voi siirtyä eteenpäin muokkauksen vuoksi.&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;Voit muokata tilausta seuraavasti:&lt;br&gt;&lt;br&gt;1) Aloita muokkaus klikkaamalla &quot;Muokkaa&quot;. Tilatut tuotteet siirretään sen jälkeen takaisin ostoskoriin.&lt;br&gt;&lt;br&gt;2) Jos haluat muuttaa tuotteen väriä tai kokoa, napsauta kynää ostoskorissa. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita.&lt;br&gt;&lt;br&gt;3) Kun muutokset ovat valmiit, napsauta &quot;Näytä ostoskori&quot; ja seuraa vaihteita 1 – 5. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.&lt;br&gt;&lt;br&gt;&lt;b&gt;Huomaa:&lt;/b&gt; Visa Electronia tai MasterCardia käytettäessä on huomioitava seuraavaa:&lt;ul&gt;&lt;li&gt;Ostosten koko määrä huomioidaan toistaiseksi, kun tilausta on muutettu. &lt;/li&gt;&lt;li&gt;POMPdeLUX poistaa alkuperäisen tilauksen katevarauksen, joten meidän osaltamme varattuna on vain muutetun tilauksen kokonaissumma. Rahoituslaitoksissa varauksen poistaminen saattaa kuitenkin kestää jopa 6 viikkoa. &lt;/li&gt;&lt;/ul&gt;</target>
+            </trans-unit>
+            <trans-unit id="delete.order.notice">
+                <source>delete.order.notice</source>
+                <target>Olet poistamassa tilausta. Haluatko varmasti poistaa koko tilauksen?&lt;br&gt;&lt;br&gt;Tilauksen poistaminen poistaa luottokorttimaksuvarauksen automaattisesti.&lt;br&gt;&lt;br&gt;Poista tilaus napsauttamalla &quot;Poista&quot;.</target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Edustaja</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Puhelin</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>Sähköposti</target>
+            </trans-unit>
+            <trans-unit id="mannequin.empty">
+                <source>mannequin.empty</source>
+                <target>Yhtään tuotetta ei ole valittu</target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Loppuunmyyty</target>
+            </trans-unit>
+            <trans-unit id="wall.add.response">
+                <source>wall.add.response</source>
+                <target>Kommentoi sisältöä</target>
+            </trans-unit>
+            <trans-unit id="wall.share">
+                <source>wall.share</source>
+                <target>Osa</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.like.link">
+                <source>wall.remove.like.link</source>
+                <target>Poista Tykkää sisällöstä</target>
+            </trans-unit>
+            <trans-unit id="wall.add.like.link">
+                <source>wall.add.like.link</source>
+                <target>Tykkää sisältöä</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.dislike.link">
+                <source>wall.remove.dislike.link</source>
+                <target>Poista Älä tykkää sisällöstä</target>
+            </trans-unit>
+            <trans-unit id="wall.add.dislike.link">
+                <source>wall.add.dislike.link</source>
+                <target>Älä tykkää sisältöä</target>
+            </trans-unit>
+            <trans-unit id="wall.edit.entry">
+                <source>wall.edit.entry</source>
+                <target>Muokkaa sisältöä</target>
+            </trans-unit>
+            <trans-unit id="wall.update">
+                <source>wall.update</source>
+                <target>Päivitä</target>
+            </trans-unit>
+            <trans-unit id="wall.show.all">
+                <source>wall.show.all</source>
+                <target>Näytä kaikki vastaukset</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.plural.%likes%">
+                <source>wall.likes.plural.%likes%</source>
+                <target>%likes% pitivät tästä sisällöstä.</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.single.%likes%">
+                <source>wall.likes.single.%likes%</source>
+                <target>Yksi piti tästä sisällöstä.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.plural.%likes%">
+                <source>wall.dislikes.plural.%likes%</source>
+                <target>%likes% ei pitänyt tästä sisällöstä.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.single.%likes%">
+                <source>wall.dislikes.single.%likes%</source>
+                <target>Yksi ei pitänyt tästä sisällöstä.</target>
+            </trans-unit>
+            <trans-unit id="wall.like.popup.header">
+                <source>wall.like.popup.header</source>
+                <target>Nämä henkilöt pitivät tai eivät pitäneet sisällöstä.</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.link">
+                <source>wall.delete.entry.link</source>
+                <target>Poista sisältö</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.confirm">
+                <source>wall.delete.entry.confirm</source>
+                <target>Haluatko varmasti poistaa tämän sisällön?</target>
+            </trans-unit>
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
+                <target>Sähköpostiosoitetta &quot;%email%&quot; ei ole kirjattu</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
