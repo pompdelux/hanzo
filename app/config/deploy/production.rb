@@ -4,7 +4,7 @@
 
 set :deploy_to,   "/var/www/pompdelux" 
 
-symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl"]
+symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_dk_consultant", "prod_se_consultant", "prod_no_consultant"]
 
 set :adminserver, "pdladmin"
 
@@ -56,8 +56,8 @@ after 'symfony:cache:clear', 'deploy:apcclear'
 
 after 'deploy:restart', 'deploy:update_permissions'
 after 'deploy:restart', 'deploy:update_permissions_shared'
-after 'deploy:restart', 'deploy:send_email'
 after 'deploy:restart', 'deploy:cleanup'
+after 'deploy:restart', 'deploy:send_email'
 
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
