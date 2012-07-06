@@ -57,6 +57,7 @@ if ($lang) {
   exit;
 }
 
+Tools::handleRobots();
 $env = Tools::mapDomainToEnvironment();
 
 $kernel = new AppKernel('prod_'.$env, false);

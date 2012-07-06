@@ -248,6 +248,15 @@ class Tools
         return $env;
     }
 
+    public static function handleRobots()
+    {
+        // robots only allowed on the www domain
+        if(($_SERVER['REQUEST_URI'] == '/robots.txt') && (substr($_SERVER['HTTP_HOST'], 0, 4) !== 'www.')) {
+          header('Content-type: text/plain');
+          die("User-agent: *\nDisallow: /\n");
+        }
+    }
+
 
     /**
      * image helpers
