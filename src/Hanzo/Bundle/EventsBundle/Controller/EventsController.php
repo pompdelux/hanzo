@@ -159,12 +159,6 @@ class EventsController extends CoreController
                     'label' => 'events.type.label',
                     'translation_domain' => 'events'
                 )
-            )->add('is_open', 'checkbox',
-                array(
-                    'label' => 'events.is_open.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                )
             )->add('notify_hostess', 'checkbox',
                 array(
                     'label' => 'events.notify_hostess.label',
