@@ -254,14 +254,6 @@ class Tools
         if(($_SERVER['REQUEST_URI'] == '/robots.txt')) {
             header('Content-type: text/plain');
 
-            if ((substr($_SERVER['HTTP_HOST'], 0, 7) == 'static.')) {
-                die("User-agent: *
-Disallow: /images/xhjkpiydjns/
-Disallow: /images/pdf/
-Disallow: /images/mailsignatur/
-");
-            }
-
             if ((substr($_SERVER['HTTP_HOST'], 0, 4) !== 'www.')) {
                 die("User-agent: *\nDisallow: /\n");
             }
