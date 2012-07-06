@@ -472,7 +472,8 @@ class AxService
         try {
             return $this->client->{$service}($request);
         } catch (SoapFault $e) {
-            Tools::log($this->client->__getLastRequest());
+            $this->logger->addCritical('Request.: '.$this->client->__getLastRequest());
+            $this->logger->addCritical('Response: '.$this->client->__getLastResponse());
             return $e;
         }
     }
