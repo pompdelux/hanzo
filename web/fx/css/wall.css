@@ -117,6 +117,12 @@
 #wall-posts .wall-post .wall-subpost.likes .like div.like-pop {
   display: none;
 }
+.wall-post img.avatar {
+  width: 100px;
+}
+.wall-post .wall-subpost img.avatar {
+  width: auto;
+}
 div.dialoug.like-pop {}
 div.dialoug.like-pop h3 {
 }
@@ -130,10 +136,10 @@ div.dialoug.like-pop li {
   padding-top: 20px;
 }
 div.dialoug.like-pop li.like {
-  background: url(/fx/images/wall/like.png) center right no-repeat;  
+  background: url(/fx/images/wall/like.png) center right no-repeat;
 }
 div.dialoug.like-pop li.dislike {
-  background: url(/fx/images/wall/dislike.png) center right no-repeat;  
+  background: url(/fx/images/wall/dislike.png) center right no-repeat;
 }
 
 div.dialoug.like-pop li img,
