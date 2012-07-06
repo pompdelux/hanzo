@@ -126,6 +126,71 @@
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>The e-mail address "%email%" is not subscribed</target>
             </trans-unit>
+
+            <trans-unit id="wall.add.response">
+                <source>wall.add.response</source>
+                <target>Lägg till kommentar</target>
+            </trans-unit>
+            <trans-unit id="wall.share">
+                <source>wall.share</source>
+                <target>Dela</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.like.link">
+                <source>wall.remove.like.link</source>
+                <target>Gillar inte</target>
+            </trans-unit>
+            <trans-unit id="wall.add.like.link">
+                <source>wall.add.like.link</source>
+                <target>Gilla</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.dislike.link">
+                <source>wall.remove.dislike.link</source>
+                <target>Gilla inte</target>
+            </trans-unit>
+            <trans-unit id="wall.add.dislike.link">
+                <source>wall.add.dislike.link</source>
+                <target>Gilla inte</target>
+            </trans-unit>
+            <trans-unit id="wall.edit.entry">
+                <source>wall.edit.entry</source>
+                <target>Ret kommentaren</target>
+            </trans-unit>
+            <trans-unit id="wall.update">
+                <source>wall.update</source>
+                <target>Opdater</target>
+            </trans-unit>
+            <trans-unit id="wall.show.all">
+                <source>wall.show.all</source>
+                <target>Vis alle kommentarer</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.plural.%likes%">
+                <source>wall.likes.plural.%likes%</source>
+                <target>%likes% säljare gillar detta.</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.single.%likes%">
+                <source>wall.likes.single.%likes%</source>
+                <target>Én säljare gillar detta.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.plural.%likes%">
+                <source>wall.dislikes.plural.%likes%</source>
+                <target>%likes% konsulenter gillar inte.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.single.%likes%">
+                <source>wall.dislikes.single.%likes%</source>
+                <target>Én konsulent gillar inte.</target>
+            </trans-unit>
+            <trans-unit id="wall.like.popup.header">
+                <source>wall.like.popup.header</source>
+                <target>Disse personer synes godt om eller kan ikke lide opslaget.</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.link">
+                <source>wall.delete.entry.link</source>
+                <target>Radera inlägg</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.confirm">
+                <source>wall.delete.entry.confirm</source>
+                <target>Är du säker på att du vill radera inlägget?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
