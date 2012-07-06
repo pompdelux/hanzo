@@ -15,15 +15,19 @@ use Hanzo\Model\WallLikesQuery;
 
 class DefaultController extends CoreController
 {
-    
+
     public function indexAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
             return $this->redirect($this->generateUrl('login'));
         }
 
+        $code = explode('_', $this->get('session')->getLocale());
+        $code = array_pop($code);
+
         return $this->render('WallBundle:Default:wall.html.twig', array(
-            'page_type'     => 'wall'
+            'postfix' => $code,
+            'page_type' => 'wall'
         ));
     }
 
@@ -33,7 +37,7 @@ class DefaultController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
             throw new AccessDeniedException();
         }
-        
+
         $wall_posts = WallQuery::create()
             ->join('Customers')
             ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
@@ -46,7 +50,6 @@ class DefaultController extends CoreController
         ;
         $posts = array();
         foreach ($wall_posts as $wall_post) {
-
 
             $likes = WallLikesQuery::create()
                 ->join('Customers')
@@ -115,7 +118,7 @@ class DefaultController extends CoreController
                 'number_of_subposts' => $sub_posts->count(),
                 'sub_posts' => $sub_posts_arr
             );
-            
+
 
         }
         //print_r(get_class_methods($wall_posts));
@@ -303,7 +306,7 @@ class DefaultController extends CoreController
                 // If they are not the same, its a change from like <> dislike.
                 $is_liked->setStatus($status);
                 $is_liked->save();
-                
+
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status' => true,
@@ -336,7 +339,7 @@ class DefaultController extends CoreController
             throw new AccessDeniedException();
         }
         $wall_entry = WallQuery::create();
-        
+
         if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             $wall_entry = $wall_entry->filterByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
         }

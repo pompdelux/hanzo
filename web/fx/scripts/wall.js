@@ -6,30 +6,30 @@
 
 (function(jQuery) {
   jQuery.fn.simpleautogrow = function() {
-	return this.each(function() {
-	  new jQuery.simpleautogrow(this);
-	});
+  	return this.each(function() {
+  	  new jQuery.simpleautogrow(this);
+  	});
   };
   jQuery.simpleautogrow = function (e) {
-	var self = this;
-	var $e = this.textarea = jQuery(e).css({overflow: 'hidden', display: 'block'}).bind('focus', function() {
-	  this.timer = window.setInterval(function() {
-		self.checkExpand();
-	  }, 100);
-	}).bind('blur', function() {
-	  clearInterval(this.timer);
-	});
-	this.border = $e.outerHeight() - $e.innerHeight();
-	this.clone = $e.clone().css({position: 'absolute', visibility: 'hidden'}).attr('name', '')
-	$e.height(e.scrollHeight + this.border).after(this.clone);
-	this.checkExpand();
+  	var self = this;
+  	var $e = this.textarea = jQuery(e).css({overflow: 'hidden', display: 'block'}).bind('focus', function() {
+  	  this.timer = window.setInterval(function() {
+    		self.checkExpand();
+  	  }, 100);
+  	}).bind('blur', function() {
+  	  clearInterval(this.timer);
+  	});
+  	this.border = $e.outerHeight() - $e.innerHeight();
+  	this.clone = $e.clone().css({position: 'absolute', visibility: 'hidden'}).attr('name', '')
+  	$e.height(e.scrollHeight + this.border).after(this.clone);
+  	this.checkExpand();
   };
   jQuery.simpleautogrow.prototype.checkExpand = function() {
-	var target_height = this.clone[0].scrollHeight + this.border;
-	if (this.textarea.outerHeight() != target_height) {
-	  this.textarea.height(target_height + 'px');
-	}
-	this.clone.attr('value', this.textarea.attr('value')).height(0);
+  	var target_height = this.clone[0].scrollHeight + this.border;
+  	if (this.textarea.outerHeight() != target_height) {
+  	  this.textarea.height(target_height + 'px');
+  	}
+  	this.clone.attr('value', this.textarea.attr('value')).height(0);
   };
 })(jQuery);
 
@@ -42,17 +42,23 @@ var wall = (function($) {
 
 	  jQuery.data(document.body, 'page', 1);
 	  jQuery.data(document.body, 'locked', false);
-	  
+
 	  yatzy.compile('postItems');
 	  getWallPosts();
 
+  };
+
+  pub.avatarFallback = function(img) {
+    if (img.src.indexOf('JohnDoe') == -1) {
+      img.src = img.src.replace(/[0-9]+/, 'JohnDoe');
+    }
   };
 
   function getWallPosts() {
 	if (false == jQuery.data(document.body, 'locked')) {
 		jQuery.data(document.body, 'locked', true);
 		var pager = jQuery.data(document.body, 'page');
-		$('#wall-posts').append('<div class="wall-loading-data"><span>Henter...</span> <img src="/templates/konsulent/images/ajax-loader-large.gif" alt="" /></div>');
+		$('#wall-posts').append('<div class="wall-loading-data"><span>Henter...</span> <img src="'+cdn_url+'fx/images/wall/ajax-loader-large.gif" alt="" /></div>');
 		$.ajax({
 			url : base_url + 'wall/get-wall/' + pager,
 			data : {_xjson : true},

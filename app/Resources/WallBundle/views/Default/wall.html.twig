@@ -17,15 +17,15 @@
   </div>
   <div id="load-wall-posts">---</div>
 </div>
-    {% raw %}
+
     <script type="text/html" id="postItems">
     <? for(i=0, l=data.length; i<l; i++) {?>
       <div class="wall-post<?=data[i].is_last ? ' last' : (data[i].is_first ? ' first' : '') ?> clearfix" id="wall-post-<?=data[i].id ?>">
-        <img src="<?=cdn_url?>images/debitor/<?=data[i].customers_id ?>.jpg?1" title="<?=data[i].author ?>" alt="<?=data[i].author ?>" />
-        
+        <img src="<?=cdn_url?>images/debitor{{ postfix }}/<?=data[i].customers_id ?>.jpg" title="<?=data[i].author ?>" alt="<?=data[i].author ?>" class="avatar" onerror="wall.avatarFallback(this);">
+
         <div class="cell">
           <p class="entry">
-            <span class="author"><?=data[i].author?> 
+            <span class="author"><?=data[i].author?>
             <? if(undefined !== data[i].city) {?>
                 (<?=data[i].city?>)
             <? }?>
@@ -37,7 +37,7 @@
           <div class="meta">
             <span class="date"><?=data[i].created_at?></span>
             <div class="links">
-                <a href="<?=base_url?>wall/like-entry/<?=data[i].id?>/1" 
+                <a href="<?=base_url?>wall/like-entry/<?=data[i].id?>/1"
                     rel="wall-like"
                     class="add-like">
                     <? if(undefined !== data[i].is_liked && data[i].is_liked == 1) {?>
@@ -56,7 +56,7 @@
                       </span>
                     <? }?>
                 </a><br>
-                <a href="<?=base_url?>wall/like-entry/<?=data[i].id?>/0" 
+                <a href="<?=base_url?>wall/like-entry/<?=data[i].id?>/0"
                     rel="wall-like"
                     class="add-dislike">
 
@@ -83,7 +83,7 @@
                       <input type="hidden" name="parent_id" value="<?=data[i].id?>">
                       <dl>
                         <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=ExposeTranslation.get('js:wall.share')?>"></textarea></dt>
-                        <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.share')?>" class="cssbutton" /></dd>
+                        <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.share')?>" class="cssbutton"></dd>
                       </dl>
                     </form>
                   </div>
@@ -96,14 +96,14 @@
                           <input type="hidden" name="id" value="<?=data[i].id?>">
                           <dl>
                             <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=ExposeTranslation.get('js:wall.update')?>"><?=data[i].clean_message?></textarea></dt>
-                            <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.update')?>" class="cssbutton" /></dd>
+                            <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.update')?>" class="cssbutton"></dd>
                           </dl>
                         </form>
                       </div>
                     </div>
                 <? }?>
                 <? if(typeof logged_in_as_admin !== "undefined" || data[i].is_author) {?>
-                <a href="<?=base_url?>wall/delete-entry/<?=data[i].id?>" 
+                <a href="<?=base_url?>wall/delete-entry/<?=data[i].id?>"
                     rel="wall-delete"
                     class="delete-entry">
                   <?=ExposeTranslation.get('js:wall.delete.entry.link')?>
@@ -137,7 +137,7 @@
                       <ul>
                         <? for(j=0, k=data[i].likes.length; j<k; j++) {?>
                             <li class="clearfix <?=data[i].likes[j].status ? 'like' : 'dislike'?>">
-                                <img src="<?=cdn_url?>images/debitor/<?=data[i].likes[j].customers_id ?>.jpg?1" title="<?=data[i].likes[j].name?>" alt="<?=data[i].likes[j].name?>" />
+                                <img src="<?=cdn_url?>images/debitor{{ postfix }}/<?=data[i].likes[j].customers_id ?>.jpg" title="<?=data[i].likes[j].name?>" alt="<?=data[i].likes[j].name?>" class="avatar" onerror="wall.avatarFallback(this);">
                                 <div><?=data[i].likes[j].name?></div>
                             </li>
                         <? }?>
@@ -157,7 +157,7 @@
                       <div class="hide">
                     <? }?>
                     <div class="wall-post<?=data[i].sub_posts[j].is_last ? ' last' : (data[i].sub_posts[j].is_first ? ' first' : '') ?> clearfix" id="wall-post-<?=data[i].sub_posts[j].id ?>">
-                        <img src="<?=cdn_url?>images/debitor/<?=data[i].sub_posts[j].customers_id ?>.jpg?1" title="<?=data[i].sub_posts[j].author ?>" alt="<?=data[i].sub_posts[j].author ?>" />
+                        <img src="<?=cdn_url?>images/debitor{{ postfix }}/<?=data[i].sub_posts[j].customers_id ?>.jpg" title="<?=data[i].sub_posts[j].author ?>" alt="<?=data[i].sub_posts[j].author ?>" class="avatar" onerror="wall.avatarFallback(this);">
                         <div class="cell">
                             <p class="entry">
                                 <span class="author"><?=data[i].sub_posts[j].author?>
@@ -176,7 +176,7 @@
                                           <form action="<?=base_url?>wall/edit-entry/<?=data[i].sub_posts[j].id?>" method="post" class="wall-subentry-form">
                                             <dl>
                                               <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=ExposeTranslation.get('js:wall.update')?>"><?=data[i].sub_posts[j].clean_message?></textarea></dt>
-                                              <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.update')?>" class="cssbutton" /></dd>
+                                              <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.update')?>" class="cssbutton"></dd>
                                             </dl>
                                           </form>
                                         </div>
@@ -184,7 +184,7 @@
                                   <? }?>
 
                                   <? if(typeof logged_in_as_admin !== "undefined" || data[i].is_author) {?>
-                                  <a href="<?=base_url?>wall/delete-entry/<?=data[i].sub_posts[j].id?>" 
+                                  <a href="<?=base_url?>wall/delete-entry/<?=data[i].sub_posts[j].id?>"
                                       rel="wall-delete"
                                       class="delete-entry">
                                     <?=ExposeTranslation.get('js:wall.delete.entry.link')?>
@@ -207,7 +207,7 @@
     <script type="text/html" id="subPostItems">
     <? for(i=0, l=data.length; i<l; i++) {?>
       <div class="wall-post<?=data[i].is_last ? ' last' : (data[i].is_first ? ' first' : '') ?> clearfix" id="wall-post-<?=data[i].id ?>">
-        <img src="<?=cdn_url?>images/debitor/<?=data[i].customers_id ?>.jpg?1" title="<?=data[i].author ?>" alt="<?=data[i].author ?>" />
+        <img src="<?=cdn_url?>images/debitor{{ postfix }}/<?=data[i].customers_id ?>.jpg" title="<?=data[i].author ?>" alt="<?=data[i].author ?>" class="avatar" onerror="wall.avatarFallback(this);">
         <div class="cell">
             <p class="entry">
                 <span class="author"><?=data[i].author?>
@@ -227,7 +227,7 @@
                           <form action="<?=base_url?>wall/edit-entry/<?=data[i].id?>" method="post" class="wall-subentry-form">
                             <dl>
                               <dt><textarea class="grow subform" cols="40" rows="1" name="message" title="<?=ExposeTranslation.get('js:wall.update')?>"><?=data[i].clean_message?></textarea></dt>
-                              <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.update')?>" class="cssbutton" /></dd>
+                              <dd><input type="submit" name="wall_submit" value="<?=ExposeTranslation.get('js:wall.update')?>" class="cssbutton"></dd>
                             </dl>
                           </form>
                         </div>
@@ -239,7 +239,7 @@
       </div>
     <? }?>
     </script>
-    {% endraw %}
+
 {% endblock %}
 
 {% block javascript %}
