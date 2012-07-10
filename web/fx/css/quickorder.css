@@ -1,0 +1,7 @@
+#quickorder form {
+	padding-bottom:50px;
+}
+#quickorder input:focus,
+#quickorder select:focus {
+	border:2px solid white;
+}
