@@ -36,17 +36,17 @@ class TwigStringService
         $template = md5($data).'.html.twig';
 
         $file = $this->path.$template;
-        file_put_contents($file, $data);
+        // file_put_contents($file, $data);
 
         // // cache ? if we do, we need some sort of cleanup thingy
-        // if (!file_exists($file)) {
-        //     file_put_contents($file, $data);
-        // } else {
-        //     touch($file);
-        // }
+        if (!file_exists($file)) {
+            file_put_contents($file, $data);
+        } else {
+            touch($file);
+        }
 
         $html = $this->twig->render('ServiceBundle:TS:'.$template, $parameters);
-        unlink($file);
+        //unlink($file);
 
         return $html;
     }

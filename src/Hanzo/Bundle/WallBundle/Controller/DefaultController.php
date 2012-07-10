@@ -15,15 +15,19 @@ use Hanzo\Model\WallLikesQuery;
 
 class DefaultController extends CoreController
 {
-    
+
     public function indexAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
             return $this->redirect($this->generateUrl('login'));
         }
 
+        $code = explode('_', $this->get('session')->getLocale());
+        $code = array_pop($code);
+
         return $this->render('WallBundle:Default:wall.html.twig', array(
-            'page_type'     => 'wall'
+            'postfix' => $code,
+            'page_type' => 'wall'
         ));
     }
 
@@ -33,7 +37,7 @@ class DefaultController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
             throw new AccessDeniedException();
         }
-        
+
         $wall_posts = WallQuery::create()
             ->join('Customers')
             ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
@@ -46,7 +50,6 @@ class DefaultController extends CoreController
         ;
         $posts = array();
         foreach ($wall_posts as $wall_post) {
-
 
             $likes = WallLikesQuery::create()
                 ->join('Customers')
@@ -115,7 +118,7 @@ class DefaultController extends CoreController
                 'number_of_subposts' => $sub_posts->count(),
                 'sub_posts' => $sub_posts_arr
             );
-            
+
 
         }
         //print_r(get_class_methods($wall_posts));
@@ -180,6 +183,7 @@ class DefaultController extends CoreController
         }
         $request = $this->get('request');
         if ('POST' === $request->getMethod()) {
+            $creator = $this->get('security.context')->getToken()->getUser();
 
             $wall_entry = new Wall();
 
@@ -187,10 +191,9 @@ class DefaultController extends CoreController
                 $wall_entry->setParentId($id);
             }
 
-            $wall_entry->setCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+            $wall_entry->setCustomersId($creator->getPrimaryKey());
             $wall_entry->setMessate($request->get('message')); // messate = message :-)
             $wall_entry->setStatus(true);
-
             $wall_entry->save();
 
             if($id){ // If its a comment to another post, inform all participants of the entry by mail.
@@ -204,18 +207,25 @@ class DefaultController extends CoreController
                     ->filterByParentId($id)
                     ->find()
                 ;
-                $mailer = $this->get('mail_manager');
-                $message = "Der er skrevet en kommentar til en tråd du deltager i på POMPdeWALL\n";
-                $message += $this->get('security.context')->getToken()->getUser()->getUserName()." skrev:\n";
-                $message += $wall_entry->getMessate();
+
                 foreach ($users as $user) {
+                    $customer = $user->getCustomers();
+                    $author = $creator->getUser();
+
+                    $mailer = $this->get('mail_manager');
+                    $mailer->setMessage('wall.reply', array(
+                        'name' => $author->getFirstName().' '.$author->getLastName(),
+                        'to_name' => $customer->getFirstName(),
+                        'first_name' => $author->getFirstName(),
+                        'comment' => $wall_entry->getMessate(),
+                    ));
+
                     try{
-                        $mailer->setBody($message);
-                        $mailer->setTo($user->getCustomers()->getEmail(), $user->getCustomers()->getFirstName());
+                        $mailer->setTo($customer->getEmail(), $customer->getFirstName());
                         $mailer->send();
                     }
                     catch (Exception $e) {
-                        print_r($e);
+                        Tools::log($e);
                     }
                 }
             }
@@ -238,7 +248,7 @@ class DefaultController extends CoreController
                     'author' => $wall_post->getAuthor(),
                     'customers_id' => $wall_post->getCustomersId(),
                     'is_liked' => false,
-                    'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
+                    'is_author' => ($creator->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
                     'is_first' => false,
                     'is_last' => false,
                     'num_likes' => 0,
@@ -255,7 +265,7 @@ class DefaultController extends CoreController
                     'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
                     'author' => $wall_post->getAuthor(),
                     'customers_id' => $wall_post->getCustomersId(),
-                    'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
+                    'is_author' => ($creator->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
                     'is_first' => false,
                     'is_last' => false,
                 );
@@ -303,7 +313,7 @@ class DefaultController extends CoreController
                 // If they are not the same, its a change from like <> dislike.
                 $is_liked->setStatus($status);
                 $is_liked->save();
-                
+
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status' => true,
@@ -336,7 +346,7 @@ class DefaultController extends CoreController
             throw new AccessDeniedException();
         }
         $wall_entry = WallQuery::create();
-        
+
         if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             $wall_entry = $wall_entry->filterByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
         }

@@ -22,7 +22,6 @@ use Propel\Runtime\Parser\PropelCSVParser;
 
 class ConsultantsController extends CoreController
 {
-    
     public function indexAction($pager)
     {
         $hanzo = Hanzo::getInstance();
@@ -57,7 +56,7 @@ class ConsultantsController extends CoreController
                 ->joinWithCustomers()
                 ->paginate($pager, 50, $this->getDbConnection())
             ;
-            
+
         } else {
 
             $consultants = ConsultantsQuery::create()
@@ -104,7 +103,7 @@ class ConsultantsController extends CoreController
         $consultant_settings = SettingsQuery::create()->findByNs('consultant', $this->getDbConnection());
         $consultant_settings_data = array();
         foreach ($consultant_settings as $consultant_setting) {
-            $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue(); 
+            $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue();
         }
 
         $form_settings = $this->createFormBuilder($consultant_settings_data)
@@ -123,7 +122,7 @@ class ConsultantsController extends CoreController
             )->getForm();
         $form_export = $this->createFormBuilder(
                 array(
-                    'start' => date('Y-m-d', time()), 
+                    'start' => date('Y-m-d', time()),
                     'end' => date('Y-m-d', strtotime('-1 month', time() ))
                 )
             )->add('start', 'date', array(
@@ -251,14 +250,11 @@ class ConsultantsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                
-                /**
-                 * @todo Synkronisering til AX
-                 */
                 $data = $form->getData();
 
                 CustomersQuery::create()
-                    ->findOneById($id)
+                    ->filterById($id)
+                    ->findOne($this->getDbConnection())
                     ->setFirstName($data['first_name'])
                     ->setLastName($data['last_name'])
                     ->setEmail($data['email'])
@@ -270,7 +266,8 @@ class ConsultantsController extends CoreController
                     ->save($this->getDbConnection())
                 ;
                 ConsultantsQuery::create()
-                    ->findOneById($id)
+                    ->filterById($id)
+                    ->findOne($this->getDbConnection())
                     ->setInitials($data['initials'])
                     ->setInfo($data['info'])
                     ->setEventNotes($data['event_notes'])
@@ -294,12 +291,12 @@ class ConsultantsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
-        
+
         $events = EventsQuery::create()
             ->orderByEventDate()
             ->paginate($pager, 50, $this->getDbConnection())
@@ -339,7 +336,7 @@ class ConsultantsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
@@ -356,7 +353,7 @@ class ConsultantsController extends CoreController
             $start = $date_filter['min'];
             $date_filter['max'] = time();
             $end = $date_filter['max'];
-        
+
         }
         $data = array();
         $data[0]['consultant'] = 'consultant';
@@ -369,15 +366,15 @@ class ConsultantsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) { 
+        for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
             $data[0][$date] = date('Y-m-d', $date); // Header row with visible dates
         }
 
         foreach ($consultants as $consultant) {
-            $customer_data = $consultant->getCustomers(); 
+            $customer_data = $consultant->getCustomers();
             $data[$consultant->getId()][0] = $customer_data->getFirstName(). ' ' . $customer_data->getLastName();
 
-            for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) { 
+            for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
                 $data[$consultant->getId()][$date] = '-';
             }
 
@@ -387,14 +384,14 @@ class ConsultantsController extends CoreController
             $data[$event->getConsultantsId()][strtotime($event->getEventDate())] = $event->getType();
         }
 
-        return new Response( 
-            $parser->toCSV($data, true, false), 
-            200, 
-            array( 
-                 'Content-Type' => 'text/csv', 
-                 'Content-Disposition' => sprintf('attachment; filename="export_' . $start . '_' . $end .'.csv"', 'export_' . $start . '_' . $end .'.csv') 
-            ) 
-        ); 
+        return new Response(
+            $parser->toCSV($data, true, false),
+            200,
+            array(
+                 'Content-Type' => 'text/csv',
+                 'Content-Disposition' => sprintf('attachment; filename="export_' . $start . '_' . $end .'.csv"', 'export_' . $start . '_' . $end .'.csv')
+            )
+        );
     }
 
     public function updateSettingAction()
@@ -402,13 +399,13 @@ class ConsultantsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $request = $this->getRequest();
 
         $max_amount = SettingsQuery::create()
             ->filterByNs('consultant')
             ->findOneByCKey('max_amount', $this->getDbConnection())
-            
+
         ;
 
         $date = SettingsQuery::create()

@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="countdown.date">
                 <source>countdown.date</source>
-                <target>Helmikuu 20, 2012 09:00:00</target>
+                <target>August 28, 2012 10:00:00</target>
             </trans-unit>
             <trans-unit id="countdown.format">
                 <source>countdown.format</source>
@@ -193,6 +193,70 @@
             <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
                 <target>Sähköpostiosoitetta &quot;%email%&quot; ei ole kirjattu</target>
+            </trans-unit>
+            <trans-unit id="wall.add.response">
+                <source>wall.add.response</source>
+                <target>Besvar indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.share">
+                <source>wall.share</source>
+                <target>Del</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.like.link">
+                <source>wall.remove.like.link</source>
+                <target>Fjern Like fra indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.add.like.link">
+                <source>wall.add.like.link</source>
+                <target>Like indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.dislike.link">
+                <source>wall.remove.dislike.link</source>
+                <target>Fjern Dislike fra indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.add.dislike.link">
+                <source>wall.add.dislike.link</source>
+                <target>Dislike indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.edit.entry">
+                <source>wall.edit.entry</source>
+                <target>Rediger indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.update">
+                <source>wall.update</source>
+                <target>Opdater</target>
+            </trans-unit>
+            <trans-unit id="wall.show.all">
+                <source>wall.show.all</source>
+                <target>Vis alle besvarelser</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.plural.%likes%">
+                <source>wall.likes.plural.%likes%</source>
+                <target>%likes% syntes godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.single.%likes%">
+                <source>wall.likes.single.%likes%</source>
+                <target>Én syntes godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.plural.%likes%">
+                <source>wall.dislikes.plural.%likes%</source>
+                <target>%likes% syntes ikke godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.single.%likes%">
+                <source>wall.dislikes.single.%likes%</source>
+                <target>Én syntes ikke godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.like.popup.header">
+                <source>wall.like.popup.header</source>
+                <target>Disse personer synes godt om eller kan ikke lide opslaget.</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.link">
+                <source>wall.delete.entry.link</source>
+                <target>Slet indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.confirm">
+                <source>wall.delete.entry.confirm</source>
+                <target>Er du sikker på du vil slette dette indlæg?</target>
             </trans-unit>
         </body>
     </file>
