@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="quickorder.description.text">
                 <source>quickorder.description.text</source>
-                <target>Her kan du hurtigt oprette ordre hvor du kender navnet på produkterne.</target>
+                <target>Her kan du hurtigt oprette ordre hvor du kender navnet på produkterne. Vælg et felt ad gangen og derefter tryk på [TAB] for at vælge.</target>
             </trans-unit>
             <trans-unit id="quickorder.master.placeholder">
                 <source>quickorder.master.placeholder</source>
