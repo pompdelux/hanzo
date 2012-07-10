@@ -8,7 +8,8 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
 
 use Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsDomainsPricesQuery
+    Hanzo\Model\ProductsDomainsPricesQuery,
+    Hanzo\Model\OrdersPeer
 ;
 use \PropelCollection;
 use Hanzo\Core\CoreController;
@@ -18,8 +19,19 @@ class DefaultController extends CoreController
     
     public function indexAction()
     {
+    	$order = OrdersPeer::getCurrent();
+    	$products = array();
+    	foreach ($order->getOrdersLiness() as $line) {
+    		$products[] = array(
+    			'sku' => $line->getProductsSku(),
+    			'quantity' => $line->getQuantity()
+    		);
+    	}
         return $this->render('QuickOrderBundle:Default:index.html.twig',
-         	array('page_type' => 'quickorder')
+         	array(
+         		'page_type' => 'quickorder',
+         		'products' => $products
+         	)
         );
     }
 
