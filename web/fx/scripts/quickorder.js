@@ -21,6 +21,7 @@ var quickorder = (function($) {
         minLength: 3,
         select: function( event, ui ) {
             event.preventDefault();
+            $("#master").val(ui.item.label);
             console.log( ui.item ?
                 "Selected: " + ui.item.label :
                 "Nothing selected, input was " + this.value);
@@ -55,7 +56,7 @@ var quickorder = (function($) {
                                     .attr("value",value.size)
                                     .text(value.size));
                             });
-                            $('#size').show().focus();
+                            $('#size-label').show().find('#size').focus();
                             $('#reset').show();
                         } else {
                             if (response.message) {
@@ -120,7 +121,7 @@ var quickorder = (function($) {
                                     .attr("value",value.color)
                                     .text(value.color));
                             });
-                            $('#color').show().focus();
+                            $('#color-label').show().find('#color').focus();
                         }else{
                             if (response.message) {
                                 dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
@@ -142,13 +143,13 @@ var quickorder = (function($) {
                 e.preventDefault();
 
                 if($(this).val() !== ''){
-                    $('#quantity').show().focus();
+                    $('#quantity-label').show().find('#quantity').focus();
                     $('#submit').show();
                 }
             }
         }else{
             if($(this).val() !== ''){
-                $('#quantity').show().focus();
+                $('#quantity-label').show().find('#quantity').focus();
                 $('#submit').show();
             }
         }
@@ -200,19 +201,18 @@ var quickorder = (function($) {
         $('#size')
             .find('option')
             .remove()
-            .end()
-            .hide()
+        $('#size-label').hide();
         ;
         $('#color')
             .find('option')
             .remove()
-            .end()
-            .hide()
         ;
+        $('#color-label').hide();
 
         $('#submit').hide();
         $('#reset').hide();
-        $('#quantity').val('1').hide();
+        $('#quantity').val('1');
+        $('#quantity-label').hide();
     };
 
   return pub;

@@ -1,7 +1,17 @@
 #quickorder form {
 	padding-bottom:50px;
 }
+#quickorder form input,
+#quickorder form select{
+	margin-right: 5px;
+}
 #quickorder input:focus,
 #quickorder select:focus {
 	border:2px solid white;
+}
+#quickorder label {
+	display: inline-block;
+}
+#quickorder form div{
+	clear: both;
 }

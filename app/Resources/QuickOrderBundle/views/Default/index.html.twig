@@ -14,13 +14,20 @@
 <p>{{ 'quickorder.description.text'|trans({}, 'quickorder') }}</p>
 <div id="quickorder">
   <form action="{{ url('basket_add', {}, true) }}" method="post">
-    <input type="hidden" id="product_id" name="product_id">
-    <input type="text" id="master" name="master" placeholder="{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}">
-    <select id="size" name="size" style="display:none"></select>
-    <select id="color" name="color" style="display:none"></select>
-    <input type="text" id="quantity" name="quantity" placeholder="{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}" style="display:none">
-    <input type="submit" id="submit" name="submit" value="{{ 'quickorder.submit.placeholder'|trans({}, 'quickorder') }}" style="display:none">
-    <input type="button" id="reset" name="reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}" style="display:none">
+    <label id="master-label">{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>
+      <input type="text" id="master" name="master" placeholder="{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}">
+    </label>
+    <label id="size-label" style="display:none"><br>
+      <select id="size" name="size"></select>
+    </label>
+    <label id="color-label" style="display:none"><br>
+      <select id="color" name="color"></select>
+    </label>
+    <label id="quantity-label" style="display:none">{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}<br>
+      <input type="text" id="quantity" name="quantity" placeholder="{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}">
+    </label>
+      <input type="submit" id="submit" name="submit" value="{{ 'quickorder.submit.placeholder'|trans({}, 'quickorder') }}" style="display:none">
+      <input type="button" id="reset" name="reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}" style="display:none">
   </form>
   <h1>{{ 'quickorder.products.header.text'|trans({}, 'quickorder') }}</h1>
   <table class="list">
