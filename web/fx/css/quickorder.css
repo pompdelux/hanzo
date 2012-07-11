@@ -15,12 +15,3 @@
 #quickorder form div{
 	clear: both;
 }
-
-#quickorder .ui-autocomplete {
-	list-style-type:none;
-	padding:0px 5px;
-	display: inline-block;
-}
-#quickorder .ui-autocomplete .ui-menu-item {
-	cursor: pointer;
-}

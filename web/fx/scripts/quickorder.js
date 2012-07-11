@@ -19,7 +19,6 @@ var quickorder = (function($) {
           );
         },
         minLength: 3,
-        appendTo: '#autocomplete-container',
         select: function( event, ui ) {
             event.preventDefault();
             $("#master").val(ui.item.label);
