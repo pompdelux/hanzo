@@ -73,7 +73,7 @@ var quickorder = (function($) {
         }
     });
     
-    $('#size').live('keydown click change' ,function(e){
+    $('#size').on('keydown mouseup touchend' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
@@ -137,20 +137,20 @@ var quickorder = (function($) {
         }
     }
   
-    $('#color').live('keydown click change' ,function(e){
+    $('#color').on('keydown mouseup touchend' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
                 e.preventDefault();
 
                 if($(this).val() !== ''){
-                    $('#quantity-label').show().find('#quantity').focus();
+                    $('#quantity-label').show().find('#quantity').focus().select();
                     $('#submit').show();
                 }
             }
         }else{
             if($(this).val() !== ''){
-                $('#quantity-label').show().find('#quantity').focus();
+                $('#quantity-label').show().find('#quantity').focus().select();
                 $('#submit').show();
             }
         }
@@ -159,7 +159,7 @@ var quickorder = (function($) {
     $('#quickorder form').on('submit', function(event) {
         event.preventDefault();
 
-        if($('#master').val() != '' && $('#size').val() != '' && $('#color').val() != '' && $('#quantity').val() != '' &&) {
+        if($('#master').val() != '' && $('#size').val() != '' && $('#color').val() != '' && $('#quantity').val() != '') {
             var $form = $(this);
             $.ajax({
                 url: $form.attr('action'),
