@@ -73,7 +73,7 @@ var quickorder = (function($) {
         }
     });
     
-    $('#size').live('keydown click' ,function(e){
+    $('#size').live('keydown click change' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
@@ -137,7 +137,7 @@ var quickorder = (function($) {
         }
     }
   
-    $('#color').live('keydown click' ,function(e){
+    $('#color').live('keydown click change' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
@@ -159,31 +159,34 @@ var quickorder = (function($) {
     $('#quickorder form').on('submit', function(event) {
         event.preventDefault();
 
-        var $form = $(this);
-        $.ajax({
-            url: $form.attr('action'),
-            dataType: 'json',
-            type: 'POST',
-            data: $form.serialize(),
-            async: false,
-            success: function(response, textStatus, jqXHR) {
-                if (false === response.status) {
-                    if (response.message) {
-                        dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+        if($('#master').val() != '' && $('#size').val() != '' && $('#color').val() != '' && $('#quantity').val() != '' &&) {
+            var $form = $(this);
+            $.ajax({
+                url: $form.attr('action'),
+                dataType: 'json',
+                type: 'POST',
+                data: $form.serialize(),
+                async: false,
+                success: function(response, textStatus, jqXHR) {
+                    if (false === response.status) {
+                        if (response.message) {
+                            dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+                        }
                     }
+                    else {
+                        window.scrollTo(window.scrollMinX, window.scrollMinY);
+                        $('#mini-basket a').html(response.data);
+                        dialoug.slideNotice(response.message);
+                        $('table tbody').append('<tr><td>'+$('#master').val()+' '+$('#color').val()+' '+$('#size').val()+'</td><td>'+$('#quantity').val()+'</td></tr>');
+                    }
+                    _resetForm();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    dialoug.error(ExposeTranslation.get('js:notice!'), ExposeTranslation.get('js:an.error.occurred'));
                 }
-                else {
-                    window.scrollTo(window.scrollMinX, window.scrollMinY);
-                    $('#mini-basket a').html(response.data);
-                    dialoug.slideNotice(response.message);
-                    $('table tbody').append('<tr><td>'+$('#master').val()+' '+$('#color').val()+' '+$('#size').val()+'</td><td>'+$('#quantity').val()+'</td></tr>');
-                }
-                _resetForm();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                dialoug.error(ExposeTranslation.get('js:notice!'), ExposeTranslation.get('js:an.error.occurred'));
-            }
-        });
+            });
+        }
+
     });
 
     $('#reset').click(function(e){
