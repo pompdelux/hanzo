@@ -3,35 +3,25 @@ var quickorder = (function($) {
 
   pub.init = function() {
     _resetForm();
-    $( "#master" ).autocomplete({
-        source: function( request, response ) {
-          $.getJSON(
-            base_url + "quickorder/get-sku",
-            {name : request.term}, 
-            function(data) {
-              var items = [];
-
-              $.each(data.data, function(key, val) {
-                items.push(val);
-              });
-              response(items);
-            }
-          );
+    $('#master').typeahead({
+        source: function (typeahead, query) {
+            $.getJSON(
+                base_url + "quickorder/get-sku",
+                {name : query}, 
+                function(data) {
+                    return typeahead.process(data.data);
+                }
+            );
         },
-        minLength: 3,
-        appendTo: '#autocomplete-container',
-        select: function( event, ui ) {
-            event.preventDefault();
-            $("#master").val(ui.item.label);
-            console.log( ui.item ?
-                "Selected: " + ui.item.label :
-                "Nothing selected, input was " + this.value);
+        onselect: function( object ) {
+            $("#master").val(object);
+            console.log("Selected: " + object );
 
             $.ajax({
                 url: base_url + "rest/v1/stock-check",
                 dataType: 'json',
                 type: 'GET',
-                data: {master : ui.item.label},
+                data: {master : object},
                 async: false,
                 success: function(response, textStatus, jqXHR) {
                     if (false === response.status) {
@@ -72,7 +62,7 @@ var quickorder = (function($) {
             });
         }
     });
-    
+
     $('#size').on('keydown mouseup touchend' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
