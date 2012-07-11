@@ -174,7 +174,6 @@ var quickorder = (function($) {
                     window.scrollTo(window.scrollMinX, window.scrollMinY);
                     $('#mini-basket a').html(response.data);
                     dialoug.slideNotice(response.message);
-                    $('table tbody').append('<tr><td>'+$('#master').val()+' '+$('#color').val()+' '+$('#size').val()+'</td><td>'+$('#quantity').val()+'</td></tr>');
                 }
                 _resetForm();
             },
