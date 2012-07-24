@@ -63,7 +63,8 @@ var quickorder = (function($) {
         }
     });
 
-    $('#size').on('keydown mouseup touchend' ,function(e){
+    //$('#size').on('keydown mouseup touchend' ,function(e){
+    $('#size').on('keydown touchend change blur' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
@@ -73,7 +74,7 @@ var quickorder = (function($) {
         }else{
             getColor();
         }
-        
+        e.stopPropagation();
     });
 
     function getColor() {
@@ -127,7 +128,8 @@ var quickorder = (function($) {
         }
     }
   
-    $('#color').on('keydown mouseup touchend' ,function(e){
+    //$('#color').on('keydown mouseup touchend' ,function(e){
+    $('#color').on('keydown touchend change blur' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
