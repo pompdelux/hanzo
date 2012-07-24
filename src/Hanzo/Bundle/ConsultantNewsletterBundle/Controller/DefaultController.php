@@ -15,6 +15,8 @@ class DefaultController extends CoreController
     
     public function indexAction()
     {
+        $api = $this->get('consultantnewsletterapi');
+        print_r($api->getUserById(3));
         return $this->render('ConsultantNewsletterBundle:Default:index.html.twig',
         	array(
         		'page_type' => 'consultant'
