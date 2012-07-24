@@ -1,0 +1,7 @@
+consultantnewsletter:
+    pattern:  /consultantnewsletter
+    defaults: { _controller: ConsultantNewsletterBundle:Default:index }
+
+consultantnewsletter_filemanager:
+    pattern:  /consultantnewsletter/filemanager
+    defaults: { _controller: ConsultantNewsletterBundle:Default:fileManager }

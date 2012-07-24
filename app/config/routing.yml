@@ -1,3 +1,7 @@
+ConsultantNewsletterBundle:
+    resource: "@ConsultantNewsletterBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
 QuickOrderBundle:
     resource: "@QuickOrderBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
