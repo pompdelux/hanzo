@@ -62,9 +62,12 @@ var quickorder = (function($) {
             });
         }
     });
-
+    // Events:
+    // mouseup : desktop with mouse
+    // keydown : desktop with keyboard
+    // blur    : tablet/mobile
     //$('#size').on('keydown mouseup touchend' ,function(e){
-    $('#size').on('keydown touchend change blur' ,function(e){
+    $('#size').on('keydown mouseup blur' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
@@ -127,9 +130,12 @@ var quickorder = (function($) {
             });
         }
     }
-  
+    // Events:
+    // mouseup : desktop with mouse
+    // keydown : desktop with keyboard
+    // blur    : tablet/mobile
     //$('#color').on('keydown mouseup touchend' ,function(e){
-    $('#color').on('keydown touchend change blur' ,function(e){
+    $('#color').on('keydown mouseup blur' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which; 
             if (keyCode == 9) {
@@ -146,6 +152,7 @@ var quickorder = (function($) {
                 $('#submit').show();
             }
         }
+        e.stopPropagation();
     });
 
     $('#quickorder form').on('submit', function(event) {
