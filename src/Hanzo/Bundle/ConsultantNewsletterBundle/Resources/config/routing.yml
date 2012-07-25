@@ -5,3 +5,24 @@ consultantnewsletter:
 consultantnewsletter_filemanager:
     pattern:  /consultantnewsletter/filemanager
     defaults: { _controller: ConsultantNewsletterBundle:Default:fileManager }
+
+consultant_send_newsletter:
+    pattern:  /consultantnewsletter/sendnewsletter
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:sendNewsletter
+        _format: json
+    requirements:
+        _format: html|json
+
+consultantnewsletter_import:
+    pattern:  /consultantnewsletter/importusers
+    defaults: { _controller: ConsultantNewsletterBundle:Default:importUsers }
+
+
+consultantnewsletter_do_import:
+    pattern:  /consultantnewsletter/doimportusers
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:doImportUsers
+        _format: json
+    requirements:
+        _format: html|json

@@ -1,0 +1,47 @@
+{% extends '::consultantbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.import.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.edit.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.history.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'consultant.newsletter.import.header.text'|trans({}, 'consultant') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'events') }}
+</div>
+{% endif %}
+
+
+<p>{{ 'consultant.newsletter.import.description.text'|trans({}, 'consultant') }}</p>
+<form action="{{ path('consultant_send_newsletter') }}" method="post" id="consultant-newsletter-import">
+  <textarea name="users" id="users"></textarea>
+  
+  <input type="submit" name="submit" id="submit" value="{{ 'newsletter.import.submit'|trans({}, 'consultant') }}">
+</form>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

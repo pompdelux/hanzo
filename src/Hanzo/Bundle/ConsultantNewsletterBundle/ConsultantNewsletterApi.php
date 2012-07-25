@@ -33,7 +33,7 @@ class ConsultantNewsletterApi
         {
             if ( empty($wsdl) )
                 $wsdl = 'http://phplist.bellcom.dk/integration/phplist.konsulent.pompdelux.dk/wsdl';
-            
+
             $this->soapClient = new \Soapclient( $wsdl );
 
         }catch (Exception $e){
@@ -172,6 +172,7 @@ class ConsultantNewsletterApi
             return $this->soapClient->sendTestMail( $request, $testReciverEmail );
         }catch (Exception $e){
             error_log(__LINE__.':'.__FILE__.' '.$e->getMessage());
+            return false;
         }
 
     }

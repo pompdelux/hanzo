@@ -1,17 +1,32 @@
-{% extends layout %}
+{% extends '::consultantbase.html.twig' %}
 
 {% block content %}
 <nav class="sub">
   <ul>
     <li>
-      <a href="{{ path('events_create') }}">
-        {{ 'events.create_event.link'|trans({}, 'events') }}
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.import.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.edit.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.history.link'|trans({}, 'consultant') }}
       </a>
     </li>
   </ul>
 </nav>
 
-<h1>{{ 'events.calendar.header.text'|trans({}, 'events') }}</h1>
+<h1>{{ 'consultant.newsletter.header.text'|trans({}, 'consultant') }}</h1>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
@@ -20,13 +35,32 @@
 {% endif %}
 
 
-<p>{{ 'events.calendar.description.text'|trans({}, 'events') }}</p>
-<div id="calendar"></div>
-<textarea class="tinymce"></textarea>
+<p>{{ 'consultant.newsletter.description.text'|trans({}, 'consultant') }}</p>
+<form action="{{ path('consultant_send_newsletter') }}" method="post" id="consultant-newsletter">
+  <input type="hidden" name="status" value="submitted" />
+  <input type="hidden" name="template" value="1" />
+
+  <legend for="subject">{{ 'newsletter.subject'|trans({}, 'consultant') }}</legend>
+  <input name="subject" id="subject">
+  
+  <legend for="message">{{ 'newsletter.message'|trans({}, 'consultant') }}</legend>
+  <textarea name="message" id="message" class="tinymce"></textarea>
+  
+  <legend for="test_reciever">{{ 'newsletter.test_reciever'|trans({}, 'consultant') }}</legend>
+  <div>
+    <input type="button" name="savedraft" id="savedraft" value="{{ 'newsletter.save.draft'|trans({}, 'consultant') }}">
+    <p>{{ 'newsletter.current.drafts'|trans({}, 'consultant') }}</p>
+
+  </div>
+  <input type="submit" name="actionCreateNewsletter" id="actionCreateNewsletter" value="{{ 'newsletter.submit.send.newsletter'|trans({}, 'consultant') }}">
+
+  <input type="submit" name="actionSendTest" id="actionSendTest" value="{{ 'newsletter.submit.send.test.email'|trans({}, 'consultant') }}">
+    <span>{{ 'newsletter.send.test.to.label'|trans({}, 'consultant') }}</span>
+  <input name="test_reciever" id="test_reciever" value="{{ test_receiver }}">
+</form>
 {% endblock %}
 
 {% block javascript %}
-<script src="/fx/scripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     $('textarea.tinymce').tinymce({
