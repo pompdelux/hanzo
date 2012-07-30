@@ -26,7 +26,7 @@ class Cms extends BaseCms
             return $settings;
         }
 
-        if (is_scalar($settings) && substr($settings, 0, 2) == '{"') {
+        if (is_scalar($settings) && substr($settings, 0, 1) == '{') {
             $settings = json_decode(stripcslashes($settings));
         }
 
