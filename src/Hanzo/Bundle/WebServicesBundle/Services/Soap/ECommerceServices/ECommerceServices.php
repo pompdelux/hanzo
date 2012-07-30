@@ -913,6 +913,12 @@ class ECommerceServices extends SoapService
         }
 
         $order->setState($status_map[$data->orderStatus]);
+
+        // the order is considered finished when shipped
+        if (4 == $data->orderStatus) {
+            $order->setFinishedAt(time());
+        }
+
         $order->save();
 
         // ....................
