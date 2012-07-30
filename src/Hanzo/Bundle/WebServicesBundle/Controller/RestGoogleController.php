@@ -61,6 +61,18 @@ class RestGoogleController extends CoreController
      */
     public function nearYouAction($type = 'near', $latitude = 0.00, $longitude = 0.00)
     {
+        if ((0 == $latitude) || (0 == $longitude)){
+            $geoip = $this->get('geoip_manager')->lookup();
+
+            if (0 == $latitude) {
+                $latitude =  number_format($geoip['lat'], 8, '.', '');
+            }
+            if (0 == $longitude) {
+                $longitude = number_format($geoip['lon'], 8, '.', '');
+            }
+        }
+
+
         $latitude = (float) $latitude;
         $longitude = (float) $longitude;
 

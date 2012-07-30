@@ -23,10 +23,10 @@ var maps = (function($) {
   pub.initContainer = function() {
     dialoug.loading('#near-you-container', ExposeTranslation.get('js:loading.std'), 'prepend');
 
-    var req = '';
-    for (var key in near_you_params) {
-      req = req + '/' + near_you_params[key];
-    }
+    var req = '/'+near_you_params.type+'/0/0';
+    // for (var key in near_you_params) {
+    //   req = req + '/' + near_you_params[key];
+    // }
 
     $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function(result) {
       dataToContainer(result.data);
