@@ -15,7 +15,8 @@ use Hanzo\Model\EventsQuery,
 	Hanzo\Model\EventsParticipantsQuery,
 	Hanzo\Model\EventsParticipants,
 	Hanzo\Model\ConsultantsQuery,
-	Hanzo\Model\CustomersQuery,
+    Hanzo\Model\CustomersQuery,
+	Hanzo\Model\CustomersPeer,
 	Hanzo\Model\Customers;
 
 class EventsController extends CoreController
@@ -434,14 +435,20 @@ class EventsController extends CoreController
 
     public function inviteAction($key)
     {
+        $customer = CustomersPeer::getCurrent();
     	$event = EventsQuery::create()
     		->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
+            ->filterByCustomersId($customer->getId())
     		->findOneByKey($key)
     	;
 
     	$events_participants = null;
     	$form = null;
-    	if($event instanceof Events){
+
+    	if ($event instanceof Events) {
+        //     $this->get('session')->setFlash('notice', 'nonononono... !!!');
+        //     return $this->redirect($this->generateUrl('_account'));
+        // } else {
     		$consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
     		$events_participant = new EventsParticipants();
 
@@ -709,5 +716,20 @@ class EventsController extends CoreController
 	    }
 	    $this->get('session')->setFlash('notice', 'events.participant.invite.failed');
 	    return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
+    }
+
+
+    public function listAction()
+    {
+        $customer = CustomersPeer::getCurrent();
+        $events = EventsQuery::create()
+            ->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
+            ->filterByCustomersId($customer->getId())
+            ->find()
+        ;
+
+        return $this->render('EventsBundle:Events:list.html.twig', array(
+            'events' => $events,
+        ));
     }
 }

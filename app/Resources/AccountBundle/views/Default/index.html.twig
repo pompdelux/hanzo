@@ -21,9 +21,11 @@
   <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
 </ul>
 
+{% render 'EventsBundle:Events:list' %}
 
 <div id="account-block-newsletter">
 {% render 'NewsletterBundle:Default:block' %}
 </div>
+
 
 {% endblock %}

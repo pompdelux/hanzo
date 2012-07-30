@@ -6,6 +6,10 @@
                 <source>events.calendar.header.text</source>
                 <target>Event kalender</target>
             </trans-unit>
+            <trans-unit id="events.account.title">
+                <source>events.account.title</source>
+                <target>Home shopping arrangementer</target>
+            </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
                 <target>Her kan du se alle events som er tilknyttet dig. Røde events er arkiveret samt grønne er stadig åbne for RSVP. Klik på en for at få vist en detaljeret beskrivelse.</target>
