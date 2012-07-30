@@ -20,7 +20,6 @@ class SmsService
     public function __construct($parameters, $settings)
     {
         $this->parameters = $parameters;
-        $this->settings = $settings;
 
         // unwire
         // $settings['provider.service'];
@@ -29,7 +28,9 @@ class SmsService
         // $settings['provider.appnr'];
         // $settings['provider.mediacode'];
         // $settings['provider.price'];
-        // $settings['provider.get_smsc'];
+
+        $this->settings['provider.get_smsc'] = 0;
+        $this->settings = $settings;
     }
 
     /**
