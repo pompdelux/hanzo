@@ -15,6 +15,6 @@
 {% if is_granted('ROLE_CONSULTANT') %}
   <ul>
     <li><a href="{{ url('events_index') }}">{{ 'events.calendar.link'|trans({}, 'events') }}</a></li>
-    <li><a href="{{ url('events_index') }}">{{ 'events.create_event.link'|trans({}, 'events') }}</a></li>
+    <li><a href="{{ url('events_create') }}">{{ 'events.create_event.link'|trans({}, 'events') }}</a></li>
   </ul>
 {% endif %}
