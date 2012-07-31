@@ -2,24 +2,33 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
+use Criteria;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\EventsQuery;
 use Hanzo\Model\EventsParticipantsQuery;
+use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\MessagesI18nQuery;
 
 use Smesg\Adapter\PhpStreamAdapter;
 use Smesg\Provider\UnwireProvider;
 
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+
 class SmsService
 {
-    protected $parameters;
     protected $settings;
+    protected $translator;
 
     public function __construct($parameters, $settings)
     {
-        $this->parameters = $parameters;
+        if (!$parameters[0] instanceof Translator) {
+            throw new \InvalidArgumentException('Translator expected as first parameter.');
+        }
+
+        $this->translator = $parameters[0];
 
         // unwire
         // $settings['provider.service'];
@@ -33,6 +42,26 @@ class SmsService
         $this->settings = $settings;
     }
 
+    public function sendEventConfirmationReply($mobile_number, $participant)
+    {
+        $event = $participant->getEvents();
+        $parameters = array(
+            '%name%' => trim($participant->getFirstName().' '.$participant->getLastName()),
+            '%event_date%' => $event->getEventDate('d-m-Y'),
+            '%event_time%' => $event->getEventDate('G:i'),
+            '%address%' => $event->getAddressLine1(),
+            '%zip%' => $event->getPostalCode(),
+            '%city%' => $event->getCity(),
+            '%hostess%' => $event->getHost(),
+        );
+        $message = $this->translator->trans('event.sms.confirmation.reply', $parameters, 'events');
+
+        $provider = $this->getProvider();
+        $provider->addMessage($mobile_number, $message);
+
+        return $provider->send();
+    }
+
     /**
      * send sms reminders to event participants.
      *
@@ -40,14 +69,7 @@ class SmsService
      */
     public function eventReminder($locale = 'da_DK')
     {
-        $provider = new UnwireProvider(new PhpStreamAdapter(), array(
-            'user' => $this->settings['provider.user'],
-            'password' => $this->settings['provider.password'],
-            'appnr' => $this->settings['provider.appnr'],
-            'mediacode' => $this->settings['provider.mediacode'],
-            'price' => $this->settings['provider.price'],
-            'get_smsc' => (boolean) $this->settings['provider.get_smsc'],
-        ));
+        $provider = $this->getProvider();
 
         $message = MessagesI18nQuery::create()
             ->joinWithMessages()
@@ -80,8 +102,8 @@ class SmsService
                 ))
             ->endUse()
             ->filterByNotifyBySms(true)
-            ->filterByPhone(NULL, \Criteria::ISNOTNULL)
-            ->filterBySmsSendAt(NULL, \Criteria::ISNULL)
+            ->filterByPhone(NULL, Criteria::ISNOTNULL)
+            ->filterBySmsSendAt(NULL, Criteria::ISNULL)
             ->find()
         ;
 
@@ -113,5 +135,17 @@ class SmsService
         }
 
         return $responses;
+    }
+
+    protected function getProvider()
+    {
+        return new UnwireProvider(new PhpStreamAdapter(), array(
+            'user' => $this->settings['provider.user'],
+            'password' => $this->settings['provider.password'],
+            'appnr' => $this->settings['provider.appnr'],
+            'mediacode' => $this->settings['provider.mediacode'],
+            'price' => $this->settings['provider.price'],
+            'get_smsc' => (boolean) $this->settings['provider.get_smsc'],
+        ));
     }
 }

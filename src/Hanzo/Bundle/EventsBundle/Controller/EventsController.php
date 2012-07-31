@@ -446,9 +446,6 @@ class EventsController extends CoreController
     	$form = null;
 
     	if ($event instanceof Events) {
-        //     $this->get('session')->setFlash('notice', 'nonononono... !!!');
-        //     return $this->redirect($this->generateUrl('_account'));
-        // } else {
     		$consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
     		$events_participant = new EventsParticipants();
 
@@ -472,7 +469,8 @@ class EventsController extends CoreController
 	                array(
 	                    'label' => 'events.participants.phone.label',
 	                    'translation_domain' => 'events',
-	                    'required' => false
+	                    'required' => false,
+                        'attr' => array('class' => 'dk')
 	                )
 	            )->add('tell_a_friend', 'checkbox',
 	                array(

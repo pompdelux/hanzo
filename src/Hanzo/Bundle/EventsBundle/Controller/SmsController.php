@@ -1,16 +1,64 @@
 <?php
+/*
+unwire addresser:
+  194.192.81.90
+  194.192.81.91
+  194.192.81.100
+  194.192.81.101
+*/
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
+use Hanzo\Model\EventsParticipants;
+use Hanzo\Model\EventsParticipantsQuery;
 
 class SmsController extends CoreController
 {
     public function rsvpAction()
     {
-        Tools::log($_GET);
+        // Array (
+        //     [sender] => 4529927366
+        //     [smsc] => tdc
+        //     [appnr] => 1231
+        //     [text] => pdl e1234
+        //     [sessionid] => 4529927366:20120730221204
+        // )
+
+        $sender = $this->getRequest()->get('sender');
+        $appnr = $this->getRequest()->get('appnr');
+        $smsc = $this->getRequest()->get('smsc');
+        $text = $this->getRequest()->get('text');
+        $sessionid = $this->getRequest()->get('sessionid');
+
+        // TODO should not be bardcoded
+        if (in_array($appnr, array(1231, 2201, 17163, 72445)) &&
+            (substr($text, 0, 5) == 'pdl e')
+        ) {
+            @list($mediacode, $event_id, $junk) = explode(' ', $text, 3);
+            $event_id = trim($event_id, 'e');
+
+            $participant = EventsParticipantsQuery::create()
+                ->joinWithEvents()
+                ->filterByEventsId($event_id)
+                ->filterByPhone(trim($sender))
+//                ->filterByRespondedAt(null, \Criteria::ISNULL)
+                ->findOne()
+            ;
+
+            if ($participant instanceof EventsParticipants) {
+                $participant->setHasAccepted(true);
+                $participant->setRespondedAt(time());
+                $participant->save();
+
+                $response = $this->get('sms_manager')->sendEventConfirmationReply($sender, $participant);
+Tools::log($response);
+            }
+        }
+
+// http://pdl.bc/app_dev.php/da_DK/events/sms/rsvp?sender=4529927366&smsc=tdc&appnr=1231&text=pdl+e1&sessionid=xxxx1234
 
         // no response needed
         return $this->response('');
