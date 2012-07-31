@@ -68,7 +68,7 @@
             </trans-unit>
             <trans-unit id="events.find_customer_by_phone.placeholder">
                 <source>events.find_customer_by_phone.placeholder</source>
-                <target>Tlf.</target>
+                <target>Mobil nr.</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_phone.button">
                 <source>events.find_customer_by_phone.button</source>
@@ -112,7 +112,7 @@
             </trans-unit>
             <trans-unit id="events.phone">
                 <source>events.phone</source>
-                <target>Tlf.</target>
+                <target>Mobil nr.</target>
             </trans-unit>
             <trans-unit id="events.email">
                 <source>events.email</source>
@@ -280,7 +280,7 @@
             </trans-unit>
             <trans-unit id="events.participants.phone.label">
                 <source>events.participants.phone.label</source>
-                <target>Tlf.</target>
+                <target>Mobil nr.</target>
             </trans-unit>
             <trans-unit id="events.participants.email.label">
                 <source>events.participants.email.label</source>
