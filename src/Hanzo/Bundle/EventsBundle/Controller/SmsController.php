@@ -17,6 +17,15 @@ use Hanzo\Model\EventsParticipantsQuery;
 
 class SmsController extends CoreController
 {
+
+    // TODO this should not be hardcoded ! but we need to figure out where to store the information...
+    protected $appnr_map = array(
+        1231 => 45,
+        2201 => 47,
+        17163 => 358,
+        72445 => 46,
+    );
+
     public function rsvpAction()
     {
         // Array (
@@ -27,11 +36,11 @@ class SmsController extends CoreController
         //     [sessionid] => 4529927366:20120730221204
         // )
 
-        $sender = $this->getRequest()->get('sender');
-        $appnr = $this->getRequest()->get('appnr');
-        $smsc = $this->getRequest()->get('smsc');
-        $text = $this->getRequest()->get('text');
-        $sessionid = $this->getRequest()->get('sessionid');
+        $sender    = trim($this->getRequest()->get('sender'));
+        $appnr     = trim($this->getRequest()->get('appnr'));
+        $smsc      = trim($this->getRequest()->get('smsc'));
+        $text      = trim($this->getRequest()->get('text'));
+        $sessionid = trim($this->getRequest()->get('sessionid'));
 
         // TODO should not be bardcoded
         if (in_array($appnr, array(1231, 2201, 17163, 72445)) &&
@@ -40,10 +49,15 @@ class SmsController extends CoreController
             @list($mediacode, $event_id, $junk) = explode(' ', $text, 3);
             $event_id = trim($event_id, 'e');
 
+            // we need to strip the country code from the phone number.
+            $lookup = substr($sender, strlen($this->appnr_map[$appnr]));
+
             $participant = EventsParticipantsQuery::create()
                 ->joinWithEvents()
                 ->filterByEventsId($event_id)
-                ->filterByPhone(trim($sender))
+                ->filterByPhone($lookup)
+                ->_or()
+                ->filterByPhone($sender)
 //                ->filterByRespondedAt(null, \Criteria::ISNULL)
                 ->findOne()
             ;
