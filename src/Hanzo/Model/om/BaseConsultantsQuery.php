@@ -23,12 +23,14 @@ use Hanzo\Model\Customers;
  * @method     ConsultantsQuery orderByInitials($order = Criteria::ASC) Order by the initials column
  * @method     ConsultantsQuery orderByInfo($order = Criteria::ASC) Order by the info column
  * @method     ConsultantsQuery orderByEventNotes($order = Criteria::ASC) Order by the event_notes column
+ * @method     ConsultantsQuery orderByHideInfo($order = Criteria::ASC) Order by the hide_info column
  * @method     ConsultantsQuery orderByMaxNotified($order = Criteria::ASC) Order by the max_notified column
  * @method     ConsultantsQuery orderById($order = Criteria::ASC) Order by the id column
  *
  * @method     ConsultantsQuery groupByInitials() Group by the initials column
  * @method     ConsultantsQuery groupByInfo() Group by the info column
  * @method     ConsultantsQuery groupByEventNotes() Group by the event_notes column
+ * @method     ConsultantsQuery groupByHideInfo() Group by the hide_info column
  * @method     ConsultantsQuery groupByMaxNotified() Group by the max_notified column
  * @method     ConsultantsQuery groupById() Group by the id column
  *
@@ -46,12 +48,14 @@ use Hanzo\Model\Customers;
  * @method     Consultants findOneByInitials(string $initials) Return the first Consultants filtered by the initials column
  * @method     Consultants findOneByInfo(string $info) Return the first Consultants filtered by the info column
  * @method     Consultants findOneByEventNotes(string $event_notes) Return the first Consultants filtered by the event_notes column
+ * @method     Consultants findOneByHideInfo(boolean $hide_info) Return the first Consultants filtered by the hide_info column
  * @method     Consultants findOneByMaxNotified(boolean $max_notified) Return the first Consultants filtered by the max_notified column
  * @method     Consultants findOneById(int $id) Return the first Consultants filtered by the id column
  *
  * @method     array findByInitials(string $initials) Return Consultants objects filtered by the initials column
  * @method     array findByInfo(string $info) Return Consultants objects filtered by the info column
  * @method     array findByEventNotes(string $event_notes) Return Consultants objects filtered by the event_notes column
+ * @method     array findByHideInfo(boolean $hide_info) Return Consultants objects filtered by the hide_info column
  * @method     array findByMaxNotified(boolean $max_notified) Return Consultants objects filtered by the max_notified column
  * @method     array findById(int $id) Return Consultants objects filtered by the id column
  *
@@ -142,7 +146,7 @@ abstract class BaseConsultantsQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `INITIALS`, `INFO`, `EVENT_NOTES`, `MAX_NOTIFIED`, `ID` FROM `consultants` WHERE `ID` = :p0';
+		$sql = 'SELECT `INITIALS`, `INFO`, `EVENT_NOTES`, `HIDE_INFO`, `MAX_NOTIFIED`, `ID` FROM `consultants` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -309,6 +313,32 @@ abstract class BaseConsultantsQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(ConsultantsPeer::EVENT_NOTES, $eventNotes, $comparison);
+	}
+
+	/**
+	 * Filter the query on the hide_info column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByHideInfo(true); // WHERE hide_info = true
+	 * $query->filterByHideInfo('yes'); // WHERE hide_info = true
+	 * </code>
+	 *
+	 * @param     boolean|string $hideInfo The value to use as filter.
+	 *              Non-boolean arguments are converted using the following rules:
+	 *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+	 *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+	 *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    ConsultantsQuery The current query, for fluid interface
+	 */
+	public function filterByHideInfo($hideInfo = null, $comparison = null)
+	{
+		if (is_string($hideInfo)) {
+			$hide_info = in_array(strtolower($hideInfo), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+		}
+		return $this->addUsingAlias(ConsultantsPeer::HIDE_INFO, $hideInfo, $comparison);
 	}
 
 	/**
