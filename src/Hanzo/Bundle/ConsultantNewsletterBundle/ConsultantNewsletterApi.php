@@ -90,9 +90,9 @@ class ConsultantNewsletterApi
         $user = $this->getUserByEmail( $customerData['email_address'] );
         if($user !== FALSE){
             if($autoConfirm)
-                $this->sendNotificationEmail('newsletter.confirmation', $customerData['email_address'], $firstName);
-            else
                 $this->sendNotificationEmail('newsletter.subscribe', $customerData['email_address'], $firstName);
+            else
+                $this->sendNotificationEmail('newsletter.confirmation', $customerData['email_address'], $firstName);
         }
 
     }
@@ -205,7 +205,7 @@ class ConsultantNewsletterApi
     * @return bool
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function addAdminUser( stdClass $user, stdClass $access )
+    public function addAdminUser( \stdClass $user, \stdClass $access )
     {   
         return $this->soapClient->addAdminUser( $user, $access );  
     }

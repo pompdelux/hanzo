@@ -43,35 +43,38 @@ class DefaultController extends CoreController
     	
     }
 
-    public function createAdminAction()
-    {
-    	$api = $this->get('consultantnewsletterapi');
-        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-    	if(!$api->doesAdminUserExist($consultant->getEmail())){
-    	}
-    }
-
     public function sendNewsletterAction()
     {
     	$api = $this->get('consultantnewsletterapi');
     	
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-    	
+
+    	if(!$api->doesAdminUserExist($consultant->getEmail())){
+    		
+    		$admin = new \stdClass();
+    		$admin->loginname = $consultant->getName();
+    		$admin->email = $consultant->getEmail();
+    		$admin->password = $consultant->getPasswordClear();
+    		$admin->id = $consultant->getId();
+
+    		$access = array();
+    		$api->addAdminUser( $admin , (object) $access);
+    	}
+
+    	$admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
+
     	$request = $this->getRequest();
         $test = $request->get('actionSendTest');
         $test_reciever = $request->get('test_reciever');
 		$status = $request->get('status');
 		$subject  = htmlentities( utf8_decode( $request->get('subject') ) );
-		$message  = stripslashes( utf8_decode( $request->get('mail') ) );
+		$message  = stripslashes( utf8_decode( $request->get('message') ) );
 		$from     = $this->get('translator')->trans('consultant.newsletter.from.field.%name%.%email%', array('name' => $consultant->getName(), 'email' => $consultant->getEmail()), 'consultant');
 		$to       = $consultant->getEmail();
 		$replyto  = $consultant->getEmail();
 		$template = $request->get('template');
-		$lists    = $api->getAdminUserByEmail($consultant->getEmail())->id;
+		$lists    = array( $admin_user->id );
 		$status   = ( isset( $status ) ? $status : ConsultantNewsletterApi::STATUS_DRAFT );
-
-    	
-    	$admin_user = $api->getAdminUserByEmail( $consultant_email );
 
     	if(!empty($test)){
     		if(!empty($test_reciever)){
@@ -152,6 +155,18 @@ class DefaultController extends CoreController
 
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
 
+    	if(!$api->doesAdminUserExist($consultant->getEmail())){
+    		
+    		$admin = new \stdClass();
+    		$admin->loginname = $consultant->getName();
+    		$admin->email = $consultant->getEmail();
+    		$admin->password = $consultant->getPasswordClear();
+    		$admin->id = $consultant->getId();
+
+    		$access = array();
+    		$api->addAdminUser( $admin , (object) $access);
+    	}
+
         $list = $api->getAdminUserByEmail($consultant->getEmail())->id;
 
     	$subscribed_users = $api->getAllUsersSubscribedToList($list);
@@ -168,6 +183,18 @@ class DefaultController extends CoreController
     	$api = $this->get('consultantnewsletterapi');
 
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+
+    	if(!$api->doesAdminUserExist($consultant->getEmail())){
+    		
+    		$admin = new \stdClass();
+    		$admin->loginname = $consultant->getName();
+    		$admin->email = $consultant->getEmail();
+    		$admin->password = $consultant->getPasswordClear();
+    		$admin->id = $consultant->getId();
+
+    		$access = array();
+    		$api->addAdminUser( $admin , (object) $access);
+    	}
 
         $list = $api->getAdminUserByEmail($consultant->getEmail())->id;
 
@@ -197,6 +224,19 @@ class DefaultController extends CoreController
 
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
     	
+    	if(!$api->doesAdminUserExist($consultant->getEmail())){
+    		
+    		$admin = new \stdClass();
+    		$admin->loginname = $consultant->getName();
+    		$admin->email = $consultant->getEmail();
+    		$admin->password = $consultant->getPasswordClear();
+    		$admin->id = $consultant->getId();
+
+    		$access = array();
+    		$api->addAdminUser( $admin , (object) $access);
+    	}
+
+    	$admin_user = $api->getAdminUserByEmail( $consultant->getEmail() );
     	$request = $this->getRequest();
 
         $users = explode("\n", $request->get('users') );
