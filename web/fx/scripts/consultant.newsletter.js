@@ -51,7 +51,6 @@ var consultantNewsletter = (function($) {
           }
         },
       });
-    };
     });
   };
  
