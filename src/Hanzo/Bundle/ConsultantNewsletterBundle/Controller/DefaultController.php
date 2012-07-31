@@ -48,12 +48,6 @@ class DefaultController extends CoreController
     	$api = $this->get('consultantnewsletterapi');
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
     	if(!$api->doesAdminUserExist($consultant->getEmail())){
-    		$admin = array(
-    			'loginname' => ,
-    			'email' => ,
-    			'password' => ,
-    			'id' => 
-    		);
     	}
     }
 
@@ -150,6 +144,42 @@ class DefaultController extends CoreController
 		        }
 			}
     	}
+    }
+
+    public function editUsersAction()
+    {
+    	$api = $this->get('consultantnewsletterapi');
+
+        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+
+        $list = $api->getAdminUserByEmail($consultant->getEmail())->id;
+
+    	$subscribed_users = $api->getAllUsersSubscribedToList($list);
+    	return $this->render('ConsultantNewsletterBundle:Default:importUsers.html.twig',
+        	array(
+        		'page_type' => 'consultant-newsletter',
+        		'subscribed_users' => $subscribed_users
+        	)
+        );
+    }
+
+    public function unsubscribeUserAction($userId)
+    {
+    	$api = $this->get('consultantnewsletterapi');
+
+        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+
+        $list = $api->getAdminUserByEmail($consultant->getEmail())->id;
+
+        $api->unSubscribeUser($userId, $list);
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('consultant.newsletter.unsubscribe.user.success', array(), 'consultant'),
+            ));
+        }
+
     }
 
     public function importUsersAction()

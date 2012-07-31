@@ -36,11 +36,15 @@
 
 
 <p>{{ 'consultant.newsletter.import.description.text'|trans({}, 'consultant') }}</p>
-<form action="{{ path('consultant_send_newsletter') }}" method="post" id="consultant-newsletter-import">
-  <textarea name="users" id="users"></textarea>
-  
-  <input type="submit" name="submit" id="submit" value="{{ 'newsletter.import.submit'|trans({}, 'consultant') }}">
-</form>
+
+{% if subscribed_users %}
+  <ul id="subscribed-users">
+    {% for user in subscribed_users %}
+      <li>{{ user.email }} <a href="{{ path('consultantnewsletter_unsubscribe_user') }}" class="delete">{{ 'consultant.newsletter.delete.user'|trans({}, 'consultant') }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
 {% endblock %}
 
 {% block javascript %}

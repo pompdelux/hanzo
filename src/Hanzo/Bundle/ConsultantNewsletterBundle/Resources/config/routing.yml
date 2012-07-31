@@ -26,3 +26,20 @@ consultantnewsletter_do_import:
         _format: json
     requirements:
         _format: html|json
+
+consultantnewsletter_edit_users:
+    pattern:  /consultantnewsletter/editusers
+    defaults: { _controller: ConsultantNewsletterBundle:Default:editUsers }
+
+
+consultantnewsletter_unsubscribe_user:
+    pattern:  /consultantnewsletter/unsubscribeuser
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:unsubscribeUser
+        _format: json
+    requirements:
+        _format: html|json
+
+consultantnewsletter_history:
+    pattern:  /consultantnewsletter/history
+    defaults: { _controller: ConsultantNewsletterBundle:Default:history }
