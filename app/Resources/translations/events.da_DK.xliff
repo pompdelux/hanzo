@@ -12,23 +12,23 @@
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
-                <target>Her kan du se alle events som er tilknyttet dig. Røde events er arkiveret samt grønne er stadig åbne for RSVP. Klik på en for at få vist en detaljeret beskrivelse.</target>
+                <target>Her kan du se alle dine oprettede arrangementer. Grøn er lig med åbne arrangementer og rød er lig med lukkede arrangementer. Klik på en for at få vist en detaljeret beskrivelse.</target>
             </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
-                <target>Event detaljer</target>
+                <target>Arrangement detaljer</target>
             </trans-unit>
             <trans-unit id="events.view_event.description.text">
                 <source>events.view_event.description.text</source>
-                <target>Herunder vises alle data for det valgte event.</target>
+                <target>Herunder vises alle informationer for arrangementet.</target>
             </trans-unit>
             <trans-unit id="events.create_event.header.text">
                 <source>events.create_event.header.text</source>
-                <target>Opret/rediger et event</target>
+                <target>Opret/rediger et arrangement</target>
             </trans-unit>
             <trans-unit id="events.create_event.description.text">
                 <source>events.create_event.description.text</source>
-                <target>Herunder skal informationerne for eventet skrives ind. Du kan søge efter en nuværende kunde, vha "søg pr email" eller du kan søge efter informationer direkte med et nummer opslag vha. "søg pr telefon".</target>
+                <target>Udfyld informationerne for dit arrangement.</target>
             </trans-unit>
             <trans-unit id="events.calendar.link">
                 <source>events.calendar.link</source>
@@ -36,35 +36,35 @@
             </trans-unit>
             <trans-unit id="events.create_event.link">
                 <source>events.create_event.link</source>
-                <target>Opret ny event</target>
+                <target>Opret nyt arrangement</target>
             </trans-unit>
             <trans-unit id="events.update_event.link">
                 <source>events.update_event.link</source>
-                <target>Rediger event</target>
+                <target>Rediger arrangement</target>
             </trans-unit>
             <trans-unit id="events.delete_event.link">
                 <source>events.delete_event.link</source>
-                <target>Slet event</target>
+                <target>Slet arrangement</target>
             </trans-unit>
             <trans-unit id="events.update.event">
                 <source>events.update.event</source>
-                <target>Gem Event</target>
+                <target>Gem arrangement</target>
             </trans-unit>
             <trans-unit id="cancel">
                 <source>cancel</source>
-                <target>Afbryd</target>
+                <target>Tilbage</target>
             </trans-unit>
             <trans-unit id="events.created">
                 <source>events.created</source>
-                <target>Eventet blev gemt!</target>
+                <target>Arrangementet blev gemt!</target>
             </trans-unit>
             <trans-unit id="events.delete.confirm.%id%">
                 <source>events.delete.confirm.%id%</source>
-                <target>Er du sikker på du ønsker at slette eventet: %id%</target>
+                <target>Er du sikker på du ønsker at slette arrangement: %id%</target>
             </trans-unit>
             <trans-unit id="events.delete.success">
                 <source>events.delete.success</source>
-                <target>Eventet blev slettet!</target>
+                <target>Arrangementet blev slettet!</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_phone.placeholder">
                 <source>events.find_customer_by_phone.placeholder</source>
@@ -72,19 +72,19 @@
             </trans-unit>
             <trans-unit id="events.find_customer_by_phone.button">
                 <source>events.find_customer_by_phone.button</source>
-                <target>Søg pr Tlf.</target>
+                <target>Søg op telefonnummer</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_email.placeholder">
                 <source>events.find_customer_by_email.placeholder</source>
-                <target>Email</target>
+                <target>E-mail</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_email.button">
                 <source>events.find_customer_by_email.button</source>
-                <target>Søg pr Email</target>
+                <target>Søg på e-mail</target>
             </trans-unit>
             <trans-unit id="events.code">
                 <source>events.code</source>
-                <target>Event navn</target>
+                <target>Arrangement navn</target>
             </trans-unit>
             <trans-unit id="events.event_date">
                 <source>events.event_date</source>
@@ -92,7 +92,7 @@
             </trans-unit>
             <trans-unit id="events.host">
                 <source>events.host</source>
-                <target>Værts navn</target>
+                <target>Værtinde</target>
             </trans-unit>
             <trans-unit id="events.address_line_1">
                 <source>events.address_line_1</source>
@@ -104,7 +104,7 @@
             </trans-unit>
             <trans-unit id="events.postal_code">
                 <source>events.postal_code</source>
-                <target>Post Nr.</target>
+                <target>Postnummer</target>
             </trans-unit>
             <trans-unit id="events.city">
                 <source>events.city</source>
@@ -116,11 +116,11 @@
             </trans-unit>
             <trans-unit id="events.email">
                 <source>events.email</source>
-                <target>Email</target>
+                <target>E-mail</target>
             </trans-unit>
             <trans-unit id="events.hasaccepted">
                 <source>events.hasaccepted</source>
-                <target>RSVP</target>
+                <target>Svar</target>
             </trans-unit>
             <trans-unit id="events.first_name">
                 <source>events.first_name</source>
@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="events.code.label">
                 <source>events.code.label</source>
-                <target>Event navn</target>
+                <target>Arrangementsnummer</target>
             </trans-unit>
             <trans-unit id="events.event_date.label">
                 <source>events.event_date.label</source>
@@ -144,7 +144,7 @@
             </trans-unit>
             <trans-unit id="events.host.label">
                 <source>events.host.label</source>
-                <target>Værts navn</target>
+                <target>Værtinde</target>
             </trans-unit>
             <trans-unit id="events.address_line_1.label">
                 <source>events.address_line_1.label</source>
@@ -156,7 +156,7 @@
             </trans-unit>
             <trans-unit id="events.postal_code.label">
                 <source>events.postal_code.label</source>
-                <target>Post Nr.</target>
+                <target>Postnummer</target>
             </trans-unit>
             <trans-unit id="events.city.label">
                 <source>events.city.label</source>
@@ -168,7 +168,7 @@
             </trans-unit>
             <trans-unit id="events.email.label">
                 <source>events.email.label</source>
-                <target>Email</target>
+                <target>E-mail</target>
             </trans-unit>
             <trans-unit id="events.description.label">
                 <source>events.description.label</source>
@@ -180,19 +180,19 @@
             </trans-unit>
             <trans-unit id="events.type.choice.ar">
                 <source>events.type.choice.ar</source>
-                <target>Arrangement</target>
+                <target>Home shopping arrangement</target>
             </trans-unit>
             <trans-unit id="events.type.choice.hus">
                 <source>events.type.choice.hus</source>
-                <target>Hus arrangement</target>
+                <target>Åbent hus</target>
             </trans-unit>
             <trans-unit id="events.is_open.label">
                 <source>events.is_open.label</source>
-                <target>Åben for køb af vare på eventet</target>
+                <target>Åben for køb af vare på arrangementet</target>
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Notificer vært?</target>
+                <target>Notificer værtinde?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
@@ -204,7 +204,7 @@
             </trans-unit>
             <trans-unit id="events.rsvp.top.header.text">
                 <source>events.rsvp.top.header.text</source>
-                <target>Du er blevet inviteret til et event</target>
+                <target>Du er blevet inviteret til et home shopping arrangement.</target>
             </trans-unit>
             <trans-unit id="events.not_found.header.text">
                 <source>events.not_found.header.text</source>
@@ -216,23 +216,23 @@
             </trans-unit>
             <trans-unit id="events.too_late_to_rsvp.text">
                 <source>events.too_late_to_rsvp.text</source>
-                <target>Eventet er allerede sket. Det er nu for sent at give dit RSVP.</target>
+                <target>Arrangementet er afholdt. Det er nu for sent at give dit svar.</target>
             </trans-unit>
             <trans-unit id="events.too_late_to_invite.text">
                 <source>events.too_late_to_invite.text</source>
-                <target>Eventet er allerede sket. Det er nu for sent at invitere personer.</target>
+                <target>Arrangementet er afholdt. Det er nu for sent at invitere personer.</target>
             </trans-unit>
             <trans-unit id="events.invite.top.header.text">
                 <source>events.invite.top.header.text</source>
-                <target>Der er oprettet et event, med dig som vært</target>
+                <target>Der er nu oprettet et arrangement med dig som værtinde.</target>
             </trans-unit>
             <trans-unit id="events.invite.header.text">
                 <source>events.invite.header.text</source>
-                <target>Inviter deltagere</target>
+                <target>Inviter</target>
             </trans-unit>
             <trans-unit id="events.invite.description.text">
                 <source>events.invite.description.text</source>
-                <target>Inviter de personer som du vil have med til eventet.</target>
+                <target>Inviter til home shopping arrangementet.</target>
             </trans-unit>
             <trans-unit id="events.invite.participant.button">
                 <source>events.invite.participant.button</source>
@@ -248,11 +248,11 @@
             </trans-unit>
             <trans-unit id="events.rsvp.header.text">
                 <source>events.rsvp.header.text</source>
-                <target>Dit RSVP</target>
+                <target>Dit svar</target>
             </trans-unit>
             <trans-unit id="events.rsvp.description.text">
                 <source>events.rsvp.description.text</source>
-                <target>Send dit RSVP om hvorvidt du deltager i arrangementet. Opdater desuden dine informationer så de passer.</target>
+                <target>Send dit svar om du deltager i home shopping arrangementet. Opdater dine informationer.</target>
             </trans-unit>
             <trans-unit id="events.tell_a_friend.header.text">
                 <source>events.tell_a_friend.header.text</source>
@@ -260,11 +260,11 @@
             </trans-unit>
             <trans-unit id="events.tell_a_friend.description.text">
                 <source>events.tell_a_friend.description.text</source>
-                <target>Du kan invitere én ven med til arrangementet. Udfyld felterne og tryk på "Inviter ven". En mail vil blive sendt ud til din ven.</target>
+                <target>Du kan invitere én ven med til arrangementet. Udfyld felterne og tryk på "Inviter ven". Herefter sendes en e-mail til den indbudte.</target>
             </trans-unit>
             <trans-unit id="events.participant.rsvp.button">
                 <source>events.participant.rsvp.button</source>
-                <target>Opdater din RSVP</target>
+                <target>Opdater dit svar</target>
             </trans-unit>
             <trans-unit id="events.participant.tell_a_friend.button">
                 <source>events.participant.tell_a_friend.button</source>
