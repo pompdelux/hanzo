@@ -143,6 +143,7 @@ class DefaultController extends CoreController
 		            return $this->json_response(array(
 		                'status' => FALSE,
 		                'message' => $this->get('translator')->trans('consultant.newsletter.schedule.newsletter.send.failed', array(), 'consultant'),
+		                'data' => $response
 		            ));
 		        }
 			}
@@ -170,7 +171,7 @@ class DefaultController extends CoreController
         $list = $api->getAdminUserByEmail($consultant->getEmail())->id;
 
     	$subscribed_users = $api->getAllUsersSubscribedToList($list);
-    	return $this->render('ConsultantNewsletterBundle:Default:importUsers.html.twig',
+    	return $this->render('ConsultantNewsletterBundle:Default:editUsers.html.twig',
         	array(
         		'page_type' => 'consultant-newsletter',
         		'subscribed_users' => $subscribed_users
@@ -180,6 +181,7 @@ class DefaultController extends CoreController
 
     public function unsubscribeUserAction($userId)
     {
+    	$mailer = $this->get('mail_manager');
     	$api = $this->get('consultantnewsletterapi');
 
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
@@ -198,7 +200,7 @@ class DefaultController extends CoreController
 
         $list = $api->getAdminUserByEmail($consultant->getEmail())->id;
 
-        $api->unSubscribeUser($userId, $list);
+        $api->unSubscribeUser($mailer, $userId, $list);
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -220,6 +222,7 @@ class DefaultController extends CoreController
 
     public function doImportUsersAction()
     {
+    	$mailer = $this->get('mail_manager');
     	$api = $this->get('consultantnewsletterapi');
 
         $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
@@ -254,19 +257,11 @@ class DefaultController extends CoreController
 	        	if(empty($user))
 	        		continue;
 	        	$userData = array(
-	        		'email_address' => $user
+	        		'email_address' => trim($user),
+	        		'attributes'	=> array()
 	        	);
-
-		        try{
-		          $api->subscribeUser($userData,$list, true );
-		        }catch (Exception $e){
-			        if ($this->getFormat() == 'json') {
-			            return $this->json_response(array(
-			                'status' => FALSE,
-			                'message' => $e.getMessage(),
-			            ));
-			        }
-		        }
+				
+				$api->subscribeUser($mailer, $userData,$list, true );
 	        }
         	
 	        if ($this->getFormat() == 'json') {
@@ -277,6 +272,27 @@ class DefaultController extends CoreController
 	        }
         }
 
+    }
+
+    public function historyAction()
+    {
+    	$api = $this->get('consultantnewsletterapi');
+
+        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+
+    	$history = $api->getNewsletterHistory( 3 );
+
+    	// Workaround. Crap content receivet from phplist :-(
+    	for ($i=0; $i < count($history); $i++) { 
+			$history[$i]['message'] = htmlspecialchars_decode($history[$i]['message']);
+    	}
+    	
+    	return $this->render('ConsultantNewsletterBundle:Default:history.html.twig',
+        	array(
+        		'page_type' => 'consultant-newsletter',
+        		'history' 	=> $history
+        	)
+        );
     }
 
     public function fileManagerAction()

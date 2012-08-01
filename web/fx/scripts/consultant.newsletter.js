@@ -52,6 +52,18 @@ var consultantNewsletter = (function($) {
         },
       });
     });
+
+    $('#history li .newsletter').click(function(e){
+      e.preventDefault();
+      $html = $(this).parent().find('.colorbox').html();
+      var defaults = {
+        'close' : ExposeTranslation.get('js:close'),
+        'overlayClose' : true,
+        'escKey' : true,
+        'html' : '<div class="dialoug alert info">' + $html + '</div>'
+      };
+      $.colorbox(defaults);
+    });
   };
  
   return pub;

@@ -26,7 +26,7 @@
   </ul>
 </nav>
 
-<h1>{{ 'consultant.newsletter.import.header.text'|trans({}, 'consultant') }}</h1>
+<h1>{{ 'consultant.newsletter.history.header.text'|trans({}, 'consultant') }}</h1>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
@@ -35,12 +35,19 @@
 {% endif %}
 
 
-<p>{{ 'consultant.newsletter.import.description.text'|trans({}, 'consultant') }}</p>
+<p>{{ 'consultant.newsletter.history.description.text'|trans({}, 'consultant') }}</p>
 
-{% if subscribed_users %}
-  <ul id="subscribed-users">
-    {% for user in subscribed_users %}
-      <li>{{ user.email }} <a href="{{ path('consultantnewsletter_unsubscribe_user', {'userId' : user.id }) }}" class="delete">{{ 'consultant.newsletter.delete.user'|trans({}, 'consultant') }}</a></li>
+{% if history %}
+  <ul id="history">
+    {% for newsletter in history %}
+      <li><a href="#" class="newsletter">{{ newsletter.subject|raw }}</a>
+        <div class="colorbox" style="display:none;">
+          <h2 class="subject">{{ newsletter.subject|raw }}</h2>
+          <div class="message">
+            {{ newsletter.message|raw }}
+          </div>
+        </div>
+      </li>
     {% endfor %}
   </ul>
 {% endif %}

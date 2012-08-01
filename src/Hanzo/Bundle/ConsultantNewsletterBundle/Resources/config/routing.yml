@@ -33,12 +33,13 @@ consultantnewsletter_edit_users:
 
 
 consultantnewsletter_unsubscribe_user:
-    pattern:  /consultantnewsletter/unsubscribeuser
+    pattern:  /consultantnewsletter/unsubscribeuser/{userId}
     defaults:
         _controller: ConsultantNewsletterBundle:Default:unsubscribeUser
         _format: json
     requirements:
         _format: html|json
+        userId: \d+
 
 consultantnewsletter_history:
     pattern:  /consultantnewsletter/history

@@ -51,7 +51,7 @@ class ConsultantNewsletterApi
         return $this->soapClient->getUserById($userId);
     }
 
-    public function subscribeUser( array $customerData, array $listIds, $autoConfirm = TRUE)
+    public function subscribeUser( $mailer, array $customerData, array $listIds, $autoConfirm = TRUE)
     {
         $user = $this->getUserByEmail( $customerData['email_address'] );
 
@@ -78,31 +78,31 @@ class ConsultantNewsletterApi
         //subscribe the new user to the correct lists
         $firstName = (isset($customerData['firstname']) ? $customerData['firstname'] : '');
         $lastName = (isset($customerData['lastname']) ? $customerData['lastname'] : '');
-        foreach ( $newSubscriptions as $listId ){
+        foreach ( $new_lists as $listId ){
             try{
                 $result = $this->soapClient->subscribeUser( $firstName, $lastName, $customerData['email_address'] ,array( $listId ), $customerData['attributes'] );
-            }catch ( Exception $e ){
-                error_log(__FILE__ . ' ' . __LINE__ . "\n" .print_r($e, true));
-                throw new Exception( PHPLIST_ERROR_COULD_NOT_UPDATE_USER );
+            }catch ( \SoapFault $e ){
+                return $e->getMessage();
             }
         }
 
         $user = $this->getUserByEmail( $customerData['email_address'] );
         if($user !== FALSE){
             if($autoConfirm)
-                $this->sendNotificationEmail('newsletter.subscribe', $customerData['email_address'], $firstName);
+                $this->sendNotificationEmail($mailer, 'newsletter.subscribe', $customerData['email_address'], $firstName);
             else
-                $this->sendNotificationEmail('newsletter.confirmation', $customerData['email_address'], $firstName);
+                $this->sendNotificationEmail($mailer, 'newsletter.confirmation', $customerData['email_address'], $firstName);
         }
+        return true;
 
     }
 
-    public function unSubscribeUser($userId, $listId)
+    public function unSubscribeUser( $mailer, $userId, $listId)
     {
         $user = $this->getUserById($userId);
         $this->soapClient->unSubscribeUser( $user['email'], array($listId));
 
-        $this->sendNotificationEmail('newsletter.unsubscribe', $user['email']);
+        $this->sendNotificationEmail($mailer, 'newsletter.unsubscribe', $user['email']);
     }
 
     public function getActiveLists()
@@ -275,16 +275,16 @@ class ConsultantNewsletterApi
      * @return void
      * @author Henrik Farre <hf@bellcom.dk> / Anders Bryrup
      **/
-    public function sendNotificationEmail( $tpl, $email, $name = '' )
+    public function sendNotificationEmail( $mailer, $tpl, $email, $name = '' )
     {
-
-        $this->mailer->setMessage($tpl, array(
+        
+        $mailer->setMessage($tpl, array(
             'name'  => $name,
             'email' => $email,
         ));
 
-        $this->mailer->setTo( $email, $name );
-        $this->mailer->send();
+        $mailer->setTo( $email, $name );
+        $mailer->send();
     }
 
     /**
