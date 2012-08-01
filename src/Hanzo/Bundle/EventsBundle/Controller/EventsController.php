@@ -3,8 +3,8 @@
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Form\FormError;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
@@ -485,6 +485,16 @@ class EventsController extends CoreController
 	        if ('POST' === $request->getMethod()) {
 	            $form->bindRequest($request);
 
+                $res = EventsParticipantsQuery::create()
+                    ->filterByEventsId($event->getId())
+                    ->findByEmail($events_participant->getEmail())
+                ;
+
+                if ($res->count()) {
+                    $error = new FormError($this->get('translator')->trans('event.email.exists', array(), 'events'));
+                    $form->addError($error);
+                }
+
 	            if ($form->isValid()) {
 	            	$events_participant->setKey(sha1(time()));
 	            	$events_participant->setEventsId($event->getId());
@@ -513,6 +523,10 @@ class EventsController extends CoreController
 		            	$events_participant->getFirstName(). ' ' .$events_participant->getLastName()
 		            );
 		            $mailer->send();
+
+                    if ($events_participant->getPhone()) {
+                        $this->get('sms_manager')->sendEventInvite($events_participant);
+                    }
 
 	                $this->get('session')->setFlash('notice', 'events.participant.invited');
 	            }
@@ -728,6 +742,22 @@ class EventsController extends CoreController
 
         return $this->render('EventsBundle:Events:list.html.twig', array(
             'events' => $events,
+        ));
+    }
+
+
+    public function removeParticipantAction($event_id, $participant_id)
+    {
+        EventsParticipantsQuery::create()
+            ->filterByEventsId($event_id)
+            ->filterById($participant_id)
+            ->findOne()
+            ->delete()
+        ;
+
+        return $this->json_response(array(
+            'status' => true,
+            'message' => ''
         ));
     }
 }

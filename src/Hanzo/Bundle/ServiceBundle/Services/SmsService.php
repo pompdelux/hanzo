@@ -42,7 +42,7 @@ class SmsService
         $this->settings = $settings;
     }
 
-    public function sendEventConfirmationReply($mobile_number, $participant)
+    public function sendEventInvite($participant)
     {
         $event = $participant->getEvents();
         $parameters = array(
@@ -53,11 +53,36 @@ class SmsService
             '%zip%' => $event->getPostalCode(),
             '%city%' => $event->getCity(),
             '%hostess%' => $event->getHost(),
+            '%event_id%' => 'e'.$event->getId(),
         );
+
+        $to = $this->settings['provider.calling_code'].$participant->getPhone();
+        $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
+
+        $provider = $this->getProvider();
+        $provider->addMessage($to, $message);
+
+        return $provider->send();
+    }
+
+    public function sendEventConfirmationReply($participant)
+    {
+        $event = $participant->getEvents();
+        $parameters = array(
+            '%name%' => $participant->getFirstName(),
+            '%event_date%' => $event->getEventDate('d-m-Y'),
+            '%event_time%' => $event->getEventDate('G:i'),
+            '%address%' => $event->getAddressLine1(),
+            '%zip%' => $event->getPostalCode(),
+            '%city%' => $event->getCity(),
+            '%hostess%' => $event->getHost(),
+        );
+
+        $to = $this->settings['provider.calling_code'].$participant->getPhone();
         $message = $this->translator->trans('event.sms.confirmation.reply', $parameters, 'events');
 
         $provider = $this->getProvider();
-        $provider->addMessage($mobile_number, $message);
+        $provider->addMessage($to, $message);
 
         return $provider->send();
     }
@@ -70,22 +95,6 @@ class SmsService
     public function eventReminder($locale = 'da_DK')
     {
         $provider = $this->getProvider();
-
-        $message = MessagesI18nQuery::create()
-            ->joinWithMessages()
-            ->filterByLocale($locale)
-            ->useMessagesQuery()
-                ->filterByNs('sms')
-                ->filterByKey('event.reminder')
-            ->endUse()
-            ->findOne()
-        ;
-
-        if (!$message) {
-            throw new Exception("No 'event.reminder' translation for '{$locale}'", 1);
-        }
-
-        $message = $message->getBody();
 
         $date = new \DateTime();
         $date->modify('+1 day midnight');
@@ -110,16 +119,19 @@ class SmsService
         $batches = array();
         foreach ($participants as $participant) {
             $event = $participant->getEvents();
+            $to = $this->settings['provider.calling_code'].$participant->getPhone();
 
-            $batches[(int) $participant->getPhone()] = strtr($message, array(
-                ':first_name:' => $participant->getFirstName(),
-                ':last_name:' => $participant->getLastName(),
-                ':event_date:' => $event->getEventDate('d-m-Y'),
-                ':event_time:' => $event->getEventDate('G:i'),
-                ':address:' => $event->getAddressLine1(),
-                ':postal_code:' => $event->getPostalCode(),
-                ':city:' => $event->getCity(),
-            ));
+            $parameters = array(
+                '%name%' => $participant->getFirstName(),
+                '%event_date%' => $event->getEventDate('d-m-Y'),
+                '%event_time%' => $event->getEventDate('G:i'),
+                '%address%' => $event->getAddressLine1(),
+                '%zip%' => $event->getPostalCode(),
+                '%city%' => $event->getCity(),
+                '%hostess%' => $event->getHost(),
+            );
+
+            $batches[$to] = $message = $this->translator->trans('event.sms.reminder', $parameters, 'events');
 
             // mark participant as notified
             $participant->setSmsSendAt('now');
@@ -128,8 +140,8 @@ class SmsService
 
         $responses = array();
         foreach (array_chunk($batches, UnwireProvider::BATCH_MAX_QUANTITY) as $batch) {
-            foreach ($batch as $mobile_number => $message) {
-                $responses[] = $provider->addMessage($mobile_number, $message);
+            foreach ($batch as $to => $message) {
+                $responses[] = $provider->addMessage($to, $message);
             }
             $provider->send();
         }

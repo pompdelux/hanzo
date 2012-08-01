@@ -36,10 +36,10 @@ class SmsController extends CoreController
         //     [sessionid] => 4529927366:20120730221204
         // )
 
-        $sender    = trim($this->getRequest()->get('sender'));
-        $appnr     = trim($this->getRequest()->get('appnr'));
-        $smsc      = trim($this->getRequest()->get('smsc'));
-        $text      = trim($this->getRequest()->get('text'));
+        $sender = trim($this->getRequest()->get('sender'));
+        $appnr = trim($this->getRequest()->get('appnr'));
+        $smsc = trim($this->getRequest()->get('smsc'));
+        $text = trim($this->getRequest()->get('text'));
         $sessionid = trim($this->getRequest()->get('sessionid'));
 
         // TODO should not be bardcoded
@@ -58,21 +58,20 @@ class SmsController extends CoreController
                 ->filterByPhone($lookup)
                 ->_or()
                 ->filterByPhone($sender)
-//                ->filterByRespondedAt(null, \Criteria::ISNULL)
+                ->filterByRespondedAt(null, \Criteria::ISNULL)
                 ->findOne()
             ;
 
             if ($participant instanceof EventsParticipants) {
-                $participant->setHasAccepted(true);
-                $participant->setRespondedAt(time());
-                $participant->save();
+                try {
+                    $participant->setHasAccepted(true);
+                    $participant->setRespondedAt(time());
+                    $participant->save();
 
-                $response = $this->get('sms_manager')->sendEventConfirmationReply($sender, $participant);
-Tools::log($response);
+                    $this->get('sms_manager')->sendEventConfirmationReply($participant);
+                } catch (\Exception $e) {}
             }
         }
-
-// http://pdl.bc/app_dev.php/da_DK/events/sms/rsvp?sender=4529927366&smsc=tdc&appnr=1231&text=pdl+e1&sessionid=xxxx1234
 
         // no response needed
         return $this->response('');

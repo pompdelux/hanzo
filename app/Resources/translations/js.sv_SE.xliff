@@ -191,6 +191,10 @@
                 <source>wall.delete.entry.confirm</source>
                 <target>Är du säker på att du vill radera inlägget?</target>
             </trans-unit>
+            <trans-unit id="event.confirm.delete.participant">
+                <source>event.confirm.delete.participant</source>
+                <target>Är du säker på att du vill radera denna deltagare?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

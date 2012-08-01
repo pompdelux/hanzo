@@ -318,6 +318,18 @@
                 <source>events.participant.rsvp.success</source>
                 <target>Dit svar er blevet modtaget.</target>
             </trans-unit>
+            <trans-unit id="event.sms.confirmation.reply">
+                <source>event.sms.confirmation.reply</source>
+                <target>Hei %name%. Takk for din tilmelding til POMPdeLUX Home shopping-arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg gleder meg til å se deg! %hostess%</target>
+            </trans-unit>
+            <trans-unit id="event.sms.invite">
+                <source>event.sms.invite</source>
+                <target>Hei %name%. Jeg vil gjerne invitere deg til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se de lekre barneklærne, så svar på denne SMS-en med teksten "pdl %event_id%". Jeg håper vi ses! %hostess%</target>
+            </trans-unit>
+            <trans-unit id="event.sms.reminder">
+                <source>event.sms.reminder</source>
+                <target>Hei %name%, Husk POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
