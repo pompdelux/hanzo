@@ -36,8 +36,11 @@ switch (array_pop($tdl)) {
     case 'nl':
         $lang = '/nl_NL/';
         break;
+    case 'fi':
+        $lang = '/fi_FI/';
+        break;
     case 'com':
-        if (!preg_match('/(da_DK|nb_NO|sv_SE|nl_NL|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
+        if (!preg_match('/(da_DK|nb_NO|sv_SE|nl_NL|fi_FI|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
           $lang = '/en_GB/';
         }
         break;
