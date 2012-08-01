@@ -79,6 +79,7 @@ class ProxyUser implements UserInterface
         // NICETO: should not be hardcoded
         if (in_array($this->getUsername(), $this->sales)) {
             $roles[] = 'ROLE_SALES';
+            $roles[] = 'ROLE_CONSULTANT';
         }
 
         return $roles;
