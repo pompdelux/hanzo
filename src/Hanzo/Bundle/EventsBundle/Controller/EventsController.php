@@ -466,7 +466,7 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $event = EventsQuery::create()
-            ->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
+            ->filterByEventDate(array('min' => date('Y-m-d H:i:s', time())))
             ->filterByCustomersId($customer->getId())
             ->findOneByKey($key)
         ;
@@ -586,7 +586,7 @@ class EventsController extends CoreController
         $event = null;
         if($events_participant instanceof EventsParticipants){
             $event = EventsQuery::create()
-                ->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
+                ->filterByEventDate(array('min' => date('Y-m-d H:i:s', time())))
                 ->findOneById($events_participant->getEventsId())
             ;
         }
