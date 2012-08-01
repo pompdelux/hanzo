@@ -61,6 +61,8 @@ mysql_query("
     created_at
   FROM
     {$from_db}.pdl_events
+  ON DUPLICATE KEY UPDATE
+    code = MD5(RAND())
 ") or (die('Line: '.__LINE__."\n".mysql_error()."\n"));
 
 echo "[".date('Y-m-d H:i:s')."] migrating event participants\n"; flush();
