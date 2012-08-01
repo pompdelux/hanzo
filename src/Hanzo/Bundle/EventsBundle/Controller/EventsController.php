@@ -502,14 +502,16 @@ class EventsController extends CoreController
             if ('POST' === $request->getMethod()) {
                 $form->bindRequest($request);
 
-                $res = EventsParticipantsQuery::create()
-                    ->filterByEventsId($event->getId())
-                    ->findByEmail($events_participant->getEmail())
-                ;
+                if ($events_participant->getEmail()) {
+                    $res = EventsParticipantsQuery::create()
+                        ->filterByEventsId($event->getId())
+                        ->findByEmail($events_participant->getEmail())
+                    ;
 
-                if ($res->count()) {
-                    $error = new FormError($this->get('translator')->trans('event.email.exists', array(), 'events'));
-                    $form->addError($error);
+                    if ($res->count()) {
+                        $error = new FormError($this->get('translator')->trans('event.email.exists', array(), 'events'));
+                        $form->addError($error);
+                    }
                 }
 
                 if ($form->isValid()) {
@@ -518,28 +520,30 @@ class EventsController extends CoreController
                     $events_participant->save();
 
                     // Now send out some emails!
-                    $mailer = $this->get('mail_manager');
+                    if ($events_participant->getEmail()) {
+                        $mailer = $this->get('mail_manager');
 
-                    $mailer->setMessage('events.participant.invited', array(
-                        'event_date'       => date('d/m', strtotime($event->getEventDate())),
-                        'event_time'       => date('H:i', strtotime($event->getEventDate())),
-                        'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
-                        'hostess'          => $event->getHost(),
-                        'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                        'zip'              => $event->getPostalCode(),
-                        'city'             => $event->getCity(),
-                        'email'            => $event->getEmail(),
-                        'phone'            => $event->getPhone(),
-                        'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
-                        'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                        'consultant_email' => $consultant->getCustomers()->getEmail()
-                    ));
+                        $mailer->setMessage('events.participant.invited', array(
+                            'event_date'       => date('d/m', strtotime($event->getEventDate())),
+                            'event_time'       => date('H:i', strtotime($event->getEventDate())),
+                            'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
+                            'hostess'          => $event->getHost(),
+                            'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
+                            'zip'              => $event->getPostalCode(),
+                            'city'             => $event->getCity(),
+                            'email'            => $event->getEmail(),
+                            'phone'            => $event->getPhone(),
+                            'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
+                            'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
+                            'consultant_email' => $consultant->getCustomers()->getEmail()
+                        ));
 
-                    $mailer->setTo(
-                        $events_participant->getEmail(),
-                        $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
-                    );
-                    $mailer->send();
+                        $mailer->setTo(
+                            $events_participant->getEmail(),
+                            $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
+                        );
+                        $mailer->send();
+                    }
 
                     if ($events_participant->getPhone()) {
                         $this->get('sms_manager')->sendEventInvite($events_participant);
