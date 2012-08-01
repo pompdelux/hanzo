@@ -5,7 +5,8 @@
 set :deploy_to,   "/var/www/testpompdelux" 
 
 #symfony_env_prods = ["test_dk", "test_se", "test_no", "test_com", "test_nl"]
-symfony_env_prods = ["test_dk"]
+#symfony_env_prods = ["test_dk"]
+symfony_env_prods = ["test_dk", "test_se", "test_no"]
 
 set :adminserver, "pomp-test"
 

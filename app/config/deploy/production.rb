@@ -4,7 +4,7 @@
 
 set :deploy_to,   "/var/www/pompdelux" 
 
-symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl"]
+symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_fi"]
 
 set :adminserver, "pdladmin"
 
