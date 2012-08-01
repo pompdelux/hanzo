@@ -318,6 +318,10 @@
                 <source>events.participant.rsvp.success</source>
                 <target>Ditt svar har blivit mottaget.</target>
             </trans-unit>
+			<trans-unit id="events.name">
+                <source>events.name</source>
+                <target>Namn</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
