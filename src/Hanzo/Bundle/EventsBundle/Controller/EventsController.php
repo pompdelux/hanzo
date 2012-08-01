@@ -58,7 +58,7 @@ class EventsController extends CoreController
     			'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
     			'className' => $event->getType(),
     			'editable' => false,
-    			'color' => (strtotime($event->getEventDate()) >= strtotime('+1 day')) ? 'green': 'red'
+    			'color' => (strtotime($event->getEventDate()) >= date()) ? 'green': 'red'
     		);
     	}
 
@@ -228,11 +228,10 @@ class EventsController extends CoreController
                 if($changed){
                 	if($changed_host){ // If the event has changed and its a new host, send specific mails to all
                 		if($event->getNotifyHostess()){
-
                 			// Send an email to the old Host
                 			$mailer->setMessage('events.hostess.eventmovedfrom', array(
 				                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-				                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+				                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 				                'name'    	 		=> $old_event->getHost(),
 				                'from_address'		=> $old_event->getAddressLine1(). ' ' .$old_event->getAddressLine2(),
 				                'from_zip'			=> $old_event->getPostalCode(),
@@ -252,7 +251,7 @@ class EventsController extends CoreController
 				            // Send an email to the new Host
                 			$mailer->setMessage('events.hostess.eventmovedto', array(
 				                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-				                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+				                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 				                'from_name' 		=> $old_event->getHost(),
 				                'from_address'		=> $old_event->getAddressLine1(). ' ' .$old_event->getAddressLine2(),
 				                'from_zip'			=> $old_event->getPostalCode(),
@@ -285,7 +284,7 @@ class EventsController extends CoreController
 
 	            			$mailer->setMessage('events.participant.eventchanged', array(
 				                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-				                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+				                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 				                'to_name'	   		=> $participant->getFirstName(). ' ' .$participant->getLastName(),
 				                'hostess'	   		=> $event->getHost(),
 				                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
@@ -307,7 +306,7 @@ class EventsController extends CoreController
 			            // Send an email to the new Host
             			$mailer->setMessage('events.hostess.create', array(
 			                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-			                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+			                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 			                'to_name'    	 	=> $event->getHost(),
 			                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
 			                'zip'				=> $event->getPostalCode(),
@@ -392,7 +391,7 @@ class EventsController extends CoreController
 
             $mailer->setMessage('events.hostess.delete', array(
                 'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
                 'to_name'     		=> $event->getHost(),
                 'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
                 'zip'				=> $event->getPostalCode(),
@@ -405,7 +404,7 @@ class EventsController extends CoreController
         	foreach ($participants as $participant) {
 	            $mailer->setMessage('events.participants.delete', array(
 	                'event_date'	=> date('d/m', strtotime($event->getEventDate())),
-	                'event_time'	=> date('h:m', strtotime($event->getEventDate())),
+	                'event_time'	=> date('H:i', strtotime($event->getEventDate())),
 	                'to_name'     	=> $participant->getFirstName(),
 	                'address'		=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
 	                'zip'			=> $event->getPostalCode(),
@@ -490,7 +489,7 @@ class EventsController extends CoreController
 
 		            $mailer->setMessage('events.participant.invited', array(
 		                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-		                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+		                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 		                'to_name'     		=> $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
 		                'hostess'			=> $event->getHost(),
 		                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
@@ -679,7 +678,7 @@ class EventsController extends CoreController
 
 		            $mailer->setMessage('events.participant.invited', array(
 		                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-		                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+		                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 		                'to_name'     		=> $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
 		                'hostess'			=> $event->getHost(),
 		                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
