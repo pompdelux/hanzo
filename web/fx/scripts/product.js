@@ -179,7 +179,7 @@
 
     };
 
-    _resetForm = function(section) {
+    var _resetForm = function(section) {
       var $this = $('form.buy');
 
       if ( (section !== undefined) && (section !== 'size') ) {
