@@ -18,6 +18,7 @@ use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\Addresses;
 
 class EventsController extends CoreController
 {
@@ -179,6 +180,7 @@ class EventsController extends CoreController
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
 
+
             $changed = isset($id) ? true : false; // Keep track of which this is a new event or an old event
             if ($changed) {
                 $old_event = $event->copy(); // Keep a copy of the old data before we bind the request
@@ -203,13 +205,21 @@ class EventsController extends CoreController
 
                 // Der er ikke tilknyttet nogle Customers som vært, opret en ny
                 if (!($host instanceof Customers)){
+                    @list($first, $last) = explode(' ', $event->getHost(), 2);
+
                     $new_host = true;
                     $host = new Customers();
                     $host->setPasswordClear($event->getPhone());
                     $host->setPassword(sha1($event->getPhone()));
                     $host->setEmail($event->getEmail());
+                    $host->setFirstName($first);
+                    $host->setLastName($last);
 
-                    $host->save();
+                    try {
+                        $host->save();
+                    } catch(\PropelException $e) {
+                        Tools::log($event->toArray());
+                    }
                 }
 
                 $event->setCustomersId($host->getId());
