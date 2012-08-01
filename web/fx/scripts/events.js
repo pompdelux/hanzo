@@ -13,19 +13,6 @@ if ($("#calendar").length) {
   calendar.init();
 }
 
-$('#event-edit-form input').each(function(index, element) {
-  if ($('#event-edit-form ul').length) {
-    return;
-  }
-
-  if ((this.type == 'text') || (this.type == 'email')) {
-    this.value = '';
-  }
-  if (this.type == 'checkbox') {
-    this.checked = false;
-  }
-});
-
 $('#body-event #participants a.delete').on('click', function(event) {
   event.preventDefault();
   var $this = $(this);

@@ -44,7 +44,7 @@ class SmsController extends CoreController
 
         // TODO should not be bardcoded
         if (in_array($appnr, array(1231, 2201, 17163, 72445)) &&
-            (substr($text, 0, 5) == 'pdl e')
+            (strtolower(substr($text, 0, 5)) == 'pdl e')
         ) {
             @list($mediacode, $event_id, $junk) = explode(' ', $text, 3);
             $event_id = trim($event_id, 'e');
