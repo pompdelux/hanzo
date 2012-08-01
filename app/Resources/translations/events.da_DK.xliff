@@ -330,13 +330,21 @@
                 <source>event.sms.reminder</source>
                 <target>Hej %name% Husk POMPdeLUX home shopping arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
             </trans-unit>
-			<trans-unit id="events.name">
+            <trans-unit id="events.name">
                 <source>events.name</source>
                 <target>Navn</target>
             </trans-unit>
-			<trans-unit id="event.email.exists">
+            <trans-unit id="event.email.exists">
                 <source>event.email.exists</source>
                 <target>Den indtastede gæst er allerede registreret.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.edit">
+                <source>event.too.old.to.edit</source>
+                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke editeres.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.delete">
+                <source>event.too.old.to.delete</source>
+                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke slettes.</target>
             </trans-unit>
         </body>
     </file>

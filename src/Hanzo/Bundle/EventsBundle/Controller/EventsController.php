@@ -98,7 +98,7 @@ class EventsController extends CoreController
 
             // no editing old events
             if ($event->getEventDate('U') < time()) {
-                $this->getSession()->setFlash('notice', 'event.too.old.to.edit');
+                $this->get('session')->setFlash('notice', 'event.too.old.to.edit');
                 return $this->redirect($this->generateUrl('events_index'));
             }
         } else {
@@ -402,6 +402,13 @@ class EventsController extends CoreController
 
         $event = EventsQuery::create()->findPK($id);
         if ($event instanceof Events){
+
+            // no deleting old events
+            if ($event->getEventDate('U') < time()) {
+                $this->get('session')->setFlash('notice', 'event.too.old.to.delete');
+                return $this->redirect($this->generateUrl('events_index'));
+            }
+
             $consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
             // Send some emails for the host and participants
             $participants = EventsParticipantsQuery::create()
@@ -409,7 +416,6 @@ class EventsController extends CoreController
                 ->filterByHasAccepted(true)
                 ->find()
             ;
-
 
             // Now send out some emails!
             $mailer = $this->get('mail_manager');

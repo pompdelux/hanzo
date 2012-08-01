@@ -318,13 +318,21 @@
                 <source>events.participant.rsvp.success</source>
                 <target>Ditt svar har blivit mottaget.</target>
             </trans-unit>
-			<trans-unit id="events.name">
+            <trans-unit id="events.name">
                 <source>events.name</source>
                 <target>Namn</target>
             </trans-unit>
-			<trans-unit id="event.email.exists">
+            <trans-unit id="event.email.exists">
                 <source>event.email.exists</source>
                 <target>Den skrivna gästen är redan inbjuden.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.edit">
+                <source>event.too.old.to.edit</source>
+                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke editeres.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.delete">
+                <source>event.too.old.to.delete</source>
+                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke slettes.</target>
             </trans-unit>
         </body>
     </file>
