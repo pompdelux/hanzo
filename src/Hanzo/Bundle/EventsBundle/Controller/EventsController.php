@@ -215,7 +215,8 @@ class EventsController extends CoreController
                     $event->setKey(sha1(time()));
                 }
 
-                $event->save(); // Needs to save before we can retrieve the ID for the code :-?
+                // Needs to save before we can retrieve the ID for the code :-?
+                $event->save(uniqid('tmp.', true));
 
                 // Generate the Code of the event YYYY MM DD INIT TYPE ID DOMAIN
                 $code =         date('Ymd', strtotime($event->getEventDate()));
