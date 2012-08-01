@@ -336,7 +336,7 @@
             </trans-unit>
 			<trans-unit id="event.email.exists">
                 <source>event.email.exists</source>
-                <target>Den indtastede e-mailadresse er allerede inviteret.</target>
+                <target>Den indtastede gæst er allerede registreret.</target>
             </trans-unit>
         </body>
     </file>
