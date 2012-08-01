@@ -52,8 +52,9 @@ class ProxyUser implements UserInterface
         'kk@pompdelux.dk',
         'ak@pompdelux.dk',
         'sj@pompdelux.dk',
-        'pc@pompdelux.dk',
         'nj@pompdelux.dk',
+        'pc@pompdelux.dk',
+        'hd@pompdelux.dk',
      );
 
     public function __construct(ModelUser $user)
