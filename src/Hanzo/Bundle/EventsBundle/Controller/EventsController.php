@@ -26,8 +26,18 @@ class EventsController extends CoreController
             return $this->redirect($this->generateUrl('login'));
         }
 
+
+        $date_filter['max'] = date('Y-m-d H:i:s');
+        $archived_events = EventsQuery::create()
+            ->filterByEventDate($date_filter)
+            ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
+            ->orderByEventDate('DESC')
+            ->find()
+        ;
+
         return $this->render('EventsBundle:Events:index.html.twig', array(
-        	'page_type' => 'calendar'
+        	'page_type' => 'calendar',
+            'archived_events' => $archived_events
         ));
 	}
 
@@ -58,7 +68,7 @@ class EventsController extends CoreController
     			'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
     			'className' => $event->getType(),
     			'editable' => false,
-    			'color' => (strtotime($event->getEventDate()) >= date()) ? 'green': 'red'
+    			'color' => (strtotime($event->getEventDate()) >= date('Y-m-d H:i:s')) ? 'green': 'red'
     		);
     	}
 
@@ -76,10 +86,13 @@ class EventsController extends CoreController
 
     	$event = EventsQuery::create()->findPK($id);
 
+        $events_participants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
+
         return $this->render('EventsBundle:Events:view.html.twig', array(
-        	'page_type' => 'calendar',
+            'page_type' => 'calendar',
             'event' => $event,
-            'id'	=> $id
+            'participants'  => $events_participants,
+            'id'    => $id
         ));
     }
 

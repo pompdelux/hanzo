@@ -81,4 +81,42 @@
   </tbody>
 </table>
 
+{% if participants|length > 0 %}
+
+<h1>{{ 'events.invite.participants.header.text'|trans({}, 'events') }}</h1>
+<table id="participants" class="list">
+  <thead>
+    <tr>
+      <th>{{ 'events.first_name'|trans({}, 'events') }}</th>
+      <th>{{ 'events.last_name'|trans({}, 'events') }}</th>
+      <th>{{ 'events.email'|trans({}, 'events') }}</th>
+      <th>{{ 'events.phone'|trans({}, 'events') }}</th>
+      <th>{{ 'events.hasaccepted'|trans({}, 'events') }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for participant in participants %}
+    <tr>
+      <td>{{ participant.firstname }}</td>
+      <td>{{ participant.lastname }}</td>
+      <td><a href="mailto:{{ participant.email }}">{{ participant.email }}</a></td>
+      <td>{{ participant.phone }}</td>
+      <td>
+        {% if participant.hasaccepted == 1 %}
+          {{ 'events.hasaccepted.yes'|trans({}, 'events') }}
+        {% else %}
+          {{ 'events.hasaccepted.no'|trans({}, 'events') }}
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+
+<p>{{ 'events.participants.no.participants'|trans({}, 'events') }}</p>
+
+{% endif %}
+
 {% endblock %}

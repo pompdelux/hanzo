@@ -10,6 +10,10 @@
                 <source>events.calendar.description.text</source>
                 <target>Her kan du se alle events som er tilknyttet dig. Røde events er arkiveret samt grønne er stadig åbne for RSVP. Klik på en for at få vist en detaljeret beskrivelse.</target>
             </trans-unit>
+            <trans-unit id="events.calendar.archived.header.text">
+                <source>events.calendar.archived.header.text</source>
+                <target>Arkiverede arrangementer</target>
+            </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
                 <target>Event detaljer</target>
