@@ -278,9 +278,7 @@ class DefaultController extends CoreController
     {
     	$api = $this->get('consultantnewsletterapi');
 
-        $consultant = CustomersQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-
-    	$history = $api->getNewsletterHistory( 3 );
+    	$history = $api->getNewsletterHistory( $this->get('security.context')->getToken()->getUser()->getPrimaryKey() );
 
     	// Workaround. Crap content receivet from phplist :-(
     	for ($i=0; $i < count($history); $i++) { 

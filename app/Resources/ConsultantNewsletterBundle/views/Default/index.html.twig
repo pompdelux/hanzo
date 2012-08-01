@@ -40,13 +40,16 @@
   <input type="hidden" name="status" value="submitted" />
   <input type="hidden" name="template" value="1" />
 
-  <legend for="subject">{{ 'newsletter.subject'|trans({}, 'consultant') }}</legend>
-  <input name="subject" id="subject">
+  <div>
+    <label for="subject">{{ 'newsletter.subject.label'|trans({}, 'consultant') }}</label>
+    <input name="subject" id="subject">
+  </div>
   
-  <legend for="message">{{ 'newsletter.message'|trans({}, 'consultant') }}</legend>
-  <textarea name="message" id="message" class="tinymce"></textarea>
+  <div>
+    <label for="message">{{ 'newsletter.message.label'|trans({}, 'consultant') }}</label>
+    <textarea name="message" id="message" class="tinymce"></textarea>
+  </div>
   
-  <legend for="test_reciever">{{ 'newsletter.test_reciever'|trans({}, 'consultant') }}</legend>
   <div>
     <input type="button" name="savedraft" id="savedraft" value="{{ 'newsletter.save.draft'|trans({}, 'consultant') }}">
     <p>{{ 'newsletter.current.drafts'|trans({}, 'consultant') }}</p>

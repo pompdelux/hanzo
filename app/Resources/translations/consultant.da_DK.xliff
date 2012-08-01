@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="consultant.newsletter.link">
+                <source>consultant.newsletter.link</source>
+                <target>Send nyhedsbrev</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.users.link">
+                <source>consultant.newsletter.import.users.link</source>
+                <target>Importer brugere</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.edit.users.link">
+                <source>consultant.newsletter.edit.users.link</source>
+                <target>Rediger brugere</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.link">
+                <source>consultant.newsletter.history.link</source>
+                <target>Historik</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.header.text">
+                <source>consultant.newsletter.header.text</source>
+                <target>Send nyhedsbrev</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.description.text">
+                <source>consultant.newsletter.description.text</source>
+                <target>Du kan på denne side sende nyhedsbreve ud til dine kunder som er på din nyhedsliste. Indtast både emne og besked.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.test.mail.send.success">
+                <source>consultant.newsletter.test.mail.send.success</source>
+                <target>Test mail blev sendt. Kig i din indbakke!</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.test.mail.send.failed">
+                <source>consultant.newsletter.test.mail.send.failed</source>
+                <target>Der skete desværre en fejl ved afsendelse af Test mail.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.test.mail.no.test.mail">
+                <source>consultant.newsletter.test.mail.no.test.mail</source>
+                <target>Du har ingen modtager indtastet i feltet.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.schedule.newsletter.send.success">
+                <source>consultant.newsletter.schedule.newsletter.send.success</source>
+                <target>Nyhedsbrevet blev successfuldt sendt til dine brugere!</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.schedule.newsletter.send.failed">
+                <source>consultant.newsletter.schedule.newsletter.send.failed</source>
+                <target>Der skete desværre en fejl ved afsendelse af Nyhedsbrevet.</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.from.field.%name%.%email%">
+                <source>consultant.newsletter.from.field.%name%.%email%</source>
+                <target>POMPdeLUX %name% (%email%)</target>
+            </trans-unit>
+            <trans-unit id="newsletter.subject.label">
+                <source>newsletter.subject.label</source>
+                <target>Emne</target>
+            </trans-unit>
+            <trans-unit id="newsletter.message.label">
+                <source>newsletter.message.label</source>
+                <target>Besked</target>
+            </trans-unit>
+            <trans-unit id="newsletter.save.draft">
+                <source>newsletter.save.draft</source>
+                <target>Gem som kladde</target>
+            </trans-unit>
+            <trans-unit id="newsletter.current.drafts">
+                <source>newsletter.current.drafts</source>
+                <target>Gemte kladder</target>
+            </trans-unit>
+            <trans-unit id="newsletter.submit.send.newsletter">
+                <source>newsletter.submit.send.newsletter</source>
+                <target>Send nyhedsbrev</target>
+            </trans-unit>
+            <trans-unit id="newsletter.submit.send.test.email">
+                <source>newsletter.submit.send.test.email</source>
+                <target>Send test</target>
+            </trans-unit>
+            <trans-unit id="newsletter.send.test.to.label">
+                <source>newsletter.send.test.to.label</source>
+                <target>til</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.header.text">
+                <source>consultant.newsletter.import.header.text</source>
+                <target>Importer brugere til din nyhedsliste</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.description.text">
+                <source>consultant.newsletter.import.description.text</source>
+                <target>Indtast én email per linje.</target>
+            </trans-unit>
+            <trans-unit id="newsletter.import.submit">
+                <source>newsletter.import.submit</source>
+                <target>Importer</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.no.users">
+                <source>consultant.newsletter.import.no.users</source>
+                <target>Du har ingen emails indtastet i feltet?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.import.users.imported">
+                <source>consultant.newsletter.import.users.imported</source>
+                <target>Emails blev tilføjet til listen</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.edit.users.header.text">
+                <source>consultant.newsletter.edit.users.header.text</source>
+                <target>Rediger brugere på din nyhedsliste</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.user">
+                <source>consultant.newsletter.delete.user</source>
+                <target>Slet bruger</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.unsubscribe.user.success">
+                <source>consultant.newsletter.unsubscribe.user.success</source>
+                <target>Brugeren blev slettet fra listen!</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.header.text">
+                <source>consultant.newsletter.history.header.text</source>
+                <target>Historik</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

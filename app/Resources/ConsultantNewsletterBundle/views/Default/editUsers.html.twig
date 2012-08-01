@@ -26,16 +26,13 @@
   </ul>
 </nav>
 
-<h1>{{ 'consultant.newsletter.import.header.text'|trans({}, 'consultant') }}</h1>
+<h1>{{ 'consultant.newsletter.edit.users.header.text'|trans({}, 'consultant') }}</h1>
 
 {% if app.session.hasFlash('notice') %}
 <div class="message notice">
   {{ app.session.flash('notice')|trans({}, 'events') }}
 </div>
 {% endif %}
-
-
-<p>{{ 'consultant.newsletter.import.description.text'|trans({}, 'consultant') }}</p>
 
 {% if subscribed_users %}
   <ul id="subscribed-users">
