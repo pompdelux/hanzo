@@ -95,6 +95,12 @@ class EventsController extends CoreController
         $event = null;
         if ($id) {
             $event = EventsQuery::create()->findPK($id);
+
+            // no editing old events
+            if ($event->getEventDate('U') < time()) {
+                $this->getSession()->setFlash('notice', 'event.too.old.to.edit');
+                return $this->redirect($this->generateUrl('events_index'));
+            }
         } else {
             $event = new Events();
         }
@@ -287,6 +293,9 @@ class EventsController extends CoreController
 
                         // Send an email to all participants
                         foreach ($participants as $participant) {
+                            if (!$participant->getEmail()) {
+                                continue;
+                            }
 
                             $mailer->setMessage('events.participant.eventchanged', array(
                                 'event_date'       => date('d/m', strtotime($event->getEventDate())),
@@ -420,6 +429,10 @@ class EventsController extends CoreController
             $mailer->send();
 
             foreach ($participants as $participant) {
+                if (!$participant->getEmail()) {
+                    continue;
+                }
+
                 $mailer->setMessage('events.participants.delete', array(
                     'event_date'    => date('d/m', strtotime($event->getEventDate())),
                     'event_time'    => date('H:i', strtotime($event->getEventDate())),
@@ -716,28 +729,30 @@ class EventsController extends CoreController
                     $events_participant->save();
 
                     // Now send out some emails!
-                    $mailer = $this->get('mail_manager');
+                    if ($events_participant->getEmail()) {
+                        $mailer = $this->get('mail_manager');
 
-                    $mailer->setMessage('events.participant.invited', array(
-                        'event_date'       => date('d/m', strtotime($event->getEventDate())),
-                        'event_time'       => date('H:i', strtotime($event->getEventDate())),
-                        'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
-                        'hostess'          => $event->getHost(),
-                        'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
-                        'zip'              => $event->getPostalCode(),
-                        'city'             => $event->getCity(),
-                        'email'            => $event->getEmail(),
-                        'phone'            => $event->getPhone(),
-                        'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
-                        'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                        'consultant_email' => $consultant->getCustomers()->getEmail()
-                    ));
+                        $mailer->setMessage('events.participant.invited', array(
+                            'event_date'       => date('d/m', strtotime($event->getEventDate())),
+                            'event_time'       => date('H:i', strtotime($event->getEventDate())),
+                            'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
+                            'hostess'          => $event->getHost(),
+                            'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
+                            'zip'              => $event->getPostalCode(),
+                            'city'             => $event->getCity(),
+                            'email'            => $event->getEmail(),
+                            'phone'            => $event->getPhone(),
+                            'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
+                            'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
+                            'consultant_email' => $consultant->getCustomers()->getEmail()
+                        ));
 
-                    $mailer->setTo(
-                        $events_participant->getEmail(),
-                        $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
-                    );
-                    $mailer->send();
+                        $mailer->setTo(
+                            $events_participant->getEmail(),
+                            $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
+                        );
+                        $mailer->send();
+                    }
 
                     // Make sure that the friend only invites one
                     $friend->setTellAFriend(false);
@@ -758,7 +773,7 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
+            ->filterByEventDate(array('min' => date('Y-m-d H:i:s', time())))
             ->filterByCustomersId($customer->getId())
             ->find()
         ;
