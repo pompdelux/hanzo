@@ -66,6 +66,13 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 	protected $event_notes;
 
 	/**
+	 * The value for the hide_info field.
+	 * Note: this column has a database default value of: false
+	 * @var        boolean
+	 */
+	protected $hide_info;
+
+	/**
 	 * The value for the max_notified field.
 	 * Note: this column has a database default value of: false
 	 * @var        boolean
@@ -105,6 +112,7 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 	 */
 	public function applyDefaultValues()
 	{
+		$this->hide_info = false;
 		$this->max_notified = false;
 	}
 
@@ -146,6 +154,16 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 	public function getEventNotes()
 	{
 		return $this->event_notes;
+	}
+
+	/**
+	 * Get the [hide_info] column value.
+	 * 
+	 * @return     boolean
+	 */
+	public function getHideInfo()
+	{
+		return $this->hide_info;
 	}
 
 	/**
@@ -229,6 +247,34 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 	} // setEventNotes()
 
 	/**
+	 * Sets the value of the [hide_info] column.
+	 * Non-boolean arguments are converted using the following rules:
+	 *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+	 *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+	 * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+	 * 
+	 * @param      boolean|integer|string $v The new value
+	 * @return     Consultants The current object (for fluent API support)
+	 */
+	public function setHideInfo($v)
+	{
+		if ($v !== null) {
+			if (is_string($v)) {
+				$v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+			} else {
+				$v = (boolean) $v;
+			}
+		}
+
+		if ($this->hide_info !== $v) {
+			$this->hide_info = $v;
+			$this->modifiedColumns[] = ConsultantsPeer::HIDE_INFO;
+		}
+
+		return $this;
+	} // setHideInfo()
+
+	/**
 	 * Sets the value of the [max_notified] column.
 	 * Non-boolean arguments are converted using the following rules:
 	 *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
@@ -290,6 +336,10 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
+			if ($this->hide_info !== false) {
+				return false;
+			}
+
 			if ($this->max_notified !== false) {
 				return false;
 			}
@@ -319,8 +369,9 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 			$this->initials = ($row[$startcol + 0] !== null) ? (string) $row[$startcol + 0] : null;
 			$this->info = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->event_notes = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->max_notified = ($row[$startcol + 3] !== null) ? (boolean) $row[$startcol + 3] : null;
-			$this->id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
+			$this->hide_info = ($row[$startcol + 3] !== null) ? (boolean) $row[$startcol + 3] : null;
+			$this->max_notified = ($row[$startcol + 4] !== null) ? (boolean) $row[$startcol + 4] : null;
+			$this->id = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -329,7 +380,7 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 5; // 5 = ConsultantsPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 6; // 6 = ConsultantsPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Consultants object", $e);
@@ -558,6 +609,9 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 		if ($this->isColumnModified(ConsultantsPeer::EVENT_NOTES)) {
 			$modifiedColumns[':p' . $index++]  = '`EVENT_NOTES`';
 		}
+		if ($this->isColumnModified(ConsultantsPeer::HIDE_INFO)) {
+			$modifiedColumns[':p' . $index++]  = '`HIDE_INFO`';
+		}
 		if ($this->isColumnModified(ConsultantsPeer::MAX_NOTIFIED)) {
 			$modifiedColumns[':p' . $index++]  = '`MAX_NOTIFIED`';
 		}
@@ -583,6 +637,9 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 						break;
 					case '`EVENT_NOTES`':
 						$stmt->bindValue($identifier, $this->event_notes, PDO::PARAM_STR);
+						break;
+					case '`HIDE_INFO`':
+						$stmt->bindValue($identifier, (int) $this->hide_info, PDO::PARAM_INT);
 						break;
 					case '`MAX_NOTIFIED`':
 						$stmt->bindValue($identifier, (int) $this->max_notified, PDO::PARAM_INT);
@@ -735,9 +792,12 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 				return $this->getEventNotes();
 				break;
 			case 3:
-				return $this->getMaxNotified();
+				return $this->getHideInfo();
 				break;
 			case 4:
+				return $this->getMaxNotified();
+				break;
+			case 5:
 				return $this->getId();
 				break;
 			default:
@@ -772,8 +832,9 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 			$keys[0] => $this->getInitials(),
 			$keys[1] => $this->getInfo(),
 			$keys[2] => $this->getEventNotes(),
-			$keys[3] => $this->getMaxNotified(),
-			$keys[4] => $this->getId(),
+			$keys[3] => $this->getHideInfo(),
+			$keys[4] => $this->getMaxNotified(),
+			$keys[5] => $this->getId(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCustomers) {
@@ -820,9 +881,12 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 				$this->setEventNotes($value);
 				break;
 			case 3:
-				$this->setMaxNotified($value);
+				$this->setHideInfo($value);
 				break;
 			case 4:
+				$this->setMaxNotified($value);
+				break;
+			case 5:
 				$this->setId($value);
 				break;
 		} // switch()
@@ -852,8 +916,9 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 		if (array_key_exists($keys[0], $arr)) $this->setInitials($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setInfo($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setEventNotes($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setMaxNotified($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setId($arr[$keys[4]]);
+		if (array_key_exists($keys[3], $arr)) $this->setHideInfo($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setMaxNotified($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setId($arr[$keys[5]]);
 	}
 
 	/**
@@ -868,6 +933,7 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 		if ($this->isColumnModified(ConsultantsPeer::INITIALS)) $criteria->add(ConsultantsPeer::INITIALS, $this->initials);
 		if ($this->isColumnModified(ConsultantsPeer::INFO)) $criteria->add(ConsultantsPeer::INFO, $this->info);
 		if ($this->isColumnModified(ConsultantsPeer::EVENT_NOTES)) $criteria->add(ConsultantsPeer::EVENT_NOTES, $this->event_notes);
+		if ($this->isColumnModified(ConsultantsPeer::HIDE_INFO)) $criteria->add(ConsultantsPeer::HIDE_INFO, $this->hide_info);
 		if ($this->isColumnModified(ConsultantsPeer::MAX_NOTIFIED)) $criteria->add(ConsultantsPeer::MAX_NOTIFIED, $this->max_notified);
 		if ($this->isColumnModified(ConsultantsPeer::ID)) $criteria->add(ConsultantsPeer::ID, $this->id);
 
@@ -935,6 +1001,7 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 		$copyObj->setInitials($this->getInitials());
 		$copyObj->setInfo($this->getInfo());
 		$copyObj->setEventNotes($this->getEventNotes());
+		$copyObj->setHideInfo($this->getHideInfo());
 		$copyObj->setMaxNotified($this->getMaxNotified());
 
 		if ($deepCopy && !$this->startCopy) {
@@ -1048,6 +1115,7 @@ abstract class BaseConsultants extends BaseObject  implements Persistent
 		$this->initials = null;
 		$this->info = null;
 		$this->event_notes = null;
+		$this->hide_info = null;
 		$this->max_notified = null;
 		$this->id = null;
 		$this->alreadyInSave = false;

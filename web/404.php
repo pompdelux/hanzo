@@ -3,6 +3,17 @@
 $info = pathinfo($_SERVER['REQUEST_URI']);
 $ext = array_shift(explode('?', strtolower($info['extension'])));
 
+if ('robots.txt' == $info['basename']) {
+    header('Content-type: text/plain');
+?>
+User-agent: *
+Disallow: /images/xhjkpiydjns/
+Disallow: /images/pdf/
+Disallow: /images/mailsignatur/
+<?php
+  exit;
+}
+
 // do different stuff to different file extentions
 switch ($ext)
 {

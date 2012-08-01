@@ -3,20 +3,21 @@
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Form\FormError;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
-
-use Hanzo\Model\EventsQuery,
-	Hanzo\Model\Events,
-	Hanzo\Model\EventsParticipantsQuery,
-	Hanzo\Model\EventsParticipants,
-	Hanzo\Model\ConsultantsQuery,
-	Hanzo\Model\CustomersQuery,
-	Hanzo\Model\Customers;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Model\EventsQuery;
+use Hanzo\Model\Events;
+use Hanzo\Model\EventsParticipantsQuery;
+use Hanzo\Model\EventsParticipants;
+use Hanzo\Model\ConsultantsQuery;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Customers;
+use Hanzo\Model\AddressesPeer;
 
 class EventsController extends CoreController
 {
@@ -58,7 +59,7 @@ class EventsController extends CoreController
     			'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
     			'className' => $event->getType(),
     			'editable' => false,
-    			'color' => (strtotime($event->getEventDate()) >= strtotime('+1 day')) ? 'green': 'red'
+    			'color' => ($event->getEventDate('U') >= time()) ? 'green': 'red'
     		);
     	}
 
@@ -118,12 +119,12 @@ class EventsController extends CoreController
                     'label' => 'events.address_line_1.label',
                     'translation_domain' => 'events'
                 )
-            )->add('address_line_2', 'text',
-                array(
-                    'label' => 'events.address_line_2.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                )
+            // )->add('address_line_2', 'text',
+            //     array(
+            //         'label' => 'events.address_line_2.label',
+            //         'translation_domain' => 'events',
+            //         'required' => false
+            //     )
             )->add('postal_code', 'text',
                 array(
                     'label' => 'events.postal_code.label',
@@ -159,12 +160,6 @@ class EventsController extends CoreController
                     'label' => 'events.type.label',
                     'translation_domain' => 'events'
                 )
-            )->add('is_open', 'checkbox',
-                array(
-                    'label' => 'events.is_open.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                )
             )->add('notify_hostess', 'checkbox',
                 array(
                     'label' => 'events.notify_hostess.label',
@@ -184,15 +179,16 @@ class EventsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-
             	$customers_id = $event->getCustomersId(); // from the form
             	$host = null; // Customers Object
             	$changed_host = false; // Bool wheter the host has changed
             	$new_host = false; // Bool wheter a new Customers have been created
 
             	// Hvis der er ændret i email = ny host
-        		if($changed && ($old_event->getEmail() != $event->getEmail()))
-        			$changed_host = true; // Keep track if the host is new/changed
+        		if ($changed && ($old_event->getEmail() != $event->getEmail())) {
+                    $changed_host = true; // Keep track if the host is new/changed
+                }
+
         		$host = CustomersQuery::create()
         			->findOneByEmail($event->getEmail())
         		;
@@ -207,10 +203,9 @@ class EventsController extends CoreController
 
 	                $host->save();
         		}
+
         		$event->setCustomersId($host->getId());
-
             	$consultant = ConsultantsQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-
             	$event->setConsultantsId($consultant->getId());
 
             	// Its a new event. generate a key to send out to host
@@ -352,9 +347,14 @@ class EventsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-    	$customer = CustomersQuery::create()->findOneByEmail($email);
 
-    	if($customer instanceof Customers){
+        $customer = CustomersQuery::create()->findOneByEmail(str_replace(' ', '+', $email));
+
+    	if ($customer instanceof Customers) {
+            $c = new \Criteria();
+            $c->add(AddressesPeer::TYPE, 'payment');
+            $address = $customer->getAddressess()->getFirst();
+
     		if ($this->getFormat() == 'json') {
 	            return $this->json_response(array(
 	            	'status' => true,
@@ -363,7 +363,10 @@ class EventsController extends CoreController
 	            		'id' => $customer->getId(),
 	            		'name' => $customer->getFirstName().' '.$customer->getLastName(),
 	            		'phone' => $customer->getPhone(),
-	            		'email' => $customer->getEmail()
+	            		'email' => $customer->getEmail(),
+                        'address' => $address->getAddressLine1(),
+                        'zip' => $address->getPostalCode(),
+                        'city' => $address->getCity()
 	            	)
 	            ));
 	        }
@@ -440,14 +443,17 @@ class EventsController extends CoreController
 
     public function inviteAction($key)
     {
+        $customer = CustomersPeer::getCurrent();
     	$event = EventsQuery::create()
     		->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
+            ->filterByCustomersId($customer->getId())
     		->findOneByKey($key)
     	;
 
     	$events_participants = null;
     	$form = null;
-    	if($event instanceof Events){
+
+    	if ($event instanceof Events) {
     		$consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
     		$events_participant = new EventsParticipants();
 
@@ -471,7 +477,8 @@ class EventsController extends CoreController
 	                array(
 	                    'label' => 'events.participants.phone.label',
 	                    'translation_domain' => 'events',
-	                    'required' => false
+	                    'required' => false,
+                        'attr' => array('class' => 'dk')
 	                )
 	            )->add('tell_a_friend', 'checkbox',
 	                array(
@@ -485,6 +492,16 @@ class EventsController extends CoreController
 	        $request = $this->getRequest();
 	        if ('POST' === $request->getMethod()) {
 	            $form->bindRequest($request);
+
+                $res = EventsParticipantsQuery::create()
+                    ->filterByEventsId($event->getId())
+                    ->findByEmail($events_participant->getEmail())
+                ;
+
+                if ($res->count()) {
+                    $error = new FormError($this->get('translator')->trans('event.email.exists', array(), 'events'));
+                    $form->addError($error);
+                }
 
 	            if ($form->isValid()) {
 	            	$events_participant->setKey(sha1(time()));
@@ -514,6 +531,10 @@ class EventsController extends CoreController
 		            	$events_participant->getFirstName(). ' ' .$events_participant->getLastName()
 		            );
 		            $mailer->send();
+
+                    if ($events_participant->getPhone()) {
+                        $this->get('sms_manager')->sendEventInvite($events_participant);
+                    }
 
 	                $this->get('session')->setFlash('notice', 'events.participant.invited');
 	            }
@@ -715,5 +736,36 @@ class EventsController extends CoreController
 	    }
 	    $this->get('session')->setFlash('notice', 'events.participant.invite.failed');
 	    return $this->redirect($this->generateUrl('events_rsvp', array('key' => $key)));
+    }
+
+
+    public function listAction()
+    {
+        $customer = CustomersPeer::getCurrent();
+        $events = EventsQuery::create()
+            ->filterByEventDate(array('min' => date('Y-m-d H:i:s', strtotime('+1 day'))))
+            ->filterByCustomersId($customer->getId())
+            ->find()
+        ;
+
+        return $this->render('EventsBundle:Events:list.html.twig', array(
+            'events' => $events,
+        ));
+    }
+
+
+    public function removeParticipantAction($event_id, $participant_id)
+    {
+        EventsParticipantsQuery::create()
+            ->filterByEventsId($event_id)
+            ->filterById($participant_id)
+            ->findOne()
+            ->delete()
+        ;
+
+        return $this->json_response(array(
+            'status' => true,
+            'message' => ''
+        ));
     }
 }

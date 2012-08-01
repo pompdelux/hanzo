@@ -45,14 +45,15 @@ switch (array_pop($tdl)) {
 
 if ($lang) {
   $goto = 'http://www.pompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
-  if (isset($_SERVER['HTTP_REFERER'])) {
-    $referer = $_SERVER['HTTP_REFERER'];
-  }
-  else {
-    $referer = "NOT SET";
-  }
-  // log redirects to figure out when we can remove them. Comment out if it fills the log and try it again later
-  error_log(__LINE__.':'.__FILE__.' NOTICE: Doing redirect. From: http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"].' To: '.$goto.' Referer: '.$referer);
+  // disabled 27/7-2012 to reduce logging. Most internal links are fixed, but some external sites still use old links. Enable again later to see if the redirect is still needed.
+  #if (isset($_SERVER['HTTP_REFERER'])) {
+  #  $referer = $_SERVER['HTTP_REFERER'];
+  #}
+  #else {
+  #  $referer = "NOT SET";
+  #}
+  #// log redirects to figure out when we can remove them. Comment out if it fills the log and try it again later
+  #error_log(__LINE__.':'.__FILE__.' NOTICE: Doing redirect. From: http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"].' To: '.$goto.' Referer: '.$referer);
   header('Location: '.$goto , true, 301);
   exit;
 }

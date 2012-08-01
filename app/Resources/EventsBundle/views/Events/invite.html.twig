@@ -2,8 +2,7 @@
 
 {% block content %}
 <nav class="sub">
-  <ul>
-  </ul>
+  <ul></ul>
 </nav>
 
 <h1>{{ 'events.invite.top.header.text'|trans({}, 'events') }}</h1>
@@ -13,6 +12,7 @@
   {{ app.session.flash('notice')|trans({}, 'events') }}
 </div>
 {% endif %}
+
 {% if event %}
   <table id="event" class="list">
     <tbody>
@@ -65,6 +65,8 @@
   <p>{{ 'events.invite.description.text'|trans({}, 'events') }}</p>
   <form action="{{ path('events_invite', {'key' : key}) }}" method="post" {{ form_enctype(form) }} id="event-edit-form" class="create">
     <div id="events">
+      {{ form_errors(form) }}
+
       {{ form_rest(form) }}
       {{ form_row(form._token) }}
     </div>
@@ -81,8 +83,7 @@
 <table id="participants" class="list">
   <thead>
     <tr>
-      <th>{{ 'events.first_name'|trans({}, 'events') }}</th>
-      <th>{{ 'events.last_name'|trans({}, 'events') }}</th>
+      <th>{{ 'events.name'|trans({}, 'events') }}</th>
       <th>{{ 'events.email'|trans({}, 'events') }}</th>
       <th>{{ 'events.phone'|trans({}, 'events') }}</th>
       <th>{{ 'events.hasaccepted'|trans({}, 'events') }}</th>
@@ -92,8 +93,7 @@
   <tbody>
   {% for participant in participants %}
     <tr>
-      <td>{{ participant.firstname }}</td>
-      <td>{{ participant.lastname }}</td>
+      <td class="name">{{ participant.firstname }} {{ participant.lastname }}</td>
       <td><a href="mailto:{{ participant.email }}">{{ participant.email }}</a></td>
       <td>{{ participant.phone }}</td>
       <td>
@@ -102,6 +102,9 @@
         {% else %}
           {{ 'events.hasaccepted.no'|trans({}, 'events') }}
         {% endif %}
+      </td>
+      <td>
+          <a href="" data-event="{{ participant.eventsid }}" data-participant="{{ participant.id }}" class="delete">x</a>
       </td>
     </tr>
   {% endfor %}

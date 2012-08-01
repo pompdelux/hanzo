@@ -274,6 +274,10 @@
                 <source>day.short.Sat</source>
                 <target>Lør</target>
             </trans-unit>
+            <trans-unit id="event.confirm.delete.participant">
+                <source>event.confirm.delete.participant</source>
+                <target>Er du sikker på, du vil slette denne deltager?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
