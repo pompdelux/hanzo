@@ -70,18 +70,16 @@
   </div><!-- /div#main -->
 
   <nav class="main">
-  {% if is_granted('ROLE_CONSULTANT') %}
+  {% if is_granted('ROLE_USER') %}
     {% render 'HanzoCMSBundle:Menu:menu' with {'type': left_menu.type, 'from': left_menu.from, 'thread': 10 } %}
   {% endif %}
   </nav><!-- /nav.main -->
 
-{% if is_granted('ROLE_CONSULTANT') %}
+{% if is_granted('ROLE_USER') %}
   <aside id="secondary-links">
     <ul>
       <li><a href="{{ path('_account') }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-    {% if is_granted('ROLE_USER') %}
       <li><a href="{{ path('logout') }}">{{ 'my.account.logout'|trans({}, 'account') }}</a></li>
-    {% endif %}
       <li id="mini-basket" class="basket">
         <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>

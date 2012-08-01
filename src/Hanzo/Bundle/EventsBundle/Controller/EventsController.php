@@ -471,13 +471,14 @@ class EventsController extends CoreController
 	            )->add('email', 'email',
 	                array(
 	                    'label' => 'events.participants.email.label',
-	                    'translation_domain' => 'events'
-	                )
-	            )->add('phone', 'text',
-	                array(
-	                    'label' => 'events.participants.phone.label',
-	                    'translation_domain' => 'events',
 	                    'required' => false,
+                        'translation_domain' => 'events'
+                    )
+                )->add('phone', 'text',
+                    array(
+                        'label' => 'events.participants.phone.label',
+                        'translation_domain' => 'events',
+                        'required' => false,
                         'attr' => array('class' => 'dk')
 	                )
 	            )->add('tell_a_friend', 'checkbox',
@@ -513,7 +514,7 @@ class EventsController extends CoreController
 
 		            $mailer->setMessage('events.participant.invited', array(
 		                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-		                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+		                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 		                'to_name'     		=> $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
 		                'hostess'			=> $event->getHost(),
 		                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
@@ -706,7 +707,7 @@ class EventsController extends CoreController
 
 		            $mailer->setMessage('events.participant.invited', array(
 		                'event_date'		=> date('d/m', strtotime($event->getEventDate())),
-		                'event_time'		=> date('h:m', strtotime($event->getEventDate())),
+		                'event_time'		=> date('H:i', strtotime($event->getEventDate())),
 		                'to_name'     		=> $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
 		                'hostess'			=> $event->getHost(),
 		                'address'			=> $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
