@@ -47,7 +47,7 @@ class SmsController extends CoreController
             (strtolower(substr($text, 0, 5)) == 'pdl e')
         ) {
             @list($mediacode, $event_id, $junk) = explode(' ', $text, 3);
-            $event_id = trim($event_id, 'e');
+            $event_id = preg_replace('/[^0-9]+/', '', $event_id);
 
             // we need to strip the country code from the phone number.
             $lookup = substr($sender, strlen($this->appnr_map[$appnr]));
