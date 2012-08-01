@@ -6,18 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormError;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
-
-use Hanzo\Model\EventsQuery,
-	Hanzo\Model\Events,
-	Hanzo\Model\EventsParticipantsQuery,
-	Hanzo\Model\EventsParticipants,
-	Hanzo\Model\ConsultantsQuery,
-    Hanzo\Model\CustomersQuery,
-	Hanzo\Model\CustomersPeer,
-	Hanzo\Model\Customers;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Model\EventsQuery;
+use Hanzo\Model\Events;
+use Hanzo\Model\EventsParticipantsQuery;
+use Hanzo\Model\EventsParticipants;
+use Hanzo\Model\ConsultantsQuery;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Customers;
+use Hanzo\Model\AddressesPeer;
 
 class EventsController extends CoreController
 {
@@ -59,7 +59,7 @@ class EventsController extends CoreController
     			'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
     			'className' => $event->getType(),
     			'editable' => false,
-    			'color' => (strtotime($event->getEventDate()) >= strtotime('+1 day')) ? 'green': 'red'
+    			'color' => ($event->getEventDate('U') >= time()) ? 'green': 'red'
     		);
     	}
 
@@ -119,12 +119,12 @@ class EventsController extends CoreController
                     'label' => 'events.address_line_1.label',
                     'translation_domain' => 'events'
                 )
-            )->add('address_line_2', 'text',
-                array(
-                    'label' => 'events.address_line_2.label',
-                    'translation_domain' => 'events',
-                    'required' => false
-                )
+            // )->add('address_line_2', 'text',
+            //     array(
+            //         'label' => 'events.address_line_2.label',
+            //         'translation_domain' => 'events',
+            //         'required' => false
+            //     )
             )->add('postal_code', 'text',
                 array(
                     'label' => 'events.postal_code.label',
@@ -179,15 +179,16 @@ class EventsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-
             	$customers_id = $event->getCustomersId(); // from the form
             	$host = null; // Customers Object
             	$changed_host = false; // Bool wheter the host has changed
             	$new_host = false; // Bool wheter a new Customers have been created
 
             	// Hvis der er ændret i email = ny host
-        		if($changed && ($old_event->getEmail() != $event->getEmail()))
-        			$changed_host = true; // Keep track if the host is new/changed
+        		if ($changed && ($old_event->getEmail() != $event->getEmail())) {
+                    $changed_host = true; // Keep track if the host is new/changed
+                }
+
         		$host = CustomersQuery::create()
         			->findOneByEmail($event->getEmail())
         		;
@@ -202,10 +203,9 @@ class EventsController extends CoreController
 
 	                $host->save();
         		}
+
         		$event->setCustomersId($host->getId());
-
             	$consultant = ConsultantsQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
-
             	$event->setConsultantsId($consultant->getId());
 
             	// Its a new event. generate a key to send out to host
@@ -347,9 +347,14 @@ class EventsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-    	$customer = CustomersQuery::create()->findOneByEmail($email);
 
-    	if($customer instanceof Customers){
+        $customer = CustomersQuery::create()->findOneByEmail(str_replace(' ', '+', $email));
+
+    	if ($customer instanceof Customers) {
+            $c = new \Criteria();
+            $c->add(AddressesPeer::TYPE, 'payment');
+            $address = $customer->getAddressess()->getFirst();
+
     		if ($this->getFormat() == 'json') {
 	            return $this->json_response(array(
 	            	'status' => true,
@@ -358,7 +363,10 @@ class EventsController extends CoreController
 	            		'id' => $customer->getId(),
 	            		'name' => $customer->getFirstName().' '.$customer->getLastName(),
 	            		'phone' => $customer->getPhone(),
-	            		'email' => $customer->getEmail()
+	            		'email' => $customer->getEmail(),
+                        'address' => $address->getAddressLine1(),
+                        'zip' => $address->getPostalCode(),
+                        'city' => $address->getCity()
 	            	)
 	            ));
 	        }

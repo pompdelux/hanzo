@@ -90,6 +90,9 @@ $('#find-customer-by-email-form').submit(function(e){
         	$('#form_host').val(response.data.name);
         	$('#form_phone').val(response.data.phone);
         	$('#form_email').val(response.data.email);
+          $('#form_address_line_1').val(response.data.address);
+          $('#form_postal_code').val(response.data.zip);
+          $('#form_city').val(response.data.city);
         }
 
         $submit.attr('disabled', false);
