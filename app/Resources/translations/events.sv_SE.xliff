@@ -328,11 +328,11 @@
             </trans-unit>
             <trans-unit id="event.too.old.to.edit">
                 <source>event.too.old.to.edit</source>
-                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke editeres.</target>
+                <target>Arrangemanget har blivit hållt och kan därför inte redigeras eller raderas.</target>
             </trans-unit>
             <trans-unit id="event.too.old.to.delete">
                 <source>event.too.old.to.delete</source>
-                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke slettes.</target>
+                <target>Arrangemanget har blivit hållt och kan därför inte redigeras eller raderas.</target>
             </trans-unit>
         </body>
     </file>

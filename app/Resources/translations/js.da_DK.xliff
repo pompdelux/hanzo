@@ -200,7 +200,7 @@
             </trans-unit>
             <trans-unit id="today">
                 <source>today</source>
-                <target>Idag</target>
+                <target>I dag</target>
             </trans-unit>
             <trans-unit id="month.February">
                 <source>month.February</source>
