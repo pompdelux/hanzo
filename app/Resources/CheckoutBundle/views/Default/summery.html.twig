@@ -3,7 +3,7 @@
 
   <h2>{{ 'confirm.order_id'|trans({}, 'checkout') }}: {{ order.id }}</h2>
 
-  {% render 'CheckoutBundle:Default:addresses' with { 'skip_empty' : true, 'order' : order } %}
+  {% render 'CheckoutBundle:Default:addresses' with { 'skip_empty' : true } %}
   {% render 'BasketBundle:Default:view' with { 'embed': true } %}
 
   {% include 'CheckoutBundle:Default:order_block.html.twig' with {'order': order} %}

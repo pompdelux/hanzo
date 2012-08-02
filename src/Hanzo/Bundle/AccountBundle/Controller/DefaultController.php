@@ -213,7 +213,6 @@ class DefaultController extends CoreController
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
-                    error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                     $customer->setPassword(sha1($customer->getPasswordClear()));
                 }
                 else
@@ -268,6 +267,9 @@ class DefaultController extends CoreController
         $validation_group = $type;
         if ($shipping_id == 11) {
             $validation_group = 'company_' . $type;
+        }
+        else {
+          $address->setCompanyName(null);
         }
 
         $builder = $this->createFormBuilder($address, array(
