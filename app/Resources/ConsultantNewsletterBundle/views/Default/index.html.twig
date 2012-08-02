@@ -1,4 +1,4 @@
-{% extends layout %}
+{% extends layout %}  
 
 {% block content %}
 <nav class="sub">
@@ -39,21 +39,28 @@
 <form action="{{ path('consultant_send_newsletter') }}" method="post" id="consultant-newsletter">
   <input type="hidden" name="status" value="submitted" />
   <input type="hidden" name="template" value="1" />
+  <input type="hidden" name="draft_id" value="{{ draft_id }}" />
 
   <div>
     <label for="subject">{{ 'newsletter.subject.label'|trans({}, 'consultant') }}</label>
-    <input name="subject" id="subject">
+    <input name="subject" id="subject" value="{{ subject }}">
   </div>
   
   <div>
     <label for="message">{{ 'newsletter.message.label'|trans({}, 'consultant') }}</label>
-    <textarea name="message" id="message" class="tinymce"></textarea>
+    <textarea name="message" id="message" class="tinymce">{{ message }}</textarea>
   </div>
   
   <div>
     <input type="button" name="savedraft" id="savedraft" value="{{ 'newsletter.save.draft'|trans({}, 'consultant') }}">
+    {% if drafts|length > 0 %}
     <p>{{ 'newsletter.current.drafts'|trans({}, 'consultant') }}</p>
-
+    {% endif %}
+    <ul id="drafts">
+      {% for draft in drafts %}
+      <li>{{ draft.id }} - <a href="{{ path('consultantnewsletter', {'draft_id' : draft.id}) }}">{{ draft.subject }}</a><a href="{{ path('consultantnewsletter_draft_delete', {'draft_id' : draft.id }) }}" class="delete">{{ 'consultant.newsletter.delete.draft'|trans({}, 'consultant') }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
   <input type="submit" name="actionCreateNewsletter" id="actionCreateNewsletter" value="{{ 'newsletter.submit.send.newsletter'|trans({}, 'consultant') }}">
 

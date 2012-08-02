@@ -6,7 +6,7 @@ var calendar = (function($) {
 
   };
 
- 
+
 
   return pub;
 })(jQuery);

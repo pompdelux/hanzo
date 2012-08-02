@@ -64,6 +64,51 @@ var consultantNewsletter = (function($) {
       };
       $.colorbox(defaults);
     });
+
+    $('#savedraft').click(function(e){
+      e.preventDefault();
+      var formData = $("#consultant-newsletter").serialize();
+      $.ajax({
+        type: 'POST',
+        url: base_url + 'consultantnewsletter/draft/save',
+        data: formData,
+        dataType: 'json',
+        success: function(response, textStatus, jqXHR) {
+          if (false === response.status) {
+            if (response.message) {
+              dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+            }
+          } else {
+            window.scrollTo(window.scrollMinX, window.scrollMinY);
+            dialoug.slideNotice(response.message);
+          }
+        },
+      });
+    });
+
+    $('#drafts a.delete').click(function(e){
+      event.preventDefault();
+      var $a = $(this);
+
+      // warn the user before removing the product.
+      dialoug.confirm(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:consultant.newsletter.delete.draft'), function(choice) {
+        if (choice == 'ok') {
+          $.ajax({
+            url : $a.attr('href'),
+            dataType: 'json',
+            async : false,
+            success : function(response, textStatus, jqXHR) {
+              if (response.status) {
+                // add effects to the removal of a basket row
+                $a.closest('li').fadeOut(function() {
+                  $(this).remove();
+                });
+              }
+            }
+          });
+        }
+      });
+    });
   };
  
   return pub;

@@ -51,7 +51,7 @@ class ConsultantNewsletterApi
         return $this->soapClient->getUserById($userId);
     }
 
-    public function subscribeUser( $mailer, array $customerData, array $listIds, $autoConfirm = TRUE)
+    public function subscribeUser(array $customerData, array $listIds, $autoConfirm = TRUE)
     {
         $user = $this->getUserByEmail( $customerData['email_address'] );
 
@@ -85,24 +85,14 @@ class ConsultantNewsletterApi
                 return $e->getMessage();
             }
         }
-
-        $user = $this->getUserByEmail( $customerData['email_address'] );
-        if($user !== FALSE){
-            if($autoConfirm)
-                $this->sendNotificationEmail($mailer, 'newsletter.subscribe', $customerData['email_address'], $firstName);
-            else
-                $this->sendNotificationEmail($mailer, 'newsletter.confirmation', $customerData['email_address'], $firstName);
-        }
-        return true;
+        return $result;
 
     }
 
-    public function unSubscribeUser( $mailer, $userId, $listId)
+    public function unSubscribeUser($userId, $listId)
     {
         $user = $this->getUserById($userId);
         $this->soapClient->unSubscribeUser( $user['email'], array($listId));
-
-        $this->sendNotificationEmail($mailer, 'newsletter.unsubscribe', $user['email']);
     }
 
     public function getActiveLists()
@@ -230,7 +220,7 @@ class ConsultantNewsletterApi
     * @return void
     * @author Henrik Farre <hf@bellcom.dk>
     **/
-    public function createList( stdClass $list )
+    public function createList( \stdClass $list )
     {
         $this->soapClient->createList($list);
     }

@@ -66,6 +66,10 @@
                 <source>newsletter.current.drafts</source>
                 <target>Gemte kladder</target>
             </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.draft">
+                <source>consultant.newsletter.delete.draft</source>
+                <target>Slet kladde</target>
+            </trans-unit>
             <trans-unit id="newsletter.submit.send.newsletter">
                 <source>newsletter.submit.send.newsletter</source>
                 <target>Send nyhedsbrev</target>

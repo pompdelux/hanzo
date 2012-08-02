@@ -39,9 +39,11 @@
     {% for newsletter in history %}
       <li><a href="#" class="newsletter">{{ newsletter.subject|raw }} ({{ newsletter.sent|date("m/d/Y") }})</a>
         <div class="colorbox" style="display:none;">
-          <h2 class="subject">{{ newsletter.subject|raw }}</h2>
-          <div class="message">
-            {{ newsletter.message|raw }}
+          <div class="newsletter-history">
+            <h2 class="subject">{{ newsletter.subject|raw }}</h2>
+            <div class="message">
+              {{ newsletter.message|raw }}
+            </div>
           </div>
         </div>
       </li>

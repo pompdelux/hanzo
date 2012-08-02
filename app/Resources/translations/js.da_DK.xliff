@@ -282,6 +282,10 @@
                 <source>quickorder.choose.color</source>
                 <target>Vælg farve</target>
             </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.draft">
+                <source>consultant.newsletter.delete.draft</source>
+                <target>Er du sikker på du vil slette denn kladde?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
