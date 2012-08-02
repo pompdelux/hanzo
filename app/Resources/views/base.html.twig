@@ -1,14 +1,16 @@
-<!doctype html public "✰">
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 <title>POMPdeLUX - Vild med børnetøj {{ browser_title|default('') }}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="all">
+
+<meta property="og:url" content="{{ app.request.uri }}">
 {{ meta_tags() }}
 
 <link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
@@ -52,6 +54,15 @@
 <script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr-2.5.3.js"></script>
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/{{ locale }}/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="container">
   <a href="{{ path('_homepage') }}" title="{{ "home"|trans }}">
@@ -116,7 +127,6 @@
   var counter_offset = 1314691200;
 </script>
 
-<script type="text/javascript" src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
 
