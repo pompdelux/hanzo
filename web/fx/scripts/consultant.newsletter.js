@@ -109,6 +109,30 @@ var consultantNewsletter = (function($) {
         }
       });
     });
+
+    $('#subscribed-users a.delete').click(function(e){
+      event.preventDefault();
+      var $a = $(this);
+
+      // warn the user before removing the product.
+      dialoug.confirm(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:consultant.newsletter.delete.user'), function(choice) {
+        if (choice == 'ok') {
+          $.ajax({
+            url : $a.attr('href'),
+            dataType: 'json',
+            async : false,
+            success : function(response, textStatus, jqXHR) {
+              if (response.status) {
+                // add effects to the removal of a basket row
+                $a.closest('li').fadeOut(function() {
+                  $(this).remove();
+                });
+              }
+            }
+          });
+        }
+      });
+    });
   };
  
   return pub;

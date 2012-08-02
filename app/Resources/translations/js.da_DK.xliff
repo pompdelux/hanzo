@@ -284,7 +284,11 @@
             </trans-unit>
             <trans-unit id="consultant.newsletter.delete.draft">
                 <source>consultant.newsletter.delete.draft</source>
-                <target>Er du sikker på du vil slette denn kladde?</target>
+                <target>Er du sikker på du vil slette denne kladde?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.user">
+                <source>consultant.newsletter.delete.user</source>
+                <target>Er du sikker på du vil slette denne bruger fra listen?</target>
             </trans-unit>
         </body>
     </file>
