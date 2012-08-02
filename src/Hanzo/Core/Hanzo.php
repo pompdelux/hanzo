@@ -101,9 +101,10 @@ class Hanzo
             }
         }
 
-        list($lang, ) = explode('_', $this->get('core.locale'), 2);
+        $locale = $this->get('core.locale');
+        list($lang, ) = explode('_', $locale, 2);
+        $this->container->get('twig')->addGlobal('locale', $locale);
         $this->container->get('twig')->addGlobal('html_lang', $lang);
-        //$this->container->get('translator')->setLocale($this->get('core.locale'));
 
         setLocale(LC_ALL, $session->getLocale().'.utf-8');
 
