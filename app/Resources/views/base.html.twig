@@ -15,13 +15,15 @@
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
 <link rel="dns-prefetch" href="//html5shim.googlecode.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
-<link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" type="image/ico">
-<link href='//ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
+
 {% stylesheets
   'fx/css/boilerplate.css'
   'fx/css/faq.css'
   'fx/css/colorbox/theme4/colorbox.css'
+  'fx/css/jquery-ui.css'
   'fx/scripts/video-js/video-js.css'
   'fx/scripts/vegas/jquery.vegas.css'
   'fx/scripts/fullcalendar/fullcalendar.css'
@@ -104,6 +106,8 @@
 
 </div>
 
+<table><tr><td class="countdown" style="color:#FFFFFF;font-size:12px;font-weight:bold;"><strong></strong></td></tr></table>
+
 <footer>
   {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
 </footer>
@@ -114,27 +118,29 @@
   var counter_offset = 1314691200;
 </script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script src="//cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js"></script>
 <script type="text/javascript" src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>
-<script src="{{ cdn|replace({'http:':''}) }}fx/scripts/accounting/accounting.min.js"></script>
-
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
 
 {% javascripts
+  'fx/scripts/jquery.min.js'
+  'fx/scripts/jquery.tools.min.js'
   'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
   'fx/scripts/zoom/jquery.zoom.js'
+  'fx/scripts/accounting/accounting.min.js'
 
   'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'
-  'fx/scripts/countdown/jquery.countdown-dk.js'
+  'fx/scripts/countdown/jquery.countdown-da.js'
+  'fx/scripts/countdown/jquery.countdown-nb.js'
+  'fx/scripts/countdown/jquery.countdown-sv.js'
+  'fx/scripts/countdown/jquery.countdown-fi.js'
+  'fx/scripts/countdown/jquery.countdown-nl.js'
   'fx/scripts/video-js/video.js'
   'fx/scripts/vegas/jquery.vegas.js'
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
   'fx/scripts/yatzy.js'
-
   'fx/scripts/dialoug.js'
   'fx/scripts/colorbox.js'
   'fx/scripts/flowplayer.js'
