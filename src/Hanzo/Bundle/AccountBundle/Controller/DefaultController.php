@@ -56,6 +56,8 @@ class DefaultController extends CoreController
         {
             $addresses->setCountry( $countries[0]->getLocalName() );
             $addresses->setCountriesId( $countries[0]->getId() );
+
+            error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
         }
         else
         {
@@ -63,8 +65,11 @@ class DefaultController extends CoreController
             $geoipResult = $geoip->lookup();
             if ( !is_null( $geoipResult['country_id'] ) )
             {
+                error_log(__LINE__.':'.__FILE__.' '.print_r($geoipResult,1)); // hf@bellcom.dk debugging
                 $addresses->setCountry( $geoipResult['country_localname'] );
                 $addresses->setCountriesId( $geoipResult['country_id'] );
+
+                error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
             }
         }
 
