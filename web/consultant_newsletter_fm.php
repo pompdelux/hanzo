@@ -15,14 +15,17 @@
 
 $images = glob('images/nyhedsbrev/konsulent/*');
 
-print_r($images);
-
 ?>
 
 <div id="container">
     <h1>Vælg billede</h1>
     <ul>
-      <li><a href="{{ image.absolute }}" class="image"><img src="{{ image.relative }}" style="width: 100px" /></a></li>
+      <?php
+      foreach ($images as $image) 
+      {
+        echo '<li><a href="http://'. $_SERVER['SERVER_NAME'] .'/'.$image.'" class="image"><img src="http://'. $_SERVER['SERVER_NAME'] .'/'.$image.'" style="width: 200px" /></a></li>';
+      }
+      ?>
     </ul>
 </div>
 
