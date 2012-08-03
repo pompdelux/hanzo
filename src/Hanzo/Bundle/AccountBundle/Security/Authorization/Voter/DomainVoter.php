@@ -78,8 +78,8 @@ class DomainVoter implements VoterInterface
         error_log(__LINE__.':'.__FILE__.' '.$country); // hf@bellcom.dk debugging
         error_log(__LINE__.':'.__FILE__.' '.$locale); // hf@bellcom.dk debugging
 
-        // Other countries have to run en_EN: 
-        if ( !isset($countryToLocaleMap[$country]) && $locale != 'en_En' )
+        // Other countries have to run en_GB: 
+        if ( !isset($countryToLocaleMap[$country]) && $locale != 'en_GB' )
         {
             // TODO: set flash
             return VoterInterface::ACCESS_DENIED;
