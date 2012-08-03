@@ -73,13 +73,6 @@ class DefaultController extends CoreController
                     $addresses->setCountriesId( $geoipResult['country_id'] );
                 }
             }
-            else
-            {
-                $formData = $request->request->get('customers');
-                $countryById = CountriesQuery::create()
-                    ->findPk($formData['addresses'][0]['countries_id']);
-                $addresses->setCountry($countryById->getName());
-            }
         }
 
         $customer->addAddresses($addresses);
@@ -104,6 +97,14 @@ class DefaultController extends CoreController
                 $addresses->setLastName( $customer->getLastName() );
 
                 $formData = $request->request->get('customers');
+
+                if ( count( $countries ) != 1 ) // for .dk, .se, .no and maybe .nl
+                {
+                    $countryById = CountriesQuery::create()
+                        ->findPk($formData['addresses'][0]['countries_id']);
+                    error_log(__LINE__.':'.__FILE__.' '.$countryById->getName()); // hf@bellcom.dk debugging
+                    $addresses->setCountry($countryById->getName());
+                }
 
                 if ( isset( $formData['newsletter'] )  && $formData['newsletter'] )
                 {
