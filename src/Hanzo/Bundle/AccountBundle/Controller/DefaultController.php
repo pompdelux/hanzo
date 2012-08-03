@@ -61,15 +61,18 @@ class DefaultController extends CoreController
         }
         else
         {
-            $geoip = $this->get('geoip_manager');
-            $geoipResult = $geoip->lookup();
-            if ( !is_null( $geoipResult['country_id'] ) )
+            if ('POST' !== $request->getMethod()) // Country is overriden from form by geoip
             {
-                error_log(__LINE__.':'.__FILE__.' '.print_r($geoipResult,1)); // hf@bellcom.dk debugging
-                $addresses->setCountry( $geoipResult['country_localname'] );
-                $addresses->setCountriesId( $geoipResult['country_id'] );
+                $geoip = $this->get('geoip_manager');
+                $geoipResult = $geoip->lookup();
+                if ( !is_null( $geoipResult['country_id'] ) )
+                {
+                    error_log(__LINE__.':'.__FILE__.' '.print_r($geoipResult,1)); // hf@bellcom.dk debugging
+                    $addresses->setCountry( $geoipResult['country_localname'] );
+                    $addresses->setCountriesId( $geoipResult['country_id'] );
 
-                error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
+                    error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
+                }
             }
         }
 
