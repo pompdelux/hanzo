@@ -61,8 +61,10 @@ class DefaultController extends CoreController
         }
         else
         {
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             if ('POST' !== $request->getMethod()) // Country is overriden from form by geoip
             {
+                error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                 $geoip = $this->get('geoip_manager');
                 $geoipResult = $geoip->lookup();
                 if ( !is_null( $geoipResult['country_id'] ) )
@@ -73,6 +75,10 @@ class DefaultController extends CoreController
 
                     error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
                 }
+            }
+            else
+            {
+                error_log(__LINE__.':'.__FILE__.' '.print_r($request->request->get('customers'),1)); // hf@bellcom.dk debugging
             }
         }
 
@@ -85,7 +91,7 @@ class DefaultController extends CoreController
             array('validation_groups' => 'customer')
         );
 
-        if ('POST' === $request->getMethod())
+        if ( 'POST' === $request->getMethod() )
         {
             $form->bindRequest($request);
 
@@ -109,6 +115,7 @@ class DefaultController extends CoreController
                     }
                 }
 
+                error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                 $customer->save();
 
                 // login user
