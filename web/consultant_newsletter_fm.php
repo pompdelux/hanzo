@@ -29,10 +29,6 @@ $images = glob('images/nyhedsbrev/konsulent/*');
     </ul>
 </div>
 
-<script type="text/javascript">
-  var base_url = 'http::/static.pompdelux.dk';
-</script>
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script src="/fx/scripts/tinymce/jscripts/tiny_mce/tiny_mce_popup.js"></script>
 
