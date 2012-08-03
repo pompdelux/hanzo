@@ -56,29 +56,29 @@ class DefaultController extends CoreController
         {
             $addresses->setCountry( $countries[0]->getLocalName() );
             $addresses->setCountriesId( $countries[0]->getId() );
-
-            error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
         }
         else
         {
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
-            if ('POST' !== $request->getMethod()) // Country is overriden from form by geoip
+            // If the customer is located in Denmark, but browsing the en_GB site, the geoip will set country to Denmark, 
+            // and fail to select a country id in the dropdown as Denmark is excluded from that list
+            // But when the customer submits the form "Denmark" is still send as a country so we try to override that here
+
+            if ('POST' !== $request->getMethod())
             {
-                error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                 $geoip = $this->get('geoip_manager');
                 $geoipResult = $geoip->lookup();
                 if ( !is_null( $geoipResult['country_id'] ) )
                 {
-                    error_log(__LINE__.':'.__FILE__.' '.print_r($geoipResult,1)); // hf@bellcom.dk debugging
                     $addresses->setCountry( $geoipResult['country_localname'] );
                     $addresses->setCountriesId( $geoipResult['country_id'] );
-
-                    error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
                 }
             }
             else
             {
-                error_log(__LINE__.':'.__FILE__.' '.print_r($request->request->get('customers'),1)); // hf@bellcom.dk debugging
+                $formData = $request->request->get('customers');
+                $countryById = CountriesQuery::create()
+                    ->findByPk($formData['addresses'][0]['countries_id']);
+                $addresses->setCountry($countryById->getName());
             }
         }
 
@@ -115,7 +115,6 @@ class DefaultController extends CoreController
                     }
                 }
 
-                error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                 $customer->save();
 
                 // login user
