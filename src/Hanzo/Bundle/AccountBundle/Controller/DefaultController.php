@@ -102,7 +102,6 @@ class DefaultController extends CoreController
                 {
                     $countryById = CountriesQuery::create()
                         ->findPk($formData['addresses'][0]['countries_id']);
-                    error_log(__LINE__.':'.__FILE__.' '.$countryById->getName()); // hf@bellcom.dk debugging
                     $addresses->setCountry($countryById->getName());
                 }
 

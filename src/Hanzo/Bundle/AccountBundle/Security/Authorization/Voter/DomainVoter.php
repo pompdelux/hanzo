@@ -44,7 +44,6 @@ class DomainVoter implements VoterInterface
             return $result;
         }
 
-        error_log(__LINE__.':'.__FILE__.' '.$user->getUserName()); // hf@bellcom.dk debugging
         $customer = CustomersQuery::create()->findOneByEmail($user->getUserName());
         $addresses = $customer->getAddressess();
 
@@ -74,9 +73,6 @@ class DomainVoter implements VoterInterface
             'Netherlands' => array( 'nl_NL' ),
             'Sweden'      => array( 'sv_SE' ),
             );
-
-        error_log(__LINE__.':'.__FILE__.' '.$country); // hf@bellcom.dk debugging
-        error_log(__LINE__.':'.__FILE__.' '.$locale); // hf@bellcom.dk debugging
 
         // Other countries have to run en_GB: 
         if ( !isset($countryToLocaleMap[$country]) && $locale != 'en_GB' )

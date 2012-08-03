@@ -1,4 +1,0 @@
-security:
-    access_decision_manager:
-        # Strategy can be: affirmative, unanimous or consensus
-        strategy: unanimous
