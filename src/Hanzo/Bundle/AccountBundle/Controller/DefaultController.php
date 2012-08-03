@@ -77,7 +77,7 @@ class DefaultController extends CoreController
             {
                 $formData = $request->request->get('customers');
                 $countryById = CountriesQuery::create()
-                    ->findByPk($formData['addresses'][0]['countries_id']);
+                    ->findPk($formData['addresses'][0]['countries_id']);
                 $addresses->setCountry($countryById->getName());
             }
         }
