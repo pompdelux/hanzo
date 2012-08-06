@@ -94,7 +94,7 @@ class ExceptionHandler
             switch ( $pathWithNoLocale ) 
             {
               case '/account': // The customer probably tried to created an account on the wrong locale
-                  $response = new Response('', 403, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/account/error/locale'));
+                  $response = new Response('', 302, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/login'));
                   $event->setResponse($response);
                 break;
               

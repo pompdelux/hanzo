@@ -12,6 +12,13 @@
     <div class="msg error">{{ error.message|trans({}, 'account') }}</div>
 {% endif %}
 
+Snaps:
+{% if app.session.hasFlash('warning') %}
+<div class="message notice">
+  {{ app.session.flash('warning')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
 <div class="left">
 
 {% if store_mode == 'webshop' %}

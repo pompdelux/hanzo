@@ -72,9 +72,3 @@ _account_check:
     pattern: /account/check/{type}
     defaults:
         _controller: AccountBundle:Default:check
-
-_account_error_locale:
-    pattern: /account/error/{error}
-    defaults:
-      _controller: AccountBundle:Default:error
-      error: 'locale'
