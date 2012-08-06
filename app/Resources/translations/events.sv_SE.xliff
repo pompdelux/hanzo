@@ -94,9 +94,18 @@
                <source>events.host</source>
                 <target>Värdinna</target>
             </trans-unit>
+
+            <trans-unit id="events.host.required.error">
+                <source>events.host.required.error</source>
+                <target>Kom ihåg att fylla i värdinna/öppet hus.</target>
+            </trans-unit>
             <trans-unit id="events.address_line_1">
                 <source>events.address_line_1</source>
                 <target>Adresslinje 1</target>
+            </trans-unit>
+            <trans-unit id="events.address_line_1.required.error">
+                <source>events.address_line_1.required.error</source>
+                <target>Kom ihåg att fylla i adressen.</target>
             </trans-unit>
             <trans-unit id="events.address_line_2">
                 <source>events.address_line_2</source>
@@ -106,17 +115,33 @@
                 <source>events.postal_code</source>
                 <target>Postnummer</target>
             </trans-unit>
+            <trans-unit id="events.postal_code.required.error">
+                <source>events.postal_code.required.error</source>
+                <target>Kom ihåg att fylla i postnummer.</target>
+            </trans-unit>
             <trans-unit id="events.city">
                 <source>events.city</source>
                 <target>By</target>
+            </trans-unit>
+            <trans-unit id="events.city.required.error">
+                <source>events.city.required.error</source>
+                <target>Kom ihåg att fylla i stad.</target>
             </trans-unit>
             <trans-unit id="events.phone">
                 <source>events.phone</source>
                 <target>Mobil nr.</target>
             </trans-unit>
+            <trans-unit id="events.phone.required.error">
+                <source>events.phone.required.error</source>
+                <target>Telefonnumret är ogiltigt – det måste vara minst 8 siffror utan mellanrum eller andra tecken (12345678).</target>
+            </trans-unit>
             <trans-unit id="events.email">
                 <source>events.email</source>
                 <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="events.email.required.error">
+                <source>events.email.required.error</source>
+                <target>Kom ihåg att fylla i E-mail.</target>
             </trans-unit>
             <trans-unit id="events.hasaccepted">
                 <source>events.hasaccepted</source>
