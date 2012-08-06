@@ -346,7 +346,6 @@
                 <source>event.too.old.to.delete</source>
                 <target>Arrangementet er afholdt og kan derfor ikke redigeres eller slettes.</target>
             </trans-unit>
-			
         </body>
     </file>
 </xliff>
