@@ -77,20 +77,22 @@ class DomainVoter implements VoterInterface
             207 => array( 'sv_SE' ), // Sweden
             );
 
-        // Other countries have to run en_GB: 
+        // If the country is not set in the mapping it must run en_GB, so deny access if it doesn't
         if ( !isset($countryIdToLocaleMap[$countryId]) && $locale != 'en_GB' )
         {
             $translator = $this->container->get('translator');
 
             $request = $this->container->get('request');
 
+            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
+
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/en_GB/login', '%site_name%' => 'International' ),'account');
             $this->container->get('session')->setFlash('error', $msg);
             return VoterInterface::ACCESS_DENIED;
         }
 
-        // If the country is not set in the mapping and the local does not match
-        if ( !( isset($countryIdToLocaleMap[$countryId]) && in_array($locale,$countryIdToLocaleMap[$countryId]) ) )
+        // If the country has an local shop it must use that
+        if ( isset($countryIdToLocaleMap[$countryId]) && !( in_array($locale,$countryIdToLocaleMap[$countryId]) ) )
         {
             $translator = $this->container->get('translator');
 
