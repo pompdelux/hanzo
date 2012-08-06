@@ -29,6 +29,8 @@
   </form>
 </div>
 <form action="{{ path('events_create', {'id' : id}) }}" method="post" {{ form_enctype(form) }} id="event-edit-form" class="create">
+  {{ form_errors(form) }}
+
   <div id="events">
     {{ form_rest(form) }}
     {{ form_row(form._token) }}
