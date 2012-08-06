@@ -20,6 +20,8 @@ require_once __DIR__.'/../app/AppCache.php';
 use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\Tools;
 
+Tools::handleRobots();
+
 // temporary redirects because of switch from cc-tld to .com. Remove when all old links are updated
 $tdl = explode('.', $_SERVER['HTTP_HOST']);
 $lang = '';
@@ -61,7 +63,6 @@ if ($lang) {
   exit;
 }
 
-Tools::handleRobots();
 $env = Tools::mapDomainToEnvironment();
 
 $kernel = new AppKernel('prod_'.$env, false);
