@@ -58,7 +58,7 @@
     {% endif %}
     <ul id="drafts">
       {% for draft in drafts %}
-      <li>{{ draft.id }} - <a href="{{ path('consultantnewsletter', {'draft_id' : draft.id}) }}">{{ draft.subject }}</a><a href="{{ path('consultantnewsletter_draft_delete', {'draft_id' : draft.id }) }}" class="delete">{{ 'consultant.newsletter.delete.draft'|trans({}, 'consultant') }}</a></li>
+      <li><a href="{{ path('consultantnewsletter', {'draft_id' : draft.id}) }}">{{ draft.id }} - {{ draft.subject }}</a><a href="{{ path('consultantnewsletter_draft_delete', {'draft_id' : draft.id }) }}" class="delete">{{ 'consultant.newsletter.delete.draft'|trans({}, 'consultant') }}</a></li>
       {% endfor %}
     </ul>
   </div>

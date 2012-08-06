@@ -37,7 +37,7 @@
 {% if history %}
   <ul id="history">
     {% for newsletter in history %}
-      <li><a href="#" class="newsletter">{{ newsletter.subject|raw }} ({{ newsletter.sent|date("m/d/Y") }})</a>
+      <li><a href="#" class="newsletter">{{ newsletter.subject|raw }} ({{ newsletter.embargo|date("d/m-Y") }})</a>
         <div class="colorbox" style="display:none;">
           <div class="newsletter-history">
             <h2 class="subject">{{ newsletter.subject|raw }}</h2>

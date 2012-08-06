@@ -7,10 +7,22 @@
 {
 	width:100%;
 }
+
 .newsletter-history h1,
 .newsletter-history h2,
 .newsletter-history h3,
 .newsletter-history h4
 {
 	color:black;
+}
+
+ul#drafts{
+	list-style-type: none;
+}
+ul#drafts li:hover, ol#subscribed-users li:hover{
+	border-bottom:solid 1px #D3C2A2;
+}
+ul#drafts a.delete, ol#subscribed-users a.delete{
+	float:right;
+	font-style: italic;
 }

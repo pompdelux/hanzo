@@ -35,11 +35,11 @@
 {% endif %}
 
 {% if subscribed_users %}
-  <ul id="subscribed-users">
+  <ol id="subscribed-users">
     {% for user in subscribed_users %}
       <li>{{ user.email }} <a href="{{ path('consultantnewsletter_unsubscribe_user', {'userId' : user.id }) }}" class="delete">{{ 'consultant.newsletter.delete.user'|trans({}, 'consultant') }}</a></li>
     {% endfor %}
-  </ul>
+  </ol>
 {% endif %}
 
 {% endblock %}
