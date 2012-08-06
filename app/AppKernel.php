@@ -9,6 +9,8 @@ use Hanzo\Core AS C;
 class AppKernel extends Kernel
 {
     protected $terminate_events = array();
+    protected $settings = array();
+
     public $locale;
 
     public function registerBundles()
@@ -60,6 +62,18 @@ class AppKernel extends Kernel
     {
         parent::boot();
 
+        $store_mode = $this->getStoreMode();
+        list($dir, $lang,) = explode('_', $this->getEnvironment());
+
+        $domain_key = strtoupper($lang);
+        if ('consultant' == $store_mode) {
+            $this->setSetting('parent_domain_key', $domain_key);
+            $domain_key = 'Sales'.$domain_key;
+        }
+
+        $this->setSetting('store_mode', $store_mode);
+        $this->setSetting('domain_key', $domain_key);
+
         $twig = $this->container->get('twig');
         $twig->addGlobal('cdn', $this->container->getParameter('cdn'));
 
@@ -71,7 +85,7 @@ class AppKernel extends Kernel
         }
 
         //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
-        $twig->addGlobal('store_mode', $this->getStoreMode());
+        $twig->addGlobal('store_mode', $store_mode);
         $twig->addExtension(new Twig_Extension_Optimizer());
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
@@ -181,6 +195,16 @@ class AppKernel extends Kernel
         }
 
         $handle->send();
+    }
+
+    public function setSetting($key, $value)
+    {
+        $this->settings[$key] = $value;
+    }
+
+    public function getSetting($key, $default = null)
+    {
+        return isset($this->settings[$key]) ? $this->settings[$key] : $default;
     }
 }
 

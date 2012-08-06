@@ -46,46 +46,23 @@ class Hanzo
     private function __construct($container, $environment = NULL)
     {
         $this->container = $container;
+        $this->kernel = $container->get('kernel');
         $this->settings['core']['env'] = $environment;
-        $session = $this->container->get('session');
-
-        $domain = DomainsQuery::create()
-            ->joinWithDomainsSettings()
-            ->useDomainsSettingsQuery()
-                ->filterByCKey('locale')
-                ->filterByCValue($session->getLocale())
-            ->endUse()
-            ->findOne()
-        ;
-
-        $this->settings['core']['tld'] = strtolower($domain->getDomainKey());
 
         if ('cli' !== PHP_SAPI) {
             $this->cache = $this->container->get('hanzo.cache');
         }
 
-        $config = Yaml::parse( __DIR__ . '/../../../app/config/hanzo.yml' );
-
-        // translate locale dev tld's
-        if (isset($config['core']['tld_map']) &&
-            isset($config['core']['tld_map'][$this->settings['core']['tld']])
-        ) {
-            $this->settings['core']['tld'] = $config['core']['tld_map'][$this->settings['core.tld']];
-        }
-
         if ($this->cache && ($cache = $this->cache->get($this->cache->id('core.settings')))) {
              $this->settings = $cache;
-        }
-        else {
+        } else {
             $this->initSettings();
-            $this->initDomain($config['core']['default_tld'], $config['core']['tld_map']);
+            $this->initDomain();
 
             if ($this->cache) {
                 $this->cache->set($this->cache->id('core.settings'), $this->settings);
             }
         }
-
-        unset($config['core']['tld_map'], $config['core']['default_tld']);
 
         $config['core']['cdn'] = $this->container->getParameter('cdn');
 
@@ -106,7 +83,7 @@ class Hanzo
         $this->container->get('twig')->addGlobal('locale', $locale);
         $this->container->get('twig')->addGlobal('html_lang', $lang);
 
-        setLocale(LC_ALL, $session->getLocale().'.utf-8');
+        setLocale(LC_ALL, $this->settings['core']['language_id'].'.utf-8');
 
         // we piggybag on nl to show euros, even for none euro countries
         // note the locale has to be installed, and er need duch anyway, so...
@@ -118,29 +95,51 @@ class Hanzo
 
     /**
      * initiate domain settings and locale setup
-     *
-     * @param string $default, the default domain to use
-     * @param array $dev_map, optional array of locale tld's to map to "real" domains
      */
-    protected function initDomain($default, array $dev_map = array())
+    protected function initDomain()
     {
-        $settings = DomainsSettingsQuery::create()
-            ->joinWithDomains()
-            ->findByDomainKey($this->settings['core']['tld'])
-        ;
+        $check = false;
+        // if parent domain exists (consultant sites), load the parent settings first.
+        if ($this->kernel->getSetting('parent_domain_key')) {
+            $check = true;
+            $parent_domain_key = $this->kernel->getSetting('parent_domain_key');
+            $domain_key = $this->kernel->getSetting('domain_key');
+
+            $settings = DomainsSettingsQuery::create()
+                ->leftJoinWithDomains()
+                ->filterByDomainKey($parent_domain_key)
+                ->_or()
+                ->filterByDomainKey($domain_key)
+                ->addAscendingOrderByColumn(sprintf("FIELD('%s', '%s')", $parent_domain_key, $domain_key))
+                ->find()
+            ;
+        } else {
+            $settings = DomainsSettingsQuery::create()
+                ->joinWithDomains()
+                ->findByDomainKey($this->kernel->getSetting('domain_key'))
+            ;
+        }
 
         foreach ($settings as $record) {
             $this->settings[$record->getNs()][$record->getCKey()] = $record->getCValue();
         }
 
-        if ($record) {
+        if (isset($record)) {
             $language = LanguagesQuery::create()
                 ->findOneByLocale($this->settings['core']['locale'])
             ;
-            $this->settings['core']['language_id'] = $language->getId();
 
+            $this->settings['core']['language_id'] = $language->getId();
             $this->settings['core']['domain_id'] = $record->getDomains()->getId();
-            $this->settings['core']['domain_key'] = $record->getDomainKey();
+            $this->settings['core']['domain_key'] = $record->getDomains()->getDomainKey();
+        }
+
+        if ($check) {
+            if ($this->settings['core']['domain_key'] != $this->kernel->getSetting('domain_key')) {
+                $this->settings = array();
+                error_log($this->kernel->getSetting('domain_key') . ' not configured !');
+                die('woops, see error log.');
+            }
         }
     }
 
@@ -215,37 +214,3 @@ class Hanzo
         return $this->container->get('request')->getSession();
     }
 }
-
-// # da
-//         $domain = new Domains();
-//         $domain->setDomainName('dk');
-//         $domain->setDomainKey(strtoupper($domain->getDomainName()));
-
-//         $setting = new DomainsSettings();
-//         $setting->setDomainKey($domain->getDomainKey());
-//         $setting->setNs('core');
-//         $setting->setCKey('currency');
-//         $setting->setCValue('DKK');
-//         $domain->addDomainsSettings($setting);
-
-//         $setting = new DomainsSettings();
-//         $setting->setDomainKey($domain->getDomainKey());
-//         $setting->setNs('core');
-//         $setting->setCKey('country');
-//         $setting->setCValue('dk');
-//         $domain->addDomainsSettings($setting);
-
-//         $setting = new DomainsSettings();
-//         $setting->setDomainKey($domain->getDomainKey());
-//         $setting->setNs('core');
-//         $setting->setCKey('locale');
-//         $setting->setCValue('da_DK');
-//         $domain->addDomainsSettings($setting);
-
-//         $setting = new DomainsSettings();
-//         $setting->setDomainKey($domain->getDomainKey());
-//         $setting->setNs('core');
-//         $setting->setCKey('language');
-//         $setting->setCValue('da');
-//         $domain->addDomainsSettings($setting);
-//         $domain->save();
