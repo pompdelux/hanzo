@@ -79,6 +79,10 @@ class SmsController extends CoreController
 
     public function sendtestAction()
     {
+        // http://..../events/sms/test-123
+        // dansk.: 29927366 / 1231
+        // svensk: 0739415117 / 72445
+
         $context = stream_context_create(array(
             'http' => array(
             'method' => 'POST',
@@ -88,16 +92,21 @@ class SmsController extends CoreController
             'content' => http_build_query(array(
                 'user' => 'pompdelux',
                 'password' => 'fpgyhiu345',
-                'to' => 4529927366,
+                'to' => 460739415117,
                 'smsc' => 'tdc.telmore',
-                'price' => '0.00DKK',
-                'appnr' => 1231,
-                'text' => 'davs du !, svar med "pdl e1234"',
+                'price' => '0.00SEK',
+                'appnr' => 72445,
+                'text' => 'Hej Jeanette, lige en test fra det svenske konsulentsite. Vil du ikke være så venlig at svare tilbage på denne sms ? Bare skriv "hej" eller noget :) Mvh Heinrich',
                 'mediacode' => 'pdl',
                 'sessionid' => '4529927366:' . date('Ymdhis'),
             ))
         )));
 
-        echo file_get_contents('https://gw.unwire.com/service/smspush', FALSE, $context);
+        $response = file_get_contents('https://gw.unwire.com/service/smspush', FALSE, $context);
+        $response_headers = $http_response_header;
+
+        echo "<pre>";
+        echo $response_headers."\n".$response;
+        echo "</pre>";
     }
 }
