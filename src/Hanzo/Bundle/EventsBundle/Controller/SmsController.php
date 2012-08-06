@@ -105,7 +105,7 @@ class SmsController extends CoreController
         $response = file_get_contents('https://gw.unwire.com/service/smspush', FALSE, $context);
         $response_headers = $http_response_header;
 
-        $out = "<pre>".$response_headers."\n".$response."</pre>";
+        $out = "<pre>".print_r($response_headers, 1)."\n".$response."</pre>";
         return $this->response($out);
     }
 }
