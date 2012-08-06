@@ -355,6 +355,10 @@
                 <source>email.already.in.use</source>
                 <target>Dit e-mailadres bestaat al!</target>
             </trans-unit>
+            <trans-unit id="login.restricted.other_locale">
+                <source>login.restricted.other_locale</source>
+                <target><![CDATA[Your account has been created on %site_name%. You must use the: <a href="%url%">%site_name%</a> webshop.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

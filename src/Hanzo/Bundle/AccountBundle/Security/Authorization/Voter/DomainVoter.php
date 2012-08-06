@@ -60,32 +60,46 @@ class DomainVoter implements VoterInterface
         // No payment address... wtf?
         if ( is_null($paymentAddress) )
         {
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
+            error_log(__LINE__.':'.__FILE__.' DomainVoter: no payment address found, abstaining'); // hf@bellcom.dk debugging
+            return VoterInterface::ACCESS_ABSTAIN;
         }
 
         // Hardcoded lookup table
-        $country = $paymentAddress->getCountry();
-        $locale  = $this->container->get('session')->getLocale();
+        $country   = $paymentAddress->getCountry();
+        $countryId = $paymentAddress->getCountriesId();
+        $locale    = $this->container->get('session')->getLocale();
 
-        $countryToLocaleMap = array(
-            'Denmark'     => array( 'da_DK' ),
-            'Norway'      => array( 'nb_NO' ),
-            'Netherlands' => array( 'nl_NL' ),
-            'Sweden'      => array( 'sv_SE' ),
-            // TODO: FI
+        $countryIdToLocaleMap = array(
+            58  => array( 'da_DK' ), // Denmark
+            72  => array( 'fi_FI', 'sv_FI' ), // Finland
+            151 => array( 'nl_NL' ), // Netherlands
+            161 => array( 'nb_NO' ), // Norway
+            207 => array( 'sv_SE' ), // Sweden
             );
 
         // Other countries have to run en_GB: 
-        if ( !isset($countryToLocaleMap[$country]) && $locale != 'en_GB' )
+        if ( !isset($countryIdToLocaleMap[$countryId]) && $locale != 'en_GB' )
         {
-            $this->container->get('session')->setFlash('warning', 'Nein!');
+            $translator = $this->container->get('translator');
+
+            $request = $this->container->get('request');
+
+            $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/en_GB/login', '%site_name%' => 'International' ),'account');
+            $this->container->get('session')->setFlash('error', $msg);
             return VoterInterface::ACCESS_DENIED;
         }
 
         // If the country is not set in the mapping and the local does not match
-        if ( !( isset($countryToLocaleMap[$country]) && in_array($locale,$countryToLocaleMap[$country]) ) )
+        if ( !( isset($countryIdToLocaleMap[$countryId]) && in_array($locale,$countryIdToLocaleMap[$countryId]) ) )
         {
-            $this->container->get('session')->setFlash('warning', 'Nein!');
+            $translator = $this->container->get('translator');
+
+            $request = $this->container->get('request');
+
+            $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
+
+            $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/'.$useLocale.'/login', '%site_name%' => $country ),'account');
+            $this->container->get('session')->setFlash('error', $msg);
             return VoterInterface::ACCESS_DENIED;
         }
 
