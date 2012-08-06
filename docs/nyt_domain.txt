@@ -39,3 +39,20 @@ inmobile settings:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'provider.service', 'sms', 'unwire');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'provider.calling_code', 'sms', '45');
 
+
+Sales:
+  dk:
+    INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'dk', 'SalesDK');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesDK',  'closed',  'webshop',  '0');
+  no:
+    INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'no', 'SalesNO');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesNO',  'closed',  'webshop',  '0');
+  se:
+    INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'se', 'SalesSE');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesSE',  'closed',  'webshop',  '0');
+  fi:
+    INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'fi', 'SalesFI');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesFI',  'closed',  'webshop',  '0');
+  nl:
+    INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'nl', 'SalesNL');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesNL',  'closed',  'webshop',  '0');
