@@ -38,7 +38,7 @@ class EventsController extends CoreController
         ;
 
         return $this->render('EventsBundle:Events:index.html.twig', array(
-        	'page_type' => 'calendar',
+            'page_type' => 'calendar',
             'archived_events' => $archived_events
         ));
     }
