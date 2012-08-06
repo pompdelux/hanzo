@@ -1,0 +1,64 @@
+consultantnewsletter:
+    pattern:  /consultantnewsletter/{draft_id}
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:index
+        draft_id: null
+    requirements:
+        draft_id: \d+
+
+consultantnewsletter_filemanager:
+    pattern:  /consultantnewsletter/filemanager
+    defaults: { _controller: ConsultantNewsletterBundle:Default:fileManager }
+
+consultant_send_newsletter:
+    pattern:  /consultantnewsletter/sendnewsletter
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:sendNewsletter
+        _format: json
+    requirements:
+        _format: html|json
+
+consultantnewsletter_import:
+    pattern:  /consultantnewsletter/importusers
+    defaults: { _controller: ConsultantNewsletterBundle:Default:importUsers }
+
+
+consultantnewsletter_do_import:
+    pattern:  /consultantnewsletter/doimportusers
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:doImportUsers
+        _format: json
+    requirements:
+        _format: html|json
+
+consultantnewsletter_edit_users:
+    pattern:  /consultantnewsletter/editusers
+    defaults: { _controller: ConsultantNewsletterBundle:Default:editUsers }
+
+
+consultantnewsletter_unsubscribe_user:
+    pattern:  /consultantnewsletter/unsubscribeuser/{userId}
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:unsubscribeUser
+        _format: json
+    requirements:
+        _format: html|json
+        userId: \d+
+
+consultantnewsletter_history:
+    pattern:  /consultantnewsletter/history
+    defaults: { _controller: ConsultantNewsletterBundle:Default:history }
+
+consultantnewsletter_draft_save:
+    pattern:  /consultantnewsletter/draft/save
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:saveDraft
+    requirements:
+        _format: json
+consultantnewsletter_draft_delete:
+    pattern:  /consultantnewsletter/draft/delete/{draft_id}
+    defaults:
+        _controller: ConsultantNewsletterBundle:Default:deleteDraft
+    requirements:
+        _format: json
+        draft_id: \d+

@@ -1,0 +1,16 @@
+
+#body-consultant-newsletter form label{
+	display:block;
+}
+#body-consultant-newsletter form #subject,
+#body-consultant-newsletter form #users
+{
+	width:100%;
+}
+.newsletter-history h1,
+.newsletter-history h2,
+.newsletter-history h3,
+.newsletter-history h4
+{
+	color:black;
+}

@@ -1,0 +1,55 @@
+{% extends layout %}
+
+{% block content %}
+
+<h1>{{ 'quickorder.header.text'|trans({}, 'quickorder') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'quickorder') }}
+</div>
+{% endif %}
+
+
+<p>{{ 'quickorder.description.text'|trans({}, 'quickorder') }}</p>
+<div id="quickorder">
+  <form action="{{ url('basket_add', {}, true) }}" method="post">
+    <label id="master-label">{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}<br>
+      <input type="text" id="master" name="master" placeholder="{{ 'quickorder.master.placeholder'|trans({}, 'quickorder') }}">
+    </label>
+    <label id="size-label" style="display:none"><br>
+      <select id="size" name="size"></select>
+    </label>
+    <label id="color-label" style="display:none"><br>
+      <select id="color" name="color"></select>
+    </label>
+    <label id="quantity-label" style="display:none">{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}<br>
+      <input type="text" id="quantity" name="quantity" placeholder="{{ 'quickorder.quantity.placeholder'|trans({}, 'quickorder') }}">
+    </label>
+      <input type="submit" id="submit" name="submit" value="{{ 'quickorder.submit.placeholder'|trans({}, 'quickorder') }}" style="display:none">
+      <input type="button" id="reset" name="reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}" style="display:none">
+      <div id="autocomplete-container"></div>
+  </form>
+  <h1>{{ 'quickorder.products.header.text'|trans({}, 'quickorder') }}</h1>
+  <table class="list">
+    <thead>
+      <th>{{ 'quickorder.sku.table'|trans({}, 'quickorder') }}</th>
+      <th>{{ 'quickorder.quantity.table'|trans({}, 'quickorder') }}</th>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <td>{{ product.sku }}</td>
+          <td>{{ product.quantity }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script src="/fx/scripts/bootstrap-typeahead.js"></script>
+{% endblock %}

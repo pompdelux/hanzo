@@ -12,6 +12,12 @@
     <div class="msg error">{{ error.message|trans({}, 'account') }}</div>
 {% endif %}
 
+{% if app.session.hasFlash('error') %}
+<div class="msg error">
+  {{ app.session.flash('error')|raw }}
+</div>
+{% endif %}
+
 <div class="left">
 
 {% if store_mode == 'webshop' %}

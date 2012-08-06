@@ -14,6 +14,10 @@
                 <source>events.calendar.description.text</source>
                 <target>Grønmarkering af arrangement er dine åbne arrangementer og rød er dine lukkede arrangementer. Klik på et arrangement for at se detaljer eller rette/slette arrangementet.</target>
             </trans-unit>
+            <trans-unit id="events.calendar.archived.header.text">
+                <source>events.calendar.archived.header.text</source>
+                <target>Arkiverede arrangementer</target>
+            </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
                 <target>Arrangement detaljer</target>

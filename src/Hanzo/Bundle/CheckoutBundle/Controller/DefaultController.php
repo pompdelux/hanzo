@@ -388,7 +388,7 @@ class DefaultController extends CoreController
      * @author Henrik Farre <hf@bellcom.dk>
      * @return void
      **/
-    public function addressesAction($skip_empty = false, $order = null)
+    public function addressesAction($skip_empty = false)
     {
         $customer = CustomersPeer::getCurrent();
         $customerAddresses = $customer->getAddresses();
@@ -401,6 +401,7 @@ class DefaultController extends CoreController
             $addresses[$address->getType()] = $address;
         }
 
+        error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
         if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
             return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
         }
@@ -423,13 +424,20 @@ class DefaultController extends CoreController
 
         $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
 
+        $order = OrdersPeer::getCurrent();
         if ($skip_empty || ($order instanceof Orders)) {
             if (empty($addresses['overnightbox'])) {
                 $hasOvernightBox = false;
             }
-            if ($order->getDeliveryMethod() == 11) {
+            /*if ($order->getDeliveryMethod() == 11) {
+                error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                 unset($addresses['shipping']);
-            }
+            }*/
+        }
+
+        if ($order->getDeliveryMethod() != 11) 
+        {
+            $addresses['shipping']->setCompanyName(null);
         }
 
         return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));

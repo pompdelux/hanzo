@@ -59,12 +59,19 @@ class DefaultController extends CoreController
         }
         else
         {
-            $geoip = $this->get('geoip_manager');
-            $geoipResult = $geoip->lookup();
-            if ( !is_null( $geoipResult['country_id'] ) )
+            // If the customer is located in Denmark, but browsing the en_GB site, the geoip will set country to Denmark, 
+            // and fail to select a country id in the dropdown as Denmark is excluded from that list
+            // But when the customer submits the form "Denmark" is still send as a country so we try to override that here
+
+            if ('POST' !== $request->getMethod())
             {
-                $addresses->setCountry( $geoipResult['country_localname'] );
-                $addresses->setCountriesId( $geoipResult['country_id'] );
+                $geoip = $this->get('geoip_manager');
+                $geoipResult = $geoip->lookup();
+                if ( !is_null( $geoipResult['country_id'] ) )
+                {
+                    $addresses->setCountry( $geoipResult['country_localname'] );
+                    $addresses->setCountriesId( $geoipResult['country_id'] );
+                }
             }
         }
 
@@ -77,7 +84,7 @@ class DefaultController extends CoreController
             array('validation_groups' => 'customer')
         );
 
-        if ('POST' === $request->getMethod())
+        if ( 'POST' === $request->getMethod() )
         {
             $form->bindRequest($request);
 
@@ -90,6 +97,13 @@ class DefaultController extends CoreController
                 $addresses->setLastName( $customer->getLastName() );
 
                 $formData = $request->request->get('customers');
+
+                if ( count( $countries ) != 1 ) // for .dk, .se, .no and maybe .nl
+                {
+                    $countryById = CountriesQuery::create()
+                        ->findPk($formData['addresses'][0]['countries_id']);
+                    $addresses->setCountry($countryById->getName());
+                }
 
                 if ( isset( $formData['newsletter'] )  && $formData['newsletter'] )
                 {
@@ -213,7 +227,6 @@ class DefaultController extends CoreController
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
-                    error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
                     $customer->setPassword(sha1($customer->getPasswordClear()));
                 }
                 else
@@ -268,6 +281,9 @@ class DefaultController extends CoreController
         $validation_group = $type;
         if ($shipping_id == 11) {
             $validation_group = 'company_' . $type;
+        }
+        else {
+          $address->setCompanyName(null);
         }
 
         $builder = $this->createFormBuilder($address, array(
@@ -433,5 +449,15 @@ class DefaultController extends CoreController
                 'data' => $data,
             ));
         }
+    }
+
+    /**
+     * errorAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function errorAction($error)
+    {
+        return $this->render('AccountBundle:Default:error.html.twig', array());
     }
 }

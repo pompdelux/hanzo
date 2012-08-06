@@ -2,7 +2,15 @@ var calendar = (function($) {
   var pub = {};
 
 
+<<<<<<< HEAD
+  pub.init = function() {
+
+  };
+
+
+=======
   pub.init = function() {};
+>>>>>>> master
 
   return pub;
 })(jQuery);
