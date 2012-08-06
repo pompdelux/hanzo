@@ -362,6 +362,34 @@
                 <source>event.too.old.to.delete</source>
                 <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke slettes.</target>
             </trans-unit>
-        </body>
+            <trans-unit id="event.sms.confirmation.reply">
+                <source>event.sms.confirmation.reply</source>
+                <target>Hei %name%. Takk for din påmelding til POMPdeLUX Home shopping-arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg gleder meg til å se deg! %hostess%</target>
+            </trans-unit>
+            <trans-unit id="event.sms.invite">
+                <source>event.sms.invite</source>
+                <target>Hei %name%. %hostess% vil gjerne invitere deg til POMPdeLUX Home shopping-arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se de lekre barneklærne, så svar på denne SMS-en med teksten "pdl %event_id%". Jeg håper vi ses!</target>
+            </trans-unit>
+            <trans-unit id="event.sms.reminder">
+                <source>event.sms.reminder</source>
+                <target>Hei %name% Husk POMPdeLUX home shopping-arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Vennlig hilsen POMPdeLUX</target>
+            </trans-unit>
+            <trans-unit id="events.name">
+                <source>events.name</source>
+                <target>Navn</target>
+            </trans-unit>
+            <trans-unit id="event.email.exists">
+                <source>event.email.exists</source>
+                <target>Den inntastede gjesten er allerede registrert.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.edit">
+                <source>event.too.old.to.edit</source>
+                <target>Arrangementet er avholdt og kan derfor ikke redigeres eller slettes.</target>
+            </trans-unit>
+            <trans-unit id="event.too.old.to.delete">
+                <source>event.too.old.to.delete</source>
+                <target>Arrangementet er avholdt og kan derfor ikke redigeres eller slettes.</target>
+            </trans-unit>
+       </body>
     </file>
 </xliff>
