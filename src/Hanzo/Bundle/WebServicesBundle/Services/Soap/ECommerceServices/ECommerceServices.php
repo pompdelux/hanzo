@@ -125,8 +125,7 @@ class ECommerceServices extends SoapService
         try {
             // loop over all items
             $index = 0;
-            foreach ($item->InventDim as $entry)
-            {
+            foreach ($item->InventDim as $entry) {
                 /**
                  * create master product
                  */
