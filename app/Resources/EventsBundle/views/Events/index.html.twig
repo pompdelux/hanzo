@@ -22,6 +22,14 @@
 
 <p>{{ 'events.calendar.description.text'|trans({}, 'events') }}</p>
 <div id="calendar"></div>
+
+<h1>{{ 'events.calendar.archived.header.text'|trans({}, 'events') }}</h1>
+<ul id="archived-events">
+  {% for archived_event in archived_events %}
+  <li>( {{ archived_event.eventdate|date("d/m-Y")}} ) <a href="{{ path('events_view' , {'id' : archived_event.id }) }}">{{ archived_event.code }}</a></li> 
+  {% endfor %}
+</ul>
+
 {% endblock %}
 
 {% block javascript %}

@@ -1,0 +1,57 @@
+{% extends layout %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter_import') }}">
+        {{ 'consultant.newsletter.import.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter_edit_users') }}">
+        {{ 'consultant.newsletter.edit.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter_history') }}">
+        {{ 'consultant.newsletter.history.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'consultant.newsletter.history.header.text'|trans({}, 'consultant') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'events') }}
+</div>
+{% endif %}
+
+{% if history %}
+  <ul id="history">
+    {% for newsletter in history %}
+      <li><a href="#" class="newsletter">{{ newsletter.subject|raw }} ({{ newsletter.sent|date("m/d/Y") }})</a>
+        <div class="colorbox" style="display:none;">
+          <div class="newsletter-history">
+            <h2 class="subject">{{ newsletter.subject|raw }}</h2>
+            <div class="message">
+              {{ newsletter.message|raw }}
+            </div>
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

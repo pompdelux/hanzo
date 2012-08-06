@@ -36,3 +36,6 @@ security:
             algorithm: sha1
             iterations: 1
             encode_as_base64: false
+
+    access_decision_manager:
+            strategy: unanimous

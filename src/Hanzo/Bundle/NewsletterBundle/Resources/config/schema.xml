@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="Hanzo\Model" defaultIdMethod="native">
+  <table name="consultant_newsletter_drafts">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
+    <column name="consultants_id" type="INTEGER" required="true" />
+    <column name="subject" type="VARCHAR" required="true" primaryString="true" />
+    <column name="content" type="LONGVARCHAR" />
+    <foreign-key foreignTable="customers">
+      <reference local="consultants_id" foreign="id"/>
+    </foreign-key>
+  </table>
+</database>

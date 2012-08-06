@@ -10,6 +10,7 @@ namespace Hanzo\Core;
 
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo;
@@ -81,6 +82,25 @@ class ExceptionHandler
                     $response = new Response('', 302, array('Location' => $url));
                     $event->setResponse($response);
                 }
+            }
+        }
+
+        if ($exception instanceof AccessDeniedHttpException) 
+        {
+            $request = $this->service_container->get('request');
+
+            $pathWithNoLocale = substr($request->getPathInfo(),6);
+
+            switch ( $pathWithNoLocale ) 
+            {
+              case '/account': // The customer probably tried to created an account on the wrong locale
+                  $response = new Response('', 302, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/login'));
+                  $event->setResponse($response);
+                break;
+              
+              default:
+                // code...
+                break;
             }
         }
     }

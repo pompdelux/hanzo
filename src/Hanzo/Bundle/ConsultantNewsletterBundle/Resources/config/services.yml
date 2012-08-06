@@ -1,0 +1,10 @@
+parameters:
+#    consultant_newsletter.example.class: Hanzo\Bundle\ConsultantNewsletterBundle\Example
+
+services:
+#    consultant_newsletter.example:
+#        class: %consultant_newsletter.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    consultantnewsletterapi:
+        class: Hanzo\Bundle\ConsultantNewsletterBundle\ConsultantNewsletterApi
