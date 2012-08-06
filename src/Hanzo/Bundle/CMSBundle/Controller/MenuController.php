@@ -39,8 +39,8 @@ class MenuController extends CoreController
             $this->locale = $hanzo->get('core.locale');
             $this->base_url = $request->getBaseUrl();
 
-            if ($thread) {
-                $this->cms_thread = $thread;
+            if ($from) {
+                $this->cms_thread = $from;
             } else {
                 $this->cms_thread = $hanzo->get('core.main_menu_thread');
             }
