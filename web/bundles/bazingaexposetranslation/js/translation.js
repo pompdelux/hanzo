@@ -9,7 +9,7 @@
 var ExposeTranslation = new function () {
   var _messages = {},
       _sPluralRegex = /^\w+\: +(.+)$/,
-      _cPluralRegex = /^\s*(({\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]]))\s?(.+?)$/,
+      _cPluralRegex = /^\s*(({\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]]))\s+(.+?)$/,
       _iPluralRegex = /^\s*({\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]])/;
 
   /**
@@ -385,12 +385,12 @@ var ExposeTranslation = new function () {
         _message = guess_domain(key);
       }
 
-      if (_message == undefined) {
-        _message = key;
-      }
-
       if (_message && !isNaN(_number)) {
         _message = pluralize(_message, _number);
+      }
+
+      if (_message == undefined) {
+        return key;
       }
 
       _message = replace_placeholders(_message, _placeholders);
@@ -408,4 +408,4 @@ var ExposeTranslation = new function () {
       return (_messages[key] ? true : false);
     }
   };
-};
+}

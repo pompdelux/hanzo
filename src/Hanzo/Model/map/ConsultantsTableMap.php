@@ -45,6 +45,7 @@ class ConsultantsTableMap extends TableMap
 		$this->addColumn('INITIALS', 'Initials', 'VARCHAR', false, 6, null);
 		$this->addColumn('INFO', 'Info', 'LONGVARCHAR', false, null, null);
 		$this->addColumn('EVENT_NOTES', 'EventNotes', 'LONGVARCHAR', false, null, null);
+		$this->addColumn('HIDE_INFO', 'HideInfo', 'BOOLEAN', true, 1, false);
 		$this->addColumn('MAX_NOTIFIED', 'MaxNotified', 'BOOLEAN', true, 1, false);
 		$this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'customers', 'ID', true, null, null);
 		// validators

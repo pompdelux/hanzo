@@ -1,3 +1,6 @@
+#body-event #main table, #body-event #main form {
+  margin-bottom: 20px;
+}
 form.create input, form.create select, form.create textarea {
   float: right;
 }
@@ -22,6 +25,15 @@ form.create #events {
   margin-top: 20px;
 }
 
+form.create ul {
+  list-style: none;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #a10000;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
 #find-customer form input[type=submit] {
   margin-left:2px;
 }
@@ -29,9 +41,17 @@ form.create #events {
   margin-bottom: 5px;
 }
 
-table#event th{
+table.list th{
   text-align: left;
   padding-right:5px;
+}
+
+#body-event .list a.delete {
+  background: #ffffff url(/fx/images/delete_icon.png) no-repeat center left;
+  text-indent: -99999px;
+  display: block;
+  width: 16px;
+  height: 16px;
 }
 
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }

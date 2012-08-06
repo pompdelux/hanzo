@@ -20,6 +20,8 @@ require_once __DIR__.'/../app/AppCache.php';
 use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\Tools;
 
+Tools::handleRobots();
+
 // temporary redirects because of switch from cc-tld to .com. Remove when all old links are updated
 $tdl = explode('.', $_SERVER['HTTP_HOST']);
 $lang = '';
@@ -36,8 +38,11 @@ switch (array_pop($tdl)) {
     case 'nl':
         $lang = '/nl_NL/';
         break;
+    case 'fi':
+        $lang = '/fi_FI/';
+        break;
     case 'com':
-        if (!preg_match('/(da_DK|nb_NO|sv_SE|nl_NL|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
+        if (!preg_match('/(da_DK|nb_NO|sv_SE|nl_NL|fi_FI|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
           $lang = '/en_GB/';
         }
         break;
@@ -45,19 +50,19 @@ switch (array_pop($tdl)) {
 
 if ($lang) {
   $goto = 'http://www.pompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
-  if (isset($_SERVER['HTTP_REFERER'])) {
-    $referer = $_SERVER['HTTP_REFERER'];
-  }
-  else {
-    $referer = "NOT SET";
-  }
-  // log redirects to figure out when we can remove them. Comment out if it fills the log and try it again later
-  error_log(__LINE__.':'.__FILE__.' NOTICE: Doing redirect. From: http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"].' To: '.$goto.' Referer: '.$referer);
+  // disabled 27/7-2012 to reduce logging. Most internal links are fixed, but some external sites still use old links. Enable again later to see if the redirect is still needed.
+  #if (isset($_SERVER['HTTP_REFERER'])) {
+  #  $referer = $_SERVER['HTTP_REFERER'];
+  #}
+  #else {
+  #  $referer = "NOT SET";
+  #}
+  #// log redirects to figure out when we can remove them. Comment out if it fills the log and try it again later
+  #error_log(__LINE__.':'.__FILE__.' NOTICE: Doing redirect. From: http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"].' To: '.$goto.' Referer: '.$referer);
   header('Location: '.$goto , true, 301);
   exit;
 }
 
-Tools::handleRobots();
 $env = Tools::mapDomainToEnvironment();
 
 $kernel = new AppKernel('prod_'.$env, false);

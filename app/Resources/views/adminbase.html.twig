@@ -25,11 +25,11 @@
 <link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
 
 <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
-<link href='//ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css' rel='stylesheet' type='text/css'>
 
 {% stylesheets
   'fx/css/boilerplate.css'
   'fx/css/colorbox/theme4/colorbox.css'
+  'fx/css/jquery-ui.css'
   'fx/scripts/video-js/video-js.css'
 
   'fx/css/main.css'
@@ -99,9 +99,11 @@ var cdn_url = '{{ cdn }}';
       <li id="select-database">
         <a class="open-menu" href="#">{{ database|default('default') }} - Vælg domæne database &darr;</a>
         <div style="display: none">
-          <a href="{{ path('admin_database') }}" class="">.DK /.NL /.COM (pdlda)</a><br><br>
+          <a href="{{ path('admin_database') }}" class="">.DK/.COM (pdlda)</a><br><br>
           <a href="{{ path('admin_database', {name : 'pdldbse1'}) }}" class="">.SE (pdldbse1)</a><br><br>
           <a href="{{ path('admin_database', {name : 'pdldbno1'}) }}" class="">.NO (pdldbno1)</a><br><br>
+          <a href="{{ path('admin_database', {name : 'pdldbfi1'}) }}" class="">.FI (pdldbfi1)</a><br><br>
+          <a href="{{ path('admin_database', {name : 'pdldbnl1'}) }}" class="">.NL (pdldbnl1)</a><br><br>
         </div>
       </li>
       <li id="select-cache">
@@ -159,7 +161,6 @@ var cdn_url = '{{ cdn }}';
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
   'fx/scripts/yatzy.js'
-
   'fx/scripts/dialoug.js'
   'fx/scripts/colorbox.js'
   'fx/scripts/flowplayer.js'

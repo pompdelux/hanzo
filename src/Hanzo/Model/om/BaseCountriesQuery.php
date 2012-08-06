@@ -33,6 +33,7 @@ use Hanzo\Model\ZipToCity;
  * @method     CountriesQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
  * @method     CountriesQuery orderByCurrencyName($order = Criteria::ASC) Order by the currency_name column
  * @method     CountriesQuery orderByVat($order = Criteria::ASC) Order by the vat column
+ * @method     CountriesQuery orderByCallingCode($order = Criteria::ASC) Order by the calling_code column
  *
  * @method     CountriesQuery groupById() Group by the id column
  * @method     CountriesQuery groupByName() Group by the name column
@@ -45,6 +46,7 @@ use Hanzo\Model\ZipToCity;
  * @method     CountriesQuery groupByCurrencyCode() Group by the currency_code column
  * @method     CountriesQuery groupByCurrencyName() Group by the currency_name column
  * @method     CountriesQuery groupByVat() Group by the vat column
+ * @method     CountriesQuery groupByCallingCode() Group by the calling_code column
  *
  * @method     CountriesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     CountriesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -80,6 +82,7 @@ use Hanzo\Model\ZipToCity;
  * @method     Countries findOneByCurrencyCode(string $currency_code) Return the first Countries filtered by the currency_code column
  * @method     Countries findOneByCurrencyName(string $currency_name) Return the first Countries filtered by the currency_name column
  * @method     Countries findOneByVat(string $vat) Return the first Countries filtered by the vat column
+ * @method     Countries findOneByCallingCode(int $calling_code) Return the first Countries filtered by the calling_code column
  *
  * @method     array findById(int $id) Return Countries objects filtered by the id column
  * @method     array findByName(string $name) Return Countries objects filtered by the name column
@@ -92,6 +95,7 @@ use Hanzo\Model\ZipToCity;
  * @method     array findByCurrencyCode(string $currency_code) Return Countries objects filtered by the currency_code column
  * @method     array findByCurrencyName(string $currency_name) Return Countries objects filtered by the currency_name column
  * @method     array findByVat(string $vat) Return Countries objects filtered by the vat column
+ * @method     array findByCallingCode(int $calling_code) Return Countries objects filtered by the calling_code column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -180,7 +184,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURRENCY_CODE`, `CURRENCY_NAME`, `VAT` FROM `countries` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURRENCY_CODE`, `CURRENCY_NAME`, `VAT`, `CALLING_CODE` FROM `countries` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -605,6 +609,46 @@ abstract class BaseCountriesQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(CountriesPeer::VAT, $vat, $comparison);
+	}
+
+	/**
+	 * Filter the query on the calling_code column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByCallingCode(1234); // WHERE calling_code = 1234
+	 * $query->filterByCallingCode(array(12, 34)); // WHERE calling_code IN (12, 34)
+	 * $query->filterByCallingCode(array('min' => 12)); // WHERE calling_code > 12
+	 * </code>
+	 *
+	 * @param     mixed $callingCode The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CountriesQuery The current query, for fluid interface
+	 */
+	public function filterByCallingCode($callingCode = null, $comparison = null)
+	{
+		if (is_array($callingCode)) {
+			$useMinMax = false;
+			if (isset($callingCode['min'])) {
+				$this->addUsingAlias(CountriesPeer::CALLING_CODE, $callingCode['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($callingCode['max'])) {
+				$this->addUsingAlias(CountriesPeer::CALLING_CODE, $callingCode['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(CountriesPeer::CALLING_CODE, $callingCode, $comparison);
 	}
 
 	/**

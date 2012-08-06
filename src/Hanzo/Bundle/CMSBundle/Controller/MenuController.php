@@ -159,6 +159,7 @@ class MenuController extends CoreController
 
                     if (in_array($record->getType(), array('page', 'url'))) {
                         $params = $record->getSettings(null, false);
+
                         if (isset($params->class)) {
                             $class .= ' ' . $params->class;
                         } elseif (isset($params->is_frontpage)) {
@@ -169,7 +170,13 @@ class MenuController extends CoreController
                         }
                     }
 
-                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $this->locale . '/' . $path . '" class="page-'.$record->getId().'">' . $record->getTitle() . '</a>';
+                    if (preg_match('~^(f|ht)tps?://~', $path)) {
+                        $uri = $path;
+                    } else {
+                        $uri = $this->base_url . '/' . $this->locale . '/' . $path;
+                    }
+
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().'">' . $record->getTitle() . '</a>';
 
                     if (isset($this->trail[$record->getId()])) {
                         $this->generateTree($record->getId(), $type);

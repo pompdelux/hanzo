@@ -67,6 +67,7 @@
     <column name="currency_code" type="VARCHAR" size="3" required="true"/>
     <column name="currency_name" type="VARCHAR" size="32" required="true"/>
     <column name="vat" type="DECIMAL" size="4" scale="2" required="false" defaultValue="NULL"/>
+    <column name="calling_code" type="INTEGER" required="false" defaultValue="NULL"/>
     <unique name="index2">
       <unique-column name="code"/>
     </unique>
@@ -137,6 +138,7 @@
     <column name="initials" type="VARCHAR" size="6" required="false"/>
     <column name="info" type="LONGVARCHAR" defaultValue="null" required="false"/>
     <column name="event_notes" type="LONGVARCHAR" defaultValue="null" required="false"/>
+    <column name="hide_info" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
     <column name="max_notified" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
   </table>
 

@@ -33,7 +33,7 @@ services:
         factory_method:  get
         arguments:
             service:     sms
-            parameters:  ~
+            parameters:  [@translator]
             class:       %sms_manager.class%
 
     twig_string:

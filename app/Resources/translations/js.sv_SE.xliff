@@ -122,11 +122,6 @@
                 <source>out.of.stock</source>
                 <target>Utsåld</target>
             </trans-unit>
-            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
-                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
-                <target>The e-mail address "%email%" is not subscribed</target>
-            </trans-unit>
-
             <trans-unit id="wall.add.response">
                 <source>wall.add.response</source>
                 <target>Lägg till kommentar</target>
@@ -190,6 +185,90 @@
             <trans-unit id="wall.delete.entry.confirm">
                 <source>wall.delete.entry.confirm</source>
                 <target>Är du säker på att du vill radera inlägget?</target>
+            </trans-unit>
+            <trans-unit id="event.confirm.delete.participant">
+                <source>event.confirm.delete.participant</source>
+                <target>Är du säker på att du vill radera denna deltagare?</target>
+            </trans-unit>
+            <trans-unit id="month.Januar">
+                <source>month.Januar</source>
+                <target>Januari</target>
+            </trans-unit>
+            <trans-unit id="today">
+                <source>today</source>
+                <target>I dag</target>
+            </trans-unit>
+            <trans-unit id="month.February">
+                <source>month.February</source>
+                <target>Februari</target>
+            </trans-unit>
+            <trans-unit id="month.March">
+                <source>month.March</source>
+                <target>Mars</target>
+            </trans-unit>
+            <trans-unit id="month.April">
+                <source>month.April</source>
+                <target>April</target>
+            </trans-unit>
+            <trans-unit id="month.May">
+                <source>month.May</source>
+                <target>Maj</target>
+            </trans-unit>
+            <trans-unit id="month.June">
+                <source>month.June</source>
+                <target>Juni</target>
+            </trans-unit>
+            <trans-unit id="month.July">
+                <source>month.July</source>
+                <target>Juli</target>
+            </trans-unit>
+            <trans-unit id="month.August">
+                <source>month.August</source>
+                <target>Augusti</target>
+            </trans-unit>
+            <trans-unit id="month.September">
+                <source>month.September</source>
+                <target>September</target>
+            </trans-unit>
+            <trans-unit id="month.October">
+                <source>month.October</source>
+                <target>Oktober</target>
+            </trans-unit>
+            <trans-unit id="month.November">
+                <source>month.November</source>
+                <target>November</target>
+            </trans-unit>
+            <trans-unit id="month.December">
+                <source>month.December</source>
+                <target>December</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sun">
+                <source>day.short.Sun</source>
+                <target>Sön</target>
+            </trans-unit>
+            <trans-unit id="day.short.Mon">
+                <source>day.short.Mon</source>
+                <target>Mån</target>
+            </trans-unit>
+            <trans-unit id="day.short.Tue">
+                <source>day.short.Tue</source>
+                <target>Tis</target>
+            </trans-unit>
+            <trans-unit id="day.short.Wed">
+                <source>day.short.Wed</source>
+                <target>Ons</target>
+            </trans-unit>
+            <trans-unit id="day.short.Thu">
+                <source>day.short.Thu</source>
+                <target>Tor</target>
+            </trans-unit>
+            <trans-unit id="day.short.Fri">
+                <source>day.short.Fri</source>
+                <target>Fre</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sat">
+                <source>day.short.Sat</source>
+                <target>Lör</target>
             </trans-unit>
         </body>
     </file>

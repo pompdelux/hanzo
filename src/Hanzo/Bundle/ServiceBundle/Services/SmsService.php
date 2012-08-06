@@ -2,25 +2,33 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
+use Criteria;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\EventsQuery;
 use Hanzo\Model\EventsParticipantsQuery;
+use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\MessagesI18nQuery;
 
 use Smesg\Adapter\PhpStreamAdapter;
 use Smesg\Provider\UnwireProvider;
 
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+
 class SmsService
 {
-    protected $parameters;
     protected $settings;
+    protected $translator;
 
     public function __construct($parameters, $settings)
     {
-        $this->parameters = $parameters;
-        $this->settings = $settings;
+        if (!$parameters[0] instanceof Translator) {
+            throw new \InvalidArgumentException('Translator expected as first parameter.');
+        }
+
+        $this->translator = $parameters[0];
 
         // unwire
         // $settings['provider.service'];
@@ -29,7 +37,54 @@ class SmsService
         // $settings['provider.appnr'];
         // $settings['provider.mediacode'];
         // $settings['provider.price'];
-        // $settings['provider.get_smsc'];
+
+        $this->settings['provider.get_smsc'] = 0;
+        $this->settings = $settings;
+    }
+
+    public function sendEventInvite($participant)
+    {
+        $event = $participant->getEvents();
+        $parameters = array(
+            '%name%' => trim($participant->getFirstName().' '.$participant->getLastName()),
+            '%event_date%' => $event->getEventDate('d-m-Y'),
+            '%event_time%' => $event->getEventDate('G:i'),
+            '%address%' => $event->getAddressLine1(),
+            '%zip%' => $event->getPostalCode(),
+            '%city%' => $event->getCity(),
+            '%hostess%' => $event->getHost(),
+            '%event_id%' => 'e'.$event->getId(),
+        );
+
+        $to = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
+        $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
+
+        $provider = $this->getProvider();
+        $provider->addMessage($to, $message);
+
+        return $provider->send();
+    }
+
+    public function sendEventConfirmationReply($participant)
+    {
+        $event = $participant->getEvents();
+        $parameters = array(
+            '%name%' => $participant->getFirstName(),
+            '%event_date%' => $event->getEventDate('d-m-Y'),
+            '%event_time%' => $event->getEventDate('G:i'),
+            '%address%' => $event->getAddressLine1(),
+            '%zip%' => $event->getPostalCode(),
+            '%city%' => $event->getCity(),
+            '%hostess%' => $event->getHost(),
+        );
+
+        $to = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
+        $message = $this->translator->trans('event.sms.confirmation.reply', $parameters, 'events');
+
+        $provider = $this->getProvider();
+        $provider->addMessage($to, $message);
+
+        return $provider->send();
     }
 
     /**
@@ -39,30 +94,7 @@ class SmsService
      */
     public function eventReminder($locale = 'da_DK')
     {
-        $provider = new UnwireProvider(new PhpStreamAdapter(), array(
-            'user' => $this->settings['provider.user'],
-            'password' => $this->settings['provider.password'],
-            'appnr' => $this->settings['provider.appnr'],
-            'mediacode' => $this->settings['provider.mediacode'],
-            'price' => $this->settings['provider.price'],
-            'get_smsc' => (boolean) $this->settings['provider.get_smsc'],
-        ));
-
-        $message = MessagesI18nQuery::create()
-            ->joinWithMessages()
-            ->filterByLocale($locale)
-            ->useMessagesQuery()
-                ->filterByNs('sms')
-                ->filterByKey('event.reminder')
-            ->endUse()
-            ->findOne()
-        ;
-
-        if (!$message) {
-            throw new Exception("No 'event.reminder' translation for '{$locale}'", 1);
-        }
-
-        $message = $message->getBody();
+        $provider = $this->getProvider();
 
         $date = new \DateTime();
         $date->modify('+1 day midnight');
@@ -79,24 +111,27 @@ class SmsService
                 ))
             ->endUse()
             ->filterByNotifyBySms(true)
-            ->filterByPhone(NULL, \Criteria::ISNOTNULL)
-            ->filterBySmsSendAt(NULL, \Criteria::ISNULL)
+            ->filterByPhone(NULL, Criteria::ISNOTNULL)
+            ->filterBySmsSendAt(NULL, Criteria::ISNULL)
             ->find()
         ;
 
         $batches = array();
         foreach ($participants as $participant) {
             $event = $participant->getEvents();
+            $to = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
 
-            $batches[(int) $participant->getPhone()] = strtr($message, array(
-                ':first_name:' => $participant->getFirstName(),
-                ':last_name:' => $participant->getLastName(),
-                ':event_date:' => $event->getEventDate('d-m-Y'),
-                ':event_time:' => $event->getEventDate('G:i'),
-                ':address:' => $event->getAddressLine1(),
-                ':postal_code:' => $event->getPostalCode(),
-                ':city:' => $event->getCity(),
-            ));
+            $parameters = array(
+                '%name%' => $participant->getFirstName(),
+                '%event_date%' => $event->getEventDate('d-m-Y'),
+                '%event_time%' => $event->getEventDate('G:i'),
+                '%address%' => $event->getAddressLine1(),
+                '%zip%' => $event->getPostalCode(),
+                '%city%' => $event->getCity(),
+                '%hostess%' => $event->getHost(),
+            );
+
+            $batches[$to] = $message = $this->translator->trans('event.sms.reminder', $parameters, 'events');
 
             // mark participant as notified
             $participant->setSmsSendAt('now');
@@ -105,12 +140,24 @@ class SmsService
 
         $responses = array();
         foreach (array_chunk($batches, UnwireProvider::BATCH_MAX_QUANTITY) as $batch) {
-            foreach ($batch as $mobile_number => $message) {
-                $responses[] = $provider->addMessage($mobile_number, $message);
+            foreach ($batch as $to => $message) {
+                $responses[] = $provider->addMessage($to, $message);
             }
             $provider->send();
         }
 
         return $responses;
+    }
+
+    protected function getProvider()
+    {
+        return new UnwireProvider(new PhpStreamAdapter(), array(
+            'user' => $this->settings['provider.user'],
+            'password' => $this->settings['provider.password'],
+            'appnr' => $this->settings['provider.appnr'],
+            'mediacode' => $this->settings['provider.mediacode'],
+            'price' => $this->settings['provider.price'],
+            'get_smsc' => (boolean) $this->settings['provider.get_smsc'],
+        ));
     }
 }

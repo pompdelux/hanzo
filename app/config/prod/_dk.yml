@@ -41,3 +41,17 @@ propel:
                 dsn:                  mysql:host=%prod_no_database_host%;dbname=%prod_no_database_name%
                 options:              {}
                 attributes:           {}
+            pdldbfi1:
+                driver:               %database_driver%
+                user:                 %prod_fi_database_user%
+                password:             %prod_fi_database_password%
+                dsn:                  mysql:host=%prod_fi_database_host%;dbname=%prod_fi_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbnl1:
+                driver:               %database_driver%
+                user:                 %prod_nl_database_user%
+                password:             %prod_nl_database_password%
+                dsn:                  mysql:host=%prod_nl_database_host%;dbname=%prod_nl_database_name%
+                options:              {}
+                attributes:           {}

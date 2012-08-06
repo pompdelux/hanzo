@@ -46,6 +46,14 @@ events_invite:
         _controller: EventsBundle:Events:invite
         key: null
 
+events_remove_participant:
+    pattern: /events/remove/participant/{event_id}/{participant_id}
+    defaults:
+        _controller: EventsBundle:Events:removeParticipant
+    requirements:
+        event_id: \d+
+        participant_id: \d+
+
 events_rsvp:
     pattern: /events/rsvp/{key}
     defaults:

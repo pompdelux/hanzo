@@ -15,7 +15,6 @@ use Hanzo\Bundle\DataIOBundle\Events,
 
 class CacheController extends CoreController
 {
-    
     public function clearAction($jscss = FALSE, $router = FALSE, $redis = FALSE, $file = FALSE)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {

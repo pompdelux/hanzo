@@ -52,8 +52,9 @@ class ProxyUser implements UserInterface
         'kk@pompdelux.dk',
         'ak@pompdelux.dk',
         'sj@pompdelux.dk',
-        'pc@pompdelux.dk',
         'nj@pompdelux.dk',
+        'pc@pompdelux.dk',
+        'hd@pompdelux.dk',
      );
 
     public function __construct(ModelUser $user)
@@ -78,6 +79,7 @@ class ProxyUser implements UserInterface
         // NICETO: should not be hardcoded
         if (in_array($this->getUsername(), $this->sales)) {
             $roles[] = 'ROLE_SALES';
+            $roles[] = 'ROLE_CONSULTANT';
         }
 
         return $roles;

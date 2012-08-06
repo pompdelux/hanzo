@@ -190,6 +190,10 @@
                 <source>wall.delete.entry.confirm</source>
                 <target>Er du sikker på du vil slette dette indlæg?</target>
             </trans-unit>
+            <trans-unit id="event.confirm.delete.participant" approved="no">
+                <source>event.confirm.delete.participant</source>
+                <target>Er du sikker på, du vil slette denne deltager?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

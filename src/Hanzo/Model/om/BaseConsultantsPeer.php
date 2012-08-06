@@ -36,13 +36,13 @@ abstract class BaseConsultantsPeer {
 	const TM_CLASS = 'ConsultantsTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 5;
+	const NUM_COLUMNS = 6;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 5;
+	const NUM_HYDRATE_COLUMNS = 6;
 
 	/** the column name for the INITIALS field */
 	const INITIALS = 'consultants.INITIALS';
@@ -52,6 +52,9 @@ abstract class BaseConsultantsPeer {
 
 	/** the column name for the EVENT_NOTES field */
 	const EVENT_NOTES = 'consultants.EVENT_NOTES';
+
+	/** the column name for the HIDE_INFO field */
+	const HIDE_INFO = 'consultants.HIDE_INFO';
 
 	/** the column name for the MAX_NOTIFIED field */
 	const MAX_NOTIFIED = 'consultants.MAX_NOTIFIED';
@@ -78,12 +81,12 @@ abstract class BaseConsultantsPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Initials', 'Info', 'EventNotes', 'MaxNotified', 'Id', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('initials', 'info', 'eventNotes', 'maxNotified', 'id', ),
-		BasePeer::TYPE_COLNAME => array (self::INITIALS, self::INFO, self::EVENT_NOTES, self::MAX_NOTIFIED, self::ID, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('INITIALS', 'INFO', 'EVENT_NOTES', 'MAX_NOTIFIED', 'ID', ),
-		BasePeer::TYPE_FIELDNAME => array ('initials', 'info', 'event_notes', 'max_notified', 'id', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Initials', 'Info', 'EventNotes', 'HideInfo', 'MaxNotified', 'Id', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('initials', 'info', 'eventNotes', 'hideInfo', 'maxNotified', 'id', ),
+		BasePeer::TYPE_COLNAME => array (self::INITIALS, self::INFO, self::EVENT_NOTES, self::HIDE_INFO, self::MAX_NOTIFIED, self::ID, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('INITIALS', 'INFO', 'EVENT_NOTES', 'HIDE_INFO', 'MAX_NOTIFIED', 'ID', ),
+		BasePeer::TYPE_FIELDNAME => array ('initials', 'info', 'event_notes', 'hide_info', 'max_notified', 'id', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
 	);
 
 	/**
@@ -93,12 +96,12 @@ abstract class BaseConsultantsPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Initials' => 0, 'Info' => 1, 'EventNotes' => 2, 'MaxNotified' => 3, 'Id' => 4, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('initials' => 0, 'info' => 1, 'eventNotes' => 2, 'maxNotified' => 3, 'id' => 4, ),
-		BasePeer::TYPE_COLNAME => array (self::INITIALS => 0, self::INFO => 1, self::EVENT_NOTES => 2, self::MAX_NOTIFIED => 3, self::ID => 4, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('INITIALS' => 0, 'INFO' => 1, 'EVENT_NOTES' => 2, 'MAX_NOTIFIED' => 3, 'ID' => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('initials' => 0, 'info' => 1, 'event_notes' => 2, 'max_notified' => 3, 'id' => 4, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Initials' => 0, 'Info' => 1, 'EventNotes' => 2, 'HideInfo' => 3, 'MaxNotified' => 4, 'Id' => 5, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('initials' => 0, 'info' => 1, 'eventNotes' => 2, 'hideInfo' => 3, 'maxNotified' => 4, 'id' => 5, ),
+		BasePeer::TYPE_COLNAME => array (self::INITIALS => 0, self::INFO => 1, self::EVENT_NOTES => 2, self::HIDE_INFO => 3, self::MAX_NOTIFIED => 4, self::ID => 5, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('INITIALS' => 0, 'INFO' => 1, 'EVENT_NOTES' => 2, 'HIDE_INFO' => 3, 'MAX_NOTIFIED' => 4, 'ID' => 5, ),
+		BasePeer::TYPE_FIELDNAME => array ('initials' => 0, 'info' => 1, 'event_notes' => 2, 'hide_info' => 3, 'max_notified' => 4, 'id' => 5, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, )
 	);
 
 	/**
@@ -173,12 +176,14 @@ abstract class BaseConsultantsPeer {
 			$criteria->addSelectColumn(ConsultantsPeer::INITIALS);
 			$criteria->addSelectColumn(ConsultantsPeer::INFO);
 			$criteria->addSelectColumn(ConsultantsPeer::EVENT_NOTES);
+			$criteria->addSelectColumn(ConsultantsPeer::HIDE_INFO);
 			$criteria->addSelectColumn(ConsultantsPeer::MAX_NOTIFIED);
 			$criteria->addSelectColumn(ConsultantsPeer::ID);
 		} else {
 			$criteria->addSelectColumn($alias . '.INITIALS');
 			$criteria->addSelectColumn($alias . '.INFO');
 			$criteria->addSelectColumn($alias . '.EVENT_NOTES');
+			$criteria->addSelectColumn($alias . '.HIDE_INFO');
 			$criteria->addSelectColumn($alias . '.MAX_NOTIFIED');
 			$criteria->addSelectColumn($alias . '.ID');
 		}
@@ -389,10 +394,10 @@ abstract class BaseConsultantsPeer {
 	public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
 	{
 		// If the PK cannot be derived from the row, return NULL.
-		if ($row[$startcol + 4] === null) {
+		if ($row[$startcol + 5] === null) {
 			return null;
 		}
-		return (string) $row[$startcol + 4];
+		return (string) $row[$startcol + 5];
 	}
 
 	/**
@@ -406,7 +411,7 @@ abstract class BaseConsultantsPeer {
 	 */
 	public static function getPrimaryKeyFromRow($row, $startcol = 0)
 	{
-		return (int) $row[$startcol + 4];
+		return (int) $row[$startcol + 5];
 	}
 	
 	/**

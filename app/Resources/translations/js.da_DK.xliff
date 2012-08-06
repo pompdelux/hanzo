@@ -200,7 +200,7 @@
             </trans-unit>
             <trans-unit id="today">
                 <source>today</source>
-                <target>Idag</target>
+                <target>I dag</target>
             </trans-unit>
             <trans-unit id="month.February">
                 <source>month.February</source>
@@ -274,13 +274,9 @@
                 <source>day.short.Sat</source>
                 <target>Lør</target>
             </trans-unit>
-            <trans-unit id="quickorder.choose.size">
-                <source>quickorder.choose.size</source>
-                <target>Vælg størrelse</target>
-            </trans-unit>
-            <trans-unit id="quickorder.choose.color">
-                <source>quickorder.choose.color</source>
-                <target>Vælg farve</target>
+            <trans-unit id="event.confirm.delete.participant">
+                <source>event.confirm.delete.participant</source>
+                <target>Er du sikker på, du vil slette denne deltager?</target>
             </trans-unit>
             <trans-unit id="consultant.newsletter.delete.draft">
                 <source>consultant.newsletter.delete.draft</source>

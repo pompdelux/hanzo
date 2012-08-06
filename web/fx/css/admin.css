@@ -123,7 +123,7 @@ nav.sub li.dropdown-menu a span.cat-id,
   width:auto;
   background-color: #535354;
   padding: 20px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* Pager */
@@ -331,7 +331,6 @@ form#settings-list .button{
 /* Table List */
 table.list{
   margin:20px 0;
-  background-color: #535354;
 }
 table.list th,
 table.list tr:hover{
