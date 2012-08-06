@@ -72,19 +72,20 @@ class DomainVoter implements VoterInterface
             'Norway'      => array( 'nb_NO' ),
             'Netherlands' => array( 'nl_NL' ),
             'Sweden'      => array( 'sv_SE' ),
+            // TODO: FI
             );
 
         // Other countries have to run en_GB: 
         if ( !isset($countryToLocaleMap[$country]) && $locale != 'en_GB' )
         {
-            // TODO: set flash
+            $this->container->get('session')->setFlash('warning', 'Nein!');
             return VoterInterface::ACCESS_DENIED;
         }
 
         // If the country is not set in the mapping and the local does not match
         if ( !( isset($countryToLocaleMap[$country]) && in_array($locale,$countryToLocaleMap[$country]) ) )
         {
-            // TODO: set flash
+            $this->container->get('session')->setFlash('warning', 'Nein!');
             return VoterInterface::ACCESS_DENIED;
         }
 

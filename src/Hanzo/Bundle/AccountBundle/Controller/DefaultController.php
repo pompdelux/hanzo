@@ -450,4 +450,14 @@ class DefaultController extends CoreController
             ));
         }
     }
+
+    /**
+     * errorAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function errorAction($error)
+    {
+        return $this->render('AccountBundle:Default:error.html.twig', array());
+    }
 }

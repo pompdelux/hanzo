@@ -37,6 +37,5 @@ security:
             iterations: 1
             encode_as_base64: false
 
-    security:
-        access_decision_manager:
+    access_decision_manager:
             strategy: unanimous
