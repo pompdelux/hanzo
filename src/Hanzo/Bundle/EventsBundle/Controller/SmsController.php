@@ -92,8 +92,8 @@ class SmsController extends CoreController
             'content' => http_build_query(array(
                 'user' => 'pompdelux',
                 'password' => 'fpgyhiu345',
-                'to' => 460739415117,
-                'smsc' => 'tdc.telmore',
+                'to' => 46 . ltrim('0739415117', '0'),
+                // 'smsc' => 'tdc.telmore',
                 'price' => '0.00SEK',
                 'appnr' => 72445,
                 'text' => 'Hej Jeanette, lige en test fra det svenske konsulentsite. Vil du ikke være så venlig at svare tilbage på denne sms ? Bare skriv "hej" eller noget :) Mvh Heinrich',
@@ -105,8 +105,7 @@ class SmsController extends CoreController
         $response = file_get_contents('https://gw.unwire.com/service/smspush', FALSE, $context);
         $response_headers = $http_response_header;
 
-        echo "<pre>";
-        echo $response_headers."\n".$response;
-        echo "</pre>";
+        $out = "<pre>".$response_headers."\n".$response."</pre>";
+        return $this->response($out);
     }
 }
