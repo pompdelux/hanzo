@@ -360,7 +360,7 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Your account has been created on %site_name%. You must use the: <a href="%url%">%site_name%</a> webshop.]]></target>
+                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
         </body>
     </file>
