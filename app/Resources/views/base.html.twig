@@ -81,13 +81,13 @@
       })|raw }}
     {% endif %}
 
-    {% render 'HanzoCMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'offset': sub_menu.offset } %}
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {% block content %}{% endblock %}
 
   </div><!-- /div#main -->
 
   <nav class="main">
-    {% render 'HanzoCMSBundle:Menu:menu' with {'type': left_menu.type, 'from': left_menu.from } %}
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
   </nav><!-- /nav.main -->
 
   <aside id="secondary-links">
