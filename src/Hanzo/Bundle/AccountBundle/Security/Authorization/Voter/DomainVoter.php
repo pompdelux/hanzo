@@ -29,19 +29,17 @@ class DomainVoter implements VoterInterface
         return true;
     }
 
-    function vote(TokenInterface $token, $object, array $attributes)
+    public function vote(TokenInterface $token, $object, array $attributes)
     {
-        $result = self::ACCESS_ABSTAIN;
-
         if (!($object instanceof Request)) 
         {
-            return $result;
+          return VoterInterface::ACCESS_ABSTAIN;
         }
 
         $user = $token->getUser();
         if (!($user instanceof UserInterface)) 
         {
-            return $result;
+          return VoterInterface::ACCESS_ABSTAIN;
         }
 
         $customer = CustomersQuery::create()->findOneByEmail($user->getUserName());
@@ -83,8 +81,6 @@ class DomainVoter implements VoterInterface
             $translator = $this->container->get('translator');
 
             $request = $this->container->get('request');
-
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
 
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/en_GB/login', '%site_name%' => 'International' ),'account');
             $this->container->get('session')->setFlash('error', $msg);
