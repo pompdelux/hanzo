@@ -47,32 +47,37 @@ class ECommerceServices extends SoapService
     /**
      * syncronize an item
      * @param object $data xmlformat:
-     * <item>
-     *   <InventTable>
-     *     <ItemGroupId>G_S-S</ItemGroupId>
-     *     <ItemGroupName>Girls Shorts-Skirts</ItemGroupName>
-     *     <ItemId>Daisy SKIRT</ItemId>
-     *     <WebEnabled nil="true"/>
-     *     <ItemName>Daisy SKIRT</ItemName>
-     *     <ItemType>Vare</ItemType>
-     *     <NetWeight>0</NetWeight>
-     *     <BlockedDate>1970-01-01+01:00</BlockedDate>
-     *     <InventDim>
-     *       <InventSizeId>5-6</InventSizeId>
-     *       <InventColorId>Rød</InventColorId>
-     *     </InventDim>
-     *     <InventDim>
-     *       ...
-     *     </InventDim>
-     *     <Sales>
-     *       <Price>150</Price>
-     *       <PriceUnit>1</PriceUnit>
-     *       <StandardQty>10</StandardQty>
-     *       <UnitId>Stk</UnitId>
-     *     </Sales>
-     *   </InventTable>
-     * </item>
-     *
+     *    <item xmlns="http://schemas.pompdelux.dk/webintegration/item">
+     *      <InventTable>
+     *        <ItemGroupId>G_Access,LG_Access</ItemGroupId>
+     *        <ItemGroupName>Girl Accessories</ItemGroupName>
+     *        <ItemId>Ada HAT</ItemId>
+     *        <WebEnabled>true</WebEnabled>
+     *        <ItemName>Ada HAT</ItemName>
+     *        <ItemType>Item</ItemType>
+     *        <NetWeight>0.00</NetWeight>
+     *        <BlockedDate>1990-01-01</BlockedDate>
+     *        <InventDim>
+     *          <InventColorId>Dark Grey Melange</InventColorId>
+     *          <InventSizeId>50</InventSizeId>
+     *        </InventDim>
+     *        <InventDim>
+     *          <InventColorId>Violet</InventColorId>
+     *          <InventSizeId>50</InventSizeId>
+     *        </InventDim>
+     *        <InventDim>
+     *          ...
+     *        </InventDim>
+     *        <WebDomain>COM</WebDomain>
+     *        <WebDomain>DK</WebDomain>
+     *        <WebDomain>SalesDK</WebDomain>
+     *        <Sales>
+     *          <Price>0.00</Price>
+     *          <UnitId>Stk.</UnitId>
+     *        </Sales>
+     *        <WashInstruction/>
+     *      </InventTable>
+     *    </item>
      * @return object SyncItemResult
      */
     public function SyncItem($data)
@@ -137,7 +142,11 @@ class ECommerceServices extends SoapService
                         $product = new Products();
                         $product->setSku($sku);
                         $product->setUnit(trim('1 ' .$item->Sales->UnitId));
-                        $product->setWashing(trim($item->WashInstruction));
+
+                        $washing = $item->WashInstruction;
+                        if (is_scalar($washing) && !empty($washing)) {
+                            $product->setWashing($washing);
+                        }
 
                         // products 2 category
                         $categories = explode(',', $item->ItemGroupId);
@@ -197,10 +206,14 @@ class ECommerceServices extends SoapService
                 }
 
                 $product->setUnit(trim('1 ' .$item->Sales->UnitId));
-                $product->setWashing(trim($item->WashInstruction));
                 $product->setHasVideo(true);
                 $product->setIsOutOfStock(false);
                 $product->setIsActive(true);
+
+                $washing = $item->WashInstruction;
+                if (is_scalar($washing) && !empty($washing)) {
+                    $product->setWashing($washing);
+                }
 
                 $product->save();
                 $index++;
@@ -232,25 +245,22 @@ class ECommerceServices extends SoapService
      * syncronize a products price(s)
      *
      * @param object $data xmlformat:
-     * <priceList>
-     *   <ItemId>Daisy SKIRT</ItemId>
-     *   <SalesPrice>
-     *     <AmountCur>127.5</AmountCur>
-     *     <Currency>DKK</Currency>
-     *     <CustAccount/>
-     *     <InventColorId>Rød</InventColorId>
-     *     <InventSizeId>5-6</InventSizeId>
-     *     <PriceDate>2008-12-08</PriceDate>
-     *     <PriceDateTo>2009-12-08</PriceDateTo>
-     *     <PriceUnit>1</PriceUnit>
-     *     <Quantity>1</Quantity>
-     *     <UnitId>Stk</UnitId>
-     *   </SalesPrice>
-     *   <SalesPrice>
-     *     ...
-     *   </SalesPrice>
-     * </priceList>
-     *
+     *    <priceList xmlns="http://schemas.pompdelux.dk/webintegration/pricelist">
+     *      <ItemId>Ada HAT</ItemId>
+     *      <SalesPrice>
+     *        <AmountCur>20.00</AmountCur>
+     *        <Currency>DKK</Currency>
+     *        <CustAccount>DKK</CustAccount>
+     *        <InventColorId>Dark Grey Melange</InventColorId>
+     *        <InventSizeId>50</InventSizeId>
+     *        <PriceUnit>1.00</PriceUnit>
+     *        <Quantity>1.00</Quantity>
+     *        <UnitId>Stk.</UnitId>
+     *      </SalesPrice>
+     *      <SalesPrice>
+     *      ...
+     *      </SalesPrice>
+     *    </priceList>
      * @return object SyncPriceListResult
      */
     public function SyncPriceList($data)
@@ -279,17 +289,8 @@ class ECommerceServices extends SoapService
         $domains = array();
         foreach(DomainsQuery::create()->find() as $domain) {
             $domains[$domain->getDomainKey()] = $domain->getId();
-            $domains['Sales'.$domain->getDomainKey()] = $domain->getId();
         }
 
-        // FIXME:
-        $currencies = array(
-            'DKK' => 1,
-            'NOK' => 2,
-            'SEK' => 3,
-            'EUR' => 4,
-            'EUR' => 5,
-        );
 
         $error = array();
         $products = array(
@@ -302,10 +303,11 @@ class ECommerceServices extends SoapService
         foreach ($prices->SalesPrice as $entry)
         {
             $key = $prices->ItemId . ' ' . $entry->InventColorId . ' ' . $entry->InventSizeId;
-            $domain_key = self::getDomainKeyFromCurrencyKey($entry->CustAccount);
 
-            if (empty($domain_key)) {
-                //$errors[] = sprintf("No domain setup for '%s'", $key);
+            $domain = $this->getDomainKeyFromCurrencyKey($entry);
+
+            if (empty($domain)) {
+                $errors[] = sprintf("No domain setup for '%s'", $key);
                 continue;
             }
 
@@ -332,17 +334,14 @@ class ECommerceServices extends SoapService
                 $products[$key]['product'] = $product;
             }
 
-            switch ($entry->CustAccount)
-            {
-                case 'ØVRIG':
-                    $thePrice = $entry->AmountCur;
-                    $vat = 0;
-                    break;
-                default:
-                    $thePrice = $entry->AmountCur * 0.8;
-                    $vat = $entry->AmountCur - $thePrice;
-                    break;
+            $thePrice = $entry->AmountCur;
+            $vat = 0;
+            if ($domain['vat'] > 0) {
+                // 100/(1+(25/100) = 80
+                $thePrice = $thePrice / (1 + ($domain['vat'] / 100));
+                $vat = $entry->AmountCur - $thePrice;
             }
+
 
             // fix decimals in db...
             $vat = number_format( $vat, 2, '.', '' );
@@ -350,8 +349,8 @@ class ECommerceServices extends SoapService
 
             // perhaps we could skip this, pompdelux does not use alternative prices pr. variant
             $products[$key]['prices'][] = array(
-                'domain'    => $domain_key,
-                'currency'  => $currencies[$entry->Currency],
+                'domain'    => $domain['domain'],
+                'currency'  => $domain['currency'],
                 'amount'    => $thePrice,
                 'vat'       => $vat,
                 'from_date' => $entry->PriceDate,
@@ -359,9 +358,9 @@ class ECommerceServices extends SoapService
             );
 
             // this is here to maintain price info on the master product also
-            $products[$prices->ItemId]['prices'][$domain_key.$entry->PriceDate] = array(
-                'domain'    => $domain_key,
-                'currency'  => $currencies[$entry->Currency],
+            $products[$prices->ItemId]['prices'][$domain['domain'].$entry->PriceDate] = array(
+                'domain'    => $domain['domain'],
+                'currency'  => $domain['currency'],
                 'amount'    => $thePrice,
                 'vat'       => $vat,
                 'from_date' => $entry->PriceDate,
@@ -413,22 +412,22 @@ class ECommerceServices extends SoapService
      * inventory syncronization
      *
      * @param object $data xmlformat:
-     * <inventoryOnHand>
-     *   <InventSum>
-     *     <ItemId>Daisy SKIRT</ItemId>
-     *     <InventDim>
-     *       <InventColorId>Rød</InventColorId>
-     *       <InventSizeId>5-6</InventSizeId>
-     *       <InventQtyAvailOrdered>0</InventQtyAvailOrdered>
-     *       <InventQtyAvailOrderedDate></InventQtyAvailOrderedDate>
-     *       <InventQtyAvailPhysical>0</InventQtyAvailPhysical>
-     *       <InventQtyPhysicalOnhand>0</InventQtyPhysicalOnhand> <!-- never use(d) -->
-     *     </InventDim>
-     *     <InventDim>
-     *       ...
-     *     </InventDim>
-     *   </InventSum>
-     * </inventoryOnHand>
+     *    <inventoryOnHand xmlns="http://schemas.pompdelux.dk/webintegration/inventoryOnhand">
+     *      <InventSum>
+     *        <ItemId>Ada HAT</ItemId>
+     *        <InventDim>
+     *          <InventColorId>Dark Grey Melange</InventColorId>
+     *          <InventSizeId>50</InventSizeId>
+     *          <InventQtyAvailOrdered>0.00</InventQtyAvailOrdered>
+     *          <InventQtyAvailOrderedDate>2012-08-07</InventQtyAvailOrderedDate>
+     *          <InventQtyAvailPhysical>0.00</InventQtyAvailPhysical>
+     *          <InventQtyPhysicalOnhand>0.00</InventQtyPhysicalOnhand>
+     *        </InventDim>
+     *        <InventDim>
+     *          ...
+     *        </InventDim>
+     *     </InventSum>
+     *    </inventoryOnHand>
      * @return object
      */
     public function SyncInventoryOnHand($data)
@@ -1014,17 +1013,18 @@ class ECommerceServices extends SoapService
 
             $gateway = $this->hanzo->container->get('payment.dibsapi');
 
-            // TODO: remove when .nl gets its own site
-            if (in_array($order->getAttributes()->global->domain_key, array('NL'))) {
-                $settings = array();
-                $settings['merchant'] = '90055039';
-                $settings['md5key1']  = '@6B@(-rfD:DiXYh}(76h6C1rexwZ)-cw';
-                $settings['md5key2']  = '-|FA8?[K3rb,T$:pJSr^lBsP;hMq&p,X';
-                $settings['api_user'] = 'pdl-nl-api-user';
-                $settings['api_pass'] = 'g7u6Ri&c';
+            // // TODO: remove when .nl gets its own site
+            // // un 2012-08-07, moved to db
+            // if (in_array($order->getAttributes()->global->domain_key, array('NL'))) {
+            //     $settings = array();
+            //     $settings['merchant'] = '90055039';
+            //     $settings['md5key1']  = '@6B@(-rfD:DiXYh}(76h6C1rexwZ)-cw';
+            //     $settings['md5key2']  = '-|FA8?[K3rb,T$:pJSr^lBsP;hMq&p,X';
+            //     $settings['api_user'] = 'pdl-nl-api-user';
+            //     $settings['api_pass'] = 'g7u6Ri&c';
 
-                $gateway->mergeSettings( $settings );
-            }
+            //     $gateway->mergeSettings( $settings );
+            // }
 
             try {
                 $response = $gateway->call()->capture($order, $amount);
@@ -1124,6 +1124,9 @@ class ECommerceServices extends SoapService
                 case 'nl':
                     $to = 'retur@pompdelux.nl';
                     break;
+                case 'fi':
+                    $to = 'retur@pompdelux.fi';
+                    break;
                 case 'no':
                     $to = 'retur@pompdelux.no';
                     break;
@@ -1143,47 +1146,31 @@ class ECommerceServices extends SoapService
 
     /**
      * tmp mapping of currency to domain.
-     * @fixme: skal laves om i både ax og web.
-     *
-     * @param  [type] $currencyKey [description]
-     * @return [type]              [description]
+     * @fixme: skal laves om i både ax og web. og skal ikke være hardcoded
      */
-    protected static function getDomainKeyFromCurrencyKey($currencyKey)
+    public function getDomainKeyFromCurrencyKey($entry)
     {
-        $domainKey = '';
-        switch (strtoupper($currencyKey)) {
-            case 'DKK':
-                $domainKey = 'DK';
-                break;
-            case 'SEK':
-                $domainKey = 'SE';
-                break;
-            case 'NOK':
-                $domainKey = 'NO';
-                break;
-            case 'NLD':
-                $domainKey = 'NL';
-                break;
-            case 'EUR':
-                $domainKey = 'COM';
-                break;
-            case 'ØVRIG':
-                $domainKey = 'COM';
-                break;
+        $k = strtolower($entry->Currency.'.'.$entry->CustAccount);
 
-            // case 'SALES':
-            // case 'SALESDK':
-            //     $domainKey = 'SalesDK';
-            //     $domainKey = 'SalesDK';
-            //     break;
-            // case 'SALESSE':
-            //     $domainKey = 'SalesSE';
-            //     break;
-            // case 'SALESNO':
-            //     $domainKey = 'SalesNO';
-            //     break;
-        }
+        $c_map = array(
+            'dkk.dkk'     => array('currency' => 'DKK', 'domain' => 'DK', 'vat' => 25),
+            'dkk.eur'     => array('currency' => 'EUR', 'domain' => 'COM', 'vat' => 25),
+            'dkk.salesdk' => array('currency' => 'DKK', 'domain' => 'SalesDK', 'vat' => 25),
 
-        return $domainKey;
+            'nok.nok'     => array('currency' => 'NOK', 'domain' => 'NO', 'vat' => 25),
+            'nok.salesno' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
+
+            'sek.sek'     => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
+            'sek.salesse' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
+
+            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 23),
+            'eur.salesfi' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 23),
+
+            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 19),
+            'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 19),
+        );
+
+
+        return isset($c_map[$k]) ? $c_map[$k] : false;
     }
 }
