@@ -1,366 +1,322 @@
-<?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="events.calendar.header.text">
                 <source>events.calendar.header.text</source>
-                <target>Event kalender</target>
+                <target>Tapahtumakalenteri</target>
             </trans-unit>
             <trans-unit id="events.account.title">
                 <source>events.account.title</source>
-                <target>Home shopping arrangementer</target>
+                <target>Kotimyyntitilaisuudet</target>
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
-                <target>Her kan du se alle dine oprettede arrangementer. Grøn er lig med åbne arrangementer og rød er lig med lukkede arrangementer. Klik på en for at få vist en detaljeret beskrivelse.</target>
+                <target>Tästä näet kaikki järjestämäsi tilaisuudet. Avoimet tilaisuudet on merkitty vihreällä ja suljetut punaisella. Klikkaamalla tapahtumaa saat esille tarkemman kuvauksen tilaisuudesta.</target>
             </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
-                <target>Arrangement detaljer</target>
+                <target>Tilaisuuden tiedot</target>
             </trans-unit>
             <trans-unit id="events.view_event.description.text">
                 <source>events.view_event.description.text</source>
-                <target>Herunder vises alle informationer for arrangementet.</target>
+                <target>Tässä näet kaikki tiedot tilaisuudesta.</target>
             </trans-unit>
             <trans-unit id="events.create_event.header.text">
                 <source>events.create_event.header.text</source>
-                <target>Opret/rediger et arrangement</target>
+                <target>Luo/Muokkaa tilaisuutta</target>
             </trans-unit>
             <trans-unit id="events.create_event.description.text">
                 <source>events.create_event.description.text</source>
-                <target>Udfyld informationerne for dit arrangement.</target>
+                <target>Lisää tilaisuuden tiedot.</target>
             </trans-unit>
             <trans-unit id="events.calendar.link">
                 <source>events.calendar.link</source>
-                <target>Kalender</target>
+                <target>Kalenteri</target>
             </trans-unit>
             <trans-unit id="events.create_event.link">
                 <source>events.create_event.link</source>
-                <target>Opret nyt arrangement</target>
+                <target>Luo uusi tilaisuus</target>
             </trans-unit>
             <trans-unit id="events.update_event.link">
                 <source>events.update_event.link</source>
-                <target>Rediger arrangement</target>
+                <target>Muokkaa tilaisuutta</target>
             </trans-unit>
             <trans-unit id="events.delete_event.link">
                 <source>events.delete_event.link</source>
-                <target>Slet arrangement</target>
+                <target>Poista tilaisuus</target>
             </trans-unit>
             <trans-unit id="events.update.event">
                 <source>events.update.event</source>
-                <target>Gem arrangement</target>
+                <target>Tallenna tilaisuus</target>
             </trans-unit>
             <trans-unit id="cancel">
                 <source>cancel</source>
-                <target>Tilbage</target>
+                <target>Takaisin</target>
             </trans-unit>
             <trans-unit id="events.created">
                 <source>events.created</source>
-                <target>Arrangementet blev gemt!</target>
+                <target>Tilaisuus on tallennettu!</target>
             </trans-unit>
             <trans-unit id="events.delete.confirm.%id%">
                 <source>events.delete.confirm.%id%</source>
-                <target>Er du sikker på du ønsker at slette arrangement: %id%</target>
+                <target>Haluatko varmasti poistaa tämän tilaisuuden? %id%</target>
             </trans-unit>
             <trans-unit id="events.delete.success">
                 <source>events.delete.success</source>
-                <target>Arrangementet blev slettet!</target>
+                <target>Tilaisuus on poistettu!</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_phone.placeholder">
                 <source>events.find_customer_by_phone.placeholder</source>
-                <target>Mobil nr.</target>
+                <target>Matkapuhelinnumero</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_phone.button">
                 <source>events.find_customer_by_phone.button</source>
-                <target>Søg op telefonnummer</target>
+                <target>Etsi puhelinnumero</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_email.placeholder">
                 <source>events.find_customer_by_email.placeholder</source>
-                <target>E-mail</target>
+                <target>Sähköposti</target>
             </trans-unit>
             <trans-unit id="events.find_customer_by_email.button">
                 <source>events.find_customer_by_email.button</source>
-                <target>Søg på e-mail</target>
+                <target>Etsi sähköpostiosoite</target>
             </trans-unit>
             <trans-unit id="events.code">
                 <source>events.code</source>
-                <target>Arrangement navn</target>
+                <target>Tilaisuuden nimi</target>
             </trans-unit>
             <trans-unit id="events.event_date">
                 <source>events.event_date</source>
-                <target>Dato</target>
+                <target>Päivämäärä</target>
             </trans-unit>
             <trans-unit id="events.host">
                 <source>events.host</source>
-                <target>Værtinde</target>
-            </trans-unit>
-            <trans-unit id="events.host.required.error" approved="no">
-                <source>events.host.required.error</source>
-                <target>Du skal huske at udfylde værtinde/åben hus.</target>
+                <target>Emäntä</target>
             </trans-unit>
             <trans-unit id="events.address_line_1">
                 <source>events.address_line_1</source>
-                <target>Addresse linje 1</target>
-            </trans-unit>
-            <trans-unit id="events.address_line_1.required.error" approved="no">
-                <source>events.address_line_1.required.error</source>
-                <target>Du skal huske at udfylde adressen.</target>
+                <target>Osoiterivi 1</target>
             </trans-unit>
             <trans-unit id="events.address_line_2">
                 <source>events.address_line_2</source>
-                <target>Addresse linje 2</target>
+                <target>Osoiterivi 2</target>
             </trans-unit>
             <trans-unit id="events.postal_code">
                 <source>events.postal_code</source>
-                <target>Postnummer</target>
-            </trans-unit>
-            <trans-unit id="events.postal_code.required.error" approved="no">
-                <source>events.postal_code.required.error</source>
-                <target>Du skal huske at udfylde Postnummer.</target>
+                <target>Postinumero</target>
             </trans-unit>
             <trans-unit id="events.city">
                 <source>events.city</source>
-                <target>By</target>
-            </trans-unit>
-            <trans-unit id="events.city.required.error" approved="no">
-                <source>events.city.required.error</source>
-                <target>Du skal huske at udfylde By.</target>
+                <target>Postitoimipaikka</target>
             </trans-unit>
             <trans-unit id="events.phone">
                 <source>events.phone</source>
-                <target>Mobil nr.</target>
-            </trans-unit>
-            <trans-unit id="events.phone.required.error" approved="no">
-                <source>events.phone.required.error</source>
-                <target>Du skal huske at udfylde Mobil nr.</target>
+                <target>Matkapuhelinnumero</target>
             </trans-unit>
             <trans-unit id="events.email">
                 <source>events.email</source>
-                <target>E-mail</target>
-            </trans-unit>
-            <trans-unit id="events.email.required.error" approved="no">
-                <source>events.email.required.error</source>
-                <target>Du skal huske at udfylde E-mail</target>
+                <target>Sähköposti</target>
             </trans-unit>
             <trans-unit id="events.hasaccepted">
                 <source>events.hasaccepted</source>
-                <target>Svar</target>
+                <target>Vastaus</target>
             </trans-unit>
             <trans-unit id="events.first_name">
                 <source>events.first_name</source>
-                <target>Fornavn</target>
+                <target>Etunimi</target>
             </trans-unit>
             <trans-unit id="events.last_name">
                 <source>events.last_name</source>
-                <target>Efternavn</target>
+                <target>Sukunimi</target>
             </trans-unit>
             <trans-unit id="events.description">
                 <source>events.description</source>
-                <target>Beskrivelse</target>
+                <target>Kuvaus</target>
             </trans-unit>
             <trans-unit id="events.code.label">
                 <source>events.code.label</source>
-                <target>Arrangementsnummer</target>
+                <target>Tilaisuuden numero</target>
             </trans-unit>
             <trans-unit id="events.event_date.label">
                 <source>events.event_date.label</source>
-                <target>Dato</target>
+                <target>Päivämäärä</target>
             </trans-unit>
             <trans-unit id="events.host.label">
                 <source>events.host.label</source>
-                <target>Værtinde</target>
+                <target>Emäntä</target>
             </trans-unit>
             <trans-unit id="events.address_line_1.label">
                 <source>events.address_line_1.label</source>
-                <target>Addresse linje 1</target>
+                <target>Osoiterivi 1</target>
             </trans-unit>
             <trans-unit id="events.address_line_2.label">
                 <source>events.address_line_2.label</source>
-                <target>Addresse linje 2</target>
+                <target>Osoiterivi 2</target>
             </trans-unit>
             <trans-unit id="events.postal_code.label">
                 <source>events.postal_code.label</source>
-                <target>Postnummer</target>
+                <target>Postinumero</target>
             </trans-unit>
             <trans-unit id="events.city.label">
                 <source>events.city.label</source>
-                <target>By</target>
+                <target>Postitoimipaikka</target>
             </trans-unit>
             <trans-unit id="events.phone.label">
                 <source>events.phone.label</source>
-                <target>Tlf.</target>
+                <target>Puhelin</target>
             </trans-unit>
             <trans-unit id="events.email.label">
                 <source>events.email.label</source>
-                <target>E-mail</target>
+                <target>Sähköposti</target>
             </trans-unit>
             <trans-unit id="events.description.label">
                 <source>events.description.label</source>
-                <target>Beskrivelse</target>
+                <target>Kuvaus</target>
             </trans-unit>
             <trans-unit id="events.type.label">
                 <source>events.type.label</source>
-                <target>Type</target>
+                <target>Typpi</target>
             </trans-unit>
             <trans-unit id="events.type.choice.ar">
                 <source>events.type.choice.ar</source>
-                <target>Home shopping arrangement</target>
+                <target>Kotimyyntitilaisuus</target>
             </trans-unit>
             <trans-unit id="events.type.choice.hus">
                 <source>events.type.choice.hus</source>
-                <target>Åbent hus</target>
+                <target>Avoimet ovet</target>
             </trans-unit>
             <trans-unit id="events.is_open.label">
                 <source>events.is_open.label</source>
-                <target>Åben for køb af vare på arrangementet</target>
+                <target>Avoin tuotteiden ostamiseksi tilaisuudesta</target>
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Notificer værtinde?</target>
+                <target>Ilmoitetaanko emännälle?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
-                <target>Kunden blev fundet!</target>
+                <target>Asiakas löytyi!</target>
             </trans-unit>
             <trans-unit id="events.customer.notfound">
                 <source>events.customer.notfound</source>
-                <target>Kunden blev ikke fundet!</target>
+                <target>Asiakasta ei löytynyt!</target>
             </trans-unit>
             <trans-unit id="events.rsvp.top.header.text">
                 <source>events.rsvp.top.header.text</source>
-                <target>Du er blevet inviteret til et home shopping arrangement.</target>
+                <target>Sinut on kutsuttu kotimyyntitilaisuuteen.</target>
             </trans-unit>
             <trans-unit id="events.not_found.header.text">
                 <source>events.not_found.header.text</source>
-                <target>Der skete en fejl</target>
+                <target>Tapahtui virhe</target>
             </trans-unit>
             <trans-unit id="events.not_found.description.text">
                 <source>events.not_found.description.text</source>
-                <target>Vi har ikke kunne finde din invitation. Vær sikker på at du har fået kopieret hele linket med.</target>
+                <target>Kutsuasi ei löydy. Varmista, että olet kopioinut linkin mukaan kokonaan.</target>
             </trans-unit>
             <trans-unit id="events.too_late_to_rsvp.text">
                 <source>events.too_late_to_rsvp.text</source>
-                <target>Arrangementet er afholdt. Det er nu for sent at give dit svar.</target>
+                <target>Tilaisuus on pidetty. Vastauksen lähettäminen on myöhäistä.</target>
             </trans-unit>
             <trans-unit id="events.too_late_to_invite.text">
                 <source>events.too_late_to_invite.text</source>
-                <target>Arrangementet er afholdt. Det er nu for sent at invitere personer.</target>
+                <target>Tilaisuus on pidetty. Osanottajien kutsuminen on myöhäistä.</target>
             </trans-unit>
             <trans-unit id="events.invite.top.header.text">
                 <source>events.invite.top.header.text</source>
-                <target>Der er nu oprettet et arrangement med dig som værtinde.</target>
+                <target>Luotiin tilaisuus, jossa sinä olet emäntänä.</target>
             </trans-unit>
             <trans-unit id="events.invite.header.text">
                 <source>events.invite.header.text</source>
-                <target>Inviter</target>
+                <target>Kutsut</target>
             </trans-unit>
             <trans-unit id="events.invite.description.text">
                 <source>events.invite.description.text</source>
-                <target>Inviter til home shopping arrangementet.</target>
+                <target>Kutsu kotimyyntitilaisuuteen.</target>
             </trans-unit>
             <trans-unit id="events.invite.participant.button">
                 <source>events.invite.participant.button</source>
-                <target>Inviter</target>
+                <target>Kutsut</target>
             </trans-unit>
             <trans-unit id="events.invite.participants.header.text">
                 <source>events.invite.participants.header.text</source>
-                <target>Alle deltagere</target>
+                <target>Kaikki osanottajat</target>
             </trans-unit>
             <trans-unit id="events.participants.no.participants">
                 <source>events.participants.no.participants</source>
-                <target>Der er ingen deltagere på dette event</target>
+                <target>Tilaisuudessa ei ole osanottajia</target>
             </trans-unit>
             <trans-unit id="events.rsvp.header.text">
                 <source>events.rsvp.header.text</source>
-                <target>Dit svar</target>
+                <target>Vastauksesi</target>
             </trans-unit>
             <trans-unit id="events.rsvp.description.text">
                 <source>events.rsvp.description.text</source>
-                <target>Send dit svar om du deltager i home shopping arrangementet. Opdater dine informationer.</target>
+                <target>Pyydämme ilmoittamaan, osallistutko kotimyyntitilaisuuteen. Päivitetään tietojasi.</target>
             </trans-unit>
             <trans-unit id="events.tell_a_friend.header.text">
                 <source>events.tell_a_friend.header.text</source>
-                <target>Inviter en ven</target>
+                <target>Kutsu ystävä</target>
             </trans-unit>
             <trans-unit id="events.tell_a_friend.description.text">
                 <source>events.tell_a_friend.description.text</source>
-                <target>Du kan invitere én ven med til arrangementet. Udfyld felterne og tryk på "Inviter ven". Herefter sendes en e-mail til den indbudte.</target>
+                <target>Voit kutsua mukaan yhden ystäväsi. Täytät kentät ja paina "Kutsu ystävä". Tämän jälkeen kutsutuille lähetetään sähköpostiviesti.</target>
             </trans-unit>
             <trans-unit id="events.participant.rsvp.button">
                 <source>events.participant.rsvp.button</source>
-                <target>Opdater dit svar</target>
+                <target>Vastaustasi päivitetään</target>
             </trans-unit>
             <trans-unit id="events.participant.tell_a_friend.button">
                 <source>events.participant.tell_a_friend.button</source>
-                <target>Inviter ven</target>
+                <target>Kutsu ystävä</target>
             </trans-unit>
             <trans-unit id="events.participants.first_name.label">
                 <source>events.participants.first_name.label</source>
-                <target>Fornavn</target>
+                <target>Etunimi</target>
             </trans-unit>
             <trans-unit id="events.participants.last_name.label">
                 <source>events.participants.last_name.label</source>
-                <target>Efternavn</target>
+                <target>Sukunimi</target>
             </trans-unit>
             <trans-unit id="events.participants.phone.label">
                 <source>events.participants.phone.label</source>
-                <target>Mobil nr.</target>
+                <target>Matkapuhelinnumero</target>
             </trans-unit>
             <trans-unit id="events.participants.email.label">
                 <source>events.participants.email.label</source>
-                <target>Email</target>
+                <target>Sähköposti</target>
             </trans-unit>
             <trans-unit id="events.participants.notify_by_sms.label">
                 <source>events.participants.notify_by_sms.label</source>
-                <target>Vil du have en påmindlese per sms?</target>
+                <target>Haluatko muistutuksen tekstiviestillä?</target>
             </trans-unit>
             <trans-unit id="events.participants.has_accepted.label">
                 <source>events.participants.has_accepted.label</source>
-                <target>Jeg kommer</target>
+                <target>Osallistun tilaisuuteen</target>
             </trans-unit>
             <trans-unit id="events.hasaccepted.yes">
                 <source>events.hasaccepted.yes</source>
-                <target>Ja</target>
+                <target>Kyllä</target>
             </trans-unit>
             <trans-unit id="events.hasaccepted.no">
                 <source>events.hasaccepted.no</source>
-                <target>Nej</target>
+                <target>Ei</target>
             </trans-unit>
             <trans-unit id="events.participants.tell_a_friend.label">
                 <source>events.participants.tell_a_friend.label</source>
-                <target>Mulighed for at invitere én ven?</target>
+                <target>Mahdollisuus ystävän kutsumiseen?</target>
             </trans-unit>
             <trans-unit id="events.participant.invited">
                 <source>events.participant.invited</source>
-                <target>Personen blev tilføjet listen og har fået sendt en mail.</target>
+                <target>Henkilö lisättiin luetteloon ja hänelle on lähetetty sähköpostiviesti.</target>
             </trans-unit>
             <trans-unit id="events.participant.invite.failed">
                 <source>events.participant.invite.failed</source>
-                <target>Der skete desværre en fejl. Prøv igen.</target>
+                <target>Tapahtui virhe. Yritä uudelleen.</target>
             </trans-unit>
             <trans-unit id="events.participant.rsvp.success">
                 <source>events.participant.rsvp.success</source>
-                <target>Dit svar er blevet modtaget.</target>
-            </trans-unit>
-            <trans-unit id="event.sms.confirmation.reply" approved="no">
-                <source>event.sms.confirmation.reply</source>
-                <target>Hej %name%. Tak for din tilmelding til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg glæder mig til at se dig! %hostess%</target>
-            </trans-unit>
-            <trans-unit id="event.sms.invite" approved="no">
-                <source>event.sms.invite</source>
-                <target>Hej %name%. %hostess% vil gerne invitere dig til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se det lækre børnetøj, så svar på denne sms med teksten "pdl %event_id%". Jeg håber, vi ses!</target>
-            </trans-unit>
-            <trans-unit id="event.sms.reminder" approved="no">
-                <source>event.sms.reminder</source>
-                <target>Hej %name% Husk POMPdeLUX home shopping arrangementet den %event_date% kl. %event_time% PÃ¥ adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
-            </trans-unit>
-            <trans-unit id="event.too.old.to.edit">
-                <source>event.too.old.to.edit</source>
-                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke editeres.</target>
-            </trans-unit>
-            <trans-unit id="event.too.old.to.delete">
-                <source>event.too.old.to.delete</source>
-                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke slettes.</target>
+                <target>Vastauksesi on tullut perille.</target>
             </trans-unit>
         </body>
     </file>
