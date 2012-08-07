@@ -60,3 +60,30 @@ table.list th{
 .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+li.dropdown-menu div{
+  position: absolute;
+  top: 40px;
+  padding: 1em 0.5em;
+  background:#242424;
+  z-index: 1000;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+li.dropdown-menu div ul{
+  border:none;
+}
+
+li.dropdown-menu div ul li{
+  float:left;
+  clear: both;
+  display: block;
+  padding:0;
+  background:none;
+}
+
+li.dropdown-menu div a{
+  border: none;
+  display: block;
+}

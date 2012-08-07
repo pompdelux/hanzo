@@ -8,6 +8,18 @@
         {{ 'events.create_event.link'|trans({}, 'events') }}
       </a>
     </li>
+    <li id="select-archived-events" class="dropdown-menu">
+      <a class="open-menu" href="#">
+        {{ 'events.calendar.archived.header.text'|trans({}, 'events') }}
+      </a>
+      <div style="display:none;">
+        <ul id="archived-events">
+          {% for archived_event in archived_events %}
+          <li><a href="{{ path('events_view' , {'id' : archived_event.id }) }}">( {{ archived_event.eventdate|date("d/m-Y")}} ) {{ archived_event.code }}</a></li> 
+          {% endfor %}
+        </ul>
+      </div>
+    </li>
   </ul>
 </nav>
 
@@ -22,13 +34,6 @@
 
 <p>{{ 'events.calendar.description.text'|trans({}, 'events') }}</p>
 <div id="calendar"></div>
-
-<h1>{{ 'events.calendar.archived.header.text'|trans({}, 'events') }}</h1>
-<ul id="archived-events">
-  {% for archived_event in archived_events %}
-  <li>( {{ archived_event.eventdate|date("d/m-Y")}} ) <a href="{{ path('events_view' , {'id' : archived_event.id }) }}">{{ archived_event.code }}</a></li> 
-  {% endfor %}
-</ul>
 
 {% endblock %}
 

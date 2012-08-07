@@ -1,7 +1,12 @@
 var calendar = (function($) {
   var pub = {};
 
-  pub.init = function() {};
+  pub.init = function() {
+      $("a.open-menu").click(function(e) {
+        e.preventDefault();
+        $(this).parent().find('div').slideToggle();
+      });
+  };
 
   return pub;
 })(jQuery);
