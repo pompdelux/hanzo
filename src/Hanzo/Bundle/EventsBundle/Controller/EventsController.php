@@ -136,7 +136,6 @@ class EventsController extends CoreController
                     'label' => 'events.host.label',
                     'translation_domain' => 'events',
                     'error_bubbling' => true,
-                    'invalid_message' => $translator->trans('', array(), 'events')
                 )
             )->add('address_line_1', 'text',
                 array(
