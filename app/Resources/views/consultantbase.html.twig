@@ -1,4 +1,4 @@
-<!doctype html public "✰">
+<!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
@@ -66,8 +66,7 @@
       })|raw }}
     {% endif %}
 
-    {% render 'HanzoCMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'offset': sub_menu.offset } %}
-
+    {% render 'HanzoCMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {% block content %}{% endblock %}
   </div><!-- /div#main -->
 
