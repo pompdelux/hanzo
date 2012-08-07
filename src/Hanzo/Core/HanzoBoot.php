@@ -69,14 +69,14 @@ class HanzoBoot
             $params = $this->router->match($clean);
 
             // if the route is ip restricted, redirect if not from an approved ip
-            if (isset($params['ip_restricted'])) {
+            if (isset($params['ip_restricted']) && $params['ip_restricted'] == 1 ) {
                 $ips = explode("\n", str_replace("\r", '', $hanzo->get('webshop.closed.allowed_ips', '')));
 
                 if (!in_array($request->getClientIp(), $ips)) {
                     $goto = '/';
                     $env = $hanzo->get('core.env');
 
-                    if ($env != 'prod') {
+                    if ( !in_array( $env, array( 'prod', 'prod_dk_consultant' ) ) ) {
                         $goto = '/app_'.$env.'.php';
                     }
 
