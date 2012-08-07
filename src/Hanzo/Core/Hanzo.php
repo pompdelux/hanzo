@@ -49,7 +49,7 @@ class Hanzo
         $this->kernel = $container->get('kernel');
         $this->settings['core']['env'] = $environment;
 
-        if ('cli' !== PHP_SAPI) {
+        if (('cli' !== PHP_SAPI) && empty($_SERVER['HTTP_SOAPACTION'])) {
             $this->cache = $this->container->get('hanzo.cache');
         }
 
