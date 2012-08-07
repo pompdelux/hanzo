@@ -7,12 +7,12 @@ services:
     hanzo.account.security.provider:
         class: %account_user_provider.class%
 
-    security.access.domain_restriction:
-        class:      Hanzo\Bundle\AccountBundle\Security\Authorization\Voter\DomainVoter
-        arguments:  [@service_container]
-        public:     false
-        tags:
-            -       { name: security.voter }
+#    security.access.domain_restriction:
+#        class:      Hanzo\Bundle\AccountBundle\Security\Authorization\Voter\DomainVoter
+#        arguments:  [@service_container]
+#        public:     false
+#        tags:
+#            -       { name: security.voter }
 
 #    account.example:
 #        class: %account.example.class%
