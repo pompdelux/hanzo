@@ -64,7 +64,8 @@ class HanzoBoot
         if (1 == $hanzo->get('webshop.closed', 0)) {
             $request = $event->getRequest();
 
-            $clean = str_replace('//', '/', str_replace('app_dev.php', '', $request->getRequestUri()));
+            list($uri,) = explode('?', $request->getRequestUri());
+            $clean = str_replace('//', '/', str_replace('app_dev.php', '', $uri));
             $params = $this->router->match($clean);
 
             // if the route is ip restricted, redirect if not from an approved ip
