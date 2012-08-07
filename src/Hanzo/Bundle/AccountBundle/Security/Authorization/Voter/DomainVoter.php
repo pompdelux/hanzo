@@ -31,13 +31,13 @@ class DomainVoter implements VoterInterface
 
     public function vote(TokenInterface $token, $object, array $attributes)
     {
-        if (!($object instanceof Request)) 
+        if (!($object instanceof Request))
         {
           return VoterInterface::ACCESS_ABSTAIN;
         }
 
         $user = $token->getUser();
-        if (!($user instanceof UserInterface)) 
+        if (!($user instanceof UserInterface))
         {
           return VoterInterface::ACCESS_ABSTAIN;
         }
@@ -46,7 +46,7 @@ class DomainVoter implements VoterInterface
         $addresses = $customer->getAddressess();
 
         $paymentAddress = null;
-        foreach ($addresses as $address) 
+        foreach ($addresses as $address)
         {
             if ( $address->getType() == 'payment' )
             {
