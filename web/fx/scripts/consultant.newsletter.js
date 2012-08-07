@@ -1,6 +1,6 @@
 var consultantNewsletter = (function($) {
   var pub = {};
-  //TEST ANDERS 222222w
+  
 
   pub.init = function() {
     var handleNewsletterSubmit = function(e) {
@@ -24,6 +24,7 @@ var consultantNewsletter = (function($) {
           } else {
             window.scrollTo(window.scrollMinX, window.scrollMinY);
             dialoug.slideNotice(response.message);
+            window.location.href = base_url + 'consultantnewsletter/history'
           }
         },
       });

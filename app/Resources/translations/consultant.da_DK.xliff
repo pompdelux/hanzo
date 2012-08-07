@@ -62,6 +62,10 @@
                 <source>newsletter.save.draft</source>
                 <target>Gem som kladde</target>
             </trans-unit>
+            <trans-unit id="consultant.newsletter.draft.saved">
+                <source>consultant.newsletter.draft.saved</source>
+                <target>Kladden er blevet gemt</target>
+            </trans-unit>
             <trans-unit id="newsletter.current.drafts">
                 <source>newsletter.current.drafts</source>
                 <target>Gemte kladder</target>
