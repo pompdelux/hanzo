@@ -522,7 +522,6 @@ class CmsController extends CoreController
             }
         } else {
             $query = CmsQuery::create()
-                ->filterByIsActive(TRUE)
                 ->filterByCmsThreadId($cms_thread)
                 ->joinWithI18n($locale)
                 ->groupById()
@@ -541,8 +540,9 @@ class CmsController extends CoreController
 
                 $menu .= '<ul>';
                 foreach($result as $record) {
-                    $menu .= '<li id="item-' . $record->getId(). '" class="sortable-item ' . $record->getType() . '">';
-                    $menu .= '<div class="sort-handle record">';
+                    $inactive = $record->getIsActive()==true ? 'ui-state-enable' :'ui-state-disabled';
+                    $menu .= '<li id="item-' . $record->getId(). '" class="sortable-item ' . $record->getType() . ' '.$inactive.'">';
+                    $menu .= '<div class="sort-handle record ">';
                     $menu .= '<span class="record-id">'.$record->getId().'</span>';
                     $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
                     $menu .= '<span class="record-type">' . $record->getType() . '</span>';
