@@ -3,11 +3,12 @@ var quickorder = (function($) {
 
   pub.init = function() {
     _resetForm();
+
     $('#master').typeahead({
         source: function (typeahead, query) {
             $.getJSON(
                 base_url + "quickorder/get-sku",
-                {name : query}, 
+                {name : query},
                 function(data) {
                     return typeahead.process(data.data);
                 }
@@ -15,7 +16,6 @@ var quickorder = (function($) {
         },
         onselect: function( object ) {
             $("#master").val(object);
-            console.log("Selected: " + object );
 
             $.ajax({
                 url: base_url + "rest/v1/stock-check",
@@ -30,10 +30,8 @@ var quickorder = (function($) {
                         }
                     } else {
 
-                        $('#size')
-                            .find('option')
-                            .remove()
-                        ;
+                        $('#size').find('option').remove();
+
                         if(typeof response.data.products !== "undefined" && response.data.products.length > 0){
 
                             $('#size')
@@ -67,9 +65,9 @@ var quickorder = (function($) {
     // keydown : desktop with keyboard
     // blur    : tablet/mobile
     //$('#size').on('keydown mouseup touchend' ,function(e){
-    $('#size').on('keydown mouseup blur' ,function(e){
+    $('#size').on('keydown mouseup blur' ,function(e) {
         if (e.type == 'keydown') {
-            var keyCode = e.keyCode || e.which; 
+            var keyCode = e.keyCode || e.which;
             if (keyCode == 9) {
                 e.preventDefault();
                 getColor();
@@ -137,7 +135,7 @@ var quickorder = (function($) {
     //$('#color').on('keydown mouseup touchend' ,function(e){
     $('#color').on('keydown mouseup blur' ,function(e){
         if (e.type == 'keydown') {
-            var keyCode = e.keyCode || e.which; 
+            var keyCode = e.keyCode || e.which;
             if (keyCode == 9) {
                 e.preventDefault();
 
@@ -158,7 +156,13 @@ var quickorder = (function($) {
     $('#quickorder form').on('submit', function(event) {
         event.preventDefault();
 
-        if($('#master').val() != '' && $('#size').val() != '' && $('#color').val() != '' && $('#quantity').val() != '') {
+        var master = $('#master').val(),
+            size = $('#size').val(),
+            color = $('#color').val(),
+            quantity = $('#quantity').val()
+        ;
+
+        if((master != '') && (size != '') && (color != '') && (quantity != '')) {
             var $form = $(this);
             $.ajax({
                 url: $form.attr('action'),
@@ -176,7 +180,10 @@ var quickorder = (function($) {
                         window.scrollTo(window.scrollMinX, window.scrollMinY);
                         $('#mini-basket a').html(response.data);
                         dialoug.slideNotice(response.message);
-                        $('table tbody').append('<tr><td>'+$('#master').val()+' '+$('#color').val()+' '+$('#size').val()+'</td><td>'+$('#quantity').val()+'</td></tr>');
+                        var img = master+'_basket_'+color;
+                        img = cdn_url + 'images/products/thumb/60x60,' + img.toString().replace(/[^a-zA-Z0-9_]/g, "") + '.jpg';
+
+                        $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td></tr>');
                     }
                     _resetForm();
                 },

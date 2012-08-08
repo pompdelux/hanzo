@@ -16,15 +16,25 @@ use Hanzo\Core\CoreController;
 
 class DefaultController extends CoreController
 {
-    
+
     public function indexAction()
     {
     	$order = OrdersPeer::getCurrent();
     	$products = array();
     	foreach ($order->getOrdersLiness() as $line) {
+
+            $basket_image =
+                preg_replace('/[^a-z0-9]/i', '', $line->getProductsName()) .
+                '_basket_' .
+                preg_replace('/[^a-z0-9]/i', '', $line->getProductsColor()) .
+                '.jpg'
+                ;
+
     		$products[] = array(
     			'sku' => $line->getProductsSku(),
-    			'quantity' => $line->getQuantity()
+    			'quantity' => $line->getQuantity(),
+                'basket_image' => $basket_image,
+                'name' => $line->getProductsName(),
     		);
     	}
         return $this->render('QuickOrderBundle:Default:index.html.twig',

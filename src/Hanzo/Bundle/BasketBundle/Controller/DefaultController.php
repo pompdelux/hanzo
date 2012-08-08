@@ -268,10 +268,9 @@ class DefaultController extends CoreController
                 ->findOne()
             ;
 
-if (!$products2category) {
-    Tools::log($locale.' -> '.$line['products_name']);
-}
-            // find matching router
+            if (!$products2category) {
+                Tools::log($locale.' -> '.$line['products_name']);
+            }
 
             $line['expected_at'] = new \DateTime($line['expected_at']);
 
@@ -293,17 +292,20 @@ if (!$products2category) {
                 '.jpg'
                 ;
 
+            // find matching router
             $product_route = '';
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+
+            $line['url'] = '#';
             if (isset($router_keys[$key])) {
                 $product_route = $router_keys[$key];
+                $master = ProductsQuery::create()->findOneBySku($line['products_name']);
+                $line['url'] = $router->generate($product_route, array(
+                    'product_id' => $master->getId(),
+                    'title' => Tools::stripText($line['products_name']),
+                ));
             }
 
-            $master = ProductsQuery::create()->findOneBySku($line['products_name']);
-            $line['url'] = $router->generate($product_route, array(
-                'product_id' => $master->getId(),
-                'title' => Tools::stripText($line['products_name']),
-            ));
 
             $products[] = $line;
         }

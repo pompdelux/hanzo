@@ -67,6 +67,20 @@
       {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
     {% endif %}
 
+    {% if app.user.user.groupsid in [2,3] %}
+      <h3>{{ app.user.user.groupsid }}</h3>
+      <div>
+        <select name="sales_type">
+          <option value="private">Privat køb</option>
+          <option value="gift">Gave køb</option>
+        {% if app.user.user.groupsid == 2 %}
+          <option  value="friend">Veninde køb</option>
+          <option  value="other">Udenfor arrangement</option>
+        {% endif %}
+        </select>
+      </div>
+    {% endif %}
+
     <div class="buttons">
       <a class="button left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
       <a class="button right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>

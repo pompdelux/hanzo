@@ -25,6 +25,11 @@
 	cursor: pointer;
 }
 
+#quickorder input#quantity {
+	width: 50px;
+	text-align: center;
+}
+
 .typeahead.dropdown-menu {
 	position: absolute;
 	top: 20px;
@@ -53,8 +58,8 @@
 	color: #333;
 }
 
-.typeahead.dropdown-menu li > a:hover, 
-.typeahead.dropdown-menu .active > a, 
+.typeahead.dropdown-menu li > a:hover,
+.typeahead.dropdown-menu .active > a,
 .typeahead.dropdown-menu .active > a:hover {
 	text-decoration: none;
 	background-color: #D9D9D9;
