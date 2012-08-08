@@ -31,7 +31,6 @@ class SoapService
         ob_start();
         $service->handle();
         $var = ob_get_contents();
-        //ob_end_clean();
         $response->setContent(trim($var));
 
         return $response;

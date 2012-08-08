@@ -1,6 +1,6 @@
 ws_index:
     pattern:  /wolla/{name}
-    defaults: { _controller: WebServicesBundle:RestGoogle:index }
+    defaults: { _controller: WebServicesBundle:Default:index }
 
 ws_soap:
     pattern:  /soap/{version}/{service_name}/
