@@ -31,6 +31,18 @@ events_get_customer:
     requirements:
         _format: html|json
 
+events_create_customer:
+    pattern:  /events/create-customer
+    defaults: {  _controller: EventsBundle:Default:createCustomer }
+
+events_fetch_customer:
+    pattern:  /events/fetch-customer/{type}/
+    defaults: 
+        _controller: EventsBundle:Default:fetchCustomer
+        _format: json
+    requirements:
+        _format: html|json
+
 events_delete:
     pattern:  /events/delete/{id}
     defaults:
@@ -79,4 +91,3 @@ events_sms_test:
         _controller: EventsBundle:Sms:sendtest
     requirements:
         _method:  GET
-

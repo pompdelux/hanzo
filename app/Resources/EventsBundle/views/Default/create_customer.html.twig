@@ -1,0 +1,51 @@
+{% extends layout %}
+
+{% block content %}
+
+<h1>{{ 'events.create_customer.header.text'|trans({}, 'events') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'events') }}
+</div>
+{% endif %}
+
+<p>{{ 'events.create_customer.description.text'|trans({}, 'events')|raw }}</p>
+<div id="fetch-customer">
+  <form id="fetch-customer-form">
+    <input type="text" placeholder="{{ 'events.fetch_customer.placeholder'|trans({}, 'events') }}"><input type="submit" value="{{ 'events.fetch_customer.button'|trans({}, 'events') }}">
+  </form>
+</div>
+
+<form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create" novalidate>
+  <div id="customers">
+    {{ form_row(form.first_name) }}
+    {{ form_row(form.last_name) }}
+    {{ form_row(form.addresses.0.address_line_1) }}
+    {{ form_row(form.addresses.0.postal_code) }}
+    {{ form_row(form.addresses.0.city) }}
+    {% if form.addresses.0.countries_id is defined %}{# If not defined we are probably on .com #}
+      {{ form_row(form.addresses.0.countries_id) }}
+    {% endif %}
+    {{ form_row(form.addresses.0.country) }}
+    {{ form_row(form.phone) }}
+    <br>
+    {{ form_row(form.email) }}
+    <br>
+    {{ form_row(form.password) }}
+    <br>
+    {{ form_row(form.newsletter) }}
+    <br>
+    {{ form_row(form.accept) }}
+    {{ form_row(form.addresses.0.type) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button off" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
+  <a href="/forside/kundeservice/vilkaar" rel="colorbox">{{ 'create.terms'|trans({}, 'account')|raw }}</a>
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">$(document).ready(function(){ events.create_customer_init() });</script>
+{% endblock %}
