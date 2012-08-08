@@ -24,7 +24,8 @@ use Hanzo\Model\Orders,
     Hanzo\Model\ProductsQuery,
     Hanzo\Model\ProductsDomainsPrices,
     Hanzo\Model\ProductsDomainsPricesPeer,
-    Hanzo\Model\ProductsDomainsPricesQuery
+    Hanzo\Model\ProductsDomainsPricesQuery,
+    Hanzo\Model\ConsultantNewsletterDrafts
     ;
 
 
@@ -47,7 +48,14 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $order = new Orders();
+        $draft = new ConsultantNewsletterDrafts();
+        $draft
+            ->setSubject('Test')
+            ->setContent('Hest')
+            ->setConsultantsId(2000)
+            ->save();
+
+        /*$order = new Orders();
         $order->setAttribute( 'transact', 'payment', '596022444' );
 
         $gateway = $this->getContainer()->get('payment.dibsapi');
@@ -60,7 +68,7 @@ class TestCommand extends ContainerAwareCommand
         
         $gateway->mergeSettings($settings);
 
-        print_r($gateway->call()->payinfo($order));
+        print_r($gateway->call()->payinfo($order));*/
 
 
         /*$prices = ProductsDomainsPricesQuery::create()

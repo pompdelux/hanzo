@@ -56,7 +56,7 @@ class SmsService
             '%event_id%' => 'e'.$event->getId(),
         );
 
-        $to = $this->settings['provider.calling_code'].$participant->getPhone();
+        $to = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
         $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
 
         $provider = $this->getProvider();
@@ -78,7 +78,7 @@ class SmsService
             '%hostess%' => $event->getHost(),
         );
 
-        $to = $this->settings['provider.calling_code'].$participant->getPhone();
+        $to = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
         $message = $this->translator->trans('event.sms.confirmation.reply', $parameters, 'events');
 
         $provider = $this->getProvider();
@@ -119,7 +119,7 @@ class SmsService
         $batches = array();
         foreach ($participants as $participant) {
             $event = $participant->getEvents();
-            $to = $this->settings['provider.calling_code'].$participant->getPhone();
+            $to = $this->settings['provider.calling_code'].ltrim($participant->getPhone(), '0');
 
             $parameters = array(
                 '%name%' => $participant->getFirstName(),

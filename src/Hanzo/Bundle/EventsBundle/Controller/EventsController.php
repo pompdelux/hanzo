@@ -28,8 +28,18 @@ class EventsController extends CoreController
             return $this->redirect($this->generateUrl('login'));
         }
 
+
+        $date_filter['max'] = date('Y-m-d H:i:s');
+        $archived_events = EventsQuery::create()
+            ->filterByEventDate($date_filter)
+            ->filterByConsultantsId($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
+            ->orderByEventDate('DESC')
+            ->find()
+        ;
+
         return $this->render('EventsBundle:Events:index.html.twig', array(
-            'page_type' => 'calendar'
+            'page_type' => 'calendar',
+            'archived_events' => $archived_events
         ));
     }
 
@@ -78,9 +88,12 @@ class EventsController extends CoreController
 
         $event = EventsQuery::create()->findPK($id);
 
+        $events_participants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
+
         return $this->render('EventsBundle:Events:view.html.twig', array(
             'page_type' => 'calendar',
             'event' => $event,
+            'participants'  => $events_participants,
             'id'    => $id
         ));
     }
@@ -106,7 +119,7 @@ class EventsController extends CoreController
             $event = new Events();
         }
 
-        $form = $this->createFormBuilder($event)
+        $form = $this->createFormBuilder($event, array('translation_domain' => 'events'))
             ->add('customers_id', 'hidden')
             ->add('event_date', 'datetime',
                 array(
@@ -115,17 +128,20 @@ class EventsController extends CoreController
                     'date_format' => 'yyyy-MM-dd hH:im',
                     'attr' => array('class' => 'datetimepicker'),
                     'label' => 'events.event_date.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'error_bubbling' => true,
                 )
             )->add('host', 'text',
                 array(
                     'label' => 'events.host.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'error_bubbling' => true,
                 )
             )->add('address_line_1', 'text',
                 array(
                     'label' => 'events.address_line_1.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'error_bubbling' => true,
                 )
             // )->add('address_line_2', 'text',
             //     array(
@@ -136,22 +152,26 @@ class EventsController extends CoreController
             )->add('postal_code', 'text',
                 array(
                     'label' => 'events.postal_code.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'error_bubbling' => true,
                 )
             )->add('city', 'text',
                 array(
                     'label' => 'events.city.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'error_bubbling' => true,
                 )
             )->add('phone', 'text',
                 array(
                     'label' => 'events.phone.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'error_bubbling' => true,
                 )
             )->add('email', 'text',
                 array(
                     'label' => 'events.email.label',
-                    'translation_domain' => 'events'
+                    'translation_domain' => 'events',
+                    'error_bubbling' => true,
                 )
             )->add('description', 'textarea',
                 array(
@@ -256,7 +276,7 @@ class EventsController extends CoreController
                 $event->save();
 
                 $mailer = $this->get('mail_manager');
-                if ($changed){
+                if ($changed) {
                     if ($changed_host){ // If the event has changed and its a new host, send specific mails to all
                         if ($event->getNotifyHostess()){
 

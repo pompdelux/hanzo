@@ -367,6 +367,10 @@
                 <source>email.already.in.use</source>
                 <target>Your E-Mail Address already exists in our records - please log in with the email address or create an account with a different address.</target>
             </trans-unit>
+            <trans-unit id="login.restricted.other_locale">
+                <source>login.restricted.other_locale</source>
+                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

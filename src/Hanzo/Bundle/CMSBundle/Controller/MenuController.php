@@ -52,7 +52,6 @@ class MenuController extends CoreController
                 if (preg_match('~(?:/[0-9]+/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
                     $this->path = str_replace($matches[0], '', $this->path);
                 }
-
                 // home does not have a trail.
                 if ($this->path != '/') {
                     $this->generateTrail();
@@ -75,6 +74,7 @@ class MenuController extends CoreController
                 case 'sub':
                     if (empty($this->menu['sub']) && $offset) {
                         $this->menu['sub'] = '';
+
                         // generate
                         if ($from && !isset($this->trail[$from])) {
                             break;

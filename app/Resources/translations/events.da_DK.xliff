@@ -14,6 +14,10 @@
                 <source>events.calendar.description.text</source>
                 <target>Grønmarkering af arrangement er dine åbne arrangementer og rød er dine lukkede arrangementer. Klik på et arrangement for at se detaljer eller rette/slette arrangementet.</target>
             </trans-unit>
+            <trans-unit id="events.calendar.archived.header.text">
+                <source>events.calendar.archived.header.text</source>
+                <target>Arkiverede arrangementer</target>
+            </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
                 <target>Arrangement detaljer</target>
@@ -94,9 +98,17 @@
                 <source>events.host</source>
                 <target>Værtinde</target>
             </trans-unit>
+            <trans-unit id="events.host.required.error">
+                <source>events.host.required.error</source>
+                <target>Du skal huske at udfylde værtinde/åben hus.</target>
+            </trans-unit>
             <trans-unit id="events.address_line_1">
                 <source>events.address_line_1</source>
                 <target>Addresse linje 1</target>
+            </trans-unit>
+            <trans-unit id="events.address_line_1.required.error">
+                <source>events.address_line_1.required.error</source>
+                <target>Du skal huske at udfylde adressen.</target>
             </trans-unit>
             <trans-unit id="events.address_line_2">
                 <source>events.address_line_2</source>
@@ -106,17 +118,33 @@
                 <source>events.postal_code</source>
                 <target>Postnummer</target>
             </trans-unit>
+            <trans-unit id="events.postal_code.required.error">
+                <source>events.postal_code.required.error</source>
+                <target>Du skal huske at udfylde Postnummer.</target>
+            </trans-unit>
             <trans-unit id="events.city">
                 <source>events.city</source>
                 <target>By</target>
+            </trans-unit>
+            <trans-unit id="events.city.required.error">
+                <source>events.city.required.error</source>
+                <target>Du skal huske at udfylde By.</target>
             </trans-unit>
             <trans-unit id="events.phone">
                 <source>events.phone</source>
                 <target>Mobil nr.</target>
             </trans-unit>
+            <trans-unit id="events.phone.required.error">
+                <source>events.phone.required.error</source>
+                <target>Du skal huske at udfylde Mobil nr.</target>
+            </trans-unit>
             <trans-unit id="events.email">
                 <source>events.email</source>
                 <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="events.email.required.error">
+                <source>events.email.required.error</source>
+                <target>Du skal huske at udfylde E-mail.</target>
             </trans-unit>
             <trans-unit id="events.hasaccepted">
                 <source>events.hasaccepted</source>
