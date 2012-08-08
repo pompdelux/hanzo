@@ -4,7 +4,7 @@
 
 set :deploy_to,   "/var/www/pompdelux" 
 
-symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_fi", "prod_dk_consultant", "prod_se_consultant", "prod_no_consultant"]
+symfony_env_prods = ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_fi", "prod_dk_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_fi_consultant"]
 
 set :adminserver, "pdladmin"
 
@@ -175,7 +175,7 @@ namespace :symfony do
         run "cd #{latest_release} && #{php_bin} #{symfony_console} cache:clear --env=#{i}"
 # mmh. This chmod fails because some cache dirs and files are owned by www-data. Ignore the errors and continue, because the www-data dirs already seems to have g+w. Original line commented out below.
         #run "chmod -R g+w #{latest_release}/#{cache_path}"
-        run "sudo chmod -R g+w #{latest_release}/#{cache_path}"
+        run "sudo chmod -R g+rwX #{latest_release}/#{cache_path}"
       end
     end
 
