@@ -286,6 +286,14 @@
                 <source>consultant.newsletter.delete.user</source>
                 <target>Er du sikker på du vil slette denne bruger fra listen?</target>
             </trans-unit>
+            <trans-unit id="quickorder.choose.size">
+                <source>quickorder.choose.size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.color">
+                <source>quickorder.choose.color</source>
+                <target>Color</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
