@@ -1154,7 +1154,7 @@ class ECommerceServices extends SoapService
 
         $c_map = array(
             'dkk.dkk'     => array('currency' => 'DKK', 'domain' => 'DK', 'vat' => 25),
-            'dkk.eur'     => array('currency' => 'EUR', 'domain' => 'COM', 'vat' => 25),
+            'eur.eur'     => array('currency' => 'EUR', 'domain' => 'COM', 'vat' => 25),
             'dkk.salesdk' => array('currency' => 'DKK', 'domain' => 'SalesDK', 'vat' => 25),
 
             'nok.nok'     => array('currency' => 'NOK', 'domain' => 'NO', 'vat' => 25),
