@@ -15,6 +15,7 @@ use Hanzo\Model\Events;
 use Hanzo\Model\EventsParticipants;
 use Hanzo\Model\EventsPeer;
 use Hanzo\Model\EventsQuery;
+use Hanzo\Model\Orders;
 
 /**
  * Base class that represents a query for the 'events' table.
@@ -76,6 +77,10 @@ use Hanzo\Model\EventsQuery;
  * @method     EventsQuery leftJoinEventsParticipants($relationAlias = null) Adds a LEFT JOIN clause to the query using the EventsParticipants relation
  * @method     EventsQuery rightJoinEventsParticipants($relationAlias = null) Adds a RIGHT JOIN clause to the query using the EventsParticipants relation
  * @method     EventsQuery innerJoinEventsParticipants($relationAlias = null) Adds a INNER JOIN clause to the query using the EventsParticipants relation
+ *
+ * @method     EventsQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
+ * @method     EventsQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
+ * @method     EventsQuery innerJoinOrders($relationAlias = null) Adds a INNER JOIN clause to the query using the Orders relation
  *
  * @method     Events findOne(PropelPDO $con = null) Return the first Events matching the query
  * @method     Events findOneOrCreate(PropelPDO $con = null) Return the first Events matching the query, or a new Events object populated from the query conditions when no match is found
@@ -1107,6 +1112,79 @@ abstract class BaseEventsQuery extends ModelCriteria
 		return $this
 			->joinEventsParticipants($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'EventsParticipants', '\Hanzo\Model\EventsParticipantsQuery');
+	}
+
+	/**
+	 * Filter the query by a related Orders object
+	 *
+	 * @param     Orders $orders  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    EventsQuery The current query, for fluid interface
+	 */
+	public function filterByOrders($orders, $comparison = null)
+	{
+		if ($orders instanceof Orders) {
+			return $this
+				->addUsingAlias(EventsPeer::ID, $orders->getEventsId(), $comparison);
+		} elseif ($orders instanceof PropelCollection) {
+			return $this
+				->useOrdersQuery()
+				->filterByPrimaryKeys($orders->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByOrders() only accepts arguments of type Orders or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the Orders relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    EventsQuery The current query, for fluid interface
+	 */
+	public function joinOrders($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('Orders');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'Orders');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the Orders relation Orders object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\OrdersQuery A secondary query class using the current class as primary query
+	 */
+	public function useOrdersQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+	{
+		return $this
+			->joinOrders($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'Orders', '\Hanzo\Model\OrdersQuery');
 	}
 
 	/**

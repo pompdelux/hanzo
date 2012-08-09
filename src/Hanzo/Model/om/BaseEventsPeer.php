@@ -13,6 +13,7 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsParticipantsPeer;
 use Hanzo\Model\EventsPeer;
+use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\map\EventsTableMap;
 
 /**
@@ -448,6 +449,9 @@ abstract class BaseEventsPeer {
 		// Invalidate objects in EventsParticipantsPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		EventsParticipantsPeer::clearInstancePool();
+		// Invalidate objects in OrdersPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		OrdersPeer::clearInstancePool();
 	}
 
 	/**

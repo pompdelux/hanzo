@@ -77,6 +77,7 @@ class OrdersTableMap extends TableMap
 		$this->addColumn('DELIVERY_STATE_PROVINCE', 'DeliveryStateProvince', 'VARCHAR', false, 64, null);
 		$this->addColumn('DELIVERY_COMPANY_NAME', 'DeliveryCompanyName', 'VARCHAR', false, 128, null);
 		$this->addColumn('DELIVERY_METHOD', 'DeliveryMethod', 'VARCHAR', false, 64, null);
+		$this->addForeignKey('EVENTS_ID', 'EventsId', 'INTEGER', 'events', 'ID', false, null, null);
 		$this->addColumn('FINISHED_AT', 'FinishedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
@@ -91,6 +92,7 @@ class OrdersTableMap extends TableMap
 		$this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('customers_id' => 'id', ), 'SET NULL', 'CASCADE');
 		$this->addRelation('CountriesRelatedByBillingCountriesId', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('billing_countries_id' => 'id', ), null, null);
 		$this->addRelation('CountriesRelatedByDeliveryCountriesId', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('delivery_countries_id' => 'id', ), null, null);
+		$this->addRelation('Events', 'Hanzo\\Model\\Events', RelationMap::MANY_TO_ONE, array('events_id' => 'id', ), 'CASCADE', 'CASCADE');
 		$this->addRelation('OrdersAttributes', 'Hanzo\\Model\\OrdersAttributes', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersAttributess');
 		$this->addRelation('OrdersLines', 'Hanzo\\Model\\OrdersLines', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersLiness');
 		$this->addRelation('OrdersStateLog', 'Hanzo\\Model\\OrdersStateLog', RelationMap::ONE_TO_MANY, array('id' => 'orders_id', ), 'CASCADE', null, 'OrdersStateLogs');

@@ -10,6 +10,7 @@ use \Propel;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\ConsultantNewsletterDraftsPeer;
 use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\CouponsToCustomersPeer;
 use Hanzo\Model\Customers;

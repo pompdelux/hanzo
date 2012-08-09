@@ -22,6 +22,8 @@ use Hanzo\Model\EventsParticipants;
 use Hanzo\Model\EventsParticipantsQuery;
 use Hanzo\Model\EventsPeer;
 use Hanzo\Model\EventsQuery;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersQuery;
 
 /**
  * Base class that represents a row from the 'events' table.
@@ -185,6 +187,11 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	protected $collEventsParticipantss;
 
 	/**
+	 * @var        array Orders[] Collection to store aggregation of Orders objects.
+	 */
+	protected $collOrderss;
+
+	/**
 	 * Flag to prevent endless save loop, if this object is referenced
 	 * by another object which falls in this transaction.
 	 * @var        boolean
@@ -203,6 +210,12 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	 * @var		array
 	 */
 	protected $eventsParticipantssScheduledForDeletion = null;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $orderssScheduledForDeletion = null;
 
 	/**
 	 * Applies default values to this object.
@@ -1054,6 +1067,8 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 			$this->aCustomersRelatedByCustomersId = null;
 			$this->collEventsParticipantss = null;
 
+			$this->collOrderss = null;
+
 		} // if (deep)
 	}
 
@@ -1216,6 +1231,23 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 
 			if ($this->collEventsParticipantss !== null) {
 				foreach ($this->collEventsParticipantss as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->orderssScheduledForDeletion !== null) {
+				if (!$this->orderssScheduledForDeletion->isEmpty()) {
+					OrdersQuery::create()
+						->filterByPrimaryKeys($this->orderssScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->orderssScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collOrderss !== null) {
+				foreach ($this->collOrderss as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -1494,6 +1526,14 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 					}
 				}
 
+				if ($this->collOrderss !== null) {
+					foreach ($this->collOrderss as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
 
 			$this->alreadyInValidation = false;
 		}
@@ -1642,6 +1682,9 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 			}
 			if (null !== $this->collEventsParticipantss) {
 				$result['EventsParticipantss'] = $this->collEventsParticipantss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			}
+			if (null !== $this->collOrderss) {
+				$result['Orderss'] = $this->collOrderss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 		}
 		return $result;
@@ -1898,6 +1941,12 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 				}
 			}
 
+			foreach ($this->getOrderss() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addOrders($relObj->copy($deepCopy));
+				}
+			}
+
 			//unflag object copy
 			$this->startCopy = false;
 		} // if ($deepCopy)
@@ -2058,6 +2107,9 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 		if ('EventsParticipants' == $relationName) {
 			return $this->initEventsParticipantss();
 		}
+		if ('Orders' == $relationName) {
+			return $this->initOrderss();
+		}
 	}
 
 	/**
@@ -2209,6 +2261,229 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Clears out the collOrderss collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addOrderss()
+	 */
+	public function clearOrderss()
+	{
+		$this->collOrderss = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collOrderss collection.
+	 *
+	 * By default this just sets the collOrderss collection to an empty array (like clearcollOrderss());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initOrderss($overrideExisting = true)
+	{
+		if (null !== $this->collOrderss && !$overrideExisting) {
+			return;
+		}
+		$this->collOrderss = new PropelObjectCollection();
+		$this->collOrderss->setModel('Orders');
+	}
+
+	/**
+	 * Gets an array of Orders objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this Events is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array Orders[] List of Orders objects
+	 * @throws     PropelException
+	 */
+	public function getOrderss($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collOrderss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collOrderss) {
+				// return empty collection
+				$this->initOrderss();
+			} else {
+				$collOrderss = OrdersQuery::create(null, $criteria)
+					->filterByEvents($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collOrderss;
+				}
+				$this->collOrderss = $collOrderss;
+			}
+		}
+		return $this->collOrderss;
+	}
+
+	/**
+	 * Sets a collection of Orders objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $orderss A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setOrderss(PropelCollection $orderss, PropelPDO $con = null)
+	{
+		$this->orderssScheduledForDeletion = $this->getOrderss(new Criteria(), $con)->diff($orderss);
+
+		foreach ($orderss as $orders) {
+			// Fix issue with collection modified by reference
+			if ($orders->isNew()) {
+				$orders->setEvents($this);
+			}
+			$this->addOrders($orders);
+		}
+
+		$this->collOrderss = $orderss;
+	}
+
+	/**
+	 * Returns the number of related Orders objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related Orders objects.
+	 * @throws     PropelException
+	 */
+	public function countOrderss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collOrderss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collOrderss) {
+				return 0;
+			} else {
+				$query = OrdersQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByEvents($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collOrderss);
+		}
+	}
+
+	/**
+	 * Method called to associate a Orders object to this object
+	 * through the Orders foreign key attribute.
+	 *
+	 * @param      Orders $l Orders
+	 * @return     Events The current object (for fluent API support)
+	 */
+	public function addOrders(Orders $l)
+	{
+		if ($this->collOrderss === null) {
+			$this->initOrderss();
+		}
+		if (!$this->collOrderss->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddOrders($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	Orders $orders The orders object to add.
+	 */
+	protected function doAddOrders($orders)
+	{
+		$this->collOrderss[]= $orders;
+		$orders->setEvents($this);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Events is new, it will return
+	 * an empty collection; or if this Events has previously
+	 * been saved, it will retrieve related Orderss from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Events.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Orders[] List of Orders objects
+	 */
+	public function getOrderssJoinCustomers($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = OrdersQuery::create(null, $criteria);
+		$query->joinWith('Customers', $join_behavior);
+
+		return $this->getOrderss($query, $con);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Events is new, it will return
+	 * an empty collection; or if this Events has previously
+	 * been saved, it will retrieve related Orderss from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Events.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Orders[] List of Orders objects
+	 */
+	public function getOrderssJoinCountriesRelatedByBillingCountriesId($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = OrdersQuery::create(null, $criteria);
+		$query->joinWith('CountriesRelatedByBillingCountriesId', $join_behavior);
+
+		return $this->getOrderss($query, $con);
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Events is new, it will return
+	 * an empty collection; or if this Events has previously
+	 * been saved, it will retrieve related Orderss from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Events.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Orders[] List of Orders objects
+	 */
+	public function getOrderssJoinCountriesRelatedByDeliveryCountriesId($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = OrdersQuery::create(null, $criteria);
+		$query->joinWith('CountriesRelatedByDeliveryCountriesId', $join_behavior);
+
+		return $this->getOrderss($query, $con);
+	}
+
+	/**
 	 * Clears the current object and sets all attributes to their default values
 	 */
 	public function clear()
@@ -2258,12 +2533,21 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collOrderss) {
+				foreach ($this->collOrderss as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 		} // if ($deep)
 
 		if ($this->collEventsParticipantss instanceof PropelCollection) {
 			$this->collEventsParticipantss->clearIterator();
 		}
 		$this->collEventsParticipantss = null;
+		if ($this->collOrderss instanceof PropelCollection) {
+			$this->collOrderss->clearIterator();
+		}
+		$this->collOrderss = null;
 		$this->aCustomersRelatedByConsultantsId = null;
 		$this->aCustomersRelatedByCustomersId = null;
 	}

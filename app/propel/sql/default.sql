@@ -54,6 +54,8 @@ CREATE TABLE `cms`
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
+	INDEX `cms_I_1` (`path`),
+	INDEX `cms_I_2` (`old_path`),
 	INDEX `FI_cms_1` (`cms_thread_id`),
 	INDEX `FI_cms_2` (`parent_id`),
 	CONSTRAINT `fk_cms_1`
@@ -718,6 +720,7 @@ CREATE TABLE `orders`
 	`delivery_state_province` VARCHAR(64),
 	`delivery_company_name` VARCHAR(128),
 	`delivery_method` VARCHAR(64),
+	`events_id` INTEGER,
 	`finished_at` DATETIME,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
@@ -729,6 +732,7 @@ CREATE TABLE `orders`
 	INDEX `orders_FI_1` (`customers_id`),
 	INDEX `FI_customers_1` (`billing_countries_id`),
 	INDEX `FI_customers_2` (`delivery_countries_id`),
+	INDEX `orders_FI_4` (`events_id`),
 	CONSTRAINT `orders_FK_1`
 		FOREIGN KEY (`customers_id`)
 		REFERENCES `customers` (`id`)
@@ -739,7 +743,12 @@ CREATE TABLE `orders`
 		REFERENCES `countries` (`id`),
 	CONSTRAINT `fk_customers_2`
 		FOREIGN KEY (`delivery_countries_id`)
-		REFERENCES `countries` (`id`)
+		REFERENCES `countries` (`id`),
+	CONSTRAINT `orders_FK_4`
+		FOREIGN KEY (`events_id`)
+		REFERENCES `events` (`id`)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -940,6 +949,25 @@ CREATE TABLE `wall_likes`
 		FOREIGN KEY (`customers_id`)
 		REFERENCES `customers` (`id`)
 		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- consultant_newsletter_drafts
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `consultant_newsletter_drafts`;
+
+CREATE TABLE `consultant_newsletter_drafts`
+(
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`consultants_id` INTEGER NOT NULL,
+	`subject` VARCHAR(255) NOT NULL,
+	`content` TEXT,
+	PRIMARY KEY (`id`),
+	INDEX `consultant_newsletter_drafts_FI_1` (`consultants_id`),
+	CONSTRAINT `consultant_newsletter_drafts_FK_1`
+		FOREIGN KEY (`consultants_id`)
+		REFERENCES `customers` (`id`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------

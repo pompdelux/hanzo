@@ -18,6 +18,8 @@ use \PropelObjectCollection;
 use \PropelPDO;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\ConsultantNewsletterDrafts;
+use Hanzo\Model\ConsultantNewsletterDraftsQuery;
 use Hanzo\Model\Consultants;
 use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\CouponsToCustomers;
@@ -182,6 +184,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $collWallLikess;
 
 	/**
+	 * @var        array ConsultantNewsletterDrafts[] Collection to store aggregation of ConsultantNewsletterDrafts objects.
+	 */
+	protected $collConsultantNewsletterDraftss;
+
+	/**
 	 * @var        GothiaAccounts one-to-one related GothiaAccounts object
 	 */
 	protected $singleGothiaAccounts;
@@ -246,6 +253,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var		array
 	 */
 	protected $wallLikessScheduledForDeletion = null;
+
+	/**
+	 * An array of objects scheduled for deletion.
+	 * @var		array
+	 */
+	protected $consultantNewsletterDraftssScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -858,6 +871,8 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			$this->collWallLikess = null;
 
+			$this->collConsultantNewsletterDraftss = null;
+
 			$this->singleGothiaAccounts = null;
 
 			$this->singleConsultants = null;
@@ -1119,6 +1134,23 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 
 			if ($this->collWallLikess !== null) {
 				foreach ($this->collWallLikess as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
+			if ($this->consultantNewsletterDraftssScheduledForDeletion !== null) {
+				if (!$this->consultantNewsletterDraftssScheduledForDeletion->isEmpty()) {
+					ConsultantNewsletterDraftsQuery::create()
+						->filterByPrimaryKeys($this->consultantNewsletterDraftssScheduledForDeletion->getPrimaryKeys(false))
+						->delete($con);
+					$this->consultantNewsletterDraftssScheduledForDeletion = null;
+				}
+			}
+
+			if ($this->collConsultantNewsletterDraftss !== null) {
+				foreach ($this->collConsultantNewsletterDraftss as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -1427,6 +1459,14 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					}
 				}
 
+				if ($this->collConsultantNewsletterDraftss !== null) {
+					foreach ($this->collConsultantNewsletterDraftss as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
 				if ($this->singleGothiaAccounts !== null) {
 					if (!$this->singleGothiaAccounts->validate($columns)) {
 						$failureMap = array_merge($failureMap, $this->singleGothiaAccounts->getValidationFailures());
@@ -1574,6 +1614,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 			if (null !== $this->collWallLikess) {
 				$result['WallLikess'] = $this->collWallLikess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			}
+			if (null !== $this->collConsultantNewsletterDraftss) {
+				$result['ConsultantNewsletterDraftss'] = $this->collConsultantNewsletterDraftss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->singleGothiaAccounts) {
 				$result['GothiaAccounts'] = $this->singleGothiaAccounts->toArray($keyType, $includeLazyLoadColumns, $alreadyDumpedObjects, true);
@@ -1830,6 +1873,12 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				}
 			}
 
+			foreach ($this->getConsultantNewsletterDraftss() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addConsultantNewsletterDrafts($relObj->copy($deepCopy));
+				}
+			}
+
 			$relObj = $this->getGothiaAccounts();
 			if ($relObj) {
 				$copyObj->setGothiaAccounts($relObj->copy($deepCopy));
@@ -1968,6 +2017,9 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		}
 		if ('WallLikes' == $relationName) {
 			return $this->initWallLikess();
+		}
+		if ('ConsultantNewsletterDrafts' == $relationName) {
+			return $this->initConsultantNewsletterDraftss();
 		}
 	}
 
@@ -2811,6 +2863,31 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		return $this->getOrderss($query, $con);
 	}
 
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this Customers is new, it will return
+	 * an empty collection; or if this Customers has previously
+	 * been saved, it will retrieve related Orderss from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in Customers.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array Orders[] List of Orders objects
+	 */
+	public function getOrderssJoinEvents($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = OrdersQuery::create(null, $criteria);
+		$query->joinWith('Events', $join_behavior);
+
+		return $this->getOrderss($query, $con);
+	}
+
 	/**
 	 * Clears out the collWalls collection
 	 *
@@ -3158,6 +3235,154 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Clears out the collConsultantNewsletterDraftss collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addConsultantNewsletterDraftss()
+	 */
+	public function clearConsultantNewsletterDraftss()
+	{
+		$this->collConsultantNewsletterDraftss = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collConsultantNewsletterDraftss collection.
+	 *
+	 * By default this just sets the collConsultantNewsletterDraftss collection to an empty array (like clearcollConsultantNewsletterDraftss());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @param      boolean $overrideExisting If set to true, the method call initializes
+	 *                                        the collection even if it is not empty
+	 *
+	 * @return     void
+	 */
+	public function initConsultantNewsletterDraftss($overrideExisting = true)
+	{
+		if (null !== $this->collConsultantNewsletterDraftss && !$overrideExisting) {
+			return;
+		}
+		$this->collConsultantNewsletterDraftss = new PropelObjectCollection();
+		$this->collConsultantNewsletterDraftss->setModel('ConsultantNewsletterDrafts');
+	}
+
+	/**
+	 * Gets an array of ConsultantNewsletterDrafts objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this Customers is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array ConsultantNewsletterDrafts[] List of ConsultantNewsletterDrafts objects
+	 * @throws     PropelException
+	 */
+	public function getConsultantNewsletterDraftss($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collConsultantNewsletterDraftss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collConsultantNewsletterDraftss) {
+				// return empty collection
+				$this->initConsultantNewsletterDraftss();
+			} else {
+				$collConsultantNewsletterDraftss = ConsultantNewsletterDraftsQuery::create(null, $criteria)
+					->filterByCustomers($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collConsultantNewsletterDraftss;
+				}
+				$this->collConsultantNewsletterDraftss = $collConsultantNewsletterDraftss;
+			}
+		}
+		return $this->collConsultantNewsletterDraftss;
+	}
+
+	/**
+	 * Sets a collection of ConsultantNewsletterDrafts objects related by a one-to-many relationship
+	 * to the current object.
+	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+	 * and new objects from the given Propel collection.
+	 *
+	 * @param      PropelCollection $consultantNewsletterDraftss A Propel collection.
+	 * @param      PropelPDO $con Optional connection object
+	 */
+	public function setConsultantNewsletterDraftss(PropelCollection $consultantNewsletterDraftss, PropelPDO $con = null)
+	{
+		$this->consultantNewsletterDraftssScheduledForDeletion = $this->getConsultantNewsletterDraftss(new Criteria(), $con)->diff($consultantNewsletterDraftss);
+
+		foreach ($consultantNewsletterDraftss as $consultantNewsletterDrafts) {
+			// Fix issue with collection modified by reference
+			if ($consultantNewsletterDrafts->isNew()) {
+				$consultantNewsletterDrafts->setCustomers($this);
+			}
+			$this->addConsultantNewsletterDrafts($consultantNewsletterDrafts);
+		}
+
+		$this->collConsultantNewsletterDraftss = $consultantNewsletterDraftss;
+	}
+
+	/**
+	 * Returns the number of related ConsultantNewsletterDrafts objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related ConsultantNewsletterDrafts objects.
+	 * @throws     PropelException
+	 */
+	public function countConsultantNewsletterDraftss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collConsultantNewsletterDraftss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collConsultantNewsletterDraftss) {
+				return 0;
+			} else {
+				$query = ConsultantNewsletterDraftsQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterByCustomers($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collConsultantNewsletterDraftss);
+		}
+	}
+
+	/**
+	 * Method called to associate a ConsultantNewsletterDrafts object to this object
+	 * through the ConsultantNewsletterDrafts foreign key attribute.
+	 *
+	 * @param      ConsultantNewsletterDrafts $l ConsultantNewsletterDrafts
+	 * @return     Customers The current object (for fluent API support)
+	 */
+	public function addConsultantNewsletterDrafts(ConsultantNewsletterDrafts $l)
+	{
+		if ($this->collConsultantNewsletterDraftss === null) {
+			$this->initConsultantNewsletterDraftss();
+		}
+		if (!$this->collConsultantNewsletterDraftss->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddConsultantNewsletterDrafts($l);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param	ConsultantNewsletterDrafts $consultantNewsletterDrafts The consultantNewsletterDrafts object to add.
+	 */
+	protected function doAddConsultantNewsletterDrafts($consultantNewsletterDrafts)
+	{
+		$this->collConsultantNewsletterDraftss[]= $consultantNewsletterDrafts;
+		$consultantNewsletterDrafts->setCustomers($this);
+	}
+
+	/**
 	 * Gets a single GothiaAccounts object, which is related to this object by a one-to-one relationship.
 	 *
 	 * @param      PropelPDO $con optional connection object
@@ -3302,6 +3527,11 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collConsultantNewsletterDraftss) {
+				foreach ($this->collConsultantNewsletterDraftss as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 			if ($this->singleGothiaAccounts) {
 				$this->singleGothiaAccounts->clearAllReferences($deep);
 			}
@@ -3338,6 +3568,10 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			$this->collWallLikess->clearIterator();
 		}
 		$this->collWallLikess = null;
+		if ($this->collConsultantNewsletterDraftss instanceof PropelCollection) {
+			$this->collConsultantNewsletterDraftss->clearIterator();
+		}
+		$this->collConsultantNewsletterDraftss = null;
 		if ($this->singleGothiaAccounts instanceof PropelCollection) {
 			$this->singleGothiaAccounts->clearIterator();
 		}

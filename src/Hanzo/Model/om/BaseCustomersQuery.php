@@ -11,6 +11,7 @@ use \PropelCollection;
 use \PropelException;
 use \PropelPDO;
 use Hanzo\Model\Addresses;
+use Hanzo\Model\ConsultantNewsletterDrafts;
 use Hanzo\Model\Consultants;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\Customers;
@@ -89,6 +90,10 @@ use Hanzo\Model\WallLikes;
  * @method     CustomersQuery leftJoinWallLikes($relationAlias = null) Adds a LEFT JOIN clause to the query using the WallLikes relation
  * @method     CustomersQuery rightJoinWallLikes($relationAlias = null) Adds a RIGHT JOIN clause to the query using the WallLikes relation
  * @method     CustomersQuery innerJoinWallLikes($relationAlias = null) Adds a INNER JOIN clause to the query using the WallLikes relation
+ *
+ * @method     CustomersQuery leftJoinConsultantNewsletterDrafts($relationAlias = null) Adds a LEFT JOIN clause to the query using the ConsultantNewsletterDrafts relation
+ * @method     CustomersQuery rightJoinConsultantNewsletterDrafts($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ConsultantNewsletterDrafts relation
+ * @method     CustomersQuery innerJoinConsultantNewsletterDrafts($relationAlias = null) Adds a INNER JOIN clause to the query using the ConsultantNewsletterDrafts relation
  *
  * @method     CustomersQuery leftJoinGothiaAccounts($relationAlias = null) Adds a LEFT JOIN clause to the query using the GothiaAccounts relation
  * @method     CustomersQuery rightJoinGothiaAccounts($relationAlias = null) Adds a RIGHT JOIN clause to the query using the GothiaAccounts relation
@@ -1268,6 +1273,79 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinWallLikes($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'WallLikes', '\Hanzo\Model\WallLikesQuery');
+	}
+
+	/**
+	 * Filter the query by a related ConsultantNewsletterDrafts object
+	 *
+	 * @param     ConsultantNewsletterDrafts $consultantNewsletterDrafts  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function filterByConsultantNewsletterDrafts($consultantNewsletterDrafts, $comparison = null)
+	{
+		if ($consultantNewsletterDrafts instanceof ConsultantNewsletterDrafts) {
+			return $this
+				->addUsingAlias(CustomersPeer::ID, $consultantNewsletterDrafts->getConsultantsId(), $comparison);
+		} elseif ($consultantNewsletterDrafts instanceof PropelCollection) {
+			return $this
+				->useConsultantNewsletterDraftsQuery()
+				->filterByPrimaryKeys($consultantNewsletterDrafts->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByConsultantNewsletterDrafts() only accepts arguments of type ConsultantNewsletterDrafts or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the ConsultantNewsletterDrafts relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    CustomersQuery The current query, for fluid interface
+	 */
+	public function joinConsultantNewsletterDrafts($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('ConsultantNewsletterDrafts');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'ConsultantNewsletterDrafts');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the ConsultantNewsletterDrafts relation ConsultantNewsletterDrafts object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\ConsultantNewsletterDraftsQuery A secondary query class using the current class as primary query
+	 */
+	public function useConsultantNewsletterDraftsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinConsultantNewsletterDrafts($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'ConsultantNewsletterDrafts', '\Hanzo\Model\ConsultantNewsletterDraftsQuery');
 	}
 
 	/**

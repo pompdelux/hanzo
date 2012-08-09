@@ -20,6 +20,8 @@ use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Events;
+use Hanzo\Model\EventsQuery;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersLines;
@@ -277,6 +279,12 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	protected $delivery_method;
 
 	/**
+	 * The value for the events_id field.
+	 * @var        int
+	 */
+	protected $events_id;
+
+	/**
 	 * The value for the finished_at field.
 	 * @var        string
 	 */
@@ -308,6 +316,11 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	 * @var        Countries
 	 */
 	protected $aCountriesRelatedByDeliveryCountriesId;
+
+	/**
+	 * @var        Events
+	 */
+	protected $aEvents;
 
 	/**
 	 * @var        array OrdersAttributes[] Collection to store aggregation of OrdersAttributes objects.
@@ -750,6 +763,16 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	public function getDeliveryMethod()
 	{
 		return $this->delivery_method;
+	}
+
+	/**
+	 * Get the [events_id] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getEventsId()
+	{
+		return $this->events_id;
 	}
 
 	/**
@@ -1587,6 +1610,30 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 	} // setDeliveryMethod()
 
 	/**
+	 * Set the value of [events_id] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     Orders The current object (for fluent API support)
+	 */
+	public function setEventsId($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->events_id !== $v) {
+			$this->events_id = $v;
+			$this->modifiedColumns[] = OrdersPeer::EVENTS_ID;
+		}
+
+		if ($this->aEvents !== null && $this->aEvents->getId() !== $v) {
+			$this->aEvents = null;
+		}
+
+		return $this;
+	} // setEventsId()
+
+	/**
 	 * Sets the value of [finished_at] column to a normalized version of the date/time value specified.
 	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.
@@ -1735,9 +1782,10 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$this->delivery_state_province = ($row[$startcol + 32] !== null) ? (string) $row[$startcol + 32] : null;
 			$this->delivery_company_name = ($row[$startcol + 33] !== null) ? (string) $row[$startcol + 33] : null;
 			$this->delivery_method = ($row[$startcol + 34] !== null) ? (string) $row[$startcol + 34] : null;
-			$this->finished_at = ($row[$startcol + 35] !== null) ? (string) $row[$startcol + 35] : null;
-			$this->created_at = ($row[$startcol + 36] !== null) ? (string) $row[$startcol + 36] : null;
-			$this->updated_at = ($row[$startcol + 37] !== null) ? (string) $row[$startcol + 37] : null;
+			$this->events_id = ($row[$startcol + 35] !== null) ? (int) $row[$startcol + 35] : null;
+			$this->finished_at = ($row[$startcol + 36] !== null) ? (string) $row[$startcol + 36] : null;
+			$this->created_at = ($row[$startcol + 37] !== null) ? (string) $row[$startcol + 37] : null;
+			$this->updated_at = ($row[$startcol + 38] !== null) ? (string) $row[$startcol + 38] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -1746,7 +1794,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 38; // 38 = OrdersPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 39; // 39 = OrdersPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Orders object", $e);
@@ -1777,6 +1825,9 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		}
 		if ($this->aCountriesRelatedByDeliveryCountriesId !== null && $this->delivery_countries_id !== $this->aCountriesRelatedByDeliveryCountriesId->getId()) {
 			$this->aCountriesRelatedByDeliveryCountriesId = null;
+		}
+		if ($this->aEvents !== null && $this->events_id !== $this->aEvents->getId()) {
+			$this->aEvents = null;
 		}
 	} // ensureConsistency
 
@@ -1820,6 +1871,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$this->aCustomers = null;
 			$this->aCountriesRelatedByBillingCountriesId = null;
 			$this->aCountriesRelatedByDeliveryCountriesId = null;
+			$this->aEvents = null;
 			$this->collOrdersAttributess = null;
 
 			$this->collOrdersLiness = null;
@@ -1975,6 +2027,13 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 					$affectedRows += $this->aCountriesRelatedByDeliveryCountriesId->save($con);
 				}
 				$this->setCountriesRelatedByDeliveryCountriesId($this->aCountriesRelatedByDeliveryCountriesId);
+			}
+
+			if ($this->aEvents !== null) {
+				if ($this->aEvents->isModified() || $this->aEvents->isNew()) {
+					$affectedRows += $this->aEvents->save($con);
+				}
+				$this->setEvents($this->aEvents);
 			}
 
 			if ($this->isNew() || $this->isModified()) {
@@ -2200,6 +2259,9 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersPeer::DELIVERY_METHOD)) {
 			$modifiedColumns[':p' . $index++]  = '`DELIVERY_METHOD`';
 		}
+		if ($this->isColumnModified(OrdersPeer::EVENTS_ID)) {
+			$modifiedColumns[':p' . $index++]  = '`EVENTS_ID`';
+		}
 		if ($this->isColumnModified(OrdersPeer::FINISHED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`FINISHED_AT`';
 		}
@@ -2325,6 +2387,9 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 					case '`DELIVERY_METHOD`':
 						$stmt->bindValue($identifier, $this->delivery_method, PDO::PARAM_STR);
 						break;
+					case '`EVENTS_ID`':
+						$stmt->bindValue($identifier, $this->events_id, PDO::PARAM_INT);
+						break;
 					case '`FINISHED_AT`':
 						$stmt->bindValue($identifier, $this->finished_at, PDO::PARAM_STR);
 						break;
@@ -2448,6 +2513,12 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			if ($this->aCountriesRelatedByDeliveryCountriesId !== null) {
 				if (!$this->aCountriesRelatedByDeliveryCountriesId->validate($columns)) {
 					$failureMap = array_merge($failureMap, $this->aCountriesRelatedByDeliveryCountriesId->getValidationFailures());
+				}
+			}
+
+			if ($this->aEvents !== null) {
+				if (!$this->aEvents->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aEvents->getValidationFailures());
 				}
 			}
 
@@ -2636,12 +2707,15 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 				return $this->getDeliveryMethod();
 				break;
 			case 35:
-				return $this->getFinishedAt();
+				return $this->getEventsId();
 				break;
 			case 36:
-				return $this->getCreatedAt();
+				return $this->getFinishedAt();
 				break;
 			case 37:
+				return $this->getCreatedAt();
+				break;
+			case 38:
 				return $this->getUpdatedAt();
 				break;
 			default:
@@ -2708,9 +2782,10 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			$keys[32] => $this->getDeliveryStateProvince(),
 			$keys[33] => $this->getDeliveryCompanyName(),
 			$keys[34] => $this->getDeliveryMethod(),
-			$keys[35] => $this->getFinishedAt(),
-			$keys[36] => $this->getCreatedAt(),
-			$keys[37] => $this->getUpdatedAt(),
+			$keys[35] => $this->getEventsId(),
+			$keys[36] => $this->getFinishedAt(),
+			$keys[37] => $this->getCreatedAt(),
+			$keys[38] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aCustomers) {
@@ -2721,6 +2796,9 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			}
 			if (null !== $this->aCountriesRelatedByDeliveryCountriesId) {
 				$result['CountriesRelatedByDeliveryCountriesId'] = $this->aCountriesRelatedByDeliveryCountriesId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+			}
+			if (null !== $this->aEvents) {
+				$result['Events'] = $this->aEvents->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
 			}
 			if (null !== $this->collOrdersAttributess) {
 				$result['OrdersAttributess'] = $this->collOrdersAttributess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -2874,12 +2952,15 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 				$this->setDeliveryMethod($value);
 				break;
 			case 35:
-				$this->setFinishedAt($value);
+				$this->setEventsId($value);
 				break;
 			case 36:
-				$this->setCreatedAt($value);
+				$this->setFinishedAt($value);
 				break;
 			case 37:
+				$this->setCreatedAt($value);
+				break;
+			case 38:
 				$this->setUpdatedAt($value);
 				break;
 		} // switch()
@@ -2941,9 +3022,10 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if (array_key_exists($keys[32], $arr)) $this->setDeliveryStateProvince($arr[$keys[32]]);
 		if (array_key_exists($keys[33], $arr)) $this->setDeliveryCompanyName($arr[$keys[33]]);
 		if (array_key_exists($keys[34], $arr)) $this->setDeliveryMethod($arr[$keys[34]]);
-		if (array_key_exists($keys[35], $arr)) $this->setFinishedAt($arr[$keys[35]]);
-		if (array_key_exists($keys[36], $arr)) $this->setCreatedAt($arr[$keys[36]]);
-		if (array_key_exists($keys[37], $arr)) $this->setUpdatedAt($arr[$keys[37]]);
+		if (array_key_exists($keys[35], $arr)) $this->setEventsId($arr[$keys[35]]);
+		if (array_key_exists($keys[36], $arr)) $this->setFinishedAt($arr[$keys[36]]);
+		if (array_key_exists($keys[37], $arr)) $this->setCreatedAt($arr[$keys[37]]);
+		if (array_key_exists($keys[38], $arr)) $this->setUpdatedAt($arr[$keys[38]]);
 	}
 
 	/**
@@ -2990,6 +3072,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		if ($this->isColumnModified(OrdersPeer::DELIVERY_STATE_PROVINCE)) $criteria->add(OrdersPeer::DELIVERY_STATE_PROVINCE, $this->delivery_state_province);
 		if ($this->isColumnModified(OrdersPeer::DELIVERY_COMPANY_NAME)) $criteria->add(OrdersPeer::DELIVERY_COMPANY_NAME, $this->delivery_company_name);
 		if ($this->isColumnModified(OrdersPeer::DELIVERY_METHOD)) $criteria->add(OrdersPeer::DELIVERY_METHOD, $this->delivery_method);
+		if ($this->isColumnModified(OrdersPeer::EVENTS_ID)) $criteria->add(OrdersPeer::EVENTS_ID, $this->events_id);
 		if ($this->isColumnModified(OrdersPeer::FINISHED_AT)) $criteria->add(OrdersPeer::FINISHED_AT, $this->finished_at);
 		if ($this->isColumnModified(OrdersPeer::CREATED_AT)) $criteria->add(OrdersPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(OrdersPeer::UPDATED_AT)) $criteria->add(OrdersPeer::UPDATED_AT, $this->updated_at);
@@ -3089,6 +3172,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$copyObj->setDeliveryStateProvince($this->getDeliveryStateProvince());
 		$copyObj->setDeliveryCompanyName($this->getDeliveryCompanyName());
 		$copyObj->setDeliveryMethod($this->getDeliveryMethod());
+		$copyObj->setEventsId($this->getEventsId());
 		$copyObj->setFinishedAt($this->getFinishedAt());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
@@ -3323,6 +3407,55 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 			 */
 		}
 		return $this->aCountriesRelatedByDeliveryCountriesId;
+	}
+
+	/**
+	 * Declares an association between this object and a Events object.
+	 *
+	 * @param      Events $v
+	 * @return     Orders The current object (for fluent API support)
+	 * @throws     PropelException
+	 */
+	public function setEvents(Events $v = null)
+	{
+		if ($v === null) {
+			$this->setEventsId(NULL);
+		} else {
+			$this->setEventsId($v->getId());
+		}
+
+		$this->aEvents = $v;
+
+		// Add binding for other direction of this n:n relationship.
+		// If this object has already been added to the Events object, it will not be re-added.
+		if ($v !== null) {
+			$v->addOrders($this);
+		}
+
+		return $this;
+	}
+
+
+	/**
+	 * Get the associated Events object
+	 *
+	 * @param      PropelPDO Optional Connection object.
+	 * @return     Events The associated Events object.
+	 * @throws     PropelException
+	 */
+	public function getEvents(PropelPDO $con = null)
+	{
+		if ($this->aEvents === null && ($this->events_id !== null)) {
+			$this->aEvents = EventsQuery::create()->findPk($this->events_id, $con);
+			/* The following can be used additionally to
+				guarantee the related object contains a reference
+				to this object.  This level of coupling may, however, be
+				undesirable since it could result in an only partially populated collection
+				in the referenced object.
+				$this->aEvents->addOrderss($this);
+			 */
+		}
+		return $this->aEvents;
 	}
 
 
@@ -4158,6 +4291,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$this->delivery_state_province = null;
 		$this->delivery_company_name = null;
 		$this->delivery_method = null;
+		$this->events_id = null;
 		$this->finished_at = null;
 		$this->created_at = null;
 		$this->updated_at = null;
@@ -4232,6 +4366,7 @@ abstract class BaseOrders extends BaseObject  implements Persistent
 		$this->aCustomers = null;
 		$this->aCountriesRelatedByBillingCountriesId = null;
 		$this->aCountriesRelatedByDeliveryCountriesId = null;
+		$this->aEvents = null;
 	}
 
 	/**
