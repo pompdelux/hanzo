@@ -378,7 +378,14 @@
                 <source>events.create_customer.description.text</source>
                 <target><![CDATA[<b>Eksisterende kunde:</b> Tast inn kundens e-post adresse og klikk på knappen Hent.<br><br><span style="font-weight:bold;color:#A10000;">Bemerk:</span> På denne siden skal du skrive privatoplysningene dine (og <u>ikke</u> evt. firmaopplysninger).]]></target>
             </trans-unit>
-
+            <trans-unit id="events.fetch_customer.placeholder">
+                <source>events.fetch_customer.placeholder</source>
+                <target>E-mail eller tlf. nr.</target>
+            </trans-unit>
+            <trans-unit id="events.fetch_customer.button">
+                <source>events.fetch_customer.button</source>
+                <target>Hent</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>

@@ -367,6 +367,14 @@
                 <source>events.create_customer.description.text</source>
                 <target><![CDATA['<b>Existerande kund:</b> Skriv in kundens e-mailadress eller telefonnummer och klicka på knappen Hämta.]]></target>
             </trans-unit>
+            <trans-unit id="events.fetch_customer.placeholder">
+                <source>events.fetch_customer.placeholder</source>
+                <target>E-mail eller tlf. nr.</target>
+            </trans-unit>
+            <trans-unit id="events.fetch_customer.button">
+                <source>events.fetch_customer.button</source>
+                <target>Hent</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
