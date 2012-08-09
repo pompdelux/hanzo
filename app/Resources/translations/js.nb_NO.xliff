@@ -193,7 +193,7 @@
             </trans-unit>
             <trans-unit id="event.confirm.delete.participant">
                 <source>event.confirm.delete.participant</source>
-                <target>Er du sikker på du vil slette denne deltager?</target>
+                <target>Er du sikker på du vil slette denne deltager? </target>
             </trans-unit>
 			            <trans-unit id="month.Januar">
                 <source>month.Januar</source>
