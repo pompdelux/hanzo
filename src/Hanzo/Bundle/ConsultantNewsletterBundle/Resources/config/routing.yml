@@ -3,8 +3,8 @@ consultantnewsletter:
     defaults:
         _controller: ConsultantNewsletterBundle:Default:index
         draft_id: null
-    requirements:
-        draft_id: \d+
+#    requirements:
+#        draft_id: \d+
 
 consultantnewsletter_filemanager:
     pattern:  /consultantnewsletter/filemanager
