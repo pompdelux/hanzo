@@ -47,8 +47,8 @@ class CheckoutListener
 
         $message = 'Order id: '.$order->getID().'<br>
             Order id i session: '. $session->get('order_id') .'<br>
-            Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br> 
-            Kunde email: '. $order->getEmail() .'<br> 
+            Kunde navn: '. $order->getFirstName() .' '. $order->getLastName() .'<br>
+            Kunde email: '. $order->getEmail() .'<br>
             Host name: '.$host.'<br>
             Domain key: '.$domainKey.'<br>
             Order state: '. $order->getState() .'<br>
@@ -58,17 +58,14 @@ class CheckoutListener
 
         Tools::log('Payment failed: '.str_replace('<br>',"", $message ));
 
-        try
-        {
+        try {
             $this->mailer->setSubject( sprintf('[FEJL] Ordre nr: %d fejlede', $order->getId()) )
                 ->setBody('Beskeden er i HTML format')
                 ->addPart($message,'text/html')
                 ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
                 ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
                 ->send();
-        } 
-        catch (\Swift_TransportException $e) 
-        {
+        } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
         }
 
@@ -199,7 +196,7 @@ class CheckoutListener
             if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                try 
+                try
                 {
                     $oldOrder->cancelPayment();
                 }
@@ -212,9 +209,19 @@ class CheckoutListener
 
         try {
             switch ($attributes->global->domain_key) {
+                case 'SalesFI':
+                case 'FI':
+                    $bcc = 'orderfi@pompdelux.com';
+                    break;
+                case 'SalesNL':
+                case 'NL':
+                    $bcc = 'ordernl@pompdelux.com';
+                    break;
+                case 'SalesSE':
                 case 'SE':
                     $bcc = 'order@pompdelux.se';
                     break;
+                case 'SalesNO':
                 case 'NO':
                     $bcc = 'order@pompdelux.no';
                     break;
