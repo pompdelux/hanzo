@@ -323,6 +323,9 @@ class ConsultantNewsletterApi
             case 'NL':
                 $listid = 20;
                 break;
+            case 'FI':
+                $listid = 30;
+                break;
         }
 
         return $listid;
