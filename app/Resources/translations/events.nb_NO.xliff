@@ -356,7 +356,7 @@
             </trans-unit>
             <trans-unit id="event.sms.reminder">
                 <source>event.sms.reminder</source>
-                <target>Hei %name% Husk POMPdeLUX home shopping-arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Vennlig hilsen POMPdeLUX</target>
+                <target>Hei %name% Husk POMPdeLUX home shopping-arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Vennlig hilsen POMPdeLUX.</target>
             </trans-unit>
             <trans-unit id="events.name">
                 <source>events.name</source>
