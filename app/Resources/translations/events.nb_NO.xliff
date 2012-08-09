@@ -14,6 +14,10 @@
                 <source>events.calendar.description.text</source>
                 <target>Her kan du se alle dine oprettede arrangementer. Grøn er lig med åbne arrangementer og rød er lig med lukkede arrangementer. Klik på en for at få vist en detaljeret beskrivelse.</target>
             </trans-unit>
+			<trans-unit id="events.calendar.archived.header.text">
+                <source>events.calendar.archived.header.text</source>
+                <target>Arkiverede arrangementer</target>
+            </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
                 <target>Arrangement detaljer</target>
