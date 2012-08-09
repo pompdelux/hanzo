@@ -85,22 +85,19 @@ class ExceptionHandler
             }
         }
 
-        if ($exception instanceof AccessDeniedHttpException) 
-        {
+        if ($exception instanceof AccessDeniedHttpException) {
             $request = $this->service_container->get('request');
-
             $pathWithNoLocale = substr($request->getPathInfo(),6);
 
-            switch ( $pathWithNoLocale ) 
-            {
-              case '/account': // The customer probably tried to created an account on the wrong locale
-                  $response = new Response('', 302, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/login'));
-                  $event->setResponse($response);
-                break;
-              
-              default:
-                // code...
-                break;
+            switch ( $pathWithNoLocale ) {
+                case '/account': // The customer probably tried to created an account on the wrong locale
+                    $response = new Response('', 302, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/login'));
+                    $event->setResponse($response);
+                    break;
+
+                default:
+                    // code...
+                    break;
             }
         }
     }
