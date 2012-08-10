@@ -11,6 +11,9 @@ inmobile settings:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('SE', 'provider.user', 'sms', 'pompdelux');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('SE', 'provider.service', 'sms', 'unwire');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('SE', 'provider.calling_code', 'sms', '46');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('SE', 'send.event.invites', 'sms', '0');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('SE', 'send.event.confirmations', 'sms', '0');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('SE', 'send.event.reminders', 'sms', '0');
   no:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'provider.price', 'sms', '0.00NOK');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'provider.appnr', 'sms', '2201');
@@ -20,6 +23,9 @@ inmobile settings:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'provider.user', 'sms', 'pompdelux');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'provider.service', 'sms', 'unwire');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'provider.calling_code', 'sms', '47');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'send.event.invites', 'sms', '0');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'send.event.confirmations', 'sms', '0');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('NO', 'send.event.reminders', 'sms', '0');
   fi:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'provider.price', 'sms', '0.00EUR');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'provider.appnr', 'sms', '17163');
@@ -29,6 +35,9 @@ inmobile settings:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'provider.user', 'sms', 'pompdelux');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'provider.service', 'sms', 'unwire');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'provider.calling_code', 'sms', '358');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'send.event.invites', 'sms', '0');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'send.event.confirmations', 'sms', '0');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('FI', 'send.event.reminders', 'sms', '0');
   dk:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'provider.price', 'sms', '0.00DKK');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'provider.appnr', 'sms', '1231');
@@ -38,21 +47,29 @@ inmobile settings:
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'provider.user', 'sms', 'pompdelux');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'provider.service', 'sms', 'unwire');
     INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'provider.calling_code', 'sms', '45');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'send.event.invites', 'sms', '1');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'send.event.confirmations', 'sms', '1');
+    INSERT INTO `domains_settings` (`domain_key`, `c_key`, `ns`, `c_value`) VALUES('DK', 'send.event.reminders', 'sms', '1');
 
 
 Sales:
   dk:
     INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'dk', 'SalesDK');
     INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesDK',  'closed',  'webshop',  '0');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesDK',  'allowed_countries',  'limits',  'Denmark');
   no:
     INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'no', 'SalesNO');
     INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesNO',  'closed',  'webshop',  '0');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesNO',  'allowed_countries',  'limits',  'Norway');
   se:
     INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'se', 'SalesSE');
     INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesSE',  'closed',  'webshop',  '0');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesSE',  'allowed_countries',  'limits',  'Sweden');
   fi:
     INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'fi', 'SalesFI');
     INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesFI',  'closed',  'webshop',  '0');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesFI',  'allowed_countries',  'limits',  'Finland');
   nl:
     INSERT INTO `domains` (`id`, `domain_name`, `domain_key`) VALUES(NULL, 'nl', 'SalesNL');
     INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesNL',  'closed',  'webshop',  '0');
+    INSERT INTO `domains_settings` (`id` ,`domain_key` ,`c_key` ,`ns` ,`c_value`) VALUES (NULL ,  'SalesNL',  'allowed_countries',  'limits',  'Netherlands');
