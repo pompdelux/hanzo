@@ -9,12 +9,12 @@ $(function(){
   if ($('body#body-frontpage').length && $('html').hasClass('touch') === false) {
     // frontpage and not mobile
     vegas_backgrounds = [
-      { src: cdn_url+'/fx/images/bg/01b.jpg', fade:1000, loading: false, valign: 'top' },
-      { src: cdn_url+'/fx/images/bg/02b.jpg', fade:1000, loading: false, valign: 'top' },
-      { src: cdn_url+'/fx/images/bg/03b.jpg', fade:1000, loading: false, valign: 'top' },
-      { src: cdn_url+'/fx/images/bg/04b.jpg', fade:1000, loading: false, valign: 'top' },
-      { src: cdn_url+'/fx/images/bg/05b.jpg', fade:1000, loading: false, valign: 'top' },
-      { src: cdn_url+'/fx/images/bg/06b.jpg', fade:1000, loading: false, valign: 'top' }
+      { src: cdn_url+'/fx/images/bg/01.jpg', fade:1000, loading: false, valign: 'top' },
+      { src: cdn_url+'/fx/images/bg/02.jpg', fade:1000, loading: false, valign: 'top' },
+      { src: cdn_url+'/fx/images/bg/03.jpg', fade:1000, loading: false, valign: 'top' },
+      { src: cdn_url+'/fx/images/bg/04.jpg', fade:1000, loading: false, valign: 'top' },
+      { src: cdn_url+'/fx/images/bg/05.jpg', fade:1000, loading: false, valign: 'top' },
+      { src: cdn_url+'/fx/images/bg/06.jpg', fade:1000, loading: false, valign: 'top' }
     ];
   } else {
     vegas_backgrounds = [

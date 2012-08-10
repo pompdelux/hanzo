@@ -193,7 +193,103 @@
             </trans-unit>
             <trans-unit id="event.confirm.delete.participant">
                 <source>event.confirm.delete.participant</source>
-                <target>Er du sikker på du vil slette denne deltager ?</target>
+                <target>Er du sikker på du vil slette denne deltager? </target>
+            </trans-unit>
+			            <trans-unit id="month.Januar">
+                <source>month.Januar</source>
+                <target>Januar</target>
+            </trans-unit>
+            <trans-unit id="today">
+                <source>today</source>
+                <target>I dag</target>
+            </trans-unit>
+            <trans-unit id="month.February">
+                <source>month.February</source>
+                <target>Februar</target>
+            </trans-unit>
+            <trans-unit id="month.March">
+                <source>month.March</source>
+                <target>Marts</target>
+            </trans-unit>
+            <trans-unit id="month.April">
+                <source>month.April</source>
+                <target>April</target>
+            </trans-unit>
+            <trans-unit id="month.May">
+                <source>month.May</source>
+                <target>Maj</target>
+            </trans-unit>
+            <trans-unit id="month.June">
+                <source>month.June</source>
+                <target>Juni</target>
+            </trans-unit>
+            <trans-unit id="month.July">
+                <source>month.July</source>
+                <target>Juli</target>
+            </trans-unit>
+            <trans-unit id="month.August">
+                <source>month.August</source>
+                <target>August</target>
+            </trans-unit>
+            <trans-unit id="month.September">
+                <source>month.September</source>
+                <target>September</target>
+            </trans-unit>
+            <trans-unit id="month.October">
+                <source>month.October</source>
+                <target>Oktober</target>
+            </trans-unit>
+            <trans-unit id="month.November">
+                <source>month.November</source>
+                <target>November</target>
+            </trans-unit>
+            <trans-unit id="month.December">
+                <source>month.December</source>
+                <target>December</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sun">
+                <source>day.short.Sun</source>
+                <target>Søn</target>
+            </trans-unit>
+            <trans-unit id="day.short.Mon">
+                <source>day.short.Mon</source>
+                <target>Man</target>
+            </trans-unit>
+            <trans-unit id="day.short.Tue">
+                <source>day.short.Tue</source>
+                <target>Tir</target>
+            </trans-unit>
+            <trans-unit id="day.short.Wed">
+                <source>day.short.Wed</source>
+                <target>Ons</target>
+            </trans-unit>
+            <trans-unit id="day.short.Thu">
+                <source>day.short.Thu</source>
+                <target>Tor</target>
+            </trans-unit>
+            <trans-unit id="day.short.Fri">
+                <source>day.short.Fri</source>
+                <target>Fre</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sat">
+                <source>day.short.Sat</source>
+                <target>Lør</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.draft">
+                <source>consultant.newsletter.delete.draft</source>
+                <target>Er du sikker på du vil slette denne kladde?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.user">
+                <source>consultant.newsletter.delete.user</source>
+                <target>Er du sikker på du vil slette denne bruger fra listen?</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.size">
+                <source>quickorder.choose.size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.color">
+                <source>quickorder.choose.color</source>
+                <target>Color</target>
             </trans-unit>
         </body>
     </file>
