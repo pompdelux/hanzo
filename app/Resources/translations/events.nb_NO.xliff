@@ -312,7 +312,7 @@
             </trans-unit>
             <trans-unit id="events.participants.email.label">
                 <source>events.participants.email.label</source>
-                <target>E-post</target>
+                <target>E-post1</target>
             </trans-unit>
             <trans-unit id="events.participants.notify_by_sms.label">
                 <source>events.participants.notify_by_sms.label</source>
