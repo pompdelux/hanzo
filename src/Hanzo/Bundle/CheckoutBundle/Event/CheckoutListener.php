@@ -155,11 +155,10 @@ class CheckoutListener
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
             'card_type' => $card_type,
+            'event_id' => $order->getEventsId(),
+            'transaction_id' => '',
+            'payment_gateway_id' => '',
         );
-
-        if (isset($attributes->event->id)) {
-            $params['event_id'] = $attributes->event->id;
-        }
 
         if (isset($attributes->payment->transact)) {
             $params['transaction_id'] = $attributes->payment->transact;
@@ -208,6 +207,7 @@ class CheckoutListener
         }
 
         try {
+            // NICETO: not hardcoded
             switch ($attributes->global->domain_key) {
                 case 'SalesFI':
                 case 'FI':
@@ -232,7 +232,6 @@ class CheckoutListener
 
             $this->mailer->setMessage('order.confirmation', $params);
             $this->mailer->setTo($email, $name);
-            // NICETO: not hardcoded
             $this->mailer->setBcc($bcc);
             $this->mailer->send();
         } catch (\Swift_TransportException $e) {

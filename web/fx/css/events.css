@@ -87,3 +87,13 @@ li.dropdown-menu div a{
   border: none;
   display: block;
 }
+
+form#select-event-type {
+  margin: 20px;
+}
+form#select-event-type select {
+  margin: 10px 0;
+}
+form#fetch-customer-form .input {
+  width: 200px;
+}

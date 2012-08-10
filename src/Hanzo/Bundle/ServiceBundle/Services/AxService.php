@@ -44,7 +44,7 @@ class AxService
 
         $this->wsdl = 'http://'.$settings['host'].'/DynamicsAxServices.asmx?wsdl';
 
-        if (isset($settings['skip_send']) && $settings['skip_send'] == 1) {
+        if (isset($settings['skip_send']) && ($settings['skip_send'] == 1)) {
             $this->skip_send = true;
         }
     }
@@ -182,19 +182,6 @@ class AxService
 
         $freight_type = $order->getDeliveryMethod();
 
-        // NICETO, this should be set elsewhere
-        // hf@bellcom.dk: I think this is allready set to P or S..., e.g. external_id is P or S
-        /*switch ($attributes->global->domain_key) {
-            case 'NO':
-                $freight_type = ($freight_type == 10) ? 'P' : 'S';
-                break;
-            case 'SE':
-                $freight_type = 30;
-                break;
-        }*/
-
-        // Avoid sending stuff like 15.0000, cast to float fixes that... no really
-
         $salesTable = new stdClass();
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
@@ -224,6 +211,10 @@ class AxService
         $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
 
+        if ($event = $order->getEvents()) {
+            $salesTable->SalesGroup = $event->getCustomersRelatedByConsultantsId()->getConsultants()->getInitials();
+        }
+
         $salesOrder = new stdClass();
         $salesOrder->SalesTable = $salesTable;
 
@@ -234,7 +225,6 @@ class AxService
         // NICETO, would be nice if this was not static..
         switch ($syncSalesOrder->endpointDomain) {
             case 'COM':
-            case 'NL': // FIXME: when .nl get's it's own domain, this will go
                 $syncSalesOrder->endpointDomain = 'DK';
                 break;
         }

@@ -36,8 +36,8 @@ events_create_customer:
     defaults: {  _controller: EventsBundle:Default:createCustomer }
 
 events_fetch_customer:
-    pattern:  /events/fetch-customer/{type}/
-    defaults: 
+    pattern:  /events/fetch-customer
+    defaults:
         _controller: EventsBundle:Default:fetchCustomer
         _format: json
     requirements:
@@ -91,3 +91,9 @@ events_sms_test:
         _controller: EventsBundle:Sms:sendtest
     requirements:
         _method:  GET
+
+events_set_order_type:
+    pattern: /events/set-order-type
+    defaults:
+        _controller: EventsBundle:Events:setOrderType
+

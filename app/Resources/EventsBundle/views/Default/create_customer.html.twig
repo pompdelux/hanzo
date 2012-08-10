@@ -13,11 +13,14 @@
 <p>{{ 'events.create_customer.description.text'|trans({}, 'events')|raw }}</p>
 <div id="fetch-customer">
   <form id="fetch-customer-form">
-    <input type="text" placeholder="{{ 'events.fetch_customer.placeholder'|trans({}, 'events') }}"><input type="submit" value="{{ 'events.fetch_customer.button'|trans({}, 'events') }}">
+    <input type="text" placeholder="{{ 'events.fetch_customer.placeholder'|trans({}, 'events') }}" class="input">
+    <input type="submit" value="{{ 'events.fetch_customer.button'|trans({}, 'events') }}" class="button">
   </form>
 </div>
 
-<form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create" novalidate>
+<form action="{{ path('events_create_customer') }}" method="post" {{ form_enctype(form) }} class="create" novalidate>
+  <input type="hidden" name="id" id="customers_id" value="{{ form.vars.value.id }}">
+  {{ form_errors(form) }}
   <div id="customers">
     {{ form_row(form.first_name) }}
     {{ form_row(form.last_name) }}
@@ -31,10 +34,14 @@
     {{ form_row(form.phone) }}
     <br>
     {{ form_row(form.email) }}
-    <br>
-    {{ form_row(form.password) }}
-    <br>
-    {{ form_row(form.newsletter) }}
+
+    {% if form.vars.value.id == '' %}
+      <br>
+      {{ form_row(form.password) }}
+      <br>
+      {{ form_row(form.newsletter) }}
+    {% endif %}
+
     <br>
     {{ form_row(form.accept) }}
     {{ form_row(form.addresses.0.type) }}
@@ -43,6 +50,7 @@
   <input class="button off" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
   <a href="/forside/kundeservice/vilkaar" rel="colorbox">{{ 'create.terms'|trans({}, 'account')|raw }}</a>
 </form>
+
 
 {% endblock %}
 

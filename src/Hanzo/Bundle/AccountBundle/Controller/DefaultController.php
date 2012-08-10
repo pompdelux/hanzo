@@ -59,7 +59,7 @@ class DefaultController extends CoreController
         }
         else
         {
-            // If the customer is located in Denmark, but browsing the en_GB site, the geoip will set country to Denmark, 
+            // If the customer is located in Denmark, but browsing the en_GB site, the geoip will set country to Denmark,
             // and fail to select a country id in the dropdown as Denmark is excluded from that list
             // But when the customer submits the form "Denmark" is still send as a country so we try to override that here
 

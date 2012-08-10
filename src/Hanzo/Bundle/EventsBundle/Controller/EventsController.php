@@ -19,6 +19,8 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Addresses;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\Orders;
 
 class EventsController extends CoreController
 {
@@ -837,5 +839,45 @@ class EventsController extends CoreController
             'status' => true,
             'message' => ''
         ));
+    }
+
+    public function selectEventAction()
+    {
+        $customer = CustomersPeer::getCurrent();
+        $events = EventsQuery::create()
+            ->filterByEventDate(array('min' => time()))
+            ->filterByConsultantsId($customer->getId())
+            ->orderByEventDate(\Criteria::DESC)
+            ->find()
+        ;
+
+        return $this->render('EventsBundle:Events:selectEvent.html.twig', array(
+            'events' => $events,
+        ));
+    }
+
+    public function setOrderTypeAction()
+    {
+        $order = OrdersPeer::getCurrent();
+        if ($order instanceof Orders) {
+            $request = $this->getRequest();
+
+            list($id, $code) = explode(':', $request->get('type'));
+            $hostess = $request->get('hostess');
+
+            $order->setEventsId(null);
+            if (preg_match('/[0-9]+/', $id)) {
+                $order->setEventsId($id);
+            }
+
+            if (!empty($hostess)) {
+                $order->setAttribute('is_hostess_order', 'event', true);
+            }
+
+            $order->setAttribute('HomePartyId', 'global', $code);
+            $order->save();
+        }
+
+        return $this->response('');
     }
 }

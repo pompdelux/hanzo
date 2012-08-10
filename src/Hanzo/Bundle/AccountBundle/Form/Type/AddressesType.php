@@ -22,15 +22,18 @@ class AddressesType extends AbstractType
 
         $builder->add('address_line_1', null, array(
             'required' => TRUE,
-            'translation_domain' => 'account'
+            'translation_domain' => 'account',
+            'error_bubbling' => true,
         ));
         $builder->add('postal_code', null, array(
             'required' => TRUE,
-            'translation_domain' => 'account'
+            'translation_domain' => 'account',
+            'error_bubbling' => true,
         ));
         $builder->add('city', null, array(
             'required' => TRUE,
-            'translation_domain' => 'account'
+            'translation_domain' => 'account',
+            'error_bubbling' => true,
         ));
 
         if ( count( $this->countries ) > 1 )
@@ -44,6 +47,7 @@ class AddressesType extends AbstractType
           $builder->add('countries_id', 'choice', array(
             'choices'            => $choices,
             'translation_domain' => 'account',
+            'error_bubbling' => true,
           ));
           $builder->add('country', 'hidden', array('translation_domain' => 'account'));
         }
@@ -51,7 +55,8 @@ class AddressesType extends AbstractType
         {
           $builder->add('country', null, array(
             'translation_domain' => 'account',
-            'read_only' => TRUE
+            'read_only' => TRUE,
+            'error_bubbling' => true,
           ));
           $builder->add('countries_id', 'hidden', array('translation_domain' => 'account'));
         }

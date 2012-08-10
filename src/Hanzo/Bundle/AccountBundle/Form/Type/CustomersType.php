@@ -23,12 +23,14 @@ class CustomersType extends AbstractType
 
         $builder->add('addresses', 'collection', array(
             'type' => $this->addressType,
-            'translation_domain' => 'account'
+            'translation_domain' => 'account',
+            'error_bubbling' => true,
         ));
 
         $builder->add('phone', null, array(
             'required' => TRUE,
-            'translation_domain' => 'account'
+            'translation_domain' => 'account',
+            'error_bubbling' => true,
         ));
 
         $builder->add('email', 'repeated', array(
@@ -37,6 +39,7 @@ class CustomersType extends AbstractType
             'first_name' => 'email_address',
             'second_name' => 'email_address_repeated',
             'translation_domain' => 'account',
+            'error_bubbling' => true,
         ));
 
         $builder->add('password', 'repeated', array(
@@ -46,6 +49,7 @@ class CustomersType extends AbstractType
             'second_name' => 'pass_repeated',
             'translation_domain' => 'account',
             'required' => $this->is_new,
+            'error_bubbling' => true,
         ));
 
         if ($this->is_new) {
@@ -54,6 +58,7 @@ class CustomersType extends AbstractType
                 'required' => false,
                 'translation_domain' => 'account',
                 'property_path' => false,
+                'error_bubbling' => true,
             ));
 
             $builder->add('accept', 'checkbox', array(
@@ -61,6 +66,7 @@ class CustomersType extends AbstractType
                 'required' => true,
                 'translation_domain' => 'account',
                 'property_path' => false,
+                'error_bubbling' => true,
             ));
         }
     }

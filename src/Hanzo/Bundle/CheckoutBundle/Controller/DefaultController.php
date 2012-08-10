@@ -119,7 +119,11 @@ class DefaultController extends CoreController
             return;
         }
 
-        $customer = CustomersPeer::getCurrent();
+        if ($order->getCustomersId()) {
+            $customer = $order->getCustomers();
+        } else {
+            $customer = CustomersPeer::getCurrent();
+        }
 
         $data = $request->get('data');
 
@@ -293,7 +297,7 @@ class DefaultController extends CoreController
 
 
         // If the customer cancels payment, state is back to building
-        // Customer is only allowed to add products to the basket if state is >= pre payment 
+        // Customer is only allowed to add products to the basket if state is >= pre payment
         $order->setState( Orders::STATE_PRE_PAYMENT );
         $order->save();
 
@@ -390,7 +394,8 @@ class DefaultController extends CoreController
      **/
     public function addressesAction($skip_empty = false)
     {
-        $customer = CustomersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent();
+        $customer = $order->getCustomers();
         $customerAddresses = $customer->getAddresses();
 
         $addresses = array();
@@ -401,7 +406,7 @@ class DefaultController extends CoreController
             $addresses[$address->getType()] = $address;
         }
 
-        error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
+//        error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
         if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
             return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
         }
@@ -424,18 +429,13 @@ class DefaultController extends CoreController
 
         $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
 
-        $order = OrdersPeer::getCurrent();
         if ($skip_empty || ($order instanceof Orders)) {
             if (empty($addresses['overnightbox'])) {
                 $hasOvernightBox = false;
             }
-            /*if ($order->getDeliveryMethod() == 11) {
-                error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
-                unset($addresses['shipping']);
-            }*/
         }
 
-        if ($order->getDeliveryMethod() != 11) 
+        if ($order->getDeliveryMethod() != 11)
         {
             $addresses['shipping']->setCompanyName(null);
         }
@@ -467,6 +467,7 @@ class DefaultController extends CoreController
         // we only want the masterdata here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
+        $user = CustomersPeer::getCurrent();
         $order = OrdersPeer::getCurrent();
         $hanzo = Hanzo::getInstance();
 
@@ -501,17 +502,25 @@ class DefaultController extends CoreController
         // 3. register domain et-al
         $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
         $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-        $order->setAttribute('HomePartyId', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
-        $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
+
+        if ($order->getEventsId()) {
+            $event = $order->getEvents();
+            $order->setAttribute('HomePartyId', 'global', $event->getCode());
+            $order->setAttribute('SalesResponsible', 'global', $event->getCustomersRelatedByConsultantsId()->getConsultants()->getInitials());
+        } else {
+            $order->setAttribute('HomePartyId', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
+            $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
+        }
+
 
         if (!$order->getDeliveryMethod()) {
-          $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));
+            $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));
 
-          if (('DKK' == $order->getCurrencyCode()) && $order->getDeliveryCompanyName()) {
-            $order->setDeliveryMethod(11);
-          } else {
-            $order->setDeliveryMethod($shipping_methods[0]);
-          }
+            if (('DKK' == $order->getCurrencyCode()) && $order->getDeliveryCompanyName()) {
+                $order->setDeliveryMethod(11);
+            } else {
+                $order->setDeliveryMethod($shipping_methods[0]);
+            }
         }
 
         $order->save();

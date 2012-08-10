@@ -2,21 +2,31 @@
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Criteria;
 
-use Hanzo\Core\CoreController,
-    Hanzo\Core\Hanzo,
-    Hanzo\Model\Customers,
-    Hanzo\Model\Addresses,
-    Hanzo\Model\CountriesPeer,
-    Hanzo\Model\CustomersQuery,
-    Hanzo\Bundle\AccountBundle\Form\Type\CustomersType,
-    Hanzo\Bundle\AccountBundle\Form\Type\AddressesType
-    ;
+use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+
+use Hanzo\Model\Customers;
+use Hanzo\Model\Addresses;
+use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\OrdersPeer;
+
+use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
+use Hanzo\Bundle\AccountBundle\Form\Type\AddressesType;
+
+use Hanzo\Bundle\AccountBundle\NNO\NNO;
+use Hanzo\Bundle\AccountBundle\NNO\SearchQuestion;
+use Hanzo\Bundle\AccountBundle\NNO\nnoSubscriber;
+use Hanzo\Bundle\AccountBundle\NNO\nnoSubscriberResult;
 
 class DefaultController extends CoreController
 {
-    
+
     public function indexAction($name)
     {
         return $this->render('EventsBundle:Default:index.html.twig', array('name' => $name));
@@ -29,30 +39,80 @@ class DefaultController extends CoreController
      **/
     public function createCustomerAction()
     {
+        $request = $this->getRequest();
+        $consultant = CustomersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent();
+
+        // if the customer has been adding stuff to the basket, use that information here.
+        $customer_id = $request->get('id');
+        if ($consultant->getId() != $order->getCustomersId()) {
+            $customer_id = $order->getCustomersId();
+        }
+
         $hanzo = Hanzo::getInstance();
-
         $domainKey = $hanzo->get('core.domain_key');
-
         $errors = '';
-
-        $customer = new Customers();
-        $addresses = new Addresses();
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
-        if ( count( $countries ) == 1 ) // for .dk, .se, .no and maybe .nl
-        {
-            $addresses->setCountry( $countries[0]->getLocalName() );
-            $addresses->setCountriesId( $countries[0]->getId() );
+        if ('POST' == $request->getMethod() || $customer_id) {
+            $customer = CustomersQuery::create()
+                ->joinWithAddresses()
+                ->useAddressesQuery()
+                    ->filterByType('payment')
+                ->endUse()
+                ->findOneById($customer_id)
+            ;
+            $pwd = $customer->getPassword();
+            $address = $customer->getAddresses()->getFirst();
+        } else {
+            $customer = new Customers();
+            $address = new Addresses();
+            if ( count( $countries ) == 1 ) {
+                $address->setCountry( $countries[0]->getLocalName() );
+                $address->setCountriesId( $countries[0]->getId() );
+            }
+
+            $customer->addAddresses($address);
         }
 
-        $customer->addAddresses($addresses);
+        $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => 'customer_edit'));
 
-        $form = $this->createForm(
-            new CustomersType(true, new AddressesType($countries)),
-            $customer,
-            array('validation_groups' => 'customer')
-        );
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+Tools::log($_POST);
+Tools::log($customer->toArray());
+Tools::log($address->toArray());
+                if (!$customer->getPassword()) {
+                    $customer->setPassword($pwd);
+                } elseif ($customer->isNew()) {
+                    $customer->setPassword(sha1($customer->getPassword()));
+                    $customer->setPasswordClear($customer->getPassword());
+                }
+
+                $customer->save();
+                $address->save();
+
+                $order->setCustomersId($customer->getId());
+                $order->setFirstName($customer->getFirstName());
+                $order->setLastName($customer->getLastName());
+                $order->setEmail($customer->getEmail());
+                $order->setPhone($customer->getPhone());
+
+                $order->setBillingAddressLine1($address->getAddressLine1());
+                $order->setBillingAddressLine2($address->getAddressLine2());
+                $order->setBillingPostalCode($address->getPostalCode());
+                $order->setBillingCity($address->getCity());
+                $order->setBillingCountry($address->getCountry());
+                $order->setBillingCountriesId($address->getCountriesId());
+                $order->setBillingStateProvince($address->getStateProvince());
+                $order->save();
+
+                return $this->redirect($this->generateUrl('_checkout'));
+            }
+        }
 
         return $this->render('EventsBundle:Default:create_customer.html.twig', array(
             'page_type' => 'events-create-customer',
@@ -67,36 +127,75 @@ class DefaultController extends CoreController
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function fetchCustomerAction($type)
+    public function fetchCustomerAction()
     {
         $request = $this->getRequest();
         $value = $request->get('value');
+        $type = strpos($value, '@') ? 'email' : 'phone';
 
-        $error = false;
+        $error = true;
+        $data = array();
 
-        switch ($type) 
-        {
+        switch ($type) {
           case 'email':
               $customer = CustomersQuery::create()
                   ->findOneByEmail($value);
 
-              if ($customer instanceof Customers) 
-              {
-                  $data = array(
-                      'first_name' => $customer->getFirstName(),
-                      'last_name'  => $customer->getLastName(),
-                      );;
-              }
-              break;
-          case 'phone':
-              // code...
-              break;
+                if ($customer instanceof Customers) {
+                    $c = new Criteria();
+                    $c->add(AddressesPeer::TYPE, 'payment');
+                    $address = $customer->getAddressess($c);
+                    $address = $address->getFirst();
+
+                    if ($address instanceof Addresses) {
+                        $data = array(
+                            'id' => $customer->getId(),
+                            'first_name' => $customer->getFirstName(),
+                            'last_name'  => $customer->getLastName(),
+                            'phone' => $customer->getPhone(),
+                            'email_address' => $customer->getEmail(),
+                            'address_line_1' => $address->getAddressLine1(),
+                            'postal_code' => $address->getPostalCode(),
+                            'city' => $address->getCity(),
+                            'countries_id' => $address->getCountriesId(),
+                            'country' => $address->getCountry(),
+                        );
+                    }
+                }
+                break;
+
+            case 'phone':
+                $lookup = new SearchQuestion();
+                $lookup->phone = $value;
+                $lookup->username = 'delux';
+
+                $nno = new NNO();
+                $result = $nno->lookupSubscribers($lookup);
+
+                if (($result instanceof nnoSubscriberResult) &&
+                  (count($result->subscribers) == 1) &&
+                  ($result->subscribers[0] instanceof nnoSubscriber)
+                ) {
+                    $record = $result->subscribers[0];
+                    $data = array(
+                        'first_name' => $record->christianname,
+                        'last_name'  => $record->surname,
+                        'phone' => $record->phone,
+                        'address_line_1' => $record->address,
+                        'postal_code' => $record->zipcode,
+                        'city' => $record->district,
+                        'countries_id' => 58,
+                        'country' => 'Denmark',
+                    );
+                }
+
+                break;
         }
 
         return $this->json_response(array(
-            'error' => $error,
-            'msg'   => '',
-            'data'  => $data, 
+            'status' => $error,
+            'message'   => '',
+            'data'  => $data,
         ));
     }
 }

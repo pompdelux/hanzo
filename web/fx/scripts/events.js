@@ -1,12 +1,7 @@
 var calendar = (function($) {
   var pub = {};
 
-  pub.init = function() {
-      $("a.open-menu").click(function(e) {
-        e.preventDefault();
-        $(this).parent().find('div').slideToggle();
-      });
-  };
+  pub.init = function() {};
 
   return pub;
 })(jQuery);
@@ -15,36 +10,78 @@ var calendar = (function($) {
 var events = (function($) {
   var pub = {};
 
+  pub.choose_evet_type_init = function() {
+    $select = $('select#sales-type');
+    $hostess = $select.next();
+
+    if ('AR' ==  $('option:selected', $select).data('type')) {
+      $hostess.show();
+    }
+
+    $select.on('change', function() {
+      $hostess.hide();
+      if ('AR' ==  $('option:selected', $select).data('type')) {
+        $hostess.show();
+      }
+    });
+
+    $('.button.proceed').prop('href', base_url+'events/create-customer');
+    $('.button.proceed').on('click', function(event) {
+      var goto = this.href;
+      event.preventDefault();
+      $form = $('form#select-event-type');
+      $.post($form.attr('action'), $form.serialize(), function() {
+        window.location.href = goto;
+      });
+    });
+  };
+
   pub.create_customer_init = function() {
       fetch_customer();
       customers_accept();
   };
 
   var fetch_customer = function() {
-    $("#fetch-customer-form").submit(function(e) {
-      e.preventDefault();
+    $("#fetch-customer-form").submit(function(event) {
+      event.preventDefault();
 
-      var url = base_url;
+      var $form = $(this);
+      var value = $("input", $form).val();
+
+      if (!value) { return; }
+      dialoug.loading($('.button', $form));
+
+      var url = base_url+'events/fetch-customer';
       var data = {
-        value: $("#fetch-customer-form input").val()
+        value: value
       };
-
-      var reg = new RegExp("^[0-9]+$");
-
-      if ( reg.test(data.value) ) {
-          url += 'events/fetch-customer/phone/';
-      }
-      else {
-          url += 'events/fetch-customer/email/';
-      }
 
       $.ajax({
         url: url,
         type: 'POST',
         dataType: 'json',
         data: data,
-        success: function(data) {
-          // do stuff 
+        success: function(response) {
+          if (response.status) {
+            var $c_form = $('form.create');
+            $.each(response.data, function(key, value) {
+              $('input[id$="'+key+'"]', $c_form).val(value);
+            });
+
+            if (undefined !== response.data.id) {
+              $('#customers_email_email_address_repeated', $c_form).val($('#customers_email_email_address', $c_form).val());
+              $('#customers_password_pass', $c_form).parent().remove();
+              $('#customers_password_pass_repeated', $c_form).parent().remove();
+              $('#customers_newsletter', $c_form).parent().remove();
+              $('#customers_id', $c_form).val(response.data.id);
+              $('#customers_accept', $c_form).prop('required', false).click();
+              $('.input', $form).val('');
+            }
+          }
+          dialoug.stopLoading();
+        },
+        error: function() {
+          dialoug.stopLoading();
         }
       });
     });
@@ -69,6 +106,10 @@ var events = (function($) {
 if ($("#calendar").length) {
   calendar.init();
 }
+if ($('#body-basket select#sales-type').length) {
+  events.choose_evet_type_init();
+}
+
 
 $('#body-event #participants a.delete').on('click', function(event) {
   event.preventDefault();
@@ -85,11 +126,11 @@ $('#body-event #participants a.delete').on('click', function(event) {
 });
 
 $('#find-customer-by-phone-form').submit(function(e){
-  e.preventDefault();
-  var $submit = $(this).find('input[type="submit"]');
-  $submit.attr('disabled', true);
-  var phone = $('#find-customer-by-phone').val();
-  $.ajax({
+	e.preventDefault();
+	$submit = $(this).find('input[type="submit"]');
+	$submit.attr('disabled', true);
+	var phone = $('#find-customer-by-phone').val();
+	$.ajax({
       url: base_url + 'account/nno/' + phone,
       dataType: 'json',
       async: false,
@@ -99,28 +140,28 @@ $('#find-customer-by-phone-form').submit(function(e){
             dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
           }
         } else {
-          $('#form_host').val(response.data.christianname + ' ' + response.data.surname);
-          $('#form_address_line_1').val(response.data.address);
-          $('#form_postal_code').val(response.data.zipcode);
-          $('#form_city').val(response.data.district);
-          $('#form_phone').val(response.data.phone);
+        	$('#form_host').val(response.data.christianname + ' ' + response.data.surname);
+        	$('#form_address_line_1').val(response.data.address);
+        	$('#form_postal_code').val(response.data.zipcode);
+        	$('#form_city').val(response.data.district);
+        	$('#form_phone').val(response.data.phone);
         }
 
         $submit.attr('disabled', false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
-        $submit.attr('disabled', false);
+		    $submit.attr('disabled', false);
       }
     });
 });
 
 $('#find-customer-by-email-form').submit(function(e){
-  e.preventDefault();
-  var $submit = $(this).find('input[type="submit"]');
-  $submit.attr('disabled', true);
-  var email = $('#find-customer-by-email').val();
-  $.ajax({
+	e.preventDefault();
+	$submit = $(this).find('input[type="submit"]');
+	$submit.attr('disabled', true);
+	var email = $('#find-customer-by-email').val();
+	$.ajax({
       url: base_url + 'events/getcustomer/' + encodeURIComponent(email),
       dataType: 'json',
       async: false,
@@ -130,10 +171,10 @@ $('#find-customer-by-email-form').submit(function(e){
             dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
           }
         } else {
-          $('#form_customers_id').val(response.data.id);
-          $('#form_host').val(response.data.name);
-          $('#form_phone').val(response.data.phone);
-          $('#form_email').val(response.data.email);
+        	$('#form_customers_id').val(response.data.id);
+        	$('#form_host').val(response.data.name);
+        	$('#form_phone').val(response.data.phone);
+        	$('#form_email').val(response.data.email);
           $('#form_address_line_1').val(response.data.address);
           $('#form_postal_code').val(response.data.zip);
           $('#form_city').val(response.data.city);
@@ -143,17 +184,17 @@ $('#find-customer-by-email-form').submit(function(e){
       },
       error: function(jqXHR, textStatus, errorThrown) {
         dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
-        $submit.attr('disabled', false);
+		    $submit.attr('disabled', false);
       }
     });
 });
 
 $('.delete-event').click(function(e){
-  e.preventDefault();
-  var $a = $(this);
-  dialoug.confirm( ExposeTranslation.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+	e.preventDefault();
+	$a = $(this);
+	dialoug.confirm( ExposeTranslation.get('js:notice'), $(this).data('confirm-message'), function(choise) {
     if (choise === 'ok') {
-      window.location.href = $a.attr('href');
+    	window.location.href = $a.attr('href');
     }
-  });
+	});
 });
