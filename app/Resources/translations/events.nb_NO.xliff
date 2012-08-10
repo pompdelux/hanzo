@@ -386,6 +386,30 @@
                 <source>events.fetch_customer.button</source>
                 <target>Hent</target>
             </trans-unit>
+            <trans-unit id="choose.event.type">
+                <source>choose.event.type</source>
+                <target>Velg en annen arrangementtype</target>
+            </trans-unit>
+            <trans-unit id="event.type.private">
+                <source>event.type.private</source>
+                <target>Privatkjøp</target>
+            </trans-unit>
+            <trans-unit id="event.type.gift">
+                <source>event.type.gift</source>
+                <target>Gavekjøp</target>
+            </trans-unit>
+            <trans-unit id="event.type.friend">
+                <source>event.type.friend</source>
+                <target>Venninnekjøp</target>
+            </trans-unit>
+            <trans-unit id="event.type.other">
+                <source>event.type.other</source>
+                <target>Utenfor arrangement</target>
+            </trans-unit>
+            <trans-unit id="hostess.discount">
+                <source>hostess.discount</source>
+                <target>Vertinnerabatt</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>
