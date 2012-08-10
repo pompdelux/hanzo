@@ -17,6 +17,7 @@ consultant_send_newsletter:
         _format: json
     requirements:
         _format: html|json
+        _method: POST
 
 consultantnewsletter_import:
     pattern:  /consultantnewsletter/importusers

@@ -147,7 +147,7 @@ class DefaultController extends CoreController
         $test     = $request->get('actionSendTest');
         $test_reciever = $request->get('test_reciever');
 		$status   = $request->get('status');
-		$subject  = htmlentities( utf8_decode( $request->get('subject') ) );
+		$subject  = htmlentities( $request->get('subject') );
 		$message  = stripslashes( utf8_decode( $request->get('message') ) );
 		//$from     = $this->get('translator')->trans('consultant.newsletter.from.field.%name%.%email%', array('%name%' => $consultant->getName(), '%email%' => $consultant->getEmail()), 'consultant');
         $from     = $consultant->getEmail();
