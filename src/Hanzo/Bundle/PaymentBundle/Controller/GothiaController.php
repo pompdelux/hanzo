@@ -32,8 +32,7 @@ class GothiaController extends CoreController
     {
         $api = $this->get('payment.gothiaapi');
 
-        if ( !$api->isActive() )
-        {
+        if (!$api->isActive()) {
             return new Response( '', 200, array('Content-Type' => 'text/html'));
         }
 
@@ -49,18 +48,16 @@ class GothiaController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
 
-        if ( $customer->isNew() )
-        {
+        if ($customer->isNew()) {
             return $this->redirect($this->generateUrl('_checkout'));
         }
 
-        $order    = OrdersPeer::getCurrent();
-        $gothiaAccount = $customer->getGothiaAccounts();
+        $order = OrdersPeer::getCurrent();
+        $gothiaAccount = $order->getCustomers()->getGothiaAccounts();
 
         // No gothia account has been created and associated with the customer, so lets do that
         $step = 2;
-        if ( is_null($gothiaAccount) )
-        {
+        if (is_null($gothiaAccount)) {
             $step = 1;
             $gothiaAccount = new GothiaAccounts();
         }
@@ -69,7 +66,7 @@ class GothiaController extends CoreController
         $form = $this->createFormBuilder( $gothiaAccount )
             ->add( 'social_security_num', 'text', array(
                 'label' => 'social_security_num',
-                'required' => true, 
+                'required' => true,
                 'translation_domain' => 'gothia' ) )
             ->getForm();
 
@@ -90,16 +87,14 @@ class GothiaController extends CoreController
         $translator = $this->get('translator');
 
         // Use form validation?
-        if ( !is_numeric( $SSN ) )
-        {
+        if (!is_numeric($SSN)) {
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
             ));
         }
 
-        if ( strlen( $SSN ) < 10 )
-        {
+        if (strlen($SSN) < 10) {
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
@@ -108,12 +103,11 @@ class GothiaController extends CoreController
 
         $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
-        $customer      = CustomersPeer::getCurrent();
-        $gothiaAccount = $customer->getGothiaAccounts();
         $order         = OrdersPeer::getCurrent();
+        $customer      = $order->getCustomers();
+        $gothiaAccount = $customer->getGothiaAccounts();
 
-        if ( is_null($gothiaAccount) )
-        {
+        if (is_null($gothiaAccount)) {
             $gothiaAccount = new GothiaAccounts();
         }
 
@@ -123,22 +117,18 @@ class GothiaController extends CoreController
 
         $customer->setGothiaAccounts( $gothiaAccount );
 
-        try
-        {
+        try {
             // Validate information @ gothia
             $api = $this->get('payment.gothiaapi');
             $response = $api->call()->checkCustomer( $customer );
-        }
-        catch( GothiaApiCallException $g )
-        {
+        } catch( GothiaApiCallException $g ) {
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
             ));
         }
 
-        if ( !$response->isError() )
-        {
+        if ( !$response->isError() ) {
             $gothiaAccount = $customer->getGothiaAccounts();
             $gothiaAccount->setDistributionBy( $response->data['DistributionBy'] )
                 ->setDistributionType( $response->data['DistributionType'] );
@@ -150,11 +140,8 @@ class GothiaController extends CoreController
                 'status' => true,
                 'message' => '',
             ));
-        }
-        else
-        {
-            if ( $response->data['PurchaseStop'] === 'true')
-            {
+        } else {
+            if ( $response->data['PurchaseStop'] === 'true') {
                 return $this->json_response(array(
                     'status' => FALSE,
                     'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
@@ -176,8 +163,8 @@ class GothiaController extends CoreController
      **/
     public function confirmAction(Request $request)
     {
-        $customer   = CustomersPeer::getCurrent();
         $order      = OrdersPeer::getCurrent();
+        $customer   = $order->getCustomers();
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
 
@@ -185,62 +172,49 @@ class GothiaController extends CoreController
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
         // it will fail because we have not removed the old reservation first, this should fix it
 
-        if ( $order->getInEdit() )
-        {
+        if ( $order->getInEdit() ) {
             $currentVersion = $order->getVersionId();
 
-            if ( !( $currentVersion < 2 ) ) // If the version number is less than 2 there is no previous version
-            {
-              $oldOrderVersion = ( $currentVersion - 1);
-              $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+            // If the version number is less than 2 there is no previous version
+            if ( !( $currentVersion < 2 ) ) {
+                $oldOrderVersion = ( $currentVersion - 1);
+                $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
-              $attributes = $oldOrder->getOrdersAttributess()->toArray();
+                $attributes = $oldOrder->getOrdersAttributess()->toArray();
+                $paytype = false;
 
-              $paytype = false;
+                foreach ($attributes as $attribute) {
+                    if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) {
+                        $paytype = $attribute['CValue'];
+                    }
+                }
 
-              foreach ($attributes as $attribute) 
-              {
-                  if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' )
-                  {
-                      $paytype = $attribute['CValue'];
-                  }
-              }
+                // The new order amount is different from the old order amount
+                // We will remove the old reservation, and create a new one
+                // but only if the old paytype was gothia
+                if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() ) {
+                    try {
+                        $response = $api->call()->cancelReservation( $customer, $oldOrder );
+                    } catch( GothiaApiCallException $g ) {
+                        return $this->json_response(array(
+                            'status' => FALSE,
+                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                        ));
+                    }
 
-              // The new order amount is different from the old order amount
-              // We will remove the old reservation, and create a new one
-              // but only if the old paytype was gothia
-              if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
-              {
-                  try
-                  {
-                      $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                  }
-                  catch( GothiaApiCallException $g )
-                  {
-                      return $this->json_response(array(
-                          'status' => FALSE,
-                          'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
-                      ));
-                  }
-
-                  if ( $response->isError() )
-                  {
-                      return $this->json_response(array(
-                          'status' => FALSE,
-                          'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
-                      ));
-                  }
-              }
+                    if ( $response->isError() ) {
+                        return $this->json_response(array(
+                            'status' => FALSE,
+                            'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
+                        ));
+                    }
+                }
             }
-
         }
 
-        try
-        {
+        try {
             $response = $api->call()->placeReservation( $customer, $order );
-        }
-        catch( GothiaApiCallException $g )
-        {
+        } catch( GothiaApiCallException $g ) {
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
@@ -248,8 +222,7 @@ class GothiaController extends CoreController
             ));
         }
 
-        if ( $response->isError() )
-        {
+        if ( $response->isError() ) {
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
@@ -259,8 +232,7 @@ class GothiaController extends CoreController
 
         // NICETO: priority: low, refacture gothia to look more like DibsController
 
-        try
-        {
+        try {
             $api->updateOrderSuccess( $request, $order );
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
 
@@ -268,9 +240,7 @@ class GothiaController extends CoreController
                 'status' => TRUE,
                 'message' => '',
             ));
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             Tools::log( $e->getMessage() );
             $api->updateOrderFailed( $request, $order );
 
@@ -279,7 +249,6 @@ class GothiaController extends CoreController
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
-
     }
 
     /**
