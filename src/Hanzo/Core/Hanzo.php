@@ -7,6 +7,7 @@ use Hanzo\Model\SettingsQuery;
 use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\DomainsQuery;
 use Hanzo\Model\DomainsSettingsQuery;
+use Hanzo\Model\DomainsSettingsPeer;
 
 use Symfony\Component\Yaml\Yaml;
 
@@ -110,7 +111,7 @@ class Hanzo
                 ->filterByDomainKey($parent_domain_key)
                 ->_or()
                 ->filterByDomainKey($domain_key)
-                ->addAscendingOrderByColumn(sprintf("FIELD('%s', '%s')", $parent_domain_key, $domain_key))
+                ->addAscendingOrderByColumn(sprintf("FIELD(%s, '%s', '%s')", DomainsSettingsPeer::DOMAIN_KEY, $parent_domain_key, $domain_key))
                 ->find()
             ;
         } else {

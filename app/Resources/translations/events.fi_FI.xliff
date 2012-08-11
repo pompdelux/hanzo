@@ -14,6 +14,10 @@
                 <source>events.calendar.description.text</source>
                 <target>Tästä näet kaikki järjestämäsi tilaisuudet. Avoimet tilaisuudet on merkitty vihreällä ja suljetut punaisella. Klikkaamalla tapahtumaa saat esille tarkemman kuvauksen tilaisuudesta.</target>
             </trans-unit>
+			<trans-unit id="events.calendar.archived.header.text">
+                <source>events.calendar.archived.header.text</source>
+                <target>Arkiverede arrangementer</target>
+            </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
                 <target>Tilaisuuden tiedot</target>

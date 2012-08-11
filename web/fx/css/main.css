@@ -1,5 +1,5 @@
 body {
-  background-color: #fff;
+  background-color: #94949e;
   color: #fff;
 }
 a {
@@ -185,8 +185,8 @@ nav.main ul li li {
   text-transform: none;
 }
 nav.main ul li a {
-  background-color: #8E9092;
-  color: #fff;
+  background-color: #c8c4c3;
+  color: #000;
   font-size: 14px;
   font-weight: normal;
   padding: 3px 20px;

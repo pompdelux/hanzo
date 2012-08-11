@@ -104,6 +104,8 @@ class NewsletterApi
      *
      * Contains a hardcode list of domainkey -> listid relations
      *
+     * Also see ConsultantNewsletterApi
+     *
      * @return int
      * @author Henrik Farre <hf@bellcom.dk>
      **/

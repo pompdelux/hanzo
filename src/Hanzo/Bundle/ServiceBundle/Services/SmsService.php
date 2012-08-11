@@ -38,12 +38,21 @@ class SmsService
         // $settings['provider.mediacode'];
         // $settings['provider.price'];
 
+        // defaults
         $this->settings['provider.get_smsc'] = 0;
+        $this->settings['send.event.confirmations'] = 0;
+        $this->settings['send.event.confirmations'] = 0;
+        $this->settings['send.event.reminders'] = 0;
+
         $this->settings = $settings;
     }
 
     public function sendEventInvite($participant)
     {
+        if (0 == $this->settings['send.event.invites']) {
+            return;
+        }
+
         $event = $participant->getEvents();
         $parameters = array(
             '%name%' => trim($participant->getFirstName().' '.$participant->getLastName()),
@@ -67,6 +76,10 @@ class SmsService
 
     public function sendEventConfirmationReply($participant)
     {
+        if (0 == $this->settings['send.event.confirmations']) {
+            return;
+        }
+
         $event = $participant->getEvents();
         $parameters = array(
             '%name%' => $participant->getFirstName(),
@@ -94,6 +107,10 @@ class SmsService
      */
     public function eventReminder($locale = 'da_DK')
     {
+        if (0 == $this->settings['send.event.reminders']) {
+            return;
+        }
+
         $provider = $this->getProvider();
 
         $date = new \DateTime();
