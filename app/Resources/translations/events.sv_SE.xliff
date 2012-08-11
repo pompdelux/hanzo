@@ -14,7 +14,7 @@
                 <source>events.calendar.description.text</source>
                 <target>Här kan du se alla dina upprättade arrangemang. Grön betyder öppna arrangemang och röd betyder avslutade arrangemang. Klicka på ett arrangemang för att få en detaljerad beskrivning.</target>
             </trans-unit>
-			<trans-unit id="events.calendar.archived.header.text">
+            <trans-unit id="events.calendar.archived.header.text">
                 <source>events.calendar.archived.header.text</source>
                 <target>Arkiverede arrangementer</target>
             </trans-unit>
