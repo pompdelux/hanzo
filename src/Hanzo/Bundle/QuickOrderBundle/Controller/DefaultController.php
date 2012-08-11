@@ -53,12 +53,14 @@ class DefaultController extends CoreController
         $callback = $request->get('callback');
 
     	$products = ProductsQuery::create()
+            ->where('products.MASTER IS NULL')
             ->filterByIsOutOfStock(FALSE)
-            // ->useProductsDomainsPricesQuery()
-            //     ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
-            // ->endUse()
-            ->filterByMaster('%'.$name.'%')
-            ->groupByMaster()
+            ->useProductsDomainsPricesQuery()
+                ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
+            ->endUse()
+            ->filterBySku('%'.$name)
+            ->groupBySku()
+            ->orderBySku()
             ->limit($max_rows)
             ->find()
         ;
@@ -71,9 +73,10 @@ class DefaultController extends CoreController
 	            ));
 	        }
 	    }
+
         $result = array();
         foreach ($products as $product) {
-        	$result[] = $product->getMaster();
+        	$result[] = $product->getSku();
         }
 
 		if ($this->getFormat() == 'json') {

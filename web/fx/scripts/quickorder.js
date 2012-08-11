@@ -6,6 +6,7 @@ var quickorder = (function($) {
 
     $('#master').typeahead({
         source: function (typeahead, query) {
+            if (query.length < 2) { return; }
             $.getJSON(
                 base_url + "quickorder/get-sku",
                 {name : query},
@@ -60,6 +61,7 @@ var quickorder = (function($) {
             });
         }
     });
+
     // Events:
     // mouseup : desktop with mouse
     // keydown : desktop with keyboard
@@ -128,6 +130,7 @@ var quickorder = (function($) {
             });
         }
     }
+
     // Events:
     // mouseup : desktop with mouse
     // keydown : desktop with keyboard
