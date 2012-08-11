@@ -44,7 +44,7 @@ var events = (function($) {
         dataType: 'json',
         data: data,
         success: function(data) {
-          // do stuff 
+          // do stuff
         }
       });
     });
