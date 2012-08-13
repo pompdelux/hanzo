@@ -58,7 +58,7 @@ class DefaultController extends CoreController
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
             ->endUse()
-            ->filterBySku('%'.$name)
+            ->filterBySku(''.$name.'%')
             ->groupBySku()
             ->orderBySku()
             ->limit($max_rows)
