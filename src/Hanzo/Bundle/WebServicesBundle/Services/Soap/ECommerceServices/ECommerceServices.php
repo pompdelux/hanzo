@@ -1160,16 +1160,15 @@ class ECommerceServices extends SoapService
             'nok.nok'     => array('currency' => 'NOK', 'domain' => 'NO', 'vat' => 25),
             'nok.salesno' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
 
-            'sek.sek'     => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
-            'sek.salesse' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 25),
+            'sek.sek'     => array('currency' => 'NOK', 'domain' => 'SE', 'vat' => 25),
+            'sek.salesse' => array('currency' => 'NOK', 'domain' => 'SalesSE', 'vat' => 25),
 
-            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 23),
-            'eur.salesfi' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 23),
+            'eur.fin'     => array('currency' => 'NOK', 'domain' => 'FI', 'vat' => 23),
+            'eur.salesfi' => array('currency' => 'NOK', 'domain' => 'SalesFI', 'vat' => 23),
 
-            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 19),
-            'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNO', 'vat' => 19),
+            'eur.nld'     => array('currency' => 'NOK', 'domain' => 'NL', 'vat' => 19),
+            'eur.salesnl' => array('currency' => 'NOK', 'domain' => 'SalesNL', 'vat' => 19),
         );
-
 
         return isset($c_map[$k]) ? $c_map[$k] : false;
     }
