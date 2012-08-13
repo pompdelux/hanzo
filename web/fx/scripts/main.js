@@ -123,11 +123,13 @@
        * way we can keep stuff in varnish without esi
        */
       var $basket = $('#mini-basket a');
-      $.getJSON(base_url + 'miniBasket', function(data) {
-        if (data.status && data.data) {
-          $basket.text(data.data);
-        }
-      });
+      if ($basket.length) {
+        $.getJSON(base_url + 'miniBasket', function(data) {
+          if (data.status && data.data) {
+            $basket.text(data.data);
+          }
+        });
+      }
     };
 
     var getDocHeight = function(){
