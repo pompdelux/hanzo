@@ -1,6 +1,5 @@
 var consultantNewsletter = (function($) {
   var pub = {};
-  
 
   pub.init = function() {
     var handleNewsletterSubmit = function(e) {
