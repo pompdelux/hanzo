@@ -1,10 +1,7 @@
 var consultantNewsletter = (function($) {
   var pub = {};
-  
 
   pub.init = function() {
-    var handleNewsletterSubmit = function(e) {
-      e.preventDefault();
       tinyMCE.triggerSave();
 
       var actionName = $(this).attr('name');
@@ -24,7 +21,7 @@ var consultantNewsletter = (function($) {
           } else {
             window.scrollTo(window.scrollMinX, window.scrollMinY);
             dialoug.slideNotice(response.message);
-            window.location.href = base_url + 'consultantnewsletter/history'
+            window.location.href = base_url + 'consultantnewsletter/history';
           }
         },
       });
@@ -56,7 +53,7 @@ var consultantNewsletter = (function($) {
 
     $('#history li .newsletter').click(function(e){
       e.preventDefault();
-      $html = $(this).parent().find('.colorbox').html();
+      var $html = $(this).parent().find('.colorbox').html();
       var defaults = {
         'close' : ExposeTranslation.get('js:close'),
         'overlayClose' : true,
@@ -88,7 +85,7 @@ var consultantNewsletter = (function($) {
     });
 
     $('#drafts a.delete').click(function(e){
-      event.preventDefault();
+      e.preventDefault();
       var $a = $(this);
 
       // warn the user before removing the product.
@@ -112,7 +109,7 @@ var consultantNewsletter = (function($) {
     });
 
     $('#subscribed-users a.delete').click(function(e){
-      event.preventDefault();
+      e.preventDefault();
       var $a = $(this);
 
       // warn the user before removing the product.
@@ -134,7 +131,6 @@ var consultantNewsletter = (function($) {
         }
       });
     });
-  };
  
   return pub;
 })(jQuery);

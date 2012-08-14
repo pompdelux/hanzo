@@ -58,7 +58,7 @@
     {% endif %}
     <ul id="drafts">
       {% for draft in drafts %}
-      <li><a href="{{ path('consultantnewsletter', {'draft_id' : draft.id}) }}">{{ draft.id }} - {{ draft.subject }}</a><a href="{{ path('consultantnewsletter_draft_delete', {'draft_id' : draft.id }) }}" class="delete">{{ 'consultant.newsletter.delete.draft'|trans({}, 'consultant') }}</a></li>
+      <li><a href="{{ path('consultantnewsletter', {'draft_id' : draft.id}) }}">{{ draft.id }} - {{ draft.subject }}</a> [ <a href="{{ path('consultantnewsletter_draft_delete', {'draft_id' : draft.id }) }}" class="delete">{{ 'consultant.newsletter.delete.draft'|trans({}, 'consultant') }}</a> ]</li>
       {% endfor %}
     </ul>
   </div>
@@ -72,7 +72,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  document.domain = 'testpompdelux.com'; // FIXME
+  document.domain = 'pompdelux.com'; 
   $(document).ready(function(){
     $('textarea.tinymce').tinymce({
       // Location of TinyMCE script
