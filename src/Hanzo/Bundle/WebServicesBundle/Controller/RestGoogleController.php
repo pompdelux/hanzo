@@ -72,6 +72,33 @@ class RestGoogleController extends CoreController
             }
         }
 
+// TODO: switch the custom query to this:
+// $lat = 55.494099;
+// $lon = 9.459;
+// $radius = 100;
+// $exclude_pompdelux = array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk');
+// $exclude_bellcom = '%@bellcom.dk';
+
+// $query = AddressesQuery::create()
+//     ->filterByDistanceFrom($lat, $lon, $radius)
+//     ->filterByType('payment')
+//     ->useCustomersQuery('', 'JOIN')
+//         ->filterByGroupsId(2)
+//         ->filterByIsActive(true)
+//         ->filterByEmail($exclude_pompdelux, \Criteria::NOT_IN)
+//         ->filterByEmail($exclude_bellcom, \Criteria::NOT_LIKE)
+//     ->endUse()
+//     ->limit(10)
+//     ->orderBy('Distance')
+// ;
+// $query
+//     ->useCustomersQuery('', 'JOIN')
+//         ->useConsultantsQuery('', 'JOIN')
+//             ->filterByEventNotes('', \Criteria::NOT_EQUAL)
+//         ->endUse()
+//     ->endUse()
+// ;
+// $consultants = $query->find();
 
         $latitude = (float) $latitude;
         $longitude = (float) $longitude;
