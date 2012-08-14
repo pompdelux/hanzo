@@ -2,7 +2,7 @@
 <?php
 set_time_limit(0);
 
-$rootDir = dirname(DIR);
+$rootDir = dirname(__DIR__);
 $vendorDir = $rootDir.'/vendor';
 // php on windows can't use the shebang line from system()
 $interpreter = defined('PHP_WINDOWS_VERSION_BUILD') ? 'php.exe' : '';

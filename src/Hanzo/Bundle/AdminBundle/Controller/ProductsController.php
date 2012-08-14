@@ -200,6 +200,25 @@ class ProductsController extends CoreController
                 'product_ref_ids' => $products_refs_list
             );
         }
+
+
+        $form_hasVideo = $this->createFormBuilder($current_product)
+            ->add('has_video', 'checkbox', array(
+                    'label' => 'product.label.has_video',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form_hasVideo->bindRequest($request);
+
+            if ($form_hasVideo->isValid()) {
+                $current_product->save($this->getDbConnection());
+            }
+        }
         return $this->render('AdminBundle:Products:view.html.twig', array(
             'styles'                => $styles,
             'product_categories'    => $product_categories,
@@ -208,6 +227,7 @@ class ProductsController extends CoreController
             'product_images'        => $product_images_list,
             'products'              => $all_products,
             'related_products'      => $related_products,
+            'has_video_form'        => $form_hasVideo->createView(),
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }

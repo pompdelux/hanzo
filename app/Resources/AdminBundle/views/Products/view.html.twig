@@ -146,6 +146,20 @@
 
 {% if is_granted('ROLE_ADMIN') %}
 
+  <h1>{{ 'admin.product.has_video.header'|trans({}, 'admin') }}</h1>
+
+  <form action="{{ path('admin_product', {'id' : current_product.id}) }}" method="post" {{ form_enctype(has_video_form) }} id="product-edit-form">
+    <div id="product-edit">
+      {{ form_rest(has_video_form) }}
+      {{ form_row(has_video_form._token) }}
+    </div>
+    <input class="button right" type="submit" value="{{ 'product.has_video.submit'|trans({}, 'admin') }}">
+  </form>
+
+{% endif %}
+
+{% if is_granted('ROLE_ADMIN') %}
+
   <h1>{{ 'admin.product.related_products.header.text.%product-name%'|trans({'%product-name%' : current_product.sku}, 'admin') }}</h1>
 
   <p>{{ 'admin.product.related_products.description.text'|trans({}, 'admin') }}</p>
