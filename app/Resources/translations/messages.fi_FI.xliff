@@ -146,9 +146,7 @@
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
                 <source>customer.service.contact.info</source>
-                <target>
-                    &lt;strong&gt;Asiakaspalvelu&lt;/strong&gt;&lt;br&gt; Puhelin: 8678 7871&lt;br&gt; Sähköposti: &lt;a href=&quot;mailto:mail@pompdelux.dk&quot;&gt;mail@pompdelux.dk&lt;/a&gt;&lt;br&gt; Maanantaista torstaihin klo 9 - 15&lt;br&gt; Perjantaisin 9 - 14&lt;br&gt; Lounastauko klo 12 - 12.45&lt;br&gt; Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä.
-                </target>
+                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870 (+ 45 8678 7871)<br>Sähköposti: <a hrfef="mailto:mailfi@pompdleu.com">mail@pompdelux.com</a><br>Maanantaista torstaihin klo 10 - 14<br>Perjantaisin 10 - 13<br>Lounastauko klo 13 - 13.45<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
                 <source>footer.address</source>
