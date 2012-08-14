@@ -301,6 +301,26 @@
       <source>order.state_pre_payment.locked</source>
       <target>The payment for your order is being processed. You can’t edit your order until the payment has been approved.</target>
     </trans-unit>
+      <trans-unit id="discount.private">
+        <source>discount.private</source>
+        <target>Discount:</target>
+      </trans-unit>
+      <trans-unit id="discount.group">
+        <source>discount.group</source>
+        <target>Discount:</target>
+      </trans-unit>
+      <trans-unit id="discount.hostess">
+        <source>discount.hostess</source>
+        <target>Discount:</target>
+      </trans-unit>
+      <trans-unit id="discount.friend">
+        <source>discount.friend</source>
+        <target>Discount:</target>
+      </trans-unit>
+      <trans-unit id="discount.gift">
+        <source>discount.gift</source>
+        <target>Discount:</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

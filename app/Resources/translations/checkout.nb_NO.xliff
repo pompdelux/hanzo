@@ -313,6 +313,26 @@
         <source>order.state_pre_payment.locked</source>
         <target>Din ordre er under betaling. Du kan først redigere i ordren din igjen når betalingen er godkjent.</target>
       </trans-unit>
+      <trans-unit id="discount.private">
+        <source>discount.private</source>
+        <target>Rabatt:</target>
+      </trans-unit>
+      <trans-unit id="discount.group">
+        <source>discount.group</source>
+        <target>Rabatt:</target>
+      </trans-unit>
+      <trans-unit id="discount.hostess">
+        <source>discount.hostess</source>
+        <target>Værtiderabat:</target>
+      </trans-unit>
+      <trans-unit id="discount.friend">
+        <source>discount.friend</source>
+        <target>Rabatt:</target>
+      </trans-unit>
+      <trans-unit id="discount.gift">
+        <source>discount.gift</source>
+        <target>Rabatt:</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

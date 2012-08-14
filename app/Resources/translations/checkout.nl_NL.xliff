@@ -72,7 +72,7 @@
       </trans-unit>
       <trans-unit id="shipping.address.edit">
         <source>shipping.address.edit</source>
-        <target>» Wijzig verzendadres</target> 
+        <target>» Wijzig verzendadres</target>
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
@@ -300,6 +300,26 @@
       <trans-unit id="payment.dibs.paytype.master">
         <source>payment.dibs.paytype.master</source>
         <target>Mastercard/Eurocard</target>
+      </trans-unit>
+      <trans-unit id="discount.private">
+        <source>discount.private</source>
+        <target>Korting:</target>
+      </trans-unit>
+      <trans-unit id="discount.group">
+        <source>discount.group</source>
+        <target>Korting:</target>
+      </trans-unit>
+      <trans-unit id="discount.hostess">
+        <source>discount.hostess</source>
+        <target>Værtiderabat:</target>
+      </trans-unit>
+      <trans-unit id="discount.friend">
+        <source>discount.friend</source>
+        <target>Korting:</target>
+      </trans-unit>
+      <trans-unit id="discount.gift">
+        <source>discount.gift</source>
+        <target>Korting:</target>
       </trans-unit>
     </body>
   </file>

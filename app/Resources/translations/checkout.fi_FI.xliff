@@ -294,6 +294,26 @@
         <source>order.state_pre_payment.locked</source>
         <target>Tilaustasi käsitellään. Voit muuttaa tilausta uudelleen vasta maksun hyväksymisen jälkeen.</target>
       </trans-unit>
+      <trans-unit id="discount.private" approved="no">
+        <source>discount.private</source>
+        <target>Rabat:</target>
+      </trans-unit>
+      <trans-unit id="discount.group" approved="no">
+        <source>discount.group</source>
+        <target>Rabat:</target>
+      </trans-unit>
+      <trans-unit id="discount.hostess" approved="no">
+        <source>discount.hostess</source>
+        <target>Værtinderabat:</target>
+      </trans-unit>
+      <trans-unit id="discount.friend" approved="no">
+        <source>discount.friend</source>
+        <target>Rabat:</target>
+      </trans-unit>
+      <trans-unit id="discount.gift" approved="no">
+        <source>discount.gift</source>
+        <target>Rabat:</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
