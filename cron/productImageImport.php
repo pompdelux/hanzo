@@ -135,7 +135,12 @@ foreach ($_databases as $key => $conn) {
 }
 
 // copy all images to the right location
-foreach (array_merge($product_images, $extra_images) as $pid => $images) {
+foreach ($product_images as $pid => $images) {
+    foreach($images as $image) {
+        copy($source_dir . $image, $target_dir . $image);
+    }
+}
+foreach ($extra_images as $pid => $images) {
     foreach($images as $image) {
         copy($source_dir . $image, $target_dir . $image);
     }
