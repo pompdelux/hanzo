@@ -73,7 +73,6 @@ class DefaultController extends CoreController
 
         $hanzo = Hanzo::getInstance();
         $domain_id = $hanzo->get('core.domain_id');
-        $locale = $hanzo->get('core.locale');
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
@@ -91,22 +90,12 @@ class DefaultController extends CoreController
             ->find()
         ;
 
-        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
-        $router = $this->get('router');
-
         $records = array();
         foreach ($products as $product) {
-
-            $product_route = $router_keys['_' . strtolower($locale) . '_' . $product->getProductsToCategoriess()->getFirst()->getCategoriesId()];
-
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
                 'title' => $product->getSku(),
-                'url' => $router->generate($product_route, array(
-                    'product_id' => $product->getId(),
-                    'title' => Tools::stripText($product->getSku()),
-                )),
             );
         }
 

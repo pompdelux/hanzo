@@ -8,7 +8,8 @@
 {% for p in products %}
   <ul>
   {% for product in p %}
-    <li><a href="{{ product.url }}">{{ product.title }}</a></li>
+    {#<li><a href="{{ product.url }}">{{ product.title }}</a></li>#}
+    <li><a href="{{ path('product_info', {product_id: product.id}) }}">{{ product.title }}</a></li>
   {% endfor %}
   </ul>
 {% endfor %}
