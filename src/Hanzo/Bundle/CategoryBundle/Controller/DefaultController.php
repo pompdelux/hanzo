@@ -110,6 +110,9 @@ class DefaultController extends CoreController
             );
         }
 
+        $max = ceil(count($records)/3);
+        $records = array_chunk($records, $max);
+
         return $this->render('HanzoCategoryBundle:Default:contextList.html.twig', array(
             'page_type' => 'context-list',
             'products' => $records,
