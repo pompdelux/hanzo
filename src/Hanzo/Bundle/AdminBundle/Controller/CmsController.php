@@ -80,8 +80,22 @@ class CmsController extends CoreController
             ->filterByLocale($locale)
             ->findOneById($id, $this->getDbConnection());
 
-        if($node) {
+        if($node instanceof CmsI18n) {
             $node->delete($this->getDbConnection());
+
+            // Do a check if all translations are deleted, then delete the Cms
+            $numberOfTranslations = CmsI18nQuery::create()
+                ->filterById($id)
+                ->count($this->getDbConnection());
+
+            if($numberOfTranslations == 0){
+                $master = CmsQuery::create()
+                    ->findPK($id, $this->getDbConnection());
+
+                if($master instanceof Cms) {
+                    $master->delete();
+                }
+            }
         }
 
         $cache->clearRedisCache();
