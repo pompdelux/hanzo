@@ -523,7 +523,7 @@ class CmsController extends CoreController
         } else {
             $query = CmsQuery::create()
                 ->filterByCmsThreadId($cms_thread)
-                ->joinWithI18n($locale)
+                ->joinWithI18n($locale, \Criteria::RIGHT_JOIN)
                 ->groupById()
                 ->orderBySort()
             ;
