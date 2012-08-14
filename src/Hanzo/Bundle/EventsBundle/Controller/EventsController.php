@@ -329,7 +329,6 @@ class EventsController extends CoreController
                         // Find all participants.
                         $participants = EventsParticipantsQuery::create()
                             ->filterByEventsId($event->getId())
-                            ->filterByHasAccepted(true)
                             ->find()
                         ;
 
@@ -449,7 +448,6 @@ class EventsController extends CoreController
             // Send some emails for the host and participants
             $participants = EventsParticipantsQuery::create()
                 ->filterByEventsId($event->getId())
-                ->filterByHasAccepted(true)
                 ->find()
             ;
 
