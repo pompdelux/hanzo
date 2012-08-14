@@ -480,9 +480,57 @@ class Orders extends BaseOrders
         return $discounts;
     }
 
+    /**
+     * set or update a discount line
+     *
+     * @param string $name   discount identifier
+     * @param float  $amount discount amount
+     * @return object Orders
+     */
+    public function setDiscountLine($name, $amount)
+    {
+        foreach ($this->getOrderLineDiscount() as $line) {
+            if ($name == $line->getProductsSku()) {
+                $line->setPrice($amount);
+                return $this;
+            }
+        }
+
+        $line = new OrdersLines();
+        $line->setType('discount');
+        $line->setQuantity(1);
+        $line->setVat(0.00);
+        $line->setOrdersId($this->getId());
+        $line->setProductsSku($name);
+        $line->setProductsName($name);
+        $line->setPrice($amount);
+        $this->addOrdersLines($line);
+
+        return $this;
+    }
+
+    /**
+     * remove a discount line from an order
+     *
+     * @param  string $name discount identifier
+     * @return object Orders
+     */
+    public function removeDiscountLine($name)
+    {
+        foreach ($this->getOrderLineDiscount() as $line) {
+            if ($name == $line->getProductsSku()) {
+                $line->delete();
+                break;
+            }
+        }
+
+        return $this;
+    }
+
+
     public function preSave(PropelPDO $con = null)
     {
-        if (!$this->getSessionId()){
+        if (!$this->getSessionId()) {
             $this->setSessionId(session_id());
         }
 
@@ -869,7 +917,7 @@ class Orders extends BaseOrders
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    protected function clearAttributesByKey( $key )
+    public function clearAttributesByKey( $key )
     {
         $attributes = $this->getOrdersAttributess();
 

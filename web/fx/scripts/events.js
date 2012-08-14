@@ -25,10 +25,14 @@ var events = (function($) {
       }
     });
 
-    $('.button.proceed').prop('href', base_url+'events/create-customer');
     $('.button.proceed').on('click', function(event) {
-      var goto = this.href;
       event.preventDefault();
+
+      if ('x:private' != $('option:selected', $select).val()) {
+        this.href = base_url+'events/create-customer';
+      }
+
+      var goto = this.href;
       $form = $('form#select-event-type');
       $.post($form.attr('action'), $form.serialize(), function() {
         window.location.href = goto;

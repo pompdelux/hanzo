@@ -72,6 +72,7 @@ class CheckoutListener
         $this->session->set('failed_order_mail_sent', true);
     }
 
+
     public function onPaymentCollected(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
@@ -174,7 +175,7 @@ class CheckoutListener
         }
 
         foreach ($order->getOrdersLiness() as $line) {
-            if ($line->gettype('discount') && $line->getProductsSku() == 'hostess_discount')
+            if ($line->gettype('discount') && $line->getProductsSku() == 'discount.hostess')
             {
                 $params['hostess_discount'] = $line->getPrice();
                 $params['hostess_discount_title'] = $line->getProductsName();
@@ -240,5 +241,40 @@ class CheckoutListener
 
         // trigger ax sync
         $this->ax->sendOrder($order);
+    }
+
+
+    public function onFinalize(FilterOrderEvent $event)
+    {
+        $order = $event->getOrder();
+
+        $customer = $order->getCustomers();
+        $hanzo = Hanzo::getInstance();
+
+        $discount = 0;
+
+        if (1 == $hanzo->get('webshop.disable_discounts')) {
+            if ($customer->getDiscount()) {
+                $discount_label = 'discount.private';
+                $discount = $customer->getDiscount();
+            } else {
+                $discount_label = 'discount.group';
+                $discount = $customer->getGroups()->getDiscount();
+            }
+        }
+
+        if ($discount) {
+            $total = $order->getTotalProductPrice();
+
+            // so far _all_ discounts are handled as % discounts
+            $discount = ($total / 100) * $discount;
+            $order->setDiscountLine($discount_label, ($discount * -1));
+        }
+
+        $domain_key = $hanzo->get('core.domain_key');
+        if (false === strpos($domain_key, 'Sales')) {
+            $order->setAttribute('HomePartyId', 'global', 'WEB ' . $domain_key);
+            $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $domain_key);
+        }
     }
 }

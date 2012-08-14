@@ -333,15 +333,13 @@ class DefaultController extends CoreController
       $missing = array();
       foreach ($check as $field)
       {
-          if ( !isset( $fields[$field] ) )
-          {
-            $missing[] = $field;
+          if (!isset($fields[$field])) {
+              $missing[] = $field;
           }
       }
 
       // TODO: translation
-      if ( !empty($missing) )
-      {
+      if ( !empty($missing) ) {
         throw new Exception( 'Et, eller flere felter mangler i dine adresser' );
       }
     }
@@ -356,9 +354,9 @@ class DefaultController extends CoreController
     {
         $api = $this->get('payment.'. $data['selectedMethod'] .'api');
 
-        if ( !$api->isActive() )
-        {
-            throw new Exception( 'Selected payment type is not avaliable' ); // todo: low priority: translation
+        if (!$api->isActive()) {
+            // todo: low priority: translation
+            throw new Exception( 'Selected payment type is not avaliable' );
         }
     }
 
@@ -372,9 +370,9 @@ class DefaultController extends CoreController
     {
         $t = $this->get('translator');
 
-        if ( $data['state'] !== 'true' )
-        {
-          throw new Exception( 'State is not correct' );  // todo: low priority: translation
+        if (($data['state'] !== 'true')) {
+            // todo: low priority: translation
+            throw new Exception( 'State is not correct' );
         }
 
         $shippingApi = $this->get('shipping.shippingapi');
@@ -467,9 +465,9 @@ class DefaultController extends CoreController
         // we only want the masterdata here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
-        $user = CustomersPeer::getCurrent();
         $order = OrdersPeer::getCurrent();
         $hanzo = Hanzo::getInstance();
+
 
         // first we finalize the order, aka. setting misc order attributes and updating lines ect.
 
@@ -479,7 +477,7 @@ class DefaultController extends CoreController
             ->joinWithProducts()
             ->filterByType('product')
             ->findByOrdersId($order->getId())
-            ;
+        ;
 
         $product_ids = array();
         $product_units = array();
@@ -503,15 +501,8 @@ class DefaultController extends CoreController
         $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
         $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
 
-        if ($order->getEventsId()) {
-            $event = $order->getEvents();
-            $order->setAttribute('HomePartyId', 'global', $event->getCode());
-            $order->setAttribute('SalesResponsible', 'global', $event->getCustomersRelatedByConsultantsId()->getConsultants()->getInitials());
-        } else {
-            $order->setAttribute('HomePartyId', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
-            $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $hanzo->get('core.domain_key'));
-        }
-
+        // trigger event, handles discounts and other stuff.
+        $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
         if (!$order->getDeliveryMethod()) {
             $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));

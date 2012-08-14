@@ -82,9 +82,6 @@ class DefaultController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-Tools::log($_POST);
-Tools::log($customer->toArray());
-Tools::log($address->toArray());
                 if (!$customer->getPassword()) {
                     $customer->setPassword($pwd);
                 } elseif ($customer->isNew()) {

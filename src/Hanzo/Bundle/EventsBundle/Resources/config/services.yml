@@ -2,6 +2,8 @@ parameters:
 #    events.example.class: Hanzo\Bundle\EventsBundle\Example
 
 services:
-#    events.example:
-#        class: %events.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    hanzo.event.checkout.listener:
+        class: Hanzo\Bundle\EventsBundle\Event\CheckoutListener
+        arguments: [ @mail_manager, @ax_manager, @translator, @session ]
+        tags:
+            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, prioriy: 10 }

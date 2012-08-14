@@ -863,18 +863,21 @@ class EventsController extends CoreController
             $request = $this->getRequest();
 
             list($id, $code) = explode(':', $request->get('type'));
-            $hostess = $request->get('hostess');
-
             $order->setEventsId(null);
+
             if (preg_match('/[0-9]+/', $id)) {
                 $order->setEventsId($id);
+            } else {
+                $order->setAttribute('type', 'purchase', $code);
             }
 
-            if (!empty($hostess)) {
+            $hostess = $request->get('hostess');
+            if (empty($hostess)) {
+                $order->clearAttributesByKey('is_hostess_order');
+            } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
             }
 
-            $order->setAttribute('HomePartyId', 'global', $code);
             $order->save();
         }
 
