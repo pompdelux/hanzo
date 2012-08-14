@@ -72,7 +72,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  document.domain = 'pompdelux.com'; 
+  document.domain = '{{ document_domain }}'; 
   $(document).ready(function(){
     $('textarea.tinymce').tinymce({
       // Location of TinyMCE script

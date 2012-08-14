@@ -18,7 +18,6 @@ use Symfony\Component\Finder\Finder;
 
 class DefaultController extends CoreController
 {
-    
     public function indexAction($draft_id)
     {
         $api = $this->get('consultantnewsletterapi');
@@ -41,15 +40,35 @@ class DefaultController extends CoreController
             $message = $draft->getContent();
         }
 
+        $domain = 'pompdelux.com';
+        $serverName = $_SERVER['SERVER_NAME'];
+
+        $env = substr( $this->container->getParameter('kernel.environment'), 0, 3 );
+
+        switch ($env) 
+        {
+          case 'dev':
+          case 'tes':
+            if ( substr( $serverName, 0, 1 ) == 'c' )
+            {
+              $domain = str_replace( 'c.', '', $serverName );
+            }
+            else
+            {
+              $domain = $serverName;
+            }
+            break;
+        }
 
         return $this->render('ConsultantNewsletterBundle:Default:index.html.twig',
         	array(
-        		'page_type' => 'consultant-newsletter',
-        		'test_receiver' => $consultant->getEmail(),
-                'drafts' => $drafts,
-                'draft_id' => $draft_id,
-                'subject' => $subject,
-                'message' => $message
+        		'page_type'       => 'consultant-newsletter',
+        		'test_receiver'   => $consultant->getEmail(),
+                'drafts'          => $drafts,
+                'draft_id'        => $draft_id,
+                'subject'         => $subject,
+                'message'         => $message,
+                'document_domain' => $domain,
         	)
         );
     }
@@ -147,7 +166,7 @@ class DefaultController extends CoreController
         $test     = $request->get('actionSendTest');
         $test_reciever = $request->get('test_reciever');
 		$status   = $request->get('status');
-		$subject  = htmlentities( $request->get('subject') );
+		$subject  = htmlentities( utf8_decode( $request->get('subject') ) );
 		$message  = stripslashes( utf8_decode( $request->get('message') ) );
 		//$from     = $this->get('translator')->trans('consultant.newsletter.from.field.%name%.%email%', array('%name%' => $consultant->getName(), '%email%' => $consultant->getEmail()), 'consultant');
         $from     = $consultant->getEmail();
@@ -423,9 +442,12 @@ class DefaultController extends CoreController
     	$history = $api->getNewsletterHistory( $admin_user->id );
 
     	// Workaround. Crap content receivet from phplist :-(
-    	for ($i=0; $i < count($history); $i++) { 
+    	$histSize = count($history);
+    	for ($i=0; $i < $histSize; $i++) { 
 			$history[$i]['message'] = htmlspecialchars_decode($history[$i]['message']);
     	}
+
+        krsort($history);
     	
     	return $this->render('ConsultantNewsletterBundle:Default:history.html.twig',
         	array(
