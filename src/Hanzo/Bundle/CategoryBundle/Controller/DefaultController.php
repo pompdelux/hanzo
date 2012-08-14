@@ -88,11 +88,11 @@ class DefaultController extends CoreController
                     ->filterByContext($filter.'%', \Criteria::LIKE)
                 ->endUse()
             ->endUse()
+            ->joinWithProductsToCategories()
             ->orderBySku()
             ->groupBySku()
             ->find()
         ;
-
 
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $router = $this->get('router');
