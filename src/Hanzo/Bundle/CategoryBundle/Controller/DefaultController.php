@@ -2,18 +2,19 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\DependencyInjection\ContainerAware,
-    Symfony\Component\HttpFoundation\Response
-;
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Response;
 
-use Hanzo\Core\CoreController,
-    Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
-use Hanzo\Model\ProductsImagesCategoriesSortQuery,
-    Hanzo\Model\ProductsImagesCategoriesSortPeer,
-    Hanzo\Model\CategoriesPeer
-;
+use Hanzo\Model\ProductsImagesCategoriesSortQuery;
+use Hanzo\Model\ProductsImagesCategoriesSortPeer;
+use Hanzo\Model\CategoriesPeer;
+
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\Products;
 
 class DefaultController extends CoreController
 {
@@ -59,5 +60,63 @@ class DefaultController extends CoreController
         }
 
         return $this->response($html);
+    }
+
+    public function listProductsAction($view = 'simple', $filter = 'G_')
+    {
+
+        $filter_map = array(
+            'G_' => 'Girl',
+            'LG_' => 'Little Girl',
+            'B_' => 'Boy',
+            'LB_' => 'Little Boy',
+        );
+
+
+        $hanzo = Hanzo::getInstance();
+        $domain_id = $hanzo->get('core.domain_id');
+        $locale = $hanzo->get('core.locale');
+
+        $products = ProductsQuery::create()
+            ->where('products.MASTER IS NULL')
+            ->filterByIsOutOfStock(FALSE)
+            ->useProductsDomainsPricesQuery()
+                ->filterByDomainsId($domain_id)
+            ->endUse()
+            ->useProductsToCategoriesQuery()
+                ->useCategoriesQuery()
+                    ->filterByContext($filter.'%', \Criteria::LIKE)
+                ->endUse()
+            ->endUse()
+            ->orderBySku()
+            ->groupBySku()
+            ->find()
+        ;
+
+
+        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
+        $router = $this->get('router');
+
+        $records = array();
+        foreach ($products as $product) {
+
+            $product_route = $router_keys['_' . strtolower($locale) . '_' . $product->getProductsToCategoriess()->getFirst()->getCategoriesId()];
+
+            $records[] = array(
+                'sku' => $product->getSku(),
+                'id' => $product->getId(),
+                'title' => $product->getSku(),
+                'url' => $router->generate($product_route, array(
+                    'product_id' => $product->getId(),
+                    'title' => Tools::stripText($product->getSku()),
+                )),
+            );
+        }
+
+        return $this->render('HanzoCategoryBundle:Default:contextList.html.twig', array(
+            'page_type' => 'context-list',
+            'products' => $records,
+            'page_title' => $filter_map[$filter]
+        ));
     }
 }
