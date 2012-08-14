@@ -67,7 +67,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="container">
-  <a href="{{ path('_homepage') }}" title="{{ "home"|trans }}">
+  <a href="{{ path('_homepage', {'_locale' : app.session.locale}) }}" title="{{ "home"|trans }}">
     {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
   </a>
 
@@ -103,7 +103,7 @@
 	      <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
           <a href="{{ baseurl }}/en_GB/">International</a><br><br>
           <a href="{{ baseurl }}/nl_NL/">Netherlands</a><br><br>
-	      <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>      
+	      <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
           <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
         </div>
       </li>
@@ -125,7 +125,7 @@
 </footer>
 
 <script type="text/javascript">
-  var base_url = '{{ url('_homepage') }}';
+  var base_url = '{{ url('_homepage', {'_locale' : app.session.locale}) }}';
   var cdn_url = '{{ cdn }}';
   var counter_offset = 1314691200;
 </script>
