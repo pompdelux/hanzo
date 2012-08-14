@@ -27,6 +27,7 @@ var consultantNewsletter = (function($) {
         },
       });
     };
+
     $("#actionCreateNewsletter").click( handleNewsletterSubmit );
     $("#actionSendTest").click( handleNewsletterSubmit );
 
