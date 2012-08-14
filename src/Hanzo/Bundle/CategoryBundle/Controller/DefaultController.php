@@ -64,7 +64,6 @@ class DefaultController extends CoreController
 
     public function listProductsAction($view = 'simple', $filter = 'G_')
     {
-
         $filter_map = array(
             'G_' => 'Girl',
             'LG_' => 'Little Girl',
@@ -72,14 +71,12 @@ class DefaultController extends CoreController
             'LB_' => 'Little Boy',
         );
 
-
         $hanzo = Hanzo::getInstance();
         $domain_id = $hanzo->get('core.domain_id');
         $locale = $hanzo->get('core.locale');
 
         $products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
-            ->filterByIsOutOfStock(FALSE)
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId($domain_id)
             ->endUse()
