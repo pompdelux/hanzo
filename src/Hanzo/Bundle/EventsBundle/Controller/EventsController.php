@@ -322,7 +322,7 @@ class EventsController extends CoreController
                                 'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
                                 'consultant_email' => $consultant->getCustomers()->getEmail()
                             ));
-                            $mailer->setTo(array($old_event->getEmail() => $old_event->getHost()));
+                            $mailer->setTo(array($event->getEmail() => $event->getHost()));
                             $mailer->send();
                         }
 
