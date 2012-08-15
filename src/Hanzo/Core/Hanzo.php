@@ -54,14 +54,19 @@ class Hanzo
             $this->cache = $this->container->get('hanzo.cache');
         }
 
-        if ($this->cache && ($cache = $this->cache->get($this->cache->id('core.settings')))) {
-             $this->settings = $cache;
-        } else {
+        if ($this->cache) {
+            $cache_id = $this->cache->id($this->kernel->getSetting('domain_key'),'core.settings');
+            if ($cache = $this->cache->get($cache_id)) {
+                $this->settings = $cache;
+            }
+        }
+
+        if (empty($cache)) {
             $this->initSettings();
             $this->initDomain();
 
             if ($this->cache) {
-                $this->cache->set($this->cache->id('core.settings'), $this->settings);
+                $this->cache->set($cache_id, $this->settings);
             }
         }
 
@@ -91,6 +96,9 @@ class Hanzo
         if ($this->get('core.currency') == 'EUR') {
             setlocale(LC_MONETARY, 'nl_NL.utf8');
         }
+
+#\Hanzo\Core\Tools::log($_SERVER['REQUEST_URI']);
+#\Hanzo\Core\Tools::log($_COOKIE);
     }
 
 

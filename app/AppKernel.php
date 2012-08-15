@@ -68,7 +68,7 @@ class AppKernel extends Kernel
         list($dir, $lang,) = explode('_', $this->getEnvironment());
 
         $domain_key = strtoupper($lang);
-        if ('consultant' == $store_mode) {
+        if (('consultant' == $store_mode) || isset($_COOKIE['__ice'])) {
             $this->setSetting('parent_domain_key', $domain_key);
             $domain_key = 'Sales'.$domain_key;
         }
@@ -84,7 +84,6 @@ class AppKernel extends Kernel
             if ('/app.php' == $script) {
                 $script = '';
             }
-
             $twig->addGlobal('baseurl', 'http://'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == 80 ? '' : $_SERVER['SERVER_PORT']).$script);
         }
 

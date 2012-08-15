@@ -14,16 +14,27 @@ class OrderListener
 {
     protected $session;
     protected $ax;
+    protected $cookie_path;
 
     public function __construct(Session $session, AxService $ax)
     {
         $this->session = $session;
         $this->ax = $ax;
+
+        $this->cookie_path = $_SERVER['SCRIPT_NAME'];
+        if ('/app.php' == $this->cookie_path) {
+            $this->cookie_path = '';
+        }
+        $this->cookie_path .= '/'.$this->session->getLocale().'';
     }
 
     public function onEditStart(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
+
+        if ('Sales' == substr($order->getAttributes()->global->domain_key, 0, 5)) {
+            setcookie('__ice', uniqid(), 0, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
+        }
 
         // first we create the edit version.
         $order->createNewVersion();
@@ -43,6 +54,10 @@ class OrderListener
 
     public function onEditCancel(FilterOrderEvent $event)
     {
+        if (isset($_COOKIE['__ice'])) {
+            setcookie('__ice', '', -3600, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
+        }
+
         $order = $event->getOrder();
         // reset order object
         $order->toPreviousVersion();
@@ -57,6 +72,10 @@ class OrderListener
 
     public function onEditDone(FilterOrderEvent $event)
     {
+        if (isset($_COOKIE['__ice'])) {
+            setcookie('__ice', '', -3600, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
+        }
+
         $order = $event->getOrder();
         $order->setSessionId($order->getId());
 

@@ -32,6 +32,12 @@ class CheckoutListener
     public function onFinalize(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
+
+        // we do not change event discounts for edits
+        if ($order->getInEdit()) {
+            return;
+        }
+
         $attributes = $order->getAttributes();
 
         // add hostess discount if nessesary
