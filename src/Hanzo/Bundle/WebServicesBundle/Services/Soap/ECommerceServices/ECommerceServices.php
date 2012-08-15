@@ -138,38 +138,32 @@ class ECommerceServices extends SoapService
                     $sku = trim($item->ItemName);
                     $product = ProductsQuery::create()->findOneBySku($sku);
 
+                    // products 2 category
+                    $categories = explode(',', $item->ItemGroupId);
+
+                    // cleanup elements
+                    array_walk($categories, function(&$value, $key) use (&$categories) {
+                        $value = trim($value);
+                        if (empty($value)) {
+                            unset ($categories[$key]);
+                        }
+                    });
+
+                    $categories = CategoriesQuery::create()
+                        ->filterByContext($categories)
+                        ->find();
+
+                    if (0 == $categories->count()) {
+                        $errors = array(
+                            'InventId: ' . $item->ItemId,
+                            'No category/categories found for ItemGroupId: '.$item->ItemGroupId.'.',
+                        );
+                        break;
+                    }
+
                     if (!$product instanceof Products) {
                         $product = new Products();
                         $product->setSku($sku);
-                        $product->setUnit(trim('1 ' .$item->Sales->UnitId));
-
-                        $washing = $item->WashInstruction;
-                        if (is_scalar($washing) && !empty($washing)) {
-                            $product->setWashing($washing);
-                        }
-
-                        // products 2 category
-                        $categories = explode(',', $item->ItemGroupId);
-
-                        // cleanup elements
-                        array_walk($categories, function(&$value, $key) use (&$categories) {
-                            $value = trim($value);
-                            if (empty($value)) {
-                                unset ($categories[$key]);
-                            }
-                        });
-
-                        $categories = CategoriesQuery::create()
-                            ->filterByContext($categories)
-                            ->find();
-
-                        if (0 == $categories->count()) {
-                            $errors = array(
-                                'InventId: ' . $item->ItemId,
-                                'No category/categories found for ItemGroupId: '.$item->ItemGroupId.'.',
-                            );
-                            break;
-                        }
 
                         // products i18n
                         $languages = LanguagesQuery::create()->find();
@@ -188,9 +182,25 @@ class ECommerceServices extends SoapService
                             $product->addProductsToCategories($p2c);
                         }
 
-                        // save ze product
-                        $product->save();
+                    } else {
+                        $product->setUnit(trim('1 ' .$item->Sales->UnitId));
+                        $washing = $item->WashInstruction;
+                        if (is_scalar($washing) && !empty($washing)) {
+                            $product->setWashing($washing);
+                        }
+
+                        $collection = new PropelCollection();
+                        foreach ($categories as $category) {
+                            $data = new ProductsToCategories();
+                            $data->setCategoriesId($category->getId());
+                            $data->setProductsId($product->getId());
+                            $collection->prepend($data);
+                        }
+                        $product->setProductsToCategoriess($collection);
                     }
+
+                    // save ze product
+                    $product->save();
                 }
 
                 // create product variations
@@ -556,8 +566,10 @@ class ECommerceServices extends SoapService
 
         if ($allout) {
             $master->setIsOutOfStock(true);
-            $master->save();
+        } else {
+            $master->setIsOutOfStock(false);
         }
+        $master->save();
 
         // ....................
         // .....</ze code>.....
