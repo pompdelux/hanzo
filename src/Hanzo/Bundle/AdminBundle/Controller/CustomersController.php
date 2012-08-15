@@ -18,19 +18,19 @@ use Hanzo\Model\CustomersQuery,
 
 class CustomersController extends CoreController
 {
-    
+
     public function indexAction($domain_key, $pager)
     {
 
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
-        
+
         $customers = CustomersQuery::create();
 
         if (isset($_GET['q'])) {
@@ -83,7 +83,7 @@ class CustomersController extends CoreController
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
 
             }
-            
+
             if (isset($_GET['q'])) // If search query, add it to the route
                 $paginate = array(
                     'next' => ($customers->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $customers->getNextPage(), 'q' => $_GET['q']), TRUE)),
@@ -121,12 +121,16 @@ class CustomersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $customer = CustomersQuery::create()
-            ->findOneById($id, $this->getDbConnection())
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
         ;
 
-        $addresses = AddressesQuery::create()->findByCustomersId($id, $this->getDbConnection());
+        $addresses = AddressesQuery::create()
+            ->filterByCustomersId($id)
+            ->find($this->getDbConnection())
+        ;
 
         $groups = GroupsQuery::create()->find($this->getDbConnection());
 
@@ -195,7 +199,7 @@ class CustomersController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                
+
                 /**
                  * @todo Synkronisering til AX
                  */
@@ -221,7 +225,7 @@ class CustomersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $customer = CustomersQuery::create()
             ->filterById($id)
             ->delete($this->getDbConnection())
@@ -240,12 +244,14 @@ class CustomersController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $address = null;
         if($type){
             $address = AddressesQuery::create()
                 ->filterByType($type)
-                ->findOneByCustomersId($id, $this->getDbConnection());
+                ->filterByCustomersId($id)
+                ->findOne($this->getDbConnection())
+            ;
         }else{
             $address = new Addresses();
         }

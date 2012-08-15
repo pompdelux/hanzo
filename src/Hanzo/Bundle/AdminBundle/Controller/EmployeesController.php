@@ -18,7 +18,7 @@ use Propel\Runtime\Parser\PropelCSVParser;
 
 class EmployeesController extends CoreController
 {
-    
+
     public function indexAction($pager)
     {
         $hanzo = Hanzo::getInstance();
@@ -53,7 +53,7 @@ class EmployeesController extends CoreController
                 ->orderByLastName()
                 ->paginate($pager, 50, $this->getDbConnection())
             ;
-            
+
         } else {
 
             $employees = CustomersQuery::create()

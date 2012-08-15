@@ -28,12 +28,7 @@ class CouponsController extends CoreController
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
 
-	    $coupons = CouponsQuery::create()
-	    	// ->useCouponsToCustomersQuery()
-	    	// 	->withColumn('SUM(coupons_to_customers.use_count)', 'usecount')
-	    	// ->endUse()
-	    	//->joinWithCouponsToCustomers('LEFT JOIN')
-	    ;
+	    $coupons = CouponsQuery::create();
 
     	if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
@@ -86,12 +81,13 @@ class CouponsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
     	$coupon = null;
 
     	if ($id) {
     		$coupon = CouponsQuery::create()
-    			->findOneById($id, $this->getDbConnection())
+    			->filterById($id)
+                ->findOne($this->getDbConnection())
     		;
     	}else{
     		$coupon = new Coupons();
@@ -121,12 +117,6 @@ class CouponsController extends CoreController
                     'translation_domain' => 'admin',
                     'required' => true
                 )
-            // )->add('vat', 'number',
-            //     array(
-            //         'label' => 'admin.coupons.vat',
-            //         'translation_domain' => 'admin',
-            //         'required' => false
-            //     )
             )->add('currency_code', 'choice',
                 array(
                 	'choices' => $currencies_data,
@@ -169,11 +159,14 @@ class CouponsController extends CoreController
             )->getForm()
         ;
 
-        $customers = CustomersQuery::create()->find($this->getDbConnection());
+        $customers = CustomersQuery::create()
+            ->find($this->getDbConnection())
+        ;
 
         $couponstocustomers = CouponsToCustomersQuery::create()
         	->joinWithCustomers()
-        	->findByCouponsId($coupon->getId(), $this->getDbConnection())
+        	->filterByCouponsId($coupon->getId())
+            ->find($this->getDbConnection())
         ;
 
         $request = $this->getRequest();
@@ -202,9 +195,11 @@ class CouponsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
     	$coupon = CouponsQuery::create()
-            ->findOneById($id, $this->getDbConnection());
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
+        ;
 
         if($coupon instanceof Coupons){
             $coupon->delete($this->getDbConnection());
@@ -233,7 +228,7 @@ class CouponsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $requests = $this->get('request');
         $coupon_id = $requests->get('coupon');
         $customer_id = $requests->get('customer');
@@ -273,7 +268,7 @@ class CouponsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
     	$coupon = CouponsToCustomersQuery::create()
     		->filterByCouponsId($coupon_id)
             ->filterByCustomersId($customer_id)

@@ -100,7 +100,10 @@ class ConsultantsController extends CoreController
                 );
         }
 
-        $consultant_settings = SettingsQuery::create()->findByNs('consultant', $this->getDbConnection());
+        $consultant_settings = SettingsQuery::create()
+            ->filterByNs('consultant')
+            ->findOne($this->getDbConnection())
+        ;
         $consultant_settings_data = array();
         foreach ($consultant_settings as $consultant_setting) {
             $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue();
@@ -158,7 +161,8 @@ class ConsultantsController extends CoreController
 
         $consultant = ConsultantsQuery::create()
             ->joinWithCustomers()
-            ->findOneById($id, $this->getDbConnection())
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
         ;
         $customer = $consultant->getCustomers();
         $consultant_data = array(
@@ -404,13 +408,14 @@ class ConsultantsController extends CoreController
 
         $max_amount = SettingsQuery::create()
             ->filterByNs('consultant')
-            ->findOneByCKey('max_amount', $this->getDbConnection())
-
+            ->filterByCKey('max_amount')
+            ->findOne($this->getDbConnection())
         ;
 
         $date = SettingsQuery::create()
             ->filterByNs('consultant')
-            ->findOneByCKey('date', $this->getDbConnection())
+            ->filterByCKey('date')
+            ->findOne($this->getDbConnection())
         ;
 
         if(!$max_amount){

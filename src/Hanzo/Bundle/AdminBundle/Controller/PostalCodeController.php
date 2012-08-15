@@ -18,18 +18,18 @@ use Hanzo\Model\ZipToCityQuery,
 
 class PostalCodeController extends CoreController
 {
-    
+
     public function indexAction($locale, $pager)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
-        
+
         $zip_to_city = ZipToCityQuery::create();
         if($locale)
         	$zip_to_city->filterByCountriesIso2($locale);
@@ -69,7 +69,7 @@ class PostalCodeController extends CoreController
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
 
             }
-            
+
             if (isset($_GET['q'])) // If search query, add it to the route
                 $paginate = array(
                     'next' => ($zip_to_city->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $zip_to_city->getNextPage(), 'q' => $_GET['q']), TRUE)),
@@ -108,11 +108,12 @@ class PostalCodeController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
     	$zip_to_city = null;
     	if($id)
 			$zip_to_city = ZipToCityQuery::create()
-	            ->findOneById($id, $this->getDbConnection())
+	            ->filterById($id)
+                ->findOne($this->getDbConnection())
 	        ;
 	    else
 	    	$zip_to_city = new ZipToCity();
@@ -167,7 +168,7 @@ class PostalCodeController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-              
+
                 $zip_to_city->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'zip_to_city.updated');
@@ -186,9 +187,11 @@ class PostalCodeController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $zip_to_city = ZipToCityQuery::create()
-        	->findOneById($id, $this->getDbConnection());
+        	->filterById($id)
+            ->findOne($this->getDbConnection())
+        ;
 
         if($zip_to_city instanceof ZipToCity){
             $zip_to_city->delete($this->getDbConnection());

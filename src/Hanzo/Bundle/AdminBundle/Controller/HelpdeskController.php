@@ -17,7 +17,7 @@ class HelpdeskController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
 
     	$helpdesk_data = HelpdeskDataLogQuery::create()
     		->orderByCreatedAt('DESC')
@@ -35,7 +35,7 @@ class HelpdeskController extends CoreController
                     $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
 
             }
-            
+
             if (isset($_GET['q'])) // If search query, add it to the route
                 $paginate = array(
                     'next' => ($helpdesk_data->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $helpdesk_data->getNextPage(), 'q' => $_GET['q']), TRUE)),
@@ -66,7 +66,7 @@ class HelpdeskController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
+
     	$helpdesk_data = null;
     	if('ALL' == $key){
 			$helpdesk_data = HelpdeskDataLogQuery::create()
@@ -75,8 +75,9 @@ class HelpdeskController extends CoreController
 			;
     	}else{
 			$helpdesk_data = HelpdeskDataLogQuery::create()
-				->findOneByKey($key, $this->getDbConnection())
-			;	
+				->filterByKey($key)
+                ->findOne($this->getDbConnection())
+			;
     	}
 
         if($helpdesk_data instanceof HelpdeskDataLog || $helpdesk_data instanceof PropelCollection){
@@ -91,7 +92,7 @@ class HelpdeskController extends CoreController
 	        }
 
 	        $this->get('session')->setFlash('notice', 'delete.helpdesk.success');
-        
+
         	return $this->redirect($this->generateUrl('admin_helpdesk'));
 
         }
