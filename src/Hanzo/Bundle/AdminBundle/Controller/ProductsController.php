@@ -165,7 +165,7 @@ class ProductsController extends CoreController
 
         $product_images = ProductsImagesQuery::create()
             ->joinProducts()
-            ->filterProductsId($id)
+            ->filterByProductsId($id)
             ->find($this->getDbConnection())
         ;
 
