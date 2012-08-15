@@ -55,17 +55,22 @@ class DefaultController extends CoreController
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
-        if ('POST' == $request->getMethod() || $customer_id) {
-            $customer = CustomersQuery::create()
-                ->joinWithAddresses()
-                ->useAddressesQuery()
-                    ->filterByType('payment')
-                ->endUse()
-                ->findOneById($customer_id)
-            ;
-            $pwd = $customer->getPassword();
-            $address = $customer->getAddresses()->getFirst();
-        } else {
+        if ('POST' == $request->getMethod()) {
+            if ($customer_id) {
+                $customer = CustomersQuery::create()
+                    ->joinWithAddresses()
+                    ->useAddressesQuery()
+                        ->filterByType('payment')
+                    ->endUse()
+                    ->findOneById($customer_id)
+                ;
+                $pwd = $customer->getPassword();
+                $address = $customer->getAddresses()->getFirst();
+                $validation_groups = 'customer_edit';
+            }
+        }
+
+        if (empty($address)) {
             $customer = new Customers();
             $address = new Addresses();
             if ( count( $countries ) == 1 ) {
@@ -74,9 +79,10 @@ class DefaultController extends CoreController
             }
 
             $customer->addAddresses($address);
+            $validation_groups = 'customer';
         }
 
-        $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => 'customer_edit'));
+        $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => $validation_groups));
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);

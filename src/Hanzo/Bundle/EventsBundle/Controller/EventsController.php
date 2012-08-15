@@ -815,6 +815,7 @@ class EventsController extends CoreController
         $events = EventsQuery::create()
             ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
             ->filterByCustomersId($customer->getId())
+            ->filterByIsOpen(true)
             ->find()
         ;
 
