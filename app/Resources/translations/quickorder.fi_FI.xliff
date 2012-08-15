@@ -4,43 +4,43 @@
         <body>
             <trans-unit id="quickorder.header.text">
                 <source>quickorder.header.text</source>
-                <target>Hurtig ordre</target>
+                <target>Nopea tilaus</target>
             </trans-unit>
             <trans-unit id="quickorder.description.text">
                 <source>quickorder.description.text</source>
-                <target>Indtast de første bogstaver af den style du ønsker at tilføje kurven. Brug [TAB] for at komme videre til næste felt.</target>
+                <target>Syötä ensimmäiset kirjaimet mallista joka haluat lisätä ostoskoriin. Käytä [TAB] päästäksesi seuraavaan osioon.</target>
             </trans-unit>
             <trans-unit id="quickorder.master.placeholder">
                 <source>quickorder.master.placeholder</source>
-                <target>Produkt</target>
+                <target>Tuote</target>
             </trans-unit>
             <trans-unit id="quickorder.quantity.placeholder">
                 <source>quickorder.quantity.placeholder</source>
-                <target>Antal</target>
+                <target>Määrä</target>
             </trans-unit>
             <trans-unit id="quickorder.submit.placeholder">
                 <source>quickorder.submit.placeholder</source>
-                <target>Tilføj til kurv</target>
+                <target>Lisää koriin</target>
             </trans-unit>
             <trans-unit id="quickorder.reset.placeholder">
                 <source>quickorder.reset.placeholder</source>
-                <target>Slet alt</target>
+                <target>Poista kaikki</target>
             </trans-unit>
             <trans-unit id="quickorder.products.header.text">
                 <source>quickorder.products.header.text</source>
-                <target>Kurv</target>
+                <target>Ostoskori</target>
             </trans-unit>
             <trans-unit id="quickorder.sku.table">
                 <source>quickorder.sku.table</source>
-                <target>Produkt</target>
+                <target>Tuote</target>
             </trans-unit>
             <trans-unit id="quickorder.quantity.table">
                 <source>quickorder.quantity.table</source>
-                <target>Antal</target>
+                <target>Määrä</target>
             </trans-unit>
             <trans-unit id="quickorder.no.products.found">
                 <source>quickorder.no.products.found</source>
-                <target>Kunne ikke finde produktet.</target>
+                <target>Tuotetta ei löydy.</target>
             </trans-unit>
         </body>
     </file>

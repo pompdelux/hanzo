@@ -18,6 +18,7 @@ security:
             anonymous:  ~
 
     access_control:
+        - { path: ^/.*/payment/dibs/callback, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
