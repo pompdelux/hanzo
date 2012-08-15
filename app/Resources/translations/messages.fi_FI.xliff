@@ -161,7 +161,7 @@
                     <ul style="width:400px;">
                         <li><img src="%cdn%fx/images/creditcards_no.png" alt="credit cards" title="credit cards"></li>
                         <li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
-                    </ul>]]
+                    </ul>]]>
                 </target>
             </trans-unit>
         </body>
