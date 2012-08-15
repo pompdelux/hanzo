@@ -200,7 +200,6 @@ class CmsController extends CoreController
                     ->findOneById($cms_node->getCmsThreadId(), $this->getDbConnection());
 
                 $node->setCmsThreadId($cms_node->getCmsThreadId());
-                $node->setPath(Tools::stripText($cms_thread->getTitle()) . '/');
 
                 $node->setIsActive(FALSE);
                 $node->setSettings(json_encode($settings));
@@ -226,8 +225,9 @@ class CmsController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
         
-        if(!$locale)
+        if(!$locale){
             $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
+        }
 
         $cache = $this->get('cache_manager');
 
@@ -237,6 +237,11 @@ class CmsController extends CoreController
         $node = CmsQuery::create()
             ->joinWithI18n($locale, 'INNER JOIN')
             ->findPK($id, $this->getDbConnection());
+
+        // Vi skal bruge titel på Thread til Path
+        $cms_thread = CmsThreadQuery::create()
+            ->joinWithI18n($locale)
+            ->findOneById($node->getCmsThreadId(), $this->getDbConnection());
 
         if ( !($node instanceof Cms)) { // Oversættelsen findes ikke for det givne ID
 
@@ -248,17 +253,13 @@ class CmsController extends CoreController
             $node = CmsQuery::create()
                 ->findPk($id, $this->getDbConnection());
 
-            // Vi skal bruge titel på Thread til Path
-            $cms_thread = CmsThreadQuery::create()
-                ->joinWithI18n($locale)
-                ->findOneById($node->getCmsThreadId(), $this->getDbConnection());
 
             if ($node instanceof Cms) {
                 $node->setLocale($locale);
-                $node->setPath(Tools::stripText($cms_thread->getTitle()) . '/');
 
-                if($settings instanceof CmsI18n)
+                if($settings instanceof CmsI18n){
                     $node->setSettings($settings->getSettings(null, true));
+                }
             }
         }
 
@@ -278,7 +279,6 @@ class CmsController extends CoreController
                     ->joinCmsI18n(NULL, 'INNER JOIN')
                     ->filterByIsActive(TRUE)
                     ->where('cms.id <> ?', $node->getId())
-                    //->filterById($node->getId(), Criteria::NOT_EQUAL)
                     ->findOne($this->getDbConnection())
                 ;
 
@@ -303,6 +303,7 @@ class CmsController extends CoreController
             'form'      => $form->createView(),
             'node'      => $node,
             'languages' => $languages_availible,
+            'thread_title' =>$cms_thread->getTitle(),
             'database' => $this->getRequest()->getSession()->get('database')
         ));
 

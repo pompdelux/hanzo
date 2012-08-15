@@ -142,39 +142,40 @@
         });
       });
 
-      var $cms_path = $('#cms_path').val();
       // CMS edit page, title text field slug creation
       $('#cms_title').blur(function(e){
-        var slug = '';
-        var chars = {
-            'æ' : 'ae', 'Æ' : 'AE',
-            'ø' : 'oe', 'Ø' : 'OE',
-            'å' : 'aa', 'Å' : 'AA',
-            'é' : 'e',  'É' : 'E', 'è' : 'e', 'È' : 'E',
-            'à' : 'a',  'À' : 'A', 'ä' : 'a', 'Ä' : 'A', 'ã' : 'a', 'Ã' : 'A',
-            'ò' : 'o',  'Ò' : 'O', 'ö' : 'o', 'Ö' : 'O', 'õ' : 'o', 'Õ' : 'O',
-            'ù' : 'u',  'Ù' : 'U', 'ú' : 'u', 'Ú' : 'U', 'ũ' : 'u', 'Ũ' : 'U',
-            'ì' : 'i',  'Ì' : 'I', 'í' : 'i', 'Í' : 'I', 'ĩ' : 'i', 'Ĩ' : 'I',
-            'ß' : 'ss',
-            'ý' : 'y', 'Ý' : 'Y',
-            ' ' : '-',
-            '/' : '-'
-        };
-        $title = $('#cms_title').val();
+        if($('#cms_path').val().length == 0){
+          var slug = '';
+          var chars = {
+              'æ' : 'ae', 'Æ' : 'AE',
+              'ø' : 'oe', 'Ø' : 'OE',
+              'å' : 'aa', 'Å' : 'AA',
+              'é' : 'e',  'É' : 'E', 'è' : 'e', 'È' : 'E',
+              'à' : 'a',  'À' : 'A', 'ä' : 'a', 'Ä' : 'A', 'ã' : 'a', 'Ã' : 'A',
+              'ò' : 'o',  'Ò' : 'O', 'ö' : 'o', 'Ö' : 'O', 'õ' : 'o', 'Õ' : 'O',
+              'ù' : 'u',  'Ù' : 'U', 'ú' : 'u', 'Ú' : 'U', 'ũ' : 'u', 'Ũ' : 'U',
+              'ì' : 'i',  'Ì' : 'I', 'í' : 'i', 'Í' : 'I', 'ĩ' : 'i', 'Ĩ' : 'I',
+              'ß' : 'ss',
+              'ý' : 'y', 'Ý' : 'Y',
+              ' ' : '-',
+              '/' : '-'
+          };
+          $title = $('#cms_title').val();
 
-        for (var i = 0; i < $title.length; i++) {
-            if ( chars[$title.charAt(i)] ) {
-              slug += chars[$title.charAt(i)];
-            } else {
-              slug += $title.charAt(i);
-            }
+          for (var i = 0; i < $title.length; i++) {
+              if ( chars[$title.charAt(i)] ) {
+                slug += chars[$title.charAt(i)];
+              } else {
+                slug += $title.charAt(i);
+              }
+          }
+          slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
+          slug = slug.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
+          slug = slug.replace(/[-\s]+/g, '-');   // convert spaces
+          slug = thread_title + '/' + slug.replace(/-$/, '');         // remove trailing separator
+          slug = slug.toLowerCase();
+          $('#cms_path').val(slug);
         }
-        slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
-        slug = slug.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
-        slug = slug.replace(/[-\s]+/g, '-');   // convert spaces
-        slug = slug.replace(/-$/, '');         // remove trailing separator
-        slug = slug.toLowerCase();
-        $('#cms_path').val($cms_path + slug);
       });
 
       // Sortable list for products ind a category
