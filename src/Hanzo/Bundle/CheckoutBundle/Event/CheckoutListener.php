@@ -188,6 +188,11 @@ class CheckoutListener
             }
         }
 
+        if ($order->getEventsId() && isset($attributes->event->is_hostess_order)) {
+            $order->getEvents()->setIsOpen(false);
+        }
+
+
         // Handle payment canceling of old order
         if ($in_edit) {
             $currentVersion = $order->getVersionId();
