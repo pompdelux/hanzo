@@ -173,8 +173,7 @@
                         <li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
                         <li>+45 8678 7871</li>
                     </ul>
-                    <ul style="width:280px;">
-                        <!-- li><a name="fb_share" type="icon_link">Del med dine venner</a></li -->
+                    <ul style="width:400px;">
                         <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
                         <li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
                     </ul>

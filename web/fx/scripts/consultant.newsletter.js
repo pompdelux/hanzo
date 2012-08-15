@@ -3,6 +3,7 @@ var consultantNewsletter = (function($) {
 
   pub.init = function() {
     var handleNewsletterSubmit = function(e) {
+      e.preventDefault();
       tinyMCE.triggerSave();
 
       var actionName = $(this).attr('name');
@@ -27,6 +28,7 @@ var consultantNewsletter = (function($) {
         },
       });
     };
+
     $("#actionCreateNewsletter").click( handleNewsletterSubmit );
     $("#actionSendTest").click( handleNewsletterSubmit );
 

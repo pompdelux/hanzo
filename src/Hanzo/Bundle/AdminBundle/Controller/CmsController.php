@@ -78,7 +78,9 @@ class CmsController extends CoreController
 
         $node = CmsI18nQuery::create()
             ->filterByLocale($locale)
-            ->findOneById($id, $this->getDbConnection());
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
+        ;
 
         if($node instanceof CmsI18n) {
             $node->delete($this->getDbConnection());
@@ -197,7 +199,9 @@ class CmsController extends CoreController
                 // Vi skal bruge titel på Thread til Path
                 $cms_thread = CmsThreadQuery::create()
                     ->joinWithI18n()
-                    ->findOneById($cms_node->getCmsThreadId(), $this->getDbConnection());
+                    ->filterById($cms_node->getCmsThreadId())
+                    ->findOne($this->getDbConnection())
+                ;
 
                 $node->setCmsThreadId($cms_node->getCmsThreadId());
 
@@ -224,9 +228,12 @@ class CmsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('admin'));
         }
-        
-        if(!$locale){
-            $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
+
+        if(!$locale) {
+            $locale = LanguagesQuery::create()
+                ->orderById()
+                ->findOne($this->getDbConnection())
+                ->getLocale();
         }
 
         $cache = $this->get('cache_manager');
@@ -241,14 +248,18 @@ class CmsController extends CoreController
         // Vi skal bruge titel på Thread til Path
         $cms_thread = CmsThreadQuery::create()
             ->joinWithI18n($locale)
-            ->findOneById($node->getCmsThreadId(), $this->getDbConnection());
+            ->filterById($node->getCmsThreadId())
+            ->findOne($this->getDbConnection())
+        ;
 
         if ( !($node instanceof Cms)) { // Oversættelsen findes ikke for det givne ID
 
             // Vi laver en ny Oversættelse. Hent Settings fra en anden og brug dette.
             $settings = CmsI18nQuery::create()
                 ->where('cms_i18n.settings IS NOT NULL')
-                ->findOneById($id, $this->getDbConnection());
+                ->filterById($id)
+                ->findOne($this->getDbConnection())
+            ;
 
             $node = CmsQuery::create()
                 ->findPk($id, $this->getDbConnection());
@@ -396,7 +407,8 @@ class CmsController extends CoreController
 
         if($id)
             $redirect = RedirectsQuery::create()
-                ->findOneById($id, $this->getDbConnection())
+                ->filterById($id)
+                ->findOne($this->getDbConnection())
             ;
         else{
             $redirect = new Redirects();
@@ -460,7 +472,9 @@ class CmsController extends CoreController
         }
 
         $redirect = RedirectsQuery::create()
-            ->findOneById($id, $this->getDbConnection());
+            ->filtereById($id)
+            ->findOne($this->getDbConnection())
+        ;
 
         if($redirect instanceof Redirects){
             $redirect->delete($this->getDbConnection());

@@ -41,7 +41,8 @@ class CategoryController extends CoreController
         if($locale)
             $categories_i18n = CategoriesI18nQuery::create()
                 ->filterByLocale($locale)
-                ->findOneById($id, $this->getDbConnection())
+                ->filterById($id)
+                ->findOne($this->getDbConnection())
             ;
         else
             $categories_i18n = new CategoriesI18n();
@@ -145,7 +146,8 @@ class CategoryController extends CoreController
         if($locale)
             $categories_i18n_to_change = CategoriesI18nQuery::create()
                 ->filterByLocale($locale)
-                ->findOneById($id, $this->getDbConnection())
+                ->filterById($id)
+                ->findOne($this->getDbConnection())
             ;
         else
             $categories_i18n_to_change = new CategoriesI18n();
@@ -220,7 +222,7 @@ class CategoryController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        
+
         $categories = CategoriesQuery::create()
             ->filterById($id)
             ->delete($this->getDbConnection())

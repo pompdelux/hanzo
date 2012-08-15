@@ -51,8 +51,10 @@ class SettingsController extends CoreController
 
                 try{
                     $setting = SettingsQuery::create()
-                    ->filterByNs($ns)
-                    ->findOneByCKey($c_key, $this->getDbConnection());
+                        ->filterByNs($ns)
+                        ->filterByCKey($c_key)
+                        ->findOne($this->getDbConnection())
+                    ;
 
                     if ($setting && '' === $c_value) {
 
@@ -143,18 +145,17 @@ class SettingsController extends CoreController
 
                 try{
                     $setting = DomainsSettingsQuery::create()
-                        ->findOneById($keys[1], $this->getDbConnection());
+                        ->filterById($keys[1])
+                        ->findOne($this->getDbConnection())
+                    ;
 
                     if ($setting && '' === $c_value) {
-
                         $setting->delete($this->getDbConnection());
-
-                    }else{
-
+                    } else {
                         $setting->setCValue($c_value);
                         $setting->save($this->getDbConnection());
-
                     }
+
                 }catch(PropelException $e){
                     $this->get('session')->setFlash('notice', 'settings.updated.failed.'.$e);
                 }
@@ -221,7 +222,11 @@ class SettingsController extends CoreController
         }
 
         if(!$domain_key)
-            $domain_key = DomainsQuery::create()->orderById()->findOne($this->getDbConnection())->getDomainKey();
+            $domain_key = DomainsQuery::create()
+                ->orderById()
+                ->findOne($this->getDbConnection())
+                ->getDomainKey()
+            ;
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
@@ -235,7 +240,9 @@ class SettingsController extends CoreController
 
                 try{
                     $setting = DomainsSettingsQuery::create()
-                        ->findOneById($keys[1], $this->getDbConnection());
+                        ->filterById($keys[1])
+                        ->findOne($this->getDbConnection())
+                    ;
 
                     if ($setting && '' === $c_value) {
 
@@ -407,10 +414,14 @@ class SettingsController extends CoreController
         }
 
         $washing_instruction = null;
-        if ($id)
-            $washing_instruction = ProductsWashingInstructionsQuery::create()->findOneById($id, $this->getDbConnection());
-        else
+        if ($id){
+            $washing_instruction = ProductsWashingInstructionsQuery::create()
+                ->filterById($id)
+                ->findOne($this->getDbConnection())
+            ;
+        } else {
             $washing_instruction = new ProductsWashingInstructions();
+        }
 
         $languages_availible = LanguagesQuery::Create()->find($this->getDbConnection());
 
@@ -469,7 +480,8 @@ class SettingsController extends CoreController
 
         $washing_instruction = ProductsWashingInstructionsQuery::create()
             ->filterByLocale($locale)
-            ->findOneById($id, $this->getDbConnection())
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
         ;
 
         if($washing_instruction instanceof ProductsWashingInstructions)
@@ -509,7 +521,6 @@ class SettingsController extends CoreController
         ;
 
         $message_ns_availible = MessagesQuery::create()->find($this->getDbConnection());
-
         $languages_availible = LanguagesQuery::Create()->find($this->getDbConnection());
 
         $languages = array();
@@ -537,7 +548,8 @@ class SettingsController extends CoreController
         if($locale)
             $message = MessagesI18nQuery::create()
                 ->filterByLocale($locale)
-                ->findOneById($id, $this->getDbConnection())
+                ->filterById($id)
+                ->findOne($this->getDbConnection())
             ;
         if( !($message instanceof MessagesI18n) ) {
             $message = new MessagesI18n();
@@ -659,7 +671,7 @@ class SettingsController extends CoreController
             $message = $message->filterByLocale($locale);
         }
 
-        $message = $message->findOneById($id, $this->getDbConnection());
+        $message = $message->filterById($id)->findOne($this->getDbConnection());
 
         if($message instanceof MessagesI18n){
             $message->delete($this->getDbConnection());
@@ -681,7 +693,7 @@ class SettingsController extends CoreController
 
         $language = null;
         if ($id) {
-            $language = LanguagesQuery::create()->findOneById($id, $this->getDbConnection());
+            $language = LanguagesQuery::create()->filterById($id)->findOne($this->getDbConnection());
         }else{
             $language = new Languages();
         }
@@ -749,7 +761,7 @@ class SettingsController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $language = LanguagesQuery::create()->findOneById($id, $this->getDbConnection());
+        $language = LanguagesQuery::create()->filterById($id)->findOne($this->getDbConnection());
 
         if($language instanceof Languages){
             $language->delete($this->getDbConnection());

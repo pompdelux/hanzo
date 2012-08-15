@@ -129,7 +129,8 @@ class OrdersController extends CoreController
         }
 
         $order = OrdersQuery::create()
-            ->findOneById($order_id, $this->getDbConnection())
+            ->filterById($order_id)
+            ->findOne($this->getDbConnection())
         ;
 
         $order_lines = OrdersLinesQuery::create()
@@ -395,7 +396,7 @@ class OrdersController extends CoreController
     public function checkDeadOrderAction( $id )
     {
         $deadOrderBuster = $this->get('deadorder_manager');
-        $order = OrdersQuery::create()->findPK($id);
+        $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
         $status = $deadOrderBuster->checkOrderForErrors($order);
 
         if ( $status['is_error'] )

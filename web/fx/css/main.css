@@ -940,3 +940,14 @@ form.newsletter-subscription-form input.button {
 #newsletter-lists-container.simple input.text {
   width: 100%;
 }
+
+#body-context-list #main ul {
+  margin: 0;
+  padding: 0 20px;
+  list-style: square;
+  float: left;
+  width: 26%;
+}
+#body-context-list #main ul li {
+  margin: 0;
+}

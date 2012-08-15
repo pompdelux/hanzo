@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="pompdewall.header.text">
                 <source>pompdewall.header.text</source>
-                <target>POMPdeWALL - Konsulent væg</target>
+                <target>POMPdeWALL</target>
             </trans-unit>
             <trans-unit id="wall.edit.entry.success">
                 <source>wall.edit.entry.success</source>

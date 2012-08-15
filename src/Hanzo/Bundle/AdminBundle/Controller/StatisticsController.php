@@ -11,7 +11,7 @@ use Hanzo\Core\Hanzo,
 
 use Hanzo\Model\OrdersLinesQuery,
     Hanzo\Model\DomainsQuery,
-	Hanzo\Model\Orders;
+    Hanzo\Model\Orders;
 
 class StatisticsController extends CoreController
 {
@@ -22,24 +22,24 @@ class StatisticsController extends CoreController
         }
 
         $date_filter = array();
-    	if (!empty($_GET['select-periode'])) { // Select input from form
+        if (!empty($_GET['select-periode'])) { // Select input from form
 
-    		switch ($this->getRequest()->get('select-periode', null)) {
-    			case 'thisweek':
-    				$date_filter['min'] = date('d-m-Y',strtotime('Monday this week'));
-		            $start = $date_filter['min'];
-    				$date_filter['max'] = date('d-m-Y',strtotime('Sunday this week'));
-		            $end = $date_filter['max'];
-    				break;
-    			case 'thismonth':
-    				$date_filter['min'] = date('d-m-Y',strtotime('first day of this month'));
-		            $start = $date_filter['min'];
-		            $date_filter['max'] = date('d-m-Y',strtotime('last day of this month'));
-		            $end = $date_filter['max'];
-    				break;
-    		}
+            switch ($this->getRequest()->get('select-periode', null)) {
+                case 'thisweek':
+                    $date_filter['min'] = date('d-m-Y',strtotime('Monday this week'));
+                    $start = $date_filter['min'];
+                    $date_filter['max'] = date('d-m-Y',strtotime('Sunday this week'));
+                    $end = $date_filter['max'];
+                    break;
+                case 'thismonth':
+                    $date_filter['min'] = date('d-m-Y',strtotime('first day of this month'));
+                    $start = $date_filter['min'];
+                    $date_filter['max'] = date('d-m-Y',strtotime('last day of this month'));
+                    $end = $date_filter['max'];
+                    break;
+            }
 
-    	}elseif (isset($_GET['start']) && isset($_GET['end'])) {
+        }elseif (isset($_GET['start']) && isset($_GET['end'])) {
             $start = $this->getRequest()->get('start', null);
             $end = $this->getRequest()->get('end', null);
 
@@ -47,7 +47,7 @@ class StatisticsController extends CoreController
             //$date_filter['max'] = strtotime($end);
             $date_filter['max'] = strtotime(date("Y-m-d", strtotime($end)) . " +1 day");
         }else{
-        	// Default period is TODAY
+            // Default period is TODAY
             $date_filter['min'] = date('d-m-Y', time());
             $start = $date_filter['min'];
             $date_filter['max'] = $date_filter['min'];
@@ -115,14 +115,14 @@ class StatisticsController extends CoreController
                         'TotalOrders' => 0,
                         'CreatedAt' => $order['CreatedAt']
                     );
-                $orders_array[$order['CreatedAt']]['TotalProducts'] += $order['TotalProducts']; 
+                $orders_array[$order['CreatedAt']]['TotalProducts'] += $order['TotalProducts'];
                 $orders_array[$order['CreatedAt']]['TotalOrders'] += 1; //$order['TotalOrders'];
                 //$orders_array[$order['CreatedAt']]['CreatedAt'] = $order['CreatedAt'];
 
                 $orders_total['sumorders'] += 1; //$order['TotalOrders'];
                 $orders_total['sumproducts'] += $order['TotalProducts'];
             }
-            
+
             foreach ($orders_price as $order) {
                 if(!$domain_key && $order['Orders.CurrencyCode'] == 'EUR'){
                     $orders_array[$order['CreatedAt']]['TotalPrice'] = $order['TotalPrice'] * 7.5;
@@ -135,10 +135,10 @@ class StatisticsController extends CoreController
             }
         }
 
-		$domains_availible = DomainsQuery::Create()
-			->find($this->getDbConnection())
-		;
-        
+        $domains_availible = DomainsQuery::Create()
+            ->find($this->getDbConnection())
+        ;
+
         return $this->render('AdminBundle:Statistics:index.html.twig', array(
             'orders_array' => $orders_array,
             'total' => $orders_total,

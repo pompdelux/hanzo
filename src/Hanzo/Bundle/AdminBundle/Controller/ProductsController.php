@@ -71,7 +71,8 @@ class ProductsController extends CoreController
 
             $parent_category = CategoriesQuery::create()
                 ->joinWithI18n('en_GB')
-                ->findOneById($category_id, $this->getDbConnection())
+                ->filterById($category_id)
+                ->findOne($this->getDbConnection())
             ;
 
         } else { // Both $category_id and $subcategory_id are set. Show some products!
@@ -85,7 +86,8 @@ class ProductsController extends CoreController
 
             $parent_category = CategoriesQuery::create()
                 ->joinWithI18n('en_GB')
-                ->findOneById($subcategory_id, $this->getDbConnection())
+                ->filterById($subcategory_id)
+                ->findOne($this->getDbConnection())
             ;
         }
         $categories_list = array();
@@ -146,7 +148,8 @@ class ProductsController extends CoreController
         ;
 
         $current_product = ProductsQuery::create()
-            ->findOneById($id)
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
         ;
 
         $styles = ProductsQuery::create()
@@ -162,11 +165,13 @@ class ProductsController extends CoreController
 
         $product_images = ProductsImagesQuery::create()
             ->joinProducts()
-            ->findByProductsId($id, $this->getDbConnection())
+            ->filterProductsId($id)
+            ->find($this->getDbConnection())
         ;
 
         $related_products = RelatedProductsQuery::create()
-            ->findByMaster($current_product->getSku(), $this->getDbConnection())
+            ->filterByMaster($current_product->getSku())
+            ->find($this->getDbConnection())
         ;
 
         $product_images_list = array();
@@ -239,7 +244,8 @@ class ProductsController extends CoreController
         }
 
         $current_product = ProductsQuery::create()
-            ->findOneById($product_id, $this->getDbConnection())
+            ->filterById($product_id)
+            ->findOne($this->getDbConnection())
         ;
 
         $domains_availible = DomainsQuery::Create()->find($this->getDbConnection());
@@ -279,7 +285,8 @@ class ProductsController extends CoreController
                 $duplicate = ProductsQuantityDiscountQuery::create()
                     ->filterByProductsMaster($quantity_discount->getProductsMaster())
                     ->filterBySpan($quantity_discount->getSpan())
-                    ->findOneByDomainsId($quantity_discount->getDomainsId(), $this->getDbConnection())
+                    ->filterByDomainsId($quantity_discount->getDomainsId())
+                    ->findOne($this->getDbConnection())
                 ;
 
                 if ($duplicate instanceof ProductsQuantityDiscount) {
@@ -321,7 +328,8 @@ class ProductsController extends CoreController
         $discount = ProductsQuantityDiscountQuery::create()
             ->filterByProductsMaster($master)
             ->filterBySpan($span)
-            ->findOneByDomainsId($domains_id, $this->getDbConnection())
+            ->filterByDomainsId($domains_id)
+            ->findOne($this->getDbConnection())
         ;
 
         if($discount instanceof ProductsQuantityDiscount){
@@ -359,7 +367,8 @@ class ProductsController extends CoreController
         }
 
         $master = ProductsQuery::create()
-            ->findOneById($id, $this->getDbConnection())
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
         ;
 
         $styles = ProductsQuery::create()
@@ -388,7 +397,8 @@ class ProductsController extends CoreController
         }
 
         $style = ProductsQuery::create()
-            ->findOneById($id, $this->getDbConnection())
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
         ;
 
         if($style instanceof ProductsQuery){
@@ -460,7 +470,8 @@ class ProductsController extends CoreController
 
         $category_to_product = ProductsToCategoriesQuery::create()
             ->filterByCategoriesId($category_id)
-            ->findOneByProductsId($product_id, $this->getDbConnection())
+            ->filterByProductsId($product_id)
+            ->findOne($this->getDbConnection())
         ;
 
         if($category_to_product)
@@ -515,7 +526,8 @@ class ProductsController extends CoreController
 
         $related_product = RelatedProductsQuery::create()
             ->filterByMaster($master)
-            ->findOneBySku($sku, $this->getDbConnection())
+            ->filterBySku($sku)
+            ->findOne($this->getDbConnection())
         ;
 
         if($related_product instanceof RelatedProducts)
@@ -564,7 +576,8 @@ class ProductsController extends CoreController
     {
         $product_ref = ProductsImagesProductReferencesQuery::create()
             ->filterByProductsImagesId($image_id)
-            ->findOneByProductsId($product_id, $this->getDbConnection())
+            ->filterByProductsId($product_id)
+            ->findOne($this->getDbConnection())
         ;
 
         if($product_ref)
@@ -583,7 +596,8 @@ class ProductsController extends CoreController
     {
         $current_category = CategoriesQuery::create()
             ->joinWithI18n()
-            ->findOneById($category_id, $this->getDbConnection())
+            ->filterById($category_id)
+            ->findOne($this->getDbConnection())
         ;
 
         $categories_result = CategoriesQuery::create()
@@ -651,7 +665,8 @@ class ProductsController extends CoreController
             $result = ProductsImagesCategoriesSortQuery::create()
                 ->filterByCategoriesId($category_id)
                 ->filterByProductsId($product_id)
-                ->findOneByProductsImagesId($picture_id, $this->getDbConnection())
+                ->filterByProductsImagesId($picture_id)
+                ->findOne($this->getDbConnection())
                 ->setSort($sort)
                 ->save($this->getDbConnection())
             ;

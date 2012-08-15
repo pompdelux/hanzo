@@ -4,31 +4,31 @@
         <body>
             <trans-unit id="quickorder.header.text">
                 <source>quickorder.header.text</source>
-                <target>Hurtig Ordre</target>
+                <target>Hurtig ordre</target>
             </trans-unit>
             <trans-unit id="quickorder.description.text">
                 <source>quickorder.description.text</source>
-                <target>Her kan du hurtigt oprette ordre hvor du kender navnet på produkterne. Vælg et felt ad gangen og derefter tryk på [TAB] for at vælge.</target>
+                <target>Tast inn de første bokstavene i den stylen du ønsker å tilføye i kurven. Bruk [TAB] for å komme videre til neste felt.</target>
             </trans-unit>
             <trans-unit id="quickorder.master.placeholder">
                 <source>quickorder.master.placeholder</source>
-                <target>Produkt navn</target>
+                <target>Produkt</target>
             </trans-unit>
             <trans-unit id="quickorder.quantity.placeholder">
                 <source>quickorder.quantity.placeholder</source>
-                <target>Antal</target>
+                <target>Antall</target>
             </trans-unit>
             <trans-unit id="quickorder.submit.placeholder">
                 <source>quickorder.submit.placeholder</source>
-                <target>Tilføj til kurv</target>
+                <target>Legg i kurv</target>
             </trans-unit>
             <trans-unit id="quickorder.reset.placeholder">
                 <source>quickorder.reset.placeholder</source>
-                <target>Reset</target>
+                <target>Slett alt</target>
             </trans-unit>
             <trans-unit id="quickorder.products.header.text">
                 <source>quickorder.products.header.text</source>
-                <target>Produkter i denne ordre</target>
+                <target>Kurv</target>
             </trans-unit>
             <trans-unit id="quickorder.sku.table">
                 <source>quickorder.sku.table</source>
@@ -36,11 +36,11 @@
             </trans-unit>
             <trans-unit id="quickorder.quantity.table">
                 <source>quickorder.quantity.table</source>
-                <target>Antal</target>
+                <target>Antall</target>
             </trans-unit>
             <trans-unit id="quickorder.no.products.found">
                 <source>quickorder.no.products.found</source>
-                <target>Ingen produkter kunne findes.</target>
+                <target>Kunne ikke finne produktet.</target>
             </trans-unit>
         </body>
     </file>

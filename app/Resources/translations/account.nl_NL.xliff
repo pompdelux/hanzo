@@ -85,9 +85,13 @@
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
-                <target>Log in</target>
+                <target>Inloggen</target>
             </trans-unit>
-            <trans-unit id="51">
+            <trans-unit id="my.account.logout">
+                <source>my.account.logout</source>
+                <target>Log uit</target>
+            </trans-unit>
+			<trans-unit id="51">
                 <source>First name</source>
                 <target>Voornaam</target>
             </trans-unit>
@@ -103,7 +107,7 @@
                 <source>Phone</source>
                 <target>Telefoonnummer</target>
             </trans-unit>
-            <trans-unit id="55">
+            			<trans-unit id="55">
                 <source>Address line 1</source>
                 <target>Straatnaam (denk om huisnummer en verdieping/deur)</target>
             </trans-unit>
