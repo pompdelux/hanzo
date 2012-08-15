@@ -175,17 +175,21 @@ class CheckoutListener
         }
 
         foreach ($order->getOrdersLiness() as $line) {
-            if ($line->gettype('discount') && $line->getProductsSku() == 'discount.hostess')
-            {
+            if ($line->gettype('discount') && $line->getProductsSku() == 'discount.hostess') {
                 $params['hostess_discount'] = $line->getPrice();
                 $params['hostess_discount_title'] = $line->getProductsName();
             }
 
-            if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') // or Sku == 91 ?
-            {
+            // or Sku == 91 ?
+            if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
                 $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title',array(),'checkout');
             }
+        }
+
+        // close event if this is the hostess purchase.
+        if ($order->getEventsId() && isset($attributes->event->is_hostess_order)) {
+            $order->getEvents()->setIsOpen(false);
         }
 
         // Handle payment canceling of old order
@@ -196,12 +200,9 @@ class CheckoutListener
             if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                try
-                {
+                try {
                     $oldOrder->cancelPayment();
-                }
-                catch (\Exception $e)
-                {
+                } catch (\Exception $e) {
                     Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                 }
             }

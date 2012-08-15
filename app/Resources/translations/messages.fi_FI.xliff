@@ -146,12 +146,22 @@
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
                 <source>customer.service.contact.info</source>
-                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870 (+ 45 8678 7871)<br>Sähköposti: <a hrfef="mailto:mailfi@pompdleu.com">mail@pompdelux.com</a><br>Maanantaista torstaihin klo 10 - 14<br>Perjantaisin 10 - 13<br>Lounastauko klo 13 - 13.45<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
+                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870 (+ 45 8678 7871)<br>Sähköposti: <a hrfef="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 10 - 14<br>Perjantaisin 10 - 13<br>Lounastauko klo 13 - 13.45<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
                 <source>footer.address</source>
-                <target>
-                    &lt;ul&gt; &lt;li&gt;POMPdeLUX ApS&lt;/li&gt; &lt;li&gt;Møgelhøj 8&lt;/li&gt; &lt;li&gt;DK-8520 Lystrup&lt;/li&gt; &lt;li&gt;CVR-nr 29622035&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;mailto:mail@pompdelux.dk&quot;&gt;mail@pompdelux.dk&lt;/a&gt;&lt;/li&gt; &lt;li&gt;+45 8678 7871&lt;/li&gt; &lt;/ul&gt; &lt;ul style=&quot;width:280px;&quot;&gt; &lt;li&gt;&lt;a name=&quot;fb_share&quot; type=&quot;icon_link&quot;&gt;Del med dine venner&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;img src=&quot;%cdn%fx/images/creditcards_dk.png&quot; alt=&quot;credit cards&quot; title=&quot;credit cards&quot;&gt;&lt;/li&gt; &lt;/ul&gt;
+                <target><![CDATA[<ul>
+                        <li>POMPdeLUX ApS</li>
+                        <li>Møgelhøj 8</li>
+                        <li>DK-8520 Lystrup</li>
+                        <li>CRN 2482288-5</li>
+                        <li><a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a></li>
+                        <li>09 34870870 (+ 45 8678 7871)</li>
+                    </ul>
+                    <ul style="width:400px;">
+                        <li><img src="%cdn%fx/images/creditcards_no.png" alt="credit cards" title="credit cards"></li>
+                        <li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
+                    </ul>]]>
                 </target>
             </trans-unit>
         </body>
