@@ -80,7 +80,12 @@ class AppKernel extends Kernel
         $twig->addGlobal('cdn', $this->container->getParameter('cdn'));
 
         if (isset($_SERVER['HTTP_HOST'])) {
-            $twig->addGlobal('baseurl', 'http://'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == 80 ? '' : $_SERVER['SERVER_PORT']).$_SERVER['SCRIPT_NAME']);
+            $script = $_SERVER['SCRIPT_NAME'];
+            if ('/app.php' == $script) {
+                $script = '';
+            }
+
+            $twig->addGlobal('baseurl', 'http://'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == 80 ? '' : $_SERVER['SERVER_PORT']).$script);
         }
 
         $twig_vars = $this->container->getParameter('hanzo_cms.twig');
