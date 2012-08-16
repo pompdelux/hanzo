@@ -80,9 +80,9 @@ var events = (function($) {
               $('#customers_id', $c_form).val(response.data.id);
               $('#customers_accept', $c_form).prop('required', false).click();
               $('.input', $form).val('');
+            } else {
+              dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
             }
-          } else {
-            dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
           }
           dialoug.stopLoading();
         },
