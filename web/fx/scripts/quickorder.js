@@ -42,7 +42,7 @@ var quickorder = (function($) {
 
                             var last = '';
                             $.each(response.data.products, function(key, value) {
-                                if (value.size != last {
+                                if (value.size != last) {
                                     $('#size').append($("<option></option>").attr("value",value.size).text(value.size));
                                     last = value.size;
                                 }
