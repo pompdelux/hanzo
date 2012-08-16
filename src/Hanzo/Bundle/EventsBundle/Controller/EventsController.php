@@ -71,7 +71,7 @@ class EventsController extends CoreController
                 'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
                 'className' => $event->getType(),
                 'editable' => false,
-                'color' => ($event->getEventDate('U') >= time()) ? 'green': 'red'
+                'color' => (($event->getEventDate('U') < time()) || $event->getIsOpen()) ? 'green': 'red'
             );
         }
 
