@@ -30,7 +30,6 @@ class EventsController extends CoreController
             return $this->redirect($this->generateUrl('login'));
         }
 
-
         $date_filter['max'] = date('Y-m-d H:i:s');
         $archived_events = EventsQuery::create()
             ->filterByEventDate($date_filter)
@@ -833,6 +832,7 @@ class EventsController extends CoreController
             ->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
             ->orderByEventDate(\Criteria::ASC)
+            ->filterByIsOpen(true)
             ->find()
         ;
 

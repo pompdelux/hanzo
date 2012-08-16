@@ -167,11 +167,11 @@ class AxService
 
         if ($hostess_discount) {
             $line = new stdClass();
-            $line->ItemId          = 'HOSTESSDISCOUNT';
-            $line->SalesPrice      = number_format($hostess_discount, 4, '.', '');
-            $line->SalesQty        = 1;
-            $line->SalesUnit       = 'Stk.';
-            $orderLine[] = $line;
+            $line->ItemId = 'HOSTESSDISCOUNT';
+            $line->SalesPrice = number_format($hostess_discount, 4, '.', '');
+            $line->SalesQty = 1;
+            $line->SalesUnit = 'Stk.';
+            $salesLine[] = $line;
         }
 
         // payment method
