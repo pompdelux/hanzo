@@ -65,7 +65,7 @@ class CheckoutListener
                     $discount += (($total / 100) * -5);
                 }
 
-                $order->setDiscountLine('discount.hostess', $discount);
+                $order->setDiscountLine('discount.hostess', $discount, -5);
                 $order->setAttribute('is_hostess_order_calculated', 'event', true);
             }
 
@@ -98,8 +98,8 @@ class CheckoutListener
 
             if ($discount) {
                 $total = $order->getTotalProductPrice();
-                $discount = (($total / 100) * $discount);
-                $order->setDiscountLine('discount.'.$attributes->purchase->type, $discount);
+                $discount_amount = (($total / 100) * $discount);
+                $order->setDiscountLine('discount.'.$attributes->purchase->type, $discount_amount, $discount);
             }
 
             $order->setAttribute('HomePartyId', 'global', $label);

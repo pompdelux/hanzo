@@ -483,11 +483,12 @@ class Orders extends BaseOrders
     /**
      * set or update a discount line
      *
-     * @param string $name   discount identifier
-     * @param float  $amount discount amount
+     * @param string $name     discount identifier
+     * @param float  $amount   discount amount
+     * @param float  $discount line discount in percent
      * @return object Orders
      */
-    public function setDiscountLine($name, $amount)
+    public function setDiscountLine($name, $amount, $discount = '')
     {
         foreach ($this->getOrderLineDiscount() as $line) {
             if ($name == $line->getProductsSku()) {
@@ -502,7 +503,7 @@ class Orders extends BaseOrders
         $line->setVat(0.00);
         $line->setOrdersId($this->getId());
         $line->setProductsSku($name);
-        $line->setProductsName($name);
+        $line->setProductsName($discount);
         $line->setPrice($amount);
         $this->addOrdersLines($line);
 

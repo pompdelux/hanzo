@@ -180,15 +180,17 @@ class CheckoutListener
         }
 
         foreach ($order->getOrdersLiness() as $line) {
-            if ($line->gettype('discount') && $line->getProductsSku() == 'discount.hostess') {
-                $params['hostess_discount'] = $line->getPrice();
-                $params['hostess_discount_title'] = $this->translator->trans('discount.hostess', array(), 'events');
+            if ('discount' == $line->getType()) {
+                if (empty($params['hostess_discount'])) {
+                    $params['hostess_discount'] = $line->getPrice();
+                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), array(), 'checkout');
+                }
             }
 
             // or Sku == 91 ?
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
-                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title',array(),'checkout');
+                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', array(), 'checkout');
             }
         }
 
@@ -271,12 +273,12 @@ class CheckoutListener
             }
         }
 
-        if ($discount) {
+        if ($discount <> 0.00) {
             $total = $order->getTotalProductPrice();
 
             // so far _all_ discounts are handled as % discounts
-            $discount = ($total / 100) * $discount;
-            $order->setDiscountLine($discount_label, $discount);
+            $discount_amount = ($total / 100) * $discount;
+            $order->setDiscountLine($discount_label, $discount_amount, $discount);
         }
 
         $domain_key = $hanzo->get('core.domain_key');
