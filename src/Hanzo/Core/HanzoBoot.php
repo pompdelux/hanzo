@@ -79,12 +79,14 @@ class HanzoBoot
                 $ips = explode("\n", str_replace("\r", '', $hanzo->get('webshop.closed.allowed_ips', '')));
 
                 if (!in_array($request->getClientIp(), $ips)) {
-                    $goto = '/';
-                    $env = $hanzo->get('core.env');
+                    $goto = '';
+                    $env = explode('_', $hanzo->get('core.env'));
 
-                    if ( !in_array( $env, array( 'prod', 'prod_dk_consultant' ) ) ) {
-                        $goto = '/app_'.$env.'.php';
+                    if (!in_array($env[0], array('prod'))) {
+                        $goto = '/app_'.$env[0].'.php';
                     }
+
+                    $goto .= '/'.$params['_locale'].'/';
 
                     $hanzo->container->get('session')->setFlash('notice', 'access.denied');
                     header('Location: '.$goto); exit;

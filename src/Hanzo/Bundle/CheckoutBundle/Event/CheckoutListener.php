@@ -156,7 +156,7 @@ class CheckoutListener
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
             'card_type' => $card_type,
-            'event_id' => $order->getEventsId(),
+            'event_id' => $order->getCode(),
             'transaction_id' => '',
             'payment_gateway_id' => '',
         );

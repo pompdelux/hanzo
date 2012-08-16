@@ -2,9 +2,12 @@
 
 namespace Hanzo\Bundle\EventsBundle\Event;
 
+use Criteria;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
 use Hanzo\Bundle\ServiceBundle\Services\AxService;
@@ -51,7 +54,11 @@ class CheckoutListener
                 $add_discount = true;
 
                 $discount = 0;
-                foreach ($order->getEvents()->getOrderss() as $o) {
+
+                $c = new Criteria;
+                $c->add(OrdersPeer::STATE, Orders::STATE_PENDING, Criteria::GREATER_EQUAL);
+
+                foreach ($order->getEvents()->getOrderss($c) as $o) {
                     $total = $o->getTotalProductPrice();
 
                     // TODO: not hardcoded !

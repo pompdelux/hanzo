@@ -33,7 +33,7 @@ class OrderListener
         $order = $event->getOrder();
 
         if ('Sales' == substr($order->getAttributes()->global->domain_key, 0, 5)) {
-            setcookie('__ice', uniqid(), 0, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
+            $this->setEditCookie();
         }
 
         // first we create the edit version.
@@ -54,9 +54,7 @@ class OrderListener
 
     public function onEditCancel(FilterOrderEvent $event)
     {
-        if (isset($_COOKIE['__ice'])) {
-            setcookie('__ice', '', -3600, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
-        }
+        $this->setEditCookie(false);
 
         $order = $event->getOrder();
         // reset order object
@@ -72,9 +70,7 @@ class OrderListener
 
     public function onEditDone(FilterOrderEvent $event)
     {
-        if (isset($_COOKIE['__ice'])) {
-            setcookie('__ice', '', -3600, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
-        }
+        $this->setEditCookie(false);
 
         $order = $event->getOrder();
         $order->setSessionId($order->getId());
@@ -82,10 +78,22 @@ class OrderListener
         // unset session vars.
         $this->session->remove('in_edit');
         $this->session->remove('order_id');
+
         // only place this function is called is in CheckoutBundle > DefaultController > successAction
         // and there migrate is called after this function
         //$this->session->migrate();
 
         $this->ax->lockUnlockSalesOrder($order, false);
+    }
+
+    protected function setEditCookie($set = true)
+    {
+        if ((false == $set) && empty($_COOKIE['__ice'])) {
+            return;
+        }
+
+        $content = $set ? uniqid() : '';
+        $lifetime = $set ? 0 : -3600;
+        setcookie('__ice', $content, $lifetime, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
     }
 }

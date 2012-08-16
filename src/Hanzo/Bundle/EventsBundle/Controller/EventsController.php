@@ -145,12 +145,6 @@ class EventsController extends CoreController
                     'translation_domain' => 'events',
                     'error_bubbling' => true,
                 )
-            // )->add('address_line_2', 'text',
-            //     array(
-            //         'label' => 'events.address_line_2.label',
-            //         'translation_domain' => 'events',
-            //         'required' => false
-            //     )
             )->add('postal_code', 'text',
                 array(
                     'label' => 'events.postal_code.label',
@@ -239,15 +233,6 @@ class EventsController extends CoreController
                     $host->setFirstName($first);
                     $host->setLastName($last);
 
-                    // $address = new Addresses();
-                    // $address->setType('payment');
-                    // $address->setFirstName($first);
-                    // $address->setLastName($last);
-                    // $address->setAddressLine1($event->getAddressLine1());
-                    // $address->setAddressLine2($event->getAddressLine2());
-                    // $address->setPostalCode($event->getPostalCode());
-                    // $address->setCity($event->getCity());
-
                     try {
                         $host->save();
                     } catch(\PropelException $e) {
@@ -265,6 +250,7 @@ class EventsController extends CoreController
 
                 // Needs to save before we can retrieve the ID for the code :-?
                 $event->setCode(uniqid('tmp.', true));
+                $event->setIsOpen(true);
                 $event->save();
 
                 // Generate the Code of the event YYYY MM DD INIT TYPE ID DOMAIN

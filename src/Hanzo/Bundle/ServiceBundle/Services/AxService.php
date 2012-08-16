@@ -371,7 +371,6 @@ class AxService
         // NICETO, would be nice if this was not static..
         switch ($syncSalesOrder->endpointDomain) {
             case 'COM':
-            case 'NL': // FIXME: when .nl get's it's own domain, this will go
                 $syncSalesOrder->endpointDomain = 'DK';
                 break;
         }
@@ -411,7 +410,6 @@ class AxService
         // NICETO, would be nice if this was not static..
         switch (strtoupper($lock->endpointDomain)) {
             case 'COM':
-            case 'NL': // FIXME: when .nl get's it's own domain, this will go
                 $lock->endpointDomain = 'DK';
                 break;
         }
