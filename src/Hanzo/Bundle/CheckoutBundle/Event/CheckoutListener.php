@@ -140,6 +140,11 @@ class CheckoutListener
         $company_address = str_replace( ' · ', "\n", $company_address );
         // <<-- hf@bellcom.dk, 13-jun-2012: hack... I'm tired
 
+        $event_id = '';
+        if ($order->getEventsId()) {
+            $event_id = $order->getEvents()->getCode();
+        }
+
         $params = array(
             'order' => $order,
             'payment_address' => Tools::orderAddress('payment', $order),
@@ -156,7 +161,7 @@ class CheckoutListener
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
             'card_type' => $card_type,
-            'event_id' => $order->getCode(),
+            'event_id' => $event_id,
             'transaction_id' => '',
             'payment_gateway_id' => '',
         );
