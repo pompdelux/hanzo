@@ -185,8 +185,8 @@ var quickorder = (function($) {
                         window.scrollTo(window.scrollMinX, window.scrollMinY);
                         $('#mini-basket a').html(response.data);
                         dialoug.slideNotice(response.message);
-                        var img = master+'_basket_'+color;
-                        img = cdn_url + 'images/products/thumb/60x60,' + img.toString().replace(/[^a-zA-Z0-9_]/g, "") + '.jpg';
+                        var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_basket_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "");
+                        img = cdn_url + 'images/products/thumb/60x60,' + img + '.jpg';
 
                         $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td><td>'+response.latest.price+'</td></tr>');
                     }

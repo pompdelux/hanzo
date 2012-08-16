@@ -27,7 +27,7 @@ class DefaultController extends CoreController
             }
 
             $basket_image =
-                preg_replace('/[^a-z0-9]/i', '', $line->getProductsName()) .
+                preg_replace('/[^a-z0-9]/i', '-', $line->getProductsName()) .
                 '_basket_' .
                 preg_replace('/[^a-z0-9]/i', '', $line->getProductsColor()) .
                 '.jpg'
