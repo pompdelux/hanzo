@@ -62,10 +62,10 @@ class CheckoutListener
                     $total = $o->getTotalProductPrice();
 
                     // TODO: not hardcoded !
-                    $discount += (($total / 100) * 5);
+                    $discount += (($total / 100) * -5);
                 }
 
-                $order->setDiscountLine('discount.hostess', ($discount * -1));
+                $order->setDiscountLine('discount.hostess', $discount);
                 $order->setAttribute('is_hostess_order_calculated', 'event', true);
             }
 
@@ -81,11 +81,11 @@ class CheckoutListener
             // TODO: not hardcoded
             switch ($attributes->purchase->type) {
                 case 'friend':
-                    $discount = 15;
+                    $discount = -15;
                     $label = 'Veninde køb';
                     break;
                 case 'gift':
-                    $discount = 20;
+                    $discount = -20;
                     $label = 'Gave køb';
                     break;
                 case 'other':
@@ -98,8 +98,8 @@ class CheckoutListener
 
             if ($discount) {
                 $total = $order->getTotalProductPrice();
-                $discount += (($total / 100) * $discount);
-                $order->setDiscountLine('discount.'.$attributes->purchase->type, ($discount * -1));
+                $discount = (($total / 100) * $discount);
+                $order->setDiscountLine('discount.'.$attributes->purchase->type, $discount);
             }
 
             $order->setAttribute('HomePartyId', 'global', $label);

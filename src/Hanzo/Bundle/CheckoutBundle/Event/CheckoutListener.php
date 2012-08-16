@@ -261,7 +261,7 @@ class CheckoutListener
 
         $discount = 0;
 
-        if (1 == $hanzo->get('webshop.disable_discounts')) {
+        if (0 == $hanzo->get('webshop.disable_discounts')) {
             if ($customer->getDiscount()) {
                 $discount_label = 'discount.private';
                 $discount = $customer->getDiscount();
@@ -276,7 +276,7 @@ class CheckoutListener
 
             // so far _all_ discounts are handled as % discounts
             $discount = ($total / 100) * $discount;
-            $order->setDiscountLine($discount_label, ($discount * -1));
+            $order->setDiscountLine($discount_label, $discount);
         }
 
         $domain_key = $hanzo->get('core.domain_key');
