@@ -387,10 +387,10 @@ var checkout = (function($) {
       var selector = this.data.selector;
 
       if ( $("form#dibs").length > 0 ) {
-        var fieldsToUpdate = [ 
-          'orderid', 
-          'amount', 
-          'md5key', 
+        var fieldsToUpdate = [
+          'orderid',
+          'amount',
+          'md5key',
           'accepturl',
           'delivery01.Firstname',
           'delivery02.Lastname',
