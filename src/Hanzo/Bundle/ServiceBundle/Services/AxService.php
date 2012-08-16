@@ -130,7 +130,7 @@ class AxService
                         case 'discount.friend':
                         case 'discount.group':
                         case 'discount.private':
-                            $line_discount = $line->getProductsName();
+                            $line_discount = $line->getProductsName() * -1;
                             break;
                     }
                     break;
