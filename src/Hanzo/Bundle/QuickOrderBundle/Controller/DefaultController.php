@@ -22,6 +22,9 @@ class DefaultController extends CoreController
     	$order = OrdersPeer::getCurrent();
     	$products = array();
     	foreach ($order->getOrdersLiness() as $line) {
+            if ($line->getType() != 'product') {
+                continue;
+            }
 
             $basket_image =
                 preg_replace('/[^a-z0-9]/i', '', $line->getProductsName()) .
