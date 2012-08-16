@@ -258,7 +258,7 @@ class EventsController extends CoreController
                 $code = $code . $consultant->getInitials();
                 $code = $code . $event->getType();
                 $code = $code . $event->getId();
-                $code = $code . $hanzo->get('core.domain_key');
+                $code = $code . str_replace('Sales', '', $hanzo->get('core.domain_key'));
                 $event->setCode(strtoupper($code));
 
                 $event->save();

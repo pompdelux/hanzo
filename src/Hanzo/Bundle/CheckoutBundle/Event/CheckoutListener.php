@@ -182,7 +182,7 @@ class CheckoutListener
         foreach ($order->getOrdersLiness() as $line) {
             if ($line->gettype('discount') && $line->getProductsSku() == 'discount.hostess') {
                 $params['hostess_discount'] = $line->getPrice();
-                $params['hostess_discount_title'] = $line->getProductsName();
+                $params['hostess_discount_title'] = $this->translator->trans('discount.hostess', array(), 'events');
             }
 
             // or Sku == 91 ?
