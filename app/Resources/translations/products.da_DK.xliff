@@ -1,3 +1,7 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
 <trans-unit id="Ada HAT">
   <source>description.Ada_HAT</source>
   <target>
@@ -1665,3 +1669,6 @@
     <![CDATA[ Vind- og vandtæt regntøj med sejt krydsmønster på jakke og ensfarvede bukser. Med aftagelig hætte, svejsede sømme og i blød gummikvalitet, der er gennemprøvet og søjletrykstestet (10.000 mm), ligesom den ikke indeholder PVC, phthalater, tungmetaller eller nikkel. Der er foer i jakken og reflekskanter både foran og bagpå. Bukserne er med elastik i taljen og de har elastikstropper i buksebenet. Fedt print på låret. Også til lillebror: Roger Little RAIN SET	<br><br>	Fås i: Navy og Olive (oliven).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Polyester PU. ]]>
   </target>
 </trans-unit>
+        </body>
+    </file>
+</xliff>
