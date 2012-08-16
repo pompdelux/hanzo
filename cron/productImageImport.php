@@ -138,12 +138,22 @@ foreach ($_databases as $key => $conn) {
 // copy all images to the right location
 foreach ($product_images as $pid => $images) {
     foreach($images as $image) {
-        copy($source_dir . $image, $target_dir . $image);
+        $srcmd5 = md5_file($source_dir . $image);
+        $tgdmd5 = md5_file($target_dir . $image);
+
+        if ($srcmd5 !== $tgdmd5) {
+            copy($source_dir . $image, $target_dir . $image);
+        }
     }
 }
 foreach ($extra_images as $pid => $images) {
     foreach($images as $image) {
-        copy($source_dir . $image, $target_dir . $image);
+        $srcmd5 = md5_file($source_dir . $image);
+        $tgdmd5 = md5_file($target_dir . $image);
+
+        if ($srcmd5 !== $tgdmd5) {
+            copy($source_dir . $image, $target_dir . $image);
+        }
     }
 }
 
@@ -153,5 +163,12 @@ if (count($failed)) {
         $txt .= " - {$image}\n";
     }
     $txt .= "\nFix dem, nu!\n";
-    mail('hd@pompdelux.dk,un@bellcom.dk', 'fejl i billedeimporten', $txt, "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n", '-fhd@pompdelux.dk');
+
+    mail(
+        'hd@pompdelux.dk,un@bellcom.dk',
+        'fejl i billedeimporten',
+        $txt,
+        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
+        '-fhd@pompdelux.dk'
+    );
 }
