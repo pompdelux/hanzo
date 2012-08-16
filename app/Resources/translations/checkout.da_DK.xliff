@@ -128,7 +128,7 @@
       </trans-unit>
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
-        <target><![CDATA[Bemærk:</b> Bankoverførsel må <b><u>kun</u></b> benyttes ved manglende internet forbindelse.]]></target>
+        <target><![CDATA[<b>Bemærk:</b> Bankoverførsel må <b><u>kun</u></b> benyttes ved manglende internet forbindelse.]]></target>
       </trans-unit>
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
