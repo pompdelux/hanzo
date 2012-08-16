@@ -194,7 +194,9 @@ class CheckoutListener
 
         // close event if this is the hostess purchase.
         if ($order->getEventsId() && isset($attributes->event->is_hostess_order)) {
-            $order->getEvents()->setIsOpen(false);
+            $event = $order->getEvents();
+            $event->setIsOpen(false);
+            $event->save();
         }
 
         // Handle payment canceling of old order

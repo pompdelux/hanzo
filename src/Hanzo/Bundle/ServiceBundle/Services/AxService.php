@@ -99,6 +99,7 @@ class AxService
         $shipping_cost = 0;
         $payment_cost = 0;
         $handeling_fee = 0;
+        $hostess_discount = 0;
 
         foreach ($lines as $line) {
             switch ($line->getType()) {
@@ -117,6 +118,12 @@ class AxService
                 case 'shipping.fee':
                 case 'payment.fee': // TODO: hf@bellcom.dk: eh... only for gothia?
                     $handeling_fee += $line->getPrice();
+                    break;
+
+                case 'discount':
+                    if ('discount.hostess' == $line->getProductsSku()) {
+                        $hostess_discount = $line->getPrice();
+                    }
                     break;
             }
         }
@@ -144,6 +151,15 @@ class AxService
 
             $line->lineText = $product->getProductsName();
             $salesLine[] = $line;
+        }
+
+        if ($hostess_discount) {
+            $line = new SalesLine();
+            $line->ItemId          = 'HOSTESSDISCOUNT';
+            $line->SalesPrice      = number_format($hostess_discount, 4, '.', '');
+            $line->SalesQty        = 1;
+            $line->SalesUnit       = 'Stk.';
+            $orderLine[] = $line;
         }
 
         // payment method
