@@ -124,15 +124,15 @@
       </trans-unit>
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
-        <target>Betaling på konto</target>
+        <target>Bankoverførsel</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
-        <target>Indbetal pengene på kontonummer: "yy-yy xx-xx-xx-xx-xx" senest 8 dage efter du bar modtaget varene.</target>
+        <target><![CDATA[Bemærk:</b> Bankoverførsel må <b><u>kun</u></b> benyttes ved manglende internet forbindelse.]]></target>
       </trans-unit>
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
-        <target>Betaling på konto</target>
+        <target>Bankoverførsel</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
@@ -291,7 +291,7 @@
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.dk">
         <source>payment.dibs.paytype.dk</source>
-        <target>DK-kort</target>
+        <target>Dankort</target>
       </trans-unit>
       <trans-unit id="payment.dibs.paytype.visa">
         <source>payment.dibs.paytype.visa</source>
