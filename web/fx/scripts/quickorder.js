@@ -40,11 +40,12 @@ var quickorder = (function($) {
                                 .attr("value",'')
                                 .text(ExposeTranslation.get('js:quickorder.choose.size')));
 
+                            var last = '';
                             $.each(response.data.products, function(key, value) {
-                                $('#size')
-                                    .append($("<option></option>")
-                                    .attr("value",value.size)
-                                    .text(value.size));
+                                if (value.size != last {
+                                    $('#size').append($("<option></option>").attr("value",value.size).text(value.size));
+                                    last = value.size;
+                                }
                             });
                             $('#size-label').show().find('#size').focus();
                             $('#reset').show();
@@ -110,11 +111,12 @@ var quickorder = (function($) {
                                 .attr("value",'')
                                 .text(ExposeTranslation.get('js:quickorder.choose.color')));
 
+                            var last = '';
                             $.each(response.data.products, function(key, value) {
-                                $('#color')
-                                    .append($("<option></option>")
-                                    .attr("value",value.color)
-                                    .text(value.color));
+                                if (last != value.color) {
+                                    $('#color').append($("<option></option>").attr("value",value.color).text(value.color));
+                                    last = value.color;
+                                }
                             });
                             $('#color-label').show().find('#color').focus();
                         }else{
