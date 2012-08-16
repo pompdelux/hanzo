@@ -832,7 +832,7 @@ class EventsController extends CoreController
         $events = EventsQuery::create()
             ->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
-            ->orderByEventDate(\Criteria::DESC)
+            ->orderByEventDate(\Criteria::ASC)
             ->find()
         ;
 
