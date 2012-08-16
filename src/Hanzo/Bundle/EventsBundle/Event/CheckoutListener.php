@@ -57,6 +57,7 @@ class CheckoutListener
 
                 $c = new Criteria;
                 $c->add(OrdersPeer::STATE, Orders::STATE_PENDING, Criteria::GREATER_EQUAL);
+                $c->addOr(OrdersPeer::ID, $order->getId(), Criteria::EQUAL);
 
                 foreach ($order->getEvents()->getOrderss($c) as $o) {
                     $total = $o->getTotalProductPrice();
