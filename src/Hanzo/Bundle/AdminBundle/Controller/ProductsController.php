@@ -691,21 +691,33 @@ class ProductsController extends CoreController
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
-        $stocks = ProductsStockQuery::create()
-            ->useProductsQuery()
-                ->orderBySku()
+
+        $stocks = ProductsQuery::create()
+            ->leftJoinWithProductsStock()
+            ->useProductsStockQuery()
+                ->withColumn('SUM(products_stock.quantity)', 'totalstock')
+                ->groupByProductsId()
             ->endUse()
-            ->joinWithProducts()
-            ->withColumn('SUM(products_stock.quantity)', 'totalstock')
-            ->groupByProductsId()
+            ->orderBySku()
+            ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->find($this->getDbConnection())
         ;
+
+        // $stocks = ProductsStockQuery::create()
+        //     ->useProductsQuery()
+        //         ->orderBySku()
+        //     ->endUse()
+        //     ->joinWithProducts()
+        //     ->withColumn('SUM(products_stock.quantity)', 'totalstock')
+        //     ->groupByProductsId()
+        //     ->find($this->getDbConnection())
+        // ;
 
         $stock_data = array();
         $stock_data[0] = array('SKU','STOCK');
 
         foreach ($stocks as $stock) {
-            $stock_data[] = array($stock->getProducts()->getSku(), $stock->getVirtualColumn('totalstock'));
+            $stock_data[] = array($stock->getSku(), $stock->getVirtualColumn('totalstock'));
         }
 
         return new Response(
