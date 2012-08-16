@@ -107,9 +107,9 @@
         </div>
       </li>
       <li id="mini-basket" class="basket">
-        <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+        <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
-      <li><a href="{{ path('basket_view') }}">{{ "show.basket"|trans }}</a></li>
+      <li><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </aside>
 

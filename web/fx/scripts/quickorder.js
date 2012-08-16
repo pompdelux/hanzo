@@ -188,7 +188,7 @@ var quickorder = (function($) {
                         var img = master+'_basket_'+color;
                         img = cdn_url + 'images/products/thumb/60x60,' + img.toString().replace(/[^a-zA-Z0-9_]/g, "") + '.jpg';
 
-                        $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td></tr>');
+                        $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td><td>'+response.latest.price+'</td></tr>');
                     }
                     _resetForm();
                 },

@@ -72,11 +72,19 @@ class DefaultController extends CoreController
             if ($order->validate()) {
                 $order->save();
 
+                $line = OrdersLinesQuery::create()
+                    ->filterByOrdersid($order->getId())
+                    ->findOneByProductsId($product->getId())
+                ;
+                $line = $line->toArray(\BasePeer::TYPE_FIELDNAME, false);
+                $line['price'] = Tools::moneyFormat($line['price']);
+
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status' => TRUE,
                         'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
                         'data' => $this->miniBasketAction(TRUE),
+                        'latest' => $line,
                     ));
                 }
             }

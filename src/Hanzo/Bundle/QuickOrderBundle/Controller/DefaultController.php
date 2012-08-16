@@ -38,8 +38,10 @@ class DefaultController extends CoreController
     			'quantity' => $line->getQuantity(),
                 'basket_image' => $basket_image,
                 'name' => $line->getProductsName(),
+                'price' => $line->getPrice(),
     		);
     	}
+
         return $this->render('QuickOrderBundle:Default:index.html.twig',
          	array(
          		'page_type' => 'quickorder',
