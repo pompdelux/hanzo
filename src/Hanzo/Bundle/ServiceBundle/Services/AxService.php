@@ -154,7 +154,7 @@ class AxService
         }
 
         if ($hostess_discount) {
-            $line = new SalesLine();
+            $line = new stdClass();
             $line->ItemId          = 'HOSTESSDISCOUNT';
             $line->SalesPrice      = number_format($hostess_discount, 4, '.', '');
             $line->SalesQty        = 1;
