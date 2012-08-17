@@ -162,11 +162,11 @@
           };
           var title = $('#cms_title').val();
 
-          for (var i = 0; i < $title.length; i++) {
+          for (var i = 0; i < title.length; i++) {
               if ( chars[title.charAt(i)] ) {
                 slug += chars[title.charAt(i)];
               } else {
-                slug += $title.charAt(i);
+                slug += title.charAt(i);
               }
           }
           slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
