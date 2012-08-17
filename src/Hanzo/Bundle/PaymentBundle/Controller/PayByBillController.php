@@ -64,13 +64,9 @@ class PayByBillController extends CoreController
     {
         $api = $this->get('payment.paybybillapi');
 
-        if ( !$api->isActive() )
-        {
+        if (!$api->isActive()) {
             return new Response( '', 200, array('Content-Type' => 'text/html'));
         }
-
-        #$api = $this->get('payment.paybybillapi');
-        #$order = OrdersPeer::getCurrent();
 
         return $this->render('PaymentBundle:PayByBill:block.html.twig');
     }
