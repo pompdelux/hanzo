@@ -128,7 +128,7 @@
       </trans-unit>
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
-        <target><![CDATA[Välj hur du vill betala denna order.<br><br><b>Observera</b> att banköverföring <b><u>endast</u></b> får användas om det inte finns en internetförbindelse på arrangemanget.]]</target>
+        <target><![CDATA[Välj hur du vill betala denna order.<br><br><b>Observera</b> att banköverföring <b><u>endast</u></b> får användas om det inte finns en internetförbindelse på arrangemanget.]]></target>
       </trans-unit>
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
