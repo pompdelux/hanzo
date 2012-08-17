@@ -144,7 +144,7 @@
 
       // CMS edit page, title text field slug creation
       $('#cms_title').blur(function(e){
-        if($('#cms_path').val().length == 0){
+        if($('#cms_path').val().length === 0){
           var slug = '';
           var chars = {
               'æ' : 'ae', 'Æ' : 'AE',
