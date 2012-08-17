@@ -82,6 +82,8 @@ class ECommerceServices extends SoapService
      */
     public function SyncItem($data)
     {
+        require __DIR__.'/products_id_map.php';
+
         $errors = array();
         $item = $data->item->InventTable;
 
@@ -163,6 +165,7 @@ class ECommerceServices extends SoapService
 
                     if (!$product instanceof Products) {
                         $product = new Products();
+                        $product->setId($products_id_map[strtolower($sku)]);
                         $product->setSku($sku);
 
                         // products i18n
@@ -210,6 +213,7 @@ class ECommerceServices extends SoapService
 
                 if (!$product instanceof Products) {
                     $product = new Products();
+                    $product->setId($products_id_map[strtolower($sku)]);
                     $product->setSku($sku);
                     $product->setMaster($item->ItemName);
                     $product->setColor($entry->InventColorId);

@@ -1356,9 +1356,6 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		$index = 0;
 
 		$this->modifiedColumns[] = ProductsPeer::ID;
-		if (null !== $this->id) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key (' . ProductsPeer::ID . ')');
-		}
 
 		 // check the columns in natural order for more readable SQL queries
 		if ($this->isColumnModified(ProductsPeer::ID)) {
@@ -1457,7 +1454,9 @@ abstract class BaseProducts extends BaseObject  implements Persistent
 		} catch (Exception $e) {
 			throw new PropelException('Unable to get autoincrement id.', $e);
 		}
-		$this->setId($pk);
+		if ($pk !== null) {
+			$this->setId($pk);
+		}
 
 		$this->setNew(false);
 	}
