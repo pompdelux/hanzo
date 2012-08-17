@@ -53,7 +53,7 @@ class OrdersLinesTableMap extends TableMap
 		$this->addColumn('EXPECTED_AT', 'ExpectedAt', 'DATE', false, null, '1970-01-01');
 		$this->addColumn('ORIGINAL_PRICE', 'OriginalPrice', 'DECIMAL', false, 15, null);
 		$this->addColumn('PRICE', 'Price', 'DECIMAL', false, 15, null);
-		$this->addColumn('VAT', 'Vat', 'DECIMAL', false, 4, 0);
+		$this->addColumn('VAT', 'Vat', 'DECIMAL', false, 15, 0);
 		$this->addColumn('QUANTITY', 'Quantity', 'INTEGER', false, null, null);
 		$this->addColumn('UNIT', 'Unit', 'VARCHAR', false, 12, null);
 		// validators
