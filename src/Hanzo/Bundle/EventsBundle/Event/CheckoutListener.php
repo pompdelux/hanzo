@@ -82,11 +82,11 @@ class CheckoutListener
             // TODO: not hardcoded
             switch ($attributes->purchase->type) {
                 case 'friend':
-                    $discount = -15;
+                    $discount = -15.00;
                     $label = 'Veninde køb';
                     break;
                 case 'gift':
-                    $discount = -20;
+                    $discount = -20.00;
                     $label = 'Gave køb';
                     break;
                 case 'other':

@@ -19,8 +19,9 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Addresses;
-use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLinesQuery;
 
 class EventsController extends CoreController
 {
@@ -847,6 +848,14 @@ class EventsController extends CoreController
         if ($order instanceof Orders) {
             $request = $this->getRequest();
 
+            // remove any discount lines if changing event
+            OrdersLinesQuery::create()
+                ->filterByOrdersId($order->getId())
+                ->filterByType('discount')
+                ->find()
+                ->delete();
+            ;
+
             list($id, $code) = explode(':', $request->get('type'));
             $order->setEventsId(null);
 
@@ -859,6 +868,7 @@ class EventsController extends CoreController
             $hostess = $request->get('hostess');
             if (empty($hostess)) {
                 $order->clearAttributesByKey('is_hostess_order');
+                $order->clearAttributesByKey('is_hostess_order_calculated');
             } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
             }

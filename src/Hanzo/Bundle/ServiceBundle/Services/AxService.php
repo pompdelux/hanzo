@@ -130,7 +130,10 @@ class AxService
                         case 'discount.friend':
                         case 'discount.group':
                         case 'discount.private':
-                            $line_discount = $line->getProductsName() * -1;
+                            $line_discount = $line->getProductsName();
+                            if ($line_discount < 0) {
+                                $line_discount = $line_discount * -1;
+                            }
                             break;
                     }
                     break;
@@ -158,7 +161,7 @@ class AxService
             if ($discount_in_percent) {
                 $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
             } elseif ($line_discount) {
-                $line->LineDiscPercent = $line_discount * -1;
+                $line->LineDiscPercent = $line_discount;
             }
 
             $line->lineText = $product->getProductsName();
