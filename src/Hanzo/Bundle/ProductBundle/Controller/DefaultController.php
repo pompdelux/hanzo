@@ -2,7 +2,7 @@
 
 namespace Hanzo\Bundle\ProductBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Criteria;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -16,6 +16,8 @@ use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
+use Hanzo\Model\ProductsWashingInstructions;
+use Hanzo\Model\ProductsWashingInstructionsQuery;
 
 class DefaultController extends CoreController
 {
@@ -42,10 +44,10 @@ class DefaultController extends CoreController
                         ->where(array('c1', 'c2'), 'AND')
                     ->endUse()
                     ->joinWithProductsDomainsPrices()
-                    ->useProductsWashingInstructionsQuery()
-                        ->filterByLocale($hanzo->get('core.locale'))
-                    ->endUse()
-                    ->leftJoinWithProductsWashingInstructions()
+                    // ->useProductsWashingInstructionsQuery()
+                    //     ->filterByLocale($hanzo->get('core.locale'))
+                    // ->endUse()
+                    // ->leftJoinWithProductsWashingInstructions()
                     ->joinWithProductsImages()
                 ->endUse()
                 ->findById($product_id)
@@ -133,8 +135,17 @@ class DefaultController extends CoreController
             $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
             $description = preg_replace($find, $replace, $description);
 
-            $washing = stripslashes($product->getProductsWashingInstructions()->getDescription());
-            $washing = preg_replace($find, $replace, $washing);
+
+            $washing = '';
+            $result = ProductsWashingInstructionsQuery::create()
+                ->filterByLocale($hanzo->get('core.locale'))
+                ->findOneById($product->getWashing())
+            ;
+
+            if ($result instanceof ProductsWashingInstructions) {
+                $washing = stripslashes($result->getDescription());
+                $washing = preg_replace($find, $replace, $washing);
+            }
 
             $data = array(
                 'id' => $product->getId(),
