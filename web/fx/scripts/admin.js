@@ -48,7 +48,7 @@
 
       $('#save-nestedsortable').click(function(e){
         e.preventDefault();
-        list = $('ul#sortable-list').nestedSortable('toArray', {startDepthCount: 0});
+        var list = $('ul#sortable-list').nestedSortable('toArray', {startDepthCount: 0});
         $.ajax({
           url: 'update-tree/',
           dataType: 'json',
@@ -160,11 +160,11 @@
               ' ' : '-',
               '/' : '-'
           };
-          $title = $('#cms_title').val();
+          var title = $('#cms_title').val();
 
           for (var i = 0; i < $title.length; i++) {
-              if ( chars[$title.charAt(i)] ) {
-                slug += chars[$title.charAt(i)];
+              if ( chars[title.charAt(i)] ) {
+                slug += chars[title.charAt(i)];
               } else {
                 slug += $title.charAt(i);
               }
@@ -191,7 +191,7 @@
       });
       $('#save-sortable').click(function(e){
         e.preventDefault();
-        list = $('ul#product-list-sort').sortable('toArray');
+        var list = $('ul#product-list-sort').sortable('toArray');
         $.ajax({
           url: '../../update-sort/',
           dataType: 'json',
@@ -217,10 +217,10 @@
 
       //ProductsToImages on Products page
       $('.product-selector').change(function(){
-        selectedOption = $(this).find('option:selected');
-        reference = selectedOption.val().split('-');
-        image = reference[0];
-        product = reference[1];
+        var selectedOption = $(this).find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var image = reference[0];
+        var product = reference[1];
         $.ajax({
           url: '../add-reference/',
           dataType: 'json',
@@ -268,10 +268,10 @@
 
       // CategoriesToProducts on Products page
       $('#product-category-selector').change(function(){
-        selectedOption = $(this).find('option:selected');
-        reference = selectedOption.val().split('-');
-        category = reference[0];
-        product = reference[1];
+        var selectedOption = $(this).find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var category = reference[0];
+        var product = reference[1];
         $.ajax({
           url: '../add-category/',
           dataType: 'json',
@@ -318,10 +318,10 @@
 
       // Related Products on Products page
       $('#product-related-products-selector').change(function(){
-        selectedOption = $(this).find('option:selected');
-        reference = selectedOption.val().split('-');
-        master = reference[0];
-        sku = reference[1];
+        var selectedOption = $(this).find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var master = reference[0];
+        var sku = reference[1];
         $.ajax({
           url: '../add-related/',
           dataType: 'json',
@@ -582,10 +582,10 @@
         });
       });
       $('#coupon-customer-selector').change(function(){
-        selectedOption = $(this).find('option:selected');
-        reference = selectedOption.val().split('-');
-        customer = reference[0];
-        coupon = reference[1];
+        var selectedOption = $(this).find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var customer = reference[0];
+        var coupon = reference[1];
         $.ajax({
           url: base_url + 'coupons/add-customer',
           dataType: 'json',
