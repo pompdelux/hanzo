@@ -389,8 +389,8 @@ class DibsApi implements PaymentMethodApiInterface
             "uniqueoid"    => "YES",
             //"paytype"      => '', // This _must_ be set in the form
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
-            'color'        => 'gray',
-            'decorator'    => 'Own decorator',
+            //'color'        => 'gray',
+            //'decorator'    => 'Own decorator',
         );
 
         // Only send these fields, to many fields result in hitting a post limit or something
