@@ -76,7 +76,9 @@
     {% endif %}
 
     <div class="buttons">
+      {% if continue_shopping is defined %}
       <a class="button left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
+      {% endif %}
       <a class="button right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
     </div>
   {% endif %}
@@ -84,6 +86,8 @@
 {% else %}
   <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
   <div class="buttons">
+    {% if continue_shopping is defined %}
     <a class="button left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
+    {% endif %}
   </div>
 {% endif %}
