@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.60">
         <source>shipping_method.label.60</source>
-        <target>DPD %prijs%</target>
+        <target>DPD %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
