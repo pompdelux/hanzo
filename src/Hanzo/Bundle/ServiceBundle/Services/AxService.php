@@ -259,7 +259,7 @@ class AxService
                 $syncSalesOrder->endpointDomain = 'DK';
                 break;
         }
-Tools::log($syncSalesOrder);
+
         if ($return) {
             return $syncSalesOrder;
         }
