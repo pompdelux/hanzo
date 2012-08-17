@@ -349,6 +349,8 @@ class AxService
         switch ($ct->AddressCountryRegionId) {
             case 'SE':
             case 'NO':
+            case 'FI':
+            case 'NL':
                 $sc->endpointDomain = $ct->AddressCountryRegionId;
                 break;
         }
