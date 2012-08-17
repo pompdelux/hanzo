@@ -13,15 +13,25 @@ $source_dir = __DIR__ . '/../web/images/products/import/';
 $target_dir = __DIR__ . '/../web/images/products/';
 
 $images_found = glob($source_dir.'*.{jpg,gif,png}',  GLOB_BRACE);
-
 if (empty($images_found)) {
     exit;
 }
 
 $images = array();
-foreach ($images_found as $file)
-{
+foreach ($images_found as $file) {
     $image = basename($file);
+    $srcmd5 = md5_file($source_dir . $image);
+    $tgdmd5 = '';
+
+    if (is_file($target_dir . $image)) {
+        $tgdmd5 = md5_file($target_dir . $image);
+    }
+
+    // skip unchanged files
+    if ($srcmd5 === $tgdmd5) {
+        continue;
+    }
+
     $images[$image] = $image;
 }
 
@@ -33,20 +43,15 @@ $product_images = array();
 $extra_images = array();
 $product_ids = array();
 $product_categories_ids = array();
+$failed = array();
 
 $pdo = $_databases['vip'];
 $products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $categories_stmt = $pdo->prepare('SELECT categories_id FROM products_to_categories WHERE products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-foreach ($images as $image)
-{
+foreach ($images as $image) {
     // ex: key = PANTYHOSE-2-PACK_01.jpg
     @list($master, $junk) = explode('_', str_replace('-', ' ', $image));
-
-    if (!preg_match('/^[0-9]+/', $junk)) {
-        $extra_images[$master][] = $image;
-        continue;
-    }
 
     if (empty($product_ids[$master])) {
         $products_stmt->execute(array(
@@ -55,6 +60,7 @@ foreach ($images as $image)
         $products_id = $products_stmt->fetchColumn();
 
         if (empty($products_id)) {
+            $failed[] = $image;
             continue;
         }
 
@@ -67,7 +73,11 @@ foreach ($images as $image)
         foreach ($categories_stmt->fetchAll(PDO::FETCH_OBJ) as $record) {
             $product_categories_ids[$products_id][$record->categories_id] = $record->categories_id;
         }
+    }
 
+    if (!preg_match('/^[0-9]+/', $junk)) {
+        $extra_images[$master][] = $image;
+        continue;
     }
 
     $product_images[$master][] = $image;
@@ -144,4 +154,20 @@ foreach ($extra_images as $pid => $images) {
     foreach($images as $image) {
         copy($source_dir . $image, $target_dir . $image);
     }
+}
+
+if (count($failed)) {
+    $txt = "Hey taber!\n\nDer er fejl i følgende produktbilleder:\n\n";
+    foreach ($failed as $image) {
+        $txt .= " - {$image}\n";
+    }
+    $txt .= "\nFix dem, nu!\n";
+
+    mail(
+        'hd@pompdelux.dk,un@bellcom.dk',
+        'fejl i billedeimporten',
+        $txt,
+        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
+        '-fhd@pompdelux.dk'
+    );
 }

@@ -205,6 +205,7 @@ var checkout = (function($) {
         case '30': // .se
         case '60': // .nl
         case '10': // .dk privat
+        case '500': // .fi
           this.data.state = true;
           this.update();
           $(this.data.selector +" "+ ".checkout-block-type-shipping").show();
@@ -312,6 +313,7 @@ var checkout = (function($) {
                   30 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
                   60 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
                   'S' : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
+                  500 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
                   11 : '%company_name%<br>Att: %first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
                   12 : '%first_name% %last_name%<br>%postal_code% %city%<br>Box: %address_line_1%'
                 };
@@ -387,10 +389,10 @@ var checkout = (function($) {
       var selector = this.data.selector;
 
       if ( $("form#dibs").length > 0 ) {
-        var fieldsToUpdate = [ 
-          'orderid', 
-          'amount', 
-          'md5key', 
+        var fieldsToUpdate = [
+          'orderid',
+          'amount',
+          'md5key',
           'accepturl',
           'delivery01.Firstname',
           'delivery02.Lastname',
@@ -477,6 +479,7 @@ var checkout = (function($) {
           case '30': // .se
           case '60': // .nl
           case '10': // .dk privat
+          case '500': // .fi
             $(blocks.address.data.selector +" "+ ".checkout-block-type-shipping").show();
             $(blocks.address.data.selector +" "+ ".checkout-block-type-overnightbox").hide();
           break;

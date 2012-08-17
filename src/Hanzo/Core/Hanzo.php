@@ -89,7 +89,7 @@ class Hanzo
         $this->container->get('twig')->addGlobal('locale', $locale);
         $this->container->get('twig')->addGlobal('html_lang', $lang);
 
-        setLocale(LC_ALL, $this->settings['core']['language_id'].'.utf-8');
+        setLocale(LC_ALL, $locale.'.utf-8');
 
         // we piggybag on nl to show euros, even for none euro countries
         // note the locale has to be installed, and er need duch anyway, so...

@@ -57,15 +57,16 @@ class CheckoutListener
 
                 $c = new Criteria;
                 $c->add(OrdersPeer::STATE, Orders::STATE_PENDING, Criteria::GREATER_EQUAL);
+                $c->addOr(OrdersPeer::ID, $order->getId(), Criteria::EQUAL);
 
                 foreach ($order->getEvents()->getOrderss($c) as $o) {
                     $total = $o->getTotalProductPrice();
 
                     // TODO: not hardcoded !
-                    $discount += (($total / 100) * 5);
+                    $discount += (($total / 100) * -5);
                 }
 
-                $order->setDiscountLine('discount.hostess', ($discount * -1));
+                $order->setDiscountLine('discount.hostess', $discount, -5);
                 $order->setAttribute('is_hostess_order_calculated', 'event', true);
             }
 
@@ -81,11 +82,11 @@ class CheckoutListener
             // TODO: not hardcoded
             switch ($attributes->purchase->type) {
                 case 'friend':
-                    $discount = 15;
+                    $discount = -15.00;
                     $label = 'Veninde køb';
                     break;
                 case 'gift':
-                    $discount = 20;
+                    $discount = -20.00;
                     $label = 'Gave køb';
                     break;
                 case 'other':
@@ -98,8 +99,8 @@ class CheckoutListener
 
             if ($discount) {
                 $total = $order->getTotalProductPrice();
-                $discount += (($total / 100) * $discount);
-                $order->setDiscountLine('discount.'.$attributes->purchase->type, ($discount * -1));
+                $discount_amount = (($total / 100) * $discount);
+                $order->setDiscountLine('discount.'.$attributes->purchase->type, $discount_amount, $discount);
             }
 
             $order->setAttribute('HomePartyId', 'global', $label);

@@ -4,8 +4,9 @@ namespace Hanzo\Bundle\PaymentBundle\PayByBill;
 
 use Exception;
 
-use Hanzo\Model\Orders,
-    Hanzo\Model\Customers;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 
@@ -62,6 +63,11 @@ class PayByBillApi implements PaymentMethodApiInterface
      **/
     public function isActive()
     {
+        $order = OrdersPeer::getCurrent();
+        if ($order->getInEdit()) {
+            return false;
+        }
+
         return ( isset($this->settings['active']) ) ? $this->settings['active'] : false;
     }
 

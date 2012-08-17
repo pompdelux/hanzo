@@ -183,11 +183,6 @@ class ECommerceServices extends SoapService
                         }
 
                     } else {
-                        $product->setUnit(trim('1 ' .$item->Sales->UnitId));
-                        $washing = $item->WashInstruction;
-                        if (is_scalar($washing) && !empty($washing)) {
-                            $product->setWashing($washing);
-                        }
 
                         $collection = new PropelCollection();
                         foreach ($categories as $category) {
@@ -197,6 +192,12 @@ class ECommerceServices extends SoapService
                             $collection->prepend($data);
                         }
                         $product->setProductsToCategoriess($collection);
+                    }
+
+                    $product->setUnit(trim('1 ' .$item->Sales->UnitId));
+                    $washing = $item->WashInstruction;
+                    if (is_scalar($washing) && !empty($washing)) {
+                        $product->setWashing($washing);
                     }
 
                     // save ze product

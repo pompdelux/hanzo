@@ -19,8 +19,9 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Addresses;
-use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLinesQuery;
 
 class EventsController extends CoreController
 {
@@ -29,7 +30,6 @@ class EventsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('login'));
         }
-
 
         $date_filter['max'] = date('Y-m-d H:i:s');
         $archived_events = EventsQuery::create()
@@ -72,7 +72,7 @@ class EventsController extends CoreController
                 'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
                 'className' => $event->getType(),
                 'editable' => false,
-                'color' => ($event->getEventDate('U') >= time()) ? 'green': 'red'
+                'color' => (($event->getEventDate('U') < time()) || $event->getIsOpen()) ? 'green': 'red'
             );
         }
 
@@ -258,7 +258,7 @@ class EventsController extends CoreController
                 $code = $code . $consultant->getInitials();
                 $code = $code . $event->getType();
                 $code = $code . $event->getId();
-                $code = $code . $hanzo->get('core.domain_key');
+                $code = $code . str_replace('Sales', '', $hanzo->get('core.domain_key'));
                 $event->setCode(strtoupper($code));
 
                 $event->save();
@@ -832,7 +832,8 @@ class EventsController extends CoreController
         $events = EventsQuery::create()
             ->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
-            ->orderByEventDate(\Criteria::DESC)
+            ->orderByEventDate(\Criteria::ASC)
+            ->filterByIsOpen(true)
             ->find()
         ;
 
@@ -847,6 +848,14 @@ class EventsController extends CoreController
         if ($order instanceof Orders) {
             $request = $this->getRequest();
 
+            // remove any discount lines if changing event
+            OrdersLinesQuery::create()
+                ->filterByOrdersId($order->getId())
+                ->filterByType('discount')
+                ->find()
+                ->delete();
+            ;
+
             list($id, $code) = explode(':', $request->get('type'));
             $order->setEventsId(null);
 
@@ -859,6 +868,7 @@ class EventsController extends CoreController
             $hostess = $request->get('hostess');
             if (empty($hostess)) {
                 $order->clearAttributesByKey('is_hostess_order');
+                $order->clearAttributesByKey('is_hostess_order_calculated');
             } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
             }

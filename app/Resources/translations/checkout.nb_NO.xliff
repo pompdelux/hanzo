@@ -125,15 +125,15 @@
       </trans-unit>
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
-        <target>Betaling på konto</target>
+        <target>Bankoverføring</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
-        <target>Innbetal pengene på kontonummer: "yy-yy xx-xx-xx-xx-xx" senest 8 dager etter at du har mottatt varene.</target>
+        <target><![CDATA[Velg betalingsmåte<br><br><b>Bemerk:</b> Bankoverføring må brukes dersom internettforbindelse mangler.]]></target>
       </trans-unit>
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
-        <target>Betaling på konto</target>
+        <target>Bankoverføring</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>

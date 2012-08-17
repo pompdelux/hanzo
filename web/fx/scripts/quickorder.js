@@ -40,11 +40,12 @@ var quickorder = (function($) {
                                 .attr("value",'')
                                 .text(ExposeTranslation.get('js:quickorder.choose.size')));
 
+                            var last = '';
                             $.each(response.data.products, function(key, value) {
-                                $('#size')
-                                    .append($("<option></option>")
-                                    .attr("value",value.size)
-                                    .text(value.size));
+                                if (value.size != last) {
+                                    $('#size').append($("<option></option>").attr("value",value.size).text(value.size));
+                                    last = value.size;
+                                }
                             });
                             $('#size-label').show().find('#size').focus();
                             $('#reset').show();
@@ -110,11 +111,12 @@ var quickorder = (function($) {
                                 .attr("value",'')
                                 .text(ExposeTranslation.get('js:quickorder.choose.color')));
 
+                            var last = '';
                             $.each(response.data.products, function(key, value) {
-                                $('#color')
-                                    .append($("<option></option>")
-                                    .attr("value",value.color)
-                                    .text(value.color));
+                                if (last != value.color) {
+                                    $('#color').append($("<option></option>").attr("value",value.color).text(value.color));
+                                    last = value.color;
+                                }
                             });
                             $('#color-label').show().find('#color').focus();
                         }else{
@@ -183,10 +185,10 @@ var quickorder = (function($) {
                         window.scrollTo(window.scrollMinX, window.scrollMinY);
                         $('#mini-basket a').html(response.data);
                         dialoug.slideNotice(response.message);
-                        var img = master+'_basket_'+color;
-                        img = cdn_url + 'images/products/thumb/60x60,' + img.toString().replace(/[^a-zA-Z0-9_]/g, "") + '.jpg';
+                        var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_basket_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "");
+                        img = cdn_url + 'images/products/thumb/60x60,' + img + '.jpg';
 
-                        $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td></tr>');
+                        $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td><td>'+response.latest.price+'</td></tr>');
                     }
                     _resetForm();
                 },

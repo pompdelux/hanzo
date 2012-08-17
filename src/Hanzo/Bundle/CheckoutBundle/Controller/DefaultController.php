@@ -35,6 +35,16 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
+        $hanzo = Hanzo::getInstance();
+        $order->setCurrencyCode($hanzo->get('core.currency'));
+        $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
+        $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
+
+        // trigger event, handles discounts and other stuff.
+        $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
+
+        $order->save();
+
         return $this->render('CheckoutBundle:Default:index.html.twig', array(
             'page_type' => 'checkout'
         ));
@@ -471,7 +481,7 @@ class DefaultController extends CoreController
 
         // first we finalize the order, aka. setting misc order attributes and updating lines ect.
 
-        // 1. order product lines
+        // order product lines
         // - we need to set original_price and unit
         $products = OrdersLinesQuery::create()
             ->joinWithProducts()
@@ -493,16 +503,6 @@ class DefaultController extends CoreController
             $product->setUnit(preg_replace('/[^a-z\.]/i', '', $product_units[$product->getProductsId()]));
             $product->save();
         }
-
-        // 2. set currency code
-        $order->setCurrencyCode($hanzo->get('core.currency'));
-
-        // 3. register domain et-al
-        $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
-        $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-
-        // trigger event, handles discounts and other stuff.
-        $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
         if (!$order->getDeliveryMethod()) {
             $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));

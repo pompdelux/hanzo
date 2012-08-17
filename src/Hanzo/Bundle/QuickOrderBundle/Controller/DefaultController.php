@@ -22,9 +22,12 @@ class DefaultController extends CoreController
     	$order = OrdersPeer::getCurrent();
     	$products = array();
     	foreach ($order->getOrdersLiness() as $line) {
+            if ($line->getType() != 'product') {
+                continue;
+            }
 
             $basket_image =
-                preg_replace('/[^a-z0-9]/i', '', $line->getProductsName()) .
+                preg_replace('/[^a-z0-9]/i', '-', $line->getProductsName()) .
                 '_basket_' .
                 preg_replace('/[^a-z0-9]/i', '', $line->getProductsColor()) .
                 '.jpg'
@@ -35,8 +38,10 @@ class DefaultController extends CoreController
     			'quantity' => $line->getQuantity(),
                 'basket_image' => $basket_image,
                 'name' => $line->getProductsName(),
+                'price' => $line->getPrice(),
     		);
     	}
+
         return $this->render('QuickOrderBundle:Default:index.html.twig',
          	array(
          		'page_type' => 'quickorder',

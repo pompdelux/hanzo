@@ -82,7 +82,6 @@
   <aside id="secondary-links">
     <ul>
       <li><a href="{{ path('_account') }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-      <li><a href="{{ path('logout') }}">{{ 'my.account.logout'|trans({}, 'account') }}</a></li>
       <li id="mini-basket" class="basket">
         <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>

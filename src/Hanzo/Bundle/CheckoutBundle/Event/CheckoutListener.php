@@ -140,6 +140,11 @@ class CheckoutListener
         $company_address = str_replace( ' · ', "\n", $company_address );
         // <<-- hf@bellcom.dk, 13-jun-2012: hack... I'm tired
 
+        $event_id = '';
+        if ($order->getEventsId()) {
+            $event_id = $order->getEvents()->getCode();
+        }
+
         $params = array(
             'order' => $order,
             'payment_address' => Tools::orderAddress('payment', $order),
@@ -156,7 +161,7 @@ class CheckoutListener
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
             'card_type' => $card_type,
-            'event_id' => $order->getCode(),
+            'event_id' => $event_id,
             'transaction_id' => '',
             'payment_gateway_id' => '',
         );
@@ -175,21 +180,25 @@ class CheckoutListener
         }
 
         foreach ($order->getOrdersLiness() as $line) {
-            if ($line->gettype('discount') && $line->getProductsSku() == 'discount.hostess') {
-                $params['hostess_discount'] = $line->getPrice();
-                $params['hostess_discount_title'] = $line->getProductsName();
+            if ('discount' == $line->getType()) {
+                if (empty($params['hostess_discount'])) {
+                    $params['hostess_discount'] = $line->getPrice();
+                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), array(), 'checkout');
+                }
             }
 
             // or Sku == 91 ?
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
-                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title',array(),'checkout');
+                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', array(), 'checkout');
             }
         }
 
         // close event if this is the hostess purchase.
         if ($order->getEventsId() && isset($attributes->event->is_hostess_order)) {
-            $order->getEvents()->setIsOpen(false);
+            $event = $order->getEvents();
+            $event->setIsOpen(false);
+            $event->save();
         }
 
         // Handle payment canceling of old order
@@ -254,7 +263,7 @@ class CheckoutListener
 
         $discount = 0;
 
-        if (1 == $hanzo->get('webshop.disable_discounts')) {
+        if (0 == $hanzo->get('webshop.disable_discounts')) {
             if ($customer->getDiscount()) {
                 $discount_label = 'discount.private';
                 $discount = $customer->getDiscount();
@@ -264,12 +273,12 @@ class CheckoutListener
             }
         }
 
-        if ($discount) {
+        if ($discount <> 0.00) {
             $total = $order->getTotalProductPrice();
 
             // so far _all_ discounts are handled as % discounts
-            $discount = ($total / 100) * $discount;
-            $order->setDiscountLine($discount_label, ($discount * -1));
+            $discount_amount = ($total / 100) * $discount;
+            $order->setDiscountLine($discount_label, $discount_amount, $discount);
         }
 
         $domain_key = $hanzo->get('core.domain_key');

@@ -52,7 +52,9 @@
 
     <ul class="tabs">
       <li><a href="#">{{ "product.details"|trans }}</a></li>
+    {% if product.washing %}
       <li><a href="#">{{ "care.instructions"|trans }}</a></li>
+    {% endif %}
     </ul>
 
     <div class="panes">
@@ -60,7 +62,9 @@
         {{ product.description|raw }}
         <br><a href="{{ cdn }}/images/sizeguide/{{ product.title|replace({" ":""}) }}.jpg" rel="colorbox">» Size guide</a>
       </div>
+    {% if product.washing %}
       <div class="off">{{ product.washing|raw }}</div>
+    {% endif %}
     </div>
 
     <div class="buybox clearfix">
