@@ -80,7 +80,7 @@ class DefaultController extends CoreController
                 $latest = '';
                 if ($line) {
                     $latest = $line->toArray(\BasePeer::TYPE_FIELDNAME, false);
-                    $latest['price'] = Tools::moneyFormat($latest['price']);
+                    $latest['price'] = Tools::moneyFormat($latest['price'] * $quantity);
                 }
 
                 if ($this->getFormat() == 'json') {
