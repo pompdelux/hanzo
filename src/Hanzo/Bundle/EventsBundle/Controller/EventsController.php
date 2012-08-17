@@ -830,7 +830,7 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->filterByEventDate(array('min' => time()))
+            #->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
             ->orderByEventDate(\Criteria::ASC)
             ->filterByIsOpen(true)
