@@ -13,15 +13,25 @@ $source_dir = __DIR__ . '/../web/images/products/import/';
 $target_dir = __DIR__ . '/../web/images/products/';
 
 $images_found = glob($source_dir.'*.{jpg,gif,png}',  GLOB_BRACE);
-
 if (empty($images_found)) {
     exit;
 }
 
 $images = array();
-foreach ($images_found as $file)
-{
+foreach ($images_found as $file) {
     $image = basename($file);
+    $srcmd5 = md5_file($source_dir . $image);
+    $tgdmd5 = '';
+
+    if (is_file($target_dir . $image)) {
+        $tgdmd5 = md5_file($target_dir . $image);
+    }
+
+    // skip unchanged files
+    if ($srcmd5 === $tgdmd5) {
+        continue;
+    }
+
     $images[$image] = $image;
 }
 
@@ -39,8 +49,7 @@ $pdo = $_databases['vip'];
 $products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $categories_stmt = $pdo->prepare('SELECT categories_id FROM products_to_categories WHERE products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-foreach ($images as $image)
-{
+foreach ($images as $image) {
     // ex: key = PANTYHOSE-2-PACK_01.jpg
     @list($master, $junk) = explode('_', str_replace('-', ' ', $image));
 
@@ -138,22 +147,12 @@ foreach ($_databases as $key => $conn) {
 // copy all images to the right location
 foreach ($product_images as $pid => $images) {
     foreach($images as $image) {
-        $srcmd5 = md5_file($source_dir . $image);
-        $tgdmd5 = md5_file($target_dir . $image);
-
-        if ($srcmd5 !== $tgdmd5) {
-            copy($source_dir . $image, $target_dir . $image);
-        }
+        copy($source_dir . $image, $target_dir . $image);
     }
 }
 foreach ($extra_images as $pid => $images) {
     foreach($images as $image) {
-        $srcmd5 = md5_file($source_dir . $image);
-        $tgdmd5 = md5_file($target_dir . $image);
-
-        if ($srcmd5 !== $tgdmd5) {
-            copy($source_dir . $image, $target_dir . $image);
-        }
+        copy($source_dir . $image, $target_dir . $image);
     }
 }
 
