@@ -119,7 +119,7 @@
       <trans-unit id="Collection BAG">
         <source>description.Collection_BAG</source>
         <target>
-          <![CDATA[Our fantastic POMP BAG, perfect for the beach, nursery school or weekends away. The BAG is made from eco-friendly materials, which are free from harmful chemicals. It is furthermore waterproof and therefore perfect in any kind of weather. 	<br><br>	Available in Black.	<br><br>	One size.	<br><br>	Quality: 100% Cotton.]]>
+          <![CDATA[Our fantastic POMP BAG, perfect for the beach, nursery school or weekends away. The BAG is made from eco-friendly materials, which are free from harmful chemicals. It is furthermore waterproof and therefore perfect in any kind of weather. 	<br><br>	Available in Brown.	<br><br>	One size.	<br><br>]]>
         </target>
       </trans-unit>
       <trans-unit id="Conrad LS HOOD SHIRT">
@@ -176,14 +176,14 @@
           <![CDATA[Very versatile long sleeve basic tshirt in soft rib quality. Ideal for wearing under tunics and dresses. Also available for baby sister: Dido Little LS TSHIRT. Oeko-Tex Standard 100, Class 1 Certification and GOTS certified (Global Organic Textile Standard).	<br><br>	Available in Violet, Brown, Peach and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Organic cotton, 5% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Diego GRANDDAD">
-        <source>description.Diego_GRANDDAD</source>
+      <trans-unit id="Diego LS GRANDDAD">
+        <source>description.Diego_LS_GRANDDAD</source>
         <target>
           <![CDATA[Classic long sleeve granddad tshirt in soft rib cotton quality with front button placket. Also available for baby brother: Diego Little LS GRANDDAD and in a striped version: Dario LS GRANDDAD. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Navy, Green, Brown and Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Cotton, 5% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Diego Little GRANDDAD">
-        <source>description.Diego_Little_GRANDDAD</source>
+      <trans-unit id="Diego Little LS GRANDDAD">
+        <source>description.Diego_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[Classic long sleeve granddad tshirt in soft rib cotton quality with front button placket. Also available for big brother: Diego LS GRANDDAD and in a striped version: Dario LS GRANDDAD. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Navy, Green, Brown and Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Cotton, 5% Elasthane.]]>
         </target>
@@ -638,8 +638,8 @@
           <![CDATA[Lovely warm knee socks in 70% superwash wool. In 2-pack. Oeko-Tex Standard 100, Class 1 Certification. 	<br><br>	Available in following combinations: Light Grey Melange/Dark Grey Melange.	<br><br>	Size labeling is based on the shoe size of the child.	<br><br>	Quality: 70% Superwash wool, 27% Nylon, 3 % Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Keaton Little LS SHIRT">
-        <source>description.Keaton_Little_LS_SHIRT</source>
+      <trans-unit id="Keaton Little LS TSHIRT">
+        <source>description.Keaton_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Organic basic tshirt with long sleeves and with shoulder buttons in comfortable stretch cotton jersey. Perfect under a shirt or short sleeve tshirt. Also available for big brother: Keaton LS TSHIRT. Oeko-Tex Standard 100, Class 1 Certification and GOTS certified (Global Organic Textile Standard).	<br><br>	Available in Navy and White.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Organic Cotton, 5% Elasthane.]]>
         </target>
@@ -1448,8 +1448,8 @@
           <![CDATA[Lovely soft terry cloth hoodie with kangaroo pocket. Contrast trim inside the hood and neck. The same fabric has also been used for Vidar Little PANTSUIT.	<br><br>	Available in Navy/Offwhite and Light Grey Melange/Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Polyester. Rib: 90% Cotton, 10% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Vidar Little PANTSUIT">
-        <source>description.Vidar_Little_PANTSUIT</source>
+      <trans-unit id="Vidar Little LS PANTSUIT">
+        <source>description.Vidar_Little_LS_PANTSUIT</source>
         <target>
           <![CDATA[Very comfy soft pantsuit in terry cloth with hood, elbow patches, front zip and pockets. Contrast trim inside the hood and neck. The same fabric has also been used for Vidar HOODIE.	<br><br>	Available in Navy/Offwhite and Light Grey Melange/Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Polyester. Rib: 90% Cotton, 10% Elasthane.]]>
         </target>
