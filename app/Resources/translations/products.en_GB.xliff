@@ -38,8 +38,8 @@
           <![CDATA[Super soft fleece jacket with front button closure and gold rib trim. Perfect under a jacket when it is really cold or on its own. Also available for big sister and as a helmet (balaclava).	<br><br>	Available in Violet, Brown and Grey.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Polyester.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Ann Kneesocks">
-        <source>description.Ann_Kneesocks</source>
+      <trans-unit id="Ann KNEESOCS">
+        <source>description.Ann_KNEESOCS</source>
         <target>
           <![CDATA[Trendy cable knit knee socks. 2-pack in two lovely shades to match our collection. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Green/Dark Grey Melange, Curry/Dark Grey Melange, Grey Melange/Peach and Ligth Grey Melange/Dark Grey Melange.	<br><br>	Size labelling is based on the shoe size of the child.	<br><br>	Quality: 90% Acrylic, 7% Polyamide, 3% Elasthane.]]>
         </target>
@@ -632,8 +632,8 @@
           <![CDATA[Trendy knit slipover with v-neck, contrast stripes and knit applique on the front. Also available as cardigan for big brother: Jess CARDIGAN. 	<br><br>	Available in Navy and Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Johanne KNEESOCKS">
-        <source>description.Johanne_KNEESOCKS</source>
+      <trans-unit id="Johanne KNEESOCS">
+        <source>description.Johanne_KNEESOCS</source>
         <target>
           <![CDATA[Lovely warm knee socks in 70% superwash wool. In 2-pack. Oeko-Tex Standard 100, Class 1 Certification. 	<br><br>	Available in following combinations: Light Grey Melange/Dark Grey Melange.	<br><br>	Size labeling is based on the shoe size of the child.	<br><br>	Quality: 70% Superwash wool, 27% Nylon, 3 % Elasthane.]]>
         </target>
@@ -872,8 +872,8 @@
           <![CDATA[Feminine print tunic with front buttons, flared and with a lovely small collar and short sleeves with pleating. The same fabric har also been used for Nancy PANTS.	<br><br>	Available in Blue, Grey, Violet and Brown.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Natalie KNEESOCKS">
-        <source>description.Natalie_KNEESOCKS</source>
+      <trans-unit id="Natalie KNEESOCS">
+        <source>description.Natalie_KNEESOCS</source>
         <target>
           <![CDATA[Lovely knee socks with gold lurex in 2-pack, one with stripes and one with polka dots. In lovely colours, all matching the entire girl collection. Also available as tights for baby and big sister: Natalie Little TIGHTS and Natalie TIGHTS. Oeko-Tex Standard 100, Class 1 Certification. 	<br><br>	Available in Brown, Violet and Grey.	<br><br>	Size labelling is based on the shoe size of the child.	<br><br>	Quality: 75% Cotton, 22% Polyamide, 2% Elasthane, 1% Lurex.]]>
         </target>
@@ -1502,8 +1502,8 @@
           <![CDATA[Lovely ankle socks in 2-pack, one with polka dots and one with stripes. All colours matching the entire girl collection. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labelling is based on the shoe size of the child.	<br><br>	Quality: 80% Cotton, 15% Polyamide, 5% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Yoko KNEESOCKS">
-        <source>description.Yoko_KNEESOCKS</source>
+      <trans-unit id="Yoko KNEESOCS">
+        <source>description.Yoko_KNEESOCS</source>
         <target>
           <![CDATA[Lovely knee socks in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. Also available as tights for baby and big sister: Yoko Little TIGHTS and Yoko TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labelling is based on the shoe size of the child.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
         </target>
@@ -1511,13 +1511,13 @@
       <trans-unit id="Yoko Little TIGHTS">
         <source>description.Yoko_Little_TIGHTS</source>
         <target>
-          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as kneesocks and tights for big sister: Yoko KNEESOCKS and TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
+          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as KNEESOCS and tights for big sister: Yoko KNEESOCS and TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
         </target>
       </trans-unit>
       <trans-unit id="Yoko TIGHTS">
         <source>description.Yoko_TIGHTS</source>
         <target>
-          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as kneesocks and tights for baby sister: Yoko KNEESOCKS and Yoko Little TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
+          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as KNEESOCS and tights for baby sister: Yoko KNEESOCS and Yoko Little TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
         </target>
       </trans-unit>
       <trans-unit id="Yrsa Little SS TUNIC">

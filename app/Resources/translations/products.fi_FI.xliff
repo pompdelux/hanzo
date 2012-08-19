@@ -42,8 +42,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Ann Kneesocks">
-        <source>description.Ann_Kneesocks</source>
+      <trans-unit id="Ann KNEESOCS">
+        <source>description.Ann_KNEESOCS</source>
         <target>
           <![CDATA[Trendikkäät palmikkopolvisukat. Kahden parin pakkauksessa kaksi mallistoon sopivaa väriä. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1.	<br><br>	Saatavana seuraavina yhdistelminä: Green/Dark Grey Mélange (vihreä/meleerattu tummanharmaa), Curry/Dark Grey Mélange (curry/meleerattu tummanharmaa), Grey Mélange/Peach (meleerattu harmaa/persikka) ja Light Grey Mélange/Dark Grey Mélange (meleerattu vaaleanharmaa/meleerattu tummanharmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen kengänkokoa.	<br><br>Laatu: 90 % akryyli, 7 % polyamidi, 3 % elastaani.
             ]]>
@@ -667,8 +667,8 @@
           <![CDATA[Trendikäs V-aukkoinen neuleslipoveri, ribbireunoissa kontrastiraidat, kudottu applikaatio etukappaleessa. Saatavana neuletakkina myös pikkuveljelle: Jess CARDIGAN.	<br><br>	Saatavana: Navy (sininen) ja Grey Mélange (meleerattu harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu: 100 % puuvilla.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Johanne KNEESOCKS">
-        <source>description.Johanne_KNEESOCKS</source>
+      <trans-unit id="Johanne KNEESOCS">
+        <source>description.Johanne_KNEESOCS</source>
         <target>
           <![CDATA[Ihanan lämpöiset polvisukat 70 % Superwash-villaa. Kahden parin pakkauksessa. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1.	<br><br>	Saatavana seuraavina yhdistelminä: Light Grey Mèlange/Dark Grey Mèlange (meleerattu vaaleanharmaa/meleerattu tummanharmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen kengänkokoa.	<br><br>Laatu: 70 % Superwash-villa, 27 % nailon, 3 % elastaani. 
             ]]>
@@ -933,8 +933,8 @@
           <![CDATA[Tyttömäinen kuviollinen tunika, nappikiinnitys edessä, hieno pieni kaulus sekä lyhyet rypytetyt hihat. Samassa sarjassa myös Nancy PANTS.	<br><br>	Saatavana seuraavina yhdistelminä: Blue (sininen), Grey (harmaa), Violet (violetti) ja Brown (ruskea).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu: 100 % puuvilla.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Natalie KNEESOCKS">
-        <source>description.Natalie_KNEESOCKS</source>
+      <trans-unit id="Natalie KNEESOCS">
+        <source>description.Natalie_KNEESOCS</source>
         <target>
           <![CDATA[Hienot kullanväristä lureksia sisältävät polvisukat, kahden parin pakkauksessa yhdet raidalliset ja yhdet pilkulliset sukat.  Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös isojen ja pienten tyttöjen sukkahousuina: Natalie Little TIGHTS ja Natalie TIGHTS. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1.	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen kengänkokoa.	<br><br>Laatu: 75 % puuvilla, 22 % polyamidi, 2 % elastaani, 1 % lurex.
             ]]>
@@ -943,14 +943,14 @@
       <trans-unit id="Natalie Little TIGHTS">
         <source>description.Natalie_Little_TIGHTS</source>
         <target>
-          <![CDATA[Hienot kullanväristä lureksia sisältävät sukkahousut, kahden parin pakkauksessa yhdet raidalliset ja yhdet pilkulliset sukkahousut.  Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös isojen tyttöjen polvisukkina ja sukkahousuina: Natalie KNEESOCKS ja Natalie TIGHTS. Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1.	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 75 % puuvilla, 22 % polyamidi, 2 % elastaani, 1 % lurex.
+          <![CDATA[Hienot kullanväristä lureksia sisältävät sukkahousut, kahden parin pakkauksessa yhdet raidalliset ja yhdet pilkulliset sukkahousut.  Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös isojen tyttöjen polvisukkina ja sukkahousuina: Natalie KNEESOCS ja Natalie TIGHTS. Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1.	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 75 % puuvilla, 22 % polyamidi, 2 % elastaani, 1 % lurex.
             ]]>
         </target>
       </trans-unit>
       <trans-unit id="Natalie TIGHTS">
         <source>description.Natalie_TIGHTS</source>
         <target>
-          <![CDATA[Hienot kullanväristä lureksia sisältävät sukkahousut, kahden parin pakkauksessa yhdet raidalliset ja yhdet pilkulliset sukkahousut.  Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös pienten tyttöjen polvisukkina ja sukkahousuina: Natalie KNEESOCKS ja Natalie Little TIGHTS.  Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 75 % puuvilla, 22 % polyamidi, 2 % elastaani, 1 % lurex.
+          <![CDATA[Hienot kullanväristä lureksia sisältävät sukkahousut, kahden parin pakkauksessa yhdet raidalliset ja yhdet pilkulliset sukkahousut.  Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös pienten tyttöjen polvisukkina ja sukkahousuina: Natalie KNEESOCS ja Natalie Little TIGHTS.  Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 75 % puuvilla, 22 % polyamidi, 2 % elastaani, 1 % lurex.
             ]]>
         </target>
       </trans-unit>
@@ -1616,8 +1616,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Yoko KNEESOCKS">
-        <source>description.Yoko_KNEESOCKS</source>
+      <trans-unit id="Yoko KNEESOCS">
+        <source>description.Yoko_KNEESOCS</source>
         <target>
           <![CDATA[Hienot polvisukat kahden parin pakkauksessa, yhdet raidalliset ja yhdet kukalliset sukat.  Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös isojen ja pienten tyttöjen sukkahousuina: Yoko Little TIGHTS ja Yoko TIGHTS. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti), Grey (harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen kengänkokoa.	<br><br>Laatu: 62% puuvilla, 36% polyamidi, 2% elastaani.
             ]]>
@@ -1626,14 +1626,14 @@
       <trans-unit id="Yoko Little TIGHTS">
         <source>description.Yoko_Little_TIGHTS</source>
         <target>
-          <![CDATA[Hienot sukkahousut kahden parin pakkauksessa, yhdet raidalliset ja yhdet kukalliset sukat. Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös isojen tyttöjen polvisukkina ja sukkahousuina: Yoko KNEESOCKS ja TIGHTS.  Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti), Grey (harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 62% puuvilla, 36% polyamidi, 2% elastaani.
+          <![CDATA[Hienot sukkahousut kahden parin pakkauksessa, yhdet raidalliset ja yhdet kukalliset sukat. Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös isojen tyttöjen polvisukkina ja sukkahousuina: Yoko KNEESOCS ja TIGHTS.  Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti), Grey (harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 62% puuvilla, 36% polyamidi, 2% elastaani.
             ]]>
         </target>
       </trans-unit>
       <trans-unit id="Yoko TIGHTS">
         <source>description.Yoko_TIGHTS</source>
         <target>
-          <![CDATA[Hienot sukkahousut kahden parin pakkauksessa, yhdet raidalliset ja yhdet kukalliset sukat. Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös pienten tyttöjen polvisukkina ja sukkahousuina: Yoko KNEESOCKS ja Yoko Little TIGHTS.  Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti), Grey (harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 62% puuvilla, 36% polyamidi, 2% elastaani.
+          <![CDATA[Hienot sukkahousut kahden parin pakkauksessa, yhdet raidalliset ja yhdet kukalliset sukat. Hienot värit, jotka sointuvat tyttöjen malliston muihin vaatteisiin. Saatavana myös pienten tyttöjen polvisukkina ja sukkahousuina: Yoko KNEESOCS ja Yoko Little TIGHTS.  Mitoitus voi vaihdella hieman erilaisten neulontatekniikoiden vuoksi. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana seuraavina yhdistelminä: Brown (ruskea), Violet (violetti), Grey (harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 62% puuvilla, 36% polyamidi, 2% elastaani.
             ]]>
         </target>
       </trans-unit>
