@@ -136,8 +136,8 @@
           <![CDATA[Vores lækre og kraftige POMP BAG der blandt andet er super god til stranden, børnehaven eller weekend turen. BAG’en er fremstillet af et miljøvenligt materiale, der ikke frigiver nogle sundhedsskadelige stoffer. Desuden er den vandtæt og derfor velegnet til al slags vejr.	<br><br>	Fås i: Brown (brun).	<br><br>	One size.	<br><br>]]>
         </target>
       </trans-unit>
-      <trans-unit id="Conrad LS HOOD SHIRT">
-        <source>description.Conrad_LS_HOOD_SHIRT</source>
+      <trans-unit id="Conrad LS SHIRT">
+        <source>description.Conrad_LS_SHIRT</source>
         <target>
           <![CDATA[Trendy storternet skjorte med hætte, brystlommer og albuelapper. Opsmøgelige ærmer med knapfunktion. 	<br><br>	Fås i: Navy og Green (grøn). 	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld.]]>
         </target>
@@ -680,8 +680,8 @@
           <![CDATA[Økologisk basis tshirt med lange ærmer og trykknaplukning ved skulder i behagelig bomuldsjersey med lidt stræk, så pasformen holder! Perfekt til at tage under en skjorte eller kortærmet tshirt. Findes også til storebror: Keaton LS TSHIRT. Oeko-Tex Standard 100 certificeret i produktklasse 1 og GOTS certificeret (Global Organic Textile Standard). 	<br><br>	Fås i: Navy og White (hvid).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Økologisk bomuld, 5% Elastan.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Keaton LS SHIRT">
-        <source>description.Keaton_LS_SHIRT</source>
+      <trans-unit id="Keaton LS TSHIRT">
+        <source>description.Keaton_LS_TSHIRT</source>
         <target>
           <![CDATA[Økologisk basis tshirt med lange ærmer i behagelig bomuldsjersey med lidt stræk, så pasformen holder! Perfekt til at tage under en skjorte eller kortærmet tshirt. Findes også til lillebror: Keaton Little LS TSHIRT. Oeko-Tex Standard 100 certificeret i produktklasse 1 og GOTS certificeret (Global Organic Textile Standard). 	<br><br>	Fås i: Navy og White (hvid).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Økologisk bomuld, 5% Elastan.]]>
         </target>
@@ -853,8 +853,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Meadow Little LS BLOUSE">
-        <source>description.Meadow_Little_LS_BLOUSE</source>
+      <trans-unit id="Meadow Little LS TSHIRT">
+        <source>description.Meadow_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Sød langærmet bluse i en stribet strækbar viscose kvalitet. Fint rynk ved bærestykke foran og ballon effekt forneden. Enkelt lille knapåbning ved halsåbning foran.  I samme kvalitet findes Meadow LS BLOUSE til storesøster.	<br><br>	Fås i: Brown (brun), Violet, Black (sort) og Grey Mèlange (grå meleret).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 95% Viskose, 5% Elastan. 
             ]]>
@@ -863,7 +863,7 @@
       <trans-unit id="Meadow LS BLOUSE">
         <source>description.Meadow_LS_BLOUSE</source>
         <target>
-          <![CDATA[Sød langærmet bluse i en stribet strækbar viscose kvalitet. Fint elastik rynk hen over bryst og bredt stykke forneden på blusen, som sidder tæt til kroppen.  I samme kvalitet findes Meadow Little LS BLOUSE til lillesøster.	<br><br>	Fås i: Brown (brun), Violet, Black (sort) og Grey Mèlange (grå meleret).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 95% Viskose, 5% Elastan. 
+          <![CDATA[Sød langærmet bluse i en stribet strækbar viscose kvalitet. Fint elastik rynk hen over bryst og bredt stykke forneden på blusen, som sidder tæt til kroppen.  I samme kvalitet findes Meadow Little LS TSHIRT til lillesøster.	<br><br>	Fås i: Brown (brun), Violet, Black (sort) og Grey Mèlange (grå meleret).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 95% Viskose, 5% Elastan. 
             ]]>
         </target>
       </trans-unit>
@@ -1057,7 +1057,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Odin JACKET">
-        <source>description.Odin_Jacket</source>
+        <source>description.Odin_JACKET</source>
         <target>
           <![CDATA[Fed retrojakke med lange ærmer. Cool broderi foran på brystet og print bag på ryggen. Lynlåslommer og lynlås ned foran. Perfekt til et par seje jeans. 	<br><br>	Fås i: Navy, Green (grøn), og Grey (grå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 50% Bomuld, 50% Polyester. Rib: 100% Polyester.]]>
         </target>
@@ -1076,8 +1076,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Paloma REGULAR PANTS">
-        <source>description.Paloma_REGULAR_PANTS</source>
+      <trans-unit id="Paloma REGULAR JEANS">
+        <source>description.Paloma_REGULAR_JEANS</source>
         <target>
           <![CDATA[Superfede regular jeans med stræk og masser af detaljer som lommer med synlige lynlåse, elastisk smock ved anklen, nitter, badge bagpå og sej skråt overlappende lukning foroven. Med seje krøl- og vaskeeffekter samt kraftige stikninger. Med justerbar talje. 	<br><br>	Fås i: Blue Denim.	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 98% Bomuld, 2% Elastan.
             ]]>
@@ -1466,8 +1466,8 @@
           <![CDATA[Baggy bukser med "low crotch".  Blød 2x2 rib i tajlen med elastik samt lommer foran og baglomme. Detalje forstærkning på knæene. Findes også som Suzy Little PANTS til lillesøster.	<br><br>	Fås i: Violet, Grey (grå) og Khaki.	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Cotton.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tessa DRESS">
-        <source>description.Tessa_DRESS</source>
+      <trans-unit id="Tessa LS DRESS">
+        <source>description.Tessa_LS_DRESS</source>
         <target>
           <![CDATA[Flot kjole hvor for- og bagstykke er i vævet viskose og ærmer/hoftestykke er i blød jersey kvalitet. Flot pingvin print med gyldne pailletter foran og lynlås i nakken. Super fin til et par leggings.	<br><br>	Fås i: Violet, Grey (grå) og Khaki.	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet 1: 100% Viskose. Kvalitet 2: 95% Viskose, 5% Elastan.]]>
         </target>
@@ -1517,12 +1517,12 @@
       <trans-unit id="Tina LS TUNIC">
         <source>description.Tina_LS_TUNIC</source>
         <target>
-          <![CDATA[Blød langærmet tunika i viskose jersey med bladprint og yndige flæser rundt ved hals.  3 søde satinsløjfer på brystet. Findes også som Tina Little LS TUNIC til lillesøster. Oeko-Tex Standard 100 certificeret i produktklasse 1. 	<br><br>	Fås i: Blue (blå), Brown (brun), Violet og Grey (grå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 95% Viskose, 5% Elastan. 
+          <![CDATA[Blød langærmet tunika i viskose jersey med bladprint og yndige flæser rundt ved hals.  3 søde satinsløjfer på brystet. Findes også som Tina Little LS TSHIRT til lillesøster. Oeko-Tex Standard 100 certificeret i produktklasse 1. 	<br><br>	Fås i: Blue (blå), Brown (brun), Violet og Grey (grå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 95% Viskose, 5% Elastan. 
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tina Little LS TUNIC">
-        <source>description.Tina_Little_LS_TUNIC</source>
+      <trans-unit id="Tina Little LS TSHIRT">
+        <source>description.Tina_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Blød langærmet tunika i viskose jersey med bladprint og yndige flæser rundt ved hals.  3 søde satinsløjfer på brystet. Findes også som Tina LS TUNIC til storesøster. Oeko-Tex Standard 100 certificeret i produktklasse 1.	<br><br>	Fås i: Blue (blå), Brown (brun), Violet og Grey (grå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 95% Viskose, 5% Elastan. 
             ]]>
@@ -1537,10 +1537,10 @@
       <trans-unit id="Verona PANTS">
         <source>description.Verona_PANTS</source>
         <target>
-          <![CDATA[Afslappende jersey bukser med elastik og bindebånd i taljen. Lukning foran med trykknapper. Lynlås ved anklen. Bærestykke og baglomme i bomuldslærred. I samme kvalitet fås Verona PANTSUIT.	<br><br>	Fås i: Violet, Blue (blå) og Grey Mélange (grå meleret).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet 1: 92% Viskose, 8% Elastan. Kvalitet 2: 100% Bomuld.]]>
+          <![CDATA[Afslappende jersey bukser med elastik og bindebånd i taljen. Lukning foran med trykknapper. Lynlås ved anklen. Bærestykke og baglomme i bomuldslærred. I samme kvalitet fås Verona_LS_PANTSUIT.	<br><br>	Fås i: Violet, Blue (blå) og Grey Mélange (grå meleret).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet 1: 92% Viskose, 8% Elastan. Kvalitet 2: 100% Bomuld.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Verona PANTSUIT">
+      <trans-unit id="Verona_LS_PANTSUIT">
         <source>description.Verona_PANTSUIT</source>
         <target>
           <![CDATA[Skøn jersey pantsuit med guldnitter og fint print på ryggen. Smock effekt ved ærmerne, anklerne samt i taljen. Taljen har desuden et sødt bindebånd. Pantsuiten har lynlås ned foran samt hætte. I samme kvalitet fås Verona PANTS.	<br><br>	Fås i: Violet, Blue (blå) og Grey Mélange (grå meleret).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 92% Viskose, 8% Elastan.
@@ -1596,8 +1596,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Vonda Little PANTSUIT">
-        <source>description.Vonda_Little_PANTSUIT</source>
+      <trans-unit id="Vonda Little LS PANTSUIT">
+        <source>description.Vonda_Little_LS_PANTSUIT</source>
         <target>
           <![CDATA[Rigtig blød og varm velour pantsuit med hætte og lynlås ned foran. Pantsuiten har de skønneste guldribkanter ved lommerne, ærmerne og anklerne samt i taljen.	<br><br>	Fås i: Grey (grå), Violet, og Brown (brun).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>Kvalitet: 80% Bomuld,20% Polyester.
             ]]>

@@ -136,8 +136,8 @@
           <![CDATA[Vår snygga och stadiga POMP BAG som passar perfekt på exempelvis stranden, dagis eller weekendresan. Väskan är tillverkad av ett miljövänligt material som inte avger några hälsofarliga ämnen. Dessutom är den vattentät och kan därför användas i alla väder.	<br><br>	Finns i: Brown (brun).	<br><br>	One size.	<br><br>]]>
         </target>
       </trans-unit>
-      <trans-unit id="Conrad LS HOOD SHIRT">
-        <source>description.Conrad_LS_HOOD_SHIRT</source>
+      <trans-unit id="Conrad LS SHIRT">
+        <source>description.Conrad_LS_SHIRT</source>
         <target>
           <![CDATA[Trendig storrutig skjorta med huva, bröstfickor och armbågslappar. Uppvikbara ärmar med knäppfunktion. 	<br><br>	Finns i: Navy (blå) och Green (grön). 	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
@@ -680,8 +680,8 @@
           <![CDATA[Ekologisk bas-t-shirt med långa ärmar och tryckknappar på axlarna. Skön bomullsjersey med lite stretch som gör att tröjan håller formen. Perfekt att bära under en skjorta eller kortärmad t-shirt. Finns även till storebror: Keaton LS TSHIRT. Oeko-Tex Standard 100-certifierad i produktklass 1 och GOTS-certifierad (Global Organic Textile Standard). 	<br><br>	Finns i: Navy (blå) och White (vit).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material: 95 % ekologisk bomull, 5 % elastan.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Keaton LS SHIRT">
-        <source>description.Keaton_LS_SHIRT</source>
+      <trans-unit id="Keaton LS TSHIRT">
+        <source>description.Keaton_LS_TSHIRT</source>
         <target>
           <![CDATA[Ekologisk bas-t-shirt med långa ärmar i skön bomullsjersey med lite stretch som gör att tröjan håller formen. Perfekt att bära under en skjorta eller kortärmad t-shirt. Finns även till lillebror: Keaton Little LS TSHIRT. Oeko-Tex Standard 100-certifierad i produktklass 1 och GOTS-certifierad (Global Organic Textile Standard). 	<br><br>	Finns i: Navy (blå) och White (vit).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material: 95 % ekologisk bomull, 5 % elastan.]]>
         </target>
@@ -853,8 +853,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Meadow Little LS BLOUSE">
-        <source>description.Meadow_Little_LS_BLOUSE</source>
+      <trans-unit id="Meadow Little LS TSHIRT">
+        <source>description.Meadow_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Söt långärmad blus i randigt stretchigt viskosmaterial. Fin rynkeffekt framtill på livet och ballongeffekt nedtill. Enkel knappöppning vid halsen fram.  I samma material finns även Meadow LS BLOUSE till storasyster.	<br><br>	Finns i: Brown (brun), Violet (lila), Black (svart) och Grey Mèlange (gråmelerad).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 95 % viskos, 5 % elastan. 
             ]]>
@@ -863,7 +863,7 @@
       <trans-unit id="Meadow LS BLOUSE">
         <source>description.Meadow_LS_BLOUSE</source>
         <target>
-          <![CDATA[Söt långärmad blus i randigt stretchigt viskosmaterial. Fin elastisk rynkning över bröstet och på framstyckets nederkant som sluter åt om kroppen.  I samma material finns även Meadow Little LS BLOUSE till lillasyster.	<br><br>	Finns i: Brown (brun), Violet (lila), Black (svart) och Grey Mèlange (gråmelerad).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 95 % viskos, 5 % elastan. 
+          <![CDATA[Söt långärmad blus i randigt stretchigt viskosmaterial. Fin elastisk rynkning över bröstet och på framstyckets nederkant som sluter åt om kroppen.  I samma material finns även Meadow Little LS TSHIRT till lillasyster.	<br><br>	Finns i: Brown (brun), Violet (lila), Black (svart) och Grey Mèlange (gråmelerad).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 95 % viskos, 5 % elastan. 
             ]]>
         </target>
       </trans-unit>
@@ -1057,7 +1057,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Odin JACKET">
-        <source>description.Odin_Jacket</source>
+        <source>description.Odin_JACKET</source>
         <target>
           <![CDATA[Tuff retrojacka med långa ärmar. Modernt broderi på bröstet och tryck på ryggen. Blixtlåsfickor och dragkedja fram. Perfekt till ett par snygga jeans. 	<br><br>	Finns i: Navy (blå), Green (grön) och Grey (grå).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material: 50 % bomull, 50 % polyester. Mudd: 100 % polyester.]]>
         </target>
@@ -1076,8 +1076,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Paloma REGULAR PANTS">
-        <source>description.Paloma_REGULAR_PANTS</source>
+      <trans-unit id="Paloma REGULAR JEANS">
+        <source>description.Paloma_REGULAR_JEANS</source>
         <target>
           <![CDATA[Supertuffa jeans med stretch, normal passform och massor av detaljer som fickor med synliga blixtlås, resårsmock vid ankeln, nitar, emblem bak och snedskuren omlottstängning högst upp. Snygga veck- och tvätteffekter samt kraftiga sömmar. Med justerbar midja. 	<br><br>	Finns i: Blå denim.	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 98 % bomull, 2 % elastan.
             ]]>
@@ -1465,8 +1465,8 @@
           <![CDATA[Löst sittande byxa med låg gren.  Mjuk stretchig 2 x 2-ribb i midjan och fickor fram och bak. Förstärkningar på knäna. Finns även som Suzy Little PANTS till lillasyster.	<br><br>	Finns i: Violet (lila), Grey (grå) och Khaki (kaki).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material: 100 % bomull.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tessa DRESS">
-        <source>description.Tessa_DRESS</source>
+      <trans-unit id="Tessa LS DRESS">
+        <source>description.Tessa_LS_DRESS</source>
         <target>
           <![CDATA[Fin klänning med fram- och bakstycke i vävd viskos och ärmar/höftstycke i mjukt jerseytyg. Snyggt pingvintryck med guldfärgade paljetter fram och dragkedja i nacken. Supersnygg med leggings.	<br><br>	Finns i: Violet (lila), Grey (grå) och Khaki (kaki).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material 1: 100 % viskos. Material 2: 95 % viskos, 5 % elastan.]]>
         </target>
@@ -1516,12 +1516,12 @@
       <trans-unit id="Tina LS TUNIC">
         <source>description.Tina_LS_TUNIC</source>
         <target>
-          <![CDATA[Skön långärmad tunika i viskosjersey med bladtryck och fina volanger i halsringningen.  3 söta satinrosetter på bröstet. Finns även som Tina Little LS TUNIC till lillasyster. Oeko-Tex Standard 100-certifierad i produktklass 1. 	<br><br>	Finns i: Blue (blå), Brown (brun), Violet (lila) och Grey (grå).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 95 % viskos, 5 % elastan. 
+          <![CDATA[Skön långärmad tunika i viskosjersey med bladtryck och fina volanger i halsringningen.  3 söta satinrosetter på bröstet. Finns även som Tina Little LS TSHIRT till lillasyster. Oeko-Tex Standard 100-certifierad i produktklass 1. 	<br><br>	Finns i: Blue (blå), Brown (brun), Violet (lila) och Grey (grå).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 95 % viskos, 5 % elastan. 
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tina Little LS TUNIC">
-        <source>description.Tina_Little_LS_TUNIC</source>
+      <trans-unit id="Tina Little LS TSHIRT">
+        <source>description.Tina_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Skön långärmad tunika i viskosjersey med bladtryck och fina volanger i halsringningen.  3 söta satinrosetter på bröstet. Finns även som Tina LS TUNIC till storasyster. Oeko-Tex Standard 100-certifierad i produktklass 1.	<br><br>	Finns i: Blue (blå), Brown (brun), Violet (lila) och Grey (grå).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 95 % viskos, 5 % elastan. 
             ]]>
@@ -1536,10 +1536,10 @@
       <trans-unit id="Verona PANTS">
         <source>description.Verona_PANTS</source>
         <target>
-          <![CDATA[Avslappnad jerseybyxa med resår och knytband i midjan. Knäpps med tryckknappar fram. Dragkedja vid ankeln. Liv och bakficka i bomullskanvas. I samma material finns även Verona PANTSUIT.	<br><br>	Finns i: Violet (lila), Blue (blå) och Grey Mélange (gråmelerad).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material 1: 92 % viskos, 8 % elastan. Material 2: 100 % bomull]]>
+          <![CDATA[Avslappnad jerseybyxa med resår och knytband i midjan. Knäpps med tryckknappar fram. Dragkedja vid ankeln. Liv och bakficka i bomullskanvas. I samma material finns även Verona_LS_PANTSUIT.	<br><br>	Finns i: Violet (lila), Blue (blå) och Grey Mélange (gråmelerad).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>	Material 1: 92 % viskos, 8 % elastan. Material 2: 100 % bomull]]>
         </target>
       </trans-unit>
-      <trans-unit id="Verona PANTSUIT">
+      <trans-unit id="Verona_LS_PANTSUIT">
         <source>description.Verona_PANTSUIT</source>
         <target>
           <![CDATA[Fin byxdress i jerseytyg med guldnitar och dekorativt tryck på ryggen. Smockeffekt på ärmarna, anklarna och i midjan. Midjan har dessutom ett fint knytband. Byxdressen har dragkedja fram och huva. I samma material finns även Verona PANTS.	<br><br>	Finns i: Violet (lila), Blue (blå) och Grey Mélange (gråmelerad).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 92 % viskos, 8 % elastan.
@@ -1595,8 +1595,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Vonda Little PANTSUIT">
-        <source>description.Vonda_Little_PANTSUIT</source>
+      <trans-unit id="Vonda Little LS PANTSUIT">
+        <source>description.Vonda_Little_LS_PANTSUIT</source>
         <target>
           <![CDATA[Riktigt mjuk och varm byxdress i velour med huva och dragkedja fram. Byxdressen har fin guldskimrande mudd vid fickorna, ärmarna och bensluten samt i midjan.	<br><br>	Finns i: Grey (grå), Violet (lila) och Brown (brun).	<br><br>	Storleken är barnets längd angett i cm.	<br><br>Material: 80 % bomull, 20 % polyester.
             ]]>

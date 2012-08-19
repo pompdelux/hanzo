@@ -136,8 +136,8 @@
           <![CDATA[Onze fijne, stevige POMP BAG die ideaal is voor naar het strand, het kinderdagverblijf of tijdens een weekendje weg. De BAG is gemaakt van milieuvriendelijk materiaal dat geen schadelijke stoffen afgeeft. Bovendien is hij waterdicht en daardoor geschikt voor gebruik in allerlei soorten weer.	<br><br>	Verkrijgbaar in: Black (zwart).	<br><br>	One size.	<br><br>	Materiaal: 100% katoen.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Conrad LS HOOD SHIRT">
-        <source>description.Conrad_LS_HOOD_SHIRT</source>
+      <trans-unit id="Conrad LS SHIRT">
+        <source>description.Conrad_LS_SHIRT</source>
         <target>
           <![CDATA[Trendy geruit overhemd met capuchon, borstzakken, en lappen op de ellebogen. De mouwen kunnen opgeknoopt worden. 	<br><br>	Verkrijgbaar in: Navy en Green (groen). 	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen.]]>
         </target>
@@ -680,8 +680,8 @@
           <![CDATA[Ecologisch basis t-shirt met lange mouwen en drukknoopsluiting op de schouder. Comfortabele, rekbare katoenen jersey zodat de pasvorm mooi blijft! Perfect voor onder een overhemd of een t-shirt met korte mouwen. Is er ook voor de grote broer: Keaton LS TSHIRT. Ecotex Standaard 100 gecertificeerd in productklasse 1 en GOTS gecertificeerd (Global Organic Textile Standard). 	<br><br>	Verkrijgbaar in: Navy en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% ecologische katoen, 5% elasthan.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Keaton LS SHIRT">
-        <source>description.Keaton_LS_SHIRT</source>
+      <trans-unit id="Keaton LS TSHIRT">
+        <source>description.Keaton_LS_TSHIRT</source>
         <target>
           <![CDATA[Ecologisch basis t-shirt met lange mouwen van comfortabele, rekbare katoenen jersey zodat de pasvorm mooi blijft! Perfect voor onder een overhemd of een t-shirt met korte mouwen. Is er ook voor het kleine broertje: Keaton Little LS TSHIRT. Ecotex Standaard 100 gecertificeerd in productklasse 1 en GOTS gecertificeerd (Global Organic Textile Standard). 	<br><br>	Verkrijgbaar in: Navy en White (wit).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 95% ecologische katoen, 5% elasthan.]]>
         </target>
@@ -853,8 +853,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Meadow Little LS BLOUSE">
-        <source>description.Meadow_Little_LS_BLOUSE</source>
+      <trans-unit id="Meadow Little LS TSHIRT">
+        <source>description.Meadow_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Schattige bloes met lange mouwen van rekbare, gestreepte viscose. Mooie elastische rimpels over de borst en breed, strakzittend stuk onder aan de bloes. Van hetzelfde materiaal is er ook Meadow LS BLOUSE voor de grote zus.	<br><br>	Verkrijgbaar in: Brown (bruin), Violet, Black (zwart) en Grey Mélange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 95% viscose, 5% elasthan. 
             ]]>
@@ -863,7 +863,7 @@
       <trans-unit id="Meadow LS BLOUSE">
         <source>description.Meadow_LS_BLOUSE</source>
         <target>
-          <![CDATA[Schattige bloes met lange mouwen van rekbare, gestreepte viscose. Mooie rimpels op het bovenstuk en balloneffect aan de onderkant. Eén knoopje voor op de hals. Van hetzelfde materiaal is er ook Meadow Little LS BLOUSE voor het kleine zusje.	<br><br>	Verkrijgbaar in: Brown (bruin), Violet, Black (zwart) en Grey Mélange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 95% viscose, 5% elasthan. 
+          <![CDATA[Schattige bloes met lange mouwen van rekbare, gestreepte viscose. Mooie rimpels op het bovenstuk en balloneffect aan de onderkant. Eén knoopje voor op de hals. Van hetzelfde materiaal is er ook Meadow Little LS TSHIRT voor het kleine zusje.	<br><br>	Verkrijgbaar in: Brown (bruin), Violet, Black (zwart) en Grey Mélange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 95% viscose, 5% elasthan. 
             ]]>
         </target>
       </trans-unit>
@@ -1057,7 +1057,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Odin Jacket">
-        <source>description.Odin_Jacket</source>
+        <source>description.Odin_JACKET</source>
         <target>
           <![CDATA[Cool retrojack met lange mouwen. Gaaf borduursel op de borst en print op de rug. Zakken met rits en ritssluiting aan de voorkant. Perfect voor op een stoere spijkerbroek. 	<br><br>	Verkrijgbaar in: Navy, Green (groen) en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 50% katoen, 50% polyester. Ribboorden: 100% polyester.]]>
         </target>
@@ -1076,8 +1076,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Paloma REGULAR PANTS">
-        <source>description.Paloma_REGULAR_PANTS</source>
+      <trans-unit id="Paloma REGULAR JEANS">
+        <source>description.Paloma_REGULAR_JEANS</source>
         <target>
           <![CDATA[Supercoole regulaire spijkerbroek met stretch en een boel details zoals zakken met zichtbare ritsen, gesmokte pijpen, studs, badge aan de achterkant en stoere schuine sluiting aan de voorkant. Met stoere kreukel- en waseffecten en stevige stiksels. Verstelbare tailleband. 	<br><br>	Verkrijgbaar in: Blue Denim.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 98% katoen, 2% elasthan.
             ]]>
@@ -1466,8 +1466,8 @@
           <![CDATA[Baggy broek met "low crotch".  Zachte 2x2 ribbelsteek in de elastische tailleband, zakken op de voorkant en achterzak. Detail versteviging op de knieën. Is er ook als Suzy Little PANTS voor het kleine zusje.	<br><br>	Verkrijgbaar in: Violet, Grey (grijs) en Khaki.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tessa DRESS">
-        <source>description.Tessa_DRESS</source>
+      <trans-unit id="Tessa LS DRESS">
+        <source>description.Tessa_LS_DRESS</source>
         <target>
           <![CDATA[Mooie bloes met voor- en achterstuk van geweven viscose en mouwen en heupen van een zachte soort jersey. Leuke pinguinprint met goudkleurige pailletten aan de voorkant en rits in de nek. Leuk op een legging.	<br><br>	Verkrijgbaar in: Violet, Grey (grijs) en Khaki.	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 100% viscose. Materiaal 2: 95% viscose, 5% elasthan.]]>
         </target>
@@ -1517,12 +1517,12 @@
       <trans-unit id="Tina LS TUNIC">
         <source>description.Tina_LS_TUNIC</source>
         <target>
-          <![CDATA[Zachte tuniek met lange mouwen van viscose jersey met een bladbedrukking en leuke ruches rond de hals. 3 schattige satijnen strikjes op de borst. Is er ook als Tina Little LS TUNIC voor het kleine zusje. Ecotex Standaard 100 gecertificeerd in productklasse 1. 	<br><br>	Verkrijgbaar in: Blue (blauw), Brown (bruin), Violet en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 95% viscose, 5% elasthan. 
+          <![CDATA[Zachte tuniek met lange mouwen van viscose jersey met een bladbedrukking en leuke ruches rond de hals. 3 schattige satijnen strikjes op de borst. Is er ook als Tina Little LS TSHIRT voor het kleine zusje. Ecotex Standaard 100 gecertificeerd in productklasse 1. 	<br><br>	Verkrijgbaar in: Blue (blauw), Brown (bruin), Violet en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 95% viscose, 5% elasthan. 
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tina Little LS TUNIC">
-        <source>description.Tina_Little_LS_TUNIC</source>
+      <trans-unit id="Tina Little LS TSHIRT">
+        <source>description.Tina_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Zachte tuniek met lange mouwen van viscose jersey met een bladbedrukking en leuke ruches rond de hals. 3 schattige satijnen strikjes op de borst. Is er ook als Tina LS TUNIC voor de grote zus. Ecotex Standaard 100 gecertificeerd in productklasse 1. 	<br><br>	Verkrijgbaar in: Blue (blauw), Brown (bruin), Violet en Grey (grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 95% viscose, 5% elasthan. 
             ]]>
@@ -1537,10 +1537,10 @@
       <trans-unit id="Verona PANTS">
         <source>description.Verona_PANTS</source>
         <target>
-          <![CDATA[Comfortabele jersey broek met elastiek en koord in de taille. Sluiting met drukknopen aan de voorkant. Rits aan de enkel. Bovenstuk en achterzak van katoenen linnen. Van hetzelfde materiaal is er ook Verona PANTSUIT.	<br><br>	Verkrijgbaar in: Violet, Blue (blauw) en Grey Mélange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 92% viscose, 8% elasthan. Materiaal 2: 100% katoen.]]>
+          <![CDATA[Comfortabele jersey broek met elastiek en koord in de taille. Sluiting met drukknopen aan de voorkant. Rits aan de enkel. Bovenstuk en achterzak van katoenen linnen. Van hetzelfde materiaal is er ook Verona_LS_PANTSUIT.	<br><br>	Verkrijgbaar in: Violet, Blue (blauw) en Grey Mélange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 92% viscose, 8% elasthan. Materiaal 2: 100% katoen.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Verona PANTSUIT">
+      <trans-unit id="Verona_LS_PANTSUIT">
         <source>description.Verona_PANTSUIT</source>
         <target>
           <![CDATA[Leuke jersey pantsuit met goudkleurige studs en fraaie print op de rug. Gesmokte mouwen, pijpen en tailleband. Ceintuur in de taille. De pantsuit heeft een rits aan de voorkant, en een capuchon. Van hetzelfde materiaal is er ook Verona PANTS.	<br><br>	Verkrijgbaar in: Violet, Blue (blauw) en Grey Mélange (gemêleerd grijs).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 92% viscose, 8% elasthan.
@@ -1596,8 +1596,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Vonda Little PANTSUIT">
-        <source>description.Vonda_Little_PANTSUIT</source>
+      <trans-unit id="Vonda Little LS PANTSUIT">
+        <source>description.Vonda_Little_LS_PANTSUIT</source>
         <target>
           <![CDATA[Heerlijke zachte en warme pantsuit van velours met capuchon, en rits aan de voorkant. De pantsuit heeft leuke goudkleurige ribboorden aan de zakken, mouwen, enkels en in de taille.	<br><br>	Verkrijgbaar in: Grey (grijs), Violet, en Brown (bruin).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>Materiaal: 80% katoen, 20% wol.
             ]]>

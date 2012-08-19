@@ -136,8 +136,8 @@
           <![CDATA[Kaunis ja vahvatekoinen POMP BAG -laukku on kiva ottaa mukaan vaikka rannalle, päiväkotiin tai viikonloppureissulle. Laukku on valmistettu ympäristöystävällisestä materiaalista eikä siitä vapaudu terveydelle haitallisia aineita. Laukku on myös vesitiivis ja kestää siten säässä kuin säässä.	<br><br>	Saatavana: Black (musta).	<br><br>	Yksi koko.	<br><br>]]>
         </target>
       </trans-unit>
-      <trans-unit id="Conrad LS HOOD SHIRT">
-        <source>description.Conrad_LS_HOOD_SHIRT</source>
+      <trans-unit id="Conrad LS SHIRT">
+        <source>description.Conrad_LS_SHIRT</source>
         <target>
           <![CDATA[Trendikäs isoruutuinen paita hupulla, rintatasku ja kyynärpaikat. Ylöskäärittävät hihat nappikiinnityksellä. 	<br><br>	Saatavana: Navy (sininen) ja Green (vihreä). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu: 100 % puuvilla.]]>
         </target>
@@ -680,8 +680,8 @@
           <![CDATA[Eko-periaatteilla tuotettu t-paita. Pitkät hihat ja painonappikiinnitys olkapäällä. Mukavaa puuvillajerseytä, jonka elastaani pitää paidan muodossa! Mainio lisä paidan tai lyhythihaisen t-paidan alle. Myös isoveljelle: Keaton LS TSHIRT. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1, ja GOTS-hyväksyntä (Global Organic Textile Standard). 	<br><br>	Saatavana: Navy (sininen) ja White (valkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu: 95 % ekopuuvilla, 5 % elastaani.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Keaton LS SHIRT">
-        <source>description.Keaton_LS_SHIRT</source>
+      <trans-unit id="Keaton LS TSHIRT">
+        <source>description.Keaton_LS_TSHIRT</source>
         <target>
           <![CDATA[Eko-periaatteilla tuotettu t-paita. Pitkät hihat. Mukavaa puuvillajerseytä, jonka elastaani pitää paidan muodossa! Mainio lisä paidan tai lyhythihaisen t-paidan alle. Myös pikkuveljelle: Keaton Little LS TSHIRT. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1, ja GOTS-hyväksyntä (Global Organic Textile Standard). 	<br><br>	Saatavana: Navy (sininen) ja White (valkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu: 95 % ekopuuvilla, 5 % elastaani.]]>
         </target>
@@ -852,8 +852,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Meadow Little LS BLOUSE">
-        <source>description.Meadow_Little_LS_BLOUSE</source>
+      <trans-unit id="Meadow Little LS TSHIRT">
+        <source>description.Meadow_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Kiva pitkähihainen raidallinen pusero, viskoosistretchiä. Hieno rypytys etukaarrokkeessa ja ilmapallo helma. Yksinkertainen lyhyt napitus pääntien etuosassa.  Samasta sarjasta myös isosiskolle Meadow LS BLOUSE.	<br><br>	Saatavana: Brown (ruskea), Violet (violetti), Black (musta) ja Grey Mèlange (harmaa meleerattu).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 95 % viskoosi, 5 % elastaani. 
             ]]>
@@ -862,7 +862,7 @@
       <trans-unit id="Meadow LS BLOUSE">
         <source>description.Meadow_LS_BLOUSE</source>
         <target>
-          <![CDATA[Kiva pitkähihainen raidallinen pusero, viskoosistretchiä. Tyköistuva malli, jossa hieno joustava rypytys rinnassa ja puseron alaosassa.  Samasta sarjasta myös pikkusiskolle Meadow Little LS BLOUSE.	<br><br>	Saatavana: Brown (ruskea), Violet (violetti), Black (musta) ja Grey Mèlange (harmaa meleerattu).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 95 % viskoosi, 5 % elastaani. 
+          <![CDATA[Kiva pitkähihainen raidallinen pusero, viskoosistretchiä. Tyköistuva malli, jossa hieno joustava rypytys rinnassa ja puseron alaosassa.  Samasta sarjasta myös pikkusiskolle Meadow Little LS TSHIRT.	<br><br>	Saatavana: Brown (ruskea), Violet (violetti), Black (musta) ja Grey Mèlange (harmaa meleerattu).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 95 % viskoosi, 5 % elastaani. 
             ]]>
         </target>
       </trans-unit>
@@ -1056,7 +1056,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Odin JACKET">
-        <source>description.Odin_Jacket</source>
+        <source>description.Odin_JACKET</source>
         <target>
           <![CDATA[Hieno pitkähihainen retrotakki. Rinnassa hieno brodeeraus ja painokuvio takana. Vetoketjutaskut, täyspitkä vetoketju edessä. Sopii hienosti farkkujen kanssa. 	<br><br>	Saatavana: Navy (sininen), Green (vihreä) ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu: 50 % puuvilla, 50 % polyesteri. Joustoneule: 100 % polyesteri.]]>
         </target>
@@ -1075,8 +1075,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Paloma REGULAR PANTS">
-        <source>description.Paloma_REGULAR_PANTS</source>
+      <trans-unit id="Paloma REGULAR JEANS">
+        <source>description.Paloma_REGULAR_JEANS</source>
         <target>
           <![CDATA[Superhienot perusfarkut strechkankaasta, paljon hienoja yksityiskohtia. Näkyvillä vetoketjuilla suljettavat taskut, lahkeensuiden joustava rypytys, niitit, ommeltu merkki takana sekä eteen sijoitettu halkiokiinnitys. Tyylikkäästi haalistettu ja rypytetty, vahvat tikkaukset. Säädettävä vyötärö. 	<br><br>	Saatavana: Blue Denim.	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 98 % puuvilla, 2 % elastaani.
             ]]>
@@ -1465,8 +1465,8 @@
           <![CDATA[Väljät "low crotch" -housut.  Pehmeää ja joustavaa 2x2-ribbineulosta vyötäröllä, taskut edessä ja takana. Polvivahvikkeet. Saatavana myös pikkusiskolle: Suzy Little PANTS.	<br><br>	Saatavana: Violet (violetti), Grey (harmaa) ja Khaki.	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu: 100 % puuvilla.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tessa DRESS">
-        <source>description.Tessa_DRESS</source>
+      <trans-unit id="Tessa LS DRESS">
+        <source>description.Tessa_LS_DRESS</source>
         <target>
           <![CDATA[Kiva pusero, jonka etu- ja takakappale ovat kudottua viskoosia ja hihat/alaosa pehmeää jerseytä. Hauska pingviinikuvio kullanvärisin paljetein, vetoketju niskassa. Tosi kiva asu leggingsien kanssa.	<br><br>	Saatavana: Violet (violetti), Grey (harmaa) ja Khaki.	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu 1: 100 % viskoosi. Laatu 2: 95 % viskoosi, 5 % elastaani.]]>
         </target>
@@ -1516,12 +1516,12 @@
       <trans-unit id="Tina LS TUNIC">
         <source>description.Tina_LS_TUNIC</source>
         <target>
-          <![CDATA[Pehmeä pitkähihainen tunika viskoosijerseytä, lehtikuviointi ja hienot röyhelöt pääntiessä.  3 sievää satiinirusettia rinnassa. Saatavana myös pikkusiskolle: Tina Little LS TUNIC. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana: Blue (sininen), Brown (ruskea), Violet (violetti) ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 95 % viskoosi, 5 % elastaani. 
+          <![CDATA[Pehmeä pitkähihainen tunika viskoosijerseytä, lehtikuviointi ja hienot röyhelöt pääntiessä.  3 sievää satiinirusettia rinnassa. Saatavana myös pikkusiskolle: Tina Little LS TSHIRT. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1. 	<br><br>	Saatavana: Blue (sininen), Brown (ruskea), Violet (violetti) ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 95 % viskoosi, 5 % elastaani. 
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tina Little LS TUNIC">
-        <source>description.Tina_Little_LS_TUNIC</source>
+      <trans-unit id="Tina Little LS TSHIRT">
+        <source>description.Tina_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Pehmeä pitkähihainen tunika viskoosijerseytä, lehtikuviointi ja hienot röyhelöt pääntiessä.  3 sievää satiinirusettia rinnassa. Saatavana myös isosiskolle: Tina LS TUNIC. Öko-Tex Standardi 100 -hyväksyntä, tuoteluokka 1.	<br><br>	Saatavana: Blue (sininen), Brown (ruskea), Violet (violetti) ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 95 % viskoosi, 5 % elastaani. 
             ]]>
@@ -1536,10 +1536,10 @@
       <trans-unit id="Verona PANTS">
         <source>description.Verona_PANTS</source>
         <target>
-          <![CDATA[Rennot joustavat jerseyhousut, vyötäröllä sidottava vyö. Kiinnitys edestä painonapeilla. Vetoketjut nilkoissa. Kaarroke ja takataskut puuvillakanvaasia. Samassa sarjassa myös Verona PANTSUIT.	<br><br>	Saatavana: Violet (violetti), Blue (sininen) ja Grey Mélange (meleerattu harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu 1: 92 % viskoosi, 8 % elastaani. Laatu 2: 100 % puuvilla.]]>
+          <![CDATA[Rennot joustavat jerseyhousut, vyötäröllä sidottava vyö. Kiinnitys edestä painonapeilla. Vetoketjut nilkoissa. Kaarroke ja takataskut puuvillakanvaasia. Samassa sarjassa myös Verona_LS_PANTSUIT.	<br><br>	Saatavana: Violet (violetti), Blue (sininen) ja Grey Mélange (meleerattu harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Laatu 1: 92 % viskoosi, 8 % elastaani. Laatu 2: 100 % puuvilla.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Verona PANTSUIT">
+      <trans-unit id="Verona_LS_PANTSUIT">
         <source>description.Verona_PANTSUIT</source>
         <target>
           <![CDATA[Kivat jerseyhaalarit, kultaniittejä ja kiva painokuva selässä. Rypytys hihoissa, nilkoissa ja vyötäröllä. Vyötäröllä lisäksi sievä sidottava vyö. Vetoketju edessä, lisäksi huppu. Samassa sarjassa myös Verona PANTS.	<br><br>	Saatavana: Violet (violetti), Blue (sininen) ja Grey Mélange (meleerattu harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 92 % viskoosi, 8 % elastaani.
@@ -1595,8 +1595,8 @@
             ]]>
         </target>
       </trans-unit>
-      <trans-unit id="Vonda Little PANTSUIT">
-        <source>description.Vonda_Little_PANTSUIT</source>
+      <trans-unit id="Vonda Little LS PANTSUIT">
+        <source>description.Vonda_Little_LS_PANTSUIT</source>
         <target>
           <![CDATA[Tosi pehmeä ja lämmin velourhaalari, huppu ja täyspitkä vetoketju. Kauniit kultaiset neulereunat taskuissa, hihoissa, lahkeensuissa ja vyötäröllä.	<br><br>	Saatavana: Grey (harmaa), Violet (violetti) ja Brown (ruskea).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>Laatu: 80 % puuvilla, 20 % polyesteri.
             ]]>
