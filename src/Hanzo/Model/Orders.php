@@ -819,18 +819,6 @@ class Orders extends BaseOrders
         return $this;
     }
 
-
-    /**
-     * setShippingMethod
-     * @param string $method
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setShippingMethod( $method )
-    {
-        $this->setDeliveryMethod( $method );
-    }
-
     /**
      * setBillingAddress
      * @param Addresses $address

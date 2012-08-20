@@ -185,7 +185,7 @@ class DefaultController extends CoreController
     protected function updateShipping( Orders $order, Request $request, $state )
     {
         if ( $state === false ) {
-            $order->setShippingMethod(null);
+            $order->setDeliveryMethod(null);
         }
 
         $shippingApi = $this->get('shipping.shippingapi');
@@ -202,7 +202,7 @@ class DefaultController extends CoreController
 
         $method = $methods[$shippingMethodId];
 
-        $order->setShippingMethod( $shippingMethodId );
+        $order->setDeliveryMethod( $shippingMethodId );
         $order->setOrderLineShipping( $method, ShippingMethods::TYPE_NORMAL );
         if ( $method->getFee() ) {
             $order->setOrderLineShipping( $method, ShippingMethods::TYPE_FEE );
