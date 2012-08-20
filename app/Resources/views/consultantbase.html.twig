@@ -79,6 +79,7 @@
   </nav><!-- /nav.main -->
 
 {% if is_granted('ROLE_USER') %}
+  {% if hide_mini_basket is not defined %}
   <aside id="secondary-links">
     <ul>
       <li><a href="{{ path('_account') }}">{{ "my.account"|trans({}, 'account') }}</a></li>
@@ -88,6 +89,7 @@
       <li><a href="{{ path('basket_view') }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </aside>
+  {% endif %}
 {% endif %}
 
 </div>
