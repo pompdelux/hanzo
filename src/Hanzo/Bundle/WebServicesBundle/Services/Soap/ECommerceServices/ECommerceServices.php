@@ -514,24 +514,28 @@ class ECommerceServices extends SoapService
             $item->InventQtyAvailOrderedDate = $item->InventQtyAvailOrderedDate ? $item->InventQtyAvailOrderedDate : 0;
             $incomming = str_replace('-', '', $item->InventQtyAvailOrderedDate);
 
-            $quantity = $item->InventQtyAvailPhysical;
-            if (($incomming > $now) && ($item->InventQtyAvailOrdered > 0)) {
-                $quantity = $item->InventQtyAvailOrdered;
-            }
+            $stock_data = array(
+                'onhand'  => (int) $item->InventQtyAvailPhysical,
+                'ordered' => (int) $item->InventQtyAvailOrdered,
+            );
 
-            // subtract "reservations"
-            if ($products[$key]['qty_in_use']) {
-                if ($products[$key]['qty_in_use'] >= $quantity) {
-                    $products[$key]['qty_in_use'] = $products[$key]['qty_in_use'] - $quantity;
-                    continue;
+            foreach ($stock_data as $k => $value) {
+                // subtract "reservations"
+                if ($products[$key]['qty_in_use']) {
+                    if ($products[$key]['qty_in_use'] >= $value) {
+                        $products[$key]['qty_in_use'] = $products[$key]['qty_in_use'] - $value;
+                        unset($stock_data[$k]);
+                        continue;
+                    }
+
+                   $stock_data[$k] = $value -  $products[$key]['qty_in_use'];
+                   $products[$key]['qty_in_use'] = 0;
                 }
-
-               $quantity = $quantity -  $products[$key]['qty_in_use'];
-               $products[$key]['qty_in_use'] = 0;
             }
+
 
             // no need to add empty entries
-            if ($quantity == 0) {
+            if (array_sum($stock_data) == 0) {
                 continue;
             }
 
@@ -539,10 +543,25 @@ class ECommerceServices extends SoapService
                 $products[$key]['inventory'] = array();
             }
 
-            $products[$key]['inventory'][] = array(
-                'date' => $item->InventQtyAvailOrderedDate,
-                'stock' => $quantity
-            );
+            if (isset($stock_data['ordered'])) {
+                $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
+                    'date' => $item->InventQtyAvailOrderedDate,
+                    'stock' => $quantity
+                );
+            }
+
+            if (isset($stock_data['onhand'])) {
+                if (empty($products[$key]['inventory']['onhand'])) {
+                    $products[$key]['inventory']['onhand'] = array(
+                        'date' => '2000-01-01',
+                        'stock' => 0,
+                    );
+                }
+
+                $products[$key]['inventory']['onhand'] = array(
+                    'stock' => $products[$key]['inventory']['onhand']['stock'] + $stock_data['onhand']
+                );
+            }
         }
 
         $allout = true;
