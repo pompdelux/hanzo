@@ -587,6 +587,12 @@ class DefaultController extends CoreController
     public function failedAction()
     {
         $order = OrdersPeer::getCurrent();
+
+        if ( $order->getState() >= Orders::STATE_PAYMENT_OK ) // Last check before we declare the order failed
+        {
+            return $this->redirect($this->generateUrl('_checkout_success'));
+        }
+
         $this->get('event_dispatcher')->dispatch('order.payment.failed', new FilterOrderEvent($order));
 
         return $this->render('CheckoutBundle:Default:failed.html.twig', array(
