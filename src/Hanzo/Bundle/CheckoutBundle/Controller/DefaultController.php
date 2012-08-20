@@ -404,6 +404,12 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
         $customer = $order->getCustomers();
+
+        if ( $_SERVER['REMOTE_ADDR'] == '90.185.206.100' )
+        {
+          error_log(__LINE__.':'.__FILE__.' '.$customer->getId()); // hf@bellcom.dk debugging
+        }
+
         $customerAddresses = $customer->getAddresses();
 
         $addresses = array();
@@ -596,6 +602,11 @@ class DefaultController extends CoreController
         }
 
         $this->get('event_dispatcher')->dispatch('order.payment.failed', new FilterOrderEvent($order));
+
+        // The customer can't do anything with the order, so we remove it from the session
+        $hanzo = Hanzo::getInstance();
+        $session = $hanzo->getSession();
+        $session->remove('order_id');
 
         return $this->render('CheckoutBundle:Default:failed.html.twig', array(
             'error' => '', // NICETO: pass error from paymentmodule to this page
