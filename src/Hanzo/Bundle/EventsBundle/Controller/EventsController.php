@@ -415,6 +415,24 @@ class EventsController extends CoreController
         }
     }
 
+
+    public function closeAction($id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $event = EventsQuery::create()->findPK($id);
+        if ($event instanceof Events) {
+            $event->setIsOpen(false);
+            $event->save();
+        }
+
+        $this->getRequest()->getSession()->setFlash('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
+        return $this->redirect($this->generateUrl('events_index'));
+    }
+
+
     public function deleteAction($id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
