@@ -1,4 +1,3 @@
-
 /*
  * @copyright bellcom open source aps
  * @author ulrik nielsen <un@bellcom.dk>
@@ -20,7 +19,7 @@
       clearInterval(this.timer);
     });
     this.border = $e.outerHeight() - $e.innerHeight();
-    this.clone = $e.clone().css({position: 'absolute', visibility: 'hidden'}).attr('name', '')
+    this.clone = $e.clone().css({position: 'absolute', visibility: 'hidden'}).attr('name', '');
     $e.height(e.scrollHeight + this.border).after(this.clone);
     this.checkExpand();
   };
@@ -294,7 +293,7 @@ $(function() {
             } else {
               $a.parent().parent().parent().parent().fadeOut('slow', function() {
                 $(this).remove();
-              });;
+              });
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
