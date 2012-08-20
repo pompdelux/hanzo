@@ -505,12 +505,14 @@ class DefaultController extends CoreController
         }
 
         if (!$order->getDeliveryMethod()) {
-            $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));
+            $shippingApi = $this->get('shipping.shippingapi');
+            $shipping_methods = $shippingApi->getMethods();
 
             if (('DKK' == $order->getCurrencyCode()) && $order->getDeliveryCompanyName()) {
                 $order->setDeliveryMethod(11);
             } else {
-                $order->setDeliveryMethod($shipping_methods[0]);
+                $firstShippingMethod = array_shift($shipping_methods);
+                $order->setDeliveryMethod( $firstShippingMethod->getExternalId() );
             }
         }
 
