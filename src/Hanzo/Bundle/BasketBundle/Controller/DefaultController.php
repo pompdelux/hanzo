@@ -72,16 +72,16 @@ class DefaultController extends CoreController
             if ($order->validate()) {
                 $order->save();
 
-                $line = OrdersLinesQuery::create()
-                    ->filterByOrdersid($order->getId())
-                    ->findOneByProductsId($product->getId())
-                ;
+                $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
-                $latest = '';
-                if ($line) {
-                    $latest = $line->toArray(\BasePeer::TYPE_FIELDNAME, false);
-                    $latest['price'] = Tools::moneyFormat($latest['price'] * $quantity);
-                }
+                $price = array_shift($price);
+                $original_price = $price['normal'];
+                $price = array_shift($price);
+
+                $latest = array(
+                    'master' => $product->getMater(),
+                    'price' => $price,
+                );
 
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
