@@ -95,6 +95,9 @@ class DefaultController extends CoreController
                     $customer->setPasswordClear($customer->getPassword());
                 }
 
+                $address->setFirstName( $customer->getFirstName() );
+                $address->setLastName( $customer->getLastName() );
+
                 $customer->save();
                 $address->save();
 
