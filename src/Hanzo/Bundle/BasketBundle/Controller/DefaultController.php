@@ -79,7 +79,6 @@ class DefaultController extends CoreController
                 $price = array_shift($price);
 
                 $latest = array(
-                    'master' => $product->getMater(),
                     'price' => $price,
                 );
 
