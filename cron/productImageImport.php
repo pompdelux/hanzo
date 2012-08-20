@@ -28,7 +28,7 @@ foreach ($images_found as $file) {
     }
 
     // skip unchanged files
-    if ($srcmd5 === $tgdmd5) {
+    if (($srcmd5 === $tgdmd5) || (false !== strpos($image, '('))) {
         continue;
     }
 
