@@ -79,7 +79,7 @@ class DefaultController extends CoreController
                 $price = array_shift($price);
 
                 $latest = array(
-                    'price' => $price,
+                    'price' => Tools::moneyFormat($price['price'] * $quantity),
                 );
 
                 if ($this->getFormat() == 'json') {
