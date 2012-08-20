@@ -66,7 +66,7 @@ class EventsController extends CoreController
         foreach ($events as $event) {
 
             $color = 'red';
-            if ((1 == $event->getIsOpen()) || ($event->getEventDate('U') > time())) {
+            if (1 == $event->getIsOpen()) {
                 $color = 'green';
             }
 
@@ -854,7 +854,6 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            #->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
             ->orderByEventDate(\Criteria::ASC)
             ->filterByIsOpen(true)
