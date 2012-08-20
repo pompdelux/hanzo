@@ -551,9 +551,7 @@ class ECommerceServices extends SoapService
                     );
                 }
 
-                $products[$key]['inventory'][$item->InventQtyAvailOrderedDate] = array(
-                    'stock' => $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['stock'] += $stock_data['ordered']
-                );
+                $products[$key]['inventory'][$item->InventQtyAvailOrderedDate]['stock'] += $stock_data['ordered'];
             }
 
             if (isset($stock_data['onhand'])) {
@@ -564,9 +562,7 @@ class ECommerceServices extends SoapService
                     );
                 }
 
-                $products[$key]['inventory']['onhand'] = array(
-                    'stock' => $products[$key]['inventory']['onhand']['stock'] + $stock_data['onhand']
-                );
+                $products[$key]['inventory']['onhand']['stock'] += $stock_data['onhand'];
             }
         }
 
@@ -577,7 +573,7 @@ class ECommerceServices extends SoapService
 
             if (isset($item['inventory'])) {
                 // inventory to products
-                foreach ($item['inventory'] as $s) {
+                foreach ($item['inventory'] as $k => $s) {
                     $data = new ProductsStock();
                     $data->setQuantity($s['stock']);
                     $data->setAvailableFrom($s['date']);
