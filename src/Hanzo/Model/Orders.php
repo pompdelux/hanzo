@@ -386,6 +386,7 @@ class Orders extends BaseOrders
         $line->setOriginalPrice($original_price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
+        $line->setUnit('Stk.');
         $line->setExpectedAt($date);
         $this->addOrdersLines($line);
     }
@@ -492,7 +493,7 @@ class Orders extends BaseOrders
     {
         foreach ($this->getOrderLineDiscount() as $line) {
             if ($name == $line->getProductsSku()) {
-                $line->setPrice($amount);
+                $line->setPrice(number_format($amount, 4, '.', ''));
                 return $this;
             }
         }
@@ -504,7 +505,7 @@ class Orders extends BaseOrders
         $line->setOrdersId($this->getId());
         $line->setProductsSku($name);
         $line->setProductsName($discount);
-        $line->setPrice($amount);
+        $line->setPrice(number_format($amount, 4, '.', ''));
         $this->addOrdersLines($line);
 
         return $this;

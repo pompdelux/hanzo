@@ -38,8 +38,8 @@
           <![CDATA[Super soft fleece jacket with front button closure and gold rib trim. Perfect under a jacket when it is really cold or on its own. Also available for big sister and as a helmet (balaclava).	<br><br>	Available in Violet, Brown and Grey.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Polyester.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Ann Kneesocks">
-        <source>description.Ann_Kneesocks</source>
+      <trans-unit id="Ann KNEESOCKS">
+        <source>description.Ann_KNEESOCKS</source>
         <target>
           <![CDATA[Trendy cable knit knee socks. 2-pack in two lovely shades to match our collection. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Green/Dark Grey Melange, Curry/Dark Grey Melange, Grey Melange/Peach and Ligth Grey Melange/Dark Grey Melange.	<br><br>	Size labelling is based on the shoe size of the child.	<br><br>	Quality: 90% Acrylic, 7% Polyamide, 3% Elasthane.]]>
         </target>
@@ -119,11 +119,11 @@
       <trans-unit id="Collection BAG">
         <source>description.Collection_BAG</source>
         <target>
-          <![CDATA[Our fantastic POMP BAG, perfect for the beach, nursery school or weekends away. The BAG is made from eco-friendly materials, which are free from harmful chemicals. It is furthermore waterproof and therefore perfect in any kind of weather. 	<br><br>	Available in Black.	<br><br>	One size.	<br><br>	Quality: 100% Cotton.]]>
+          <![CDATA[Our fantastic POMP BAG, perfect for the beach, nursery school or weekends away. The BAG is made from eco-friendly materials, which are free from harmful chemicals. It is furthermore waterproof and therefore perfect in any kind of weather. 	<br><br>	Available in Brown.	<br><br>	One size.	<br><br>]]>
         </target>
       </trans-unit>
-      <trans-unit id="Conrad LS HOOD SHIRT">
-        <source>description.Conrad_LS_HOOD_SHIRT</source>
+      <trans-unit id="Conrad LS SHIRT">
+        <source>description.Conrad_LS_SHIRT</source>
         <target>
           <![CDATA[Trendy check shirt with hood, chest pocket, elbow patches and with sleeves that can be rolled up and fastened with tabs.	<br><br>	Available in Navy and Green.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
         </target>
@@ -176,14 +176,14 @@
           <![CDATA[Very versatile long sleeve basic tshirt in soft rib quality. Ideal for wearing under tunics and dresses. Also available for baby sister: Dido Little LS TSHIRT. Oeko-Tex Standard 100, Class 1 Certification and GOTS certified (Global Organic Textile Standard).	<br><br>	Available in Violet, Brown, Peach and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Organic cotton, 5% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Diego GRANDDAD">
-        <source>description.Diego_GRANDDAD</source>
+      <trans-unit id="Diego LS GRANDDAD">
+        <source>description.Diego_LS_GRANDDAD</source>
         <target>
           <![CDATA[Classic long sleeve granddad tshirt in soft rib cotton quality with front button placket. Also available for baby brother: Diego Little LS GRANDDAD and in a striped version: Dario LS GRANDDAD. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Navy, Green, Brown and Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Cotton, 5% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Diego Little GRANDDAD">
-        <source>description.Diego_Little_GRANDDAD</source>
+      <trans-unit id="Diego Little LS GRANDDAD">
+        <source>description.Diego_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[Classic long sleeve granddad tshirt in soft rib cotton quality with front button placket. Also available for big brother: Diego LS GRANDDAD and in a striped version: Dario LS GRANDDAD. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Navy, Green, Brown and Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Cotton, 5% Elasthane.]]>
         </target>
@@ -638,14 +638,14 @@
           <![CDATA[Lovely warm knee socks in 70% superwash wool. In 2-pack. Oeko-Tex Standard 100, Class 1 Certification. 	<br><br>	Available in following combinations: Light Grey Melange/Dark Grey Melange.	<br><br>	Size labeling is based on the shoe size of the child.	<br><br>	Quality: 70% Superwash wool, 27% Nylon, 3 % Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Keaton Little LS SHIRT">
-        <source>description.Keaton_Little_LS_SHIRT</source>
+      <trans-unit id="Keaton Little LS TSHIRT">
+        <source>description.Keaton_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Organic basic tshirt with long sleeves and with shoulder buttons in comfortable stretch cotton jersey. Perfect under a shirt or short sleeve tshirt. Also available for big brother: Keaton LS TSHIRT. Oeko-Tex Standard 100, Class 1 Certification and GOTS certified (Global Organic Textile Standard).	<br><br>	Available in Navy and White.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Organic Cotton, 5% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Keaton LS SHIRT">
-        <source>description.Keaton_LS_SHIRT</source>
+      <trans-unit id="Keaton LS TSHIRT">
+        <source>description.Keaton_LS_TSHIRT</source>
         <target>
           <![CDATA[Organic basic tshirt with long sleeves in comfortable stretch cotton jersey. Perfect under a shirt or short sleeve tshirt. Also available for baby brother: Keaton Little LS TSHIRT. Oeko-Tex Standard 100, Class 1 Certification and GOTS certified (Global Organic Textile Standard).	<br><br>	Available in Navy and White.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Organic Cotton, 5% Elasthane.]]>
         </target>
@@ -800,8 +800,8 @@
           <![CDATA[Fantastic down waistcoat with elastick smock on the waist and inside the collar. Lovely print lining and large POMP applique on the back. With pockets, zip closure and inner pocket. The same quality has also been used for Milena  COAT plus May Little WAISTCOAT and Milena Little COAT for baby sister.	<br><br>	Available in Grey, Brown and Violet.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Polyester. Lining: 100% Polyester. Filling: 60% Down, 40% Feather.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Meadow Little LS BLOUSE">
-        <source>description.Meadow_Little_LS_BLOUSE</source>
+      <trans-unit id="Meadow Little LS TSHIRT">
+        <source>description.Meadow_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Pretty long sleeve stripe blouse in stretch viscose quality. Lovely pleating across chest and balloon hem. The same fabric has also been used for Meadow LS BLOUSE for big sister.	<br><br>	Available in Brown, Violet, Black and Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Viscose, 5% Elasthane.]]>
         </target>
@@ -809,7 +809,7 @@
       <trans-unit id="Meadow LS BLOUSE">
         <source>description.Meadow_LS_BLOUSE</source>
         <target>
-          <![CDATA[Pretty long sleeve stripe blouse in stretch viscose quality. Elastic pleating across chest and wide fitted waistband. The same material has also been used for Meadow Little LS BLOUSE for baby sister.	<br><br>	Available in Brown, Violet, Black and Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Viscose, 5% Elasthane.]]>
+          <![CDATA[Pretty long sleeve stripe blouse in stretch viscose quality. Elastic pleating across chest and wide fitted waistband. The same material has also been used for Meadow Little LS TSHIRT for baby sister.	<br><br>	Available in Brown, Violet, Black and Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Viscose, 5% Elasthane.]]>
         </target>
       </trans-unit>
       <trans-unit id="Melvin Little PANTS">
@@ -1004,8 +1004,8 @@
           <![CDATA[Cool slimfit jeans in a medium blue denim quality with stretch for super fit. With hook and bar closure and front zip. Great crease and wash effects, heavy stitching on back pockets and adjustable waist. The same soft denim has also been used for Paco BAGGY JEANS for a more baggy look.	<br><br>	Available in Blue Denim.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 98% Cotton, 2% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Paloma REGULAR PANTS">
-        <source>description.Paloma_REGULAR_PANTS</source>
+      <trans-unit id="Paloma REGULAR JEANS">
+        <source>description.Paloma_REGULAR_JEANS</source>
         <target>
           <![CDATA[Super cool regular stretch jeans with lots of detailing such as pockets with visible zips, elastic smock cuffs, rivets, badge on the back and asymmetric fly. With cool crease and wash effects, heavy stitching and adjustable waist.	<br><br>	Available in Blue Denim.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 98% Cotton, 2% Elasthane.]]>
         </target>
@@ -1370,8 +1370,8 @@
           <![CDATA[Baggy pants with "low crotch". Soft elastic rib waistband and front pockets and one back pocket. Reinforced knees. Also available for baby sister: Suzy Little PANTS.	<br><br>	Available in Violet, Grey and Khaki.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tessa DRESS">
-        <source>description.Tessa_DRESS</source>
+      <trans-unit id="Tessa LS DRESS">
+        <source>description.Tessa_LS_DRESS</source>
         <target>
           <![CDATA[Beautiful blouse with front and back in a woven viscose and sleeve/yoke in a soft jersey quality. Fantastic penguin print with gold sequins on the front and back zip. Looks fantastic over a pair of leggings.	<br><br>	Available in Violet, Grey and Khaki.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality 1: 100% Viscose. Quality 2: 95% Viscose, 5% Elasthane.]]>
         </target>
@@ -1415,11 +1415,11 @@
       <trans-unit id="Tina LS TUNIC">
         <source>description.Tina_LS_TUNIC</source>
         <target>
-          <![CDATA[Soft long sleeve tunic in viscose jersey with leaf print and pretty ruffle trim around neckline. 3 cute satin bows at the front. Also available as Tina Little LS TUNIC for baby sister. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Blue, Brown, Violet and Grey. 	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Viscose, 5% Elasthane.]]>
+          <![CDATA[Soft long sleeve tunic in viscose jersey with leaf print and pretty ruffle trim around neckline. 3 cute satin bows at the front. Also available as Tina Little LS TSHIRT for baby sister. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Blue, Brown, Violet and Grey. 	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Viscose, 5% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Tina Little LS TUNIC">
-        <source>description.Tina_Little_LS_TUNIC</source>
+      <trans-unit id="Tina Little LS TSHIRT">
+        <source>description.Tina_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Soft long sleeve tunic in viscose jersey with leaf print and pretty ruffle trim around neckline. 3 cute satin bows at the front. Also available as Tina LS TUNIC for big sister. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Blue, Brown, Violet and Grey. 	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 95% Viscose, 5% Elasthane.]]>
         </target>
@@ -1433,10 +1433,10 @@
       <trans-unit id="Verona PANTS">
         <source>description.Verona_PANTS</source>
         <target>
-          <![CDATA[Relaxed jersey pants with elastic waist and drawstring. Front snap button closure and zip on cuffs. Cotton yoke and back pocket. The same fabric has also been used for Verona PANTSUIT.	<br><br>	Available in Violet, Blue and Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality 1: 92% Viscose, 8% Elasthane. Quality 2: 100% Cotton.]]>
+          <![CDATA[Relaxed jersey pants with elastic waist and drawstring. Front snap button closure and zip on cuffs. Cotton yoke and back pocket. The same fabric has also been used for Verona_LS_PANTSUIT.	<br><br>	Available in Violet, Blue and Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality 1: 92% Viscose, 8% Elasthane. Quality 2: 100% Cotton.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Verona PANTSUIT">
+      <trans-unit id="Verona_LS_PANTSUIT">
         <source>description.Verona_PANTSUIT</source>
         <target>
           <![CDATA[Fantastic jersey pantsuit with gold studs and print on the back. Smock effect on sleeves, waist and cuffs. Also a pretty drawstring waist. The pantsuit has a front zip and hood. The same fabric has also been used for Verona PANTS.	<br><br>	Available in Violet, Blue and Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 92% Viscose, 8% Elasthane.]]>
@@ -1448,8 +1448,8 @@
           <![CDATA[Lovely soft terry cloth hoodie with kangaroo pocket. Contrast trim inside the hood and neck. The same fabric has also been used for Vidar Little PANTSUIT.	<br><br>	Available in Navy/Offwhite and Light Grey Melange/Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Polyester. Rib: 90% Cotton, 10% Elasthane.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Vidar Little PANTSUIT">
-        <source>description.Vidar_Little_PANTSUIT</source>
+      <trans-unit id="Vidar Little LS PANTSUIT">
+        <source>description.Vidar_Little_LS_PANTSUIT</source>
         <target>
           <![CDATA[Very comfy soft pantsuit in terry cloth with hood, elbow patches, front zip and pockets. Contrast trim inside the hood and neck. The same fabric has also been used for Vidar HOODIE.	<br><br>	Available in Navy/Offwhite and Light Grey Melange/Dark Grey Melange.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Polyester. Rib: 90% Cotton, 10% Elasthane.]]>
         </target>
@@ -1484,8 +1484,8 @@
           <![CDATA[Lovely warm wool cardigan with cable knit and hidden closure with snap buttons. Also available for big sister: Vivi CARDIGAN.	<br><br>	Available in Grey Melange, Violet, Khaki and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Wool.]]>
         </target>
       </trans-unit>
-      <trans-unit id="Vonda Little PANTSUIT">
-        <source>description.Vonda_Little_PANTSUIT</source>
+      <trans-unit id="Vonda Little LS PANTSUIT">
+        <source>description.Vonda_Little_LS_PANTSUIT</source>
         <target>
           <![CDATA[Very soft and warm velour pantsuit with hood and front zip. With gold rib trim at pockets, sleeves, cuffs and waist.	<br><br>	Available in Grey, Violet and Brown.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Polyester.]]>
         </target>
@@ -1511,13 +1511,13 @@
       <trans-unit id="Yoko Little TIGHTS">
         <source>description.Yoko_Little_TIGHTS</source>
         <target>
-          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as kneesocks and tights for big sister: Yoko KNEESOCKS and TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
+          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as KNEESOCKS and tights for big sister: Yoko KNEESOCKS and TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
         </target>
       </trans-unit>
       <trans-unit id="Yoko TIGHTS">
         <source>description.Yoko_TIGHTS</source>
         <target>
-          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as kneesocks and tights for baby sister: Yoko KNEESOCKS and Yoko Little TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
+          <![CDATA[Lovely tights in 2-pack, one with stripes and one with flowers. In lovely colours, all matching the entire girl collection. A small variation in measurement can occur due to different knitting methods. Also available as KNEESOCKS and tights for baby sister: Yoko KNEESOCKS and Yoko Little TIGHTS. Oeko-Tex Standard 100, Class 1 Certification.	<br><br>	Available in Brown, Violet, Grey and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 62% Cotton, 36% Polyamide, 2% Elasthane.]]>
         </target>
       </trans-unit>
       <trans-unit id="Yrsa Little SS TUNIC">

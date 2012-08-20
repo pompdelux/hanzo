@@ -95,11 +95,13 @@
       <td><a href="mailto:{{ participant.email }}">{{ participant.email }}</a></td>
       <td>{{ participant.phone }}</td>
       <td>
-        {% if participant.hasaccepted == 1 %}
-          {{ 'events.hasaccepted.yes'|trans({}, 'events') }}
-        {% else %}
-          {{ 'events.hasaccepted.no'|trans({}, 'events') }}
-        {% endif %}
+    {% if participant.respondedat %}
+      {% if participant.hasaccepted == 1 %}
+        {{ 'events.hasaccepted.yes'|trans({}, 'events') }}
+      {% else %}
+        {{ 'events.hasaccepted.no'|trans({}, 'events') }}
+      {% endif %}
+    {% endif %}
       </td>
       <td>
           <a href="" data-event="{{ participant.eventsid }}" data-participant="{{ participant.id }}" class="delete">x</a>

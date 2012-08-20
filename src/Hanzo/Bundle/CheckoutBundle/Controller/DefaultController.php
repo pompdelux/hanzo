@@ -500,17 +500,19 @@ class DefaultController extends CoreController
 
         foreach ($products as $product) {
             $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['price']);
-            $product->setUnit(preg_replace('/[^a-z\.]/i', '', $product_units[$product->getProductsId()]));
+            $product->setUnit('Stk.');
             $product->save();
         }
 
         if (!$order->getDeliveryMethod()) {
-            $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));
+            $shippingApi = $this->get('shipping.shippingapi');
+            $shipping_methods = $shippingApi->getMethods();
 
             if (('DKK' == $order->getCurrencyCode()) && $order->getDeliveryCompanyName()) {
                 $order->setDeliveryMethod(11);
             } else {
-                $order->setDeliveryMethod($shipping_methods[0]);
+                $firstShippingMethod = array_shift($shipping_methods);
+                $order->setDeliveryMethod( $firstShippingMethod->getExternalId() );
             }
         }
 
@@ -587,6 +589,12 @@ class DefaultController extends CoreController
     public function failedAction()
     {
         $order = OrdersPeer::getCurrent();
+
+        if ( $order->getState() >= Orders::STATE_PAYMENT_OK ) // Last check before we declare the order failed
+        {
+            return $this->redirect($this->generateUrl('_checkout_success'));
+        }
+
         $this->get('event_dispatcher')->dispatch('order.payment.failed', new FilterOrderEvent($order));
 
         return $this->render('CheckoutBundle:Default:failed.html.twig', array(

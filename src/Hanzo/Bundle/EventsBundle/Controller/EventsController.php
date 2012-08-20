@@ -64,6 +64,12 @@ class EventsController extends CoreController
         $events_array = array();
 
         foreach ($events as $event) {
+
+            $color = 'red';
+            if (1 == $event->getIsOpen()) {
+                $color = 'green';
+            }
+
             $events_array[] = array(
                 'id' => $event->getId(),
                 'title' => $event->getCode(),
@@ -72,7 +78,7 @@ class EventsController extends CoreController
                 'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
                 'className' => $event->getType(),
                 'editable' => false,
-                'color' => (($event->getEventDate('U') < time()) || $event->getIsOpen()) ? 'green': 'red'
+                'color' => $color,
             );
         }
 
@@ -414,6 +420,24 @@ class EventsController extends CoreController
             ));
         }
     }
+
+
+    public function closeAction($id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $event = EventsQuery::create()->findPK($id);
+        if ($event instanceof Events) {
+            $event->setIsOpen(false);
+            $event->save();
+        }
+
+        $this->getRequest()->getSession()->setFlash('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
+        return $this->redirect($this->generateUrl('events_index'));
+    }
+
 
     public function deleteAction($id)
     {
@@ -830,7 +854,6 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
             ->orderByEventDate(\Criteria::ASC)
             ->filterByIsOpen(true)

@@ -116,6 +116,11 @@ if ($('#body-basket select#sales-type').length) {
   events.choose_evet_type_init();
 }
 
+$('#select-archived-events .open-menu').on('click', function(event){
+  event.preventDefault();
+  $(this).next().slideToggle();
+});
+
 
 $('#body-event #participants a.delete').on('click', function(event) {
   event.preventDefault();

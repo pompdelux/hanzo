@@ -76,7 +76,7 @@
             </trans-unit>
             <trans-unit id="newsletter.submit.send.newsletter">
                 <source>newsletter.submit.send.newsletter</source>
-                <target>Send nyhedsbrev</target>
+                <target>Stuur nieuwsbrief</target>
             </trans-unit>
             <trans-unit id="newsletter.submit.send.test.email">
                 <source>newsletter.submit.send.test.email</source>
