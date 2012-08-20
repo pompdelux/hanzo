@@ -48,12 +48,17 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $draft = new ConsultantNewsletterDrafts();
+        $order = OrdersPeer::retrieveByPK(759830);
+
+        echo $order->getTotalPrice()."\n";
+        echo $order->getTotalVat()."\n";
+
+        /*$draft = new ConsultantNewsletterDrafts();
         $draft
             ->setSubject('Test')
             ->setContent('Hest')
             ->setConsultantsId(2000)
-            ->save();
+            ->save();*/
 
         /*$order = new Orders();
         $order->setAttribute( 'transact', 'payment', '596022444' );
