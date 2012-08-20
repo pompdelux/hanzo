@@ -500,7 +500,7 @@ class DefaultController extends CoreController
 
         foreach ($products as $product) {
             $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['price']);
-            $product->setUnit(preg_replace('/[^a-z\.]/i', '', $product_units[$product->getProductsId()]));
+            $product->setUnit('Stk.');
             $product->save();
         }
 

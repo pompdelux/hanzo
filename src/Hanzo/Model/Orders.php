@@ -386,6 +386,7 @@ class Orders extends BaseOrders
         $line->setOriginalPrice($original_price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
+        $line->setUnit('Stk.');
         $line->setExpectedAt($date);
         $this->addOrdersLines($line);
     }
