@@ -64,6 +64,12 @@ class EventsController extends CoreController
         $events_array = array();
 
         foreach ($events as $event) {
+
+            $color = 'red';
+            if ((1 == $event->getIsOpen()) || ($event->getEventDate('U') > time())) {
+                $color = 'green';
+            }
+
             $events_array[] = array(
                 'id' => $event->getId(),
                 'title' => $event->getCode(),
@@ -72,7 +78,7 @@ class EventsController extends CoreController
                 'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
                 'className' => $event->getType(),
                 'editable' => false,
-                'color' => (($event->getEventDate('U') < time()) || $event->getIsOpen()) ? 'green': 'red'
+                'color' => $color,
             );
         }
 
