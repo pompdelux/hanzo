@@ -3413,4 +3413,28 @@ $products_id_map = array(
     "yrsa little ss tunic violet 86" => 3407,
     "yrsa little ss tunic violet 92" => 3410,
     "yrsa little ss tunic violet 98" => 3413,
+
+// new styles added here, remember to update the next_id to the next avalilable id.
+// next_id: 3432
+
+    "evita skirt powder 104"     => 3415,
+    "evita skirt powder 110-116" => 3417,
+    "evita skirt powder 122-128" => 3419,
+    "evita skirt powder 134-140" => 3421,
+    "evita skirt powder 146-152" => 3423,
+    "evita skirt petrol 104"     => 3414,
+    "evita skirt petrol 110-116" => 3416,
+    "evita skirt petrol 122-128" => 3418,
+    "evita skirt petrol 134-140" => 3420,
+    "evita skirt petrol 146-152" => 3422,
+
+    "evita little skirt powder 80" => 3425,
+    "evita little skirt powder 86" => 3427,
+    "evita little skirt powder 92" => 3429,
+    "evita little skirt powder 98" => 3431,
+    "evita little skirt petrol 80" => 3424,
+    "evita little skirt petrol 86" => 3426,
+    "evita little skirt petrol 92" => 3428,
+    "evita little skirt petrol 98" => 3430,
+
 );

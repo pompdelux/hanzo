@@ -339,13 +339,24 @@ class DefaultController extends CoreController
         //     }
         // }
 
+        // hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site -->>
+        $continue_shopping = $router->generate('page_400');
+
+        $hanzo = Hanzo::getInstance();
+        $domain_key = $hanzo->get('core.domain_key');
+        if (strpos($domain_key, 'Sales') !== false) 
+        {
+            $continue_shopping = $router->generate('QuickOrderBundle_homepage');
+        }
+        // <<-- hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site
+
         return $this->render($template, array(
             'embedded' => $embed,
             'page_type' => 'basket',
             'products' => $products,
             'total' => $order->getTotalPrice(true),
             'delivery_date' => $delivery_date,
-            'continue_shopping' =>  $router->generate('page_400'),
+            'continue_shopping' => $continue_shopping,
         ));
     }
 }
