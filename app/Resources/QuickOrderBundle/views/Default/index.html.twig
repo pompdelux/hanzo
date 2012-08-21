@@ -30,8 +30,33 @@
       <input type="button" id="reset" name="reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}" style="display:none">
       <div id="autocomplete-container"></div>
   </form>
-
-  {% include 'BasketBundle:Default:block.html.twig' %}
+  {% if products %}
+    {% include 'BasketBundle:Default:block.html.twig' %}
+  {% else %}
+  <form action="http://hanzo.xx/app_dev.php/da_DK/update-basket" method="post">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th class="left">{{ "products"|trans }}</th>
+          <th class="right">{{ "latest.shipment.date"|trans }}</th>
+          <th class="right">{{ "price"|trans }}</th>
+          <th class="center">{{ "quantity"|trans }}</th>
+          <th class="right">{{ "total"|trans }}</th>
+          <th class=""></th>
+        </tr>
+      </thead>
+      <tbody>    
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">{{ "total"|trans }}:</td>
+          <td class="right total">0.00</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+  {% endif %}
 
 </div>
 
