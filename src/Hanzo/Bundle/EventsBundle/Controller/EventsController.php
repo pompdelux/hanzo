@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormError;
 
+use Propel;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
@@ -870,6 +872,8 @@ class EventsController extends CoreController
         $order = OrdersPeer::getCurrent();
         if ($order instanceof Orders) {
             $request = $this->getRequest();
+
+            Propel::setForceMasterConnection(TRUE);
 
             // remove any discount lines if changing event
             OrdersLinesQuery::create()
