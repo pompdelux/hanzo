@@ -263,8 +263,16 @@ class DefaultController extends CoreController
             }
         }
 
+        // hf@bellcom.dk, 20-aug-2012: when a consultant places an order, this has to get the customer from the order -->>
+        $order = OrdersPeer::getCurrent();
 
-        $customer = CustomersPeer::getCurrent();
+        if ($order->getCustomersId()) {
+            $customer = $order->getCustomers();
+        } else {
+            $customer = CustomersPeer::getCurrent();
+        }
+        // <<-- hf@bellcom.dk, 20-aug-2012: when a consultant places an order, this has to get the customer from the order
+
         $address = AddressesQuery::create()
             ->filterByType($type)
             ->findOneByCustomersId($customer->getId())

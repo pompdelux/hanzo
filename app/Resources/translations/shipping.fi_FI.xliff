@@ -10,16 +10,16 @@
         <source>page.desc</source>
         <target>Valitse oikea toimitustapa.</target>
       </trans-unit>
-      <trans-unit id="shipping_method.name.10">
-        <source>shipping_method.name.10</source>
+      <trans-unit id="shipping_method.name.500">
+        <source>shipping_method.name.500</source>
         <target>Yksityinen paketti</target>
       </trans-unit>
-      <trans-unit id="shipping_method.desc.10">
-        <source>shipping_method.desc.10</source>
+      <trans-unit id="shipping_method.desc.500">
+        <source>shipping_method.desc.500</source>
         <target>Tilauksesi lähetetään henkilökohtaiseen osoitteeseesi. Jos haluat lähettää tilauksesi toiseen yksityisosoitteeseen (esim. naapurille), muuta toimitusosoite kohdassa &quot;Muuta toimitusosoitetta&quot;.</target>
       </trans-unit>
-      <trans-unit id="shipping_method.label.10">
-        <source>shipping_method.label.10</source>
+      <trans-unit id="shipping_method.label.500">
+        <source>shipping_method.label.500</source>
         <target>Post Danmark Privat %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.name.11">

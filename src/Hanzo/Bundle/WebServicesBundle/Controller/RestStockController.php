@@ -114,14 +114,21 @@ class RestStockController extends CoreController
 
                 foreach ($result as $record) {
                     if ($dato = $stock->check($record)) {
+                        $date = ($dato instanceof \DateTime ? $dato->format('Y m/d') : '');
+
                         $data[] = array(
                             'product_id' => $record->getId(),
                             'master' => $record->getMaster(),
                             'size' => $record->getSize(),
                             'color' => $record->getColor(),
-                            'date' => ($dato instanceof \DateTime ? $dato->format('Y m/d') : '')
+                            'date' => $date
                         );
-                        $message = $translator->trans('Product(s) in stock');
+
+                        if ($date) {
+                            $message = $translator->trans('late.delivery', array('%product%' => $record->getMaster(), '%date%' => $date), 'js');
+                        } else {
+                            $message = '';
+                        }
                     }
                 }
                 if (count($data)) {

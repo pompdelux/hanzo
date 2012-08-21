@@ -48,12 +48,89 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $draft = new ConsultantNewsletterDrafts();
+        $missingNames = array(
+            760004,
+            760004,
+            760062,
+            760118,
+            760121,
+            760135,
+            760156,
+            760179,
+            760186,
+            760199,
+            760205,
+            760250,
+            760259,
+            760285,
+            760298,
+            760310,
+            760330,
+            760333,
+            760340,
+            760363,
+            760372,
+            760374,
+            760375,
+            760404,
+            760409,
+            760411,
+            760419,
+            760428,
+            760430,
+            760433,
+            760438,
+            760455,
+            760467,
+            760469,
+            760473,
+            760477,
+            760493,
+            760505,
+            760526,
+            760537,
+            760539,
+            760546,
+            760547,
+            760562, 
+        );
+
+        foreach ($missingNames as $orderId) 
+        {
+            $order     = OrdersPeer::retrieveByPK($orderId);
+            $customer  = $order->getCustomers();
+            $addresses = $customer->getAddresses();
+
+            foreach ($addresses as $address) 
+            {
+                switch ($address->getType()) 
+                {
+                    case 'payment':
+                        $order->setBillingFirstName( $address->getFirstName() );
+                        $order->setBillingLastName( $address->getLastName() );
+                        break;
+                    case 'shipping':
+                        $order->setDeliveryFirstName( $address->getFirstName() );
+                        $order->setDeliveryFirstName( $address->getLastName() );
+                        break;
+
+                }
+            }
+
+            $order->save();
+        }
+
+        /*$order = OrdersPeer::retrieveByPK(759830);
+
+        echo $order->getTotalPrice()."\n";
+        echo $order->getTotalVat()."\n";*/
+
+        /*$draft = new ConsultantNewsletterDrafts();
         $draft
             ->setSubject('Test')
             ->setContent('Hest')
             ->setConsultantsId(2000)
-            ->save();
+        ->save();*/
 
         /*$order = new Orders();
         $order->setAttribute( 'transact', 'payment', '596022444' );
@@ -65,7 +142,7 @@ class TestCommand extends ContainerAwareCommand
         $settings['md5key2']  = '8IBaYSmjDLkZz.+hKhNtcb]~XikRAqFF';
         $settings['api_user'] = 'pdl-dk-api-user';
         $settings['api_pass'] = 'D!An6aYlUf*l';
-        
+
         $gateway->mergeSettings($settings);
 
         print_r($gateway->call()->payinfo($order));*/

@@ -5,7 +5,8 @@ $ts = microtime(1);
 
 // let's send 404 headers for none existing images, javascripts and styles
 $ignore = array('jpg', 'png', 'gif', 'js', 'css');
-$ext = array_pop(explode('.', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+$ext = explode('.', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+$ext = array_pop($ext);
 // dont use a 404 on old newsletter URL's, but pass it to the symfony 404 handler that will redirect. Get rid of this hack when noone reads old newsletters anymore
 $isnewsletter = preg_match('/\/images\/nyhedsbrev\//', $_SERVER['REQUEST_URI']);
 if (in_array($ext, $ignore) && !$isnewsletter) {

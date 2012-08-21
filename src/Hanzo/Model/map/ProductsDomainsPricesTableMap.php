@@ -45,7 +45,7 @@ class ProductsDomainsPricesTableMap extends TableMap
 		$this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
 		$this->addForeignPrimaryKey('DOMAINS_ID', 'DomainsId', 'INTEGER' , 'domains', 'ID', true, null, null);
 		$this->addColumn('PRICE', 'Price', 'DECIMAL', true, 15, null);
-		$this->addColumn('VAT', 'Vat', 'DECIMAL', true, 4, null);
+		$this->addColumn('VAT', 'Vat', 'DECIMAL', true, 15, null);
 		$this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
 		$this->addPrimaryKey('FROM_DATE', 'FromDate', 'TIMESTAMP', true, null, null);
 		$this->addColumn('TO_DATE', 'ToDate', 'TIMESTAMP', false, null, null);

@@ -325,7 +325,7 @@ class Tools
         $dir  = dirname($url['path']);
 
         $url['path'] = $dir . '/' . $preset . $file;
-        $url['query'] = Hanzo::getInstance()->get('core.cache_key', 'z4');
+        $url['query'] = Hanzo::getInstance()->get('core.assets_version', 'z4');
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';

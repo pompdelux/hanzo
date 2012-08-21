@@ -74,7 +74,7 @@
       {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
     {% endif %}
 
-    {% if app.user.user.groupsid in [2,3] %}
+    {% if app.user and app.user.user.groupsid in [2,3] %}
       {% render 'EventsBundle:Events:selectEvent' %}
     {% endif %}
 

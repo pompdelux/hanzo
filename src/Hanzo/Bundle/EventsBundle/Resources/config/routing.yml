@@ -52,6 +52,14 @@ events_delete:
         _format: html|json
         id: \d+
 
+events_close:
+    pattern: /events/close/{id}
+    defaults:
+        _controller: EventsBundle:Events:close
+    requirements:
+        _method:  GET
+        id: \d+
+
 events_invite:
     pattern: /events/invite/{key}
     defaults:

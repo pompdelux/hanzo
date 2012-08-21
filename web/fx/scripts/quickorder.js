@@ -40,11 +40,12 @@ var quickorder = (function($) {
                                 .attr("value",'')
                                 .text(ExposeTranslation.get('js:quickorder.choose.size')));
 
+                            var last = '';
                             $.each(response.data.products, function(key, value) {
-                                $('#size')
-                                    .append($("<option></option>")
-                                    .attr("value",value.size)
-                                    .text(value.size));
+                                if (value.size != last) {
+                                    $('#size').append($("<option></option>").attr("value",value.size).text(value.size));
+                                    last = value.size;
+                                }
                             });
                             $('#size-label').show().find('#size').focus();
                             $('#reset').show();
@@ -70,7 +71,7 @@ var quickorder = (function($) {
     $('#size').on('keydown mouseup blur' ,function(e) {
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which;
-            if (keyCode == 9) {
+            if (keyCode === 9 || keyCode === 13) {
                 e.preventDefault();
                 getColor();
             }
@@ -110,11 +111,12 @@ var quickorder = (function($) {
                                 .attr("value",'')
                                 .text(ExposeTranslation.get('js:quickorder.choose.color')));
 
+                            var last = '';
                             $.each(response.data.products, function(key, value) {
-                                $('#color')
-                                    .append($("<option></option>")
-                                    .attr("value",value.color)
-                                    .text(value.color));
+                                if (last != value.color) {
+                                    $('#color').append($("<option></option>").attr("value",value.color).text(value.color));
+                                    last = value.color;
+                                }
                             });
                             $('#color-label').show().find('#color').focus();
                         }else{
@@ -139,7 +141,7 @@ var quickorder = (function($) {
     $('#color').on('keydown mouseup blur' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which;
-            if (keyCode == 9) {
+            if (keyCode === 9 || keyCode === 13) {
                 e.preventDefault();
 
                 if($(this).val() !== ''){
@@ -183,15 +185,14 @@ var quickorder = (function($) {
                         window.scrollTo(window.scrollMinX, window.scrollMinY);
                         $('#mini-basket a').html(response.data);
                         dialoug.slideNotice(response.message);
-                        var img = master+'_basket_'+color;
-                        img = cdn_url + 'images/products/thumb/60x60,' + img.toString().replace(/[^a-zA-Z0-9_]/g, "") + '.jpg';
+                        var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_basket_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "");
+                        img = cdn_url + 'images/products/thumb/60x60,' + img + '.jpg';
 
-                        $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td></tr>');
                         $('table tbody').append(' \
                             <tr> \
                               <td class="image"><img src="'+img+'" alt="'+master+'"> \
-                                <div class="info" data-product_id="'+response.data.id+'" data-confirmed=""> \
-                                  <a href="'+response.data.url+'">'+name+'</a> \
+                                <div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> \
+                                  <a href="'+response.data.url+'">'+master+'</a> \
                                   <div class="size"> \
                                     <label>'+ExposeTranslation.get('js:size')+':</label> \
                                     <span>'+size+'</span> \
@@ -204,14 +205,15 @@ var quickorder = (function($) {
                               </td> \
                               <td class="right date"> \
                               </td> \
-                              <td class="right price">'+response.data.price+'</td> \
+                              <td class="right price">'+response.latest.price+'</td> \
                               <td class="right quantity">'+quantity+'</td> \
-                              <td class="right total">'+response.data.price*quantity+'</td> \
+                              <td class="right total">'+response.latest.price*quantity+'</td> \
                               <td class="actions"> \
-                                <a href="'+response.data.url_basket_remove+'" class="delete"><img src="'+cdn_url+'images/delete_icon.png" alt="'+ExposeTranslation.get('js:delete')+'"></a> \
-                                <a href="'+response.data.id+'" class="edit"><img src"'+cdn_url+'images/edit_icon.png" alt="'+ExposeTranslation.get('js:edit')+'"></a> \
+                                <a href="'base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+ExposeTranslation.get('js:delete')+'"></a> \
+                                <a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+ExposeTranslation.get('js:edit')+'"></a> \
                               </td> \
                             </tr>');
+                        $('table tfoot td.total').html(response.data);
                     }
                     _resetForm();
                 },

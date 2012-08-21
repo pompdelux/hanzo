@@ -294,6 +294,10 @@
                 <source>quickorder.choose.color</source>
                 <target>Color</target>
             </trans-unit>
+            <trans-unit id="event.user.email.not.found">
+                <source>event.user.email.not.found</source>
+                <target>Der er ikke oprettet nogen kunde med den indtastede emailadresse.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

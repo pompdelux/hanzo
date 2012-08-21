@@ -89,7 +89,7 @@
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="code" type="VARCHAR" size="12" required="true"/>
     <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="vat" type="DECIMAL" size="2" scale="2" required="false"/>
+    <column name="vat" type="DECIMAL" size="15" scale="4" required="false"/>
     <column name="currency_code" type="VARCHAR" size="3" required="true"/>
     <column name="uses_pr_coupon" type="INTEGER" required="true" defaultValue="1"/>
     <column name="uses_pr_coustomer" type="INTEGER" required="true" defaultValue="1"/>
@@ -299,7 +299,7 @@
     </foreign-key>
   </table>
 
-  <table name="products">
+  <table name="products" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="sku" type="VARCHAR" size="128" required="true"/>
     <column name="master" type="VARCHAR" size="128" required="false"/>
@@ -342,7 +342,7 @@
     <column name="products_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="domains_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="price" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="vat" type="DECIMAL" size="4" scale="2" required="true"/>
+    <column name="vat" type="DECIMAL" size="15" scale="4" required="true"/>
     <column name="currency_id" type="INTEGER" required="true"/>
     <column name="from_date" type="TIMESTAMP" primaryKey="true" required="true"/>
     <column name="to_date" type="TIMESTAMP" required="false"/>
@@ -556,7 +556,7 @@
     <column name="expected_at" type="DATE" required="false" defaultValue="1970-01-01"/>
     <column name="original_price" type="DECIMAL" size="15" scale="4" required="false"/>
     <column name="price" type="DECIMAL" size="15" scale="4" required="false"/>
-    <column name="vat" type="DECIMAL" size="4" scale="2" required="false" defaultValue="0.00"/>
+    <column name="vat" type="DECIMAL" size="15" scale="4" required="false" defaultValue="0.00"/>
     <column name="quantity" type="INTEGER" required="false"/>
     <column name="unit" type="VARCHAR" size="12" required="false"/>
     <foreign-key foreignTable="orders" name="fk_orders_lines_1" onDelete="CASCADE">
