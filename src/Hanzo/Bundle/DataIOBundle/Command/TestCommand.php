@@ -103,6 +103,10 @@ class TestCommand extends ContainerAwareCommand
 
             foreach ($addresses as $address) 
             {
+                $address->setFirstName( $order->getFirstName() );
+                $address->setLastName( $order->getLastName() );
+                $address->save();
+
                 switch ($address->getType()) 
                 {
                     case 'payment':
@@ -111,7 +115,7 @@ class TestCommand extends ContainerAwareCommand
                         break;
                     case 'shipping':
                         $order->setDeliveryFirstName( $address->getFirstName() );
-                        $order->setDeliveryFirstName( $address->getLastName() );
+                        $order->setDeliveryLastName( $address->getLastName() );
                         break;
 
                 }
