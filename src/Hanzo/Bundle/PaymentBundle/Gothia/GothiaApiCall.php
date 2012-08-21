@@ -80,7 +80,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         }
         catch (Exception $e)
         {
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
+            error_log(__LINE__.':'.__FILE__.' '. $e->getMessage() ); // hf@bellcom.dk debugging
             throw new GothiaApiCallException( $e->getMessage() );
         }
 
