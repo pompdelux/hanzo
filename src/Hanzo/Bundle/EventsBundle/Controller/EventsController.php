@@ -891,7 +891,6 @@ class EventsController extends CoreController
             $hostess = $request->get('hostess');
             if (empty($hostess)) {
                 $order->clearAttributesByKey('is_hostess_order');
-                $order->clearAttributesByKey('is_hostess_order_calculated');
             } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
             }

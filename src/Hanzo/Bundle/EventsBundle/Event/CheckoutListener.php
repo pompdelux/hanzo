@@ -50,7 +50,7 @@ class CheckoutListener
             $hanzo = Hanzo::getInstance();
 
 
-            if (isset($attributes->event->is_hostess_order) && empty($attributes->event->is_hostess_order_calculated)) {
+            if (isset($attributes->event->is_hostess_order) && !$order->getInEdit()) {
                 $add_discount = true;
 
                 $discount = 0;
@@ -67,7 +67,6 @@ class CheckoutListener
                 }
 
                 $order->setDiscountLine('discount.hostess', $discount, -5);
-                $order->setAttribute('is_hostess_order_calculated', 'event', true);
             }
 
             $event = $order->getEvents();
