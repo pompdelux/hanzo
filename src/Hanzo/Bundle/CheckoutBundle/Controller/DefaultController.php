@@ -405,11 +405,6 @@ class DefaultController extends CoreController
         $order = OrdersPeer::getCurrent();
         $customer = $order->getCustomers();
 
-        if ( $_SERVER['REMOTE_ADDR'] == '90.185.206.100' )
-        {
-          error_log(__LINE__.':'.__FILE__.' '.$customer->getId()); // hf@bellcom.dk debugging
-        }
-
         $customerAddresses = $customer->getAddresses();
 
         $addresses = array();
