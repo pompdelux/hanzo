@@ -9,6 +9,7 @@ use Hanzo\Core\Hanzo;
 
 use Hanzo\Model\ProductsQuery,
     Hanzo\Model\ProductsDomainsPricesQuery,
+    Hanzo\Model\ProductsToCategoriesQuery,
     Hanzo\Model\OrdersPeer
 ;
 use \PropelCollection;
@@ -19,36 +20,85 @@ class DefaultController extends CoreController
 
     public function indexAction()
     {
-    	$order = OrdersPeer::getCurrent();
-    	$products = array();
-    	foreach ($order->getOrdersLiness() as $line) {
-            if ($line->getType() != 'product') {
+        // All logic is a copy of BasketBundle.Default.viewAction
+
+        $order = OrdersPeer::getCurrent();
+        
+        $router = $this->get('router');
+        $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
+        $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
+
+        $products = array();
+        $delivery_date = 0;
+
+        // product lines- if any
+        foreach ($order->getOrdersLiness() as $line) {
+            $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
+
+            if ($line['type'] != 'product') {
                 continue;
             }
 
-            $basket_image =
-                preg_replace('/[^a-z0-9]/i', '-', $line->getProductsName()) .
+            // find first products2category match
+            $products2category = ProductsToCategoriesQuery::create()
+                ->useProductsQuery()
+                ->filterBySku($line['products_name'])
+                ->endUse()
+                ->findOne()
+            ;
+
+            if (!$products2category) {
+                Tools::log($locale.' -> '.$line['products_name']);
+            }
+
+            $line['expected_at'] = new \DateTime($line['expected_at']);
+
+            $t = $line['expected_at']->getTimestamp();
+            if (($t > 0) && ($t > time())) {
+                $line['expected_at'] = $t;
+                if ($delivery_date < $line['expected_at']) {
+                    $delivery_date = $line['expected_at'];
+                }
+            }
+            else {
+                $line['expected_at'] = NULL;
+            }
+
+            $line['basket_image'] =
+                preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
                 '_basket_' .
-                preg_replace('/[^a-z0-9]/i', '', $line->getProductsColor()) .
+                preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
                 '.jpg'
                 ;
 
-    		$products[] = array(
-    			'sku' => $line->getProductsSku(),
-    			'quantity' => $line->getQuantity(),
-                'basket_image' => $basket_image,
-                'name' => $line->getProductsName(),
-                'price' => $line->getPrice(),
-    		);
-    	}
+            // find matching router
+            $product_route = '';
+            $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+
+            $line['url'] = '#';
+            if (isset($router_keys[$key])) {
+                $product_route = $router_keys[$key];
+                $master = ProductsQuery::create()->findOneBySku($line['products_name']);
+                $line['url'] = $router->generate($product_route, array(
+                    'product_id' => $master->getId(),
+                    'title' => Tools::stripText($line['products_name']),
+                ));
+            }
+
+
+            $products[] = $line;
+        }
 
         return $this->render('QuickOrderBundle:Default:index.html.twig',
-         	array(
-         		'page_type' => 'quickorder',
-         		'products' => $products
-         	)
+            array(
+                'embedded' => false,
+                'page_type' => 'basket',
+                'products' => $products,
+                'total' => $order->getTotalPrice(true),
+                'delivery_date' => $delivery_date
+            )
         );
-    }
+        }
 
     public function getSkuAction()
     {

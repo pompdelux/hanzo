@@ -79,7 +79,8 @@ class DefaultController extends CoreController
                 $price = array_shift($price);
 
                 $latest = array(
-                    'price' => Tools::moneyFormat($price['price'] * $quantity),
+                    'id' => $product->getId(),
+                    'price' => Tools::moneyFormat($price['price'] * $quantity)
                 );
 
                 if ($this->getFormat() == 'json') {
@@ -88,6 +89,7 @@ class DefaultController extends CoreController
                         'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
                         'data' => $this->miniBasketAction(TRUE),
                         'latest' => $latest,
+                        'total' => $order->getTotalQuantity(true),
                     ));
                 }
             }

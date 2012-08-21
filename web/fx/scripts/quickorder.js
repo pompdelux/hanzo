@@ -167,7 +167,7 @@ var quickorder = (function($) {
             quantity = $('#quantity').val()
         ;
 
-        if((master != '') && (size != '') && (color != '') && (quantity != '')) {
+        if((master !== '') && (size !== '') && (color !== '') && (quantity !== '')) {
             var $form = $(this);
             $.ajax({
                 url: $form.attr('action'),
@@ -188,7 +188,32 @@ var quickorder = (function($) {
                         var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_basket_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "");
                         img = cdn_url + 'images/products/thumb/60x60,' + img + '.jpg';
 
-                        $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td><td>'+response.latest.price+'</td></tr>');
+                        $('table tbody').append(' \
+                            <tr> \
+                              <td class="image"><img src="'+img+'" alt="'+master+'"> \
+                                <div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> \
+                                  <a href="'+response.data.url+'">'+master+'</a> \
+                                  <div class="size"> \
+                                    <label>'+ExposeTranslation.get('js:size')+':</label> \
+                                    <span>'+size+'</span> \
+                                  </div> \
+                                  <div class="color"> \
+                                    <label>'+ExposeTranslation.get('js:color')+':</label> \
+                                    <span>'+color+'</span> \
+                                  </div> \
+                                </div> \
+                              </td> \
+                              <td class="right date"> \
+                              </td> \
+                              <td class="right price">'+response.latest.price+'</td> \
+                              <td class="right quantity">'+quantity+'</td> \
+                              <td class="right total">'+response.latest.price*quantity+'</td> \
+                              <td class="actions"> \
+                                <a href="'base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+ExposeTranslation.get('js:delete')+'"></a> \
+                                <a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+ExposeTranslation.get('js:edit')+'"></a> \
+                              </td> \
+                            </tr>');
+                        $('table tfoot td.total').html(response.data);
                     }
                     _resetForm();
                 },
@@ -215,9 +240,9 @@ var quickorder = (function($) {
         $('#master').val('').focus();
         $('#size')
             .find('option')
-            .remove()
+            .remove();
         $('#size-label').hide();
-        ;
+
         $('#color')
             .find('option')
             .remove()

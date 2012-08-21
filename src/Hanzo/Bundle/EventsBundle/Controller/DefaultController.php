@@ -45,8 +45,13 @@ class DefaultController extends CoreController
 
         // if the customer has been adding stuff to the basket, use that information here.
         $customer_id = $request->get('id');
-        if ($consultant->getId() != $order->getCustomersId()) {
-            $customer_id = $order->getCustomersId();
+
+        // Always perfer the post id
+        if ( !$customer_id ) // if no customer id has been posted
+        {
+          //if ($consultant->getId() != $order->getCustomersId()) {
+              $customer_id = $order->getCustomersId();
+          //}
         }
 
         $hanzo = Hanzo::getInstance();

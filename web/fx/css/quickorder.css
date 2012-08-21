@@ -12,9 +12,6 @@
 #quickorder label {
 	display: inline-block;
 }
-#quickorder form div{
-	clear: both;
-}
 
 #quickorder .ui-autocomplete {
 	list-style-type:none;
