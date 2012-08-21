@@ -80,6 +80,7 @@ class DefaultController extends CoreController
 
                 $latest = array(
                     'id' => $product->getId(),
+                    'single_price' => $price['price'],
                     'price' => Tools::moneyFormat($price['price'] * $quantity)
                 );
 
