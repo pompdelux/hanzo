@@ -214,6 +214,7 @@ var quickorder = (function($) {
                               </td> \
                             </tr>');
                         $('table tfoot td.total').html(response.data);
+                        $('a.proceed').show();
                     }
                     _resetForm();
                 },
