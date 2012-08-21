@@ -31,24 +31,8 @@
       <div id="autocomplete-container"></div>
   </form>
   <h1>{{ 'quickorder.products.header.text'|trans({}, 'quickorder') }}</h1>
-  <table class="list">
-    <thead>
-      <th></th>
-      <th>{{ 'quickorder.sku.table'|trans({}, 'quickorder') }}</th>
-      <th>{{ 'quickorder.quantity.table'|trans({}, 'quickorder') }}</th>
-    </thead>
-    <tbody>
-      {% for product in products %}
-        <tr>
-          <td>{{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.name }) }}</td>
-          <td>{{ product.sku }}</td>
-          <td>{{ product.quantity }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 
-  {% include 'BasketBundle:Default:block.html.twig' %}
+  {% render 'BasketBundle:Default:view' with { 'embed': true } %}
 
 </div>
 

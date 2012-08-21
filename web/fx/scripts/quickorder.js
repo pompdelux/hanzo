@@ -189,25 +189,24 @@ var quickorder = (function($) {
                         $('table tbody').append('<tr><td><img src="'+img+'" alt="'+master+'"></td><td>'+master+' '+color+' '+size+'</td><td>'+quantity+'</td></tr>');
                         $('table tbody').append(' \
                             <tr> \
-                              <td class="image"><img src="'+img+'" alt="'+response.data.master+'"> \
+                              <td class="image"><img src="'+img+'" alt="'+master+'"> \
                                 <div class="info" data-product_id="'+response.data.id+'" data-confirmed=""> \
-                                  <a href="'+response.data.url+'">'+response.data.name+'</a> \
+                                  <a href="'+response.data.url+'">'+name+'</a> \
                                   <div class="size"> \
-                                    <label>{{ "size"|trans }}:</label> \
+                                    <label>'+ExposeTranslation.get('js:size')+':</label> \
                                     <span>'+size+'</span> \
                                   </div> \
                                   <div class="color"> \
-                                    <label>{{ "color"|trans }}:</label> \
+                                    <label>'+ExposeTranslation.get('js:color')+':</label> \
                                     <span>'+color+'</span> \
                                   </div> \
                                 </div> \
                               </td> \
                               <td class="right date"> \
-                                '+response.data.expected_at+' \
                               </td> \
                               <td class="right price">'+response.data.price+'</td> \
-                              <td class="right quantity">'+response.data.quantity+'</td> \
-                              <td class="right total">'+response.data.price*response.data.quantity+'</td> \
+                              <td class="right quantity">'+quantity+'</td> \
+                              <td class="right total">'+response.data.price*quantity+'</td> \
                               <td class="actions"> \
                                 <a href="'+response.data.url_basket_remove+'" class="delete"><img src="'+cdn_url+'images/delete_icon.png" alt="'+ExposeTranslation.get('js:delete')+'"></a> \
                                 <a href="'+response.data.id+'" class="edit"><img src"'+cdn_url+'images/edit_icon.png" alt="'+ExposeTranslation.get('js:edit')+'"></a> \
