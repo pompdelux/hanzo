@@ -49,9 +49,9 @@ class DefaultController extends CoreController
         // Always perfer the post id
         if ( !$customer_id ) // if no customer id has been posted
         {
-          //if ($consultant->getId() != $order->getCustomersId()) {
+          if ($consultant->getId() != $order->getCustomersId()) {
               $customer_id = $order->getCustomersId();
-          //}
+          }
         }
 
         $hanzo = Hanzo::getInstance();
