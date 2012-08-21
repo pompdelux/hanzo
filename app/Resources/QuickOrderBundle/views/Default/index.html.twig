@@ -36,6 +36,7 @@
       <th></th>
       <th>{{ 'quickorder.sku.table'|trans({}, 'quickorder') }}</th>
       <th>{{ 'quickorder.quantity.table'|trans({}, 'quickorder') }}</th>
+      <th>{{ 'total'|trans }}</th>
     </thead>
     <tbody>
       {% for product in products %}
@@ -43,10 +44,13 @@
           <td>{{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.name }) }}</td>
           <td>{{ product.sku }}</td>
           <td>{{ product.quantity }}</td>
+          <td>{{ (product.price * product.quantity)|money }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+
+  <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" class="button right">{{ "show.basket"|trans }}</a>
 </div>
 
 

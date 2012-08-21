@@ -124,15 +124,15 @@
       </trans-unit>
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
-        <target>Betalning på konto</target>
+        <target>Banköverföring</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
-        <target>Betala in pengarna till kontonummer: "yy-yy xx-xx-xx-xx-xx" senast 8 dagar efter att du har mottagit varorna.</target>
+        <target><![CDATA[Välj hur du vill betala denna order.<br><br><b>Observera</b> att banköverföring <b><u>endast</u></b> får användas om det inte finns en internetförbindelse på arrangemanget.]]></target>
       </trans-unit>
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
-        <target>Betalning på konto</target>
+        <target>Banköverföring</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>

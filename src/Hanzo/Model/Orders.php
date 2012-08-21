@@ -386,6 +386,7 @@ class Orders extends BaseOrders
         $line->setOriginalPrice($original_price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
+        $line->setUnit('Stk.');
         $line->setExpectedAt($date);
         $this->addOrdersLines($line);
     }
@@ -483,15 +484,16 @@ class Orders extends BaseOrders
     /**
      * set or update a discount line
      *
-     * @param string $name   discount identifier
-     * @param float  $amount discount amount
+     * @param string $name     discount identifier
+     * @param float  $amount   discount amount
+     * @param float  $discount line discount in percent
      * @return object Orders
      */
-    public function setDiscountLine($name, $amount)
+    public function setDiscountLine($name, $amount, $discount = '')
     {
         foreach ($this->getOrderLineDiscount() as $line) {
             if ($name == $line->getProductsSku()) {
-                $line->setPrice($amount);
+                $line->setPrice(number_format($amount, 4, '.', ''));
                 return $this;
             }
         }
@@ -502,8 +504,8 @@ class Orders extends BaseOrders
         $line->setVat(0.00);
         $line->setOrdersId($this->getId());
         $line->setProductsSku($name);
-        $line->setProductsName($name);
-        $line->setPrice($amount);
+        $line->setProductsName($discount);
+        $line->setPrice(number_format($amount, 4, '.', ''));
         $this->addOrdersLines($line);
 
         return $this;
@@ -815,18 +817,6 @@ class Orders extends BaseOrders
 
         // maintain chain, return self
         return $this;
-    }
-
-
-    /**
-     * setShippingMethod
-     * @param string $method
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setShippingMethod( $method )
-    {
-        $this->setDeliveryMethod( $method );
     }
 
     /**

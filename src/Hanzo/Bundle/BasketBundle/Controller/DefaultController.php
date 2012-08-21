@@ -72,11 +72,22 @@ class DefaultController extends CoreController
             if ($order->validate()) {
                 $order->save();
 
+                $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
+
+                $price = array_shift($price);
+                $original_price = $price['normal'];
+                $price = array_shift($price);
+
+                $latest = array(
+                    'price' => Tools::moneyFormat($price['price'] * $quantity),
+                );
+
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status' => TRUE,
                         'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
                         'data' => $this->miniBasketAction(TRUE),
+                        'latest' => $latest,
                     ));
                 }
             }
@@ -286,7 +297,7 @@ class DefaultController extends CoreController
             }
 
             $line['basket_image'] =
-                preg_replace('/[^a-z0-9]/i', '', $line['products_name']) .
+                preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
                 '_basket_' .
                 preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
                 '.jpg'

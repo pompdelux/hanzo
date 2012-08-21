@@ -194,6 +194,10 @@
                 <source>event.confirm.delete.participant</source>
                 <target>Er du sikker på, du vil slette denne deltager?</target>
             </trans-unit>
+            <trans-unit id="event.user.email.not.found">
+                <source>event.user.email.not.found</source>
+                <target>No user matches the provided emailaddress.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

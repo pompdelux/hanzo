@@ -19,8 +19,9 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\Addresses;
-use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLinesQuery;
 
 class EventsController extends CoreController
 {
@@ -29,7 +30,6 @@ class EventsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('login'));
         }
-
 
         $date_filter['max'] = date('Y-m-d H:i:s');
         $archived_events = EventsQuery::create()
@@ -64,6 +64,12 @@ class EventsController extends CoreController
         $events_array = array();
 
         foreach ($events as $event) {
+
+            $color = 'red';
+            if (1 == $event->getIsOpen()) {
+                $color = 'green';
+            }
+
             $events_array[] = array(
                 'id' => $event->getId(),
                 'title' => $event->getCode(),
@@ -72,7 +78,7 @@ class EventsController extends CoreController
                 'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
                 'className' => $event->getType(),
                 'editable' => false,
-                'color' => ($event->getEventDate('U') >= time()) ? 'green': 'red'
+                'color' => $color,
             );
         }
 
@@ -258,7 +264,7 @@ class EventsController extends CoreController
                 $code = $code . $consultant->getInitials();
                 $code = $code . $event->getType();
                 $code = $code . $event->getId();
-                $code = $code . $hanzo->get('core.domain_key');
+                $code = $code . str_replace('Sales', '', $hanzo->get('core.domain_key'));
                 $event->setCode(strtoupper($code));
 
                 $event->save();
@@ -414,6 +420,24 @@ class EventsController extends CoreController
             ));
         }
     }
+
+
+    public function closeAction($id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $event = EventsQuery::create()->findPK($id);
+        if ($event instanceof Events) {
+            $event->setIsOpen(false);
+            $event->save();
+        }
+
+        $this->getRequest()->getSession()->setFlash('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
+        return $this->redirect($this->generateUrl('events_index'));
+    }
+
 
     public function deleteAction($id)
     {
@@ -830,9 +854,9 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
-            ->orderByEventDate(\Criteria::DESC)
+            ->orderByEventDate(\Criteria::ASC)
+            ->filterByIsOpen(true)
             ->find()
         ;
 
@@ -847,6 +871,14 @@ class EventsController extends CoreController
         if ($order instanceof Orders) {
             $request = $this->getRequest();
 
+            // remove any discount lines if changing event
+            OrdersLinesQuery::create()
+                ->filterByOrdersId($order->getId())
+                ->filterByType('discount')
+                ->find()
+                ->delete();
+            ;
+
             list($id, $code) = explode(':', $request->get('type'));
             $order->setEventsId(null);
 
@@ -859,6 +891,7 @@ class EventsController extends CoreController
             $hostess = $request->get('hostess');
             if (empty($hostess)) {
                 $order->clearAttributesByKey('is_hostess_order');
+                $order->clearAttributesByKey('is_hostess_order_calculated');
             } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
             }

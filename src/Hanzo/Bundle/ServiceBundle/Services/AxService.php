@@ -99,6 +99,8 @@ class AxService
         $shipping_cost = 0;
         $payment_cost = 0;
         $handeling_fee = 0;
+        $hostess_discount = 0;
+        $line_discount = 0;
 
         foreach ($lines as $line) {
             switch ($line->getType()) {
@@ -118,6 +120,23 @@ class AxService
                 case 'payment.fee': // TODO: hf@bellcom.dk: eh... only for gothia?
                     $handeling_fee += $line->getPrice();
                     break;
+
+                case 'discount':
+                    switch ($line->getProductsSku()) {
+                        case 'discount.hostess':
+                            $hostess_discount = $line->getPrice();
+                            break;
+                        case 'discount.gift':
+                        case 'discount.friend':
+                        case 'discount.group':
+                        case 'discount.private':
+                            $line_discount = $line->getProductsName();
+                            if ($line_discount < 0) {
+                                $line_discount = $line_discount * -1;
+                            }
+                            break;
+                    }
+                    break;
             }
         }
 
@@ -134,15 +153,27 @@ class AxService
             $line->SalesUnit     = $product->getUnit();
 
             $discount = $product->getOriginalPrice() - $product->getPrice();
+
             if ($product->getOriginalPrice() && $discount > 0) {
                 $discount_in_percent = 100 / ($product->getOriginalPrice() / $discount);
             }
 
             if ($discount_in_percent) {
                 $line->LineDiscPercent = number_format($discount_in_percent, 4, '.', '');
+            } elseif ($line_discount) {
+                $line->LineDiscPercent = $line_discount;
             }
 
             $line->lineText = $product->getProductsName();
+            $salesLine[] = $line;
+        }
+
+        if ($hostess_discount) {
+            $line = new stdClass();
+            $line->ItemId = 'HOSTESSDISCOUNT';
+            $line->SalesPrice = number_format($hostess_discount, 4, '.', '');
+            $line->SalesQty = 1;
+            $line->SalesUnit = 'Stk.';
             $salesLine[] = $line;
         }
 
@@ -208,9 +239,9 @@ class AxService
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
-        $salesTable->SalesGroup              = ''; // FIXME (initialer på konsulent)
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
 
+        $salesTable->SalesGroup = '';
         if ($event = $order->getEvents()) {
             $salesTable->SalesGroup = $event->getCustomersRelatedByConsultantsId()->getConsultants()->getInitials();
         }
@@ -318,6 +349,8 @@ class AxService
         switch ($ct->AddressCountryRegionId) {
             case 'SE':
             case 'NO':
+            case 'FI':
+            case 'NL':
                 $sc->endpointDomain = $ct->AddressCountryRegionId;
                 break;
         }

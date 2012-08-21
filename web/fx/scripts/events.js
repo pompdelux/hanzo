@@ -80,6 +80,8 @@ var events = (function($) {
               $('#customers_id', $c_form).val(response.data.id);
               $('#customers_accept', $c_form).prop('required', false).click();
               $('.input', $form).val('');
+            } else {
+              dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
             }
           }
           dialoug.stopLoading();
@@ -113,6 +115,11 @@ if ($("#calendar").length) {
 if ($('#body-basket select#sales-type').length) {
   events.choose_evet_type_init();
 }
+
+$('#select-archived-events .open-menu').on('click', function(event){
+  event.preventDefault();
+  $(this).next().slideToggle();
+});
 
 
 $('#body-event #participants a.delete').on('click', function(event) {
