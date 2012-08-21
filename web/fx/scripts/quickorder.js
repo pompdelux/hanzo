@@ -71,7 +71,7 @@ var quickorder = (function($) {
     $('#size').on('keydown mouseup blur' ,function(e) {
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which;
-            if (keyCode == 9) {
+            if (keyCode === 9 || keyCode === 13) {
                 e.preventDefault();
                 getColor();
             }
@@ -141,7 +141,7 @@ var quickorder = (function($) {
     $('#color').on('keydown mouseup blur' ,function(e){
         if (e.type == 'keydown') {
             var keyCode = e.keyCode || e.which;
-            if (keyCode == 9) {
+            if (keyCode === 9 || keyCode === 13) {
                 e.preventDefault();
 
                 if($(this).val() !== ''){
