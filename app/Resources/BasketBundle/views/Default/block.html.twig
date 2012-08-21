@@ -1,8 +1,11 @@
-{% if products %}
   {% if embedded == false %}
   <form action="{{ url('basket_update') }}" method="post">
   {% endif %}
+    {% if products %}
     <table class="product-table">
+    {% else %}
+    <table class="product-table visuallyhidden">
+    {% endif %}
       <thead>
         <tr>
           <th class="left">{{ "products"|trans }}</th>
@@ -83,7 +86,7 @@
     </div>
   {% endif %}
 
-{% else %}
+{% if products|length == 0 %}
   <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
   <div class="buttons">
     {% if continue_shopping is defined %}

@@ -40,7 +40,8 @@ class DefaultController extends CoreController
         return $this->render('QuickOrderBundle:Default:index.html.twig',
          	array(
          		'page_type' => 'quickorder',
-         		'products' => $products
+         		'products' => $products,
+                'embedded' => false
          	)
         );
     }
