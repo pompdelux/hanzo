@@ -28,13 +28,13 @@ class StatisticsController extends CoreController
                 case 'thisweek':
                     $date_filter['min'] = date('d-m-Y',strtotime('Monday this week'));
                     $start = $date_filter['min'];
-                    $date_filter['max'] = date('d-m-Y',strtotime('Sunday this week'));
+                    $date_filter['max'] = date('d-m-Y',strtotime('Monday next week'));
                     $end = $date_filter['max'];
                     break;
                 case 'thismonth':
                     $date_filter['min'] = date('d-m-Y',strtotime('first day of this month'));
                     $start = $date_filter['min'];
-                    $date_filter['max'] = date('d-m-Y',strtotime('last day of this month'));
+                    $date_filter['max'] = date('d-m-Y',strtotime('first day of next month'));
                     $end = $date_filter['max'];
                     break;
             }
@@ -45,7 +45,7 @@ class StatisticsController extends CoreController
 
             $date_filter['min'] = strtotime($start);
             //$date_filter['max'] = strtotime($end);
-            $date_filter['max'] = strtotime(date("Y-m-d", strtotime($end)) . " +1 day");
+            $date_filter['max'] = strtotime(date("d-m-Y", strtotime($end)) . " +1 day");
         }else{
             // Default period is TODAY
             $date_filter['min'] = date('d-m-Y', time());
@@ -65,6 +65,7 @@ class StatisticsController extends CoreController
         );
         $orders_amount = null;
         $orders_price = null;
+
         if($domain_key){
             $orders_amount = OrdersLinesQuery::create()
                 ->filterByType('product')
@@ -82,7 +83,7 @@ class StatisticsController extends CoreController
                     ->joinOrdersAttributes()
                 ->endUse()
                 ->select(array('CreatedAt', 'TotalProducts', 'Orders.Id', 'OrdersAttributes.CValue'))
-                ->groupBy('Id')
+                ->groupBy('OrdersId')
                 ->orderBy('CreatedAt')
                 ->find($this->getDbConnection())
             ;
@@ -116,10 +117,9 @@ class StatisticsController extends CoreController
                         'CreatedAt' => $order['CreatedAt']
                     );
                 $orders_array[$order['CreatedAt']]['TotalProducts'] += $order['TotalProducts'];
-                $orders_array[$order['CreatedAt']]['TotalOrders'] += 1; //$order['TotalOrders'];
-                //$orders_array[$order['CreatedAt']]['CreatedAt'] = $order['CreatedAt'];
+                $orders_array[$order['CreatedAt']]['TotalOrders'] += 1; 
 
-                $orders_total['sumorders'] += 1; //$order['TotalOrders'];
+                $orders_total['sumorders'] += 1; 
                 $orders_total['sumproducts'] += $order['TotalProducts'];
             }
 
