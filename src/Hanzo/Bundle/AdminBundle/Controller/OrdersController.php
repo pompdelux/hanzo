@@ -50,10 +50,10 @@ class OrdersController extends CoreController
             $q_clean = $this->getRequest()->get('q', null);
             $q = '%'.$q_clean.'%';
             $orders = $orders->filterByCustomersId($q_clean)
-            	->_or()
-            	->filterById($q_clean)
-            	->_or()
-            	->filterByEmail($q)
+                ->_or()
+                ->filterById($q_clean)
+                ->_or()
+                ->filterByEmail($q)
             ;
         }
 
@@ -189,7 +189,7 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()->findOneById($order_id);
+        $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -201,8 +201,8 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers(), true);
-        $order = $this->get('ax_manager')->sendOrder($order, true);
+        $debtor = $this->get('ax_manager')->sendDebtor($order->getCustomers($this->getDbConnection()), true, $this->getDbConnection());
+        $order = $this->get('ax_manager')->sendOrder($order, true, $this->getDbConnection());
 
         if ('json' === $this->getFormat()) {
             $html = '<h2>Debtor:</h2><pre>'.print_r($debtor, 1).'</pre><h2>Order:</h2><pre>'.print_r($order,1).'</pre>';
@@ -237,11 +237,7 @@ class OrdersController extends CoreController
             throw new AccessDeniedException();
         }
 
-        $order = OrdersQuery::create()
-            ->filterById($order_id)
-            ->findOne($this->getDbConnection())
-        ;
-
+        $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -257,6 +253,7 @@ class OrdersController extends CoreController
         OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->filterByOrdersId($order_id)
+            ->find()
             ->delete($this->getDbConnection());
 
         $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
