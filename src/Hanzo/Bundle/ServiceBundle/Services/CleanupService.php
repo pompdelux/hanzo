@@ -51,7 +51,7 @@ class CleanupService
         $orders = OrdersQuery::create()
             ->filterByState(0, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
-            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
+            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
             ->filterByInEdit(false)
             ->find()
         ;
@@ -109,21 +109,6 @@ class CleanupService
         }
 
         return $count;
-
-        // // should _not_ be necessary, but...
-        // $orders = OrdersQuery::create()
-        //     ->filterByInEdit(true)
-        //     ->filterByState(array(
-        //         Orders::STATE_BEING_PROCESSED,
-        //         Orders::STATE_SHIPPED,
-        //     ))
-        //     ->find()
-        // ;
-
-        // foreach ($orders as $order) {
-        //     $order->setInEdit(false);
-        //     $order->save();
-        // }
 
         Propel::setForceMasterConnection(false);
     }

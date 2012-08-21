@@ -242,8 +242,12 @@ class AxService
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
 
         $salesTable->SalesGroup = '';
-        if ($event = $order->getEvents()) {
-            $salesTable->SalesGroup = $event->getCustomersRelatedByConsultantsId()->getConsultants()->getInitials();
+        if ($event = $order->getEvents($con)) {
+            $salesTable->SalesGroup = $event
+                ->getCustomersRelatedByConsultantsId($con)
+                ->getConsultants($con)
+                ->getInitials()
+            ;
         }
 
         $salesOrder = new stdClass();

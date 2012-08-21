@@ -34,8 +34,16 @@ var events = (function($) {
 
       var goto = this.href;
       var $form = $('form#select-event-type');
-      $.post($form.attr('action'), $form.serialize(), function() {
-        window.location.href = goto;
+
+      $.ajax({
+        type: 'POST',
+        url: $form.attr('action'),
+        data: $form.serialize(),
+        success: function() {
+          window.location.href = goto;
+        },
+        dataType: 'json',
+        async: false
       });
     });
   };

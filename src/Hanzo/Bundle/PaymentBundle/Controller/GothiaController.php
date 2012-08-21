@@ -122,6 +122,7 @@ class GothiaController extends CoreController
             $api = $this->get('payment.gothiaapi');
             $response = $api->call()->checkCustomer( $customer );
         } catch( GothiaApiCallException $g ) {
+            error_log(__LINE__.':'.__FILE__.' '.$g->getMessage()); // hf@bellcom.dk debugging
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
@@ -196,6 +197,8 @@ class GothiaController extends CoreController
                     try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
                     } catch( GothiaApiCallException $g ) {
+                        error_log(__LINE__.':'.__FILE__.' '.$g->getMessage()); // hf@bellcom.dk debugging
+
                         return $this->json_response(array(
                             'status' => FALSE,
                             'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
@@ -215,6 +218,8 @@ class GothiaController extends CoreController
         try {
             $response = $api->call()->placeReservation( $customer, $order );
         } catch( GothiaApiCallException $g ) {
+            error_log(__LINE__.':'.__FILE__.' '.$g->getMessage()); // hf@bellcom.dk debugging
+
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,

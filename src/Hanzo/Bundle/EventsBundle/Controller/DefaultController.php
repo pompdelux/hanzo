@@ -49,9 +49,9 @@ class DefaultController extends CoreController
         // Always perfer the post id
         if ( !$customer_id ) // if no customer id has been posted
         {
-          //if ($consultant->getId() != $order->getCustomersId()) {
+          if ($consultant->getId() != $order->getCustomersId()) {
               $customer_id = $order->getCustomersId();
-          //}
+          }
         }
 
         $hanzo = Hanzo::getInstance();
@@ -96,8 +96,9 @@ class DefaultController extends CoreController
                 if (!$customer->getPassword()) {
                     $customer->setPassword($pwd);
                 } elseif ($customer->isNew()) {
-                    $customer->setPassword(sha1($customer->getPassword()));
-                    $customer->setPasswordClear($customer->getPassword());
+                    $pwd = $customer->getPassword();
+                    $customer->setPassword(sha1($pwd));
+                    $customer->setPasswordClear($pwd);
                 }
 
                 $address->setFirstName( $customer->getFirstName() );
