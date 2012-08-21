@@ -209,7 +209,7 @@ var quickorder = (function($) {
                               <td class="right quantity">'+quantity+'</td> \
                               <td class="right total">'+response.latest.price*quantity+'</td> \
                               <td class="actions"> \
-                                <a href="'base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+ExposeTranslation.get('js:delete')+'"></a> \
+                                <a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+ExposeTranslation.get('js:delete')+'"></a> \
                                 <a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+ExposeTranslation.get('js:edit')+'"></a> \
                               </td> \
                             </tr>');

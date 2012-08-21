@@ -294,6 +294,14 @@
                 <source>event.user.email.not.found</source>
                 <target>Der er ikke oprettet nogen kunde med den indtastede emailadresse.</target>
             </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Omvang</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Kleur</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
