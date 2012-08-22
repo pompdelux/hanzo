@@ -204,6 +204,7 @@ var quickorder = (function($) {
                                 </div> \
                               </td> \
                               <td class="right date"> \
+                              '+response.latest.expected_at+' \
                               </td> \
                               <td class="right price">'+response.latest.single_price+'</td> \
                               <td class="right quantity">'+quantity+'</td> \
