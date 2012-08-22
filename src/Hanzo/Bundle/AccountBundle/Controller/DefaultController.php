@@ -31,7 +31,10 @@ class DefaultController extends CoreController
     {
         $session = $this->getRequest()->getSession();
 
-        if ($session->has('in_edit') && $this->getRequest()->get('stop')) {
+        //if ($session->has('in_edit') && $this->getRequest()->get('stop')) {
+
+        // if we access the account page vith an active "edit" we close it.
+        if ($session->has('in_edit')) {
             $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersPeer::getCurrent()));
         }
 
