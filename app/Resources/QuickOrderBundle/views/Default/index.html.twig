@@ -30,10 +30,8 @@
       <input type="button" id="reset" name="reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}" style="display:none">
       <div id="autocomplete-container"></div>
   </form>
-  {% if products %}
-    {% include 'BasketBundle:Default:block.html.twig' %}
-  {% else %}
-  <form action="http://hanzo.xx/app_dev.php/da_DK/update-basket" method="post">
+
+  <form action="{{ url('basket_update') }}" method="post">
     <table class="product-table">
       <thead>
         <tr>
@@ -45,22 +43,56 @@
           <th class=""></th>
         </tr>
       </thead>
-      <tbody>    
+      <tbody>
+    {% for product in products %}
+        <tr>
+          <td class="image">
+            {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
+            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+              <a href="{{ product.url }}">{{ product.products_name }}</a>
+              <div class="size">
+                <label>{{ "size"|trans }}:</label>
+                <span>{{ product.products_size }}</span>
+              </div>
+              <div class="color">
+                <label>{{ "color"|trans }}:</label>
+                <span>{{ product.products_color }}</span>
+              </div>
+            </div>
+          </td>
+          <td class="right date">
+            {% if product.expected_at %}
+              {{ product.expected_at|date('d-m-Y') }}
+            {% endif %}
+          </td>
+          <td class="right price">{{ product.price|money }}</td>
+          <td class="right quantity">{{ product.quantity }}</td>
+          <td class="right total">{{ (product.price * product.quantity)|money }}</td>
+          <td class="actions">
+            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"delete"|trans }) }}</a>
+            <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"edit"|trans }) }}</a>
+          </td>
+        </tr>
+    {% endfor %}
       </tbody>
       <tfoot>
         <tr>
           <td colspan="4">{{ "total"|trans }}:</td>
-          <td class="right total">0.00</td>
+          <td class="right total">{{ total|money }}</td>
           <td></td>
         </tr>
       </tfoot>
     </table>
   </form>
+  {% if delivery_date %}
+    {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout')|raw }}
+  {% else %}
+    {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
+  {% endif %}
+
   <div class="buttons">
     <a class="button right proceed" style="display:none;" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
   </div>
-  {% endif %}
-
 </div>
 
 {% endblock %}
