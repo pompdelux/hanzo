@@ -570,11 +570,6 @@ class DefaultController extends CoreController
             $this->get('event_dispatcher')->dispatch('order.edit.done', new FilterOrderEvent($order));
         }
 
-        if ( $_SERVER['REMOTE_ADDR'] == '90.185.206.100' )
-        {
-          $session->save();
-        }
-
         // one-to-one, we can only have one session_id or order in the database....
         $session->migrate();
 
@@ -607,6 +602,9 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();
         $session->remove('order_id');
+
+        // one-to-one, we can only have one session_id or order in the database....
+        $session->migrate();
 
         return $this->render('CheckoutBundle:Default:failed.html.twig', array(
             'error' => '', // NICETO: pass error from paymentmodule to this page
