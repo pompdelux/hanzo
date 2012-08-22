@@ -36,6 +36,7 @@
                   // remove the proceed button if there are no products in the cart
                   if (0 === response.data.quantity) {
                     $('.buttons a.button.proceed').remove();
+                    $('.buttons a.button.proceed-to-basket').remove(); // Used on quickorder
                   }
                 }
               }

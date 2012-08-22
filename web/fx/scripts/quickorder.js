@@ -214,10 +214,10 @@ var quickorder = (function($) {
                               </td> \
                             </tr>');
                         $('table tfoot td.total').html(response.data);
-                        if($('.buttons a.proceed').length > 0){
-                            $('.buttons a.proceed').show();
+                        if($('.buttons a.proceed-to-basket').length > 0){
+                            $('.buttons a.proceed-to-basket').show();
                         }else{
-                            $('.buttons').append('<a class="button right proceed" href="'+base_url+'checkout">'+ExposeTranslation.get('js:proceed')+'</a>')
+                            $('.buttons').append('<a class="button right proceed-to-basket" href="'+base_url+'basket">'+ExposeTranslation.get('js:proceed')+'</a>')
                         }
                     }
                     _resetForm();
