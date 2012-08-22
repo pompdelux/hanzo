@@ -5,4 +5,4 @@ DataIOBundle_update_system:
 
 _session_migrate_test:
     pattern:  /test-migrate/{step}
-    defaults: { _controller: DataIOBundle:Default:testMigrateAction}
+    defaults: { _controller: DataIOBundle:Default:testMigrate }
