@@ -192,7 +192,7 @@ var quickorder = (function($) {
                             <tr> \
                               <td class="image"><img src="'+img+'" alt="'+master+'"> \
                                 <div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> \
-                                  <a href="'+response.data.url+'">'+master+'</a> \
+                                  <a href="'+base_url+'product/view/'+response.latest.id+'">'+master+'</a> \
                                   <div class="size"> \
                                     <label>'+ExposeTranslation.get('js:size')+':</label> \
                                     <span>'+size+'</span> \
