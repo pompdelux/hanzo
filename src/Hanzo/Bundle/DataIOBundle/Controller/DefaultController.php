@@ -52,4 +52,42 @@ class DefaultController extends CoreController
             return new Response( 'Could not verify request', 500, array('Content-Type' => 'text/plain') );
         }
     }
+
+    /**
+     * testMigrateAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function testMigrateAction( $step )
+    {
+        $hanzo = Hanzo::getInstance();
+        $session = $hanzo->getSession();
+
+        switch ($step) 
+        {
+          case 1:
+              $session->set('order_id');
+            break;
+          
+          case 2:
+              $session->remove('order_id');
+              $session->migrate();
+            break;
+
+          case 3:
+              $session->remove('order_id');
+              $session->save();
+              $session->migrate();
+              break;
+        }
+
+        $orderId = $session->get('order_id');
+
+        if ( $orderId && $step > 1 )
+        {
+            return new Response( 'Order id is:'.$session->get('order_id'), 500, array('Content-Type' => 'text/plain') );
+        }
+
+        return new Response( 'Order id is:'.$session->get('order_id'), 200, array('Content-Type' => 'text/plain') );
+    }
 }
