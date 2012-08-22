@@ -90,4 +90,39 @@ class DefaultController extends CoreController
 
         return new Response( 'Order id is:'.$session->get('order_id'), 200, array('Content-Type' => 'text/plain') );
     }
+
+    /**
+     * testOrderAction
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function testOrderAction( $state )
+    {
+        $order = OrdersPeer::getCurrent();
+
+        switch ($state) 
+        {
+          case 'empty':
+              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) 
+              {
+                  return new Response( 'Empty', 200, array('Content-Type' => 'text/plain') );
+              }
+              else
+              {
+                  return new Response( 'Not empty', 500, array('Content-Type' => 'text/plain') );
+              }
+              break;
+
+          case 'full':
+              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) 
+              {
+                  return new Response( 'Empty', 500, array('Content-Type' => 'text/plain') );
+              }
+              else
+              {
+                  return new Response( 'Not empty', 200, array('Content-Type' => 'text/plain') );
+              }
+              break;
+        }
+    }
 }
