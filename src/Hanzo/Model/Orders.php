@@ -301,10 +301,10 @@ class Orders extends BaseOrders
 
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
-            ->filterByVersionId($this->getVersionId(), \Criteria::NOT_EQUAL)
+            ->filterByVersionId($this->getVersionId(), \Criteria::LESS_THAN)
             ->orderByVersionId('desc')
             ->findOne()
-            ;
+        ;
 
         return $this->toVersion($version->getVersionId());
     }
