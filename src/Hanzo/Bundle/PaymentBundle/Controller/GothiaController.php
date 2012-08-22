@@ -46,13 +46,12 @@ class GothiaController extends CoreController
      **/
     public function paymentAction()
     {
-        $customer = CustomersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent();
 
-        if ($customer->isNew()) {
+        if ($order->isNew()) {
             return $this->redirect($this->generateUrl('_checkout'));
         }
 
-        $order = OrdersPeer::getCurrent();
         $gothiaAccount = $order->getCustomers()->getGothiaAccounts();
 
         // No gothia account has been created and associated with the customer, so lets do that
