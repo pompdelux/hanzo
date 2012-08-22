@@ -79,6 +79,8 @@ class Orders extends BaseOrders
 
     protected $ignore_delete_constraints = false;
 
+    protected $pdo_con = null;
+
     /**
      * Create a new version of the current order.
      *
@@ -109,7 +111,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
             ->findOne()
-            ;
+        ;
 
         if ($version_id) {
             $version_id = $version_id->getVersionId() + 1;
@@ -987,6 +989,10 @@ class Orders extends BaseOrders
 
     public function getAttributes($con = null)
     {
+        if ($this->pdo_con) {
+            $con = $this->pdo_con;
+        }
+
         $attributes = new \stdClass();
         foreach ($this->getOrdersAttributess(null, $con) as $attr) {
             $ns = str_replace(array(':', '.'), '_', $attr->getNs());
@@ -1088,7 +1094,7 @@ class Orders extends BaseOrders
 
         $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
 
-        $customer = CustomersQuery::create()->findOneById( $this->getCustomersId() );
+        $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
 
         return $api->call()->cancel( $customer, $this );
     }
@@ -1132,11 +1138,16 @@ class Orders extends BaseOrders
         return $this->ignore_delete_constraints;
     }
 
+
     /**
      * wrap delete() to cleanup payment and ax
      */
     public function delete(PropelPDO $con = null)
     {
+        if ($con) {
+            $this->pdo_con = $con;
+        }
+
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             $this->cancelPayment();
             Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);

@@ -287,6 +287,7 @@ class OrdersController extends CoreController
             ->filterById($order_id)
             ->findOne($this->getDbConnection())
         ;
+
         if ($order) {
             $order->setIgnoreDeleteConstraints(true);
             $order->delete($this->getDbConnection());
