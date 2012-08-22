@@ -362,6 +362,10 @@
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
             </trans-unit>
+            <trans-unit id="stop.editing.order">
+                <source>stop.editing.order</source>
+                <target>Stop editering</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

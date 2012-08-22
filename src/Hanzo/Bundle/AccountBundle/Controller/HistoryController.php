@@ -85,6 +85,8 @@ class HistoryController extends CoreController
 
         $result = OrdersQuery::create()
             ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_EQUAL)
+            ->_or()
+            ->filterByInEdit(true)
             ->orderByCreatedAt(Criteria::DESC)
             ->limit($limit)
             ->filterByCustomersId($customer->getId())
@@ -124,6 +126,7 @@ class HistoryController extends CoreController
 
             $orders[] = array(
                 'id' => $record->getId(),
+                'in_edit' => $record->getInEdit(),
                 'can_modify' => (($record->getState() <= Orders::STATE_PENDING) ? true : false),
                 'status' => str_replace('-', 'neg.', $record->getState()),
                 'created_at' => $record->getCreatedAt(),
