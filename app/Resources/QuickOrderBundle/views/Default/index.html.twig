@@ -91,7 +91,11 @@
   {% endif %}
 
   <div class="buttons">
+    {% if products %}
+    <a class="button right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+    {% else %}
     <a class="button right proceed" style="display:none;" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+    {% endif %}
   </div>
 </div>
 

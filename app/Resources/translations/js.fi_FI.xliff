@@ -306,6 +306,10 @@
                 <source>color</source>
                 <target>Väri</target>
             </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Jatkaa</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -290,6 +290,10 @@
                 <source>color</source>
                 <target>Färg</target>
             </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Fortsätt</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -303,6 +303,10 @@
                 <source>color</source>
                 <target>Farge</target>
             </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Fortsette</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

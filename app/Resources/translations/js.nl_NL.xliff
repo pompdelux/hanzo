@@ -302,6 +302,10 @@
                 <source>color</source>
                 <target>Kleur</target>
             </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Voortgaan</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
