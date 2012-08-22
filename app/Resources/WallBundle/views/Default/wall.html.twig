@@ -118,18 +118,18 @@
                   <? if(data[i].num_likes > 0) {?>
                     <i>
                       <? if(data[i].num_likes > 1) {?>
-                        <?=ExposeTranslation.get('js:wall.likes.plural.%likes%', {'%likes%' : data[i].num_likes})?>
+                        <?=ExposeTranslation.get('js:wall.likes.plural.%likes%', {'likes' : data[i].num_likes})?>
                       <? }else {?>
-                        <?=ExposeTranslation.get('js:wall.likes.single.%likes%', {'%likes%' : data[i].num_likes})?>
+                        <?=ExposeTranslation.get('js:wall.likes.single.%likes%', {'likes' : data[i].num_likes})?>
                       <? }?>
                     </i>
                   <? }?>
                   <? if(data[i].num_dislikes > 0) {?>
                     <u>
                       <? if(data[i].num_dislikes > 1) {?>
-                        <?=ExposeTranslation.get('js:wall.dislikes.plural.%likes%', {'%likes%' : data[i].num_dislikes})?>
+                        <?=ExposeTranslation.get('js:wall.dislikes.plural.%likes%', {'likes' : data[i].num_dislikes})?>
                       <? }else {?>
-                        <?=ExposeTranslation.get('js:wall.dislikes.single.%likes%', {'%likes%' : data[i].num_dislikes})?>
+                        <?=ExposeTranslation.get('js:wall.dislikes.single.%likes%', {'likes' : data[i].num_dislikes})?>
                       <? }?>
                     </u>
                   <? }?>
