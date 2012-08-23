@@ -25,9 +25,10 @@ use Hanzo\Model\Orders,
     Hanzo\Model\ProductsDomainsPrices,
     Hanzo\Model\ProductsDomainsPricesPeer,
     Hanzo\Model\ProductsDomainsPricesQuery,
-    Hanzo\Model\ConsultantNewsletterDrafts
+    Hanzo\Model\ConsultantNewsletterDrafts,
+    Hanzo\Model\GothiaAccounts,
+    Hanzo\Model\GothiaAccountsQuery
     ;
-
 
 use Exception;
 
@@ -48,51 +49,21 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $missingNames = array(
-            760004,
-            760004,
-            760062,
-            760118,
-            760121,
-            760135,
-            760156,
-            760179,
-            760186,
-            760199,
-            760205,
-            760250,
-            760259,
-            760285,
-            760298,
-            760310,
-            760330,
-            760333,
-            760340,
-            760363,
-            760372,
-            760374,
-            760375,
-            760404,
-            760409,
-            760411,
-            760419,
-            760428,
-            760430,
-            760433,
-            760438,
-            760455,
-            760467,
-            760469,
-            760473,
-            760477,
-            760493,
-            760505,
-            760526,
-            760537,
-            760539,
-            760546,
-            760547,
-            760562, 
+        $accounts = GothiaAccountsQuery::create()
+            ->find();
+
+        foreach ($accounts as $account) 
+        {
+            $ssn = $accounts->getSocialSecurityNum();
+            if ( strlen($ssn) > 10 && substr($ssn,0,2) == 19)
+            {
+                echo $ssn."\n";
+                return;
+            }
+        }
+
+
+        /*$missingNames = array(
         );
 
         foreach ($missingNames as $orderId) 
@@ -122,7 +93,7 @@ class TestCommand extends ContainerAwareCommand
             }
 
             $order->save();
-        }
+        }*/
 
         /*$order = OrdersPeer::retrieveByPK(759830);
 

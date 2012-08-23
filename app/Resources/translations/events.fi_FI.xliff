@@ -328,7 +328,7 @@
             </trans-unit>
             <trans-unit id="events.create_customer.description.text">
                 <source>events.create_customer.description.text</source>
-                <target><![CDATA[<b>Ny kunde:</b> Indtast kundens telefonnummer og klik på knappen Hent.<br><b>Eksisterende kunde:</b> Indtast kundens e-mailadresse og klik på knappen Hent.<br><br><span style="font-weight:bold; color:#A10000;">Bemærk:</span> På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger)]]></target>
+                <target><![CDATA[<b>Uusi asiakas: </b> Syötä asiakkaan puhelinnumero ja klikkaa Hae.<br><b>Perustettu asiakas:</b> Syötä asiakkaan sähköposti osoite ja klikkaa Hae.<br><br><span style="font-weight:bold; color:#A10000;">Huom:</span> Tälle sivulle täytetään yksityis yhteystiedot ( eikä mahdollisia yrityksen tietoja)]]></target>
             </trans-unit>
             <trans-unit id="events.fetch_customer.placeholder">
                 <source>events.fetch_customer.placeholder</source>

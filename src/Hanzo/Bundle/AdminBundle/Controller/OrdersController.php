@@ -253,8 +253,8 @@ class OrdersController extends CoreController
         OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->filterByOrdersId($order_id)
-            ->find()
-            ->delete($this->getDbConnection());
+            ->delete($this->getDbConnection())
+        ;
 
         $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
         $message = $status ?
@@ -287,6 +287,7 @@ class OrdersController extends CoreController
             ->filterById($order_id)
             ->findOne($this->getDbConnection())
         ;
+
         if ($order) {
             $order->setIgnoreDeleteConstraints(true);
             $order->delete($this->getDbConnection());
