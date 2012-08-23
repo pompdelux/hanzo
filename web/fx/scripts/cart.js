@@ -46,7 +46,7 @@
       });
 
       $table.on('click', 'a.edit', function(event) {
-        $('#cboxOverlay').css({"opacity": 0.9, "cursor": "auto"}).show();
+        $('#cboxOverlay').css({"opacity": 0.9, "cursor": "auto", "z-index": 9998}).show();
 
         event.preventDefault();
 
