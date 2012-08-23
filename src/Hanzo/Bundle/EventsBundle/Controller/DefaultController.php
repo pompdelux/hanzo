@@ -155,7 +155,14 @@ class DefaultController extends CoreController
 
                 if ($customer instanceof Customers) {
                     $c = new Criteria();
-                    $c->add(AddressesPeer::TYPE, 'payment');
+                    $c->addAscendingOrderByColumn(sprintf(
+                        "FIELD(%s, '%s', '%s')",
+                        AddressesPeer::TYPE,
+                        'payment',
+                        'shipping'
+                    ));
+                    $c->setLimit(1);
+
                     $address = $customer->getAddressess($c);
                     $address = $address->getFirst();
 
