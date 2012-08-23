@@ -82,8 +82,13 @@ class DefaultController extends CoreController
                     'id' => $product->getId(),
                     'single_price' => Tools::moneyFormat($price['price']),
                     'price' => Tools::moneyFormat($price['price'] * $quantity),
-                    'expected_at' => $date
+                    'expected_at' => ''
                 );
+
+                $t = strtotime($date);
+                if (($t > 0) && ($t > time())) {
+                    $latest['expected_at'] = $date;
+                }
 
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
