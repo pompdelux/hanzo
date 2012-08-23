@@ -373,7 +373,7 @@ class DeadOrderService
     /**
      * getOrders
      *
-     * Get all orders that are older than 3 hours, which have not been finished, payed via dibs, and have not reached a state heigher than 0
+     * Get all orders that are older than 3 hours, which have not been finished, payed via dibs, and have not reached a state heigher than 0... and are not being edited
      *
      * NICETO: priority: low, support limit
      * @param int $limit
@@ -387,6 +387,7 @@ class DeadOrderService
             //->filterByFinishedAt(null)
             ->filterByBillingMethod('dibs')
             ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
+            ->filterByInEdit(false)
             ->find();
 
         return $orders;
