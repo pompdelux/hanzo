@@ -378,7 +378,7 @@
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
-                <target>Stop editering</target>
+                <target>Lopeta tilauksen muokkaus</target>
             </trans-unit>
         </body>
     </file>

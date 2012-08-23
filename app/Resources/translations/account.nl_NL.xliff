@@ -365,7 +365,7 @@
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
-                <target>Stop editering</target>
+                <target>Stop wijzigen order</target>
             </trans-unit>
         </body>
     </file>
