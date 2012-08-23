@@ -85,7 +85,8 @@ class DefaultController extends CoreController
                     'expected_at' => ''
                 );
 
-                $t = strtotime($date);
+                $t = new \DateTime($date);
+                $t = $t->getTimestamp();
                 if (($t > 0) && ($t > time())) {
                     $latest['expected_at'] = $date;
                 }
