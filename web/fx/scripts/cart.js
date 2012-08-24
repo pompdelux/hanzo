@@ -222,6 +222,8 @@
 
                   $('td.price', $tr).text(response.data.sales || response.data.normal);
                   $('td.total', $tr).text(response.data.sales_total || response.data.normal_total);
+                  $('td.actions a.delete', $tr).attr('href',base_url+'remove-from-basket/'+response.data.product_id);
+                  $('td.actions a.edit', $tr).attr('href', response.data.product_id);
 
                   // totals
                   $('#mini-basket a').text(response.data.basket);
