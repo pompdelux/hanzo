@@ -87,10 +87,11 @@ var events = (function($) {
               $('#customers_newsletter', $c_form).parent().remove();
               $('#customers_id', $c_form).val(response.data.id);
               $('.input', $form).val('');
-            } else {
-              dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
             }
+          } else {
+            dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
           }
+
           dialoug.stopLoading();
         },
         error: function() {
