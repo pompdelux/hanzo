@@ -180,14 +180,15 @@ class GothiaController extends CoreController
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
-                $attributes = $oldOrder->getOrdersAttributess()->toArray();
+                $paytype = strtolower( $oldOrder->getBillingMethod() );
+                /*$attributes = $oldOrder->getOrdersAttributess()->toArray();
                 $paytype = false;
 
                 foreach ($attributes as $attribute) {
                     if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) {
                         $paytype = $attribute['CValue'];
                     }
-                }
+                }*/
 
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
