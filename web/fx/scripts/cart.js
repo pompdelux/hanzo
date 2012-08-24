@@ -157,6 +157,7 @@
                   if (product.date) {
                     dialoug.confirm(ExposeTranslation.get('js:notice'), response.message, function(c) {
                       if (c != 'ok') {
+                        $('#cboxOverlay').css({"opacity": 0.9, "cursor": "auto", "z-index": 9998}).show();
                         return;
                       }
                     });
