@@ -54,11 +54,14 @@ class TestCommand extends ContainerAwareCommand
 
         foreach ($accounts as $account) 
         {
-            $ssn = $accounts->getSocialSecurityNum();
+            $ssn = $account->getSocialSecurityNum();
+            $newssn = $ssn;
             if ( strlen($ssn) > 10 && substr($ssn,0,2) == 19)
             {
-                echo $ssn."\n";
-                return;
+                $newssn = substr( $ssn, 2 );
+                echo $ssn.' => '.$newssn."\n";
+                $account->setSocialSecurityNum($newssn);
+                $account->save();
             }
         }
 
