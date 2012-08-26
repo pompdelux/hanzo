@@ -222,7 +222,11 @@ class DefaultController extends CoreController
         $customer = CustomersPeer::getCurrent();
         $countries = CountriesPeer::getAvailableDomainCountries();
 
-        $form = $this->createForm(new CustomersType(false, new AddressesType( $countries )), $customer);
+        $form = $this->createForm(
+            new CustomersType(false, new AddressesType( $countries )),
+            $customer,
+            array('validation_groups' => 'customer_edit')
+        );
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
