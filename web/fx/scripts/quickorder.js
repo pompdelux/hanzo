@@ -188,7 +188,7 @@ var quickorder = (function($) {
                         var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_basket_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "");
                         img = cdn_url + 'images/products/thumb/60x60,' + img + '.jpg';
 
-                        $('table tbody').append(' \
+                        $('table tbody').prepend(' \
                             <tr> \
                               <td class="image"><img src="'+img+'" alt="'+master+'"> \
                                 <div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> \
