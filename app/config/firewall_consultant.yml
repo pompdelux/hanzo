@@ -10,7 +10,7 @@ security:
                 check_path:  login_check
             logout:
                 path:   logout
-                target: /{_locale}/
+                target: /%locale%
                 invalidate_session: true
 
         login_firewall:
@@ -18,7 +18,7 @@ security:
             anonymous:  ~
 
     access_control:
-        - { path: ^/.*/i18n/js, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/.*/i18n/js, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/.*/payment/dibs/callback, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/.*/account/password-forgotten, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
