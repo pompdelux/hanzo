@@ -70,8 +70,8 @@ class MapsExtension extends Twig_Extension
 
         return $env->render('HanzoCMSBundle:Twig:consultants_near_you.html.twig', array(
             'type' => $type,
-            'lat' => number_format($result['lat'], 8, '.', ''),
-            'lon' => number_format($result['lon'], 8, '.', ''),
+            'lat' => number_format((double) $result['lat'], 8, '.', ''),
+            'lon' => number_format((double) $result['lon'], 8, '.', ''),
         ));
     }
 }
