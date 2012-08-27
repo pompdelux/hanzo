@@ -109,37 +109,38 @@ class DefaultController extends CoreController
 
     	$products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
+            ->filterBySku('%'.$name.'%')
             ->filterByIsOutOfStock(FALSE)
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
             ->endUse()
-            ->filterBySku('%'.$name.'%')
             ->groupBySku()
             ->orderBySku()
             ->limit($max_rows)
             ->find()
         ;
 
-        if(!$products instanceof PropelCollection) {
-    		if ($this->getFormat() == 'json') {
-	            return $this->json_response(array(
-	            	'status' => false,
-	            	'message' => $this->get('translator')->trans('quickorder.no.products.found', array(), 'quickorder')
-	            ));
-	        }
-	    }
-
         $result = array();
-        foreach ($products as $product) {
-        	$result[] = $product->getSku();
+        if ($products->count()) {
+            $stock = $this->get('stock');
+            $stock->prime($products);
+            foreach ($products as $product) {
+                if($stock->check($product)){
+            	   $result[] = $product->getSku();
+                }
+            }
+            if(count($result)){
+                return $this->json_response(array(
+                    'status' => true,
+                    'message' => $this->get('translator')->trans('quickorder.products.found', array(), 'quickorder'),
+                    'data' => $result
+                ));
+            }
         }
 
-		if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-            	'status' => true,
-            	'message' => $this->get('translator')->trans('quickorder.products.found', array(), 'quickorder'),
-            	'data' => $result
-            ));
-        }
+        return $this->json_response(array(
+            'status' => false,
+            'message' => $this->get('translator')->trans('quickorder.no.products.found', array(), 'quickorder')
+        ));
     }
 }
