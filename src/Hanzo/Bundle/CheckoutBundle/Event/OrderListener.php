@@ -32,9 +32,10 @@ class OrderListener
     {
         $order = $event->getOrder();
 
-        if ('Sales' == substr($order->getAttributes()->global->domain_key, 0, 5)) {
+        // test ...
+        //if ('Sales' == substr($order->getAttributes()->global->domain_key, 0, 5)) {
             $this->setEditCookie();
-        }
+        //}
 
         // first we create the edit version.
         $order->createNewVersion();
