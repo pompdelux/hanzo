@@ -271,7 +271,11 @@ class GothiaController extends CoreController
     public function testAction()
     {
         $customer  = CustomersPeer::getCurrent();
-        $addresses = $customer->getAddresses();
+
+        $api = $this->get('payment.gothiaapi');
+        $response = $api->call()->checkCustomer( $customer );
+
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
 
         return new Response( 'Test completed', 200, array('Content-Type' => 'text/html'));
     }

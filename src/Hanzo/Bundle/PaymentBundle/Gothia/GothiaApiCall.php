@@ -174,7 +174,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $addresses     = $customer->getAddressess();
         $address       = $addresses[0];
         $gothiaAccount = $customer->getGothiaAccounts();
-        $customerId    = $customer->getId();
+        //$customerId    = $customer->getId();
+        $customerId    = $gothiaAccount->getExternalId();
 
         if ( $this->api->getTest() )
         {
@@ -187,7 +188,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 $address->getAddressLine1().' '.$address->getAddressLine2(),
                 'SE',
                 'SEK',
-                $customerId,
+                null, //$customerId,
                 'Person',
                 null,
                 $gothiaAccount->getDistributionBy(),
@@ -246,12 +247,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function placeReservation( Customers $customer, Orders $order )
     {
-        $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
-        $customerId = $customer->getId();
+        $amount        = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $gothiaAccount = $customer->getGothiaAccounts();
+        //$customerId = $customer->getId();
+        $customerId    = $gothiaAccount->getExternalId();
 
         if ( $this->api->getTest() )
         {
-            $gothiaAccount = $customer->getGothiaAccounts();
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
@@ -291,12 +293,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancelReservation( Customers $customer, Orders $order )
     {
-        $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
-        $customerId = $customer->getId();
+        $amount        = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $gothiaAccount = $customer->getGothiaAccounts();
+        //$customerId    = $customer->getId();
+        $customerId    = $gothiaAccount->getExternalId();
 
         if ( $this->api->getTest() )
         {
-            $gothiaAccount = $customer->getGothiaAccounts();
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 

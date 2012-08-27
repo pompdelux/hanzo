@@ -54,6 +54,15 @@ class TestCommand extends ContainerAwareCommand
 
         foreach ($accounts as $account) 
         {
+            $account->setExternalId( $account->getCustomersId() );
+            $account->save();
+        }
+
+        /*$accounts = GothiaAccountsQuery::create()
+            ->find();
+
+        foreach ($accounts as $account) 
+        {
             $ssn = $account->getSocialSecurityNum();
             $newssn = $ssn;
             if ( strlen($ssn) > 10 && substr($ssn,0,2) == 19)
@@ -63,7 +72,7 @@ class TestCommand extends ContainerAwareCommand
                 $account->setSocialSecurityNum($newssn);
                 $account->save();
             }
-        }
+        }*/
 
 
         /*$missingNames = array(
