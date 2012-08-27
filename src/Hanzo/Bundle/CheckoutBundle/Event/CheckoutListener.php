@@ -191,6 +191,10 @@ class CheckoutListener
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
                 $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', array(), 'checkout');
+
+                // hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here -->>
+                unset( $params['payment_fee'] );
+                // <<-- hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here
             }
         }
 
