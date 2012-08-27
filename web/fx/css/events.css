@@ -97,3 +97,17 @@ form#select-event-type select {
 form#fetch-customer-form .input {
   width: 200px;
 }
+
+form div#form_has_accepted {
+  float: right;
+  padding: 0 10px;
+  display: inline-block;
+  margin-right: 113px;
+}
+form div#form_has_accepted input {
+  float: right;
+  clear: both;
+}
+form div#form_has_accepted label {
+  float: right;
+}

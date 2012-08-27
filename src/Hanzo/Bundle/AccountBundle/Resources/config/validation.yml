@@ -13,22 +13,22 @@ Hanzo\Model\Addresses:
         address_line_1:
             - NotBlank:
                 message: address.address_line_1.required
-                groups: [shipping, company_shipping, payment, overnightbox, customer, customer_edit]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
         postal_code:
             - NotBlank:
                 message: address.postal_code.required
-                groups: [shipping, company_shipping, payment, overnightbox, customer, customer_edit]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
         city:
             - NotBlank:
                 message: address.city.required
-                groups: [shipping, company_shipping, payment, overnightbox, customer, customer_edit]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
         countries_id:
             - NotBlank:
                 message: address.countries_id.required
-                groups: [shipping, company_shipping, payment, overnightbox, customer, customer_edit]
+                groups: [shipping, company_shipping, payment, overnightbox, customer]
             - Type:
                 type: integer
         company_name:
