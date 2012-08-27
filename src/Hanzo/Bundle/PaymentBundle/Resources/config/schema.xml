@@ -6,7 +6,6 @@
     <column name="distribution_by" type="VARCHAR" size="255" required="false"/>
     <column name="distribution_type" type="VARCHAR" size="255" required="false"/>
     <column name="social_security_num" type="VARCHAR" size="12" required="true"/>
-    <column name="external_id" required="true" type="INTEGER" />
     <foreign-key foreignTable="customers" name="fk_gothia_account_to_customer" onDelete="CASCADE">
       <reference local="customers_id" foreign="id"/>
     </foreign-key>
