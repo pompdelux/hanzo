@@ -8,7 +8,11 @@
       </trans-unit>
       <trans-unit id="json_err20">
         <source>json.ssn.to_short</source>
-        <target>Det indtastede personnummer er for kort, det skal være 10 cifre</target>
+        <target>Det indtastede personnummer er for kort, det skal være 10 cifre (YYMMDDXXXX)</target>
+      </trans-unit>
+      <trans-unit id="json.ssn.to_long">
+        <source>json.ssn.to_long</source>
+        <target>Det indtastede personnummer er for langt, det skal være 10 cifre (YYMMDDXXXX)</target>
       </trans-unit>
       <trans-unit id="json_err30">
         <source>json.checkcustomer.failed</source>
