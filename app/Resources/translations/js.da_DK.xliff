@@ -104,7 +104,7 @@
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
-                <target><![CDATA[Du er ved at slette din ordre. Er du helt sikker på at du vil slette hele ordren?<br><br>Hvis du sletter din ordre, vil din kreditkortbetaling automatisk blive slettet.<br><br>Klik på "Slet" for at slette ordren.]]></target>
+                <target><![CDATA[Du er ved at slette din ordre. Er du helt sikker på at du vil slette hele ordren?<br><br>Hvis du sletter din ordre, vil din kreditkortbetaling automatisk blive slettet.<br><br>Klik på "Ok" for at slette ordren.]]></target>
             </trans-unit>
             <trans-unit id="consultant">
                 <source>consultant</source>
