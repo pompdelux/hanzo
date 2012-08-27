@@ -63,10 +63,10 @@ class CheckoutListener
                     $total = $o->getTotalProductPrice();
 
                     // TODO: not hardcoded !
-                    $discount += (($total / 100) * -5);
+                    $discount += (($total / 100) * -5.00);
                 }
 
-                $order->setDiscountLine('discount.hostess', $discount, -5);
+                $order->setDiscountLine('discount.hostess', $discount, -5.00);
             }
 
             $event = $order->getEvents();
