@@ -124,9 +124,15 @@
        */
       var $basket = $('#mini-basket a');
       if ($basket.length) {
-        $.getJSON(base_url + 'miniBasket', function(data) {
-          if (data.status && data.data) {
-            $basket.text(data.data);
+
+        $.ajax({
+          url: base_url + 'miniBasket',
+          dataType: 'json',
+          cache: false,
+          success: function(data) {
+            if (data.status && data.data) {
+              $basket.text(data.data);
+            }
           }
         });
       }
