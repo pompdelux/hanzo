@@ -90,6 +90,7 @@ class CleanupService
 
         $orders = OrdersQuery::create()
             ->filterByInEdit(true)
+            ->filterByBillingMethod('dibs', Criteria::NOT_EQUAL)
             ->filterByUpdatedAt(array('max' => '-3 hours'))
             ->filterByState(Orders::STATE_PENDING, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
