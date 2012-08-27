@@ -2,7 +2,7 @@
 
 if (isset($argv[1]) && $argv[1] == 'live') {
   $db = 'pdl_nl';
-  mysql_connect('192.168.2.137', 'pdl_nl_migrate', 'TEMPMIGRATE111');
+  mysql_connect('192.168.2.217', 'pdl_nl_migrate', 'TEMPMIGRATE111');
 } else {
   $db = 'tmp_xx';
   mysql_connect('localhost', 'root', '');
