@@ -100,6 +100,13 @@ class GothiaController extends CoreController
             ));
         }
 
+        if (strlen($SSN) > 10) {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
+            ));
+        }
+
         $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
         $order         = OrdersPeer::getCurrent();
