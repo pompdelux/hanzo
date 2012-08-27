@@ -343,7 +343,7 @@ class ConsultantsController extends CoreController
 
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
-
+        $start = $end = NULL;
         if (isset($_GET['start']) && isset($_GET['end'])) {
             $start = $this->getRequest()->get('start', null);
             $end = $this->getRequest()->get('end', null);
@@ -362,7 +362,13 @@ class ConsultantsController extends CoreController
         $data = array();
         $data[0]['consultant'] = 'consultant';
 
-        $consultants = ConsultantsQuery::create()->joinCustomers()->find($this->getDbConnection()); // Mangler i data[consultants id]
+        $consultants = ConsultantsQuery::create()
+            ->joinCustomers()
+            ->useCustomersQuery()
+                ->orderByFirstName()
+            ->endUse()
+            ->find($this->getDbConnection())
+        ;
 
         $events = EventsQuery::create()
             ->filterByEventDate($date_filter)
@@ -371,7 +377,7 @@ class ConsultantsController extends CoreController
         ;
 
         for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
-            $data[0][$date] = date('Y-m-d', $date); // Header row with visible dates
+            $data[0][date('Y-m-d', $date)] = date('Y-m-d', $date); // Header row with visible dates
         }
 
         foreach ($consultants as $consultant) {
@@ -379,13 +385,13 @@ class ConsultantsController extends CoreController
             $data[$consultant->getId()][0] = $customer_data->getFirstName(). ' ' . $customer_data->getLastName();
 
             for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
-                $data[$consultant->getId()][$date] = '-';
+                $data[$consultant->getId()][date('Y-m-d', $date)] = '-';
             }
 
         }
 
         foreach ($events as $event) {
-            $data[$event->getConsultantsId()][strtotime($event->getEventDate())] = $event->getType();
+            $data[$event->getConsultantsId()][date('Y-m-d', strtotime($event->getEventDate()))] = $event->getType();
         }
 
         return new Response(
