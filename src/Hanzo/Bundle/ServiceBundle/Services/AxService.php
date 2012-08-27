@@ -297,7 +297,7 @@ class AxService
         if ($comment) {
             $entry->setComment($comment);
         }
-        $entry->save();
+        $entry->save($con);
 
         if (null === $con) {
             Propel::setForceMasterConnection(false);
