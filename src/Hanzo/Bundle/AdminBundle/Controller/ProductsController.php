@@ -691,8 +691,6 @@ class ProductsController extends CoreController
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
-\Propel::getConnection()->useDebug(true);
-
         $stocks = ProductsQuery::create()
             ->leftJoinWithProductsStock()
             ->useProductsStockQuery(null, \Criteria::LEFT_JOIN)
@@ -703,7 +701,6 @@ class ProductsController extends CoreController
             ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->find($this->getDbConnection())
         ;
-error_log(\Propel::getConnection()->getLastExecutedQuery());
 
         // $stocks = ProductsStockQuery::create()
         //     ->useProductsQuery()
