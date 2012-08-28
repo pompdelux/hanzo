@@ -81,4 +81,21 @@ class OrdersPeer extends BaseOrdersPeer
         return OrdersQuery::create()->findOneByPaymentGatewayId($gateway_id);
     }
 
+
+    /**
+     * get edit state
+     * @return boolean true if in edit, false otherwise
+     */
+    public static function inEdit()
+    {
+        if (!empty($_COOKIE['__ice'])) {
+            $session = Hanzo::getInstance()->getSession();
+            if ($session->get('in_edit') && $session->get('order_id')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 } // OrdersPeer

@@ -129,9 +129,16 @@
           url: base_url + 'miniBasket',
           dataType: 'json',
           cache: false,
-          success: function(data) {
-            if (data.status && data.data) {
-              $basket.text(data.data);
+          success: function(response) {
+            if (response.status) {
+              // populate mini basket
+              if (response.data.total) {
+                $basket.text(response.data.total);
+              }
+              // show "in edit" warning
+              if (response.data.warning) {
+                $('div#main').prepend(response.data.warning);
+              }
             }
           }
         });

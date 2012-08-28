@@ -262,6 +262,26 @@ class Tools
         }
     }
 
+    /**
+     * build and return "in order edit warning"
+     * @return string
+     */
+    public static function getInEditWarning()
+    {
+        $hanzo = Hanzo::getInstance();
+        $session = $hanzo->getSession();
+        $trans = $hanzo->container->get('translator');
+        $router = $hanzo->container->get('router');
+
+        $params = array(
+            '%history_url%' => $router->generate('_account_show_order', array('order_id' => $session->get('order_id'))),
+            '%order_id%' => $session->get('order_id'),
+            '%stop_url%' => $router->generate('_account', array('stop' => 1)),
+        );
+
+        return '<div id="in-edit-warning">'.$trans->trans('order.edit.global.notice', $params).'</div>';
+    }
+
 
     /**
      * image helpers

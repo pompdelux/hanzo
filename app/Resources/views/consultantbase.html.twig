@@ -60,13 +60,13 @@
 
   <div id="main" role="main">
 
-    {% if app.session.get('in_edit') %}
+    {# if app.session.get('in_edit') %}
       {{ 'order.edit.global.notice'|trans({
         '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
         '%order_id%' : app.session.get('order_id'),
         '%stop_url%' : url('_account', {stop : 1})
       })|raw }}
-    {% endif %}
+    {% endif #}
 
     {% render 'HanzoCMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {% block content %}{% endblock %}

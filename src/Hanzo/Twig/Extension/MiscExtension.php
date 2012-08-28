@@ -14,6 +14,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\OrdersPeer;
 
 class MiscExtension extends Twig_Extension
 {
@@ -292,6 +293,14 @@ DOC;
                 #}
 
                 return '<a href="'.$cdn.'images/'.$parameters['file'].'" rel="external" class="media_file rewrite filetype-'.$ext.'" data-dateformat="'.$parameters['date_format'].'" data-datelabel="'.$parameters['date_label'].'">'.$parameters['text'].'</a> <em></em> ';
+
+                break;
+
+            case 'edit_warning':
+                if (OrdersPeer::inEdit()) {
+                    return Tools::getInEditWarning();
+                }
+                return '';
 
                 break;
         }
