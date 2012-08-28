@@ -72,11 +72,17 @@ class RedisCache
           $data = ':[S]:' . serialize($data);
         }
 
-        // store cache and set ttl
-        return $this->cache->pipeline(function($pipe) use ($key, $data, $ttl) {
-            $pipe->set($key, trim($data));
-            $pipe->expire($key, $ttl);
-        });
+        return $this->cache->pipeline()
+            ->set($key, trim($data))
+            ->expire($key, $ttl)
+            ->exec()
+        ;
+
+        // // store cache and set ttl
+        // return $this->cache->pipeline(function($pipe) use ($key, $data, $ttl) {
+        //     $pipe->set($key, trim($data));
+        //     $pipe->expire($key, $ttl);
+        // });
     }
 
     /**

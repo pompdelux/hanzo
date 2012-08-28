@@ -165,6 +165,31 @@ class HistoryController extends CoreController
             $msg = $this->get('translator')->trans('order.deleted', array( '%id%' => $order_id ));
             $this->get('session')->setFlash('notice', $msg);
 
+            // NICETO: not hardcoded
+            $attributes = $order->getAttributes();
+            $sw = isset($attributes->global->domain_key) ? $attributes->global->domain_key : '';
+            switch ($sw) {
+                case 'SalesFI':
+                case 'FI':
+                    $bcc = 'orderfi@pompdelux.com';
+                    break;
+                case 'SalesNL':
+                case 'NL':
+                    $bcc = 'ordernl@pompdelux.com';
+                    break;
+                case 'SalesSE':
+                case 'SE':
+                    $bcc = 'order@pompdelux.se';
+                    break;
+                case 'SalesNO':
+                case 'NO':
+                    $bcc = 'order@pompdelux.no';
+                    break;
+                default:
+                    $bcc = 'order@pompdelux.dk';
+                    break;
+            }
+
             // send delete notification
             $mailer = $this->get('mail_manager');
             $mailer->setMessage('order.deleted', array(
@@ -174,12 +199,11 @@ class HistoryController extends CoreController
                 'time' => date('H:i'),
             ));
 
+            $mailer->setBcc($bcc);
             $mailer->setTo($order->getEmail(), $order->getFirstName().' '.$order->getLastName());
             $mailer->send();
 
             // nuke order
-            #$this->get('ax_manager')->deleteOrder($order);
-            #$order->cancelPayment();
             $order->delete();
         }
 
