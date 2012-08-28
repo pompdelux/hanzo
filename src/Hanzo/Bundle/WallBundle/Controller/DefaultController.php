@@ -46,8 +46,6 @@ class DefaultController extends CoreController
             ->groupById()
             ->withColumn('addresses.city', 'city')
             ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
-            ->leftJoin('WallLikes')
-            ->withColumn('wall_likes.status', 'liked')
             ->filterByStatus(true)
             ->where('wall.parent_id IS NULL')
             ->orderByCreatedAt('DESC')
@@ -62,6 +60,14 @@ class DefaultController extends CoreController
                 ->filterByWallId($wall_post->getId())
                 ->orderByStatus('DESC')
                 ->find()
+            ;
+
+            $is_liked = WallLikesQuery::create()
+                ->useCustomersQuery()
+                    ->filterById($this->get('security.context')->getToken()->getUser()->getPrimaryKey())
+                ->endUse()
+                ->filterByWallId($wall_post->getId())
+                ->findOne()
             ;
 
             $likes_arr = null;
@@ -120,7 +126,7 @@ class DefaultController extends CoreController
                 'author' => $wall_post->getAuthor(),
                 'city' => $wall_post->getCity(),
                 'customers_id' => $wall_post->getCustomersId(),
-                'is_liked' => $wall_post->getLiked(),
+                'is_liked' => ($is_liked instanceof WallLikes) ? $is_liked->getStatus() : null,
                 'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
                 'is_first' => $wall_posts->isFirst(),
                 'is_last' => $wall_posts->isLast(),
@@ -309,7 +315,7 @@ class DefaultController extends CoreController
 
         if($is_liked instanceof WallLikes){
 
-            if($is_liked->getStatus() === $status){
+            if($is_liked->getStatus() == $status){
                 // If the status are the same, its a toggle. Then delete it.
 
                 $is_liked->delete();
