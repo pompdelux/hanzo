@@ -264,9 +264,18 @@ class AxService
                 break;
         }
 
+
         if ($return) {
             return $syncSalesOrder;
         }
+
+
+        // post validation
+        if (empty($salesTable->HomePartyId) || empty($salesTable->SalesResponsible)) {
+            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'error', 'Missing SalesResponsible or HomePartyId', $con);
+            return false;
+        }
+
 
         $this->sendDebtor($order->getCustomers($con), $return, $con);
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
@@ -289,15 +298,7 @@ class AxService
         }
 
         // log ax transaction result
-        $entry = new OrdersSyncLog();
-        $entry->setOrdersId($order->getId());
-        $entry->setCreatedAt('now');
-        $entry->setState($state);
-        $entry->setContent(serialize($syncSalesOrder));
-        if ($comment) {
-            $entry->setComment($comment);
-        }
-        $entry->save();
+        $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, $state, $comment, $con);
 
         if (null === $con) {
             Propel::setForceMasterConnection(false);
@@ -503,6 +504,7 @@ class AxService
         }
     }
 
+
     /**
      * test and initiate ax connection
      *
@@ -543,5 +545,30 @@ class AxService
         $this->client->__setLocation(str_replace('?wsdl', '', $this->wsdl));
 
         return true;
+    }
+
+
+    /**
+     * log sync status
+     *
+     * @param  int    $order_id id of the order
+     * @param  object $data     data to log, should be the complete request object
+     * @param  string $state    'failed' or 'ok'
+     * @param  string $comment  optional commnet
+     * @param  mixed  $con      db connection or null
+     * @return mixed
+     */
+    protected function logOrderSyncStatus($order_id, $data, $state = 'ok', $comment = '', $con = null)
+    {
+        $entry = new OrdersSyncLog();
+        $entry->setOrdersId($order_id);
+        $entry->setCreatedAt('now');
+        $entry->setState($state);
+        $entry->setContent(serialize($data));
+        if ($comment) {
+            $entry->setComment($comment);
+        }
+
+        return $entry->save($con);
     }
 }

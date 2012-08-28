@@ -124,11 +124,19 @@ class DefaultController extends CoreController
             return $total;
         }
 
+        $warning = '';
         if ($this->getFormat() == 'json') {
+            if (OrdersPeer::inEdit()) {
+                $warning = Tools::getInEditWarning();
+            }
+
             return $this->json_response(array(
                 'status' => TRUE,
                 'message' => '',
-                'data' => $total,
+                'data' => array(
+                    'total' => $total,
+                    'warning' => $warning,
+                ),
             ));
         }
 
@@ -354,7 +362,7 @@ class DefaultController extends CoreController
 
         $hanzo = Hanzo::getInstance();
         $domain_key = $hanzo->get('core.domain_key');
-        if (strpos($domain_key, 'Sales') !== false) 
+        if (strpos($domain_key, 'Sales') !== false)
         {
             $continue_shopping = $router->generate('QuickOrderBundle_homepage');
         }

@@ -24,6 +24,8 @@ use Hanzo\Model\Addresses;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\Countries;
+use Hanzo\Model\CountriesQuery;
 
 class EventsController extends CoreController
 {
@@ -243,6 +245,21 @@ class EventsController extends CoreController
 
                     try {
                         $host->save();
+
+                        $country = CountriesQuery::create()->findOneByIso2($hanzo->get('core.country'));
+
+                        // create customer payment address
+                        $address = new Addresses();
+                        $address->setCustomersId($host->getId());
+                        $address->setFirstName($first);
+                        $address->setLastName($last);
+                        $address->setAddressLine1($event->getAddressLine1());
+                        $address->setPostalCode($event->getPostalCode());
+                        $address->setCity($event->getCity());
+                        $address->setCountry($country->getName());
+                        $address->setCountriesId($country->getId());
+                        $address->save();
+
                     } catch(\PropelException $e) {
                         Tools::log($event->toArray());
                     }
