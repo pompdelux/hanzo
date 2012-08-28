@@ -101,6 +101,9 @@ class RestStockController extends CoreController
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
                 ->endUse()
+                // Be sure to order by size as a number(192) not text(192-198)
+                ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)','size_num')
+                ->orderBy('size_num')
                 ->groupById()
             ;
 
