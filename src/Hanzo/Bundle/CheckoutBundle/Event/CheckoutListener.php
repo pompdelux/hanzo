@@ -140,10 +140,7 @@ class CheckoutListener
         $company_address = str_replace( ' · ', "\n", $company_address );
         // <<-- hf@bellcom.dk, 13-jun-2012: hack... I'm tired
 
-        $event_id = '';
-        if ($order->getEventsId()) {
-            $event_id = $order->getEvents()->getCode();
-        }
+        $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
 
         $params = array(
             'order' => $order,
