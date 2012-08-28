@@ -40,6 +40,11 @@ class DefaultController extends CoreController
 
         $wall_posts = WallQuery::create()
             ->join('Customers')
+            ->useCustomersQuery()
+                ->join('Addresses')
+            ->endUse()
+            ->groupById()
+            ->withColumn('addresses.city', 'city')
             ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
             ->leftJoin('WallLikes')
             ->withColumn('wall_likes.status', 'liked')
@@ -79,6 +84,11 @@ class DefaultController extends CoreController
 
             $sub_posts = WallQuery::create()
                 ->joinWith('Customers')
+                ->useCustomersQuery()
+                    ->join('Addresses')
+                ->endUse()
+                ->groupById()
+                ->withColumn('addresses.city', 'city')
                 ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
                 ->filterByStatus(true)
                 ->filterByParentId($wall_post->getId())
@@ -94,6 +104,7 @@ class DefaultController extends CoreController
                     'clean_message' => $sub_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($sub_post->getCreatedAt())),
                     'author' => $sub_post->getAuthor(),
+                    'city' => $sub_post->getCity(),
                     'customers_id' => $sub_post->getCustomersId(),
                     'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $sub_post->getCustomersId()) ? true : false,
                     'is_first' => $sub_posts->isFirst(),
@@ -107,6 +118,7 @@ class DefaultController extends CoreController
                 'clean_message' => $wall_post->getMessate(),
                 'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
                 'author' => $wall_post->getAuthor(),
+                'city' => $wall_post->getCity(),
                 'customers_id' => $wall_post->getCustomersId(),
                 'is_liked' => $wall_post->getLiked(),
                 'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,

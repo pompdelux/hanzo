@@ -161,6 +161,9 @@
                       <div class="cell">
                           <p class="entry">
                               <span class="author"><?=data[i].sub_posts[j].author?>
+                                <? if(undefined !== data[i].sub_posts[j].city) {?>
+                                    (<?=data[i].sub_posts[j].city?>)
+                                <? }?>
                               </span>
                               <span class="content">
                                 <?=data[i].sub_posts[j].message?>
