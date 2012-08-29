@@ -295,12 +295,12 @@ function AFSWS_CancelReservation( $user, $cancelReservation )
  * @return string
  * @author Henrik Farre <hf@bellcom.dk>
  **/
-function AFSWS_CancelReservationObj( $customerNo, $orderNo, $amount = '' )
+function AFSWS_CancelReservationObj( $customerNo, $orderNo = null, $amount = '' )
 {
 	$ns = 'akt1';
 
     $reservationData  = AFSWS_Tag('CustomerNo',$customerNo,$ns);
-    $reservationData .= AFSWS_Tag('OrderNo',$orderNo,$ns);
+    //$reservationData .= AFSWS_Tag('OrderNo',$orderNo,$ns);
     $reservationData .= AFSWS_Tag('Amount',$amount,$ns);
 
 	return AFSWS_Tag('cancelReservation', $reservationData);

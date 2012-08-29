@@ -45,11 +45,13 @@ class DefaultController extends CoreController
         }
 
         $response = new Response();
-        $response->setLastModified($page->getUpdatedAt(null));
+        // TODO: fix this shit
+        // Disabled by request of un@bellcom.dk
+        /*$response->setLastModified($page->getUpdatedAt(null));
 
         if ($response->isNotModified($this->getRequest())) {
             return $response;
-        }
+        }*/
 
         $response->setMaxAge(60);
         $response->setSharedMaxAge(60);

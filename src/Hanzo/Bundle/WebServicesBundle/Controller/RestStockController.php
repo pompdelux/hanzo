@@ -101,6 +101,9 @@ class RestStockController extends CoreController
                 ->useProductsDomainsPricesQuery()
                     ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
                 ->endUse()
+                // Be sure to order by size as a number(192) not text(192-198)
+                ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)','size_num')
+                ->orderBy('size_num')
                 ->groupById()
             ;
 
@@ -114,14 +117,21 @@ class RestStockController extends CoreController
 
                 foreach ($result as $record) {
                     if ($dato = $stock->check($record)) {
+                        $date = ($dato instanceof \DateTime ? $dato->format('Y m/d') : '');
+
                         $data[] = array(
                             'product_id' => $record->getId(),
                             'master' => $record->getMaster(),
                             'size' => $record->getSize(),
                             'color' => $record->getColor(),
-                            'date' => ($dato instanceof \DateTime ? $dato->format('Y m/d') : '')
+                            'date' => $date
                         );
-                        $message = $translator->trans('Product(s) in stock');
+
+                        if ($date) {
+                            $message = $translator->trans('late.delivery', array('%product%' => $record->getMaster(), '%date%' => $date), 'js');
+                        } else {
+                            $message = '';
+                        }
                     }
                 }
                 if (count($data)) {

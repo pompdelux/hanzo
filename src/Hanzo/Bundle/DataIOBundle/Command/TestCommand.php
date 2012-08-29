@@ -25,9 +25,10 @@ use Hanzo\Model\Orders,
     Hanzo\Model\ProductsDomainsPrices,
     Hanzo\Model\ProductsDomainsPricesPeer,
     Hanzo\Model\ProductsDomainsPricesQuery,
-    Hanzo\Model\ConsultantNewsletterDrafts
+    Hanzo\Model\ConsultantNewsletterDrafts,
+    Hanzo\Model\GothiaAccounts,
+    Hanzo\Model\GothiaAccountsQuery
     ;
-
 
 use Exception;
 
@@ -48,12 +49,75 @@ class TestCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $draft = new ConsultantNewsletterDrafts();
+        $accounts = GothiaAccountsQuery::create()
+            ->find();
+
+        foreach ($accounts as $account) 
+        {
+            $account->setExternalId( $account->getCustomersId() );
+            $account->save();
+        }
+
+        /*$accounts = GothiaAccountsQuery::create()
+            ->find();
+
+        foreach ($accounts as $account) 
+        {
+            $ssn = $account->getSocialSecurityNum();
+            $newssn = $ssn;
+            if ( strlen($ssn) > 10 && substr($ssn,0,2) == 19)
+            {
+                $newssn = substr( $ssn, 2 );
+                echo $ssn.' => '.$newssn."\n";
+                $account->setSocialSecurityNum($newssn);
+                $account->save();
+            }
+        }*/
+
+
+        /*$missingNames = array(
+        );
+
+        foreach ($missingNames as $orderId) 
+        {
+            $order     = OrdersPeer::retrieveByPK($orderId);
+            $customer  = $order->getCustomers();
+            $addresses = $customer->getAddresses();
+
+            foreach ($addresses as $address) 
+            {
+                $address->setFirstName( $order->getFirstName() );
+                $address->setLastName( $order->getLastName() );
+                $address->save();
+
+                switch ($address->getType()) 
+                {
+                    case 'payment':
+                        $order->setBillingFirstName( $address->getFirstName() );
+                        $order->setBillingLastName( $address->getLastName() );
+                        break;
+                    case 'shipping':
+                        $order->setDeliveryFirstName( $address->getFirstName() );
+                        $order->setDeliveryLastName( $address->getLastName() );
+                        break;
+
+                }
+            }
+
+            $order->save();
+        }*/
+
+        /*$order = OrdersPeer::retrieveByPK(759830);
+
+        echo $order->getTotalPrice()."\n";
+        echo $order->getTotalVat()."\n";*/
+
+        /*$draft = new ConsultantNewsletterDrafts();
         $draft
             ->setSubject('Test')
             ->setContent('Hest')
             ->setConsultantsId(2000)
-            ->save();
+        ->save();*/
 
         /*$order = new Orders();
         $order->setAttribute( 'transact', 'payment', '596022444' );
@@ -65,7 +129,7 @@ class TestCommand extends ContainerAwareCommand
         $settings['md5key2']  = '8IBaYSmjDLkZz.+hKhNtcb]~XikRAqFF';
         $settings['api_user'] = 'pdl-dk-api-user';
         $settings['api_pass'] = 'D!An6aYlUf*l';
-        
+
         $gateway->mergeSettings($settings);
 
         print_r($gateway->call()->payinfo($order));*/

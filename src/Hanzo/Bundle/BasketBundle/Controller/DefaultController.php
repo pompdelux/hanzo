@@ -72,15 +72,23 @@ class DefaultController extends CoreController
             if ($order->validate()) {
                 $order->save();
 
-                $line = OrdersLinesQuery::create()
-                    ->filterByOrdersid($order->getId())
-                    ->findOneByProductsId($product->getId())
-                ;
+                $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
-                $latest = '';
-                if ($line) {
-                    $latest = $line->toArray(\BasePeer::TYPE_FIELDNAME, false);
-                    $latest['price'] = Tools::moneyFormat($latest['price']);
+                $price = array_shift($price);
+                $original_price = $price['normal'];
+                $price = array_shift($price);
+
+                $latest = array(
+                    'id' => $product->getId(),
+                    'single_price' => Tools::moneyFormat($price['price']),
+                    'price' => Tools::moneyFormat($price['price'] * $quantity),
+                    'expected_at' => ''
+                );
+
+                $t = new \DateTime($date);
+                $t = $t->getTimestamp();
+                if (($t > 0) && ($t > time())) {
+                    $latest['expected_at'] = $date;
                 }
 
                 if ($this->getFormat() == 'json') {
@@ -89,6 +97,7 @@ class DefaultController extends CoreController
                         'message' => $translator->trans('product.added.to.cart', array('%product%' => $product)),
                         'data' => $this->miniBasketAction(TRUE),
                         'latest' => $latest,
+                        'total' => $order->getTotalQuantity(true),
                     ));
                 }
             }
@@ -115,11 +124,19 @@ class DefaultController extends CoreController
             return $total;
         }
 
+        $warning = '';
         if ($this->getFormat() == 'json') {
+            if (OrdersPeer::inEdit()) {
+                $warning = Tools::getInEditWarning();
+            }
+
             return $this->json_response(array(
                 'status' => TRUE,
                 'message' => '',
-                'data' => $total,
+                'data' => array(
+                    'total' => $total,
+                    'warning' => $warning,
+                ),
             ));
         }
 
@@ -340,13 +357,24 @@ class DefaultController extends CoreController
         //     }
         // }
 
+        // hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site -->>
+        $continue_shopping = $router->generate('page_400');
+
+        $hanzo = Hanzo::getInstance();
+        $domain_key = $hanzo->get('core.domain_key');
+        if (strpos($domain_key, 'Sales') !== false)
+        {
+            $continue_shopping = $router->generate('QuickOrderBundle_homepage');
+        }
+        // <<-- hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site
+
         return $this->render($template, array(
             'embedded' => $embed,
             'page_type' => 'basket',
             'products' => $products,
             'total' => $order->getTotalPrice(true),
             'delivery_date' => $delivery_date,
-            'continue_shopping' =>  $router->generate('page_400'),
+            'continue_shopping' => $continue_shopping,
         ));
     }
 }

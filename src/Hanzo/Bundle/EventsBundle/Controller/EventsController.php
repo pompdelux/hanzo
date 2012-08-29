@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormError;
 
+use Propel;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
@@ -22,6 +24,8 @@ use Hanzo\Model\Addresses;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\Countries;
+use Hanzo\Model\CountriesQuery;
 
 class EventsController extends CoreController
 {
@@ -64,6 +68,12 @@ class EventsController extends CoreController
         $events_array = array();
 
         foreach ($events as $event) {
+
+            $color = 'red';
+            if (1 == $event->getIsOpen()) {
+                $color = 'green';
+            }
+
             $events_array[] = array(
                 'id' => $event->getId(),
                 'title' => $event->getCode(),
@@ -72,7 +82,7 @@ class EventsController extends CoreController
                 'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
                 'className' => $event->getType(),
                 'editable' => false,
-                'color' => (($event->getEventDate('U') < time()) || $event->getIsOpen()) ? 'green': 'red'
+                'color' => $color,
             );
         }
 
@@ -235,6 +245,21 @@ class EventsController extends CoreController
 
                     try {
                         $host->save();
+
+                        $country = CountriesQuery::create()->findOneByIso2($hanzo->get('core.country'));
+
+                        // create customer payment address
+                        $address = new Addresses();
+                        $address->setCustomersId($host->getId());
+                        $address->setFirstName($first);
+                        $address->setLastName($last);
+                        $address->setAddressLine1($event->getAddressLine1());
+                        $address->setPostalCode($event->getPostalCode());
+                        $address->setCity($event->getCity());
+                        $address->setCountry($country->getName());
+                        $address->setCountriesId($country->getId());
+                        $address->save();
+
                     } catch(\PropelException $e) {
                         Tools::log($event->toArray());
                     }
@@ -414,6 +439,24 @@ class EventsController extends CoreController
             ));
         }
     }
+
+
+    public function closeAction($id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $event = EventsQuery::create()->findPK($id);
+        if ($event instanceof Events) {
+            $event->setIsOpen(false);
+            $event->save();
+        }
+
+        $this->getRequest()->getSession()->setFlash('notice', $this->get('translator')->trans('event.closed', array(), 'events'));
+        return $this->redirect($this->generateUrl('events_index'));
+    }
+
 
     public function deleteAction($id)
     {
@@ -672,8 +715,16 @@ class EventsController extends CoreController
                         'translation_domain' => 'events',
                         'required' => false
                     )
-                )->add('has_accepted', 'checkbox',
+                )->add('has_accepted', 'choice',
                     array(
+                        'choices' => array(
+                            // '1' => 'events.hasaccepted.yes',
+                            // '0' => 'events.hasaccepted.no'
+                            '1' => $this->get('translator')->trans('events.hasaccepted.yes', array(), 'events'),
+                            '0' => $this->get('translator')->trans('events.hasaccepted.no', array(), 'events')
+                        ),
+                        'multiple' => false,
+                        'expanded' => true,
                         'label' => 'events.participants.has_accepted.label',
                         'translation_domain' => 'events',
                         'required' => false
@@ -830,7 +881,6 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->filterByEventDate(array('min' => time()))
             ->filterByConsultantsId($customer->getId())
             ->orderByEventDate(\Criteria::ASC)
             ->filterByIsOpen(true)
@@ -847,6 +897,8 @@ class EventsController extends CoreController
         $order = OrdersPeer::getCurrent();
         if ($order instanceof Orders) {
             $request = $this->getRequest();
+
+            Propel::setForceMasterConnection(TRUE);
 
             // remove any discount lines if changing event
             OrdersLinesQuery::create()
@@ -868,7 +920,6 @@ class EventsController extends CoreController
             $hostess = $request->get('hostess');
             if (empty($hostess)) {
                 $order->clearAttributesByKey('is_hostess_order');
-                $order->clearAttributesByKey('is_hostess_order_calculated');
             } else {
                 $order->setAttribute('is_hostess_order', 'event', true);
             }

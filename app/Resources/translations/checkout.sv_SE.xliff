@@ -281,6 +281,10 @@
         <source>status.50</source>
         <target>Fakturerad</target>
       </trans-unit>
+      <trans-unit id="status.neg.50">
+        <source>status.neg.50</source>
+        <target>Orderredigering</target>
+      </trans-unit>
       <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
         <target>Gothia faktura</target>

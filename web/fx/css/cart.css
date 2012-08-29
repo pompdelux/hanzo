@@ -93,7 +93,7 @@
   border: 5px solid #000;
   position: absolute;
   padding: 10px;
-  z-index: 10000;
+  z-index: 9999;
 
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

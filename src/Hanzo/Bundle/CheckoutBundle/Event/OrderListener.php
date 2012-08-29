@@ -32,9 +32,10 @@ class OrderListener
     {
         $order = $event->getOrder();
 
-        if ('Sales' == substr($order->getAttributes()->global->domain_key, 0, 5)) {
+        // test ...
+        //if ('Sales' == substr($order->getAttributes()->global->domain_key, 0, 5)) {
             $this->setEditCookie();
-        }
+        //}
 
         // first we create the edit version.
         $order->createNewVersion();
@@ -78,10 +79,6 @@ class OrderListener
         // unset session vars.
         $this->session->remove('in_edit');
         $this->session->remove('order_id');
-
-        // only place this function is called is in CheckoutBundle > DefaultController > successAction
-        // and there migrate is called after this function
-        //$this->session->migrate();
 
         $this->ax->lockUnlockSalesOrder($order, false);
     }

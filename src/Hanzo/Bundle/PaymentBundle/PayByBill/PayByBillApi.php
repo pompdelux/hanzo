@@ -102,7 +102,7 @@ class PayByBillApi implements PaymentMethodApiInterface
     public function updateOrderFailed( Request $request, Orders $order)
     {
         $order->setState( Orders::STATE_ERROR_PAYMENT );
-        $order->setAttribute( 'paytype' , 'payment', 'gothia' );
+        $order->setAttribute( 'paytype' , 'payment', 'paybybill' );
         $order->save();
     }
 

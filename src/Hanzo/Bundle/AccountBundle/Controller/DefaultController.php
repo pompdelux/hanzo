@@ -18,6 +18,7 @@ use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
 
 use Hanzo\Bundle\AccountBundle\Security\User\ProxyUser;
 use Hanzo\Bundle\AccountBundle\Form\Type\CustomersType;
@@ -29,9 +30,11 @@ class DefaultController extends CoreController
 {
     public function indexAction()
     {
-        $session = $this->getRequest()->getSession();
+        $request = $this->getRequest();
+        $session = $request->getSession();
 
-        if ($session->has('in_edit') && $this->getRequest()->get('stop')) {
+        // if we access the account page vith an active "edit" we close it.
+        if ($session->has('in_edit')) {
             $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersPeer::getCurrent()));
         }
 
@@ -219,7 +222,11 @@ class DefaultController extends CoreController
         $customer = CustomersPeer::getCurrent();
         $countries = CountriesPeer::getAvailableDomainCountries();
 
-        $form = $this->createForm(new CustomersType(false, new AddressesType( $countries )), $customer);
+        $form = $this->createForm(
+            new CustomersType(false, new AddressesType( $countries )),
+            $customer,
+            array('validation_groups' => 'customer_edit')
+        );
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
@@ -263,8 +270,16 @@ class DefaultController extends CoreController
             }
         }
 
+        // hf@bellcom.dk, 20-aug-2012: when a consultant places an order, this has to get the customer from the order -->>
+        $order = OrdersPeer::getCurrent();
 
-        $customer = CustomersPeer::getCurrent();
+        if ($order->getCustomersId()) {
+            $customer = $order->getCustomers();
+        } else {
+            $customer = CustomersPeer::getCurrent();
+        }
+        // <<-- hf@bellcom.dk, 20-aug-2012: when a consultant places an order, this has to get the customer from the order
+
         $address = AddressesQuery::create()
             ->filterByType($type)
             ->findOneByCustomersId($customer->getId())
@@ -459,5 +474,17 @@ class DefaultController extends CoreController
     public function errorAction($error)
     {
         return $this->render('AccountBundle:Default:error.html.twig', array());
+    }
+
+
+    public function stopOrderEditAction($order_id)
+    {
+        $request = $this->getRequest();
+
+        if ($order_id) {
+            $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersQuery::create()->findPk($order_id)));
+        }
+
+        return $this->redirect($this->generateUrl('_account'));
     }
 }

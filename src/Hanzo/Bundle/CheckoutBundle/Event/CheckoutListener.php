@@ -140,10 +140,7 @@ class CheckoutListener
         $company_address = str_replace( ' · ', "\n", $company_address );
         // <<-- hf@bellcom.dk, 13-jun-2012: hack... I'm tired
 
-        $event_id = '';
-        if ($order->getEventsId()) {
-            $event_id = $order->getEvents()->getCode();
-        }
+        $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
 
         $params = array(
             'order' => $order,
@@ -191,6 +188,10 @@ class CheckoutListener
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
                 $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', array(), 'checkout');
+
+                // hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here -->>
+                unset( $params['payment_fee'] );
+                // <<-- hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here
             }
         }
 

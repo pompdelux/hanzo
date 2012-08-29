@@ -30,32 +30,77 @@
       <input type="button" id="reset" name="reset" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}" style="display:none">
       <div id="autocomplete-container"></div>
   </form>
-  <h1>{{ 'quickorder.products.header.text'|trans({}, 'quickorder') }}</h1>
-  <table class="list">
-    <thead>
-      <th></th>
-      <th>{{ 'quickorder.sku.table'|trans({}, 'quickorder') }}</th>
-      <th>{{ 'quickorder.quantity.table'|trans({}, 'quickorder') }}</th>
-      <th>{{ 'total'|trans }}</th>
-    </thead>
-    <tbody>
-      {% for product in products %}
+
+  <form action="{{ url('basket_update') }}" method="post">
+    <table class="product-table">
+      <thead>
         <tr>
-          <td>{{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.name }) }}</td>
-          <td>{{ product.sku }}</td>
-          <td>{{ product.quantity }}</td>
-          <td>{{ (product.price * product.quantity)|money }}</td>
+          <th class="left">{{ "products"|trans }}</th>
+          <th class="right">{{ "latest.shipment.date"|trans }}</th>
+          <th class="right">{{ "price"|trans }}</th>
+          <th class="center">{{ "quantity"|trans }}</th>
+          <th class="right">{{ "total"|trans }}</th>
+          <th class=""></th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+    {% for product in products %}
+        <tr>
+          <td class="image">
+            {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
+            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+              <a href="{{ path('product_info', {product_id: product.products_id}) }}">{{ product.products_name }}</a>
+              <div class="size">
+                <label>{{ "size"|trans }}:</label>
+                <span>{{ product.products_size }}</span>
+              </div>
+              <div class="color">
+                <label>{{ "color"|trans }}:</label>
+                <span>{{ product.products_color }}</span>
+              </div>
+            </div>
+          </td>
+          <td class="right date">
+            {% if product.expected_at %}
+              {{ product.expected_at|date('d-m-Y') }}
+            {% endif %}
+          </td>
+          <td class="right price">{{ product.price|money }}</td>
+          <td class="right quantity">{{ product.quantity }}</td>
+          <td class="right total">{{ (product.price * product.quantity)|money }}</td>
+          <td class="actions">
+            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"delete"|trans }) }}</a>
+            <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"edit"|trans }) }}</a>
+          </td>
+        </tr>
+    {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">{{ "total"|trans }}:</td>
+          <td class="right total">{{ total|money }}</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+  {% if delivery_date %}
+    {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout')|raw }}
+  {% else %}
+    {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
+  {% endif %}
 
-  <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" class="button right">{{ "show.basket"|trans }}</a>
+  <div class="buttons">
+    {% if products %}
+    <a class="button right proceed-to-basket" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+    {% else %}
+    <a class="button right proceed-to-basket" style="display:none;" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+    {% endif %}
+  </div>
 </div>
-
 
 {% endblock %}
 
 {% block javascript %}
-<script src="/fx/scripts/bootstrap-typeahead.js"></script>
+<script src="{{ asset('/fx/scripts/bootstrap-typeahead.js') }}"></script>
 {% endblock %}

@@ -185,7 +185,7 @@ class DefaultController extends CoreController
     protected function updateShipping( Orders $order, Request $request, $state )
     {
         if ( $state === false ) {
-            $order->setShippingMethod(null);
+            $order->setDeliveryMethod(null);
         }
 
         $shippingApi = $this->get('shipping.shippingapi');
@@ -202,7 +202,7 @@ class DefaultController extends CoreController
 
         $method = $methods[$shippingMethodId];
 
-        $order->setShippingMethod( $shippingMethodId );
+        $order->setDeliveryMethod( $shippingMethodId );
         $order->setOrderLineShipping( $method, ShippingMethods::TYPE_NORMAL );
         if ( $method->getFee() ) {
             $order->setOrderLineShipping( $method, ShippingMethods::TYPE_FEE );
@@ -404,6 +404,7 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
         $customer = $order->getCustomers();
+
         $customerAddresses = $customer->getAddresses();
 
         $addresses = array();
@@ -500,17 +501,19 @@ class DefaultController extends CoreController
 
         foreach ($products as $product) {
             $product->setOriginalPrice($product_prices[$product->getProductsId()]['normal']['price']);
-            $product->setUnit(preg_replace('/[^a-z\.]/i', '', $product_units[$product->getProductsId()]));
+            $product->setUnit('Stk.');
             $product->save();
         }
 
         if (!$order->getDeliveryMethod()) {
-            $shipping_methods = unserialize($hanzo->get('shippingapi.methods_enabled'));
+            $shippingApi = $this->get('shipping.shippingapi');
+            $shipping_methods = $shippingApi->getMethods();
 
             if (('DKK' == $order->getCurrencyCode()) && $order->getDeliveryCompanyName()) {
                 $order->setDeliveryMethod(11);
             } else {
-                $order->setDeliveryMethod($shipping_methods[0]);
+                $firstShippingMethod = array_shift($shipping_methods);
+                $order->setDeliveryMethod( $firstShippingMethod->getExternalId() );
             }
         }
 
@@ -587,7 +590,21 @@ class DefaultController extends CoreController
     public function failedAction()
     {
         $order = OrdersPeer::getCurrent();
+
+        if ( $order->getState() >= Orders::STATE_PAYMENT_OK ) // Last check before we declare the order failed
+        {
+            return $this->redirect($this->generateUrl('_checkout_success'));
+        }
+
         $this->get('event_dispatcher')->dispatch('order.payment.failed', new FilterOrderEvent($order));
+
+        // The customer can't do anything with the order, so we remove it from the session
+        $hanzo = Hanzo::getInstance();
+        $session = $hanzo->getSession();
+        $session->remove('order_id');
+
+        // one-to-one, we can only have one session_id or order in the database....
+        $session->migrate();
 
         return $this->render('CheckoutBundle:Default:failed.html.twig', array(
             'error' => '', // NICETO: pass error from paymentmodule to this page

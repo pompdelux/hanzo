@@ -299,7 +299,7 @@
     </foreign-key>
   </table>
 
-  <table name="products">
+  <table name="products" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="sku" type="VARCHAR" size="128" required="true"/>
     <column name="master" type="VARCHAR" size="128" required="false"/>

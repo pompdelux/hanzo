@@ -46,13 +46,12 @@ class GothiaController extends CoreController
      **/
     public function paymentAction()
     {
-        $customer = CustomersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent();
 
-        if ($customer->isNew()) {
+        if ($order->isNew()) {
             return $this->redirect($this->generateUrl('_checkout'));
         }
 
-        $order = OrdersPeer::getCurrent();
         $gothiaAccount = $order->getCustomers()->getGothiaAccounts();
 
         // No gothia account has been created and associated with the customer, so lets do that
@@ -101,6 +100,13 @@ class GothiaController extends CoreController
             ));
         }
 
+        if (strlen($SSN) > 10) {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
+            ));
+        }
+
         $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
         $order         = OrdersPeer::getCurrent();
@@ -122,6 +128,7 @@ class GothiaController extends CoreController
             $api = $this->get('payment.gothiaapi');
             $response = $api->call()->checkCustomer( $customer );
         } catch( GothiaApiCallException $g ) {
+            error_log(__LINE__.':'.__FILE__.' '.$g->getMessage()); // hf@bellcom.dk debugging
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
@@ -180,14 +187,15 @@ class GothiaController extends CoreController
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
-                $attributes = $oldOrder->getOrdersAttributess()->toArray();
+                $paytype = strtolower( $oldOrder->getBillingMethod() );
+                /*$attributes = $oldOrder->getOrdersAttributess()->toArray();
                 $paytype = false;
 
                 foreach ($attributes as $attribute) {
                     if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) {
                         $paytype = $attribute['CValue'];
                     }
-                }
+                }*/
 
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
@@ -196,6 +204,8 @@ class GothiaController extends CoreController
                     try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
                     } catch( GothiaApiCallException $g ) {
+                        error_log(__LINE__.':'.__FILE__.' ('. $order->getId() .')'.$g->getMessage()); // hf@bellcom.dk debugging
+
                         return $this->json_response(array(
                             'status' => FALSE,
                             'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
@@ -215,6 +225,8 @@ class GothiaController extends CoreController
         try {
             $response = $api->call()->placeReservation( $customer, $order );
         } catch( GothiaApiCallException $g ) {
+            error_log(__LINE__.':'.__FILE__.' '.$g->getMessage()); // hf@bellcom.dk debugging
+
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
@@ -259,7 +271,11 @@ class GothiaController extends CoreController
     public function testAction()
     {
         $customer  = CustomersPeer::getCurrent();
-        $addresses = $customer->getAddresses();
+
+        $api = $this->get('payment.gothiaapi');
+        $response = $api->call()->checkCustomer( $customer );
+
+        error_log(__LINE__.':'.__FILE__.' '.print_r($response,1)); // hf@bellcom.dk debugging
 
         return new Response( 'Test completed', 200, array('Content-Type' => 'text/html'));
     }

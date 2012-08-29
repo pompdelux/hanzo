@@ -96,9 +96,6 @@ class Hanzo
         if ($this->get('core.currency') == 'EUR') {
             setlocale(LC_MONETARY, 'nl_NL.utf8');
         }
-
-#\Hanzo\Core\Tools::log($_SERVER['REQUEST_URI']);
-#\Hanzo\Core\Tools::log($_COOKIE);
     }
 
 

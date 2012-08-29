@@ -79,6 +79,8 @@ class Orders extends BaseOrders
 
     protected $ignore_delete_constraints = false;
 
+    protected $pdo_con = null;
+
     /**
      * Create a new version of the current order.
      *
@@ -109,7 +111,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
             ->findOne()
-            ;
+        ;
 
         if ($version_id) {
             $version_id = $version_id->getVersionId() + 1;
@@ -301,10 +303,10 @@ class Orders extends BaseOrders
 
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
-            ->filterByVersionId($this->getVersionId(), \Criteria::NOT_EQUAL)
+            ->filterByVersionId($this->getVersionId(), \Criteria::LESS_THAN)
             ->orderByVersionId('desc')
             ->findOne()
-            ;
+        ;
 
         return $this->toVersion($version->getVersionId());
     }
@@ -386,6 +388,7 @@ class Orders extends BaseOrders
         $line->setOriginalPrice($original_price['price']);
         $line->setVat($price['vat']);
         $line->setType('product');
+        $line->setUnit('Stk.');
         $line->setExpectedAt($date);
         $this->addOrdersLines($line);
     }
@@ -492,7 +495,7 @@ class Orders extends BaseOrders
     {
         foreach ($this->getOrderLineDiscount() as $line) {
             if ($name == $line->getProductsSku()) {
-                $line->setPrice($amount);
+                $line->setPrice(number_format($amount, 4, '.', ''));
                 return $this;
             }
         }
@@ -504,7 +507,7 @@ class Orders extends BaseOrders
         $line->setOrdersId($this->getId());
         $line->setProductsSku($name);
         $line->setProductsName($discount);
-        $line->setPrice($amount);
+        $line->setPrice(number_format($amount, 4, '.', ''));
         $this->addOrdersLines($line);
 
         return $this;
@@ -818,18 +821,6 @@ class Orders extends BaseOrders
         return $this;
     }
 
-
-    /**
-     * setShippingMethod
-     * @param string $method
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function setShippingMethod( $method )
-    {
-        $this->setDeliveryMethod( $method );
-    }
-
     /**
      * setBillingAddress
      * @param Addresses $address
@@ -998,6 +989,10 @@ class Orders extends BaseOrders
 
     public function getAttributes($con = null)
     {
+        if ($this->pdo_con) {
+            $con = $this->pdo_con;
+        }
+
         $attributes = new \stdClass();
         foreach ($this->getOrdersAttributess(null, $con) as $attr) {
             $ns = str_replace(array(':', '.'), '_', $attr->getNs());
@@ -1099,7 +1094,7 @@ class Orders extends BaseOrders
 
         $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
 
-        $customer = CustomersQuery::create()->findOneById( $this->getCustomersId() );
+        $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
 
         return $api->call()->cancel( $customer, $this );
     }
@@ -1143,11 +1138,16 @@ class Orders extends BaseOrders
         return $this->ignore_delete_constraints;
     }
 
+
     /**
      * wrap delete() to cleanup payment and ax
      */
     public function delete(PropelPDO $con = null)
     {
+        if ($con) {
+            $this->pdo_con = $con;
+        }
+
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             $this->cancelPayment();
             Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);

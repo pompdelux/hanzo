@@ -9,16 +9,18 @@ logout:
         _controller: AccountBundle:Security:logout
 
 login_check:
-    pattern:   /login_check
+    pattern: /login_check
 
 _account:
     pattern: /account
     defaults:
         _controller: AccountBundle:Default:index
+
 _account_create:
     pattern: /account/create
     defaults:
         _controller: AccountBundle:Default:create
+
 _account_lost_password:
     pattern: /account/password-forgotten
     defaults:
@@ -46,6 +48,13 @@ _account_edit_order:
     pattern: /account/order/{order_id}/edit
     defaults:
         _controller: AccountBundle:History:edit
+    requirements:
+        order_id: \d+
+
+_account_stop_edit_order:
+    pattern: /account/order/{order_id}/stop-edit
+    defaults:
+        _controller: AccountBundle:Default:stopOrderEdit
     requirements:
         order_id: \d+
 

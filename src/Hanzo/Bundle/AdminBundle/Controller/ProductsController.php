@@ -691,13 +691,12 @@ class ProductsController extends CoreController
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
 
-
         $stocks = ProductsQuery::create()
             ->leftJoinWithProductsStock()
-            ->useProductsStockQuery()
+            ->useProductsStockQuery(null, \Criteria::LEFT_JOIN)
                 ->withColumn('SUM(products_stock.quantity)', 'totalstock')
-                ->groupByProductsId()
             ->endUse()
+            ->groupById()
             ->orderBySku()
             ->filterByMaster(null, \Criteria::ISNOTNULL)
             ->find($this->getDbConnection())

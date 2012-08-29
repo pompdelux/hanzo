@@ -11,8 +11,8 @@ var events = (function($) {
   var pub = {};
 
   pub.choose_evet_type_init = function() {
-    $select = $('select#sales-type');
-    $hostess = $select.next();
+    var $select = $('select#sales-type');
+    var $hostess = $select.next();
 
     if ('AR' ==  $('option:selected', $select).data('type')) {
       $hostess.show();
@@ -33,9 +33,17 @@ var events = (function($) {
       }
 
       var goto = this.href;
-      $form = $('form#select-event-type');
-      $.post($form.attr('action'), $form.serialize(), function() {
-        window.location.href = goto;
+      var $form = $('form#select-event-type');
+
+      $.ajax({
+        type: 'POST',
+        url: $form.attr('action'),
+        data: $form.serialize(),
+        success: function() {
+          window.location.href = goto;
+        },
+        dataType: 'json',
+        async: false
       });
     });
   };
@@ -78,12 +86,12 @@ var events = (function($) {
               $('#customers_password_pass_repeated', $c_form).parent().remove();
               $('#customers_newsletter', $c_form).parent().remove();
               $('#customers_id', $c_form).val(response.data.id);
-              $('#customers_accept', $c_form).prop('required', false).click();
               $('.input', $form).val('');
-            } else {
-              dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
             }
+          } else {
+            dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
           }
+
           dialoug.stopLoading();
         },
         error: function() {
@@ -116,6 +124,11 @@ if ($('#body-basket select#sales-type').length) {
   events.choose_evet_type_init();
 }
 
+$('#select-archived-events .open-menu').on('click', function(event){
+  event.preventDefault();
+  $(this).next().slideToggle();
+});
+
 
 $('#body-event #participants a.delete').on('click', function(event) {
   event.preventDefault();
@@ -132,11 +145,11 @@ $('#body-event #participants a.delete').on('click', function(event) {
 });
 
 $('#find-customer-by-phone-form').submit(function(e){
-	e.preventDefault();
-	$submit = $(this).find('input[type="submit"]');
-	$submit.attr('disabled', true);
-	var phone = $('#find-customer-by-phone').val();
-	$.ajax({
+  e.preventDefault();
+  var $submit = $(this).find('input[type="submit"]');
+  $submit.attr('disabled', true);
+  var phone = $('#find-customer-by-phone').val();
+  $.ajax({
       url: base_url + 'account/nno/' + phone,
       dataType: 'json',
       async: false,
@@ -146,28 +159,28 @@ $('#find-customer-by-phone-form').submit(function(e){
             dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
           }
         } else {
-        	$('#form_host').val(response.data.christianname + ' ' + response.data.surname);
-        	$('#form_address_line_1').val(response.data.address);
-        	$('#form_postal_code').val(response.data.zipcode);
-        	$('#form_city').val(response.data.district);
-        	$('#form_phone').val(response.data.phone);
+          $('#form_host').val(response.data.christianname + ' ' + response.data.surname);
+          $('#form_address_line_1').val(response.data.address);
+          $('#form_postal_code').val(response.data.zipcode);
+          $('#form_city').val(response.data.district);
+          $('#form_phone').val(response.data.phone);
         }
 
         $submit.attr('disabled', false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
-		    $submit.attr('disabled', false);
+        $submit.attr('disabled', false);
       }
     });
 });
 
 $('#find-customer-by-email-form').submit(function(e){
-	e.preventDefault();
-	$submit = $(this).find('input[type="submit"]');
-	$submit.attr('disabled', true);
-	var email = $('#find-customer-by-email').val();
-	$.ajax({
+  e.preventDefault();
+  var $submit = $(this).find('input[type="submit"]');
+  $submit.attr('disabled', true);
+  var email = $('#find-customer-by-email').val();
+  $.ajax({
       url: base_url + 'events/getcustomer/' + encodeURIComponent(email),
       dataType: 'json',
       async: false,
@@ -177,10 +190,10 @@ $('#find-customer-by-email-form').submit(function(e){
             dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
           }
         } else {
-        	$('#form_customers_id').val(response.data.id);
-        	$('#form_host').val(response.data.name);
-        	$('#form_phone').val(response.data.phone);
-        	$('#form_email').val(response.data.email);
+          $('#form_customers_id').val(response.data.id);
+          $('#form_host').val(response.data.name);
+          $('#form_phone').val(response.data.phone);
+          $('#form_email').val(response.data.email);
           $('#form_address_line_1').val(response.data.address);
           $('#form_postal_code').val(response.data.zip);
           $('#form_city').val(response.data.city);
@@ -190,17 +203,17 @@ $('#find-customer-by-email-form').submit(function(e){
       },
       error: function(jqXHR, textStatus, errorThrown) {
         dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
-		    $submit.attr('disabled', false);
+        $submit.attr('disabled', false);
       }
     });
 });
 
 $('.delete-event').click(function(e){
-	e.preventDefault();
-	$a = $(this);
-	dialoug.confirm( ExposeTranslation.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+  e.preventDefault();
+  var $a = $(this);
+  dialoug.confirm( ExposeTranslation.get('js:notice'), $(this).data('confirm-message'), function(choise) {
     if (choise === 'ok') {
-    	window.location.href = $a.attr('href');
+      window.location.href = $a.attr('href');
     }
-	});
+  });
 });

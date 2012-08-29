@@ -102,6 +102,7 @@ class CoreController extends Controller
         if ($this->get('request')->get('_xjson')) {
             header('Content-Type: application/x-json');
             header('X-JSON: ' . json_encode(array('status' => TRUE)));
+            //header('Cache-Control: max-age=2');
             die(json_encode($data));
         }
 

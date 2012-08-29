@@ -403,6 +403,14 @@
                 <source>hostess.discount</source>
                 <target>Värdinnerabatt</target>
             </trans-unit>
+            <trans-unit id="event.close">
+                <source>event.close</source>
+                <target>Luk arrangement</target>
+            </trans-unit>
+            <trans-unit id="event.closed">
+                <source>event.closed</source>
+                <target>Arrangementet er nu lukket</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

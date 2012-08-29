@@ -198,6 +198,18 @@
                 <source>event.user.email.not.found</source>
                 <target>No user matches the provided emailaddress.</target>
             </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Color</target>
+            </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Proceed</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

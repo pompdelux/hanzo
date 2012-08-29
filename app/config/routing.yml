@@ -20,7 +20,7 @@ AdminBundle:
 
 DataIOBundle:
     resource: "@DataIOBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 ShippingBundle:
     resource: "@ShippingBundle/Resources/config/routing.yml"

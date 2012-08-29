@@ -28,6 +28,7 @@ class UnlockOrdersCommand extends ContainerAwareCommand
     {
         $this->setName('hanzo:dataio:unlock_orders')
             ->setDescription('Unlocks orders in a stale edit mode')
+            ->addOption('dry_run', null, InputOption::VALUE_NONE, 'If set, the task will not change any orders')
         ;
     }
 
@@ -39,7 +40,13 @@ class UnlockOrdersCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $dry_run = $input->getOption('dry_run');
+
         $container = $this->getContainer();
-        $container->get('cleanup_manager')->cancelStaleOrderEdit($container);
+        $cancel_count = $container->get('cleanup_manager')->cancelStaleOrderEdit($container, $dry_run);
+
+        if ($dry_run) {
+            error_log("\n[".date('Y-m-d H:i:s').'] Would roll back '.$cancel_count.' stale orders.');
+        }
     }
 }

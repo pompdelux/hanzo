@@ -60,13 +60,13 @@
 
   <div id="main" role="main">
 
-    {% if app.session.get('in_edit') %}
+    {# if app.session.get('in_edit') %}
       {{ 'order.edit.global.notice'|trans({
         '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
         '%order_id%' : app.session.get('order_id'),
         '%stop_url%' : url('_account', {stop : 1})
       })|raw }}
-    {% endif %}
+    {% endif #}
 
     {% render 'HanzoCMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {% block content %}{% endblock %}
@@ -79,15 +79,17 @@
   </nav><!-- /nav.main -->
 
 {% if is_granted('ROLE_USER') %}
+  {% if hide_mini_basket is not defined %}
   <aside id="secondary-links">
     <ul>
       <li><a href="{{ path('_account') }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       <li id="mini-basket" class="basket">
-        <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+        <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {{ fx_image_tag('images/loader-bar.gif') }}{# render 'BasketBundle:Default:miniBasket' #} </a>
       </li>
       <li><a href="{{ path('basket_view') }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </aside>
+  {% endif %}
 {% endif %}
 
 </div>
@@ -113,14 +115,18 @@
   'fx/scripts/zoom/jquery.zoom.js'
   'fx/scripts/accounting/accounting.min.js'
 
+  'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'
   'fx/scripts/countdown/jquery.countdown-dk.js'
+  'fx/scripts/video-js/video.js'
   'fx/scripts/vegas/jquery.vegas.js'
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
   'fx/scripts/yatzy.js'
   'fx/scripts/dialoug.js'
   'fx/scripts/colorbox.js'
+  'fx/scripts/flowplayer.js'
+  'fx/scripts/video.js'
   'fx/scripts/vegas.js'
 
   'fx/scripts/category.js'

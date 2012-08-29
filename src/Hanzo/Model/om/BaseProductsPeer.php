@@ -1068,10 +1068,6 @@ abstract class BaseProductsPeer {
 			$criteria = $values->buildCriteria(); // build Criteria from Products object
 		}
 
-		if ($criteria->containsKey(ProductsPeer::ID) && $criteria->keyContainsValue(ProductsPeer::ID) ) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key ('.ProductsPeer::ID.')');
-		}
-
 
 		// Set the correct dbName
 		$criteria->setDbName(self::DATABASE_NAME);

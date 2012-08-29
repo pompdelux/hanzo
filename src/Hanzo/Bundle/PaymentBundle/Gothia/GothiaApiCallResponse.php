@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Gothia;
 
+use Hanzo\Core\Tools;
+
 class GothiaApiCallResponse
 {
     /**
@@ -55,6 +57,11 @@ class GothiaApiCallResponse
      **/
     protected function parse( $rawResponse, $function )
     {
+        if ( $_SERVER['REMOTE_ADDR'] == '90.185.206.100' )
+        {
+            Tools::debug( 'Raw response', __METHOD__, $rawResponse);
+        }
+
         switch ($function) 
         {
             case 'CheckCustomer':
@@ -97,9 +104,18 @@ class GothiaApiCallResponse
 
                 if ( !$this->isError )
                 {
-                    foreach ($rawResponse['CancelReservationResult']['Reservation'] as $key => $value) 
+                    if ( !isset($rawResponse['CancelReservationResult']['Reservation']) )
                     {
-                        $this->data[$key] = $value;
+                        $this->isError = true;
+                        
+                        Tools::debug( 'Missing field (Reservation)', __METHOD__, $rawResponse );
+                    }
+                    else
+                    {
+                        foreach ($rawResponse['CancelReservationResult']['Reservation'] as $key => $value) 
+                        {
+                            $this->data[$key] = $value;
+                        }
                     }
                 }
                 break;

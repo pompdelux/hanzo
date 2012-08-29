@@ -45,8 +45,13 @@ class DefaultController extends CoreController
 
         // if the customer has been adding stuff to the basket, use that information here.
         $customer_id = $request->get('id');
-        if ($consultant->getId() != $order->getCustomersId()) {
-            $customer_id = $order->getCustomersId();
+
+        // Always perfer the post id
+        if ( !$customer_id ) // if no customer id has been posted
+        {
+          if ($consultant->getId() != $order->getCustomersId()) {
+              $customer_id = $order->getCustomersId();
+          }
         }
 
         $hanzo = Hanzo::getInstance();
@@ -91,9 +96,13 @@ class DefaultController extends CoreController
                 if (!$customer->getPassword()) {
                     $customer->setPassword($pwd);
                 } elseif ($customer->isNew()) {
-                    $customer->setPassword(sha1($customer->getPassword()));
-                    $customer->setPasswordClear($customer->getPassword());
+                    $pwd = $customer->getPassword();
+                    $customer->setPassword(sha1($pwd));
+                    $customer->setPasswordClear($pwd);
                 }
+
+                $address->setFirstName( $customer->getFirstName() );
+                $address->setLastName( $customer->getLastName() );
 
                 $customer->save();
                 $address->save();
@@ -146,7 +155,14 @@ class DefaultController extends CoreController
 
                 if ($customer instanceof Customers) {
                     $c = new Criteria();
-                    $c->add(AddressesPeer::TYPE, 'payment');
+                    $c->addAscendingOrderByColumn(sprintf(
+                        "FIELD(%s, '%s', '%s')",
+                        AddressesPeer::TYPE,
+                        'payment',
+                        'shipping'
+                    ));
+                    $c->setLimit(1);
+
                     $address = $customer->getAddressess($c);
                     $address = $address->getFirst();
 
@@ -168,6 +184,13 @@ class DefaultController extends CoreController
                 break;
 
             case 'phone':
+                $domain_key = Hanzo::getInstance()->get('core.domain_key');
+
+                // phone number lookyup only in denmark
+                if (!in_array($domain_key, array('DK', 'SalesDK'))) {
+                    break;
+                }
+
                 $lookup = new SearchQuestion();
                 $lookup->phone = $value;
                 $lookup->username = 'delux';
