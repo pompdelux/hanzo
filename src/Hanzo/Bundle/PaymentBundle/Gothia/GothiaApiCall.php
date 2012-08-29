@@ -303,7 +303,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         // hf@bellcom.dk, 21-jan-2012: 2.nd param was order no.
         $callString = AFSWS_CancelReservation(
 	        $this->userString(),
-            AFSWS_CancelReservationObj( $customerId, '', $amount) 
+            AFSWS_CancelReservationObj( $customerId, null, $amount) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :)
 

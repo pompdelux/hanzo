@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Gothia;
 
+use Hanzo\Core\Tools;
+
 class GothiaApiCallResponse
 {
     /**
@@ -97,9 +99,18 @@ class GothiaApiCallResponse
 
                 if ( !$this->isError )
                 {
-                    foreach ($rawResponse['CancelReservationResult']['Reservation'] as $key => $value) 
+                    if ( !isset($rawResponse['CancelReservationResult']['Reservation']) )
                     {
-                        $this->data[$key] = $value;
+                        $this->isError = true;
+                        
+                        Tools::debug( 'Missing field (Reservation)', __METHOD__, $rawResponse );
+                    }
+                    else
+                    {
+                        foreach ($rawResponse['CancelReservationResult']['Reservation'] as $key => $value) 
+                        {
+                            $this->data[$key] = $value;
+                        }
                     }
                 }
                 break;

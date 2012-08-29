@@ -204,7 +204,7 @@ class GothiaController extends CoreController
                     try {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
                     } catch( GothiaApiCallException $g ) {
-                        error_log(__LINE__.':'.__FILE__.' '.$g->getMessage()); // hf@bellcom.dk debugging
+                        error_log(__LINE__.':'.__FILE__.' ('. $order->getId() .')'.$g->getMessage()); // hf@bellcom.dk debugging
 
                         return $this->json_response(array(
                             'status' => FALSE,
