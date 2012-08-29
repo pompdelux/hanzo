@@ -189,23 +189,28 @@ class HistoryController extends CoreController
                     break;
             }
 
-            // send delete notification
-            $mailer = $this->get('mail_manager');
-            $mailer->setMessage('order.deleted', array(
-                'name'     => $order->getFirstName(),
-                'order_id' => $order->getEmail(),
-                'date' => date('d-m-Y'),
-                'time' => date('H:i'),
-            ));
-
-            $mailer->setBcc($bcc);
-            $mailer->setTo($order->getEmail(), $order->getFirstName().' '.$order->getLastName());
-            $mailer->send();
-
             // nuke order
             try
             {
+                $firstName = $order->getFirstName();
+                $lastName  = $order->getLastName();
+                $id        = $order->getId();
+                $email     = $order->getEmail();
+
                 $order->delete();
+
+                // send delete notification
+                $mailer = $this->get('mail_manager');
+                $mailer->setMessage('order.deleted', array(
+                    'name'     => $firstName,
+                    'order_id' => $id,
+                    'date' => date('d-m-Y'),
+                    'time' => date('H:i'),
+                ));
+
+                $mailer->setBcc($bcc);
+                $mailer->setTo($mail, $firstName.' '.$lastName);
+                $mailer->send();
             }
             catch ( Exception $e )
             {
