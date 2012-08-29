@@ -146,6 +146,10 @@
         <source>payment.fee</source>
         <target>Betalningsavgift</target>
       </trans-unit>
+      <trans-unit id="confirm.payment.fee">
+        <source>confirm.payment.fee</source>
+        <target>Betalningsavgift</target>
+      </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
         <target>Gothia faktura avgift</target>
