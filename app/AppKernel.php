@@ -68,7 +68,7 @@ class AppKernel extends Kernel
         list($dir, $lang,) = explode('_', $this->getEnvironment());
 
         $domain_key = strtoupper($lang);
-        if (('consultant' == $store_mode) || isset($_COOKIE['__ice'])) {
+        if (('consultant' == $store_mode) || ( isset($_COOKIE['__ice']) && strtoupper( $_COOKIE['__ice'] ) == 'SALES' )) {
             $this->setSetting('parent_domain_key', $domain_key);
             $domain_key = 'Sales'.$domain_key;
         }
