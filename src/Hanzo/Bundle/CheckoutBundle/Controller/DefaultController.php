@@ -35,11 +35,6 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
-        $hanzo = Hanzo::getInstance();
-        $order->setCurrencyCode($hanzo->get('core.currency'));
-        $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
-        $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-
         // trigger event, handles discounts and other stuff.
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 

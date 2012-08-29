@@ -1,7 +1,7 @@
 framework:
     session:
         default_locale: en_GB
-        path: '/app_test.php/en_GB'
+        path: '/en_GB'
 
 propel:
     dbal:
