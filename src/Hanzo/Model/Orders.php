@@ -1119,7 +1119,7 @@ class Orders extends BaseOrders
 
         $response = $api->call()->cancel( $customer, $this );
 
-        if ( $result->isError() )
+        if ( $response->isError() )
         {
             Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, 'Data' => $response->data));
             throw new Exception( 'Could not cancel order' );
