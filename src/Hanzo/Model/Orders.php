@@ -332,7 +332,10 @@ class Orders extends BaseOrders
 
         // add meta info to the order
         if (0 == $lines->count()) {
-            $this->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
+            $hanzo = Hanzo::getInstance();
+            $this->setCurrencyCode($hanzo->get('core.currency'));
+            $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
+            $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
             $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
         }
 
