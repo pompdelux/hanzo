@@ -332,7 +332,10 @@ class Orders extends BaseOrders
 
         // add meta info to the order
         if (0 == $lines->count()) {
-            $this->setCurrencyCode(Hanzo::getInstance()->get('core.currency'));
+            $hanzo = Hanzo::getInstance();
+            $this->setCurrencyCode($hanzo->get('core.currency'));
+            $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
+            $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
             $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
         }
 
@@ -904,6 +907,24 @@ class Orders extends BaseOrders
     }
 
     /**
+     * clearFees
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearFees()
+    {
+        $lines = $this->getOrdersLiness();
+
+        foreach ($lines as $line) 
+        {
+            if( $line->getType() == 'payment.fee' ) 
+            {
+                $line->delete();
+            }
+        }
+    }
+
+    /**
      * clearAttributesByKey
      * @param string $key
      * @return void
@@ -1096,7 +1117,15 @@ class Orders extends BaseOrders
 
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
 
-        return $api->call()->cancel( $customer, $this );
+        $response = $api->call()->cancel( $customer, $this );
+
+        if ( $response->isError() )
+        {
+            Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, 'Data' => $response->data));
+            throw new Exception( 'Could not cancel order' );
+        }
+
+        return $response;
     }
 
 
@@ -1149,8 +1178,15 @@ class Orders extends BaseOrders
         }
 
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
-            $this->cancelPayment();
-            Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);
+            try
+            {
+                $this->cancelPayment();
+                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);
+            }
+            catch ( Exception $e )
+            {
+                throw new Exception( $e->getMessage() );
+            }
         }
 
         return parent::delete($con);

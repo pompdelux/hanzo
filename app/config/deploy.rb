@@ -25,7 +25,7 @@ set :model_manager, "propel"
 
 set :keep_releases,  5
 
-set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml"]
+set :shared_files,      ["app/config/parameters.ini", "app/config/hanzo.yml", "cron/config.php"]
 
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", web_path + "/images", web_path + "/video", web_path + "/pdfupload"]
 

@@ -32,16 +32,14 @@ class OrderListener
     {
         $order = $event->getOrder();
 
-        // test ...
-        //if ('Sales' == substr($order->getAttributes()->global->domain_key, 0, 5)) {
-            $this->setEditCookie();
-        //}
+        $this->setEditCookie(true, substr($order->getAttributes()->global->domain_key, 0, 5));
 
         // first we create the edit version.
         $order->createNewVersion();
 
         $order->setSessionId(session_id());
         $order->setState( Orders::STATE_BUILDING ); // Old order state is probably payment ok
+        $order->clearFees();
         $order->clearPaymentAttributes();
         $order->setInEdit(true);
         $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
@@ -49,6 +47,7 @@ class OrderListener
 
         $this->session->set('in_edit', true);
         $this->session->set('order_id', $order->getId());
+        $this->session->save();
 
         $this->ax->lockUnlockSalesOrder($order, true);
     }
@@ -64,6 +63,7 @@ class OrderListener
         // unset session vars.
         $this->session->remove('in_edit');
         $this->session->remove('order_id');
+        $this->session->save();
         $this->session->migrate();
 
         $this->ax->lockUnlockSalesOrder($order, false);
@@ -83,13 +83,13 @@ class OrderListener
         $this->ax->lockUnlockSalesOrder($order, false);
     }
 
-    protected function setEditCookie($set = true)
+    protected function setEditCookie($set = true, $domain = 'not_sales')
     {
         if ((false == $set) && empty($_COOKIE['__ice'])) {
             return;
         }
 
-        $content = $set ? uniqid() : '';
+        $content = $set ? $domain : '';
         $lifetime = $set ? 0 : -3600;
         setcookie('__ice', $content, $lifetime, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
     }

@@ -217,13 +217,12 @@ class DibsApi implements PaymentMethodApiInterface
         if ( $order->getState() != Orders::STATE_PRE_PAYMENT )
         {
             $msg = 'The order is not in the correct state "'. $order->getState() .'"';
-            Tools::log( $msg );
+            Tools::debug( $msg, __METHOD__, array( 'POST' => $_POST));
             throw new Exception( $msg );
         }
 
         if ( $callbackRequest->get('merchant') != $this->settings['merchant'] )
         {
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
             throw new Exception( 'Wrong merchant "'. $callbackRequest->get('merchant') .'"' );
         }
 
@@ -236,9 +235,14 @@ class DibsApi implements PaymentMethodApiInterface
 
         if ( $callbackRequest->get('md5key') != $calculated )
         {
-            error_log(__LINE__.':'.__FILE__.' '.print_r($_POST,1)); // hf@bellcom.dk debugging
-            error_log(__LINE__.':'.__FILE__.' '.$gateway_id); // hf@bellcom.dk debugging
-            error_log(__LINE__.':'.__FILE__.' '.$amount); // hf@bellcom.dk debugging
+            Tools::debug( 'Md5 sum mismatch', __METHOD__, array(
+                'POST'              => $_POST,
+                'GatewayID'         => $gateway_id,
+                'Amount'            => $amount,
+                'md5 Calculated'    => $calculated,
+                'md5 From callback' => $callbackRequest->get('md5key'),
+                ));
+
             throw new Exception( 'Md5 sum mismatch, got: "'. $callbackRequest->get('md5key') .'" expected: "'. $calculated .'"' );
         }
 
@@ -246,7 +250,14 @@ class DibsApi implements PaymentMethodApiInterface
 
         if ( $callbackRequest->get('authkey') != $calculated )
         {
-            error_log(__LINE__.':'.__FILE__.' '); // hf@bellcom.dk debugging
+            Tools::debug( 'Authkey md5 sum mismatch', __METHOD__, array(
+                'POST'              => $_POST,
+                'GatewayID'         => $gateway_id,
+                'Amount'            => $amount,
+                'md5 Calculated'    => $calculated,
+                'md5 From callback' => $callbackRequest->get('authkey'),
+                ));
+
             throw new Exception( 'Authkey md5 sum mismatch, got: "'. $callbackRequest->get('authkey') .'" expected: "'. $calculated .'"' );
         }
     }

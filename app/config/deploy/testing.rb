@@ -54,6 +54,12 @@ after 'deploy:restart', 'deploy:update_permissions_shared'
 after 'deploy:restart', 'deploy:send_email'
 after 'deploy:restart', 'deploy:cleanup'
 
+# clear cache after rollback. Doesnt seem to work because it tries to clear the old current dir
+#after 'deploy:rollback', 'symfony:cache:clear'
+# so warn instead and send an extra mail
+after 'deploy:rollback', 'deploy:send_email_rollback'
+after 'deploy:rollback', 'deploy:rollback_warning'
+
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
   desc "Copy default parameters.ini and hanzo.yml to shared dir"
@@ -80,7 +86,15 @@ namespace :deploy do
   end
   desc "Send email after deploy"
   task :send_email do
-    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`'. By user: '`whoami` | mail -s 'Hanzo deployed' mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo deployed' mmh@bellcom.dk"
+  end
+  desc "Send email after rollback"
+  task :send_email_rollback do
+    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo deployed' mmh@bellcom.dk"
+  end
+  desc "Rollback warning"
+  task :rollback_warning do
+    puts "REMEMBER TO CLEAR THE CACHE AFTER A ROLLBACK! RUN:";puts "cap #{branch} symfony:cache:clear"
   end
 end
 

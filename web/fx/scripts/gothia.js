@@ -6,7 +6,7 @@ var gothia = (function($) {
 
       $("#gothia-confirm-container form").on('submit', function(event) {
         event.preventDefault();
-        dialoug.loading( '#form_social_security_num', ExposeTranslation.get('js:please.wait') );
+        dialoug.loading( 'action-submit-gothia-confirm', ExposeTranslation.get('js:please.wait') );
         var data = $(this).serialize();
         var url = $(this).attr('action');
         $.ajax({

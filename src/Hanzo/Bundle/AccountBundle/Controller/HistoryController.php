@@ -11,6 +11,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 
 use \Criteria;
+use Exception;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
@@ -158,12 +159,10 @@ class HistoryController extends CoreController
             ->findOneById($order_id)
         ;
 
-
         if (!$order instanceof Orders) {
             $this->get('session')->setFlash('notice', 'unable.to.delete.order.in.current.state');
         } else {
             $msg = $this->get('translator')->trans('order.deleted', array( '%id%' => $order_id ));
-            $this->get('session')->setFlash('notice', $msg);
 
             // NICETO: not hardcoded
             $attributes = $order->getAttributes();
@@ -190,21 +189,35 @@ class HistoryController extends CoreController
                     break;
             }
 
-            // send delete notification
-            $mailer = $this->get('mail_manager');
-            $mailer->setMessage('order.deleted', array(
-                'name'     => $order->getFirstName(),
-                'order_id' => $order->getEmail(),
-                'date' => date('d-m-Y'),
-                'time' => date('H:i'),
-            ));
-
-            $mailer->setBcc($bcc);
-            $mailer->setTo($order->getEmail(), $order->getFirstName().' '.$order->getLastName());
-            $mailer->send();
-
             // nuke order
-            $order->delete();
+            try
+            {
+                $firstName = $order->getFirstName();
+                $lastName  = $order->getLastName();
+                $id        = $order->getId();
+                $email     = $order->getEmail();
+
+                $order->delete();
+
+                // send delete notification
+                $mailer = $this->get('mail_manager');
+                $mailer->setMessage('order.deleted', array(
+                    'name'     => $firstName,
+                    'order_id' => $id,
+                    'date' => date('d-m-Y'),
+                    'time' => date('H:i'),
+                ));
+
+                $mailer->setBcc($bcc);
+                $mailer->setTo($mail, $firstName.' '.$lastName);
+                $mailer->send();
+            }
+            catch ( Exception $e )
+            {
+                $msg = $e->getMessage();
+            }
+
+            $this->get('session')->setFlash('notice', $msg);
         }
 
         return $this->redirect($this->generateUrl('_account'));

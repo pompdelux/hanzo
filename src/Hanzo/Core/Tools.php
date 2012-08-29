@@ -5,11 +5,14 @@ namespace Hanzo\Core;
 use \Propel;
 use \BasePeer;
 
-use Hanzo\Core\Hanzo;
-use Hanzo\Model\Orders;
-use Hanzo\Model\Sequences;
-use Hanzo\Model\SequencesPeer;
-use Hanzo\Model\SequencesQuery;
+use Hanzo\Core\Hanzo,
+    Hanzo\Model\Orders,
+    Hanzo\Model\OrdersPeer,
+    Hanzo\Model\CustomersPeer,
+    Hanzo\Model\Sequences,
+    Hanzo\Model\SequencesPeer,
+    Hanzo\Model\SequencesQuery
+    ;
 
 class Tools
 {
@@ -194,9 +197,51 @@ class Tools
         error_log($file.' +'.$line.' :: '.print_r($data, 1));
     }
 
+    /**
+     * debug
+     *
+     * Logs data send to error_log +:
+     * - current customer ip 
+     * - current customer id (if they are logged in)
+     * - current order id (if there is one)
+     * - current order state (if any)
+     * - current customer id on the order (if there is one)
+     *
+     * @param string $msg The message to log
+     * @param string $context In which context was the message generated, e.g. __METHOD__ 
+     * @param array $data Key/value to dump 
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public static function debug( $msg, $context, $data = array())
+    {
+      $order    = OrdersPeer::getCurrent();
+      $customer = CustomersPeer::getCurrent();
+
+      $out  = "-----------------------[ Debug: ".$context." ]-----------------------\n";
+      $out .= $msg."\n";
+      $out .= "Customer ip / id       : ". $_SERVER['REMOTE_ADDR'] ." / ". $customer->getId() ."\n";
+      $out .= "Order id / state       : ". $order->getId() ." / ". $order->getState() ."\n";
+      $out .= "Order customer id      : ". $order->getCustomersId() ."\n";
+
+      if ( !empty($data) )
+      {
+        foreach ($data as $key => $value) 
+        {
+          if ( is_array($value) )
+          {
+            $value = print_r($value,1);
+          }
+
+          $out .= str_pad( $key, 23 ).": ". $value."\n";
+        }
+      }
+
+      error_log($out);
+    }
 
     /**
-     * Wrapper for php's money_fornat function
+     * Wrapper for php's money_format function
      *
      * @see http://dk.php.net/manual/en/function.number-format.php
      *

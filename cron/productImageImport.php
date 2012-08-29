@@ -138,9 +138,6 @@ foreach ($_databases as $key => $conn) {
                 }
             }
         }
-
-        // "clean up" you say ...
-        // no - we do not clean up, but should we ?
     }
 }
 
@@ -155,6 +152,44 @@ foreach ($extra_images as $pid => $images) {
         copy($source_dir . $image, $target_dir . $image);
     }
 }
+
+// cleanup
+
+// clear file cache to prevent errors.
+clearstatcache();
+
+$images_stmt = $pdo->prepare('SELECT id, image FROM products_images', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$images_stmt->execute();
+
+$image_records_to_delete = array();
+while ($record = $images_stmt->fetchObject()) {
+    if (!file_exists($target_dir.$record->image)) {
+        $image_records_to_delete[$record->id] = $record->image;
+    }
+}
+
+if (count($image_records_to_delete)) {
+    foreach ($_databases as $key => $conn) {
+        $ids = implode(',', array_keys($image_records_to_delete));
+        $conn->exec('Delete from products_images WHERE id IN('.$ids.')');
+        $conn->exec('Delete from products_images_categories_sort WHERE products_images_id IN('.$ids.')');
+        $conn->exec('Delete from products_images_product_references WHERE products_images_id IN('.$ids.')');
+    }
+
+    $txt = "Hey der!\n\nFølgende produktbilleder er slettet fra databasen da de ikke længere var i filsystemet:\n\n";
+    foreach ($image_records_to_delete as $k => $image) {
+        $txt .= " - {$image}\n";
+    }
+    $txt .= "\nbum og sov godt!\n";
+
+    mail(
+        'hd@pompdelux.dk,un@bellcom.dk',
+        'slettede billeder i billedeimporten',
+        $txt,
+        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
+        '-fhd@pompdelux.dk'
+    );}
+
 
 if (count($failed)) {
     $txt = "Hey taber!\n\nDer er fejl i følgende produktbilleder:\n\n";
