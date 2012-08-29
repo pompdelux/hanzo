@@ -1,7 +1,7 @@
 framework:
     session:
         default_locale: da_DK
-        path: '/app_test.php/da_DK'
+        path: '/da_DK'
 
 propel:
     dbal:

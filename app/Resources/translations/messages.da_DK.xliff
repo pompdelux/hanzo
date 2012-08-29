@@ -36,11 +36,11 @@
             </trans-unit>
             <trans-unit id="pager.previous.page">
                 <source>pager.previous.page</source>
-                <target>Vis forige side</target>
+                <target>Vis forrige side</target>
             </trans-unit>
             <trans-unit id="previous">
                 <source>previous</source>
-                <target>Forige</target>
+                <target>Forrige</target>
             </trans-unit>
             <trans-unit id="pager.page">
                 <source>pager.page</source>
