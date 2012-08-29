@@ -565,6 +565,7 @@ class DefaultController extends CoreController
         // the order is now complete, so we remove it from the session
         $session = $hanzo->getSession();
         $session->remove('order_id');
+        $session->save();
 
         if ($session->has('in_edit')) {
             $this->get('event_dispatcher')->dispatch('order.edit.done', new FilterOrderEvent($order));
@@ -602,6 +603,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();
         $session->remove('order_id');
+        $session->save();
 
         // one-to-one, we can only have one session_id or order in the database....
         $session->migrate();

@@ -49,6 +49,7 @@ class OrderListener
 
         $this->session->set('in_edit', true);
         $this->session->set('order_id', $order->getId());
+        $this->session->save();
 
         $this->ax->lockUnlockSalesOrder($order, true);
     }
@@ -64,6 +65,7 @@ class OrderListener
         // unset session vars.
         $this->session->remove('in_edit');
         $this->session->remove('order_id');
+        $this->session->save();
         $this->session->migrate();
 
         $this->ax->lockUnlockSalesOrder($order, false);
