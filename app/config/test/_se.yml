@@ -1,7 +1,7 @@
 framework:
     session:
         default_locale: sv_SE
-        path: '/app_test.php/sv_SE'
+        path: '/sv_SE'
 
 propel:
     dbal:
