@@ -5,6 +5,7 @@ namespace Hanzo\Bundle\PaymentBundle\Gothia;
 use Exception;
 
 use Hanzo\Core\Hanzo,
+    Hanzo\Core\Tools,
     Hanzo\Model\Orders,
     Hanzo\Model\Customers,
     Hanzo\Model\GothiaAccounts,
