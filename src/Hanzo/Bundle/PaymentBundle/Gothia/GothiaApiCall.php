@@ -90,35 +90,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         // If there is a problem with the connection or something like that a GothiaApiCallException is thrown
         // Else a GothiaApiCallResponse is returned, which might still be an "error" but the call went through fine
-        $errors = $this->checkResponseForErrors( $response, $client );
-
-        if ( !empty($errors) )
-        {
-            $debugErrors = $errors;
-            $debugErrors['Function'] = $function;
-            $debugErrors['Callstring'] = $request;
-            Tools::debug( 'Call failed', __METHOD__, $debugErrors );
-
-            throw new GothiaApiCallException( implode('<br>', $errors) );
-        }
-
-        return new GothiaApiCallResponse( $response, $function );
-    }
-
-    /**
-     * checkResponseForErrors
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    private function checkResponseForErrors( $response, $client )
-    {
-        $errors = array();
-
-        $prettyErrors = array(
-            5000  => 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere',
-            10004 => 'Tyvärr blev du inte godkänd i vår kontroll vid köp mot faktura.<br>Var vänlig kontrollera att du har angivit ditt namn, personnummer och folkbokföringsadress enligt folkbokföringens register korrekt, alternativt välj ett annat betalningssätt.',
-            10006 => 'Tyvärr blev du inte godkänd i vår kontroll vid köp mot faktura.<br>Var vänlig kontrollera att du har angivit ditt namn, personnummer och folkbokföringsadress enligt folkbokföringens register korrekt, alternativt välj ett annat betalningssätt.',
-        );
 
         if ( $response === false || $client->fault )
         {
@@ -132,41 +103,19 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             }
 
             $errors[] = $msg;
-        }
-        else
-        {
-            foreach ( $response as $key => $data )
-            {
-                if ( isset($data['Errors']) && !empty($data['Errors']) && is_array($data['Errors']) )
-                {
-                    foreach ( $data['Errors'] as $errorKey => $errorData )
-                    {
-                        if ( !empty($errorData) )
-                        {
-                            if ( !isset($errorData['ID']) && isset($errorData[0]['ID']) )
-                            {
-                                foreach ( $errorData as $subError )
-                                {
-                                    $errors[] = (isset( $prettyErrors[$subError['ID']] )) ? $prettyErrors[$subError['ID']] : $subError['Message'];
-                                }
-                            }
-                            else
-                            {
-                                $errors[] = (isset( $prettyErrors[$errorData['ID']] )) ? $prettyErrors[$errorData['ID']] : $errorData['Message'];
-                            }
-                        }
-                    }
-                }
-                if ( isset($data['TemporaryExternalProblem']) && $data['TemporaryExternalProblem'] !== 'false' )
-                {
-                    $errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
-                }
-            }
+
+            $debugErrors = $errors;
+            $debugErrors['Function'] = $function;
+            $debugErrors['Callstring'] = $request;
+            Tools::debug( 'Call failed', __METHOD__, $debugErrors );
+
+            throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
-        return $errors;
+        $gothiaApiCallResponse = new GothiaApiCallResponse( $response, $function );
+
+        return $gothiaApiCallResponse;
     }
-
 
     /**
      * callAcquirersStatus
@@ -209,11 +158,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 null
             )
         );
-
-        if ( $this->api->getTest() )
-        {
-            error_log(__LINE__.':'.__FILE__.' Checkcustomer: '. $callString ); // hf@bellcom.dk debugging
-        }
 
         $response = $this->call('CheckCustomer', $callString);
 
