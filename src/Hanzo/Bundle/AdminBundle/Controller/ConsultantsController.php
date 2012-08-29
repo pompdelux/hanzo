@@ -105,8 +105,10 @@ class ConsultantsController extends CoreController
             ->findOne($this->getDbConnection())
         ;
         $consultant_settings_data = array();
-        foreach ($consultant_settings as $consultant_setting) {
-            $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue();
+        if($consultant_settings instanceof Settings){
+            foreach ($consultant_settings as $consultant_setting) {
+                $consultant_settings_data[$consultant_setting->getCKey()] = $consultant_setting->getCValue();
+            }
         }
 
         $form_settings = $this->createFormBuilder($consultant_settings_data)
