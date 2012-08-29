@@ -1077,7 +1077,7 @@ class ECommerceServices extends SoapService
             if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
                 $error = array(
                     'cound not capture order #' . $data->eOrderNumber,
-                    'error: ' . $result['status_description']
+                    'error: '.(empty($result['status_description']) ? 'unknown error' : $result['status_description'])
                 );
             }
         } catch (Exception $e) {
