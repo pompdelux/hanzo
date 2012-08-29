@@ -129,18 +129,9 @@ class GothiaApiCallResponse
 
                 if ( !$this->isError() )
                 {
-                    if ( !isset($rawResponse['CancelReservationResult']['Reservation']) )
+                    foreach ($rawResponse['CancelReservationResult'] as $key => $value) 
                     {
-                        $this->isError = true;
-                        
-                        Tools::debug( 'Missing field (Reservation)', __METHOD__, $rawResponse );
-                    }
-                    else
-                    {
-                        foreach ($rawResponse['CancelReservationResult']['Reservation'] as $key => $value) 
-                        {
-                            $this->data[$key] = $value;
-                        }
+                        $this->data[$key] = $value;
                     }
                 }
                 break;
