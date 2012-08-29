@@ -39,6 +39,7 @@ class OrderListener
 
         $order->setSessionId(session_id());
         $order->setState( Orders::STATE_BUILDING ); // Old order state is probably payment ok
+        $order->clearFees();
         $order->clearPaymentAttributes();
         $order->setInEdit(true);
         $order->setPaymentGatewayId(Tools::getPaymentGatewayId());

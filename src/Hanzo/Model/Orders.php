@@ -907,6 +907,24 @@ class Orders extends BaseOrders
     }
 
     /**
+     * clearFees
+     * @return void
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function clearFees()
+    {
+        $lines = $this->getOrdersLiness();
+
+        foreach ($lines as $line) 
+        {
+            if( $line->getType() == 'payment.fee' ) 
+            {
+                $line->delete();
+            }
+        }
+    }
+
+    /**
      * clearAttributesByKey
      * @param string $key
      * @return void
