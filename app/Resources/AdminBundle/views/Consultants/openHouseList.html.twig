@@ -22,12 +22,6 @@
 
 {% if consultants|length > 0 %}
 
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'consultants') }}
-    </div>
-  {% endif %}
   <div id="consultants-openhouses" class="clearfix">
     {% for consultant in consultants %}
       <div class="element">
@@ -46,16 +40,9 @@
     {% endfor %}
   </div>
 
-  {% if paginate %}
-    <div class="clearfix">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'customers') }}
-    </div>
-  {% endif %}
-
 {% else %}
 
-<p>{{ 'admin.customers.no.customers.text'|trans({}, 'admin') }}</p>
+<p>{{ 'admin.customers.no.consultants.text'|trans({}, 'admin') }}</p>
 
 {% endif %}
 {% endblock %}

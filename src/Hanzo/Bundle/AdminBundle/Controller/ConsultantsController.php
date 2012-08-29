@@ -456,12 +456,6 @@ class ConsultantsController extends CoreController
 
     public function consultantsOpenhouseAction($pager)
     {
-
-        $hanzo = Hanzo::getInstance();
-        $container = $hanzo->container;
-        $route = $container->get('request')->get('_route');
-        $router = $container->get('router');
-
         $consultants = ConsultantsQuery::create()
             ->joinCustomers()
             ->useCustomersQuery()
@@ -482,11 +476,11 @@ class ConsultantsController extends CoreController
                     'EventNotes'
                 )
             )
-            ->paginate($pager, 24, $this->getDbConnection())
+            ->find($this->getDbConnection())
         ;
 
         $consultants_array = array();
-        $cdn = $hanzo->get('core.cdn');
+        $cdn = Hanzo::getInstance()->get('core.cdn');
 
         foreach ($consultants as $consultant) {
             $info = str_replace("\n", "<br>", $consultant['EventNotes']);
@@ -503,25 +497,8 @@ class ConsultantsController extends CoreController
             );
         }
 
-        $paginate = null;
-        if ($consultants->haveToPaginate()) {
-
-            $pages = array();
-            foreach ($consultants->getLinks(20) as $page) {
-                $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
-            }
-
-            $paginate = array(
-                'next' => ($consultants->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getNextPage()), TRUE)),
-                'prew' => ($consultants->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getPreviousPage()), TRUE)),
-
-                'pages' => $pages,
-                'index' => $pager
-            );
-        }
         return $this->render('AdminBundle:Consultants:openHouseList.html.twig', array(
             'consultants'     => $consultants_array,
-            'paginate'      => $paginate,
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
