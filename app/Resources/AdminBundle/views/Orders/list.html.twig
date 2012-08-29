@@ -68,6 +68,12 @@
 
 <p>{{ 'admin.customers.orders.description.text'|trans({}, 'admin') }}</p>
 
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'orders') }}
+    </div>
+  {% endif %}
 <table id="orders" class="list">
   <thead>
     <tr>
@@ -100,8 +106,10 @@
   </tbody>
 </table>
   {% if paginate %}
-    {% import "::macro.pager.html.twig" as p %}
-    {{ p.pager(paginate, 'orders') }}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'orders') }}
+    </div>
   {% endif %}
 
 {% else %}

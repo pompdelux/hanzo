@@ -58,6 +58,12 @@
 
 {% if customers|length > 0 %}
 
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'customers') }}
+    </div>
+  {% endif %}
 <table id="customers" class="list">
   <thead>
     <tr>
@@ -103,8 +109,10 @@
   </tbody>
 </table>
   {% if paginate %}
-    {% import "::macro.pager.html.twig" as p %}
-    {{ p.pager(paginate, 'customers') }}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'customers') }}
+    </div>
   {% endif %}
 
 {% else %}

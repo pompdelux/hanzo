@@ -46,7 +46,7 @@
         toleranceElement: '> div'
       });
 
-      $('#save-nestedsortable').click(function(e){
+      $('.save-nestedsortable').click(function(e){
         e.preventDefault();
         var list = $('ul#sortable-list').nestedSortable('toArray', {startDepthCount: 0});
         $.ajax({
@@ -189,7 +189,7 @@
         placeholder : 'placeholder',
         scroll: true
       });
-      $('#save-sortable').click(function(e){
+      $('.save-sortable').click(function(e){
         e.preventDefault();
         var list = $('ul#product-list-sort').sortable('toArray');
         $.ajax({

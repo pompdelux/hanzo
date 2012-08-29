@@ -36,6 +36,12 @@
 
 {% if coupons|length > 0 %}
 
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'coupons') }}
+    </div>
+  {% endif %}
 <table id="coupons" class="list">
   <thead>
     <tr>
@@ -76,8 +82,10 @@
   </tbody>
 </table>
   {% if paginate %}
-    {% import "::macro.pager.html.twig" as p %}
-    {{ p.pager(paginate, 'events') }}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'coupons') }}
+    </div>
   {% endif %}
 {% else %}
 

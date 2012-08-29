@@ -54,6 +54,12 @@
 
 {% if zip_to_city|length > 0 %}
 
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'postalcode') }}
+    </div>
+  {% endif %}
 <table id="zip_to_city" class="list">
   <thead>
     <tr>
@@ -89,8 +95,10 @@
   </tbody>
 </table>
   {% if paginate %}
-    {% import "::macro.pager.html.twig" as p %}
-    {{ p.pager(paginate, 'customers') }}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'postalcode') }}
+    </div>
   {% endif %}
 
 {% else %}

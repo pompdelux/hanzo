@@ -40,12 +40,18 @@
 <div>
   <p>{{ 'admin.domain.settings.description.text'|trans({}, 'admin') }}</p>
   <form id="settings-list" action="{{ path('admin_settings_domain', {'domain_key' : domain}) }}" method="post" {{ form_enctype(form) }}>
+    <div class="clearfix">
+      <input class="button right" type="submit" value="{{ 'save.settings'|trans({}, 'admin') }}">
+      <a class="button left" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+    </div>
     <div>
       {{ form_rest(form) }}
       {{ form_row(form._token) }}
     </div>
-    <input class="button right" type="submit" value="{{ 'save.settings'|trans({}, 'admin') }}">
-    <a class="button left" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+    <div class="clearfix">
+      <input class="button right" type="submit" value="{{ 'save.settings'|trans({}, 'admin') }}">
+      <a class="button left" href="{{ path('admin_settings') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+    </div>
   </form>
 </div>
 <h1>{{ 'admin.settings.add.header.text.%domain_key%'|trans({'%domain_key%' : domain}, 'admin') }}</h1>
