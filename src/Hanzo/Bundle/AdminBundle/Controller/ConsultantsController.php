@@ -454,7 +454,7 @@ class ConsultantsController extends CoreController
         }
     }
 
-    public function consultantsOpenhouseAction($pager)
+    public function consultantsOpenhouseAction()
     {
         $consultants = ConsultantsQuery::create()
             ->joinCustomers()
