@@ -22,6 +22,11 @@
     </li>
     {% endif %}
     <li>
+      <a href="{{ path('admin_consultants_openhouse') }}">
+        {{ 'admin.consultants.openhouse.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
       <a href="{{ path('admin_consultants') }}">
         {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
       </a>

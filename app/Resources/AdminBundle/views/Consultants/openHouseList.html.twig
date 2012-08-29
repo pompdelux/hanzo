@@ -1,0 +1,61 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_consultants') }}">
+        {{ 'admin.consultants.list.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'admin.consultants.openhouse.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+
+{% if consultants|length > 0 %}
+
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'consultants') }}
+    </div>
+  {% endif %}
+  <div id="consultants-openhouses" class="clearfix">
+    {% for consultant in consultants %}
+      <div class="element">
+        <h4>
+          <a href="{{ path('admin_consultant', {'id' : consultant.id}) }}">
+            {{ consultant.name }}
+          </a>
+        </h4>
+        <div>{{ consultant.zip }} {{ consultant.city }} </div>
+        <div>{{ 'admin.customer.email'|trans({}, 'admin') }}: <a href="mailto:{{ consultant.email }}">{{ consultant.email }}</a></div>
+        <div>{{ 'admin.customer.phone'|trans({}, 'admin') }}: {{ consultant.phone }}</div>
+        <div class="note">
+          {{ consultant.info|raw }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if paginate %}
+    <div class="clearfix">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'customers') }}
+    </div>
+  {% endif %}
+
+{% else %}
+
+<p>{{ 'admin.customers.no.customers.text'|trans({}, 'admin') }}</p>
+
+{% endif %}
+{% endblock %}

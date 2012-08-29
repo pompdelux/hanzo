@@ -453,4 +453,76 @@ class ConsultantsController extends CoreController
             ));
         }
     }
+
+    public function consultantsOpenhouseAction($pager)
+    {
+
+        $hanzo = Hanzo::getInstance();
+        $container = $hanzo->container;
+        $route = $container->get('request')->get('_route');
+        $router = $container->get('router');
+
+        $consultants = ConsultantsQuery::create()
+            ->joinCustomers()
+            ->useCustomersQuery()
+                ->joinAddresses()
+                ->useAddressesQuery()
+                    ->filterByType('payment')
+                ->endUse()
+            ->endUse()
+            ->select(
+                array(
+                    'Customers.Id', 
+                    'Customers.FirstName', 
+                    'Customers.LastName',
+                    'Addresses.PostalCode',
+                    'Addresses.City',
+                    'Customers.Email',
+                    'Customers.Phone',
+                    'EventNotes'
+                )
+            )
+            ->paginate($pager, 24, $this->getDbConnection())
+        ;
+
+        $consultants_array = array();
+        $cdn = $hanzo->get('core.cdn');
+
+        foreach ($consultants as $consultant) {
+            $info = str_replace("\n", "<br>", $consultant['EventNotes']);
+            $info = str_replace('src="/', 'src="'.$cdn, $info);
+
+            $consultants_array[] = array(
+                'id' => $consultant['Customers.Id'],
+                'name' => $consultant['Customers.FirstName'] .' '. $consultant['Customers.LastName'],
+                'zip' => $consultant['Addresses.PostalCode'],
+                'city' => $consultant['Addresses.City'],
+                'email' => $consultant['Customers.Email'],
+                'phone' => $consultant['Customers.Phone'],
+                'info' => $info,
+            );
+        }
+
+        $paginate = null;
+        if ($consultants->haveToPaginate()) {
+
+            $pages = array();
+            foreach ($consultants->getLinks(20) as $page) {
+                $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+            }
+
+            $paginate = array(
+                'next' => ($consultants->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getNextPage()), TRUE)),
+                'prew' => ($consultants->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $consultants->getPreviousPage()), TRUE)),
+
+                'pages' => $pages,
+                'index' => $pager
+            );
+        }
+        return $this->render('AdminBundle:Consultants:openHouseList.html.twig', array(
+            'consultants'     => $consultants_array,
+            'paginate'      => $paginate,
+            'database' => $this->getRequest()->getSession()->get('database')
+        ));
+    }
 }

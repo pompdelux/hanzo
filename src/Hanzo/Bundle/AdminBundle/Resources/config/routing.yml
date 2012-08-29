@@ -446,6 +446,14 @@ admin_consultant_update_settings:
     requirements:
         _format: html|json
 
+admin_consultants_openhouse:
+    pattern:  /admin/consultants/openhouses/{pager}
+    defaults:
+        _controller: AdminBundle:Consultants:consultantsOpenhouse
+        pager: 1
+    requirements:
+        pager: \d+
+
 admin_postalcode:
     pattern:  /admin/settings/postalcode/{pager}
     defaults:

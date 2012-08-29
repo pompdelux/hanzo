@@ -1858,6 +1858,14 @@
         <source>search</source>
         <target>Søg</target>
       </trans-unit>
+      <trans-unit id="admin.consultants.openhouse.header.text">
+        <source>admin.consultants.openhouse.header.text</source>
+        <target>Konsulenter - Åbent Hus</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.openhouse.list.link">
+        <source>admin.consultants.openhouse.list.link</source>
+        <target>Åbent Hus Liste</target>
+      </trans-unit>
       <trans-unit id="">
         <source></source>
         <target></target>
