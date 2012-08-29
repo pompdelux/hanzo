@@ -171,12 +171,12 @@ while ($record = $images_stmt->fetchObject()) {
 if (count($image_records_to_delete)) {
     foreach ($_databases as $key => $conn) {
         $ids = implode(',', array_keys($image_records_to_delete));
-        #$conn->exec('Delete from products_images WHERE id IN('.$ids.')');
-        #$conn->exec('Delete from products_images_categories_sort WHERE products_images_id IN('.$ids.')');
-        #$conn->exec('Delete from products_images_product_references WHERE products_images_id IN('.$ids.')');
+        $conn->exec('Delete from products_images WHERE id IN('.$ids.')');
+        $conn->exec('Delete from products_images_categories_sort WHERE products_images_id IN('.$ids.')');
+        $conn->exec('Delete from products_images_product_references WHERE products_images_id IN('.$ids.')');
     }
 
-    $txt = "Hey der!\n\Følgende produktbilleder er slettet fra databasen da de ikke længere var i filsystemet:\n\n";
+    $txt = "Hey der!\n\nFølgende produktbilleder er slettet fra databasen da de ikke længere var i filsystemet:\n\n";
     foreach ($image_records_to_delete as $k => $image) {
         $txt .= " - {$image}\n";
     }
