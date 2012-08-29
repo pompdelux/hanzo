@@ -213,7 +213,7 @@ class Tools
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public static function debug( $msg, $context, $data )
+    public static function debug( $msg, $context, $data = array())
     {
       $order    = OrdersPeer::getCurrent();
       $customer = CustomersPeer::getCurrent();
@@ -224,9 +224,17 @@ class Tools
       $out .= "Order id / state       : ". $order->getId() ." / ". $order->getState() ."\n";
       $out .= "Order customer id      : ". $order->getCustomersId() ."\n";
 
-      foreach ($data as $key => $value) 
+      if ( !empty($data) )
       {
-        $out .= str_pad( $key, 23 ).": ". $value."\n";
+        foreach ($data as $key => $value) 
+        {
+          if ( is_array($value) )
+          {
+            $value = print_r($value,1);
+          }
+
+          $out .= str_pad( $key, 23 ).": ". $value."\n";
+        }
       }
 
       error_log($out);

@@ -57,6 +57,11 @@ class GothiaApiCallResponse
      **/
     protected function parse( $rawResponse, $function )
     {
+        if ( $_SERVER['REMOTE_ADDR'] == '90.185.206.100' )
+        {
+            Tools::debug( 'Raw response', __METHOD__, $rawResponse);
+        }
+
         switch ($function) 
         {
             case 'CheckCustomer':

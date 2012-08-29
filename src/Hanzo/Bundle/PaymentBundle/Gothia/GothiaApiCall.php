@@ -68,6 +68,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if ( $this->api->getTest() )
         {
             $client = AFSWS_Init( 'test' );
+            Tools::debug( 'Test debug', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
         }
         else
         {
@@ -80,7 +81,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         }
         catch (Exception $e)
         {
-            error_log(__LINE__.':'.__FILE__.' '. $e->getMessage() ); // hf@bellcom.dk debugging
+            Tools::debug( $e->getMessage(), __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
             throw new GothiaApiCallException( $e->getMessage() );
         }
 
@@ -92,8 +93,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( !empty($errors) )
         {
-            error_log(__LINE__.':'.__FILE__.' '.print_r($errors,1)); // hf@bellcom.dk debugging
-            //error_log(__LINE__.':'.__FILE__.' '.print_r($this->settings,1)); // hf@bellcom.dk debugging
+            $debugErrors = $errors;
+            $debugErrors['Function'] = $function;
+            $debugErrors['Callstring'] = $request;
+            Tools::debug( 'Call failed', __METHOD__, $debugErrors );
+
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
@@ -260,11 +264,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             AFSWS_Reservation('NoAccountOffer', $amount, 'SEK', $customerId, null) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function
-
-        if ( $this->api->getTest() )
-        { 
-            error_log(__LINE__.':'.__FILE__.' placeReservation: '. $callString ); // hf@bellcom.dk debugging
-        }
 
         $response = $this->call('PlaceReservation', $callString);
 
