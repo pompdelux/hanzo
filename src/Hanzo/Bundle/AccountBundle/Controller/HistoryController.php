@@ -11,6 +11,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 
 use \Criteria;
+use Exception;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
@@ -158,12 +159,10 @@ class HistoryController extends CoreController
             ->findOneById($order_id)
         ;
 
-
         if (!$order instanceof Orders) {
             $this->get('session')->setFlash('notice', 'unable.to.delete.order.in.current.state');
         } else {
             $msg = $this->get('translator')->trans('order.deleted', array( '%id%' => $order_id ));
-            $this->get('session')->setFlash('notice', $msg);
 
             // NICETO: not hardcoded
             $attributes = $order->getAttributes();
@@ -204,7 +203,16 @@ class HistoryController extends CoreController
             $mailer->send();
 
             // nuke order
-            $order->delete();
+            try
+            {
+                $order->delete();
+            }
+            catch ( Exception $e )
+            {
+                $msg = $e->getMessage();
+            }
+
+            $this->get('session')->setFlash('notice', $msg);
         }
 
         return $this->redirect($this->generateUrl('_account'));
