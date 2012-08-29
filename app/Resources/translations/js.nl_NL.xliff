@@ -196,7 +196,7 @@
             </trans-unit>
             <trans-unit id="today">
                 <source>today</source>
-                <target>I dag</target>
+                <target>Vandaag</target>
             </trans-unit>
             <trans-unit id="month.February">
                 <source>month.February</source>
@@ -224,7 +224,7 @@
             </trans-unit>
             <trans-unit id="month.August">
                 <source>month.August</source>
-                <target>August</target>
+                <target>Augustus</target>
             </trans-unit>
             <trans-unit id="month.September">
                 <source>month.September</source>
@@ -244,31 +244,31 @@
             </trans-unit>
             <trans-unit id="day.short.Sun">
                 <source>day.short.Sun</source>
-                <target>Søn</target>
+                <target>Zo</target>
             </trans-unit>
             <trans-unit id="day.short.Mon">
                 <source>day.short.Mon</source>
-                <target>Man</target>
+                <target>Ma</target>
             </trans-unit>
             <trans-unit id="day.short.Tue">
                 <source>day.short.Tue</source>
-                <target>Tir</target>
+                <target>Di</target>
             </trans-unit>
             <trans-unit id="day.short.Wed">
                 <source>day.short.Wed</source>
-                <target>Ons</target>
+                <target>Woe</target>
             </trans-unit>
             <trans-unit id="day.short.Thu">
                 <source>day.short.Thu</source>
-                <target>Tor</target>
+                <target>Do</target>
             </trans-unit>
             <trans-unit id="day.short.Fri">
                 <source>day.short.Fri</source>
-                <target>Fre</target>
+                <target>Vrij</target>
             </trans-unit>
             <trans-unit id="day.short.Sat">
                 <source>day.short.Sat</source>
-                <target>Lør</target>
+                <target>Za</target>
             </trans-unit>
             <trans-unit id="event.confirm.delete.participant">
                 <source>event.confirm.delete.participant</source>
