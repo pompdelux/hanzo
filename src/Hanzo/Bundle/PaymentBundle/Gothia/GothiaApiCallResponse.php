@@ -44,10 +44,6 @@ class GothiaApiCallResponse
         $this->parse( $rawResponse, $function );
         $this->checkResponseForErrors($rawResponse);
 
-        if ( !empty($this->errors) )
-        {
-            $this->setIsError();
-        }
     }
 
     /**
@@ -170,32 +166,44 @@ class GothiaApiCallResponse
             10006 => 'Tyvärr blev du inte godkänd i vår kontroll vid köp mot faktura.<br>Var vänlig kontrollera att du har angivit ditt namn, personnummer och folkbokföringsadress enligt folkbokföringens register korrekt, alternativt välj ett annat betalningssätt.',
         );
 
-        foreach ( $rawResponse as $key => $data )
+        if ( is_array($rawResponse) )
         {
-            if ( isset($data['Errors']) && !empty($data['Errors']) && is_array($data['Errors']) )
+            foreach ( $rawResponse as $key => $data )
             {
-                foreach ( $data['Errors'] as $errorKey => $errorData )
+                if ( isset($data['Errors']) && !empty($data['Errors']) && is_array($data['Errors']) )
                 {
-                    if ( !empty($errorData) )
+                    foreach ( $data['Errors'] as $errorKey => $errorData )
                     {
-                        if ( !isset($errorData['ID']) && isset($errorData[0]['ID']) )
+                        if ( !empty($errorData) )
                         {
-                            foreach ( $errorData as $subError )
+                            if ( !isset($errorData['ID']) && isset($errorData[0]['ID']) )
                             {
-                                $this->errors[] = (isset( $prettyErrors[$subError['ID']] )) ? $prettyErrors[$subError['ID']] : $subError['Message'];
+                                foreach ( $errorData as $subError )
+                                {
+                                    $this->errors[] = (isset( $prettyErrors[$subError['ID']] )) ? $prettyErrors[$subError['ID']] : $subError['Message'];
+                                }
                             }
-                        }
-                        else
-                        {
-                            $this->errors[] = (isset( $prettyErrors[$errorData['ID']] )) ? $prettyErrors[$errorData['ID']] : $errorData['Message'];
+                            else
+                            {
+                                $this->errors[] = (isset( $prettyErrors[$errorData['ID']] )) ? $prettyErrors[$errorData['ID']] : $errorData['Message'];
+                            }
                         }
                     }
                 }
+                if ( isset($data['TemporaryExternalProblem']) && $data['TemporaryExternalProblem'] !== 'false' )
+                {
+                    $this->errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
+                }
             }
-            if ( isset($data['TemporaryExternalProblem']) && $data['TemporaryExternalProblem'] !== 'false' )
-            {
-                $this->errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
-            }
+        }
+        else
+        {
+            $this->errors[] = 'Kunne ikke forbinde til Gothia Faktura service, prøv igen senere';
+        }
+
+        if ( !empty($this->errors) )
+        {
+            $this->setIsError();
         }
     }
 }

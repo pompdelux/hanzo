@@ -300,8 +300,8 @@ function AFSWS_CancelReservationObj( $customerNo, $orderNo = null, $amount = '' 
 	$ns = 'akt1';
 
     $reservationData  = AFSWS_Tag('CustomerNo',$customerNo,$ns);
-    //$reservationData .= AFSWS_Tag('OrderNo',$orderNo,$ns);
     $reservationData .= AFSWS_Tag('Amount',$amount,$ns);
+    $reservationData .= AFSWS_Tag('OrderNo',$orderNo,$ns);
 
 	return AFSWS_Tag('cancelReservation', $reservationData);
 }

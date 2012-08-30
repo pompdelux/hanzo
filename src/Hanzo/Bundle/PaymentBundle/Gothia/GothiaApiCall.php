@@ -76,6 +76,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             $client = AFSWS_Init( 'live' );
         }
 
+        if ( $_SERVER['REMOTE_ADDR'] == '90.185.206.100' )
+        {
+            Tools::debug( 'Gothia debug', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
+        }
+
         try
         {
             $response = $client->call( $function, $request );
@@ -126,6 +131,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     public function checkCustomer( Customers $customer )
     {
         $addresses     = $customer->getAddressess();
+
+        if ( !isset($addresses[0]) )
+        {
+            Tools::debug( 'Customer is missing an address', __METHOD__ );
+            throw new GothiaApiCallException( 'Missing address' );
+        }
+
         $address       = $addresses[0];
         $gothiaAccount = $customer->getGothiaAccounts();
         $customerId    = $customer->getId();
@@ -133,6 +145,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if ( $this->api->getTest() )
         {
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
+        }
+
+        if ( empty($customerId) )
+        {
+            Tools::debug( 'Missing customer id', __METHOD__ );
+            throw new GothiaApiCallException( 'Missing customer id' );
         }
 
         $callString = AFSWS_CheckCustomer(
@@ -235,13 +253,33 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancelReservation( Customers $customer, Orders $order )
     {
-        $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $total      = $order->getTotalPrice();
+
+        if ( empty($total) )
+        {
+            Tools::debug( 'Empty total', __METHOD__ );
+            throw new GothiaApiCallException( 'Empty total' );
+        }
+
+        $amount     = number_format( $total, 2, '.', '' );
         $customerId = $customer->getId();
 
         if ( $this->api->getTest() )
         {
             $gothiaAccount = $customer->getGothiaAccounts();
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
+        }
+
+        if ( empty($customerId) )
+        {
+            Tools::debug( 'Missing customer id', __METHOD__ );
+            throw new GothiaApiCallException( 'Missing customer id' );
+        }
+
+        if ( empty($amount) )
+        {
+            Tools::debug( 'Empty amount', __METHOD__ );
+            throw new GothiaApiCallException( 'Empty amount' );
         }
 
         // Gothia uses tns:CancelReservation which contains a tns:cancelReservation, therefore the 2 functions with almost the same name
