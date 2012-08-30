@@ -69,17 +69,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         if ( $this->api->getTest() )
         {
             $client = AFSWS_Init( 'test' );
-            Tools::debug( 'Test debug', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
         }
         else
         {
             $client = AFSWS_Init( 'live' );
         }
 
-        if ( $_SERVER['REMOTE_ADDR'] == '90.185.206.100' )
-        {
-            Tools::debug( 'Gothia debug', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
-        }
+        Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
 
         try
         {
@@ -116,6 +112,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
+
+        Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
 
         $gothiaApiCallResponse = new GothiaApiCallResponse( $response, $function );
 
