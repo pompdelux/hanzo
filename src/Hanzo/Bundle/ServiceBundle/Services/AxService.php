@@ -272,7 +272,7 @@ class AxService
 
         // post validation
         if (empty($salesTable->HomePartyId) || empty($salesTable->SalesResponsible)) {
-            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'error', 'Missing SalesResponsible or HomePartyId', $con);
+            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', 'Missing SalesResponsible or HomePartyId', $con);
             return false;
         }
 
