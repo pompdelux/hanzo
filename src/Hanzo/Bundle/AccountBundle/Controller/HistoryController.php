@@ -209,7 +209,7 @@ class HistoryController extends CoreController
                 ));
 
                 $mailer->setBcc($bcc);
-                $mailer->setTo($mail, $firstName.' '.$lastName);
+                $mailer->setTo($email, $firstName.' '.$lastName);
                 $mailer->send();
             }
             catch ( Exception $e )
