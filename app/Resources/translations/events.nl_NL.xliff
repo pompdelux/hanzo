@@ -324,63 +324,63 @@
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply" approved="no">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hej %name%. Tak for din tilmelding til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg glæder mig til at se dig! %hostess%</target>
+                <target>Beste %name%. Leuk dat je deelneemt aan het POMPdeLUX Home shopping event op %event_date% om %event_time% op het volgende adres  %address%, %zip% %city%. Tot ziens! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite" approved="no">
                 <source>event.sms.invite</source>
-                <target>Hej %name%. %hostess% vil gerne invitere dig til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se det lækre børnetøj, så svar på denne sms med teksten "pdl %event_id%". Jeg håber, vi ses!</target>
+                <target>Beste %name%. %hostess% nodigt je hierbij uit voor het POMPdeLUX Home shopping event op %event_date% om %event_time%. Het adres is %address%, %zip% %city%. Heb je zin om de nieuwe kinderkledingcollectie te zien, antwoord dan per sms met de tekst "pdl %event_id%".  Hopelijk tot ziens!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder" approved="no">
                 <source>event.sms.reminder</source>
-                <target>Hej %name% Husk POMPdeLUX home shopping arrangementet den %event_date% kl. %event_time% PÃ¥ adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
+                <target>Beste %name% Herinnering: POMPdeLUX home shopping event op %event_date% om %event_time%. Adres: %address%, %zip% %city% Hartelijke groet, POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="event.too.old.to.edit">
                 <source>event.too.old.to.edit</source>
-                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke editeres.</target>
+                <target> Dit event vindt nu plaats of heeft al plaatsgevonden en kan daarom niet geredigeerd worden.</target>
             </trans-unit>
             <trans-unit id="event.too.old.to.delete">
                 <source>event.too.old.to.delete</source>
-                <target>Arrangementet er allerede igang eller afholdt og kan derfor ikke slettes.</target>
+                <target>Het event vindt nu plaats of heeft al plaatsgevonden en kan daarom niet verwijderd worden.</target>
             </trans-unit>
             <trans-unit id="events.create_customer.header.text">
                 <source>events.create_customer.header.text</source>
-                <target>Hent kundeoplysninger</target>
+                <target>Download klantengegevens</target>
             </trans-unit>
             <trans-unit id="events.create_customer.description.text">
                 <source>events.create_customer.description.text</source>
-                <target><![CDATA[<b>Ny kunde:</b> Indtast kundens telefonnummer og klik på knappen Hent.<br><b>Eksisterende kunde:</b> Indtast kundens e-mailadresse og klik på knappen Hent.<br><br><span style="font-weight:bold; color:#A10000;">Bemærk:</span> På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger)]]></target>
+                <target><![CDATA[<b>Nieuwe klant:</b> Toets telefoonnummer klant en klik op veld Download.<br><b>Bestaande klant:</b> Toets e-mailadres klant en klik op veld Download.<br><br><span style="font-weight:bold; color:#A10000;">NB:</span> Op deze pagina vul je je contactgegevens in (en <u>niet</u> evt. bedrijfsgegevens)]]></target>
             </trans-unit>
             <trans-unit id="events.fetch_customer.placeholder">
                 <source>events.fetch_customer.placeholder</source>
-                <target>E-mail eller tlf. nr.</target>
+                <target>E-mail of tlf. nr.</target>
             </trans-unit>
             <trans-unit id="events.fetch_customer.button">
                 <source>events.fetch_customer.button</source>
-                <target>Hent</target>
+                <target>Download</target>
             </trans-unit>
             <trans-unit id="choose.event.type" approved="no">
                 <source>choose.event.type</source>
-                <target>Vælg arrangement type</target>
+                <target>Kies arrangementstype</target>
             </trans-unit>
             <trans-unit id="event.type.private" approved="no">
                 <source>event.type.private</source>
-                <target>Privat køb</target>
+                <target>Privé order</target>
             </trans-unit>
             <trans-unit id="event.type.gift" approved="no">
                 <source>event.type.gift</source>
-                <target>Gave køb</target>
+                <target>Cadeau order</target>
             </trans-unit>
             <trans-unit id="event.type.friend" approved="no">
                 <source>event.type.friend</source>
-                <target>Veninde køb</target>
+                <target>Vriendinnen order</target>
             </trans-unit>
             <trans-unit id="event.type.other" approved="no">
                 <source>event.type.other</source>
-                <target>Udenfor arrangement</target>
+                <target>Geen arrangement</target>
             </trans-unit>
             <trans-unit id="hostess.discount" approved="no">
                 <source>hostess.discount</source>
-                <target>Værtinderabat</target>
+                <target>Korting gastvrouw</target>
             </trans-unit>
             <trans-unit id="event.close">
                 <source>event.close</source>
@@ -389,7 +389,6 @@
             <trans-unit id="event.closed">
                 <source>event.closed</source>
                 <target>Event is nu afgesloten</target>
-            </trans-unit>
         </body>
     </file>
 </xliff>
