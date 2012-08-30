@@ -196,6 +196,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     public function placeReservation( Customers $customer, Orders $order )
     {
         $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $customerId = $customer->getId();
 
         if ( $this->api->getTest() )
         {
@@ -235,6 +236,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     public function cancelReservation( Customers $customer, Orders $order )
     {
         $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $customerId = $customer->getId();
 
         if ( $this->api->getTest() )
         {
