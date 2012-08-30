@@ -1121,8 +1121,17 @@ class Orders extends BaseOrders
 
         if ( $response->isError() )
         {
-            Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, 'Data' => $response->data));
-            throw new Exception( 'Could not cancel order' );
+            $debug = array();
+            $msg = 'Could not cancel order';
+
+            if ( $paymentMethod == 'gothia' )
+            {
+              $debug['TransactionId'] = $response->transactionId();
+              $msg .= ' at Gothia (Transaction ID: '. $response->transactionId() .')';
+            }
+
+            Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, $debug));
+            throw new Exception( $msg );
         }
 
         return $response;

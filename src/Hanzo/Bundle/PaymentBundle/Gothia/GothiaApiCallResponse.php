@@ -43,7 +43,6 @@ class GothiaApiCallResponse
     {
         $this->parse( $rawResponse, $function );
         $this->checkResponseForErrors($rawResponse);
-
     }
 
     /**
