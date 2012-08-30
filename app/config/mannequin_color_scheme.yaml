@@ -1,118 +1,96 @@
 Boy.png:
     Navy:
         - Navy
-        - White
-        - Blue
-        - Light Blue
-        - Red
-        - Blue Denim
-        - Black
-        - Khaki
-        - Navy Melange
-        - Off White/Navy
-        - Sand
-        - Grey Melange
-        - Black
-        - White
-    Grey:
-        - Grey Melange
-        - Grey
-        - Light Blue
-        - Light Grey Melange
-        - Blue Denim
-        - Khaki
-        - Sand
-        - Black
-        - White
-    Olive:
-        - Olive
-        - Khaki
-        - Sand
-        - White
-        - Dark Olive
-        - Blue Denim
-        - Black
-    Blue:
-        - Blue
-        - Light Blue
-        - Grey Melange
-        - Yellow
-        - Sand
-        - Khaki
-        - White
-        - Blue Denim
-        - Blue Ink
-        - Black
-    Green:
-        - Green
-        - Blue Denim
-        - Navy
-        - Khaki
-        - Sand
-        - White
-        - Black
-Girl.png:
-    Blue:
-        - Blue
-        - Navy
-        - White
-        - Cream
-        - Blue Denim
-        - Sand
-        - Off White
-        - Navy/White
-    Dusty Rose:
-        - Dusty Rose
-        - Cream
-        - Off White
-        - Blue Denim
-        - Grey
-        - Powder
-        - Sand
-        - Black
-        - Powder/Dusty Rose
-        - White
-    Grey:
-        - Grey
-        - Grey Melange
-        - Cream
-        - Blue Denim
-        - Blue Denim
-        - Off White
-        - Off White/Grey
-        - Black
-        - White
-    White:
-        - White
-        - Black
-        - Grey
-        - Grey Melange
-        - Blue Denim
-        - Off White
-    Peach:
-        - Peach
-        - Sand
-        - Blue Denim
-        - Brown
-        - White
-        - Cream
-        - Off White
-        - Peach/Grey Melange
-        - Grey Melange
-    Green:
-        - Green
-        - Brown
-        - Khaki
-        - Sand
-        - Blue Denim
-        - Olive
-        - Off White
-        - Off White/Green
-        - White
+		- White
+		- Blue
+		- Wine
+		- Red
+		- Blue Denim
+		- Black
+		- Camel
+		- Yellow
+		- Grey
+		- Sand
+		- Grey Melange
+		- Black
+		- White
     Brown:
         - Brown
-        - Cream
+		- Sand
+		- Grey Melange
+		- Grey
+		- Khaki
+		- White
+		- Blue Denim
+		- Black
+    Green:
+        - Green
+		- Blue Denim
+		- Navy
+		- Khaki
+		- Sand
+		- White
+		- Black
+		- Camel
+    Grey:
+        - Grey Melange
+		- Grey
+		- Blue Denim
+		- Khaki
+		- Sand
+		- Black
+		- White
+		- Off White
+		- Wine
+		- Camel
+		- Blue
+Girl.png:
+    Violet:
+        - Violet
+		- Khaki
+		- Grey Melange
+		- Blue Denim
+		- Grey
+		- Violet Melange
+		- Violet/Grey
+		- Black
+		- Sand
+		- White
+		- Dusty Rose
+		- Light Violet
+		- Coffee
+    Grey:
+        - Grey Melange
+		- Grey
+		- Dark Grey Melange
+		- Blue Denim
+		- Light Grey Melange
+		- Curry
+		- Black
+		- White
+		- Violet/Grey
+		- Sand
+		- Off White
+    Brown:
         - Khaki
-        - Sand
-        - Off White
-        - White
+		- Brown Melange
+		- Brown/Curry
+		- Brown
+		- White
+		- Sand
+		- Coffee
+		- Curry
+		- Blue Denim
+		- Black
+    Peach/Blue:
+        - Peach
+		- Sand
+		- Blue Denim
+		- White
+		- Grey Melange
+		- Blue/Coral
+		- Coffee
+		- Blue
+		- Navy
+		- Light Grey Melange
+		- Dark Grey Melange
