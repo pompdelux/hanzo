@@ -1126,8 +1126,8 @@ class Orders extends BaseOrders
 
             if ( $paymentMethod == 'gothia' )
             {
-              $debug['TransactionId'] = $response->transactionId();
-              $msg .= ' at Gothia (Transaction ID: '. $response->transactionId() .')';
+              $debug['TransactionId'] = $response->transactionId;
+              $msg .= ' at Gothia (Transaction ID: '. $response->transactionId .')';
             }
 
             Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, $debug));
