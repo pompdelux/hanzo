@@ -37,6 +37,7 @@ class SmsService
         // $settings['provider.appnr'];
         // $settings['provider.mediacode'];
         // $settings['provider.price'];
+        // $settings['provider.get_smsc'];
 
         // defaults
         $this->settings['provider.get_smsc'] = 0;
@@ -69,7 +70,7 @@ class SmsService
         $message = $this->translator->trans('event.sms.invite', $parameters, 'events');
 
         $provider = $this->getProvider();
-        $provider->addMessage($to, $message);
+        $provider->addMessage($to, utf8_decode($message));
 
         return $provider->send();
     }
@@ -95,7 +96,7 @@ class SmsService
         $message = $this->translator->trans('event.sms.confirmation.reply', $parameters, 'events');
 
         $provider = $this->getProvider();
-        $provider->addMessage($to, $message);
+        $provider->addMessage($to, utf8_decode($message));
 
         return $provider->send();
     }
