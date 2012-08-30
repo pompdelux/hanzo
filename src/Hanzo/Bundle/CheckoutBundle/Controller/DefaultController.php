@@ -512,6 +512,10 @@ class DefaultController extends CoreController
             }
         }
 
+        // must be set, so er ensure that they are.
+        $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
+        $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
+
         $order->save();
 
         /* ------------------------------------------------- */
