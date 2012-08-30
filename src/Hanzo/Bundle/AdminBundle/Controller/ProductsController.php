@@ -553,7 +553,7 @@ class ProductsController extends CoreController
 
         try {
             $reference->save($this->getDbConnection());
-            $this->get('replication_manager')->syncStyleGuide('add', $image_id, $product_id);
+            #$this->get('replication_manager')->syncStyleGuide('add', $image_id, $product_id);
 
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
@@ -582,7 +582,7 @@ class ProductsController extends CoreController
 
         if($product_ref)
             $product_ref->delete($this->getDbConnection());
-            $this->get('replication_manager')->syncStyleGuide('delete', $image_id, $product_id);
+            #$this->get('replication_manager')->syncStyleGuide('delete', $image_id, $product_id);
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(

@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="month.Januar">
                 <source>month.Januar</source>
-                <target>Januar</target>
+                <target>Januari</target>
             </trans-unit>
             <trans-unit id="today">
                 <source>today</source>
@@ -200,11 +200,11 @@
             </trans-unit>
             <trans-unit id="month.February">
                 <source>month.February</source>
-                <target>Februar</target>
+                <target>Februari</target>
             </trans-unit>
             <trans-unit id="month.March">
                 <source>month.March</source>
-                <target>Marts</target>
+                <target>Maart </target>
             </trans-unit>
             <trans-unit id="month.April">
                 <source>month.April</source>
@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="month.May">
                 <source>month.May</source>
-                <target>Maj</target>
+                <target>Mei</target>
             </trans-unit>
             <trans-unit id="month.June">
                 <source>month.June</source>

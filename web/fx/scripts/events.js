@@ -88,6 +88,10 @@ var events = (function($) {
               $('#customers_id', $c_form).val(response.data.id);
               $('.input', $form).val('');
             }
+
+            if (undefined === response.data.first_name) {
+              dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
+            }
           } else {
             dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
           }

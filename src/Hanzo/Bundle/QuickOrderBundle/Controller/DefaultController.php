@@ -23,7 +23,7 @@ class DefaultController extends CoreController
         // All logic is a copy of BasketBundle.Default.viewAction
 
         $order = OrdersPeer::getCurrent();
-        
+
         $router = $this->get('router');
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
@@ -109,7 +109,7 @@ class DefaultController extends CoreController
 
     	$products = ProductsQuery::create()
             ->where('products.MASTER IS NULL')
-            ->filterBySku('%'.$name.'%')
+            ->filterBySku($name.'%')
             ->filterByIsOutOfStock(FALSE)
             ->useProductsDomainsPricesQuery()
                 ->filterByDomainsId(Hanzo::getInstance()->get('core.domain_id'))
@@ -122,12 +122,12 @@ class DefaultController extends CoreController
 
         $result = array();
         if ($products->count()) {
-            $stock = $this->get('stock');
-            $stock->prime($products);
+#            $stock = $this->get('stock');
+#            $stock->prime($products);
             foreach ($products as $product) {
-                if($stock->check($product)){
+#                if($stock->check($product)){
             	   $result[] = $product->getSku();
-                }
+#                }
             }
             if(count($result)){
                 return $this->json_response(array(
