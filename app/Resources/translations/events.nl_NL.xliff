@@ -12,11 +12,11 @@
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
-                <target>Hier kun je alle events zien. Groen betekent een open event, rood een gesloten event. Klik op een event om er een gedetailleerde beschrijving over te lezen.</target>
+                <target>Hier kun je alle events zien. Groen betekent een open event, rood een afgesloten event. Klik je op een event, dan zie je de details voor dat betreffende event.</target>
             </trans-unit>
             <trans-unit id="events.calendar.archived.header.text">
                 <source>events.calendar.archived.header.text</source>
-                <target>Arkiverede arrangementer</target>
+                <target>Arrangementen archief</target>
             </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
@@ -384,11 +384,11 @@
             </trans-unit>
             <trans-unit id="event.close">
                 <source>event.close</source>
-                <target>Luk arrangement</target>
+                <target>Afsluiten event</target>
             </trans-unit>
             <trans-unit id="event.closed">
                 <source>event.closed</source>
-                <target>Arrangementet er nu lukket</target>
+                <target>Event is nu afgesloten</target>
             </trans-unit>
         </body>
     </file>
