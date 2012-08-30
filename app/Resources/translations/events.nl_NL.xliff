@@ -389,6 +389,7 @@
             <trans-unit id="event.closed">
                 <source>event.closed</source>
                 <target>Event is nu afgesloten</target>
+			</trans-unit>
         </body>
     </file>
 </xliff>
