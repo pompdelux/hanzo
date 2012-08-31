@@ -90,11 +90,11 @@ bazinga_exposetranslation_js:
 _logout:
     pattern:   /{_locale}/logout
     requirements:
-        _locale: se_SV|da_DK
+        _locale: se|da
 _logout_homepage:
     pattern:   /{_locale}/login
     requirements:
-        _locale: se_SV|da_DK
+        _locale: se|da
 
 _splash:
     pattern:  /
