@@ -35,7 +35,8 @@ var adminDeadOrders = (function($) {
         // preview and re-send orders
         $('a.preview-order, a.resend-order').on('click', function(event) {
             event.preventDefault();
-            $(this).parent().find('.loader').show();
+            $a = $(this);
+            $a.parent().find('.loader').show();
             var $row = $(this).closest('tr');
             var oid = $(this).closest('p').find('input').val();
             if (undefined === oid) {
@@ -54,7 +55,7 @@ var adminDeadOrders = (function($) {
               } else {
                 dialoug.alert(ExposeTranslation.get('js:notice'), result.message);
               }
-              $(this).parent().find('.loader').hide();
+              $a.parent().find('.loader').hide();
             });
         });
 
