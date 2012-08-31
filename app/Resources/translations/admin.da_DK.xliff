@@ -1891,8 +1891,8 @@
         <source>search.label</source>
         <target>Søg...</target>
       </trans-unit>
-      <trans-unit id="search.label">
-        <source>search.label</source>
+      <trans-unit id="search.debitor.label">
+        <source>search.debitor.label</source>
         <target>Søg Debitor...</target>
       </trans-unit>
       <trans-unit id="search">
