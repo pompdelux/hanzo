@@ -1,0 +1,41 @@
+{% extends '::adminbase.html.twig' %}
+{% block content %}
+
+<h1>Knapper</h1>
+
+
+{% if app.session.hasFlash('notice') %}
+  <div class="message">
+    {{ app.session.flash('notice') }}
+  </div>
+{% endif %}
+
+
+<div class="message">
+  <h2>Heads up !</h2>
+  <ul>
+    <li>Det er <em>vigtigt</em> at man står i "default" databasen - se i højre hjørne, her skal stå: "default - Vælg domæne database"</li>
+    <li>Hvis der trykkes på "Synkroniser produktbilleder" ryger <em>alle</em> styleguides og sorteringer fra alle lande (pånær .dk)</li>
+    <li>Hvis der efterfølgende synkroniseres styleguides og sorteringer er man igen up-2-date.</li>
+  </ul>
+</div>
+
+<br>
+<h2>Billeder</h2>
+<p>Alle data synkroniseres <em>fra .dk</em> til alle de andre sites.</p>
+<ul>
+  <li><a href="{{ path('admin_tools_sync_images') }}">Synkroniser produktbilleder</a></li>
+  <li><a href="{{ path('admin_tools_sync_styleguide') }}">Synkroniser styleguides</a></li>
+  <li><a href="{{ path('admin_tools_sync_images_sort') }}">Synkroniser billedesortering</a></li>
+</ul>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+$('#main ul li a').on('click', function() {
+  dialoug.loading($(this));
+});
+</script>
+{% endblock %}

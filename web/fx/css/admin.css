@@ -125,6 +125,16 @@ nav.sub li.dropdown-menu a span.cat-id,
   padding: 20px;
   overflow: hidden;
 }
+#body-admin #main ul li {
+  list-style: square;
+}
+#body-admin #main .message h2 {
+  color: #000;
+  margin-top: 10px;
+}
+#body-admin #main em {
+  font-weight: bold;
+}
 
 /* Pager */
 .pager li{
@@ -280,9 +290,9 @@ ul.list li a.right{
   padding:0px 10px;
 }
 
-/* ProductToCategories list 
+/* ProductToCategories list
  * RelatedProducts list
- * CouponsToCustomers list 
+ * CouponsToCustomers list
  */
 select#product-category-selector,
 select#product-related-products-selector,

@@ -90,9 +90,20 @@ $select_sql = '
     WHERE products_id = :products_id
     AND image = :image
 ';
+$select_slave_sql = '
+    SELECT products_id
+    FROM products_images
+    WHERE id = :id
+';
 $product_sql = '
     INSERT INTO products_images
     SET products_id = :products_id,
+        image = :image
+';
+$product_slave_sql = '
+    INSERT INTO products_images
+    SET id = :id,
+        products_id = :products_id,
         image = :image
 ';
 $category_sql = '
@@ -103,42 +114,92 @@ $category_sql = '
         sort = 100
 ';
 
+$image2id = array();
 foreach ($_databases as $key => $conn) {
     // prepare statements for the different databases
-    $product_stm = $conn->prepare($product_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-    $select_stm = $conn->prepare($select_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+    if ($key == 'vip') {
+        $product_stm = $conn->prepare($product_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $select_stm = $conn->prepare($select_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    } else {
+        $product_stm = $conn->prepare($product_slave_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        $select_stm = $conn->prepare($select_slave_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    }
+
     $category_stm = $conn->prepare($category_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-    foreach ($product_images as $master => $images) {
-        $products_id = $product_ids[$master];
 
-        // loop images into db
-        foreach($images as $image) {
-            $select_stm->execute(array(
-                ':products_id' => $products_id,
-                ':image' => $image,
-            ));
-            $image_id = $select_stm->fetchColumn();
+    if ($key == 'vip') {
+        foreach ($product_images as $master => $images) {
+            $products_id = $product_ids[$master];
 
-            // image does not exist, add it
-            if (!$image_id) {
-                $product_stm->execute(array(
+            // loop images into db
+            foreach($images as $image) {
+                $select_stm->execute(array(
                     ':products_id' => $products_id,
                     ':image' => $image,
                 ));
-                $image_id = $conn->lastInsertId();
+                $image_id = $select_stm->fetchColumn();
 
-                // add image to "products_images_to_categories"
-                foreach ($product_categories_ids[$products_id] as $category_id) {
-                    $category_stm->execute(array(
+                // image does not exist, add it
+                if (!$image_id) {
+                    $product_stm->execute(array(
                         ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
+                        ':image' => $image,
                     ));
+                    $image_id = $conn->lastInsertId();
+                    $image2id[$image] = $image_id;
+
+                    // add image to "products_images_to_categories"
+                    foreach ($product_categories_ids[$products_id] as $category_id) {
+                        $category_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
+                    }
+                } else {
+                    $image2id[$image] = $image_id;
+                }
+            }
+        }
+    } else {
+        foreach ($product_images as $master => $images) {
+            $products_id = $product_ids[$master];
+            foreach($images as $image) {
+                if (empty($image2id[$image])) {
+                    continue;
+                }
+
+                $image_id = $image2id[$image];
+
+                $select_stm->execute(array(
+                    ':id' => $image_id,
+                ));
+                $check = $select_stm->fetchColumn();
+
+                if (!$check) {
+                    $product_stm->execute(array(
+                        ':id' => $image_id,
+                        ':products_id' => $products_id,
+                        ':image' => $image,
+                    ));
+
+                    // add image to "products_images_to_categories"
+                    foreach ($product_categories_ids[$products_id] as $category_id) {
+                        $category_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
+                    }
                 }
             }
         }
     }
+
+
+
 }
 
 // copy all images to the right location

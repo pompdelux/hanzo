@@ -4,7 +4,7 @@ admin:
 
 admin_database:
     pattern:  /admin/database/{name}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Default:setDatabaseConnection
         name: default
 
@@ -133,7 +133,7 @@ admin_cms_update_tree:
 
 admin_cms_redirects:
     pattern:  /admin/cms/redirects/index/{domain_key}
-    defaults: 
+    defaults:
         _controller: AdminBundle:Cms:redirectsIndex
         domain_key: null
 
@@ -625,3 +625,25 @@ admin_stock:
     pattern: /admin/products/stock
     defaults:
         _controller: AdminBundle:Products:stock
+
+# tools section
+admin_tools:
+    pattern: /admin/tools
+    defaults:
+        _controller: AdminBundle:Tools:index
+
+admin_tools_sync_images:
+    pattern: /admin/tools/sync/product-images
+    defaults:
+        _controller: AdminBundle:Tools:syncImages
+
+admin_tools_sync_styleguide:
+    pattern: /admin/tools/sync/product-styleguides
+    defaults:
+        _controller: AdminBundle:Tools:syncImagesStyleguide
+
+admin_tools_sync_images_sort:
+    pattern: /admin/tools/sync/product-images-sort
+    defaults:
+        _controller: AdminBundle:Tools:syncImagesSorting
+
