@@ -85,6 +85,9 @@ class DefaultController extends CoreController
             // find the sizes and colors on stock
             if (!$product->getIsOutOfStock()) {
                 $variants = ProductsQuery::create()
+                    // Be sure to order by size as a number(192) not text(192-198)
+                    ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)','size_num')
+                    ->orderBy('size_num')
                     ->select(array('Id', 'Size', 'Color'))
                     ->distinct()
                     ->findByMaster($product->getSku())
