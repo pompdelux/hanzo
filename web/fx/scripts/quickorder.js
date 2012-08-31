@@ -17,6 +17,7 @@ var quickorder = (function($) {
                 success: function(response, textStatus, jqXHR) {
                     return typeahead.process(response.data);
                 }
+            });
         },
         onselect: function( object ) {
             $("#master").val(object);
