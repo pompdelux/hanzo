@@ -151,6 +151,8 @@ class RestGoogleController extends CoreController
                 AND
                     c.is_active = 1
                 AND
+                    cn.hide_info = 0
+                AND
                     c.email NOT LIKE ('%@bellcom.dk')
                 AND
                     c.email NOT IN ('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk')

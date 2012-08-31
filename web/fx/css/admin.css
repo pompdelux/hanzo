@@ -455,6 +455,9 @@ ul#product-images-list li li a.delete{
   vertical-align: top;
   min-height: 226px
 }
+#consultants-openhouses .element.hide_info {
+  opacity: 0.5;
+}
 #consultants-openhouses .element .note {
   border-top:1px solid grey;
   padding-top: 5px;

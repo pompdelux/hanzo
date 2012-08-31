@@ -24,7 +24,12 @@
 
   <div id="consultants-openhouses" class="clearfix">
     {% for consultant in consultants %}
+      {% if consultant.hide_info %}
+      <div class="element hide_info">
+        <div>{{ 'admin.consultants.openhouse.consultant_is_hidden'|trans({}, 'admin') }}</div>
+      {% else %}
       <div class="element">
+      {% endif %}
         <h4>
           <a href="{{ path('admin_consultant', {'id' : consultant.id}) }}">
             {{ consultant.name }}
