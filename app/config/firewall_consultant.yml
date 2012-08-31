@@ -10,7 +10,7 @@ security:
                 check_path:  login_check
             logout:
                 path:   _logout
-                target: _homepage
+                target: _logout_homepage
                 invalidate_session: true
 
         login_firewall:
