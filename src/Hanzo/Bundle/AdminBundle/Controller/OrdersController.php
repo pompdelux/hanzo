@@ -14,6 +14,7 @@ use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersSyncLogQuery;
+use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\DomainsQuery;
 
 class OrdersController extends CoreController
@@ -73,21 +74,33 @@ class OrdersController extends CoreController
                 ->findOne($this->getDbConnection())
             ;
 
+            $order_state = OrdersSyncLogQuery::create()
+                ->orderByCreatedAt('DESC')
+                ->filterByOrdersId($order->getId())
+                ->findOne($this->getDbConnection())
+            ;
+            $state = '';
+            if($order_state instanceof OrdersSyncLog){
+                $state = $order_state->getState();
+            }
+
             if ($orders_count instanceof OrdersLines) {
                 $order_data[] = array(
                     'id' => $order->getId(),
-                    'createdat' => $order->getCreatedAt(),
+                    'createdat'  => $order->getCreatedAt(),
                     'finishedat' => $order->getFinishedAt(),
                     'totallines' => $orders_count->getVirtualColumn('TotalLines'),
-                    'totalprice' => $orders_count->getVirtualColumn('TotalPrice')
+                    'totalprice' => $orders_count->getVirtualColumn('TotalPrice'),
+                    'state'      => $state
                 );
             }else{
                 $order_data[] = array(
                     'id' => $order->getId(),
-                    'createdat' => $order->getCreatedAt(),
+                    'createdat'  => $order->getCreatedAt(),
                     'finishedat' => $order->getFinishedAt(),
                     'totallines' => '0',
-                    'totalprice' => '0,00'
+                    'totalprice' => '0,00',
+                    'state'      => $state
                 );
             }
 
@@ -146,6 +159,11 @@ class OrdersController extends CoreController
             ->find($this->getDbConnection())
         ;
 
+        $order_sync_states = OrdersSyncLogQuery::create()
+            ->orderByCreatedAt('ASC')
+            ->filterByOrdersId($order->getId())
+            ->find($this->getDbConnection())
+        ;
         $form_state = $this->createFormBuilder(array('state' => $order->getState()))
             ->add('state', 'choice',
                 array(
@@ -176,6 +194,7 @@ class OrdersController extends CoreController
             'order'  => $order,
             'order_lines' => $order_lines,
             'order_attributes' => $order_attributes,
+            'order_sync_states' => $order_sync_states,
             'form_state' => $form_state->createView(),
             'database' => $this->getRequest()->getSession()->get('database')
         ));

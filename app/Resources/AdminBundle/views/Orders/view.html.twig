@@ -279,4 +279,34 @@
 
 {% endif %}
 
+<h1>{{ 'admin.order.sync_states.header.text'|trans({}, 'admin') }}</h1>
+
+{% if order_sync_states|length > 0 %}
+
+<table id="orders-sync_states" class="list">
+  <thead>
+    <tr>
+      <th>{{ 'admin.orders.sync_states.created_date'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.orders.sync_states.state'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.orders.sync_states.content'|trans({}, 'admin') }}</th>
+      <th>{{ 'admin.orders.sync_states.comment'|trans({}, 'admin') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order_sync_state in order_sync_states %}
+    <tr>
+      <td>{{ order_sync_state.createdat|date("d/m/Y h:i:s") }}</td>
+      <td>{{ order_sync_state.state }}</td>
+      <td>{{ order_sync_state.content }}</td>
+      <td>{{ order_sync_state.comment }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+
+<p>{{ 'admin.orders.no.sync_states.text'|trans({}, 'admin') }}</p>
+
+{% endif %}
+
 {% endblock %}
