@@ -7,7 +7,7 @@ security:
             anonymous: ~
             form_login:
                 login_path:  login
-                check_path:  _login_check
+                check_path:  login_check
             logout:
                 path:   _logout
                 target: _homepage
