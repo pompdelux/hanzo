@@ -9,8 +9,8 @@ security:
                 login_path:  login
                 check_path:  login_check
             logout:
-                path:   _logout
-                target: _logout_homepage
+                path:   logout
+                target: /%locale%
                 invalidate_session: true
 
         login_firewall:

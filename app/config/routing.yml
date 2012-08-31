@@ -87,14 +87,6 @@ bazinga_exposetranslation_js:
     requirements:
         _format: js
 
-_logout:
-    pattern:   /{_locale}/logout
-    requirements:
-        _locale: sv_SE|da_DK
-_logout_homepage:
-    pattern:   /{_locale}
-    requirements:
-        _locale: sv_SE|da_DK
 
 _splash:
     pattern:  /
