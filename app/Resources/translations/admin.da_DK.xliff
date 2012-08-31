@@ -1092,7 +1092,7 @@
       </trans-unit>
       <trans-unit id="admin.consultants.openhouse.consultant_is_hidden">
         <source>admin.consultants.openhouse.consultant_is_hidden</source>
-        <target>Dennu konsulent er skjult fra Åben Hus listen</target>
+        <target>Denne konsulent er skjult fra Åben Hus listen</target>
       </trans-unit>
       <trans-unit id="admin.consultant.event_notes.label">
         <source>admin.consultant.event_notes.label</source>
