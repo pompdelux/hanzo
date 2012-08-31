@@ -47,6 +47,11 @@ class OrdersController extends CoreController
             ;
         }
 
+        if (isset($_GET['debitor'])) {
+            $debitor = $this->getRequest()->get('debitor', null);
+
+            $orders = $orders->filterByCustomersId($debitor);
+        }
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
             $q = '%'.$q_clean.'%';

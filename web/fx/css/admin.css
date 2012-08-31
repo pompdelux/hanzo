@@ -22,6 +22,7 @@ form #cms-edit{
 nav.sub li {
   float: right;
   background-image: none;
+  height: 30px;
 }
 nav.sub li > a {
   font-weight: normal;

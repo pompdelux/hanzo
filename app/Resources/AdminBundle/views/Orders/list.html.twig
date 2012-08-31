@@ -5,7 +5,13 @@
   <ul>
     <li>
       <form action="{{ path('admin_orders') }}" method="get">
-        <input type="text" id="searh" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
+        <input type="text" id="search" name="q" placeholder="{{ 'search.label'|trans({}, 'admin') }}">
+        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+      </form>
+    </li>
+    <li>
+      <form action="{{ path('admin_orders') }}" method="get">
+        <input type="text" id="search" name="debitor" placeholder="{{ 'search.debitor.label'|trans({}, 'admin') }}">
         <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
       </form>
     </li>
