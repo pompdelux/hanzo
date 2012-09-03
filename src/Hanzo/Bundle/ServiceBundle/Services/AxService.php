@@ -140,10 +140,11 @@ class AxService
             }
         }
 
-        $discount_in_percent = 0; // kommer fra arrangementer (orders_attributes ??)
 
         $salesLine = array();
         foreach ($products as $product) {
+            $discount_in_percent = 0;
+
             $line = new stdClass();
             $line->ItemId        = $product->getProductsName();
             $line->SalesPrice    = number_format($product->getOriginalPrice(), 4, '.', '');
