@@ -1114,9 +1114,7 @@ class Orders extends BaseOrders
         // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
 
         $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
-
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
-
         $response = $api->call()->cancel( $customer, $this );
 
         if ( $response->isError() )
