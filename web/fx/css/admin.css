@@ -22,6 +22,7 @@ form #cms-edit{
 nav.sub li {
   float: right;
   background-image: none;
+  list-style: none !important;
 }
 nav.sub li > a {
   font-weight: normal;
@@ -137,8 +138,8 @@ nav.sub li.dropdown-menu a span.cat-id,
 }
 
 /* Pager */
-.pager li{
-  list-style-type: none;
+.pager li {
+  list-style-type: none !important;
   float: left;
   margin:5px;
 }
