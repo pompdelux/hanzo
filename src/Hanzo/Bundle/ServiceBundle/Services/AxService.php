@@ -383,12 +383,13 @@ class AxService
     /**
      * deleteOrder from ax
      *
-     * @param  Order $order
+     * @param  Order    $order order object
+     * @param  Resource $con   database connection or null to use current
      * @return boolean
      */
-    public function deleteOrder($order)
+    public function deleteOrder($order, $con = null)
     {
-        $attributes = $order->getAttributes();
+        $attributes = $order->getAttributes($con);
 
         $salesTable = new stdClass();
         $salesTable->CustAccount = $order->getCustomersId();

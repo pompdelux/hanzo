@@ -915,9 +915,9 @@ class Orders extends BaseOrders
     {
         $lines = $this->getOrdersLiness();
 
-        foreach ($lines as $line) 
+        foreach ($lines as $line)
         {
-            if( $line->getType() == 'payment.fee' ) 
+            if( $line->getType() == 'payment.fee' )
             {
                 $line->delete();
             }
@@ -1190,7 +1190,7 @@ class Orders extends BaseOrders
             try
             {
                 $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);
+                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
             }
             catch ( Exception $e )
             {
