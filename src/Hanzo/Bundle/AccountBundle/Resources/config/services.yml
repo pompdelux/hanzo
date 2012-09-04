@@ -14,6 +14,11 @@ services:
         tags:
             -       { name: security.voter }
 
+    hanzo.logout_success_handler:
+        class:  Hanzo\Bundle\AccountBundle\Handler\LogoutSuccessHandler
+        arguments:  [@service_container, @router]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
 #    account.example:
 #        class: %account.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
