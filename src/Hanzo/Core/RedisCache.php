@@ -3,6 +3,7 @@
 namespace Hanzo\Core;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Predis\Network\ConnectionException;
 
 class RedisCache
 {
@@ -39,7 +40,12 @@ class RedisCache
     {
         self::checkId($key);
 
-        $data = $this->cache->get($key);
+        try {
+            $data = $this->cache->get($key);
+        } catch (\Exception $e) {
+            error_log(print_r($e->getMessage(),1));
+            return '';
+        }
 
         // unserialize the cached data if needed
         if ($data && (substr($data, 0, 5) == ':[S]:')) {
