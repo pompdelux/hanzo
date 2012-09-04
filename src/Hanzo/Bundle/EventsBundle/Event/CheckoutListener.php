@@ -100,6 +100,10 @@ class CheckoutListener
                 $total = $order->getTotalProductPrice();
                 $discount_amount = (($total / 100) * $discount);
                 $order->setDiscountLine('discount.'.$attributes->purchase->type, $discount_amount, $discount);
+
+                if ($attributes->purchase->type != 'private') {
+                    $order->removeDiscountLine('discount.private');
+                }
             }
 
             $order->setAttribute('HomePartyId', 'global', $label);
