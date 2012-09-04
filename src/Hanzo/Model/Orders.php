@@ -1117,7 +1117,7 @@ class Orders extends BaseOrders
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
         $response = $api->call()->cancel( $customer, $this );
 
-        if ( $response->isError() )
+        if ( is_object($response) && $response->isError() )
         {
             $debug = array();
             $msg = 'Could not cancel order';
@@ -1129,6 +1129,13 @@ class Orders extends BaseOrders
             }
 
             Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, $debug));
+            throw new Exception( $msg );
+        }
+
+        if ( !is_object($response) )
+        {
+            $msg = 'Could not cancel order';
+            Tools::debug( 'Cancel payment failed, response is not an object', __METHOD__, array( 'PaymentMethod' => $paymentMethod));
             throw new Exception( $msg );
         }
 
