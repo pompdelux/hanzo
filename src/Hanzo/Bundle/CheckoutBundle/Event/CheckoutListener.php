@@ -157,11 +157,17 @@ class CheckoutListener
             'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
             'username' => $order->getCustomers()->getEmail(),
             'password' => $order->getCustomers()->getPasswordClear(),
-            'card_type' => $card_type,
             'event_id' => $event_id,
-            'transaction_id' => '',
-            'payment_gateway_id' => '',
+            //'transaction_id' => '',
+            //'payment_gateway_id' => '',
         );
+
+        // hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia -->>
+        if ( !empty($card_type) )
+        {
+          $params['card_type'] = $card_type;
+        }
+        // <<-- hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia
 
         if (isset($attributes->payment->transact)) {
             $params['transaction_id'] = $attributes->payment->transact;
