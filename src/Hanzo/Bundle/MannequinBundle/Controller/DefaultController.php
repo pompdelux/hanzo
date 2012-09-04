@@ -17,6 +17,7 @@ use Hanzo\Model\CategoriesI18nQuery;
 use Hanzo\Model\MannequinImagesQuery;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\ProductsToCategoriesQuery;
 
 class DefaultController extends CoreController
@@ -67,6 +68,11 @@ class DefaultController extends CoreController
                 ->joinWithProducts()
                 ->groupByProductsId()
                 ->filterByCategoriesId($includes)
+                ->addAscendingOrderByColumn(sprintf(
+                    "FIELD(%s, %s)",
+                    ProductsToCategoriesPeer::CATEGORIES_ID,
+                    implode(',', $includes)
+                ))
                 ->find()
             ;
 
@@ -83,6 +89,13 @@ class DefaultController extends CoreController
                 ->joinWithProducts()
                 ->useProductsQuery()
                     ->filterByMaster(null, Criteria::ISNULL)
+                    ->useProductsToCategoriesQuery()
+                        ->addDescendingOrderByColumn(sprintf(
+                            "FIELD(%s, %s)",
+                            ProductsToCategoriesPeer::CATEGORIES_ID,
+                            implode(',', $includes)
+                        ))
+                    ->endUse()
                 ->endUse()
                 ->filterByColor($color_scheme)
                 ->filterByMaster(array_keys($skus))
@@ -112,9 +125,10 @@ class DefaultController extends CoreController
                 $index++;
             }
 
+            $products = array_reverse($products, true);
             $this->setCache($cache_key, array(
                 'settings' => $settings,
-                'products' => $products
+                'products' => $products,
             ));
         } else {
             $settings = $data['settings'];
