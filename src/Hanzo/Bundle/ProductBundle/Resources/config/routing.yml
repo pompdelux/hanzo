@@ -4,4 +4,12 @@ product_info:
         _controller: HanzoProductBundle:Default:view
         product_id: 1
     requirements:
-      product_id: \d+
+        product_id: \d+
+
+product_set:
+    pattern:    /product/bundle/{image_id}
+    defaults:
+        _controller: HanzoProductBundle:Bundle:view
+        image_id: 1
+    requirements:
+        image_id: \d+

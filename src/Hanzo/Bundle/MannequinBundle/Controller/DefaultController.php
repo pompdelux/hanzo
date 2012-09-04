@@ -94,7 +94,8 @@ class DefaultController extends CoreController
             foreach ($variants as $variant) {
                 $category = $skus[$variant->getMaster()];
 
-                $price = array_shift($prices[$variant->getProducts()->getId()]);
+                $price = $prices[$variant->getProducts()->getId()];
+                $price = array_shift($price);
 
                 $products[$category][] = array(
                     'category' => $category,

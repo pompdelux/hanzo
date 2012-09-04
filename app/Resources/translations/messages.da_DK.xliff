@@ -183,6 +183,14 @@
                 <source>order.deleted</source>
                 <target>E-ordrenummer %id% er slettet</target>
             </trans-unit>
+            <trans-unit id="buy.set">
+                <source>buy.set</source>
+                <target>Køb hele sættet</target>
+            </trans-unit>
+            <trans-unit id="button.back">
+                <source>button.back</source>
+                <target>Tilbage</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -184,6 +184,14 @@
                 <source>order.deleted</source>
                 <target>Ordernummer %id% har blivit raderad</target>
             </trans-unit>
+            <trans-unit id="buy.set">
+                <source>buy.set</source>
+                <target>Köp helt set</target>
+            </trans-unit>
+            <trans-unit id="button.back">
+                <source>button.back</source>
+                <target>Tillbaka</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

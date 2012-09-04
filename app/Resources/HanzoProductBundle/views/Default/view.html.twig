@@ -39,7 +39,7 @@
       {% for item in references.references %}
         <a href="{{ item.url }}">{{ item.title }}</a><br>
       {% endfor %}
-      <a href="/buy-set/{{ product.id }}/{{ id }}">» {{ "Buy set"|trans }}</a>
+      <a href="{{ path('product_set', {'image_id': id}) }}">» {{ 'buy.set'|trans }}</a>
       </div>
     {% endfor %}
   </div>
@@ -87,7 +87,7 @@
         <div class="options">
           <label for="size">
             {{ "size"|trans }}:
-            <select id="size" name="size">
+            <select class="size" name="size">
               <option value="">{{ "choose"|trans }}</option>
             {% for size in product.sizes %}
               <option value="{{ size }}">{{ size }}</option>
@@ -97,7 +97,7 @@
 
           <label for="color" class="off">
             {{ "color"|trans }}:
-            <select id="color" name="color">
+            <select class="color" name="color">
               <option value="">{{ "choose"|trans }}</option>
             {% for color in product.colors %}
               <option value="{{ color }}">{{ color }}</option>
@@ -107,7 +107,7 @@
 
           <label for="quantity" class="off">
             {{ "quantity"|trans }}:
-            <select id="quantity" name="quantity">
+            <select class="quantity" name="quantity">
             {% for i in 1..10 %}
               <option value="{{ i }}">{{ i }}</option>
             {% endfor %}

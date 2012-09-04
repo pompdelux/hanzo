@@ -94,7 +94,7 @@
     // handle "add to basket"
     pub.initPurchase = function() {
       _resetForm();
-      $('form.buy select#size, form.buy select#color').on('change', function() {
+      $('form.buy select.size, form.buy select.color').on('change', function() {
         var name = this.name;
         var value = this.value;
 
@@ -105,7 +105,7 @@
           _resetForm(name);
         }
 
-        var $form = $('form.buy');
+        var $form = $(this).closest('form');
         $.ajax({
           url: base_url + 'rest/v1/stock-check',
           dataType: 'json',
@@ -119,12 +119,17 @@
               return;
             }
 
+            if (undefined === response.data.products) {
+              $('div', $form).replaceWith(ExposeTranslation.get('js:out.of.stock'));
+              return;
+            }
+
             // populate color select with options
             if (name === 'size') {
               $.each(response.data.products, function(index, product) {
-                $('form.buy #color').append('<option value="'+product.color+'">'+product.color+'</option>');
+                $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
               });
-              $('form.buy #color').closest('label').removeClass('off');
+              $('select.color', $form).closest('label').removeClass('off');
             }
 
             if (name == 'color') {
@@ -132,14 +137,14 @@
               if (product.date) {
                 dialoug.confirm(ExposeTranslation.get('js:notice'), response.message, function(c) {
                   if (c == 'ok') {
-                    $('form.buy #quantity').closest('label').removeClass('off');
+                    $('select.quantity', $form).closest('label').removeClass('off');
                     $form.find('.button').show();
                     $form.append('<input type="hidden" name="date" value="' + product.date + '">');
                   }
                 });
               }
               else {
-                $('form.buy #quantity').closest('label').removeClass('off');
+                $('select.quantity', $form).closest('label').removeClass('off');
                 $form.find('.button').show();
               }
             }
@@ -183,12 +188,12 @@
       var $this = $('form.buy');
 
       if ( (section !== undefined) && (section !== 'size') ) {
-        $this.find('#size option').each(function(index) {
+        $this.find('select.size option').each(function(index) {
           $(this).removeProp('selected');
         });
       }
 
-      $this.find('#color option').each(function(index) {
+      $this.find('select.color option').each(function(index) {
         if (this.value !== ''){
           $(this).remove();
         }
@@ -200,14 +205,14 @@
         }
       });
 
-      $this.find('#quantity option').each(function(index) {
+      $this.find('select.quantity option').each(function(index) {
         $(this).removeProp('selected');
       });
-      $('#quantity option:first', $this).prop('selected', true);
+      $('select.quantity option:first', $this).prop('selected', true);
 
       if (section === undefined) {
-        $('#size option:first', $this).prop('selected', true);
-        $('#color option:first', $this).prop('selected', true);
+        $('select.size option:first', $this).prop('selected', true);
+        $('select.color option:first', $this).prop('selected', true);
       }
 
       $this.find('.button').hide();

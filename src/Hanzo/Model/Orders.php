@@ -915,9 +915,9 @@ class Orders extends BaseOrders
     {
         $lines = $this->getOrdersLiness();
 
-        foreach ($lines as $line) 
+        foreach ($lines as $line)
         {
-            if( $line->getType() == 'payment.fee' ) 
+            if( $line->getType() == 'payment.fee' )
             {
                 $line->delete();
             }
@@ -1114,12 +1114,10 @@ class Orders extends BaseOrders
         // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
 
         $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
-
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
-
         $response = $api->call()->cancel( $customer, $this );
 
-        if ( $response->isError() )
+        if ( is_object($response) && $response->isError() )
         {
             $debug = array();
             $msg = 'Could not cancel order';
@@ -1131,6 +1129,13 @@ class Orders extends BaseOrders
             }
 
             Tools::debug( 'Cancel payment failed', __METHOD__, array( 'PaymentMethod' => $paymentMethod, $debug));
+            throw new Exception( $msg );
+        }
+
+        if ( !is_object($response) )
+        {
+            $msg = 'Could not cancel order';
+            Tools::debug( 'Cancel payment failed, response is not an object', __METHOD__, array( 'PaymentMethod' => $paymentMethod));
             throw new Exception( $msg );
         }
 
@@ -1190,7 +1195,7 @@ class Orders extends BaseOrders
             try
             {
                 $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);
+                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
             }
             catch ( Exception $e )
             {

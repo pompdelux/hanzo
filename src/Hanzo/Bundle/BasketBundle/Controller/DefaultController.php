@@ -4,24 +4,26 @@ namespace Hanzo\Bundle\BasketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\Stock,
-    Hanzo\Core\CoreController
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\Stock;
+use Hanzo\Core\CoreController;
 
-use Hanzo\Model\Products,
-    Hanzo\Model\ProductsPeer,
-    Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsStockQuery,
-    Hanzo\Model\ProductsDomainsPricesPeer,
-    Hanzo\Model\ProductsDomainsPricesQuery,
-    Hanzo\Model\ProductsToCategoriesQuery,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Model\OrdersQuery,
-    Hanzo\Model\OrdersLinesQuery
-    ;
+use Hanzo\Model\Products;
+use Hanzo\Model\ProductsPeer;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsStockQuery;
+use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\ProductsDomainsPricesQuery;
+use Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersLinesPeer;
+use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\Categories;
+use Hanzo\Model\CategoriesPeer;
+use Hanzo\Model\CategoriesQuery;
 
 class DefaultController extends CoreController
 {
@@ -266,6 +268,7 @@ class DefaultController extends CoreController
         return $this->response('update basket');
     }
 
+
     public function viewAction($embed = false, $orders_id = null)
     {
         if ($orders_id) {
@@ -278,11 +281,30 @@ class DefaultController extends CoreController
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
 
+
+        $cid = array('category2group');
+        $category2group = $this->getCache($cid);
+        if (empty($category2group)) {
+            $result = CategoriesQuery::create()
+                ->filterByContext(null, \Criteria::ISNOTNULL)
+                ->orderByContext()
+                ->find()
+            ;
+            foreach ($result as $category) {
+                list($group, ) = explode('_', $category->getContext());
+                $category2group[$category->getId()] = 'product.group.'.strtolower($group);
+            }
+            $this->setCache($cid, $category2group);
+        }
+
+
         $products = array();
         $delivery_date = 0;
 
         // product lines- if any
-        foreach ($order->getOrdersLiness() as $line) {
+        $c = new \Criteria();
+        $c->addAscendingOrderByColumn(OrdersLinesPeer::PRODUCTS_NAME);
+        foreach ($order->getOrdersLiness($c) as $line) {
             $line = $line->toArray(\BasePeer::TYPE_FIELDNAME);
 
             if ($line['type'] != 'product') {
@@ -319,11 +341,12 @@ class DefaultController extends CoreController
                 '_basket_' .
                 preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
                 '.jpg'
-                ;
+            ;
 
             // find matching router
             $product_route = '';
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+            $group = $category2group[$products2category->getCategoriesId()];
 
             $line['url'] = '#';
             if (isset($router_keys[$key])) {
@@ -336,26 +359,15 @@ class DefaultController extends CoreController
             }
 
 
-            $products[] = $line;
+            $products[$group][] = $line;
         }
+
+        ksort($products);
 
         $template = 'BasketBundle:Default:view.html.twig';
         if ($embed) {
             $template = 'BasketBundle:Default:block.html.twig';
         }
-        // else
-        // {
-        //     // Make sure that order state is building, but only if state has not passed state payment ok
-        //     // If embed is set, we do not set the state again (e.g. when embedded on the checkout page)
-        //     if ( ($order->getState() !== Orders::STATE_BUILDING) && ($order->getState() < Orders::STATE_PAYMENT_OK) )
-        //     {
-        //         $attributes = $order->getAttributes();
-        //         if (empty($attributes->payment->transact)) {
-        //             $order->setState( Orders::STATE_BUILDING );
-        //             $order->save();
-        //         }
-        //     }
-        // }
 
         // hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site -->>
         $continue_shopping = $router->generate('page_400');

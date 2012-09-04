@@ -144,24 +144,37 @@ class CheckoutListener
 
         $params = array(
             'order' => $order,
-            'payment_address' => Tools::orderAddress('payment', $order),
-            'company_address' => $company_address,
+            'payment_address'  => Tools::orderAddress('payment', $order),
+            'company_address'  => $company_address,
             'delivery_address' => Tools::orderAddress('shipping', $order),
-            'customer_id' => $order->getCustomersId(),
-            'order_date' => $order->getCreatedAt('Y-m-d'),
-            'payment_method' => $order->getBillingMethod(),
-            'shipping_title' => $shipping_title,
-            'shipping_cost' => $shipping_cost,
-            'payment_fee' => $order->getPaymentFee(),
-            'shipping_fee' => $shipping_fee,
-            'expected_at' => $order->getExpectedDeliveryDate( 'd-m-Y' ),
-            'username' => $order->getCustomers()->getEmail(),
-            'password' => $order->getCustomers()->getPasswordClear(),
-            'card_type' => $card_type,
-            'event_id' => $event_id,
-            'transaction_id' => '',
-            'payment_gateway_id' => '',
+            'customer_id'      => $order->getCustomersId(),
+            'order_date'       => $order->getCreatedAt('Y-m-d'),
+            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title',array(),'checkout'),
+            'shipping_title'   => $shipping_title,
+            'shipping_cost'    => $shipping_cost,
+            'shipping_fee'     => $shipping_fee,
+            'expected_at'      => $order->getExpectedDeliveryDate( 'd-m-Y' ),
+            'username'         => $order->getCustomers()->getEmail(),
+            'password'         => $order->getCustomers()->getPasswordClear(),
+            'event_id'         => $event_id,
+            //'transaction_id' => '',
+            //'payment_gateway_id' => '',
         );
+
+        // hf@bellcom.dk, 04-sep-2012: only show if > 0 -->>
+        $payment_fee = $order->getPaymentFee();
+        if ( $payment_fee > 0 )
+        {
+          $params['payment_fee'] = $payment_fee;
+        }
+        // <<-- hf@bellcom.dk, 04-sep-2012: only show if > 0
+
+        // hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia -->>
+        if ( !empty($card_type) )
+        {
+          $params['card_type'] = $card_type;
+        }
+        // <<-- hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia
 
         if (isset($attributes->payment->transact)) {
             $params['transaction_id'] = $attributes->payment->transact;
@@ -190,7 +203,10 @@ class CheckoutListener
                 $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', array(), 'checkout');
 
                 // hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here -->>
-                unset( $params['payment_fee'] );
+                if ( isset($params['payment_fee']) )
+                {
+                  unset( $params['payment_fee'] );
+                }
                 // <<-- hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here
             }
         }

@@ -754,10 +754,6 @@ abstract class BaseProductsImagesPeer {
 			$criteria = $values->buildCriteria(); // build Criteria from ProductsImages object
 		}
 
-		if ($criteria->containsKey(ProductsImagesPeer::ID) && $criteria->keyContainsValue(ProductsImagesPeer::ID) ) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key ('.ProductsImagesPeer::ID.')');
-		}
-
 
 		// Set the correct dbName
 		$criteria->setDbName(self::DATABASE_NAME);

@@ -36,6 +36,16 @@ propel:
                 dsn:        mysql:host=%database_host%;dbname=%database_name%
                 options:    {}
                 attributes: {}
+            # use for testing replications or other multi db stuff
+            # please do not commit with this block activated.
+            # replicated:
+            #     driver:               %database_driver%
+            #     user:                 %database_user%
+            #     password:             %database_password%
+            #     dsn:                  mysql:host=%database_host%;dbname=%database_name%_replicated
+            #     options:              {}
+            #     attributes:           {}
+
     build_properties:
       propel.project: '%database_name%'
       propel.addValidators: all
