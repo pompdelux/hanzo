@@ -538,14 +538,7 @@ class OrdersController extends CoreController
             ));
         }
 
-        if ( !$response->isError() ) 
-        {
-            return $this->json_response(array(
-                'status' => true,
-                'message' => '',
-            ));
-        } 
-        else 
+        if ( $response->isError() ) 
         {
             if ( $response->data['PurchaseStop'] === 'true') 
             {
@@ -588,7 +581,11 @@ class OrdersController extends CoreController
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
-        
+
+        return $this->json_response(array(
+            'status' => true,
+            'message' => 'Ok',
+        ));
     }
 
     /**
@@ -628,5 +625,10 @@ class OrdersController extends CoreController
                 'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
             ));
         }
+
+        return $this->json_response(array(
+            'status' => true,
+            'message' => 'Ok',
+        ));
     }
 }
