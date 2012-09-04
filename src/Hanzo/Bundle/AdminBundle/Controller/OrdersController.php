@@ -16,6 +16,9 @@ use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersSyncLogQuery;
 use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\DomainsQuery;
+use Hanzo\Model\GothiaAccounts;
+use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi;
+use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException;
 
 class OrdersController extends CoreController
 {
@@ -444,5 +447,186 @@ class OrdersController extends CoreController
     public function performDeadAction( $action )
     {
         return $this->json_response( array('hest'=>true) );
+    }
+
+    /**
+     * gothiaAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function gothiaAction()
+    {
+        return $this->render('AdminBundle:Orders:gothia.html.twig' );
+    }
+
+    /**
+     * gothiaGetOrderAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function gothiaGetOrderAction()
+    {
+        $return = array(
+            'status' => false,
+            'message'    => '',
+            'data'   => array(
+                ),
+            );
+
+        $request = $this->getRequest();
+
+        $id = $request->request->get('order-id');
+
+        $order = OrdersQuery::create()->findPK($id, $this->getDbConnection());
+
+        if ( !( $order instanceOf Orders ) )
+        {
+            $return['message'] = 'Ingen ordre med id "'.$id.'" fundet';
+        }
+        else
+        {
+            if ( $order->getBillingMethod() != 'gothia' )
+            {
+                $return['message'] = 'Der er ikke blevet brugt Gothia som betaling på ordre id "'.$id.'"';
+            }
+            else
+            {
+                $customer = $order->getCustomers();
+
+                $return['status'] = true;
+                $return['message'] = 'Ok';
+                $return['data']['order'] = array(
+                    'id'       => $id,
+                    'customer' => array(
+                        'name' => $customer->getFirstName().' '. $customer->getLastName(),
+                        ),
+                    'amount'   => $order->getTotalPrice(),
+                    'state'    => $order->getState(),
+                    );
+            }
+        }
+
+        return $this->json_response( $return );
+    }
+
+    /**
+     * gothiaPlaceReservationAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function gothiaPlaceReservationAction()
+    {
+        $request    = $this->getRequest();
+        $api        = $this->get('payment.gothiaapi');
+        $id         = $request->request->get('order-id');
+        $order      = OrdersQuery::create()->findPK($id, $this->getDbConnection());
+        $customer   = $order->getCustomers();
+        $translator = $this->get('translator');
+
+        try 
+        {
+            // Validate information @ gothia
+            $api = $this->get('payment.gothiaapi');
+            $response = $api->call()->checkCustomer( $customer );
+        } 
+        catch( GothiaApiCallException $g ) 
+        {
+            Tools::debug( $g->getMessage(), __METHOD__);
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+            ));
+        }
+
+        if ( !$response->isError() ) 
+        {
+            return $this->json_response(array(
+                'status' => true,
+                'message' => '',
+            ));
+        } 
+        else 
+        {
+            if ( $response->data['PurchaseStop'] === 'true') 
+            {
+                Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
+
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.checkcustomer.purchasestop', array(), 'gothia'),
+                ));
+            }
+
+            Tools::debug( 'Check customer error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.checkcustomer.error', array(), 'gothia'),
+            ));
+        }
+
+        try 
+        {
+            $response = $api->call()->placeReservation( $customer, $order );
+        } 
+        catch( GothiaApiCallException $g ) 
+        {
+            Tools::debug( $g->getMessage(), __METHOD__);
+
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.placereservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+            ));
+        }
+
+        if ( $response->isError() ) 
+        {
+            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
+            ));
+        }
+        
+    }
+
+    /**
+     * gothiaCancelReservationAction
+     * @return Response
+     * @author Henrik Farre <hf@bellcom.dk>
+     **/
+    public function gothiaCancelReservationAction()
+    {
+        $request    = $this->getRequest();
+        $api        = $this->get('payment.gothiaapi');
+        $id         = $request->request->get('order-id');
+        $order      = OrdersQuery::create()->findPK($id, $this->getDbConnection());
+        $customer   = $order->getCustomers();
+        $translator = $this->get('translator');
+
+        try 
+        {
+            $response = $api->call()->cancelReservation( $customer, $order );
+        } 
+        catch( GothiaApiCallException $g ) 
+        {
+            Tools::debug( $g->getMessage(), __METHOD__);
+
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+            ));
+        }
+
+        if ( $response->isError() ) 
+        {
+            Tools::debug( 'Cancel reservation error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
+            ));
+        }
     }
 }
