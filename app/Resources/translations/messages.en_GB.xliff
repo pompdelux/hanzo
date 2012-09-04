@@ -180,6 +180,14 @@
                 <source>order.deleted</source>
                 <target>E.order no. %id% has been cancelled.</target>
             </trans-unit>
+            <trans-unit id="buy.set">
+                <source>buy.set</source>
+                <target>Buy the set</target>
+            </trans-unit>
+            <trans-unit id="button.back">
+                <source>button.back</source>
+                <target>Back</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

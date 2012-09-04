@@ -180,6 +180,14 @@
                     </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="buy.set">
+                <source>buy.set</source>
+                <target>Koop de hele set</target>
+            </trans-unit>
+            <trans-unit id="button.back">
+                <source>button.back</source>
+                <target>Terug</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
