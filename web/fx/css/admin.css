@@ -22,6 +22,7 @@ form #cms-edit{
 nav.sub li {
   float: right;
   background-image: none;
+  list-style: none !important;
 }
 nav.sub li > a {
   font-weight: normal;
@@ -125,10 +126,20 @@ nav.sub li.dropdown-menu a span.cat-id,
   padding: 20px;
   overflow: hidden;
 }
+#body-admin #main ul li {
+  list-style: square;
+}
+#body-admin #main .message h2 {
+  color: #000;
+  margin-top: 10px;
+}
+#body-admin #main em {
+  font-weight: bold;
+}
 
 /* Pager */
-.pager li{
-  list-style-type: none;
+.pager li {
+  list-style-type: none !important;
   float: left;
   margin:5px;
 }
@@ -280,9 +291,9 @@ ul.list li a.right{
   padding:0px 10px;
 }
 
-/* ProductToCategories list 
+/* ProductToCategories list
  * RelatedProducts list
- * CouponsToCustomers list 
+ * CouponsToCustomers list
  */
 select#product-category-selector,
 select#product-related-products-selector,
@@ -454,6 +465,13 @@ ul#product-images-list li li a.delete{
   border: 1px black solid;
   vertical-align: top;
   min-height: 226px
+}
+#consultants-openhouses .element.hide_info {
+  opacity: 0.5;
+}
+#consultants-openhouses .element.hide_info div:first {
+  font-size: 11px;
+  padding-bottom: 5px;
 }
 #consultants-openhouses .element .note {
   border-top:1px solid grey;

@@ -119,6 +119,11 @@
               return;
             }
 
+            if (undefined === response.data.products) {
+              $('div', $form).replaceWith(ExposeTranslation.get('js:out.of.stock'));
+              return;
+            }
+
             // populate color select with options
             if (name === 'size') {
               $.each(response.data.products, function(index, product) {

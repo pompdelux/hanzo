@@ -178,7 +178,8 @@ class ConsultantsController extends CoreController
             'initials' => $consultant->getInitials(),
             'info' => $consultant->getInfo(),
             'event_notes' => $consultant->getEventNotes(),
-            'max_notified' => $consultant->getMaxNotified()
+            'max_notified' => $consultant->getMaxNotified(),
+            'hide_info' => $consultant->getHideInfo()
         );
 
         $form = $this->createFormBuilder($consultant_data);
@@ -247,6 +248,12 @@ class ConsultantsController extends CoreController
                     'translation_domain' => 'admin',
                     'required' => false
                 )
+            )->add('hide_info', 'checkbox',
+                array(
+                    'label' => 'admin.consultant.hide_info.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
             )->getForm()
         ;
 
@@ -278,6 +285,7 @@ class ConsultantsController extends CoreController
                     ->setInfo($data['info'])
                     ->setEventNotes($data['event_notes'])
                     ->setMaxNotified($data['max_notified'])
+                    ->setHideInfo($data['hide_info'])
                     ->save($this->getDbConnection())
                 ;
 
@@ -459,6 +467,11 @@ class ConsultantsController extends CoreController
         $consultants = ConsultantsQuery::create()
             ->joinCustomers()
             ->useCustomersQuery()
+                ->filterByEmail('%@bellcom.dk', \Criteria::NOT_LIKE)
+                ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk'), \Criteria::NOT_IN)
+                ->filterByGroupsId(2)
+                ->filterByIsActive(TRUE)
+                ->orderByFirstName()
                 ->joinAddresses()
                 ->useAddressesQuery()
                     ->filterByType('payment')
@@ -473,7 +486,8 @@ class ConsultantsController extends CoreController
                     'Addresses.City',
                     'Customers.Email',
                     'Customers.Phone',
-                    'EventNotes'
+                    'EventNotes',
+                    'HideInfo'
                 )
             )
             ->find($this->getDbConnection())
@@ -494,6 +508,7 @@ class ConsultantsController extends CoreController
                 'email' => $consultant['Customers.Email'],
                 'phone' => $consultant['Customers.Phone'],
                 'info' => $info,
+                'hide_info' => $consultant['HideInfo'],
             );
         }
 

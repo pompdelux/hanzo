@@ -915,9 +915,9 @@ class Orders extends BaseOrders
     {
         $lines = $this->getOrdersLiness();
 
-        foreach ($lines as $line) 
+        foreach ($lines as $line)
         {
-            if( $line->getType() == 'payment.fee' ) 
+            if( $line->getType() == 'payment.fee' )
             {
                 $line->delete();
             }
@@ -1114,9 +1114,7 @@ class Orders extends BaseOrders
         // <<-- hf@bellcom.dk, 12-jun-2012: handle old junk
 
         $api = Hanzo::getInstance()->container->get('payment.'.$paymentMethod.'api');
-
         $customer = CustomersQuery::create()->findOneById( $this->getCustomersId(), $this->pdo_con );
-
         $response = $api->call()->cancel( $customer, $this );
 
         if ( is_object($response) && $response->isError() )
@@ -1197,7 +1195,7 @@ class Orders extends BaseOrders
             try
             {
                 $this->cancelPayment();
-                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this);
+                Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
             }
             catch ( Exception $e )
             {

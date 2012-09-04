@@ -1086,6 +1086,14 @@
         <source>admin.consultant.info.label</source>
         <target>Informationer</target>
       </trans-unit>
+      <trans-unit id="admin.consultant.hide_info.label">
+        <source>admin.consultant.hide_info.label</source>
+        <target>Skjul konsulenten på Åbent Hus listen</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.openhouse.consultant_is_hidden">
+        <source>admin.consultants.openhouse.consultant_is_hidden</source>
+        <target>Denne konsulent er skjult fra Åben Hus listen</target>
+      </trans-unit>
       <trans-unit id="admin.consultant.event_notes.label">
         <source>admin.consultant.event_notes.label</source>
         <target>Event informationer</target>

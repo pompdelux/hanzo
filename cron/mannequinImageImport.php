@@ -12,6 +12,7 @@ require __DIR__ . '/config.php';
 $source_dir = __DIR__ . '/../web/images/mannequin/import/';
 $target_dir = __DIR__ . '/../web/images/mannequin/';
 
+$failed = array();
 $images = array();
 $images_found = glob($source_dir.'*.png');
 
@@ -54,7 +55,7 @@ foreach($images_found as $image) {
     $result = $test_stm->fetchAll(PDO::FETCH_COLUMN);
 
     if (0 === count($result)) {
-        echo $image."\n";
+        $failed[] = $image;
         continue;
     }
 
@@ -115,3 +116,19 @@ foreach($images_found as $image) {
     copy($source_dir . $image, $target_dir . $md5_image);
 }
 
+
+if (count($failed)) {
+    $txt = "Hey taber!\n\nDer er fejl i følgende produktbilleder:\n\n";
+    foreach ($failed as $image) {
+        $txt .= " - {$image}\n";
+    }
+    $txt .= "\nFix dem, nu!\n";
+
+    mail(
+        'hd@pompdelux.dk,un@bellcom.dk',
+        'fejl i mannequin billedeimporten',
+        $txt,
+        "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
+        '-fhd@pompdelux.dk'
+    );
+}

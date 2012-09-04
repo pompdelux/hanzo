@@ -16,7 +16,11 @@
         </tr>
       </thead>
       <tbody>
-    {% for product in products %}
+    {% for group, items in products %}
+        <tr>
+          <th class="group">{{ group|trans({}, 'checkout') }}</th>
+        </tr>
+      {% for product in items %}
         <tr>
           <td class="image">
             {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
@@ -47,6 +51,7 @@
           </td>
         {% endif %}
         </tr>
+      {% endfor %}
     {% endfor %}
       </tbody>
     {% if embedded == false %}

@@ -57,6 +57,13 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+.product-table th.group {
+  text-align: left;
+  color: #fff;
+}
+.product-table td.image {
+  padding-left: 15px;
+}
 .product-table {
   width: 100%;
   margin: 20px 0;
