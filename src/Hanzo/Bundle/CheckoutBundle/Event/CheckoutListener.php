@@ -152,7 +152,6 @@ class CheckoutListener
             'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title',array(),'checkout'),
             'shipping_title'   => $shipping_title,
             'shipping_cost'    => $shipping_cost,
-            'payment_fee'      => $order->getPaymentFee(),
             'shipping_fee'     => $shipping_fee,
             'expected_at'      => $order->getExpectedDeliveryDate( 'd-m-Y' ),
             'username'         => $order->getCustomers()->getEmail(),
@@ -161,6 +160,14 @@ class CheckoutListener
             //'transaction_id' => '',
             //'payment_gateway_id' => '',
         );
+
+        // hf@bellcom.dk, 04-sep-2012: only show if > 0 -->>
+        $payment_fee = $order->getPaymentFee();
+        if ( $payment_fee > 0 )
+        {
+          $params['payment_fee'] = $payment_fee;
+        }
+        // <<-- hf@bellcom.dk, 04-sep-2012: only show if > 0
 
         // hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia -->>
         if ( !empty($card_type) )
@@ -196,7 +203,10 @@ class CheckoutListener
                 $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', array(), 'checkout');
 
                 // hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here -->>
-                unset( $params['payment_fee'] );
+                if ( isset($params['payment_fee']) )
+                {
+                  unset( $params['payment_fee'] );
+                }
                 // <<-- hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here
             }
         }
