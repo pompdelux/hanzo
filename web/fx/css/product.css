@@ -124,3 +124,21 @@ form.buy label.off {
 .productimages .zoomImg {
   cursor: pointer;
 }
+
+article.block {
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+article.block a {
+  padding-right: 10px;
+}
+article.block form {
+  margin-top: 10px;
+}
+
+article.block .options label {
+  width: 300px;
+}
+article.block .options select {
+  width: 150px;
+}

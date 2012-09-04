@@ -164,6 +164,14 @@
                     </ul>]]>
                 </target>
             </trans-unit>
+            <trans-unit id="buy.set">
+                <source>buy.set</source>
+                <target>Køb hele sættet</target>
+            </trans-unit>
+            <trans-unit id="button.back">
+                <source>button.back</source>
+                <target>Takaisin</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
