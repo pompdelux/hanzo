@@ -64,11 +64,6 @@ services:
         arguments: [@security.context]
         tags:
             -   { name: kernel.event_listener, event: security.interactive_login }
-    hanzo.logout_listener:
-        class: Hanzo\Bundle\AccountBundle\Event\LogoutListener
-        arguments: [@security.context]
-        tags:
-            -   { name: kernel.event_listener, event: security.kernel_response, method: handle }
 
 twig:
     debug: '%kernel.debug%'

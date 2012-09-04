@@ -12,6 +12,7 @@ security:
                 path:   logout
                 target: /%locale%
                 invalidate_session: true
+                success_handler: hanzo.logout_success_handler
 
         login_firewall:
             pattern:    login
