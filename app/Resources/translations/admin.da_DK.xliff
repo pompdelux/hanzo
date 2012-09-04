@@ -1175,6 +1175,10 @@
         <source>admin.customer.orders.totalprice</source>
         <target>Total pris</target>
       </trans-unit>
+      <trans-unit id="admin.customer.orders.state">
+        <source>admin.customer.orders.state</source>
+        <target>Sync Status</target>
+      </trans-unit>
 
       <trans-unit id="admin.orders.changestate.link">
         <source>admin.orders.changestate.link</source>
@@ -1441,6 +1445,23 @@
         <target>Indhold</target>
       </trans-unit>
 
+      <trans-unit id="admin.orders.sync_states.created_date">
+        <source>admin.orders.sync_states.created_date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.sync_states.state">
+        <source>admin.orders.sync_states.state</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.sync_states.content">
+        <source>admin.orders.sync_states.content</source>
+        <target>Indhold</target>
+      </trans-unit>
+      <trans-unit id="admin.orders.sync_states.comment">
+        <source>admin.orders.sync_states.comment</source>
+        <target>Kommentar</target>
+      </trans-unit>
+
       <trans-unit id="admin.order.header.text">
         <source>admin.order.header.text</source>
         <target>Ordre detaljer</target>
@@ -1457,6 +1478,10 @@
         <source>admin.orders.no.order_attributes.text</source>
         <target>Der findes ingen attributer for denne ordre.</target>
       </trans-unit>
+      <trans-unit id="admin.orders.no.sync_states.text">
+        <source>admin.orders.no.sync_states.text</source>
+        <target>Der findes ingen synkroniserings log for denne ordre.</target>
+      </trans-unit>
       <trans-unit id="admin.order.lines.header.text">
         <source>admin.order.lines.header.text</source>
         <target>Ordre linjer</target>
@@ -1472,6 +1497,10 @@
       <trans-unit id="admin.order.attributes.description.text">
         <source>admin.order.attributes.description.text</source>
         <target>Denne tabel viser alle gemte attributer for den ordren.</target>
+      </trans-unit>
+      <trans-unit id="admin.order.sync_states.header.text">
+        <source>admin.order.sync_states.header.text</source>
+        <target>Synkroniserings Log</target>
       </trans-unit>
       
       <trans-unit id="admin.washing.header.text">
@@ -1861,6 +1890,10 @@
       <trans-unit id="search.label">
         <source>search.label</source>
         <target>Søg...</target>
+      </trans-unit>
+      <trans-unit id="search.debitor.label">
+        <source>search.debitor.label</source>
+        <target>Søg Debitor...</target>
       </trans-unit>
       <trans-unit id="search">
         <source>search</source>

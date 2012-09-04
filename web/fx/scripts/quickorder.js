@@ -7,13 +7,17 @@ var quickorder = (function($) {
     $('#master').typeahead({
         source: function (typeahead, query) {
             if (query.length < 2) { return; }
-            $.getJSON(
-                base_url + "quickorder/get-sku",
-                {name : query},
-                function(data) {
-                    return typeahead.process(data.data);
+            $.ajax({
+                url: base_url + "quickorder/get-sku",
+                dataType: 'json',
+                type: 'GET',
+                data: {name : query},
+                async: false,
+                cache: false,
+                success: function(response, textStatus, jqXHR) {
+                    return typeahead.process(response.data);
                 }
-            );
+            });
         },
         onselect: function( object ) {
             $("#master").val(object);

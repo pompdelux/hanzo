@@ -33,6 +33,13 @@ class CustomersController extends CoreController
 
         $customers = CustomersQuery::create();
 
+        if (isset($_GET['debitor'])) {
+            $debitor = $this->getRequest()->get('debitor', null);
+
+            $customers = $customers
+                ->filterById($debitor)
+            ;
+        }
         if (isset($_GET['q'])) {
             $q_clean = $this->getRequest()->get('q', null);
             $q = '%'.$q_clean.'%';

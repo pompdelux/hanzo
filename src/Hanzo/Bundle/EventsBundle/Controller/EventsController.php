@@ -311,6 +311,7 @@ class EventsController extends CoreController
                                 'consultant_email' => $consultant->getCustomers()->getEmail()
                             ));
                             $mailer->setTo(array($old_event->getEmail() => $old_event->getHost()));
+                            $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
                             $mailer->send();
 
                             // Send an email to the new Host
@@ -334,6 +335,7 @@ class EventsController extends CoreController
                                 'consultant_email' => $consultant->getCustomers()->getEmail()
                             ));
                             $mailer->setTo(array($event->getEmail() => $event->getHost()));
+                            $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
                             $mailer->send();
                         }
 
@@ -364,6 +366,7 @@ class EventsController extends CoreController
                                 'consultant_email' => $consultant->getCustomers()->getEmail()
                             ));
                             $mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()));
+                            $mailer->setFrom(array($event->getEmail() => $event->getHost()));
                             $mailer->send();
                         }
                     }
@@ -386,6 +389,7 @@ class EventsController extends CoreController
                             'consultant_email' => $consultant->getCustomers()->getEmail()
                         ));
                         $mailer->setTo(array($event->getEmail() => $event->getHost()));
+                        $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
                         $mailer->send();
                     }
                 }
@@ -495,6 +499,7 @@ class EventsController extends CoreController
             ));
 
             $mailer->setTo(array($event->getEmail() => $event->getHost()));
+            $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
             $mailer->send();
 
             foreach ($participants as $participant) {
@@ -513,6 +518,7 @@ class EventsController extends CoreController
                     'hostess_email' => $event->getEmail()
                 ));
                 $mailer->setTo($participant->getEmail(), $participant->getFirstName(). ' ' .$participant->getLastName());
+                $mailer->setFrom(array($event->getEmail() => $event->getHost()));
                 $mailer->send();
             }
 
@@ -624,6 +630,7 @@ class EventsController extends CoreController
                             $events_participant->getEmail(),
                             $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
                         );
+                        $mailer->setFrom(array($event->getEmail() => $event->getHost()));
                         $mailer->send();
                     }
 
@@ -828,6 +835,7 @@ class EventsController extends CoreController
                             $events_participant->getEmail(),
                             $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
                         );
+                        $mailer->setFrom(array($friend->getEmail() => $friend->getFirstName(). ' ' .$friend->getLastName()));
                         $mailer->send();
                     }
 

@@ -122,12 +122,8 @@ class DefaultController extends CoreController
 
         $result = array();
         if ($products->count()) {
-#            $stock = $this->get('stock');
-#            $stock->prime($products);
             foreach ($products as $product) {
-#                if($stock->check($product)){
-            	   $result[] = $product->getSku();
-#                }
+                $result[] = $product->getSku();
             }
             if(count($result)){
                 return $this->json_response(array(

@@ -29,6 +29,7 @@
             <a href="#" class="delete-order button" data-order-id="{{ order.id }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.id }}">Slet</a>
             <a href="{{ path('admin_orders_preview', {order_id : order.id}) }}" class="preview-order button">Gennemse</a>
             <a href="{{ path('admin_orders_resync_sync', {order_id : order.id}) }}" class="resend-order button">Gensend</a>
+            <img src="/fx/images/ajax-loader.gif" class="loader" style="display:none;">
           </td>
         </tr>
 

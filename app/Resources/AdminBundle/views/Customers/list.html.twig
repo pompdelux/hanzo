@@ -13,6 +13,12 @@
         <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
       </form>
     </li>
+    <li>
+      <form action="{{ path('admin_customers') }}" method="get">
+        <input type="text" id="search" name="debitor" placeholder="{{ 'search.debitor.label'|trans({}, 'admin') }}">
+        <input class="button search" type="submit" value="{{ 'search'|trans({}, 'admin') }}">
+      </form>
+    </li>
     <li id="select-language">
       <a class="open-menu" href="#">
         {% if domain_key %}

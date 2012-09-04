@@ -23,6 +23,7 @@ nav.sub li {
   float: right;
   background-image: none;
   list-style: none !important;
+  height: 30px;
 }
 nav.sub li > a {
   font-weight: normal;

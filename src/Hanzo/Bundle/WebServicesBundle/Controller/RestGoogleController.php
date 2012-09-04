@@ -119,6 +119,8 @@ class RestGoogleController extends CoreController
           $filter = "
             AND
                 cn.event_notes != ''
+            AND
+                cn.hide_info = 0
           ";
         }
 
@@ -150,8 +152,6 @@ class RestGoogleController extends CoreController
                 c.groups_id = 2
                 AND
                     c.is_active = 1
-                AND
-                    cn.hide_info = 0
                 AND
                     c.email NOT LIKE ('%@bellcom.dk')
                 AND
