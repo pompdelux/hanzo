@@ -538,6 +538,7 @@ var checkout = (function($) {
 
       // When the user clicks the link, check if everything is as it should be
       $("#checkout-execute").on('click', function(event) {
+        console.log('Click on checkout-execute');
         event.preventDefault();
         var dataToVerify = [];
 
@@ -572,8 +573,10 @@ var checkout = (function($) {
               console.log('Executing payment');
               blocks.payment.execute();
             } else {
+              console.log('Ajax status is not true');
               $.each(blocks, function(item) {
                 if ( this.data.name === data.data.name ) {
+                  console.log('Failed block: '+data.data.name);
                   this.setMessage( data.message, 'error' );
                   this.error();
                   self.data.state = false;
