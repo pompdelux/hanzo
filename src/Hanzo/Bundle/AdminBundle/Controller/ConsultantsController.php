@@ -401,7 +401,11 @@ class ConsultantsController extends CoreController
         }
 
         foreach ($events as $event) {
-            $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] = $event->getType();
+            if($data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] === '-'){
+                $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] = $event->getType();
+            }else{
+                $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] .= "+".$event->getType();
+            }
         }
 
         return new Response(
