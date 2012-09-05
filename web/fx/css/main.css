@@ -398,7 +398,7 @@ nav.sub a:hover {
 #body-frontpage #main {
   background-image: url(/fx/images/citat.png);
   background-repeat: no-repeat;
-  background-position: -60px 20px 0px 0px;
+  background-position: 0 20 0 0;
   margin-top: 440px;
   margin-bottom: 40px;
   width: 370px;
