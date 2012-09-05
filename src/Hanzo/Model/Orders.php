@@ -1192,14 +1192,13 @@ class Orders extends BaseOrders
         }
 
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
-            try
-            {
+            try {
                 $this->cancelPayment();
                 Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
-            }
-            catch ( Exception $e )
-            {
-                throw new Exception( $e->getMessage() );
+            } catch ( Exception $e ) {
+                if (!$this->getIgnoreDeleteConstraints()) {
+                    throw new Exception($e->getMessage());
+                }
             }
         }
 

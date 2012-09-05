@@ -109,10 +109,11 @@ class DefaultController extends CoreController
 
                 $price = $prices[$variant->getProducts()->getId()];
                 $price = array_shift($price);
+                $key = $variant->getMaster().' '.$variant->getColor();
 
-                $products[$category][] = array(
+                $products[$category][$key] = array(
                     'category' => $category,
-                    'category_id' => $products_to_categories[$master->getProducts()->getId()],
+                    'category_id' => $products_to_categories[$variant->getProducts()->getId()],
                     'master' => $variant->getMaster(),
                     'color' => $variant->getColor(),
                     'icon' => $variant->getIcon(),
@@ -126,6 +127,11 @@ class DefaultController extends CoreController
             }
 
             $products = array_reverse($products, true);
+
+            foreach ($products as $k => $p) {
+                asort($products[$k]);
+            }
+
             $this->setCache($cache_key, array(
                 'settings' => $settings,
                 'products' => $products,
