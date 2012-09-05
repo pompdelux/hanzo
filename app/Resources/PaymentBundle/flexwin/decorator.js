@@ -1,10 +1,6 @@
-var leaveWithNoPrompt = false;
-
 window.onbeforeunload = function (e) {
   var message = "Your confirmation message goes here.",
   e = e || window.event;
-
-  console.log(e);
 
   // For IE and Firefox
   if (e) {
