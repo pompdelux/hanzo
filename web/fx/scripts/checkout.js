@@ -77,8 +77,7 @@ var checkout = (function($) {
       async: false,
       cache: false,
       success: function(data) {
-        if ( !data.status )
-        {
+        if ( !data.status ) {
           dialoug.alert(ExposeTranslation.get('js:notice'), data.message);
         }
       }
@@ -377,8 +376,7 @@ var checkout = (function($) {
 
         var $selectedInput = $(this);
         $(self.data.selector+' form input[type=radio]').each(function(item) {
-          if ( this !== $selectedInput.get(0) )
-          {
+          if ( this !== $selectedInput.get(0) ) {
             $(this).prop('checked',false);
           }
         });
@@ -434,21 +432,15 @@ var checkout = (function($) {
       var ok = true;
       $.each(blocks, function(index, item) {
         if (item.data.state !== true) { 
-          console.log('State not true: '+item.data.name);
           ok = false; 
         }
       });
 
       if (ok) {
-        console.log('All is ok');
         var $form = $('#'+blocks.payment.data.selectedMethod);
         if ($form.attr('action') !== '') {
-          console.log('action is: '+$form.attr('action'));
           $form.submit();
         }
-      }
-      else {
-        console.log('Not ok');
       }
 
       return true;
@@ -519,7 +511,8 @@ var checkout = (function($) {
         $.each(blocks, function(index, item) {
           if (item.data.name !== 'summery' && item.data.name !== 'confirm') {
             $(item.data.selector).slideDown();
-          } else {
+          } 
+          else {
             $(item.data.selector).slideUp();
           }
         });
@@ -538,7 +531,6 @@ var checkout = (function($) {
 
       // When the user clicks the link, check if everything is as it should be
       $("#checkout-execute").on('click', function(event) {
-        console.log('Click on checkout-execute');
         event.preventDefault();
         var dataToVerify = [];
 
@@ -570,13 +562,11 @@ var checkout = (function($) {
                 this.hide();
               });
 
-              console.log('Executing payment');
               blocks.payment.execute();
-            } else {
-              console.log('Ajax status is not true');
+            } 
+            else {
               $.each(blocks, function(item) {
                 if ( this.data.name === data.data.name ) {
-                  console.log('Failed block: '+data.data.name);
                   this.setMessage( data.message, 'error' );
                   this.error();
                   self.data.state = false;
