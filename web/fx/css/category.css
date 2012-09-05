@@ -37,7 +37,7 @@
 }
 .product-list .block a img:hover {}
 .product-list .prices {
-  color: #fff;
+  color: #231f20;
 }
 .product-list .prices,
 .product-list .title {
@@ -102,7 +102,7 @@
 .pager ul a {
   text-decoration: none;
   font-weight: normal;
-  color: #fff;
+  color: #231f20;
 }
 .pager ul a:hover {}
 
