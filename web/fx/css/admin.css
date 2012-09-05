@@ -28,7 +28,7 @@ nav.sub li {
 nav.sub li > a {
   font-weight: normal;
   padding: 5px;
-  background: #242424;
+  background: #FFF;
   border: 1px solid #ccc;
 }
 nav.sub li > a:hover {
