@@ -402,6 +402,26 @@ admin_orders_check_order:
   defaults: { _controller: AdminBundle:Orders:checkDeadOrder, _format: json, id: null }
   requirements: { _format: (xml|json) }
 
+admin_orders_gothia:
+  pattern:  /admin/orders/gothia
+  defaults:
+      _controller: AdminBundle:Orders:gothia
+
+admin_orders_gothia_getorder:
+  pattern:  /admin/orders/gothia/get-order
+  defaults: { _controller: AdminBundle:Orders:gothiaGetOrder, _format: json }
+  requirements: { _format: (xml|json), _method: POST  }
+
+admin_orders_gothia_placereservation:
+  pattern:  /admin/orders/gothia/place-reservation
+  defaults: { _controller: AdminBundle:Orders:gothiaPlaceReservation, _format: json }
+  requirements: { _format: (xml|json), _method: POST  }
+
+admin_orders_gothia_cancelreservation:
+  pattern:  /admin/orders/gothia/cancel-reservation
+  defaults: { _controller: AdminBundle:Orders:gothiaCancelReservation, _format: json }
+  requirements: { _format: (xml|json), _method: POST  }
+
 admin_employees:
     pattern:  /admin/employees/{pager}
     defaults:

@@ -77,8 +77,7 @@ var checkout = (function($) {
       async: false,
       cache: false,
       success: function(data) {
-        if ( !data.status )
-        {
+        if ( !data.status ) {
           dialoug.alert(ExposeTranslation.get('js:notice'), data.message);
         }
       }
@@ -377,8 +376,7 @@ var checkout = (function($) {
 
         var $selectedInput = $(this);
         $(self.data.selector+' form input[type=radio]').each(function(item) {
-          if ( this !== $selectedInput.get(0) )
-          {
+          if ( this !== $selectedInput.get(0) ) {
             $(this).prop('checked',false);
           }
         });
@@ -433,7 +431,9 @@ var checkout = (function($) {
     blocks.payment.execute = function() {
       var ok = true;
       $.each(blocks, function(index, item) {
-        if (item.data.state !== true) { ok = false; }
+        if (item.data.state !== true) { 
+          ok = false; 
+        }
       });
 
       if (ok) {
@@ -511,7 +511,8 @@ var checkout = (function($) {
         $.each(blocks, function(index, item) {
           if (item.data.name !== 'summery' && item.data.name !== 'confirm') {
             $(item.data.selector).slideDown();
-          } else {
+          } 
+          else {
             $(item.data.selector).slideUp();
           }
         });
@@ -562,7 +563,8 @@ var checkout = (function($) {
               });
 
               blocks.payment.execute();
-            } else {
+            } 
+            else {
               $.each(blocks, function(item) {
                 if ( this.data.name === data.data.name ) {
                   this.setMessage( data.message, 'error' );

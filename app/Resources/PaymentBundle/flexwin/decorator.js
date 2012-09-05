@@ -1,3 +1,16 @@
+window.onbeforeunload = function (e) {
+  var message = "Your confirmation message goes here.",
+  e = e || window.event;
+
+  // For IE and Firefox
+  if (e) {
+    e.returnValue = message;
+  }
+
+  // For Safari
+  return message;
+};
+
 $(document).ready(function(){
     var lang = $('#cancelform_lang').val();
     var buttonText = 'Udfør betaling';
@@ -27,11 +40,16 @@ $(document).ready(function(){
     $('#btnAuthSubmit').val(buttonText);
     $('#btnAuthSubmit').text(buttonText);
     $("#btnAuthSubmit").css('display','inline');
-    $("#auth").submit(function(){
-        if ( $('#auth input.error').length )
-        {
-          return;
-        }
-        $("#btnAuthSubmit").css(cssObj);
-      });
+    $("#auth").submit(function() {
+      console.log('Cancel auth');
+      if ( $('#auth input.error').length ) {
+        return;
+      }
+      window.onbeforeunload = function (e) {};
+      $("#btnAuthSubmit").css(cssObj);
+    });
+    $("#cancel").submit(function() {
+      console.log('Cancel submit');
+      window.onbeforeunload = function (e) {};
+    });
 });
