@@ -1,6 +1,6 @@
 body {
   background-color: #94949e;
-  color: #fff;
+  color: #231f20;
 }
 a {
   text-decoration: none;
@@ -15,11 +15,11 @@ h1, h2, h3, h4 {
   font-family: 'Merriweather', Verdana;
   margin-top: 0;
   padding-top: 0;
-  color: #000;
+  color: #231f20;
 }
 h1 {
   font-size: 18px;
-  color: #fff;
+  color: #231f20;
   padding-bottom: 7px;
   border-bottom: 1px solid #7b7577;
 }
@@ -31,7 +31,7 @@ body.noh1 h1 {
 h2, h3, h4 {
   font-size: 14px;
   margin-bottom: 0;
-  color: #d3c2a2;
+  color: #231f20;
 }
 h4 {
   color: #000;
@@ -39,7 +39,7 @@ h4 {
 #main h2,
 #main h3,
 #main h4 {
-  color: #000
+  color: #231f20
 }
 
 table {
@@ -510,7 +510,7 @@ a.video-popper,
 }
 #checkout-steps a {
   font-weight: normal;
-  color: #fff;
+  color: #231f20;
 }
 #checkout-steps a:hover {
   color: #d3c2a2;
@@ -697,7 +697,7 @@ form.newsletter-subscription-form input.button {
 
 /* checkout payment */
 #body-checkout-payment h2 {
-  color: #fff;
+  color: #231f20;
 }
 #body-checkout-payment label {
   font-family: 'Merriweather', Verdana;
