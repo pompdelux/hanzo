@@ -82,7 +82,11 @@ namespace :deploy do
 # fix permissions. shouldnt run on static because of pdfs and ftp?
   desc "Update permissions on shared app logs and web dirs to be group writeable"
   task :update_permissions_shared do
-    run "sudo chmod -R g+rwX #{shared_path} && sudo chgrp -R www-data #{shared_path}"
+    run "sudo chmod -R g+rwX #{shared_path}/app && sudo chgrp -R www-data #{shared_path}/app"
+    run "sudo chmod -R g+rwX #{shared_path}/cron && sudo chgrp -R www-data #{shared_path}/cron"
+    run "sudo chmod -R g+rwX #{shared_path}/cached-copy && sudo chgrp -R www-data #{shared_path}/cached-copy"
+    run "sudo chmod -R g+rwX #{shared_path}/logs && sudo chgrp -R www-data #{shared_path}/logs"
+    run "sudo chmod -R g+rwX #{shared_path}/vendor && sudo chgrp -R www-data #{shared_path}/vendor"
   end
   desc "Send email after deploy"
   task :send_email do
@@ -171,7 +175,8 @@ namespace :symfony do
       symfony_env_prods.each do |i| 
         run "cd #{latest_release} && #{php_bin} #{symfony_console} cache:clear --env=#{i}"
 # mmh. This chmod fails because some cache dirs and files are owned by www-data. Ignore the errors and continue, because the www-data dirs already seems to have g+w. Original line commented out below.
-        run "chmod -f -R g+rwX #{latest_release}/#{cache_path}"
+        #run "chmod -R g+w #{latest_release}/#{cache_path}"
+        run "sudo chmod -R g+rwX #{latest_release}/#{cache_path}"
       end
     end
 
