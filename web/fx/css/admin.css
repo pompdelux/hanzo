@@ -343,7 +343,7 @@ table.list{
 }
 table.list th,
 table.list tr:hover{
-  background-color: #242424;
+  background-color: #CCC;
 }
 table.list tr{
   border-top:1px solid #D9D9D9;
@@ -362,7 +362,7 @@ table.list th {
   text-align: left;
 }
 table.list th a{
-  background: #242424;
+  background: #CCC;
   border: 1px solid #C8B289;
   margin: 3px;
   padding: 5px;
