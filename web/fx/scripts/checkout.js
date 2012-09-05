@@ -438,7 +438,9 @@ var checkout = (function($) {
 
       if (ok) {
         var $form = $('#'+blocks.payment.data.selectedMethod);
+        console.log(new Error().lineNumber);
         if ($form.attr('action') !== '') {
+          console.log(new Error().lineNumber);
           $form.submit();
         }
       }
