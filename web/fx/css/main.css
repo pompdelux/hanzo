@@ -754,9 +754,10 @@ form.newsletter-subscription-form input.button {
   height: 25px;
 }
 #body-login label input {
-  border: none;
   background-color: #fff;
   float: right;
+  border-bottom-width:thin;
+  border-color:#CCC;
 }
 #body-login div.left {
   float: left;
