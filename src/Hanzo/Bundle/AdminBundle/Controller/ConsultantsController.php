@@ -337,11 +337,11 @@ class ConsultantsController extends CoreController
             );
         }
         return $this->render('AdminBundle:Consultants:listEvents.html.twig', array(
-            'events'      => $events,
-            'paginate'      => $paginate,
-            'start' => date('Y-m-d', strtotime('-1 month', time() )),
-            'end' => date('Y-m-d', time()),
-            'database' => $this->getRequest()->getSession()->get('database')
+            'events'    => $events,
+            'paginate'  => $paginate,
+            'start'     => date('d-m-Y', strtotime('-1 month', time() )),
+            'end'       => date('d-m-Y', time()),
+            'database'  => $this->getRequest()->getSession()->get('database')
         ));
     }
 
@@ -361,11 +361,11 @@ class ConsultantsController extends CoreController
         $date_filter = array();
         if($start && $end){
             $date_filter['min'] = strtotime($start);
-            $date_filter['max'] = strtotime($end);
+            $date_filter['max'] = strtotime(date("d-m-Y", strtotime($end)) . " +1 day");
         }else{
             $date_filter['min'] = strtotime('-1 month', time());
             $start = $date_filter['min'];
-            $date_filter['max'] = time();
+            $date_filter['max'] = strtotime('Tomorrow');
             $end = $date_filter['max'];
 
         }
@@ -387,7 +387,7 @@ class ConsultantsController extends CoreController
         ;
 
         for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
-            $data[0][date('Y-m-d', $date)] = date('Y-m-d', $date); // Header row with visible dates
+            $data[0][date('d-m-Y', $date)] = date('d-m-Y', $date); // Header row with visible dates
         }
 
         foreach ($consultants as $consultant) {
@@ -395,13 +395,13 @@ class ConsultantsController extends CoreController
             $data[$consultant->getId()][0] = $customer_data->getFirstName(). ' ' . $customer_data->getLastName();
 
             for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
-                $data[$consultant->getId()][date('Y-m-d', $date)] = '-';
+                $data[$consultant->getId()][date('d-m-Y', $date)] = '-';
             }
 
         }
 
         foreach ($events as $event) {
-            $data[$event->getConsultantsId()][date('Y-m-d', strtotime($event->getEventDate()))] = $event->getType();
+            $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] = $event->getType();
         }
 
         return new Response(
