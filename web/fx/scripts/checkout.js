@@ -433,16 +433,22 @@ var checkout = (function($) {
     blocks.payment.execute = function() {
       var ok = true;
       $.each(blocks, function(index, item) {
-        if (item.data.state !== true) { ok = false; }
+        if (item.data.state !== true) { 
+          console.log('State not true: '+item.data.name);
+          ok = false; 
+        }
       });
 
       if (ok) {
+        console.log('All is ok');
         var $form = $('#'+blocks.payment.data.selectedMethod);
-        console.log(new Error().lineNumber);
         if ($form.attr('action') !== '') {
-          console.log(new Error().lineNumber);
+          console.log('action is: '+$form.attr('action'));
           $form.submit();
         }
+      }
+      else {
+        console.log('Not ok');
       }
 
       return true;
@@ -563,6 +569,7 @@ var checkout = (function($) {
                 this.hide();
               });
 
+              console.log('Executing payment');
               blocks.payment.execute();
             } else {
               $.each(blocks, function(item) {
