@@ -375,6 +375,7 @@ class ConsultantsController extends CoreController
         $consultants = ConsultantsQuery::create()
             ->joinCustomers()
             ->useCustomersQuery()
+            ->filterByIsActive(TRUE)
                 ->orderByFirstName()
             ->endUse()
             ->find($this->getDbConnection())
@@ -401,7 +402,10 @@ class ConsultantsController extends CoreController
         }
 
         foreach ($events as $event) {
-            if($data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] === '-'){
+            if(!isset($data[$event->getConsultantsId()])){ // If the consultant is not on the list eg. is inactive
+                continue;
+            }
+            if($data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] === '-'){        // If no events yet
                 $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] = $event->getType();
             }else{
                 $data[$event->getConsultantsId()][date('d-m-Y', strtotime($event->getEventDate()))] .= "+".$event->getType();
