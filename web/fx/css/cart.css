@@ -38,8 +38,8 @@
 }
 
 .product-table th {
-  font-family: 'Merriweather', Verdana;
-  color: #000;
+  font-family: 'Merriweather', Tahoma;
+  color: #231f20;
 }
 .product-table thead,
 .product-table tbody,
@@ -59,7 +59,7 @@
 }
 .product-table th.group {
   text-align: left;
-  color: #fff;
+  color: #231f20;
 }
 .product-table td.image {
   padding-left: 15px;
@@ -78,7 +78,7 @@
   line-height: 1.4em;
 }
 .product-table td div.info a {
-  font-family: 'Merriweather', Verdana;
+  font-family: 'Merriweather', Tahoma;
 }
 .product-table td div.info div {
   display: block;

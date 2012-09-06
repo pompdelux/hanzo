@@ -320,19 +320,19 @@
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
-        <target>Girl:</target>
+        <target>Girl</target>
       </trans-unit>
       <trans-unit id="product.group.lg">
         <source>product.group.lg</source>
-        <target>Little Girl:</target>
+        <target>Little Girl</target>
       </trans-unit>
       <trans-unit id="product.group.b">
         <source>product.group.b</source>
-        <target>Boy:</target>
+        <target>Boy</target>
       </trans-unit>
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
-        <target>Little Boy:</target>
+        <target>Little Boy</target>
       </trans-unit>
     </body>
   </file>
