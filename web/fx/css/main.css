@@ -12,7 +12,7 @@ a:hover {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Merriweather', Verdana;
+  font-family: 'Merriweather', Tahoma;
   margin-top: 0;
   padding-top: 0;
   color: #231f20;
@@ -80,7 +80,7 @@ blockquote {
   padding-top: 20px;
   margin-left: 0;
   font-size: 18px;
-  font-family: 'Merriweather', Verdana;
+  font-family: 'Merriweather', Tahoma;
 }
 
 hr {
@@ -397,8 +397,9 @@ nav.sub a:hover {
 
 #body-frontpage #main {
   background-image: url(/fx/images/citat.png);
+  background-size: 50%;
   background-repeat: no-repeat;
-  background-position: -30px -13px;
+  background-position: 0 20px;
   margin-top: 440px;
   margin-bottom: 40px;
   width: 370px;
@@ -583,7 +584,7 @@ a.video-popper,
   margin-left: 10px;
   font-size: 11px;
   font-weight: normal;
-  font-family: Tahoma, Verdana;
+  font-family: Tahoma, Tahoma;
   vertical-align: top;
 }
 
@@ -700,7 +701,7 @@ form.newsletter-subscription-form input.button {
   color: #231f20;
 }
 #body-checkout-payment label {
-  font-family: 'Merriweather', Verdana;
+  font-family: 'Merriweather', Tahoma;
   color: #000;
 }
 #body-checkout-payment form div {

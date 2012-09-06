@@ -38,7 +38,7 @@
 }
 
 .product-table th {
-  font-family: 'Merriweather', Verdana;
+  font-family: 'Merriweather', Tahoma;
   color: #000;
 }
 .product-table thead,
@@ -78,7 +78,7 @@
   line-height: 1.4em;
 }
 .product-table td div.info a {
-  font-family: 'Merriweather', Verdana;
+  font-family: 'Merriweather', Tahoma;
 }
 .product-table td div.info div {
   display: block;

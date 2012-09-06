@@ -41,7 +41,9 @@
 }
 .product-list .prices,
 .product-list .title {
-  font-family: 'Merriweather', Verdana;
+  font-family: 'Merriweather', Tahoma;
+  font-weight: bold;
+  font-size: 10px;
   display: block;
   text-align: center;
 }
