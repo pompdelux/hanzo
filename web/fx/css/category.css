@@ -30,7 +30,7 @@
   width: 115px;
   height: 300px;
   font-weight: normal;
-  color: #d3c2a2;
+  color: #c29954;
 }
 .product-list .block a img {
   width: 115px;
@@ -80,14 +80,14 @@
   float: right;
 }
 .pager ul li {
-  color: #d3c2a2;
+  color: #c29954;
   list-style: none;
   float: left;
   padding: 0 10px;
   border-right: 1px solid #7b7577;
 }
 .pager ul li.current a {
-  color: #d3c2a2;
+  color: #c29954;
 }
 .pager ul li:last-child {
   border-right: none;
