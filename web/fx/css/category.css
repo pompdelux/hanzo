@@ -30,7 +30,7 @@
   width: 115px;
   height: 300px;
   font-weight: normal;
-  color: #231f20;
+  color: #d3c2a2;
 }
 .product-list .block a img {
   width: 115px;
@@ -38,7 +38,7 @@
 }
 .product-list .block a img:hover {}
 .product-list .prices {
-  color: #d3c2a2;
+  color: #231f20;
 }
 .product-list .prices,
 .product-list .title {
