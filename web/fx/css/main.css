@@ -8,7 +8,7 @@ a {
   font-weight: 900;
 }
 a:hover {
-  color: #000;
+  color: #231f20;
 }
 
 h1, h2, h3, h4 {
@@ -34,7 +34,7 @@ h2, h3, h4 {
   color: #231f20;
 }
 h4 {
-  color: #000;
+  color: #231f20;
 }
 #main h2,
 #main h3,
@@ -186,7 +186,7 @@ nav.main ul li li {
 }
 nav.main ul li a {
   background-color: #c8c4c3;
-  color: #000;
+  color: #231f20;
   font-size: 14px;
   font-weight: normal;
   padding: 3px 20px;
@@ -217,16 +217,16 @@ nav.main ul li li li {
 nav.main ul li li a,
 nav.main ul li li.inactive a {
   background-color: transparent;
-  color: #000;
+  color: #231f20;
 }
 nav.main ul li li.active a {
   background-color: transparent;
-  color: #000;
+  color: #231f20;
   font-weight: bold;
 }
 nav.main ul li li li.inactive a {
   background-image: none;
-  color: #000;
+  color: #231f20;
   font-weight: normal;
 }
 nav.main ul li li li a:hover,
@@ -274,7 +274,7 @@ nav.sub a:hover {
 }
 #teasers li h2,
 #teasers li a h2 {
-  color: #000;
+  color: #231f20;
 }
 #teasers li {
   height: 100px;
@@ -309,7 +309,7 @@ nav.sub a:hover {
   right: 0;
   top: 0;
   background-image: url(/fx/images/b4b5b6.png);
-  color: #000;
+  color: #231f20;
   padding: 5px;
 }
 #secondary-links ul {
@@ -339,7 +339,7 @@ nav.sub a:hover {
 }
 #secondary-links ul li a {
   font-weight: normal;
-  color: #000;
+  color: #231f20;
 }
 
 #secondary-links #select-domain div {
@@ -367,16 +367,16 @@ nav.sub a:hover {
 }
 
 #facebox {
-  color: #000;
+  color: #231f20;
 }
 
 /* colorbox */
 #cboxLoadedContent h2 {
-  color: #000;
+  color: #231f20;
 }
 #cboxLoadedContent .message {
   margin: 10px;
-  color: #000;
+  color: #231f20;
 }
 
 /* cloud zoom */
@@ -397,7 +397,7 @@ nav.sub a:hover {
 
 #body-frontpage #main {
   background-image: url(/fx/images/citat.png);
-  background-size: 50%;
+  background-size: 59px 41px;
   background-repeat: no-repeat;
   background-position: 0 20px;
   margin-top: 440px;
@@ -427,11 +427,11 @@ footer {
   width: 100%;
   background-color: #fff;
   padding: 5px 0;
-  color: #000;
+  color: #231f20;
   z-index: 201;
 }
 footer a {
-  color: #000;
+  color: #231f20;
   font-weight: normal;
 }
 
@@ -461,7 +461,7 @@ footer img {
   top: 45px;
   z-index: 2;
   background-image: url(/fx/images/ffffff.png);
-  color: #000;
+  color: #231f20;
   text-align: center;
   padding: 5px;
 }
@@ -553,7 +553,7 @@ a.video-popper,
 .shipping-method p {
 }
 .shipping-method  h3 {
-  color: #000;
+  color: #231f20;
 }
 #confirm_shipping_address {
   margin: 10px;
@@ -598,7 +598,7 @@ a.video-popper,
 }
 
 #body-checkout-gothia .prefilled {
-  color: #000;
+  color: #231f20;
 }
 
 /* newsletter subscription forms */
@@ -663,7 +663,7 @@ form.newsletter-subscription-form input.button {
 
 /* checkout shipping */
 #body-checkout-shipping h2 {
-  color: #000;
+  color: #231f20;
 }
 #body-checkout-payment form input.button,
 #body-checkout-shipping-address form div input.button,
@@ -702,7 +702,7 @@ form.newsletter-subscription-form input.button {
 }
 #body-checkout-payment label {
   font-family: 'Merriweather', Tahoma;
-  color: #000;
+  color: #231f20;
 }
 #body-checkout-payment form div {
   margin-bottom: 20px;
@@ -721,14 +721,14 @@ form.newsletter-subscription-form input.button {
   padding: 2px 0;
 }
 #body-checkout-confirmation h3 {
-  color: #000;
+  color: #231f20;
 }
 #body-checkout-confirmation form {
   margin-top: 20px;
 }
 
 #body-checkout-confirmation div.error {
-  color: #000;
+  color: #231f20;
 }
 #body-checkout-confirmation div.error h3,
 #body-checkout-confirmation div.error p {
@@ -738,7 +738,7 @@ form.newsletter-subscription-form input.button {
 /* checkout success */
 #body-checkout-success h2,
 #body-checkout-success h3 {
-  color: #000;
+  color: #231f20;
 }
 
 /* login */
@@ -791,7 +791,7 @@ form.newsletter-subscription-form input.button {
   border: 1px solid #7B7577;
   background-color: #fff;
   padding: 1em 3em;
-  color: #000;
+  color: #231f20;
 }
 
 .message.error {
@@ -811,7 +811,7 @@ form.newsletter-subscription-form input.button {
 }
 
 #map_canvas {
-  color: #000;
+  color: #231f20;
 }
 
 /* account hostess */
@@ -922,7 +922,7 @@ form.newsletter-subscription-form input.button {
 .msg {
   border: 2px solid #000;
   background-color: #fff;
-  color: #000;
+  color: #231f20;
   padding: 0.5em;
   font-weight: bold;
   margin-bottom: 1em;
@@ -933,7 +933,7 @@ form.newsletter-subscription-form input.button {
 }
 
 #consultants-map-canvas div div {
-  color: #000;
+  color: #231f20;
 }
 
 #newsletter-lists-container.simple label {

@@ -131,7 +131,7 @@ nav.sub li.dropdown-menu a span.cat-id,
   list-style: square;
 }
 #body-admin #main .message h2 {
-  color: #000;
+  color: #231f20;
   margin-top: 10px;
 }
 #body-admin #main em {
@@ -455,7 +455,7 @@ ul#product-images-list li li a.delete{
 }
 
 #cboxLoadedContent pre {
-  color: #000;
+  color: #231f20;
 }
 
 #consultants-openhouses .element {
