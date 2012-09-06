@@ -37,7 +37,7 @@ ul#mannequin-menu.tabs li a.current:hover {
 }
 
 #mannequin {
-  /*background-color: #fff;*/
+  background-color: #fff;
   padding: 10px;
   color: #231f20;
 }
