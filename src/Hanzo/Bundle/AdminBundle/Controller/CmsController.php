@@ -84,7 +84,8 @@ class CmsController extends CoreController
 
         if($node instanceof CmsI18n) {
             $node->delete($this->getDbConnection());
-
+            
+            /* Debug anders@bellcom.dk 040912
             // Do a check if all translations are deleted, then delete the Cms
             $numberOfTranslations = CmsI18nQuery::create()
                 ->filterById($id)
@@ -98,6 +99,7 @@ class CmsController extends CoreController
                     $master->delete();
                 }
             }
+            // Debug end anders@bellcom.dk */
         }
 
         $cache->clearRedisCache();
