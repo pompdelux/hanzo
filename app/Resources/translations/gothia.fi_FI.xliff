@@ -4,15 +4,15 @@
     <body>
       <trans-unit id="json_err10">
         <source>json.ssn.not_numeric</source>
-        <target>Det indtastede personnummer må ikke indeholde andet end tal</target>
+        <target>Personnumret får inte innehålla andra tecken än siffror</target>
       </trans-unit>
       <trans-unit id="json_err20">
         <source>json.ssn.to_short</source>
-        <target>Det indtastede personnummer er for kort, det skal være 10 cifre (YYMMDDXXXX)</target>
+        <target>Personnumret är för kort, det ska vara 10 siffror (YYMMDDXXXX)</target>
       </trans-unit>
       <trans-unit id="json.ssn.to_long">
         <source>json.ssn.to_long</source>
-        <target>Det indtastede personnummer er for langt, det skal være 10 cifre (YYMMDDXXXX)</target>
+        <target>Personnumret är för långt, det ska vara 10 siffror (YYMMDDXXXX)</target>
       </trans-unit>
       <trans-unit id="json_err30">
         <source>json.checkcustomer.failed</source>
@@ -20,11 +20,11 @@
       </trans-unit>
       <trans-unit id="json_err35">
         <source>json.checkcustomer.error</source>
-        <target>Kunne ikke oprette din bruger ved Gothia</target>
+        <target>Kunde inte upprätta din användare hos Gothia</target>
       </trans-unit>
       <trans-unit id="json_err40">
         <source>json.checkcustomer.purchasestop</source>
-        <target>Din order er ikke blevet godkendt</target>
+        <target>Din order har inte blivit godkänd</target>
       </trans-unit>
       <trans-unit id="json_err50">
         <source>json.cancelreservation.failed</source>
@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit id="json_err60">
         <source>json.cancelreservation.error</source>
-        <target>Kunne ikke annullere din eksisterende ordre</target>
+        <target>Kunde inte annullera din existerande order </target>
       </trans-unit>
       <trans-unit id="json_err70">
         <source>json.placereservation.failed</source>
@@ -40,19 +40,19 @@
       </trans-unit>
       <trans-unit id="json_err80">
         <source>json.placereservation.error</source>
-        <target>Kunne ikke oprette din ordre ved Gothia</target>
+        <target>Kunde inte upprätta din order hos Gothia</target>
       </trans-unit>
       <trans-unit id="page_txt10">
         <source>page.heading</source>
-        <target>Gothia betaling</target>
+        <target>Gothia betalning</target>
       </trans-unit>
       <trans-unit id="page_txt20">
         <source>page.heading_step1</source>
-        <target>Opret kunde ved Gothia</target>
+        <target>Upprätta kund hos Gothia</target>
       </trans-unit>
       <trans-unit id="page_txt30">
         <source>page.heading_step2</source>
-        <target>Bekræft betaling</target>
+        <target>Bekräfta betalning </target>
       </trans-unit>
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
