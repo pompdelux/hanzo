@@ -383,7 +383,7 @@ class DeadOrderService
     public function getOrders( $limit = 0 )
     { 
         $orders = OrdersQuery::create()
-            ->filterByUpdatedAt(array('max'=>strtotime('3 hours ago')))
+            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
             //->filterByFinishedAt(null)
             ->filterByBillingMethod('dibs')
             ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
