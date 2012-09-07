@@ -3,6 +3,8 @@
 namespace Hanzo\Bundle\ServiceBundle\Services;
 
 use Exception;
+use Criteria;
+use Propel;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools
