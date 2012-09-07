@@ -187,7 +187,14 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     public function capture( Orders $order, $amount )
     {
         $attributes       = $order->getAttributes();
+
+        if ( !isset($attributes->payment->transact) )
+        {
+            throw new DibsApiCallException( 'DIBS api capture action: order contains no transaction id, order id was: '.$order->getId() );
+        }
+
         $transaction      = $attributes->payment->transact;
+
         $paymentGatewayId = $order->getPaymentGatewayId();
 
         $stringToHash = 'merchant='. $this->settings[ 'merchant' ] .'&orderid='. $paymentGatewayId.'&transact='.$transaction.'&amount='.$amount;
@@ -217,6 +224,12 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     public function refund( Orders $order, $amount )
     {
         $attributes       = $order->getAttributes();
+
+        if ( !isset($attributes->payment->transact) )
+        {
+            throw new DibsApiCallException( 'DIBS api refund action: order contains no transaction id, order id was: '.$order->getId() );
+        }
+
         $transaction      = $attributes->payment->transact;
         $paymentGatewayId = $order->getPaymentGatewayId();
         $currency         = $this->api->currencyCodeToNum($order->getCurrencyCode());
@@ -249,6 +262,12 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     {
         $attributes       = $order->getAttributes();
         $transaction      = $attributes->payment->transact;
+
+        if ( !isset($attributes->payment->transact) )
+        {
+            throw new DibsApiCallException( 'DIBS api payinfo action: order contains no transaction id, order id was: '.$order->getId() );
+        }
+
         $params = array(
             'transact'  => $transaction,
         );
@@ -269,6 +288,12 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     public function transstatus( Orders $order )
     {
         $attributes       = $order->getAttributes();
+
+        if ( !isset($attributes->payment->transact) )
+        {
+            throw new DibsApiCallException( 'DIBS api transstatus action: order contains no transaction id, order id was: '.$order->getId() );
+        }
+
         $transaction      = $attributes->payment->transact;
 
         $params = array(
@@ -309,6 +334,12 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     public function callback( Orders $order )
     {
         $attributes       = $order->getAttributes();
+
+        if ( !isset($attributes->payment->transact) )
+        {
+            throw new DibsApiCallException( 'DIBS api callback action: order contains no transaction id, order id was: '.$order->getId() );
+        }
+
         $transaction      = $attributes->payment->transact;
 
         $params = array(
