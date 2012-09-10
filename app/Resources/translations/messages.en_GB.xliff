@@ -113,11 +113,11 @@
             </trans-unit>
             <trans-unit id="acc.3">
                 <source>Pass</source>
-                <target>Pass</target>
+                <target>Password</target>
             </trans-unit>
             <trans-unit id="acc.4">
                 <source>Pass repeated</source>
-                <target>Pass repeated</target>
+                <target>Password repeated</target>
             </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
