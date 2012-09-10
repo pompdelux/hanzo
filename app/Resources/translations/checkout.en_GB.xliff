@@ -28,10 +28,10 @@
           <p>Phone +45 8678 7871</p>
           <p>E-mail: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
 
-          <h2>My pages</h2>
+          <h2>My account</h2>
           <p>
             View your order and much more.<br>
-            <a href="%account%">&raquo; My pages</a>
+            <a href="%account%">&raquo; My account</a>
           </p>
 
           <h2>FAQ</h2>
