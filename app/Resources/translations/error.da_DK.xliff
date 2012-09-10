@@ -18,7 +18,7 @@
                 <source>500.description</source>
                 <target><![CDATA[
                     <p>Du er røget ind i afdelingen for tekniske vanskeligheder, vi beklager.</p>
-                    <p>Hvis problemet fortsætter eller genopstår kan du kontakte kundeservice på telefon: +45 8678 7871, eller skrive til os på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+                    <p>Hvis problemet fortsætter eller genopstår kan du kontakte kundeservice på telefon: (+45) 8678 7871, eller skrive til os på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
                 ]]></target>
             </trans-unit>
         </body>
