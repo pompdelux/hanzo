@@ -220,6 +220,12 @@ class DefaultController extends CoreController
     public function editAction()
     {
         $customer = CustomersPeer::getCurrent();
+
+        // you cannot edit a new customer.
+        if ($customer->isNew()) {
+            return $this->redirect($this->generateUrl('_account'));
+        }
+
         $countries = CountriesPeer::getAvailableDomainCountries();
 
         $form = $this->createForm(
