@@ -25,12 +25,14 @@ class CustomersType extends AbstractType
             'type' => $this->addressType,
             'translation_domain' => 'account',
             'error_bubbling' => true,
+            'attr' => array('autocomplete' => 'off'),
         ));
 
         $builder->add('phone', null, array(
             'required' => TRUE,
             'translation_domain' => 'account',
             'error_bubbling' => true,
+            'attr' => array('autocomplete' => 'off'),
         ));
 
         $builder->add('email', 'repeated', array(
@@ -40,6 +42,7 @@ class CustomersType extends AbstractType
             'second_name' => 'email_address_repeated',
             'translation_domain' => 'account',
             'error_bubbling' => true,
+            'options' => array('attr' => array('autocomplete' => 'off')),
         ));
 
         $builder->add('password', 'repeated', array(
@@ -50,6 +53,7 @@ class CustomersType extends AbstractType
             'translation_domain' => 'account',
             'required' => $this->is_new,
             'error_bubbling' => true,
+            'options' => array('attr' => array('autocomplete' => 'off')),
         ));
 
         if ($this->is_new) {
@@ -59,6 +63,7 @@ class CustomersType extends AbstractType
                 'translation_domain' => 'account',
                 'property_path' => false,
                 'error_bubbling' => true,
+                'attr' => array('autocomplete' => 'off'),
             ));
 
             $builder->add('accept', 'checkbox', array(
@@ -67,6 +72,7 @@ class CustomersType extends AbstractType
                 'translation_domain' => 'account',
                 'property_path' => false,
                 'error_bubbling' => true,
+                'attr' => array('autocomplete' => 'off'),
             ));
         }
     }

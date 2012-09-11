@@ -447,8 +447,13 @@ class DefaultController extends CoreController
         $data = array();
 
         if ('email' == $type) {
+            $customer = CustomersPeer::getCurrent();
+
             $translator = $this->get('translator');
-            $account = CustomersQuery::create()->findOneByEmail($this->getRequest()->get('email'));
+            $account = CustomersQuery::create()
+                ->filterById($customer->getId(), \Criteria::NOT_EQUAL)
+                ->findOneByEmail($this->getRequest()->get('email'))
+            ;
             if ($account instanceof Customers) {
                 $status = false;
                 $message = $translator->trans('email.already.in.use', array(), 'account');
