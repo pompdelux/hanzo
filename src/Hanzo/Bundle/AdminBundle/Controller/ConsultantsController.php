@@ -302,10 +302,6 @@ class ConsultantsController extends CoreController
 
     public function indexEventsAction($pager)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('admin'));
-        }
-
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
@@ -347,9 +343,6 @@ class ConsultantsController extends CoreController
 
     public function exportAction()
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('admin'));
-        }
 
         $parser = new \PropelCSVParser();
         $parser->delimiter = ';';
@@ -375,7 +368,8 @@ class ConsultantsController extends CoreController
         $consultants = ConsultantsQuery::create()
             ->joinCustomers()
             ->useCustomersQuery()
-            ->filterByIsActive(TRUE)
+                ->filterByIsActive(TRUE)
+                ->filterByGroupsId(2) // Consultants
                 ->orderByFirstName()
             ->endUse()
             ->find($this->getDbConnection())
@@ -393,7 +387,7 @@ class ConsultantsController extends CoreController
 
         foreach ($consultants as $consultant) {
             $customer_data = $consultant->getCustomers();
-            $data[$consultant->getId()][0] = $customer_data->getFirstName(). ' ' . $customer_data->getLastName();
+            $data[$consultant->getId()][0] = utf8_decode($customer_data->getFirstName(). ' ' . $customer_data->getLastName());
 
             for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
                 $data[$consultant->getId()][date('d-m-Y', $date)] = '-';
