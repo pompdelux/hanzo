@@ -1,5 +1,5 @@
 window.onbeforeunload = function (e) {
-  var message = "Your confirmation message goes here.",
+  var message = 'Du har klikket på browserens tilbageknap. Ønsker du at afbryde betalingen, skal du klikke på "Bliv på siden" og herefter klikke på knappen "Afbryd"',
   e = e || window.event;
 
   // For IE and Firefox
