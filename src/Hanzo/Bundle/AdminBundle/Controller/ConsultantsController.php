@@ -519,4 +519,53 @@ class ConsultantsController extends CoreController
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
+
+    public function consultantsFrontpageEditAction()
+    {
+        $setting = SettingsQuery::create()
+            ->filterByNs('c')
+            ->filterByCKey('frontpage')
+            ->findOne($this->getDbConnection())
+        ;
+        if(!$setting instanceof Settings){
+            $setting = new Settings();
+            $setting->setNs('c')
+                    ->setCKey('frontpage')
+                    ->setTitle('Consultant Frontpage Content')
+            ;
+        }
+
+        $form = $this->createFormBuilder(array('content' => $setting->getCValue()))
+            ->add('content', 'textarea',
+                array(
+                    'label' => 'admin.consultants.frontpage.content.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
+            )->getForm()
+        ;
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $form_data = $form->getData();
+
+                $setting->setCValue($form_data['content']);
+                $setting->save($this->getDbConnection());
+                
+                $cache = $this->get('cache_manager');
+                $cache->clearRedisCache();
+
+                $this->get('session')->setFlash('notice', 'admin.consultants.fronpage.content.updated');
+            }
+        }
+
+        return $this->render('AdminBundle:Consultants:consultantsFrontpageEdit.html.twig', array(
+            'form'      => $form->createView(),
+            'database' => $this->getRequest()->getSession()->get('database')
+        ));
+    }
 }

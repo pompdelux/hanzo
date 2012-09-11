@@ -1915,6 +1915,26 @@
         <source>admin.consultants.openhouse.list.link</source>
         <target>Åbent Hus Liste</target>
       </trans-unit>
+      <trans-unit id="admin.customers.consultants.frontpage.link">
+        <source>admin.customers.consultants.frontpage.link</source>
+        <target>Konsulent Forside Tekst</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.frontpage.header.text">
+        <source>admin.consultants.frontpage.header.text</source>
+        <target>Tekst til Konsulent Forsiden</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.frontpage.save">
+        <source>admin.consultants.frontpage.save</source>
+        <target>Gem Tekst</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.frontpage.content.label">
+        <source>admin.consultants.frontpage.content.label</source>
+        <target>Indhold:</target>
+      </trans-unit>
+      <trans-unit id="admin.consultants.fronpage.content.updated">
+        <source>admin.consultants.fronpage.content.updated</source>
+        <target>Konsulent forsiden er nu opdateret.</target>
+      </trans-unit>
       <trans-unit id="">
         <source></source>
         <target></target>

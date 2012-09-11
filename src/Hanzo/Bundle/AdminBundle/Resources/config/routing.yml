@@ -471,6 +471,11 @@ admin_consultants_openhouse:
     defaults:
         _controller: AdminBundle:Consultants:consultantsOpenhouse
 
+admin_consultants_frontpage_edit:
+    pattern: /admin/consultants/frontpage-edit
+    defaults:
+        _controller: AdminBundle:Consultants:consultantsFrontpageEdit
+
 admin_postalcode:
     pattern:  /admin/settings/postalcode/{pager}
     defaults:
