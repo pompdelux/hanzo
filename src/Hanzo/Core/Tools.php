@@ -201,15 +201,15 @@ class Tools
      * debug
      *
      * Logs data send to error_log +:
-     * - current customer ip 
+     * - current customer ip
      * - current customer id (if they are logged in)
      * - current order id (if there is one)
      * - current order state (if any)
      * - current customer id on the order (if there is one)
      *
      * @param string $msg The message to log
-     * @param string $context In which context was the message generated, e.g. __METHOD__ 
-     * @param array $data Key/value to dump 
+     * @param string $context In which context was the message generated, e.g. __METHOD__
+     * @param array $data Key/value to dump
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -226,7 +226,7 @@ class Tools
 
       if ( !empty($data) )
       {
-        foreach ($data as $key => $value) 
+        foreach ($data as $key => $value)
         {
           if ( is_array($value) )
           {
@@ -251,7 +251,12 @@ class Tools
      */
     public static function moneyFormat($number, $format = '%.2i')
     {
-        return money_format($format, (double) $number);
+        $number = money_format($format, (double) $number);
+        if (preg_match('/^([a-z]+)\-?[0-9]/i', $number, $matches)) {
+            return str_replace($matches[1], $matches[1].' ', $number);
+        }
+
+        return $number;
     }
 
 
