@@ -29,4 +29,13 @@
   <input class="button right" type="submit" value="{{ 'admin.orders.changestate.submit'|trans({}, 'admin') }}">
 </form>
 
+{% if updated_orders %}
+<h1>{{ 'admin.orders.changestate.updated_orders.text'|trans({}, 'admin') }}</h1>
+<ul>
+  {% for ids in updated_orders %}
+  <li><a href="{{ path('admin_customer_order', {'order_id' : ids}) }}">{{ ids }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
 {% endblock %}

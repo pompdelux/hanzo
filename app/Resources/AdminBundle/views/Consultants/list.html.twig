@@ -15,12 +15,17 @@
         {{ 'admin.customers.list.link'|trans({}, 'admin') }}
       </a>
     </li>
+    {% endif %}
+    <li>
+      <a href="{{ path('admin_consultants_frontpage_edit') }}">
+        {{ 'admin.customers.consultants.frontpage.link'|trans({}, 'admin') }}
+      </a>
+    </li>
     <li>
       <a href="{{ path('admin_consultants_events') }}">
         {{ 'admin.consultants.events.list.link'|trans({}, 'admin') }}
       </a>
     </li>
-    {% endif %}
     <li>
       <a href="{{ path('admin_consultants_openhouse') }}">
         {{ 'admin.consultants.openhouse.list.link'|trans({}, 'admin') }}

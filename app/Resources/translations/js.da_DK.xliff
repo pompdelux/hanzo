@@ -286,6 +286,10 @@
                 <source>consultant.newsletter.delete.user</source>
                 <target>Er du sikker på du vil slette denne bruger fra listen?</target>
             </trans-unit>
+            <trans-unit id="consultant.newsletter.confirm.send">
+                <source>consultant.newsletter.confirm.send</source>
+                <target>Er du sikker på du vil sende nyhedsbrevet?</target>
+            </trans-unit>
             <trans-unit id="quickorder.choose.size">
                 <source>quickorder.choose.size</source>
                 <target>Size</target>

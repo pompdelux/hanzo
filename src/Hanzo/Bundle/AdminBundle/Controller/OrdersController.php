@@ -360,28 +360,40 @@ class OrdersController extends CoreController
                     'translation_domain' => 'admin',
                     'required' => true
                 )
+            )->add('id-exclude', 'text',
+                array(
+                    'label' => 'admin.orders.id_exclude.label',
+                    'translation_domain' => 'admin',
+                    'required' => false
+                )
             )->getForm()
         ;
 
         $request = $this->getRequest();
+        $updated_orders = array();
         if ('POST' === $request->getMethod()) {
             $form_state->bindRequest($request);
 
             if ($form_state->isValid()) {
 
                 $form_data = $form_state->getData();
+                $excluded_ids = array();
+                if(!empty($form_data['id-exclude'])){
+                    $excluded_ids = explode(",",trim($form_data['id-exclude'],','));
+                }
                 $orders = OrdersQuery::create()
                     ->where('orders.id >= ?', $form_data['id-from'])
                     ->where('orders.id <= ?', $form_data['id-to'])
+                    ->where('orders.id NOT IN ?', $excluded_ids)
                 ;
                 if($form_data['state-from'] != '')
                     $orders = $orders->filterByState($form_data['state-from']);
 
                 $orders = $orders->find($this->getDbConnection());
-
                 foreach ($orders as $order) {
                     $order->setState($form_data['state-to']);
                     $order->save($this->getDbConnection());
+                    $updated_orders[] = $order->getId();
                 }
 
                 $this->get('session')->setFlash('notice', 'admin.orders.state_log.changed');
@@ -389,6 +401,7 @@ class OrdersController extends CoreController
         }
         return $this->render('AdminBundle:Orders:change_state.html.twig', array(
           'form' => $form_state->createView(),
+          'updated_orders' => $updated_orders,
           'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
