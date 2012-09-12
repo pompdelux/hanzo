@@ -17,7 +17,7 @@
             <trans-unit id="500.description">
                 <source>500.description</source>
                 <target>
-                    &lt;p&gt;Kohdallesi osui teknisiä ongelmia - olemme pahoillamme.&lt;/p&gt; &lt;p&gt;Mikäli ongelma jatkuu tai ilmaantuu uudelleen, ota yhteyttä asiakaspalveluumme: +45 8678 7871 tai &lt;a href=&quot;mailto:mail@pompdelux.dk&quot;&gt;mail@pompdelux.dk&lt;/a&gt;&lt;/p&gt;
+                    &lt;p&gt;Kohdallesi osui teknisiä ongelmia - olemme pahoillamme.&lt;/p&gt; &lt;p&gt;Mikäli ongelma jatkuu tai ilmaantuu uudelleen, ota yhteyttä asiakaspalveluumme: 09 34870870 tai &lt;a href=&quot;mailto:mail@pompdelux.dk&quot;&gt;mail@pompdelux.dk&lt;/a&gt;&lt;/p&gt;
                 </target>
             </trans-unit>
         </body>

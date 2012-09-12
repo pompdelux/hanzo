@@ -33,8 +33,50 @@ class BundleController extends CoreController
         $products = $this->getCache($cache_id);
 
         if (empty($products)) {
+            $product_ids = array();
+
             $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
             $locale = strtolower($hanzo->get('core.locale'));
+
+            $product = ProductsQuery::create()
+                ->useProductsImagesQuery()
+                    ->filterById($image_id)
+                ->endUse()
+                ->filterByIsActive(TRUE)
+                ->useProductsDomainsPricesQuery()
+                    ->filterByDomainsId($hanzo->get('core.domain_id'))
+                    ->filterByFromDate(array('max' => 'now'))
+                    ->_or()
+                    ->condition('c1', ProductsDomainsPricesPeer::FROM_DATE . ' <= NOW()')
+                    ->condition('c2', ProductsDomainsPricesPeer::TO_DATE . ' >= NOW()')
+                    ->where(array('c1', 'c2'), 'AND')
+                ->endUse()
+                ->joinWithProductsImages()
+                ->findOne()
+            ;
+
+            $product_ids[] = $product->getId();
+            $products2category = ProductsToCategoriesQuery::create()
+                ->useProductsQuery()
+                ->filterBySku($product->getSku())
+                ->endUse()
+                ->findOne()
+            ;
+
+            $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+            $product_route = $router_keys[$key];
+
+            $products[$product->getId()] = array(
+                'id' => $product->getId(),
+                'master' => $product->getSku(),
+                'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                'url' => $router->generate($product_route, array(
+                    'product_id' => $product->getId(),
+                    'title' => Tools::stripText($product->getSku()),
+                )),
+                'out_of_stock' => true,
+            );
+
 
             $result = ProductsQuery::create()
                 ->useProductsImagesProductReferencesQuery()
@@ -53,7 +95,6 @@ class BundleController extends CoreController
                 ->find()
             ;
 
-            $product_ids = array();
             foreach ($result as $product) {
 
                 $products2category = ProductsToCategoriesQuery::create()

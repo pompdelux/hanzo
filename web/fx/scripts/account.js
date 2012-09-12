@@ -15,6 +15,10 @@ var account = (function($) {
         $form.removeClass('hasError');
         var $element = $('#customers_email_email_address', $form);
 
+        if (!$element.val()) {
+          return;
+        }
+
         $.ajax({
           url: base_url+'account/check/email',
           type: 'post',

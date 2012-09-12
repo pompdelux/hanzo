@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · +45 8678 7871</target>
+                <target>POMPdeLUX ApS · Møgelhøj 8 · DK-8520 Lystrup · CVR-nr 29622035 · mail@pompdelux.dk · (+45) 8678 7871</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -154,7 +154,7 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Kundeservice</strong><br>
-                    Telefon: 8678 7871<br>
+                    Telefon: (+45) 8678 7871<br>
                     E-mail: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a><br>
                     Mandag til torsdag kl. 9 - 18<br>
                     Fredag 9 - 14<br>
@@ -171,7 +171,7 @@
                         <li>DK-8520 Lystrup</li>
                         <li>CVR-nr 29622035</li>
                         <li><a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></li>
-                        <li>+45 8678 7871</li>
+                        <li>(+45) 8678 7871</li>
                     </ul>
                     <ul style="width:400px;">
                         <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
