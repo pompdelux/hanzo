@@ -233,7 +233,7 @@ DOC;
             }
         } else {
             if (isset($this->settings[$name])) {
-                $out = $value;
+                $out = $this->settings[$name];
             }
         }
 
