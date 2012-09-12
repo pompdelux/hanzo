@@ -448,7 +448,7 @@
     <column name="c_key" type="VARCHAR" size="64" primaryKey="true" required="true"/>
     <column name="ns" type="VARCHAR" size="64" primaryKey="true" required="true"/>
     <column name="title" type="VARCHAR" size="128" required="true"/>
-    <column name="c_value" type="VARCHAR" size="255" required="true"/>
+    <column name="c_value" type="LONGVARCHAR" required="true"/>
     <behavior name="timestampable" />
   </table>
 

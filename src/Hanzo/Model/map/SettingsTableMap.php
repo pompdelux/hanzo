@@ -45,7 +45,7 @@ class SettingsTableMap extends TableMap
 		$this->addPrimaryKey('C_KEY', 'CKey', 'VARCHAR', true, 64, null);
 		$this->addPrimaryKey('NS', 'Ns', 'VARCHAR', true, 64, null);
 		$this->addColumn('TITLE', 'Title', 'VARCHAR', true, 128, null);
-		$this->addColumn('C_VALUE', 'CValue', 'VARCHAR', true, 255, null);
+		$this->addColumn('C_VALUE', 'CValue', 'LONGVARCHAR', true, null, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
 		// validators

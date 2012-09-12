@@ -648,7 +648,7 @@ CREATE TABLE `settings`
 	`c_key` VARCHAR(64) NOT NULL,
 	`ns` VARCHAR(64) NOT NULL,
 	`title` VARCHAR(128) NOT NULL,
-	`c_value` VARCHAR(255) NOT NULL,
+	`c_value` TEXT NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`c_key`,`ns`)
