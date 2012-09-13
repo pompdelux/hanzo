@@ -9,6 +9,7 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
+use Hanzo\Bundle\PaymentBundle\PayByBill\PayByBillCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -46,12 +47,13 @@ class PayByBillApi implements PaymentMethodApiInterface
 
     /**
      * cancel
-     * @return void
+     *
+     * @return PayByBillCallResponse
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function cancel( Customers $customer, Orders $order )
     {
-        return;
+        return new PayByBillCallResponse();
     }
 
     /**
