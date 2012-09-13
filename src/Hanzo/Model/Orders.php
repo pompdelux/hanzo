@@ -184,7 +184,7 @@ class Orders extends BaseOrders
             ->filterByOrdersId($this->getId())
             ->findOneByVersionId($version_id)
             ->delete()
-            ;
+        ;
     }
 
 
@@ -1190,19 +1190,74 @@ class Orders extends BaseOrders
         if ($con) {
             $this->pdo_con = $con;
         }
-
         if (($this->getState() >= self::STATE_PAYMENT_OK) || $this->getIgnoreDeleteConstraints()) {
             try {
                 $this->cancelPayment();
                 Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
             } catch ( Exception $e ) {
-                if (!$this->getIgnoreDeleteConstraints()) {
+                if ($this->getIgnoreDeleteConstraints()) {
+                    // allow delete for priority deletes
+                    Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
+                } else {
                     throw new Exception($e->getMessage());
                 }
             }
         }
 
         return parent::delete($con);
+    }
+
+
+    /**
+     * log all order deletes so we can track errors, and potentially restore the order
+     *
+     * @param  PropelPDO $con pdo connection
+     * @return boolean
+     */
+    public function preDelete(PropelPDO $con = null)
+    {
+        // If the order is:
+        // - empty (new)
+        // - customers_id and email is empty
+        // we skip saving.
+        if (($this->isNew()) ||
+            (!$this->getCustomersId() && !$this->getEmail())
+        ) {
+            return true;
+        }
+
+        $data = array();
+        $data['ordes'] = $this->toArray();
+        $data['orders_lines'] = $this->getOrdersLiness($con)->toArray();
+        $data['orders_attributes'] = $this->getOrdersAttributess($con)->toArray();
+        $data['orders_state_log'] = $this->getOrdersStateLogs($con)->toArray();
+        $data['orders_versions'] = $this->getOrdersVersionss($con)->toArray();
+
+        if (defined('ACTION_TRIGGER')) {
+            $trigger = 'cli';
+            $deleted_by = ACTION_TRIGGER;
+        } else {
+            $trigger = $_SERVER['REQUEST_URI'];
+            $deleted_by = 'cid: '.CustomersPeer::getCurrent()->getId();
+        }
+
+        $entry = new OrdersDeletedLog();
+        $entry->setOrdersId($this->getId());
+        $entry->setCustomersId($this->getCustomersId());
+        $entry->setName($this->getFirstName().' '.$this->getLastName());
+        $entry->setEmail($this->getEmail());
+        $entry->setTrigger($trigger);
+        $entry->setContent(serialize($data));
+        $entry->setDeletedBy($deleted_by);
+        $entry->setDeletedAt(time());
+
+        try {
+            $entry->save($con);
+        } catch (Exception $e) {
+            Tools::log($e->getMessage());
+        }
+
+        return parent::preDelete($con);
     }
 
 
