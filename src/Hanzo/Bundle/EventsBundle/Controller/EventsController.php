@@ -922,8 +922,10 @@ class EventsController extends CoreController
 
             if (preg_match('/[0-9]+/', $id)) {
                 $order->setEventsId($id);
+                $goto = 'events_create_customer';
             } else {
                 $order->setAttribute('type', 'purchase', $code);
+                $goto = '_checkout';
             }
 
             $hostess = $request->get('hostess');
@@ -936,6 +938,6 @@ class EventsController extends CoreController
             $order->save();
         }
 
-        return $this->redirect($this->generateUrl('_checkout'));
+        return $this->redirect($this->generateUrl($goto));
     }
 }
