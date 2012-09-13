@@ -50,7 +50,7 @@ class OrdersPeer extends BaseOrdersPeer
             self::$current = $query->findPk($session->get('order_id'));
 
             // attach the customer to the order.
-            if ( ( self::$current instanceOf Orders ) && !self::$current->getCustomersId()) {
+            if ((self::$current instanceOf Orders) && !self::$current->getCustomersId()) {
                 $security = $hanzo->container->get('security.context');
 
                 if ($security->isGranted('ROLE_USER')) {
