@@ -128,67 +128,67 @@
             </trans-unit>
             <trans-unit id="wall.add.response">
                 <source>wall.add.response</source>
-                <target>Besvar indlæg</target>
+                <target>Antwoord</target>
             </trans-unit>
             <trans-unit id="wall.share">
                 <source>wall.share</source>
-                <target>Del</target>
+                <target>Delen</target>
             </trans-unit>
             <trans-unit id="wall.remove.like.link">
                 <source>wall.remove.like.link</source>
-                <target>Fjern Like fra indlæg</target>
+                <target>Verwijder vind ik leuk</target>
             </trans-unit>
             <trans-unit id="wall.add.like.link">
                 <source>wall.add.like.link</source>
-                <target>Like indlæg</target>
+                <target>Vind ik leuk</target>
             </trans-unit>
             <trans-unit id="wall.remove.dislike.link">
                 <source>wall.remove.dislike.link</source>
-                <target>Fjern Dislike fra indlæg</target>
+                <target>Verwijder vind ik niet leuk</target>
             </trans-unit>
             <trans-unit id="wall.add.dislike.link">
                 <source>wall.add.dislike.link</source>
-                <target>Dislike indlæg</target>
+                <target>Vind ik niet leuk</target>
             </trans-unit>
             <trans-unit id="wall.edit.entry">
                 <source>wall.edit.entry</source>
-                <target>Rediger indlæg</target>
+                <target>Wijzig commentaar</target>
             </trans-unit>
             <trans-unit id="wall.update">
                 <source>wall.update</source>
-                <target>Opdater</target>
+                <target>Opdateren</target>
             </trans-unit>
             <trans-unit id="wall.show.all">
                 <source>wall.show.all</source>
-                <target>Vis alle besvarelser</target>
+                <target>Bekijk alle commentaar</target>
             </trans-unit>
             <trans-unit id="wall.likes.plural.%likes%">
                 <source>wall.likes.plural.%likes%</source>
-                <target>%likes% syntes godt om dette indlæg.</target>
+                <target>%likes% Vind ik leuk</target>
             </trans-unit>
             <trans-unit id="wall.likes.single.%likes%">
                 <source>wall.likes.single.%likes%</source>
-                <target>Én syntes godt om dette indlæg.</target>
+                <target>Éen vindt dit leuk.</target>
             </trans-unit>
             <trans-unit id="wall.dislikes.plural.%likes%">
                 <source>wall.dislikes.plural.%likes%</source>
-                <target>%likes% syntes ikke godt om dette indlæg.</target>
+                <target>%likes% Vind dit niet leuk</target>
             </trans-unit>
             <trans-unit id="wall.dislikes.single.%likes%">
                 <source>wall.dislikes.single.%likes%</source>
-                <target>Én syntes ikke godt om dette indlæg.</target>
+                <target>Éen vindt dit niet leuk.</target>
             </trans-unit>
             <trans-unit id="wall.like.popup.header">
                 <source>wall.like.popup.header</source>
-                <target>Disse personer synes godt om eller kan ikke lide opslaget.</target>
+                <target>Deze personen vinden dit leuk of vinden dit niet leuk.</target>
             </trans-unit>
             <trans-unit id="wall.delete.entry.link">
                 <source>wall.delete.entry.link</source>
-                <target>Slet indlæg</target>
+                <target>Verwijder kommentar</target>
             </trans-unit>
             <trans-unit id="wall.delete.entry.confirm">
                 <source>wall.delete.entry.confirm</source>
-                <target>Er du sikker på du vil slette dette indlæg?</target>
+                <target>Ben je er zeker van dat je het commentaar wilt verwijderen?</target>
             </trans-unit>
             <trans-unit id="month.Januar">
                 <source>month.Januar</source>
@@ -272,15 +272,15 @@
             </trans-unit>
             <trans-unit id="event.confirm.delete.participant">
                 <source>event.confirm.delete.participant</source>
-                <target>Er du sikker på, du vil slette denne deltager?</target>
+                <target>Weet je zeker dat je deze deelnemer wilt verwijderen?</target>
             </trans-unit>
             <trans-unit id="consultant.newsletter.delete.draft">
                 <source>consultant.newsletter.delete.draft</source>
-                <target>Er du sikker på du vil slette denne kladde?</target>
+                <target>Weet je zeker dat je het concept wilt verwijderen?</target>
             </trans-unit>
             <trans-unit id="consultant.newsletter.delete.user">
                 <source>consultant.newsletter.delete.user</source>
-                <target>Er du sikker på du vil slette denne bruger fra listen?</target>
+                <target>Weet je zeker dat je deze deelnemer wilt verwijderen van de lijst?</target>
             </trans-unit>
             <trans-unit id="quickorder.choose.size">
                 <source>quickorder.choose.size</source>
