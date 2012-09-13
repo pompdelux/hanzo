@@ -897,6 +897,7 @@ class EventsController extends CoreController
 
         return $this->render('EventsBundle:Events:selectEvent.html.twig', array(
             'events' => $events,
+            'continue_shopping' => $this->get('router')->generate('QuickOrderBundle_homepage'),
         ));
     }
 
@@ -935,6 +936,6 @@ class EventsController extends CoreController
             $order->save();
         }
 
-        return $this->response('');
+        return $this->redirect($this->generateUrl('_checkout'));
     }
 }

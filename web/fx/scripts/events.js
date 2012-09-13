@@ -24,28 +24,6 @@ var events = (function($) {
         $hostess.show();
       }
     });
-
-    $('.button.proceed').on('click', function(event) {
-      event.preventDefault();
-
-      if ('x:private' != $('option:selected', $select).val()) {
-        this.href = base_url+'events/create-customer';
-      }
-
-      var goto = this.href;
-      var $form = $('form#select-event-type');
-
-      $.ajax({
-        type: 'POST',
-        url: $form.attr('action'),
-        data: $form.serialize(),
-        success: function() {
-          window.location.href = goto;
-        },
-        dataType: 'json',
-        async: false
-      });
-    });
   };
 
   pub.create_customer_init = function() {

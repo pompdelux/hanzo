@@ -19,4 +19,10 @@
     <label for="hostess">{{ 'hostess.discount'|trans({}, 'events') }}</label>
     <input type="checkbox" value="1" name="hostess" id="hostess">
   </div>
+
+  <br>
+  <div class="buttons">
+    <a class="button left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
+    <input type="submit" name="_submit" class="button right" value="{{ "proceed"|trans({}, 'checkout') }}">
+  </div>
 </form>
