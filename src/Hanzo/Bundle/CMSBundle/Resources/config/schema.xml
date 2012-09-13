@@ -598,6 +598,26 @@
     </foreign-key>
   </table>
 
+  <table name="orders_deleted_log">
+    <column name="orders_id" type="INTEGER" required="true" primaryKey="true"/>
+    <column name="customers_id" type="INTEGER" required="false"/>
+    <column name="name" type="VARCHAR" size="255" required="false"/>
+    <column name="email" type="VARCHAR" size="255" required="false"/>
+    <column name="trigger" type="VARCHAR" size="255" required="false"/>
+    <column name="content" type="CLOB" required="true"/>
+    <column name="deleted_by" type="VARCHAR" size="255" required="true"/>
+    <column name="deleted_at" type="TIMESTAMP" required="true"/>
+    <index>
+      <index-column name="orders_id" />
+    </index>
+    <index>
+      <index-column name="customers_id" />
+    </index>
+    <index>
+      <index-column name="email" />
+    </index>
+  </table>
+
   <table name="sequences">
     <column name="name" type="VARCHAR" size="32" required="true" primaryKey="true" />
     <column name="id" type="BIGINT" required="true" />

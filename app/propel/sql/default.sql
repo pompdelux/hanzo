@@ -864,6 +864,28 @@ CREATE TABLE `orders_versions`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- orders_deleted_log
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_deleted_log`;
+
+CREATE TABLE `orders_deleted_log`
+(
+	`orders_id` INTEGER NOT NULL,
+	`customers_id` INTEGER,
+	`name` VARCHAR(255),
+	`email` VARCHAR(255),
+	`trigger` VARCHAR(255),
+	`content` LONGTEXT NOT NULL,
+	`deleted_by` VARCHAR(255) NOT NULL,
+	`deleted_at` DATETIME NOT NULL,
+	PRIMARY KEY (`orders_id`),
+	INDEX `orders_deleted_log_I_1` (`orders_id`),
+	INDEX `orders_deleted_log_I_2` (`customers_id`),
+	INDEX `orders_deleted_log_I_3` (`email`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- sequences
 -- ---------------------------------------------------------------------
 
