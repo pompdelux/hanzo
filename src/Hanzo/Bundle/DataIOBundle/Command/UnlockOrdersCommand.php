@@ -40,6 +40,9 @@ class UnlockOrdersCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // used in model to track deletes
+        define('ACTION_TRIGGER', $this->getName());
+
         $dry_run = $input->getOption('dry_run');
 
         $container = $this->getContainer();

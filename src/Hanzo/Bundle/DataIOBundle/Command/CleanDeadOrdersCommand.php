@@ -34,15 +34,16 @@ class CleanDeadOrdersCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // used in model to track deletes
+        define('ACTION_TRIGGER', $this->getName());
+
         $dryrun = false;
-        if ( $input->getOption('dryrun') ) 
-        {
+        if ( $input->getOption('dryrun') ) {
             $dryrun = true;
         }
 
         $debug = false;
-        if ( $input->getOption('debug') ) 
-        {
+        if ( $input->getOption('debug') ) {
             $debug = true;
         }
 
