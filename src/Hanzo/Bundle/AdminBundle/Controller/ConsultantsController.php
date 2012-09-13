@@ -386,7 +386,7 @@ class ConsultantsController extends CoreController
         }
 
         foreach ($consultants as $consultant) {
-            $customer_data = $consultant->getCustomers();
+            $customer_data = $consultant->getCustomers($this->getDbConnection());
             $data[$consultant->getId()][0] = utf8_decode($customer_data->getFirstName(). ' ' . $customer_data->getLastName());
 
             for ($date=strtotime($start); $date <= strtotime($end); $date = strtotime('+1 day', $date)) {
@@ -481,8 +481,8 @@ class ConsultantsController extends CoreController
             ->endUse()
             ->select(
                 array(
-                    'Customers.Id', 
-                    'Customers.FirstName', 
+                    'Customers.Id',
+                    'Customers.FirstName',
                     'Customers.LastName',
                     'Addresses.PostalCode',
                     'Addresses.City',
@@ -555,7 +555,7 @@ class ConsultantsController extends CoreController
 
                 $setting->setCValue($form_data['content']);
                 $setting->save($this->getDbConnection());
-                
+
                 $cache = $this->get('cache_manager');
                 $cache->clearRedisCache();
 
