@@ -38,6 +38,12 @@
 
 {% if events|length > 0 %}
 
+  {% if paginate %}
+  <div>
+    {% import "::macro.pager.html.twig" as p %}
+    {{ p.pager(paginate, 'events') }}
+  </div>
+  {% endif %}
 <table id="events" class="list">
   <thead>
     <tr>
@@ -55,6 +61,7 @@
       <th class="type">{{ 'admin.consultants.events.type'|trans({}, 'admin') }}</th>
       <th class="is_open">{{ 'admin.consultants.events.is_open'|trans({}, 'admin') }}</th>
       <th class="notify_hostess">{{ 'admin.consultants.events.notify_hostess'|trans({}, 'admin') }}</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -86,6 +93,11 @@
           {{ 'admin.consultant.no'|trans({}, 'admin') }}
         {% endif %}
       </td>
+      <th>
+        <a class="delete" href="{{ path('admin_consultants_event_delete', {'id' : event.id}) }}">
+          {{ 'delete'|trans({}, 'admin') }}
+        </a>
+      </th>
     </tr>
   {% endfor %}
   </tbody>

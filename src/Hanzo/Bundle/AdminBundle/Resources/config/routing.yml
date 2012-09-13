@@ -439,12 +439,19 @@ admin_consultants:
         pager: \d+
 
 admin_consultants_events:
-    pattern:  /admin/consultants/events
+    pattern:  /admin/consultants/events/{pager}
     defaults:
         _controller: AdminBundle:Consultants:indexEvents
         pager: 1
     requirements:
         pager: \d+
+
+admin_consultants_event_delete:
+    pattern:  /admin/consultants/events/delete/{id}
+    defaults:
+        _controller: AdminBundle:Consultants:deleteEvent
+    requirements:
+        id: \d+
 
 admin_consultants_export:
     pattern:  /admin/events/export

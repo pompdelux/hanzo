@@ -16,7 +16,8 @@ use Hanzo\Model\ConsultantsQuery,
     Hanzo\Model\CustomersQuery,
     Hanzo\Model\SettingsQuery,
     Hanzo\Model\Settings,
-    Hanzo\Model\EventsQuery;
+    Hanzo\Model\EventsQuery,
+    Hanzo\Model\Events;
 
 use Propel\Runtime\Parser\PropelCSVParser;
 
@@ -339,6 +340,37 @@ class ConsultantsController extends CoreController
             'end'       => date('d-m-Y', time()),
             'database'  => $this->getRequest()->getSession()->get('database')
         ));
+    }
+
+    public function deleteEventAction($id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $event = EventsQuery::create()
+            ->filterById($id)
+            ->findOne($this->getDbConnection())
+        ;
+
+        if($event instanceof Events){
+            $event->delete($this->getDbConnection());
+
+
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => TRUE,
+                    'message' => $this->get('translator')->trans('delete.event.success', array(), 'admin'),
+                ));
+            }
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $this->get('translator')->trans('delete.event.failed', array(), 'admin'),
+            ));
+        }
     }
 
     public function exportAction()
