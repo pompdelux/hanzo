@@ -133,7 +133,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $currency_map = array(
             'SE' => 'SEK',
             'FI' => 'EUR',
-            'NO' => 'NOK'
+            'NO' => 'EUR'
         );
 
         $addresses     = $customer->getAddressess();
@@ -163,7 +163,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 	        $this->userString(),
             AFSWS_Customer(
                 $address->getAddressLine1().' '.$address->getAddressLine2(),
-                $domain_key,
+                $domain_key == 'NO'?'FI':$domain_key,
                 $currency_map[$domain_key], 
                 $customerId,
                 'Person',
