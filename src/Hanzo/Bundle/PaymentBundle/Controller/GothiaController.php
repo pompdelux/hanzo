@@ -109,6 +109,7 @@ class GothiaController extends CoreController
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
+                'domain' => $domain_key,
             ));
         }
 
