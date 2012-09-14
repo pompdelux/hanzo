@@ -340,6 +340,7 @@ form#settings-list .button{
 /* Table List */
 table.list{
   margin:20px 0;
+  table-layout: fixed;
 }
 table.list th,
 table.list tr:hover{
