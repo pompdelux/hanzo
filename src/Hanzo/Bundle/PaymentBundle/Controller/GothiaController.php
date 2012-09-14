@@ -98,14 +98,14 @@ class GothiaController extends CoreController
             ));
         }
 
-        if (strlen($SSN) < 10 OR (strlen($SSN) < 11 AND $domain_key === 'NO')) {
+        if ((strlen($SSN) < 10 AND $domain_key !== 'NO') OR strlen($SSN) < 11) {
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
             ));
         }
 
-        if (strlen($SSN) > 10 OR (strlen($SSN) > 11 AND $domain_key === 'NO')) {
+        if ((strlen($SSN) > 10 AND $domain_key !== 'NO') OR strlen($SSN) > 11) {
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
