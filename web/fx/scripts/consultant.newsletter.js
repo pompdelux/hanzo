@@ -37,6 +37,7 @@ var consultantNewsletter = (function($) {
 
     $("#actionCreateNewsletter").click( handleNewsletterSubmit );
     $("#actionSendTest").click( handleNewsletterSubmit );
+    $("#consultant-newsletter").submit( function(e){e.preventDefault()} );
 
     $('#consultant-newsletter-import').submit(function(e){
       e.preventDefault();

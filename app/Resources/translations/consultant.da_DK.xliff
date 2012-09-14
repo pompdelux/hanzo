@@ -108,7 +108,7 @@
             </trans-unit>
             <trans-unit id="consultant.newsletter.edit.users.header.text">
                 <source>consultant.newsletter.edit.users.header.text</source>
-                <target>Rediger brugere på din linte</target>
+                <target>Rediger brugere på din liste</target>
             </trans-unit>
             <trans-unit id="consultant.newsletter.delete.user">
                 <source>consultant.newsletter.delete.user</source>
