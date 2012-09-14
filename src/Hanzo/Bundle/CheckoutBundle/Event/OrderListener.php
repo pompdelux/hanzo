@@ -42,6 +42,7 @@ class OrderListener
         $order->clearFees();
         $order->clearPaymentAttributes();
         $order->setInEdit(true);
+        $order->setBillingMethod(null);
         $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
         $order->save();
 

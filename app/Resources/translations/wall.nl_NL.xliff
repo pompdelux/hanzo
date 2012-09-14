@@ -8,27 +8,27 @@
             </trans-unit>
             <trans-unit id="wall.edit.entry.success" approved="no">
                 <source>wall.edit.entry.success</source>
-                <target>Indlæg blev opdateret!</target>
+                <target>Commentaar is opgedateerd!</target>
             </trans-unit>
             <trans-unit id="wall.edit.entry.failed" approved="no">
                 <source>wall.edit.entry.failed</source>
-                <target>Der skete en fejl. Indlægget kunne ikke opdateres!</target>
+                <target>Er ging iets fout. Commentaar wordt niet opgedateerd!</target>
             </trans-unit>
             <trans-unit id="wall.add.comment.success" approved="no">
                 <source>wall.add.comment.success</source>
-                <target>Kommentaren blev gemt!</target>
+                <target>Commentaar is opgeslagen!</target>
             </trans-unit>
             <trans-unit id="wall.add.comment.failed" approved="no">
                 <source>wall.add.comment.failed</source>
-                <target>Der skete en fejl. Kommentaren blev ikke gemt!</target>
+                <target>Er ging iets fout. Commentaar is niet opgeslagen!</target>
             </trans-unit>
             <trans-unit id="wall.add.entry.success" approved="no">
                 <source>wall.add.entry.success</source>
-                <target>Indlægget blev gemt!</target>
+                <target>Commentaar is opgeslagen!</target>
             </trans-unit>
             <trans-unit id="wall.add.entry.failed" approved="no">
                 <source>wall.add.entry.failed</source>
-                <target>Der skete en fejl. Indlægget blev ikke gemt!</target>
+                <target>Er ging iets fout. Commentaar is niet opgeslagen!</target>
             </trans-unit>
         </body>
     </file>

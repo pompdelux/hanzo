@@ -68,7 +68,7 @@
             </trans-unit>
             <trans-unit id="delete.from.basket.warning">
                 <source>delete.from.basket.warning</source>
-                <target><![CDATA[Er du sikker på du vil slette <strong>%product%</strong> fra din kurv ?]]></target>
+                <target><![CDATA[Är du säker på att du vill radera  <strong>%product%</strong> från din korg?]]></target>
             </trans-unit>
             <trans-unit id="late.delivery">
                 <source>late.delivery</source>
