@@ -8,8 +8,6 @@ form.create input, form.create select, form.create textarea {
 form.create textarea {
   height:100px;
   width:250px;
-  border: 1px solid white;
-  background-color: white;
 }
 
 form.create #events div {
