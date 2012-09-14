@@ -299,7 +299,9 @@ class CheckoutListener
         }
 
         $domain_key = $hanzo->get('core.domain_key');
-        if (false === strpos($domain_key, 'Sales')) {
+
+        // set once, newer touch agian
+        if (!$order->getInEdit() && (false === strpos($domain_key, 'Sales'))) {
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $domain_key);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $domain_key);
         }

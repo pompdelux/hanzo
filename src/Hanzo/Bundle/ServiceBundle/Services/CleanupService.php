@@ -47,7 +47,6 @@ class CleanupService
     public function deleteStaleOrders($dry_run = false)
     {
         Propel::setForceMasterConnection(true);
-
         $orders = OrdersQuery::create()
             ->filterByState(0, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)

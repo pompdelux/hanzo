@@ -61,15 +61,21 @@ $(document).ready(function(){
     $('#btnAuthSubmit').text(buttonText);
     $("#btnAuthSubmit").css('display','inline');
     $("#auth").submit(function() {
-      console.log('Cancel auth');
       if ( $('#auth input.error').length ) {
         return;
       }
-      window.onbeforeunload = function (e) {};
       $("#btnAuthSubmit").css(cssObj);
     });
-    $("#cancel").submit(function() {
-      console.log('Cancel submit');
-      window.onbeforeunload = function (e) {};
+
+    $("#btnAuthCancel").click(function(e) {
+      e.preventDefault();
+      window.onbeforeunload = function(e) {};
+      $("#cancel").submit();
+    });
+
+    $("#btnAuthSubmit").click(function(e) {
+      e.preventDefault();
+      window.onbeforeunload = function(e) {};
+      $("#auth").submit();
     });
 });

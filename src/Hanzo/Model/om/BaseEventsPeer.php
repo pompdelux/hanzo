@@ -449,9 +449,6 @@ abstract class BaseEventsPeer {
 		// Invalidate objects in EventsParticipantsPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		EventsParticipantsPeer::clearInstancePool();
-		// Invalidate objects in OrdersPeer instance pool,
-		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-		OrdersPeer::clearInstancePool();
 	}
 
 	/**

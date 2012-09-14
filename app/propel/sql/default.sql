@@ -648,7 +648,7 @@ CREATE TABLE `settings`
 	`c_key` VARCHAR(64) NOT NULL,
 	`ns` VARCHAR(64) NOT NULL,
 	`title` VARCHAR(128) NOT NULL,
-	`c_value` VARCHAR(255) NOT NULL,
+	`c_value` TEXT NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`c_key`,`ns`)
@@ -748,7 +748,7 @@ CREATE TABLE `orders`
 		FOREIGN KEY (`events_id`)
 		REFERENCES `events` (`id`)
 		ON UPDATE CASCADE
-		ON DELETE CASCADE
+		ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -861,6 +861,27 @@ CREATE TABLE `orders_versions`
 		FOREIGN KEY (`orders_id`)
 		REFERENCES `orders` (`id`)
 		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- orders_deleted_log
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders_deleted_log`;
+
+CREATE TABLE `orders_deleted_log`
+(
+	`orders_id` INTEGER NOT NULL,
+	`customers_id` INTEGER,
+	`name` VARCHAR(255),
+	`email` VARCHAR(255),
+	`trigger` VARCHAR(255),
+	`content` LONGTEXT NOT NULL,
+	`deleted_by` VARCHAR(255) NOT NULL,
+	`deleted_at` DATETIME NOT NULL,
+	PRIMARY KEY (`orders_id`),
+	INDEX `orders_deleted_log_I_1` (`customers_id`),
+	INDEX `orders_deleted_log_I_2` (`email`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
