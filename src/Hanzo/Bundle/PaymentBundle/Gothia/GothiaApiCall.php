@@ -234,7 +234,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
         $callString = AFSWS_PlaceReservation(
 	        $this->userString(),
-            AFSWS_Reservation('NoAccountOffer', $amount, 'SEK', $customerId, null) 
+            AFSWS_Reservation('NoAccountOffer', $amount, $order->getCurrencyCode(), $customerId, null) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function
 
