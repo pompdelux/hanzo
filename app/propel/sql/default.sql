@@ -748,7 +748,7 @@ CREATE TABLE `orders`
 		FOREIGN KEY (`events_id`)
 		REFERENCES `events` (`id`)
 		ON UPDATE CASCADE
-		ON DELETE CASCADE
+		ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -880,9 +880,8 @@ CREATE TABLE `orders_deleted_log`
 	`deleted_by` VARCHAR(255) NOT NULL,
 	`deleted_at` DATETIME NOT NULL,
 	PRIMARY KEY (`orders_id`),
-	INDEX `orders_deleted_log_I_1` (`orders_id`),
-	INDEX `orders_deleted_log_I_2` (`customers_id`),
-	INDEX `orders_deleted_log_I_3` (`email`)
+	INDEX `orders_deleted_log_I_1` (`customers_id`),
+	INDEX `orders_deleted_log_I_2` (`email`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
