@@ -206,7 +206,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               $customerId = '00100000';
               break;
           case 12053400068:
-              $customerId = '00100001';
+              $customerId = 100001; // .no test
               break;
         }
 
@@ -230,7 +230,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         {
             $gothiaAccount = $customer->getGothiaAccounts();
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
-            Tools::debug( 'Test Gothia', array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
+            Tools::debug( 'Test Gothia', __METHOD__, array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
         }
 
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
