@@ -98,20 +98,20 @@ class GothiaController extends CoreController
             ));
         }
 
-        if ((strlen($SSN) < 10 AND $domainKey !== 'NO') OR strlen($SSN) < 11) {
-            return $this->json_response(array(
-                'status' => FALSE,
-                'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
-            ));
-        }
+        // if ((strlen($SSN) < 10 AND $domainKey !== 'NO') OR strlen($SSN) < 11) {
+        //     return $this->json_response(array(
+        //         'status' => FALSE,
+        //         'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+        //     ));
+        // }
 
-        if ((strlen($SSN) > 10 AND $domainKey !== 'NO') OR strlen($SSN) > 11) {
-            return $this->json_response(array(
-                'status' => FALSE,
-                'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
-                'domain' => $domainKey,
-            ));
-        }
+        // if ((strlen($SSN) > 10 AND $domainKey !== 'NO') OR strlen($SSN) > 11) {
+        //     return $this->json_response(array(
+        //         'status' => FALSE,
+        //         'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
+        //         'domain' => $domainKey,
+        //     ));
+        // }
 
         $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
