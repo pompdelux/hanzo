@@ -222,19 +222,21 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function placeReservation( Customers $customer, Orders $order )
     {
-        $amount     = number_format( $order->getTotalPrice(), 2, '.', '' );
-        $customerId = $customer->getId();
+        $amount         = number_format( $order->getTotalPrice(), 2, '.', '' );
+        $customerId     = $customer->getId();
+        $currency_code  = $order->getCurrencyCode();
 
         if ( $this->api->getTest() )
         {
             $gothiaAccount = $customer->getGothiaAccounts();
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
+            Tools::debug( 'Test Gothia', array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
         }
 
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
         $callString = AFSWS_PlaceReservation(
 	        $this->userString(),
-            AFSWS_Reservation('NoAccountOffer', $amount, $order->getCurrencyCode(), $customerId, null) 
+            AFSWS_Reservation('NoAccountOffer', $amount, $currency_code, $customerId, null) 
         );
         // <<-- hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function
 
