@@ -46,7 +46,6 @@ class CheckoutListener
         // add hostess discount if nessesary
         if ($order->getEventsId()) {
             $customer = $order->getCustomers();
-            $discount_lines = $order->getOrderLineDiscount();
             $hanzo = Hanzo::getInstance();
 
 
