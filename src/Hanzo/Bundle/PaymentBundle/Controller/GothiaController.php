@@ -85,8 +85,13 @@ class GothiaController extends CoreController
         $SSN        = $form['social_security_num'];
         $translator = $this->get('translator');
 
+        $hanzo = Hanzo::getInstance();
+        $domainKey = $hanzo->get('core.domain_key');
+
         // Use form validation?
-        if (!is_numeric($SSN)) {
+
+        if (!is_numeric($SSN) AND $domain_key !== 'FI') {
+            // alphanumeric and not in finland
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
