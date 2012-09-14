@@ -132,7 +132,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $domain_key = $hanzo->get('core.domain_key');
         $currency_map = array(
             'SE' => 'SEK',
-            'DK' => 'EUR' // TEST Should be FI
+            'FI' => 'EUR',
+            'NO' => 'NOK'
         );
 
         $addresses     = $customer->getAddressess();
@@ -162,7 +163,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 	        $this->userString(),
             AFSWS_Customer(
                 $address->getAddressLine1().' '.$address->getAddressLine2(),
-                $domain_key == 'DK' ? 'FI': $domain_key, // TEST
+                $domain_key,
                 $currency_map[$domain_key], 
                 $customerId,
                 'Person',
@@ -203,6 +204,9 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             break;
           case 4402181111:
               $customerId = '00100000';
+              break;
+          case 12053400068:
+              $customerId = '00100001';
               break;
         }
 
