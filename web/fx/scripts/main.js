@@ -66,7 +66,7 @@
           $(element).addClass('index-'+index);
           data.push({
             index: index,
-            file: element.href,
+            file: element.href
           });
         });
         $.post(cdn_url+'filetime.php', {payload: {data: data}}, 'json');
