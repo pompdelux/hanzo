@@ -212,6 +212,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               $customerId = 67360; // .fi test
               break;
         }
+        Tools::debug( 'Gothia', __METHOD__, array('ssn' => $snn, 'customerId' => $customerId));
 
         return $customerId;
     }
