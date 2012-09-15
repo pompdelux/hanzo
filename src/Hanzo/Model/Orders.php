@@ -949,7 +949,7 @@ class Orders extends BaseOrders
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    protected function clearAttributesByNS( $ns )
+    public function clearAttributesByNS( $ns )
     {
         $attributes = $this->getOrdersAttributess();
 
