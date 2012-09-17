@@ -90,7 +90,7 @@ class GothiaController extends CoreController
 
         // Use form validation?
 
-        $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+        //$SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
         // if (!is_numeric($SSN) AND $domainKey !== 'FI') { // TEST Change to FI
         //     // alphanumeric and not in finland
