@@ -27,6 +27,8 @@ class CoreController extends Controller
     protected $pdf_language_to_code = array(
         3 => 'SE',
         4 => 'NO',
+        5 => 'NL',
+        6 => 'FI',
     );
 
     protected function getFormat()

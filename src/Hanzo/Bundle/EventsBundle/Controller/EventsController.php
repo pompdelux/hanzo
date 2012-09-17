@@ -905,6 +905,9 @@ class EventsController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
         if ($order instanceof Orders) {
+            $order->setEventsId(null);
+            $order->clearAttributesByNS('purchase');
+
             $request = $this->getRequest();
 
             Propel::setForceMasterConnection(TRUE);
@@ -918,14 +921,19 @@ class EventsController extends CoreController
             ;
 
             list($id, $code) = explode(':', $request->get('type'));
-            $order->setEventsId(null);
 
-            if (preg_match('/[0-9]+/', $id)) {
-                $order->setEventsId($id);
-                $goto = 'events_create_customer';
-            } else {
+            $id = trim($id);
+            $code = trim($code);
+            $goto = 'events_create_customer';
+
+            if ($id == 'x') {
                 $order->setAttribute('type', 'purchase', $code);
-                $goto = '_checkout';
+
+                if (in_array($code, array('private'))) {
+                    $goto = '_checkout';
+                }
+            } else {
+                $order->setEventsId($id);
             }
 
             $hostess = $request->get('hostess');
