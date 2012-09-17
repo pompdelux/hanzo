@@ -209,10 +209,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               $customerId = 100001; // .no test
               break;
           case "010771252R":
+          case "010771-252R":
               $customerId = 67360; // .fi test
               break;
         }
-        Tools::debug( 'Gothia', __METHOD__, array('ssn' => $snn, 'customerId' => $customerId));
+        Tools::debug( 'Gothia', __METHOD__, array('ssn' => $ssn, 'customerId' => $customerId));
 
         return $customerId;
     }
