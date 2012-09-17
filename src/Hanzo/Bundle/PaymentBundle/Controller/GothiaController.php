@@ -90,30 +90,31 @@ class GothiaController extends CoreController
 
         // Use form validation?
 
-        if (!is_numeric($SSN) AND $domainKey !== 'NO') { // TEST Change to FI
-            // alphanumeric and not in finland
+        $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+
+        // if (!is_numeric($SSN) AND $domainKey !== 'FI') { // TEST Change to FI
+        //     // alphanumeric and not in finland
+        //     return $this->json_response(array(
+        //         'status' => FALSE,
+        //         'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
+        //     ));
+        // }
+
+        if (strlen($SSN) < 10) {
             return $this->json_response(array(
                 'status' => FALSE,
-                'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
+                'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
             ));
         }
 
-        // if ((strlen($SSN) < 10 AND $domainKey !== 'NO') OR strlen($SSN) < 11) {
-        //     return $this->json_response(array(
-        //         'status' => FALSE,
-        //         'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
-        //     ));
-        // }
+        if (strlen($SSN) > 10) {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
+                'domain' => $domainKey,
+            ));
+        }
 
-        // if ((strlen($SSN) > 10 AND $domainKey !== 'NO') OR strlen($SSN) > 11) {
-        //     return $this->json_response(array(
-        //         'status' => FALSE,
-        //         'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
-        //         'domain' => $domainKey,
-        //     ));
-        // }
-
-        $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
         $order         = OrdersPeer::getCurrent();
         $customer      = $order->getCustomers();

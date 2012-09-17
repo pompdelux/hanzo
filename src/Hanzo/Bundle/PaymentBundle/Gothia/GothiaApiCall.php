@@ -178,7 +178,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 $gothiaAccount->getSocialSecurityNum(),
                 $customer->getPhone(),
                 $address->getPostalCode(),
-                null,
+                $address->getCity(),
                 null
             )
         );
