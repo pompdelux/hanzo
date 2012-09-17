@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="cancel" approved="no">
                 <source>cancel</source>
-                <target>Annuller</target>
+                <target>Annullera</target>
             </trans-unit>
             <trans-unit id="notice">
                 <source>notice</source>
@@ -96,7 +96,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[<font color="#A10000"><b>Observera</b> att vid ändring av sin order, ska man registrera sitt betalkort och genomföra betalningen en gång till för att den nya ordern ska bli registrerad. Även det nya beloppet blir reserverat på ditt konto. Det kommer alltså ligga två reservationer på kontot fram tills banken släpper den första reservationen efter max 5 vardagar.</font><br><br>För att redigera din order ska du göra följande:<br><br>1) Klicka på "redigera" för att redigera ordern. Därefter läggs dina varor tillbaka i korgen.<br><br>2) Om du önskar att ändra en färg eller en storlek, ska du klicka på pennan i korgen. Om du önskar att lägga till varor, ska du klicka på menyn Webshop.<br><br>3) När du är färdig med dina ändringar, ska du klicka på "Visa korg" och följa steg 1 till 5. När du har genomfört din order med en ny kortbetalning, kommer den gamla betalningen automatiskt att bli raderad, och din första reservation blir tillgänglig på ditt konto igen efter ca 5 vardagar.]]></target>
+                <target><![CDATA[<font color="#A10000"><b>Observera</b> att vid ändring av din order, ska du registrera ditt betalkort och genomföra betalningen igen för att ändringen ska bli registrerad. Även det nya beloppet blir reserverat på ditt konto. Det kommer alltså finnas två reservationer på kontot fram tills banken släpper den första reservationen efter ca 5 vardagar.<br><br>1) Klicka på ”redigera pennan” för att redigera ordern. Dina varor läggs nu tillbaka i korgen. <br><br>2) Om du önskar att ändra en färg eller en storlek, ska du klicka på pennan till höger. Om du önskar att lägga till varor på din order, ska du klicka på ”Shoppa vidare” längst ner till vänster. <br><br>3)	När du är färdig med dina ändringar, ska du klicka på ”Visa korg” och följa stegen ända fram till betalning.  När du har genomfört din order med en ny kortbetalning, blir den gamla kortreservationen automatiskt raderad och pengarna blir tillgängliga på ditt konto igen efter ca 5 vardagar. ]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
