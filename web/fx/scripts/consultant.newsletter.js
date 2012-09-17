@@ -27,9 +27,11 @@ var consultantNewsletter = (function($) {
               } else {
                 window.scrollTo(window.scrollMinX, window.scrollMinY);
                 dialoug.slideNotice(response.message);
-                window.location.href = base_url + 'consultantnewsletter/history';
+                if(actionName !== 'actionSendTest'){
+                  window.location.href = base_url + 'consultantnewsletter/history';
+                }
               }
-            },
+            }
           });
         }
       });
@@ -37,7 +39,7 @@ var consultantNewsletter = (function($) {
 
     $("#actionCreateNewsletter").click( handleNewsletterSubmit );
     $("#actionSendTest").click( handleNewsletterSubmit );
-    $("#consultant-newsletter").submit( function(e){e.preventDefault()} );
+    $("#consultant-newsletter").submit( function(e){e.preventDefault();} );
 
     $('#consultant-newsletter-import').submit(function(e){
       e.preventDefault();
@@ -57,7 +59,7 @@ var consultantNewsletter = (function($) {
             dialoug.slideNotice(response.message);
             $('#users').val('');
           }
-        },
+        }
       });
     });
 
@@ -90,7 +92,7 @@ var consultantNewsletter = (function($) {
             window.scrollTo(window.scrollMinX, window.scrollMinY);
             dialoug.slideNotice(response.message);
           }
-        },
+        }
       });
     });
 
