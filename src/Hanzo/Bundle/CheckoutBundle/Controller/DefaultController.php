@@ -473,6 +473,7 @@ class DefaultController extends CoreController
 
         $order = OrdersPeer::getCurrent();
         $hanzo = Hanzo::getInstance();
+        $domain_key = $hanzo->get('core.domain_key');
 
 
         // first we finalize the order, aka. setting misc order attributes and updating lines ect.
@@ -512,9 +513,21 @@ class DefaultController extends CoreController
             }
         }
 
+        $attributes = $order->getAttributes();
+
         // must be set, so er ensure that they are.
-        $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
-        $order->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
+
+        if (empty($attributes->global->HomePartyId)) {
+            $key = str_replace('Sales', '', $domain_key);
+            $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);
+            $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);
+        }
+        if (empty($attributes->global->domain_name)) {
+            $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
+        }
+        if (empty($attributes->global->domain_key)) {
+            $order->setAttribute('domain_key', 'global', $domain_key);
+        }
 
         $order->save();
 
