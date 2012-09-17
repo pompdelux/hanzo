@@ -48,6 +48,7 @@ class CleanupService
     {
         Propel::setForceMasterConnection(true);
         $orders = OrdersQuery::create()
+            ->filterByBillingMethod('dibs', Criteria::NOT_EQUAL)
             ->filterByState(0, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)

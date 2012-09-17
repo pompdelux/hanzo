@@ -61,7 +61,7 @@ class DeadOrderService
         $this->debug("Starting DeadOrderService Auto Clean");
         if ( $this->dryrun )
         {
-          $this->debug("Dry run mode");
+            $this->debug("Dry run mode");
         }
 
         $this->getOrdersToBeDeleted( 0, true);
@@ -93,20 +93,20 @@ class DeadOrderService
             {
                 if ( $instanceDelete )
                 {
-                  if ( !$this->dryrun )
-                  {
-                      $this->debug("  Deleting order: ".$order->getId());
-                      $order->delete();
-                  }
-                  else
-                  {
-                      $this->debug("  (Dryrun) Deleting order: ".$order->getId());
-                  }
+                    if ( !$this->dryrun )
+                    {
+                        $this->debug("  Deleting order: ".$order->getId());
+                        $order->delete();
+                    }
+                    else
+                    {
+                        $this->debug("  (Dryrun) Deleting order: ".$order->getId());
+                    }
                 }
                 else
                 {
-                  $this->debug("  Order queued to be deleted (".$order->getId()."): ");
-                  $toBeDeleted[] = $order;
+                    $this->debug("  Order queued to be deleted (".$order->getId()."): ");
+                    $toBeDeleted[] = $order;
                 }
 
                 $this->debug(print_r($status,1));
@@ -159,9 +159,19 @@ class DeadOrderService
 
         if ( is_null($transId) )
         {
-            $this->debug( '  No trans id found' );
-            $status['is_error'] = true;
-            $status['error_msg'] = 'Slet: Ingen transaktions id kunne findes';
+            if ($order->getInEdit()) 
+            {
+                $this->debug( '  No trans id found, and order is in edit' );
+                $status['is_error'] = false;
+                $status['error_msg'] = 'Går til tidligere version: Ingen transaktions id kunne findes for denne version';
+                $order->toPreviousVersion();
+            }
+            else
+            {
+                $this->debug( '  No trans id found' );
+                $status['is_error'] = true;
+                $status['error_msg'] = 'Slet: Ingen transaktions id kunne findes';
+            }
             return $status;
         }
 
@@ -170,7 +180,7 @@ class DeadOrderService
 
         if ( !$this->dryrun )
         {
-          $order->save();
+            $order->save();
         }
 
         try
@@ -229,61 +239,43 @@ class DeadOrderService
                         }
                     }
 
-                    $state = OrdersSyncLogQuery::create()
-                        ->filterByOrdersId( $order->getId() )
-                        ->filterByState( 'ok' )
-                        ->findOne();
+                    if ( !$this->dryrun )
+                    {
+                        if ($order->getInEdit()) 
+                        {
+                            $this->debug( '  Order was in edit mode' );
+                            $currentVersion = $order->getVersionId();
 
-                    if ( $state !== null ) // Already synced to AX
-                    {
-                        $this->debug( '  Order has been synced to AX -> setting state to pending' );
-                        if ( !$this->dryrun )
-                        {
-                            $order->setState( Orders::STATE_PENDING );
-                            $order->save();
-                        }
-                    }
-                    else
-                    {
-                        $this->debug( '  Order has not been synced to AX' );
-                        if ( !$this->dryrun )
-                        {
-                            $in_edit = $order->getInEdit();
-                            if ($in_edit) 
+                            // If the version number is less than 2 there is no previous version
+                            if (!($currentVersion < 2)) 
                             {
-                                $this->debug( '  Order was in edit mode' );
-                                $currentVersion = $order->getVersionId();
-
-                                // If the version number is less than 2 there is no previous version
-                                if (!($currentVersion < 2)) {
-                                    $oldOrderVersion = ( $currentVersion - 1);
-                                    $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                                    try 
-                                    {
-                                        $this->debug( '  Canceling old payment' );
-                                        $oldOrder->cancelPayment();
-                                    }
-                                    catch (\Exception $e)
-                                    {
-                                        $this->debug( '  Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
-                                        Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
-                                    }
+                                $oldOrderVersion = ( $currentVersion - 1);
+                                $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+                                try 
+                                {
+                                    $this->debug( '  Canceling old payment' );
+                                    $oldOrder->cancelPayment();
+                                }
+                                catch (\Exception $e)
+                                {
+                                    $this->debug( '  Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
+                                    Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                                 }
                             }
+                        }
 
-                            try
-                            {
-                              $this->debug( '  Syncing to ax...' );
-                              $this->ax->sendOrder($order);
-                              $order->setState( Orders::STATE_PENDING );
-                              $order->setInEdit(false);
-                              $order->setSessionId($order->getId());
-                              $order->save();
-                            }
-                            catch (Exception $e)
-                            {
-                              $this->debug( '  Sync failed: '.$e->getMessage() );
-                            }
+                        try
+                        {
+                            $this->debug( '  Syncing to ax...' );
+                            $this->ax->sendOrder($order);
+                            $order->setState( Orders::STATE_PENDING );
+                            $order->setInEdit(false);
+                            $order->setSessionId($order->getId());
+                            $order->save();
+                        }
+                        catch (Exception $e)
+                        {
+                            $this->debug( '  Sync failed: '.$e->getMessage() );
                         }
                     }
 
@@ -386,10 +378,8 @@ class DeadOrderService
     { 
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
-            //->filterByFinishedAt(null)
             ->filterByBillingMethod('dibs')
             ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
-            ->filterByInEdit(false)
             ->find();
 
         return $orders;

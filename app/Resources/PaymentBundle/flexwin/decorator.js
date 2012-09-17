@@ -1,4 +1,4 @@
-window.onbeforeunload = function (e) {
+/*window.onbeforeunload = function (e) {
   var message = 'Du har klikket på browserens tilbageknap. Ønsker du at afbryde betalingen, skal du klikke på "Bliv på siden" og herefter klikke på knappen "Afbryd"',
   e = e || window.event;
 
@@ -29,7 +29,7 @@ window.onbeforeunload = function (e) {
 
   // For Safari
   return message;
-};
+};*/
 
 $(document).ready(function(){
     var lang = $('#cancelform_lang').val();
@@ -67,7 +67,7 @@ $(document).ready(function(){
       $("#btnAuthSubmit").css(cssObj);
     });
 
-    $("#btnAuthCancel").click(function(e) {
+    /*$("#btnAuthCancel").click(function(e) {
       e.preventDefault();
       window.onbeforeunload = function(e) {};
       $("#cancel").submit();
@@ -77,5 +77,5 @@ $(document).ready(function(){
       e.preventDefault();
       window.onbeforeunload = function(e) {};
       $("#auth").submit();
-    });
+    });*/
 });
