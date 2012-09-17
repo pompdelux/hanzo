@@ -126,6 +126,13 @@ $('#body-event #participants a.delete').on('click', function(event) {
   });
 });
 
+$('#event-edit-form').submit(function(e){
+  if($(this).find('#form_event_date').val() === ''){ // IE fails to validate datetime fields, IDK why?
+    $(this).find('#form_event_date').focus();
+    e.preventDefault();
+  }
+});
+
 $('#find-customer-by-phone-form').submit(function(e){
   e.preventDefault();
   var $submit = $(this).find('input[type="submit"]');
