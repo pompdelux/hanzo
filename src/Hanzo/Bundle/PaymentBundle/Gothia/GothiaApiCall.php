@@ -210,14 +210,19 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               break;
           case "090260-052K": // .FI test users
               $customerId = 100106;
+              break;
           case "090648-458T":
               $customerId = 100107;
+              break;
           case "020185-3134":
               $customerId = 100108;
+              break;
           case "010771-255U":
               $customerId = 100109;
+              break;
           case "300976-787L": // Payment defaults
               $customerId = 100110;
+              break;
           case "301076-0676": // -||-
               $customerId = 100111;
               break;
