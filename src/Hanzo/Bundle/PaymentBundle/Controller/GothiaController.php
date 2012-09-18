@@ -48,10 +48,19 @@ class GothiaController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ($order->isNew()) {
+        if ( $order->isNew() ) 
+        {
             return $this->redirect($this->generateUrl('_checkout'));
         }
 
+        // hf@bellcom.dk, 18-sep-2012: maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod -->>
+        if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
+        {
+            $this->get('session')->setFlash('notice', 'order.state_pre_payment.locked');
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+        // <<-- hf@bellcom.dk, 18-sep-2012: maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod
+        //
         $gothiaAccount = $order->getCustomers()->getGothiaAccounts();
 
         // No gothia account has been created and associated with the customer, so lets do that

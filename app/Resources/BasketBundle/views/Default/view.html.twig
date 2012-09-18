@@ -4,6 +4,12 @@
 
   <h1>{{ "basket"|trans({}, 'checkout') }}</h1>
 
+  {% if app.session.hasFlash('notice') %}
+  <div class="message notice">
+    {{ app.session.flash('notice')|trans({}, 'checkout') }}
+  </div>
+  {% endif %}
+
   {% include 'BasketBundle:Default:block.html.twig' %}
 
 {% endblock %}
