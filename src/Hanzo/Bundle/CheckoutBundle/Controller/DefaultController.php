@@ -220,6 +220,11 @@ class DefaultController extends CoreController
             throw new Exception( 'Payment state not valid' );
         }
 
+        if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
+        {
+            throw new Exception( 'Payment state not valid' );
+        }
+
         $data = $request->get('data');
         $order->setPaymentMethod( $data['selectedMethod'] );
         $order->setPaymentPaytype( $data['selectedPaytype'] );
