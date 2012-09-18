@@ -222,7 +222,8 @@ class DefaultController extends CoreController
 
         if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
         {
-            throw new Exception( 'Payment state not valid' );
+            $trans = $this->get('translator');
+            throw new Exception( $trans->trans('order.state_pre_payment.locked', array(), 'checkout') );
         }
 
         $data = $request->get('data');
