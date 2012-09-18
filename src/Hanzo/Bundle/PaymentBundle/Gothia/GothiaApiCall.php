@@ -208,13 +208,10 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
           case 12053400068:
               $customerId = 100001; // .no test
               break;
-          case "010771252R":
           case "010771-252R":
-          case "010771253S":
           case "010771-253S":
-          case "300976787L":
           case "300976-787L":
-              $customerId = 67360; // .fi test
+              $customerId = 67360; // .fi test SSN is WITH dash
               break;
         }
         Tools::debug( 'Gothia', __METHOD__, array('ssn' => $ssn, 'customerId' => $customerId));

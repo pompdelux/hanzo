@@ -90,31 +90,52 @@ class GothiaController extends CoreController
 
         // Use form validation?
 
-        //$SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
-        // if (!is_numeric($SSN) AND $domainKey !== 'FI') { // TEST Change to FI
-        //     // alphanumeric and not in finland
-        //     return $this->json_response(array(
-        //         'status' => FALSE,
-        //         'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
-        //     ));
-        // }
+        if($domainkey === 'NO'){ //TEST change to FI on LIVE
 
-        // if (strlen($SSN) < 10) {
-        //     return $this->json_response(array(
-        //         'status' => FALSE,
-        //         'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
-        //     ));
-        // }
+            if(!strpos($SSN, '-')){ // FI has to have dash. If it isnt there, add it. Could be made better?
+                $SSN = substr($SSN, 0, 6).'-'.substr($SSN, 6);
+            }
 
-        // if (strlen($SSN) > 10) {
-        //     return $this->json_response(array(
-        //         'status' => FALSE,
-        //         'message' => $translator->trans('json.ssn.to_long', array(), 'gothia'),
-        //         'domain' => $domainKey,
-        //     ));
-        // }
+            //Finland cases
+            if (strlen($SSN) < 11) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                ));
+            }
 
+            if (strlen($SSN) > 11) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                ));
+            }
+        }else{
+            
+            $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+            
+            //Every other domain
+            if (!is_numeric($SSN)) { 
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
+                ));
+            }
+            if (strlen($SSN) < 10) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                ));
+            }
+
+            if (strlen($SSN) > 10) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                ));
+            }
+        }
 
         $order         = OrdersPeer::getCurrent();
         $customer      = $order->getCustomers();
