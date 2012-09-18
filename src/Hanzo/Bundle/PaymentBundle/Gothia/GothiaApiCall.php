@@ -209,15 +209,19 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               $customerId = 100001; // .no test
               break;
           case "010771-252R": // .FI test users
+              $customerId = 100101;
           case "010771-253S":
+              $customerId = 100102;
           case "010771-254T":
+              $customerId = 100103;
           case "010771-255U":
+              $customerId = 100104;
           case "300976-787L": // Payment defaults
+              $customerId = 67360;
           case "301076-0676": // -||-
-              $customerId = 67360; // .fi test SSN is WITH dash
+              $customerId = 100105;
               break;
         }
-        Tools::debug( 'Gothia', __METHOD__, array('ssn' => $ssn, 'customerId' => $customerId));
 
         return $customerId;
     }
