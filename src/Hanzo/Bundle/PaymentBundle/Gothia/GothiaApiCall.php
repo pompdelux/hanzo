@@ -208,9 +208,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
           case 12053400068:
               $customerId = 100001; // .no test
               break;
-          case "010771-252R":
+          case "010771-252R": // .FI test users
           case "010771-253S":
-          case "300976-787L":
+          case "010771-254T":
+          case "010771-255U":
+          case "300976-787L": // Payment defaults
+          case "301076-0676": // -||-
               $customerId = 67360; // .fi test SSN is WITH dash
               break;
         }
