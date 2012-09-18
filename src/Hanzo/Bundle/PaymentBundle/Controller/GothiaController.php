@@ -91,7 +91,7 @@ class GothiaController extends CoreController
         // Use form validation?
 
 
-        if($domainkey === 'NO'){ //TEST change to FI on LIVE
+        if($domainKey === 'NO'){ //TEST change to FI on LIVE
 
             if(!strpos($SSN, '-')){ // FI has to have dash. If it isnt there, add it. Could be made better?
                 $SSN = substr($SSN, 0, 6).'-'.substr($SSN, 6);
