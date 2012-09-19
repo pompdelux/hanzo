@@ -134,14 +134,11 @@ class DefaultController extends CoreController
             $description = $translator->trans($translation_key, array('%cdn%' => $hanzo->get('core.cdn')), 'products');
             $description = preg_replace($find, $replace, $description);
 
-
-\Propel::getConnection()->useDebug(true);
             $washing = '';
             $result = ProductsWashingInstructionsQuery::create()
                 ->filterByLocale($hanzo->get('core.locale'))
                 ->findOneByCode($product->getWashing())
             ;
-error_log(\Propel::getConnection()->getLastExecutedQuery());
 
             if ($result instanceof ProductsWashingInstructions) {
                 $washing = stripslashes($result->getDescription());
