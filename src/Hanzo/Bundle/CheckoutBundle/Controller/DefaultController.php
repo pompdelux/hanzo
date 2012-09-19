@@ -129,11 +129,9 @@ class DefaultController extends CoreController
         } else {
             $customer = CustomersPeer::getCurrent();
         }
-
         $data = $request->get('data');
 
-        if ( !isset($data['addresses']) )
-        {
+        if ( !isset($data['addresses']) ) {
             throw new Exception( 'No address could be found' );
         }
 
@@ -160,7 +158,13 @@ class DefaultController extends CoreController
                 case 'payment':
                     $order->setBillingAddress( $query );
                     break;
-                case 'overnightbox': // Note that setDeliveryAddress checks if the type is correct
+
+                 // Note that setDeliveryAddress checks if the type is correct
+                case 'overnightbox':
+                    if (12 == $order->getDeliveryMethod()) {
+                      $order->setDeliveryAddress( $query );
+                    }
+                  break;
                 case 'shipping':
                     $order->setDeliveryAddress( $query );
                     break;
@@ -445,12 +449,14 @@ class DefaultController extends CoreController
             }
         }
 
-        if ($order->getDeliveryMethod() != 11)
-        {
+        if ($order->getDeliveryMethod() != 11) {
             $addresses['shipping']->setCompanyName(null);
         }
 
-        return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'addresses' => $addresses, 'has_overnight_box' => $hasOvernightBox ));
+        return $this->render('CheckoutBundle:Default:addresses.html.twig', array(
+          'addresses' => $addresses,
+          'has_overnight_box' => $hasOvernightBox
+        ));
     }
 
 

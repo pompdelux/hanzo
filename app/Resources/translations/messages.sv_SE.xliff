@@ -192,6 +192,10 @@
                 <source>button.back</source>
                 <target>Tillbaka</target>
             </trans-unit>
+            <trans-unit id="button.find">
+                <source>button.find</source>
+                <target>Find</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

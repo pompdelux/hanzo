@@ -168,7 +168,7 @@
                         <li>DK-8520 Lystrup</li>
                         <li>CVR-nr 29622035</li>
                         <li><a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a></li>
-                        <li>+45 8678 7871</li>
+                        <li>+45 8736 1000</li>
                     </ul>
                     <ul style="width:290px;">
                         <li><a name="fb_share" type="icon_link">Share with your friends</a></li>
@@ -187,6 +187,10 @@
             <trans-unit id="button.back">
                 <source>button.back</source>
                 <target>Back</target>
+            </trans-unit>
+            <trans-unit id="button.find">
+                <source>button.find</source>
+                <target>Find</target>
             </trans-unit>
         </body>
     </file>

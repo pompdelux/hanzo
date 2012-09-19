@@ -370,11 +370,10 @@ class DefaultController extends CoreController
             if ($form->isValid()) {
 
                 $address->save();
-
                 // NICETO, implement elsewhere
                 if ($type == 'shipping') {
-                    $order = OrdersPeer::getCurrent();
-                    if (false == $order->isNew()) {
+
+                    if (!$order->isNew()) {
                         $order->setDeliveryFirstName($address->getFirstName());
                         $order->setDeliveryLastName($address->getLastName());
                         $order->setDeliveryAddressLine1($address->getAddressLine1());

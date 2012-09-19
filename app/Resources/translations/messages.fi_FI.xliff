@@ -172,6 +172,10 @@
                 <source>button.back</source>
                 <target>Takaisin</target>
             </trans-unit>
+            <trans-unit id="button.find">
+                <source>button.find</source>
+                <target>Find</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
