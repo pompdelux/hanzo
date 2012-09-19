@@ -226,7 +226,7 @@ class AxService
         $salesTable->SalesLine               = $salesLine;
         $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
         $salesTable->DeliveryCity            = $order->getDeliveryCity();
-        $salesTable->DeliveryName            = $order->getFirstName() . ' ' . $order->getLastName();
+        $salesTable->DeliveryName            = $order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName();
         $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine1();
         $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
         $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
