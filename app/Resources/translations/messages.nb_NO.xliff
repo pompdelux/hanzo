@@ -199,7 +199,7 @@
             </trans-unit>
             <trans-unit id="button.find">
                 <source>button.find</source>
-                <target>Find</target>
+                <target>Finn</target>
             </trans-unit>
         </body>
     </file>
