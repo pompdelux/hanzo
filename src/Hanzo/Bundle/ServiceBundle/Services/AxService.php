@@ -218,7 +218,7 @@ class AxService
         $salesTable->CustAccount             = $order->getCustomersId();
         $salesTable->EOrderNumber            = $order->getId();
         $salesTable->PaymentId               = isset( $attributes->payment->transact ) ? $attributes->payment->transact : '';
-        $salesTable->HomePartyId             = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
+        $salesTable->HomePartyId             = isset($attributes->global->HomePartyId) ? $attributes->global->ifHomePartyId : '';
         $salesTable->SalesResponsible        = isset($attributes->global->SalesResponsible) ? $attributes->global->SalesResponsible : '';
         $salesTable->CurrencyCode            = $order->getCurrencyCode();
         $salesTable->SalesName               = $order->getFirstName() . ' ' . $order->getLastName();
@@ -249,6 +249,12 @@ class AxService
                 ->getConsultants($con)
                 ->getInitials()
             ;
+        }
+
+        if ((isset($attributes->purchase->type)) &&
+            ('other' == $attributes->purchase->type)
+        ) {
+            $salesTable->SalesGroup = $attributes->global->SalesResponsible;
         }
 
         $salesOrder = new stdClass();
