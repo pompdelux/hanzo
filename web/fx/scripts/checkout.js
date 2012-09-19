@@ -307,13 +307,13 @@ var checkout = (function($) {
               if (result.status) {
 
                 var tpl = {
-                  10 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
-                  20 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
-                  30 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
-                  60 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
-                  'S' : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
-                  500 : '%first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
-                  11 : '%company_name%<br>Att: %first_name% %last_name%<br>%postal_code% %city%<br>%address_line_1%<br>%country%',
+                  10 : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+                  20 : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+                  30 : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+                  60 : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+                  'S' : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+                  500 : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+                  11 : '%company_name%<br>Att: %first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
                   12 : '%first_name% %last_name%<br>%postal_code% %city%<br>Box: %address_line_1%'
                 };
 
@@ -431,8 +431,8 @@ var checkout = (function($) {
     blocks.payment.execute = function() {
       var ok = true;
       $.each(blocks, function(index, item) {
-        if (item.data.state !== true) { 
-          ok = false; 
+        if (item.data.state !== true) {
+          ok = false;
         }
       });
 
@@ -511,7 +511,7 @@ var checkout = (function($) {
         $.each(blocks, function(index, item) {
           if (item.data.name !== 'summery' && item.data.name !== 'confirm') {
             $(item.data.selector).slideDown();
-          } 
+          }
           else {
             $(item.data.selector).slideUp();
           }
@@ -563,7 +563,7 @@ var checkout = (function($) {
               });
 
               blocks.payment.execute();
-            } 
+            }
             else {
               $.each(blocks, function(item) {
                 if ( this.data.name === data.data.name ) {
