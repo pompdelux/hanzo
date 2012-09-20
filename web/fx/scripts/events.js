@@ -1,3 +1,4 @@
+/*global base_url:true, newsletter:true*/
 var calendar = (function($) {
   var pub = {};
 
@@ -62,7 +63,14 @@ var events = (function($) {
               $('#customers_email_email_address_repeated', $c_form).val($('#customers_email_email_address', $c_form).val());
               $('#customers_password_pass', $c_form).parent().remove();
               $('#customers_password_pass_repeated', $c_form).parent().remove();
+              // Replace the newsletter signup with one that checks the current loaded customer
               $('#customers_newsletter', $c_form).parent().remove();
+
+              $('#newsletter-lists-container-disabled').attr('id','newsletter-lists-container'); // Change id
+              newsletter.reset();
+              newsletter.init( 'http://phplist.pompdelux.dk/integration/json.php?callback=?' ); // Also hardcoded in newsletter bundle
+              newsletter.lists.get( data.listid );
+
               $('#customers_id', $c_form).val(response.data.id);
               $('.input', $form).val('');
             }
