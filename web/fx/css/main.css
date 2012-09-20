@@ -936,6 +936,10 @@ form.newsletter-subscription-form input.button {
   color: #231f20;
 }
 
+#newsletter-lists-container-disabled {
+  display: none;
+}
+
 #newsletter-lists-container.simple label {
   display: none;
 }

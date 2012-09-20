@@ -40,13 +40,6 @@
       {{ form_row(form.password) }}
       <br>
       {{ form_row(form.newsletter) }}
-      <div id="newsletter-lists-container-disabled">
-        <form action="#" method="post">
-          <ul></ul>
-          <input type="hidden" class="newsletter-subscriber-email" name="email" value="">
-          <input type="submit" data-action="update" class="button" value="Opdater dine tilmeldninger til nyhedsbreve">
-        </form>
-      </div>
     {% endif %}
 
     <br>
@@ -58,6 +51,13 @@
   <a href="/forside/kundeservice/vilkaar" rel="colorbox">{{ 'create.terms'|trans({}, 'account')|raw }}</a>
 </form>
 
+<div id="newsletter-lists-container-disabled">
+  <form action="#" method="post">
+    <ul></ul>
+    <input type="hidden" class="newsletter-subscriber-email" name="email" value="">
+    <input type="submit" data-action="update" class="button" value="Opdater dine tilmeldninger til nyhedsbreve">
+  </form>
+</div>
 
 {% endblock %}
 
