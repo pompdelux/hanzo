@@ -1,3 +1,4 @@
+/*global base_url:true*/
 var newsletter = (function($) {
   var pub = {
     lists: {}
@@ -21,12 +22,11 @@ var newsletter = (function($) {
   };
 
   pub.reset = function() {
-    pub.lists = {};
     is_initialized = false;
     newsletter_jsonp_url = null;
     $selector = '';
     selectorName = '';
-  }
+  };
 
   function subscriptionsUpdate( email, lists, action ) {
     dialoug.loading( selectorName, ExposeTranslation.get('js:please.wait') );
