@@ -145,6 +145,10 @@ class DefaultController extends CoreController
         $value = $request->get('value');
         $type = strpos($value, '@') ? 'email' : 'phone';
 
+        // hf@bellcom.dk: get phplist ids so the customer can be subscribed
+        $api      = $this->get('newsletterapi');
+        $listId   = $api->getListIdAvaliableForDomain();
+
         $error = true;
         $data = array();
 
@@ -217,6 +221,9 @@ class DefaultController extends CoreController
 
                 break;
         }
+
+        // hf@bellcom.dk: add phplist id
+        $data['listid'] = $listId;
 
         return $this->json_response(array(
             'status' => $error,

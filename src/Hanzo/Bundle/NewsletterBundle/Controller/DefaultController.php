@@ -48,6 +48,7 @@ class DefaultController extends CoreController
         return $this->render('NewsletterBundle:Default:js.html.twig', array( 
             'customer' => $customer, 
             'listid' => $listId, 
+            // Url is also hardcoded in NewsletterApi.php and in events.js
             'newsletter_jsonp_url' => 'http://phplist.pompdelux.dk/integration/json.php?callback=?'
         )
     );

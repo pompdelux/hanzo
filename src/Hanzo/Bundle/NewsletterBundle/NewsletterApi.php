@@ -12,14 +12,10 @@ use Hanzo\Core\Hanzo;
  **/
 class NewsletterApi
 {
-    /**
-     * undocumented class variable
-     *
-     * @var string
-     **/
-    protected $domainKey = null;
-
-    protected $mailer = null;
+    protected $domainKey       = null;
+    protected $mailer          = null;
+    protected $phplistUrl      = null;
+    protected $httpReferer     = null;
 
     /**
      * __construct
@@ -74,6 +70,7 @@ class NewsletterApi
      **/
     public function subscribe( $email, $listid  )
     {
+        // Url is also hardcoded in NewsletterBundle:Default:js and in events.js
         $ch = curl_init( $this->phplistUrl.'/integration/json.php?callback=PHP_'.uniqid().'&method=subscriptions:update&email='.urlencode( $email ).'&lists[]='.$listid.'&_='.time() );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);

@@ -20,6 +20,14 @@ var newsletter = (function($) {
     is_initialized = true;
   };
 
+  pub.reset = function() {
+    pub.lists = {};
+    is_initialized = false;
+    newsletter_jsonp_url = null;
+    $selector = '';
+    selectorName = '';
+  }
+
   function subscriptionsUpdate( email, lists, action ) {
     dialoug.loading( selectorName, ExposeTranslation.get('js:please.wait') );
 
