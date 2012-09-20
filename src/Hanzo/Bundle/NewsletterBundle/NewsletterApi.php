@@ -113,21 +113,26 @@ class NewsletterApi
         // TODO: priority: low, hardcoded vars
         switch ($this->domainKey)
         {
+            case 'SalesDK':
             case 'DK':
                 $listid = 1;
                 break;
             case 'COM':
                 $listid = 2;
                 break;
+            case 'SalesSE':
             case 'SE':
                 $listid = 4;
                 break;
+            case 'SalesNO':
             case 'NO':
                 $listid = 5;
                 break;
+            case 'SalesNL':
             case 'NL':
                 $listid = 20;
                 break;
+            case 'SalesFI':
             case 'FI':
                 $listid = 30;
                 break;
