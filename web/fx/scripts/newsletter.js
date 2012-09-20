@@ -15,8 +15,8 @@ var newsletter = (function($) {
       return;
     }
     newsletter_jsonp_url = url;
-    $selector = $("#newsletter-lists-container");
     selectorName = "#newsletter-lists-container";
+    $selector = $( selectorName );
     attachEvents();
     is_initialized = true;
   };
