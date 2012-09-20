@@ -67,9 +67,10 @@ var events = (function($) {
               $('#customers_newsletter', $c_form).parent().remove();
 
               $('#newsletter-lists-container-disabled').attr('id','newsletter-lists-container'); // Change id
+              $('.newsletter-subscriber-email').val(value);
               newsletter.reset();
               newsletter.init( 'http://phplist.pompdelux.dk/integration/json.php?callback=?' ); // Also hardcoded in newsletter bundle
-              newsletter.lists.get( data.listid );
+              newsletter.lists.get( response.data.listid );
 
               $('#customers_id', $c_form).val(response.data.id);
               $('.input', $form).val('');
