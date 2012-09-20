@@ -940,6 +940,10 @@ form.newsletter-subscription-form input.button {
   display: none;
 }
 
+#newsletter-lists-container ul {
+  list-style: none;
+}
+
 #newsletter-lists-container.simple label {
   display: none;
 }
