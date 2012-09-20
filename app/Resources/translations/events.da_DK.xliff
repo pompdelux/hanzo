@@ -422,6 +422,10 @@
                 <source>event.closed</source>
                 <target>Arrangementet er nu lukket</target>
             </trans-unit>
+            <trans-unit id="events.fetch_customer.newsletter.update">
+                <source>events.fetch_customer.newsletter.update</source>
+                <target>Ændre nyhedsbrevs tilmelding</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
