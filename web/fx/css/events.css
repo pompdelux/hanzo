@@ -118,7 +118,7 @@ form.create #customers_accept{
 }
 
 #body-events-create-customer #newsletter-lists-container {
-  margin-top: 10px;
+  margin-top: 30px;
 }
 #body-events-create-customer #newsletter-lists-container ul input[type="checkbox"] {
   margin-right: 146px;
