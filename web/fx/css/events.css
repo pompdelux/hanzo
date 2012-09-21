@@ -120,13 +120,15 @@ form.create #customers_accept{
 #body-events-create-customer #newsletter-lists-container {
   margin-top: 10px;
 }
-#body-events-create-customer #main ul input[type="checkbox"] {
+#body-events-create-customer #newsletter-lists-container ul input[type="checkbox"] {
   margin-right: 146px;
   float: right;
+  margin-left: 10px;
 }
 
-#body-events-create-customer #main ul {
+#body-events-create-customer #newsletter-lists-container ul {
   margin:0;
   padding:0;
   width: 450px;
+  text-align: right;
 }
