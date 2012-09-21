@@ -54,7 +54,8 @@
 
 <div id="newsletter-lists-container-disabled">
   <form action="#" method="post">
-    <ul>{{ 'create.newsletter'|trans({}, 'account') }}</ul>
+    <span>{{ 'create.newsletter'|trans({}, 'account') }}</span>
+    <ul></ul>
     <input type="hidden" class="newsletter-subscriber-email" name="email" value="">
     <input type="submit" data-action="update" class="button" value="{{ 'events.fetch_customer.newsletter.update'|trans({},'events') }}">
   </form>
