@@ -38,22 +38,23 @@
     {% if form.vars.value.id == '' %}
       <br>
       {{ form_row(form.password) }}
-      <br>
-      {{ form_row(form.newsletter) }}
     {% endif %}
 
     <br>
     {{ form_row(form.accept) }}
     {{ form_row(form.addresses.0.type) }}
     {{ form_row(form._token) }}
+    <a href="/forside/kundeservice/vilkaar" rel="colorbox">{{ 'create.terms'|trans({}, 'account')|raw }}</a>
+    {% if form.vars.value.id == '' %}
+      {{ form_row(form.newsletter) }}
+    {% endif %}
   </div>
   <input class="button off" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
-  <a href="/forside/kundeservice/vilkaar" rel="colorbox">{{ 'create.terms'|trans({}, 'account')|raw }}</a>
 </form>
 
 <div id="newsletter-lists-container-disabled">
   <form action="#" method="post">
-    <ul></ul>
+    <ul>{{ 'create.newsletter'|trans({}, 'account') }}</ul>
     <input type="hidden" class="newsletter-subscriber-email" name="email" value="">
     <input type="submit" data-action="update" class="button" value="{{ 'events.fetch_customer.newsletter.update'|trans({},'events') }}">
   </form>

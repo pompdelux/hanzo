@@ -116,3 +116,14 @@ form.create label{
 form.create #customers_accept{
   margin-top: 19px;
 }
+
+#body-events-create-customer #main ul input[type="checkbox"] {
+  margin-right: 146px;
+  float: right;
+}
+
+#body-events-create-customer #main ul {
+  margin:10px 0;
+  padding:0;
+  width: 450px;
+}
