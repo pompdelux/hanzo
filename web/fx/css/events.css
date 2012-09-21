@@ -109,3 +109,10 @@ form div#form_has_accepted input {
 form div#form_has_accepted label {
   float: right;
 }
+
+form.create label{
+  width: 273px;
+}
+form.create #customers_accept{
+  margin-top: 19px;
+}
