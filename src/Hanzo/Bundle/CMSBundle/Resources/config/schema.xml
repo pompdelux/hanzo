@@ -218,7 +218,7 @@
     <column name="email" type="VARCHAR" size="255" required="true"/>
     <column name="description" type="LONGVARCHAR" required="false"/>
     <column name="type" type="VARCHAR" size="3" required="true" defaultValue="AR"/>
-    <column name="is_open" type="BOOLEAN" size="1" required="true" defaultValue="false"/>
+    <column name="is_open" type="BOOLEAN" size="1" required="false" defaultValue="NULL"/>
     <column name="notify_hostess" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <foreign-key foreignTable="customers" name="fk_events_1">
       <reference local="consultants_id" foreign="id"/>
