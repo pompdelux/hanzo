@@ -287,7 +287,7 @@ CREATE TABLE `events`
 	`email` VARCHAR(255) NOT NULL,
 	`description` TEXT,
 	`type` VARCHAR(3) DEFAULT 'AR' NOT NULL,
-	`is_open` TINYINT(1) DEFAULT 0 NOT NULL,
+	`is_open` TINYINT(1),
 	`notify_hostess` TINYINT(1) DEFAULT 1 NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,

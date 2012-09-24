@@ -57,7 +57,7 @@ class EventsTableMap extends TableMap
 		$this->addColumn('EMAIL', 'Email', 'VARCHAR', true, 255, null);
 		$this->addColumn('DESCRIPTION', 'Description', 'LONGVARCHAR', false, null, null);
 		$this->addColumn('TYPE', 'Type', 'VARCHAR', true, 3, 'AR');
-		$this->addColumn('IS_OPEN', 'IsOpen', 'BOOLEAN', true, 1, false);
+		$this->addColumn('IS_OPEN', 'IsOpen', 'BOOLEAN', false, 1, null);
 		$this->addColumn('NOTIFY_HOSTESS', 'NotifyHostess', 'BOOLEAN', true, 1, true);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
