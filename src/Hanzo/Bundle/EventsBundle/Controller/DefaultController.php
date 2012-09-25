@@ -60,7 +60,24 @@ class DefaultController extends CoreController
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
-        if ('POST' == $request->getMethod()) {
+        // If order is for the hostess, find her and use the Customer
+        $attributes = $order->getOrdersAttributess()->toArray();
+        $isHostess = FALSE;
+        foreach ($attributes as $attribute) {
+            if($attribute['CKey'] === "is_hostess_order") {
+                $isHostess = TRUE;
+                break;
+            }
+        }
+        if($isHostess === TRUE){
+            $event = EventsQuery::create()
+                ->filterById($order->getEventsId())
+                ->findOne()
+            ;
+            $customer_id = $event->getCustomersId();
+        }
+
+        if ('POST' == $request->getMethod() OR $isHostess) {
             if ($customer_id) {
                 $customer = CustomersQuery::create()
                     ->joinWithAddresses()
@@ -85,7 +102,9 @@ class DefaultController extends CoreController
 
             $customer->addAddresses($address);
             $validation_groups = 'customer';
+
         }
+
 
         $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => $validation_groups));
 
