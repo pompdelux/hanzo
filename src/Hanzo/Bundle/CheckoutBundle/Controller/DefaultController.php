@@ -420,7 +420,6 @@ class DefaultController extends CoreController
             $addresses[$address->getType()] = $address;
         }
 
-//        error_log(__LINE__.':'.__FILE__.' '.print_r($addresses,1)); // hf@bellcom.dk debugging
         if ( !isset($addresses['shipping']) && !isset($addresses['payment']) ) {
             return $this->render('CheckoutBundle:Default:addresses.html.twig', array( 'no_addresses' => true ));
         }
@@ -442,6 +441,17 @@ class DefaultController extends CoreController
         }
 
         $hasOvernightBox = $shippingApi->isMethodAvaliable(12); // Døgnpost
+
+        // we need to have an overnightbox address if the service is available.... for now....
+        if ($hasOvernightBox && empty($addresses['overnightbox'])) {
+            $address = $addresses['payment']->copy();
+            $address->setType('overnightbox');
+            $address->setAddressLine1('');
+            $address->setAddressLine2(null);
+            $address->setCompanyName(null);
+            $address->save();
+            $addresses['overnightbox'] = $address;
+        }
 
         if ($skip_empty || ($order instanceof Orders)) {
             if (empty($addresses['overnightbox'])) {

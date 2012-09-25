@@ -84,7 +84,7 @@ class DeadOrderService
 
         $i = 1;
 
-        foreach ($orders as $order) 
+        foreach ($orders as $order)
         {
             $this->debug( $i++ .' of '. count($orders) );
             $status = array();
@@ -159,7 +159,7 @@ class DeadOrderService
 
         if ( is_null($transId) )
         {
-            if ($order->getInEdit()) 
+            if ($order->getInEdit())
             {
                 $this->debug( '  No trans id found, and order is in edit' );
                 $status['is_error'] = false;
@@ -198,7 +198,7 @@ class DeadOrderService
 
         if ( isset($orderStatus->data['status']) )
         {
-            switch ($orderStatus->data['status']) 
+            switch ($orderStatus->data['status'])
             {
                 case 2:
                     // Looks like payment is ok -> update order
@@ -241,17 +241,17 @@ class DeadOrderService
 
                     if ( !$this->dryrun )
                     {
-                        if ($order->getInEdit()) 
+                        if ($order->getInEdit())
                         {
                             $this->debug( '  Order was in edit mode' );
                             $currentVersion = $order->getVersionId();
 
                             // If the version number is less than 2 there is no previous version
-                            if (!($currentVersion < 2)) 
+                            if (!($currentVersion < 2))
                             {
                                 $oldOrderVersion = ( $currentVersion - 1);
                                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                                try 
+                                try
                                 {
                                     $this->debug( '  Canceling old payment' );
                                     $oldOrder->cancelPayment();
@@ -287,7 +287,7 @@ class DeadOrderService
                     $status['error_msg'] = 'Order status er '. $orderStatus->data['status'];
                     return $status;
                     break;
-            } 
+            }
         }
 
         return $status;
@@ -300,7 +300,7 @@ class DeadOrderService
      **/
     protected function deleteOrders( Array $toBeDeleted )
     {
-        foreach ($toBeDeleted as $order) 
+        foreach ($toBeDeleted as $order)
         {
             if ( !$this->dryrun )
             {
@@ -375,7 +375,7 @@ class DeadOrderService
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function getOrders( $limit = 0 )
-    { 
+    {
         $orders = OrdersQuery::create()
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
             ->filterByBillingMethod('dibs')

@@ -147,7 +147,6 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 
 	/**
 	 * The value for the is_open field.
-	 * Note: this column has a database default value of: false
 	 * @var        boolean
 	 */
 	protected $is_open;
@@ -226,7 +225,6 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	public function applyDefaultValues()
 	{
 		$this->type = 'AR';
-		$this->is_open = false;
 		$this->notify_hostess = true;
 	}
 
@@ -935,10 +933,6 @@ abstract class BaseEvents extends BaseObject  implements Persistent
 	public function hasOnlyDefaultValues()
 	{
 			if ($this->type !== 'AR') {
-				return false;
-			}
-
-			if ($this->is_open !== false) {
 				return false;
 			}
 

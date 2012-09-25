@@ -502,6 +502,7 @@ class ECommerceServices extends SoapService
                         ->filterByState(0, Criteria::LESS_THAN)
                         ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
                         ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('2 hours ago')), Criteria::LESS_THAN)
+                        ->filterByCreatedAt('2012-08-16 00:00:01', Criteria::GREATER_THAN) // FIXME
                     ->endUse()
                     ->findOne()
                 ;
