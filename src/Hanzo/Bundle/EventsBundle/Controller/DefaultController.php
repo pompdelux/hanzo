@@ -13,6 +13,7 @@ use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\EventsQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\OrdersPeer;
 
