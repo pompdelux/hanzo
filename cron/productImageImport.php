@@ -83,7 +83,6 @@ foreach ($images as $image) {
     $product_images[$master][] = $image;
 }
 
-
 $select_sql = '
     SELECT id
     FROM products_images
@@ -106,6 +105,13 @@ $product_slave_sql = '
         products_id = :products_id,
         image = :image
 ';
+$category_select_sql = '
+    SELECT sort
+    FROM products_images_categories_sort
+    WHERE products_id = :products_id
+    AND categories_id = :categories_id
+    AND products_images_id = :products_images_id
+';
 $category_sql = '
     INSERT INTO products_images_categories_sort
     SET products_id = :products_id,
@@ -126,8 +132,8 @@ foreach ($_databases as $key => $conn) {
         $select_stm = $conn->prepare($select_slave_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     }
 
+    $category_select_stm = $conn->prepare($category_select_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $category_stm = $conn->prepare($category_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-
 
     if ($key == 'vip') {
         foreach ($product_images as $master => $images) {
@@ -149,23 +155,35 @@ foreach ($_databases as $key => $conn) {
                     ));
                     $image_id = $conn->lastInsertId();
                     $image2id[$image] = $image_id;
-
-                    // add image to "products_images_to_categories"
-                    foreach ($product_categories_ids[$products_id] as $category_id) {
-                        $category_stm->execute(array(
-                            ':products_id' => $products_id,
-                            ':categories_id' => $category_id,
-                            ':products_images_id' => $image_id,
-                        ));
-                    }
                 } else {
                     $image2id[$image] = $image_id;
+                }
+
+                // add image to "products_images_to_categories"
+                foreach ($product_categories_ids[$products_id] as $category_id) {
+                    $category_select_stm->execute(array(
+                        ':products_id' => $products_id,
+                        ':categories_id' => $category_id,
+                        ':products_images_id' => $image_id,
+                    ));
+
+                    // skip existing
+                    if (0 < $category_select_stm->fetchColumn()) {
+                        continue;
+                    }
+
+                    $category_stm->execute(array(
+                        ':products_id' => $products_id,
+                        ':categories_id' => $category_id,
+                        ':products_images_id' => $image_id,
+                    ));
                 }
             }
         }
     } else {
         foreach ($product_images as $master => $images) {
             $products_id = $product_ids[$master];
+
             foreach($images as $image) {
                 if (empty($image2id[$image])) {
                     continue;
@@ -184,15 +202,27 @@ foreach ($_databases as $key => $conn) {
                         ':products_id' => $products_id,
                         ':image' => $image,
                     ));
+                }
 
-                    // add image to "products_images_to_categories"
-                    foreach ($product_categories_ids[$products_id] as $category_id) {
-                        $category_stm->execute(array(
-                            ':products_id' => $products_id,
-                            ':categories_id' => $category_id,
-                            ':products_images_id' => $image_id,
-                        ));
+
+                // add image to "products_images_to_categories"
+                foreach ($product_categories_ids[$products_id] as $category_id) {
+                    $category_select_stm->execute(array(
+                        ':products_id' => $products_id,
+                        ':categories_id' => $category_id,
+                        ':products_images_id' => $image_id,
+                    ));
+
+                    // skip existing
+                    if (0 < $category_select_stm->fetchColumn()) {
+                        continue;
                     }
+
+                    $category_stm->execute(array(
+                        ':products_id' => $products_id,
+                        ':categories_id' => $category_id,
+                        ':products_images_id' => $image_id,
+                    ));
                 }
             }
         }
@@ -229,12 +259,22 @@ while ($record = $images_stmt->fetchObject()) {
     }
 }
 
+// cleanup
+// remove images from unused categories
+foreach ($_databases as $key => $conn) {
+    foreach ($product_categories_ids as $products_id => $categories) {
+        $ids = implode(',', $categories);
+        $conn->exec('DELETE FROM products_images_categories_sort WHERE products_id = '.$products_id.' AND categories_id NOT IN('.$ids.')');
+    }
+}
+
+// remove images altogether
 if (count($image_records_to_delete)) {
     foreach ($_databases as $key => $conn) {
         $ids = implode(',', array_keys($image_records_to_delete));
-        $conn->exec('Delete from products_images WHERE id IN('.$ids.')');
-        $conn->exec('Delete from products_images_categories_sort WHERE products_images_id IN('.$ids.')');
-        $conn->exec('Delete from products_images_product_references WHERE products_images_id IN('.$ids.')');
+        $conn->exec('DELETE FROM products_images WHERE id IN('.$ids.')');
+        $conn->exec('DELETE FROM products_images_categories_sort WHERE products_images_id IN('.$ids.')');
+        $conn->exec('DELETE FROM products_images_product_references WHERE products_images_id IN('.$ids.')');
     }
 
     $txt = "Hey der!\n\nFølgende produktbilleder er slettet fra databasen da de ikke længere var i filsystemet:\n\n";
