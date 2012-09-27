@@ -8,6 +8,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
 use Hanzo\Bundle\ServiceBundle\Services\AxService;
@@ -43,16 +44,33 @@ class CheckoutListener
 
         $attributes = $order->getAttributes();
 
-        // add hostess discount if nessesary
+        // calculate hostess discount if nessesary
         if ($order->getEventsId()) {
             $customer = $order->getCustomers();
             $hanzo = Hanzo::getInstance();
 
 
             if (isset($attributes->event->is_hostess_order) && !$order->getInEdit()) {
+                $discount = 0;
                 $add_discount = true;
 
-                $discount = 0;
+                define('ACTION_TRIGGER', __METHOD__);
+
+                // make sure all orders are ok
+                $cleanup_service = $hanzo->container->get('deadorder_manager');
+                $orders = OrdersQuery::create()
+                    ->filterByEventsId($order->getEventsId())
+                    ->filterByBillingMethod('dibs')
+                    ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
+                    ->find()
+                ;
+
+                foreach ($orders as $order_item) {
+                    $status = $cleanup_service->checkOrderForErrors($order_item);
+                    if (isset($status['is_error']) && ($status['is_error'] === true)) {
+                        $order_item->delete();
+                    }
+                }
 
                 $c = new Criteria;
                 $c->add(OrdersPeer::STATE, Orders::STATE_PENDING, Criteria::GREATER_EQUAL);
