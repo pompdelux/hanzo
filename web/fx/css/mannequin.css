@@ -175,15 +175,20 @@ ul#mannequin-menu.tabs li a.current:hover {
 }
 
 #mannequin-mini-basket {
-  background-image: url(/fx/images/535354.png);
   position: absolute;
+  background-image: url(/fx/images/535354.png);
   top: 100px;
   left: 190px;
   width: 230px;
-  padding: 10px;
+  padding: 5px;
   display: none;
   z-index: 1000;
 }
+#mannequin-mini-basket.under {
+  top: auto;
+  left: -20px;
+}
+
 #mannequin-mini-basket div {
   padding: 5px;
   background-color: #fff;
