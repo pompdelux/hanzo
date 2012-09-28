@@ -40,6 +40,18 @@
                 <source>no.products.in.category</source>
                 <target>Alle artikelen in deze categorie zijn uitverkocht.</target>
             </trans-unit>
+            <trans-unit id="basket.heading">
+                <source>basket.heading</source>
+                <target>Dukkens påklædning</target>
+            </trans-unit>
+            <trans-unit id="remove.all">
+                <source>remove.all</source>
+                <target>Fjern alle</target>
+            </trans-unit>
+            <trans-unit id="to.basket">
+                <source>to.basket</source>
+                <target>Overfør til kurv</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
