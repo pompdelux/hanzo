@@ -49,6 +49,8 @@ class CleanupService
         Propel::setForceMasterConnection(true);
         $orders = OrdersQuery::create()
             ->filterByBillingMethod('dibs', Criteria::NOT_EQUAL)
+            ->_or()
+            ->filterByBillingMethod(null, Criteria::ISNULL)
             ->filterByState(0, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
@@ -88,12 +90,15 @@ class CleanupService
     {
         Propel::setForceMasterConnection(true);
 
+        // extended to include records where billing_method is null
         $orders = OrdersQuery::create()
             ->filterByInEdit(true)
             ->filterByBillingMethod('dibs', Criteria::NOT_EQUAL)
-            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
+            ->_or()
+            ->filterByBillingMethod(null, Criteria::ISNULL)
             ->filterByState(Orders::STATE_PENDING, Criteria::LESS_THAN)
             ->filterByState(Orders::STATE_ERROR_PAYMENT, Criteria::GREATER_THAN)
+            ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
             ->find()
         ;
 
