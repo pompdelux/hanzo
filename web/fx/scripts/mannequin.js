@@ -27,12 +27,45 @@
         });
 
         // triggers
-        $(this).find('.pane .item a').bind('click.mannequin', methods.layer_click);
-        $(this).find('#mannequin-basket td.actions a').live('click.mannequin', methods.basket_item_click);
-        $(this).find('#mannequin-basket td.name a').live('click.mannequin', function(event) {
+        $('#mannequin-layers .pane .item a').bind('click.mannequin', methods.layer_click);
+        $('#mannequin-basket td.actions a').live('click.mannequin', methods.basket_item_click);
+        $('#mannequin-basket td.name a').live('click.mannequin', function(event) {
           event.preventDefault();
           this.blur();
           window.open(this.href);
+        });
+
+        $('#mannequin-mini-basket a').live('click', function(event) {
+          event.preventDefault();
+          var $this = $(this);
+          var c = $this.prop('class');
+
+
+          if ($this.hasClass('remove')) {
+            $('#mannequin-mini-basket a').each(function(index, element) {
+              var $element = $(element);
+              // skip add and remove links
+              if ($element.is('.remove, .add')) {
+                return;
+              }
+
+              var e = $element.prop('class');
+              methods.remove_doll_layer(e);
+            });
+            return;
+          }
+
+          if ($this.hasClass('add')) {
+            $('#mannequin-basket').show();
+            $.colorbox({inline:true, href:'#mannequin-basket'});
+            $.colorbox.resize();
+            return;
+          }
+
+          methods.remove_doll_layer(c);
+        });
+        $(document).bind('cbox_closed', function(){
+          $('#mannequin-basket').hide();
         });
       });
     },
@@ -71,9 +104,12 @@
             $('#mannequin-basket tbody tr.empty').remove();
             if (swap_layer) {
               $('#mannequin-basket tbody tr.' + swap_layer).replaceWith(result.data.html);
+              $('#mannequin-mini-basket a.'+swap_layer).replaceWith('<a href="" class="'+data.key+'">'+data.master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
             } else {
               $('#mannequin-basket tbody').append(result.data.html);
+              $('#mannequin-mini-basket div').prepend('<a href="" class="'+data.key+'">'+data.master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
             }
+
             methods.basket_states();
           }
         }, 'json');
@@ -106,6 +142,7 @@
               methods.item_size_selected(this, data);
             });
           }
+          $.colorbox.resize();
         }, 'json');
       }
 
@@ -123,11 +160,13 @@
       data.key = key;
       data.action = $(this).attr('class ');
       $('.mannequin-layer-' + data.layer).remove();
+      $('#mannequin-mini-basket a.'+key).remove();
       methods.basket_states();
     },
 
     basket_states : function () {
       if ($('#mannequin-basket tbody tr').length) {
+        $('#mannequin-mini-basket').show();
         $('#mannequin-basket tfoot').show();
 
         var price = 0;
@@ -138,6 +177,7 @@
         $('#mannequin-basket tfoot td.total').text(accounting.formatMoney(price));
         //$('#mannequin-basket tfoot td.total').text(ExposeTranslation.get('js:mannequin.price', {'price': price}));
       } else {
+        $('#mannequin-mini-basket').hide();
         $('#mannequin-basket tfoot').hide();
         $('#mannequin-basket tbody').append('<tr class="empty"><td colspan="6">' + ExposeTranslation.get('js:mannequin.empty') + '</td></tr>');
       }
