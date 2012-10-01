@@ -61,6 +61,11 @@ class HistoryController extends CoreController
             ->filterByCustomersId(CustomersPeer::getCurrent()->getId())
             ->findOneById($order_id)
         ;
+
+        if (!$order instanceof Orders) {
+            return $this->redirect($this->generateUrl('_account'));
+        }
+
         $this->get('event_dispatcher')->dispatch('order.edit.start', new FilterOrderEvent($order));
         return $this->redirect($this->generateUrl('basket_view'));
     }
