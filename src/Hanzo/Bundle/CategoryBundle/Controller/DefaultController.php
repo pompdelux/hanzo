@@ -33,7 +33,7 @@ class DefaultController extends CoreController
 
         // json requests
         if ($this->getFormat() == 'json') {
-            $data = '';//$this->getCache($cache_id);
+            $data = $this->getCache($cache_id);
             if (!$data) {
                 $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
                 $this->setCache($cache_id, $data, 5);
@@ -49,7 +49,7 @@ class DefaultController extends CoreController
 
         // html/normal request
         $cache_id[] = 'html';
-        $html = '';//$this->getCache($cache_id);
+        $html = $this->getCache($cache_id);
 
         if (!$html) {
             $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
