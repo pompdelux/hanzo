@@ -185,8 +185,9 @@ ul#mannequin-menu.tabs li a.current:hover {
   z-index: 1000;
 }
 #mannequin-mini-basket.under {
-  top: auto;
-  left: -20px;
+  top: 0;
+  left: -90px;
+  z-index: -10;
 }
 
 #mannequin-mini-basket div {
@@ -201,14 +202,25 @@ ul#mannequin-menu.tabs li a.current:hover {
   text-align: center;
   margin-bottom: 2px;
 }
+#mannequin-mini-basket.under h4 {
+  text-align: left;
+}
+#mannequin-mini-basket p {
+  border-top: 1px solid #231F20;
+  text-align: right;
+}
+#mannequin-mini-basket p,
 #mannequin-mini-basket a {
   overflow: hidden;
   display: block;
-  font-size: 0.70em;
+  font-size: 0.67em;
   margin-bottom: 5px;
+  font-weight: normal;
 }
+#mannequin-mini-basket p,
 #mannequin-mini-basket a span {
   color: #231F20;
+  font-weight: bold;
 }
 #mannequin-mini-basket a.add,
 #mannequin-mini-basket a.remove {
@@ -217,4 +229,3 @@ ul#mannequin-menu.tabs li a.current:hover {
   font-weight: bold;
   text-transform: uppercase;
 }
-

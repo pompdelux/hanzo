@@ -102,12 +102,14 @@
 
           if (result.status) {
             $('#mannequin-basket tbody tr.empty').remove();
+
+            var master = data.master;
             if (swap_layer) {
               $('#mannequin-basket tbody tr.' + swap_layer).replaceWith(result.data.html);
-              $('#mannequin-mini-basket a.'+swap_layer).replaceWith('<a href="" class="'+data.key+'">'+data.master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
+              $('#mannequin-mini-basket a.'+swap_layer).replaceWith('<a href="" class="'+data.key+'">'+master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
             } else {
               $('#mannequin-basket tbody').append(result.data.html);
-              $('#mannequin-mini-basket div').prepend('<a href="" class="'+data.key+'">'+data.master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
+              $('#mannequin-mini-basket div').prepend('<a href="" class="'+data.key+'">'+master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
             }
 
             methods.basket_states();
@@ -174,8 +176,10 @@
           var data = layer_data[$(this).attr('class').split(' ')[0]];
           price += data.raw_price;
         });
-        $('#mannequin-basket tfoot td.total').text(accounting.formatMoney(price));
-        //$('#mannequin-basket tfoot td.total').text(ExposeTranslation.get('js:mannequin.price', {'price': price}));
+
+        var total = accounting.formatMoney(price);
+        $('#mannequin-basket tfoot td.total').text(total);
+        $('#mannequin-mini-basket p.total').text($($('#mannequin-basket tfoot td')[0]).text()+' '+total);
       } else {
         $('#mannequin-mini-basket').hide();
         $('#mannequin-basket tfoot').hide();
