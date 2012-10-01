@@ -28,7 +28,6 @@ class CategoriesPeer extends BaseCategoriesPeer
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
-
         $domain_id = $hanzo->get('core.domain_id');
 
         $result = ProductsImagesCategoriesSortQuery::create()
