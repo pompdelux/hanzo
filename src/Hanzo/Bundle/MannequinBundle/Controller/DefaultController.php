@@ -145,7 +145,8 @@ class DefaultController extends CoreController
             'title' => $settings->title . ' - ' . $settings->colorscheme,
             'products' => $products,
             'dress_form' => $settings->dress_form,
-            'page_type' => 'mannequin'
+            'page_type' => 'mannequin',
+            'localeconv' => localeconv(),
         ));
     }
 

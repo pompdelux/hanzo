@@ -74,11 +74,11 @@
 <script>
 (function($) {
   accounting.settings.currency = {
-    symbol : "DKK",
+    symbol : "{{ localeconv.int_curr_symbol }}",
     format : "%s %v",
-    decimal : ",",
-    thousand : "",
-    precision : 2
+    decimal : "{{ localeconv.mon_decimal_point }}",
+    thousand : "{{ localeconv.mon_thousands_sep }}",
+    precision : {{ localeconv.int_frac_digits }}
   };
   $('#mannequin').mannequin({cdn:'{{ cdn }}images/mannequin/'});
 })(jQuery);
