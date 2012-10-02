@@ -79,9 +79,10 @@
         });
 
         $('#mannequin-mini-basket .wrapper a').live('click', function(event) {
+          event.preventDefault();
+
           var $this = $(this);
           var c = $this.prop('class');
-
 
           if ($this.hasClass('remove')) {
             $('#mannequin-mini-basket a').each(function(index, element) {
