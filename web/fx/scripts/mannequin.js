@@ -35,8 +35,50 @@
           window.open(this.href);
         });
 
-        $('#mannequin-mini-basket a').live('click', function(event) {
+        if ($(document).innerWidth() < 1250) {
+          $('#mannequin-mini-basket').addClass('under');
+        } else {
+          $('#mannequin-mini-basket h4 i').remove();
+        }
+
+        $('#mannequin-mini-basket h4 i').live('click', function(event) {
           event.preventDefault();
+          var $i = $(this);
+          var $elm = $(this).closest('div');
+          var $h4 = $('h4 span', $elm);
+          var $wrapper = $('.wrapper', $elm);
+
+          if (30 > $elm.height()) {
+            $elm.addClass('bg');
+            $elm.animate({
+              width: '230px',
+              left: '-230px',
+              zIndex: 10000
+            }, function() {
+              $h4.show();
+              $i.removeClass("icon-plus").addClass("icon-remove");
+              $i.data('text', $i.text());
+              $i.text('');
+              $wrapper.slideDown();
+            });
+          } else {
+            $wrapper.slideUp(function() {
+              $elm.css('zIndex', -10);
+              $elm.animate({
+                width: '190px',
+                left: '-30px'
+              }, function() {
+                $elm.removeClass('bg');
+                $i.removeClass("icon-remove").addClass("icon-plus");
+                $i.text($i.data('text'));
+                $h4.hide();
+              });
+            });
+          }
+
+        });
+
+        $('#mannequin-mini-basket .wrapper a').live('click', function(event) {
           var $this = $(this);
           var c = $this.prop('class');
 
@@ -106,10 +148,10 @@
             var master = data.master;
             if (swap_layer) {
               $('#mannequin-basket tbody tr.' + swap_layer).replaceWith(result.data.html);
-              $('#mannequin-mini-basket a.'+swap_layer).replaceWith('<a href="" class="'+data.key+'">'+master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
+              $('#mannequin-mini-basket .container a.'+swap_layer).replaceWith('<a href="" class="'+data.key+'">'+master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
             } else {
               $('#mannequin-basket tbody').append(result.data.html);
-              $('#mannequin-mini-basket div').prepend('<a href="" class="'+data.key+'">'+master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
+              $('#mannequin-mini-basket div.container').prepend('<a href="" class="'+data.key+'">'+master+' <span class="right">'+accounting.formatMoney(data.raw_price)+'</span></a>');
             }
 
             methods.basket_states();

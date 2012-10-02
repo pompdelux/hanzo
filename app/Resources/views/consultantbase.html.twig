@@ -16,6 +16,8 @@
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
+<link href="{{ cdn }}fx/css/font-a/css/font-awesome.css" rel="stylesheet" type="text/css">
+
 <link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" type="image/ico">
 
 {% stylesheets
@@ -48,6 +50,10 @@
 %}
 <link rel="stylesheet" href="{{ asset_url }}" media="all">
 {% endstylesheets %}
+
+<!--[if IE 7]>
+<link rel="stylesheet" href="{{ cdn }}fx/css/font-a/css/font-awesome-ie7.css">
+<![endif]-->
 
 <script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr-2.5.3.js"></script>
 </head>

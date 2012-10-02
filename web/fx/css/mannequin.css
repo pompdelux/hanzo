@@ -89,6 +89,7 @@ ul#mannequin-menu.tabs li a.current:hover {
 }
 #mannequin-doll .layers {
   position: relative;
+  background-color: #fff;
 }
 #mannequin-doll .layers .layer {
   position: absolute;
@@ -185,9 +186,16 @@ ul#mannequin-menu.tabs li a.current:hover {
   z-index: 1000;
 }
 #mannequin-mini-basket.under {
-  top: 0;
-  left: -90px;
+  background-image: none;
+  background-color: inherit;
+  top: -25px;
+  left: -30px;
   z-index: -10;
+  width: 190px;
+  display: none;
+}
+#mannequin-mini-basket.under.bg {
+  background-color: #535354;
 }
 
 #mannequin-mini-basket div {
@@ -201,9 +209,22 @@ ul#mannequin-menu.tabs li a.current:hover {
   padding: 2px 0;
   text-align: center;
   margin-bottom: 2px;
+  overflow: hidden;
+}
+#mannequin-mini-basket h4 i {
+  font-size: 1.4em;
+  padding-left: 5px;
+  cursor: pointer;
 }
 #mannequin-mini-basket.under h4 {
   text-align: left;
+}
+#mannequin-mini-basket.under h4 span {
+  padding-left: 10px;
+  display: none;
+}
+#mannequin-mini-basket.under .wrapper {
+  display: none;
 }
 #mannequin-mini-basket p {
   border-top: 1px solid #231F20;
