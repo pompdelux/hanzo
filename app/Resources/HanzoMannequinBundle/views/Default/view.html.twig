@@ -34,12 +34,9 @@
         </div>
       </div>
       <div id="mannequin-doll">
-        <div class="layers">
-          {{ image_tag('images/mannequin/' ~ dress_form, {alt:"", id:"mannequin-layer-0"})}}
-        </div>
 
         <div id="mannequin-mini-basket" class="">
-          <h4> <i class="icon-plus" title="Vis hvad dukken har på"> vis</i> <span>{{ 'basket.heading'|trans({}, 'mannequin') }}</span></h4>
+          <h4> <i title="Vis hvad dukken har på" data-other="Skjul">+</i> <span>{{ 'basket.heading'|trans({}, 'mannequin') }}</span></h4>
           <div class="wrapper">
             <div class="container">
               <p class="total"></p>
@@ -47,6 +44,10 @@
               <a href="" class="button add right">{{ 'to.basket'|trans({}, 'mannequin') }}</a>
             </div>
           </div>
+        </div>
+
+        <div class="layers">
+          {{ image_tag('images/mannequin/' ~ dress_form, {alt:"", id:"mannequin-layer-0"})}}
         </div>
       </div>
     </div>

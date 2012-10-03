@@ -81,6 +81,10 @@ ul#mannequin-menu.tabs li a.current:hover {
   height: 15px;
 }
 
+#mannequin-layer-0 {
+  z-index: 3;
+}
+
 #mannequin-doll {
   position: fixed;
   margin-left: 550px;
@@ -88,6 +92,7 @@ ul#mannequin-menu.tabs li a.current:hover {
   margin-bottom: 10px;
 }
 #mannequin-doll .layers {
+  z-index: 2;
   position: relative;
   background-color: #fff;
 }
@@ -187,10 +192,9 @@ ul#mannequin-menu.tabs li a.current:hover {
 }
 #mannequin-mini-basket.under {
   background-image: none;
-  background-color: inherit;
-  top: -25px;
+  /*top: -25px;*/
   left: -30px;
-  z-index: -10;
+  z-index: 1;
   width: 190px;
   display: none;
 }
@@ -249,4 +253,12 @@ ul#mannequin-menu.tabs li a.current:hover {
   margin-bottom: 0;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.tooltip {
+  display: none;
+  background-image: url(/fx/images/a5b3be.png);
+  padding: 5px;
+  color: #fff;
+  z-index: 1000;
 }

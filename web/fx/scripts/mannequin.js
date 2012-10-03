@@ -48,6 +48,9 @@
           var $h4 = $('h4 span', $elm);
           var $wrapper = $('.wrapper', $elm);
 
+          var title = $i.data('other');
+          $i.data('other', $i.prop('title'));
+
           if (30 > $elm.height()) {
             $elm.addClass('bg');
             $elm.animate({
@@ -56,22 +59,24 @@
               zIndex: 10000
             }, function() {
               $h4.show();
-              $i.removeClass("icon-plus").addClass("icon-remove");
-              $i.data('text', $i.text());
-              $i.text('');
+              $i.text('-');
               $wrapper.slideDown();
+              $i.prop('title', title);
             });
           } else {
             $wrapper.slideUp(function() {
-              $elm.css('zIndex', -10);
+              $elm.css('zIndex', 1);
               $elm.animate({
                 width: '190px',
                 left: '-30px'
               }, function() {
                 $elm.removeClass('bg');
-                $i.removeClass("icon-remove").addClass("icon-plus");
-                $i.text($i.data('text'));
+                $i.text('+');
                 $h4.hide();
+                $i.prop('title', title);
+                if ('' == $('#mannequin-basket tfoot td.total').text()) {
+                  $elm.hide();
+                }
               });
             });
           }
@@ -224,9 +229,19 @@
         $('#mannequin-basket tfoot td.total').text(total);
         $('#mannequin-mini-basket p.total').text($($('#mannequin-basket tfoot td')[0]).text()+' '+total);
       } else {
-        $('#mannequin-mini-basket').hide();
+        $('#mannequin-basket tfoot td.total').text('');
         $('#mannequin-basket tfoot').hide();
         $('#mannequin-basket tbody').append('<tr class="empty"><td colspan="6">' + ExposeTranslation.get('js:mannequin.empty') + '</td></tr>');
+
+        if ($('#mannequin-mini-basket').hasClass('under')) {
+          if ($('#mannequin-mini-basket').hasClass('bg')) {
+            $('#mannequin-mini-basket h4 i').click();
+          } else {
+            $('#mannequin-mini-basket').hide();
+          }
+        } else {
+          $('#mannequin-mini-basket').hide();
+        }
       }
     },
 
