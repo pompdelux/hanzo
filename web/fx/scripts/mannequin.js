@@ -51,7 +51,9 @@
           var title = $i.data('other');
           $i.data('other', $i.prop('title'));
 
-          if (30 > $elm.height()) {
+          if (1 == $elm.css('zIndex')) {
+            $i.text('-');
+            $i.css('fontSize', '1.4em');
             $elm.addClass('bg');
             $elm.animate({
               width: '230px',
@@ -59,7 +61,6 @@
               zIndex: 10000
             }, function() {
               $h4.show();
-              $i.text('-');
               $wrapper.slideDown();
               $i.prop('title', title);
             });
@@ -72,6 +73,7 @@
               }, function() {
                 $elm.removeClass('bg');
                 $i.text('+');
+                $i.css('fontSize', '2.6em');
                 $h4.hide();
                 $i.prop('title', title);
                 if ('' == $('#mannequin-basket tfoot td.total').text()) {
