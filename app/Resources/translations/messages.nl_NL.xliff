@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • CVR-nr 29622035 • mail@pompdelux.nl • +45 8678 7871</target>
+                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • CVR-nr 29622035 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
@@ -154,7 +154,7 @@
                 <source>customer.service.contact.info</source>
                 <target><![CDATA[
                     <strong>Klantenservice</strong><br>
-                    Telefoon: +45 8736 1000 (Engels)<br>
+                    Telefoon: 085-3001100 (Nederlands en Engels)<br>
                     E-mail: <a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a><br>
                     Maandag t/m donderdag 10 - 14<br>
                     Vrijdag 10 - 14<br>
@@ -170,9 +170,9 @@
                         <li>POMPdeLUX ApS</li>
                         <li>Møgelhøj 8</li>
                         <li>DK-8520 Lystrup</li>
-                        <li>CVR-nr 29622035</li>
+                        <li>BTW 851856147B01</li>
                         <li><a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a></li>
-                        <li>+45 8678 7871</li>
+                        <li>085-3001100 (Nederlands en Engels)</li>
                     </ul>
                     <ul style="width:280px;">
                         <li><a name="fb_share" type="icon_link">Deel met je vrienden</a></li>
