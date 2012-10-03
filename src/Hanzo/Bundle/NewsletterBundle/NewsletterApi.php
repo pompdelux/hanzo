@@ -38,7 +38,7 @@ class NewsletterApi
      **/
     public function sendNotificationEmail( $action, $email, $name = '' )
     {
-        switch ($action) 
+        switch ($action)
         {
             case 'subscribe':
                 $tpl = 'newsletter.subscribe';
@@ -140,4 +140,23 @@ class NewsletterApi
 
         return $listid;
     }
+
+
+    public function getUserByEmail($email) {
+        $wsdl = 'http://phplist.bellcom.dk/integration/phplist.pompdelux.dk/wsdl';
+        $client = new \Soapclient( $wsdl );
+        return $client->getUserByEmail($email);
+    }
+
+    public function getSubscriptionStateByEmail($email, $list_id)
+    {
+        $user = $this->getUserByEmail($email);
+
+        if (is_array($user)) {
+            return in_array($list_id, $user['subscribedLists']);
+        }
+
+        return false;
+    }
+
 } // END class NewsletterApi

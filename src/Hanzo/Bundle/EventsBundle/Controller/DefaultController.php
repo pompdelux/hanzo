@@ -127,6 +127,12 @@ class DefaultController extends CoreController
                 $customer->save();
                 $address->save();
 
+                $formData = $request->request->get('customers');
+                if ( isset($formData['newsletter']) && $formData['newsletter']) {
+                    $api = $this->get('newsletterapi');
+                    $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
+                }
+
                 $order->setCustomersId($customer->getId());
                 $order->setFirstName($customer->getFirstName());
                 $order->setLastName($customer->getLastName());
@@ -202,6 +208,7 @@ class DefaultController extends CoreController
                             'city' => $address->getCity(),
                             'countries_id' => $address->getCountriesId(),
                             'country' => $address->getCountry(),
+                            'newsletter' => $api->getSubscriptionStateByEmail($customer->getEmail(), $listId),
                         );
                     }
                 }
@@ -241,9 +248,6 @@ class DefaultController extends CoreController
 
                 break;
         }
-
-        // hf@bellcom.dk: add phplist id
-        $data['listid'] = $listId;
 
         return $this->json_response(array(
             'status' => $error,
