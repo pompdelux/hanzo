@@ -62,6 +62,7 @@ class CheckoutListener
                 $cleanup_service = $hanzo->container->get('deadorder_manager');
                 $orders = OrdersQuery::create()
                     ->filterByEventsId($order->getEventsId())
+                    ->filterById($order->getId(), Criteria::NOT_EQUAL)
                     ->filterByBillingMethod('dibs')
                     ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
                     ->find()
