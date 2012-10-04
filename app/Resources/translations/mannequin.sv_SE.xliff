@@ -42,23 +42,23 @@
             </trans-unit>
             <trans-unit id="basket.heading" approved="no">
                 <source>basket.heading</source>
-                <target>Dukkens påklædning</target>
+                <target>Dockans varor</target>
             </trans-unit>
             <trans-unit id="remove.all" approved="no">
                 <source>remove.all</source>
-                <target>Fjern alle</target>
+                <target>Ta bort alla</target>
             </trans-unit>
             <trans-unit id="to.basket" approved="no">
                 <source>to.basket</source>
-                <target>Overfør til kurv</target>
+                <target>Överför till korg</target>
             </trans-unit>
             <trans-unit id="basket.trigger.on" approved="no">
                 <source>basket.trigger.on</source>
-                <target>Show doll outfit</target>
+                <target>Visa vad dockan har på sig</target>
             </trans-unit>
             <trans-unit id="basket.trigger.off" approved="no">
                 <source>basket.trigger.off</source>
-                <target>Hide</target>
+                <target>Dölj</target>
             </trans-unit>
         </body>
     </file>
