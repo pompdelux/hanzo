@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\EventsBundle\Event;
 
 use Criteria;
+use Propel;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -55,6 +56,7 @@ class CheckoutListener
                 $add_discount = true;
 
                 define('ACTION_TRIGGER', __METHOD__);
+                Propel::setForceMasterConnection(true);
 
                 // make sure all orders are ok
                 $cleanup_service = $hanzo->container->get('deadorder_manager');
@@ -72,11 +74,16 @@ class CheckoutListener
                     }
                 }
 
-                $c = new Criteria;
-                $c->add(OrdersPeer::STATE, Orders::STATE_PENDING, Criteria::GREATER_EQUAL);
-                $c->addOr(OrdersPeer::ID, $order->getId(), Criteria::EQUAL);
+                $orders = OrdersQuery::create()
+                    ->filterByEventsId($order->getEventsId())
+                    ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_EQUAL)
+                    ->_or()
+                    ->filterById($order->getId())
+                    ->find()
+                ;
+                Propel::setForceMasterConnection(false);
 
-                foreach ($order->getEvents()->getOrderss($c) as $o) {
+                foreach ($orders as $o) {
                     $total = $o->getTotalProductPrice();
 
                     // TODO: not hardcoded !
