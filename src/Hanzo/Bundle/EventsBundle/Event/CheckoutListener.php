@@ -55,23 +55,27 @@ class CheckoutListener
                 $discount = 0;
                 $add_discount = true;
 
-                define('ACTION_TRIGGER', __METHOD__);
-                Propel::setForceMasterConnection(true);
-
                 // make sure all orders are ok
+                define('ACTION_TRIGGER', __METHOD__);
                 $cleanup_service = $hanzo->container->get('deadorder_manager');
+                $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
+
                 $orders = OrdersQuery::create()
                     ->filterByEventsId($order->getEventsId())
                     ->filterById($order->getId(), Criteria::NOT_EQUAL)
                     ->filterByBillingMethod('dibs')
                     ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
-                    ->find()
+                    ->find($con)
                 ;
 
                 foreach ($orders as $order_item) {
                     $status = $cleanup_service->checkOrderForErrors($order_item);
-                    if (isset($status['is_error']) && ($status['is_error'] === true)) {
-                        $order_item->delete();
+
+                    if (isset($status['is_error'])) {
+                        if ($status['is_error'] === true) {
+                            Tools::log($status);
+                            $order_item->delete();
+                        }
                     }
                 }
 
@@ -80,9 +84,8 @@ class CheckoutListener
                     ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_EQUAL)
                     ->_or()
                     ->filterById($order->getId())
-                    ->find()
+                    ->find($con)
                 ;
-                Propel::setForceMasterConnection(false);
 
                 foreach ($orders as $o) {
                     $total = $o->getTotalProductPrice();
