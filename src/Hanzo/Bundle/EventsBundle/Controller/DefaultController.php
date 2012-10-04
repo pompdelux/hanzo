@@ -48,8 +48,8 @@ class DefaultController extends CoreController
         $customer_id = $request->get('id');
 
         // Always perfer the post id
-        if ( !$customer_id ) // if no customer id has been posted
-        {
+        // if no customer id has been posted
+        if ( !$customer_id ) {
           if ($consultant->getId() != $order->getCustomersId()) {
               $customer_id = $order->getCustomersId();
           }
@@ -63,22 +63,27 @@ class DefaultController extends CoreController
 
         // If order is for the hostess, find her and use the Customer
         $attributes = $order->getOrdersAttributess()->toArray();
-        $isHostess = FALSE;
+        $is_hostess = FALSE;
         foreach ($attributes as $attribute) {
-            if($attribute['CKey'] === "is_hostess_order") {
-                $isHostess = TRUE;
+            if ($attribute['CKey'] === "is_hostess_order") {
+                $is_hostess = TRUE;
                 break;
             }
         }
-        if($isHostess === TRUE){
+        if ($is_hostess === TRUE) {
             $event = EventsQuery::create()
                 ->filterById($order->getEventsId())
                 ->findOne()
             ;
-            $customer_id = $event->getCustomersId();
+
+            if ($event->getCustomersId()) {
+                $customer_id = $event->getCustomersId();
+            } else {
+                $is_hostess = false;
+            }
         }
 
-        if ('POST' == $request->getMethod() OR $isHostess) {
+        if ('POST' == $request->getMethod() || $is_hostess) {
             if ($customer_id) {
                 $customer = CustomersQuery::create()
                     ->joinWithAddresses()
@@ -87,9 +92,12 @@ class DefaultController extends CoreController
                     ->endUse()
                     ->findOneById($customer_id)
                 ;
-                $pwd = $customer->getPassword();
-                $address = $customer->getAddresses()->getFirst();
-                $validation_groups = 'customer_edit';
+
+                if ($customer instanceof Customers) {
+                    $pwd = $customer->getPassword();
+                    $address = $customer->getAddresses()->getFirst();
+                    $validation_groups = 'customer_edit';
+                }
             }
         }
 
