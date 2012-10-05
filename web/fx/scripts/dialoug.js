@@ -23,7 +23,6 @@ var dialoug = (function($) {
     var $callback = callback;
 
     var defaults = {
-      'top' : '20%',
       'close' : '',
       'maxWidth' : '400px'
     };
@@ -40,6 +39,11 @@ var dialoug = (function($) {
       .replace('%ok%', ExposeTranslation.get('js:ok'))
       .replace('%cancel%', ExposeTranslation.get('js:cancel'))
     ;
+
+    // fix scroll issue in ie.
+    if ($.browser.msie) {
+      defaults.html += '<br><br>';
+    }
 
     $.colorbox(defaults);
 
