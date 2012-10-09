@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
-                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • CVR-nr 29622035 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
+                <target>POMPdeLUX ApS • Møgelhøj 8 DK-8520 Lystrup • BTW 851856147B01 • mail@pompdelux.nl • 085-3001100 (Nederlands en Engels)</target>
             </trans-unit>
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
