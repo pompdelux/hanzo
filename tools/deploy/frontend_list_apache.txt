@@ -3,5 +3,7 @@ pdlfront-dk2
 pdlfront-dk1
 pdlfront-no1
 pdlfront-se1
+pdlfront-nl1
+pdlfront-fi1
 pdladmin
 pdlkons-dk1
