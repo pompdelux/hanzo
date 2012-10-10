@@ -84,7 +84,7 @@ class CmsController extends CoreController
 
         if($node instanceof CmsI18n) {
             $node->delete($this->getDbConnection());
-            
+
             /* Debug anders@bellcom.dk 040912
             // Do a check if all translations are deleted, then delete the Cms
             $numberOfTranslations = CmsI18nQuery::create()
@@ -118,11 +118,11 @@ class CmsController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        if(!$locale)
+        if(!$locale){
             $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
+        }
 
         $cms_node = new CmsNode();
-
         $cms_threads = CmsThreadQuery::create()
             ->joinWithI18n($locale)
             ->find($this->getDbConnection())
@@ -211,6 +211,11 @@ class CmsController extends CoreController
                 $node->setSettings(json_encode($settings));
                 $node->save($this->getDbConnection());
 
+                $trans = new CmsI18n();
+                $trans->setCms($node);
+                $trans->setLocale($locale);
+                $trans->save($this->getDbConnection());
+
                 $this->get('session')->setFlash('notice', 'cms.added');
                 return $this->redirect($this->generateUrl('admin_cms_edit',
                     array(
@@ -225,6 +230,8 @@ class CmsController extends CoreController
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
+
+
     public function editAction($id, $locale)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -247,13 +254,6 @@ class CmsController extends CoreController
             ->joinWithI18n($locale, 'INNER JOIN')
             ->findPK($id, $this->getDbConnection());
 
-        // Vi skal bruge titel på Thread til Path
-        $cms_thread = CmsThreadQuery::create()
-            ->joinWithI18n($locale)
-            ->filterById($node->getCmsThreadId())
-            ->findOne($this->getDbConnection())
-        ;
-
         if ( !($node instanceof Cms)) { // Oversættelsen findes ikke for det givne ID
 
             // Vi laver en ny Oversættelse. Hent Settings fra en anden og brug dette.
@@ -275,6 +275,13 @@ class CmsController extends CoreController
                 }
             }
         }
+
+        // Vi skal bruge titel på Thread til Path
+        $cms_thread = CmsThreadQuery::create()
+            ->joinWithI18n($locale)
+            ->filterById($node->getCmsThreadId())
+            ->findOne($this->getDbConnection())
+        ;
 
         $form = $this->createForm(new CmsType(), $node);
 
