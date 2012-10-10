@@ -328,9 +328,8 @@ class ECommerceServices extends SoapService
 
             // always have a from date on prices
             if (empty($entry->PriceDate)) {
-                $entry->PriceDate = strtotime('-1 day');
+                $entry->PriceDate = strtotime('-1 year');
             }
-
 
             if (empty($products[$key])) {
                 $product = ProductsQuery::create()
