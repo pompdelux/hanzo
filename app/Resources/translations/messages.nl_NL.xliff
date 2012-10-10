@@ -191,6 +191,10 @@
                 <source>button.find</source>
                 <target>Vind</target>
             </trans-unit>
+            <trans-unit id="browser.title">
+                <source>browser.title</source>
+                <target>POMPdeLUX - Coole kinderkleding</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
