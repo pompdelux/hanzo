@@ -60,6 +60,25 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
+
+    /**
+     * hook into getEnvironment to allow us a cleaner way to do cli work in dev.
+     *
+     * @return string
+     */
+    public function getEnvironment()
+    {
+        $env = parent::getEnvironment();
+        if (false === strpos('_', $env)) {
+            $env = $env.'_dk';
+        }
+
+        return $env;
+    }
+
+    /**
+     * handle kernel boot
+     */
     public function boot()
     {
         parent::boot();
