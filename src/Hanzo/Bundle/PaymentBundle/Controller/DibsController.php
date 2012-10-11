@@ -15,7 +15,7 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
+use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 

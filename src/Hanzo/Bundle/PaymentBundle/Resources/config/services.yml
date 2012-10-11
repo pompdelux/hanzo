@@ -1,7 +1,7 @@
 parameters:
-    payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Dibs\DibsApi
-    payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi
-    payment.paybybill.class: Hanzo\Bundle\PaymentBundle\PayByBill\PayByBillApi
+    payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi
+    payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi
+    payment.paybybill.class: Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi
 
 services:
     payment.dibsapi:
