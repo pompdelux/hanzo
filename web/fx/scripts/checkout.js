@@ -615,12 +615,51 @@ var checkout = (function($) {
     });
   }
 
+  var couponInit = function() {
+    $coupon = $('#coupon-block');
+    $('a', $coupon).on('click', function(event) {
+      event.preventDefault();
+      $(this).next().toggle();
+    });
+
+    $('form', $coupon).on('submit', function(event) {
+      event.preventDefault();
+
+      var $form = $(this);
+      dialoug.loading($('.button', $form));
+
+      var xhr = $.ajax({
+        url: this.action,
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        async: false,
+        data: $form.serialize(),
+      });
+
+      xhr.done(function(response) {
+        if (response.message) {
+          $form.prepend('<p class="message error">'+response.message+'</p>');
+          return;
+        }
+
+        window.location.reload(true);
+      });
+
+      xhr.always(function(response) {
+        //$('p.message', $form).remove();
+        //dialoug.stopLoading();
+      });
+    });
+  };
+
   /**
    * Main method, called on checkout page
    */
   pub.init = function() {
     populateOrder();
     blockInit();
+    couponInit();
 
     $.each(blocks, function(item) {
       this.init();

@@ -1,0 +1,5 @@
+<form action="{{ path('coupon_form') }}" method="post" {{ form_enctype(form) }} id="apply-coupon" class="off">
+  <p>{{ 'coupon.description'|trans({}, 'checkout')|raw }}</p>
+  {{ form_widget(form) }}
+  <input type="submit" value="{{ 'apply.coupon.discount'|trans({}, 'checkout') }}" class="button">
+</form>

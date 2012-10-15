@@ -275,30 +275,7 @@ class CheckoutListener
     {
         $order = $event->getOrder();
 
-        $customer = $order->getCustomers();
-        $hanzo = Hanzo::getInstance();
-
-        $discount = 0;
-
-        if (0 == $hanzo->get('webshop.disable_discounts')) {
-            if ($customer->getDiscount()) {
-                $discount_label = 'discount.private';
-                $discount = $customer->getDiscount();
-            } else {
-                $discount_label = 'discount.group';
-                $discount = $customer->getGroups()->getDiscount();
-            }
-        }
-
-        if ($discount <> 0.00) {
-            $total = $order->getTotalProductPrice();
-
-            // so far _all_ discounts are handled as % discounts
-            $discount_amount = ($total / 100) * $discount;
-            $order->setDiscountLine($discount_label, $discount_amount, $discount);
-        }
-
-        $domain_key = $hanzo->get('core.domain_key');
+        $domain_key = Hanzo::getInstance()->get('core.domain_key');
 
         // set once, newer touch agian
         if (!$order->getInEdit() && (false === strpos($domain_key, 'Sales'))) {
