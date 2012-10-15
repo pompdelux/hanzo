@@ -281,6 +281,7 @@ class DefaultController extends CoreController
         $router_keys = include $this->container->parameters['kernel.cache_dir'] . '/category_map.php';
         $locale = strtolower(Hanzo::getInstance()->get('core.locale'));
 
+        $mode = $this->get('kernel')->getStoreMode();
 
         $cid = array('category2group');
         $category2group = $this->getCache($cid);
@@ -344,20 +345,22 @@ class DefaultController extends CoreController
             ;
 
             // find matching router
-            $product_route = '';
             $key = '_' . $locale . '_' . $products2category->getCategoriesId();
             $group = $category2group[$products2category->getCategoriesId()];
 
             $line['url'] = '#';
-            if (isset($router_keys[$key])) {
-                $product_route = $router_keys[$key];
-                $master = ProductsQuery::create()->findOneBySku($line['products_name']);
-                $line['url'] = $router->generate($product_route, array(
-                    'product_id' => $master->getId(),
-                    'title' => Tools::stripText($line['products_name']),
-                ));
-            }
+            $master = ProductsQuery::create()->findOneBySku($line['products_name']);
 
+            if ('consultant' == $mode) {
+                $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+            } else {
+                if (isset($router_keys[$key])) {
+                    $line['url'] = $router->generate($router_keys[$key], array(
+                        'product_id' => $master->getId(),
+                        'title' => Tools::stripText($line['products_name']),
+                    ));
+                }
+            }
 
             $products[$group][] = $line;
         }
