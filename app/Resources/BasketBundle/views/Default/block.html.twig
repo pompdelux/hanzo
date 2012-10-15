@@ -38,7 +38,12 @@
             {{ product.expected_at|date('d-m-Y') }}
           {% endif %}
         </td>
-        <td class="right price">{{ product.price|money }}</td>
+        <td class="right price">
+        {% if product.price != product.original_price %}
+          <span class="normal strike">{{ product.original_price|money }}</span><br>
+        {% endif %}
+          {{ product.price|money }}
+        </td>
         <td class="right quantity">{{ product.quantity }}</td>
         <td class="right total">{{ (product.price * product.quantity)|money }}</td>
       {% if embedded == false %}

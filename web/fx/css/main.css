@@ -131,6 +131,10 @@ input[type=email] {
   display: none;
 }
 
+.strike {
+  text-decoration: line-through;
+}
+
 #logo {
   position: absolute;
   left: 25px;
