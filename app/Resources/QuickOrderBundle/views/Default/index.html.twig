@@ -49,7 +49,7 @@
           <td class="image">
             {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
             <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
-              <a href="{{ path('product_info', {product_id: product.products_id}) }}">{{ product.products_name }}</a>
+              <a href="{{ product.url }}">{{ product.products_name }}</a>
               <div class="size">
                 <label>{{ "size"|trans }}:</label>
                 <span>{{ product.products_size }}</span>
