@@ -1,4 +1,4 @@
-{% extends layout %}  
+{% extends layout %}
 
 {% block content %}
 <nav class="sub">
@@ -45,12 +45,12 @@
     <label for="subject">{{ 'newsletter.subject.label'|trans({}, 'consultant') }}</label>
     <input name="subject" id="subject" value="{{ subject }}">
   </div>
-  
+
   <div>
     <label for="message">{{ 'newsletter.message.label'|trans({}, 'consultant') }}</label>
     <textarea name="message" id="message" class="tinymce">{{ message }}</textarea>
   </div>
-  
+
   <div>
     <input type="button" name="savedraft" id="savedraft" value="{{ 'newsletter.save.draft'|trans({}, 'consultant') }}">
     {% if drafts|length > 0 %}
@@ -72,7 +72,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  document.domain = '{{ document_domain }}'; 
+  document.domain = '{{ document_domain }}';
   $(document).ready(function(){
     $('textarea.tinymce').tinymce({
       // Location of TinyMCE script
@@ -87,7 +87,7 @@
       height : "400px",
       width : "750px",
       elements : "",
-      
+
       // Theme options
       theme : "advanced",
       plugins : "style,table,save,advhr,advimage,advlink,insertdatetime,media,paste",
@@ -98,7 +98,7 @@
       theme_advanced_toolbar_align : "left",
       theme_advanced_path_location : "bottom",
       extended_valid_elements : "a[name|href|target|title|onclick|class|rel|style],img[id|class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|rel],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
-      
+
 
       relative_urls : false,
       document_base_url : base_url,
@@ -121,7 +121,9 @@ function pdlSimpleFileManager(field_name, url, type, win) {
       width: 750,
       height: 440,
       inline : "yes",
-      close_previous : "no"
+      close_previous : "no",
+      title: 'Image Browser',
+      scrollbars: true
   },{
       window : win,
       input : field_name
