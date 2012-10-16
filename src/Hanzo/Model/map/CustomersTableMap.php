@@ -63,7 +63,6 @@ class CustomersTableMap extends TableMap
 	public function buildRelations()
 	{
 		$this->addRelation('Groups', 'Hanzo\\Model\\Groups', RelationMap::MANY_TO_ONE, array('groups_id' => 'id', ), null, 'CASCADE');
-		$this->addRelation('CouponsToCustomers', 'Hanzo\\Model\\CouponsToCustomers', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'CouponsToCustomerss');
 		$this->addRelation('Addresses', 'Hanzo\\Model\\Addresses', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'Addressess');
 		$this->addRelation('EventsRelatedByConsultantsId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'consultants_id', ), null, null, 'EventssRelatedByConsultantsId');
 		$this->addRelation('EventsRelatedByCustomersId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), null, null, 'EventssRelatedByCustomersId');
