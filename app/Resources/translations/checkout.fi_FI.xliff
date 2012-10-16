@@ -272,7 +272,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia-lasku (PayByBill-maksusta veloitetaan lisämaksu 29,00 SEK)</target>
+        <target>Gothia-lasku (PayByBill-maksusta veloitetaan lisämaksu 5,00 EUR)</target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
