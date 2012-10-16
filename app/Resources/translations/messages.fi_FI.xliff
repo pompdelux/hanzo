@@ -176,6 +176,10 @@
                 <source>button.find</source>
                 <target>Etsi</target>
             </trans-unit>
+            <trans-unit id="browser.title">
+                <source>browser.title</source>
+                <target>POMPdeLUX - Pidätkö sinäkin lastenvaatteista</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

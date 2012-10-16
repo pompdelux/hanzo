@@ -3,11 +3,13 @@
 namespace Hanzo\Bundle\EventsBundle\Event;
 
 use Criteria;
+use Propel;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
 use Hanzo\Bundle\ServiceBundle\Services\AxService;
@@ -43,22 +45,49 @@ class CheckoutListener
 
         $attributes = $order->getAttributes();
 
-        // add hostess discount if nessesary
+        // calculate hostess discount if nessesary
         if ($order->getEventsId()) {
             $customer = $order->getCustomers();
             $hanzo = Hanzo::getInstance();
 
 
             if (isset($attributes->event->is_hostess_order) && !$order->getInEdit()) {
+                $discount = 0;
                 $add_discount = true;
 
-                $discount = 0;
+                // make sure all orders are ok
+                define('ACTION_TRIGGER', __METHOD__);
+                $cleanup_service = $hanzo->container->get('deadorder_manager');
+                $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
 
-                $c = new Criteria;
-                $c->add(OrdersPeer::STATE, Orders::STATE_PENDING, Criteria::GREATER_EQUAL);
-                $c->addOr(OrdersPeer::ID, $order->getId(), Criteria::EQUAL);
+                $orders = OrdersQuery::create()
+                    ->filterByEventsId($order->getEventsId())
+                    ->filterById($order->getId(), Criteria::NOT_EQUAL)
+                    ->filterByBillingMethod('dibs')
+                    ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
+                    ->find($con)
+                ;
 
-                foreach ($order->getEvents()->getOrderss($c) as $o) {
+                foreach ($orders as $order_item) {
+                    $status = $cleanup_service->checkOrderForErrors($order_item);
+
+                    if (isset($status['is_error'])) {
+                        if ($status['is_error'] === true) {
+                            Tools::log($status);
+                            $order_item->delete();
+                        }
+                    }
+                }
+
+                $orders = OrdersQuery::create()
+                    ->filterByEventsId($order->getEventsId())
+                    ->filterByState(Orders::STATE_PENDING, Criteria::GREATER_EQUAL)
+                    ->_or()
+                    ->filterById($order->getId())
+                    ->find($con)
+                ;
+
+                foreach ($orders as $o) {
                     $total = $o->getTotalProductPrice();
 
                     // TODO: not hardcoded !

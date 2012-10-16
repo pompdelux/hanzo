@@ -126,7 +126,7 @@ var account = (function($) {
         if (c == 'ok') {
           document.location.href = href;
         }
-      }, { maxWidth : '550px' });
+      }, { maxWidth : '600px' });
     });
 
     $('a.delete').on('click', function(event) {

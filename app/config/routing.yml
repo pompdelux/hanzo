@@ -88,9 +88,14 @@ bazinga_exposetranslation_js:
         _format: js
 
 
+# leverage the template controller in the FrameworkBundle to show static pages:
+# @see http://coderwall.com/p/pj1opa
 _splash:
     pattern:  /
-    defaults: { _controller: HanzoCMSBundle:Default:splash }
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: HanzoCMSBundle:Default:splash.html.twig
+
 
 # Internal routing configuration to handle ESI
 #_internal:

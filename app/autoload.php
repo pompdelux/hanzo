@@ -21,8 +21,8 @@ $loader->registerNamespaces(array(
     'Propel'           => __DIR__.'/../vendor/bundles',
     'Snc'              => __DIR__.'/../vendor/bundles',
     'Predis'           => __DIR__.'/../vendor/predis/lib',
-    'Geocoder'         => __DIR__.'/../vendor/Geocoder/src',
     'SimpleThings'     => __DIR__.'/../vendor/bundles',
+    'Geocoder'         => __DIR__.'/../vendor/Geocoder/src',
     'Smesg'            => __DIR__.'/../vendor/Smesg/src',
     'Bazinga'          => __DIR__.'/../vendor/bundles',
 ));

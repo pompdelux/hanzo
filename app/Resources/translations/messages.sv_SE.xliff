@@ -196,6 +196,10 @@
                 <source>button.find</source>
                 <target>Hitta</target>
             </trans-unit>
+            <trans-unit id="browser.title">
+                <source>browser.title</source>
+                <target>POMPdeLUX - Tokig i barnkläder!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -36,6 +36,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
         $prices = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)
             ->filterByDomainsId($domain_id)
+            ->filterByFromDate(time(), Criteria::LESS_EQUAL)
             ->orderByProductsId()
             ->orderByFromDate(Criteria::DESC)
             ->orderByToDate(Criteria::DESC)

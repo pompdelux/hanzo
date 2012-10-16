@@ -81,6 +81,10 @@ ul#mannequin-menu.tabs li a.current:hover {
   height: 15px;
 }
 
+#mannequin-layer-0 {
+  z-index: 3;
+}
+
 #mannequin-doll {
   position: fixed;
   margin-left: 550px;
@@ -88,7 +92,9 @@ ul#mannequin-menu.tabs li a.current:hover {
   margin-bottom: 10px;
 }
 #mannequin-doll .layers {
+  z-index: 2;
   position: relative;
+  background-color: #fff;
 }
 #mannequin-doll .layers .layer {
   position: absolute;
@@ -103,8 +109,9 @@ ul#mannequin-menu.tabs li a.current:hover {
 }
 
 #mannequin-basket {
-  min-height: 100px;
-  width: 590px;
+  min-height: 120px;
+  width: 650px;
+  display: none;
 }
 #mannequin-basket td {
   padding: 3px;
@@ -171,4 +178,87 @@ ul#mannequin-menu.tabs li a.current:hover {
 #mannequin-basket .in-cart td.actions {
   background: #ffffff url(http://www.pompdelux.dk/shared-fx/images/famfamfam/bullet_green.png) no-repeat center right;
   padding-right: 15px;
+}
+
+#mannequin-mini-basket {
+  position: absolute;
+  background-image: url(/fx/images/535354.png);
+  top: 100px;
+  left: 190px;
+  width: 230px;
+  padding: 5px;
+  display: none;
+  z-index: 1000;
+}
+#mannequin-mini-basket.under {
+  background-image: none;
+  /*top: -25px;*/
+  left: -30px;
+  z-index: 1;
+  width: 190px;
+  display: none;
+}
+#mannequin-mini-basket.under.bg {
+  background-color: #535354;
+}
+
+#mannequin-mini-basket div {
+  padding: 5px;
+  background-color: #fff;
+  overflow: hidden;
+}
+#mannequin-mini-basket h4 {
+  font-size: 0.9em;
+  background-color: #fff;
+  padding: 2px 0;
+  text-align: center;
+  margin-bottom: 2px;
+  overflow: hidden;
+}
+#mannequin-mini-basket h4 i {
+  font-size: 2.6em;
+  padding-left: 5px;
+  cursor: pointer;
+}
+#mannequin-mini-basket.under h4 {
+  text-align: left;
+}
+#mannequin-mini-basket.under h4 span {
+  padding-left: 10px;
+  display: none;
+}
+#mannequin-mini-basket.under .wrapper {
+  display: none;
+}
+#mannequin-mini-basket p {
+  border-top: 1px solid #231F20;
+  text-align: right;
+}
+#mannequin-mini-basket p,
+#mannequin-mini-basket a {
+  overflow: hidden;
+  display: block;
+  font-size: 0.67em;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+#mannequin-mini-basket p,
+#mannequin-mini-basket a span {
+  color: #231F20;
+  font-weight: bold;
+}
+#mannequin-mini-basket a.add,
+#mannequin-mini-basket a.remove {
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tooltip {
+  display: none;
+  background-image: url(/fx/images/a5b3be.png);
+  padding: 5px;
+  color: #fff;
+  z-index: 1000;
 }

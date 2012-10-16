@@ -906,7 +906,6 @@ class EventsController extends CoreController
         $order = OrdersPeer::getCurrent();
         if ($order instanceof Orders) {
             $order->setEventsId(null);
-            $order->clearAttributesByNS('purchase');
 
             $request = $this->getRequest();
 
@@ -933,6 +932,7 @@ class EventsController extends CoreController
                     $goto = '_checkout';
                 }
             } else {
+                $order->clearAttributesByNS('purchase');
                 $order->setEventsId($id);
             }
 

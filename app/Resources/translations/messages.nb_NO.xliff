@@ -201,6 +201,10 @@
                 <source>button.find</source>
                 <target>Finn</target>
             </trans-unit>
+            <trans-unit id="browser.title">
+                <source>browser.title</source>
+                <target>POMPdeLUX - Hekta på barneklær!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

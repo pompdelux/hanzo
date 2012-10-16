@@ -318,7 +318,7 @@ class Tools
      */
     public static function getInEditWarning()
     {
-        $hanzo = Hanzo::getInstance();
+        $hanzo = self::getHanzoInstance();
         $session = $hanzo->getSession();
         $trans = $hanzo->container->get('translator');
         $router = $hanzo->container->get('router');
@@ -349,26 +349,26 @@ class Tools
      */
     public static function fxImageTag($src, $preset = '', array $params = array())
     {
-        $src = Hanzo::getInstance()->get('core.cdn') . 'fx/' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {
-        $src = Hanzo::getInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageUrl($src, $preset = '50x50', array $params = array())
     {
-        $src = Hanzo::getInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
         return self::imagePath($src, $preset);
     }
 
 
     public static function imageTag($src, array $params = array())
     {
-        $src = Hanzo::getInstance()->get('core.cdn') . '' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn') . '' . $src;
         return self::generateImageTag(self::imagePath($src), $params);
     }
 
@@ -395,7 +395,7 @@ class Tools
         $dir  = dirname($url['path']);
 
         $url['path'] = $dir . '/' . $preset . $file;
-        $url['query'] = Hanzo::getInstance()->get('core.assets_version', 'z4');
+        $url['query'] = self::getHanzoInstance()->get('core.assets_version', 'z4');
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
@@ -424,5 +424,16 @@ class Tools
         }
 
         return '<img src="' . $src . '"' . $extra . '>';
+    }
+
+    protected static function getHanzoInstance()
+    {
+        static $hanzo;
+
+        if (empty($hanzo)) {
+            $hanzo = Hanzo::getInstance();
+        }
+
+        return $hanzo;
     }
 }
