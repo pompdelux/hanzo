@@ -40,10 +40,10 @@ class ProxyUser implements UserInterface
     // NICETO: should not be hardcoded
     private $admins = array(
         'hd@pompdelux.dk',
+        'lv@pompdelux.dk',
         'hf@bellcom.dk',
         'un@bellcom.dk',
         'mmh@bellcom.dk',
-        'ulrik+pomp@bellcom.dk',
         'andersbryrup@gmail.com',
         'hanzo@bellcom.dk',
     );
@@ -54,7 +54,9 @@ class ProxyUser implements UserInterface
         'sj@pompdelux.dk',
         'nj@pompdelux.dk',
         'pc@pompdelux.dk',
+        // admins
         'hd@pompdelux.dk',
+        'lv@pompdelux.dk',
      );
 
     public function __construct(ModelUser $user)
