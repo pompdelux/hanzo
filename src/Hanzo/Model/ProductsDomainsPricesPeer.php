@@ -29,24 +29,31 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
 
     public static function getProductsPrices(array $products)
     {
-        $hanzo = Hanzo::getInstance();
-        $domain_id = $hanzo->get('core.domain_id');
+        $hanzo      = Hanzo::getInstance();
+        $customer   = CustomersPeer::getCurrent();
+        $domain_id  = $hanzo->get('core.domain_id');
         $domain_key = $hanzo->get('core.domain_key');
 
-        $prices = ProductsDomainsPricesQuery::create()
+        $query = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)
             ->filterByDomainsId($domain_id)
             ->filterByFromDate(time(), Criteria::LESS_EQUAL)
             ->orderByProductsId()
             ->orderByFromDate(Criteria::DESC)
             ->orderByToDate(Criteria::DESC)
-            ->find()
         ;
 
+        if ((1 < $customer->getGroupsId())) {
+            if (!$hanzo->get('webshop.disable_discounts')) {
+                $query->filterByToDate(null, Criteria::ISNULL);
+            }
+        }
+
+        $prices = $query->find();
+
+        $override_vat     = false;
         $override_vat_pct = 0;
-        $override_vat = false;
         if ('COM' == $domain_key) {
-            $customer = CustomersPeer::getCurrent();
             if (!$customer->isNew()) {
                 $country = CountriesQuery::create()
                     ->useAddressesQuery()
@@ -57,7 +64,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
                 ;
 
                 if (($country instanceof Countries) && !$country->getVat()) {
-                    $override_vat = true;
+                    $override_vat     = true;
                     $override_vat_pct = 0;
                 }
             }
@@ -66,25 +73,24 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
         $data = array();
         foreach ($prices as $price) {
             $key = $price->getToDate() ? 'sales' : 'normal';
-
             $vat = $price->getVat();
-            $p = $price->getPrice() + $vat;
+            $p   = $price->getPrice() + $vat;
 
             if ($override_vat) {
                 $vat = 0;
-                $p = $price->getPrice();
+                $p   = $price->getPrice();
                 if ($override_vat_pct > 0) {
                     $save_price = $p;
-                    $p = $p * (($override_vat_pct / 100) + 1);
-                    $vat = $price - $save_price;
+                    $p          = $p * (($override_vat_pct / 100) + 1);
+                    $vat        = $price - $save_price;
                 }
             }
 
             $data[$price->getProductsId()][$key] = array(
-                'currency' => $price->getCurrencyId(),
+                'currency'  => $price->getCurrencyId(),
                 'raw_price' => $price->getPrice(),
-                'price' => number_format($p, 4, '.', ''),
-                'vat' => $vat,
+                'price'     => number_format($p, 4, '.', ''),
+                'vat'       => $vat,
                 'formattet' => Tools::moneyFormat($p)
             );
         }
