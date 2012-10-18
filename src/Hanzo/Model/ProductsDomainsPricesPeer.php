@@ -43,11 +43,11 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
             ->orderByToDate(Criteria::DESC)
         ;
 
-        if ((1 < $customer->getGroupsId())) {
-            if (!$hanzo->get('webshop.disable_discounts')) {
-                $query->filterByToDate(null, Criteria::ISNULL);
-            }
-        }
+        // if ((1 < $customer->getGroupsId())) {
+        //     if (!$hanzo->get('webshop.disable_discounts')) {
+        //         $query->filterByToDate(null, Criteria::ISNULL);
+        //     }
+        // }
 
         $prices = $query->find();
 
