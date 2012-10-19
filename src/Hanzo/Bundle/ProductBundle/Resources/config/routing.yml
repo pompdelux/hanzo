@@ -13,3 +13,9 @@ product_set:
         image_id: 1
     requirements:
         image_id: \d+
+
+product_custom_set:
+    pattern:    /product/bundle/set/{set}
+    defaults:
+        _controller: HanzoProductBundle:Bundle:custom
+        set: 1
