@@ -109,16 +109,8 @@ class DibsController extends CoreController
             }
         }
 
-        Propel::setForceMasterConnection(TRUE);
-
         $order = OrdersPeer::getCurrent();
-
-        $settings = $api->buildFormFields(
-            $order
-        );
-
-        Propel::setForceMasterConnection(FALSE);
-
+        $settings = $api->buildFormFields($order);
         $cardtypes = $api->getEnabledPaytypes();
 
         if ( $isJson )
