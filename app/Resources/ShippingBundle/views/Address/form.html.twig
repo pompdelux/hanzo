@@ -1,0 +1,4 @@
+<form action="/account/{{ type }}/address/save" method="post" {{ form_enctype(form) }} class="address {{ type }}">
+  <h3>{{ (type~'_address_header')|trans({}, 'account') }}</h3>
+  {{ form_widget(form) }}
+</form>
