@@ -75,6 +75,8 @@ class CouponController extends CoreController
                 $coupon->save();
 
                 $order->setDiscountLine($translator->trans('coupon', [], 'checkout'), -$discount, 'coupon.code');
+                $order->setAttribute('amount', 'coupon', $discount);
+                $order->setAttribute('code', 'coupon', $coupon->getCode());
                 $order->save();
 
                 if ($this->getFormat() == 'json') {
@@ -86,13 +88,13 @@ class CouponController extends CoreController
 
                 return $this->redirect($this->generateUrl('_checkout'));
             }
-        }
 
-        if ($this->getFormat() == 'json') {
-            return $this->json_response(array(
-                'status'  => false,
-                'message' => ''
-            ));
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status'  => false,
+                    'message' => ''
+                ));
+            }
         }
 
         return $this->render('DiscountBundle:Coupon:form.html.twig', array(
