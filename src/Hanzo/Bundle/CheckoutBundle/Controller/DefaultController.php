@@ -38,6 +38,12 @@ class DefaultController extends CoreController
         // trigger event, handles discounts and other stuff.
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
+
+        if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
         $order->save();
 
         return $this->render('CheckoutBundle:Default:index.html.twig', array(
@@ -196,7 +202,7 @@ class DefaultController extends CoreController
         $methods = $shippingApi->getMethods();
 
         if ( !isset($methods[$shippingMethodId]) ) {
-            throw new Exception( $t->trans('err.unknown_shipping_method', array(), 'checkout') );
+            throw new Exception( $t->trans('err.unknown_shipping_method', [], 'checkout') );
         }
 
         $method = $methods[$shippingMethodId];
@@ -227,7 +233,7 @@ class DefaultController extends CoreController
         if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
         {
             $trans = $this->get('translator');
-            throw new Exception( $trans->trans('order.state_pre_payment.locked', array(), 'checkout') );
+            throw new Exception( $trans->trans('order.state_pre_payment.locked', [], 'checkout') );
         }
 
         $data = $request->get('data');
@@ -259,7 +265,7 @@ class DefaultController extends CoreController
         {
             return $this->json_response(array(
                 'status' => false,
-                'message' => $trans->trans('order.state_pre_payment.locked', array(), 'checkout'),
+                'message' => $trans->trans('order.state_pre_payment.locked', [], 'checkout'),
                 'data' => array(
                     'name' => 'payment'
                 ),
@@ -395,7 +401,7 @@ class DefaultController extends CoreController
         $methods = $shippingApi->getMethods();
 
         if ( !isset($methods[ $data['selectedMethod']  ]) ) {
-            throw new Exception( $t->trans('err.unknown_shipping_method', array(), 'checkout') );
+            throw new Exception( $t->trans('err.unknown_shipping_method', [], 'checkout') );
         }
     }
 
@@ -544,9 +550,11 @@ class DefaultController extends CoreController
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);
         }
+
         if (empty($attributes->global->domain_name)) {
             $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
         }
+
         if (empty($attributes->global->domain_key)) {
             $order->setAttribute('domain_key', 'global', $domain_key);
         }
@@ -692,4 +700,14 @@ class DefaultController extends CoreController
 
         return $this->json_response( array('error' => false, 'order' => $orderArray) );
     }
+
+
+    public function testAction()
+    {
+        return $this->render('CheckoutBundle:Default:flow.html.twig', array(
+            'page_type' => 'checkout',
+            'order'     => OrdersPeer::getCurrent()
+        ));
+    }
+
 }
