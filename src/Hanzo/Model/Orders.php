@@ -1314,4 +1314,19 @@ class Orders extends BaseOrders
         return $this;
     }
 
+    /**
+     * figure out if the order is for a hostess or not
+     *
+     * @return boolean
+     */
+    public function isHostessOrder()
+    {
+        $attributes = $this->getAttributes();
+        if (isset($attributes->event->is_hostess_order)) {
+            return true;
+        }
+
+        return false;
+    }
+
 } // Orders
