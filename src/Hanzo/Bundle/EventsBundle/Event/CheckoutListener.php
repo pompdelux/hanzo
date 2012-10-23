@@ -57,27 +57,30 @@ class CheckoutListener
 
                 // make sure all orders are ok
                 define('ACTION_TRIGGER', __METHOD__);
-                $cleanup_service = $hanzo->container->get('deadorder_manager');
                 $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
 
-                $orders = OrdersQuery::create()
-                    ->filterByEventsId($order->getEventsId())
-                    ->filterById($order->getId(), Criteria::NOT_EQUAL)
-                    ->filterByBillingMethod('dibs')
-                    ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
-                    ->find($con)
-                ;
+                try {
+                    $cleanup_service = $hanzo->container->get('deadorder_manager');
 
-                foreach ($orders as $order_item) {
-                    $status = $cleanup_service->checkOrderForErrors($order_item);
+                    $orders = OrdersQuery::create()
+                        ->filterByEventsId($order->getEventsId())
+                        ->filterById($order->getId(), Criteria::NOT_EQUAL)
+                        ->filterByBillingMethod('dibs')
+                        ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
+                        ->find($con)
+                    ;
 
-                    if (isset($status['is_error'])) {
-                        if ($status['is_error'] === true) {
-                            Tools::log($status);
-                            $order_item->delete();
+                    foreach ($orders as $order_item) {
+                        $status = $cleanup_service->checkOrderForErrors($order_item);
+
+                        if (isset($status['is_error'])) {
+                            if ($status['is_error'] === true) {
+                                Tools::log($status);
+                                $order_item->delete();
+                            }
                         }
                     }
-                }
+                } catch(\Exception $e) {}
 
                 $orders = OrdersQuery::create()
                     ->filterByEventsId($order->getEventsId())
