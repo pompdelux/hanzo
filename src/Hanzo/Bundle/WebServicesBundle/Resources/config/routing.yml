@@ -50,7 +50,12 @@ ws_google_maps_consultants_map:
     defaults:
         _controller: WebServicesBundle:RestGoogle:consultants
 
-
 ws_soap_test:
     pattern:  /soaptest/
     defaults: { _controller: WebServicesBundle:Soap:test }
+
+ws_jaiks_callback:
+    pattern: /rest/{version}/jaiks
+    defaults:
+        _controller: WebServicesBundle:Rest:jaiks
+        version: v1
