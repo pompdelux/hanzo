@@ -118,6 +118,7 @@
   'fx/scripts/vegas/jquery.vegas.js'
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
+  'fx/scripts/jaiks/jaiks.min.js'
   'fx/scripts/yatzy.js'
   'fx/scripts/dialoug.js'
   'fx/scripts/colorbox.js'
@@ -156,6 +157,7 @@
 
 {% render 'NewsletterBundle:Default:js' %}
 
+<script>if (jaiks) {jaiks.exec();}</script>
 {{ google_analytics_tag() }}
 </body>
 </html>
