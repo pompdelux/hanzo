@@ -3,9 +3,6 @@
   <div class="msg hidden"></div>
 
   <p>{{ 'payment.text'|trans({}, 'checkout') }}</p>
-
-  {% render 'DiscountBundle:Coupon:block' %}
-
   {% render 'PaymentBundle:Dibs:block' %}
   {% render 'PaymentBundle:Gothia:block' %}
   {% render 'PaymentBundle:PayByBill:block' %}
