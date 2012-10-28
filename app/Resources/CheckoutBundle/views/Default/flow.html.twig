@@ -10,235 +10,27 @@
 
 <h1>Checkud</h1>
 
-<h2>Fragttype</h2>
-<div class="checkout-block">
-  <p>Vælg den rigtige fragttype.</p>
+{% render 'ShippingBundle:Default:block' %}
 
-  <form action="/checkout/set/shipping">
-    <h3>Privatpakke</h3>
-    <p>
-      Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du ændre leveringsadressen ved at klikke på "Ret leveringsadresse".
-    </p>
-    <div>
-      <label for="shipping_method_10">Post Danmark Privat DKK 59,00</label>
-      <input type="radio" name="shipping" id="shipping_method_10" value="10">
-    </div>
-
-    <h3>Erhvervspakke</h3>
-    <p>
-      Har du mulighed for at få din ordre leveret på din arbejdsplads, kan du vælge erhvervspakke. Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).
-    </p>
-    <div>
-      <label for="shipping_method_11">Post Danmark Erhverv DKK 39,00</label>
-      <input type="radio" name="shipping" id="shipping_method_11" value="11">
-    </div>
-
-    <h3>Døgnpost</h3>
-    <p>
-      For at du kan få sendt pakker til Døgnposten, skal du oplyse dit navn og det ID, du valgte ved tilmeldingen til Døgnposten. Oplys Døgnpostens nummer og adresse som leveringsadresse og din egen adresse som betalingsadresse.<br>
-      <a href="http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx" rel="external">» Læs mere om Døgnpost</a>
-    </p>
-    <div>
-      <label for="shipping_method_12">Døgnpost DKK 49,00</label>
-      <input type="radio" name="shipping" id="shipping_method_12" value="12">
-    </div>
-  </form>
-
-  <p>Alle ordre pålægges et ekspeditionsgebyr på 0 DKK</p>
+<h2>{{ 'addresses'|trans({}, 'checkout') }}</h2>
+<div class="checkout-block" id="address-block">
+  {% render 'ShippingBundle:Address:form' with {type: 'payment'} %}
+  {% render 'ShippingBundle:Address:form' with {type: 'CURRENT-SHIPPING-ADDRESS'} %}
 </div>
 
 
-<h2>Adresser</h2>
-<div class="checkout-block">
-  <form action="/checkout/set/address" id="address-form">
-    <ul class="left">
-      <li><h3>Privatsadresse</h3></li>
-      <li>
-        <label>Fornavn:</label>
-        <input type="text" name="" value="">
-      </li>
-      <li>
-        <label>Efternavn:</label>
-        <input type="text" name="" value="">
-      </li>
-      <li>
-        <label>Addresse:</label>
-        <input type="text" name="" value="">
-      </li>
-      <li>
-        <label>Postnummer:</label>
-        <input type="text" name="" value="">
-      </li>
-      <li>
-        <label>By:</label>
-        <input type="text" name="" value="">
-      </li>
-      <li>
-        <label>Land:</label>
-        <input type="text" name="" value="" readonly>
-      </li>
-    </ul>
-    <ul class="left">
-      <li>
-        <h3 class="toggle">Leveringsadresse</h3>
-        <ul>
-          <li>
-            <label>Fornavn:</label>
-            <input type="text" name="" value="">
-          </li>
-          <li>
-            <label>Efternavn:</label>
-            <input type="text" name="" value="">
-          </li>
-          <li>
-            <label>Firmanavn:</label>
-            <input type="text" name="" value="">
-          </li>
-          <li>
-            <label>Addresse:</label>
-            <input type="text" name="" value="">
-          </li>
-          <li>
-            <label>Postnummer:</label>
-            <input type="text" name="" value="">
-          </li>
-          <li>
-            <label>By:</label>
-            <input type="text" name="" value="">
-          </li>
-          <li>
-            <label>Land:</label>
-            <input type="text" name="" value="" readonly>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </form>
-</div>
+{% render 'PaymentBundle:Default:block' %}
 
 
-<h2>Betalingsmåde</h2>
-<div class="checkout-block">
-  <form action="/checkout/set/payment" id="payment-form">
-    <p>Vælg hvordan du vil betale denne ordre.</p>
-
-    <h3>Dibs</h3>
-    <ul class="payment-methods" id="payment-method-dibs">
-      <li>
-        <input type="radio" value="dibs[DK]" id="dibs_card_type_DK" name="paytype">
-        <label for="dibs_card_type_DK"><img alt="DK" src="http://cdn.pdl.bc/fx/images/icons/dankort.jpg"> Dankort</label>
-      </li>
-      <li>
-        <input type="radio" value="dibs[VISA]" id="dibs_card_type_VISA" name="paytype">
-        <label for="dibs_card_type_VISA"><img alt="VISA" src="http://cdn.pdl.bc/fx/images/icons/visa.jpg">  Visa</label>
-      </li>
-      <li>
-        <input type="radio" value="dibs[ELEC]" id="dibs_card_type_ELEC" name="paytype">
-        <label for="dibs_card_type_ELEC"><img alt="ELEC" src="http://cdn.pdl.bc/fx/images/icons/visaelectron.jpg">  Visa Electron</label>
-      </li>
-      <li>
-        <input type="radio" value="dibs[MC]" id="dibs_card_type_MC" name="paytype">
-        <label for="dibs_card_type_MC"><img alt="MC" src="http://cdn.pdl.bc/fx/images/icons/mastercard.jpg">  Mastercard/Eurocard</label>
-      </li>
-    </ul>
-
-    <h3>Gothia</h3>
-    <ul class="payment-methods" id="payment-method-gothia">
-      <li>
-        <input type="radio" value="gothia" id="gothia" name="paytype">
-        <label for="gothia"><img alt="gothia" src="{{ cdn }}fx/images/icons/gothia.gif"> {{ 'payment.gothia.desc'|trans({}, 'checkout') }}</label>
-      </li>
-    </ul>
-
-    <h3>Bankoverførsel</h3>
-    <ul class="payment-methods" id="payment-method-cod">
-      <li>
-        <p><b>Bemærk:</b> Bankoverførsel må <b><u>kun</u></b> benyttes ved manglende internet forbindelse.</p>
-
-        <input type="radio" value="cod" id="pbb" name="paytype">
-        <label for="pbb">Bankoverførsel</label>
-      </li>
-    </ul>
-  </form>
-</div>
-
-
-
-<h2>Godkend</h2>
+<h2>{{ 'confirm.title'|trans({}, 'checkout') }}</h2>
 <div id="checkout-block-summery" class="checkout-block" style="display: block; ">
-
-  <table class="product-table">
-    <thead>
-      <tr>
-        <th class="left">Produkt(er)</th>
-        <th class="right">Afsendes senest</th>
-        <th class="right">Pris</th>
-        <th class="center">Antal</th>
-        <th class="right">Samlet Beløb</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th class="group">Boy</th>
-      </tr>
-      <tr>
-        <td class="image">
-          <img src="http://cdn.pdl.bc/images/products/thumb/60x60,Alban-LS-SHIRT_basket_Navy.jpg?123123" alt="Alban LS SHIRT" title="Alban LS SHIRT">
-          <div class="info" data-product_id="9" data-confirmed="">
-            <a href="/app_dev.php/da_DK/forside/webshop/boy-104-152-cm/shirts-polos/8/alban-ls-shirt">Alban LS SHIRT</a>
-            <div class="size">
-              <label>Size:</label>
-              <span>104</span>
-            </div>
-            <div class="color">
-              <label>Color:</label>
-              <span>Navy</span>
-            </div>
-          </div>
-        </td>
-        <td class="right date"></td>
-        <td class="right price">DKK 139,00</td>
-        <td class="right quantity">1</td>
-        <td class="right total">DKK 139,00</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <table class="product-table total">
-    <tbody>
-      <tr>
-        <td>Varer i alt</td>
-        <td class="right">DKK 139,00</td>
-      </tr>
-      <tr>
-        <td>Momsbeløb</td>
-        <td class="right">DKK 27,80</td>
-      </tr>
-      <tr>
-        <td>Post Danmark Privat</td>
-        <td class="right">DKK 59,00</td>
-      </tr>
-      <tr>
-        <td>Rabat:</td>
-        <td class="right">DKK -27,80</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td>Samlet beløb</td>
-        <td class="right">DKK 170,20</td>
-      </tr>
-    </tfoot>
-  </table>
-
-  <div class="notice">
-    <strong>Bemærk:</strong> Hvis din ordre indeholder varer med afsendelsesdatoer, så afsender vi først din ordre, når alle varer er på vores lager.
-  </div>
+  {% render 'CheckoutBundle:Default:summery' %}
 </div>
 
-<div id="">
-  <a class="button left" href="/app_dev.php/da_DK/basket">Tilbage</a>
-  <a class="button right" id="checkout-execute" href="#">Gå til betaling</a>
+<div id="checkout-buttons">
+  <a class="button left" href="{{ path('basket_view') }}">{{ 'button.back'|trans({}, 'checkout') }}</a>
+  <a class="button left edit" href="{{ path('_checkout') }}">{{ 'button.edit'|trans({}, 'checkout') }}</a>
+  <a class="button right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }}</a>
 </div>
 
 
@@ -254,28 +46,32 @@
   padding:  5px;
   margin-top: 20px;
 }
-#address-form {
+form.address {
+  float: left;
   overflow: hidden;
+  margin-right: 40px;
 }
-#address-form label {
+form.address label {
   display: block;
   width: 110px;
   float: left;
 }
-#address-form ul {
-  margin: 0 40px 0 10px;
-  padding: 0;
-}
-#address-form ul ul {
-  margin: 0;
-}
-#address-form li {
-  overflow: hidden;
-  padding: 4px 0;
+#body-checkout #main form.address>h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
-#body-checkout div.notice {
+#body-checkout div>div {
+  overflow: hidden;
+  padding: 3px;
+}
+#body-checkout #main {
+  padding: 20px;
+}
+
+#address-block .confirm {
   margin-top: 20px;
+  clear: both;
 }
 </style>
 
@@ -286,6 +82,156 @@
 {% block javascript %}
 <script type="text/javascript">
 (function($, undefined){
+
+  // zip with auto city
+  $(document).on('focusout', 'input.auto-city', function(event) {
+    var $this = $(this);
+    $this.css('border', '1px solid #231F20');
+    dialoug.loading($this);
+
+    var value = $(this).prop('value');
+    if ('' == value) {
+      return;
+    }
+
+    $.getJSON(base_url+'service/get-city-from-zip/'+value, function(response) {
+      var $city = $this.closest('div#form').find('input#form_city').first();
+
+      if (response.status) {
+        $city.val(response.data.city);
+      } else {
+        $this.css('border', '2px solid #a10000');
+        $this.val('');
+        $city.val('');
+        $this.focus();
+      }
+
+      dialoug.stopLoading();
+    });
+  });
+
+  $('#shipping-block input').on('change', function(event) {
+    event.preventDefault();
+    $(document).trigger('shipping.method.changed', this);
+  });
+
+  $('#payment-block input').on('change', function(event) {
+    event.preventDefault();
+    $(document).trigger('payment.method.changed', this);
+  });
+
+  // catch shipping method changes
+  $(document).on('shipping.method.changed', function(event, element) {
+    /**
+     * 1: opdater ordre med leveringsmetode
+     * 2: få adresseformen opdateret
+     * 3: få ordretotalen opdateret
+     * 4: overdrag til næste step (betaling)
+     */
+
+    var $form = $(element).closest('form');
+    var method = 'shipping';
+
+    switch (element.value) {
+      case '11':
+        method = 'company_shipping';
+        break;
+      case '12':
+        method = 'overnightbox';
+        break;
+    }
+
+    dialoug.loading($('#shipping-block').next('h2'), '', 'append');
+
+    jaiks.add('/checkout/shipping/set/method', function() {}, {method : element.value});
+    jaiks.add('/checkout/shipping/address/'+method+'/form', checkout.handleShippingMethodUpdates);
+    jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
+    jaiks.exec();
+  });
+
+
+  $(document).on('payment.method.changed', function(event, element) {
+    /**
+     * 1: opdater ordre med betalingsmetode
+     * 2: få ordretotalen opdateret
+     * 3: overdrag til nsæte step (validering)
+     */
+    dialoug.loading($('#payment-block').prev('h2'), '', 'append');
+
+    var $ul = $(element).closest('ul');
+
+    jaiks.add('/checkout/payment/set/method', function() {}, {
+      method : element.value,
+      provider : $ul.data('provider')
+    });
+    jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
+    jaiks.exec();
+  });
+
+  $(document).on('click', 'a#checkout-execute', function(event) {
+    event.preventDefault();
+
+    var address_templates = {
+        'default' : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+        '11' : '%company_name%<br>Att: %first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
+        '12' : '%first_name% %last_name%<br>%postal_code% %city%<br>Box: %address_line_1%'
+    }
+
+    var shpping_type = $('#shipping-block input:checked').val();
+    var tpl = address_templates[shpping_type] || address_templates['default'];
+
+    var address_errors = {};
+    $('#address-block form').each(function (index, form) {
+      var id = index;
+      $('input, select', form).each(function (index, element) {
+        var field = element.name.match(/\[([a-z]{1}[a-z_0-9]+)\]/);
+        if (field && (element.value == '')) {
+          address_errors[id][field] = 'missing';
+        }
+      });
+    });
+
+console.log(address_errors);
+    var address_confirm = $('#address-block div.confirm');
+
+    if ((address_confirm.length == 0) || ($('input::checked', address_confirm).length == 0)) {
+        if (address_confirm.length == 0) {
+          $('#address-block').append('<div class="confirm"><h3>Godkend adresserne</h3><input type="checkbox" name="addresses_confirmed" id="addresses-confirmed" value="1"> <label for="addresses-confirmed">Ja, adresserne herover er korrekte.</label></div>');
+        }
+      $('html,body').animate({scrollTop: $('#address-block').offset().top});
+    }
+
+    // $('#main form').each(function(index, form) {
+    //   console.log($(form).attr('action'));
+    //   //console.log($(form).serialize());
+    // });
+  });
+
+  var checkout = (function($, undefined) {
+    var pub = {};
+
+    pub.handleShippingMethodUpdates = function(response) {
+      response = response.response;
+      if (response.status) {
+        $('#address-block form:nth-child(2)').replaceWith(response.data.html);
+        $(document).trigger('shipping.address.changed');
+      }
+    };
+
+    pub.handleSummeryUpdates = function(response) {
+      response = response.response;
+      if (response.status) {
+        $('#checkout-block-summery').html(response.data);
+        $(document).trigger('checkout.summery.updated');
+      }
+
+      dialoug.stopLoading();
+    };
+
+    return pub;
+  })(jQuery);
+
+
 })(jQuery);
 </script>
 {% endblock javascript %}

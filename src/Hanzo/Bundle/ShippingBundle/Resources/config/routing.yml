@@ -9,6 +9,11 @@ _shipping_address_form:
         _controller: ShippingBundle:Address:form
 
 _shipping_address_save:
-    pattern: /checkout/shipping/address/{type}/save
+    pattern: /checkout/shipping/set/{type}/address
     defaults:
         _controller: ShippingBundle:Address:process
+
+_shipping_set_method:
+    pattern: /checkout/shipping/set/method
+    defaults:
+        _controller: ShippingBundle:Default:setMethod

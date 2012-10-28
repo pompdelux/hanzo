@@ -1,4 +1,4 @@
-<form action="/account/{{ type }}/address/save" method="post" {{ form_enctype(form) }} class="address {{ type }}">
+<form action="{{ path('_shipping_address_save', {type: type}) }}" method="post" {{ form_enctype(form) }} class="address {{ type }}" data-addresstype="{{ type }}">
   <h3>{{ (type~'_address_header')|trans({}, 'account') }}</h3>
   {{ form_widget(form) }}
 </form>

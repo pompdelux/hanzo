@@ -68,6 +68,8 @@ class RestController extends CoreController
                 $sub_request = $this->get('request')->duplicate([], $call['data'], $route);
 
                 $response = $kernel->handle($sub_request, HttpKernelInterface::SUB_REQUEST)->getContent();
+
+                // we assume that strings starting with "{" is json encoded data
                 if ('{' == substr($response, 0, 1)) {
                     $response = json_decode($response);
                 }

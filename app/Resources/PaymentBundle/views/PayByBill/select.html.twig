@@ -1,0 +1,9 @@
+<h3>{{ 'payment.paybybill.title'|trans({}, 'checkout') }}</h3>
+<ul class="payment-methods" id="payment-method-paybybill" data-provider="paybybill">
+  <li>
+    <p>{{ 'payment.paybybill.text'|trans({}, 'checkout')|raw }}</p>
+
+    <input type="radio" value="paybybill" id="pbb" name="paytype">
+    <label for="pbb">{{ 'payment.paybybill.label'|trans({}, 'checkout') }}</label>
+  </li>
+</ul>

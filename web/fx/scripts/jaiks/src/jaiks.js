@@ -97,6 +97,10 @@ var jaiks = (function ($) {
       $.each(response, function (i, obj) {
         call_stack[obj.action].callback.call(this, obj);
       });
+
+      // reset the stack and count
+      call_stack = {};
+      call_stack_count = 0;
     });
 
     jqxhr.fail(function (jqXHR, textStatus) {

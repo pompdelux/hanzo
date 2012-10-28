@@ -8,6 +8,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
@@ -281,6 +282,18 @@ class CheckoutListener
 
         $customer = $order->getCustomers();
         $hanzo = Hanzo::getInstance();
+
+        // if for some reason a shipping method without data is set, cleanup.
+        if ($order->getDeliveryMethod() && ('' == $order->getDeliveryFirstName())) {
+          OrdersLinesQuery::create()
+            ->filterByType('shipping')
+            ->_or()
+            ->filterByType('shipping.fee')
+            ->filterByOrdersId($order->getId())
+            ->delete()
+          ;
+          $order->setDeliveryMethod(null);
+        }
 
         $discount = 0;
 

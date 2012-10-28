@@ -499,7 +499,7 @@ class DefaultController extends CoreController
         // we only want the masterdata here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent(true);
         $hanzo = Hanzo::getInstance();
         $domain_key = $hanzo->get('core.domain_key');
 
@@ -704,9 +704,27 @@ class DefaultController extends CoreController
 
     public function testAction()
     {
+        $order = OrdersPeer::getCurrent();
+
+        if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
+        // trigger event, handles discounts and other stuff.
+        $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
+
+
+        if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
+        $order->save();
+        $order->reload(true);
+
         return $this->render('CheckoutBundle:Default:flow.html.twig', array(
             'page_type' => 'checkout',
-            'order'     => OrdersPeer::getCurrent()
+            'order'     => $order
         ));
     }
 
