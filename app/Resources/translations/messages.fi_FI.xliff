@@ -166,7 +166,7 @@
             </trans-unit>
             <trans-unit id="buy.set">
                 <source>buy.set</source>
-                <target>Køb hele sættet</target>
+                <target>Osta koko setti</target>
             </trans-unit>
             <trans-unit id="button.back">
                 <source>button.back</source>
