@@ -21,6 +21,17 @@
                     <p>Blijft het probleem zich voordoen of gaat er opnieuw iets fout, dan kun je contact opnemen met de klantenservice via telefoonnummer: +45 8678 7871, of schrijven naar <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="403.title">
+                <source>403.title</source>
+                <target>Oeps!</target>
+            </trans-unit>
+            <trans-unit id="403.description">
+                <source>403.description</source>
+                <target><![CDATA[
+                    <p>Je bent nu beland op de afdeling voor technische problemen, onze excuses daarvoor.</p>
+                    <p>Blijft het probleem zich voordoen of gaat er opnieuw iets fout, dan kun je contact opnemen met de klantenservice via telefoonnummer: +45 8678 7871, of schrijven naar <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
