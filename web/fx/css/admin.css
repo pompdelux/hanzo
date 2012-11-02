@@ -91,7 +91,7 @@ span.flag{
   height: 11px;
   background:url(/fx/images/flags.png) no-repeat
 }
-span.flag.da_DK, span.flag.DK, span.flag.pdldbda {background-position: -16px 0;}
+span.flag.da_DK, span.flag.DK, span.flag.pdldbda, span.flag.default {background-position: -16px 0;}
 span.flag.fi_FI, span.flag.FI, span.flag.pdldbfi1 {background-position: -33px 0;}
 span.flag.en_GB, span.flag.UK {background-position: 0 -11px;}
 span.flag.en_EN, span.flag.COM {background-position: 0 -11px;}
