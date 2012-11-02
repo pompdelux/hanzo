@@ -69,7 +69,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target>	If you wish to shop at POMPdeLUX you have to open an account here on this page.<br /><br />You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order.<br /><br />As a customer at POMPdeLUX you can see your previous orders and find old invoices on My page<br><br><font style="font-weight:bold;color:#A10000;">New customer?</font>]]></target>
+                <target><![CDATA[If you wish to shop at POMPdeLUX you have to open an account here on this page.<br /><br />You will always be able to check and change your order until it is being packed and shipped from our warehouse. You can change colour and size on the items you have ordered, and you can add or cancel items, as long as it says "Pending" next to your order. It is possible to change your order minimum 24 hours after you have placed the order.<br /><br />As a customer at POMPdeLUX you can see your previous orders and find old invoices on My page<br><br><font style="font-weight:bold;color:#A10000;">New customer?</font>]]></target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
