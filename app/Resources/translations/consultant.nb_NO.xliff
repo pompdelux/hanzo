@@ -122,6 +122,14 @@
                 <source>consultant.newsletter.history.header.text</source>
                 <target>Historikk</target>
             </trans-unit>
+            <trans-unit id="consultant.newsletter.history.processed.to">
+                <source>consultant.newsletter.history.processed.to</source>
+                <target>(Skrevet %date% til %count% brukere)</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.not.processed">
+                <source>consultant.newsletter.history.not.processed</source>
+                <target>(Er ikke sendt)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

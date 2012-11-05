@@ -37,10 +37,15 @@
 {% if history %}
   <ul id="history">
     {% for newsletter in history %}
-      <li><a href="#" class="newsletter">{{ newsletter.subject|raw }} ({{ newsletter.embargo|date("d/m-Y") }})</a>
+      <li>
+        {% if newsletter.sent is defined %}
+        <a href="#" class="newsletter">{{ newsletter.subject|raw }} {{ 'consultant.newsletter.history.processed.to'|trans({'%count%' : newsletter.processed, '%date%' : newsletter.sent|date("d/m-Y h:i:s")|default('')}, 'consultant') }}</a>
+        {% else %}
+        <a href="#" class="newsletter">{{ newsletter.subject|raw }} {{ 'consultant.newsletter.history.not.processed'|trans({}, 'consultant') }}</a>
+        {% endif %}
         <div class="colorbox" style="display:none;">
           <div class="newsletter-history">
-            <h2 class="subject">{{ newsletter.subject|raw }}</h2>
+            <h2 class="subject">{{ newsletter.subject|raw }} ({{ newsletter.processed }})</h2>
             <div class="message">
               {{ newsletter.message|raw }}
             </div>

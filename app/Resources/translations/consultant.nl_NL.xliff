@@ -122,6 +122,14 @@
                 <source>consultant.newsletter.history.header.text</source>
                 <target>Historie</target>
             </trans-unit>
+            <trans-unit id="consultant.newsletter.history.processed.to">
+                <source>consultant.newsletter.history.processed.to</source>
+                <target>(Geplaatst op %date% tot %count% gebruikers)</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.not.processed">
+                <source>consultant.newsletter.history.not.processed</source>
+                <target>(Wordt niet verzonden)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
