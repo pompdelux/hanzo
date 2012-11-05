@@ -361,10 +361,6 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-      <trans-unit id="product.group.unknown">
-        <source>product.group.unknown</source>
-        <target>Ukjent</target>
-      </trans-unit>
     </body>
   </file>
 </xliff>
