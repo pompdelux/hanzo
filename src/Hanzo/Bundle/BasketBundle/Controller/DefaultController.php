@@ -320,6 +320,10 @@ class DefaultController extends CoreController
                 ->findOne()
             ;
 
+            if (!$products2category) {
+                Tools::log($locale.' -> '.$line['products_name']);
+            }
+
             $line['expected_at'] = new \DateTime($line['expected_at']);
 
             $t = $line['expected_at']->getTimestamp();
@@ -340,29 +344,23 @@ class DefaultController extends CoreController
                 '.jpg'
             ;
 
+            // find matching router
+            $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+            $group = $category2group[$products2category->getCategoriesId()];
+
             $line['url'] = '#';
-            if (!$products2category) {
-                Tools::log($locale.' -> '.$line['products_name']);
-                $group = 'product.group.unknown';
-            }else{
-                // find matching router
-                $key = '_' . $locale . '_' . $products2category->getCategoriesId();
-                $group = $category2group[$products2category->getCategoriesId()];
+            $master = ProductsQuery::create()->findOneBySku($line['products_name']);
 
-                $master = ProductsQuery::create()->findOneBySku($line['products_name']);
-
-                if ('consultant' == $mode) {
-                    $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
-                } else {
-                    if (isset($router_keys[$key])) {
-                        $line['url'] = $router->generate($router_keys[$key], array(
-                            'product_id' => $master->getId(),
-                            'title' => Tools::stripText($line['products_name']),
-                        ));
-                    }
+            if ('consultant' == $mode) {
+                $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+            } else {
+                if (isset($router_keys[$key])) {
+                    $line['url'] = $router->generate($router_keys[$key], array(
+                        'product_id' => $master->getId(),
+                        'title' => Tools::stripText($line['products_name']),
+                    ));
                 }
             }
-
 
             $products[$group][] = $line;
         }
