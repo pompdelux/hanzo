@@ -73,7 +73,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[När du handlar hos POMPdeLUX ska du vara upprättad som kund här på sidan. <br /><br />Det ger dig bland annat möjlighet att kontrollera och ändra din order fram till att den blir packad och skickad från vårt lager. Du kan ändra färger och storlekar på de varor du har beställt, och du kan lägga till eller radera varor, så länge det står "Väntar" bredvid din order, det vill säga i minst 24 timmar efter att du har beställt varorna. <br /><br />Som kund hos POMPdeLUX kan du se dina tidigare beställningar samt hitta gamla fakturor på Min sida.<br><br><font style="font-weight:bold;color:#A10000;">Är du ny kund?</font>]]></target>
+                <target><![CDATA[När du handlar hos POMPdeLUX ska du vara upprättad som kund här på sidan. <br /><br />Det ger dig bland annat möjlighet att kontrollera och ändra din order fram till att den blir packad och skickad från vårt lager. Du kan ändra färger och storlekar på de varor du har beställt, och du kan lägga till eller radera varor, så länge det står "Väntar" bredvid din order, det vill säga i minst 24 timmar efter att du har beställt varorna. <br /><br />Som kund hos POMPdeLUX kan du se dina tidigare beställningar samt hitta gamla fakturor på Min sida.<br><br><h2>Är du ny kund?</h2>]]></target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
@@ -85,7 +85,7 @@
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target>Eksisterende kunde</target>
+                <target><![CDATA[Eksisterende kunde<br>]]></target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>

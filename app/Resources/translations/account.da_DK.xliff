@@ -81,7 +81,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.<br><br><font style="font-weight:bold;color:#A10000;">Er du ny kunde?</font>]]></target>
+                <target><![CDATA[Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.<br><br><h2>Er du ny kunde?</h2>]]></target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
@@ -89,7 +89,7 @@
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target>Eksisterende kunde</target>
+                <target><![CDATA[Eksisterende kunde<br>]]></target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
