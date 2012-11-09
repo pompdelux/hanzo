@@ -159,7 +159,7 @@
                         <li>09 34870870</li>
                     </ul>
                     <ul style="width:400px;">
-                        <li><img src="%cdn%fx/images/creditcards_no.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_fi.png" alt="credit cards" title="credit cards"></li>
                         <li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
                     </ul>]]>
                 </target>
@@ -179,6 +179,12 @@
             <trans-unit id="browser.title">
                 <source>browser.title</source>
                 <target>POMPdeLUX - Pidätkö sinäkin lastenvaatteista</target>
+            </trans-unit>
+            <trans-unit id="create.account.vilkaar.link">
+                <source>create.account.vilkaar.link</source>
+                <target><![CDATA[
+                    <a href="/forside/kundeservice/vilkaar" rel="colorbox">POMPdeLUX vilkår.</a>
+                ]]></target>
             </trans-unit>
         </body>
     </file>
