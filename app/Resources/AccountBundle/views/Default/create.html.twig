@@ -42,7 +42,7 @@
     {{ form_row(form._token) }}
   </div>
   <input class="button off" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
-  {{ 'create.account.vilkaar.link'|trans({}, 'messages') }}
+  {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
 </form>
 
 {% endblock %}
