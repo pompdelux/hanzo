@@ -180,6 +180,12 @@
                 <source>browser.title</source>
                 <target>POMPdeLUX - Pidätkö sinäkin lastenvaatteista</target>
             </trans-unit>
+            <trans-unit id="create.account.vilkaar.link">
+                <source>create.account.vilkaar.link</source>
+                <target><![CDATA[
+                    <a href="/forside/kundeservice/vilkaar" rel="colorbox">POMPdeLUX vilkår.</a>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

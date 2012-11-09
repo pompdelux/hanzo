@@ -194,6 +194,12 @@
                 <source>browser.title</source>
                 <target>POMPdeLUX - Coole kinderkleding</target>
             </trans-unit>
+            <trans-unit id="create.account.vilkaar.link">
+                <source>create.account.vilkaar.link</source>
+                <target><![CDATA[
+                    <a href="/voorpagina/klantenservice/voorwaarden" rel="colorbox">POMPdeLUX Voorwaarden.</a>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
