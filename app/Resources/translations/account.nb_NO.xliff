@@ -24,7 +24,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Jeg ønsker å opprette meg som ny kunde hos POMPdeLUX.</target>
+                <target>Ny kunde</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[Når du handler hos POMPdeLUX skal du være opprettet som kunde her på siden.<br><br>Det gir deg blant annet mulighet for å sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt. Du kan endre farger og størrelser på de varene du har bestilt, og du kan tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter at du har bestilt varene.<br><br>Som kunde hos POMPdeLUX kan du på Min side se dine tidligere bestillinger og finne gamle fakturaer.<br><br><font style="font-weight:bold;color:#A10000;">Er du ny kunde?</font>]]></target>
+                <target><![CDATA[Når du handler hos POMPdeLUX skal du være opprettet som kunde her på siden.<br><br>Det gir deg blant annet mulighet for å sjekke og rette din ordre inntil den blir pakket og sendt fra lageret vårt. Du kan endre farger og størrelser på de varene du har bestilt, og du kan tilføye eller slette varer så lenge det står "Avventer" ved din ordre, det vil si i minimum 24 timer etter at du har bestilt varene.<br><br>Som kunde hos POMPdeLUX kan du på Min side se dine tidligere bestillinger og finne gamle fakturaer.<br><br><h2>Er du ny kunde?</h2>]]></target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>

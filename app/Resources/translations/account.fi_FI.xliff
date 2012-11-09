@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Haluan kirjautua uudeksi asiakkaaksi POMPdeLUXille</target>
+                <target>Uusi asiakas</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -78,7 +78,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on &quot;Odottaa&quot; eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.&lt;br&gt;&lt;br&gt;POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.<br><br><font style="font-weight:bold;color:#A10000;">Oletko uusi asiakas?</font>]]></target>
+                <target><![CDATA[Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on &quot;Odottaa&quot; eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.&lt;br&gt;&lt;br&gt;POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.<br><br><h2>Oletko uusi asiakas?</h2>]]></target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>

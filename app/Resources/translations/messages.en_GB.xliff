@@ -199,7 +199,7 @@
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[
-                    <a href="/home/customer-service/terms-and-conditions">Terms and conditions</a>
+                    <a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">Terms and conditions</a>
                 ]]></target>
             </trans-unit>
         </body>
