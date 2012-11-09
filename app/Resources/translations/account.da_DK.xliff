@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Jeg ønsker at oprette mig som ny kunde hos POMPdeLUX</target>
+                <target>Ny kunde</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
