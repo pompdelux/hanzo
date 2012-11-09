@@ -48,21 +48,15 @@
             </trans-unit>
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
-                <target>
-                    <h2>Unohditko salasanasi?</h2> <p>Kirjoita sähköpostiosoitteesi alle ja napsauta painiketta ”Jatka”. Muutaman minuutin kuluttua saat POMPdeLUXilta sähköpostiviestin, joka sisältää salasanasi.</p>
-                </target>
+                <target><![CDATA[<h2>Unohditko salasanasi?</h2>Kirjoita sähköpostiosoitteesi alle ja napsauta painiketta ”Jatka”. Muutaman minuutin kuluttua saat POMPdeLUXilta sähköpostiviestin, joka sisältää salasanasi.]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
                 <source>password.forgotten.not_found</source>
-                <target>
-                    <p>Sähköpostiosoitettasi ei valitettavasti löytynyt. Yritä uudestaan ja tarkasta, että olet kirjoittanut sähköpostiosoitteesi oikein.</p> <p>Jos sähköpostiosoite on oikein ja tämä viesti tulee uudelleen esiin, tietojasi ei löydy järjestelmästämme. Ota yhteyttä asiakaspalveluluumme, niin korjaamme asian.</p> <a href="/fi_FI/forside/asiakaspalvelu">» Kundeservice</a>
-                </target>
+                <target><![CDATA[Sähköpostiosoitettasi ei valitettavasti löytynyt. Yritä uudestaan ja tarkasta, että olet kirjoittanut sähköpostiosoitteesi oikein.<br><br>Jos sähköpostiosoite on oikein ja tämä viesti tulee uudelleen esiin, tietojasi ei löydy järjestelmästämme. Ota yhteyttä asiakaspalveluluumme, niin korjaamme asian.<br> <a href="/fi_FI/forside/asiakaspalvelu">» Kundeservice</a>]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
                 <source>password.forgotten.resend</source>
-                <target>
-                    <p>Salasana on lähetty antamaasi sähköpostiosoitteeseen.</p>
-                </target>
+                <target>Salasana on lähetty antamaasi sähköpostiosoitteeseen.</target>
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
@@ -198,7 +192,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><strong>Huomaa:</strong> Jos sinulla on jo tili POMPdeLUXilla, riittää, kun kirjaudut sisään <a href="%url%">Omalle sivullesi </a><br><br>Lisää sivulle omat tietosi (<u>ei</u> mahdollisia yritystietoja).</target>
+                <target><![CDATA[<strong>Huomaa:</strong> Jos sinulla on jo tili POMPdeLUXilla, riittää, kun kirjaudut sisään <a href="%url%">Omalle sivullesi </a><br><br>Lisää sivulle omat tietosi (<u>ei</u> mahdollisia yritystietoja).]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
