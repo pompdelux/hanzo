@@ -84,6 +84,10 @@
                 <source>new.customer</source>
                 <target>Uusi asiakas</target>
             </trans-unit>
+            <trans-unit id="existing.customer">
+                <source>existing.customer</source>
+                <target>Nykyisten asiakas</target>
+            </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
                 <target>Sähköpostiosoite</target>
