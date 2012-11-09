@@ -75,6 +75,10 @@
                 <source>New customer</source>
                 <target>New customer</target>
             </trans-unit>
+            <trans-unit id="new.customer">
+                <source>new.customer</source>
+                <target>New customer</target>
+            </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
                 <target>Existing customer</target>
