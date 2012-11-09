@@ -50,7 +50,7 @@
                 <source>password.forgotten.not_found</source>
                 <target><![CDATA[
                      <p>Vi kunde tyvärr inte hitta e-mailadressen. Prova igen och kontrollera att du har skrivit rätt e-mailadress. Har du skrivit rätt e-mailadress och detta meddelande ändå kommer fram, finns du inte i vårt system. Kontakta vår KUNDSERVICE, då det är möjligt att du har blivit felupprättad.</p>
-                     <a href="/forside/kundservice">» KUNDSERVICE</a>
+                     <a href="/sv_SE/forside/kundservice">» KUNDSERVICE</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">

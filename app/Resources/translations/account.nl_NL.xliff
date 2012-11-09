@@ -42,7 +42,7 @@
                 <target><![CDATA[
                     <p>We konden het e-mailadres dat je ingevuld hebt helaas niet vinden. Probeer het nogmaals en controleer dat je het juiste e-mailadres ingevuld hebt.</p>
                     <p>Heb je het juiste e-mailadres ingevuld en dit bericht blijft verschijnen, dan ben je niet geregistreerd in ons systeem. Neem contact op met de klantenservice – het kan namelijk zijn dat je verkeerd geregistreerd bent.</p>
-                    <a href="/voorpagina/klantenservice">» Klantenservice</a>
+                    <a href="/nl_NL/voorpagina/klantenservice">» Klantenservice</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
