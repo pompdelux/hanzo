@@ -208,7 +208,7 @@
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[
-                    <a href="/forside/kundeservice/vilkar" rel="colorbox">POMPdeLUX vilkår.</a>
+                    <a href="/forside/kundeservice/vilkar">POMPdeLUX vilkår.</a>
                 ]]></target>
             </trans-unit>
         </body>
