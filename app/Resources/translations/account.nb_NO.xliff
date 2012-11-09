@@ -41,7 +41,7 @@
                 <source>password.forgotten.not_found</source>
                 <target><![CDATA[
                     <p>Vi kunne dessverre ikke finne den inntastede e-postadressen. Prøv igjen og kontroller at du har skrevet korrekt e-postadresse. Har du skrevet e-postadressen din korrekt og denne beskjeden fortsetter å komme, finnes du ikke i systemet vårt. Du må kontakte Kundeservice, da det er mulig at du er blitt opprettet på en feil måte.</p>
-                    <a href="/forside/kundeservice">» Kundeservice</a>
+                    <a href="/nb_NO/forside/kundeservice">» Kundeservice</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">

@@ -46,7 +46,7 @@
                 <target><![CDATA[
                     <p>Unfortunately we cannot find your email address. Please try again and check that you type the email address correctly.</p>
                     <p>If you have typed your email address correctly and this message keeps popping up, you are not registered in our system. You should contact our customer service, as it is likely your customer account is created incorrectly.</p>
-                    <a href="/home/customer-service">» Customer service.</a>
+                    <a href="/nl_NL/voorpagina/klantenservice">» Customer service.</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">

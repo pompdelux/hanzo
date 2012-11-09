@@ -58,7 +58,7 @@
                 <target><![CDATA[
                     <p>Vi kunne desværre ikke finde den indtastede e-mailadresse. Prøv igen og kontroller at du har indtastet korrekt e-mailadresse.</p>
                     <p>Har du indtastet din e-mailadresse korrekt og denne besked bliver ved med at komme frem, findes du ikke i vores system. Du skal kontakte kundeservice, da det er muligt, at du er blevet oprettet forkert.</p>
-                    <a href="/forside/kundeservice">» Kundeservice</a>
+                    <a href="/da_DK/forside/kundeservice">» Kundeservice</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
