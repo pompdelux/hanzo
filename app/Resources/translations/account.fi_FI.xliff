@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Haluan kirjautua uudeksi asiakkaaksi POMPdeLUXille</target>
+                <target>Uusi asiakas</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -86,7 +86,7 @@
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target><![CDATA[Nykyisten asiakas<br>]]></target>
+                <target>Nykyisten asiakas</target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>

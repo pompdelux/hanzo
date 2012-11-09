@@ -24,7 +24,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Ik wil me registreren als klant bij POMPdeLUX.</target>
+                <target>Nieuwe klant</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -77,7 +77,7 @@
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target><![CDATA[Bestaande klant<br>]]></target>
+                <target>Bestaande klant</target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
