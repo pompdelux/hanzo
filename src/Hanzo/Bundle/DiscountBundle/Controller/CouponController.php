@@ -37,9 +37,11 @@ class CouponController extends CoreController
 
         if ($request->getMethod() == 'POST') {
             $values = $request->get('form');
+            // handle sub-requests
+            $code = $values ?: $request->get('code');
 
             $coupon = CouponsQuery::create()
-                ->filterByCode($values['code'])
+                ->filterByCode($code)
                 ->filterByActiveFrom(time(), Criteria::GREATER_EQUAL)
                 ->_or()
                 ->filterByActiveFrom(null, Criteria::ISNULL)
@@ -50,6 +52,8 @@ class CouponController extends CoreController
             ;
 
             if (!$coupon instanceof Coupons) {
+                $form->addError(new FormError('invalid.coupon.code'));
+
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status'  => false,
@@ -57,7 +61,6 @@ class CouponController extends CoreController
                     ));
                 }
 
-                $form->addError(new FormError('invalid.coupon.code'));
             } else {
                 $order    = OrdersPeer::getCurrent();
                 $total    = $order->getTotalPrice();

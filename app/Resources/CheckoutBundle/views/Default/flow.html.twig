@@ -16,11 +16,16 @@
 <div class="checkout-block" id="address-block">
   {% render 'ShippingBundle:Address:form' with {type: 'payment'} %}
   {% render 'ShippingBundle:Address:form' with {type: 'CURRENT-SHIPPING-ADDRESS'} %}
+
+  <div class="confirm msg hidden">
+    <h3>Godkend adresserne</h3>
+    <input type="checkbox" name="addresses_confirmed" id="addresses-confirmed" value="1">
+    <label for="addresses-confirmed">Ja, adresserne herover er korrekte.</label>
+  </div>
 </div>
 
-
 {% render 'PaymentBundle:Default:block' %}
-
+{% render 'DiscountBundle:Coupon:block' %}
 
 <h2>{{ 'confirm.title'|trans({}, 'checkout') }}</h2>
 <div id="checkout-block-summery" class="checkout-block" style="display: block; ">
@@ -71,8 +76,27 @@ form.address label {
 
 #address-block .confirm {
   margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #f00;
   clear: both;
 }
+#body-checkout div.msg.error {
+  padding: 20px;
+}
+
+#coupon-block form {
+  overflow: hidden;
+  padding: 20px;
+  margin: 0 20px;
+  border: 1px solid #7B7577;
+}
+#coupon-block form div {
+  float: left;
+}
+#coupon-block #form_code {
+  margin: 0 10px;
+}
+
 </style>
 
 
@@ -80,6 +104,7 @@ form.address label {
 {% endblock %}
 
 {% block javascript %}
+<script type="text/javascript" src="http://v3.javascriptmvc.com/jquery/dist/jquery.formparams.js"></script>
 <script type="text/javascript">
 (function($, undefined){
 
@@ -128,6 +153,8 @@ form.address label {
      * 3: få ordretotalen opdateret
      * 4: overdrag til næste step (betaling)
      */
+    dialoug.loading($('#shipping-block').next('h2'), '', 'append');
+    $('.msg.error').toggleClass('hidden error');
 
     var $form = $(element).closest('form');
     var method = 'shipping';
@@ -140,8 +167,6 @@ form.address label {
         method = 'overnightbox';
         break;
     }
-
-    dialoug.loading($('#shipping-block').next('h2'), '', 'append');
 
     jaiks.add('/checkout/shipping/set/method', function() {}, {method : element.value});
     jaiks.add('/checkout/shipping/address/'+method+'/form', checkout.handleShippingMethodUpdates);
@@ -157,64 +182,139 @@ form.address label {
      * 3: overdrag til nsæte step (validering)
      */
     dialoug.loading($('#payment-block').prev('h2'), '', 'append');
+    $('.msg.error').toggleClass('hidden error');
 
     var $ul = $(element).closest('ul');
 
-    jaiks.add('/checkout/payment/set/method', function() {}, {
-      method : element.value,
-      provider : $ul.data('provider')
-    });
-    jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
+    jaiks.add('/checkout/payment/set/method', function() {}, {method : element.value});
+    jaiks.add('/checkout/summery', checkout.handlePaymentMethodUpdates);
     jaiks.exec();
   });
 
+
   $(document).on('click', 'a#checkout-execute', function(event) {
     event.preventDefault();
+    /**
+     * 1: validering af alle steps
+     * 2: saml og POST alle forms og få deres svar retur
+     */
+    $('.msg.error').toggleClass('hidden error');
 
-    var address_templates = {
-        'default' : '%first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
-        '11' : '%company_name%<br>Att: %first_name% %last_name%<br>%address_line_1%<br>%postal_code% %city%<br>%country%',
-        '12' : '%first_name% %last_name%<br>%postal_code% %city%<br>Box: %address_line_1%'
+    // shipping
+    if (!checkout.getStepStatus('shipping')) {
+      var $block = $('#shipping-block');
+      $('.msg', $block).text('Please choose shipping method').toggleClass('hidden error');
+      $('html,body').animate({ scrollTop : $block.prev('h2').offset().top - 20 });
+      return false;
     }
 
-    var shpping_type = $('#shipping-block input:checked').val();
-    var tpl = address_templates[shpping_type] || address_templates['default'];
+    // payment
+    if (!checkout.getStepStatus('payment')) {
+      var $block = $('#payment-block');
+      $('.msg', $block).text('Please choose payment method').toggleClass('hidden error');
+      $('html,body').animate({ scrollTop : $block.prev('h2').offset().top - 20 });
+      return false;
+    }
 
-    var address_errors = {};
+    var address_errors = {
+      has_errors : false,
+      fields : []
+    };
+
     $('#address-block form').each(function (index, form) {
+      var $form = $(form);
       var id = index;
-      $('input, select', form).each(function (index, element) {
+      $('input, select', $form).each(function (index, element) {
+        var $element = $(element);
+        $element.css({'border': '1px solid #231F20'});
+
         var field = element.name.match(/\[([a-z]{1}[a-z_0-9]+)\]/);
+
         if (field && (element.value == '')) {
-          address_errors[id][field] = 'missing';
+          $element.css({'border': '2px solid #f00'});
+          address_errors.has_errors = true;
+          address_errors.fields.push(field);
         }
       });
     });
 
-console.log(address_errors);
-    var address_confirm = $('#address-block div.confirm');
-
-    if ((address_confirm.length == 0) || ($('input::checked', address_confirm).length == 0)) {
-        if (address_confirm.length == 0) {
-          $('#address-block').append('<div class="confirm"><h3>Godkend adresserne</h3><input type="checkbox" name="addresses_confirmed" id="addresses-confirmed" value="1"> <label for="addresses-confirmed">Ja, adresserne herover er korrekte.</label></div>');
-        }
-      $('html,body').animate({scrollTop: $('#address-block').offset().top});
+    if (address_errors.has_errors) {
+      dialoug.notice(ExposeTranslation.get('js:not.filled.correctly'), 'error', 4000, '#address-block');
+      $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top});
+      return false;
     }
 
-    // $('#main form').each(function(index, form) {
-    //   console.log($(form).attr('action'));
-    //   //console.log($(form).serialize());
-    // });
+    var address_confirm = $('#address-block div.confirm');
+
+    if ($('input::checked', address_confirm).length == 0) {
+      address_confirm.toggleClass('hidden');
+      $('html,body').animate({scrollTop: $('#address-block').offset().top});
+      return false;
+    }
+
+    $('#main form').each(function(index, form) {
+      var $form = $(form);
+
+      if ($form.data('callback')) {
+        var url = $form.attr('action');
+        url = url.replace(/app_(test|dev)\.php\/[a-z]{2}_[a-z]{2}\//i, '');
+        var callback = $form.data('callback');
+        jaiks.add(url, eval('checkout.'+callback), $form.formParams());
+      }
+    });
+
+    jaiks.add('/checkout/payment/process', checkout.processPaymentButton);
+    jaiks.exec();
+
+    return false;
   });
+
+  $(document).on('payment.method.updated', function(event) {
+    $('#coupon-block').removeClass('hidden');
+  });
+
+  var $coupon = $('#coupon-block');
+  $('a', $coupon).on('click', function(event) {
+    event.preventDefault();
+    $(this).next().toggle();
+  });
+
+  $('form', $coupon).on('submit', function(event) {
+    event.preventDefault();
+
+    var $form = $(this);
+    dialoug.loading($('.button', $form));
+
+    jaiks.add('/checkout/coupon/apply', checkout.handleCouponUpdates, {code: $('input#form_code', $form).val()});
+    jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
+    jaiks.exec();
+  });
+
 
   var checkout = (function($, undefined) {
     var pub = {};
+
+    var step_states = {
+      shipping: false,
+      address: true,
+      payment: false
+    };
+
+    pub.setStepStatus = function(step, status) {
+      step_states[step] = status;
+    };
+
+    pub.getStepStatus = function(step) {
+      return step_states[step];
+    }
 
     pub.handleShippingMethodUpdates = function(response) {
       response = response.response;
       if (response.status) {
         $('#address-block form:nth-child(2)').replaceWith(response.data.html);
         $(document).trigger('shipping.address.changed');
+        $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
+        pub.setStepStatus('shipping', true);
       }
     };
 
@@ -226,6 +326,48 @@ console.log(address_errors);
       }
 
       dialoug.stopLoading();
+    };
+
+    pub.handlePaymentMethodUpdates = function(response) {
+      if (response.response.status) {
+        $('html,body').animate({scrollTop: $('#checkout-block-summery').offset().top});
+        $(document).trigger('payment.method.updated');
+        pub.setStepStatus('payment', true);
+      }
+
+      pub.handleSummeryUpdates(response);
+    }
+
+    pub.handleCouponUpdates = function(response) {
+      if (response.response.status) {
+        $('form', $coupon).hide();
+      } else {
+        $('form', $coupon).prepend('<div class="msg error" style="clear:both;">'+response.response.message+'</div>');
+      }
+    }
+
+    pub.validateAddress = function(response) {
+      if (true === pub.getStepStatus('address')) {
+        pub.setStepStatus('address', response.response.status);
+      }
+    };
+
+    pub.processPaymentButton = function(response) {
+      if (pub.getStepStatus('address') &&
+          pub.getStepStatus('payment') &&
+          pub.getStepStatus('shipping')
+      ) {
+
+console.log(response.response.data.url);
+
+        // payment-process-form
+        if (undefined !== response.response.data.url) {
+          document.location.href = response.response.data.url;
+        } else if (undefined !== response.response.data.form) {
+          $('#checkout-buttons').append(response.response.data.form);
+          //$('#checkout-buttons form').submit();
+        }
+      }
     };
 
     return pub;

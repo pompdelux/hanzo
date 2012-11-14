@@ -57,8 +57,8 @@ class DefaultController extends CoreController
             'message' => 'unknown payment method',
         );
 
-        $provider = strtolower($request->get('provider'));
-        $method = $request->get('method');
+        list($provider, $method) = explode(':', $request->get('method'));
+
         $key = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {
@@ -82,6 +82,32 @@ class DefaultController extends CoreController
             'status' => true,
             'message' => '',
         );
+
+        return $this->json_response($response);
+    }
+
+
+    public function getProcessButtonAction()
+    {
+        $response = [
+            'status'  => false,
+            'message' => 'unknown payment method',
+        ];
+
+        $order = OrdersPeer::getCurrent();
+        $provider = strtolower($order->getBillingMethod());
+
+        $key = 'payment.'.$provider.'api';
+
+        if (isset($this->services[$key])) {
+            $api = $this->get($key);
+
+            $response = [
+                'status'  => true,
+                'message' => '',
+                'data'    => $api->getProcessButton($order),
+            ];
+        }
 
         return $this->json_response($response);
     }

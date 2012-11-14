@@ -18,7 +18,9 @@
 
 #dialoug-message.info {}
 #dialoug-message.warning {}
-#dialoug-message.error {}
+#dialoug-message.error {
+  border-color: #f00;
+}
 
 #dialoug-message p {
   background-color: #fff;

@@ -1,8 +1,8 @@
 <h3>{{ 'payment.dibs.title'|trans({}, 'checkout') }}</h3>
-<ul class="payment-methods" id="payment-method-dibs" data-provider="dibs">
+<ul class="payment-methods" id="payment-method-dibs">
 {% if cardtypes.DK %}
   <li>
-    <input type="radio" value="DK" id="dibs_card_type_DK" name="paytype">
+    <input type="radio" value="dibs:DK" id="dibs_card_type_DK" name="paytype">
     <label for="dibs_card_type_DK">
       <img alt="DK" src="{{ cdn }}fx/images/icons/dankort.jpg"> {{ 'payment.dibs.paytype.dk'|trans({}, 'checkout') }}
     </label>
@@ -10,7 +10,7 @@
 {% endif %}
 {% if cardtypes.VISA %}
   <li>
-    <input type="radio" value="VISA" id="dibs_card_type_VISA" name="paytype">
+    <input type="radio" value="dibs:VISA" id="dibs_card_type_VISA" name="paytype">
     <label for="dibs_card_type_VISA">
       <img alt="VISA" src="{{ cdn }}fx/images/icons/visa.jpg">  {{ 'payment.dibs.paytype.visa'|trans({}, 'checkout') }}
     </label>
@@ -18,7 +18,7 @@
 {% endif %}
 {% if cardtypes.ELEC %}
   <li>
-    <input type="radio" value="ELEC" id="dibs_card_type_ELEC" name="paytype">
+    <input type="radio" value="dibs:ELEC" id="dibs_card_type_ELEC" name="paytype">
     <label for="dibs_card_type_ELEC">
       <img alt="ELEC" src="{{ cdn }}fx/images/icons/visaelectron.jpg">  {{ 'payment.dibs.paytype.visa_elec'|trans({}, 'checkout') }}
     </label>
@@ -26,7 +26,7 @@
 {% endif %}
 {% if cardtypes.MC %}
   <li>
-    <input type="radio" value="MC" id="dibs_card_type_MC" name="paytype">
+    <input type="radio" value="dibs:MC" id="dibs_card_type_MC" name="paytype">
     <label for="dibs_card_type_MC">
       <img alt="MC" src="{{ cdn }}fx/images/icons/mastercard.jpg">  {{ 'payment.dibs.paytype.master'|trans({}, 'checkout') }}
     </label>

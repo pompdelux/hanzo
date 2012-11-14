@@ -451,4 +451,15 @@ class DibsApi implements PaymentMethodApiInterface
 
         throw new Exception('DibsApi: unknown currency code: '.$code);
     }
+
+
+    public function getProcessButton(Orders $order)
+    {
+        $fields = '';
+        foreach ($this->buildFormFields($order) as $name => $value) {
+            $fields .= '<input type="hidden" name="'.$name.'" value="'.$value.'" >';
+        }
+
+        return ['form' => '<form name="payment-dibs" id="payment-process-form" action="https://payment.architrade.com/paymentweb/start.action" method="post" class="hidden">'.$fields.'</form>'];
+    }
 }

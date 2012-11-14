@@ -58,3 +58,9 @@ _payment_set_method:
     pattern: /checkout/payment/set/method
     defaults:
         _controller: PaymentBundle:Default:setMethod
+
+# ALL }-------------------------
+_process_payment:
+    pattern: /checkout/payment/process
+    defaults:
+        _controller: PaymentBundle:Default:getProcessButton

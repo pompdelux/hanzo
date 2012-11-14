@@ -122,4 +122,10 @@ class PayByBillApi implements PaymentMethodApiInterface
         $order->setAttribute( 'paytype' , 'payment', 'paybybill' );
         $order->save();
     }
+
+
+    public function getProcessButton(Orders $order)
+    {
+        return ['url' => '/payment/paybybill/callback'];
+    }
 }

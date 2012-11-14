@@ -47,20 +47,24 @@ class AddressController extends CoreController
 
                 switch ($m) {
                     case 11:
+                        $type = 'company_shipping';
                         $address->setType('company_shipping');
                         $address->setCompanyName($order->getDeliveryCompanyName());
                         break;
                     case 12:
+                        $type = 'overnightbox';
                         $address->setType('overnightbox');
                         $address->setCountry('Denmark');
                         $address->setCountriesId(58);
                         $address->setStateProvince(null);
                         break;
                     default:
+                        $type = 'shipping';
                         $address->setType('shipping');
                         break;
                 }
             } else {
+                $type = 'shipping';
                 $form = '<form action="" method="post" class="address"></form>';
 
                 if ('json' === $this->getFormat()) {
@@ -171,10 +175,80 @@ class AddressController extends CoreController
         return $response;
     }
 
+
     public function processAction(Request $request, $type)
     {
+        $status = false;
+
         if ('POST' === $request->getMethod()) {
-            // handle address post
+            $order = OrdersPeer::getCurrent();
+
+            // TODO: implement some validation rules
+            $data = $request->get('form');
+
+            if ($type == 'shipping') {
+                switch ($order->getDeliveryMethod()) {
+                    case 11:
+                        $method = 'company_shipping';
+                        break;
+                    case 12:
+                        $method = 'overnightbox';
+                        break;
+                    default:
+                        $method = 'shipping';
+                        break;
+                }
+            } else {
+                $method = 'payment';
+            }
+
+            $address = AddressesQuery::create()
+                ->filterByCustomersId($order->getCustomersId())
+                ->filterByType($method)
+                ->findOne()
+            ;
+
+            if (!$address instanceof Addresses) {
+                $address = new Addresses();
+                $address->setCustomersId($data['customers_id']);
+                $address->setType($method);
+            }
+
+            $address->setFirstName($data['first_name']);
+            $address->setLastName($data['last_name']);
+            $address->setAddressLine1($data['address_line_1']);
+            $address->setPostalCode($data['postal_code']);
+            $address->setCity($data['city']);
+
+            // special rules apply for overnightbox
+            if ($method == 'overnightbox') {
+                $address->setCountry('Denmark');
+                $address->setCountriesId(58);
+                $address->setStateProvince(null);
+            } else {
+                $address->setCountry($data['country']);
+                $address->setCountriesId($data['countries_id']);
+                $address->setStateProvince(null);
+            }
+
+            $address->save();
+
+            if ($type == 'payment') {
+                $order->setBillingAddress($address);
+            } elseif ($type == 'shipping') {
+                $order->setDeliveryAddress($address);
+            }
+
+            $order->save();
+
+            $status = true;
+        }
+
+        if ('json' === $this->getFormat()) {
+            return $this->json_response(array(
+                'status' => $status,
+                'message' => '',
+            ));
         }
     }
 }

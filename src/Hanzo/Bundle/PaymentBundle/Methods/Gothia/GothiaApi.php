@@ -167,4 +167,10 @@ class GothiaApi implements PaymentMethodApiInterface
         $order->setAttribute( 'paytype' , 'payment', 'gothia' );
         $order->save();
     }
+
+
+    public function getProcessButton(Orders $order)
+    {
+        return ['url' => '/payment/gothia'];
+    }
 }

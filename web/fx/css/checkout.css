@@ -70,17 +70,3 @@
 #checkout-block-address .account-address-block {
   padding: 10px 0px;
 }
-
-#coupon-block a {
-  font-size: 0.8em;
-}
-#coupon-block form {
-  overflow: hidden;
-  margin: 10px;
-}
-#coupon-block form div {
-  float: left;
-}
-#coupon-block #form_code {
-  margin: 0 10px;
-}
