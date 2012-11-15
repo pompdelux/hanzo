@@ -1,16 +1,69 @@
 {% extends layout %}
 {% block content %}
 
-{% if page_type|default('page') != 'frontpage' %}
+{% if page_type|default('page') == 'frontpage' and store_mode == 'webshop' %}
+
+{# http://thiagosf.net/projects/jquery/skitter/ #}
+
+  <article>
+    <div id="skitter" class="box_skitter">
+      <ul>
+
+    {% if app.session.locale == 'da_DK' %}
+      <li><a href="/app_dev.php/da_DK/forside/dressing-room">{{ image_tag('images/frontpage/da_DK-1.jpg') }}</a></li>
+      <li><a href="/app_dev.php/da_DK/forside/nyheder">{{ image_tag('images/frontpage/da_DK-2.jpg') }}</a></li>
+      <li><a href="/forside/video">{{ image_tag('images/frontpage/da_DK-3.jpg') }}</a></li>
+    {% elseif app.session.locale == 'en_GB' %}
+    {% elseif app.session.locale == 'fi_FI' %}
+    {% elseif app.session.locale == 'nb_NO' %}
+    {% elseif app.session.locale == 'nl_NL' %}
+    {% elseif app.session.locale == 'sv_SE' %}
+    {% endif %}
+
+      </ul>
+    </div>
+  </article>
+
+{% else %}
   <h1>{{ page.title }}</h1>
-{% endif %}
   <article>
     {{ parse(page.content) }}
   </article>
+{% endif %}
+
 {% endblock %}
 
-{% block javascript %}
+{# block javascript %}
 {% if page_type|default('page') == 'frontpage' and store_mode == 'webshop' %}
 <script src="{{ cdn|replace({'http:':''}) }}fx/scripts/frontpage.js"></script>
 {% endif %}
+{% endblock #}
+
+{% block javascript %}
+
+<link type="text/css" href="{{ cdn }}fx/scripts/skitter/css/skitter.styles.css" media="all" rel="stylesheet">
+<script type="text/javascript" src="{{ cdn }}fx/scripts/skitter/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="{{ cdn }}fx/scripts/skitter/js/jquery.animate-colors-min.js"></script>
+<script type="text/javascript" src="{{ cdn }}fx/scripts/skitter/js/jquery.skitter.min.js"></script>
+<style type="text/css">
+  #skitter {
+    overflow: hidden;
+    position: relative;
+    height: 542px;
+    width: 736px;
+  }
+  #skitter ul li {
+    list-style: none;
+  }
+</style>
+<script>
+(function($, undefined) {
+  $("#skitter").skitter({
+    animation: "random",
+    numbers: true,
+    numbers_align: "right",
+    hideTools: true
+  });
+})(jQuery);
+</script>
 {% endblock %}

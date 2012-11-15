@@ -1,5 +1,5 @@
 body {
-  background-color: #94949e;
+  background-color: #fff;
   color: #231f20;
 }
 a {
@@ -399,7 +399,7 @@ nav.sub a:hover {
 }
 /* index */
 
-#body-frontpage #main {
+/*#body-frontpage #main {
   background-image: url(/fx/images/citat.png);
   background-size: 59px 41px;
   background-repeat: no-repeat;
@@ -424,7 +424,7 @@ nav.sub a:hover {
   right: 30px;
   cursor: pointer;
 }
-
+*/
 footer {
   position: fixed;
   bottom: 0;
