@@ -36,6 +36,7 @@ class AddressController extends CoreController
         if ($type == 'CURRENT-SHIPPING-ADDRESS') {
             if (($m = $order->getDeliveryMethod()) && $order->getDeliveryFirstName()) {
                 $address = new Addresses();
+                $address->setCustomersId($customer_id);
                 $address->setFirstName($order->getDeliveryFirstName());
                 $address->setLastName($order->getDeliveryLastName());
                 $address->setAddressLine1($order->getDeliveryAddressLine1());

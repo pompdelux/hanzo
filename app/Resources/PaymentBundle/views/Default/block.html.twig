@@ -20,5 +20,7 @@
   {% for module in modules %}
     {{ module|raw }}
   {% endfor %}
+
+    <input type="hidden" value="coupon:coupon" name="paytype"{% if selected_payment_type == 'coupon:coupon' %} checked{% endif %}>
   </form>
 </div>

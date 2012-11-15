@@ -397,7 +397,7 @@ class DibsApi implements PaymentMethodApiInterface
             "accepturl"    => $this->router->generate('PaymentBundle_dibs_process', array( 'order_id' => $orderId ), true),
             //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
-            //"paytype"      => '', // This _must_ be set in the form
+            "paytype"      => $order->getAttributes()->payment->paytype,
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
             //'color'        => 'gray',
             //'decorator'    => 'Own decorator',

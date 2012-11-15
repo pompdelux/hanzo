@@ -269,6 +269,13 @@ form.address label {
     return false;
   });
 
+  $('#addresses-confirmed').on('change', function(event) {
+    if (this.checked) {
+      $(this).closest('div').css('border-color', '#C8C4C3');
+      $('html,body').animate({ scrollTop : $('#checkout-buttons').offset().top });
+    }
+  });
+
   $(document).on('payment.method.updated', function(event) {
     $('#coupon-block').removeClass('hidden');
   });
@@ -357,15 +364,12 @@ form.address label {
           pub.getStepStatus('payment') &&
           pub.getStepStatus('shipping')
       ) {
-
-console.log(response.response.data.url);
-
         // payment-process-form
         if (undefined !== response.response.data.url) {
           document.location.href = response.response.data.url;
         } else if (undefined !== response.response.data.form) {
           $('#checkout-buttons').append(response.response.data.form);
-          //$('#checkout-buttons form').submit();
+          $('#checkout-buttons form').submit();
         }
       }
     };
@@ -374,7 +378,12 @@ console.log(response.response.data.url);
   })(jQuery);
 
   $('#body-checkout form input:checked').each(function (index, element) {
-
+    if (element.name == 'method') {
+      checkout.setStepStatus('shipping', true);
+    } else if (element.name == 'paytype') {
+      checkout.setStepStatus('payment', true);
+      $('#coupon-block').removeClass('hidden');
+    }
   });
 
 })(jQuery);

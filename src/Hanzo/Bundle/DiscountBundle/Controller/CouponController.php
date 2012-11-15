@@ -42,6 +42,7 @@ class CouponController extends CoreController
 
             $coupon = CouponsQuery::create()
                 ->filterByCode($code)
+                ->filterByAmount(0, Criteria::GREATER_THAN)
                 ->filterByActiveFrom(time(), Criteria::GREATER_EQUAL)
                 ->_or()
                 ->filterByActiveFrom(null, Criteria::ISNULL)
@@ -72,9 +73,16 @@ class CouponController extends CoreController
                     $coupon->save();
 
                     // change the payment method, you should not go through gothia/dibs/... if the total is 0.00
+                    $order->setPaymentMethod('coupon');
+                    $order->setPaymentPaytype('coupon');
                 } else {
                     $coupon->setAmount(0);
                 }
+
+                if (0 == $coupon->getAmount()) {
+                    $coupon->isActive(false);
+                }
+
                 $coupon->save();
 
                 $order->setDiscountLine($translator->trans('coupon', [], 'checkout'), -$discount, 'coupon.code');

@@ -3,7 +3,7 @@
   <li>
     <p>{{ 'payment.paybybill.text'|trans({}, 'checkout')|raw }}</p>
 
-    <input type="radio" value="paybybill:paybybill" id="pbb" name="paytype">
+    <input type="radio" value="paybybill:paybybill" id="pbb" name="paytype"{% if selected_payment_type == 'paybybill:paybybill' %} checked{% endif %}>
     <label for="pbb">{{ 'payment.paybybill.label'|trans({}, 'checkout') }}</label>
   </li>
 </ul>

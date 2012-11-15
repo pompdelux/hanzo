@@ -27,6 +27,7 @@ class DefaultController extends CoreController
     public function blockAction()
     {
         $order = OrdersPeer::getCurrent();
+        $selected_payment_type = $order->getBillingMethod().':'.$order->getAttributes()->payment->paytype;
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
@@ -34,7 +35,8 @@ class DefaultController extends CoreController
             if ($service && $service->isActive()) {
 
                 $parameters = [
-                    'order' => $order
+                    'order' => $order,
+                    'selected_payment_type' => $selected_payment_type,
                 ];
 
                 // TODO: fix hardcoded "cardtypes"
@@ -46,7 +48,10 @@ class DefaultController extends CoreController
             }
         }
 
-        return $this->render('PaymentBundle:Default:block.html.twig', ['modules' => $modules]);
+        return $this->render('PaymentBundle:Default:block.html.twig', [
+            'modules' => $modules,
+            'selected_payment_type' => $selected_payment_type,
+        ]);
     }
 
 
@@ -69,8 +74,8 @@ class DefaultController extends CoreController
 
         $order = OrdersPeer::getCurrent();
 
-        $order->setPaymentMethod( $method );
-        $order->setPaymentPaytype( $provider );
+        $order->setPaymentMethod( $provider );
+        $order->setPaymentPaytype( $method );
 
         // Handle payment fee
         // Currently hardcoded to 0 vat
@@ -96,7 +101,7 @@ class DefaultController extends CoreController
 
         $order = OrdersPeer::getCurrent();
         $provider = strtolower($order->getBillingMethod());
-
+Tools::log($provider);
         $key = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {
