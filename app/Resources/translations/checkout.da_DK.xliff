@@ -62,6 +62,10 @@
         <source>confirm.title</source>
         <target>Godkend</target>
       </trans-unit>
+      <trans-unit id="confirm.addresses.label" approved="no">
+        <source>confirm.addresses.label</source>
+        <target>Ja, adresserne herover er korrekte.</target>
+      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>E-ordrenummer</target>
@@ -82,8 +86,12 @@
         <source>shipping.address</source>
         <target>Leveringsadresse</target>
       </trans-unit>
-      <trans-unit id="shipping.address.overnight">
-        <source>shipping.address.overnight</source>
+      <trans-unit id="company.shipping.address">
+        <source>company.shipping.address</source>
+        <target>Leveringsadresse</target>
+      </trans-unit>
+      <trans-unit id="overnightbox.address">
+        <source>overnightbox.address</source>
         <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
