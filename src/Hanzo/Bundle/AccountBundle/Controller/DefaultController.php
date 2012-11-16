@@ -47,6 +47,7 @@ class DefaultController extends CoreController
     {
         $hanzo = Hanzo::getInstance();
         $request = $this->getRequest();
+        $translator = $this->get('translator');
 
         $domainKey = $hanzo->get('core.domain_key');
 
@@ -112,8 +113,7 @@ class DefaultController extends CoreController
                 {
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
-                    if ( is_object($response) && $response->is_error )
-                    {
+                    if ( is_object($response) && $response->is_error ) {
                         $this->get('session')->setFlash('warning', 'account.newsletter.warning');
                     }
                 }
@@ -125,7 +125,7 @@ class DefaultController extends CoreController
                 $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
 
                 $this->container->get('security.context')->setToken($token);
-                $this->get('session')->setFlash('notice', 'account.created');
+                $this->get('session')->setFlash('notice', $translator->trans('account.created', [], 'account'));
 
                 $name = $customer->getFirstName() . ' ' . $customer->getLastName();
 
