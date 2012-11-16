@@ -33,7 +33,7 @@
 
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Jag önskar att upprätta mig som ny kund hos POMPdeLUX.</target>
+                <target>Ny kund</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -50,7 +50,7 @@
                 <source>password.forgotten.not_found</source>
                 <target><![CDATA[
                      <p>Vi kunde tyvärr inte hitta e-mailadressen. Prova igen och kontrollera att du har skrivit rätt e-mailadress. Har du skrivit rätt e-mailadress och detta meddelande ändå kommer fram, finns du inte i vårt system. Kontakta vår KUNDSERVICE, då det är möjligt att du har blivit felupprättad.</p>
-                     <a href="/forside/kundservice">» KUNDSERVICE</a>
+                     <a href="/sv_SE/forside/kundservice">» KUNDSERVICE</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
@@ -73,11 +73,19 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[När du handlar hos POMPdeLUX ska du vara upprättad som kund här på sidan. <br /><br />Det ger dig bland annat möjlighet att kontrollera och ändra din order fram till att den blir packad och skickad från vårt lager. Du kan ändra färger och storlekar på de varor du har beställt, och du kan lägga till eller radera varor, så länge det står "Väntar" bredvid din order, det vill säga i minst 24 timmar efter att du har beställt varorna. <br /><br />Som kund hos POMPdeLUX kan du se dina tidigare beställningar samt hitta gamla fakturor på Min sida.]]></target>
+                <target><![CDATA[<p>När du handlar hos POMPdeLUX ska du vara upprättad som kund här på sidan. <br /><br />Det ger dig bland annat möjlighet att kontrollera och ändra din order fram till att den blir packad och skickad från vårt lager. Du kan ändra färger och storlekar på de varor du har beställt, och du kan lägga till eller radera varor, så länge det står "Väntar" bredvid din order, det vill säga i minst 24 timmar efter att du har beställt varorna. <br /><br />Som kund hos POMPdeLUX kan du se dina tidigare beställningar samt hitta gamla fakturor på Min sida.</p><h2>Är du ny kund?</h2>]]></target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
                 <target>Ny kund</target>
+            </trans-unit>
+            <trans-unit id="new.customer">
+                <source>new.customer</source>
+                <target>Ny kund</target>
+            </trans-unit>
+            <trans-unit id="existing.customer">
+                <source>existing.customer</source>
+                <target>Eksisterende kunde</target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>

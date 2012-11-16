@@ -24,7 +24,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Ik wil me registreren als klant bij POMPdeLUX.</target>
+                <target>Nieuwe klant</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -42,7 +42,7 @@
                 <target><![CDATA[
                     <p>We konden het e-mailadres dat je ingevuld hebt helaas niet vinden. Probeer het nogmaals en controleer dat je het juiste e-mailadres ingevuld hebt.</p>
                     <p>Heb je het juiste e-mailadres ingevuld en dit bericht blijft verschijnen, dan ben je niet geregistreerd in ons systeem. Neem contact op met de klantenservice – het kan namelijk zijn dat je verkeerd geregistreerd bent.</p>
-                    <a href="/voorpagina/klantenservice">» Klantenservice</a>
+                    <a href="/nl_NL/voorpagina/klantenservice">» Klantenservice</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
@@ -65,11 +65,19 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.]]></target>
+                <target><![CDATA[<p>Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.</p><h2>Nieuwe klant?</h2>]]></target>
             </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
                 <target>Nieuwe klant</target>
+            </trans-unit>
+            <trans-unit id="new.customer">
+                <source>new.customer</source>
+                <target>Nieuwe klant</target>
+            </trans-unit>
+            <trans-unit id="existing.customer">
+                <source>existing.customer</source>
+                <target>Bestaande klant</target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>

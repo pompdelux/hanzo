@@ -22,10 +22,11 @@
 
 {% if store_mode == 'webshop' %}
     <h2>{{ 'new.customer'|trans({}, 'account') }}</h2>
-    <p>{{ 'my.account.login.notice'|trans({}, 'account')|raw }}</p>
-    <p><a href="{{ url('_account_create') }}">{{ "create.account.link"|trans({}, 'account') }}</a></p>
+    {{ 'my.account.login.notice'|trans({}, 'account')|raw }}
+    <a href="{{ url('_account_create') }}" class="button">{{ "create.account.link"|trans({}, 'account') }}</a>
 {% endif %}
 
+    <h2>{{ 'existing.customer'|trans({}, 'account') }}</h2>
     <form action="{{ path('login_check') }}" method="post">
         <label for="username">
             {{ 'email'|trans({}, 'account') }}:

@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Haluan kirjautua uudeksi asiakkaaksi POMPdeLUXille</target>
+                <target>Uusi asiakas</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -48,21 +48,15 @@
             </trans-unit>
             <trans-unit id="password.forgotten.text">
                 <source>password.forgotten.text</source>
-                <target>
-                    &lt;h2&gt;Unohditko salasanasi?&lt;/h2&gt; &lt;p&gt;Kirjoita sähköpostiosoitteesi alle ja napsauta painiketta ”Jatka”. Muutaman minuutin kuluttua saat POMPdeLUXilta sähköpostiviestin, joka sisältää salasanasi.&lt;/p&gt;
-                </target>
+                <target><![CDATA[<h2>Unohditko salasanasi?</h2>Kirjoita sähköpostiosoitteesi alle ja napsauta painiketta ”Jatka”. Muutaman minuutin kuluttua saat POMPdeLUXilta sähköpostiviestin, joka sisältää salasanasi.]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
                 <source>password.forgotten.not_found</source>
-                <target>
-                    &lt;p&gt;Sähköpostiosoitettasi ei valitettavasti löytynyt. Yritä uudestaan ja tarkasta, että olet kirjoittanut sähköpostiosoitteesi oikein.&lt;/p&gt; &lt;p&gt;Jos sähköpostiosoite on oikein ja tämä viesti tulee uudelleen esiin, tietojasi ei löydy järjestelmästämme. Ota yhteyttä asiakaspalveluluumme, niin korjaamme asian.&lt;/p&gt; &lt;a href=&quot;/forside/kundeservice&quot;&gt;» Kundeservice&lt;/a&gt;
-                </target>
+                <target><![CDATA[Sähköpostiosoitettasi ei valitettavasti löytynyt. Yritä uudestaan ja tarkasta, että olet kirjoittanut sähköpostiosoitteesi oikein.<br><br>Jos sähköpostiosoite on oikein ja tämä viesti tulee uudelleen esiin, tietojasi ei löydy järjestelmästämme. Ota yhteyttä asiakaspalveluluumme, niin korjaamme asian.<br> <a href="/fi_FI/forside/asiakaspalvelu">» Kundeservice</a>]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
                 <source>password.forgotten.resend</source>
-                <target>
-                    &lt;p&gt;Salasana on lähetty antamaasi sähköpostiosoitteeseen.&lt;/p&gt;
-                </target>
+                <target>Salasana on lähetty antamaasi sähköpostiosoitteeseen.</target>
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
@@ -78,11 +72,15 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target>Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on &quot;Odottaa&quot; eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.&lt;br&gt;&lt;br&gt;POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.</target>
+                <target><![CDATA[<p>Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on "Odottaa" eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.<br><br>POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.</p><h2>Oletko uusi asiakas?</h2>]]></target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
                 <target>Uusi asiakas</target>
+            </trans-unit>
+            <trans-unit id="existing.customer">
+                <source>existing.customer</source>
+                <target>Nykyisten asiakas</target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
@@ -194,7 +192,7 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target>&lt;strong&gt;Huomaa:&lt;/strong&gt; Jos sinulla on jo tili POMPdeLUXilla, riittää, kun kirjaudut sisään &lt;a href=&quot;%url%&quot;&gt;Omalle sivullesi &lt;/a&gt;&lt;br&gt;&lt;br&gt;Lisää sivulle omat tietosi (&lt;u&gt;ei&lt;/u&gt; mahdollisia yritystietoja).</target>
+                <target><![CDATA[<strong>Huomaa:</strong> Jos sinulla on jo tili POMPdeLUXilla, riittää, kun kirjaudut sisään <a href="%url%">Omalle sivullesi </a><br><br>Lisää sivulle omat tietosi (<u>ei</u> mahdollisia yritystietoja).]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>

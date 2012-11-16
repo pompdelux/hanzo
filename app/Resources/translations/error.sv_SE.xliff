@@ -21,6 +21,17 @@
                     <p>Om problemet fortsätter kan du kontakta kundservice på telefon 08-6117103, eller skriva till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></p>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="403.title">
+                <source>403.title</source>
+                <target>Woops!</target>
+            </trans-unit>
+            <trans-unit id="403.description">
+                <source>403.description</source>
+                <target><![CDATA[
+                    <p>Det har uppstått ett tekniskt fel.</p>
+                    <p>Om problemet fortsätter kan du kontakta kundservice på telefon 08-6117103, eller skriva till oss på <a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></p>
+                ]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

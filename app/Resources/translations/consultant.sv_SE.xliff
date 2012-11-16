@@ -122,6 +122,14 @@
                 <source>consultant.newsletter.history.header.text</source>
                 <target>Historik</target>
             </trans-unit>
+            <trans-unit id="consultant.newsletter.history.processed.to">
+                <source>consultant.newsletter.history.processed.to</source>
+                <target>(Utsänd den %date% till %count% användare)</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.history.not.processed">
+                <source>consultant.newsletter.history.not.processed</source>
+                <target>(Inte skickas)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

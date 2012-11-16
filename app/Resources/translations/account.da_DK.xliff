@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="create.account.link">
                 <source>create.account.link</source>
-                <target>» Jeg ønsker at oprette mig som ny kunde hos POMPdeLUX</target>
+                <target>Ny kunde</target>
             </trans-unit>
             <trans-unit id="password.forgotten">
                 <source>password.forgotten</source>
@@ -58,7 +58,7 @@
                 <target><![CDATA[
                     <p>Vi kunne desværre ikke finde den indtastede e-mailadresse. Prøv igen og kontroller at du har indtastet korrekt e-mailadresse.</p>
                     <p>Har du indtastet din e-mailadresse korrekt og denne besked bliver ved med at komme frem, findes du ikke i vores system. Du skal kontakte kundeservice, da det er muligt, at du er blevet oprettet forkert.</p>
-                    <a href="/forside/kundeservice">» Kundeservice</a>
+                    <a href="/da_DK/forside/kundeservice">» Kundeservice</a>
                 ]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
@@ -81,11 +81,15 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.]]></target>
+                <target><![CDATA[<p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p><h2>Er du ny kunde?</h2>]]></target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
                 <target>Ny kunde</target>
+            </trans-unit>
+            <trans-unit id="existing.customer">
+                <source>existing.customer</source>
+                <target>Eksisterende kunde</target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>

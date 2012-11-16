@@ -42,7 +42,7 @@
     {{ form_row(form._token) }}
   </div>
   <input class="button off" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
-  <a href="/forside/kundeservice/vilkaar" rel="colorbox">{{ 'create.terms'|trans({}, 'account')|raw }}</a>
+  {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
 </form>
 
 {% endblock %}

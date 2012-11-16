@@ -133,7 +133,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $currency_map = array(
             'SE' => 'SEK',
             'FI' => 'EUR',
-            'NO' => 'EUR'
+            'NO' => 'NOK'
         );
 
         $addresses     = $customer->getAddressess();
@@ -207,6 +207,15 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               break;
           case 12053400068:
               $customerId = 100001; // .no test
+              break;
+          case 18106500076:
+              $customerId = 100002; // .no test
+              break;
+          case 18106500157:
+              $customerId = 100003; // .no test
+              break;
+          case 18126500137:
+              $customerId = 100004; // .no test bad rating
               break;
           case "090260-052K": // .FI test users
               $customerId = 100106;
