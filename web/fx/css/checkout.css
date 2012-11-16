@@ -1,5 +1,3 @@
-/* Styles for checkout */
-
 .checkout-block {
   margin: 20px 0;
 }
@@ -7,31 +5,61 @@
   list-style:none;
 }
 
-#checkout-block-shipping {
-  display: block;
+#body-checkout #main form {
+  margin-bottom: 10px;
 }
-
-#checkout-block-payment,
-#checkout-block-address,
-#checkout-block-summery,
-#checkout-block-confirm {
-  display: none;
+#body-checkout #main form>h3 {
+  margin-top: 20px;
+}
+#body-checkout #main h2 {
+  background-color: #C8C4C3;
+  padding:  5px;
+  margin-top: 20px;
+}
+form.address {
+  float: left;
   overflow: hidden;
+  margin-right: 40px;
 }
-
-#checkout-block-summery .checkout-block {
+form.address label {
   display: block;
+  width: 110px;
+  float: left;
 }
-#checkout-block-summery .checkout-block a {
-  display: none;
+#body-checkout #main form.address>h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
-#checkout-block-confirm .edit {
-  margin-left: 10px;
+#body-checkout div>div {
+  overflow: hidden;
+  padding: 3px;
+}
+#body-checkout #main {
+  padding: 20px;
 }
 
-.checkout-block .product-table {
-  margin:0;
+#address-block .confirm {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #f00;
+  clear: both;
+}
+#body-checkout div.msg.error {
+  padding: 20px;
+}
+
+#coupon-block form {
+  overflow: hidden;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #7B7577;
+}
+#coupon-block form div.clearfix {
+  float: left;
+}
+#coupon-block #form_code {
+  margin: 0 10px;
 }
 
 #cboxLoadedContent h2 {
@@ -65,8 +93,4 @@
 }
 #cboxLoadedContent form div .error {
   border-color: #a10000;
-}
-
-#checkout-block-address .account-address-block {
-  padding: 10px 0px;
 }

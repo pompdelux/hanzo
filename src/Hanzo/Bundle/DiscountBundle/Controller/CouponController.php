@@ -27,11 +27,11 @@ class CouponController extends CoreController
         $translator = $this->get('translator');
 
         $form = $this->createFormBuilder(new Coupons())
-            ->add('code', 'text', array(
+            ->add('code', 'text', [
                 'label'              => 'coupon.label',
                 'error_bubbling'     => true,
                 'translation_domain' => 'checkout',
-            ))
+            ])
             ->getForm()
         ;
 

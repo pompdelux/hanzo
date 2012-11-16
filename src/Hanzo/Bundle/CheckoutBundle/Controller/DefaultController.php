@@ -46,7 +46,7 @@ class DefaultController extends CoreController
 
         $order->save();
 
-        return $this->render('CheckoutBundle:Default:index.html.twig', array(
+        return $this->render('CheckoutBundle:Default:flow.html.twig', array(
             'page_type' => 'checkout'
         ));
     }

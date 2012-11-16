@@ -52,4 +52,4 @@ propel:
       propel.namespace.autoPackage: true
 
 hanzo_cms:
-    frontpage: 550
+    frontpage: 556

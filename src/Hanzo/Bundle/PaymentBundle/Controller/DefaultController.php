@@ -27,7 +27,11 @@ class DefaultController extends CoreController
     public function blockAction()
     {
         $order = OrdersPeer::getCurrent();
-        $selected_payment_type = $order->getBillingMethod().':'.$order->getAttributes()->payment->paytype;
+
+        $selected_payment_type = '';
+        if ($order->getBillingMethod()) {
+            $selected_payment_type = $order->getBillingMethod().':'.$order->getAttributes()->payment->paytype;
+        }
 
         $modules = [];
         foreach ($this->services as $service => $controller) {
@@ -101,7 +105,6 @@ class DefaultController extends CoreController
 
         $order = OrdersPeer::getCurrent();
         $provider = strtolower($order->getBillingMethod());
-Tools::log($provider);
         $key = 'payment.'.$provider.'api';
 
         if (isset($this->services[$key])) {

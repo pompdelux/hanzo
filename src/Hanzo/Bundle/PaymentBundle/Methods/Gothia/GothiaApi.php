@@ -171,6 +171,6 @@ class GothiaApi implements PaymentMethodApiInterface
 
     public function getProcessButton(Orders $order)
     {
-        return ['url' => '/payment/gothia'];
+        return ['url' => 'payment/gothia'];
     }
 }

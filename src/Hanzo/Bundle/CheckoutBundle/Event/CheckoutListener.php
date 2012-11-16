@@ -293,6 +293,10 @@ class CheckoutListener
             ->delete()
           ;
           $order->setDeliveryMethod(null);
+
+          // ??? maby this is not so safe after all..
+          $order->setBillingMethod(null);
+          $order->clearPaymentAttributes();
         }
 
         $discount = 0;

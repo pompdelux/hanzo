@@ -126,6 +126,6 @@ class PayByBillApi implements PaymentMethodApiInterface
 
     public function getProcessButton(Orders $order)
     {
-        return ['url' => '/payment/paybybill/callback'];
+        return ['url' => 'payment/paybybill/callback'];
     }
 }
