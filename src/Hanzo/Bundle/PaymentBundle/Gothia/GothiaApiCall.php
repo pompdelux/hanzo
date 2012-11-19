@@ -133,7 +133,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $currency_map = array(
             'SE' => 'SEK',
             'FI' => 'EUR',
-            'NO' => 'NOK'
+            'NO' => 'NOK',
+            'DK' => 'DKK'
         );
 
         $addresses     = $customer->getAddressess();
