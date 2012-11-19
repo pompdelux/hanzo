@@ -35,7 +35,7 @@
   'fx/css/cart.css'
   'fx/css/account.css'
   'fx/css/dialoug.css'
-  'fx/css/checkout.css'
+
   'fx/css/maps.css'
   'fx/css/search.css'
   'fx/css/mannequin.css'
@@ -128,6 +128,7 @@
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
 
+
 {% javascripts
   'fx/scripts/jquery.min.js'
   'fx/scripts/jquery.tools.min.js'
@@ -135,6 +136,7 @@
   'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
   'fx/scripts/zoom/jquery.zoom.js'
   'fx/scripts/accounting/accounting.min.js'
+  'fx/scripts/jquery.formparams.js'
 
   'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'
@@ -146,6 +148,7 @@
   'fx/scripts/video-js/video.js'
   'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
 
+  'fx/scripts/jaiks/jaiks.min.js'
   'fx/scripts/yatzy.js'
   'fx/scripts/dialoug.js'
   'fx/scripts/colorbox.js'
@@ -184,6 +187,7 @@
 
 {% render 'NewsletterBundle:Default:js' %}
 
+<script>if (jaiks) {jaiks.exec();}</script>
 {{ google_analytics_tag() }}
 </body>
 </html>

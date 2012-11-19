@@ -109,7 +109,15 @@ var account = (function($) {
               } catch (e) {}
             }
             else {
-              $('#customers_addresses_0_postal_code').css('border-color', '#a10000').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).focus();
+              $('#customers_addresses_0_postal_code')
+                .css('border-color', '#a10000')
+                .fadeOut(100)
+                .fadeIn(100)
+                .fadeOut(100)
+                .fadeIn(100)
+                .fadeOut(100)
+                .fadeIn(100)
+                .focus();
             }
             dialoug.stopLoading();
           });

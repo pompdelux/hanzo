@@ -1,0 +1,35 @@
+<h3>{{ 'payment.dibs.title'|trans({}, 'checkout') }}</h3>
+<ul class="payment-methods" id="payment-method-dibs">
+{% if cardtypes.DK %}
+  <li>
+    <input type="radio" value="dibs:DK" id="dibs_card_type_DK" name="paytype"{% if selected_payment_type == 'dibs:DK' %} checked{% endif %}>
+    <label for="dibs_card_type_DK">
+      <img alt="DK" src="{{ cdn }}fx/images/icons/dankort.jpg"> {{ 'payment.dibs.paytype.dk'|trans({}, 'checkout') }}
+    </label>
+  </li>
+{% endif %}
+{% if cardtypes.VISA %}
+  <li>
+    <input type="radio" value="dibs:VISA" id="dibs_card_type_VISA" name="paytype"{% if selected_payment_type == 'dibs:VISA' %} checked{% endif %}>
+    <label for="dibs_card_type_VISA">
+      <img alt="VISA" src="{{ cdn }}fx/images/icons/visa.jpg">  {{ 'payment.dibs.paytype.visa'|trans({}, 'checkout') }}
+    </label>
+  </li>
+{% endif %}
+{% if cardtypes.ELEC %}
+  <li>
+    <input type="radio" value="dibs:ELEC" id="dibs_card_type_ELEC" name="paytype"{% if selected_payment_type == 'dibs:ELEC' %} checked{% endif %}>
+    <label for="dibs_card_type_ELEC">
+      <img alt="ELEC" src="{{ cdn }}fx/images/icons/visaelectron.jpg">  {{ 'payment.dibs.paytype.visa_elec'|trans({}, 'checkout') }}
+    </label>
+  </li>
+{% endif %}
+{% if cardtypes.MC %}
+  <li>
+    <input type="radio" value="dibs:MC" id="dibs_card_type_MC" name="paytype"{% if selected_payment_type == 'dibs:MC' %} checked{% endif %}>
+    <label for="dibs_card_type_MC">
+      <img alt="MC" src="{{ cdn }}fx/images/icons/mastercard.jpg">  {{ 'payment.dibs.paytype.master'|trans({}, 'checkout') }}
+    </label>
+  </li>
+{% endif %}
+</ul>

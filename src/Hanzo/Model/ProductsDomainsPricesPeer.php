@@ -33,6 +33,7 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
         $customer   = CustomersPeer::getCurrent();
         $domain_id  = $hanzo->get('core.domain_id');
         $domain_key = $hanzo->get('core.domain_key');
+        $customer   = CustomersPeer::getCurrent();
 
         $query = ProductsDomainsPricesQuery::create()
             ->filterByProductsId($products)
@@ -42,13 +43,6 @@ class ProductsDomainsPricesPeer extends BaseProductsDomainsPricesPeer {
             ->orderByFromDate(Criteria::DESC)
             ->orderByToDate(Criteria::DESC)
         ;
-
-        // if ((1 < $customer->getGroupsId())) {
-        //     if (!$hanzo->get('webshop.disable_discounts')) {
-        //         $query->filterByToDate(null, Criteria::ISNULL);
-        //     }
-        // }
-
         $prices = $query->find();
 
         $override_vat     = false;

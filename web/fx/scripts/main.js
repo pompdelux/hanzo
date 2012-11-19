@@ -4,6 +4,8 @@
     var pub = {};
 
     pub.initUI = function() {
+      jaiks.init({'url': base_url+'rest/v1/jaiks'});
+
       // open in a new window
       $('li.facebook a, a[rel="external"]').on('click', function(event) {
         event.preventDefault();

@@ -1,3 +1,7 @@
+DiscountBundle:
+    resource: "@DiscountBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
 ConsultantNewsletterBundle:
     resource: "@ConsultantNewsletterBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

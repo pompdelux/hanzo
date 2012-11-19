@@ -16,8 +16,8 @@ use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\GothiaAccounts;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApi;
-use Hanzo\Bundle\PaymentBundle\Gothia\GothiaApiCallException;
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi;
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApiCallException;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
@@ -48,7 +48,7 @@ class GothiaController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->isNew() ) 
+        if ( $order->isNew() )
         {
             return $this->redirect($this->generateUrl('_checkout'));
         }
@@ -136,11 +136,11 @@ class GothiaController extends CoreController
                 ));
             }
         }else{
-            
+
             $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
-            
+
             //Every other domain
-            if (!is_numeric($SSN)) { 
+            if (!is_numeric($SSN)) {
                 return $this->json_response(array(
                     'status' => FALSE,
                     'message' => $translator->trans('json.ssn.not_numeric', array(), 'gothia'),
@@ -175,13 +175,13 @@ class GothiaController extends CoreController
 
         $customer->setGothiaAccounts( $gothiaAccount );
 
-        try 
+        try
         {
             // Validate information @ gothia
             $api = $this->get('payment.gothiaapi');
             $response = $api->call()->checkCustomer( $customer );
-        } 
-        catch( GothiaApiCallException $g ) 
+        }
+        catch( GothiaApiCallException $g )
         {
             Tools::debug( $g->getMessage(), __METHOD__);
             return $this->json_response(array(
@@ -190,7 +190,7 @@ class GothiaController extends CoreController
             ));
         }
 
-        if ( !$response->isError() ) 
+        if ( !$response->isError() )
         {
             $gothiaAccount = $customer->getGothiaAccounts();
             $gothiaAccount->setDistributionBy( $response->data['DistributionBy'] )
@@ -203,10 +203,10 @@ class GothiaController extends CoreController
                 'status' => true,
                 'message' => '',
             ));
-        } 
-        else 
+        }
+        else
         {
-            if ( $response->data['PurchaseStop'] === 'true') 
+            if ( $response->data['PurchaseStop'] === 'true')
             {
                 Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
 
@@ -242,12 +242,12 @@ class GothiaController extends CoreController
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
         // it will fail because we have not removed the old reservation first, this should fix it
 
-        if ( $order->getInEdit() ) 
+        if ( $order->getInEdit() )
         {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
-            if ( !( $currentVersion < 2 ) ) 
+            if ( !( $currentVersion < 2 ) )
             {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
@@ -265,13 +265,13 @@ class GothiaController extends CoreController
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
                 // but only if the old paytype was gothia
-                if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() ) 
+                if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                 {
-                    try 
+                    try
                     {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                    } 
-                    catch( GothiaApiCallException $g ) 
+                    }
+                    catch( GothiaApiCallException $g )
                     {
                         Tools::debug( $g->getMessage(), __METHOD__);
 
@@ -281,7 +281,7 @@ class GothiaController extends CoreController
                         ));
                     }
 
-                    if ( $response->isError() ) 
+                    if ( $response->isError() )
                     {
                         Tools::debug( 'Cancel reservation error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
@@ -294,11 +294,11 @@ class GothiaController extends CoreController
             }
         }
 
-        try 
+        try
         {
             $response = $api->call()->placeReservation( $customer, $order );
-        } 
-        catch( GothiaApiCallException $g ) 
+        }
+        catch( GothiaApiCallException $g )
         {
             Tools::debug( $g->getMessage(), __METHOD__);
 
@@ -309,7 +309,7 @@ class GothiaController extends CoreController
             ));
         }
 
-        if ( $response->isError() ) 
+        if ( $response->isError() )
         {
             Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
@@ -322,7 +322,7 @@ class GothiaController extends CoreController
 
         // NICETO: priority: low, refacture gothia to look more like DibsController
 
-        try 
+        try
         {
             $api->updateOrderSuccess( $request, $order );
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
@@ -331,8 +331,8 @@ class GothiaController extends CoreController
                 'status' => TRUE,
                 'message' => '',
             ));
-        } 
-        catch (Exception $e) 
+        }
+        catch (Exception $e)
         {
             Tools::debug( $e->getMessage(), __METHOD__);
             $api->updateOrderFailed( $request, $order );

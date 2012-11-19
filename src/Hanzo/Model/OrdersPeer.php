@@ -38,7 +38,6 @@ class OrdersPeer extends BaseOrdersPeer
         $session = $hanzo->getSession();
 
         if ($session->has('order_id')) {
-            Propel::setForceMasterConnection(true);
             $query = OrdersQuery::create()
                 ->useOrdersLinesQuery()
                     ->orderByType()
@@ -47,7 +46,9 @@ class OrdersPeer extends BaseOrdersPeer
                 ->endUse()
                 ->leftJoinWithOrdersLines()
             ;
-            self::$current = $query->findPk($session->get('order_id'));
+
+            $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
+            self::$current = $query->findPk($session->get('order_id'), $con);
 
             // attach the customer to the order.
             if ((self::$current instanceOf Orders) && !self::$current->getCustomersId()) {
@@ -62,7 +63,6 @@ class OrdersPeer extends BaseOrdersPeer
                     self::$current->save();
                 }
             }
-            Propel::setForceMasterConnection(false);
         }
 
         self::$current = self::$current ?: new Orders;
@@ -78,7 +78,8 @@ class OrdersPeer extends BaseOrdersPeer
      */
     public static function retriveByPaymentGatewayId($gateway_id)
     {
-        return OrdersQuery::create()->findOneByPaymentGatewayId($gateway_id);
+        $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
+        return OrdersQuery::create()->findOneByPaymentGatewayId($gateway_id, $con);
     }
 
 

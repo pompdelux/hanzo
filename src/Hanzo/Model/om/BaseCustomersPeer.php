@@ -12,7 +12,6 @@ use \PropelPDO;
 use Hanzo\Model\AddressesPeer;
 use Hanzo\Model\ConsultantNewsletterDraftsPeer;
 use Hanzo\Model\ConsultantsPeer;
-use Hanzo\Model\CouponsToCustomersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\EventsPeer;
@@ -418,9 +417,6 @@ abstract class BaseCustomersPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
-		// Invalidate objects in CouponsToCustomersPeer instance pool,
-		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-		CouponsToCustomersPeer::clearInstancePool();
 		// Invalidate objects in AddressesPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		AddressesPeer::clearInstancePool();

@@ -13,7 +13,7 @@ use \PropelPDO;
 use Hanzo\Model\Coupons;
 use Hanzo\Model\CouponsPeer;
 use Hanzo\Model\CouponsQuery;
-use Hanzo\Model\CouponsToCustomers;
+use Hanzo\Model\OrdersToCoupons;
 
 /**
  * Base class that represents a query for the 'coupons' table.
@@ -23,24 +23,20 @@ use Hanzo\Model\CouponsToCustomers;
  * @method     CouponsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method     CouponsQuery orderByCode($order = Criteria::ASC) Order by the code column
  * @method     CouponsQuery orderByAmount($order = Criteria::ASC) Order by the amount column
- * @method     CouponsQuery orderByVat($order = Criteria::ASC) Order by the vat column
  * @method     CouponsQuery orderByCurrencyCode($order = Criteria::ASC) Order by the currency_code column
- * @method     CouponsQuery orderByUsesPrCoupon($order = Criteria::ASC) Order by the uses_pr_coupon column
- * @method     CouponsQuery orderByUsesPrCoustomer($order = Criteria::ASC) Order by the uses_pr_coustomer column
  * @method     CouponsQuery orderByActiveFrom($order = Criteria::ASC) Order by the active_from column
  * @method     CouponsQuery orderByActiveTo($order = Criteria::ASC) Order by the active_to column
+ * @method     CouponsQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method     CouponsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     CouponsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
  * @method     CouponsQuery groupById() Group by the id column
  * @method     CouponsQuery groupByCode() Group by the code column
  * @method     CouponsQuery groupByAmount() Group by the amount column
- * @method     CouponsQuery groupByVat() Group by the vat column
  * @method     CouponsQuery groupByCurrencyCode() Group by the currency_code column
- * @method     CouponsQuery groupByUsesPrCoupon() Group by the uses_pr_coupon column
- * @method     CouponsQuery groupByUsesPrCoustomer() Group by the uses_pr_coustomer column
  * @method     CouponsQuery groupByActiveFrom() Group by the active_from column
  * @method     CouponsQuery groupByActiveTo() Group by the active_to column
+ * @method     CouponsQuery groupByIsActive() Group by the is_active column
  * @method     CouponsQuery groupByCreatedAt() Group by the created_at column
  * @method     CouponsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -48,9 +44,9 @@ use Hanzo\Model\CouponsToCustomers;
  * @method     CouponsQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method     CouponsQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method     CouponsQuery leftJoinCouponsToCustomers($relationAlias = null) Adds a LEFT JOIN clause to the query using the CouponsToCustomers relation
- * @method     CouponsQuery rightJoinCouponsToCustomers($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CouponsToCustomers relation
- * @method     CouponsQuery innerJoinCouponsToCustomers($relationAlias = null) Adds a INNER JOIN clause to the query using the CouponsToCustomers relation
+ * @method     CouponsQuery leftJoinOrdersToCoupons($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersToCoupons relation
+ * @method     CouponsQuery rightJoinOrdersToCoupons($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersToCoupons relation
+ * @method     CouponsQuery innerJoinOrdersToCoupons($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersToCoupons relation
  *
  * @method     Coupons findOne(PropelPDO $con = null) Return the first Coupons matching the query
  * @method     Coupons findOneOrCreate(PropelPDO $con = null) Return the first Coupons matching the query, or a new Coupons object populated from the query conditions when no match is found
@@ -58,24 +54,20 @@ use Hanzo\Model\CouponsToCustomers;
  * @method     Coupons findOneById(int $id) Return the first Coupons filtered by the id column
  * @method     Coupons findOneByCode(string $code) Return the first Coupons filtered by the code column
  * @method     Coupons findOneByAmount(string $amount) Return the first Coupons filtered by the amount column
- * @method     Coupons findOneByVat(string $vat) Return the first Coupons filtered by the vat column
  * @method     Coupons findOneByCurrencyCode(string $currency_code) Return the first Coupons filtered by the currency_code column
- * @method     Coupons findOneByUsesPrCoupon(int $uses_pr_coupon) Return the first Coupons filtered by the uses_pr_coupon column
- * @method     Coupons findOneByUsesPrCoustomer(int $uses_pr_coustomer) Return the first Coupons filtered by the uses_pr_coustomer column
  * @method     Coupons findOneByActiveFrom(string $active_from) Return the first Coupons filtered by the active_from column
  * @method     Coupons findOneByActiveTo(string $active_to) Return the first Coupons filtered by the active_to column
+ * @method     Coupons findOneByIsActive(boolean $is_active) Return the first Coupons filtered by the is_active column
  * @method     Coupons findOneByCreatedAt(string $created_at) Return the first Coupons filtered by the created_at column
  * @method     Coupons findOneByUpdatedAt(string $updated_at) Return the first Coupons filtered by the updated_at column
  *
  * @method     array findById(int $id) Return Coupons objects filtered by the id column
  * @method     array findByCode(string $code) Return Coupons objects filtered by the code column
  * @method     array findByAmount(string $amount) Return Coupons objects filtered by the amount column
- * @method     array findByVat(string $vat) Return Coupons objects filtered by the vat column
  * @method     array findByCurrencyCode(string $currency_code) Return Coupons objects filtered by the currency_code column
- * @method     array findByUsesPrCoupon(int $uses_pr_coupon) Return Coupons objects filtered by the uses_pr_coupon column
- * @method     array findByUsesPrCoustomer(int $uses_pr_coustomer) Return Coupons objects filtered by the uses_pr_coustomer column
  * @method     array findByActiveFrom(string $active_from) Return Coupons objects filtered by the active_from column
  * @method     array findByActiveTo(string $active_to) Return Coupons objects filtered by the active_to column
+ * @method     array findByIsActive(boolean $is_active) Return Coupons objects filtered by the is_active column
  * @method     array findByCreatedAt(string $created_at) Return Coupons objects filtered by the created_at column
  * @method     array findByUpdatedAt(string $updated_at) Return Coupons objects filtered by the updated_at column
  *
@@ -166,7 +158,7 @@ abstract class BaseCouponsQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `CODE`, `AMOUNT`, `VAT`, `CURRENCY_CODE`, `USES_PR_COUPON`, `USES_PR_COUSTOMER`, `ACTIVE_FROM`, `ACTIVE_TO`, `CREATED_AT`, `UPDATED_AT` FROM `coupons` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `CODE`, `AMOUNT`, `CURRENCY_CODE`, `ACTIVE_FROM`, `ACTIVE_TO`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `coupons` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -346,46 +338,6 @@ abstract class BaseCouponsQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query on the vat column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByVat(1234); // WHERE vat = 1234
-	 * $query->filterByVat(array(12, 34)); // WHERE vat IN (12, 34)
-	 * $query->filterByVat(array('min' => 12)); // WHERE vat > 12
-	 * </code>
-	 *
-	 * @param     mixed $vat The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CouponsQuery The current query, for fluid interface
-	 */
-	public function filterByVat($vat = null, $comparison = null)
-	{
-		if (is_array($vat)) {
-			$useMinMax = false;
-			if (isset($vat['min'])) {
-				$this->addUsingAlias(CouponsPeer::VAT, $vat['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($vat['max'])) {
-				$this->addUsingAlias(CouponsPeer::VAT, $vat['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CouponsPeer::VAT, $vat, $comparison);
-	}
-
-	/**
 	 * Filter the query on the currency_code column
 	 *
 	 * Example usage:
@@ -411,86 +363,6 @@ abstract class BaseCouponsQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(CouponsPeer::CURRENCY_CODE, $currencyCode, $comparison);
-	}
-
-	/**
-	 * Filter the query on the uses_pr_coupon column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByUsesPrCoupon(1234); // WHERE uses_pr_coupon = 1234
-	 * $query->filterByUsesPrCoupon(array(12, 34)); // WHERE uses_pr_coupon IN (12, 34)
-	 * $query->filterByUsesPrCoupon(array('min' => 12)); // WHERE uses_pr_coupon > 12
-	 * </code>
-	 *
-	 * @param     mixed $usesPrCoupon The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CouponsQuery The current query, for fluid interface
-	 */
-	public function filterByUsesPrCoupon($usesPrCoupon = null, $comparison = null)
-	{
-		if (is_array($usesPrCoupon)) {
-			$useMinMax = false;
-			if (isset($usesPrCoupon['min'])) {
-				$this->addUsingAlias(CouponsPeer::USES_PR_COUPON, $usesPrCoupon['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($usesPrCoupon['max'])) {
-				$this->addUsingAlias(CouponsPeer::USES_PR_COUPON, $usesPrCoupon['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CouponsPeer::USES_PR_COUPON, $usesPrCoupon, $comparison);
-	}
-
-	/**
-	 * Filter the query on the uses_pr_coustomer column
-	 *
-	 * Example usage:
-	 * <code>
-	 * $query->filterByUsesPrCoustomer(1234); // WHERE uses_pr_coustomer = 1234
-	 * $query->filterByUsesPrCoustomer(array(12, 34)); // WHERE uses_pr_coustomer IN (12, 34)
-	 * $query->filterByUsesPrCoustomer(array('min' => 12)); // WHERE uses_pr_coustomer > 12
-	 * </code>
-	 *
-	 * @param     mixed $usesPrCoustomer The value to use as filter.
-	 *              Use scalar values for equality.
-	 *              Use array values for in_array() equivalent.
-	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CouponsQuery The current query, for fluid interface
-	 */
-	public function filterByUsesPrCoustomer($usesPrCoustomer = null, $comparison = null)
-	{
-		if (is_array($usesPrCoustomer)) {
-			$useMinMax = false;
-			if (isset($usesPrCoustomer['min'])) {
-				$this->addUsingAlias(CouponsPeer::USES_PR_COUSTOMER, $usesPrCoustomer['min'], Criteria::GREATER_EQUAL);
-				$useMinMax = true;
-			}
-			if (isset($usesPrCoustomer['max'])) {
-				$this->addUsingAlias(CouponsPeer::USES_PR_COUSTOMER, $usesPrCoustomer['max'], Criteria::LESS_EQUAL);
-				$useMinMax = true;
-			}
-			if ($useMinMax) {
-				return $this;
-			}
-			if (null === $comparison) {
-				$comparison = Criteria::IN;
-			}
-		}
-		return $this->addUsingAlias(CouponsPeer::USES_PR_COUSTOMER, $usesPrCoustomer, $comparison);
 	}
 
 	/**
@@ -578,6 +450,32 @@ abstract class BaseCouponsQuery extends ModelCriteria
 	}
 
 	/**
+	 * Filter the query on the is_active column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByIsActive(true); // WHERE is_active = true
+	 * $query->filterByIsActive('yes'); // WHERE is_active = true
+	 * </code>
+	 *
+	 * @param     boolean|string $isActive The value to use as filter.
+	 *              Non-boolean arguments are converted using the following rules:
+	 *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+	 *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+	 *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    CouponsQuery The current query, for fluid interface
+	 */
+	public function filterByIsActive($isActive = null, $comparison = null)
+	{
+		if (is_string($isActive)) {
+			$is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+		}
+		return $this->addUsingAlias(CouponsPeer::IS_ACTIVE, $isActive, $comparison);
+	}
+
+	/**
 	 * Filter the query on the created_at column
 	 *
 	 * Example usage:
@@ -662,40 +560,40 @@ abstract class BaseCouponsQuery extends ModelCriteria
 	}
 
 	/**
-	 * Filter the query by a related CouponsToCustomers object
+	 * Filter the query by a related OrdersToCoupons object
 	 *
-	 * @param     CouponsToCustomers $couponsToCustomers  the related object to use as filter
+	 * @param     OrdersToCoupons $ordersToCoupons  the related object to use as filter
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
 	 * @return    CouponsQuery The current query, for fluid interface
 	 */
-	public function filterByCouponsToCustomers($couponsToCustomers, $comparison = null)
+	public function filterByOrdersToCoupons($ordersToCoupons, $comparison = null)
 	{
-		if ($couponsToCustomers instanceof CouponsToCustomers) {
+		if ($ordersToCoupons instanceof OrdersToCoupons) {
 			return $this
-				->addUsingAlias(CouponsPeer::ID, $couponsToCustomers->getCouponsId(), $comparison);
-		} elseif ($couponsToCustomers instanceof PropelCollection) {
+				->addUsingAlias(CouponsPeer::ID, $ordersToCoupons->getCouponsId(), $comparison);
+		} elseif ($ordersToCoupons instanceof PropelCollection) {
 			return $this
-				->useCouponsToCustomersQuery()
-				->filterByPrimaryKeys($couponsToCustomers->getPrimaryKeys())
+				->useOrdersToCouponsQuery()
+				->filterByPrimaryKeys($ordersToCoupons->getPrimaryKeys())
 				->endUse();
 		} else {
-			throw new PropelException('filterByCouponsToCustomers() only accepts arguments of type CouponsToCustomers or PropelCollection');
+			throw new PropelException('filterByOrdersToCoupons() only accepts arguments of type OrdersToCoupons or PropelCollection');
 		}
 	}
 
 	/**
-	 * Adds a JOIN clause to the query using the CouponsToCustomers relation
+	 * Adds a JOIN clause to the query using the OrdersToCoupons relation
 	 *
 	 * @param     string $relationAlias optional alias for the relation
 	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
 	 *
 	 * @return    CouponsQuery The current query, for fluid interface
 	 */
-	public function joinCouponsToCustomers($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	public function joinOrdersToCoupons($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CouponsToCustomers');
+		$relationMap = $tableMap->getRelation('OrdersToCoupons');
 
 		// create a ModelJoin object for this join
 		$join = new ModelJoin();
@@ -710,14 +608,14 @@ abstract class BaseCouponsQuery extends ModelCriteria
 			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
 			$this->addJoinObject($join, $relationAlias);
 		} else {
-			$this->addJoinObject($join, 'CouponsToCustomers');
+			$this->addJoinObject($join, 'OrdersToCoupons');
 		}
 
 		return $this;
 	}
 
 	/**
-	 * Use the CouponsToCustomers relation CouponsToCustomers object
+	 * Use the OrdersToCoupons relation OrdersToCoupons object
 	 *
 	 * @see       useQuery()
 	 *
@@ -725,13 +623,13 @@ abstract class BaseCouponsQuery extends ModelCriteria
 	 *                                   to be used as main alias in the secondary query
 	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
 	 *
-	 * @return    \Hanzo\Model\CouponsToCustomersQuery A secondary query class using the current class as primary query
+	 * @return    \Hanzo\Model\OrdersToCouponsQuery A secondary query class using the current class as primary query
 	 */
-	public function useCouponsToCustomersQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	public function useOrdersToCouponsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		return $this
-			->joinCouponsToCustomers($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CouponsToCustomers', '\Hanzo\Model\CouponsToCustomersQuery');
+			->joinOrdersToCoupons($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'OrdersToCoupons', '\Hanzo\Model\OrdersToCouponsQuery');
 	}
 
 	/**

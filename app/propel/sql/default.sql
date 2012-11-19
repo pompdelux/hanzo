@@ -106,12 +106,10 @@ CREATE TABLE `coupons`
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`code` VARCHAR(12) NOT NULL,
 	`amount` DECIMAL(15,4) NOT NULL,
-	`vat` DECIMAL(15,4),
 	`currency_code` VARCHAR(3) NOT NULL,
-	`uses_pr_coupon` INTEGER DEFAULT 1 NOT NULL,
-	`uses_pr_coustomer` INTEGER DEFAULT 1 NOT NULL,
 	`active_from` DATETIME,
 	`active_to` DATETIME,
+	`is_active` TINYINT(1) DEFAULT 1 NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
@@ -120,25 +118,25 @@ CREATE TABLE `coupons`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- coupons_to_customers
+-- orders_to_coupons
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `coupons_to_customers`;
+DROP TABLE IF EXISTS `orders_to_coupons`;
 
-CREATE TABLE `coupons_to_customers`
+CREATE TABLE `orders_to_coupons`
 (
+	`orders_id` INTEGER NOT NULL,
 	`coupons_id` INTEGER NOT NULL,
-	`customers_id` INTEGER NOT NULL,
-	`use_count` INTEGER DEFAULT 0 NOT NULL,
-	PRIMARY KEY (`coupons_id`,`customers_id`),
-	INDEX `FI_coupons_to_customers_1` (`customers_id`),
-	CONSTRAINT `fk_coupons_to_customers_1`
-		FOREIGN KEY (`customers_id`)
-		REFERENCES `customers` (`id`)
-		ON DELETE CASCADE,
-	CONSTRAINT `fk_coupons_to_customers_2`
+	`amount` DECIMAL(15,4) NOT NULL,
+	PRIMARY KEY (`orders_id`,`coupons_id`),
+	INDEX `orders_to_coupons_FI_1` (`coupons_id`),
+	CONSTRAINT `orders_to_coupons_FK_1`
 		FOREIGN KEY (`coupons_id`)
 		REFERENCES `coupons` (`id`)
+		ON DELETE CASCADE,
+	CONSTRAINT `orders_to_coupons_FK_2`
+		FOREIGN KEY (`orders_id`)
+		REFERENCES `orders` (`id`)
 		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 

@@ -58,6 +58,10 @@
         <source>confirm.title</source>
         <target>Keur goed</target>
       </trans-unit>
+      <trans-unit id="confirm.addresses.label" approved="no">
+        <source>confirm.addresses.label</source>
+        <target>Ja, adresserne herover er korrekte.</target>
+      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>E-ordernummer</target>
@@ -340,6 +344,33 @@
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
         <target>Little Boy</target>
+      </trans-unit>
+
+      <trans-unit id="coupon" approved="no">
+        <source>coupon</source>
+        <target>Gavekort</target>
+      </trans-unit>
+      <trans-unit id="toggle.coupon.form" approved="no">
+        <source>toggle.coupon.form</source>
+        <target>» Angiv gavekortskode</target>
+      </trans-unit>
+      <trans-unit id="invalid.coupon.code" approved="no">
+        <source>invalid.coupon.code</source>
+        <target>Ugylding gavekortskode</target>
+      </trans-unit>
+      <trans-unit id="coupon.label" approved="no">
+        <source>coupon.label</source>
+        <target>Indtast gavekortskode:</target>
+      </trans-unit>
+      <trans-unit id="apply.coupon.discount" approved="no">
+        <source>apply.coupon.discount</source>
+        <target>Go!</target>
+      </trans-unit>
+      <trans-unit id="coupon.description" approved="no">
+        <source>coupon.description</source>
+        <target><![CDATA[
+          Beskrivelse af gavekort og betingelser ....
+        ]]></target>
       </trans-unit>
     </body>
   </file>

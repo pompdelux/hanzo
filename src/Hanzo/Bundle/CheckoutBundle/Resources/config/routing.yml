@@ -33,3 +33,7 @@ _checkout_populate_order:
     pattern:  /checkout/populate_order
     defaults: { _controller: CheckoutBundle:Default:populateOrder, _format: json }
     requirements: { _format: (xml|json), _method: POST }
+
+_checkout_test:
+    pattern:  /checkout-test
+    defaults: { _controller: CheckoutBundle:Default:test }
