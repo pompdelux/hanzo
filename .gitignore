@@ -8,3 +8,4 @@
 /src/Hanzo/Bundle/CMSBundle/Resources/config/cms_routing.yml
 /src/Hanzo/Bundle/BasketBundle/Resources/config/category_map.php
 /.rsync_cache/
+/web/images/frontpage/*.jpg
