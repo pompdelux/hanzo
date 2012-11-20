@@ -6,7 +6,7 @@
 {# http://thiagosf.net/projects/jquery/skitter/ #}
 
   <article>
-    <div id="skitter">
+    <div class="cycle-slideshow" data-cycle-slides="> a">
 
     {% if app.session.locale == 'da_DK' %}
 
@@ -67,18 +67,13 @@
 
 {% block javascript %}
 
-<script type="text/javascript" src="{{ cdn }}fx/scripts/jquery.cycle.lite.js"></script>
+<script type="text/javascript" src="{{ cdn }}fx/scripts/jquery.cycle2.min.js"></script>
 <style type="text/css">
-#skitter {
+article .cycle-slideshow {
   margin-top: 70px;
   overflow: hidden;
   height: 542px;
   width: 736px;
 }
 </style>
-<script>
-(function($, undefined) {
-  $('#skitter').cycle({fx: 'fade'});
-})(jQuery);
-</script>
 {% endblock %}
