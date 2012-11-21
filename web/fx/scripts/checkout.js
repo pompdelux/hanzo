@@ -271,6 +271,7 @@
     };
 
     pub.processPaymentButton = function(response) {
+console.log(step_states);
       if (pub.getStepStatus('address') &&
           pub.getStepStatus('payment') &&
           pub.getStepStatus('shipping')

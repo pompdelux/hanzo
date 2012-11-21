@@ -2,6 +2,7 @@ parameters:
     payment.dibsapi.class: Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi
     payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi
     payment.paybybill.class: Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi
+    payment.coupon.class: Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponApi
 
 services:
     payment.dibsapi:
@@ -30,3 +31,12 @@ services:
             service:     paybybillapi
             parameters:  ~
             class:       %payment.paybybill.class%
+
+    payment.couponapi:
+        class:           %payment.coupon.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     couponapi
+            parameters:  ~
+            class:       %payment.coupon.class%

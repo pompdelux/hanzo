@@ -898,6 +898,7 @@ class EventsController extends CoreController
         return $this->render('EventsBundle:Events:selectEvent.html.twig', array(
             'events' => $events,
             'continue_shopping' => $this->get('router')->generate('QuickOrderBundle_homepage'),
+            'disable_discounts' => (bool) Hanzo::getInstance()->get('webshop.disable_discounts', 0),
         ));
     }
 

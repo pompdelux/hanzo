@@ -32,4 +32,12 @@
     </label>
   </li>
 {% endif %}
+{% if cardtypes.ABN is defined and cardtypes.ABN %}
+  <li>
+    <input type="radio" value="dibs:ABN" id="dibs_card_type_ABN" name="paytype"{% if selected_payment_type == 'dibs:ABN' %} checked{% endif %}>
+    <label for="dibs_card_type_ABN">
+      <img alt="ABN" src="{{ cdn }}fx/images/icons/ideal.png">  {{ 'payment.dibs.paytype.ideal'|trans({}, 'checkout') }}
+    </label>
+  </li>
+{% endif %}
 </ul>
