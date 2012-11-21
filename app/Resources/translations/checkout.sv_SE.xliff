@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="checkout.headline">
+        <source>checkout.headline</source>
+        <target>Checkout</target>
+      </trans-unit>
       <trans-unit id="checkout_json_err_no_order">
         <source>json.err.no_order</source>
         <target>Ordern finns inte</target>
@@ -365,32 +369,29 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-
       <trans-unit id="coupon" approved="no">
-        <source>coupon</source>
-        <target>Gavekort</target>
+         <source>coupon</source>
+         <target>Presentkort</target>
       </trans-unit>
       <trans-unit id="toggle.coupon.form" approved="no">
-        <source>toggle.coupon.form</source>
-        <target>» Angiv gavekortskode</target>
+         <source>toggle.coupon.form</source>
+         <target>» Skriv in din presentkortskod</target>
       </trans-unit>
       <trans-unit id="invalid.coupon.code" approved="no">
-        <source>invalid.coupon.code</source>
-        <target>Ugylding gavekortskode</target>
+         <source>invalid.coupon.code</source>
+         <target>Ogiltig presentkortskod</target>
       </trans-unit>
       <trans-unit id="coupon.label" approved="no">
-        <source>coupon.label</source>
-        <target>Indtast gavekortskode:</target>
+         <source>coupon.label</source>
+         <target>Presentkortskod:</target>
       </trans-unit>
       <trans-unit id="apply.coupon.discount" approved="no">
-        <source>apply.coupon.discount</source>
-        <target>Go!</target>
+         <source>apply.coupon.discount</source>
+         <target>Spara</target>
       </trans-unit>
       <trans-unit id="coupon.description" approved="no">
-        <source>coupon.description</source>
-        <target><![CDATA[
-          Beskrivelse af gavekort og betingelser ....
-        ]]></target>
+         <source>coupon.description</source>
+         <target>Nedan kan du skriva din presentkortskod. Om du inte använder hela beloppet på ditt presentkort, kan du använda presentkortskoden igen nästa gång du handlar hos POMPdeLUX.</target>
       </trans-unit>
     </body>
   </file>
