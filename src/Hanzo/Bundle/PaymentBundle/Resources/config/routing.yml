@@ -53,13 +53,18 @@ _paybybill_callback:
     pattern:  /payment/paybybill/callback
     defaults: { _controller: PaymentBundle:PayByBill:callback }
 
+# Coupon }-------------------------
+_coupon_callback:
+    pattern:  /payment/coupon/callback
+    defaults: { _controller: PaymentBundle:Coupon:callback }
 
+
+# ALL }-------------------------
 _payment_set_method:
     pattern: /checkout/payment/set/method
     defaults:
         _controller: PaymentBundle:Default:setMethod
 
-# ALL }-------------------------
 _process_payment:
     pattern: /checkout/payment/process
     defaults:
