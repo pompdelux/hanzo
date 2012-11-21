@@ -2,6 +2,9 @@
   <h3>{{ 'choose.event.type'|trans({}, 'events') }}</h3>
 
   <select name="type" id="sales-type">
+{% if disable_discounts %}
+    <option value="x:private">{{ 'event.type.private'|trans({}, 'events') }}</option>
+{% else %}
 
   {% for event in events %}
     <option value="{{ event.id }}:{{ event.code }}" data-type="{{ event.type }}">{{ event.code }} - {{ event.host }}</option>
@@ -13,7 +16,9 @@
     <option  value="x:friend">{{ 'event.type.friend'|trans({}, 'events') }}</option>
     <option  value="x:other">{{ 'event.type.other'|trans({}, 'events') }}</option>
   {% endif %}
-  </select>
+
+{% endif %}
+    </select>
 
   <div class="off">
     <label for="hostess">{{ 'hostess.discount'|trans({}, 'events') }}</label>
