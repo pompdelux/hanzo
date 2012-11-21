@@ -10,6 +10,10 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Salasana on annettava.</target>
             </trans-unit>
+            <trans-unit id="User account is disabled." approved="no">
+                <source>User account is disabled.</source>
+                <target>User account is disabled.</target>
+            </trans-unit>
             <trans-unit id="fetch.invoice">
                 <source>fetch.invoice</source>
                 <target>Nouda lasku pdf-muodossa</target>

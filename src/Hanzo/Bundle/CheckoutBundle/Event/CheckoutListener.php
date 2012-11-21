@@ -63,16 +63,17 @@ class CheckoutListener
 
         Tools::log('Payment failed: '.str_replace('<br>',"", $message ));
 
-        try {
-            $this->mailer->setSubject( sprintf('[FEJL] Ordre nr: %d fejlede', $order->getId()) )
-                ->setBody('Beskeden er i HTML format')
-                ->addPart($message,'text/html')
-                ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
-                ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
-                ->send();
-        } catch (\Swift_TransportException $e) {
-            Tools::log($e->getMessage());
-        }
+        // untill futher notice...
+        // try {
+        //     $this->mailer->setSubject( sprintf('[FEJL] Ordre nr: %d fejlede', $order->getId()) )
+        //         ->setBody('Beskeden er i HTML format')
+        //         ->addPart($message,'text/html')
+        //         ->setTo( 'hd@pompdelux.dk' , 'Mr. HD' )
+        //         ->setCc( 'hf@bellcom.dk', 'Mr. HF' )
+        //         ->send();
+        // } catch (\Swift_TransportException $e) {
+        //     Tools::log($e->getMessage());
+        // }
 
         $this->session->set('failed_order_mail_sent', true);
     }

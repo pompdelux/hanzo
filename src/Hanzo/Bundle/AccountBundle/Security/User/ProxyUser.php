@@ -4,10 +4,11 @@
 namespace Hanzo\Bundle\AccountBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 use Hanzo\Model\Customers as ModelUser;
 
-class ProxyUser implements UserInterface
+class ProxyUser implements AdvancedUserInterface
 {
     /**
      * The model user
@@ -134,5 +135,27 @@ class ProxyUser implements UserInterface
     public function getUser()
     {
         return $this->user;
+    }
+
+
+    // satisfy AdvancedUserInterface
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->getUser()->getIsActive();
     }
 }
