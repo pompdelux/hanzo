@@ -170,7 +170,7 @@
 
           if ($form.data('callback')) {
             var url = $form.attr('action');
-            url = url.replace(/(app_(test|dev)\.php)?\/[a-z]{2}_[a-z]{2}\//i, '');
+            url = url.replace(/(app_(test|dev)\.php\/)?[a-z]{2}_[a-z]{2}\//i, '');
             var callback = $form.data('callback');
             jaiks.add(url, eval('checkout.'+callback), $form.formParams());
           }
