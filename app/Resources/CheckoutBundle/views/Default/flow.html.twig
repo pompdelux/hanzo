@@ -1,14 +1,13 @@
 {% extends layout %}
 {% block content %}
 
+<h1>{{ 'checkout.headline'|trans({}, 'checkout') }}</h1>
+
 {% if app.session.hasFlash('notice') %}
   <div class="message error">
     {{ app.session.flash('notice') }}
   </div>
 {% endif %}
-
-
-<h1>Checkud</h1>
 
 {% render 'ShippingBundle:Default:block' %}
 

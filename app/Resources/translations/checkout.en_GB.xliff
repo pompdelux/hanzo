@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="checkout.headline">
+        <source>checkout.headline</source>
+        <target>Checkout</target>
+      </trans-unit>
       <trans-unit id="checkout_json_err_no_order">
         <source>json.err.no_order</source>
         <target>No Such order</target>
@@ -345,32 +349,29 @@
         <source>product.group.lb</source>
         <target>Little Boy</target>
       </trans-unit>
-
-      <trans-unit id="coupon" approved="no">
-        <source>coupon</source>
-        <target>Gavekort</target>
+      <trans-unit id="coupon">
+         <source>coupon</source>
+         <target>Gift card</target>
       </trans-unit>
-      <trans-unit id="toggle.coupon.form" approved="no">
-        <source>toggle.coupon.form</source>
-        <target>» Angiv gavekortskode</target>
+      <trans-unit id="toggle.coupon.form">
+         <source>toggle.coupon.form</source>
+         <target>» Enter your gift card code</target>
       </trans-unit>
-      <trans-unit id="invalid.coupon.code" approved="no">
-        <source>invalid.coupon.code</source>
-        <target>Ugylding gavekortskode</target>
+      <trans-unit id="invalid.coupon.code">
+         <source>invalid.coupon.code</source>
+         <target>Invalid gift card code</target>
       </trans-unit>
-      <trans-unit id="coupon.label" approved="no">
-        <source>coupon.label</source>
-        <target>Indtast gavekortskode:</target>
+      <trans-unit id="coupon.label">
+         <source>coupon.label</source>
+         <target>Gift card code:</target>
       </trans-unit>
-      <trans-unit id="apply.coupon.discount" approved="no">
-        <source>apply.coupon.discount</source>
-        <target>Go!</target>
+      <trans-unit id="apply.coupon.discount">
+         <source>apply.coupon.discount</source>
+         <target>Save</target>
       </trans-unit>
-      <trans-unit id="coupon.description" approved="no">
-        <source>coupon.description</source>
-        <target><![CDATA[
-          Beskrivelse af gavekort og betingelser ....
-        ]]></target>
+      <trans-unit id="coupon.description">
+         <source>coupon.description</source>
+         <target>Enter your gift card code below. If you do not spend the full value of the gift card, it will be retained on the card for next time you shop at POMPdeLUX.</target>
       </trans-unit>
     </body>
   </file>
