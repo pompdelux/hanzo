@@ -8,6 +8,8 @@
       payment: false
     };
 
+    var stop = false;
+
     pub.init = function() {
 
       $('#body-checkout form input:checked').each(function (index, element) {
@@ -79,7 +81,7 @@
             break;
         }
 
-        jaiks.add('/checkout/shipping/set/method', function() {}, {method : element.value});
+        jaiks.add('/checkout/shipping/set/method', pub.handleCallbackErrors, {method : element.value});
         jaiks.add('/checkout/shipping/address/'+method+'/form', checkout.handleShippingMethodUpdates);
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
@@ -97,7 +99,7 @@
 
         var $ul = $(element).closest('ul');
 
-        jaiks.add('/checkout/payment/set/method', function() {}, {method : element.value});
+        jaiks.add('/checkout/payment/set/method', pub.handleCallbackErrors, {method : element.value});
         jaiks.add('/checkout/summery', checkout.handlePaymentMethodUpdates);
         jaiks.exec();
       });
@@ -226,36 +228,48 @@
     }
 
     pub.handleShippingMethodUpdates = function(response) {
-      response = response.response;
-      if (response.status) {
-        $('#address-block form:nth-child(2)').replaceWith(response.data.html);
+      if (stop) { return; }
+
+      if (response.response.status) {
+        $('#address-block form:nth-child(2)').replaceWith(response.response.data.html);
         $(document).trigger('shipping.address.changed');
         $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
         pub.setStepStatus('shipping', true);
+      } else {
+        pub.handleCallbackErrors(response);
       }
     };
 
     pub.handleSummeryUpdates = function(response) {
-      response = response.response;
-      if (response.status) {
-        $('#checkout-block-summery').html(response.data);
+      if (stop) { return; }
+
+      if (response.response.status) {
+        $('#checkout-block-summery').html(response.response.data);
         $(document).trigger('checkout.summery.updated');
+      } else {
+        pub.handleCallbackErrors(response);
       }
 
       dialoug.stopLoading();
     };
 
     pub.handlePaymentMethodUpdates = function(response) {
+      if (stop) { return; }
+
       if (response.response.status) {
         $('html,body').animate({scrollTop: $('#checkout-block-summery').offset().top});
         $(document).trigger('payment.method.updated');
         pub.setStepStatus('payment', true);
+      } else {
+        pub.handleCallbackErrors(response);
       }
 
       pub.handleSummeryUpdates(response);
     }
 
     pub.handleCouponUpdates = function(response) {
+      if (stop) { return; }
+
       var $coupon = $('#coupon-block');
       if (response.response.status) {
         $('form', $coupon).hide();
@@ -265,12 +279,16 @@
     }
 
     pub.validateAddress = function(response) {
+      if (stop) { return; }
+
       if (true === pub.getStepStatus('address')) {
         pub.setStepStatus('address', response.response.status);
       }
     };
 
     pub.processPaymentButton = function(response) {
+      if (stop) { return; }
+
       if (pub.getStepStatus('address') &&
           pub.getStepStatus('payment') &&
           pub.getStepStatus('shipping')
@@ -286,6 +304,15 @@
           $('#checkout-buttons').append(response.response.data.form);
           $('#checkout-buttons form').submit();
         }
+      }
+    };
+
+    pub.handleCallbackErrors = function(response) {
+      if ((false === response.response.status) && response.response.message) {
+        stop = true;
+        dialoug.stopLoading();
+        dialoug.notice(response.response.message, 'error');
+        $(document).scrollTop(50);
       }
     };
 

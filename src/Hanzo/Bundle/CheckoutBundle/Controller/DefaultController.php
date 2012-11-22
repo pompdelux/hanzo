@@ -61,6 +61,7 @@ class DefaultController extends CoreController
      **/
     public function updateAction($block, $state)
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $order = OrdersPeer::getCurrent();
         $t = $this->get('translator');
 
@@ -124,6 +125,7 @@ class DefaultController extends CoreController
      **/
     protected function updateAddress( Orders $order, Request $request, $state )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if ( $state === false ) {
             $order->clearBillingAddress();
             $order->clearDeliveryAddress();
@@ -189,6 +191,7 @@ class DefaultController extends CoreController
      **/
     protected function updateShipping( Orders $order, Request $request, $state )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if ( $state === false ) {
             $order->setDeliveryMethod(null);
         }
@@ -225,6 +228,7 @@ class DefaultController extends CoreController
      **/
     protected function updatePayment( Orders $order, Request $request, $state )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if ( $state === 'false' )
         {
             throw new Exception( 'Payment state not valid' );
@@ -257,12 +261,11 @@ class DefaultController extends CoreController
      **/
     public function validateAction()
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $order = OrdersPeer::getCurrent();
-
         $trans = $this->get('translator');
 
-        if ( $order->getState() >= Orders::STATE_PRE_PAYMENT  )
-        {
+        if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
             return $this->json_response(array(
                 'status' => false,
                 'message' => $trans->trans('order.state_pre_payment.locked', [], 'checkout'),
@@ -275,8 +278,7 @@ class DefaultController extends CoreController
         $data = $this->get('request')->get('data');
         $grouped = array();
 
-        foreach ($data as $values)
-        {
+        foreach ($data as $values) {
             $grouped[$values['name']] = $values;
         }
 
@@ -335,6 +337,7 @@ class DefaultController extends CoreController
      **/
     public function validateAddresses( Orders $order, $data )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
       $fields = $order->toArray(BasePeer::TYPE_FIELDNAME);
 
       $check = array(
@@ -373,6 +376,7 @@ class DefaultController extends CoreController
      **/
     public function validatePayment( Orders $order, $data )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $api = $this->get('payment.'. $data['selectedMethod'] .'api');
 
         if (!$api->isActive()) {
@@ -389,6 +393,7 @@ class DefaultController extends CoreController
      **/
     protected function validateShipping( Orders $order, $data )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $t = $this->get('translator');
 
         if (($data['state'] !== 'true')) {
@@ -413,6 +418,7 @@ class DefaultController extends CoreController
      **/
     public function addressesAction($skip_empty = false)
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $order = OrdersPeer::getCurrent();
         $customer = $order->getCustomers();
 
@@ -663,6 +669,7 @@ class DefaultController extends CoreController
      **/
     public function populateOrderAction()
     {
+Tools::log('skal ikke bruges - eller ?? , find ud af hvor kaldet kommer fra !');
         $orderObj      = OrdersPeer::getCurrent();
         $attributesObj = $orderObj->getOrdersAttributess();
         $order         = $orderObj->toArray();
