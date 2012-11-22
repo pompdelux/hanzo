@@ -38,13 +38,8 @@ class DefaultController extends CoreController
 
     public function setMethodAction(Request $request)
     {
-        $api = $this->get('shipping.shippingapi');
+        $api     = $this->get('shipping.shippingapi');
         $methods = $api->getMethods();
-
-        $response = array(
-            'status' => false,
-            'message' => 'unknown delivery method',
-        );
 
         if (isset($methods[$request->get('method')])) {
             $method = $methods[$request->get('method')];
@@ -61,6 +56,12 @@ class DefaultController extends CoreController
                 'status' => true,
                 'message' => '',
             );
+        } else {
+            $response = array(
+                'status' => false,
+                'message' => $this->get('translator')->trans('err.unknown_shipping_method', [], 'checkout'),
+            );
+
         }
 
         return $this->json_response($response);

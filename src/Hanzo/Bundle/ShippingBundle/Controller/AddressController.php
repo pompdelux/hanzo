@@ -184,7 +184,6 @@ class AddressController extends CoreController
         if ('POST' === $request->getMethod()) {
             $order = OrdersPeer::getCurrent();
 
-            // TODO: implement some validation rules
             $data = $request->get('form');
 
             if ($type == 'shipping') {
@@ -201,6 +200,20 @@ class AddressController extends CoreController
                 }
             } else {
                 $method = 'payment';
+            }
+
+            $missing = array();
+            foreach (['first_name', 'last_name', 'address_line_1', 'postal_code', 'city'] as $field) {
+                if (!isset($data[$field])) {
+                    $missing[] = $field;
+                }
+            }
+
+            if (count($missing)) {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => 'Et, eller flere felter mangler i dine adresser',
+                ));
             }
 
             $address = AddressesQuery::create()
@@ -241,7 +254,6 @@ class AddressController extends CoreController
             }
 
             $order->save();
-
             $status = true;
         }
 

@@ -7,7 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
+use Hanzo\Bundle\CheckoutBundle\Controller\DefaultController AS CheckoutController;
 
+use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 
 class DefaultController extends CoreController
@@ -79,6 +81,14 @@ class DefaultController extends CoreController
 
         $order = OrdersPeer::getCurrent();
 
+        if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
+            $trans = $this->get('translator');
+            $response['message'] = $trans->trans('order.state_pre_payment.locked', [], 'checkout');
+
+            return $this->json_response($response);
+        }
+
+
         $order->setPaymentMethod( $provider );
         $order->setPaymentPaytype( $method );
 
@@ -88,10 +98,10 @@ class DefaultController extends CoreController
         $order->setOrderLinePaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
         $order->save();
 
-        $response = array(
-            'status' => true,
+        $response = [
+            'status'  => true,
             'message' => '',
-        );
+        ];
 
         return $this->json_response($response);
     }
@@ -105,6 +115,17 @@ class DefaultController extends CoreController
         ];
 
         $order = OrdersPeer::getCurrent();
+
+        // validation
+
+        if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => $this->get('translator')->trans('order.state_pre_payment.locked', [], 'checkout'),
+                'data'    => ['name' => 'payment'],
+            ]);
+        }
+
         $provider = strtolower($order->getBillingMethod());
         $key = 'payment.'.$provider.'api';
 
@@ -117,6 +138,11 @@ class DefaultController extends CoreController
                 'data'    => $api->getProcessButton($order),
             ];
         }
+
+        // If the customer cancels payment, state is back to building
+        // Customer is only allowed to add products to the basket if state is >= pre payment
+        $order->setState( Orders::STATE_PRE_PAYMENT );
+        $order->save();
 
         return $this->json_response($response);
     }
