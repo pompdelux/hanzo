@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\SearchBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
@@ -21,6 +23,9 @@ class DefaultController extends CoreController
         return $this->render('HanzoSearchBundle:Default:index.html.twig', array('name' => $name));
     }
 
+    /**
+     * @Cache(smaxage="1")
+     */
     public function categoryAction($id)
     {
         $hanzo = Hanzo::getInstance();
@@ -34,81 +39,37 @@ class DefaultController extends CoreController
         $group = $settings->group;
 
         $categories  = array_map('trim', explode(',', $categories_string));
+
         $no_accessories = $categories;
         $accessories = array_shift($no_accessories);
 
-        $cache_key = array('category_search', $id, $domain_id);
-        $sizes = $this->getCache($cache_key);
+        $category_sort = implode(',', $no_accessories).','.$accessories;
 
-        if (!is_array($sizes)) {
-
-
-            // find masters
-            $products = ProductsToCategoriesQuery::create()
-                ->useProductsQuery()
-                    ->filterByIsOutOfStock(FALSE)
-                    ->useProductsDomainsPricesQuery()
-                        ->filterByDomainsId($domain_id)
-                    ->endUse()
-                ->endUse()
-                ->groupByProductsId()
-                ->findByCategoriesId($no_accessories)
-            ;
-
-            $sizes = array();
-            foreach ($products as $product) {
-                $variants = ProductsQuery::create()
-                    // out due to caching issues, maby we have to reinsert...
-                    ->filterByIsOutOfStock(FALSE)
-                    ->filterBySize(array('one size', '20-22', '23-26', 'l', 'm', 's'), \Criteria::NOT_IN)
-                    ->findByMaster($product->getProducts()->getSku())
-                ;
-                foreach ($variants as $variant) {
-                    $size = $variant->getSize();
-
-                    // we have to re-map some of the sizes
-                    switch (trim(strtolower($size)))
-                    {
-                        case '110':
-                        case '116':
-                            $size = '110-116';
-                            break;
-                        case '122':
-                        case '128':
-                            $size = '122-128';
-                            break;
-                        case '134':
-                        case '140':
-                            $size = '134-140';
-                            break;
-                        case '146':
-                        case '152':
-                            $size = '146-152';
-                            break;
-                        default:
-                            switch($group) {
-                                case 'g':
-                                case 'b':
-                                    if (in_array($size, array('27-30', '31-34', '35-38', '86', '92', '98', '98-104'))) {
-                                        continue 3;
-                                    }
-                                    break;
-                                case 'lg':
-                                case 'lb':
-                                    if (in_array($size, array('27-30', '31-34', '35-38', '104', '110-116', '122-128'))) {
-                                        continue 3;
-                                    }
-                                    break;
-                            }
-                            break;
-                    }
-
-                    $sizes[$size] = $size;
-                }
-            }
-
-            $this->setCache($cache_key, $sizes, 60); // cache one minute
+        // TODO: figure out a way to avoid this..
+        // setup size grouping
+        switch ($group) {
+            case 'g':
+            case 'b':
+                $sizes = [
+                    '98-104'  => ['98-104'],
+                    '104'     => ['104'],
+                    '110-116' => ['110-116', '110', '116'],
+                    '122-128' => ['122-128', '122', '128'],
+                    '134-140' => ['134-140', '134'. '140'],
+                    '146-152' => ['146-152', '146', '152'],
+                ];
+                break;
+            case 'lb':
+            case 'lg':
+                $sizes = [
+                    80 => [80],
+                    86 => [86],
+                    92 => [92],
+                    98 => [98],
+                ];
+                break;
         }
+
 
         $result_set = array();
         if ('POST' === $this->getRequest()->getMethod()) {
@@ -116,44 +77,51 @@ class DefaultController extends CoreController
 
             $conn = \Propel::getConnection();
 
-            $query = $conn->prepare("
-                SELECT
-                    products.id,
-                    products.size,
-                    products_to_categories.categories_id AS category_id,
-                    categories_i18n.title
+            $sql = "
+                SELECT DISTINCT
+                    p.id AS vid,
+                    p.master,
+                    p.size,
+                    ci.id as category_id,
+                    ci.title,
+                    (SELECT p1.id FROM products AS p1 WHERE SKU = p.master) AS id
                 FROM
-                    products
+                    products AS p
                 JOIN
-                    products_to_categories
-                    ON
-                        (products.id = products_to_categories.products_id)
+                    products_to_categories AS p2c
+                    ON (
+                        p2c.products_id = (SELECT p1.id FROM products AS p1 WHERE SKU = p.master)
+                    )
                 JOIN
-                    categories_i18n
-                    ON
-                        (products_to_categories.categories_id = categories_i18n.id)
+                    categories_i18n AS ci
+                    ON (
+                        p2c.categories_id = ci.id
+                    )
                 JOIN
-                    products_domains_prices
-                    ON
-                        (products.id = products_domains_prices.products_id)
+                    products_domains_prices AS pdp
+                    ON (
+                        p.id = pdp.products_id
+                    )
                 WHERE
-                    products.master IS NULL
-                    AND
-                        products.is_out_of_stock = 0
-                    AND
-                        products_domains_prices.domains_id = {$domain_id}
-                    AND
-                        products_to_categories.categories_id IN (".implode(',', $no_accessories).")
-                    AND
-                        categories_i18n.locale = '{$locale}'
+                    p.is_out_of_stock = 0
+                AND
+                    p.size IN ('".implode("','", $sizes[$size])."')
+                AND
+                    pdp.domains_id = {$domain_id}
+                AND
+                    ci.locale = '{$locale}'
+                AND
+                    p2c.categories_id IN ({$category_sort})
                 ORDER BY
-                    field(products_to_categories.categories_id, " . implode(',', $no_accessories) . ', ' . $accessories . "),
-                    products.sku
-            ", array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+                    field(p2c.categories_id, {$category_sort}),
+                    p.sku
 
+            ";
+
+            $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
             $query->execute();
 
-            $product_ids = array();
+            $product_ids  = array();
             $category_ids = array();
             $category_map = array();
 
@@ -203,6 +171,7 @@ class DefaultController extends CoreController
                     }
                 }
             }
+
             $result_set = $category_map;
         }
 
