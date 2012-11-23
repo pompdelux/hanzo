@@ -36,8 +36,8 @@
       </trans-unit>
       <trans-unit id="checkout.failed.text">
         <source>checkout.failed.text</source>
-        <target>
-            Maksussa/tilauksen käsittelyssä tapahtui virhe. Ota yhteyttä asiakaspalveluun<br><br> <p>E-tilausnumero: <b>%order_id%</b></p>
+        <target><![CDATA[
+            Maksussa/tilauksen käsittelyssä tapahtui virhe. Ota yhteyttä asiakaspalveluun<br><br> <p>E-tilausnumero: <b>%order_id%</b></p>]]>
         </target>
       </trans-unit>
       <trans-unit id="confirm.title">
