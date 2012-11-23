@@ -27,7 +27,7 @@
 
           <h2>FAQ</h2> <p> Tästä löydät yleisimmät kysymykset ja vastaukset POMPdeLUXista.<br> <a href="/p/forside-kundeservice-faq">&amp;raquo; FAQ</a> </p>
 
-          <h2>Uutiset</h2> <p> Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.<br> <a href="/p/forside-nyheder">&amp;raquo; Nyheder</a> </p>]]
+          <h2>Uutiset</h2> <p> Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.<br> <a href="/p/forside-nyheder">&amp;raquo; Nyheder</a> </p>]]>
         </target>
       </trans-unit>
       <trans-unit id="checkout.failed.title">
@@ -226,7 +226,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Huomaa:</strong> Mikäli tilaus sisältää jälkitoimituksessa olevia tuotteita, lähetämme tilauksen vasta, kun kaikki tuotteet ovat saapuneet varastoomme.]]</target>
+        <target><![CDATA[<strong>Huomaa:</strong> Mikäli tilaus sisältää jälkitoimituksessa olevia tuotteita, lähetämme tilauksen vasta, kun kaikki tuotteet ovat saapuneet varastoomme.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -243,7 +243,7 @@
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
         <target><![CDATA[
-          <p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p> <p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.</p>]]
+          <p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p> <p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.</p>]]>
         </target>
       </trans-unit>
       <trans-unit id="status.20" approved="no">

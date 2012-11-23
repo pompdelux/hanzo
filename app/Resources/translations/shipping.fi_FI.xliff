@@ -41,7 +41,7 @@
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
         <target><![CDATA[
-          Døgnpost-lähetys edellyttää nimen ja Døgnpost-kirjautumisen yhteydessä saadun tunnuksen lisäämistä. Kirjoita Døgnpost-tunnus ja -osoite toimitusosoitteeksi ja oma osoitteesi laskutusosoitteeksi.<br> <a href="http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx" rel="external">» Lue lisää Døgnpostista</a>]]
+          Døgnpost-lähetys edellyttää nimen ja Døgnpost-kirjautumisen yhteydessä saadun tunnuksen lisäämistä. Kirjoita Døgnpost-tunnus ja -osoite toimitusosoitteeksi ja oma osoitteesi laskutusosoitteeksi.<br> <a href="http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx" rel="external">» Lue lisää Døgnpostista</a>]]>
       </target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">

@@ -64,15 +64,15 @@
             </trans-unit>
             <trans-unit id="late.delivery.notice">
                 <source>late.delivery.notice</source>
-                <target><![CDATA[<p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p><p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.]]</target>
+                <target><![CDATA[<p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p><p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.]]></target>
             </trans-unit>
             <trans-unit id="delete.from.basket.warning">
                 <source>delete.from.basket.warning</source>
-                <target><![CDATA[Haluatko varmasti poistaa tuotteen <strong>%product%</strong> ostoskoristasi?]]</target>
+                <target><![CDATA[Haluatko varmasti poistaa tuotteen <strong>%product%</strong> ostoskoristasi?]]></target>
             </trans-unit>
             <trans-unit id="late.delivery">
                 <source>late.delivery</source>
-                <target><![CDATA[<h2>Huomaa: tuotetta </h2><strong>"%product%"</strong> ei ole tällä hetkellä varastossa.<br>Koko tilauksesi arvioidaan lähtevän varastostamme viimeistään <strong>%date%</strong>.]]</target>
+                <target><![CDATA[<h2>Huomaa: tuotetta </h2><strong>"%product%"</strong> ei ole tällä hetkellä varastossa.<br>Koko tilauksesi arvioidaan lähtevän varastostamme viimeistään <strong>%date%</strong>.]]></target>
             </trans-unit>
             <trans-unit id="not.filled.correctly">
                 <source>not.filled.correctly</source>
