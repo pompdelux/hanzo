@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.500">
         <source>shipping_method.desc.500</source>
-        <target>Tilauksesi lähetetään henkilökohtaiseen osoitteeseesi. Jos haluat lähettää tilauksesi toiseen yksityisosoitteeseen (esim. naapurille), muuta toimitusosoite kohdassa &quot;Muuta toimitusosoitetta&quot;.</target>
+        <target>Tilauksesi lähetetään sinua lähimpänä olevaan, My Pack noutopisteeseen.</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.500">
         <source>shipping_method.label.500</source>
@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.desc.11">
         <source>shipping_method.desc.11</source>
-        <target>Jos sinulla on mahdollisuus tilata lähetys työpaikallesi, voit valita yrityspaketin. Muista vaihtaa toimitusosoite napsauttamalla &quot;Muuta toimitusosoitetta&quot; (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
+        <target>Jos sinulla on mahdollisuus tilata lähetys työpaikallesi, voit valita yrityspaketin. Muista vaihtaa toimitusosoite napsauttamalla "Muuta toimitusosoitetta" (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.11">
         <source>shipping_method.label.11</source>
@@ -41,7 +41,7 @@
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
         <target>
-          Døgnpost-lähetys edellyttää nimen ja Døgnpost-kirjautumisen yhteydessä saadun tunnuksen lisäämistä. Kirjoita Døgnpost-tunnus ja -osoite toimitusosoitteeksi ja oma osoitteesi laskutusosoitteeksi.&lt;br&gt; &lt;a href=&quot;http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx&quot; rel=&quot;external&quot;&gt;» Lue lisää Døgnpostista&lt;/a&gt;
+          Døgnpost-lähetys edellyttää nimen ja Døgnpost-kirjautumisen yhteydessä saadun tunnuksen lisäämistä. Kirjoita Døgnpost-tunnus ja -osoite toimitusosoitteeksi ja oma osoitteesi laskutusosoitteeksi.<br> <a href="http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx" rel="external">» Lue lisää Døgnpostista</a>
       </target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="shipping_fee.desc">
         <source>shipping_fee.desc</source>
-        <target>Kaikkiin tilauksiin lisätään toimituskulut, %price%</target>
+        <target>Kaikkiin tilauksiin lisätään käsittelymaksu, %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.label">
         <source>shipping_fee.label</source>
