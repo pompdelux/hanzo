@@ -50,7 +50,7 @@
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
-        <target>Toimituskulut</target>
+        <target>Käsittelymaksu</target>
       </trans-unit>
       <trans-unit id="shipping_fee.desc">
         <source>shipping_fee.desc</source>
@@ -58,15 +58,15 @@
       </trans-unit>
       <trans-unit id="shipping_fee.label">
         <source>shipping_fee.label</source>
-        <target>Toimituskulut %price%</target>
+        <target>Käsittelymaksu %price%</target>
       </trans-unit>
       <trans-unit id="shipping.fee">
         <source>shipping.fee</source>
-        <target>Toimituskulut</target>
+        <target>Käsittelymaksu</target>
       </trans-unit>
       <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
         <source>page.desc.after_methods</source>
-        <target>Kaikkiin tilauksiin lisätään toimituskulut, 0 euroa</target>
+        <target>Kaikkiin tilauksiin lisätään käsittelymaksu, 0 euroa</target>
       </trans-unit>
     </body>
   </file>
