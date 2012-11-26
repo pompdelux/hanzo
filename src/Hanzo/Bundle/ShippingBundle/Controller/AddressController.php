@@ -111,6 +111,17 @@ class AddressController extends CoreController
 
         $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
         $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
+
+        if ('overnightbox' === $type) {
+            $builder->add('address_line_1', null, array(
+                'label' => 'overnightbox.label',
+                'required' => true,
+                'translation_domain' => 'account'
+            ));
+        } else {
+            $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account'));
+        }
+
         $builder->add('postal_code', null, array(
             'required' => true,
             'translation_domain' => 'account',
@@ -128,14 +139,7 @@ class AddressController extends CoreController
             $address->setCountry($country_name);
 
             $builder->add('countries_id', 'hidden', array('data' => $country_id));
-            $builder->add('address_line_1', null, array(
-                'label' => 'overnightbox.label',
-                'required' => true,
-                'translation_domain' => 'account'
-            ));
         } else {
-            $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account'));
-
             if (count($countries) > 1) {
                 $builder->add('countries_id', 'choice', array(
                     'empty_value' => 'choose.country',
@@ -182,9 +186,18 @@ class AddressController extends CoreController
         $status = false;
 
         if ('POST' === $request->getMethod()) {
-            $order = OrdersPeer::getCurrent();
+            // TODO: not hardcoded
+            $type_map = [
+                'company_shipping' => 'shipping',
+                'overnightbox' => 'shipping',
+            ];
 
-            $data = $request->get('form');
+            if (isset($type_map[$type])) {
+                $type = $type_map[$type];
+            }
+
+            $order = OrdersPeer::getCurrent();
+            $data  = $request->get('form');
 
             if ($type == 'shipping') {
                 switch ($order->getDeliveryMethod()) {
@@ -233,16 +246,20 @@ class AddressController extends CoreController
             $address->setAddressLine1($data['address_line_1']);
             $address->setPostalCode($data['postal_code']);
             $address->setCity($data['city']);
+            $address->setStateProvince(null);
 
             // special rules apply for overnightbox
             if ($method == 'overnightbox') {
                 $address->setCountry('Denmark');
                 $address->setCountriesId(58);
-                $address->setStateProvince(null);
             } else {
                 $address->setCountry($data['country']);
                 $address->setCountriesId($data['countries_id']);
-                $address->setStateProvince(null);
+            }
+
+            // remember to save the company name.
+            if ($method == 'company_shipping') {
+                $address->setCompanyName($data['company_name']);
             }
 
             $address->save();
