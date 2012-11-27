@@ -122,10 +122,15 @@ class AddressController extends CoreController
             $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account'));
         }
 
+        $attr = [];
+        if (in_array(Hanzo::getInstance()->get('core.domain_key'), ['DK', 'NO', 'SE'])) {
+            $attr = ['class' => 'auto-city'];
+        }
+
         $builder->add('postal_code', null, array(
             'required' => true,
             'translation_domain' => 'account',
-            'attr' => array('class' => 'auto-city'),
+            'attr' => $attr,
         ));
         $builder->add('city', null, array(
             'required' => true,
