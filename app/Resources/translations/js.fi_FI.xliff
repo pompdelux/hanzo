@@ -60,19 +60,19 @@
             </trans-unit>
             <trans-unit id="countdown.format">
                 <source>countdown.format</source>
-                <target>{d&lt;}{dn} {dl} {d&gt;} {hn} {hl} {mn} {ml} {sn} {sl}</target>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
             </trans-unit>
             <trans-unit id="late.delivery.notice">
                 <source>late.delivery.notice</source>
-                <target>&lt;p&gt;Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.&lt;/p&gt;&lt;p&gt;Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: &lt;strong&gt;%date%&lt;/strong&gt;.</target>
+                <target><![CDATA[<p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p><p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.]]></target>
             </trans-unit>
             <trans-unit id="delete.from.basket.warning">
                 <source>delete.from.basket.warning</source>
-                <target>Haluatko varmasti poistaa tuotteen &lt;strong&gt;%product%&lt;/strong&gt; ostoskoristasi?</target>
+                <target><![CDATA[Haluatko varmasti poistaa tuotteen <strong>%product%</strong> ostoskoristasi?]]></target>
             </trans-unit>
             <trans-unit id="late.delivery">
                 <source>late.delivery</source>
-                <target>&lt;h2&gt;Huomaa: tuotetta &lt;/h2&gt;&lt;strong&gt;&quot;%product%&quot;&lt;/strong&gt; ei ole tällä hetkellä varastossa.&lt;br&gt;Koko tilauksesi arvioidaan lähtevän varastostamme viimeistään &lt;strong&gt;%date%&lt;/strong&gt;.</target>
+                <target><![CDATA[<h2>Huomaa: tuotetta </h2><strong>"%product%"</strong> ei ole tällä hetkellä varastossa.<br>Koko tilauksesi arvioidaan lähtevän varastostamme viimeistään <strong>%date%</strong>.]]></target>
             </trans-unit>
             <trans-unit id="not.filled.correctly">
                 <source>not.filled.correctly</source>
@@ -80,11 +80,11 @@
             </trans-unit>
             <trans-unit id="checkout.shipping_business">
                 <source>checkout.shipping_business</source>
-                <target>Olet valinnut vaihtoehdon &quot;Post Danmark Erhverv&quot;. Muista vaihtaa toimitusosoite napsauttamalla &quot;Muuta toimitusosoitetta&quot; (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
+                <target>Olet valinnut vaihtoehdon "Post Danmark Erhverv". Muista vaihtaa toimitusosoite napsauttamalla "Muuta toimitusosoitetta" (toimitusosoitteen tulee olla tässä lähetystavassa yritysosoite).</target>
             </trans-unit>
             <trans-unit id="checkout.shipping_overnightbox">
                 <source>checkout.shipping_overnightbox</source>
-                <target>Olet valinnut lähetystavaksi døgnpost-toimituksen, mutta et ole antanut døgnpost-osoitetta. Korjaa virhe napsauttamalla &quot;Muuta døgnpost-osoitetta&quot;.</target>
+                <target>Olet valinnut lähetystavaksi døgnpost-toimituksen, mutta et ole antanut døgnpost-osoitetta. Korjaa virhe napsauttamalla "Muuta døgnpost-osoitetta".</target>
             </trans-unit>
             <trans-unit id="loading.std">
                 <source>loading.std</source>
@@ -100,11 +100,11 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target>&lt;font color=&quot;#A10000&quot;&gt;&lt;b&gt;Tilauksen lähetyspäivä voi siirtyä eteenpäin muokkauksen vuoksi.&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;Voit muokata tilausta seuraavasti:&lt;br&gt;&lt;br&gt;1) Aloita muokkaus klikkaamalla &quot;Muokkaa&quot;. Tilatut tuotteet siirretään sen jälkeen takaisin ostoskoriin.&lt;br&gt;&lt;br&gt;2) Jos haluat muuttaa tuotteen väriä tai kokoa, napsauta kynää ostoskorissa. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita.&lt;br&gt;&lt;br&gt;3) Kun muutokset ovat valmiit, napsauta &quot;Näytä ostoskori&quot; ja seuraa vaihteita 1 – 5. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.&lt;br&gt;&lt;br&gt;&lt;b&gt;Huomaa:&lt;/b&gt; Visa Electronia tai MasterCardia käytettäessä on huomioitava seuraavaa:&lt;ul&gt;&lt;li&gt;Ostosten koko määrä huomioidaan toistaiseksi, kun tilausta on muutettu. &lt;/li&gt;&lt;li&gt;POMPdeLUX poistaa alkuperäisen tilauksen katevarauksen, joten meidän osaltamme varattuna on vain muutetun tilauksen kokonaissumma. Rahoituslaitoksissa varauksen poistaminen saattaa kuitenkin kestää jopa 6 viikkoa. &lt;/li&gt;&lt;/ul&gt;</target>
+                <target><![CDATA[<font color="#A10000"><b>Tilauksen lähetyspäivä voi siirtyä eteenpäin muokkauksen vuoksi.</b></font><br><br>Voit muokata tilausta seuraavasti:<br><br>1) Aloita muokkaus klikkaamalla "Muokkaa". Tilatut tuotteet siirretään sen jälkeen takaisin ostoskoriin.<br><br>2) Jos haluat muuttaa tuotteen väriä tai kokoa, napsauta kynää ostoskorissa. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita.<br><br>3) Kun muutokset ovat valmiit, napsauta "Näytä ostoskori" ja seuraa vaihteita 1 – 5. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.<br><br><b>Huomaa:</b> Visa Electronia tai MasterCardia käytettäessä on huomioitava seuraavaa:<ul><li>Ostosten koko määrä huomioidaan toistaiseksi, kun tilausta on muutettu. </li><li>POMPdeLUX poistaa alkuperäisen tilauksen katevarauksen, joten meidän osaltamme varattuna on vain muutetun tilauksen kokonaissumma. Rahoituslaitoksissa varauksen poistaminen saattaa kuitenkin kestää jopa 6 viikkoa. </li></ul>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
-                <target>Olet poistamassa tilausta. Haluatko varmasti poistaa koko tilauksen?&lt;br&gt;&lt;br&gt;Tilauksen poistaminen poistaa luottokorttimaksuvarauksen automaattisesti.&lt;br&gt;&lt;br&gt;Poista tilaus napsauttamalla &quot;Poista&quot;.</target>
+                <target><![CDATA[Olet poistamassa tilausta. Haluatko varmasti poistaa koko tilauksen?<br><br>Tilauksen poistaminen poistaa luottokorttimaksuvarauksen automaattisesti.<br><br>Poista tilaus napsauttamalla "Poista".]]></target>
             </trans-unit>
             <trans-unit id="consultant">
                 <source>consultant</source>
@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
                 <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
-                <target>Sähköpostiosoitetta &quot;%email%&quot; ei ole kirjattu</target>
+                <target>Sähköpostiosoitetta "%email%" ei ole kirjattu</target>
             </trans-unit>
             <trans-unit id="month.Januar">
                 <source>month.Januar</source>

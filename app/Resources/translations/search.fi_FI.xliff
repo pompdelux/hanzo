@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="2">
                 <source>description</source>
-                <target>Jos etsit tietoa, jota ei löydy meidän sivuiltamme, kirjoita hakusana alla olevaan kenttään ja paina &quot;etsi&quot;.</target>
+                <target>Jos etsit tietoa, jota ei löydy meidän sivuiltamme, kirjoita hakusana alla olevaan kenttään ja paina "etsi".</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>button.label</source>
