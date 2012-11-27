@@ -306,6 +306,14 @@
                 <source>proceed</source>
                 <target>Voortgaan</target>
             </trans-unit>
+            <trans-unit id="checkout.choose.shipping.method" approved="no">
+                <source>checkout.choose.shipping.method</source>
+                <target>Du skal vælge en leveringsmetode.</target>
+            </trans-unit>
+            <trans-unit id="checkout.choose.payment.method" approved="no">
+                <source>checkout.choose.payment.method</source>
+                <target>Du skal vælge en betalingsmetode.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,0 +1,5 @@
+coupon_form:
+    pattern: /checkout/coupon/apply
+    defaults:
+        _controller: DiscountBundle:Coupon:applyCoupon
+

@@ -1,0 +1,80 @@
+
+
+
+flow:
+
+ +-->  [vælg leveringsmetode]
+ |        |
+ |        |
+ |        +----------> ordre opdateres med leveringsmetode
+ |        |
+ |        +<---------- adresse blok returneres (form til leveringsadresse)
+ |        |
+ |        v
+ +-->  [vælg leveringsadresse (afhængig af leveringsmetode)]
+ |        |
+ |        +----------> leveringsadresse udfyldes / ændres
+ |        |
+ |        +<---------- gavekortforespørgsel returneres
+ |        |
+ |        v
+ +-->  [vælg gavekort]
+ |        |
+ |        +----------> gavekort valideres og der lægges "rabat" på ordren
+ |        |
+ |        +<---------- hvis totalen stadig er > 0 returneres betalingsmetoder, ellers autoudfyldes betalingsformen med "fully payed by coupon"
+ |        |
+ |        v
+ +-->  [vælg betalingsform (hvis nogen)]
+ |        |
+ |        +----------> hvis der er gebyr på betalingsformen opskrives totalen
+ |        |
+ |        +<---------- betalingshåndtering returneres
+ |        |
+ |        v
+ |     [vis ordre summery]
+ |        |
+ +--------+-- rediger step(s)
+          |
+          v
+       [gennemfør/betal ordre]
+          |
+          |
+          +---[betalbar]
+          |      |
+          |      |
+          |      +---[dibs]---+--> form submit til dibs betalings vindue
+          |      |            |
+          |      |            +--> form submit af kortinfo
+          |      |            |
+          |      +<--------------- callback med betalingsstatus til pdl.xx
+          |      |            |
+          |      |            +--> visning af statusside hos dibs
+          |      |            |
+          |      |            +<-- redirect tilbage til pdl.xx
+          |      |            |
+          |      |            +--> ordre checkes for dibs info
+          |      |            ^    v
+          |      |            +<---+
+          |      |
+          |      +<-------------- når callback er registreret sendes brugeren til success siden på pdl.xx
+          |      |
+          |      |
+          |      +---[gothia]-+--> form submitter api kald til gothia
+          |      |            |    -> hvis der er tale om en editering slettes evt. gamle betalinger,
+          |      |            |       da man kun kan have én akriv betaling hos gothia
+          |      |            |
+          |      |            |
+          |      |            +<-- gothia returnere godkendelse/afslag
+          |      |
+          |      +<--------------- redirect til status side
+          |      |
+          |      +---[cod]-------> cach on delivery / bank transfer er bare en status
+          |      |
+          +<-----+
+          |
+          |                                +--> send ordre mail
+          +--> [v. payment status "ok"]--> |
+          |                                +--> send ordre til ax
+          |
+       [vis tak for din ordre side]

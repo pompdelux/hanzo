@@ -22,8 +22,6 @@ use Hanzo\Model\ConsultantNewsletterDrafts;
 use Hanzo\Model\ConsultantNewsletterDraftsQuery;
 use Hanzo\Model\Consultants;
 use Hanzo\Model\ConsultantsQuery;
-use Hanzo\Model\CouponsToCustomers;
-use Hanzo\Model\CouponsToCustomersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
@@ -149,11 +147,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	protected $aGroups;
 
 	/**
-	 * @var        array CouponsToCustomers[] Collection to store aggregation of CouponsToCustomers objects.
-	 */
-	protected $collCouponsToCustomerss;
-
-	/**
 	 * @var        array Addresses[] Collection to store aggregation of Addresses objects.
 	 */
 	protected $collAddressess;
@@ -211,12 +204,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 * @var        boolean
 	 */
 	protected $alreadyInValidation = false;
-
-	/**
-	 * An array of objects scheduled for deletion.
-	 * @var		array
-	 */
-	protected $couponsToCustomerssScheduledForDeletion = null;
 
 	/**
 	 * An array of objects scheduled for deletion.
@@ -857,8 +844,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($deep) {  // also de-associate any related objects?
 
 			$this->aGroups = null;
-			$this->collCouponsToCustomerss = null;
-
 			$this->collAddressess = null;
 
 			$this->collEventssRelatedByConsultantsId = null;
@@ -1019,23 +1004,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 				}
 				$affectedRows += 1;
 				$this->resetModified();
-			}
-
-			if ($this->couponsToCustomerssScheduledForDeletion !== null) {
-				if (!$this->couponsToCustomerssScheduledForDeletion->isEmpty()) {
-					CouponsToCustomersQuery::create()
-						->filterByPrimaryKeys($this->couponsToCustomerssScheduledForDeletion->getPrimaryKeys(false))
-						->delete($con);
-					$this->couponsToCustomerssScheduledForDeletion = null;
-				}
-			}
-
-			if ($this->collCouponsToCustomerss !== null) {
-				foreach ($this->collCouponsToCustomerss as $referrerFK) {
-					if (!$referrerFK->isDeleted()) {
-						$affectedRows += $referrerFK->save($con);
-					}
-				}
 			}
 
 			if ($this->addressessScheduledForDeletion !== null) {
@@ -1403,14 +1371,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 
 
-				if ($this->collCouponsToCustomerss !== null) {
-					foreach ($this->collCouponsToCustomerss as $referrerFK) {
-						if (!$referrerFK->validate($columns)) {
-							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-						}
-					}
-				}
-
 				if ($this->collAddressess !== null) {
 					foreach ($this->collAddressess as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
@@ -1593,9 +1553,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ($includeForeignObjects) {
 			if (null !== $this->aGroups) {
 				$result['Groups'] = $this->aGroups->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-			}
-			if (null !== $this->collCouponsToCustomerss) {
-				$result['CouponsToCustomerss'] = $this->collCouponsToCustomerss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 			if (null !== $this->collAddressess) {
 				$result['Addressess'] = $this->collAddressess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1831,12 +1788,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			// store object hash to prevent cycle
 			$this->startCopy = true;
 
-			foreach ($this->getCouponsToCustomerss() as $relObj) {
-				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addCouponsToCustomers($relObj->copy($deepCopy));
-				}
-			}
-
 			foreach ($this->getAddressess() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
 					$copyObj->addAddresses($relObj->copy($deepCopy));
@@ -1997,9 +1948,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	 */
 	public function initRelation($relationName)
 	{
-		if ('CouponsToCustomers' == $relationName) {
-			return $this->initCouponsToCustomerss();
-		}
 		if ('Addresses' == $relationName) {
 			return $this->initAddressess();
 		}
@@ -2021,179 +1969,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 		if ('ConsultantNewsletterDrafts' == $relationName) {
 			return $this->initConsultantNewsletterDraftss();
 		}
-	}
-
-	/**
-	 * Clears out the collCouponsToCustomerss collection
-	 *
-	 * This does not modify the database; however, it will remove any associated objects, causing
-	 * them to be refetched by subsequent calls to accessor method.
-	 *
-	 * @return     void
-	 * @see        addCouponsToCustomerss()
-	 */
-	public function clearCouponsToCustomerss()
-	{
-		$this->collCouponsToCustomerss = null; // important to set this to NULL since that means it is uninitialized
-	}
-
-	/**
-	 * Initializes the collCouponsToCustomerss collection.
-	 *
-	 * By default this just sets the collCouponsToCustomerss collection to an empty array (like clearcollCouponsToCustomerss());
-	 * however, you may wish to override this method in your stub class to provide setting appropriate
-	 * to your application -- for example, setting the initial array to the values stored in database.
-	 *
-	 * @param      boolean $overrideExisting If set to true, the method call initializes
-	 *                                        the collection even if it is not empty
-	 *
-	 * @return     void
-	 */
-	public function initCouponsToCustomerss($overrideExisting = true)
-	{
-		if (null !== $this->collCouponsToCustomerss && !$overrideExisting) {
-			return;
-		}
-		$this->collCouponsToCustomerss = new PropelObjectCollection();
-		$this->collCouponsToCustomerss->setModel('CouponsToCustomers');
-	}
-
-	/**
-	 * Gets an array of CouponsToCustomers objects which contain a foreign key that references this object.
-	 *
-	 * If the $criteria is not null, it is used to always fetch the results from the database.
-	 * Otherwise the results are fetched from the database the first time, then cached.
-	 * Next time the same method is called without $criteria, the cached collection is returned.
-	 * If this Customers is new, it will return
-	 * an empty collection or the current collection; the criteria is ignored on a new object.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array CouponsToCustomers[] List of CouponsToCustomers objects
-	 * @throws     PropelException
-	 */
-	public function getCouponsToCustomerss($criteria = null, PropelPDO $con = null)
-	{
-		if(null === $this->collCouponsToCustomerss || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCouponsToCustomerss) {
-				// return empty collection
-				$this->initCouponsToCustomerss();
-			} else {
-				$collCouponsToCustomerss = CouponsToCustomersQuery::create(null, $criteria)
-					->filterByCustomers($this)
-					->find($con);
-				if (null !== $criteria) {
-					return $collCouponsToCustomerss;
-				}
-				$this->collCouponsToCustomerss = $collCouponsToCustomerss;
-			}
-		}
-		return $this->collCouponsToCustomerss;
-	}
-
-	/**
-	 * Sets a collection of CouponsToCustomers objects related by a one-to-many relationship
-	 * to the current object.
-	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-	 * and new objects from the given Propel collection.
-	 *
-	 * @param      PropelCollection $couponsToCustomerss A Propel collection.
-	 * @param      PropelPDO $con Optional connection object
-	 */
-	public function setCouponsToCustomerss(PropelCollection $couponsToCustomerss, PropelPDO $con = null)
-	{
-		$this->couponsToCustomerssScheduledForDeletion = $this->getCouponsToCustomerss(new Criteria(), $con)->diff($couponsToCustomerss);
-
-		foreach ($couponsToCustomerss as $couponsToCustomers) {
-			// Fix issue with collection modified by reference
-			if ($couponsToCustomers->isNew()) {
-				$couponsToCustomers->setCustomers($this);
-			}
-			$this->addCouponsToCustomers($couponsToCustomers);
-		}
-
-		$this->collCouponsToCustomerss = $couponsToCustomerss;
-	}
-
-	/**
-	 * Returns the number of related CouponsToCustomers objects.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      boolean $distinct
-	 * @param      PropelPDO $con
-	 * @return     int Count of related CouponsToCustomers objects.
-	 * @throws     PropelException
-	 */
-	public function countCouponsToCustomerss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-	{
-		if(null === $this->collCouponsToCustomerss || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCouponsToCustomerss) {
-				return 0;
-			} else {
-				$query = CouponsToCustomersQuery::create(null, $criteria);
-				if($distinct) {
-					$query->distinct();
-				}
-				return $query
-					->filterByCustomers($this)
-					->count($con);
-			}
-		} else {
-			return count($this->collCouponsToCustomerss);
-		}
-	}
-
-	/**
-	 * Method called to associate a CouponsToCustomers object to this object
-	 * through the CouponsToCustomers foreign key attribute.
-	 *
-	 * @param      CouponsToCustomers $l CouponsToCustomers
-	 * @return     Customers The current object (for fluent API support)
-	 */
-	public function addCouponsToCustomers(CouponsToCustomers $l)
-	{
-		if ($this->collCouponsToCustomerss === null) {
-			$this->initCouponsToCustomerss();
-		}
-		if (!$this->collCouponsToCustomerss->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddCouponsToCustomers($l);
-		}
-
-		return $this;
-	}
-
-	/**
-	 * @param	CouponsToCustomers $couponsToCustomers The couponsToCustomers object to add.
-	 */
-	protected function doAddCouponsToCustomers($couponsToCustomers)
-	{
-		$this->collCouponsToCustomerss[]= $couponsToCustomers;
-		$couponsToCustomers->setCustomers($this);
-	}
-
-
-	/**
-	 * If this collection has already been initialized with
-	 * an identical criteria, it returns the collection.
-	 * Otherwise if this Customers is new, it will return
-	 * an empty collection; or if this Customers has previously
-	 * been saved, it will retrieve related CouponsToCustomerss from storage.
-	 *
-	 * This method is protected by default in order to keep the public
-	 * api reasonable.  You can provide public methods for those you
-	 * actually need in Customers.
-	 *
-	 * @param      Criteria $criteria optional Criteria object to narrow the query
-	 * @param      PropelPDO $con optional connection object
-	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array CouponsToCustomers[] List of CouponsToCustomers objects
-	 */
-	public function getCouponsToCustomerssJoinCoupons($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-	{
-		$query = CouponsToCustomersQuery::create(null, $criteria);
-		$query->joinWith('Coupons', $join_behavior);
-
-		return $this->getCouponsToCustomerss($query, $con);
 	}
 
 	/**
@@ -3492,11 +3267,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
-			if ($this->collCouponsToCustomerss) {
-				foreach ($this->collCouponsToCustomerss as $o) {
-					$o->clearAllReferences($deep);
-				}
-			}
 			if ($this->collAddressess) {
 				foreach ($this->collAddressess as $o) {
 					$o->clearAllReferences($deep);
@@ -3540,10 +3310,6 @@ abstract class BaseCustomers extends BaseObject  implements Persistent
 			}
 		} // if ($deep)
 
-		if ($this->collCouponsToCustomerss instanceof PropelCollection) {
-			$this->collCouponsToCustomerss->clearIterator();
-		}
-		$this->collCouponsToCustomerss = null;
 		if ($this->collAddressess instanceof PropelCollection) {
 			$this->collAddressess->clearIterator();
 		}

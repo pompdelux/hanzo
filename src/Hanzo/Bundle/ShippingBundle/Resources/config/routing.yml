@@ -1,3 +1,19 @@
 ShippingBundle_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: ShippingBundle:Default:index }
+
+
+_shipping_address_form:
+    pattern: /checkout/shipping/address/{type}/form
+    defaults:
+        _controller: ShippingBundle:Address:form
+
+_shipping_address_save:
+    pattern: /checkout/shipping/set/{type}/address
+    defaults:
+        _controller: ShippingBundle:Address:process
+
+_shipping_set_method:
+    pattern: /checkout/shipping/set/method
+    defaults:
+        _controller: ShippingBundle:Default:setMethod

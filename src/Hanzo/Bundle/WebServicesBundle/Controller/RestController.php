@@ -2,11 +2,14 @@
 
 namespace Hanzo\Bundle\WebServicesBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Exception;
 use Monolog;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+
+use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 /**
@@ -49,5 +52,39 @@ class RestController extends CoreController
             'banner' => $request->get('banner', 'video_bg'),
             'embed'  => (boolean) $request->get('embed', 0),
         );
+    }
+
+
+    public function jaiksAction(Request $request)
+    {
+        $router  = $this->get('router');
+        $kernel  = $this->get('kernel');
+        $payload = json_decode($request->get('payload'), true);
+
+        foreach($payload as $index => $call) {
+            try {
+                $uri = '/'.$request->getLocale().$call['action'];
+                $route = $router->match($uri);
+                $sub_request = $this->get('request')->duplicate([], $call['data'], $route);
+
+                $response = $kernel->handle($sub_request, HttpKernelInterface::SUB_REQUEST)->getContent();
+
+                // we assume that strings starting with "{" is json encoded data
+                if ('{' == substr($response, 0, 1)) {
+                    $response = json_decode($response);
+                }
+
+                $payload[$index]['response'] = $response;
+            } catch(Exception $e) {
+                $message = $e->getMessage() ?: 'unknown route: ' . $uri;
+
+                $payload[$index]['response'] = [
+                    'status' => false,
+                    'message' => $message
+                ];
+            }
+        }
+
+        return $this->json_response($payload);
     }
 }

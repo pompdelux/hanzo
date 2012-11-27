@@ -89,12 +89,10 @@
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="code" type="VARCHAR" size="12" required="true"/>
     <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
-    <column name="vat" type="DECIMAL" size="15" scale="4" required="false"/>
     <column name="currency_code" type="VARCHAR" size="3" required="true"/>
-    <column name="uses_pr_coupon" type="INTEGER" required="true" defaultValue="1"/>
-    <column name="uses_pr_coustomer" type="INTEGER" required="true" defaultValue="1"/>
     <column name="active_from" type="TIMESTAMP" required="false"/>
     <column name="active_to" type="TIMESTAMP" required="false"/>
+    <column name="is_active" type="BOOLEAN" size="1" required="true" defaultValue="true"/>
     <unique name="code_UNIQUE">
       <unique-column name="code"/>
     </unique>
@@ -104,18 +102,17 @@
     <behavior name="timestampable" />
   </table>
 
-  <table name="coupons_to_customers">
+  <table name="orders_to_coupons">
+    <column name="orders_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="coupons_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="use_count" type="INTEGER" required="true" defaultValue="0"/>
-    <foreign-key foreignTable="customers" name="fk_coupons_to_customers_1" onDelete="CASCADE">
-      <reference local="customers_id" foreign="id"/>
-    </foreign-key>
-    <foreign-key foreignTable="coupons" name="fk_coupons_to_customers_2" onDelete="CASCADE">
+    <column name="amount" type="DECIMAL" size="15" scale="4" required="true"/>
+    <foreign-key foreignTable="coupons" onDelete="CASCADE">
       <reference local="coupons_id" foreign="id"/>
     </foreign-key>
+    <foreign-key foreignTable="orders" onDelete="CASCADE">
+      <reference local="orders_id" foreign="id"/>
+    </foreign-key>
   </table>
-
 
   <table name="customers" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>

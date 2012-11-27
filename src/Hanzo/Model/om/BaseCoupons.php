@@ -18,8 +18,8 @@ use \PropelObjectCollection;
 use \PropelPDO;
 use Hanzo\Model\CouponsPeer;
 use Hanzo\Model\CouponsQuery;
-use Hanzo\Model\CouponsToCustomers;
-use Hanzo\Model\CouponsToCustomersQuery;
+use Hanzo\Model\OrdersToCoupons;
+use Hanzo\Model\OrdersToCouponsQuery;
 
 /**
  * Base class that represents a row from the 'coupons' table.
@@ -69,30 +69,10 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	protected $amount;
 
 	/**
-	 * The value for the vat field.
-	 * @var        string
-	 */
-	protected $vat;
-
-	/**
 	 * The value for the currency_code field.
 	 * @var        string
 	 */
 	protected $currency_code;
-
-	/**
-	 * The value for the uses_pr_coupon field.
-	 * Note: this column has a database default value of: 1
-	 * @var        int
-	 */
-	protected $uses_pr_coupon;
-
-	/**
-	 * The value for the uses_pr_coustomer field.
-	 * Note: this column has a database default value of: 1
-	 * @var        int
-	 */
-	protected $uses_pr_coustomer;
 
 	/**
 	 * The value for the active_from field.
@@ -107,6 +87,13 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	protected $active_to;
 
 	/**
+	 * The value for the is_active field.
+	 * Note: this column has a database default value of: true
+	 * @var        boolean
+	 */
+	protected $is_active;
+
+	/**
 	 * The value for the created_at field.
 	 * @var        string
 	 */
@@ -119,9 +106,9 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	protected $updated_at;
 
 	/**
-	 * @var        array CouponsToCustomers[] Collection to store aggregation of CouponsToCustomers objects.
+	 * @var        array OrdersToCoupons[] Collection to store aggregation of OrdersToCoupons objects.
 	 */
-	protected $collCouponsToCustomerss;
+	protected $collOrdersToCouponss;
 
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
@@ -141,7 +128,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 * An array of objects scheduled for deletion.
 	 * @var		array
 	 */
-	protected $couponsToCustomerssScheduledForDeletion = null;
+	protected $ordersToCouponssScheduledForDeletion = null;
 
 	/**
 	 * Applies default values to this object.
@@ -151,8 +138,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 */
 	public function applyDefaultValues()
 	{
-		$this->uses_pr_coupon = 1;
-		$this->uses_pr_coustomer = 1;
+		$this->is_active = true;
 	}
 
 	/**
@@ -196,16 +182,6 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [vat] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getVat()
-	{
-		return $this->vat;
-	}
-
-	/**
 	 * Get the [currency_code] column value.
 	 * 
 	 * @return     string
@@ -213,26 +189,6 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	public function getCurrencyCode()
 	{
 		return $this->currency_code;
-	}
-
-	/**
-	 * Get the [uses_pr_coupon] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getUsesPrCoupon()
-	{
-		return $this->uses_pr_coupon;
-	}
-
-	/**
-	 * Get the [uses_pr_coustomer] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getUsesPrCoustomer()
-	{
-		return $this->uses_pr_coustomer;
 	}
 
 	/**
@@ -309,6 +265,16 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		} else {
 			return $dt->format($format);
 		}
+	}
+
+	/**
+	 * Get the [is_active] column value.
+	 * 
+	 * @return     boolean
+	 */
+	public function getIsActive()
+	{
+		return $this->is_active;
 	}
 
 	/**
@@ -448,26 +414,6 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	} // setAmount()
 
 	/**
-	 * Set the value of [vat] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Coupons The current object (for fluent API support)
-	 */
-	public function setVat($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->vat !== $v) {
-			$this->vat = $v;
-			$this->modifiedColumns[] = CouponsPeer::VAT;
-		}
-
-		return $this;
-	} // setVat()
-
-	/**
 	 * Set the value of [currency_code] column.
 	 * 
 	 * @param      string $v new value
@@ -486,46 +432,6 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 
 		return $this;
 	} // setCurrencyCode()
-
-	/**
-	 * Set the value of [uses_pr_coupon] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Coupons The current object (for fluent API support)
-	 */
-	public function setUsesPrCoupon($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->uses_pr_coupon !== $v) {
-			$this->uses_pr_coupon = $v;
-			$this->modifiedColumns[] = CouponsPeer::USES_PR_COUPON;
-		}
-
-		return $this;
-	} // setUsesPrCoupon()
-
-	/**
-	 * Set the value of [uses_pr_coustomer] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Coupons The current object (for fluent API support)
-	 */
-	public function setUsesPrCoustomer($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->uses_pr_coustomer !== $v) {
-			$this->uses_pr_coustomer = $v;
-			$this->modifiedColumns[] = CouponsPeer::USES_PR_COUSTOMER;
-		}
-
-		return $this;
-	} // setUsesPrCoustomer()
 
 	/**
 	 * Sets the value of [active_from] column to a normalized version of the date/time value specified.
@@ -570,6 +476,34 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 
 		return $this;
 	} // setActiveTo()
+
+	/**
+	 * Sets the value of the [is_active] column.
+	 * Non-boolean arguments are converted using the following rules:
+	 *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+	 *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+	 * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+	 * 
+	 * @param      boolean|integer|string $v The new value
+	 * @return     Coupons The current object (for fluent API support)
+	 */
+	public function setIsActive($v)
+	{
+		if ($v !== null) {
+			if (is_string($v)) {
+				$v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+			} else {
+				$v = (boolean) $v;
+			}
+		}
+
+		if ($this->is_active !== $v) {
+			$this->is_active = $v;
+			$this->modifiedColumns[] = CouponsPeer::IS_ACTIVE;
+		}
+
+		return $this;
+	} // setIsActive()
 
 	/**
 	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
@@ -625,11 +559,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
-			if ($this->uses_pr_coupon !== 1) {
-				return false;
-			}
-
-			if ($this->uses_pr_coustomer !== 1) {
+			if ($this->is_active !== true) {
 				return false;
 			}
 
@@ -658,14 +588,12 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->code = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
 			$this->amount = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->vat = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->currency_code = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->uses_pr_coupon = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
-			$this->uses_pr_coustomer = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
-			$this->active_from = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-			$this->active_to = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->created_at = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->updated_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->currency_code = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->active_from = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->active_to = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->is_active = ($row[$startcol + 6] !== null) ? (boolean) $row[$startcol + 6] : null;
+			$this->created_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->updated_at = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -674,7 +602,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 11; // 11 = CouponsPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 9; // 9 = CouponsPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Coupons object", $e);
@@ -736,7 +664,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 
 		if ($deep) {  // also de-associate any related objects?
 
-			$this->collCouponsToCustomerss = null;
+			$this->collOrdersToCouponss = null;
 
 		} // if (deep)
 	}
@@ -870,17 +798,17 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 				$this->resetModified();
 			}
 
-			if ($this->couponsToCustomerssScheduledForDeletion !== null) {
-				if (!$this->couponsToCustomerssScheduledForDeletion->isEmpty()) {
-					CouponsToCustomersQuery::create()
-						->filterByPrimaryKeys($this->couponsToCustomerssScheduledForDeletion->getPrimaryKeys(false))
+			if ($this->ordersToCouponssScheduledForDeletion !== null) {
+				if (!$this->ordersToCouponssScheduledForDeletion->isEmpty()) {
+					OrdersToCouponsQuery::create()
+						->filterByPrimaryKeys($this->ordersToCouponssScheduledForDeletion->getPrimaryKeys(false))
 						->delete($con);
-					$this->couponsToCustomerssScheduledForDeletion = null;
+					$this->ordersToCouponssScheduledForDeletion = null;
 				}
 			}
 
-			if ($this->collCouponsToCustomerss !== null) {
-				foreach ($this->collCouponsToCustomerss as $referrerFK) {
+			if ($this->collOrdersToCouponss !== null) {
+				foreach ($this->collOrdersToCouponss as $referrerFK) {
 					if (!$referrerFK->isDeleted()) {
 						$affectedRows += $referrerFK->save($con);
 					}
@@ -921,23 +849,17 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CouponsPeer::AMOUNT)) {
 			$modifiedColumns[':p' . $index++]  = '`AMOUNT`';
 		}
-		if ($this->isColumnModified(CouponsPeer::VAT)) {
-			$modifiedColumns[':p' . $index++]  = '`VAT`';
-		}
 		if ($this->isColumnModified(CouponsPeer::CURRENCY_CODE)) {
 			$modifiedColumns[':p' . $index++]  = '`CURRENCY_CODE`';
-		}
-		if ($this->isColumnModified(CouponsPeer::USES_PR_COUPON)) {
-			$modifiedColumns[':p' . $index++]  = '`USES_PR_COUPON`';
-		}
-		if ($this->isColumnModified(CouponsPeer::USES_PR_COUSTOMER)) {
-			$modifiedColumns[':p' . $index++]  = '`USES_PR_COUSTOMER`';
 		}
 		if ($this->isColumnModified(CouponsPeer::ACTIVE_FROM)) {
 			$modifiedColumns[':p' . $index++]  = '`ACTIVE_FROM`';
 		}
 		if ($this->isColumnModified(CouponsPeer::ACTIVE_TO)) {
 			$modifiedColumns[':p' . $index++]  = '`ACTIVE_TO`';
+		}
+		if ($this->isColumnModified(CouponsPeer::IS_ACTIVE)) {
+			$modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
 		}
 		if ($this->isColumnModified(CouponsPeer::CREATED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
@@ -965,23 +887,17 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 					case '`AMOUNT`':
 						$stmt->bindValue($identifier, $this->amount, PDO::PARAM_STR);
 						break;
-					case '`VAT`':
-						$stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
-						break;
 					case '`CURRENCY_CODE`':
 						$stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
-						break;
-					case '`USES_PR_COUPON`':
-						$stmt->bindValue($identifier, $this->uses_pr_coupon, PDO::PARAM_INT);
-						break;
-					case '`USES_PR_COUSTOMER`':
-						$stmt->bindValue($identifier, $this->uses_pr_coustomer, PDO::PARAM_INT);
 						break;
 					case '`ACTIVE_FROM`':
 						$stmt->bindValue($identifier, $this->active_from, PDO::PARAM_STR);
 						break;
 					case '`ACTIVE_TO`':
 						$stmt->bindValue($identifier, $this->active_to, PDO::PARAM_STR);
+						break;
+					case '`IS_ACTIVE`':
+						$stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
 						break;
 					case '`CREATED_AT`':
 						$stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -1086,8 +1002,8 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 			}
 
 
-				if ($this->collCouponsToCustomerss !== null) {
-					foreach ($this->collCouponsToCustomerss as $referrerFK) {
+				if ($this->collOrdersToCouponss !== null) {
+					foreach ($this->collOrdersToCouponss as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1137,27 +1053,21 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 				return $this->getAmount();
 				break;
 			case 3:
-				return $this->getVat();
-				break;
-			case 4:
 				return $this->getCurrencyCode();
 				break;
-			case 5:
-				return $this->getUsesPrCoupon();
-				break;
-			case 6:
-				return $this->getUsesPrCoustomer();
-				break;
-			case 7:
+			case 4:
 				return $this->getActiveFrom();
 				break;
-			case 8:
+			case 5:
 				return $this->getActiveTo();
 				break;
-			case 9:
+			case 6:
+				return $this->getIsActive();
+				break;
+			case 7:
 				return $this->getCreatedAt();
 				break;
-			case 10:
+			case 8:
 				return $this->getUpdatedAt();
 				break;
 			default:
@@ -1192,18 +1102,16 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getCode(),
 			$keys[2] => $this->getAmount(),
-			$keys[3] => $this->getVat(),
-			$keys[4] => $this->getCurrencyCode(),
-			$keys[5] => $this->getUsesPrCoupon(),
-			$keys[6] => $this->getUsesPrCoustomer(),
-			$keys[7] => $this->getActiveFrom(),
-			$keys[8] => $this->getActiveTo(),
-			$keys[9] => $this->getCreatedAt(),
-			$keys[10] => $this->getUpdatedAt(),
+			$keys[3] => $this->getCurrencyCode(),
+			$keys[4] => $this->getActiveFrom(),
+			$keys[5] => $this->getActiveTo(),
+			$keys[6] => $this->getIsActive(),
+			$keys[7] => $this->getCreatedAt(),
+			$keys[8] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
-			if (null !== $this->collCouponsToCustomerss) {
-				$result['CouponsToCustomerss'] = $this->collCouponsToCustomerss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+			if (null !== $this->collOrdersToCouponss) {
+				$result['OrdersToCouponss'] = $this->collOrdersToCouponss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
 			}
 		}
 		return $result;
@@ -1246,27 +1154,21 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 				$this->setAmount($value);
 				break;
 			case 3:
-				$this->setVat($value);
-				break;
-			case 4:
 				$this->setCurrencyCode($value);
 				break;
-			case 5:
-				$this->setUsesPrCoupon($value);
-				break;
-			case 6:
-				$this->setUsesPrCoustomer($value);
-				break;
-			case 7:
+			case 4:
 				$this->setActiveFrom($value);
 				break;
-			case 8:
+			case 5:
 				$this->setActiveTo($value);
 				break;
-			case 9:
+			case 6:
+				$this->setIsActive($value);
+				break;
+			case 7:
 				$this->setCreatedAt($value);
 				break;
-			case 10:
+			case 8:
 				$this->setUpdatedAt($value);
 				break;
 		} // switch()
@@ -1296,14 +1198,12 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setCode($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setAmount($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setVat($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setCurrencyCode($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setUsesPrCoupon($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setUsesPrCoustomer($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setActiveFrom($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setActiveTo($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setCreatedAt($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setUpdatedAt($arr[$keys[10]]);
+		if (array_key_exists($keys[3], $arr)) $this->setCurrencyCode($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setActiveFrom($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setActiveTo($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setIsActive($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setCreatedAt($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setUpdatedAt($arr[$keys[8]]);
 	}
 
 	/**
@@ -1318,12 +1218,10 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		if ($this->isColumnModified(CouponsPeer::ID)) $criteria->add(CouponsPeer::ID, $this->id);
 		if ($this->isColumnModified(CouponsPeer::CODE)) $criteria->add(CouponsPeer::CODE, $this->code);
 		if ($this->isColumnModified(CouponsPeer::AMOUNT)) $criteria->add(CouponsPeer::AMOUNT, $this->amount);
-		if ($this->isColumnModified(CouponsPeer::VAT)) $criteria->add(CouponsPeer::VAT, $this->vat);
 		if ($this->isColumnModified(CouponsPeer::CURRENCY_CODE)) $criteria->add(CouponsPeer::CURRENCY_CODE, $this->currency_code);
-		if ($this->isColumnModified(CouponsPeer::USES_PR_COUPON)) $criteria->add(CouponsPeer::USES_PR_COUPON, $this->uses_pr_coupon);
-		if ($this->isColumnModified(CouponsPeer::USES_PR_COUSTOMER)) $criteria->add(CouponsPeer::USES_PR_COUSTOMER, $this->uses_pr_coustomer);
 		if ($this->isColumnModified(CouponsPeer::ACTIVE_FROM)) $criteria->add(CouponsPeer::ACTIVE_FROM, $this->active_from);
 		if ($this->isColumnModified(CouponsPeer::ACTIVE_TO)) $criteria->add(CouponsPeer::ACTIVE_TO, $this->active_to);
+		if ($this->isColumnModified(CouponsPeer::IS_ACTIVE)) $criteria->add(CouponsPeer::IS_ACTIVE, $this->is_active);
 		if ($this->isColumnModified(CouponsPeer::CREATED_AT)) $criteria->add(CouponsPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(CouponsPeer::UPDATED_AT)) $criteria->add(CouponsPeer::UPDATED_AT, $this->updated_at);
 
@@ -1390,12 +1288,10 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	{
 		$copyObj->setCode($this->getCode());
 		$copyObj->setAmount($this->getAmount());
-		$copyObj->setVat($this->getVat());
 		$copyObj->setCurrencyCode($this->getCurrencyCode());
-		$copyObj->setUsesPrCoupon($this->getUsesPrCoupon());
-		$copyObj->setUsesPrCoustomer($this->getUsesPrCoustomer());
 		$copyObj->setActiveFrom($this->getActiveFrom());
 		$copyObj->setActiveTo($this->getActiveTo());
+		$copyObj->setIsActive($this->getIsActive());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
 
@@ -1406,9 +1302,9 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 			// store object hash to prevent cycle
 			$this->startCopy = true;
 
-			foreach ($this->getCouponsToCustomerss() as $relObj) {
+			foreach ($this->getOrdersToCouponss() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-					$copyObj->addCouponsToCustomers($relObj->copy($deepCopy));
+					$copyObj->addOrdersToCoupons($relObj->copy($deepCopy));
 				}
 			}
 
@@ -1471,29 +1367,29 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 */
 	public function initRelation($relationName)
 	{
-		if ('CouponsToCustomers' == $relationName) {
-			return $this->initCouponsToCustomerss();
+		if ('OrdersToCoupons' == $relationName) {
+			return $this->initOrdersToCouponss();
 		}
 	}
 
 	/**
-	 * Clears out the collCouponsToCustomerss collection
+	 * Clears out the collOrdersToCouponss collection
 	 *
 	 * This does not modify the database; however, it will remove any associated objects, causing
 	 * them to be refetched by subsequent calls to accessor method.
 	 *
 	 * @return     void
-	 * @see        addCouponsToCustomerss()
+	 * @see        addOrdersToCouponss()
 	 */
-	public function clearCouponsToCustomerss()
+	public function clearOrdersToCouponss()
 	{
-		$this->collCouponsToCustomerss = null; // important to set this to NULL since that means it is uninitialized
+		$this->collOrdersToCouponss = null; // important to set this to NULL since that means it is uninitialized
 	}
 
 	/**
-	 * Initializes the collCouponsToCustomerss collection.
+	 * Initializes the collOrdersToCouponss collection.
 	 *
-	 * By default this just sets the collCouponsToCustomerss collection to an empty array (like clearcollCouponsToCustomerss());
+	 * By default this just sets the collOrdersToCouponss collection to an empty array (like clearcollOrdersToCouponss());
 	 * however, you may wish to override this method in your stub class to provide setting appropriate
 	 * to your application -- for example, setting the initial array to the values stored in database.
 	 *
@@ -1502,17 +1398,17 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 *
 	 * @return     void
 	 */
-	public function initCouponsToCustomerss($overrideExisting = true)
+	public function initOrdersToCouponss($overrideExisting = true)
 	{
-		if (null !== $this->collCouponsToCustomerss && !$overrideExisting) {
+		if (null !== $this->collOrdersToCouponss && !$overrideExisting) {
 			return;
 		}
-		$this->collCouponsToCustomerss = new PropelObjectCollection();
-		$this->collCouponsToCustomerss->setModel('CouponsToCustomers');
+		$this->collOrdersToCouponss = new PropelObjectCollection();
+		$this->collOrdersToCouponss->setModel('OrdersToCoupons');
 	}
 
 	/**
-	 * Gets an array of CouponsToCustomers objects which contain a foreign key that references this object.
+	 * Gets an array of OrdersToCoupons objects which contain a foreign key that references this object.
 	 *
 	 * If the $criteria is not null, it is used to always fetch the results from the database.
 	 * Otherwise the results are fetched from the database the first time, then cached.
@@ -1522,68 +1418,68 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 *
 	 * @param      Criteria $criteria optional Criteria object to narrow the query
 	 * @param      PropelPDO $con optional connection object
-	 * @return     PropelCollection|array CouponsToCustomers[] List of CouponsToCustomers objects
+	 * @return     PropelCollection|array OrdersToCoupons[] List of OrdersToCoupons objects
 	 * @throws     PropelException
 	 */
-	public function getCouponsToCustomerss($criteria = null, PropelPDO $con = null)
+	public function getOrdersToCouponss($criteria = null, PropelPDO $con = null)
 	{
-		if(null === $this->collCouponsToCustomerss || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCouponsToCustomerss) {
+		if(null === $this->collOrdersToCouponss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collOrdersToCouponss) {
 				// return empty collection
-				$this->initCouponsToCustomerss();
+				$this->initOrdersToCouponss();
 			} else {
-				$collCouponsToCustomerss = CouponsToCustomersQuery::create(null, $criteria)
+				$collOrdersToCouponss = OrdersToCouponsQuery::create(null, $criteria)
 					->filterByCoupons($this)
 					->find($con);
 				if (null !== $criteria) {
-					return $collCouponsToCustomerss;
+					return $collOrdersToCouponss;
 				}
-				$this->collCouponsToCustomerss = $collCouponsToCustomerss;
+				$this->collOrdersToCouponss = $collOrdersToCouponss;
 			}
 		}
-		return $this->collCouponsToCustomerss;
+		return $this->collOrdersToCouponss;
 	}
 
 	/**
-	 * Sets a collection of CouponsToCustomers objects related by a one-to-many relationship
+	 * Sets a collection of OrdersToCoupons objects related by a one-to-many relationship
 	 * to the current object.
 	 * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
 	 * and new objects from the given Propel collection.
 	 *
-	 * @param      PropelCollection $couponsToCustomerss A Propel collection.
+	 * @param      PropelCollection $ordersToCouponss A Propel collection.
 	 * @param      PropelPDO $con Optional connection object
 	 */
-	public function setCouponsToCustomerss(PropelCollection $couponsToCustomerss, PropelPDO $con = null)
+	public function setOrdersToCouponss(PropelCollection $ordersToCouponss, PropelPDO $con = null)
 	{
-		$this->couponsToCustomerssScheduledForDeletion = $this->getCouponsToCustomerss(new Criteria(), $con)->diff($couponsToCustomerss);
+		$this->ordersToCouponssScheduledForDeletion = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
 
-		foreach ($couponsToCustomerss as $couponsToCustomers) {
+		foreach ($ordersToCouponss as $ordersToCoupons) {
 			// Fix issue with collection modified by reference
-			if ($couponsToCustomers->isNew()) {
-				$couponsToCustomers->setCoupons($this);
+			if ($ordersToCoupons->isNew()) {
+				$ordersToCoupons->setCoupons($this);
 			}
-			$this->addCouponsToCustomers($couponsToCustomers);
+			$this->addOrdersToCoupons($ordersToCoupons);
 		}
 
-		$this->collCouponsToCustomerss = $couponsToCustomerss;
+		$this->collOrdersToCouponss = $ordersToCouponss;
 	}
 
 	/**
-	 * Returns the number of related CouponsToCustomers objects.
+	 * Returns the number of related OrdersToCoupons objects.
 	 *
 	 * @param      Criteria $criteria
 	 * @param      boolean $distinct
 	 * @param      PropelPDO $con
-	 * @return     int Count of related CouponsToCustomers objects.
+	 * @return     int Count of related OrdersToCoupons objects.
 	 * @throws     PropelException
 	 */
-	public function countCouponsToCustomerss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	public function countOrdersToCouponss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
 	{
-		if(null === $this->collCouponsToCustomerss || null !== $criteria) {
-			if ($this->isNew() && null === $this->collCouponsToCustomerss) {
+		if(null === $this->collOrdersToCouponss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collOrdersToCouponss) {
 				return 0;
 			} else {
-				$query = CouponsToCustomersQuery::create(null, $criteria);
+				$query = OrdersToCouponsQuery::create(null, $criteria);
 				if($distinct) {
 					$query->distinct();
 				}
@@ -1592,36 +1488,36 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 					->count($con);
 			}
 		} else {
-			return count($this->collCouponsToCustomerss);
+			return count($this->collOrdersToCouponss);
 		}
 	}
 
 	/**
-	 * Method called to associate a CouponsToCustomers object to this object
-	 * through the CouponsToCustomers foreign key attribute.
+	 * Method called to associate a OrdersToCoupons object to this object
+	 * through the OrdersToCoupons foreign key attribute.
 	 *
-	 * @param      CouponsToCustomers $l CouponsToCustomers
+	 * @param      OrdersToCoupons $l OrdersToCoupons
 	 * @return     Coupons The current object (for fluent API support)
 	 */
-	public function addCouponsToCustomers(CouponsToCustomers $l)
+	public function addOrdersToCoupons(OrdersToCoupons $l)
 	{
-		if ($this->collCouponsToCustomerss === null) {
-			$this->initCouponsToCustomerss();
+		if ($this->collOrdersToCouponss === null) {
+			$this->initOrdersToCouponss();
 		}
-		if (!$this->collCouponsToCustomerss->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doAddCouponsToCustomers($l);
+		if (!$this->collOrdersToCouponss->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doAddOrdersToCoupons($l);
 		}
 
 		return $this;
 	}
 
 	/**
-	 * @param	CouponsToCustomers $couponsToCustomers The couponsToCustomers object to add.
+	 * @param	OrdersToCoupons $ordersToCoupons The ordersToCoupons object to add.
 	 */
-	protected function doAddCouponsToCustomers($couponsToCustomers)
+	protected function doAddOrdersToCoupons($ordersToCoupons)
 	{
-		$this->collCouponsToCustomerss[]= $couponsToCustomers;
-		$couponsToCustomers->setCoupons($this);
+		$this->collOrdersToCouponss[]= $ordersToCoupons;
+		$ordersToCoupons->setCoupons($this);
 	}
 
 
@@ -1630,7 +1526,7 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 * an identical criteria, it returns the collection.
 	 * Otherwise if this Coupons is new, it will return
 	 * an empty collection; or if this Coupons has previously
-	 * been saved, it will retrieve related CouponsToCustomerss from storage.
+	 * been saved, it will retrieve related OrdersToCouponss from storage.
 	 *
 	 * This method is protected by default in order to keep the public
 	 * api reasonable.  You can provide public methods for those you
@@ -1639,14 +1535,14 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	 * @param      Criteria $criteria optional Criteria object to narrow the query
 	 * @param      PropelPDO $con optional connection object
 	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-	 * @return     PropelCollection|array CouponsToCustomers[] List of CouponsToCustomers objects
+	 * @return     PropelCollection|array OrdersToCoupons[] List of OrdersToCoupons objects
 	 */
-	public function getCouponsToCustomerssJoinCustomers($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public function getOrdersToCouponssJoinOrders($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
-		$query = CouponsToCustomersQuery::create(null, $criteria);
-		$query->joinWith('Customers', $join_behavior);
+		$query = OrdersToCouponsQuery::create(null, $criteria);
+		$query->joinWith('Orders', $join_behavior);
 
-		return $this->getCouponsToCustomerss($query, $con);
+		return $this->getOrdersToCouponss($query, $con);
 	}
 
 	/**
@@ -1657,12 +1553,10 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 		$this->id = null;
 		$this->code = null;
 		$this->amount = null;
-		$this->vat = null;
 		$this->currency_code = null;
-		$this->uses_pr_coupon = null;
-		$this->uses_pr_coustomer = null;
 		$this->active_from = null;
 		$this->active_to = null;
+		$this->is_active = null;
 		$this->created_at = null;
 		$this->updated_at = null;
 		$this->alreadyInSave = false;
@@ -1686,17 +1580,17 @@ abstract class BaseCoupons extends BaseObject  implements Persistent
 	public function clearAllReferences($deep = false)
 	{
 		if ($deep) {
-			if ($this->collCouponsToCustomerss) {
-				foreach ($this->collCouponsToCustomerss as $o) {
+			if ($this->collOrdersToCouponss) {
+				foreach ($this->collOrdersToCouponss as $o) {
 					$o->clearAllReferences($deep);
 				}
 			}
 		} // if ($deep)
 
-		if ($this->collCouponsToCustomerss instanceof PropelCollection) {
-			$this->collCouponsToCustomerss->clearIterator();
+		if ($this->collOrdersToCouponss instanceof PropelCollection) {
+			$this->collOrdersToCouponss->clearIterator();
 		}
-		$this->collCouponsToCustomerss = null;
+		$this->collOrdersToCouponss = null;
 	}
 
 	/**

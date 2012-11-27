@@ -58,7 +58,7 @@ class GeoIPService
 
         if (!$data) {
             $data = array();
-            $result = file_get_contents('http://geoip3.maxmind.com/b?l=Vy3Df3CSG8kI&i=' . $ip);
+            $result = file_get_contents('http://geoip.maxmind.com/b?l=Vy3Df3CSG8kI&i=' . $ip);
 
             if ($result) {
                 $result = explode(',', $result);

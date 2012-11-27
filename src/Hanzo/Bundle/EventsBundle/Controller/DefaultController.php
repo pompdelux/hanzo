@@ -63,14 +63,9 @@ class DefaultController extends CoreController
 
         // If order is for the hostess, find her and use the Customer
         $attributes = $order->getOrdersAttributess()->toArray();
-        $is_hostess = FALSE;
-        foreach ($attributes as $attribute) {
-            if ($attribute['CKey'] === "is_hostess_order") {
-                $is_hostess = TRUE;
-                break;
-            }
-        }
-        if ($is_hostess === TRUE) {
+        $is_hostess = $order->isHostessOrder();
+
+        if ($is_hostess === true) {
             $event = EventsQuery::create()
                 ->filterById($order->getEventsId())
                 ->findOne()

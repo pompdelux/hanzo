@@ -2,6 +2,10 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="checkout.headline">
+        <source>checkout.headline</source>
+        <target>Checkout</target>
+      </trans-unit>
       <trans-unit id="checkout_json_err_no_order">
         <source>json.err.no_order</source>
         <target>Tilausta ei löydy</target>
@@ -18,17 +22,12 @@
         <source>checkout.success.text</source>
         <target><![CDATA[
           <h2>E-tilausnumero</h2> <p>E-tilausnumero: <b>%id%</b></p>
-
           <h2>Toimitusaika</h2> <p>Odotettu toimitusaika: %date%.</p>
-
           <h2>Yhteystiedot</h2> <p>Tarvittaessa voit ottaa yhteyttä meihin.</p> <p>Puhelin +45-86-78 7871</p> <p>Sähköposti: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
-
           <h2>Oma sivu</h2> <p> Tilausten tarkastelu ja paljon muuta<br> <a href="%account%">&amp;raquo; Min side</a> </p>
-
           <h2>FAQ</h2> <p> Tästä löydät yleisimmät kysymykset ja vastaukset POMPdeLUXista.<br> <a href="/p/forside-kundeservice-faq">&amp;raquo; FAQ</a> </p>
-
-          <h2>Uutiset</h2> <p> Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.<br> <a href="/p/forside-nyheder">&amp;raquo; Nyheder</a> </p>]]>
-        </target>
+          <h2>Uutiset</h2> <p> Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.<br> <a href="/p/forside-nyheder">&amp;raquo; Nyheder</a> </p>
+        ]]></target>
       </trans-unit>
       <trans-unit id="checkout.failed.title">
         <source>checkout.failed.title</source>
@@ -37,12 +36,16 @@
       <trans-unit id="checkout.failed.text">
         <source>checkout.failed.text</source>
         <target><![CDATA[
-            Maksussa/tilauksen käsittelyssä tapahtui virhe. Ota yhteyttä asiakaspalveluun<br><br> <p>E-tilausnumero: <b>%order_id%</b></p>]]>
-        </target>
+          Maksussa/tilauksen käsittelyssä tapahtui virhe. Ota yhteyttä asiakaspalveluun<br><br> <p>E-tilausnumero: <b>%order_id%</b></p>
+        ]]></target>
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
         <target>Hyväksytty</target>
+      </trans-unit>
+      <trans-unit id="confirm.addresses.label" approved="no">
+        <source>confirm.addresses.label</source>
+        <target>Ja, adresserne herover er korrekte.</target>
       </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
@@ -226,7 +229,9 @@
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Huomaa:</strong> Mikäli tilaus sisältää jälkitoimituksessa olevia tuotteita, lähetämme tilauksen vasta, kun kaikki tuotteet ovat saapuneet varastoomme.]]></target>
+        <target><![CDATA[
+          <strong>Huomaa:</strong> Mikäli tilaus sisältää jälkitoimituksessa olevia tuotteita, lähetämme tilauksen vasta, kun kaikki tuotteet ovat saapuneet varastoomme.
+        ]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
@@ -243,8 +248,8 @@
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
         <target><![CDATA[
-          <p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p> <p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.</p>]]>
-        </target>
+          <p>Tilauksesi sisältää tuotteen/tuotteita, joita ei ole tällä hetkellä varastossamme. Tilaus pakataan vasta sitten, kun kaikki tuotteet ovat saapuneet varastoomme.</p> <p>Koko tilauksen arvioidaan lähtevän varastoltamme viimeistään: <strong>%date%</strong>.</p>
+        ]]></target>
       </trans-unit>
       <trans-unit id="status.20" approved="no">
         <source>status.20</source>
@@ -341,6 +346,30 @@
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
         <target>Little Boy</target>
+      </trans-unit>
+      <trans-unit id="coupon">
+         <source>coupon</source>
+         <target>Lahjakortti</target>
+      </trans-unit>
+      <trans-unit id="toggle.coupon.form">
+         <source>toggle.coupon.form</source>
+         <target>» Anna lahjakortin koodi</target>
+      </trans-unit>
+      <trans-unit id="invalid.coupon.code">
+         <source>invalid.coupon.code</source>
+         <target>Lahjakortin koodi ei kelpaa</target>
+      </trans-unit>
+      <trans-unit id="coupon.label">
+         <source>coupon.label</source>
+         <target>Lahjakortin koodi:</target>
+      </trans-unit>
+      <trans-unit id="apply.coupon.discount">
+         <source>apply.coupon.discount</source>
+         <target>Tallenna</target>
+      </trans-unit>
+      <trans-unit id="coupon.description">
+         <source>coupon.description</source>
+         <target>Tähän voit antaa lahjakorttisi koodin. Jos et käytä lahjakorttiasi kokonaan, voit käyttää lahjakortin koodia uudelleen, kun seuraavan kerran teet ostoksia POMPdeLUXilla.</target>
       </trans-unit>
     </body>
   </file>
