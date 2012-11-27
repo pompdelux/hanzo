@@ -135,7 +135,7 @@ class AddressController extends CoreController
         $builder->add('city', null, array(
             'required' => true,
             'translation_domain' => 'account',
-            'read_only' => true,
+            'read_only' => (count($attr) ? true : false),
         ));
 
         if ('overnightbox' === $type) {
