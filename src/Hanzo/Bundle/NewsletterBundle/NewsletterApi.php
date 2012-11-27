@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\NewsletterBundle;
 
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
 /**
  * undocumented class
@@ -181,7 +182,17 @@ class NewsletterApi
         $result = curl_exec($ch);
         curl_close($ch);
 
-        return $this->jsonp_decode( $result );
+        $result = $this->jsonp_decode($result);
+
+        foreach ($result->content['lists'] as $index => $list) {
+            if ('pdl_' == substr(strtolower($list->name), 0, 4)) {
+                unset($result->content['lists'][$index]);
+            }
+        }
+
+        Tools::log($result);
+
+        return $result;
     }
 
 } // END class NewsletterApi
