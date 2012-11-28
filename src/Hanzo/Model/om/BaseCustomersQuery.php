@@ -13,7 +13,6 @@ use \PropelPDO;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\ConsultantNewsletterDrafts;
 use Hanzo\Model\Consultants;
-use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CustomersQuery;
@@ -62,10 +61,6 @@ use Hanzo\Model\WallLikes;
  * @method     CustomersQuery leftJoinGroups($relationAlias = null) Adds a LEFT JOIN clause to the query using the Groups relation
  * @method     CustomersQuery rightJoinGroups($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Groups relation
  * @method     CustomersQuery innerJoinGroups($relationAlias = null) Adds a INNER JOIN clause to the query using the Groups relation
- *
- * @method     CustomersQuery leftJoinCouponsToCustomers($relationAlias = null) Adds a LEFT JOIN clause to the query using the CouponsToCustomers relation
- * @method     CustomersQuery rightJoinCouponsToCustomers($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CouponsToCustomers relation
- * @method     CustomersQuery innerJoinCouponsToCustomers($relationAlias = null) Adds a INNER JOIN clause to the query using the CouponsToCustomers relation
  *
  * @method     CustomersQuery leftJoinAddresses($relationAlias = null) Adds a LEFT JOIN clause to the query using the Addresses relation
  * @method     CustomersQuery rightJoinAddresses($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Addresses relation
@@ -762,79 +757,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
 		return $this
 			->joinGroups($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'Groups', '\Hanzo\Model\GroupsQuery');
-	}
-
-	/**
-	 * Filter the query by a related CouponsToCustomers object
-	 *
-	 * @param     CouponsToCustomers $couponsToCustomers  the related object to use as filter
-	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function filterByCouponsToCustomers($couponsToCustomers, $comparison = null)
-	{
-		if ($couponsToCustomers instanceof CouponsToCustomers) {
-			return $this
-				->addUsingAlias(CustomersPeer::ID, $couponsToCustomers->getCustomersId(), $comparison);
-		} elseif ($couponsToCustomers instanceof PropelCollection) {
-			return $this
-				->useCouponsToCustomersQuery()
-				->filterByPrimaryKeys($couponsToCustomers->getPrimaryKeys())
-				->endUse();
-		} else {
-			throw new PropelException('filterByCouponsToCustomers() only accepts arguments of type CouponsToCustomers or PropelCollection');
-		}
-	}
-
-	/**
-	 * Adds a JOIN clause to the query using the CouponsToCustomers relation
-	 *
-	 * @param     string $relationAlias optional alias for the relation
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    CustomersQuery The current query, for fluid interface
-	 */
-	public function joinCouponsToCustomers($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('CouponsToCustomers');
-
-		// create a ModelJoin object for this join
-		$join = new ModelJoin();
-		$join->setJoinType($joinType);
-		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-		if ($previousJoin = $this->getPreviousJoin()) {
-			$join->setPreviousJoin($previousJoin);
-		}
-
-		// add the ModelJoin to the current object
-		if($relationAlias) {
-			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-			$this->addJoinObject($join, $relationAlias);
-		} else {
-			$this->addJoinObject($join, 'CouponsToCustomers');
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Use the CouponsToCustomers relation CouponsToCustomers object
-	 *
-	 * @see       useQuery()
-	 *
-	 * @param     string $relationAlias optional alias for the relation,
-	 *                                   to be used as main alias in the secondary query
-	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-	 *
-	 * @return    \Hanzo\Model\CouponsToCustomersQuery A secondary query class using the current class as primary query
-	 */
-	public function useCouponsToCustomersQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-	{
-		return $this
-			->joinCouponsToCustomers($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'CouponsToCustomers', '\Hanzo\Model\CouponsToCustomersQuery');
 	}
 
 	/**

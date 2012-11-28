@@ -934,10 +934,8 @@ class Orders extends BaseOrders
     {
         $attributes = $this->getOrdersAttributess();
 
-        foreach ($attributes as $index => $attribute)
-        {
-            if ( $attribute->getCKey() == $key )
-            {
+        foreach ($attributes as $index => $attribute) {
+            if ( $attribute->getCKey() == $key ) {
                 $attribute->delete();
             }
         }
@@ -953,10 +951,8 @@ class Orders extends BaseOrders
     {
         $attributes = $this->getOrdersAttributess();
 
-        foreach ($attributes as $index => $attribute)
-        {
-            if ( $attribute->getNs() == $ns )
-            {
+        foreach ($attributes as $index => $attribute) {
+            if ( $attribute->getNs() == $ns ) {
                 $attribute->delete();
             }
         }
@@ -971,8 +967,7 @@ class Orders extends BaseOrders
      **/
     public function setDeliveryAddress( Addresses $address )
     {
-        if ( !in_array( $address->getType(), array('shipping','overnightbox') )  )
-        {
+        if ( !in_array( $address->getType(), array('shipping','overnightbox', 'company_shipping') )  ) {
             throw new Exception( 'Delivery address is not a valid type "'.$address->getType().'"' );
         }
 
@@ -986,7 +981,7 @@ class Orders extends BaseOrders
             ->setDeliveryCompanyName( $address->getCompanyName() )
             ->setDeliveryFirstName( $address->getFirstName() )
             ->setDeliveryLastName( $address->getLastName() )
-            ;
+        ;
     }
 
     /**
@@ -1312,6 +1307,21 @@ class Orders extends BaseOrders
         }
 
         return $this;
+    }
+
+    /**
+     * figure out if the order is for a hostess or not
+     *
+     * @return boolean
+     */
+    public function isHostessOrder()
+    {
+        $attributes = $this->getAttributes();
+        if (isset($attributes->event->is_hostess_order)) {
+            return true;
+        }
+
+        return false;
     }
 
 } // Orders

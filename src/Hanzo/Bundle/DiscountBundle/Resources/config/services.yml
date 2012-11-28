@@ -1,0 +1,5 @@
+services:
+    hanzo.discount.checkout.listener:
+        class: Hanzo\Bundle\DiscountBundle\Event\CheckoutListener
+        tags:
+            - { name: kernel.event_listener, event: order.summery.finalize, method: onFinalize, prioriy: 20 }

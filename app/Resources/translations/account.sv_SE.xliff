@@ -10,6 +10,10 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Kan inte hitta E-Mail Address och/eller Password.</target>
             </trans-unit>
+            <trans-unit id="User account is disabled." approved="no">
+                <source>User account is disabled.</source>
+                <target>Ditt konto är avaktiverat.</target>
+            </trans-unit>
             <trans-unit id="fetch.invoice">
                 <source>fetch.invoice</source>
                 <target>Hent faktura som pdf</target>

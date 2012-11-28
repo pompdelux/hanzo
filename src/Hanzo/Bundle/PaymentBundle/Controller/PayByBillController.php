@@ -13,7 +13,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
-use Hanzo\Bundle\PaymentBundle\PayByBill\PayByBillApi;
+use Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 

@@ -2,12 +2,14 @@
 
 namespace Hanzo\Bundle\ShippingBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\CoreController,
-    Hanzo\Model\ShippingMethods
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\ShippingMethods;
 
 class DefaultController extends CoreController
 {
@@ -18,15 +20,50 @@ class DefaultController extends CoreController
      **/
     public function blockAction()
     {
-        $api = $this->get('shipping.shippingapi');
-
+        $api     = $this->get('shipping.shippingapi');
         $methods = $api->getMethods();
+        $order   = OrdersPeer::getCurrent(true);
 
-        return $this->render('ShippingBundle:Default:block.html.twig', array( 'methods' => $methods ));
+        $method = '';
+        if ($order->getDeliveryMethod() && $order->getDeliveryFirstName()) {
+            $method = $order->getDeliveryMethod();
+        }
+
+        return $this->render('ShippingBundle:Default:block.html.twig', array(
+            'methods' => $methods,
+            'selected_method' => $method
+        ));
     }
 
-    public function indexAction($name)
+
+    public function setMethodAction(Request $request)
     {
-        return $this->render('ShippingBundle:Default:index.html.twig', array('name' => $name));
+        $api     = $this->get('shipping.shippingapi');
+        $methods = $api->getMethods();
+
+        if (isset($methods[$request->get('method')])) {
+            $method = $methods[$request->get('method')];
+
+            $order = OrdersPeer::getCurrent();
+            $order->setDeliveryMethod($request->get('method'));
+            $order->setOrderLineShipping($method, ShippingMethods::TYPE_NORMAL);
+
+            if ($method->getFee()) {
+                $order->setOrderLineShipping($method, ShippingMethods::TYPE_FEE);
+            }
+
+            $response = array(
+                'status' => true,
+                'message' => '',
+            );
+        } else {
+            $response = array(
+                'status' => false,
+                'message' => $this->get('translator')->trans('err.unknown_shipping_method', [], 'checkout'),
+            );
+
+        }
+
+        return $this->json_response($response);
     }
 }

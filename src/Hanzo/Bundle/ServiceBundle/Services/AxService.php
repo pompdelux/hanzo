@@ -100,6 +100,7 @@ class AxService
         $payment_cost = 0;
         $handeling_fee = 0;
         $hostess_discount = 0;
+        $coupon_discount = 0;
         $line_discount = 0;
 
         foreach ($lines as $line) {
@@ -134,6 +135,9 @@ class AxService
                             if ($line_discount < 0) {
                                 $line_discount = $line_discount * -1;
                             }
+                            break;
+                        case 'coupon.code':
+                            $coupon_discount = $line->getPrice();
                             break;
                     }
                     break;
@@ -173,6 +177,16 @@ class AxService
             $line = new stdClass();
             $line->ItemId = 'HOSTESSDISCOUNT';
             $line->SalesPrice = number_format($hostess_discount, 4, '.', '');
+            $line->SalesQty = 1;
+            $line->SalesUnit = 'Stk.';
+            $salesLine[] = $line;
+        }
+
+        // gavekort
+        if ($coupon_discount) {
+            $line = new stdClass();
+            $line->ItemId = 'COUPON';
+            $line->SalesPrice = number_format($coupon_discount, 4, '.', '');
             $line->SalesQty = 1;
             $line->SalesUnit = 'Stk.';
             $salesLine[] = $line;

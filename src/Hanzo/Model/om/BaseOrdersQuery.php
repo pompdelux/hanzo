@@ -20,6 +20,7 @@ use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersSyncLog;
+use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersVersions;
 
 /**
@@ -126,6 +127,10 @@ use Hanzo\Model\OrdersVersions;
  * @method     OrdersQuery leftJoinEvents($relationAlias = null) Adds a LEFT JOIN clause to the query using the Events relation
  * @method     OrdersQuery rightJoinEvents($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Events relation
  * @method     OrdersQuery innerJoinEvents($relationAlias = null) Adds a INNER JOIN clause to the query using the Events relation
+ *
+ * @method     OrdersQuery leftJoinOrdersToCoupons($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersToCoupons relation
+ * @method     OrdersQuery rightJoinOrdersToCoupons($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersToCoupons relation
+ * @method     OrdersQuery innerJoinOrdersToCoupons($relationAlias = null) Adds a INNER JOIN clause to the query using the OrdersToCoupons relation
  *
  * @method     OrdersQuery leftJoinOrdersAttributes($relationAlias = null) Adds a LEFT JOIN clause to the query using the OrdersAttributes relation
  * @method     OrdersQuery rightJoinOrdersAttributes($relationAlias = null) Adds a RIGHT JOIN clause to the query using the OrdersAttributes relation
@@ -1930,6 +1935,79 @@ abstract class BaseOrdersQuery extends ModelCriteria
 		return $this
 			->joinEvents($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'Events', '\Hanzo\Model\EventsQuery');
+	}
+
+	/**
+	 * Filter the query by a related OrdersToCoupons object
+	 *
+	 * @param     OrdersToCoupons $ordersToCoupons  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function filterByOrdersToCoupons($ordersToCoupons, $comparison = null)
+	{
+		if ($ordersToCoupons instanceof OrdersToCoupons) {
+			return $this
+				->addUsingAlias(OrdersPeer::ID, $ordersToCoupons->getOrdersId(), $comparison);
+		} elseif ($ordersToCoupons instanceof PropelCollection) {
+			return $this
+				->useOrdersToCouponsQuery()
+				->filterByPrimaryKeys($ordersToCoupons->getPrimaryKeys())
+				->endUse();
+		} else {
+			throw new PropelException('filterByOrdersToCoupons() only accepts arguments of type OrdersToCoupons or PropelCollection');
+		}
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the OrdersToCoupons relation
+	 *
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    OrdersQuery The current query, for fluid interface
+	 */
+	public function joinOrdersToCoupons($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('OrdersToCoupons');
+
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'OrdersToCoupons');
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Use the OrdersToCoupons relation OrdersToCoupons object
+	 *
+	 * @see       useQuery()
+	 *
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    \Hanzo\Model\OrdersToCouponsQuery A secondary query class using the current class as primary query
+	 */
+	public function useOrdersToCouponsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinOrdersToCoupons($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'OrdersToCoupons', '\Hanzo\Model\OrdersToCouponsQuery');
 	}
 
 	/**

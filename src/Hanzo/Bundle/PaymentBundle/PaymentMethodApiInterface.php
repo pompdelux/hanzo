@@ -17,7 +17,7 @@ interface PaymentMethodApiInterface
     /**
      * call
      * Calls the underlying ApiCall method
-     * Example: 
+     * Example:
      *  $api = $this->get('payment.dibsapi');
      *  $api->call()->cancel();
      * @return mixed
@@ -56,4 +56,11 @@ interface PaymentMethodApiInterface
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function getFeeExternalId();
+
+    /**
+     * Return a form or an goto url for the process button
+     *
+     * @return array
+     */
+    public function getProcessButton(Orders $order);
 }

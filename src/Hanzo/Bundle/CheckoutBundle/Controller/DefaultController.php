@@ -38,9 +38,15 @@ class DefaultController extends CoreController
         // trigger event, handles discounts and other stuff.
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
+
+        if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
         $order->save();
 
-        return $this->render('CheckoutBundle:Default:index.html.twig', array(
+        return $this->render('CheckoutBundle:Default:flow.html.twig', array(
             'page_type' => 'checkout'
         ));
     }
@@ -55,6 +61,7 @@ class DefaultController extends CoreController
      **/
     public function updateAction($block, $state)
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $order = OrdersPeer::getCurrent();
         $t = $this->get('translator');
 
@@ -118,6 +125,7 @@ class DefaultController extends CoreController
      **/
     protected function updateAddress( Orders $order, Request $request, $state )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if ( $state === false ) {
             $order->clearBillingAddress();
             $order->clearDeliveryAddress();
@@ -183,6 +191,7 @@ class DefaultController extends CoreController
      **/
     protected function updateShipping( Orders $order, Request $request, $state )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if ( $state === false ) {
             $order->setDeliveryMethod(null);
         }
@@ -196,7 +205,7 @@ class DefaultController extends CoreController
         $methods = $shippingApi->getMethods();
 
         if ( !isset($methods[$shippingMethodId]) ) {
-            throw new Exception( $t->trans('err.unknown_shipping_method', array(), 'checkout') );
+            throw new Exception( $t->trans('err.unknown_shipping_method', [], 'checkout') );
         }
 
         $method = $methods[$shippingMethodId];
@@ -219,6 +228,7 @@ class DefaultController extends CoreController
      **/
     protected function updatePayment( Orders $order, Request $request, $state )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if ( $state === 'false' )
         {
             throw new Exception( 'Payment state not valid' );
@@ -227,7 +237,7 @@ class DefaultController extends CoreController
         if ( $order->getState() >= Orders::STATE_PRE_PAYMENT )
         {
             $trans = $this->get('translator');
-            throw new Exception( $trans->trans('order.state_pre_payment.locked', array(), 'checkout') );
+            throw new Exception( $trans->trans('order.state_pre_payment.locked', [], 'checkout') );
         }
 
         $data = $request->get('data');
@@ -251,15 +261,14 @@ class DefaultController extends CoreController
      **/
     public function validateAction()
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $order = OrdersPeer::getCurrent();
-
         $trans = $this->get('translator');
 
-        if ( $order->getState() >= Orders::STATE_PRE_PAYMENT  )
-        {
+        if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
             return $this->json_response(array(
                 'status' => false,
-                'message' => $trans->trans('order.state_pre_payment.locked', array(), 'checkout'),
+                'message' => $trans->trans('order.state_pre_payment.locked', [], 'checkout'),
                 'data' => array(
                     'name' => 'payment'
                 ),
@@ -269,8 +278,7 @@ class DefaultController extends CoreController
         $data = $this->get('request')->get('data');
         $grouped = array();
 
-        foreach ($data as $values)
-        {
+        foreach ($data as $values) {
             $grouped[$values['name']] = $values;
         }
 
@@ -329,6 +337,7 @@ class DefaultController extends CoreController
      **/
     public function validateAddresses( Orders $order, $data )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
       $fields = $order->toArray(BasePeer::TYPE_FIELDNAME);
 
       $check = array(
@@ -367,6 +376,7 @@ class DefaultController extends CoreController
      **/
     public function validatePayment( Orders $order, $data )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $api = $this->get('payment.'. $data['selectedMethod'] .'api');
 
         if (!$api->isActive()) {
@@ -383,6 +393,7 @@ class DefaultController extends CoreController
      **/
     protected function validateShipping( Orders $order, $data )
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $t = $this->get('translator');
 
         if (($data['state'] !== 'true')) {
@@ -395,7 +406,7 @@ class DefaultController extends CoreController
         $methods = $shippingApi->getMethods();
 
         if ( !isset($methods[ $data['selectedMethod']  ]) ) {
-            throw new Exception( $t->trans('err.unknown_shipping_method', array(), 'checkout') );
+            throw new Exception( $t->trans('err.unknown_shipping_method', [], 'checkout') );
         }
     }
 
@@ -407,6 +418,7 @@ class DefaultController extends CoreController
      **/
     public function addressesAction($skip_empty = false)
     {
+Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         $order = OrdersPeer::getCurrent();
         $customer = $order->getCustomers();
 
@@ -493,7 +505,7 @@ class DefaultController extends CoreController
         // we only want the masterdata here, no slaves thank you...
         Propel::setForceMasterConnection(true);
 
-        $order = OrdersPeer::getCurrent();
+        $order = OrdersPeer::getCurrent(true);
         $hanzo = Hanzo::getInstance();
         $domain_key = $hanzo->get('core.domain_key');
 
@@ -544,9 +556,11 @@ class DefaultController extends CoreController
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);
         }
+
         if (empty($attributes->global->domain_name)) {
             $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
         }
+
         if (empty($attributes->global->domain_key)) {
             $order->setAttribute('domain_key', 'global', $domain_key);
         }
@@ -655,6 +669,7 @@ class DefaultController extends CoreController
      **/
     public function populateOrderAction()
     {
+Tools::log('skal ikke bruges - eller ?? , find ud af hvor kaldet kommer fra !');
         $orderObj      = OrdersPeer::getCurrent();
         $attributesObj = $orderObj->getOrdersAttributess();
         $order         = $orderObj->toArray();
@@ -692,4 +707,32 @@ class DefaultController extends CoreController
 
         return $this->json_response( array('error' => false, 'order' => $orderArray) );
     }
+
+
+    public function testAction()
+    {
+        $order = OrdersPeer::getCurrent();
+
+        if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
+        // trigger event, handles discounts and other stuff.
+        $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
+
+
+        if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
+            return $this->redirect($this->generateUrl('basket_view'));
+        }
+
+        $order->save();
+        $order->reload(true);
+
+        return $this->render('CheckoutBundle:Default:flow.html.twig', array(
+            'page_type' => 'checkout',
+            'order'     => $order
+        ));
+    }
+
 }

@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="checkout.headline">
+        <source>checkout.headline</source>
+        <target>Checkout</target>
+      </trans-unit>
       <trans-unit id="checkout_json_err_no_order">
         <source>json.err.no_order</source>
         <target>Ordren findes ikke</target>
@@ -62,6 +66,10 @@
         <source>confirm.title</source>
         <target>Godkend</target>
       </trans-unit>
+      <trans-unit id="confirm.addresses.label" approved="no">
+        <source>confirm.addresses.label</source>
+        <target>Ja, adresserne herover er korrekte.</target>
+      </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
         <target>E-ordrenummer</target>
@@ -82,8 +90,12 @@
         <source>shipping.address</source>
         <target>Leveringsadresse</target>
       </trans-unit>
-      <trans-unit id="shipping.address.overnight">
-        <source>shipping.address.overnight</source>
+      <trans-unit id="company.shipping.address">
+        <source>company.shipping.address</source>
+        <target>Leveringsadresse</target>
+      </trans-unit>
+      <trans-unit id="overnightbox.address">
+        <source>overnightbox.address</source>
         <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
@@ -356,6 +368,30 @@
       <trans-unit id="product.group.lb">
         <source>product.group.lb</source>
         <target>Little Boy</target>
+      </trans-unit>
+      <trans-unit id="coupon">
+         <source>coupon</source>
+         <target>Gavekort</target>
+      </trans-unit>
+      <trans-unit id="toggle.coupon.form">
+         <source>toggle.coupon.form</source>
+         <target>» Tast din gavekortskode</target>
+      </trans-unit>
+      <trans-unit id="invalid.coupon.code">
+         <source>invalid.coupon.code</source>
+         <target>Ugyldig gavekortskode</target>
+      </trans-unit>
+      <trans-unit id="coupon.label">
+         <source>coupon.label</source>
+         <target>Gavekortskode:</target>
+      </trans-unit>
+      <trans-unit id="apply.coupon.discount">
+         <source>apply.coupon.discount</source>
+         <target>Gem</target>
+      </trans-unit>
+      <trans-unit id="coupon.description">
+         <source>coupon.description</source>
+         <target>Herunder kan du taste din gavekortskode. Bruger du ikke hele beløbet på dit gavekort, kan du anvende gavekortskoden igen, næste gang du handler hos POMPdeLUX.</target>
       </trans-unit>
     </body>
   </file>

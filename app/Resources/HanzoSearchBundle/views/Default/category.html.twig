@@ -8,7 +8,7 @@
     <form action="{{ path(route) }}" method="post">
       <select name="size">
         <option value="">{{ "Choose"|trans }}</option>
-        {% for option in sizes %}
+        {% for option, junk in sizes %}
         <option value="{{ option }}"{% if selected == option %} selected{% endif %}>{{ option }}</option>
         {% endfor %}
       </select>
