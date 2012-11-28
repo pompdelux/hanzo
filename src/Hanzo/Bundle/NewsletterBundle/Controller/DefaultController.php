@@ -87,6 +87,13 @@ class DefaultController extends CoreController
         return $this->render('NewsletterBundle:Default:view.html.twig', array( 'page' => $page, 'page_type' => 'newsletter'));
     }
 
+
+    /**
+     * get a full list of available newsletters
+     *
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function allListsAction(Request $request)
     {
         $customer = CustomersPeer::getCurrent();

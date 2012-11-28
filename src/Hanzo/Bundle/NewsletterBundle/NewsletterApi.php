@@ -184,14 +184,16 @@ class NewsletterApi
 
         $result = $this->jsonp_decode($result);
 
-        foreach ($result->content['lists'] as $index => $list) {
+        $reindexed = [];
+        foreach ($result->content->lists as $index => $list) {
             if ('pdl_' == substr(strtolower($list->name), 0, 4)) {
-                unset($result->content['lists'][$index]);
+                continue;
             }
+
+            $reindexed[$list->id] = $list;
         }
 
-        Tools::log($result);
-
+        $result->content->lists = $reindexed;
         return $result;
     }
 
