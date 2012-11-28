@@ -1,7 +1,4 @@
-PaymentBundle_gothia_process:
-    pattern:  /payment/gothia/process
-    defaults: { _controller: PaymentBundle:Gothia:process }
-
+# DIBS }-------------------------
 PaymentBundle_dibs_process:
     pattern:  /payment/dibs/process/{order_id}
     defaults: { _controller: PaymentBundle:Dibs:process }
@@ -23,6 +20,16 @@ PaymentBundle_dibs_cancel:
     pattern:  /payment/dibs/cancel
     defaults: { _controller: PaymentBundle:Dibs:cancel }
 
+_order_state_check:
+    pattern: /payment/dibs/state-check
+    defaults: { _controller: PaymentBundle:Dibs:stateCheck, _format: json }
+    requirements: { _format: (xml|json), _method: POST }
+
+# GOTHIA }-------------------------
+PaymentBundle_gothia_process:
+    pattern:  /payment/gothia/process
+    defaults: { _controller: PaymentBundle:Gothia:process }
+
 PaymentBundle_gothia_payment:
     pattern:  /payment/gothia
     defaults: { _controller: PaymentBundle:Gothia:payment }
@@ -41,11 +48,24 @@ PaymentBundle_gothia_payment_confirm:
     defaults: { _controller: PaymentBundle:Gothia:confirm, _format: json }
     requirements: { _format: (xml|json), _method: POST }
 
+# COD }-------------------------
 _paybybill_callback:
     pattern:  /payment/paybybill/callback
     defaults: { _controller: PaymentBundle:PayByBill:callback }
 
-_order_state_check:
-    pattern: /payment/dibs/state-check
-    defaults: { _controller: PaymentBundle:Dibs:stateCheck, _format: json }
-    requirements: { _format: (xml|json), _method: POST }
+# Coupon }-------------------------
+_coupon_callback:
+    pattern:  /payment/coupon/callback
+    defaults: { _controller: PaymentBundle:Coupon:callback }
+
+
+# ALL }-------------------------
+_payment_set_method:
+    pattern: /checkout/payment/set/method
+    defaults:
+        _controller: PaymentBundle:Default:setMethod
+
+_process_payment:
+    pattern: /checkout/payment/process
+    defaults:
+        _controller: PaymentBundle:Default:getProcessButton

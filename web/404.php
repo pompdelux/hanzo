@@ -1,7 +1,8 @@
 <?php
 
 $info = pathinfo($_SERVER['REQUEST_URI']);
-$ext = array_shift(explode('?', strtolower($info['extension'])));
+$ext = explode('?', strtolower($info['extension']));
+$ext = array_shift($ext);
 
 if ('robots.txt' == $info['basename']) {
     header('Content-type: text/plain');
@@ -29,7 +30,8 @@ switch ($ext)
       $source = dirname($target) . '/';
     }
 
-    list ($dimensions, $image) = explode(',', array_shift(explode('?', $info['basename'])));
+    $exp = explode('?', $info['basename']);
+    list ($dimensions, $image) = explode(',', array_shift($exp));
     list ($w, $h) = explode('x', $dimensions);
 
     // send 404 if the file does not exist

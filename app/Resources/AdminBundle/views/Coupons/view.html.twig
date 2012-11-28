@@ -30,40 +30,9 @@
     {{ form_row(form._token) }}
     {{ form_rest(form) }}
   </div>
+  <br>
   <input class="button right" type="submit" value="{{ 'update.coupons'|trans({}, 'admin') }}">
   <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
 </form>
 
-<h1>{{ 'admin.coupons.customers.header.text'|trans({}, 'admin') }}</h1>
-
-
-{% if coupon.id > 0 %}
-
-<p>{{ 'admin.coupons.customers.description.text'|trans({}, 'admin') }}</p>
-
-<select id="coupon-customer-selector" name="coupon-customer-selector">
-  <option value="0">{{ 'admin.coupons.coupon-customer-selector.description'|trans({}, 'admin') }}</option>
-  {% for customer in customers %}
-  <option value="{{ customer.id }}-{{ coupon.id }}">(#{{ customer.id }}) {{ customer.firstname }} {{ customer.lastname }}</option>
-  {% endfor %}
-</select>
-
-<ul id="coupons-to-customers">
-  {% for couponstocustomer in couponstocustomers %}
-  <li>
-    <span class="actions">
-      <a href="{{ path('admin_coupon_delete_customer', {'coupon_id': coupon.id, 'customer_id' : couponstocustomer.customersid}) }}" class="delete" title="{{ 'delete'|trans({}, 'admin') }}">
-        {{ 'delete'|trans({}, 'admin') }}
-      </a>
-    </span>
-    <span class="id">(#{{ couponstocustomer.customersid }})</span>
-    <span class="name">{{ couponstocustomer.customers.firstname }} {{ couponstocustomer.customers.lastname }}</span>
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-
-<p>{{ 'admin.coupons.customers.need.to.save'|trans({}, 'admin') }}</p>
-
-{% endif %}
 {% endblock %}

@@ -49,6 +49,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\EventsBundle\EventsBundle(),
             new Hanzo\Bundle\QuickOrderBundle\QuickOrderBundle(),
             new Hanzo\Bundle\ConsultantNewsletterBundle\ConsultantNewsletterBundle(),
+            new Hanzo\Bundle\DiscountBundle\DiscountBundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
@@ -60,6 +61,25 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
+
+    /**
+     * hook into getEnvironment to allow us a cleaner way to do cli work in dev.
+     *
+     * @return string
+     */
+    public function getEnvironment()
+    {
+        $env = parent::getEnvironment();
+        if (false === strpos('_', $env)) {
+            $env = $env.'_dk';
+        }
+
+        return $env;
+    }
+
+    /**
+     * handle kernel boot
+     */
     public function boot()
     {
         parent::boot();

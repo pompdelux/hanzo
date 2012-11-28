@@ -18,6 +18,7 @@ use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\OrdersSyncLogPeer;
+use Hanzo\Model\OrdersToCouponsPeer;
 use Hanzo\Model\OrdersVersionsPeer;
 use Hanzo\Model\map\OrdersTableMap;
 
@@ -551,6 +552,9 @@ abstract class BaseOrdersPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
+		// Invalidate objects in OrdersToCouponsPeer instance pool,
+		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+		OrdersToCouponsPeer::clearInstancePool();
 		// Invalidate objects in OrdersAttributesPeer instance pool,
 		// since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
 		OrdersAttributesPeer::clearInstancePool();
