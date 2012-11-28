@@ -373,6 +373,10 @@
          <source>coupon.description</source>
          <target>Hieronder kun je je cadeauboncode invullen. Gebruik je niet het volledige tegoed op je cadeaubon, dan kun je de code nogmaals gebruiken als je de volgende keer bij POMPdeLUX winkelt.</target>
       </trans-unit>
+	   <trans-unit id="payment.dibs.paytype.ideal">
+         <source>payment.dibs.paytype.ideal</source>
+         <target>Ideal</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
