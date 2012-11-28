@@ -63,15 +63,34 @@
 
       var media_files = $('a.media_file.rewrite');
       if (media_files.length) {
-        var data = [];
+        var payload = {data:[]};
         media_files.each(function(index, element) {
           $(element).addClass('index-'+index);
-          data.push({
+          payload.data.push({
             index: index,
             file: element.href
           });
         });
-        $.post(cdn_url+'filetime.php', {payload: {data: data}}, 'json');
+
+        var xhr = $.ajax({
+          url: cdn_url+'filetime.php',
+          dataType: 'jsonp',
+          data: jQuery.param(payload)
+        });
+
+        xhr.done(function (response) {
+          $.each(response.data, function (i, element) {
+            if (undefined !== element.mtime) {
+              var date = new Date(element.mtime);
+              date = date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' '+date.getUTCHours()+':'+date.getUTCMinutes();
+              var $elm = $('a.media_file.index-'+element.index);
+              var $em = $elm.next('em');
+              var label = $elm.data('datelabel');
+              $em.text(label.replace('%date%', date)).css('display', 'block');
+            }
+          });
+        });
+
       }
 
     };
