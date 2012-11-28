@@ -10,6 +10,10 @@
         <source>json.ssn.to_short</source>
         <target>Det indtastede fødselsdag er for kort, det skal skrives som DDMMYYYY</target>
       </trans-unit>
+      <trans-unit id="json.ssn.to_long">
+        <source>json.ssn.to_long</source>
+        <target>Det indtastede fødselsdag er for lang, det skal skrives som DDMMYYYY</target>
+      </trans-unit>
       <trans-unit id="json_err30">
         <source>json.checkcustomer.failed</source>
         <target>%msg%</target>
