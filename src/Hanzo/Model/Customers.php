@@ -2,6 +2,8 @@
 
 namespace Hanzo\Model;
 
+use PropelPDO;
+
 use Hanzo\Model\om\BaseCustomers;
 use Hanzo\Model\CustomersQuery;
 
@@ -60,9 +62,9 @@ class Customers extends BaseCustomers
      * The following methods is needed by the form component.....
      */
 
-    public function getAddresses()
+    public function getAddresses($criteria = null, PropelPDO $con = null)
     {
-        return $this->getAddressess();
+        return $this->getAddressess($criteria, $con);
     }
 
     protected $accept = false;
@@ -70,27 +72,6 @@ class Customers extends BaseCustomers
     {
         return (bool) $this->getName();
     }
-
-    /*protected $newsletter = FALSE;
-    public function getNewsletter()
-    {
-        return $this->newsletter;
-    }
-    public function setNewsletter($value = TRUE)
-    {
-        return $this->newsletter = (bool) $value;
-    }*/
-
-    /*protected $accept = FALSE;
-    public function getAccept()
-    {
-        return $this->accept;
-    }
-    public function setAccept($value = TRUE)
-    {
-        return $this->accept = (bool) $value;
-    }*/
-
 
     /**
      * validate uniq emails
