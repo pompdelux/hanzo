@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.S">
         <source>shipping_method.name.S</source>
-        <target>Post Danmark - Servicepakke</target>
+        <target>MyPack - Servicepakke</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.S">
         <source>shipping_method.desc.S</source>
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="shipping_method.label.S">
         <source>shipping_method.label.S</source>
-        <target>Post Danmark - Servicepakke %price%</target>
+        <target>MyPack - Servicepakke %price%</target>
       </trans-unit>
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
