@@ -76,10 +76,10 @@ class ShippingApi
                     $c = $order->getCountriesRelatedByBillingCountriesId();
                 }
 
-                if ('EU' != $c->getContinent()) {
+                if ($c && ('EU' != $c->getContinent())) {
                     switch ($q->getExternalId()) {
                         case '20':
-                            $q->setPrice(40.00);
+                            $q->setPrice(20.00);
                         break;
                     }
                 }
