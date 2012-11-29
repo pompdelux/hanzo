@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\ShippingBundle;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
+
+use Hanzo\Model\Countries;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\ShippingMethods;
 use Hanzo\Model\ShippingMethodsPeer;
@@ -41,70 +43,52 @@ class ShippingApi
      **/
     public function __construct( $params, $settings )
     {
-        if ( !isset( $settings['methods_enabled'] ) )
-        {
+        if (!isset($settings['methods_enabled'])) {
           return false;
         }
 
         $methodsEnabled = unserialize( $settings['methods_enabled'] );
+        $hanzo = Hanzo::getInstance();
 
         $query = ShippingMethodsQuery::create()
             ->filterByIsActive(1)
             ->filterById($methodsEnabled)
-            ->find();
-
-        /**
-         * Switch from external_id to id to facility multiple prices:
-         * dk:
-         * UPDATE `domains_settings` SET c_value = 'a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'DK'
-         *
-         * salesdk:
-         * UPDATE `domains_settings` SET c_value = 'a:3:{i:0;i:6;i:1;i:7;i:2;i:8;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesDK'
-         *
-         * com:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:4;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'COM'
-         *
-         * se:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SE'
-         *
-         * salesse:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesSE'
-         *
-         * no:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'NO'
-         *
-         * salesno:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesNO'
-         *
-         * nl:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:5;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'NL'
-         *
-         * salesnl:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:6;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesNL'
-         *
-         * fi:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'FI'
-         *
-         * salesfi:
-         * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesFI'
-         *
-         */
+            ->find()
+        ;
 
         // shipping fee check
-        $fee_limit = Hanzo::getInstance()->get('shipping.free_shipping', 0);
-        if ($fee_limit > 0) {
-            $total = OrdersPeer::getCurrent()->getTotalPrice(true);
+        $free_limit = $hanzo->get('shipping.free_shipping', 0);
+        $order = OrdersPeer::getCurrent();
+
+        if ($free_limit > 0) {
+            $total = $order->getTotalPrice(true);
         }
 
         foreach ($query as $q)
         {
-            if ($fee_limit && ($total > $fee_limit)) {
+            if ($free_limit && ($total > $free_limit)) {
                 $q->setPrice(0.00);
+            } elseif ('COM' == $hanzo->get('core.domain_key')) {
+
+                // TODO: do not hardcode !
+                $c = $order->getCountriesRelatedByDeliveryCountriesId();
+                if (!$c instanceof Countries) {
+                    $c = $order->getCountriesRelatedByBillingCountriesId();
+                }
+
+                if ($c && ('EU' != $c->getContinent())) {
+                    switch ($q->getExternalId()) {
+                        case '20':
+                            $q->setPrice(20.00);
+                        break;
+                    }
+                }
             }
+
             $this->methods[ $q->getExternalId() ] = $q;
         }
 
-        $this->domainKey = Hanzo::getInstance()->get('core.domain_key');;
+        $this->domainKey = Hanzo::getInstance()->get('core.domain_key');
     }
 
     /**
@@ -131,3 +115,40 @@ class ShippingApi
         return $this->methods;
     }
 } // END class ShippingApi
+
+/**
+ * Switch from external_id to id to facility multiple prices:
+ * dk:
+ * UPDATE `domains_settings` SET c_value = 'a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'DK'
+ *
+ * salesdk:
+ * UPDATE `domains_settings` SET c_value = 'a:3:{i:0;i:6;i:1;i:7;i:2;i:8;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesDK'
+ *
+ * com:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:4;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'COM'
+ *
+ * se:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SE'
+ *
+ * salesse:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesSE'
+ *
+ * no:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'NO'
+ *
+ * salesno:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesNO'
+ *
+ * nl:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:5;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'NL'
+ *
+ * salesnl:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:6;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesNL'
+ *
+ * fi:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:1;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'FI'
+ *
+ * salesfi:
+ * UPDATE `domains_settings` SET c_value = 'a:1:{i:0;i:2;}' WHERE ns = 'shippingapi' AND c_key = 'methods_enabled' AND domain_key = 'SalesFI'
+ *
+ */

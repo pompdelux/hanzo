@@ -174,7 +174,7 @@
                     </ul>
                     <ul style="width:280px;">
                         <li><a name="fb_share" type="icon_link">Deel met je vrienden</a></li>
-                        <li><img src="%cdn%fx/images/creditcards_dk.png" alt="credit cards" title="credit cards"></li>
+                        <li><img src="%cdn%fx/images/creditcards_nl.png" alt="credit cards" title="credit cards"></li>
                     </ul>
                 ]]></target>
             </trans-unit>
