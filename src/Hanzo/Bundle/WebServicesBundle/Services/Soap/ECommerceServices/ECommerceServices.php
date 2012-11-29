@@ -1140,7 +1140,8 @@ Tools::log($result);
         }
 
         if($doSendError) {
-            switch (substr($order->getAttributes()->global->domain_name, -2)) {
+            $domain = $order->getAttributes()->global->domain_name;
+            switch (substr($domain, -2)) {
                 case 'dk':
                 case 'om':
                     $to = 'retur@pompdelux.dk';
@@ -1162,7 +1163,13 @@ Tools::log($result);
             $mailer = $this->hanzo->container->get('mail_manager');
             $mailer->setTo($to);
             $mailer->setsubject('Refundering fejlede på ordre #' . $data->eOrderNumber);
-            $mailer->setBody("E-ordrenummer: ".$data->eOrderNumber." Transaktionsnummer: ".$order->getPaymentGatewayId()."\n\nMed venlig hilsen DIBS\n");
+            $mailer->setBody(
+                "Fejlen opstået på: {$domain}\n\n".
+                "E-ordrenummer: ".$data->eOrderNumber." Transaktionsnummer: ".$order->getPaymentGatewayId()."\n\n".
+                "Fejlbeskeder:\n- ".
+                implode("\n- ", $errors)."\n\n".
+                "Med venlig hilsen DIBS\n"
+            );
             $mailer->send();
         }
 
