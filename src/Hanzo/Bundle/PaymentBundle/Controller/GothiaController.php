@@ -135,6 +135,23 @@ class GothiaController extends CoreController
                     'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
                 ));
             }
+        }elseif('DK' == str_replace('Sales', '', $domainKey)){
+            $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+
+            //Denmark cases
+            if (strlen($SSN) < 8) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                ));
+            }
+
+            if (strlen($SSN) > 8) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                ));
+            }
         }else{
 
             $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
