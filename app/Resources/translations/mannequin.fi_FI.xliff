@@ -28,8 +28,8 @@
             </trans-unit>
             <trans-unit id="basket.notes">
                 <source>basket.notes</source>
-                <target>
-                    &lt;h6&gt;Huomaa&lt;/h6&gt; 1) Voit lisätä tuotteen ostoskoriin sen jälkeen, kun olet valinnut halutun koon &lt;img src=&quot;/fx/images/pencil.png&quot; alt=&quot;&quot;&gt;&lt;br&gt; 2) Napsauta sen jälkeen Lisää ostoskoriin &lt;img src=&quot;/fx/images/basket_put.png&quot; alt=&quot;&quot;&gt;&lt;br&gt; 3) Jos halut poistaa tuotteen nukelta, napsauta Poista &lt;img src=&quot;/fx/images/delete.png&quot; alt=&quot;&quot;&gt;&lt;br&gt; 4) Jos olet lisännyt tuotteen jo ostoskoriin, esiin tulee tämä symboli &lt;img src=&quot;/fx/images/bullet_green.png&quot; alt=&quot;&quot;&gt;
+                <target><![CDATA[
+                    <h6>Huomaa</h6> 1) Voit lisätä tuotteen ostoskoriin sen jälkeen, kun olet valinnut halutun koon <img src="/fx/images/pencil.png" alt=""><br> 2) Napsauta sen jälkeen Lisää ostoskoriin <img src="/fx/images/basket_put.png" alt=""><br> 3) Jos halut poistaa tuotteen nukelta, napsauta Poista <img src="/fx/images/delete.png" alt=""><br> 4) Jos olet lisännyt tuotteen jo ostoskoriin, esiin tulee tämä symboli <img src="/fx/images/bullet_green.png" alt="">]]>
                 </target>
             </trans-unit>
             <trans-unit id="no.products.in.category">
