@@ -55,7 +55,7 @@ class DefaultController extends CoreController
             $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
 
             $this->get('twig')->addGlobal('page_type', 'category');
-            $html = $this->renderView('HanzoCategoryBundle:Default:view.html.twig', $data);
+            $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);
         }
 
@@ -102,7 +102,7 @@ class DefaultController extends CoreController
         $max = ceil(count($records)/3);
         $records = array_chunk($records, $max);
 
-        return $this->render('HanzoCategoryBundle:Default:contextList.html.twig', array(
+        return $this->render('CategoryBundle:Default:contextList.html.twig', array(
             'page_type' => 'context-list',
             'products' => $records,
             'page_title' => $filter_map[$filter]

@@ -148,7 +148,7 @@ class BundleController extends CoreController
             $products[$id]['options'] = $options;
         }
 
-        $responce = $this->render('HanzoProductBundle:Bundle:view.html.twig', array(
+        $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,
         ));
@@ -239,7 +239,7 @@ class BundleController extends CoreController
             $products[$id]['options'] = $options;
         }
 
-        $responce = $this->render('HanzoProductBundle:Bundle:view.html.twig', array(
+        $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,
         ));

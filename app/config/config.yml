@@ -127,7 +127,7 @@ simple_things_form_extra:
     translation_domain_forward_compat: true
 
 # settings for the cms bundle.
-hanzo_cms:
+cms:
     frontpage: 556
     twig:
         left_menu:

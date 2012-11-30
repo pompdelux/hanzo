@@ -30,26 +30,26 @@ class AppKernel extends Kernel
             new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
 
-            new Hanzo\Bundle\CMSBundle\HanzoCMSBundle(),
-            new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
-            new Hanzo\Bundle\CategoryBundle\HanzoCategoryBundle(),
-            new Hanzo\Bundle\MannequinBundle\MannequinBundle(),
-            new Hanzo\Bundle\ProductBundle\HanzoProductBundle(),
-            new Hanzo\Bundle\SearchBundle\SearchBundle(),
-            new Hanzo\Bundle\BasketBundle\BasketBundle(),
-            new Hanzo\Bundle\PaymentBundle\PaymentBundle(),
-            new Hanzo\Bundle\NewsletterBundle\NewsletterBundle(),
-            new Hanzo\Bundle\CheckoutBundle\CheckoutBundle(),
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
+            new Hanzo\Bundle\AdminBundle\AdminBundle(),
+            new Hanzo\Bundle\BasketBundle\BasketBundle(),
+            new Hanzo\Bundle\CMSBundle\CMSBundle(),
+            new Hanzo\Bundle\CategoryBundle\CategoryBundle(),
+            new Hanzo\Bundle\CheckoutBundle\CheckoutBundle(),
+            new Hanzo\Bundle\ConsultantNewsletterBundle\ConsultantNewsletterBundle(),
+            new Hanzo\Bundle\DataIOBundle\DataIOBundle(),
+            new Hanzo\Bundle\DiscountBundle\DiscountBundle(),
+            new Hanzo\Bundle\EventsBundle\EventsBundle(),
+            new Hanzo\Bundle\MannequinBundle\MannequinBundle(),
+            new Hanzo\Bundle\NewsletterBundle\NewsletterBundle(),
+            new Hanzo\Bundle\PaymentBundle\PaymentBundle(),
+            new Hanzo\Bundle\ProductBundle\ProductBundle(),
+            new Hanzo\Bundle\QuickOrderBundle\QuickOrderBundle(),
+            new Hanzo\Bundle\SearchBundle\SearchBundle(),
             new Hanzo\Bundle\ServiceBundle\ServiceBundle(),
             new Hanzo\Bundle\ShippingBundle\ShippingBundle(),
-            new Hanzo\Bundle\DataIOBundle\DataIOBundle(),
-            new Hanzo\Bundle\AdminBundle\AdminBundle(),
             new Hanzo\Bundle\WallBundle\WallBundle(),
-            new Hanzo\Bundle\EventsBundle\EventsBundle(),
-            new Hanzo\Bundle\QuickOrderBundle\QuickOrderBundle(),
-            new Hanzo\Bundle\ConsultantNewsletterBundle\ConsultantNewsletterBundle(),
-            new Hanzo\Bundle\DiscountBundle\DiscountBundle(),
+            new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
@@ -107,7 +107,7 @@ class AppKernel extends Kernel
             $twig->addGlobal('baseurl', 'http://'.$_SERVER['HTTP_HOST'].($_SERVER['SERVER_PORT'] == 80 ? '' : $_SERVER['SERVER_PORT']).$script);
         }
 
-        $twig_vars = $this->container->getParameter('hanzo_cms.twig');
+        $twig_vars = $this->container->getParameter('cms.twig');
         if (count($twig_vars)) {
             foreach ($twig_vars as $key => $value) {
                 $twig->addGlobal($key, $value);

@@ -15,6 +15,6 @@ class HelperController extends CoreController
             case 'sub_nav':
                 break;
         }
-        return $this->render('HanzoCMSBundle:Helper:' . $type . '.html.twig');
+        return $this->render('CMSBundle:Helper:' . $type . '.html.twig');
     }
 }
