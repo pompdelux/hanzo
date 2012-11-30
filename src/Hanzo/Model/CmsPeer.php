@@ -40,7 +40,7 @@ class CmsPeer extends BaseCmsPeer
 
     public static function getFrontpage($locale)
     {
-        $frontpage_id = \Hanzo\Core\Hanzo::getInstance()->container->getParameter('hanzo_cms.frontpage');
+        $frontpage_id = \Hanzo\Core\Hanzo::getInstance()->container->getParameter('cms.frontpage');
 
         $result = CmsQuery::create()
             ->joinWithI18n($locale)
