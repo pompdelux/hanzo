@@ -60,7 +60,7 @@ services:
         tags:
             -   { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
     hanzo.login_listener:
-        class: Hanzo\Bundle\BasketBundle\Event\LoginListener
+        class: Hanzo\Bundle\AccountBundle\Event\LoginListener
         arguments: [@security.context]
         tags:
             -   { name: kernel.event_listener, event: security.interactive_login }

@@ -1,16 +1,11 @@
 <?php /* vim: set sw=4: */
 
-namespace Hanzo\Bundle\BasketBundle\Event;
+namespace Hanzo\Bundle\AccountBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Hanzo\Core\Tools;
-use Hanzo\Core\Hanzo;
-
 use Hanzo\Model\OrdersPeer;
-use Hanzo\Model\AddressesPeer;
-use Hanzo\Model\ProductsDomainsPricesPeer;
 
 use \Criteria;
 use \PropelCollection;
