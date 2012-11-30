@@ -141,7 +141,7 @@ class DefaultController extends CoreController
             $products = $data['products'];
         }
 
-        return $this->render('HanzoMannequinBundle:Default:view.html.twig', array(
+        return $this->render('MannequinBundle:Default:view.html.twig', array(
             'title' => $settings->title . ' - ' . $settings->colorscheme,
             'products' => $products,
             'dress_form' => $settings->dress_form,

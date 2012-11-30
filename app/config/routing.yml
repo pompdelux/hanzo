@@ -58,27 +58,27 @@ SearchBundle:
     resource: "@SearchBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-HanzoProductBundle:
-    resource: "@HanzoProductBundle/Resources/config/routing.yml"
+ProductBundle:
+    resource: "@ProductBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-HanzoMannequinBundle:
-    resource: "@HanzoMannequinBundle/Resources/config/routing.yml"
+MannequinBundle:
+    resource: "@MannequinBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-HanzoCategoryBundle:
-    resource: "@HanzoCategoryBundle/Resources/config/routing.yml"
+CategoryBundle:
+    resource: "@CategoryBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
 WebServicesBundle:
     resource: "@WebServicesBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-HanzoCMSBundle:
-    resource: "@HanzoCMSBundle/Resources/config/routing.yml"
+CMSBundle:
+    resource: "@CMSBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-HanzoCMSBundle_cms_dyn:
+CMSBundle_cms_dyn:
     resource: .
     type: cms
 
@@ -98,7 +98,7 @@ _splash:
     pattern:  /
     defaults:
         _controller: FrameworkBundle:Template:template
-        template: HanzoCMSBundle:Default:splash.html.twig
+        template: CMSBundle:Default:splash.html.twig
 
 
 # Internal routing configuration to handle ESI

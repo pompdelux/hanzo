@@ -1,7 +1,7 @@
 product_info:
     pattern:    /product/view/{product_id}
     defaults:
-        _controller: HanzoProductBundle:Default:view
+        _controller: ProductBundle:Default:view
         product_id: 1
     requirements:
         product_id: \d+
@@ -9,7 +9,7 @@ product_info:
 product_set:
     pattern:    /product/bundle/{image_id}
     defaults:
-        _controller: HanzoProductBundle:Bundle:view
+        _controller: ProductBundle:Bundle:view
         image_id: 1
     requirements:
         image_id: \d+
@@ -17,5 +17,5 @@ product_set:
 product_custom_set:
     pattern:    /product/bundle/set/{set}
     defaults:
-        _controller: HanzoProductBundle:Bundle:custom
+        _controller: ProductBundle:Bundle:custom
         set: 1

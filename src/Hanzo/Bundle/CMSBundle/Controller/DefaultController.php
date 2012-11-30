@@ -22,7 +22,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
-        return $this->forward('HanzoCMSBundle:Default:view', array(
+        return $this->forward('CMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
         ));
@@ -62,7 +62,7 @@ class DefaultController extends CoreController
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
-        return $this->render('HanzoCMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
+        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
     }
 
     public function testAction()

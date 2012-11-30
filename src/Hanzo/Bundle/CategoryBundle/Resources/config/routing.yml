@@ -1,10 +1,10 @@
-HanzoCategoryBundle_homepage:
+CategoryBundle_homepage:
     pattern:  /hello/{name}
-    defaults: { _controller: HanzoCategoryBundle:Default:index }
+    defaults: { _controller: CategoryBundle:Default:index }
 
 named_list:
     pattern:  /products/list/{type}/{filter}
     defaults:
-        _controller: HanzoCategoryBundle:Default:listProducts
+        _controller: CategoryBundle:Default:listProducts
         type: context
         filter: G_

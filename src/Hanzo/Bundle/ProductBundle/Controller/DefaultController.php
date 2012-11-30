@@ -172,7 +172,7 @@ class DefaultController extends CoreController
 
         $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
 
-        $responce = $this->render('HanzoProductBundle:Default:view.html.twig', array(
+        $responce = $this->render('ProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
             'product' => $data,
             'references' => $images_references,

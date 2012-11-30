@@ -100,7 +100,7 @@ class CMSRouterLoader implements LoaderInterface
 
                     // category route
                     $route = new Route("/{$path}/{pager}", array(
-                        '_controller' => 'HanzoCategoryBundle:Default:view',
+                        '_controller' => 'CategoryBundle:Default:view',
                         '_format' => 'html',
                         'cms_id' => $id,
                         'category_id' => $settings->category_id,
@@ -114,7 +114,7 @@ class CMSRouterLoader implements LoaderInterface
 
                     // product route
                     $route = new Route("/{$path}/{product_id}/{title}", array(
-                        '_controller' => 'HanzoProductBundle:Default:view',
+                        '_controller' => 'ProductBundle:Default:view',
                         '_format' => 'html',
                         'product_id' => 0,
                         'cms_id' => $id,
@@ -132,7 +132,7 @@ class CMSRouterLoader implements LoaderInterface
 
                 case 'page':
                     $route = new Route("/".$path, array(
-                        '_controller' => 'HanzoCMSBundle:Default:view',
+                        '_controller' => 'CMSBundle:Default:view',
                         'id' => $id,
                         'ip_restricted' => $is_restricted,
                     ));
@@ -141,7 +141,7 @@ class CMSRouterLoader implements LoaderInterface
 
                 case 'mannequin':
                     $route = new Route("/".$path, array(
-                        '_controller' => 'HanzoMannequinBundle:Default:view',
+                        '_controller' => 'MannequinBundle:Default:view',
                         'id' => $id,
                     ));
                     $routes->add('mannequin_'.$id, $route);

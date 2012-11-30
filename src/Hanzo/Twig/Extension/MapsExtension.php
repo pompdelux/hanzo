@@ -45,7 +45,7 @@ class MapsExtension extends Twig_Extension
 
     public function zip_code_form(Twig_Environment $env, $type = 'near', $country = 'Denmark')
     {
-        return $env->render('HanzoCMSBundle:Twig:zip_form.html.twig', array(
+        return $env->render('CMSBundle:Twig:zip_form.html.twig', array(
             'type' => $type,
             'country' => $country
         ));
@@ -56,7 +56,7 @@ class MapsExtension extends Twig_Extension
         $hanzo = Hanzo::getInstance();
         $config = $hanzo->getByNs('maps');
 
-        return $env->render('HanzoCMSBundle:Twig:consultants_map.html.twig', array(
+        return $env->render('CMSBundle:Twig:consultants_map.html.twig', array(
             'settings' => 'lat:' . $config['consultants_map.lat'] . ',lng:' . $config['consultants_map.lng'].', zoom:' . $config['consultants_map.zoom'],
             'language' => $config['consultants_map.language'],
             'height'   => $config['consultants_map.height'],
@@ -68,7 +68,7 @@ class MapsExtension extends Twig_Extension
         $geoip = Hanzo::getInstance()->container->get('geoip_manager');
         $result = $geoip->lookup();
 
-        return $env->render('HanzoCMSBundle:Twig:consultants_near_you.html.twig', array(
+        return $env->render('CMSBundle:Twig:consultants_near_you.html.twig', array(
             'type' => $type,
             'lat' => number_format((double) $result['lat'], 8, '.', ''),
             'lon' => number_format((double) $result['lon'], 8, '.', ''),
