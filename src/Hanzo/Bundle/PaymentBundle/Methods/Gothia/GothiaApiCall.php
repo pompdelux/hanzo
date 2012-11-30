@@ -236,6 +236,9 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
           case "301076-0676": // -||-
               $customerId = 100111;
               break;
+          default:
+              $customerId = 100000;
+              break;
         }
 
         return $customerId;
