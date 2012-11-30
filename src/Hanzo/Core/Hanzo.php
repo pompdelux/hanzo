@@ -2,6 +2,13 @@
 
 namespace Hanzo\Core;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpFoundation\Request;
+use Predis\Network\ConnectionException;
+
 use Hanzo\Model;
 use Hanzo\Model\SettingsQuery;
 use Hanzo\Model\LanguagesQuery;
@@ -51,7 +58,14 @@ class Hanzo
         $this->settings['core']['env'] = $environment;
 
         if (('cli' !== PHP_SAPI) && empty($_SERVER['HTTP_SOAPACTION'])) {
-            $this->cache = $this->container->get('hanzo.cache');
+
+            try {
+                $this->cache = $this->container->get('hanzo.cache');
+            } catch (ConnectionException $e) {
+                $event = new GetResponseForExceptionEvent($container->get('kernel'), new Request(), HttpKernelInterface::MASTER_REQUEST, $e);
+                $container->get('event_dispatcher')->dispatch(KernelEvents::EXCEPTION, $event);
+                return;
+            }
         }
 
         if ($this->cache) {

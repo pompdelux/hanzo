@@ -2,6 +2,7 @@
 
 namespace Hanzo\Core;
 
+use Hanzo\Core\Tools;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Predis\Network\ConnectionException;
 
@@ -14,6 +15,15 @@ class RedisCache
     {
         self::$prefix .= $environment.':';
         $this->cache = $client;
+
+        try {
+            $client->connect();
+        } catch (ConnectionException $e) {
+            // if the connection failed, we microsleep and try agian
+            // from here on Hanzo will catch and process the connect error.
+            usleep(1000);
+            $client->connect();
+        }
     }
 
 
@@ -43,7 +53,7 @@ class RedisCache
         try {
             $data = $this->cache->get($key);
         } catch (\Exception $e) {
-            error_log(print_r($e->getMessage(),1));
+            error_log(__FILE__ . ' +' . __LINE__ . ' ' . print_r($e->getMessage(),1));
             return '';
         }
 
