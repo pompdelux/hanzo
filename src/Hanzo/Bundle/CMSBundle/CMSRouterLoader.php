@@ -141,7 +141,7 @@ class CMSRouterLoader implements LoaderInterface
 
                 case 'mannequin':
                     $route = new Route("/".$path, array(
-                        '_controller' => 'HanzoMannequinBundle:Default:view',
+                        '_controller' => 'MannequinBundle:Default:view',
                         'id' => $id,
                     ));
                     $routes->add('mannequin_'.$id, $route);

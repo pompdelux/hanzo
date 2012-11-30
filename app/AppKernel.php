@@ -33,7 +33,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\CMSBundle\HanzoCMSBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
             new Hanzo\Bundle\CategoryBundle\HanzoCategoryBundle(),
-            new Hanzo\Bundle\MannequinBundle\HanzoMannequinBundle(),
+            new Hanzo\Bundle\MannequinBundle\MannequinBundle(),
             new Hanzo\Bundle\ProductBundle\HanzoProductBundle(),
             new Hanzo\Bundle\SearchBundle\HanzoSearchBundle(),
             new Hanzo\Bundle\BasketBundle\BasketBundle(),

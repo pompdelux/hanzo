@@ -62,8 +62,8 @@ HanzoProductBundle:
     resource: "@HanzoProductBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-HanzoMannequinBundle:
-    resource: "@HanzoMannequinBundle/Resources/config/routing.yml"
+MannequinBundle:
+    resource: "@MannequinBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
 HanzoCategoryBundle:
