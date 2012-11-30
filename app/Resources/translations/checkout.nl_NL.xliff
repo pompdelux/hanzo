@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="confirm.addresses.label" approved="no">
         <source>confirm.addresses.label</source>
-        <target>Ja, adresserne herover er korrekte.</target>
+        <target>Ja, de bovenstaande adressen zijn correct.</target>
       </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>

@@ -2,3 +2,7 @@ _newsletter_action:
     pattern:  /newsletter/{action}
     defaults: { _controller: NewsletterBundle:Default:handle, _format: json }
     requirements: { _format: (xml|json), _method: POST }
+
+_newsletter_account_action:
+    pattern:  /account/newsletter
+    defaults: { _controller: NewsletterBundle:Default:allLists }
