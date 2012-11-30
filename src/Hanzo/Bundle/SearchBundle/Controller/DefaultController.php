@@ -17,14 +17,8 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 
 class DefaultController extends CoreController
 {
-
-    public function indexAction($name)
-    {
-        return $this->render('HanzoSearchBundle:Default:index.html.twig', array('name' => $name));
-    }
-
     /**
-     * @Cache(smaxage="1")
+     * @Cache(maxage="1")
      */
     public function categoryAction($id)
     {
@@ -35,15 +29,14 @@ class DefaultController extends CoreController
         $page = CmsPeer::getByPK($id, $locale);
 
         $settings = json_decode($page->getSettings());
-        $categories_string = $settings->category_ids;
         $group = $settings->group;
 
-        $categories  = array_map('trim', explode(',', $categories_string));
+        $categories  = array_map('trim', explode(',', $settings->category_ids));
 
         $no_accessories = $categories;
         $accessories = array_shift($no_accessories);
 
-        $category_sort = implode(',', $no_accessories).','.$accessories;
+        $category_sort = implode(',', $no_accessories);
 
         // TODO: figure out a way to avoid this..
         // setup size grouping
@@ -70,13 +63,17 @@ class DefaultController extends CoreController
                 break;
         }
 
-
         $result_set = array();
         if ('POST' === $this->getRequest()->getMethod()) {
             $size = $this->getRequest()->get('size');
 
+            $product_ids  = array();
+            $category_ids = array();
+            $category_map = array();
+
             $conn = \Propel::getConnection();
 
+            // not "accessories"
             $sql = "
                 SELECT DISTINCT
                     p.id AS vid,
@@ -115,15 +112,58 @@ class DefaultController extends CoreController
                 ORDER BY
                     field(p2c.categories_id, {$category_sort}),
                     p.sku
-
             ";
 
             $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
             $query->execute();
 
-            $product_ids  = array();
-            $category_ids = array();
-            $category_map = array();
+            while ($record = $query->fetch(\PDO::FETCH_ASSOC)) {
+                $product_ids[$record['id']] = $record['id'];
+                $category_map[$record['title']][$record['id']] = $record['id'];
+                $category_ids[$record['title']] = $record['category_id'];
+            }
+
+            // "accessories" only
+            $sql = "
+                SELECT DISTINCT
+                    p.id AS vid,
+                    p.master,
+                    p.size,
+                    ci.id as category_id,
+                    ci.title,
+                    (SELECT p1.id FROM products AS p1 WHERE SKU = p.master) AS id
+                FROM
+                    products AS p
+                JOIN
+                    products_to_categories AS p2c
+                    ON (
+                        p2c.products_id = (SELECT p1.id FROM products AS p1 WHERE SKU = p.master)
+                    )
+                JOIN
+                    categories_i18n AS ci
+                    ON (
+                        p2c.categories_id = ci.id
+                    )
+                JOIN
+                    products_domains_prices AS pdp
+                    ON (
+                        p.id = pdp.products_id
+                    )
+                WHERE
+                    p.is_out_of_stock = 0
+                AND
+                    pdp.domains_id = {$domain_id}
+                AND
+                    ci.locale = '{$locale}'
+                AND
+                    p2c.categories_id IN ({$accessories})
+                ORDER BY
+                    field(p2c.categories_id, {$accessories}),
+                    p.sku
+            ";
+
+            $query = $conn->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $query->execute();
 
             while ($record = $query->fetch(\PDO::FETCH_ASSOC)) {
                 $product_ids[$record['id']] = $record['id'];
@@ -175,7 +215,7 @@ class DefaultController extends CoreController
             $result_set = $category_map;
         }
 
-        return $this->render('HanzoSearchBundle:Default:category.html.twig', array(
+        return $this->render('SearchBundle:Default:category.html.twig', array(
             'page_type' => 'category-search',
             'content'   => $page->getContent(),
             'title'     => $page->getTitle(),
@@ -191,9 +231,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $locale = $hanzo->get('core.locale');
         $domain_id = $hanzo->get('core.domain_id');
-
         $page = CmsPeer::getByPK($id, $locale);
-        //$settings = json_decode($page->getSettings());
 
         $result = array(
             'products' => array(),
@@ -286,12 +324,11 @@ class DefaultController extends CoreController
                     'title' => $page->getTitle(),
                     'summery' => mb_substr(Tools::stripTags($page->getContent()), 0, 200),
                     'url' => $router->generate('page_'.$page->getId())
-                    #'url' => $router->generate('page_'.$page->getId().'_'.strtolower($locale))
                 );
             }
         }
 
-        return $this->render('HanzoSearchBundle:Default:advanced.html.twig', array(
+        return $this->render('SearchBundle:Default:advanced.html.twig', array(
             'page_type' => 'category-search',
             'route'     => $this->getRequest()->get('_route'),
             'content'   => $page->getContent(),

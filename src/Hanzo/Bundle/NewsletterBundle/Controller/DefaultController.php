@@ -2,7 +2,6 @@
 
 namespace Hanzo\Bundle\NewsletterBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\Event;
@@ -45,9 +44,9 @@ class DefaultController extends CoreController
         $api      = $this->get('newsletterapi');
         $listId   = $api->getListIdAvaliableForDomain();
 
-        return $this->render('NewsletterBundle:Default:js.html.twig', array( 
-            'customer' => $customer, 
-            'listid' => $listId, 
+        return $this->render('NewsletterBundle:Default:js.html.twig', array(
+            'customer' => $customer,
+            'listid' => $listId,
             // Url is also hardcoded in NewsletterApi.php and in events.js
             'newsletter_jsonp_url' => 'http://phplist.pompdelux.dk/integration/json.php?callback=?'
         )
@@ -55,7 +54,7 @@ class DefaultController extends CoreController
     }
 
     /**
-     * blockAction 
+     * blockAction
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -65,15 +64,15 @@ class DefaultController extends CoreController
         $api      = $this->get('newsletterapi');
         $listId   = $api->getListIdAvaliableForDomain();
 
-        return $this->render('NewsletterBundle:Default:block.html.twig', array( 
-            'customer' => $customer, 
-            'listid' => $listId, 
+        return $this->render('NewsletterBundle:Default:block.html.twig', array(
+            'customer' => $customer,
+            'listid' => $listId,
             )
         );
     }
 
     /**
-     * viewAction 
+     * viewAction
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
@@ -86,5 +85,29 @@ class DefaultController extends CoreController
         }
 
         return $this->render('NewsletterBundle:Default:view.html.twig', array( 'page' => $page, 'page_type' => 'newsletter'));
+    }
+
+
+    /**
+     * get a full list of available newsletters
+     *
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function allListsAction(Request $request)
+    {
+        $customer = CustomersPeer::getCurrent();
+        $api      = $this->get('newsletterapi');
+
+        if ('POST' === $request->getMethod()) {
+            $api->subscribe($customer->getEmail(), $request->get('lists'));
+            return $this->redirect($this->generateUrl('_account'));
+        }
+
+        $lists = $api->getAllLists($customer->getEmail());
+
+        return $this->render('NewsletterBundle:Default:account_form.html.twig', [
+            'lists' => (isset($lists->content->lists) ? $lists->content->lists : []),
+        ]);
     }
 }

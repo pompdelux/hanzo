@@ -1045,22 +1045,9 @@ class ECommerceServices extends SoapService
         try {
             $tmpAmount = str_replace(',', '.', $data->amount);
             list($large, $small) = explode('.', $tmpAmount);
+
             $amount = $large . sprintf('%02d', $small);
-
             $gateway = $this->hanzo->container->get('payment.dibsapi');
-
-            // // TODO: remove when .nl gets its own site
-            // // un 2012-08-07, moved to db
-            // if (in_array($order->getAttributes()->global->domain_key, array('NL'))) {
-            //     $settings = array();
-            //     $settings['merchant'] = '90055039';
-            //     $settings['md5key1']  = '@6B@(-rfD:DiXYh}(76h6C1rexwZ)-cw';
-            //     $settings['md5key2']  = '-|FA8?[K3rb,T$:pJSr^lBsP;hMq&p,X';
-            //     $settings['api_user'] = 'pdl-nl-api-user';
-            //     $settings['api_pass'] = 'g7u6Ri&c';
-
-            //     $gateway->mergeSettings( $settings );
-            // }
 
             try {
                 $response = $gateway->call()->capture($order, $amount);
@@ -1113,6 +1100,10 @@ class ECommerceServices extends SoapService
             $response = $gateway->call()->refund($order, ($amount * -1));
             $result = $response->debug();
 
+// un: 2012.11.29 - test logging all refunds.
+Tools::log($data);
+Tools::log($result);
+
             if ($result['status'] != 0) {
                 $doSendError = true;
                 $error = array(
@@ -1149,7 +1140,8 @@ class ECommerceServices extends SoapService
         }
 
         if($doSendError) {
-            switch (substr($order->getAttributes()->global->domain_name, -2)) {
+            $domain = $order->getAttributes()->global->domain_name;
+            switch (substr($domain, -2)) {
                 case 'dk':
                 case 'om':
                     $to = 'retur@pompdelux.dk';
@@ -1171,7 +1163,13 @@ class ECommerceServices extends SoapService
             $mailer = $this->hanzo->container->get('mail_manager');
             $mailer->setTo($to);
             $mailer->setsubject('Refundering fejlede på ordre #' . $data->eOrderNumber);
-            $mailer->setBody("E-ordrenummer: ".$data->eOrderNumber." Transaktionsnummer: ".$order->getPaymentGatewayId()."\n\nMed venlig hilsen DIBS\n");
+            $mailer->setBody(
+                "Fejlen opstået på: {$domain}\n\n".
+                "E-ordrenummer: ".$data->eOrderNumber." Transaktionsnummer: ".$order->getPaymentGatewayId()."\n\n".
+                "Fejlbeskeder:\n- ".
+                implode("\n- ", $errors)."\n\n".
+                "Med venlig hilsen DIBS\n"
+            );
             $mailer->send();
         }
 

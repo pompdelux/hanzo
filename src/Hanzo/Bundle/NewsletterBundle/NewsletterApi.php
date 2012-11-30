@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\NewsletterBundle;
 
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
 /**
  * undocumented class
@@ -64,14 +65,24 @@ class NewsletterApi
     /**
      * subscribe
      * @param string $email An valid e-mail
-     * @param int $listid
+     * @param mixed $listid int or array of int's accepted
      * @return stdClass
      * @author Henrik Farre <hf@bellcom.dk>
      **/
     public function subscribe( $email, $listid  )
     {
         // Url is also hardcoded in NewsletterBundle:Default:js and in events.js
-        $ch = curl_init( $this->phplistUrl.'/integration/json.php?callback=PHP_'.uniqid().'&method=subscriptions:update&email='.urlencode( $email ).'&lists[]='.$listid.'&_='.time() );
+
+        if (!is_array($listid)) {
+            $listid = [$listid];
+        }
+
+        $ids = '';
+        foreach ($listid as $id) {
+            $ids .= '&lists[]='.$id;
+        }
+
+        $ch = curl_init( $this->phplistUrl.'/integration/json.php?callback=PHP_'.uniqid().'&method=subscriptions:update&email='.urlencode( $email ).$ids.'&_='.time() );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);
         $result = curl_exec($ch);
@@ -157,6 +168,33 @@ class NewsletterApi
         }
 
         return false;
+    }
+
+    public function getAllLists($email)
+    {
+        $ch = curl_init( $this->phplistUrl.'/integration/json.php?'.http_build_query([
+            'method' => 'lists:get',
+            'email' => $email
+        ]));
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_REFERER, $this->httpReferer);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $result = $this->jsonp_decode($result);
+
+        $reindexed = [];
+        foreach ($result->content->lists as $index => $list) {
+            if ('pdl_' == substr(strtolower($list->name), 0, 4)) {
+                continue;
+            }
+
+            $reindexed[$list->id] = $list;
+        }
+
+        $result->content->lists = $reindexed;
+        return $result;
     }
 
 } // END class NewsletterApi
