@@ -54,8 +54,8 @@ BasketBundle:
     resource: "@BasketBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-HanzoSearchBundle:
-    resource: "@HanzoSearchBundle/Resources/config/routing.yml"
+SearchBundle:
+    resource: "@SearchBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
 HanzoProductBundle:

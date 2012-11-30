@@ -160,7 +160,7 @@ class CMSRouterLoader implements LoaderInterface
                     $restricted = (($settings->type == 'category') ? 'true' : 'false');
 
                     $route = new Route("/".$path, array(
-                        '_controller' => "HanzoSearchBundle:Default:{$method}",
+                        '_controller' => "SearchBundle:Default:{$method}",
                         '_format' => 'html',
                         'id' => $id,
                         'ip_restricted' => $restricted,
