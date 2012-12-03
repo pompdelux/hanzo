@@ -236,11 +236,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
           case "301076-0676": // -||-
               $customerId = 100111;
               break;
-          case "21091982": // Danish cases
-              $customerId = 100000;
+          case "26101945": // Danish cases
+              $customerId = 100003;
               break;
-          case "18111963": // Danish cases
-              $customerId = 100001;
+          case "21111925": // Danish cases
+              $customerId = 100004;
               break;
           case "25031969": // Danish cases
               $customerId = 100002;
