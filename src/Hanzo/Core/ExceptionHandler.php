@@ -13,6 +13,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
+use Predis\Network\ConnectionException as PredisConnectionException;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
@@ -83,9 +85,8 @@ class ExceptionHandler
                     $event->setResponse($response);
                 }
             }
-        }
 
-        if ($exception instanceof AccessDeniedHttpException) {
+        } elseif ($exception instanceof AccessDeniedHttpException) {
             $request = $this->service_container->get('request');
             $pathWithNoLocale = substr($request->getPathInfo(),6);
 
@@ -99,7 +100,10 @@ class ExceptionHandler
                     // code...
                     break;
             }
+
+        } elseif ($exception instanceof PredisConnectionException) {
+            Tools::log('Predis connection failed.');
+            $event->setResponse(new Response('', 500));
         }
     }
-
 }
