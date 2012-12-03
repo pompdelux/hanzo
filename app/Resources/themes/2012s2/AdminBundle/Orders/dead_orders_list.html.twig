@@ -1,0 +1,46 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<h1>I see dead orders!</h1>
+{% for order in orders %}
+
+  {% if loop.first %}
+
+    <form action="#" method="post" id="dead-orders-form">
+      <table class="bottom list" id="dead-orders">
+        <thead>
+          <tr>
+            <th>Ordre nr.</th>
+            <th>Oprettet Dato</th>
+            <th>Ordre Status</th>
+            <th>Fejlbesked</th>
+            <th></th>
+          </tr>
+        </thead>
+
+  {% endif %}
+
+        <tr data-id="{{ order.id }}">
+          <td>{{ order.id }}</td>
+          <td>{{ order.createdat }}</td>
+          <td>{{ order.state }} - {{ order.statemessage }}</td>
+          <td class="error-msg"><img src="/fx/images/ajax-loader.gif"></td>
+          <td>
+            <a href="#" class="delete-order button" data-order-id="{{ order.id }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.id }}">Slet</a>
+            <a href="{{ path('admin_orders_preview', {order_id : order.id}) }}" class="preview-order button">Gennemse</a>
+            <a href="{{ path('admin_orders_resync_sync', {order_id : order.id}) }}" class="resend-order button">Gensend</a>
+            <img src="/fx/images/ajax-loader.gif" class="loader" style="display:none;">
+          </td>
+        </tr>
+
+  {% if loop.last %}
+
+      </table>
+    </form>
+
+  {% endif %}
+
+{% else %}
+  <p>Pt. ingen døde ordre</p>
+{% endfor %}
+{% endblock %}

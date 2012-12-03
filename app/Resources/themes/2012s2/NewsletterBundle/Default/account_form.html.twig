@@ -1,0 +1,13 @@
+<h2>{{ 'block.your.newsletters_heading'|trans({}, 'newsletter') }}</h2>
+<div id="newsletter-lists-container-all">
+  <form action="{{ path('_newsletter_account_action') }}" method="post">
+    <ul>
+    {% for list in lists %}
+      <li><input type="checkbox" name="lists[]" value="{{ list.id }}"{% if list.is_subscribed %} checked{% endif %}> {{ list.name }}</li>
+    {% else %}
+      <li>no active lists....</li>
+    {% endfor %}
+    </ul>
+    <input type="submit" data-action="update" class="button" value="{{ 'block.update.submit_button'|trans({}, 'newsletter') }}">
+  </form>
+</div>

@@ -1,0 +1,133 @@
+{% extends layout %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('consultantnewsletter') }}">
+        {{ 'consultant.newsletter.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter_import') }}">
+        {{ 'consultant.newsletter.import.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter_edit_users') }}">
+        {{ 'consultant.newsletter.edit.users.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('consultantnewsletter_history') }}">
+        {{ 'consultant.newsletter.history.link'|trans({}, 'consultant') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'consultant.newsletter.header.text'|trans({}, 'consultant') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'events') }}
+</div>
+{% endif %}
+
+
+<p>{{ 'consultant.newsletter.description.text'|trans({}, 'consultant') }}</p>
+<form action="{{ path('consultant_send_newsletter') }}" method="post" id="consultant-newsletter">
+  <input type="hidden" name="status" value="submitted" />
+  <input type="hidden" name="template" value="1" />
+  <input type="hidden" name="draft_id" value="{{ draft_id }}" />
+
+  <div>
+    <label for="subject">{{ 'newsletter.subject.label'|trans({}, 'consultant') }}</label>
+    <input name="subject" id="subject" value="{{ subject }}">
+  </div>
+
+  <div>
+    <label for="message">{{ 'newsletter.message.label'|trans({}, 'consultant') }}</label>
+    <textarea name="message" id="message" class="tinymce">{{ message }}</textarea>
+  </div>
+
+  <div>
+    <input type="button" name="savedraft" id="savedraft" value="{{ 'newsletter.save.draft'|trans({}, 'consultant') }}">
+    {% if drafts|length > 0 %}
+    <p>{{ 'newsletter.current.drafts'|trans({}, 'consultant') }}</p>
+    {% endif %}
+    <ul id="drafts">
+      {% for draft in drafts %}
+      <li><a href="{{ path('consultantnewsletter', {'draft_id' : draft.id}) }}">{{ draft.id }} - {{ draft.subject }}</a><a href="{{ path('consultantnewsletter_draft_delete', {'draft_id' : draft.id }) }}" class="delete">{{ 'consultant.newsletter.delete.draft'|trans({}, 'consultant') }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <input type="submit" name="actionCreateNewsletter" id="actionCreateNewsletter" value="{{ 'newsletter.submit.send.newsletter'|trans({}, 'consultant') }}">
+
+  <input type="submit" name="actionSendTest" id="actionSendTest" value="{{ 'newsletter.submit.send.test.email'|trans({}, 'consultant') }}">
+    <span>{{ 'newsletter.send.test.to.label'|trans({}, 'consultant') }}</span>
+  <input name="test_reciever" id="test_reciever" value="{{ test_receiver }}">
+</form>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+  document.domain = '{{ document_domain }}';
+  $(document).ready(function(){
+    $('textarea.tinymce').tinymce({
+      // Location of TinyMCE script
+      script_url : '/fx/scripts/tinymce/jscripts/tiny_mce/tiny_mce.js',
+
+      // General options
+      force_br_newlines : true,
+      force_p_newlines : false,
+      forced_root_block : '',
+      mode : "textareas",
+      editor_selector : "mceEditor",
+      height : "400px",
+      width : "750px",
+      elements : "",
+
+      // Theme options
+      theme : "advanced",
+      plugins : "style,table,save,advhr,advimage,advlink,insertdatetime,media,paste",
+      theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,link,unlink,image",
+      theme_advanced_buttons2 : "",
+      theme_advanced_buttons3 : "",
+      theme_advanced_toolbar_location : "top",
+      theme_advanced_toolbar_align : "left",
+      theme_advanced_path_location : "bottom",
+      extended_valid_elements : "a[name|href|target|title|onclick|class|rel|style],img[id|class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|rel],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
+
+
+      relative_urls : false,
+      document_base_url : base_url,
+      file_browser_callback: "pdlSimpleFileManager",
+    });
+  });
+function pdlSimpleFileManager(field_name, url, type, win) {
+ var pdlSimpleFileManagerUrl = cdn_url + "consultant_newsletter_fm.php";
+  switch (type) {
+    case "image":
+    case "media":
+    case "flash":
+    case "file":
+      break;
+    default:
+      return false;
+  }
+  tinyMCE.activeEditor.windowManager.open({
+      url: pdlSimpleFileManagerUrl,
+      width: 750,
+      height: 440,
+      inline : "yes",
+      close_previous : "no",
+      title: 'Image Browser',
+      scrollbars: true
+  },{
+      window : win,
+      input : field_name
+  });
+}
+</script>
+{% endblock %}

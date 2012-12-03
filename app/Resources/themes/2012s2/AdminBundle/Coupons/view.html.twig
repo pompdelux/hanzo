@@ -1,0 +1,38 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_coupons') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('admin_coupons_edit') }}">
+        {{ 'admin.coupons.add_new.link'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+<h1>{{ 'admin.coupons.edit.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>{{ 'admin.coupons.edit.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_coupons_edit', {'id' : coupon.id}) }}" method="post" {{ form_enctype(form) }} id="coupons-edit-form" class="edit-form">
+  <div id="coupons-edit">
+    {{ form_row(form._token) }}
+    {{ form_rest(form) }}
+  </div>
+  <br>
+  <input class="button right" type="submit" value="{{ 'update.coupons'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_coupons') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}

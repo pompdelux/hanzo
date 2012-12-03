@@ -1,0 +1,194 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<title>{{ 'browser.title'|trans }} {{ browser_title|default('') }}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="all">
+
+<meta property="og:url" content="{{ app.request.uri }}">
+{{ meta_tags() }}
+
+<link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
+<link rel="dns-prefetch" href="//cdn.jquerytools.org">
+<link rel="dns-prefetch" href="//html5shim.googlecode.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
+
+{% stylesheets
+  'fx/css/boilerplate.css'
+  'fx/css/faq.css'
+  'fx/css/colorbox/theme4/colorbox.css'
+  'fx/css/jquery-ui.css'
+  'fx/scripts/video-js/video-js.css'
+  'fx/scripts/fullcalendar/fullcalendar.css'
+
+  'fx/css/main.css'
+  'fx/css/category.css'
+  'fx/css/product.css'
+  'fx/css/cart.css'
+  'fx/css/account.css'
+  'fx/css/checkout.css'
+  'fx/css/dialoug.css'
+
+  'fx/css/maps.css'
+  'fx/css/search.css'
+  'fx/css/mannequin.css'
+  'fx/css/wall.css'
+  'fx/css/events.css'
+  'fx/css/mobile.css'
+  'fx/css/quickorder.css'
+
+  filter='?yui_css'
+  output='fx/cache/all.css'
+  combine=true
+%}
+<link rel="stylesheet" href="{{ asset_url }}" media="all">
+{% endstylesheets %}
+
+<script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr-2.5.3.js"></script>
+</head>
+<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/{{ locale }}/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="container">
+  <a href="{{ path('_homepage', {'_locale' : app.session.locale}) }}" title="{{ "home"|trans }}">
+    {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
+  </a>
+
+  <div id="main" role="main">
+
+    {# if app.session.get('in_edit') %}
+      {{ 'order.edit.global.notice'|trans({
+        '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
+        '%order_id%' : app.session.get('order_id'),
+        '%stop_url%' : url('_account', {stop : 1})
+      })|raw }}
+    {% endif #}
+
+    {% render 'CMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
+    {% block content %}{% endblock %}
+
+  </div><!-- /div#main -->
+
+  <nav class="main">
+    {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
+  </nav><!-- /nav.main -->
+
+  <aside id="secondary-links">
+    <ul>
+      <li><a href="{{ path('_account', {'_locale' : app.session.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+      <li id="select-domain">
+        <a class="open-menu" href="#">Change Country</a>
+        <div style="display: none">
+          <a href="{{ baseurl }}/da_DK/">Denmark</a><br><br>
+	      <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
+          <a href="{{ baseurl }}/en_GB/">International</a><br><br>
+          <a href="{{ baseurl }}/nl_NL/">Netherlands</a><br><br>
+	      <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
+          <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
+        </div>
+      </li>
+      <li id="mini-basket" class="basket">
+        <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {{ fx_image_tag('images/loader-bar.gif') }}{# render 'BasketBundle:Default:miniBasket' #} </a>
+      </li>
+      <li><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
+    </ul>
+  </aside>
+
+{% if page_type == 'frontpage' %}
+  {{ front_page_teasers() }}
+{% endif %}
+
+</div>
+
+<footer>
+  {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
+</footer>
+
+<script type="text/javascript">
+  var base_url = '{{ url('_homepage', {'_locale' : app.session.locale}) }}';
+  var cdn_url = '{{ cdn }}';
+  var counter_offset = 1314691200;
+</script>
+
+<script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
+
+
+{% javascripts
+  'fx/scripts/jquery.min.js'
+  'fx/scripts/jquery.tools.min.js'
+  'fx/scripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js'
+  'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
+  'fx/scripts/zoom/jquery.zoom.js'
+  'fx/scripts/accounting/accounting.min.js'
+  'fx/scripts/jquery.formparams.js'
+
+  'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
+  'fx/scripts/countdown/jquery.countdown.js'
+  'fx/scripts/countdown/jquery.countdown-da.js'
+  'fx/scripts/countdown/jquery.countdown-nb.js'
+  'fx/scripts/countdown/jquery.countdown-sv.js'
+  'fx/scripts/countdown/jquery.countdown-fi.js'
+  'fx/scripts/countdown/jquery.countdown-nl.js'
+  'fx/scripts/video-js/video.js'
+  'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
+
+  'fx/scripts/jaiks/jaiks.min.js'
+  'fx/scripts/yatzy.js'
+  'fx/scripts/dialoug.js'
+  'fx/scripts/colorbox.js'
+  'fx/scripts/flowplayer.js'
+  'fx/scripts/video.js'
+
+  'fx/scripts/category.js'
+  'fx/scripts/product.js'
+  'fx/scripts/cart.js'
+  'fx/scripts/account.js'
+  'fx/scripts/main.js'
+  'fx/scripts/checkout.js'
+  'fx/scripts/dibs-process.js'
+  'fx/scripts/wall.js'
+  'fx/scripts/events.js'
+  'fx/scripts/quickorder.js'
+
+  'fx/scripts/newsletter.js'
+
+  'fx/scripts/gothia.js'
+  'fx/scripts/maps.js'
+  'fx/scripts/search.js'
+  'fx/scripts/mannequin.js'
+  'fx/scripts/faq.js'
+
+  'fx/scripts/oldie.js'
+  filter='?yui_js'
+  output='fx/cache/all.js'
+  combine=true
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% block javascript %}
+{% endblock %}
+
+{% render 'NewsletterBundle:Default:js' %}
+
+<script>if (jaiks) {jaiks.exec();}</script>
+{{ google_analytics_tag() }}
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_orders') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>{{ 'admin.orders.changestate.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>{{ 'admin.orders.changestate.description.text'|trans({}, 'admin') }}</p>
+
+<form action="{{ path('admin_orders_change_state') }}" method="post" {{ form_enctype(form) }} id="change-state-form">
+  <div id="change-state">
+    {{ form_rest(form) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'admin.orders.changestate.submit'|trans({}, 'admin') }}">
+</form>
+
+{% if updated_orders %}
+<h1>{{ 'admin.orders.changestate.updated_orders.text'|trans({}, 'admin') }}</h1>
+<ul>
+  {% for ids in updated_orders %}
+  <li><a href="{{ path('admin_customer_order', {'order_id' : ids}) }}">{{ ids }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

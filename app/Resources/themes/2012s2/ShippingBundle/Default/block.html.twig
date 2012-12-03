@@ -1,0 +1,19 @@
+<h2>{{ 'page.heading'|trans({},'shipping') }}</h2>
+<div class="checkout-block" id="shipping-block">
+  <div class="msg hidden"></div>
+  <p>{{ 'page.desc'|trans({},'shipping') }}</p>
+  <form action="{{ path('_shipping_set_method') }}">
+  {% for method in methods %}
+    <h3>{{ ('shipping_method.name.' ~ method.externalid)|trans({},'shipping') }}</h3>
+    <p>
+      {{ ('shipping_method.desc.' ~ method.externalid)|trans({},'shipping')|raw }}
+    </p>
+    <div>
+    	<label for="shipping_method_{{ method.externalid }}">{{ ('shipping_method.label.' ~ method.externalid)|trans({'%price%':method.price|money}, 'shipping') }}</label>
+      <input type="radio" name="method" id="shipping_method_{{method.externalid}}" value="{{ method.externalid }}"{% if method.externalid == selected_method %} checked{% endif %}>
+    </div>
+    <br>
+  {% endfor %}
+  </form>
+  <p>{{ 'page.desc.after_methods'|trans({},'shipping')|raw }}</p>
+</div>

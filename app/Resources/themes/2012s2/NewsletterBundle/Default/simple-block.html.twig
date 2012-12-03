@@ -1,0 +1,17 @@
+  <div id="newsletter-lists-container" class="simple">
+    <form action="#" method="post" class="newsletter-subscription-form">
+      <input type="hidden" name="listid[]" value="{{ listid }}" class="newsletter-list-id">
+      <div class="clearfix">
+        <label>{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}:</label>
+        <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+      </div>
+      <div class="clearfix">
+        <label>{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}:</label>
+        <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+      </div>
+      <div class="clearfix">
+        <input type="submit" data-action="unsubscribe" class="button" value="{{ 'block.unsubscribe.submit_button'|trans({}, 'newsletter') }}">
+        <input type="submit" data-action="subscribe" class="button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
+      </div>
+    </form>
+  </div>
