@@ -88,6 +88,7 @@
 [SimpleThingsFormExtraBundle]
     git=https://github.com/simplethings/SimpleThingsFormExtraBundle.git
     target=/bundles/SimpleThings/FormExtraBundle
+    version=v0.1
 
 [Smesg]
     git=git@github.com:mrbase/Smesg.git
