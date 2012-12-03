@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Snc\RedisBundle\SncRedisBundle(),
             new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
+            new Liip\ThemeBundle\LiipThemeBundle(),
 
             new Hanzo\Bundle\AccountBundle\AccountBundle(),
             new Hanzo\Bundle\AdminBundle\AdminBundle(),

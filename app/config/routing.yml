@@ -92,6 +92,10 @@ bazinga_exposetranslation_js:
         _format: js
 
 
+liip_theme:
+    resource: "@LiipThemeBundle/Resources/config/routing.xml"
+    prefix: /{_locale}/theme
+
 # leverage the template controller in the FrameworkBundle to show static pages:
 # @see http://coderwall.com/p/pj1opa
 _splash:

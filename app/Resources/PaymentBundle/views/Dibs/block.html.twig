@@ -1,7 +1,0 @@
-<h2>{{ 'payment.dibs.title'|trans({}, 'checkout') }}</h2>
-
-<form name="payment-dibs" id="dibs" action="https://payment.architrade.com/paymentweb/start.action" method="post">
-{% for name,value in form_fields %}
-  <input type="hidden" name="{{ name }}" value="{{ value }}" />
-{% endfor %}
-</form>

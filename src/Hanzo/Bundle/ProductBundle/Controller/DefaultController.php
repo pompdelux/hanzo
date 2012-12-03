@@ -80,27 +80,23 @@ class DefaultController extends CoreController
 
             // find the sizes and colors on stock
             if (!$product->getIsOutOfStock()) {
-                $variants = ProductsQuery::create()
-                    // Be sure to order by size as a number(192) not text(192-198)
-                    ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)','size_num')
-                    ->orderBy('size_num')
-                    ->select(array('Id', 'Size', 'Color'))
-                    ->distinct()
-                    ->findByMaster($product->getSku())
-                ;
+                $variants = ProductsQuery::create()->findByMaster($product->getSku());
 
                 foreach ($variants as $v) {
-                    $product_ids[] = $v['Id'];
+                    $product_ids[] = $v->getId();
                 }
 
                 $stock = $this->get('stock');
                 $stock->prime($product_ids);
                 foreach ($variants as $v) {
-                    if ($stock->check($v['Id'])) {
-                        $colors[$v['Color']] = $v['Color'];
-                        $sizes[$v['Size']] = $v['Size'];
+                    if ($stock->check($v->getId())) {
+                        $colors[$v->getColor()] = $v->getColor();
+                        $sizes[$v->getSize()] = $v->getSize();
                     }
                 }
+
+                natcasesort($colors);
+                natcasesort($sizes);
             }
 
             $references = ProductsImagesProductReferencesQuery::create()

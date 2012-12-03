@@ -25,6 +25,7 @@ $loader->registerNamespaces(array(
     'Geocoder'         => __DIR__.'/../vendor/Geocoder/src',
     'Smesg'            => __DIR__.'/../vendor/Smesg/src',
     'Bazinga'          => __DIR__.'/../vendor/bundles',
+    'Liip'             => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
@@ -49,7 +50,5 @@ AnnotationRegistry::registerLoader(function($class) use ($loader) {
 });
 AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
 
-// Swiftmailer needs a special autoloader to allow
-// the lazy loading of the init file (which is expensive)
-require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
-Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');
+// Swiftmailer needs a special autoloader
+require __DIR__.'/../vendor/swiftmailer/lib/swift_required.php';

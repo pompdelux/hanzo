@@ -21,41 +21,41 @@ use \TableMap;
 class ConsultantNewsletterDraftsTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.ConsultantNewsletterDraftsTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.ConsultantNewsletterDraftsTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('consultant_newsletter_drafts');
-		$this->setPhpName('ConsultantNewsletterDrafts');
-		$this->setClassname('Hanzo\\Model\\ConsultantNewsletterDrafts');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(true);
-		// columns
-		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-		$this->addForeignKey('CONSULTANTS_ID', 'ConsultantsId', 'INTEGER', 'customers', 'ID', true, null, null);
-		$this->addColumn('SUBJECT', 'Subject', 'VARCHAR', true, 255, null);
-		$this->getColumn('SUBJECT', false)->setPrimaryString(true);
-		$this->addColumn('CONTENT', 'Content', 'LONGVARCHAR', false, null, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('consultant_newsletter_drafts');
+        $this->setPhpName('ConsultantNewsletterDrafts');
+        $this->setClassname('Hanzo\\Model\\ConsultantNewsletterDrafts');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(true);
+        // columns
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('consultants_id', 'ConsultantsId', 'INTEGER', 'customers', 'id', true, null, null);
+        $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
+        $this->getColumn('subject', false)->setPrimaryString(true);
+        $this->addColumn('content', 'Content', 'LONGVARCHAR', false, null, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('consultants_id' => 'id', ), null, null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('consultants_id' => 'id', ), null, null);
+    } // buildRelations()
 
 } // ConsultantNewsletterDraftsTableMap
