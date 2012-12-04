@@ -554,6 +554,9 @@ Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if (empty($attributes->global->HomePartyId)) {
             $key = str_replace('Sales', '', $domain_key);
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);
+        }
+        if (empty($attributes->global->SalesResponsible)) {
+            $key = str_replace('Sales', '', $domain_key);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);
         }
 
