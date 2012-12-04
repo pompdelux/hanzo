@@ -8,8 +8,6 @@ use Propel;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
-
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\OrdersQuery;
@@ -19,8 +17,6 @@ class CleanupService
     protected $parameters;
     protected $settings;
 
-    protected $dibs;
-
     /**
      * __construct
      *
@@ -29,13 +25,8 @@ class CleanupService
      */
     public function __construct($parameters, $settings)
     {
-        $this->dibs = $parameters[0];
         $this->parameters = $parameters;
         $this->settings = $settings;
-
-        if (!$this->dibs instanceof DibsApi) {
-             throw new \InvalidArgumentException('DibsApi expected as first parameter.');
-        }
     }
 
 
