@@ -10,6 +10,7 @@ use Hanzo\Core\CoreController;
 
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersPeer;
