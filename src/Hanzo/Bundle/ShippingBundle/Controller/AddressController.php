@@ -11,6 +11,7 @@ use Hanzo\Core\CoreController;
 use Hanzo\Model\Addresses;
 use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CountriesPeer;
+use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\ShippingMethods;
 
@@ -258,12 +259,16 @@ class AddressController extends CoreController
                 $address->setCountry('Denmark');
                 $address->setCountriesId(58);
             } else {
-                $address->setCountry($data['country']);
+                $country = CountriesQuery::create()->findOneById($data['countries_id']);
+                $address->setCountry($country->getName());
                 $address->setCountriesId($data['countries_id']);
             }
 
             // remember to save the company name.
             if ($method == 'company_shipping') {
+                if (empty($data['company_name'])) {
+                    $data['company_name'] = 'N/A';
+                }
                 $address->setCompanyName($data['company_name']);
             }
 
