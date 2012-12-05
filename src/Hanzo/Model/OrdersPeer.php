@@ -47,8 +47,10 @@ class OrdersPeer extends BaseOrdersPeer
                 ->leftJoinWithOrdersLines()
             ;
 
-            $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
-            self::$current = $query->findPk($session->get('order_id'), $con);
+            self::$current = $query->findPk(
+                $session->get('order_id'),
+                Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            );
 
             // attach the customer to the order.
             if ((self::$current instanceOf Orders) && !self::$current->getCustomersId()) {
