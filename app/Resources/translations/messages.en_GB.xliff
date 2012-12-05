@@ -171,8 +171,8 @@
                         <li>+45 8736 1000</li>
                     </ul>
                     <ul style="width:290px;">
-                        <li><a name="fb_share" type="icon_link">Share with your friends</a></li>
                         <li><img src="%cdn%fx/images/creditcards_com.png" alt="credit cards" title="credit cards"></li>
+						<li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
                     </ul>
                 ]]></target>
             </trans-unit>
