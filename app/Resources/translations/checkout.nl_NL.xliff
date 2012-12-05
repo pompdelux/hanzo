@@ -375,7 +375,7 @@
       </trans-unit>
 	   <trans-unit id="payment.dibs.paytype.ideal">
          <source>payment.dibs.paytype.ideal</source>
-         <target>Ideal</target>
+         <target>iDEAL/ABN</target>
       </trans-unit>
     </body>
   </file>
