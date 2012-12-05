@@ -11,6 +11,7 @@ namespace Hanzo\Core;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 use Predis\Network\ConnectionException as PredisConnectionException;
@@ -85,6 +86,9 @@ class ExceptionHandler
                     $event->setResponse($response);
                 }
             }
+
+        } elseif ($exception instanceof RouteNotFoundException) {
+            Tools::log($exception->getMessage() . ' :: ' . $request->getPathInfo());
 
         } elseif ($exception instanceof AccessDeniedHttpException) {
             $request = $this->service_container->get('request');
