@@ -214,6 +214,9 @@ class AxService
                   case 'DK':
                       $custPaymMode = 'DanKort';
                       break;
+                  case 'ABN':
+                      $custPaymMode = 'ABN';
+                      break;
               }
             break;
 
