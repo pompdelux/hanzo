@@ -197,36 +197,37 @@ class AxService
 
         switch ($order->getBillingMethod())
         {
-          case 'dibs':
-              switch (strtoupper($attributes->payment->paytype)) {
-                  case 'VISA':
-                  case 'VISA(DK)':
-                  case 'VISA(SE)':
-                  case 'ELEC':
-                      $custPaymMode = 'VISA';
-                      break;
-                  case 'MC':
-                  case 'MC(DK)':
-                  case 'MC(SE)':
-                      $custPaymMode = 'MasterCard';
-                      break;
-                  case 'V-DK':
-                  case 'DK':
-                      $custPaymMode = 'DanKort';
-                      break;
-                  case 'ABN':
-                      $custPaymMode = 'ABN';
-                      break;
-              }
-            break;
+            case 'dibs':
+                switch (strtoupper($attributes->payment->paytype)) {
+                    case 'VISA':
+                    case 'VISA(DK)':
+                    case 'VISA(SE)':
+                    case 'ELEC':
+                        $custPaymMode = 'VISA';
+                        break;
+                    case 'MC':
+                    case 'MC(DK)':
+                    case 'MC(SE)':
+                        $custPaymMode = 'MasterCard';
+                        break;
+                    case 'V-DK':
+                    case 'DK':
+                        $custPaymMode = 'DanKort';
+                        break;
+                    // un@bellcom.dk, skal ind igen
+                    // case 'ABN':
+                    //     $custPaymMode = 'ABN';
+                    //     break;
+                }
+                break;
 
-          case 'gothia':
-              $custPaymMode = 'PayByBill';
-              break;
+            case 'gothia':
+                $custPaymMode = 'PayByBill';
+                break;
 
-          case 'paybybill': // Should be COD, is _not_ Gothia
-              $custPaymMode = 'Bank';
-              break;
+            case 'paybybill': // Should be COD, is _not_ Gothia
+                $custPaymMode = 'Bank';
+                break;
         }
 
         $freight_type = $order->getDeliveryMethod();
