@@ -46,10 +46,10 @@ class ExceptionHandler
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
+        $request = $this->service_container->get('request');
 
         // 404 hangeling
         if ($exception instanceof NotFoundHttpException) {
-            $request = $this->service_container->get('request');
             $path = $request->getPathInfo();
 
             // attempt to fix images in old newsletters. Redirect to static
