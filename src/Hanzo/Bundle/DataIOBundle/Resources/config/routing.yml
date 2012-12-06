@@ -10,3 +10,7 @@ _session_migrate_test:
 _order_test:
     pattern: /test-order/{state}
     defaults: { _controller: DataIOBundle:Default:testOrder }
+
+_pc_check:
+    pattern: /pc-test
+    defaults: { _controller: DataIOBundle:Default:check }

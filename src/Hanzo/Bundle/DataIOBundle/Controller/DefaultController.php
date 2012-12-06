@@ -2,26 +2,67 @@
 
 namespace Hanzo\Bundle\DataIOBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\EventDispatcher\Event,
-    Symfony\Component\EventDispatcher\EventDispatcher
-    ;  
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController,
-    Hanzo\Bundle\DataIOBundle\Events,
-    Hanzo\Bundle\DataIOBundle\FilterUpdateEvent
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\HelpdeskDataLog;
+
+use Hanzo\Bundle\DataIOBundle\Events;
+use Hanzo\Bundle\DataIOBundle\FilterUpdateEvent;
 
 class DefaultController extends CoreController
 {
-    public function indexAction($name)
+    public function checkAction(Request $request)
     {
-        return $this->render('DataIOBundle:Default:index.html.twig', array('name' => $name));
+        $uniqid = '';
+        if ('POST' === $request->getMethod()) {
+            $log = new HelpdeskDataLog();
+            $log->setKey($_POST['uniqid']);
+
+            unset($_POST['uniqid']);
+
+            $session_vars = [];
+            foreach ($this->get('session')->all() as $key => $value) {
+                if ('_' === substr($key, 0, 1)) {
+                    continue;
+                }
+
+                $session_data[$key] = $value;
+            }
+
+            $log->setData(json_encode(array(
+                'browser_data'     => $_POST,
+                'cookie_data'      => $_COOKIE,
+                'session_data'     => $session_data,
+                'current_order_id' => OrdersPeer::getCurrent()->getId(),
+                'current_user_id'  => CustomersPeer::getCurrent()->getId(),
+            )));
+
+            $log->save();
+
+            return new Response('', 200);
+        } else {
+            $aZ09 = array_merge(range('A', 'Z'), range('a', 'z'),range(0, 9));
+            shuffle($aZ09);
+            foreach (array_rand($aZ09, 2) as $k) {
+              $uniqid .= $aZ09[$k];
+            }
+            $uniqid .= date('is');
+        }
+
+        return $this->render('DataIOBundle:Default:check.html.twig', [
+          'uniqid' => $uniqid
+        ]);
     }
+
 
     /**
      * updateSystemAction
@@ -37,9 +78,9 @@ class DefaultController extends CoreController
 
         if ( is_object($json) && isset($json->commits) )
         {
-            foreach ($json->commits as $commit) 
+            foreach ($json->commits as $commit)
             {
-              error_log('[Github Webhook]: commit by '. $commit->author->email.' url: '.$commit->url); // hf@bellcom.dk debugging
+                error_log('[Github Webhook]: commit by '. $commit->author->email.' url: '.$commit->url); // hf@bellcom.dk debugging
             }
 
             $event = new FilterUpdateEvent( 'translations' );
@@ -63,12 +104,12 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();
 
-        switch ($step) 
+        switch ($step)
         {
           case 1:
               $session->set('order_id');
             break;
-          
+
           case 2:
               $session->remove('order_id');
               $session->migrate();
@@ -100,10 +141,10 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        switch ($state) 
+        switch ($state)
         {
           case 'empty':
-              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) 
+              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0))
               {
                   return new Response( 'Empty', 200, array('Content-Type' => 'text/plain') );
               }
@@ -114,7 +155,7 @@ class DefaultController extends CoreController
               break;
 
           case 'full':
-              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) 
+              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0))
               {
                   return new Response( 'Empty', 500, array('Content-Type' => 'text/plain') );
               }
