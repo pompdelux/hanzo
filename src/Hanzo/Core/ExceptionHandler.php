@@ -90,6 +90,12 @@ class ExceptionHandler
         } elseif ($exception instanceof RouteNotFoundException) {
             Tools::log($exception->getMessage() . ' :: ' . $request->getPathInfo());
 
+            $response = new Response($this->service_container->get('templating')->render('TwigBundle:Exception:error404.html.twig', array(
+                'exception' => $exception
+            )));
+
+            $event->setResponse($response);
+
         } elseif ($exception instanceof AccessDeniedHttpException) {
             $request = $this->service_container->get('request');
             $pathWithNoLocale = substr($request->getPathInfo(),6);
@@ -98,10 +104,6 @@ class ExceptionHandler
                 case '/account': // The customer probably tried to created an account on the wrong locale
                     $response = new Response('', 302, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/login'));
                     $event->setResponse($response);
-                    break;
-
-                default:
-                    // code...
                     break;
             }
 
