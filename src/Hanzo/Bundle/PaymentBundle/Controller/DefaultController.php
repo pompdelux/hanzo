@@ -96,6 +96,7 @@ class DefaultController extends CoreController
         // Currently hardcoded to 0 vat
         // It also only supports one order line with payment fee, as all others are deleted
         $order->setOrderLinePaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+        $order->setUpdatedAt(time());
         $order->save();
 
         $response = [

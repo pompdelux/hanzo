@@ -63,6 +63,9 @@ class DefaultController extends CoreController
                 $order->setOrderLineShipping($method, ShippingMethods::TYPE_FEE);
             }
 
+            $order->setUpdatedAt(time());
+            $order->save();
+
             $response = array(
                 'status' => true,
                 'message' => '',
