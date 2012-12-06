@@ -44,6 +44,7 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
+        $order->setUpdatedAt(time());
         $order->save();
 
         return $this->render('CheckoutBundle:Default:flow.html.twig', array(
