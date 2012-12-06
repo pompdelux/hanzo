@@ -289,11 +289,9 @@ class AxService
                 break;
         }
 
-
         if ($return) {
             return $syncSalesOrder;
         }
-
 
         // post validation
         if (empty($salesTable->HomePartyId) || empty($salesTable->SalesResponsible)) {
