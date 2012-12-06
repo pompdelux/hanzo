@@ -64,6 +64,12 @@ class DefaultController extends CoreController
     }
 
 
+    public function pingAction()
+    {
+        return new Response('', 200);
+    }
+
+
     /**
      * updateSystemAction
      *

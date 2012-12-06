@@ -14,3 +14,7 @@ _order_test:
 _pc_check:
     pattern: /pc-test
     defaults: { _controller: DataIOBundle:Default:check }
+
+_varnish_ping:
+    pattern: /varnish-ping
+    defaults: { _controller: DataIOBundle:Default:ping }
