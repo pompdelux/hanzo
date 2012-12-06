@@ -95,6 +95,7 @@ class CheckoutListener
         $order->setState( Orders::STATE_PENDING );
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
+        $order->setUpdatedAt(time());
         $order->save();
 
         $attributes = $order->getAttributes();
