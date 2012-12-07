@@ -68,8 +68,8 @@ redis:
 Assets for themes are located under `fx/THEME/`
 
 Create a new theme with compass:
-- `cd fx`
-- `compass create THEME_NAME --css-dir "css" --javascripts-dir "scripts" --images-dir "images"`
+1. `cd fx`
+2. `compass create THEME_NAME --css-dir "css" --javascripts-dir "scripts" --images-dir "images"`
 
 --
 
@@ -94,8 +94,8 @@ The directory of a theme will look like this when built with compass (note that 
 Follow the [best practices](http://compass-style.org/help/tutorials/best_practices/)
 
 When editing Sass files be sure to build the `style.scss` file. You can make compass watch by:
-- `cd fx/[theme]/`
-- `compass watch`
+1. `cd fx/[theme]/`
+2. `compass watch`
 
 --
 
