@@ -71,8 +71,7 @@ class HistoryController extends CoreController
 
         $status = $event->getStatus();
         if (false === $status->code) {
-            // FIXME !! opret sprogvariabel
-            // $this->get('session')->setFlash('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
             return $this->redirect($this->generateUrl('_account'));
         }
 
