@@ -65,13 +65,13 @@ redis:
 - http://sass-lang.com/
 - http://compass-style.org/
 
-Assets for themes are located under fx/THEME/
+Assets for themes are located under `fx/THEME/`
 
 Create a new theme with compass:
 - `cd fx`
 - `compass create THEME_NAME --css-dir "css" --javascripts-dir "scripts" --images-dir "images"`
 
-Dir:
+The directory of a theme will look like this (note that compass only generates the `sass` and `css` folders):
 - fx/THEME/
   - css/
   - scripts/
