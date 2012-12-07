@@ -62,3 +62,22 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
+
+/* line 7, ../sass/_base.scss */
+.container {
+  position: relative;
+}
+
+/**
+|
+| Footer styles
+|
+*/
+/* line 7, ../sass/footer.scss */
+footer {
+  margin: 16px 0;
+}
+/* line 9, ../sass/footer.scss */
+footer h2 {
+  font-size: 16px;
+}

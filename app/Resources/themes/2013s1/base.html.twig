@@ -23,7 +23,7 @@
 
 {% stylesheets output="fx/2013s1/css/all.css"
     "fx/2013s1/css/960_8_3_3.css"
-    "/fx/2013s1/css/style.css"
+    "fx/2013s1/css/style.css"
 %}
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
@@ -42,9 +42,14 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="container" class="container container_8">
-  <a href="{{ path('_homepage', {'_locale' : app.session.locale}) }}" title="{{ "home"|trans }}">
-    {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
-  </a>
+  <header>
+    <a href="{{ path('_homepage', {'_locale' : app.session.locale}) }}" title="{{ "home"|trans }}">
+      {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
+    </a>
+    <div class="menu horizontal main-menu">
+      {% render 'CMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
+    </div>
+  </header>
 
   <div id="main" role="main">
 
@@ -56,7 +61,6 @@
       })|raw }}
     {% endif #}
 
-    {% render 'CMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {% block content %}{% endblock %}
 
   </div><!-- /div#main -->
@@ -66,7 +70,7 @@
   </nav><!-- /nav.main -->
 
   <aside id="secondary-links">
-    <ul>
+    <ul class="horizontal menu">
       <li><a href="{{ path('_account', {'_locale' : app.session.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       <li id="select-domain">
         <a class="open-menu" href="#">Change Country</a>

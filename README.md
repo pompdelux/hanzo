@@ -71,13 +71,24 @@ Create a new theme with compass:
 - `cd fx`
 - `compass create THEME_NAME --css-dir "css" --javascripts-dir "scripts" --images-dir "images"`
 
+--
+
+Styles are grouped in seperate `.scss` files. e.g. Payment styles are located in _payment.scss and importet in `style.scss` (@import "payment"). All sub `.scss` files which should be imported into another instead of being a independet css file, should be prepended with a `_` like `_account.scss`. This way they wont be compiled themself.
 The directory of a theme will look like this (note that compass only generates the `sass` and `css` folders):
-- fx/THEME/
+
+`- fx/THEME/
   - css/
+    - style.scss
+    - ie.css
   - scripts/
   - images/
   - sass/
-  - config.rb
+    - _base.scss
+    - _header.scss
+    - _footer.scss
+    - ie.scss
+    - style.scss
+  - config.rb`
 
 Follow the [best practices](http://compass-style.org/help/tutorials/best_practices/)
 
@@ -86,8 +97,6 @@ When editing Sass files be sure to build the `style.scss` file. You can make com
 - `compass watch`
 
 --
-
-Styles are grouped in seperate `.scss` files. e.g. Payment styles are located in payment.scss and importet in `style.scss` (@import "payment")
 
 - `_base.scss` - Includes all globale variables and @imports
 - `style.scss` - Main stylesheet which includes _base and others

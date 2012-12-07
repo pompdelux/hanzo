@@ -1,0 +1,50 @@
+/**
+|
+| Menus and header styles
+|
+*/
+
+// horizontal helper. Lets all list get horizontal
+ul.horizontal,
+.horizontal > ul{
+	list-style: none;
+	li{
+		display: inline-block;
+	}
+
+}
+
+// All menus
+ul.menu,
+.menu > ul{
+	font-size: 12px;
+	a{
+		text-decoration: none;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+
+// Specific main menus
+nav.main{
+	li{
+		padding: 2px 16px 0 0;
+		a{
+			text-transform: uppercase;
+		}
+	}
+}
+
+// Specific Secondary menu
+#secondary-links{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	li{
+		padding: 0 8px;
+		a{
+			text-transform: uppercase;
+		}
+	}
+}
