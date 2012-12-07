@@ -77,10 +77,10 @@ assetic:
     java: /usr/bin/java
     filters:
         cssrewrite: null
-        yui_css:
-            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
-        yui_js:
-            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+        sass:
+            bin: /usr/local/bin/sass
+        compass:
+            bin: /usr/local/bin/compass
 
 swiftmailer:
     transport: '%mailer_transport%'
@@ -142,16 +142,16 @@ cms:
 # @see https://github.com/liip/LiipThemeBundle
 liip_theme:
     themes: ['2012s2', '2013s1']
-    active_theme: '2012s2'
+    active_theme: '2013s1'
     path_patterns:
         app_resource:
             - %%app_path%%/themes/%%current_theme%%/%%template%%
-            - %%app_path%%/themes/fallback_theme/%%template%%
+            - %%app_path%%/themes/2012s2/%%template%%
             - %%app_path%%/views/%%template%%
         bundle_resource:
             - %%bundle_path%%/Resources/themes/%%current_theme%%/%%template%%
-            - %%bundle_path%%/Resources/themes/fallback_theme/%%template%%
+            - %%bundle_path%%/Resources/themes/2012s2/%%template%%
         bundle_resource_dir:
             - %%dir%%/themes/%%current_theme%%/%%bundle_name%%/%%template%%
-            - %%dir%%/themes/fallback_theme/%%bundle_name%%/%%template%%
+            - %%dir%%/themes/2012s2/%%bundle_name%%/%%template%%
             - %%dir%%/%%bundle_name%%/%%override_path%%
