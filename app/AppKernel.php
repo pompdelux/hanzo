@@ -100,6 +100,9 @@ class AppKernel extends Kernel
         $twig = $this->container->get('twig');
         $twig->addGlobal('cdn', $this->container->getParameter('cdn'));
 
+        $theme = $this->container->get('liip_theme.active_theme');
+        $twig->addGlobal('current_theme', $theme->getName());
+
         if (isset($_SERVER['HTTP_HOST'])) {
             $script = $_SERVER['SCRIPT_NAME'];
             if ('/app.php' == $script) {
