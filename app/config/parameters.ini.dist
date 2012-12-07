@@ -27,3 +27,7 @@
     redis_cache1_database="0"
 
     cdn="http://cdn.hanzo.dk/"
+
+    sass_bin="/usr/local/bin/sass"
+    compass_bin="/usr/local/bin/compass"
+    node_bin="/usr/local/bin/node"

@@ -21,9 +21,13 @@
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
 
-{% stylesheets output="fx/2013s1/css/all.css"
-    "fx/2013s1/css/960_8_3_3.css"
-    "fx/2013s1/css/style.css"
+{% stylesheets
+    'fx/2013s1/css/960_8_3_3.css'
+    'fx/2013s1/sass/style.scss'
+
+  filter='?yui_css'
+  output='fx/cache/all_2013s1.css'
+  combine=true
 %}
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}

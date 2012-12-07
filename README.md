@@ -105,3 +105,9 @@ When editing Sass files be sure to build the `style.scss` file. You can make com
 - `style.scss` - Main stylesheet which includes _base and others
   - `payment.scss` - Styles for payment
   - ...
+
+#Assetic on locale
+
+To make all assets works locally remember to run this:
+
+`php app/console assetic:dump --env=dev_dk`
