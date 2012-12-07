@@ -345,6 +345,26 @@ class GothiaController extends CoreController
     }
 
     /**
+     * cancelAction
+     * Cancels a Gothia Payment, and restores the order in good state
+     * @return void
+     * @author Anders Bryrup <anders@bellcom.dk>
+     **/
+    public function cancelAction()
+    {
+        $translator = $this->get('translator');
+
+        $order = OrdersPeer::getCurrent();
+        $order->setState( Orders::STATE_BUILDING );
+        $order->save();
+
+        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
+
+        return $this->redirect($this->generateUrl('_checkout'));
+        
+    }
+
+    /**
      * testAction
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>

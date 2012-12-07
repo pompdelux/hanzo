@@ -38,6 +38,10 @@
         <source>json.placereservation.error</source>
         <target>Kunne ikke oprette din ordre ved Gothia</target>
       </trans-unit>
+      <trans-unit id="json_err90" approved="no">
+        <source>json.order.state_pre_payment.locked</source>
+        <target>Din ordre er under betaling. Vent venligst</target>
+      </trans-unit>
       <trans-unit id="page_txt10">
         <source>page.heading</source>
         <target>Gothia betaling</target>
@@ -58,11 +62,15 @@ Om du har varit kund hos Gothia tidigare, finns ditt personnummer sparat via dit
       </trans-unit>
       <trans-unit id="form_txt10">
         <source>form.submit_step1</source>
-        <target>Gå vidare</target>
+        <target>Gå videre</target>
       </trans-unit>
       <trans-unit id="form_txt20">
         <source>form.submit_step2</source>
-        <target>Gå vidare</target>
+        <target>Gå videre</target>
+      </trans-unit>
+      <trans-unit id="form_txt30">
+        <source>form.cancel</source>
+        <target>Afbryd betaling</target>
       </trans-unit>
       <trans-unit id="social_security_num">
         <source>social_security_num</source>
