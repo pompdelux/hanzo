@@ -81,6 +81,10 @@ assetic:
             bin: /usr/local/bin/sass
         compass:
             bin: /usr/local/bin/compass
+        yui_css:
+            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+        yui_js:
+            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
 
 swiftmailer:
     transport: '%mailer_transport%'
