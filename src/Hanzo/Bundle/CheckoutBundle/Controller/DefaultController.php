@@ -44,6 +44,7 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('basket_view'));
         }
 
+        $order->setUpdatedAt(time());
         $order->save();
 
         return $this->render('CheckoutBundle:Default:flow.html.twig', array(
@@ -554,6 +555,9 @@ Tools::log('skal ikke bruges, find ud af hvor kaldet kommer fra !');
         if (empty($attributes->global->HomePartyId)) {
             $key = str_replace('Sales', '', $domain_key);
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);
+        }
+        if (empty($attributes->global->SalesResponsible)) {
+            $key = str_replace('Sales', '', $domain_key);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);
         }
 

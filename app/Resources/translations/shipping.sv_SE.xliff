@@ -12,11 +12,11 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.30">
         <source>shipping_method.name.30</source>
-        <target>Post Danmark</target>
+        <target>Post Danmark / Posten Sverige</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.30">
         <source>shipping_method.desc.30</source>
-        <target>Post Danmark</target>
+        <target>Post Danmark / Posten Sverige</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.30">
         <source>shipping_method.label.30</source>
