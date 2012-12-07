@@ -119,26 +119,27 @@ class Hanzo
     protected function initDomain()
     {
         $check = false;
+        $settings = [];
         // if parent domain exists (consultant sites), load the parent settings first.
-        if ($this->kernel->getSetting('parent_domain_key')) {
-            $check = true;
-            $parent_domain_key = $this->kernel->getSetting('parent_domain_key');
-            $domain_key = $this->kernel->getSetting('domain_key');
-
-            $settings = DomainsSettingsQuery::create()
-                ->leftJoinWithDomains()
-                ->filterByDomainKey($parent_domain_key)
-                ->_or()
-                ->filterByDomainKey($domain_key)
-                ->addAscendingOrderByColumn(sprintf("FIELD(%s, '%s', '%s')", DomainsSettingsPeer::DOMAIN_KEY, $parent_domain_key, $domain_key))
-                ->find()
-            ;
-        } else {
-            $settings = DomainsSettingsQuery::create()
-                ->joinWithDomains()
-                ->findByDomainKey($this->kernel->getSetting('domain_key'))
-            ;
-        }
+//        if ($this->kernel->getSetting('parent_domain_key')) {
+//            $check = true;
+//            $parent_domain_key = $this->kernel->getSetting('parent_domain_key');
+//            $domain_key = $this->kernel->getSetting('domain_key');
+//
+//            $settings = DomainsSettingsQuery::create()
+//                ->leftJoinWithDomains()
+//                ->filterByDomainKey($parent_domain_key)
+//                ->_or()
+//                ->filterByDomainKey($domain_key)
+//                ->addAscendingOrderByColumn(sprintf("FIELD(%s, '%s', '%s')", DomainsSettingsPeer::DOMAIN_KEY, $parent_domain_key, $domain_key))
+//                ->find()
+//            ;
+//        } else {
+//            $settings = DomainsSettingsQuery::create()
+//                ->joinWithDomains()
+//                ->findByDomainKey($this->kernel->getSetting('domain_key'))
+//            ;
+//        }
 
         foreach ($settings as $record) {
             $this->settings[$record->getNs()][$record->getCKey()] = $record->getCValue();
