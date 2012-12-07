@@ -60,19 +60,34 @@ redis:
 - find a key: `KEYS *xx*`
 - help, well: `HELP` or go see the [docs](http://redis.io/documentation), they are great.
 
-editing styles:
+## Themes
 
 - http://sass-lang.com/
 - http://compass-style.org/
 
+Assets for themes are located under fx/THEME/
+
+Create a new theme with compass:
+- `cd fx`
+- `compass create THEME_NAME --css-dir "css" --javascripts-dir "scripts" --images-dir "images"`
+
+Dir:
+- fx/THEME/
+  - css/
+  - scripts/
+  - images/
+  - sass/
+  - config.rb
+
 Follow best practices: http://compass-style.org/help/tutorials/best_practices/
 
 When editing Sass files be sure to build the style.scss file. You can make compass watch by:
-- cd fx/[theme]/
-- compass watch
+- `cd fx/[theme]/`
+- `compass watch`
 
 Styles are grouped in seperate .scss files. e.g. Payment styles are located in payment.scss and importet in style.scss (@import "payment")
-Styles hieraki
 
 - _base.scss - Includes all globale variables and @imports
 - style.scss - Main stylesheet which includes _base and others
+  - payment.scss - Styles for payment
+  - ...
