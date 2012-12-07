@@ -95,6 +95,7 @@ class CheckoutListener
         $order->setState( Orders::STATE_PENDING );
         $order->setInEdit(false);
         $order->setSessionId($order->getId());
+        $order->setUpdatedAt(time());
         $order->save();
 
         $attributes = $order->getAttributes();
@@ -119,8 +120,7 @@ class CheckoutListener
 
         $card_type = '';
         if (isset($attributes->payment->paytype)) {
-            switch ($attributes->payment->paytype)
-            {
+            switch (strtoupper($attributes->payment->paytype)) {
                 case 'V-DK':
                     $card_type = 'VISA/DanKort';
                     break;
@@ -133,18 +133,21 @@ class CheckoutListener
                     $card_type = 'MasterCard';
                     break;
                 case 'VISA':
+                case 'VISA(SE)':
+                case 'VISA(DK)':
                     $card_type ='Visa';
                     break;
                 case 'ELEC':
                     $card_type = 'Visa Electron';
                     break;
+                case 'ABN':
+                    $card_type = 'ABN';
+                    break;
             }
         }
 
-        // hf@bellcom.dk, 13-jun-2012: hack... I'm tired -->>
-        $company_address = $this->translator->trans('store.address',array());
+        $company_address = $this->translator->trans('store.address', []);
         $company_address = str_replace( ' · ', "\n", $company_address );
-        // <<-- hf@bellcom.dk, 13-jun-2012: hack... I'm tired
 
         $event_id = isset($attributes->global->HomePartyId) ? $attributes->global->HomePartyId : '';
 
@@ -155,7 +158,7 @@ class CheckoutListener
             'delivery_address' => Tools::orderAddress('shipping', $order),
             'customer_id'      => $order->getCustomersId(),
             'order_date'       => $order->getCreatedAt('Y-m-d'),
-            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title',array(),'checkout'),
+            'payment_method'   => $this->translator->trans('payment.'. $order->getBillingMethod() .'.title', [],'checkout'),
             'shipping_title'   => $shipping_title,
             'shipping_cost'    => $shipping_cost,
             'shipping_fee'     => $shipping_fee,
@@ -163,8 +166,6 @@ class CheckoutListener
             'username'         => $order->getCustomers()->getEmail(),
             'password'         => $order->getCustomers()->getPasswordClear(),
             'event_id'         => $event_id,
-            //'transaction_id' => '',
-            //'payment_gateway_id' => '',
         );
 
         // hf@bellcom.dk, 04-sep-2012: only show if > 0 -->>
@@ -199,18 +200,17 @@ class CheckoutListener
             if ('discount' == $line->getType()) {
                 if (empty($params['hostess_discount'])) {
                     $params['hostess_discount'] = $line->getPrice();
-                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), array(), 'checkout');
+                    $params['hostess_discount_title'] = $this->translator->trans($line->getProductsSku(), [], 'checkout');
                 }
             }
 
             // or Sku == 91 ?
             if ($line->getType('payment.fee') && $line->getProductsName() == 'gothia') {
                 $params['gothia_fee'] = $line->getPrice();
-                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', array(), 'checkout');
+                $params['gothia_fee_title'] = $this->translator->trans('payment.fee.gothia.title', [], 'checkout');
 
                 // hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here -->>
-                if ( isset($params['payment_fee']) )
-                {
+                if (isset($params['payment_fee'])) {
                   unset( $params['payment_fee'] );
                 }
                 // <<-- hf@bellcom.dk, 27-aug-2012: currently payment.fee is gothia fee, so to avoid 2 lines on the confirmation mail, payment_fee is unset here

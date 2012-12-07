@@ -391,17 +391,18 @@ class DibsApi implements PaymentMethodApiInterface
             'lang'         => $lang,
             "merchant"     => $this->getMerchant(),
             "currency"     => $currency,
-            // Set in the template:
             "cancelurl"    => $this->router->generate('PaymentBundle_dibs_cancel', array(), true),
             "callbackurl"  => $this->router->generate('PaymentBundle_dibs_callback', array(), true),
             "accepturl"    => $this->router->generate('PaymentBundle_dibs_process', array( 'order_id' => $orderId ), true),
-            //"skiplastpage" => "YES",
             "uniqueoid"    => "YES",
             "paytype"      => $order->getAttributes()->payment->paytype,
             "md5key"       => $this->md5key( $orderId, $currency, $amount ),
-            //'color'        => 'gray',
-            //'decorator'    => 'Own decorator',
         );
+
+        // shortcut payment for iDeal:ABN payments (nl)
+        if ($order->getAttributes()->payment->paytype == 'ABN') {
+            $settings['decorator'] = 'rich';
+        }
 
         // Only send these fields, to many fields result in hitting a post limit or something
         $settings['delivery01.Firstname']     = $order->getBillingFirstName();
