@@ -50,7 +50,8 @@ after 'deploy:restart', 'deploy:update_permissions'
 after 'deploy:restart', 'deploy:update_permissions_shared'
 after 'deploy:restart', 'deploy:cleanup'
 after 'deploy:restart', 'deploy:send_email'
-after 'deploy:restart', 'deploy:apcclear'
+#after 'deploy:restart', 'deploy:apcclear'
+after 'deploy:cleanup', 'deploy:apcclear'
 
 # clear cache after rollback. Doesnt seem to work because it tries to clear the old current dir
 #after 'deploy:rollback', 'symfony:cache:clear'
@@ -88,11 +89,11 @@ namespace :deploy do
   end
   desc "Send email after deploy"
   task :send_email do
-    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.com mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.com -c lv@pompdelux.com mmh@bellcom.dk"
   end
   desc "Send email after rollback"
   task :send_email_rollback do
-    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo #{branch} rolled back' -c hd@pompdelux.com mmh@bellcom.dk"
+    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo #{branch} rolled back' -c hd@pompdelux.com -c lv@pompdelux.com mmh@bellcom.dk"
   end
   desc "Rollback warning"
   task :rollback_warning do
