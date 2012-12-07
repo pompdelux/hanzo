@@ -1,14 +1,14 @@
 [symfony]
     git=http://github.com/symfony/symfony.git
-    version=v2.0.10
+    version=v2.0.19
 
 [twig]
     git=http://github.com/fabpot/Twig.git
-    version=v1.6.0
+    version=v1.10.3
 
 [monolog]
     git=http://github.com/Seldaek/monolog.git
-    version=1.0.2
+    version=1.2.1
 
 [doctrine-common]
     git=http://github.com/doctrine/common.git
@@ -16,18 +16,19 @@
 
 [doctrine]
     git=http://github.com/doctrine/doctrine2.git
-    version=2.1.6
+    version=2.1.7
 
 [swiftmailer]
     git=http://github.com/swiftmailer/swiftmailer.git
-    version=v4.1.5
+    version=v4.2.2
 
 [assetic]
     git=http://github.com/kriswallsmith/assetic.git
-    version=v1.0.2
+    version=v1.0.4
 
 [twig-extensions]
     git=http://github.com/fabpot/Twig-extensions.git
+    version=v1.0.0-alpha
 
 [metadata]
     git=http://github.com/schmittjoh/metadata.git
@@ -56,7 +57,7 @@
 [AsseticBundle]
     git=http://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
-    version=v1.0.1
+    version=origin/2.0
 
 [PropelBundle]
     git=https://github.com/propelorm/PropelBundle.git
@@ -87,6 +88,7 @@
 [SimpleThingsFormExtraBundle]
     git=https://github.com/simplethings/SimpleThingsFormExtraBundle.git
     target=/bundles/SimpleThings/FormExtraBundle
+    version=v0.1
 
 [Smesg]
     git=git@github.com:mrbase/Smesg.git
