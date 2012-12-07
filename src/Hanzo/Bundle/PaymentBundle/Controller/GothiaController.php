@@ -238,6 +238,14 @@ class GothiaController extends CoreController
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
 
+        if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
+        {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.order.state_pre_payment.locked', array(), 'gothia'),
+            ));
+        }
+
         // Handle reservations in Gothia when editing the order
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
         // it will fail because we have not removed the old reservation first, this should fix it
@@ -342,6 +350,25 @@ class GothiaController extends CoreController
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
+    }
+
+    /**
+     * cancelAction
+     * Cancels a Gothia Payment, and restores the order in good state
+     * @return void
+     * @author Anders Bryrup <anders@bellcom.dk>
+     **/
+    public function cancelAction()
+    {
+        $translator = $this->get('translator');
+
+        $order = OrdersPeer::getCurrent();
+        $order->setState( Orders::STATE_BUILDING );
+        $order->save();
+
+        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
+
+        return $this->redirect($this->generateUrl('_checkout'));
     }
 
     /**
