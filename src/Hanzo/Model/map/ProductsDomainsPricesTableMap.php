@@ -21,44 +21,44 @@ use \TableMap;
 class ProductsDomainsPricesTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.ProductsDomainsPricesTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.ProductsDomainsPricesTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('products_domains_prices');
-		$this->setPhpName('ProductsDomainsPrices');
-		$this->setClassname('Hanzo\\Model\\ProductsDomainsPrices');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
-		$this->addForeignPrimaryKey('DOMAINS_ID', 'DomainsId', 'INTEGER' , 'domains', 'ID', true, null, null);
-		$this->addColumn('PRICE', 'Price', 'DECIMAL', true, 15, null);
-		$this->addColumn('VAT', 'Vat', 'DECIMAL', true, 15, null);
-		$this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
-		$this->addPrimaryKey('FROM_DATE', 'FromDate', 'TIMESTAMP', true, null, null);
-		$this->addColumn('TO_DATE', 'ToDate', 'TIMESTAMP', false, null, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('products_domains_prices');
+        $this->setPhpName('ProductsDomainsPrices');
+        $this->setClassname('Hanzo\\Model\\ProductsDomainsPrices');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addForeignPrimaryKey('products_id', 'ProductsId', 'INTEGER' , 'products', 'id', true, null, null);
+        $this->addForeignPrimaryKey('domains_id', 'DomainsId', 'INTEGER' , 'domains', 'id', true, null, null);
+        $this->addColumn('price', 'Price', 'DECIMAL', true, 15, null);
+        $this->addColumn('vat', 'Vat', 'DECIMAL', true, 15, null);
+        $this->addColumn('currency_id', 'CurrencyId', 'INTEGER', true, null, null);
+        $this->addPrimaryKey('from_date', 'FromDate', 'TIMESTAMP', true, null, null);
+        $this->addColumn('to_date', 'ToDate', 'TIMESTAMP', false, null, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), 'CASCADE', null);
-		$this->addRelation('Domains', 'Hanzo\\Model\\Domains', RelationMap::MANY_TO_ONE, array('domains_id' => 'id', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Domains', 'Hanzo\\Model\\Domains', RelationMap::MANY_TO_ONE, array('domains_id' => 'id', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // ProductsDomainsPricesTableMap

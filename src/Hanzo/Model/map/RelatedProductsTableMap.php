@@ -21,39 +21,39 @@ use \TableMap;
 class RelatedProductsTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.RelatedProductsTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.RelatedProductsTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('related_products');
-		$this->setPhpName('RelatedProducts');
-		$this->setClassname('Hanzo\\Model\\RelatedProducts');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addForeignPrimaryKey('MASTER', 'Master', 'VARCHAR' , 'products', 'SKU', true, 128, null);
-		$this->addForeignPrimaryKey('SKU', 'Sku', 'VARCHAR' , 'products', 'SKU', true, 128, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('related_products');
+        $this->setPhpName('RelatedProducts');
+        $this->setClassname('Hanzo\\Model\\RelatedProducts');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addForeignPrimaryKey('master', 'Master', 'VARCHAR' , 'products', 'sku', true, 128, null);
+        $this->addForeignPrimaryKey('sku', 'Sku', 'VARCHAR' , 'products', 'sku', true, 128, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('ProductsRelatedByMaster', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), 'CASCADE', null);
-		$this->addRelation('ProductsRelatedBySku', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('sku' => 'sku', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('ProductsRelatedByMaster', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), 'CASCADE', null);
+        $this->addRelation('ProductsRelatedBySku', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('sku' => 'sku', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // RelatedProductsTableMap

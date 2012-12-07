@@ -21,38 +21,38 @@ use \TableMap;
 class HelpdeskDataLogTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.HelpdeskDataLogTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.HelpdeskDataLogTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('helpdesk_data_log');
-		$this->setPhpName('HelpdeskDataLog');
-		$this->setClassname('Hanzo\\Model\\HelpdeskDataLog');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addPrimaryKey('KEY', 'Key', 'VARCHAR', true, 64, null);
-		$this->addColumn('DATA', 'Data', 'CLOB', true, null, null);
-		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('helpdesk_data_log');
+        $this->setPhpName('HelpdeskDataLog');
+        $this->setClassname('Hanzo\\Model\\HelpdeskDataLog');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addPrimaryKey('key', 'Key', 'VARCHAR', true, 64, null);
+        $this->addColumn('data', 'Data', 'CLOB', true, null, null);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+    } // buildRelations()
 
 } // HelpdeskDataLogTableMap
