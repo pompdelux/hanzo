@@ -10,7 +10,7 @@ First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/refere
 3. Java must be installed (to compile compressed js and css files - we use yuicompressor)
 4. Apache must be setup with mod_rewrite
 5. Apc for php is also a must-have module.
-6. Compass and Sass (http://compass-style.org/install/)
+6. Compass and Sass [compass](http://compass-style.org/install/)
 
 
 ## Install:
@@ -79,15 +79,17 @@ Dir:
   - sass/
   - config.rb
 
-Follow best practices: http://compass-style.org/help/tutorials/best_practices/
+Follow the [best practices](http://compass-style.org/help/tutorials/best_practices/)
 
-When editing Sass files be sure to build the style.scss file. You can make compass watch by:
+When editing Sass files be sure to build the `style.scss` file. You can make compass watch by:
 - `cd fx/[theme]/`
 - `compass watch`
 
-Styles are grouped in seperate .scss files. e.g. Payment styles are located in payment.scss and importet in style.scss (@import "payment")
+--
 
-- _base.scss - Includes all globale variables and @imports
-- style.scss - Main stylesheet which includes _base and others
-  - payment.scss - Styles for payment
+Styles are grouped in seperate `.scss` files. e.g. Payment styles are located in payment.scss and importet in `style.scss` (@import "payment")
+
+- `_base.scss` - Includes all globale variables and @imports
+- `style.scss` - Main stylesheet which includes _base and others
+  - `payment.scss` - Styles for payment
   - ...
