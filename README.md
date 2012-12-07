@@ -62,8 +62,8 @@ redis:
 
 ## Themes
 
-- http://sass-lang.com/
-- http://compass-style.org/
+- [Sass](http://sass-lang.com/)
+- [Compass](http://compass-style.org/)
 
 Assets for themes are located under `fx/THEME/`
 
@@ -75,20 +75,20 @@ Create a new theme with compass:
 
 Styles are grouped in seperate `.scss` files. e.g. Payment styles are located in `_payment.scss` and importet in `style.scss` (@import "payment"). All sub `.scss` files which should be imported into another instead of being a independet css file, should be prepended with a `_` like `_account.scss`. This way they wont be compiled themself.
 
-The directory of a theme will look like this (note that compass only generates the `sass` and `css` folders):
+The directory of a theme will look like this when built with compass (note that compass only generates the `sass` and `css` folders):
 
 - `fx/THEME/`
   - `css/`
-    - `style.scss`
-    - `ie.css`
+     - `style.scss`
+     - `ie.css`
   - `scripts/`
   - `images/`
   - `sass/`
-    - `_base.scss`
-    - `_header.scss`
-    - `_footer.scss`
-    - `ie.scss`
-    - `style.scss`
+     - `_base.scss`
+     - `_header.scss`
+     - `_footer.scss`
+     - `ie.scss`
+     - `style.scss`
   - `config.rb`
 
 Follow the [best practices](http://compass-style.org/help/tutorials/best_practices/)
