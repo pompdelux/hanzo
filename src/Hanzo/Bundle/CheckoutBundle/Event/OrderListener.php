@@ -7,8 +7,7 @@ use Hanzo\Model\Orders;
 use Hanzo\Bundle\ServiceBundle\Services\AxService;
 
 use Symfony\Component\HttpFoundation\Session;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderListener
 {
@@ -32,6 +31,12 @@ class OrderListener
     {
         $order = $event->getOrder();
 
+        // if we are unable to lock the order, we should not allow edits to start.
+        if (!$this->ax->lockUnlockSalesOrder($order, true)) {
+            $event->setStatus(false, 'unable.to.lock.order');
+            return;
+        }
+
         $this->setEditCookie(true, substr($order->getAttributes()->global->domain_key, 0, 5));
 
         // first we create the edit version.
@@ -44,13 +49,14 @@ class OrderListener
         $order->setInEdit(true);
         $order->setBillingMethod(null);
         $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
+        $order->setUpdatedAt(time());
         $order->save();
 
         $this->session->set('in_edit', true);
         $this->session->set('order_id', $order->getId());
         $this->session->save();
 
-        $this->ax->lockUnlockSalesOrder($order, true);
+        $event->setStatus(true);
     }
 
     public function onEditCancel(FilterOrderEvent $event)

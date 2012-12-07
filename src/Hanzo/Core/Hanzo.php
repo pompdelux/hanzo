@@ -140,7 +140,7 @@ class Hanzo
 //                ->findByDomainKey($this->kernel->getSetting('domain_key'))
 //            ;
 //        }
-//
+
         foreach ($settings as $record) {
             $this->settings[$record->getNs()][$record->getCKey()] = $record->getCValue();
         }

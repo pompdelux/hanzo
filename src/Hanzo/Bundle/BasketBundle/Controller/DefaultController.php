@@ -72,6 +72,7 @@ class DefaultController extends CoreController
             $order->setOrderLineQty($product, $quantity, false, $date);
 
             if ($order->validate()) {
+                $order->setUpdatedAt(time());
                 $order->save();
 
                 $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
@@ -175,6 +176,7 @@ class DefaultController extends CoreController
 
         if ($product_found) {
             $order->setOrdersLiness($order_lines);
+            $order->setUpdatedAt(time());
             $order->save();
 
             $data = array(
@@ -322,6 +324,7 @@ class DefaultController extends CoreController
 
             if (!$products2category) {
                 Tools::log($locale.' -> '.$line['products_name']);
+                continue;
             }
 
             $line['expected_at'] = new \DateTime($line['expected_at']);

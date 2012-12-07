@@ -780,7 +780,7 @@
 })(document, jQuery);
 
 function helpdesk_open (key) {
-  var pptable = prettyPrint($.parseJSON(key), { maxDepth : 5 });
+  var pptable = prettyPrint($.parseJSON(key), { maxDepth : 6 });
   var defaults = {
     'close' : ExposeTranslation.get('js:close'),
     'overlayClose' : true,

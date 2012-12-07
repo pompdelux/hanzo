@@ -11,6 +11,7 @@ namespace Hanzo\Core;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 use Predis\Network\ConnectionException as PredisConnectionException;
@@ -45,10 +46,10 @@ class ExceptionHandler
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
+        $request = $this->service_container->get('request');
 
         // 404 hangeling
         if ($exception instanceof NotFoundHttpException) {
-            $request = $this->service_container->get('request');
             $path = $request->getPathInfo();
 
             // attempt to fix images in old newsletters. Redirect to static
@@ -86,6 +87,15 @@ class ExceptionHandler
                 }
             }
 
+        } elseif ($exception instanceof RouteNotFoundException) {
+            Tools::log($exception->getMessage() . ' :: ' . $request->getPathInfo());
+
+            $response = new Response($this->service_container->get('templating')->render('TwigBundle:Exception:error404.html.twig', array(
+                'exception' => $exception
+            )));
+
+            $event->setResponse($response);
+
         } elseif ($exception instanceof AccessDeniedHttpException) {
             $request = $this->service_container->get('request');
             $pathWithNoLocale = substr($request->getPathInfo(),6);
@@ -94,10 +104,6 @@ class ExceptionHandler
                 case '/account': // The customer probably tried to created an account on the wrong locale
                     $response = new Response('', 302, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/login'));
                     $event->setResponse($response);
-                    break;
-
-                default:
-                    // code...
                     break;
             }
 

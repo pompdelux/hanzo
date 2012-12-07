@@ -375,7 +375,11 @@
       </trans-unit>
 	   <trans-unit id="payment.dibs.paytype.ideal">
          <source>payment.dibs.paytype.ideal</source>
-         <target>Ideal</target>
+         <target>iDEAL/ABN</target>
+      </trans-unit>
+	  <trans-unit id="order.state_pre_payment.locked">
+        <source>order.state_pre_payment.locked</source>
+        <target>Je order wordt nu behandeld. Je kunt je order pas weer bewerken als de betaling ervan is goedgekeurd.</target>
       </trans-unit>
     </body>
   </file>

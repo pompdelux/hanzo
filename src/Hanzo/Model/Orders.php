@@ -1270,7 +1270,7 @@ class Orders extends BaseOrders
 
         if ('COM' == $hanzo->get('core.domain_key')) {
             $country = $this->getCountriesRelatedByBillingCountriesId();
-            if ($country->getVat()) {
+            if ($country && $country->getVat()) {
                 return;
             }
 

@@ -43,7 +43,7 @@ class ProxyUser implements AdvancedUserInterface
         'hd@pompdelux.dk',
         'lv@pompdelux.dk',
         'hf@bellcom.dk',
-        'un@bellcom.dk',
+        'ulrik@bellcom.dk',
         'mmh@bellcom.dk',
         'andersbryrup@gmail.com',
         'hanzo@bellcom.dk',

@@ -702,21 +702,12 @@ class ProductsController extends CoreController
             ->find($this->getDbConnection())
         ;
 
-        // $stocks = ProductsStockQuery::create()
-        //     ->useProductsQuery()
-        //         ->orderBySku()
-        //     ->endUse()
-        //     ->joinWithProducts()
-        //     ->withColumn('SUM(products_stock.quantity)', 'totalstock')
-        //     ->groupByProductsId()
-        //     ->find($this->getDbConnection())
-        // ;
-
         $stock_data = array();
         $stock_data[0] = array('SKU','STOCK');
 
         foreach ($stocks as $stock) {
-            $stock_data[] = array($stock->getSku(), $stock->getVirtualColumn('totalstock'));
+            $s = $stock->getVirtualColumn('totalstock') ?: 0;
+            $stock_data[] = array($stock->getSku(), $s);
         }
 
         return new Response(
