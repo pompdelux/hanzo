@@ -71,7 +71,7 @@
         <source>form.submit_step2</source>
         <target>Gå videre</target>
       </trans-unit>
-      <trans-unit id="form_txt30">
+      <trans-unit id="form_txt30" approved="no">
         <source>form.cancel</source>
         <target>Afbryd betaling</target>
       </trans-unit>
