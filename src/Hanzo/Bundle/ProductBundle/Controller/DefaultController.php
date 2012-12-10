@@ -9,7 +9,6 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
-use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsStockPeer;
@@ -80,19 +79,20 @@ class DefaultController extends CoreController
             $product_ids = array();
 
             // find the sizes and colors on stock
+            // find the sizes and colors on stock
             if (!$product->getIsOutOfStock()) {
                 $variants = ProductsQuery::create()->findByMaster($product->getSku());
 
                 foreach ($variants as $v) {
-                    $product_ids[] = $v['Id'];
+                    $product_ids[] = $v->getId();
                 }
 
                 $stock = $this->get('stock');
                 $stock->prime($product_ids);
                 foreach ($variants as $v) {
-                    if ($stock->check($v['Id'])) {
-                        $colors[$v['Color']] = $v['Color'];
-                        $sizes[$v['Size']] = $v['Size'];
+                    if ($stock->check($v->getId())) {
+                        $colors[$v->getColor()] = $v->getColor();
+                        $sizes[$v->getSize()] = $v->getSize();
                     }
                 }
 
