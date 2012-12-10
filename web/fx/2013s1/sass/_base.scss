@@ -4,6 +4,10 @@ $font-color             : #333;
 @import "compass/reset";
 @import "compass/utilities";
 
+
+//@import "sprite/*.png"; 
+//@include all-sprite-sprites; // Generates a sprite from all images inside the folder
+
 /**
 |
 | Base styles
