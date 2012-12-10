@@ -9,6 +9,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
+use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsStockPeer;
