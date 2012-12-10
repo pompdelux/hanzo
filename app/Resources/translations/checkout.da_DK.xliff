@@ -305,6 +305,10 @@
         <source>payment.fee.gothia.title</source>
         <target>Gothia faktura avgift</target>
       </trans-unit>
+      <trans-unit id="confirm.payment.fee">
+        <source>confirm.payment.fee</source>
+        <target>Betalingsafgift</target>
+      </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
         <target>Dibs</target>

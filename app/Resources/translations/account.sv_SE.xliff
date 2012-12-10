@@ -389,7 +389,7 @@
             </trans-unit>
             <trans-unit id="unable.to.lock.order" approved="no">
                 <source>unable.to.lock.order</source>
-                <target>The order could not be locked for editing, please try agian later.</target>
+                <target>Ordern kan inte redigeras just nu. Försök igen senare. </target>
             </trans-unit>
         </body>
     </file>
