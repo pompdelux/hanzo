@@ -21,41 +21,41 @@ use \TableMap;
 class CategoriesI18nTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.CategoriesI18nTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.CategoriesI18nTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('categories_i18n');
-		$this->setPhpName('CategoriesI18n');
-		$this->setClassname('Hanzo\\Model\\CategoriesI18n');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'categories', 'ID', true, null, null);
-		$this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'da_DK');
-		$this->addColumn('TITLE', 'Title', 'VARCHAR', true, 255, null);
-		$this->getColumn('TITLE', false)->setPrimaryString(true);
-		$this->addColumn('CONTENT', 'Content', 'LONGVARCHAR', false, null, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('categories_i18n');
+        $this->setPhpName('CategoriesI18n');
+        $this->setClassname('Hanzo\\Model\\CategoriesI18n');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'categories', 'id', true, null, null);
+        $this->addPrimaryKey('locale', 'Locale', 'VARCHAR', true, 5, 'da_DK');
+        $this->addColumn('title', 'Title', 'VARCHAR', true, 255, null);
+        $this->getColumn('title', false)->setPrimaryString(true);
+        $this->addColumn('content', 'Content', 'LONGVARCHAR', false, null, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Categories', 'Hanzo\\Model\\Categories', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Categories', 'Hanzo\\Model\\Categories', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // CategoriesI18nTableMap

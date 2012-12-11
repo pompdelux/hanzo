@@ -21,40 +21,40 @@ use \TableMap;
 class OrdersVersionsTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.OrdersVersionsTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.OrdersVersionsTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('orders_versions');
-		$this->setPhpName('OrdersVersions');
-		$this->setClassname('Hanzo\\Model\\OrdersVersions');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addForeignPrimaryKey('ORDERS_ID', 'OrdersId', 'INTEGER' , 'orders', 'ID', true, null, null);
-		$this->addPrimaryKey('VERSION_ID', 'VersionId', 'INTEGER', true, null, null);
-		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
-		$this->addColumn('CONTENT', 'Content', 'CLOB', true, null, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('orders_versions');
+        $this->setPhpName('OrdersVersions');
+        $this->setClassname('Hanzo\\Model\\OrdersVersions');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addForeignPrimaryKey('orders_id', 'OrdersId', 'INTEGER' , 'orders', 'id', true, null, null);
+        $this->addPrimaryKey('version_id', 'VersionId', 'INTEGER', true, null, null);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
+        $this->addColumn('content', 'Content', 'CLOB', true, null, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::MANY_TO_ONE, array('orders_id' => 'id', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::MANY_TO_ONE, array('orders_id' => 'id', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // OrdersVersionsTableMap

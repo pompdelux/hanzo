@@ -21,43 +21,43 @@ use \TableMap;
 class ZipToCityTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.ZipToCityTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.ZipToCityTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('zip_to_city');
-		$this->setPhpName('ZipToCity');
-		$this->setClassname('Hanzo\\Model\\ZipToCity');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(true);
-		// columns
-		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-		$this->addColumn('ZIP', 'Zip', 'VARCHAR', true, 12, null);
-		$this->addForeignKey('COUNTRIES_ISO2', 'CountriesIso2', 'VARCHAR', 'countries', 'ISO2', true, 2, null);
-		$this->addColumn('CITY', 'City', 'VARCHAR', true, 128, null);
-		$this->addColumn('COUNTY_ID', 'CountyId', 'VARCHAR', false, 12, null);
-		$this->addColumn('COUNTY_NAME', 'CountyName', 'VARCHAR', false, 128, null);
-		$this->addColumn('COMMENT', 'Comment', 'VARCHAR', false, 255, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('zip_to_city');
+        $this->setPhpName('ZipToCity');
+        $this->setClassname('Hanzo\\Model\\ZipToCity');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(true);
+        // columns
+        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('zip', 'Zip', 'VARCHAR', true, 12, null);
+        $this->addForeignKey('countries_iso2', 'CountriesIso2', 'VARCHAR', 'countries', 'iso2', true, 2, null);
+        $this->addColumn('city', 'City', 'VARCHAR', true, 128, null);
+        $this->addColumn('county_id', 'CountyId', 'VARCHAR', false, 12, null);
+        $this->addColumn('county_name', 'CountyName', 'VARCHAR', false, 128, null);
+        $this->addColumn('comment', 'Comment', 'VARCHAR', false, 255, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Countries', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('countries_iso2' => 'iso2', ), null, null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Countries', 'Hanzo\\Model\\Countries', RelationMap::MANY_TO_ONE, array('countries_iso2' => 'iso2', ), null, null);
+    } // buildRelations()
 
 } // ZipToCityTableMap

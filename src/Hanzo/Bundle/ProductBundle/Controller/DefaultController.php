@@ -79,7 +79,6 @@ class DefaultController extends CoreController
             $product_ids = array();
 
             // find the sizes and colors on stock
-            // find the sizes and colors on stock
             if (!$product->getIsOutOfStock()) {
                 $variants = ProductsQuery::create()->findByMaster($product->getSku());
 

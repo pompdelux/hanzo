@@ -119,6 +119,7 @@ class Hanzo
     protected function initDomain()
     {
         $check = false;
+        $settings = [];
         // if parent domain exists (consultant sites), load the parent settings first.
         if ($this->kernel->getSetting('parent_domain_key')) {
             $check = true;

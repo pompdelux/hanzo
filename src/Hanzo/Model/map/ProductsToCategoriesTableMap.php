@@ -21,39 +21,39 @@ use \TableMap;
 class ProductsToCategoriesTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.ProductsToCategoriesTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.ProductsToCategoriesTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('products_to_categories');
-		$this->setPhpName('ProductsToCategories');
-		$this->setClassname('Hanzo\\Model\\ProductsToCategories');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
-		$this->addForeignPrimaryKey('CATEGORIES_ID', 'CategoriesId', 'INTEGER' , 'categories', 'ID', true, null, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('products_to_categories');
+        $this->setPhpName('ProductsToCategories');
+        $this->setClassname('Hanzo\\Model\\ProductsToCategories');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addForeignPrimaryKey('products_id', 'ProductsId', 'INTEGER' , 'products', 'id', true, null, null);
+        $this->addForeignPrimaryKey('categories_id', 'CategoriesId', 'INTEGER' , 'categories', 'id', true, null, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), 'CASCADE', null);
-		$this->addRelation('Categories', 'Hanzo\\Model\\Categories', RelationMap::MANY_TO_ONE, array('categories_id' => 'id', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('products_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Categories', 'Hanzo\\Model\\Categories', RelationMap::MANY_TO_ONE, array('categories_id' => 'id', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // ProductsToCategoriesTableMap

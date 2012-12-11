@@ -21,43 +21,43 @@ use \TableMap;
 class MannequinImagesTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.MannequinImagesTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.MannequinImagesTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('mannequin_images');
-		$this->setPhpName('MannequinImages');
-		$this->setClassname('Hanzo\\Model\\MannequinImages');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addForeignPrimaryKey('MASTER', 'Master', 'VARCHAR' , 'products', 'SKU', true, 128, null);
-		$this->addPrimaryKey('COLOR', 'Color', 'VARCHAR', true, 32, null);
-		$this->addColumn('LAYER', 'Layer', 'INTEGER', true, null, null);
-		$this->addColumn('IMAGE', 'Image', 'VARCHAR', true, 128, null);
-		$this->addColumn('ICON', 'Icon', 'VARCHAR', true, 128, null);
-		$this->addColumn('WEIGHT', 'Weight', 'INTEGER', true, null, 0);
-		$this->addColumn('IS_MAIN', 'IsMain', 'BOOLEAN', true, 1, false);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('mannequin_images');
+        $this->setPhpName('MannequinImages');
+        $this->setClassname('Hanzo\\Model\\MannequinImages');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addForeignPrimaryKey('master', 'Master', 'VARCHAR' , 'products', 'sku', true, 128, null);
+        $this->addPrimaryKey('color', 'Color', 'VARCHAR', true, 32, null);
+        $this->addColumn('layer', 'Layer', 'INTEGER', true, null, null);
+        $this->addColumn('image', 'Image', 'VARCHAR', true, 128, null);
+        $this->addColumn('icon', 'Icon', 'VARCHAR', true, 128, null);
+        $this->addColumn('weight', 'Weight', 'INTEGER', true, null, 0);
+        $this->addColumn('is_main', 'IsMain', 'BOOLEAN', true, 1, false);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Products', 'Hanzo\\Model\\Products', RelationMap::MANY_TO_ONE, array('master' => 'sku', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // MannequinImagesTableMap

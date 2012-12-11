@@ -21,41 +21,41 @@ use \TableMap;
 class MessagesI18nTableMap extends TableMap
 {
 
-	/**
-	 * The (dot-path) name of this class
-	 */
-	const CLASS_NAME = 'src.Hanzo.Model.map.MessagesI18nTableMap';
+    /**
+     * The (dot-path) name of this class
+     */
+    const CLASS_NAME = 'src.Hanzo.Model.map.MessagesI18nTableMap';
 
-	/**
-	 * Initialize the table attributes, columns and validators
-	 * Relations are not initialized by this method since they are lazy loaded
-	 *
-	 * @return     void
-	 * @throws     PropelException
-	 */
-	public function initialize()
-	{
-		// attributes
-		$this->setName('messages_i18n');
-		$this->setPhpName('MessagesI18n');
-		$this->setClassname('Hanzo\\Model\\MessagesI18n');
-		$this->setPackage('src.Hanzo.Model');
-		$this->setUseIdGenerator(false);
-		// columns
-		$this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'messages', 'ID', true, null, null);
-		$this->addPrimaryKey('LOCALE', 'Locale', 'VARCHAR', true, 5, 'da_DK');
-		$this->addColumn('SUBJECT', 'Subject', 'VARCHAR', true, 255, null);
-		$this->getColumn('SUBJECT', false)->setPrimaryString(true);
-		$this->addColumn('BODY', 'Body', 'LONGVARCHAR', false, null, null);
-		// validators
-	} // initialize()
+    /**
+     * Initialize the table attributes, columns and validators
+     * Relations are not initialized by this method since they are lazy loaded
+     *
+     * @return void
+     * @throws PropelException
+     */
+    public function initialize()
+    {
+        // attributes
+        $this->setName('messages_i18n');
+        $this->setPhpName('MessagesI18n');
+        $this->setClassname('Hanzo\\Model\\MessagesI18n');
+        $this->setPackage('src.Hanzo.Model');
+        $this->setUseIdGenerator(false);
+        // columns
+        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'messages', 'id', true, null, null);
+        $this->addPrimaryKey('locale', 'Locale', 'VARCHAR', true, 5, 'da_DK');
+        $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
+        $this->getColumn('subject', false)->setPrimaryString(true);
+        $this->addColumn('body', 'Body', 'LONGVARCHAR', false, null, null);
+        // validators
+    } // initialize()
 
-	/**
-	 * Build the RelationMap objects for this table relationships
-	 */
-	public function buildRelations()
-	{
-		$this->addRelation('Messages', 'Hanzo\\Model\\Messages', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
-	} // buildRelations()
+    /**
+     * Build the RelationMap objects for this table relationships
+     */
+    public function buildRelations()
+    {
+        $this->addRelation('Messages', 'Hanzo\\Model\\Messages', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
+    } // buildRelations()
 
 } // MessagesI18nTableMap
