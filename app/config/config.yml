@@ -147,6 +147,14 @@ cms:
             type: sub
             from: 400
             offset: 482
+        footer1_menu:
+            type: footer1
+            from: 400
+            offset: 482
+        footer2_menu:
+            type: footer2
+            from: 400
+            offset: 482
 
 
 # @see https://github.com/liip/LiipThemeBundle

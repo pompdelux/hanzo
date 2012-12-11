@@ -50,13 +50,13 @@
     <a href="{{ path('_homepage', {'_locale' : app.session.locale}) }}" title="{{ "home"|trans }}">
       {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
     </a>
-    <div class="menu horizontal main-menu">
-      {% render 'CMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
-    </div>
+    <nav class="main menu main-menu horizontal">
+      {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
+    </nav><!-- /nav.main -->
   </header>
 
   <div id="main" role="main">
-
+    {% render 'CMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {# if app.session.get('in_edit') %}
       {{ 'order.edit.global.notice'|trans({
         '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
@@ -69,24 +69,22 @@
 
   </div><!-- /div#main -->
 
-  <nav class="main">
-    {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
-  </nav><!-- /nav.main -->
-
   <aside id="secondary-links">
     <ul class="horizontal menu">
       <li><a href="{{ path('_account', {'_locale' : app.session.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       <li id="select-domain">
         <a class="open-menu" href="#">Change Country</a>
-        <div style="display: none">
+        <div class="dropdown" style="display: none">
           <a href="{{ baseurl }}/da_DK/">Denmark</a><br><br>
-	      <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
+        <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
           <a href="{{ baseurl }}/en_GB/">International</a><br><br>
           <a href="{{ baseurl }}/nl_NL/">Netherlands</a><br><br>
-	      <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
+        <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
           <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
         </div>
       </li>
+    </ul>
+    <ul class="horizontal menu">
       <li>
       	<form action="#" class="search-form">
       		<input type="text" placeholder="TODO edit placeholder">
@@ -101,8 +99,22 @@
   </aside>
 </div>
 
-<footer>
-  {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
+<footer class="container container_8">
+    <div class="grid_2 alpha">
+      {% render 'CMSBundle:Menu:menu' with {'type': footer1_menu.type, 'from': footer1_menu.from, 'thread': footer1_menu.thread, 'offset': footer1_menu.offset } %}
+    </div>
+    <div class="grid_2">
+      {% render 'CMSBundle:Menu:menu' with {'type': footer2_menu.type, 'from': footer2_menu.from, 'thread': footer2_menu.thread, 'offset': footer2_menu.offset } %}
+    </div>
+    <div class="grid_2">
+      {% render 'CMSBundle:Menu:menu' with {'type': footer2_menu.type, 'from': footer2_menu.from, 'thread': footer2_menu.thread, 'offset': footer2_menu.offset } %}
+    </div>
+    <div class="grid_2 omega">
+      {% render 'NewsletterBundle:Default:block' %}
+    </div>
+  <div class="copy grid_8">
+    {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
+  </div>
 </footer>
 
 <script type="text/javascript">
@@ -114,6 +126,59 @@
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
 
+
+{% javascripts
+  'fx/scripts/jquery.min.js'
+  'fx/scripts/jquery.tools.min.js'
+  'fx/scripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js'
+  'fx/scripts/colorbox/colorbox/jquery.colorbox.js'
+  'fx/scripts/zoom/jquery.zoom.js'
+  'fx/scripts/accounting/accounting.min.js'
+  'fx/scripts/jquery.formparams.js'
+
+  'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
+  'fx/scripts/countdown/jquery.countdown.js'
+  'fx/scripts/countdown/jquery.countdown-da.js'
+  'fx/scripts/countdown/jquery.countdown-nb.js'
+  'fx/scripts/countdown/jquery.countdown-sv.js'
+  'fx/scripts/countdown/jquery.countdown-fi.js'
+  'fx/scripts/countdown/jquery.countdown-nl.js'
+  'fx/scripts/video-js/video.js'
+  'fx/scripts/history.js/scripts/bundled/html4+html5/jquery.history.js'
+
+  'fx/scripts/jaiks/jaiks.min.js'
+  'fx/scripts/yatzy.js'
+  'fx/scripts/dialoug.js'
+  'fx/scripts/colorbox.js'
+  'fx/scripts/flowplayer.js'
+  'fx/scripts/video.js'
+
+  'fx/scripts/category.js'
+  'fx/scripts/product.js'
+  'fx/scripts/cart.js'
+  'fx/scripts/account.js'
+  'fx/2013s1/scripts/main.js'
+  'fx/scripts/checkout.js'
+  'fx/scripts/dibs-process.js'
+  'fx/scripts/wall.js'
+  'fx/scripts/events.js'
+  'fx/scripts/quickorder.js'
+
+  'fx/scripts/newsletter.js'
+
+  'fx/scripts/gothia.js'
+  'fx/scripts/maps.js'
+  'fx/scripts/search.js'
+  'fx/scripts/mannequin.js'
+  'fx/scripts/faq.js'
+
+  'fx/scripts/oldie.js'
+  filter='?yui_js'
+  output='fx/cache/all.js'
+  combine=true
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 {% block javascript %}
 {% endblock %}
 

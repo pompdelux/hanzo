@@ -1,12 +1,13 @@
 // Base
 $font-color             : #333;
+$font-size              : 12px;
 
 @import "compass/reset";
 @import "compass/utilities";
 
 
-//@import "sprite/*.png"; 
-//@include all-sprite-sprites; // Generates a sprite from all images inside the folder
+@import "sprite/*.png"; 
+@include all-sprite-sprites; // Generates a sprite from all images inside the folder
 
 /**
 |

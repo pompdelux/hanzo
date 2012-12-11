@@ -15,14 +15,40 @@ ul.horizontal,
 }
 
 // All menus
+nav > ul,
 ul.menu,
 .menu > ul{
-	font-size: 12px;
-	a{
-		text-decoration: none;
-		&:hover{
-			text-decoration: underline;
+	font-size: $font-size;
+	color:$font-color;
+	li {
+		position: relative;
+		a{
+			color:$font-color;
+			text-decoration: none;
+			&:hover{
+				text-decoration: underline;
+			}
 		}
+	}
+	li:hover ul,
+	li:hover div{
+		left: 0;
+	}
+	li ul,
+	li div {
+		position: absolute;
+		left: -9999px;
+		z-index: 100;
+	}
+	li ul li a {
+		display: block;
+		position: relative;
+		z-index:100;
+	}
+
+	.dropdown{
+		position: absolute;
+		background: white;
 	}
 }
 
@@ -32,6 +58,13 @@ nav.main{
 		padding: 2px 16px 0 0;
 		a{
 			text-transform: uppercase;
+		}
+
+		ul{
+			padding: 20px;
+			li{
+				padding: 5px 0;
+			}
 		}
 	}
 }
