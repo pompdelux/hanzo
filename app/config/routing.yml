@@ -101,6 +101,10 @@ _splash:
         template: CMSBundle:Default:splash.html.twig
 
 
+liip_theme:
+    resource: "@LiipThemeBundle/Resources/config/routing.xml"
+    prefix: /{_locale}/theme
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
