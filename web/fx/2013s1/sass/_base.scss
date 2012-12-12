@@ -2,6 +2,9 @@
 $font-color             : #333;
 $font-size              : 12px;
 $font-family  			: "inherit";
+$link-color  			: #222;
+$font-size              : $font-size;
+$font-family  			: "inherit";
 @import "compass/reset";
 @import "compass/utilities";
 
@@ -17,12 +20,20 @@ $font-family  			: "inherit";
 .container{
 	position: relative;}
 
+a{
+	color: $link-color;
+	&:hover{
+		color: $font-color;
+	}
+}
+
 hr {
-	margin: 8px 0 0;
-	clear: both;
+	background: url('/fx/images/icons/Streg.png') right top no-repeat;
 	border: none;
-	width: 100%;
+	clear: both;
 	height: 20px;
+	margin: 0;
+	width: 100%;
 	&.left {
 		background: url('/fx/images/icons/Pompdelux_devider_left.png') left top no-repeat;
 	}
@@ -33,7 +44,8 @@ hr {
 
 input {
 	border: 1px solid black;
-	padding: 2px 3px;
+	padding: 3px 5px;
+	color: $font-color;
 }
 
 input.text-button,
@@ -64,4 +76,17 @@ a.text-button {
 	float: left;
 	margin-left: 3px;
 	margin-right: 3px;
+}
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_1-5,
+.grid_2-5 {
+	margin-top: 3px;
+	margin-bottom: 3px;
 }

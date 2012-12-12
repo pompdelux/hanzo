@@ -9,6 +9,25 @@ footer{
 	font-size: $font-size;
 	h2{
 		font-size: 16px;
+		text-transform: uppercase;
+	}
+	.footer-menu{
+		li{
+			padding: 0 0 5px;
+		}
+		&.footer-menu-4{
+			text-align: right;
+			#newsletter-lists-container {
+				text-align: left;
+				background: url('/fx/images/icons/Nyhedsbrevlogo.png') no-repeat left top;
+				display: inline-block;
+				min-height: 86px;
+				padding-left: 86px;
+				input[type=submit] {
+					float: right;
+				}
+			}
+		}
 	}
 	.copy {
 		text-align:center;
@@ -19,14 +38,8 @@ footer{
 				padding: 0 5px;
 			}
 		}
-	}
-	.footer-menu-4{
-		text-align: right;
-		> div {
-			background: url('/fx/images/icons/Nyhedsbrevlogo.png') no-repeat left top;
-			display: inline-block;
-			min-height: 86px;
-			padding-left: 86px;
+		a{
+			text-decoration: none;
 		}
 	}
 }
