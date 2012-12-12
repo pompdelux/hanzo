@@ -121,6 +121,7 @@ snc_redis:
                 read_write_timeout: 0
     session:
         client: session
+        ttl: 18000
         prefix: hanzo.session
 
 simple_things_form_extra:
