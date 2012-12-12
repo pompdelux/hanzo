@@ -5,7 +5,7 @@ imports:
 parameters:
     # Assetic
     assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/fx/images'
-    assetic.filter.compass.http_path:  '/fx/images'
+    assetic.filter.compass.http_path:  '/fx'
 
 framework:
     translator: null
@@ -153,6 +153,10 @@ cms:
             offset: 482
         footer2_menu:
             type: footer2
+            from: 400
+            offset: 482
+        footer3_menu:
+            type: footer3
             from: 400
             offset: 482
 

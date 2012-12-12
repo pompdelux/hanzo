@@ -1,13 +1,13 @@
 // Base
 $font-color             : #333;
 $font-size              : 12px;
-
+$font-family  			: "inherit";
 @import "compass/reset";
 @import "compass/utilities";
 
 
-@import "sprite/*.png"; 
-@include all-sprite-sprites; // Generates a sprite from all images inside the folder
+//@import "icons/*.png"; 
+//@include all-icons-sprites; // Generates a sprite from all images inside the folder
 
 /**
 |
@@ -16,3 +16,52 @@ $font-size              : 12px;
 */
 .container{
 	position: relative;}
+
+hr {
+	margin: 8px 0 0;
+	clear: both;
+	border: none;
+	width: 100%;
+	height: 20px;
+	&.left {
+		background: url('/fx/images/icons/Pompdelux_devider_left.png') left top no-repeat;
+	}
+	&.right {
+		background: url('/fx/images/icons/Pompdelux_devider_right.png') right top no-repeat;
+	}
+}
+
+input {
+	border: 1px solid black;
+	padding: 2px 3px;
+}
+
+input.text-button,
+button.text-button,
+a.text-button {
+	border: none;
+	background: transparent;
+	text-transform: uppercase;
+	font-family: $font-family;
+	font-color: $font-color;
+	font-size: $font-size;
+}
+/**
+|
+| Custom 960gs grids
+|
+*/
+
+.container_8 .grid_1-5 { // One fifth of 960
+	width: 186px;
+}
+.container_8 .grid_2-5 { // Two fifth of 960
+	width: 378px;
+}
+.container_8 .grid_1-5,
+.container_8 .grid_2-5 {
+	display: inline;
+	float: left;
+	margin-left: 3px;
+	margin-right: 3px;
+}

@@ -25,9 +25,11 @@ ul.menu,
 		a{
 			color:$font-color;
 			text-decoration: none;
-			&:hover{
-				text-decoration: underline;
-			}
+		}
+		&.active > a,
+		&.active-trail > a,
+		a:hover{
+			border-bottom: 1px solid $font-color;
 		}
 	}
 	li:hover ul,
@@ -49,6 +51,9 @@ ul.menu,
 	.dropdown{
 		position: absolute;
 		background: white;
+	}
+	&.right{
+		text-align: right;
 	}
 }
 
@@ -75,7 +80,17 @@ nav.main{
 	top: 0px;
 	right: 0px;
 	li{
-		padding: 0 8px;
+		padding: 16px 8px;
+		vertical-align: middle;
+		// Mini-basket in secondary links!
+		&.basket a{
+			background: url('/fx/images/icons/basket.png') no-repeat left top;
+			display: block;
+			height: 45px;
+			line-height: 45px;
+			vertical-align: middle;
+			padding-left:40px;
+		}
 		a{
 			text-transform: uppercase;
 		}
