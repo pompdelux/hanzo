@@ -15,6 +15,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersSyncLog;
@@ -492,11 +493,23 @@ class AxService
     }
 
 
+    /**
+     * transform country code into iso2 code
+     *
+     * @param  int $country_id
+     * @return string
+     */
     protected function getIso2CountryCode($country_id)
     {
-        return CountriesQuery::create()
+        $result = CountriesQuery::create()
             ->select('Iso2')
             ->findOneById($country_id);
+
+        if ($result instanceof Countries) {
+            return $result->getIso2();
+        }
+
+        return $result;
     }
 
 
