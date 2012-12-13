@@ -53,15 +53,43 @@ button.text-button,
 a.text-button {
 	border: none;
 	background: transparent;
-	text-transform: uppercase;
+	cursor: pointer;
 	font-family: $font-family;
 	font-color: $font-color;
 	font-size: $font-size;
+	text-transform: uppercase;
+}
+
+
+.cycle-slideshow {
+	.cycle-pager{
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		left: 16px;
+		z-index: 101;
+		span{
+			color: #DDD;
+			font-size: 31px;
+			line-height: 10px;
+			cursor: pointer;
+			&.cycle-pager-active,
+			&:hover{
+				color: #BBB;
+			}
+		}
+	}
+	.cycle-slide{
+		img{
+			width: 100%;
+		}
+	}
 }
 /**
 |
 | Custom 960gs grids
 |
+| TODO: Make it as a new grid with container_5{blablabla}
 */
 
 .container_8 .grid_1-5 { // One fifth of 960

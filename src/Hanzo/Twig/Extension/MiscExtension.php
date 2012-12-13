@@ -303,6 +303,15 @@ DOC;
                 return '';
 
                 break;
+            case 'slideshow':
+                $class = (!empty($parameters['class']))?' '.$parameters['class']:' grid_6';
+                $html = '<div class="cycle-slideshow '.$class.'" data-cycle-slides="> a" data-pause-on-hover="true">';
+                foreach ($parameters['slides'] as $slide) {
+                    $html .= $slide;
+                }
+                $html .= '<div class="cycle-pager"></div></div>';
+                return $html;
+                break;
         }
 
         $html = '';
