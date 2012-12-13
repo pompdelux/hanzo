@@ -1520,9 +1520,11 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      */
     public function setOrdersToCouponss(PropelCollection $ordersToCouponss, PropelPDO $con = null)
     {
-        $this->ordersToCouponssScheduledForDeletion = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
+        $ordersToCouponssToDelete = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
 
-        foreach ($this->ordersToCouponssScheduledForDeletion as $ordersToCouponsRemoved) {
+        $this->ordersToCouponssScheduledForDeletion = unserialize(serialize($ordersToCouponssToDelete));
+
+        foreach ($ordersToCouponssToDelete as $ordersToCouponsRemoved) {
             $ordersToCouponsRemoved->setCoupons(null);
         }
 
@@ -1611,7 +1613,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 $this->ordersToCouponssScheduledForDeletion = clone $this->collOrdersToCouponss;
                 $this->ordersToCouponssScheduledForDeletion->clear();
             }
-            $this->ordersToCouponssScheduledForDeletion[]= $ordersToCoupons;
+            $this->ordersToCouponssScheduledForDeletion[]= clone $ordersToCoupons;
             $ordersToCoupons->setCoupons(null);
         }
 

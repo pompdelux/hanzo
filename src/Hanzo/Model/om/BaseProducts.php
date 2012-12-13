@@ -2472,9 +2472,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setMannequinImagess(PropelCollection $mannequinImagess, PropelPDO $con = null)
     {
-        $this->mannequinImagessScheduledForDeletion = $this->getMannequinImagess(new Criteria(), $con)->diff($mannequinImagess);
+        $mannequinImagessToDelete = $this->getMannequinImagess(new Criteria(), $con)->diff($mannequinImagess);
 
-        foreach ($this->mannequinImagessScheduledForDeletion as $mannequinImagesRemoved) {
+        $this->mannequinImagessScheduledForDeletion = unserialize(serialize($mannequinImagessToDelete));
+
+        foreach ($mannequinImagessToDelete as $mannequinImagesRemoved) {
             $mannequinImagesRemoved->setProducts(null);
         }
 
@@ -2563,7 +2565,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->mannequinImagessScheduledForDeletion = clone $this->collMannequinImagess;
                 $this->mannequinImagessScheduledForDeletion->clear();
             }
-            $this->mannequinImagessScheduledForDeletion[]= $mannequinImages;
+            $this->mannequinImagessScheduledForDeletion[]= clone $mannequinImages;
             $mannequinImages->setProducts(null);
         }
 
@@ -2687,9 +2689,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductssRelatedBySku(PropelCollection $productssRelatedBySku, PropelPDO $con = null)
     {
-        $this->productssRelatedBySkuScheduledForDeletion = $this->getProductssRelatedBySku(new Criteria(), $con)->diff($productssRelatedBySku);
+        $productssRelatedBySkuToDelete = $this->getProductssRelatedBySku(new Criteria(), $con)->diff($productssRelatedBySku);
 
-        foreach ($this->productssRelatedBySkuScheduledForDeletion as $productsRelatedBySkuRemoved) {
+        $this->productssRelatedBySkuScheduledForDeletion = unserialize(serialize($productssRelatedBySkuToDelete));
+
+        foreach ($productssRelatedBySkuToDelete as $productsRelatedBySkuRemoved) {
             $productsRelatedBySkuRemoved->setProductsRelatedByMaster(null);
         }
 
@@ -2927,9 +2931,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsDomainsPricess(PropelCollection $productsDomainsPricess, PropelPDO $con = null)
     {
-        $this->productsDomainsPricessScheduledForDeletion = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
+        $productsDomainsPricessToDelete = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
 
-        foreach ($this->productsDomainsPricessScheduledForDeletion as $productsDomainsPricesRemoved) {
+        $this->productsDomainsPricessScheduledForDeletion = unserialize(serialize($productsDomainsPricessToDelete));
+
+        foreach ($productsDomainsPricessToDelete as $productsDomainsPricesRemoved) {
             $productsDomainsPricesRemoved->setProducts(null);
         }
 
@@ -3018,7 +3024,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsDomainsPricessScheduledForDeletion = clone $this->collProductsDomainsPricess;
                 $this->productsDomainsPricessScheduledForDeletion->clear();
             }
-            $this->productsDomainsPricessScheduledForDeletion[]= $productsDomainsPrices;
+            $this->productsDomainsPricessScheduledForDeletion[]= clone $productsDomainsPrices;
             $productsDomainsPrices->setProducts(null);
         }
 
@@ -3167,9 +3173,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsImagess(PropelCollection $productsImagess, PropelPDO $con = null)
     {
-        $this->productsImagessScheduledForDeletion = $this->getProductsImagess(new Criteria(), $con)->diff($productsImagess);
+        $productsImagessToDelete = $this->getProductsImagess(new Criteria(), $con)->diff($productsImagess);
 
-        foreach ($this->productsImagessScheduledForDeletion as $productsImagesRemoved) {
+        $this->productsImagessScheduledForDeletion = unserialize(serialize($productsImagessToDelete));
+
+        foreach ($productsImagessToDelete as $productsImagesRemoved) {
             $productsImagesRemoved->setProducts(null);
         }
 
@@ -3258,7 +3266,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsImagessScheduledForDeletion = clone $this->collProductsImagess;
                 $this->productsImagessScheduledForDeletion->clear();
             }
-            $this->productsImagessScheduledForDeletion[]= $productsImages;
+            $this->productsImagessScheduledForDeletion[]= clone $productsImages;
             $productsImages->setProducts(null);
         }
 
@@ -3382,9 +3390,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsImagesCategoriesSorts(PropelCollection $productsImagesCategoriesSorts, PropelPDO $con = null)
     {
-        $this->productsImagesCategoriesSortsScheduledForDeletion = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
+        $productsImagesCategoriesSortsToDelete = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
 
-        foreach ($this->productsImagesCategoriesSortsScheduledForDeletion as $productsImagesCategoriesSortRemoved) {
+        $this->productsImagesCategoriesSortsScheduledForDeletion = unserialize(serialize($productsImagesCategoriesSortsToDelete));
+
+        foreach ($productsImagesCategoriesSortsToDelete as $productsImagesCategoriesSortRemoved) {
             $productsImagesCategoriesSortRemoved->setProducts(null);
         }
 
@@ -3473,7 +3483,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsImagesCategoriesSortsScheduledForDeletion = clone $this->collProductsImagesCategoriesSorts;
                 $this->productsImagesCategoriesSortsScheduledForDeletion->clear();
             }
-            $this->productsImagesCategoriesSortsScheduledForDeletion[]= $productsImagesCategoriesSort;
+            $this->productsImagesCategoriesSortsScheduledForDeletion[]= clone $productsImagesCategoriesSort;
             $productsImagesCategoriesSort->setProducts(null);
         }
 
@@ -3622,9 +3632,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsImagesProductReferencess(PropelCollection $productsImagesProductReferencess, PropelPDO $con = null)
     {
-        $this->productsImagesProductReferencessScheduledForDeletion = $this->getProductsImagesProductReferencess(new Criteria(), $con)->diff($productsImagesProductReferencess);
+        $productsImagesProductReferencessToDelete = $this->getProductsImagesProductReferencess(new Criteria(), $con)->diff($productsImagesProductReferencess);
 
-        foreach ($this->productsImagesProductReferencessScheduledForDeletion as $productsImagesProductReferencesRemoved) {
+        $this->productsImagesProductReferencessScheduledForDeletion = unserialize(serialize($productsImagesProductReferencessToDelete));
+
+        foreach ($productsImagesProductReferencessToDelete as $productsImagesProductReferencesRemoved) {
             $productsImagesProductReferencesRemoved->setProducts(null);
         }
 
@@ -3713,7 +3725,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsImagesProductReferencessScheduledForDeletion = clone $this->collProductsImagesProductReferencess;
                 $this->productsImagesProductReferencessScheduledForDeletion->clear();
             }
-            $this->productsImagesProductReferencessScheduledForDeletion[]= $productsImagesProductReferences;
+            $this->productsImagesProductReferencessScheduledForDeletion[]= clone $productsImagesProductReferences;
             $productsImagesProductReferences->setProducts(null);
         }
 
@@ -3862,9 +3874,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsQuantityDiscounts(PropelCollection $productsQuantityDiscounts, PropelPDO $con = null)
     {
-        $this->productsQuantityDiscountsScheduledForDeletion = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
+        $productsQuantityDiscountsToDelete = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
 
-        foreach ($this->productsQuantityDiscountsScheduledForDeletion as $productsQuantityDiscountRemoved) {
+        $this->productsQuantityDiscountsScheduledForDeletion = unserialize(serialize($productsQuantityDiscountsToDelete));
+
+        foreach ($productsQuantityDiscountsToDelete as $productsQuantityDiscountRemoved) {
             $productsQuantityDiscountRemoved->setProducts(null);
         }
 
@@ -3953,7 +3967,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsQuantityDiscountsScheduledForDeletion = clone $this->collProductsQuantityDiscounts;
                 $this->productsQuantityDiscountsScheduledForDeletion->clear();
             }
-            $this->productsQuantityDiscountsScheduledForDeletion[]= $productsQuantityDiscount;
+            $this->productsQuantityDiscountsScheduledForDeletion[]= clone $productsQuantityDiscount;
             $productsQuantityDiscount->setProducts(null);
         }
 
@@ -4102,9 +4116,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsStocks(PropelCollection $productsStocks, PropelPDO $con = null)
     {
-        $this->productsStocksScheduledForDeletion = $this->getProductsStocks(new Criteria(), $con)->diff($productsStocks);
+        $productsStocksToDelete = $this->getProductsStocks(new Criteria(), $con)->diff($productsStocks);
 
-        foreach ($this->productsStocksScheduledForDeletion as $productsStockRemoved) {
+        $this->productsStocksScheduledForDeletion = unserialize(serialize($productsStocksToDelete));
+
+        foreach ($productsStocksToDelete as $productsStockRemoved) {
             $productsStockRemoved->setProducts(null);
         }
 
@@ -4193,7 +4209,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsStocksScheduledForDeletion = clone $this->collProductsStocks;
                 $this->productsStocksScheduledForDeletion->clear();
             }
-            $this->productsStocksScheduledForDeletion[]= $productsStock;
+            $this->productsStocksScheduledForDeletion[]= clone $productsStock;
             $productsStock->setProducts(null);
         }
 
@@ -4317,9 +4333,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsToCategoriess(PropelCollection $productsToCategoriess, PropelPDO $con = null)
     {
-        $this->productsToCategoriessScheduledForDeletion = $this->getProductsToCategoriess(new Criteria(), $con)->diff($productsToCategoriess);
+        $productsToCategoriessToDelete = $this->getProductsToCategoriess(new Criteria(), $con)->diff($productsToCategoriess);
 
-        foreach ($this->productsToCategoriessScheduledForDeletion as $productsToCategoriesRemoved) {
+        $this->productsToCategoriessScheduledForDeletion = unserialize(serialize($productsToCategoriessToDelete));
+
+        foreach ($productsToCategoriessToDelete as $productsToCategoriesRemoved) {
             $productsToCategoriesRemoved->setProducts(null);
         }
 
@@ -4408,7 +4426,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsToCategoriessScheduledForDeletion = clone $this->collProductsToCategoriess;
                 $this->productsToCategoriessScheduledForDeletion->clear();
             }
-            $this->productsToCategoriessScheduledForDeletion[]= $productsToCategories;
+            $this->productsToCategoriessScheduledForDeletion[]= clone $productsToCategories;
             $productsToCategories->setProducts(null);
         }
 
@@ -4557,9 +4575,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setOrdersLiness(PropelCollection $ordersLiness, PropelPDO $con = null)
     {
-        $this->ordersLinessScheduledForDeletion = $this->getOrdersLiness(new Criteria(), $con)->diff($ordersLiness);
+        $ordersLinessToDelete = $this->getOrdersLiness(new Criteria(), $con)->diff($ordersLiness);
 
-        foreach ($this->ordersLinessScheduledForDeletion as $ordersLinesRemoved) {
+        $this->ordersLinessScheduledForDeletion = unserialize(serialize($ordersLinessToDelete));
+
+        foreach ($ordersLinessToDelete as $ordersLinesRemoved) {
             $ordersLinesRemoved->setProducts(null);
         }
 
@@ -4797,9 +4817,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setRelatedProductssRelatedByMaster(PropelCollection $relatedProductssRelatedByMaster, PropelPDO $con = null)
     {
-        $this->relatedProductssRelatedByMasterScheduledForDeletion = $this->getRelatedProductssRelatedByMaster(new Criteria(), $con)->diff($relatedProductssRelatedByMaster);
+        $relatedProductssRelatedByMasterToDelete = $this->getRelatedProductssRelatedByMaster(new Criteria(), $con)->diff($relatedProductssRelatedByMaster);
 
-        foreach ($this->relatedProductssRelatedByMasterScheduledForDeletion as $relatedProductsRelatedByMasterRemoved) {
+        $this->relatedProductssRelatedByMasterScheduledForDeletion = unserialize(serialize($relatedProductssRelatedByMasterToDelete));
+
+        foreach ($relatedProductssRelatedByMasterToDelete as $relatedProductsRelatedByMasterRemoved) {
             $relatedProductsRelatedByMasterRemoved->setProductsRelatedByMaster(null);
         }
 
@@ -4888,7 +4910,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->relatedProductssRelatedByMasterScheduledForDeletion = clone $this->collRelatedProductssRelatedByMaster;
                 $this->relatedProductssRelatedByMasterScheduledForDeletion->clear();
             }
-            $this->relatedProductssRelatedByMasterScheduledForDeletion[]= $relatedProductsRelatedByMaster;
+            $this->relatedProductssRelatedByMasterScheduledForDeletion[]= clone $relatedProductsRelatedByMaster;
             $relatedProductsRelatedByMaster->setProductsRelatedByMaster(null);
         }
 
@@ -5012,9 +5034,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setRelatedProductssRelatedBySku(PropelCollection $relatedProductssRelatedBySku, PropelPDO $con = null)
     {
-        $this->relatedProductssRelatedBySkuScheduledForDeletion = $this->getRelatedProductssRelatedBySku(new Criteria(), $con)->diff($relatedProductssRelatedBySku);
+        $relatedProductssRelatedBySkuToDelete = $this->getRelatedProductssRelatedBySku(new Criteria(), $con)->diff($relatedProductssRelatedBySku);
 
-        foreach ($this->relatedProductssRelatedBySkuScheduledForDeletion as $relatedProductsRelatedBySkuRemoved) {
+        $this->relatedProductssRelatedBySkuScheduledForDeletion = unserialize(serialize($relatedProductssRelatedBySkuToDelete));
+
+        foreach ($relatedProductssRelatedBySkuToDelete as $relatedProductsRelatedBySkuRemoved) {
             $relatedProductsRelatedBySkuRemoved->setProductsRelatedBySku(null);
         }
 
@@ -5103,7 +5127,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->relatedProductssRelatedBySkuScheduledForDeletion = clone $this->collRelatedProductssRelatedBySku;
                 $this->relatedProductssRelatedBySkuScheduledForDeletion->clear();
             }
-            $this->relatedProductssRelatedBySkuScheduledForDeletion[]= $relatedProductsRelatedBySku;
+            $this->relatedProductssRelatedBySkuScheduledForDeletion[]= clone $relatedProductsRelatedBySku;
             $relatedProductsRelatedBySku->setProductsRelatedBySku(null);
         }
 
@@ -5227,9 +5251,11 @@ abstract class BaseProducts extends BaseObject implements Persistent
      */
     public function setProductsI18ns(PropelCollection $productsI18ns, PropelPDO $con = null)
     {
-        $this->productsI18nsScheduledForDeletion = $this->getProductsI18ns(new Criteria(), $con)->diff($productsI18ns);
+        $productsI18nsToDelete = $this->getProductsI18ns(new Criteria(), $con)->diff($productsI18ns);
 
-        foreach ($this->productsI18nsScheduledForDeletion as $productsI18nRemoved) {
+        $this->productsI18nsScheduledForDeletion = unserialize(serialize($productsI18nsToDelete));
+
+        foreach ($productsI18nsToDelete as $productsI18nRemoved) {
             $productsI18nRemoved->setProducts(null);
         }
 
@@ -5322,7 +5348,7 @@ abstract class BaseProducts extends BaseObject implements Persistent
                 $this->productsI18nsScheduledForDeletion = clone $this->collProductsI18ns;
                 $this->productsI18nsScheduledForDeletion->clear();
             }
-            $this->productsI18nsScheduledForDeletion[]= $productsI18n;
+            $this->productsI18nsScheduledForDeletion[]= clone $productsI18n;
             $productsI18n->setProducts(null);
         }
 

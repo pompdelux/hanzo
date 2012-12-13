@@ -1666,9 +1666,11 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setAddressess(PropelCollection $addressess, PropelPDO $con = null)
     {
-        $this->addressessScheduledForDeletion = $this->getAddressess(new Criteria(), $con)->diff($addressess);
+        $addressessToDelete = $this->getAddressess(new Criteria(), $con)->diff($addressess);
 
-        foreach ($this->addressessScheduledForDeletion as $addressesRemoved) {
+        $this->addressessScheduledForDeletion = unserialize(serialize($addressessToDelete));
+
+        foreach ($addressessToDelete as $addressesRemoved) {
             $addressesRemoved->setCountries(null);
         }
 
@@ -1757,7 +1759,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
                 $this->addressessScheduledForDeletion = clone $this->collAddressess;
                 $this->addressessScheduledForDeletion->clear();
             }
-            $this->addressessScheduledForDeletion[]= $addresses;
+            $this->addressessScheduledForDeletion[]= clone $addresses;
             $addresses->setCountries(null);
         }
 
@@ -1906,9 +1908,11 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setZipToCitys(PropelCollection $zipToCitys, PropelPDO $con = null)
     {
-        $this->zipToCitysScheduledForDeletion = $this->getZipToCitys(new Criteria(), $con)->diff($zipToCitys);
+        $zipToCitysToDelete = $this->getZipToCitys(new Criteria(), $con)->diff($zipToCitys);
 
-        foreach ($this->zipToCitysScheduledForDeletion as $zipToCityRemoved) {
+        $this->zipToCitysScheduledForDeletion = unserialize(serialize($zipToCitysToDelete));
+
+        foreach ($zipToCitysToDelete as $zipToCityRemoved) {
             $zipToCityRemoved->setCountries(null);
         }
 
@@ -1997,7 +2001,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
                 $this->zipToCitysScheduledForDeletion = clone $this->collZipToCitys;
                 $this->zipToCitysScheduledForDeletion->clear();
             }
-            $this->zipToCitysScheduledForDeletion[]= $zipToCity;
+            $this->zipToCitysScheduledForDeletion[]= clone $zipToCity;
             $zipToCity->setCountries(null);
         }
 
@@ -2121,9 +2125,11 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setOrderssRelatedByBillingCountriesId(PropelCollection $orderssRelatedByBillingCountriesId, PropelPDO $con = null)
     {
-        $this->orderssRelatedByBillingCountriesIdScheduledForDeletion = $this->getOrderssRelatedByBillingCountriesId(new Criteria(), $con)->diff($orderssRelatedByBillingCountriesId);
+        $orderssRelatedByBillingCountriesIdToDelete = $this->getOrderssRelatedByBillingCountriesId(new Criteria(), $con)->diff($orderssRelatedByBillingCountriesId);
 
-        foreach ($this->orderssRelatedByBillingCountriesIdScheduledForDeletion as $ordersRelatedByBillingCountriesIdRemoved) {
+        $this->orderssRelatedByBillingCountriesIdScheduledForDeletion = unserialize(serialize($orderssRelatedByBillingCountriesIdToDelete));
+
+        foreach ($orderssRelatedByBillingCountriesIdToDelete as $ordersRelatedByBillingCountriesIdRemoved) {
             $ordersRelatedByBillingCountriesIdRemoved->setCountriesRelatedByBillingCountriesId(null);
         }
 
@@ -2386,9 +2392,11 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function setOrderssRelatedByDeliveryCountriesId(PropelCollection $orderssRelatedByDeliveryCountriesId, PropelPDO $con = null)
     {
-        $this->orderssRelatedByDeliveryCountriesIdScheduledForDeletion = $this->getOrderssRelatedByDeliveryCountriesId(new Criteria(), $con)->diff($orderssRelatedByDeliveryCountriesId);
+        $orderssRelatedByDeliveryCountriesIdToDelete = $this->getOrderssRelatedByDeliveryCountriesId(new Criteria(), $con)->diff($orderssRelatedByDeliveryCountriesId);
 
-        foreach ($this->orderssRelatedByDeliveryCountriesIdScheduledForDeletion as $ordersRelatedByDeliveryCountriesIdRemoved) {
+        $this->orderssRelatedByDeliveryCountriesIdScheduledForDeletion = unserialize(serialize($orderssRelatedByDeliveryCountriesIdToDelete));
+
+        foreach ($orderssRelatedByDeliveryCountriesIdToDelete as $ordersRelatedByDeliveryCountriesIdRemoved) {
             $ordersRelatedByDeliveryCountriesIdRemoved->setCountriesRelatedByDeliveryCountriesId(null);
         }
 

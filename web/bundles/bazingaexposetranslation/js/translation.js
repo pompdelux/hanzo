@@ -9,7 +9,7 @@
 var ExposeTranslation = new function () {
   var _messages = {},
       _sPluralRegex = /^\w+\: +(.+)$/,
-      _cPluralRegex = /^\s*(({\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]]))\s+(.+?)$/,
+      _cPluralRegex = /^\s*(({\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]]))\s?(.+?)$/,
       _iPluralRegex = /^\s*({\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]])/;
 
   /**
@@ -385,12 +385,12 @@ var ExposeTranslation = new function () {
         _message = guess_domain(key);
       }
 
-      if (_message && !isNaN(_number)) {
-        _message = pluralize(_message, _number);
+      if (_message == undefined) {
+        _message = key;
       }
 
-      if (_message == undefined) {
-        return key;
+      if (_message && !isNaN(_number)) {
+        _message = pluralize(_message, _number);
       }
 
       _message = replace_placeholders(_message, _placeholders);
@@ -406,6 +406,36 @@ var ExposeTranslation = new function () {
      */
     has: function(key) {
       return (_messages[key] ? true : false);
+    },
+
+    /**
+     * Accepts a JSON string to feed translations
+     *
+     * @param {String} data     A JSON string or object literal
+     * @return {Object}         ExposeTranslation
+     */
+    fromJSON: function (data) {
+      if(typeof data === "string") {
+        data = JSON.parse(data);
+      }
+
+      if(data.locale) {
+        this.locale = data.locale;
+      }
+
+      if(data.defaultDomains) {
+        this.defaultDomains = data.defaultDomains;
+      }
+
+      if(data.messages) {
+        var key;
+        for(key in data.messages) {
+          var message = data.messages[key];
+          this.add(key, message);
+        }
+      }
+
+      return this;
     }
   };
-}
+};

@@ -1021,9 +1021,11 @@ abstract class BaseGroups extends BaseObject implements Persistent
      */
     public function setCustomerss(PropelCollection $customerss, PropelPDO $con = null)
     {
-        $this->customerssScheduledForDeletion = $this->getCustomerss(new Criteria(), $con)->diff($customerss);
+        $customerssToDelete = $this->getCustomerss(new Criteria(), $con)->diff($customerss);
 
-        foreach ($this->customerssScheduledForDeletion as $customersRemoved) {
+        $this->customerssScheduledForDeletion = unserialize(serialize($customerssToDelete));
+
+        foreach ($customerssToDelete as $customersRemoved) {
             $customersRemoved->setGroups(null);
         }
 
@@ -1112,7 +1114,7 @@ abstract class BaseGroups extends BaseObject implements Persistent
                 $this->customerssScheduledForDeletion = clone $this->collCustomerss;
                 $this->customerssScheduledForDeletion->clear();
             }
-            $this->customerssScheduledForDeletion[]= $customers;
+            $this->customerssScheduledForDeletion[]= clone $customers;
             $customers->setGroups(null);
         }
 

@@ -1575,9 +1575,11 @@ abstract class BaseWall extends BaseObject implements Persistent
      */
     public function setWallsRelatedById(PropelCollection $wallsRelatedById, PropelPDO $con = null)
     {
-        $this->wallsRelatedByIdScheduledForDeletion = $this->getWallsRelatedById(new Criteria(), $con)->diff($wallsRelatedById);
+        $wallsRelatedByIdToDelete = $this->getWallsRelatedById(new Criteria(), $con)->diff($wallsRelatedById);
 
-        foreach ($this->wallsRelatedByIdScheduledForDeletion as $wallRelatedByIdRemoved) {
+        $this->wallsRelatedByIdScheduledForDeletion = unserialize(serialize($wallsRelatedByIdToDelete));
+
+        foreach ($wallsRelatedByIdToDelete as $wallRelatedByIdRemoved) {
             $wallRelatedByIdRemoved->setWallRelatedByParentId(null);
         }
 
@@ -1815,9 +1817,11 @@ abstract class BaseWall extends BaseObject implements Persistent
      */
     public function setWallLikess(PropelCollection $wallLikess, PropelPDO $con = null)
     {
-        $this->wallLikessScheduledForDeletion = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
+        $wallLikessToDelete = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
 
-        foreach ($this->wallLikessScheduledForDeletion as $wallLikesRemoved) {
+        $this->wallLikessScheduledForDeletion = unserialize(serialize($wallLikessToDelete));
+
+        foreach ($wallLikessToDelete as $wallLikesRemoved) {
             $wallLikesRemoved->setWall(null);
         }
 
@@ -1906,7 +1910,7 @@ abstract class BaseWall extends BaseObject implements Persistent
                 $this->wallLikessScheduledForDeletion = clone $this->collWallLikess;
                 $this->wallLikessScheduledForDeletion->clear();
             }
-            $this->wallLikessScheduledForDeletion[]= $wallLikes;
+            $this->wallLikessScheduledForDeletion[]= clone $wallLikes;
             $wallLikes->setWall(null);
         }
 

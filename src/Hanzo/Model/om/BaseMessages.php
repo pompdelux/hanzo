@@ -1220,9 +1220,11 @@ abstract class BaseMessages extends BaseObject implements Persistent
      */
     public function setMessagesI18ns(PropelCollection $messagesI18ns, PropelPDO $con = null)
     {
-        $this->messagesI18nsScheduledForDeletion = $this->getMessagesI18ns(new Criteria(), $con)->diff($messagesI18ns);
+        $messagesI18nsToDelete = $this->getMessagesI18ns(new Criteria(), $con)->diff($messagesI18ns);
 
-        foreach ($this->messagesI18nsScheduledForDeletion as $messagesI18nRemoved) {
+        $this->messagesI18nsScheduledForDeletion = unserialize(serialize($messagesI18nsToDelete));
+
+        foreach ($messagesI18nsToDelete as $messagesI18nRemoved) {
             $messagesI18nRemoved->setMessages(null);
         }
 
@@ -1315,7 +1317,7 @@ abstract class BaseMessages extends BaseObject implements Persistent
                 $this->messagesI18nsScheduledForDeletion = clone $this->collMessagesI18ns;
                 $this->messagesI18nsScheduledForDeletion->clear();
             }
-            $this->messagesI18nsScheduledForDeletion[]= $messagesI18n;
+            $this->messagesI18nsScheduledForDeletion[]= clone $messagesI18n;
             $messagesI18n->setMessages(null);
         }
 

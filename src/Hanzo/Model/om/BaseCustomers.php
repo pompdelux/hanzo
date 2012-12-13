@@ -2128,9 +2128,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setAddressess(PropelCollection $addressess, PropelPDO $con = null)
     {
-        $this->addressessScheduledForDeletion = $this->getAddressess(new Criteria(), $con)->diff($addressess);
+        $addressessToDelete = $this->getAddressess(new Criteria(), $con)->diff($addressess);
 
-        foreach ($this->addressessScheduledForDeletion as $addressesRemoved) {
+        $this->addressessScheduledForDeletion = unserialize(serialize($addressessToDelete));
+
+        foreach ($addressessToDelete as $addressesRemoved) {
             $addressesRemoved->setCustomers(null);
         }
 
@@ -2219,7 +2221,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->addressessScheduledForDeletion = clone $this->collAddressess;
                 $this->addressessScheduledForDeletion->clear();
             }
-            $this->addressessScheduledForDeletion[]= $addresses;
+            $this->addressessScheduledForDeletion[]= clone $addresses;
             $addresses->setCustomers(null);
         }
 
@@ -2368,9 +2370,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setEventssRelatedByConsultantsId(PropelCollection $eventssRelatedByConsultantsId, PropelPDO $con = null)
     {
-        $this->eventssRelatedByConsultantsIdScheduledForDeletion = $this->getEventssRelatedByConsultantsId(new Criteria(), $con)->diff($eventssRelatedByConsultantsId);
+        $eventssRelatedByConsultantsIdToDelete = $this->getEventssRelatedByConsultantsId(new Criteria(), $con)->diff($eventssRelatedByConsultantsId);
 
-        foreach ($this->eventssRelatedByConsultantsIdScheduledForDeletion as $eventsRelatedByConsultantsIdRemoved) {
+        $this->eventssRelatedByConsultantsIdScheduledForDeletion = unserialize(serialize($eventssRelatedByConsultantsIdToDelete));
+
+        foreach ($eventssRelatedByConsultantsIdToDelete as $eventsRelatedByConsultantsIdRemoved) {
             $eventsRelatedByConsultantsIdRemoved->setCustomersRelatedByConsultantsId(null);
         }
 
@@ -2459,7 +2463,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->eventssRelatedByConsultantsIdScheduledForDeletion = clone $this->collEventssRelatedByConsultantsId;
                 $this->eventssRelatedByConsultantsIdScheduledForDeletion->clear();
             }
-            $this->eventssRelatedByConsultantsIdScheduledForDeletion[]= $eventsRelatedByConsultantsId;
+            $this->eventssRelatedByConsultantsIdScheduledForDeletion[]= clone $eventsRelatedByConsultantsId;
             $eventsRelatedByConsultantsId->setCustomersRelatedByConsultantsId(null);
         }
 
@@ -2583,9 +2587,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setEventssRelatedByCustomersId(PropelCollection $eventssRelatedByCustomersId, PropelPDO $con = null)
     {
-        $this->eventssRelatedByCustomersIdScheduledForDeletion = $this->getEventssRelatedByCustomersId(new Criteria(), $con)->diff($eventssRelatedByCustomersId);
+        $eventssRelatedByCustomersIdToDelete = $this->getEventssRelatedByCustomersId(new Criteria(), $con)->diff($eventssRelatedByCustomersId);
 
-        foreach ($this->eventssRelatedByCustomersIdScheduledForDeletion as $eventsRelatedByCustomersIdRemoved) {
+        $this->eventssRelatedByCustomersIdScheduledForDeletion = unserialize(serialize($eventssRelatedByCustomersIdToDelete));
+
+        foreach ($eventssRelatedByCustomersIdToDelete as $eventsRelatedByCustomersIdRemoved) {
             $eventsRelatedByCustomersIdRemoved->setCustomersRelatedByCustomersId(null);
         }
 
@@ -2674,7 +2680,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->eventssRelatedByCustomersIdScheduledForDeletion = clone $this->collEventssRelatedByCustomersId;
                 $this->eventssRelatedByCustomersIdScheduledForDeletion->clear();
             }
-            $this->eventssRelatedByCustomersIdScheduledForDeletion[]= $eventsRelatedByCustomersId;
+            $this->eventssRelatedByCustomersIdScheduledForDeletion[]= clone $eventsRelatedByCustomersId;
             $eventsRelatedByCustomersId->setCustomersRelatedByCustomersId(null);
         }
 
@@ -2798,9 +2804,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setOrderss(PropelCollection $orderss, PropelPDO $con = null)
     {
-        $this->orderssScheduledForDeletion = $this->getOrderss(new Criteria(), $con)->diff($orderss);
+        $orderssToDelete = $this->getOrderss(new Criteria(), $con)->diff($orderss);
 
-        foreach ($this->orderssScheduledForDeletion as $ordersRemoved) {
+        $this->orderssScheduledForDeletion = unserialize(serialize($orderssToDelete));
+
+        foreach ($orderssToDelete as $ordersRemoved) {
             $ordersRemoved->setCustomers(null);
         }
 
@@ -3088,9 +3096,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setWalls(PropelCollection $walls, PropelPDO $con = null)
     {
-        $this->wallsScheduledForDeletion = $this->getWalls(new Criteria(), $con)->diff($walls);
+        $wallsToDelete = $this->getWalls(new Criteria(), $con)->diff($walls);
 
-        foreach ($this->wallsScheduledForDeletion as $wallRemoved) {
+        $this->wallsScheduledForDeletion = unserialize(serialize($wallsToDelete));
+
+        foreach ($wallsToDelete as $wallRemoved) {
             $wallRemoved->setCustomers(null);
         }
 
@@ -3179,7 +3189,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->wallsScheduledForDeletion = clone $this->collWalls;
                 $this->wallsScheduledForDeletion->clear();
             }
-            $this->wallsScheduledForDeletion[]= $wall;
+            $this->wallsScheduledForDeletion[]= clone $wall;
             $wall->setCustomers(null);
         }
 
@@ -3328,9 +3338,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setWallLikess(PropelCollection $wallLikess, PropelPDO $con = null)
     {
-        $this->wallLikessScheduledForDeletion = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
+        $wallLikessToDelete = $this->getWallLikess(new Criteria(), $con)->diff($wallLikess);
 
-        foreach ($this->wallLikessScheduledForDeletion as $wallLikesRemoved) {
+        $this->wallLikessScheduledForDeletion = unserialize(serialize($wallLikessToDelete));
+
+        foreach ($wallLikessToDelete as $wallLikesRemoved) {
             $wallLikesRemoved->setCustomers(null);
         }
 
@@ -3419,7 +3431,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->wallLikessScheduledForDeletion = clone $this->collWallLikess;
                 $this->wallLikessScheduledForDeletion->clear();
             }
-            $this->wallLikessScheduledForDeletion[]= $wallLikes;
+            $this->wallLikessScheduledForDeletion[]= clone $wallLikes;
             $wallLikes->setCustomers(null);
         }
 
@@ -3568,9 +3580,11 @@ abstract class BaseCustomers extends BaseObject implements Persistent
      */
     public function setConsultantNewsletterDraftss(PropelCollection $consultantNewsletterDraftss, PropelPDO $con = null)
     {
-        $this->consultantNewsletterDraftssScheduledForDeletion = $this->getConsultantNewsletterDraftss(new Criteria(), $con)->diff($consultantNewsletterDraftss);
+        $consultantNewsletterDraftssToDelete = $this->getConsultantNewsletterDraftss(new Criteria(), $con)->diff($consultantNewsletterDraftss);
 
-        foreach ($this->consultantNewsletterDraftssScheduledForDeletion as $consultantNewsletterDraftsRemoved) {
+        $this->consultantNewsletterDraftssScheduledForDeletion = unserialize(serialize($consultantNewsletterDraftssToDelete));
+
+        foreach ($consultantNewsletterDraftssToDelete as $consultantNewsletterDraftsRemoved) {
             $consultantNewsletterDraftsRemoved->setCustomers(null);
         }
 
@@ -3659,7 +3673,7 @@ abstract class BaseCustomers extends BaseObject implements Persistent
                 $this->consultantNewsletterDraftssScheduledForDeletion = clone $this->collConsultantNewsletterDraftss;
                 $this->consultantNewsletterDraftssScheduledForDeletion->clear();
             }
-            $this->consultantNewsletterDraftssScheduledForDeletion[]= $consultantNewsletterDrafts;
+            $this->consultantNewsletterDraftssScheduledForDeletion[]= clone $consultantNewsletterDrafts;
             $consultantNewsletterDrafts->setCustomers(null);
         }
 

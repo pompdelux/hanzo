@@ -382,6 +382,10 @@
                 <source>stop.editing.order</source>
                 <target>Lopeta tilauksen muokkaus</target>
             </trans-unit>
+            <trans-unit id="unable.to.lock.order" approved="no">
+                <source>unable.to.lock.order</source>
+                <target>Tilaustasi ei voi muuttaa juuri nyt. Yritä ystävällisesti myöhemmin uudelleen.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

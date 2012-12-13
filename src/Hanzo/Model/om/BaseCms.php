@@ -1655,9 +1655,11 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setCmssRelatedById(PropelCollection $cmssRelatedById, PropelPDO $con = null)
     {
-        $this->cmssRelatedByIdScheduledForDeletion = $this->getCmssRelatedById(new Criteria(), $con)->diff($cmssRelatedById);
+        $cmssRelatedByIdToDelete = $this->getCmssRelatedById(new Criteria(), $con)->diff($cmssRelatedById);
 
-        foreach ($this->cmssRelatedByIdScheduledForDeletion as $cmsRelatedByIdRemoved) {
+        $this->cmssRelatedByIdScheduledForDeletion = unserialize(serialize($cmssRelatedByIdToDelete));
+
+        foreach ($cmssRelatedByIdToDelete as $cmsRelatedByIdRemoved) {
             $cmsRelatedByIdRemoved->setCmsRelatedByParentId(null);
         }
 
@@ -1895,9 +1897,11 @@ abstract class BaseCms extends BaseObject implements Persistent
      */
     public function setCmsI18ns(PropelCollection $cmsI18ns, PropelPDO $con = null)
     {
-        $this->cmsI18nsScheduledForDeletion = $this->getCmsI18ns(new Criteria(), $con)->diff($cmsI18ns);
+        $cmsI18nsToDelete = $this->getCmsI18ns(new Criteria(), $con)->diff($cmsI18ns);
 
-        foreach ($this->cmsI18nsScheduledForDeletion as $cmsI18nRemoved) {
+        $this->cmsI18nsScheduledForDeletion = unserialize(serialize($cmsI18nsToDelete));
+
+        foreach ($cmsI18nsToDelete as $cmsI18nRemoved) {
             $cmsI18nRemoved->setCms(null);
         }
 
@@ -1990,7 +1994,7 @@ abstract class BaseCms extends BaseObject implements Persistent
                 $this->cmsI18nsScheduledForDeletion = clone $this->collCmsI18ns;
                 $this->cmsI18nsScheduledForDeletion->clear();
             }
-            $this->cmsI18nsScheduledForDeletion[]= $cmsI18n;
+            $this->cmsI18nsScheduledForDeletion[]= clone $cmsI18n;
             $cmsI18n->setCms(null);
         }
 

@@ -3731,9 +3731,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setOrdersToCouponss(PropelCollection $ordersToCouponss, PropelPDO $con = null)
     {
-        $this->ordersToCouponssScheduledForDeletion = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
+        $ordersToCouponssToDelete = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
 
-        foreach ($this->ordersToCouponssScheduledForDeletion as $ordersToCouponsRemoved) {
+        $this->ordersToCouponssScheduledForDeletion = unserialize(serialize($ordersToCouponssToDelete));
+
+        foreach ($ordersToCouponssToDelete as $ordersToCouponsRemoved) {
             $ordersToCouponsRemoved->setOrders(null);
         }
 
@@ -3822,7 +3824,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ordersToCouponssScheduledForDeletion = clone $this->collOrdersToCouponss;
                 $this->ordersToCouponssScheduledForDeletion->clear();
             }
-            $this->ordersToCouponssScheduledForDeletion[]= $ordersToCoupons;
+            $this->ordersToCouponssScheduledForDeletion[]= clone $ordersToCoupons;
             $ordersToCoupons->setOrders(null);
         }
 
@@ -3971,9 +3973,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setOrdersAttributess(PropelCollection $ordersAttributess, PropelPDO $con = null)
     {
-        $this->ordersAttributessScheduledForDeletion = $this->getOrdersAttributess(new Criteria(), $con)->diff($ordersAttributess);
+        $ordersAttributessToDelete = $this->getOrdersAttributess(new Criteria(), $con)->diff($ordersAttributess);
 
-        foreach ($this->ordersAttributessScheduledForDeletion as $ordersAttributesRemoved) {
+        $this->ordersAttributessScheduledForDeletion = unserialize(serialize($ordersAttributessToDelete));
+
+        foreach ($ordersAttributessToDelete as $ordersAttributesRemoved) {
             $ordersAttributesRemoved->setOrders(null);
         }
 
@@ -4062,7 +4066,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ordersAttributessScheduledForDeletion = clone $this->collOrdersAttributess;
                 $this->ordersAttributessScheduledForDeletion->clear();
             }
-            $this->ordersAttributessScheduledForDeletion[]= $ordersAttributes;
+            $this->ordersAttributessScheduledForDeletion[]= clone $ordersAttributes;
             $ordersAttributes->setOrders(null);
         }
 
@@ -4186,9 +4190,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setOrdersLiness(PropelCollection $ordersLiness, PropelPDO $con = null)
     {
-        $this->ordersLinessScheduledForDeletion = $this->getOrdersLiness(new Criteria(), $con)->diff($ordersLiness);
+        $ordersLinessToDelete = $this->getOrdersLiness(new Criteria(), $con)->diff($ordersLiness);
 
-        foreach ($this->ordersLinessScheduledForDeletion as $ordersLinesRemoved) {
+        $this->ordersLinessScheduledForDeletion = unserialize(serialize($ordersLinessToDelete));
+
+        foreach ($ordersLinessToDelete as $ordersLinesRemoved) {
             $ordersLinesRemoved->setOrders(null);
         }
 
@@ -4277,7 +4283,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ordersLinessScheduledForDeletion = clone $this->collOrdersLiness;
                 $this->ordersLinessScheduledForDeletion->clear();
             }
-            $this->ordersLinessScheduledForDeletion[]= $ordersLines;
+            $this->ordersLinessScheduledForDeletion[]= clone $ordersLines;
             $ordersLines->setOrders(null);
         }
 
@@ -4426,9 +4432,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setOrdersStateLogs(PropelCollection $ordersStateLogs, PropelPDO $con = null)
     {
-        $this->ordersStateLogsScheduledForDeletion = $this->getOrdersStateLogs(new Criteria(), $con)->diff($ordersStateLogs);
+        $ordersStateLogsToDelete = $this->getOrdersStateLogs(new Criteria(), $con)->diff($ordersStateLogs);
 
-        foreach ($this->ordersStateLogsScheduledForDeletion as $ordersStateLogRemoved) {
+        $this->ordersStateLogsScheduledForDeletion = unserialize(serialize($ordersStateLogsToDelete));
+
+        foreach ($ordersStateLogsToDelete as $ordersStateLogRemoved) {
             $ordersStateLogRemoved->setOrders(null);
         }
 
@@ -4517,7 +4525,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ordersStateLogsScheduledForDeletion = clone $this->collOrdersStateLogs;
                 $this->ordersStateLogsScheduledForDeletion->clear();
             }
-            $this->ordersStateLogsScheduledForDeletion[]= $ordersStateLog;
+            $this->ordersStateLogsScheduledForDeletion[]= clone $ordersStateLog;
             $ordersStateLog->setOrders(null);
         }
 
@@ -4641,9 +4649,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setOrdersSyncLogs(PropelCollection $ordersSyncLogs, PropelPDO $con = null)
     {
-        $this->ordersSyncLogsScheduledForDeletion = $this->getOrdersSyncLogs(new Criteria(), $con)->diff($ordersSyncLogs);
+        $ordersSyncLogsToDelete = $this->getOrdersSyncLogs(new Criteria(), $con)->diff($ordersSyncLogs);
 
-        foreach ($this->ordersSyncLogsScheduledForDeletion as $ordersSyncLogRemoved) {
+        $this->ordersSyncLogsScheduledForDeletion = unserialize(serialize($ordersSyncLogsToDelete));
+
+        foreach ($ordersSyncLogsToDelete as $ordersSyncLogRemoved) {
             $ordersSyncLogRemoved->setOrders(null);
         }
 
@@ -4732,7 +4742,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ordersSyncLogsScheduledForDeletion = clone $this->collOrdersSyncLogs;
                 $this->ordersSyncLogsScheduledForDeletion->clear();
             }
-            $this->ordersSyncLogsScheduledForDeletion[]= $ordersSyncLog;
+            $this->ordersSyncLogsScheduledForDeletion[]= clone $ordersSyncLog;
             $ordersSyncLog->setOrders(null);
         }
 
@@ -4856,9 +4866,11 @@ abstract class BaseOrders extends BaseObject implements Persistent
      */
     public function setOrdersVersionss(PropelCollection $ordersVersionss, PropelPDO $con = null)
     {
-        $this->ordersVersionssScheduledForDeletion = $this->getOrdersVersionss(new Criteria(), $con)->diff($ordersVersionss);
+        $ordersVersionssToDelete = $this->getOrdersVersionss(new Criteria(), $con)->diff($ordersVersionss);
 
-        foreach ($this->ordersVersionssScheduledForDeletion as $ordersVersionsRemoved) {
+        $this->ordersVersionssScheduledForDeletion = unserialize(serialize($ordersVersionssToDelete));
+
+        foreach ($ordersVersionssToDelete as $ordersVersionsRemoved) {
             $ordersVersionsRemoved->setOrders(null);
         }
 
@@ -4947,7 +4959,7 @@ abstract class BaseOrders extends BaseObject implements Persistent
                 $this->ordersVersionssScheduledForDeletion = clone $this->collOrdersVersionss;
                 $this->ordersVersionssScheduledForDeletion->clear();
             }
-            $this->ordersVersionssScheduledForDeletion[]= $ordersVersions;
+            $this->ordersVersionssScheduledForDeletion[]= clone $ordersVersions;
             $ordersVersions->setOrders(null);
         }
 

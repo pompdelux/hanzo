@@ -387,6 +387,10 @@
                 <source>stop.editing.order</source>
                 <target>Stop order editing</target>
             </trans-unit>
+            <trans-unit id="unable.to.lock.order" approved="no">
+                <source>unable.to.lock.order</source>
+                <target>You cannot change your order right now. Please try again later.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

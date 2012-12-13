@@ -1209,9 +1209,11 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      */
     public function setProductsWashingInstructionss(PropelCollection $productsWashingInstructionss, PropelPDO $con = null)
     {
-        $this->productsWashingInstructionssScheduledForDeletion = $this->getProductsWashingInstructionss(new Criteria(), $con)->diff($productsWashingInstructionss);
+        $productsWashingInstructionssToDelete = $this->getProductsWashingInstructionss(new Criteria(), $con)->diff($productsWashingInstructionss);
 
-        foreach ($this->productsWashingInstructionssScheduledForDeletion as $productsWashingInstructionsRemoved) {
+        $this->productsWashingInstructionssScheduledForDeletion = unserialize(serialize($productsWashingInstructionssToDelete));
+
+        foreach ($productsWashingInstructionssToDelete as $productsWashingInstructionsRemoved) {
             $productsWashingInstructionsRemoved->setLanguages(null);
         }
 
@@ -1300,7 +1302,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
                 $this->productsWashingInstructionssScheduledForDeletion = clone $this->collProductsWashingInstructionss;
                 $this->productsWashingInstructionssScheduledForDeletion->clear();
             }
-            $this->productsWashingInstructionssScheduledForDeletion[]= $productsWashingInstructions;
+            $this->productsWashingInstructionssScheduledForDeletion[]= clone $productsWashingInstructions;
             $productsWashingInstructions->setLanguages(null);
         }
 
