@@ -18,7 +18,7 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 class DefaultController extends CoreController
 {
     /**
-     * @Cache(maxage="1")
+     * @Cache(smaxage="300")
      */
     public function categoryAction($id)
     {

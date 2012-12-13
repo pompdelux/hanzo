@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\ProductBundle\Controller;
 
 use Criteria;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
@@ -22,6 +24,10 @@ use Hanzo\Model\ProductsToCategoriesQuery;
 
 class BundleController extends CoreController
 {
+    /**
+     * Cache product ProductBundle views for 24 hours
+     * @Cache(smaxage="86400")
+     */
     public function viewAction($image_id)
     {
         $hanzo = Hanzo::getInstance();
@@ -156,6 +162,10 @@ class BundleController extends CoreController
     }
 
 
+    /**
+     * Cache product custom ProductBundle views for 24 hours
+     * @Cache(smaxage="86400")
+     */
     public function customAction($set)
     {
         $hanzo = Hanzo::getInstance();

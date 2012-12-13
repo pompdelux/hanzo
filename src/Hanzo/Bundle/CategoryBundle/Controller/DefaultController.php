@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,6 +26,8 @@ class DefaultController extends CoreController
      * @param $cms_id
      * @param $category_id
      * @param $pager
+     * Cache product ProductBundle views for 30 minutes
+     * @Cache(smaxage="1800")
      */
     public function viewAction($cms_id, $category_id, $pager = 1)
     {
@@ -62,6 +65,10 @@ class DefaultController extends CoreController
         return $this->response($html);
     }
 
+    /**
+     * Cache product list views for 24 hours
+     * @Cache(smaxage="86400")
+     */
     public function listProductsAction($view = 'simple', $filter = 'G_')
     {
         $filter_map = array(
