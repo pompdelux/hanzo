@@ -29,7 +29,7 @@ $(function() {
 
     if ($(this).hasClass('active'))
     {
-      $(this).text(ExposeTranslation.get('js:hide.all'));
+      $(this).text(Translator.get('js:hide.all'));
       $(this).parent().find('img').each(function(x)
       {
         $(this).attr('src', cdn_url+'fx/images/faqminus.gif');
@@ -37,7 +37,7 @@ $(function() {
     }
     else
     {
-      $(this).text(ExposeTranslation.get('js:show.all'));
+      $(this).text(Translator.get('js:show.all'));
       $(this).parent().find('img').each(function(x)
       {
         $(this).attr('src', cdn_url+'fx/images/faqplus.gif');

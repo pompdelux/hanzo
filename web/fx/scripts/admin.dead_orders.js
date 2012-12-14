@@ -10,7 +10,7 @@ var adminDeadOrders = (function($) {
             e.preventDefault();
             var orderId = $(this).data('order-id');
             //console.log('HER');
-            dialoug.confirm( ExposeTranslation.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+            dialoug.confirm( Translator.get('js:notice'), $(this).data('confirm-message'), function(choise) {
                 //console.log(choise);
                 if (choise === 'ok') {
                     $.ajax({
@@ -47,13 +47,13 @@ var adminDeadOrders = (function($) {
             $.getJSON(this.href+oid, function(result) {
               if (result.status) {
                 if (result.message) {
-                  dialoug.info(ExposeTranslation.get('js:notice'), result.message);
+                  dialoug.info(Translator.get('js:notice'), result.message);
                   $row.fadeOut();
                 } else {
                   $.colorbox({html: result.data.html});
                 }
               } else {
-                dialoug.alert(ExposeTranslation.get('js:notice'), result.message);
+                dialoug.alert(Translator.get('js:notice'), result.message);
               }
               $a.parent().find('.loader').hide();
             });
@@ -70,7 +70,7 @@ var adminDeadOrders = (function($) {
                 success: function(result) {
                     if (result.status) {
                         if (result.message) {
-                            dialoug.info(ExposeTranslation.get('js:notice'), result.message);
+                            dialoug.info(Translator.get('js:notice'), result.message);
                             $row.fadeOut();
                         }
                     } else {

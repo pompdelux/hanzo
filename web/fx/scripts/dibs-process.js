@@ -31,7 +31,7 @@ var dibs_process = (function($) {
 
   pub.init = function() {
     intervalID = setInterval(checkState, interval);
-    dialoug.loading($(".processing-text"), ExposeTranslation.get('js:please.wait'));
+    dialoug.loading($(".processing-text"), Translator.get('js:please.wait'));
   };
 
   return pub;
