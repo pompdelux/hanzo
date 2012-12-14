@@ -1148,12 +1148,10 @@ class Orders extends BaseOrders
         $now = date('Ymd');
         $latest = 0;
 
-        $result = SettingsQuery::create()
-            ->filterByNs('HD')
-            ->findOneByCKey('expected_delivery_date')
-            ;
+        $hanzo = Hanzo::getInstance();
 
-        $expected_at = is_null( $result ) ? '' : $result->getCValue();
+        $result = $hanzo->get('HD.expected_delivery_date');
+        $expected_at = is_null( $result ) ? '' : $result;
 
         foreach ($this->getOrdersLiness() as $line) {
             $date = $line->getExpectedAt('Ymd');
@@ -1270,7 +1268,7 @@ class Orders extends BaseOrders
 
         if ('COM' == $hanzo->get('core.domain_key')) {
             $country = $this->getCountriesRelatedByBillingCountriesId();
-            if ($country->getVat()) {
+            if ($country && $country->getVat()) {
                 return;
             }
 

@@ -1172,9 +1172,11 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      */
     public function setProductss(PropelCollection $productss, PropelPDO $con = null)
     {
-        $this->productssScheduledForDeletion = $this->getProductss(new Criteria(), $con)->diff($productss);
+        $productssToDelete = $this->getProductss(new Criteria(), $con)->diff($productss);
 
-        foreach ($this->productssScheduledForDeletion as $productsRemoved) {
+        $this->productssScheduledForDeletion = unserialize(serialize($productssToDelete));
+
+        foreach ($productssToDelete as $productsRemoved) {
             $productsRemoved->setProductsWashingInstructions(null);
         }
 

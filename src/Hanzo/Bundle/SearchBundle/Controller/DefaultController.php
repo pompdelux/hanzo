@@ -67,6 +67,10 @@ class DefaultController extends CoreController
         if ('POST' === $this->getRequest()->getMethod()) {
             $size = $this->getRequest()->get('size');
 
+            if (empty($sizes[$size])) {
+                $sizes[$size] = $sizes['146-152'];
+            }
+
             $product_ids  = array();
             $category_ids = array();
             $category_map = array();

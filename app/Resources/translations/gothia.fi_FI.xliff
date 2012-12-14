@@ -42,6 +42,10 @@
         <source>json.placereservation.error</source>
         <target>Ei voi perustaa tilausta Gothia</target>
       </trans-unit>
+      <trans-unit id="json_err90" approved="no">
+        <source>json.order.state_pre_payment.locked</source>
+        <target>Your order is being processed. Please wait.</target>
+      </trans-unit>
       <trans-unit id="page_txt10">
         <source>page.heading</source>
         <target>Gothia maksu</target>
@@ -65,6 +69,10 @@
       <trans-unit id="form_txt20">
         <source>form.submit_step2</source>
         <target>Jatka</target>
+      </trans-unit>
+      <trans-unit id="form_txt30">
+        <source>form.cancel</source>
+        <target>Afbryd betaling</target>
       </trans-unit>
       <trans-unit id="social_security_num">
         <source>social_security_num</source>

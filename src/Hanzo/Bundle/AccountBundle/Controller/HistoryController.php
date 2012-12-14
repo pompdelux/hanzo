@@ -66,7 +66,15 @@ class HistoryController extends CoreController
             return $this->redirect($this->generateUrl('_account'));
         }
 
-        $this->get('event_dispatcher')->dispatch('order.edit.start', new FilterOrderEvent($order));
+        $event = new FilterOrderEvent($order);
+        $this->get('event_dispatcher')->dispatch('order.edit.start', $event);
+
+        $status = $event->getStatus();
+        if (false === $status->code) {
+            $this->get('session')->setFlash('notice', $this->get('translator')->trans($status->message, ['%order_id%' => $order_id], 'account'));
+            return $this->redirect($this->generateUrl('_account'));
+        }
+
         return $this->redirect($this->generateUrl('basket_view'));
     }
 

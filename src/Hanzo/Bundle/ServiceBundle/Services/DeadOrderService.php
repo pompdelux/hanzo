@@ -6,23 +6,20 @@ use Exception;
 use Criteria;
 use Propel;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApi;
 
-use Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Model\OrdersQuery,
-    Hanzo\Model\OrdersAttributes,
-    Hanzo\Model\OrdersAttributesQuery,
-    Hanzo\Model\OrdersSyncLogQuery
-    ;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
+use Hanzo\Model\OrdersAttributes;
+use Hanzo\Model\OrdersAttributesQuery;
+use Hanzo\Model\OrdersSyncLogQuery;
 
 use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
-
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
+use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApi;
+use Hanzo\Bundle\PaymentBundle\Methods\Dibs\DibsApiCallException;
 
 class DeadOrderService
 {

@@ -25,6 +25,7 @@ $loader->registerNamespaces(array(
     'Geocoder'         => __DIR__.'/../vendor/Geocoder/src',
     'Smesg'            => __DIR__.'/../vendor/Smesg/src',
     'Bazinga'          => __DIR__.'/../vendor/bundles',
+    'Ekino'            => __DIR__.'/../vendor/bundles',
     'Liip'             => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(

@@ -4,11 +4,15 @@
     <body>
       <trans-unit id="json_err10">
         <source>json.ssn.not_numeric</source>
-        <target>Det indtastede personnummer må ikke indeholde andet end tal</target>
+        <target>Det indtastede fødselsdag må ikke indeholde andet end tal</target>
       </trans-unit>
       <trans-unit id="json_err20">
         <source>json.ssn.to_short</source>
-        <target>Det indtastede personnummer er for kort, det skal være 10 cifre</target>
+        <target>Det indtastede fødselsdag er for kort, det skal skrives som DDMMYYYY</target>
+      </trans-unit>
+      <trans-unit id="json.ssn.to_long">
+        <source>json.ssn.to_long</source>
+        <target>Det indtastede fødselsdag er for lang, det skal skrives som DDMMYYYY</target>
       </trans-unit>
       <trans-unit id="json_err30">
         <source>json.checkcustomer.failed</source>
@@ -38,6 +42,10 @@
         <source>json.placereservation.error</source>
         <target>Kunne ikke oprette din ordre ved Gothia</target>
       </trans-unit>
+      <trans-unit id="json_err90" approved="no">
+        <source>json.order.state_pre_payment.locked</source>
+        <target>Din ordre er under betaling. Vent venligst</target>
+      </trans-unit>
       <trans-unit id="page_txt10">
         <source>page.heading</source>
         <target>Gothia betaling</target>
@@ -52,21 +60,24 @@
       </trans-unit>
       <trans-unit id="page_txt40">
         <source>page.help_text</source>
-        <target><![CDATA[Följande information kommer att användas för att verifiera dig hos Gothia PayByBill.<br>
-Om inte din adress stämmer, ska du ändra den under "Min sida".<br>
-Om du har varit kund hos Gothia tidigare, finns ditt personnummer sparat via ditt kundkonto.]]></target>
+        <target><![CDATA[Følgende information andvendes for at finde dig hos Gothia.<br>
+        Hvis din addresse ikke stemmer overens med dine informationer hos Gothia, skal du ændre det på "Min Side".]]></target>
       </trans-unit>
       <trans-unit id="form_txt10">
         <source>form.submit_step1</source>
-        <target>Gå vidare</target>
+        <target>Gå videre</target>
       </trans-unit>
       <trans-unit id="form_txt20">
         <source>form.submit_step2</source>
-        <target>Gå vidare</target>
+        <target>Gå videre</target>
+      </trans-unit>
+      <trans-unit id="form_txt30" approved="no">
+        <source>form.cancel</source>
+        <target>Afbryd betaling</target>
       </trans-unit>
       <trans-unit id="social_security_num">
         <source>social_security_num</source>
-        <target>Personnummer:</target>
+        <target>Fødselsdato (DDMMYYYY):</target>
       </trans-unit>
     </body>
   </file>

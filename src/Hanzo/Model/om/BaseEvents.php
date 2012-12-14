@@ -2270,9 +2270,11 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setEventsParticipantss(PropelCollection $eventsParticipantss, PropelPDO $con = null)
     {
-        $this->eventsParticipantssScheduledForDeletion = $this->getEventsParticipantss(new Criteria(), $con)->diff($eventsParticipantss);
+        $eventsParticipantssToDelete = $this->getEventsParticipantss(new Criteria(), $con)->diff($eventsParticipantss);
 
-        foreach ($this->eventsParticipantssScheduledForDeletion as $eventsParticipantsRemoved) {
+        $this->eventsParticipantssScheduledForDeletion = unserialize(serialize($eventsParticipantssToDelete));
+
+        foreach ($eventsParticipantssToDelete as $eventsParticipantsRemoved) {
             $eventsParticipantsRemoved->setEvents(null);
         }
 
@@ -2361,7 +2363,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
                 $this->eventsParticipantssScheduledForDeletion = clone $this->collEventsParticipantss;
                 $this->eventsParticipantssScheduledForDeletion->clear();
             }
-            $this->eventsParticipantssScheduledForDeletion[]= $eventsParticipants;
+            $this->eventsParticipantssScheduledForDeletion[]= clone $eventsParticipants;
             $eventsParticipants->setEvents(null);
         }
 
@@ -2485,9 +2487,11 @@ abstract class BaseEvents extends BaseObject implements Persistent
      */
     public function setOrderss(PropelCollection $orderss, PropelPDO $con = null)
     {
-        $this->orderssScheduledForDeletion = $this->getOrderss(new Criteria(), $con)->diff($orderss);
+        $orderssToDelete = $this->getOrderss(new Criteria(), $con)->diff($orderss);
 
-        foreach ($this->orderssScheduledForDeletion as $ordersRemoved) {
+        $this->orderssScheduledForDeletion = unserialize(serialize($orderssToDelete));
+
+        foreach ($orderssToDelete as $ordersRemoved) {
             $ordersRemoved->setEvents(null);
         }
 

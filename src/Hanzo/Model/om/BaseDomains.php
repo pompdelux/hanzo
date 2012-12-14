@@ -1127,9 +1127,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setDomainsSettingss(PropelCollection $domainsSettingss, PropelPDO $con = null)
     {
-        $this->domainsSettingssScheduledForDeletion = $this->getDomainsSettingss(new Criteria(), $con)->diff($domainsSettingss);
+        $domainsSettingssToDelete = $this->getDomainsSettingss(new Criteria(), $con)->diff($domainsSettingss);
 
-        foreach ($this->domainsSettingssScheduledForDeletion as $domainsSettingsRemoved) {
+        $this->domainsSettingssScheduledForDeletion = unserialize(serialize($domainsSettingssToDelete));
+
+        foreach ($domainsSettingssToDelete as $domainsSettingsRemoved) {
             $domainsSettingsRemoved->setDomains(null);
         }
 
@@ -1218,7 +1220,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 $this->domainsSettingssScheduledForDeletion = clone $this->collDomainsSettingss;
                 $this->domainsSettingssScheduledForDeletion->clear();
             }
-            $this->domainsSettingssScheduledForDeletion[]= $domainsSettings;
+            $this->domainsSettingssScheduledForDeletion[]= clone $domainsSettings;
             $domainsSettings->setDomains(null);
         }
 
@@ -1342,9 +1344,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setProductsDomainsPricess(PropelCollection $productsDomainsPricess, PropelPDO $con = null)
     {
-        $this->productsDomainsPricessScheduledForDeletion = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
+        $productsDomainsPricessToDelete = $this->getProductsDomainsPricess(new Criteria(), $con)->diff($productsDomainsPricess);
 
-        foreach ($this->productsDomainsPricessScheduledForDeletion as $productsDomainsPricesRemoved) {
+        $this->productsDomainsPricessScheduledForDeletion = unserialize(serialize($productsDomainsPricessToDelete));
+
+        foreach ($productsDomainsPricessToDelete as $productsDomainsPricesRemoved) {
             $productsDomainsPricesRemoved->setDomains(null);
         }
 
@@ -1433,7 +1437,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 $this->productsDomainsPricessScheduledForDeletion = clone $this->collProductsDomainsPricess;
                 $this->productsDomainsPricessScheduledForDeletion->clear();
             }
-            $this->productsDomainsPricessScheduledForDeletion[]= $productsDomainsPrices;
+            $this->productsDomainsPricessScheduledForDeletion[]= clone $productsDomainsPrices;
             $productsDomainsPrices->setDomains(null);
         }
 
@@ -1582,9 +1586,11 @@ abstract class BaseDomains extends BaseObject implements Persistent
      */
     public function setProductsQuantityDiscounts(PropelCollection $productsQuantityDiscounts, PropelPDO $con = null)
     {
-        $this->productsQuantityDiscountsScheduledForDeletion = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
+        $productsQuantityDiscountsToDelete = $this->getProductsQuantityDiscounts(new Criteria(), $con)->diff($productsQuantityDiscounts);
 
-        foreach ($this->productsQuantityDiscountsScheduledForDeletion as $productsQuantityDiscountRemoved) {
+        $this->productsQuantityDiscountsScheduledForDeletion = unserialize(serialize($productsQuantityDiscountsToDelete));
+
+        foreach ($productsQuantityDiscountsToDelete as $productsQuantityDiscountRemoved) {
             $productsQuantityDiscountRemoved->setDomains(null);
         }
 
@@ -1673,7 +1679,7 @@ abstract class BaseDomains extends BaseObject implements Persistent
                 $this->productsQuantityDiscountsScheduledForDeletion = clone $this->collProductsQuantityDiscounts;
                 $this->productsQuantityDiscountsScheduledForDeletion->clear();
             }
-            $this->productsQuantityDiscountsScheduledForDeletion[]= $productsQuantityDiscount;
+            $this->productsQuantityDiscountsScheduledForDeletion[]= clone $productsQuantityDiscount;
             $productsQuantityDiscount->setDomains(null);
         }
 

@@ -387,6 +387,10 @@
                 <source>stop.editing.order</source>
                 <target>Avsluta orderredigering</target>
             </trans-unit>
+            <trans-unit id="unable.to.lock.order" approved="no">
+                <source>unable.to.lock.order</source>
+                <target>Ordern kan inte redigeras just nu. Försök igen senare. </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

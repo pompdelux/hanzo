@@ -1068,9 +1068,11 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      */
     public function setCmss(PropelCollection $cmss, PropelPDO $con = null)
     {
-        $this->cmssScheduledForDeletion = $this->getCmss(new Criteria(), $con)->diff($cmss);
+        $cmssToDelete = $this->getCmss(new Criteria(), $con)->diff($cmss);
 
-        foreach ($this->cmssScheduledForDeletion as $cmsRemoved) {
+        $this->cmssScheduledForDeletion = unserialize(serialize($cmssToDelete));
+
+        foreach ($cmssToDelete as $cmsRemoved) {
             $cmsRemoved->setCmsThread(null);
         }
 
@@ -1159,7 +1161,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                 $this->cmssScheduledForDeletion = clone $this->collCmss;
                 $this->cmssScheduledForDeletion->clear();
             }
-            $this->cmssScheduledForDeletion[]= $cms;
+            $this->cmssScheduledForDeletion[]= clone $cms;
             $cms->setCmsThread(null);
         }
 
@@ -1308,9 +1310,11 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
      */
     public function setCmsThreadI18ns(PropelCollection $cmsThreadI18ns, PropelPDO $con = null)
     {
-        $this->cmsThreadI18nsScheduledForDeletion = $this->getCmsThreadI18ns(new Criteria(), $con)->diff($cmsThreadI18ns);
+        $cmsThreadI18nsToDelete = $this->getCmsThreadI18ns(new Criteria(), $con)->diff($cmsThreadI18ns);
 
-        foreach ($this->cmsThreadI18nsScheduledForDeletion as $cmsThreadI18nRemoved) {
+        $this->cmsThreadI18nsScheduledForDeletion = unserialize(serialize($cmsThreadI18nsToDelete));
+
+        foreach ($cmsThreadI18nsToDelete as $cmsThreadI18nRemoved) {
             $cmsThreadI18nRemoved->setCmsThread(null);
         }
 
@@ -1403,7 +1407,7 @@ abstract class BaseCmsThread extends BaseObject implements Persistent
                 $this->cmsThreadI18nsScheduledForDeletion = clone $this->collCmsThreadI18ns;
                 $this->cmsThreadI18nsScheduledForDeletion->clear();
             }
-            $this->cmsThreadI18nsScheduledForDeletion[]= $cmsThreadI18n;
+            $this->cmsThreadI18nsScheduledForDeletion[]= clone $cmsThreadI18n;
             $cmsThreadI18n->setCmsThread(null);
         }
 

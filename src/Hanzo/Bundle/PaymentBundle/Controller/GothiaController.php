@@ -135,6 +135,23 @@ class GothiaController extends CoreController
                     'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
                 ));
             }
+        }elseif('DK' == str_replace('Sales', '', $domainKey)){
+            $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
+
+            //Denmark cases
+            if (strlen($SSN) < 8) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_short', array(), 'gothia'),
+                ));
+            }
+
+            if (strlen($SSN) > 8) {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
+                ));
+            }
         }else{
 
             $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
@@ -237,6 +254,14 @@ class GothiaController extends CoreController
         $customer   = $order->getCustomers();
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
+
+        if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
+        {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.order.state_pre_payment.locked', array(), 'gothia'),
+            ));
+        }
 
         // Handle reservations in Gothia when editing the order
         // A customer can max reserve 7.000 SEK currently, so if they edit an order to 3.500+ SEK
@@ -342,6 +367,25 @@ class GothiaController extends CoreController
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
+    }
+
+    /**
+     * cancelAction
+     * Cancels a Gothia Payment, and restores the order in good state
+     * @return void
+     * @author Anders Bryrup <anders@bellcom.dk>
+     **/
+    public function cancelAction()
+    {
+        $translator = $this->get('translator');
+
+        $order = OrdersPeer::getCurrent();
+        $order->setState( Orders::STATE_BUILDING );
+        $order->save();
+
+        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
+
+        return $this->redirect($this->generateUrl('_checkout'));
     }
 
     /**

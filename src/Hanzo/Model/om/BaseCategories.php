@@ -1326,9 +1326,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
      */
     public function setCategoriessRelatedById(PropelCollection $categoriessRelatedById, PropelPDO $con = null)
     {
-        $this->categoriessRelatedByIdScheduledForDeletion = $this->getCategoriessRelatedById(new Criteria(), $con)->diff($categoriessRelatedById);
+        $categoriessRelatedByIdToDelete = $this->getCategoriessRelatedById(new Criteria(), $con)->diff($categoriessRelatedById);
 
-        foreach ($this->categoriessRelatedByIdScheduledForDeletion as $categoriesRelatedByIdRemoved) {
+        $this->categoriessRelatedByIdScheduledForDeletion = unserialize(serialize($categoriessRelatedByIdToDelete));
+
+        foreach ($categoriessRelatedByIdToDelete as $categoriesRelatedByIdRemoved) {
             $categoriesRelatedByIdRemoved->setCategoriesRelatedByParentId(null);
         }
 
@@ -1541,9 +1543,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
      */
     public function setProductsToCategoriess(PropelCollection $productsToCategoriess, PropelPDO $con = null)
     {
-        $this->productsToCategoriessScheduledForDeletion = $this->getProductsToCategoriess(new Criteria(), $con)->diff($productsToCategoriess);
+        $productsToCategoriessToDelete = $this->getProductsToCategoriess(new Criteria(), $con)->diff($productsToCategoriess);
 
-        foreach ($this->productsToCategoriessScheduledForDeletion as $productsToCategoriesRemoved) {
+        $this->productsToCategoriessScheduledForDeletion = unserialize(serialize($productsToCategoriessToDelete));
+
+        foreach ($productsToCategoriessToDelete as $productsToCategoriesRemoved) {
             $productsToCategoriesRemoved->setCategories(null);
         }
 
@@ -1632,7 +1636,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 $this->productsToCategoriessScheduledForDeletion = clone $this->collProductsToCategoriess;
                 $this->productsToCategoriessScheduledForDeletion->clear();
             }
-            $this->productsToCategoriessScheduledForDeletion[]= $productsToCategories;
+            $this->productsToCategoriessScheduledForDeletion[]= clone $productsToCategories;
             $productsToCategories->setCategories(null);
         }
 
@@ -1781,9 +1785,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
      */
     public function setCategoriesI18ns(PropelCollection $categoriesI18ns, PropelPDO $con = null)
     {
-        $this->categoriesI18nsScheduledForDeletion = $this->getCategoriesI18ns(new Criteria(), $con)->diff($categoriesI18ns);
+        $categoriesI18nsToDelete = $this->getCategoriesI18ns(new Criteria(), $con)->diff($categoriesI18ns);
 
-        foreach ($this->categoriesI18nsScheduledForDeletion as $categoriesI18nRemoved) {
+        $this->categoriesI18nsScheduledForDeletion = unserialize(serialize($categoriesI18nsToDelete));
+
+        foreach ($categoriesI18nsToDelete as $categoriesI18nRemoved) {
             $categoriesI18nRemoved->setCategories(null);
         }
 
@@ -1876,7 +1882,7 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 $this->categoriesI18nsScheduledForDeletion = clone $this->collCategoriesI18ns;
                 $this->categoriesI18nsScheduledForDeletion->clear();
             }
-            $this->categoriesI18nsScheduledForDeletion[]= $categoriesI18n;
+            $this->categoriesI18nsScheduledForDeletion[]= clone $categoriesI18n;
             $categoriesI18n->setCategories(null);
         }
 

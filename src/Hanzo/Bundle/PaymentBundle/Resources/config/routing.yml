@@ -48,6 +48,10 @@ PaymentBundle_gothia_payment_confirm:
     defaults: { _controller: PaymentBundle:Gothia:confirm, _format: json }
     requirements: { _format: (xml|json), _method: POST }
 
+PaymentBundle_gothia_payment_cancel:
+    pattern:  /payment/gothia/cancel
+    defaults: { _controller: PaymentBundle:Gothia:cancel }
+
 # COD }-------------------------
 _paybybill_callback:
     pattern:  /payment/paybybill/callback

@@ -15,6 +15,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\AddressesQuery;
+use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersSyncLog;
@@ -197,33 +198,37 @@ class AxService
 
         switch ($order->getBillingMethod())
         {
-          case 'dibs':
-              switch (strtoupper($attributes->payment->paytype)) {
-                  case 'VISA':
-                  case 'VISA(DK)':
-                  case 'VISA(SE)':
-                  case 'ELEC':
-                      $custPaymMode = 'VISA';
-                      break;
-                  case 'MC':
-                  case 'MC(DK)':
-                  case 'MC(SE)':
-                      $custPaymMode = 'MasterCard';
-                      break;
-                  case 'V-DK':
-                  case 'DK':
-                      $custPaymMode = 'DanKort';
-                      break;
-              }
-            break;
+            case 'dibs':
+                switch (strtoupper($attributes->payment->paytype)) {
+                    case 'VISA':
+                    case 'VISA(DK)':
+                    case 'VISA(SE)':
+                    case 'ELEC':
+                        $custPaymMode = 'VISA';
+                        break;
+                    case 'MC':
+                    case 'MC(DK)':
+                    case 'MC(SE)':
+                        $custPaymMode = 'MasterCard';
+                        break;
+                    case 'V-DK':
+                    case 'DK':
+                        $custPaymMode = 'DanKort';
+                        break;
+                    // un@bellcom.dk, skal ind igen
+                    // case 'ABN':
+                    //     $custPaymMode = 'ABN';
+                    //     break;
+                }
+                break;
 
-          case 'gothia':
-              $custPaymMode = 'PayByBill';
-              break;
+            case 'gothia':
+                $custPaymMode = 'PayByBill';
+                break;
 
-          case 'paybybill': // Should be COD, is _not_ Gothia
-              $custPaymMode = 'Bank';
-              break;
+            case 'paybybill': // Should be COD, is _not_ Gothia
+                $custPaymMode = 'Bank';
+                break;
         }
 
         $freight_type = $order->getDeliveryMethod();
@@ -285,11 +290,9 @@ class AxService
                 break;
         }
 
-
         if ($return) {
             return $syncSalesOrder;
         }
-
 
         // post validation
         if (empty($salesTable->HomePartyId) || empty($salesTable->SalesResponsible)) {
@@ -490,11 +493,23 @@ class AxService
     }
 
 
+    /**
+     * transform country code into iso2 code
+     *
+     * @param  int $country_id
+     * @return string
+     */
     protected function getIso2CountryCode($country_id)
     {
-        return CountriesQuery::create()
+        $result = CountriesQuery::create()
             ->select('Iso2')
             ->findOneById($country_id);
+
+        if ($result instanceof Countries) {
+            return $result->getIso2();
+        }
+
+        return $result;
     }
 
 

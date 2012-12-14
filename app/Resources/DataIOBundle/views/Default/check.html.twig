@@ -1,0 +1,52 @@
+{%  set page_type = 'pc-test' %}
+{% extends layout %}
+
+{% block content %}
+
+<h1>{{ 'events.create_customer.header.text'|trans({}, 'events') }}</h1>
+
+{% if uniqid %}
+  <h2>Vi har nu registreret følgende</h2>
+  <ul>
+    <li>Informationer om din browser</li>
+    <li>Informationer om dit operativsystem</li>
+    <li>Informationer om din skærmopløsning (størrelse)</li>
+    <li>Informationer om din igangværende ordre (hvis nogen)</li>
+    <li>Informationer om din bruger, hvis du er logget ind.</li>
+  </ul>
+  <p>Koden du skal referere til når du taler med kundeservice er: <span>"{{ uniqid }}"</span></p>
+  <p>Alle informationer behandles konfidencielt og vil blive slettet fra vores system, så snart din sag er afsluttet.</p>
+  <p class="right">- Tak for hjælpen, POMPdeLUX ApS</p>
+{% else %}
+  <h2>Denne test er allerede kørt</h2>
+  <p>Testen her er lavet til at blive kørt én gang pr. bruger.</p>
+  <p>Dvs. Hvis du er blevet bedt om - af POMPdeLUXs kundeservice at gå herind, så tæller det som din "ene gang".</p>
+  <p>Der er selvføleligt åbent igen hvis du kommer ud for nye problemer, eller igen bliver bedt om at besøge siden.</p>
+  <p class="right">- Tak for hjælpen, POMPdeLUX ApS</p>
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+{% if uniqid %}
+<script>
+var _stack = {
+  screenHeight: screen.height,
+  screenWidth: screen.width,
+  colorDepth: screen.colorDepth,
+  vendor : navigator.vendor,
+  product : navigator.product,
+  platform : navigator.platform,
+  userAgent : navigator.userAgent,
+  cookieEnabled : navigator.cookieEnabled,
+  plugins : [],
+  support : $.support,
+  uniqid : '{{ uniqid }}'
+};
+
+for ( i=0, l = navigator.plugins.length; i<l; i++ ) {
+  _stack.plugins.push(navigator.plugins[i].name);
+}
+$.post('{{ path('_pc_check') }}', _stack);
+</script>
+{% endif %}
+{% endblock %}

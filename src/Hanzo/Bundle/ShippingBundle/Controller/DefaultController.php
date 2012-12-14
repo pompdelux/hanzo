@@ -9,6 +9,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\ShippingMethods;
 
 class DefaultController extends CoreController
@@ -45,12 +46,25 @@ class DefaultController extends CoreController
             $method = $methods[$request->get('method')];
 
             $order = OrdersPeer::getCurrent();
+
+            // nuke old shipping lines
+            OrdersLinesQuery::create()
+                ->filterByOrdersId($order->getId())
+                ->filterByType('shipping')
+                ->_or()
+                ->filterByType('shipping.fee')
+                ->delete()
+            ;
+
             $order->setDeliveryMethod($request->get('method'));
             $order->setOrderLineShipping($method, ShippingMethods::TYPE_NORMAL);
 
             if ($method->getFee()) {
                 $order->setOrderLineShipping($method, ShippingMethods::TYPE_FEE);
             }
+
+            $order->setUpdatedAt(time());
+            $order->save();
 
             $response = array(
                 'status' => true,
