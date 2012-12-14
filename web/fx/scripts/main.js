@@ -105,8 +105,8 @@
       if ($countdown) {
         $countdown.countdown({
           timezone: +1,
-          until: new Date(ExposeTranslation.get('js:countdown.date')),
-          layout: '<strong>' + ExposeTranslation.get('js:countdown.format') + '</strong>'
+          until: new Date(Translator.get('js:countdown.date')),
+          layout: '<strong>' + Translator.get('js:countdown.format') + '</strong>'
         });
         var lang = $('html').attr('lang');
         if (lang !== 'en') {

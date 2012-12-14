@@ -114,13 +114,13 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+                dialoug.alert(Translator.get('js:notice'), response.message);
               }
               return;
             }
 
             if (undefined === response.data.products) {
-              $('div', $form).replaceWith(ExposeTranslation.get('js:out.of.stock'));
+              $('div', $form).replaceWith(Translator.get('js:out.of.stock'));
               return;
             }
 
@@ -135,7 +135,7 @@
             if (name == 'color') {
               var product = response.data.products[0];
               if (product.date) {
-                dialoug.confirm(ExposeTranslation.get('js:notice'), response.message, function(c) {
+                dialoug.confirm(Translator.get('js:notice'), response.message, function(c) {
                   if (c == 'ok') {
                     $('select.quantity', $form).closest('label').removeClass('off');
                     $form.find('.button').show();
@@ -166,7 +166,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+                dialoug.alert(Translator.get('js:notice'), response.message);
               }
             }
             else {
@@ -177,7 +177,7 @@
             _resetForm();
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice!'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
           }
         });
       });

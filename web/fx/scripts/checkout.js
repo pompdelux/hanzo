@@ -118,7 +118,7 @@
         // shipping
         if (!checkout.getStepStatus('shipping')) {
           var $block = $('#shipping-block');
-          $('.msg', $block).text(ExposeTranslation.get('js:checkout.choose.shipping.method')).toggleClass('hidden error');
+          $('.msg', $block).text(Translator.get('js:checkout.choose.shipping.method')).toggleClass('hidden error');
           $('html,body').animate({ scrollTop : $block.prev('h2').offset().top - 20 });
           return false;
         }
@@ -126,7 +126,7 @@
         // payment
         if (!checkout.getStepStatus('payment')) {
           var $block = $('#payment-block');
-          $('.msg', $block).text(ExposeTranslation.get('js:checkout.choose.payment.method')).toggleClass('hidden error');
+          $('.msg', $block).text(Translator.get('js:checkout.choose.payment.method')).toggleClass('hidden error');
           $('html,body').animate({ scrollTop : $block.prev('h2').offset().top - 20 });
           return false;
         }
@@ -154,7 +154,7 @@
         });
 
         if (address_errors.has_errors) {
-          dialoug.notice(ExposeTranslation.get('js:not.filled.correctly'), 'error', 4000, '#address-block');
+          dialoug.notice(Translator.get('js:not.filled.correctly'), 'error', 4000, '#address-block');
           $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top});
           return false;
         }

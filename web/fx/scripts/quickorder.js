@@ -31,7 +31,7 @@ var quickorder = (function($) {
                 success: function(response, textStatus, jqXHR) {
                     if (false === response.status) {
                         if (response.message) {
-                            dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                            dialoug.alert(Translator.get('js:notice', response.message));
                         }
                     } else {
 
@@ -42,7 +42,7 @@ var quickorder = (function($) {
                             $('#size')
                                 .append($("<option></option>")
                                 .attr("value",'')
-                                .text(ExposeTranslation.get('js:quickorder.choose.size')));
+                                .text(Translator.get('js:quickorder.choose.size')));
 
                             var last = '';
                             $.each(response.data.products, function(key, value) {
@@ -55,13 +55,13 @@ var quickorder = (function($) {
                             $('#reset').show();
                         } else {
                             if (response.message) {
-                                dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+                                dialoug.alert(Translator.get('js:notice'), response.message);
                             }
                         }
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+                    dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
                 }
             });
         }
@@ -82,7 +82,7 @@ var quickorder = (function($) {
                 success: function(response, textStatus, jqXHR) {
                     if (false === response.status) {
                         if (response.message) {
-                          dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                          dialoug.alert(Translator.get('js:notice', response.message));
                         }
                     } else {
 
@@ -95,7 +95,7 @@ var quickorder = (function($) {
                             $('#color')
                                 .append($("<option></option>")
                                 .attr("value",'')
-                                .text(ExposeTranslation.get('js:quickorder.choose.color')));
+                                .text(Translator.get('js:quickorder.choose.color')));
 
                             var last = '';
                             $.each(response.data.products, function(key, value) {
@@ -107,13 +107,13 @@ var quickorder = (function($) {
                             $('#color-label').show().find('#color').focus();
                         }else{
                             if (response.message) {
-                                dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+                                dialoug.alert(Translator.get('js:notice'), response.message);
                             }
                         }
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+                    dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
                 }
             });
         }
@@ -182,7 +182,7 @@ var quickorder = (function($) {
                 success: function(response, textStatus, jqXHR) {
                     if (false === response.status) {
                         if (response.message) {
-                            dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+                            dialoug.alert(Translator.get('js:notice'), response.message);
                         }
                     }
                     else {
@@ -198,11 +198,11 @@ var quickorder = (function($) {
                                 <div class="info" data-product_id="'+response.latest.id+'" data-confirmed=""> \
                                   <a href="'+base_url+'product/view/'+response.latest.id+'">'+master+'</a> \
                                   <div class="size"> \
-                                    <label>'+ExposeTranslation.get('js:size')+':</label> \
+                                    <label>'+Translator.get('js:size')+':</label> \
                                     <span>'+size+'</span> \
                                   </div> \
                                   <div class="color"> \
-                                    <label>'+ExposeTranslation.get('js:color')+':</label> \
+                                    <label>'+Translator.get('js:color')+':</label> \
                                     <span>'+color+'</span> \
                                   </div> \
                                 </div> \
@@ -214,21 +214,21 @@ var quickorder = (function($) {
                               <td class="right quantity">'+quantity+'</td> \
                               <td class="right total">'+response.latest.price+'</td> \
                               <td class="actions"> \
-                                <a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+ExposeTranslation.get('js:delete')+'"></a> \
-                                <a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+ExposeTranslation.get('js:edit')+'"></a> \
+                                <a href="'+base_url+'remove-from-basket/'+response.latest.id+'" class="delete"><img src="'+cdn_url+'fx/images/delete_icon.png" alt="'+Translator.get('js:delete')+'"></a> \
+                                <a href="'+response.latest.id+'" class="edit"><img src="'+cdn_url+'fx/images/edit_icon.png" alt="'+Translator.get('js:edit')+'"></a> \
                               </td> \
                             </tr>');
                         $('table tfoot td.total').html(response.data);
                         if($('.buttons a.proceed-to-basket').length > 0){
                             $('.buttons a.proceed-to-basket').show();
                         }else{
-                            $('.buttons').append('<a class="button right proceed-to-basket" href="'+base_url+'basket">'+ExposeTranslation.get('js:proceed')+'</a>');
+                            $('.buttons').append('<a class="button right proceed-to-basket" href="'+base_url+'basket">'+Translator.get('js:proceed')+'</a>');
                         }
                     }
                     _resetForm();
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    dialoug.error(ExposeTranslation.get('js:notice!'), ExposeTranslation.get('js:an.error.occurred'));
+                    dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
                 }
             });
         }

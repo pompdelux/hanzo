@@ -36,8 +36,8 @@ var dialoug = (function($) {
     defaults.html = templates.confirm
       .replace('%title%', title)
       .replace('%message%', message)
-      .replace('%ok%', ExposeTranslation.get('js:ok'))
-      .replace('%cancel%', ExposeTranslation.get('js:cancel'))
+      .replace('%ok%', Translator.get('js:ok'))
+      .replace('%cancel%', Translator.get('js:cancel'))
     ;
 
     // fix scroll issue in ie.
@@ -76,7 +76,7 @@ var dialoug = (function($) {
     $.colorbox({
       'top' : '25%',
       'maxWidth' : '400px',
-      'close' : ExposeTranslation.get('js:close'),
+      'close' : Translator.get('js:close'),
       'html': templates.alert
                        .replace('%title%', title)
                        .replace('%message%', message)
