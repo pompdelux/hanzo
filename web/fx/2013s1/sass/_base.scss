@@ -1,10 +1,12 @@
 // Base
+$font-serif 			: "Times New Roman", serif;
+$font-sans 				: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-color             : #333;
 $font-size              : 12px;
-$font-family  			: "inherit";
+$font-family  			: inherit;
 $link-color  			: #222;
-$font-size              : $font-size;
-$font-family  			: "inherit";
+$link-size              : $font-size;
+$link-family  			: inherit;
 @import "compass/reset";
 @import "compass/utilities";
 
@@ -17,6 +19,10 @@ $font-family  			: "inherit";
 | Base styles
 |
 */
+body{
+	color: $font-color;
+	font-family: $font-sans;
+}
 .container{
 	position: relative;}
 
@@ -25,6 +31,38 @@ a{
 	&:hover{
 		color: $font-color;
 	}
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: $font-sans;
+	font-weight: bold;
+	padding: 0 0 20px 0;
+	a{
+		text-decoration: none;
+		color: inherit;
+	}
+}
+h1{
+	font-family: $font-serif;
+	font-size: 26px;
+	padding: 10px 0 20px;
+}
+h2{
+	font-weight: 100;
+	font-size: 16px;
+	padding: 10px 0;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+h3{
+	font-size: 14px;
+	padding: 5px 0 0;
+}
+
+p{
+	font-size: $font-size;
+	padding: 0 0 5px;
+	line-height: 17px;
 }
 
 hr {
@@ -61,6 +99,11 @@ a.text-button {
 }
 
 
+/**
+|
+| Slideshow Cycle2 styles
+|
+*/
 .cycle-slideshow {
 	.cycle-pager{
 		display: inline-block;
@@ -105,16 +148,16 @@ a.text-button {
 	margin-left: 3px;
 	margin-right: 3px;
 }
-.grid_1,
-.grid_2,
-.grid_3,
-.grid_4,
-.grid_5,
-.grid_6,
-.grid_7,
-.grid_8,
-.grid_1-5,
-.grid_2-5 {
+.main .grid_1,
+.main .grid_2,
+.main .grid_3,
+.main .grid_4,
+.main .grid_5,
+.main .grid_6,
+.main .grid_7,
+.main .grid_8,
+.main .grid_1-5,
+.main .grid_2-5 {
 	margin-top: 3px;
 	margin-bottom: 3px;
 }

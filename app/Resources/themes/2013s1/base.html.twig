@@ -52,7 +52,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="container" class="container container_8">
-  <header>
+  <header class="grid_8">
     <a href="{{ path('_homepage', {'_locale' : app.session.locale}) }}" title="{{ "home"|trans }}">
       {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
     </a>
@@ -62,7 +62,7 @@
     <hr class="right">
   </header>
 
-  <div id="main" role="main">
+  <div id="main" role="main" class="main clearfix grid_8">
     {% render 'CMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {# if app.session.get('in_edit') %}
       {{ 'order.edit.global.notice'|trans({
@@ -90,7 +90,7 @@
           <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
         </div>
       </li>
-      <li>
+      <li class="last">
         <form action="#" class="search-form">
           <input type="submit" class="text-button" value="{{ "button.label"|trans({}, 'search') }}">
           <input type="text" name="search">
@@ -101,14 +101,16 @@
       <li id="mini-basket" class="basket">
         <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {{ fx_image_tag('images/loader-bar.gif') }}{# render 'BasketBundle:Default:miniBasket' #} </a>
       </li>
-      <li><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
+      <li class="last"><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </aside>
 </div>
 
 <footer class="container container_8">
-  <hr class="right">
-  <div class="grid_1-5 alpha footer-menu footer-menu-1">
+  <div class="grid_8">
+    <hr class="right">
+  </div>
+  <div class="grid_1-5 footer-menu footer-menu-1">
     <h2>{{ "footer.menu_1.title"|trans }}</h2>
     {% render 'CMSBundle:Menu:menu' with {'type': footer1_menu.type, 'from': footer1_menu.from, 'thread': footer1_menu.thread, 'offset': footer1_menu.offset } %}
   </div>
@@ -120,10 +122,12 @@
     <h2>{{ "footer.menu_3.title"|trans }}</h2>
     {% render 'CMSBundle:Menu:menu' with {'type': footer3_menu.type, 'from': footer3_menu.from, 'thread': footer3_menu.thread, 'offset': footer3_menu.offset } %}
   </div>
-  <div class="grid_2-5 omega footer-menu footer-menu-4">
+  <div class="grid_2-5 footer-menu footer-menu-4">
     {% render 'NewsletterBundle:Default:block' %}
   </div>
-  <hr class="left">
+  <div class="grid_8">
+    <hr class="left">
+  </div>
   <div class="copy grid_8">
     {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
   </div>
@@ -148,7 +152,7 @@
   'fx/scripts/accounting/accounting.min.js'
   'fx/scripts/jquery.formparams.js'
   'fx/scripts/jquery.cycle2.min.js'
-  
+
   'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'
   'fx/scripts/countdown/jquery.countdown-da.js'

@@ -4,21 +4,12 @@
 |
 */
 
-// horizontal helper. Lets all list get horizontal
-ul.horizontal,
-.horizontal > ul{
-	list-style: none;
-	li{
-		display: inline-block;
-	}
-
-}
-
 // All menus
 nav > ul,
 ul.menu,
 .menu > ul{
 	font-size: $font-size;
+	font-family: $font-serif;
 	color:$font-color;
 	li {
 		position: relative;
@@ -58,6 +49,15 @@ ul.menu,
 	}
 }
 
+// horizontal helper. Lets all list get horizontal
+ul.horizontal,
+.horizontal > ul{
+	list-style: none;
+	li{
+		display: inline-block;
+	}
+}
+
 // Specific main menus
 nav.main{
 	li{
@@ -79,10 +79,13 @@ nav.main{
 #secondary-links{
 	position: absolute;
 	top: 0px;
-	right: 0px;
+	right: 3px;
 	li{
 		padding: 16px 8px;
 		vertical-align: middle;
+		&.last{
+			padding-right: 0; 
+		}
 		// Mini-basket in secondary links!
 		&.basket a{
 			background: url('/fx/images/icons/basket.png') no-repeat left top;
@@ -91,6 +94,9 @@ nav.main{
 			line-height: 45px;
 			vertical-align: middle;
 			padding-left:40px;
+			&:hover{
+				text-decoration: none;
+			}
 		}
 		a{
 			text-transform: uppercase;
