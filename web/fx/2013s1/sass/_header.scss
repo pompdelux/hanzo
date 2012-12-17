@@ -21,8 +21,20 @@ ul.menu,
 		&.active-trail > a,
 		a:hover{
 			border-bottom: 1px solid $font-color;
+			margin-bottom: -1px;
 		}
 	}
+	.dropdown{
+		position: absolute;
+		left: 0;
+		background: white;
+	}
+	&.right{
+		text-align: right;
+	}
+}	
+ul.main-menu,
+.main-menu > ul{
 	li:hover ul,
 	li:hover div{
 		left: 0;
@@ -38,14 +50,31 @@ ul.menu,
 		position: relative;
 		z-index:100;
 	}
-
-	.dropdown{
-		position: absolute;
-		left: 0;
-		background: white;
-	}
-	&.right{
-		text-align: right;
+}
+ul.sub-menu,
+.sub-menu > ul{
+	font-family: $font-sans;
+	font-size: 12px;
+	text-transform: uppercase;
+	li{
+		padding: 0 0 6px 0;
+		line-height: 18px;
+		&.heading{
+			span{
+				border-bottom: 1px solid #000;
+				border-top: 1px solid #000;
+				display: block;
+				line-height: 18px;
+				padding: 3px 0 3px 6px;
+			}
+		}
+		ul{
+			padding:6px 0 0 6px;
+			a{
+				display: inline-block;	
+				margin: 0 0 0 6px;
+			}
+		}
 	}
 }
 

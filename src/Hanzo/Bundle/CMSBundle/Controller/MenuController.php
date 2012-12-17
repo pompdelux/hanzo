@@ -33,6 +33,11 @@ class MenuController extends CoreController
         array_push($cache_id, $request->getPathInfo());
 
         $html = $this->getCache($cache_id);
+        /**
+
+
+        **/
+        //$html = NULL; // FIXME: redis overwrite
         if (!$html) {
             $hanzo = Hanzo::getInstance();
 
@@ -66,7 +71,7 @@ class MenuController extends CoreController
                     if (empty($this->menu['main'])) {
                         $this->menu['main'] = '';
                         // generate
-                        $this->generateTree();
+                        $this->generateFull(null, $type, $this->cms_thread);
                     }
                     $html = $this->menu['main'];
                     break;
@@ -87,11 +92,7 @@ class MenuController extends CoreController
                     if (empty($this->menu[$type])) {
                         $this->menu[$type] = '';
 
-                        // generate
-                        if ($from && !isset($this->trail[$from])) {
-                            break;
-                        }
-                        $this->generateFlat($offset, $type);
+                        $this->generateFull($offset, $type);
                     }
                     $html = $this->menu[$type];
                     break;
@@ -241,6 +242,70 @@ class MenuController extends CoreController
             }
 
             $this->menu[$type] .= '</ul></nav>';
+        }
+    }
+
+    protected function generateFull($parent_id = NULL, $type, $from = NULL)
+    {
+        $query = CmsQuery::create()
+            ->joinWithI18n($this->locale)
+            ->filterByIsActive(TRUE)
+            ->orderBySort()
+            ->filterByParentId($parent_id)
+        ;
+        if(!empty($from)){
+            $query->filterByCmsThreadId($from);
+        }
+        $result = $query->find();
+        if ($result->count()) {
+            $this->menu[$type] .= '<ul>';
+
+            foreach($result as $record) {
+
+                $path = $record->getPath();
+                if ($record->getType() == 'frontpage') {
+                    $path = '';
+                }
+
+                if ($record->getTitle()) {
+                    $class = 'inactive';
+                    if ((isset($this->trail[$record->getId()])) ||
+                        ($path == $this->path)
+                    ) {
+                        $class = 'active';
+                    }
+
+                    if (in_array($record->getType(), array('page', 'url'))) {
+                        $params = $record->getSettings(null, false);
+
+                        if (isset($params->class)) {
+                            $class .= ' ' . $params->class;
+                        } elseif (isset($params->is_frontpage)) {
+                            if ($this->path == '/') {
+                                $class = 'active';
+                            }
+                            $path = '';
+                        }
+                    }
+
+                    if (preg_match('~^(f|ht)tps?://~', $path)) {
+                        $uri = $path;
+                    } else {
+                        $uri = $this->base_url . '/' . $this->locale . '/' . $path;
+                    }
+
+                    if($record->getType() !== 'heading'){
+                        $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
+                    }else{
+                        $this->menu[$type] .= '<li class="' . $class . ' heading"><span>' . $record->getTitle() . '</span>';
+                    }
+                    $this->generateFull($record->getId(), $type);
+
+                    $this->menu[$type] .= '</li>';
+                }
+            }
+
+            $this->menu[$type] .= '</ul>';
         }
     }
 

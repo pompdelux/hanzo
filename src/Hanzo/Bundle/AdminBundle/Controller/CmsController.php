@@ -144,7 +144,8 @@ class CmsController extends CoreController
                         'category_search'  => 'cms.edit.type.category_search',
                         'newsletter'  => 'cms.edit.type.newsletter',
                         'advanced_search'  => 'cms.edit.type.advanced_search',
-                        'mannequin'  => 'cms.edit.type.mannequin'
+                        'mannequin'  => 'cms.edit.type.mannequin',
+                        'heading'  => 'cms.edit.type.heading'
                     ),
                     'required'  => TRUE,
                     'translation_domain' => 'admin'
@@ -290,17 +291,20 @@ class CmsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-
+                $path = $node->getPath();
                 // Find dublicate URL'er
-                $urls = CmsQuery::create()
-                    ->useCmsI18nQuery()
-                        ->filterByPath($node->getPath())
-                    ->endUse()
-                    ->joinCmsI18n(NULL, 'INNER JOIN')
-                    ->filterByIsActive(TRUE)
-                    ->where('cms.id <> ?', $node->getId())
-                    ->findOne($this->getDbConnection())
-                ;
+                $urls = null;
+                if($node->getPath() !== '#' AND !empty($path)){
+                    $urls = CmsQuery::create()
+                        ->useCmsI18nQuery()
+                            ->filterByPath($node->getPath())
+                        ->endUse()
+                        ->joinCmsI18n(NULL, 'INNER JOIN')
+                        ->filterByIsActive(TRUE)
+                        ->where('cms.id <> ?', $node->getId())
+                        ->findOne($this->getDbConnection())
+                    ;
+                }
 
                 // Findes der ikke nogle med samme url-path _eller_ er node IKKE aktiv
                 if( !($urls instanceof Cms) || !$node->getIsActive())
