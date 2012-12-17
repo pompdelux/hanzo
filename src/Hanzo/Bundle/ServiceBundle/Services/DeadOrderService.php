@@ -56,8 +56,7 @@ class DeadOrderService
         $this->debug  = $debug;
 
         $this->debug("Starting DeadOrderService Auto Clean");
-        if ( $this->dryrun )
-        {
+        if ( $this->dryrun ) {
             $this->debug("Dry run mode");
         }
 
@@ -161,7 +160,12 @@ class DeadOrderService
                 $this->debug( '  No trans id found, and order is in edit' );
                 $status['is_error'] = false;
                 $status['error_msg'] = 'Går til tidligere version: Ingen transaktions id kunne findes for denne version';
-                $order->toPreviousVersion();
+
+                if (!$this->dryrun) {
+                    $order->toPreviousVersion();
+                } else {
+                    $this->debug( '  Should role back to prew version of order... ' . implode(', ', $order->getVersionIds()));
+                }
             }
             else
             {
@@ -338,7 +342,7 @@ class DeadOrderService
      **/
     protected function getTransactionId( Orders $order )
     {
-        $atts = $order->getAttributes();
+        $atts = $order->getAttributes(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         foreach ($atts as $att)
         {
@@ -377,7 +381,7 @@ class DeadOrderService
             ->filterByUpdatedAt(date('Y-m-d H:i:s', strtotime('3 hours ago')), Criteria::LESS_THAN)
             ->filterByBillingMethod('dibs')
             ->filterByState(array( 'max' => Orders::STATE_PAYMENT_OK) )
-            ->find();
+            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         return $orders;
     }
