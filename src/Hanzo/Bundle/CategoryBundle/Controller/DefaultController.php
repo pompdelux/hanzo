@@ -16,6 +16,8 @@ use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\Products;
 
+use Hanzo\Model\CmsQuery;
+
 class DefaultController extends CoreController
 {
 
@@ -30,7 +32,7 @@ class DefaultController extends CoreController
     {
         $cache_id = explode('_', $this->get('request')->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $pager);
-
+        
         // json requests
         if ($this->getFormat() == 'json') {
             $data = $this->getCache($cache_id);
@@ -54,8 +56,12 @@ class DefaultController extends CoreController
         if (!$html) {
             $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
 
+            $cms_page = CmsQuery::create()->findOneById($cms_id); // Find this cms' parent's parent.
+            $parent_page = CmsQuery::create()->filterById($cms_page->getParentId())->findOne();
+
             $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
             $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id);
+            $this->get('twig')->addGlobal('cms_id', $parent_page->getParentId());
             $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);
         }
