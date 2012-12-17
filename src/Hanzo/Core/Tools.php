@@ -189,10 +189,18 @@ class Tools
      * @param mixed $data the data to log
      * @param integer $back how many levels back we dump trace for
      */
-    public static function log($data, $back = 0) {
+    public static function log($data, $back = 0)
+    {
         $bt = debug_backtrace();
         $line = $bt[$back]['line'];
-        $file = str_replace(realpath(__DIR__ . '/../../../'), '~', $bt[$back]['file']);
+        $root = realpath(__DIR__ . '/../../../');
+        $file = str_replace($root, '~', $bt[$back]['file']);
+
+        // handle logging when running in fast cgi mode (nginx)
+        if ('fpm-fcgi' == php_sapi_name()) {
+            error_log('['.date('r').'] '.$file.' +'.$line.' :: '.print_r($data, 1)."\n", 3, $root.'/app/logs/php.log');
+            return;
+        }
 
         error_log($file.' +'.$line.' :: '.print_r($data, 1));
     }
