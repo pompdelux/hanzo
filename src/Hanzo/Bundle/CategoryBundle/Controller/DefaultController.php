@@ -54,7 +54,8 @@ class DefaultController extends CoreController
         if (!$html) {
             $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
 
-            $this->get('twig')->addGlobal('page_type', 'category');
+            $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
+            $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id);
             $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);
         }

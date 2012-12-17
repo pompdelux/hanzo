@@ -103,3 +103,38 @@ nav.main{
 		}
 	}
 }
+
+.main header{
+	display: table;
+	min-height: 100px;
+	background: #d2c3c6;
+	height: 100px;
+	hgroup{
+		color: white;
+		padding: 10px;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		h1,h2,h3,h4,h5{
+			text-transform: uppercase;
+			padding: 0 0 10px;
+		}
+		h6{
+			font-size: $font-size;
+			font-weight: normal;
+		}
+		a{
+			color: white;
+		}
+	}
+}
+
+.body-category .main header{ // Specific for all categories
+	background: #d2c3c6;
+	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
+}
+
+.category-17 .main header{ // Specific for one category
+	background: #d2c3c6;
+	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
+}

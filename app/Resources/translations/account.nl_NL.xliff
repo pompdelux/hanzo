@@ -103,6 +103,14 @@
                 <source>my.account.login.title</source>
                 <target>Mijn pagina - Login</target>
             </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Welcome!</h1>]]></target>
+            </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
                 <target>Inloggen</target>
@@ -174,6 +182,10 @@
             <trans-unit id="65">
                 <source>create.account</source>
                 <target>Maak account aan</target>
+            </trans-unit>
+            <trans-unit id="create.account.header" approved="no">
+                <source>create.account.header</source>
+                <target>Welcome - Create your account</target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>

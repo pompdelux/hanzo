@@ -1,18 +1,18 @@
 // Base
-$font-serif 			: "Times New Roman", serif;
-$font-sans 				: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-color             : #333;
-$font-size              : 12px;
-$font-family  			: inherit;
-$link-color  			: #222;
+$font-serif 			: "Merriweather", serif;
+$font-sans 				: Tahoma, Geneva, Verdana, sans-serif;
+$font-color             : #444;
+$font-size              : 14px;
+
+$link-color  			: #333;
 $link-size              : $font-size;
 $link-family  			: inherit;
 @import "compass/reset";
 @import "compass/utilities";
 
 
-//@import "icons/*.png"; 
-//@include all-icons-sprites; // Generates a sprite from all images inside the folder
+@import "icons/*.png"; 
+@include all-icons-sprites; // Generates a sprite from all images inside the folder
 
 /**
 |
@@ -22,6 +22,7 @@ $link-family  			: inherit;
 body{
 	color: $font-color;
 	font-family: $font-sans;
+	font-size: $font-size;
 }
 .container{
 	position: relative;}
@@ -37,6 +38,7 @@ h1,h2,h3,h4,h5,h6{
 	font-family: $font-sans;
 	font-weight: bold;
 	padding: 0 0 20px 0;
+	letter-spacing: 2px;
 	a{
 		text-decoration: none;
 		color: inherit;
@@ -92,7 +94,7 @@ a.text-button {
 	border: none;
 	background: transparent;
 	cursor: pointer;
-	font-family: $font-family;
+	font-family: $font-serif;
 	font-color: $font-color;
 	font-size: $font-size;
 	text-transform: uppercase;

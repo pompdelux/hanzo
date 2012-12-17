@@ -111,16 +111,13 @@
     <hr class="right">
   </div>
   <div class="grid_1-5 footer-menu footer-menu-1">
-    <h2>{{ "footer.menu_1.title"|trans }}</h2>
-    {% render 'CMSBundle:Menu:menu' with {'type': footer1_menu.type, 'from': footer1_menu.from, 'thread': footer1_menu.thread, 'offset': footer1_menu.offset } %}
+    {{ "footer.menu_1"|trans|raw }}
   </div>
   <div class="grid_1-5 footer-menu footer-menu-2">
-    <h2>{{ "footer.menu_2.title"|trans }}</h2>
-    {% render 'CMSBundle:Menu:menu' with {'type': footer2_menu.type, 'from': footer2_menu.from, 'thread': footer2_menu.thread, 'offset': footer2_menu.offset } %}
+    {{ "footer.menu_2"|trans|raw }}
   </div>
   <div class="grid_1-5 footer-menu footer-menu-3">
-    <h2>{{ "footer.menu_3.title"|trans }}</h2>
-    {% render 'CMSBundle:Menu:menu' with {'type': footer3_menu.type, 'from': footer3_menu.from, 'thread': footer3_menu.thread, 'offset': footer3_menu.offset } %}
+    {{ "footer.menu_3"|trans|raw }}
   </div>
   <div class="grid_2-5 footer-menu footer-menu-4">
     {% render 'NewsletterBundle:Default:block' %}
@@ -139,7 +136,7 @@
   var counter_offset = 1314691200;
 </script>
 
-<script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
 
 

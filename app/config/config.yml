@@ -150,16 +150,13 @@ cms:
             offset: 482
         footer1_menu:
             type: footer1
-            from: 400
-            offset: 482
+            thread: 30
         footer2_menu:
             type: footer2
-            from: 400
-            offset: 482
+            thread: 31
         footer3_menu:
             type: footer3
-            from: 400
-            offset: 482
+            thread: 32
 
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:

@@ -65,6 +65,18 @@ class DefaultController extends CoreController
         return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
     }
 
+    public function blockAction($page = NULL)
+    {
+        $hanzo = Hanzo::getInstance();
+        $locale = $hanzo->get('core.locale');
+        $route = $this->get('request')->get('_route');
+        die(print_r($route));
+        if(!$page instanceof Cms){
+            $page = CmsPeer::getByPK(1);
+        }
+        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
+    }
+
     public function testAction()
     {
         // if all variants is out of stock, set it on the master product.

@@ -99,9 +99,17 @@
                 <source>password</source>
                 <target>Lösenord</target>
             </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+            </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
                 <target>Min sida - Login</target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Welcome!</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>

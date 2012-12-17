@@ -71,8 +71,20 @@ class MenuController extends CoreController
                     $html = $this->menu['main'];
                     break;
 
-                default:
+                case 'sub':
                     if (empty($this->menu[$type]) && $offset) {
+                        $this->menu[$type] = '';
+
+                        // generate
+                        if ($from && !isset($this->trail[$from])) {
+                            break;
+                        }
+                        $this->generateFlat($offset, $type);
+                    }
+                    $html = $this->menu[$type];
+                    break;
+                default:
+                    if (empty($this->menu[$type])) {
                         $this->menu[$type] = '';
 
                         // generate
