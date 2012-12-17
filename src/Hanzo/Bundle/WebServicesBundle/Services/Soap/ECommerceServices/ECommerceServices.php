@@ -1087,7 +1087,7 @@ class ECommerceServices extends SoapService
     protected function SalesOrderRefund($data, Orders $order)
     {
         $setStatus = false;
-        $error = array();
+        $errors = array();
 
         $amount = str_replace(',', '.', $data->amount);
         list($large, $small) = explode('.', $amount);
@@ -1101,12 +1101,14 @@ class ECommerceServices extends SoapService
             $result = $response->debug();
 
 // un: 2012.11.29 - test logging all refunds.
+Tools::log('->->->->->->->->->-');
 Tools::log($data);
 Tools::log($result);
+Tools::log('-<-<-<-<-<-<-<-<-<-');
 
             if ($result['status'] != 0) {
                 $doSendError = true;
-                $error = array(
+                $errors = array(
                     'cound not refund order #' . $data->eOrderNumber,
                     'error: ' . $result['status_description']
                 );
@@ -1133,13 +1135,14 @@ Tools::log($result);
 
         } catch (Exception $e) {
             $doSendError = true;
-            $error = array(
+            $errors = array(
                 'cound not capture order #' . $data->eOrderNumber,
                 'error: ' . $e->getMessage()
             );
         }
 
         if($doSendError) {
+            Tools::log($errors);
             $domain = $order->getAttributes()->global->domain_name;
             switch (substr($domain, -2)) {
                 case 'dk':
