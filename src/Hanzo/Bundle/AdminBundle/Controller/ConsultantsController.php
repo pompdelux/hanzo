@@ -207,7 +207,7 @@ class ConsultantsController extends CoreController
                     'required' => false
                 )
             )
-            ->add('discount', 'number',
+            ->add('discount', 'text',
                 array(
                     'label' => 'admin.customer.discount.label',
                     'translation_domain' => 'admin'
