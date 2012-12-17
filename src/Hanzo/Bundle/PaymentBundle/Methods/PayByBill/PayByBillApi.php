@@ -66,7 +66,7 @@ class PayByBillApi implements PaymentMethodApiInterface
     public function isActive()
     {
         $order = OrdersPeer::getCurrent();
-        if ($order->getInEdit()) {
+        if ($order->getInEdit() && ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1')) {
             return false;
         }
 
