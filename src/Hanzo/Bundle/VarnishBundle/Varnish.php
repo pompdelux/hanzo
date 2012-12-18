@@ -1,6 +1,6 @@
 <?php
 
-namespace Hanzo\Bundle\VarnishBundle\varnish;
+namespace Hanzo\Bundle\VarnishBundle;
 
 use VarnishAdmin;
 use VarnishException;
@@ -34,8 +34,7 @@ class Varnish
 
         $status = $this->varnish->ban('req.url ~ "'.$regex.'"');
 
-        if (VARNISH_STATUS_OK !== $status)
-        {
+        if (VARNISH_STATUS_OK !== $status) {
             throw new VarnishException("Ban method returned $status status\n");
         }
 
@@ -44,10 +43,18 @@ class Varnish
 
     public function banUrl($regex)
     {
-        return $this->ban($regex);
-    }
+        if (!$this->varnish) {
+            return true;
+        }
 
-    public function banList() {}
+        $status = $this->varnish->banUrl('req.url ~ "'.$regex.'"');
+
+        if (VARNISH_STATUS_OK !== $status) {
+            throw new VarnishException("BanUrl method returned $status status\n");
+        }
+
+        return true;
+    }
 
     protected function connect()
     {
