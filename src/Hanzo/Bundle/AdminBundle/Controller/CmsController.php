@@ -33,6 +33,7 @@ use Hanzo\Model\Cms,
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
+use Hanzo\Bundle\AdminBundle\Event\FilterCMSEvent;
 
 class CmsController extends CoreController
 {
@@ -85,24 +86,9 @@ class CmsController extends CoreController
         if($node instanceof CmsI18n) {
             $node->delete($this->getDbConnection());
 
-            /* Debug anders@bellcom.dk 040912
-            // Do a check if all translations are deleted, then delete the Cms
-            $numberOfTranslations = CmsI18nQuery::create()
-                ->filterById($id)
-                ->count($this->getDbConnection());
-
-            if($numberOfTranslations == 0){
-                $master = CmsQuery::create()
-                    ->findPK($id, $this->getDbConnection());
-
-                if($master instanceof Cms) {
-                    $master->delete();
-                }
-            }
-            // Debug end anders@bellcom.dk */
+            $this->get('event_dispatcher')->dispatch('cms.node.deleted', new FilterCMSEvent($node));
         }
 
-        $cache->clearRedisCache();
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -496,26 +482,6 @@ class CmsController extends CoreController
             ));
         }
     }
-    /*
-     * Alternative method under construction
-    protected function getFlatCmsTree()
-    {
-        // Get all nodes in Cms sorted by SORT and PARENTID
-        $query = CmsQuery::create()
-            ->filterByIsActive(TRUE)
-            ->orderByParentId()
-            ->orderBySort()
-            ->joinCmsRelatedByParentId('sub')
-        ;
-
-        $result = $query->find();
-        $menu = array();
-        foreach ($result as $record) {
-            //$menu[] = getChildren($record);
-        }
-
-        return $result;
-    }*/
 
     /**
      * Creates the html for a System Tree of the CMS. Works recursivly.
