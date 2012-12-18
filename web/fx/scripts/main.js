@@ -157,7 +157,7 @@
                 $basket.text(response.data.total);
               }
               // show "in edit" warning
-              if (response.data.warning) {
+              if (response.data.warning && (0 == $('#body-checkout-process').length)) {
                 $('div#main').prepend(response.data.warning);
               }
             }
