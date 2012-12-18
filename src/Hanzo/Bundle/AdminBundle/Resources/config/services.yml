@@ -2,6 +2,10 @@ parameters:
 #    admin.example.class: Hanzo\Bundle\AdminBundle\Example
 
 services:
-#    admin.example:
-#        class: %admin.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    cms.node.deleted.listener:
+        class: Hanzo\Bundle\ServiceBundle\Services\CacheService
+        arguments:
+            - [@snc_redis.default_client]
+            - []
+        tags:
+            - { name: kernel.event_listener, event: cms.node.deleted, method: clearRedisCache }
