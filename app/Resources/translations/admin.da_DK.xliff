@@ -1935,6 +1935,14 @@
         <source>admin.consultants.fronpage.content.updated</source>
         <target>Konsulent forsiden er nu opdateret.</target>
       </trans-unit>
+      <trans-unit id="amount">
+        <source>amount</source>
+        <target>Beløb</target>
+      </trans-unit>
+      <trans-unit id="order.id">
+        <source>order.id</source>
+        <target>Ordre</target>
+      </trans-unit>
       <trans-unit id="">
         <source></source>
         <target></target>
