@@ -292,7 +292,7 @@ class CmsController extends CoreController
 
             if ($form->isValid()) {
                 $path = $node->getPath();
-                // Find dublicate URL'er
+                // Find dublicate URL'er hvis der er angivet en URL
                 $urls = null;
                 if($node->getPath() !== '#' AND !empty($path)){
                     $urls = CmsQuery::create()

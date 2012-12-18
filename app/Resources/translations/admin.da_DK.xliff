@@ -226,8 +226,8 @@
         <source>cms.edit.type.mannequin</source>
         <target>Mannequin</target>
       </trans-unit>
-      <trans-unit id="admin_cms_page_type_mannequin">
-        <source>cms.edit.type.mannequin</source>
+      <trans-unit id="cms.edit.type.heading">
+        <source>cms.edit.type.heading</source>
         <target>Overskrift (%link))</target>
       </trans-unit>
       <trans-unit id="admin_products_sort_header_text_category">
