@@ -172,6 +172,8 @@ class DefaultController extends CoreController
         $images_references = $data['images_references'];
         unset($data['images_references']);
 
+        $this->get('twig')->addGlobal('page_type', 'product-'.$data['id']);
+        $this->get('twig')->addGlobal('body_classes', 'body-product product-'.$data['id']);
         $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
 
         $responce = $this->render('ProductBundle:Default:view.html.twig', array(

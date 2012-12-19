@@ -29,7 +29,7 @@
     'fx/scripts/fullcalendar/fullcalendar.css'
     
     'fx/2013s1/css/960_8_3_3.css'
-    'fx/2013s1/sass/style.scss'
+    'fx/2013s1/css/style.css'
 
   filter='?yui_css'
   output='fx/cache/all_2013s1.css'
@@ -98,6 +98,7 @@
     </ul>
     <ul class="horizontal menu right">
       <li id="mini-basket" class="basket">
+        <span class="sprite"></span>
         <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {{ fx_image_tag('images/loader-bar.gif') }}{# render 'BasketBundle:Default:miniBasket' #} </a>
       </li>
       <li class="last"><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
@@ -119,6 +120,7 @@
     {{ "footer.menu_3"|trans|raw }}
   </div>
   <div class="grid_2-5 footer-menu footer-menu-4">
+    <div class="sprite"></div>
     {% render 'NewsletterBundle:Default:block' %}
   </div>
   <div class="grid_8">

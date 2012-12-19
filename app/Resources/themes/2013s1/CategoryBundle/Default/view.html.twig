@@ -21,21 +21,31 @@
     <div class="wrapper old-item">
 
     {% for product in products %}
-
-      <div class="block block-num-{{ loop.index }}">
-        <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
-          {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
-          <span class="title">{{ product.title }}</span>
-          <span class="prices">
-          {% if product.prices.sales is defined %}
-            <span class="normal strike">{{ product.prices.normal.price|money }}</span>
-            <span class="discount">{{ product.prices.sales.price|money }}</span>
-          {% else %}
-            <span class="normal">{{ product.prices.normal.price|money }}</span>
-          {% endif %}
-          </span>
-        </a>
-      </div>
+      {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %}
+        <div class="grid_6 alpha omega">
+      {% endif %}
+        <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
+          <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
+            {{ product_image_tag(product.image, '234x410', { 'alt' : product.title }) }}
+            {% if product.prices.sales is defined %}
+            <div class="new-price">{{ 'new.price'|trans }}</div>
+            {% endif %}
+          </a>
+          <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
+            <span class="title">{{ product.title }}</span>
+            <span class="prices">
+            {% if product.prices.sales is defined %}
+              <span class="normal strike">{{ product.prices.normal.price|money }}</span>
+              <span class="discount">{{ product.prices.sales.price|money }}</span>
+            {% else %}
+              <span class="normal">{{ product.prices.normal.price|money }}</span>
+            {% endif %}
+            </span>
+          </a>
+        </div>
+      {% if loop.index is divisibleby(3) %}
+        </div>
+      {% endif %}
 
     {% else %}
 

@@ -1,0 +1,29 @@
+.product-list{
+	.block{
+		a{
+			border: none;
+			font-family: $font-serif;
+			font-size: $font-size;
+			text-decoration: none;
+			text-align: center;
+			position: relative;
+			img{
+
+			}
+			.title{
+				display: block;
+			}
+			.prices{
+				display: block;
+				color: $font-color;
+			}
+			.new-price{
+				position: absolute;
+				bottom:0;
+				right:0;
+				text-indent: -999px;
+				background: url('/fx/images/icons/Pompdelux_devider_left.png') left top no-repeat;
+			}
+		}
+	}
+}

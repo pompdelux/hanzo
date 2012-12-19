@@ -34,19 +34,14 @@ div.panes > div {
 }
 
 .zoom{
-	background: url(/fx/images/icons/Zoom.png) no-repeat top center;
 	display: inline-block;
-	padding-top: 50px;
 }
 a.video-popper, #video-player-container a.video {
-	background: url(/fx/images/icons/Video.png) no-repeat top center;
 	display: inline-block;
-	padding-top: 50px;
-	width: 54px;
 	text-align: center;
 }
 
-.prices {
+.body-product .prices {
 	font-family: $font-serif;
 	font-size: 26px;
 	font-weight: bold;
@@ -70,48 +65,10 @@ form.buy{
 		}
 	}
 	.submit-button{
-		@include image-button("/fx/images/icons/put-to-basket-en_GB.png", 84px, 84px); // _base.scss
 		cursor: pointer;
 		margin-top: 18px;
+		@include image-replacement;
 	}
-}
-
-body.da form.buy .submit-button{ 
-	@include image-button("/fx/images/icons/put-to-basket-da_DK.png", 87px, 86px);
-}
-body.en form.buy .submit-button{ 
-	@include image-button("/fx/images/icons/put-to-basket-en_GB.png", 84px, 84px);
-}
-body.fi form.buy .submit-button{ 
-	@include image-button("/fx/images/icons/put-to-basket-fi_FI.png", 84px, 84px);
-}
-body.no form.buy .submit-button{ 
-	@include image-button("/fx/images/icons/put-to-basket-nb_NO.png", 84px, 84px);
-}
-body.nl form.buy .submit-button{ 
-	@include image-button("/fx/images/icons/put-to-basket-nl_NL.png", 84px, 84px);
-}
-body.se form.buy .submit-button{ 
-	@include image-button("/fx/images/icons/put-to-basket-sv_SE.png", 84px, 84px);
-}
-
-body.da .buy-set{ 
-	@include image-button("/fx/images/icons/buy-set-da_DK.png", 87px, 86px);
-}
-body.en .buy-set{ 
-	@include image-button("/fx/images/icons/buy-set-en_GB.png", 84px, 84px);
-}
-body.fi .buy-set{ 
-	@include image-button("/fx/images/icons/buy-set-fi_FI.png", 84px, 84px);
-}
-body.no .buy-set{ 
-	@include image-button("/fx/images/icons/buy-set-nb_NO.png", 84px, 84px);
-}
-body.nl .buy-set{ 
-	@include image-button("/fx/images/icons/buy-set-nl_NL.png", 84px, 84px);
-}
-body.se .buy-set{ 
-	@include image-button("/fx/images/icons/buy-set-sv_SE.png", 84px, 84px);
 }
 
 .productimage-small,
@@ -130,6 +87,9 @@ body.se .buy-set{
 				padding: 0px;
 				border: 1px solid #888;
 			}
+		}
+		&.buy-set{
+			@include image-replacement;
 		}
 	}
 }

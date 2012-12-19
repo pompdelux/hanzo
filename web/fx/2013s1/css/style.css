@@ -1,0 +1,879 @@
+/* line 17, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 154, icons/da/*.png */
+.da-sprite, .da-basket, .da-buy-set, .da-divider, .da-divider_left, .da-divider_right, .da-facebook, .da-gplus, .da-new-price, .da-newsletter, .da-pinterest, .da-put-to-basket, .da-shopping-bag, .da-twitter, .da-video, .da-zoom, body.da form.buy .submit-button, body.da .buy-set, body.da .zoom .sprite, body.da a.video-popper .sprite, body.da #video-player-container a.video .sprite, body.da hr, body.da hr.left, body.da hr.right, body.da .basket .sprite, body.da .footer-menu-4 .sprite {
+  background: url('/fx/2013s1/../images/icons/da-s905e310ac9.png') no-repeat;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-basket {
+  background-position: 0 -580px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-buy-set {
+  background-position: 0 -496px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-divider {
+  background-position: 0 -892px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-divider_left {
+  background-position: 0 -759px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-divider_right {
+  background-position: 0 -822px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-facebook {
+  background-position: 0 -971px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-gplus {
+  background-position: 0 -939px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-new-price {
+  background-position: 0 -86px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-newsletter {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-pinterest {
+  background-position: 0 -907px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-put-to-basket {
+  background-position: 0 -625px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-shopping-bag {
+  background-position: 0 -779px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-twitter {
+  background-position: 0 -1003px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-video {
+  background-position: 0 -842px;
+}
+
+/* line 60, ../../../../../../../../var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-zoom {
+  background-position: 0 -709px;
+}
+
+/* line 26, ../sass/_base.scss */
+.sprite {
+  display: inline-block;
+}
+
+/* line 27, ../sass/_base.scss */
+.sprite-block {
+  display: block;
+}
+
+/**
+|
+| Base styles
+|
+*/
+/* line 33, ../sass/_base.scss */
+body {
+  color: #444444;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+/* line 38, ../sass/_base.scss */
+.container {
+  position: relative;
+}
+
+/* line 41, ../sass/_base.scss */
+a {
+  color: #333333;
+  text-decoration: none;
+}
+/* line 44, ../sass/_base.scss */
+a:hover {
+  color: #444444;
+  text-decoration: underline;
+}
+
+/* line 50, ../sass/_base.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  padding: 0 0 20px 0;
+  letter-spacing: 2px;
+}
+/* line 55, ../sass/_base.scss */
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* line 60, ../sass/_base.scss */
+h1 {
+  font-family: "Merriweather", serif;
+  font-size: 26px;
+  padding: 6px 0 12px;
+}
+
+/* line 65, ../sass/_base.scss */
+h2 {
+  font-weight: 100;
+  font-size: 16px;
+  padding: 6px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* line 72, ../sass/_base.scss */
+h3 {
+  font-size: 14px;
+  padding: 6px 0 0;
+}
+
+/* line 76, ../sass/_base.scss */
+h4 {
+  font-family: "Merriweather", serif;
+  padding: 12px 0;
+  font-weight: 400;
+}
+
+/* line 82, ../sass/_base.scss */
+p {
+  font-size: 14px;
+  padding: 0 0 5px;
+  line-height: 17px;
+}
+
+/* line 88, ../sass/_base.scss */
+hr {
+  border: none;
+  clear: both;
+  margin: 0;
+  width: 100%;
+}
+
+/* line 95, ../sass/_base.scss */
+input {
+  border: 1px solid black;
+  padding: 3px 5px;
+  color: #444444;
+}
+
+/* line 103, ../sass/_base.scss */
+input.text-button,
+button.text-button,
+a.text-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: "Merriweather", serif;
+  font-color: #444444;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/**
+|
+| Helpers
+|
+*/
+/* line 135, ../sass/_base.scss */
+.align-left {
+  text-align: left;
+}
+
+/* line 136, ../sass/_base.scss */
+.align-center {
+  text-align: center;
+}
+
+/* line 137, ../sass/_base.scss */
+.centerfy {
+  margin: 0 auto;
+}
+
+/* line 138, ../sass/_base.scss */
+.align-right {
+  text-align: right;
+}
+
+/* line 139, ../sass/_base.scss */
+.vert-align-top {
+  vertical-align: top;
+}
+
+/* line 140, ../sass/_base.scss */
+.vert-align-middle {
+  vertical-align: middle;
+}
+
+/* line 141, ../sass/_base.scss */
+.vert-align-bottom {
+  vertical-align: baseline;
+}
+
+/* line 142, ../sass/_base.scss */
+.pushleft {
+  float: left;
+}
+
+/* line 143, ../sass/_base.scss */
+.pushright {
+  float: right;
+}
+
+/* line 144, ../sass/_base.scss */
+.small {
+  font-size: 9px;
+}
+
+/* line 145, ../sass/_base.scss */
+.strike {
+  text-decoration: line-through;
+}
+
+/**
+|
+| Slideshow Cycle2 styles
+|
+*/
+/* line 153, ../sass/_base.scss */
+.cycle-slideshow .cycle-pager {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  z-index: 101;
+}
+/* line 159, ../sass/_base.scss */
+.cycle-slideshow .cycle-pager span {
+  color: #DDD;
+  font-size: 31px;
+  line-height: 10px;
+  cursor: pointer;
+}
+/* line 165, ../sass/_base.scss */
+.cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
+  color: #BBB;
+}
+/* line 171, ../sass/_base.scss */
+.cycle-slideshow .cycle-slide img {
+  width: 100%;
+}
+
+/**
+|
+| Custom 960gs grids
+|
+| TODO: Make it as a new grid with container_5{blablabla}
+*/
+/* line 183, ../sass/_base.scss */
+.container_8 .grid_1-5 {
+  width: 186px;
+}
+
+/* line 186, ../sass/_base.scss */
+.container_8 .grid_2-5 {
+  width: 378px;
+}
+
+/* line 190, ../sass/_base.scss */
+.container_8 .grid_1-5,
+.container_8 .grid_2-5 {
+  display: inline;
+  float: left;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+/* line 205, ../sass/_base.scss */
+.main .grid_1,
+.main .grid_2,
+.main .grid_3,
+.main .grid_4,
+.main .grid_5,
+.main .grid_6,
+.main .grid_7,
+.main .grid_8,
+.main .grid_1-5,
+.main .grid_2-5 {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+/* line 211, ../sass/_base.scss */
+body.da form.buy .submit-button {
+  background-position: 0 -625px;
+  height: 84px;
+  width: 87px;
+}
+/* line 216, ../sass/_base.scss */
+body.da .buy-set {
+  background-position: 0 -496px;
+  height: 84px;
+  width: 87px;
+}
+/* line 222, ../sass/_base.scss */
+body.da .zoom .sprite {
+  background-position: 0 -709px;
+  height: 50px;
+  width: 45px;
+}
+/* line 228, ../sass/_base.scss */
+body.da a.video-popper .sprite, body.da #video-player-container a.video .sprite {
+  background-position: 0 -842px;
+  height: 50px;
+  width: 58px;
+}
+/* line 233, ../sass/_base.scss */
+body.da hr {
+  background-position: 0 -892px;
+  height: 15px;
+}
+/* line 236, ../sass/_base.scss */
+body.da hr.left {
+  background-position: 0 -759px;
+}
+/* line 239, ../sass/_base.scss */
+body.da hr.right {
+  background-position: 0 -822px;
+}
+/* line 244, ../sass/_base.scss */
+body.da .basket .sprite {
+  background-position: 0 -580px;
+  height: 45px;
+  width: 35px;
+}
+/* line 250, ../sass/_base.scss */
+body.da .footer-menu-4 .sprite {
+  background-position: 0 0;
+  height: 86px;
+  width: 86px;
+}
+
+/**
+|
+| Menus and header styles
+|
+*/
+/* line 10, ../sass/_header.scss */
+nav > ul,
+ul.menu,
+.menu > ul {
+  font-size: 14px;
+  font-family: "Merriweather", serif;
+  color: #444444;
+}
+/* line 14, ../sass/_header.scss */
+nav > ul li,
+ul.menu li,
+.menu > ul li {
+  position: relative;
+}
+/* line 16, ../sass/_header.scss */
+nav > ul li a,
+ul.menu li a,
+.menu > ul li a {
+  color: #444444;
+  text-decoration: none;
+}
+/* line 22, ../sass/_header.scss */
+nav > ul li.active > a, nav > ul li.active-trail > a,
+nav > ul li a:hover,
+ul.menu li.active > a,
+ul.menu li.active-trail > a,
+ul.menu li a:hover,
+.menu > ul li.active > a,
+.menu > ul li.active-trail > a,
+.menu > ul li a:hover {
+  text-decoration: underline;
+}
+/* line 26, ../sass/_header.scss */
+nav > ul .dropdown,
+ul.menu .dropdown,
+.menu > ul .dropdown {
+  position: absolute;
+  left: 0;
+  background: white;
+}
+/* line 31, ../sass/_header.scss */
+nav > ul.right,
+ul.menu.right,
+.menu > ul.right {
+  text-align: right;
+}
+
+/* line 38, ../sass/_header.scss */
+ul.main-menu li:hover ul,
+ul.main-menu li:hover div,
+.main-menu > ul li:hover ul,
+.main-menu > ul li:hover div {
+  left: 0;
+}
+/* line 42, ../sass/_header.scss */
+ul.main-menu li ul,
+ul.main-menu li div,
+.main-menu > ul li ul,
+.main-menu > ul li div {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+}
+/* line 47, ../sass/_header.scss */
+ul.main-menu li ul li a,
+.main-menu > ul li ul li a {
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+
+/* line 54, ../sass/_header.scss */
+ul.sub-menu,
+.sub-menu > ul {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+/* line 58, ../sass/_header.scss */
+ul.sub-menu li,
+.sub-menu > ul li {
+  padding: 0 0 6px 0;
+  line-height: 18px;
+}
+/* line 62, ../sass/_header.scss */
+ul.sub-menu li.heading span,
+.sub-menu > ul li.heading span {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  display: block;
+  line-height: 18px;
+  padding: 3px 0 3px 6px;
+}
+/* line 70, ../sass/_header.scss */
+ul.sub-menu li ul,
+.sub-menu > ul li ul {
+  padding: 6px 0 0 6px;
+}
+/* line 72, ../sass/_header.scss */
+ul.sub-menu li ul a,
+.sub-menu > ul li ul a {
+  display: inline-block;
+  margin: 0 0 0 6px;
+}
+
+/* line 82, ../sass/_header.scss */
+ul.horizontal,
+.horizontal > ul {
+  list-style: none;
+}
+/* line 84, ../sass/_header.scss */
+ul.horizontal li,
+.horizontal > ul li {
+  display: inline-block;
+}
+
+/* line 91, ../sass/_header.scss */
+nav.main li {
+  padding: 2px 16px 0 0;
+}
+/* line 93, ../sass/_header.scss */
+nav.main li a {
+  text-transform: uppercase;
+}
+/* line 97, ../sass/_header.scss */
+nav.main li ul {
+  padding: 20px;
+}
+/* line 99, ../sass/_header.scss */
+nav.main li ul li {
+  padding: 5px 0;
+}
+
+/* line 107, ../sass/_header.scss */
+#secondary-links {
+  position: absolute;
+  top: 0px;
+  right: 3px;
+}
+/* line 111, ../sass/_header.scss */
+#secondary-links li {
+  padding: 16px 8px;
+  vertical-align: middle;
+}
+/* line 114, ../sass/_header.scss */
+#secondary-links li.last {
+  padding-right: 0;
+}
+/* line 119, ../sass/_header.scss */
+#secondary-links li.basket .sprite {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 123, ../sass/_header.scss */
+#secondary-links li.basket a {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 128, ../sass/_header.scss */
+#secondary-links li a {
+  text-transform: uppercase;
+}
+
+/* line 134, ../sass/_header.scss */
+ul.breadcrumb {
+  list-style: none;
+}
+/* line 136, ../sass/_header.scss */
+ul.breadcrumb li {
+  display: inline-block;
+}
+/* line 138, ../sass/_header.scss */
+ul.breadcrumb li:before {
+  content: '>';
+  padding: 0 6px;
+}
+/* line 142, ../sass/_header.scss */
+ul.breadcrumb li.first:before {
+  content: none;
+}
+
+/* line 149, ../sass/_header.scss */
+.main header {
+  display: table;
+  min-height: 100px;
+  background: #d2c3c6;
+  height: 100px;
+}
+/* line 154, ../sass/_header.scss */
+.main header hgroup {
+  color: white;
+  padding: 10px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+/* line 160, ../sass/_header.scss */
+.main header hgroup h1, .main header hgroup h2, .main header hgroup h3, .main header hgroup h4, .main header hgroup h5 {
+  text-transform: uppercase;
+  padding: 0 0 10px;
+}
+/* line 164, ../sass/_header.scss */
+.main header hgroup h6 {
+  font-size: 14px;
+  font-weight: normal;
+}
+/* line 168, ../sass/_header.scss */
+.main header hgroup a {
+  color: white;
+}
+
+/* line 174, ../sass/_header.scss */
+.body-category .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
+}
+
+/* line 179, ../sass/_header.scss */
+.category-17 .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
+}
+
+/**
+|
+| Footer styles
+|
+*/
+/* line 7, ../sass/_footer.scss */
+footer {
+  margin: 0;
+  font-size: 14px;
+}
+/* line 10, ../sass/_footer.scss */
+footer h2 {
+  font-size: 16px;
+  font-family: "Merriweather", serif;
+  letter-spacing: 0;
+}
+/* line 16, ../sass/_footer.scss */
+footer .footer-menu li {
+  padding: 0 0 5px;
+}
+/* line 19, ../sass/_footer.scss */
+footer .footer-menu.footer-menu-4 {
+  text-align: right;
+}
+/* line 21, ../sass/_footer.scss */
+footer .footer-menu.footer-menu-4 #newsletter-lists-container {
+  text-align: left;
+  display: inline-block;
+}
+/* line 24, ../sass/_footer.scss */
+footer .footer-menu.footer-menu-4 #newsletter-lists-container input[type=submit] {
+  float: right;
+}
+/* line 30, ../sass/_footer.scss */
+footer .copy {
+  text-align: center;
+}
+/* line 32, ../sass/_footer.scss */
+footer .copy ul {
+  display: inline-block;
+}
+/* line 34, ../sass/_footer.scss */
+footer .copy ul li {
+  display: inline-block;
+  padding: 0 5px;
+}
+/* line 39, ../sass/_footer.scss */
+footer .copy a {
+  text-decoration: none;
+}
+
+/* line 2, ../sass/_product.scss */
+.bordered,
+.bordered-bottom {
+  border-bottom: 1px solid #888;
+}
+
+/* line 5, ../sass/_product.scss */
+.bordered,
+.bordered-top {
+  border-top: 1px solid #888;
+}
+
+/* - tabs */
+/* line 10, ../sass/_product.scss */
+ul.tabs {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  margin: 6px 0;
+}
+/* line 15, ../sass/_product.scss */
+ul.tabs li {
+  display: inline-block;
+  margin-right: 15px;
+}
+/* line 18, ../sass/_product.scss */
+ul.tabs li a {
+  background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
+  padding-left: 20px;
+  font-family: "Merriweather", serif;
+}
+/* line 22, ../sass/_product.scss */
+ul.tabs li a.current {
+  background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
+}
+/* line 25, ../sass/_product.scss */
+ul.tabs li a:hover {
+  border-bottom: none;
+}
+
+/* line 31, ../sass/_product.scss */
+div.panes > div {
+  padding: 6px;
+  margin-bottom: 18px;
+}
+
+/* line 36, ../sass/_product.scss */
+.zoom {
+  display: inline-block;
+}
+
+/* line 39, ../sass/_product.scss */
+a.video-popper, #video-player-container a.video {
+  display: inline-block;
+  text-align: center;
+}
+
+/* line 44, ../sass/_product.scss */
+.body-product .prices {
+  font-family: "Merriweather", serif;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 0 0 12px;
+}
+
+/* line 51, ../sass/_product.scss */
+form.buy {
+  margin-bottom: 16px;
+}
+/* line 53, ../sass/_product.scss */
+form.buy label {
+  display: block;
+  padding: 18px 6px 0 0;
+}
+/* line 56, ../sass/_product.scss */
+form.buy label select {
+  width: 237px;
+}
+/* line 59, ../sass/_product.scss */
+form.buy label a {
+  margin-left: 18px;
+  font-weight: bold;
+}
+/* line 63, ../sass/_product.scss */
+form.buy label.off {
+  display: none;
+}
+/* line 67, ../sass/_product.scss */
+form.buy .submit-button {
+  cursor: pointer;
+  margin-top: 18px;
+  padding: 0;
+  border: none;
+  text-indent: -999px;
+  display: inline-block;
+}
+
+/* line 76, ../sass/_product.scss */
+.productimage-small a,
+.style-guide a {
+  vertical-align: top;
+  display: inline-block;
+  margin-right: 3px;
+}
+/* line 80, ../sass/_product.scss */
+.productimage-small a img,
+.style-guide a img {
+  padding: 1px;
+}
+/* line 83, ../sass/_product.scss */
+.productimage-small a:hover,
+.style-guide a:hover {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+/* line 86, ../sass/_product.scss */
+.productimage-small a:hover img,
+.style-guide a:hover img {
+  padding: 0px;
+  border: 1px solid #888;
+}
+/* line 91, ../sass/_product.scss */
+.productimage-small a.buy-set,
+.style-guide a.buy-set {
+  padding: 0;
+  border: none;
+  text-indent: -999px;
+  display: inline-block;
+}
+
+/* line 96, ../sass/_product.scss */
+.style-guide, .style-guide .element {
+  display: none;
+}
+
+/* line 3, ../sass/_product-list.scss */
+.product-list .block a {
+  border: none;
+  font-family: "Merriweather", serif;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+}
+/* line 13, ../sass/_product-list.scss */
+.product-list .block a .title {
+  display: block;
+}
+/* line 16, ../sass/_product-list.scss */
+.product-list .block a .prices {
+  display: block;
+  color: #444444;
+}
+/* line 20, ../sass/_product-list.scss */
+.product-list .block a .new-price {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-indent: -999px;
+  background: url("/fx/images/icons/Pompdelux_devider_left.png") left top no-repeat;
+}

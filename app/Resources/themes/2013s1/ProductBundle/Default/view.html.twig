@@ -17,6 +17,7 @@
     <div class="grid_4 alpha omega">
       <div class="grid_1 alpha vert-align-middle">
         <a href="{{ product_image_url(product.main_image.name, '0x715') }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '38x75') }}" class="picture-zoom zoom">
+          <div class="sprite sprite-block centerfy"></div>
           {{ 'click.to.zoom'|trans }}
         </a>
       </div>
@@ -31,6 +32,7 @@
       </div>
       <div class="grid_1 omega align-right vert-align-middle">
         <a href="{{ url('ws_product_video') }}" data-width="248" data-height="360" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper right">
+          <div class="sprite sprite-block centerfy"></div>
           {{ 'click.to.video'|trans }}
         </a>
       </div>

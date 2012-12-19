@@ -20,8 +20,7 @@ ul.menu,
 		&.active > a,
 		&.active-trail > a,
 		a:hover{
-			border-bottom: 1px solid $font-color;
-			margin-bottom: -1px;
+			text-decoration: underline;
 		}
 	}
 	.dropdown{
@@ -116,15 +115,14 @@ nav.main{
 			padding-right: 0; 
 		}
 		// Mini-basket in secondary links!
-		&.basket a{
-			background: url('/fx/images/icons/basket.png') no-repeat left top;
-			display: block;
-			height: 45px;
-			line-height: 45px;
-			vertical-align: middle;
-			padding-left:40px;
-			&:hover{
-				border-bottom: none;
+		&.basket {
+			.sprite{
+				display: inline-block;
+				vertical-align: middle;
+			}
+			a{
+				display:inline-block;
+				vertical-align: middle;
 			}
 		}
 		a{
