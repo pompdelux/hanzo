@@ -8,6 +8,10 @@ services:
 
     varnish.controle.ban.listener:
         class: Hanzo\Bundle\VarnishBundle\Event\BanListener
-        arguments: [ @varnish.controle, @router, %locale% ]
+        arguments: [ @varnish.controle, @router, %kernel.cache_dir% ]
         tags:
             - { name: kernel.event_listener, event: cms.node.deleted, method: onBanCmsNode }
+            - { name: kernel.event_listener, event: cms.node.updated, method: onBanCmsNode }
+            - { name: kernel.event_listener, event: category.node.deleted, method: onCategoryDeleteNode }
+            - { name: kernel.event_listener, event: category.product_sort.update, method: onCategoryDeleteNode }
+            - { name: kernel.event_listener, event: product.stock.zero, method: onProductSoldOut }

@@ -2,30 +2,30 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Symfony\Component\HttpFoundation\Response;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
 
-use Hanzo\Model\ProductsImagesCategoriesSortQuery,
-    Hanzo\Model\ProductsImagesProductReferences,
-    Hanzo\Model\ProductsImagesProductReferencesQuery,
-    Hanzo\Model\ProductsToCategoriesQuery,
-    Hanzo\Model\ProductsToCategories,
-    Hanzo\Model\ProductsImagesQuery,
-    Hanzo\Model\ProductsQuery,
-    Hanzo\Model\ProductsStockQuery,
-    Hanzo\Model\ProductsQuantityDiscountQuery,
-    Hanzo\Model\ProductsQuantityDiscount,
-    Hanzo\Model\DomainsQuery,
-    Hanzo\Model\CategoriesQuery,
-    Hanzo\Model\RelatedProducts,
-    Hanzo\Model\RelatedProductsQuery;
+use Hanzo\Model\ProductsImagesCategoriesSortQuery;
+use Hanzo\Model\ProductsImagesProductReferences;
+use Hanzo\Model\ProductsImagesProductReferencesQuery;
+use Hanzo\Model\ProductsToCategoriesQuery;
+use Hanzo\Model\ProductsToCategories;
+use Hanzo\Model\ProductsImagesQuery;
+use Hanzo\Model\ProductsQuery;
+use Hanzo\Model\ProductsStockQuery;
+use Hanzo\Model\ProductsQuantityDiscountQuery;
+use Hanzo\Model\ProductsQuantityDiscount;
+use Hanzo\Model\DomainsQuery;
+use Hanzo\Model\Categories;
+use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\RelatedProducts;
+use Hanzo\Model\RelatedProductsQuery;
+
+use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class ProductsController extends CoreController
 {
@@ -474,8 +474,13 @@ class ProductsController extends CoreController
             ->findOne($this->getDbConnection())
         ;
 
-        if($category_to_product)
+        if($category_to_product) {
             $category_to_product->delete($this->getDbConnection());
+        }
+
+        $node = new Categories();
+        $node->setId($category_id);
+        $this->get('event_dispatcher')->dispatch('category.node.deleted', new FilterCategoryEvent($node, null, $this->getDbConnection()));
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -553,8 +558,6 @@ class ProductsController extends CoreController
 
         try {
             $reference->save($this->getDbConnection());
-            #$this->get('replication_manager')->syncStyleGuide('add', $image_id, $product_id);
-
         } catch (PropelException $e) {
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -580,9 +583,9 @@ class ProductsController extends CoreController
             ->findOne($this->getDbConnection())
         ;
 
-        if($product_ref)
+        if($product_ref) {
             $product_ref->delete($this->getDbConnection());
-            #$this->get('replication_manager')->syncStyleGuide('delete', $image_id, $product_id);
+        }
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
@@ -670,6 +673,10 @@ class ProductsController extends CoreController
                 ->setSort($sort)
                 ->save($this->getDbConnection())
             ;
+
+            $node = new Categories();
+            $node->setId($category_id);
+            $this->get('event_dispatcher')->dispatch('category.product_sort.update', new FilterCategoryEvent($node, null, $this->getDbConnection()));
 
             $sort++;
         }

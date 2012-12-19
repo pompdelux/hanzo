@@ -9,3 +9,7 @@ services:
             - []
         tags:
             - { name: kernel.event_listener, event: cms.node.deleted, method: clearRedisCache }
+            - { name: kernel.event_listener, event: cms.node.updated, method: clearRedisCache }
+            - { name: kernel.event_listener, event: cms.node.moved, method: clearRedisCache }
+            - { name: kernel.event_listener, event: category.node.deleted, method: clearRedisCache }
+            - { name: kernel.event_listener, event: category.product_sort.update, method: clearRedisCache }

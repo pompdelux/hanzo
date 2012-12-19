@@ -1,3 +1,0 @@
-VarnishBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: VarnishBundle:Default:index }

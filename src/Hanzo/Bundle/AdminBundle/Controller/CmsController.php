@@ -13,23 +13,23 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
 
-use Hanzo\Model\Cms,
-    Hanzo\Model\CmsPeer,
-    Hanzo\Model\CmsQuery,
-    Hanzo\Model\CmsThreadQuery,
-    Hanzo\Model\CmsThreadI18n,
-    Hanzo\Model\CmsThreadI18nPeer,
-    Hanzo\Model\CmsThreadI18nQuery,
-    Hanzo\Model\CmsI18n,
-    Hanzo\Model\CmsI18nQuery,
-    Hanzo\Model\LanguagesQuery,
-    Hanzo\Model\Redirects,
-    Hanzo\Model\RedirectsQuery,
-    Hanzo\Model\DomainsQuery;
+use Hanzo\Model\Cms;
+use Hanzo\Model\CmsPeer;
+use Hanzo\Model\CmsQuery;
+use Hanzo\Model\CmsThreadQuery;
+use Hanzo\Model\CmsThreadI18n;
+use Hanzo\Model\CmsThreadI18nPeer;
+use Hanzo\Model\CmsThreadI18nQuery;
+use Hanzo\Model\CmsI18n;
+use Hanzo\Model\CmsI18nQuery;
+use Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\Redirects;
+use Hanzo\Model\RedirectsQuery;
+use Hanzo\Model\DomainsQuery;
 
 use Hanzo\Bundle\AdminBundle\Form\Type\CmsType;
 use Hanzo\Bundle\AdminBundle\Entity\CmsNode;
@@ -44,8 +44,9 @@ class CmsController extends CoreController
             return $this->redirect($this->generateUrl('admin'));
         }
 
-        if(!$locale)
+        if(!$locale) {
             $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
+        }
 
         $inactive_nodes = CmsQuery::create()
             ->filterByIsActive(FALSE)
@@ -86,7 +87,7 @@ class CmsController extends CoreController
         if($node instanceof CmsI18n) {
             $node->delete($this->getDbConnection());
 
-            $this->get('event_dispatcher')->dispatch('cms.node.deleted', new FilterCMSEvent($node));
+            $this->get('event_dispatcher')->dispatch('cms.node.deleted', new FilterCMSEvent($node, $locale));
         }
 
 
@@ -184,12 +185,6 @@ class CmsController extends CoreController
                         $node->setType($cms_node->getType());
                         break;
                 }
-                // Vi skal bruge titel på Thread til Path
-                $cms_thread = CmsThreadQuery::create()
-                    ->joinWithI18n()
-                    ->filterById($cms_node->getCmsThreadId())
-                    ->findOne($this->getDbConnection())
-                ;
 
                 $node->setCmsThreadId($cms_node->getCmsThreadId());
 
@@ -197,10 +192,12 @@ class CmsController extends CoreController
                 $node->setSettings(json_encode($settings));
                 $node->save($this->getDbConnection());
 
-                $trans = new CmsI18n();
-                $trans->setCms($node);
-                $trans->setLocale($locale);
-                $trans->save($this->getDbConnection());
+                try {
+                    $trans = new CmsI18n();
+                    $trans->setCms($node);
+                    $trans->setLocale($locale);
+                    $trans->save($this->getDbConnection());
+                } catch (\Exception $e) {}
 
                 $this->get('session')->setFlash('notice', 'cms.added');
                 return $this->redirect($this->generateUrl('admin_cms_edit',
@@ -240,7 +237,9 @@ class CmsController extends CoreController
             ->joinWithI18n($locale, 'INNER JOIN')
             ->findPK($id, $this->getDbConnection());
 
+        $is_new = false;
         if ( !($node instanceof Cms)) { // Oversættelsen findes ikke for det givne ID
+            $is_new = true;
 
             // Vi laver en ny Oversættelse. Hent Settings fra en anden og brug dette.
             $settings = CmsI18nQuery::create()
@@ -298,6 +297,7 @@ class CmsController extends CoreController
                     }
 
                     $this->get('session')->setFlash('notice', 'cms.updated');
+                    $this->get('event_dispatcher')->dispatch('cms.node.updated', new FilterCMSEvent($node, $locale, $this->getDbConnection()));
                 }
                 else // Dublicate url-path
                 {
@@ -352,8 +352,7 @@ class CmsController extends CoreController
             $cmsNode->save($this->getDbConnection());
         }
 
-        $cache = $this->get('cache_manager');
-        $cache->clearRedisCache();
+        $this->get('event_dispatcher')->dispatch('cms.node.moved', new FilterCMSEvent($cmsNode, null, $this->getDbConnection()));
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
