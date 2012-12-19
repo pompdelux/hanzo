@@ -143,11 +143,10 @@ class Tools
             throw new \InvalidArgumentException("'{$name}' is not a valid sequence name.");
         }
 
-        Propel::setForceMasterConnection(true);
-        $con = Propel::getConnection(SequencesPeer::DATABASE_NAME);
+        $con = Propel::getConnection(SequencesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         $con->beginTransaction();
 
-        $item = SequencesQuery::create()->findPk($name);
+        $item = SequencesQuery::create()->findPk($name, $con);
 
         if (!$item instanceof Sequences) {
             $item = new Sequences();
@@ -158,10 +157,9 @@ class Tools
         $sequence_id = $item->getId();
 
         $item->setId($sequence_id + 1);
-        $item->save();
+        $item->save($con);
 
         $con->commit();
-        Propel::setForceMasterConnection(false);
 
         return $sequence_id;
     }
