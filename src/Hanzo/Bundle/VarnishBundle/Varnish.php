@@ -16,9 +16,9 @@ class Varnish
     {
         if (class_exists('VarnishAdmin')) {
             $args = array(
-                VARNISH_CONFIG_HOST => $host,
-                VARNISH_CONFIG_PORT =>  $port,
-                VARNISH_CONFIG_SECRET => $secret,
+                VARNISH_CONFIG_HOST    => $host,
+                VARNISH_CONFIG_PORT    => $port,
+                VARNISH_CONFIG_SECRET  => $secret,
                 VARNISH_CONFIG_TIMEOUT => $timeout,
             );
 
@@ -28,7 +28,7 @@ class Varnish
 
     public function ban($regex)
     {
-        if (!$this->varnish) {
+        if (!$this->connect()) {
             return true;
         }
 
@@ -43,11 +43,11 @@ class Varnish
 
     public function banUrl($regex)
     {
-        if (!$this->varnish) {
+        if (!$this->connect()) {
             return true;
         }
 
-        $status = $this->varnish->banUrl('req.url ~ "'.$regex.'"');
+        $status = $this->ban($regex);
 
         if (VARNISH_STATUS_OK !== $status) {
             throw new VarnishException("BanUrl method returned $status status\n");
@@ -62,7 +62,13 @@ class Varnish
             return true;
         }
 
-        $varnish->connect();
-        $this->connected = $varnish->auth();
+        if (!$this->varnish->connect()) {
+            Tools::log('Could not connect to varnish....');
+            return false;
+        }
+
+        $this->connected = $this->varnish->auth();
+
+        return $this->connected;
     }
 }
