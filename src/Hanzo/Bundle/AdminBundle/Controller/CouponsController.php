@@ -135,7 +135,7 @@ class CouponsController extends CoreController
                 'label' => 'admin.coupons.code',
                 'translation_domain' => 'admin',
                 'required' => true
-            ))->add('amount', 'number', array(
+            ))->add('amount', 'text', array(
                 'label' => 'admin.coupons.amount',
                 'translation_domain' => 'admin',
                 'required' => true

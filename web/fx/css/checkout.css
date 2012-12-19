@@ -94,3 +94,8 @@ form.address label {
 #cboxLoadedContent form div .error {
   border-color: #a10000;
 }
+
+#body-checkout-process #secondary-links,
+#body-checkout-process nav.main {
+  display: none;
+}
