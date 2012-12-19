@@ -24,6 +24,7 @@ framework:
 services:
     stock:
         class: Hanzo\Core\Stock
+        arguments: [ '@event_dispatcher', '%locale%' ]
 
     hanzo.cache:
         class: Hanzo\Core\RedisCache
