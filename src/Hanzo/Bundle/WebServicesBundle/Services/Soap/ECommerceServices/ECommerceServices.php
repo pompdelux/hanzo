@@ -1094,6 +1094,7 @@ class ECommerceServices extends SoapService
         $amount = $large . sprintf('%02d', $small);
 
         $gateway = $this->hanzo->container->get('payment.dibsapi');
+        $domain = $order->getAttributes()->global->domain_name;
 
         $doSendError = false;
         try {
@@ -1121,10 +1122,16 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
                 );
 
                 $mailer = $this->hanzo->container->get('mail_manager');
-                if ($order->getCurrencyCode() == 'EUR') {
+
+                if (in_array($domain, ['www.pompdelux.com'])) {
                     $mailer->setMessage('order.credited', $parameters, 'en_GB');
                 } else {
                     $mailer->setMessage('order.credited', $parameters);
+                }
+
+                $bcc = Tools::getBccEmailAddress('order', $order);
+                if ($bcc) {
+                    $mailer->setBcc($bcc);
                 }
 
                 $mailer->setTo($order->getEmail(), $name);
@@ -1143,25 +1150,8 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
 
         if($doSendError) {
             Tools::log($errors);
-            $domain = $order->getAttributes()->global->domain_name;
-            switch (substr($domain, -2)) {
-                case 'dk':
-                case 'om':
-                    $to = 'retur@pompdelux.dk';
-                    break;
-                case 'se':
-                    $to = 'retur@pompdelux.se';
-                    break;
-                case 'nl':
-                    $to = 'retur@pompdelux.nl';
-                    break;
-                case 'fi':
-                    $to = 'retur@pompdelux.fi';
-                    break;
-                case 'no':
-                    $to = 'retur@pompdelux.no';
-                    break;
-            }
+
+            $to = Tools::getBccEmailAddress('retur', $order);
 
             $mailer = $this->hanzo->container->get('mail_manager');
             $mailer->setTo($to);
@@ -1176,7 +1166,7 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
             $mailer->send();
         }
 
-        return count($error) ? $error : true;
+        return count($errors) ? $errors : true;
     }
 
 
