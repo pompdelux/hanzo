@@ -1,5 +1,5 @@
 parameters:
-    varnish.controle.class: Hanzo\Bundle\VarnishBundle\varnish
+    varnish.controle.class: Hanzo\Bundle\VarnishBundle\Varnish
 
 services:
     varnish.controle:
