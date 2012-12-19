@@ -212,7 +212,7 @@ class Stock
                   ->findOne($con)
                 ;
 
-                if (0 === $total_stock) {
+                if (0 == $total_stock) {
                   $master = ProductsQuery::create()
                     ->findOneBySku($product->getMaster(), $con)
                   ;
