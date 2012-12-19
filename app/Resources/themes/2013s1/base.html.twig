@@ -40,7 +40,7 @@
 
 <script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr-2.5.3.js"></script>
 </head>
-<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
+<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -167,7 +167,7 @@
   'fx/scripts/video.js'
 
   'fx/scripts/category.js'
-  'fx/scripts/product.js'
+  'fx/2013s1/scripts/product.js'
   'fx/scripts/cart.js'
   'fx/scripts/account.js'
   'fx/2013s1/scripts/main.js'

@@ -37,7 +37,7 @@ class MenuController extends CoreController
 
 
         **/
-        //$html = NULL; // FIXME: redis overwrite
+        $html = NULL; // FIXME: redis overwrite
         if (!$html) {
             $hanzo = Hanzo::getInstance();
 
@@ -85,6 +85,15 @@ class MenuController extends CoreController
                             break;
                         }
                         $this->generateFlat($offset, $type);
+                    }
+                    $html = $this->menu[$type];
+                    break;
+
+                case 'breadcrumb':
+                    if (empty($this->menu[$type])) {
+                        $this->menu[$type] = '';
+
+                        $this->generateBreadcrumb();
                     }
                     $html = $this->menu[$type];
                     break;
@@ -309,4 +318,44 @@ class MenuController extends CoreController
         }
     }
 
+    protected function generateBreadcrumb($type = 'breadcrumb')
+    {
+        if($count = count($this->trail)){
+            $this->trail = array_reverse($this->trail);
+            $this->menu[$type] .= '<ul class="breadcrumb">';
+
+            foreach ($this->trail as $record) {
+
+                $path = $record->getPath();
+                if ($record->getType() == 'frontpage') {
+                    $path = '';
+                }
+
+                if ($record->getTitle()) {
+                    $class = 'inactive';
+                    if ((isset($this->trail[$record->getId()])) ||
+                        ($path == $this->path)
+                    ) {
+                        $class = 'active';
+                    }
+                }
+                
+                $class .= ($record === reset($this->trail))?' first':'';
+                $class .= ($record === end($this->trail))?' last':'';
+
+                if (preg_match('~^(f|ht)tps?://~', $path)) {
+                    $uri = $path;
+                } else {
+                    $uri = $this->base_url . '/' . $this->locale . '/' . $path;
+                }
+
+                if($record->getType() !== 'heading'){
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a></li>';    
+                }
+                
+            }
+
+            $this->menu[$type] .= '</ul>';
+        }
+    }
 }

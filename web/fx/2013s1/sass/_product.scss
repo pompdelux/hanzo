@@ -1,0 +1,138 @@
+.bordered,
+.bordered-bottom {
+	border-bottom: 1px solid #888;}
+.bordered,
+.bordered-top {
+	border-top: 1px solid #888;}
+
+
+/* - tabs */
+ul.tabs {
+	list-style: none;
+	margin: 0;
+	padding: 6px 0;
+	margin: 6px 0;
+	li {
+		display: inline-block;
+		margin-right: 15px;
+		a {
+			background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
+			padding-left: 20px;
+			font-family: $font-serif;
+			&.current {
+				background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
+			}
+			&:hover{
+				border-bottom: none;
+			}
+		}
+	}
+}
+div.panes > div {
+	padding: 6px;
+	margin-bottom: 18px;
+}
+
+.zoom{
+	background: url(/fx/images/icons/Zoom.png) no-repeat top center;
+	display: inline-block;
+	padding-top: 50px;
+}
+a.video-popper, #video-player-container a.video {
+	background: url(/fx/images/icons/Video.png) no-repeat top center;
+	display: inline-block;
+	padding-top: 50px;
+	width: 54px;
+	text-align: center;
+}
+
+.prices {
+	font-family: $font-serif;
+	font-size: 26px;
+	font-weight: bold;
+	padding: 0 0 12px;
+}
+
+form.buy{
+	margin-bottom: 16px;
+	label{
+		display: block;
+		padding: 18px 6px 0 0;
+		select{
+			width:237px;
+		}
+		a {
+			margin-left: 18px;
+			font-weight: bold;
+		}
+		&.off {
+			display: none;
+		}
+	}
+	.submit-button{
+		@include image-button("/fx/images/icons/put-to-basket-en_GB.png", 84px, 84px); // _base.scss
+		cursor: pointer;
+		margin-top: 18px;
+	}
+}
+
+body.da form.buy .submit-button{ 
+	@include image-button("/fx/images/icons/put-to-basket-da_DK.png", 87px, 86px);
+}
+body.en form.buy .submit-button{ 
+	@include image-button("/fx/images/icons/put-to-basket-en_GB.png", 84px, 84px);
+}
+body.fi form.buy .submit-button{ 
+	@include image-button("/fx/images/icons/put-to-basket-fi_FI.png", 84px, 84px);
+}
+body.no form.buy .submit-button{ 
+	@include image-button("/fx/images/icons/put-to-basket-nb_NO.png", 84px, 84px);
+}
+body.nl form.buy .submit-button{ 
+	@include image-button("/fx/images/icons/put-to-basket-nl_NL.png", 84px, 84px);
+}
+body.se form.buy .submit-button{ 
+	@include image-button("/fx/images/icons/put-to-basket-sv_SE.png", 84px, 84px);
+}
+
+body.da .buy-set{ 
+	@include image-button("/fx/images/icons/buy-set-da_DK.png", 87px, 86px);
+}
+body.en .buy-set{ 
+	@include image-button("/fx/images/icons/buy-set-en_GB.png", 84px, 84px);
+}
+body.fi .buy-set{ 
+	@include image-button("/fx/images/icons/buy-set-fi_FI.png", 84px, 84px);
+}
+body.no .buy-set{ 
+	@include image-button("/fx/images/icons/buy-set-nb_NO.png", 84px, 84px);
+}
+body.nl .buy-set{ 
+	@include image-button("/fx/images/icons/buy-set-nl_NL.png", 84px, 84px);
+}
+body.se .buy-set{ 
+	@include image-button("/fx/images/icons/buy-set-sv_SE.png", 84px, 84px);
+}
+
+.productimage-small,
+.style-guide{
+	a{
+		vertical-align: top;
+		display: inline-block;
+		margin-right: 3px;
+		img{
+			padding: 1px;
+		}
+		&:hover{
+			border-bottom: none;
+			margin-bottom: 0;
+			img{
+				padding: 0px;
+				border: 1px solid #888;
+			}
+		}
+	}
+}
+.style-guide, .style-guide .element {
+	display: none;
+}

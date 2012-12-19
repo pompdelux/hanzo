@@ -133,6 +133,21 @@ nav.main{
 	}
 }
 
+ul.breadcrumb {
+	list-style: none;
+	li {
+		display: inline-block;
+		&:before{
+			content: '>';
+			padding: 0 6px;
+		}
+		&.first:before{
+			content: none;
+		}
+
+	}
+}
+
 .main header{
 	display: table;
 	min-height: 100px;

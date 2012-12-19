@@ -9,6 +9,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
+use Hanzo\Model\CmsQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsStockPeer;
@@ -45,6 +46,7 @@ class DefaultController extends CoreController
                     ->endUse()
                     ->joinWithProductsDomainsPrices()
                     ->joinWithProductsImages()
+                    ->joinWithProductsToCategories()
                 ->endUse()
                 ->findById($product_id)
             ;
@@ -115,6 +117,7 @@ class DefaultController extends CoreController
             foreach ($references as $ref) {
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
                     'title' => $ref->getProducts()->getSku(),
+                    'image' => $ref->getProductsImages()->getImage(),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),
@@ -140,6 +143,9 @@ class DefaultController extends CoreController
                 $washing = stripslashes($result->getDescription());
                 $washing = preg_replace($find, $replace, $washing);
             }
+            //print_r(get_class_methods($product->getProductsToCategoriess()));
+            //$cms_page = CmsQuery::create()->joinWithI18n($hanzo->get('core.locale'))->findOneById($product->getProductsToCategoriess()->getFirst()->getCategoriesId()); // Find this cms' parent. category
+            //$parent_page = CmsQuery::create()->joinWithI18n($hanzo->get('core.locale'))->filterById($cms_page->getParentId())->findOne(); // 's parent
 
             $data = array(
                 'id' => $product->getId(),

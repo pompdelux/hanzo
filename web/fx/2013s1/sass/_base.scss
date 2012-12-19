@@ -11,8 +11,8 @@ $link-family  			: inherit;
 @import "compass/utilities";
 
 
-@import "icons/*.png"; 
-@include all-icons-sprites; // Generates a sprite from all images inside the folder
+//@import "icons/*.png"; 
+//@include all-icons-sprites; // Generates a sprite from all images inside the folder
 
 /**
 |
@@ -29,8 +29,10 @@ body{
 
 a{
 	color: $link-color;
+	text-decoration: none;
 	&:hover{
 		color: $font-color;
+		text-decoration: underline;
 	}
 }
 
@@ -47,18 +49,23 @@ h1,h2,h3,h4,h5,h6{
 h1{
 	font-family: $font-serif;
 	font-size: 26px;
-	padding: 10px 0 20px;
+	padding: 6px 0 12px;
 }
 h2{
 	font-weight: 100;
 	font-size: 16px;
-	padding: 10px 0;
+	padding: 6px 0;
 	letter-spacing: 2px;
 	text-transform: uppercase;
 }
 h3{
 	font-size: 14px;
-	padding: 5px 0 0;
+	padding: 6px 0 0;
+}
+h4{
+	font-family: $font-serif;
+	padding: 12px 0;
+	font-weight: 400;
 }
 
 p{
@@ -100,6 +107,31 @@ a.text-button {
 	text-transform: uppercase;
 }
 
+@mixin image-button($url, $height, $width){
+	background: url($url) no-repeat;
+	width: $width;
+	height: $height;
+	padding: 0;
+	border: none;
+	text-indent: -999px;
+	display: inline-block;
+}
+
+
+/**
+|
+| Helpers
+|
+*/
+.align-left{text-align:left;}
+.align-center{text-align:center}
+.align-right{text-align:right;}
+.vert-align-top{vertical-align:top;}
+.vert-align-middle{vertical-align:middle;}
+.vert-align-bottom{vertical-align:baseline;}
+.pushleft{float:left;}
+.pushright{float:right;}
+.small{font-size: 9px;}
 
 /**
 |
