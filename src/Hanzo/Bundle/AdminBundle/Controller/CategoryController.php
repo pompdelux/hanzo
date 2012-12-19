@@ -188,7 +188,6 @@ class CategoryController extends CoreController
                 $category->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'category.updated');
-
                 $this->get('event_dispatcher')->dispatch('category.node.updated', new FilterCategoryEvent($category, $locale, $this->getDbConnection()));
 
                 if(!$id) {
