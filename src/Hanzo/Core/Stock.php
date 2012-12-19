@@ -8,7 +8,7 @@ use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsStockPeer;
 
-use Symfony\Bundle\FrameworkBundle\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class Stock
@@ -19,7 +19,7 @@ class Stock
     protected $event_dispatcher;
     protected $locale;
 
-    public function __construct(TraceableEventDispatcher $event_dispatcher, $locale)
+    public function __construct(EventDispatcher $event_dispatcher, $locale)
     {
         $this->event_dispatcher = $event_dispatcher;
         $this->locale = $locale;
