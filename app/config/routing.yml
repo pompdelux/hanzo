@@ -1,7 +1,3 @@
-VarnishBundle:
-    resource: "@VarnishBundle/Resources/config/routing.yml"
-    prefix:   /
-
 DiscountBundle:
     resource: "@DiscountBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
