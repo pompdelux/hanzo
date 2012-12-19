@@ -121,7 +121,7 @@
       </trans-unit>
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
-        <target>Momsbeløp</target>
+        <target>Moms (inkludert i prisen)</target>
       </trans-unit>
       <trans-unit id="confirm.sub_total">
         <source>confirm.sub_total</source>
@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="confirm.payment.fee">
         <source>confirm.payment.fee</source>
-        <target>Betalningsavgift</target>
+        <target>Fakturaavgift</target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
