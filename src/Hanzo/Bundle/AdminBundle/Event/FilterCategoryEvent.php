@@ -6,7 +6,7 @@ use PropelPDO;
 use Symfony\Component\EventDispatcher\Event;
 use Hanzo\Core\Tools;
 
-class FilterCMSEvent extends Event
+class FilterCategoryEvent extends Event
 {
     protected $data;
     protected $locale;
