@@ -132,6 +132,16 @@ namespace :symfony do
   end
 end
 
+# own task. Clear Varnish
+namespace :symfony do
+  namespace :cache do
+    desc "Empty the varnish cache"
+    task :varnish_clear do
+      run("cd #{latest_release} && php app/console hanzo:varnish:purge --env=#{symfony_env_prods[0]}")
+    end
+  end
+end
+
 # own task. Run propel migrations
 namespace :propel do
   namespace :migration do
@@ -141,7 +151,7 @@ namespace :propel do
         run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
       end
     end
-    desc "Rigrations status"
+    desc "Migrations status"
     task :status, :roles => :db do
       symfony_env_prods.each do |i| 
         run("cd #{latest_release} && php app/console propel:migration:status --env=#{i}")
