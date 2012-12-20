@@ -8,7 +8,6 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
-
 class ToolsController extends CoreController
 {
 
