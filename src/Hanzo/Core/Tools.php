@@ -134,7 +134,7 @@ class Tools
     /**
      * NICETO: not hardcoded
      */
-    public static getBccEmailAddress($type, $order)
+    public static function getBccEmailAddress($type, $order)
     {
         $attributes = $order->getAttributes();
 

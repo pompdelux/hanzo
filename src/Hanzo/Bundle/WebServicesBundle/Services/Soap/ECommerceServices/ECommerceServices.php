@@ -875,7 +875,7 @@ class ECommerceServices extends SoapService
         // ....................
 
         $timer_data = $this->getTimerPool(true);
-        if ($timer_pool) {
+        if ($timer_data) {
             Tools::log('Time spend on order: #'.$order->getId()."\n".$timer_data);
         }
 
@@ -1062,7 +1062,7 @@ class ECommerceServices extends SoapService
                     'error: ' . $e->getMessage()
                 );
             }
-            $this->setTimestamp('time in gateway');
+            $this->addTimestamp('time in gateway');
 
             if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
                 $error = array(
