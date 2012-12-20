@@ -146,6 +146,21 @@ ul.breadcrumb {
 	}
 }
 
+.pager ul{
+	list-style: none;
+	li{
+		display: inline-block;
+		&.current{
+			a{
+				text-decoration: underline;
+			}
+		}
+		&.off{
+			display: none;
+		}
+	}
+}
+
 .main header{
 	display: table;
 	min-height: 100px;

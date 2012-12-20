@@ -218,6 +218,11 @@ body.da{
 		height: da-sprite-height(buy-set);
 		width: da-sprite-width(buy-set); 
 	}
+	.new-price{
+		@include da-sprite(new-price);
+		height: da-sprite-height(new-price);
+		width: da-sprite-width(new-price); 
+	}
 
 	.zoom .sprite{
 		@include da-sprite(zoom);

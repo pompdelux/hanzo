@@ -61,6 +61,7 @@ class DefaultController extends CoreController
 
             $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
             $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id);
+            $this->get('twig')->addGlobal('show_new_price_badge', 1);
             $this->get('twig')->addGlobal('cms_id', $parent_page->getParentId());
             $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);

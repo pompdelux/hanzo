@@ -16,13 +16,13 @@
 			.prices{
 				display: block;
 				color: $font-color;
+				margin-top: 6px;
 			}
 			.new-price{
 				position: absolute;
 				bottom:0;
 				right:0;
 				text-indent: -999px;
-				background: url('/fx/images/icons/Pompdelux_devider_left.png') left top no-repeat;
 			}
 		}
 	}
