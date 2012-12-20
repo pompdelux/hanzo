@@ -739,64 +739,64 @@ footer .copy a {
   text-decoration: none;
 }
 
-/* line 2, ../sass/_product.scss */
+/* line 6, ../sass/_product.scss */
 .bordered,
 .bordered-bottom {
   border-bottom: 1px solid #888;
 }
 
-/* line 5, ../sass/_product.scss */
+/* line 9, ../sass/_product.scss */
 .bordered,
 .bordered-top {
   border-top: 1px solid #888;
 }
 
 /* - tabs */
-/* line 10, ../sass/_product.scss */
+/* line 14, ../sass/_product.scss */
 ul.tabs {
   list-style: none;
   margin: 0;
   padding: 6px 0;
   margin: 6px 0;
 }
-/* line 15, ../sass/_product.scss */
+/* line 19, ../sass/_product.scss */
 ul.tabs li {
   display: inline-block;
   margin-right: 15px;
 }
-/* line 18, ../sass/_product.scss */
+/* line 22, ../sass/_product.scss */
 ul.tabs li a {
   background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
   padding-left: 20px;
   font-family: "Merriweather", serif;
 }
-/* line 22, ../sass/_product.scss */
+/* line 26, ../sass/_product.scss */
 ul.tabs li a.current {
   background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
 }
-/* line 25, ../sass/_product.scss */
+/* line 29, ../sass/_product.scss */
 ul.tabs li a:hover {
   border-bottom: none;
 }
 
-/* line 31, ../sass/_product.scss */
+/* line 35, ../sass/_product.scss */
 div.panes > div {
   padding: 6px;
   margin-bottom: 18px;
 }
 
-/* line 36, ../sass/_product.scss */
+/* line 40, ../sass/_product.scss */
 .zoom {
   display: inline-block;
 }
 
-/* line 39, ../sass/_product.scss */
+/* line 43, ../sass/_product.scss */
 a.video-popper, #video-player-container a.video {
   display: inline-block;
   text-align: center;
 }
 
-/* line 44, ../sass/_product.scss */
+/* line 48, ../sass/_product.scss */
 .body-product .prices {
   font-family: "Merriweather", serif;
   font-size: 26px;
@@ -804,29 +804,29 @@ a.video-popper, #video-player-container a.video {
   padding: 0 0 12px;
 }
 
-/* line 51, ../sass/_product.scss */
+/* line 55, ../sass/_product.scss */
 form.buy {
   margin-bottom: 16px;
 }
-/* line 53, ../sass/_product.scss */
+/* line 57, ../sass/_product.scss */
 form.buy label {
   display: block;
   padding: 18px 6px 0 0;
 }
-/* line 56, ../sass/_product.scss */
+/* line 60, ../sass/_product.scss */
 form.buy label select {
   width: 237px;
 }
-/* line 59, ../sass/_product.scss */
+/* line 63, ../sass/_product.scss */
 form.buy label a {
   margin-left: 18px;
   font-weight: bold;
 }
-/* line 63, ../sass/_product.scss */
+/* line 67, ../sass/_product.scss */
 form.buy label.off {
   display: none;
 }
-/* line 67, ../sass/_product.scss */
+/* line 71, ../sass/_product.scss */
 form.buy .submit-button {
   cursor: pointer;
   margin-top: 18px;
@@ -836,31 +836,31 @@ form.buy .submit-button {
   display: inline-block;
 }
 
-/* line 76, ../sass/_product.scss */
+/* line 80, ../sass/_product.scss */
 .productimage-small a,
 .style-guide a {
   vertical-align: top;
   display: inline-block;
   margin-right: 3px;
 }
-/* line 80, ../sass/_product.scss */
+/* line 84, ../sass/_product.scss */
 .productimage-small a img,
 .style-guide a img {
   padding: 1px;
 }
-/* line 83, ../sass/_product.scss */
+/* line 87, ../sass/_product.scss */
 .productimage-small a:hover,
 .style-guide a:hover {
   border-bottom: none;
   margin-bottom: 0;
 }
-/* line 86, ../sass/_product.scss */
+/* line 90, ../sass/_product.scss */
 .productimage-small a:hover img,
 .style-guide a:hover img {
   padding: 0px;
   border: 1px solid #888;
 }
-/* line 91, ../sass/_product.scss */
+/* line 95, ../sass/_product.scss */
 .productimage-small a.buy-set,
 .style-guide a.buy-set {
   padding: 0;
@@ -869,7 +869,7 @@ form.buy .submit-button {
   display: inline-block;
 }
 
-/* line 96, ../sass/_product.scss */
+/* line 100, ../sass/_product.scss */
 .style-guide, .style-guide .element {
   display: none;
 }

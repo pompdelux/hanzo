@@ -70,6 +70,18 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     protected $image;
 
     /**
+     * The value for the color field.
+     * @var        string
+     */
+    protected $color;
+
+    /**
+     * The value for the type field.
+     * @var        string
+     */
+    protected $type;
+
+    /**
      * @var        Products
      */
     protected $aProducts;
@@ -143,6 +155,26 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [color] column value.
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Get the [type] column value.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Set the value of [id] column.
      *
      * @param int $v new value
@@ -210,6 +242,48 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     } // setImage()
 
     /**
+     * Set the value of [color] column.
+     *
+     * @param string $v new value
+     * @return ProductsImages The current object (for fluent API support)
+     */
+    public function setColor($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->color !== $v) {
+            $this->color = $v;
+            $this->modifiedColumns[] = ProductsImagesPeer::COLOR;
+        }
+
+
+        return $this;
+    } // setColor()
+
+    /**
+     * Set the value of [type] column.
+     *
+     * @param string $v new value
+     * @return ProductsImages The current object (for fluent API support)
+     */
+    public function setType($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->type !== $v) {
+            $this->type = $v;
+            $this->modifiedColumns[] = ProductsImagesPeer::TYPE;
+        }
+
+
+        return $this;
+    } // setType()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -244,6 +318,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->products_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
             $this->image = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+            $this->color = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->type = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -252,7 +328,7 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 3; // 3 = ProductsImagesPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 5; // 5 = ProductsImagesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating ProductsImages object", $e);
@@ -524,6 +600,12 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsImagesPeer::IMAGE)) {
             $modifiedColumns[':p' . $index++]  = '`image`';
         }
+        if ($this->isColumnModified(ProductsImagesPeer::COLOR)) {
+            $modifiedColumns[':p' . $index++]  = '`color`';
+        }
+        if ($this->isColumnModified(ProductsImagesPeer::TYPE)) {
+            $modifiedColumns[':p' . $index++]  = '`type`';
+        }
 
         $sql = sprintf(
             'INSERT INTO `products_images` (%s) VALUES (%s)',
@@ -543,6 +625,12 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                         break;
                     case '`image`':
                         $stmt->bindValue($identifier, $this->image, PDO::PARAM_STR);
+                        break;
+                    case '`color`':
+                        $stmt->bindValue($identifier, $this->color, PDO::PARAM_STR);
+                        break;
+                    case '`type`':
+                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -717,6 +805,12 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             case 2:
                 return $this->getImage();
                 break;
+            case 3:
+                return $this->getColor();
+                break;
+            case 4:
+                return $this->getType();
+                break;
             default:
                 return null;
                 break;
@@ -749,6 +843,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             $keys[0] => $this->getId(),
             $keys[1] => $this->getProductsId(),
             $keys[2] => $this->getImage(),
+            $keys[3] => $this->getColor(),
+            $keys[4] => $this->getType(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aProducts) {
@@ -803,6 +899,12 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             case 2:
                 $this->setImage($value);
                 break;
+            case 3:
+                $this->setColor($value);
+                break;
+            case 4:
+                $this->setType($value);
+                break;
         } // switch()
     }
 
@@ -830,6 +932,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setProductsId($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setImage($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setColor($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setType($arr[$keys[4]]);
     }
 
     /**
@@ -844,6 +948,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         if ($this->isColumnModified(ProductsImagesPeer::ID)) $criteria->add(ProductsImagesPeer::ID, $this->id);
         if ($this->isColumnModified(ProductsImagesPeer::PRODUCTS_ID)) $criteria->add(ProductsImagesPeer::PRODUCTS_ID, $this->products_id);
         if ($this->isColumnModified(ProductsImagesPeer::IMAGE)) $criteria->add(ProductsImagesPeer::IMAGE, $this->image);
+        if ($this->isColumnModified(ProductsImagesPeer::COLOR)) $criteria->add(ProductsImagesPeer::COLOR, $this->color);
+        if ($this->isColumnModified(ProductsImagesPeer::TYPE)) $criteria->add(ProductsImagesPeer::TYPE, $this->type);
 
         return $criteria;
     }
@@ -909,6 +1015,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     {
         $copyObj->setProductsId($this->getProductsId());
         $copyObj->setImage($this->getImage());
+        $copyObj->setColor($this->getColor());
+        $copyObj->setType($this->getType());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1542,6 +1650,8 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         $this->id = null;
         $this->products_id = null;
         $this->image = null;
+        $this->color = null;
+        $this->type = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->clearAllReferences();

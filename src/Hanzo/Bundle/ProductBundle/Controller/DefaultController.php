@@ -62,20 +62,27 @@ class DefaultController extends CoreController
             $images = array();
             $product_images = $product->getProductsImagess();
             foreach ($product_images as $image) {
+                $path_params = explode('_', explode('.', $image->getImage())[0]);
+
                 $images[$image->getId()] = array(
                     'id' => $image->getId(),
                     'name' => $image->getImage(),
+                    'color' => $image->getColor(),
+                    'type' => $image->getType(),
+                    'number' => (int)$path_params[3]
                 );
             }
 
             // set focus image
             if (($focus = $this->get('request')->get('focus', FALSE)) && isset($images[$focus])) {
                 $main_image = $images[$focus];
-                unset($images[$focus]);
             }
             else {
                 $main_image = array_shift($images);
             }
+
+            $current_color = $main_image['color'];
+            $current_type  = $main_image['type'];
 
             $colors = $sizes = array();
             $product_ids = array();

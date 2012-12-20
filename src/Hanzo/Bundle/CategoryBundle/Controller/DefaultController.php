@@ -28,7 +28,7 @@ class DefaultController extends CoreController
      * @param $category_id
      * @param $pager
      */
-    public function viewAction($cms_id, $category_id, $pager = 1)
+    public function viewAction($cms_id, $category_id, $show, $pager = 1)
     {
         $cache_id = explode('_', $this->get('request')->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $pager);
@@ -37,7 +37,7 @@ class DefaultController extends CoreController
         if ($this->getFormat() == 'json') {
             $data = $this->getCache($cache_id);
             if (!$data) {
-                $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
+                $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager, $show);
                 $this->setCache($cache_id, $data, 5);
             }
 
@@ -54,7 +54,8 @@ class DefaultController extends CoreController
         $html = $this->getCache($cache_id);
 
         if (!$html) {
-            $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager);
+
+            $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager, $show);
 
             $cms_page = CmsQuery::create()->findOneById($cms_id); // Find this cms' parent's parent.
             $parent_page = CmsQuery::create()->filterById($cms_page->getParentId())->findOne();

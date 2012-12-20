@@ -39,13 +39,13 @@ abstract class BaseProductsImagesPeer
     const TM_CLASS = 'ProductsImagesTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 3;
+    const NUM_COLUMNS = 5;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 3;
+    const NUM_HYDRATE_COLUMNS = 5;
 
     /** the column name for the id field */
     const ID = 'products_images.id';
@@ -55,6 +55,12 @@ abstract class BaseProductsImagesPeer
 
     /** the column name for the image field */
     const IMAGE = 'products_images.image';
+
+    /** the column name for the color field */
+    const COLOR = 'products_images.color';
+
+    /** the column name for the type field */
+    const TYPE = 'products_images.type';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -75,12 +81,12 @@ abstract class BaseProductsImagesPeer
      * e.g. ProductsImagesPeer::$fieldNames[ProductsImagesPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'ProductsId', 'Image', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'productsId', 'image', ),
-        BasePeer::TYPE_COLNAME => array (ProductsImagesPeer::ID, ProductsImagesPeer::PRODUCTS_ID, ProductsImagesPeer::IMAGE, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'PRODUCTS_ID', 'IMAGE', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'products_id', 'image', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'ProductsId', 'Image', 'Color', 'Type', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'productsId', 'image', 'color', 'type', ),
+        BasePeer::TYPE_COLNAME => array (ProductsImagesPeer::ID, ProductsImagesPeer::PRODUCTS_ID, ProductsImagesPeer::IMAGE, ProductsImagesPeer::COLOR, ProductsImagesPeer::TYPE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'PRODUCTS_ID', 'IMAGE', 'COLOR', 'TYPE', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'products_id', 'image', 'color', 'type', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
     /**
@@ -90,12 +96,12 @@ abstract class BaseProductsImagesPeer
      * e.g. ProductsImagesPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ProductsId' => 1, 'Image' => 2, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'productsId' => 1, 'image' => 2, ),
-        BasePeer::TYPE_COLNAME => array (ProductsImagesPeer::ID => 0, ProductsImagesPeer::PRODUCTS_ID => 1, ProductsImagesPeer::IMAGE => 2, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'PRODUCTS_ID' => 1, 'IMAGE' => 2, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'products_id' => 1, 'image' => 2, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ProductsId' => 1, 'Image' => 2, 'Color' => 3, 'Type' => 4, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'productsId' => 1, 'image' => 2, 'color' => 3, 'type' => 4, ),
+        BasePeer::TYPE_COLNAME => array (ProductsImagesPeer::ID => 0, ProductsImagesPeer::PRODUCTS_ID => 1, ProductsImagesPeer::IMAGE => 2, ProductsImagesPeer::COLOR => 3, ProductsImagesPeer::TYPE => 4, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'PRODUCTS_ID' => 1, 'IMAGE' => 2, 'COLOR' => 3, 'TYPE' => 4, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'products_id' => 1, 'image' => 2, 'color' => 3, 'type' => 4, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
     /**
@@ -172,10 +178,14 @@ abstract class BaseProductsImagesPeer
             $criteria->addSelectColumn(ProductsImagesPeer::ID);
             $criteria->addSelectColumn(ProductsImagesPeer::PRODUCTS_ID);
             $criteria->addSelectColumn(ProductsImagesPeer::IMAGE);
+            $criteria->addSelectColumn(ProductsImagesPeer::COLOR);
+            $criteria->addSelectColumn(ProductsImagesPeer::TYPE);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.products_id');
             $criteria->addSelectColumn($alias . '.image');
+            $criteria->addSelectColumn($alias . '.color');
+            $criteria->addSelectColumn($alias . '.type');
         }
     }
 

@@ -27,10 +27,14 @@ use Hanzo\Model\ProductsImagesQuery;
  * @method ProductsImagesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ProductsImagesQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  * @method ProductsImagesQuery orderByImage($order = Criteria::ASC) Order by the image column
+ * @method ProductsImagesQuery orderByColor($order = Criteria::ASC) Order by the color column
+ * @method ProductsImagesQuery orderByType($order = Criteria::ASC) Order by the type column
  *
  * @method ProductsImagesQuery groupById() Group by the id column
  * @method ProductsImagesQuery groupByProductsId() Group by the products_id column
  * @method ProductsImagesQuery groupByImage() Group by the image column
+ * @method ProductsImagesQuery groupByColor() Group by the color column
+ * @method ProductsImagesQuery groupByType() Group by the type column
  *
  * @method ProductsImagesQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method ProductsImagesQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -53,10 +57,14 @@ use Hanzo\Model\ProductsImagesQuery;
  *
  * @method ProductsImages findOneByProductsId(int $products_id) Return the first ProductsImages filtered by the products_id column
  * @method ProductsImages findOneByImage(string $image) Return the first ProductsImages filtered by the image column
+ * @method ProductsImages findOneByColor(string $color) Return the first ProductsImages filtered by the color column
+ * @method ProductsImages findOneByType(string $type) Return the first ProductsImages filtered by the type column
  *
  * @method array findById(int $id) Return ProductsImages objects filtered by the id column
  * @method array findByProductsId(int $products_id) Return ProductsImages objects filtered by the products_id column
  * @method array findByImage(string $image) Return ProductsImages objects filtered by the image column
+ * @method array findByColor(string $color) Return ProductsImages objects filtered by the color column
+ * @method array findByType(string $type) Return ProductsImages objects filtered by the type column
  *
  * @package    propel.generator.src.Hanzo.Model.om
  */
@@ -160,7 +168,7 @@ abstract class BaseProductsImagesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `products_id`, `image` FROM `products_images` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `products_id`, `image`, `color`, `type` FROM `products_images` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -346,6 +354,64 @@ abstract class BaseProductsImagesQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProductsImagesPeer::IMAGE, $image, $comparison);
+    }
+
+    /**
+     * Filter the query on the color column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByColor('fooValue');   // WHERE color = 'fooValue'
+     * $query->filterByColor('%fooValue%'); // WHERE color LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $color The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsImagesQuery The current query, for fluid interface
+     */
+    public function filterByColor($color = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($color)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $color)) {
+                $color = str_replace('*', '%', $color);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(ProductsImagesPeer::COLOR, $color, $comparison);
+    }
+
+    /**
+     * Filter the query on the type column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByType('fooValue');   // WHERE type = 'fooValue'
+     * $query->filterByType('%fooValue%'); // WHERE type LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $type The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ProductsImagesQuery The current query, for fluid interface
+     */
+    public function filterByType($type = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($type)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $type)) {
+                $type = str_replace('*', '%', $type);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(ProductsImagesPeer::TYPE, $type, $comparison);
     }
 
     /**

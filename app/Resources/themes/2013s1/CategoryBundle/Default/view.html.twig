@@ -11,7 +11,7 @@
 <div class="grid_8 alpha omega">
   <div class="grid_6 push_2">
     <div class="grid_3 alpha">
-      <a href="">{{ 'category.selector.overview'|trans }}</a> / <a href="">{{ 'category.selector.looks'|trans }}</a>
+      <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}">{{ 'category.selector.looks'|trans }}</a>
     </div>
   </div>
 </div>
@@ -27,7 +27,11 @@
       {% endif %}
           <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
             <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" style="height:410px;">
-              {{ product_image_tag(product.image, '234x410', { 'alt' : product.title, 'class' : 'flip', 'data-flip': product_image_url(product.image, '234x410') }) }}
+              {{ product_image_tag(product.image, '234x410', { 
+                'alt' : product.title, 
+                'class' : 'flip', 
+                'data-flip': product_image_url(product.image_flip, '234x410') 
+              }) }}
               {% if product.prices.sales is defined and show_new_price_badge == 1 %}
               <div class="new-price">{{ 'new.price'|trans }}</div>
               {% endif %}

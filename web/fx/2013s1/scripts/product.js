@@ -6,12 +6,28 @@
 
     pub.initZoom = function() {
       var e = $('.productimage-large a');
-      e.zoom({
-        url : e.attr('href'),
-        callback: function(){
-          $(this).colorbox({href: this.src, close: 'x'});
+    };
+
+    pub.initColors = function() {
+      var currentColor = $('.productimage-large a').data('color');
+      $('.productimage-small a').hide();
+      $('.productimage-small a.color-'+currentColor).show();
+
+      $('a.product-color').click(function(e){
+        e.preventDefault();
+        var currentNumber = $('.productimage-large a').data('number');
+        if(!$(this).hasClass('current')){
+          currentColor = $(this).data('color');
+          $('.product-color.current').removeClass('current');
+          $(this).addClass('current');
+          
+          product.swapImages($('.productimage-small a.color-'+currentColor +'.number-'+currentNumber));
+
+          $('.productimage-small a').hide();
+          $('.productimage-small a.color-'+currentColor).show();
         }
       });
+
     };
 
     pub.swapImages = function(current) {
@@ -21,7 +37,9 @@
         small  : $small_img.attr('src'),
         medium : $small.data('src'),
         large  : $small.attr('href'),
-        id     : $small.data('id')
+        id     : $small.data('id'),
+        color  : $small.data('color'),
+        number : $small.data('number')
       };
 
       var $large = $('.productimage-large a');
@@ -30,17 +48,23 @@
         small  : $large.data('src'),
         medium : $large_img.attr('src'),
         large  : $large.attr('href'),
-        id     : $large.data('id')
+        id     : $large.data('id'),
+        color  : $large.data('color'),
+        number : $large.data('number')
       };
 
       $large.data('src', small.small);
       $large.attr('href', small.large);
       $large.data('id', small.id);
+      $large.data('color', small.color);
+      $large.data('number', small.number);
       $large_img.attr('src', small.medium);
 
       $small.data('src', large.medium);
       $small.attr('href', large.large);
       $small.data('id', large.id);
+      $small.data('color', large.color);
+      $small.data('number', large.number);
       $small_img.attr('src', large.small);
 
       $('.style-guide .element').hide();
@@ -49,7 +73,6 @@
       product.initZoom();
       product.initStyleGuide();
     };
-
     // style guides
     pub.initStyleGuide = function() {
       $('.productimage-large a').each(function() {
@@ -222,6 +245,7 @@
   })(jQuery);
 
   product.initZoom();
+  product.initColors();
   product.initStyleGuide();
   product.initTabs();
   product.initSlideshow();

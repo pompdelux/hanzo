@@ -205,6 +205,14 @@
                     <a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="category.selector.look" approved="no">
+                <source>category.selector.look</source>
+                <target>Looks</target>
+            </trans-unit>
+            <trans-unit id="category.selector.overview" approved="no">
+                <source>category.selector.overview</source>
+                <target>Overview</target>
+            </trans-unit>
             <trans-unit id="options.title" approved="no">
                 <source>options.title</source>
                 <target>Farve og størrelse</target>

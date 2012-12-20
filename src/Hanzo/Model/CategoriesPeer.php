@@ -22,13 +22,14 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
  */
 class CategoriesPeer extends BaseCategoriesPeer
 {
-    public static function getCategoryProductsByCategoryId($category_id, $pager)
+    public static function getCategoryProductsByCategoryId($category_id, $pager, $show)
     {
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
         $domain_id = $hanzo->get('core.domain_id');
+        $show_by_look = (bool)($show === 'look');
 
         $result = ProductsImagesCategoriesSortQuery::create()
             ->useProductsQuery()
@@ -56,11 +57,14 @@ class CategoriesPeer extends BaseCategoriesPeer
             $product = $record->getProducts();
             $product_ids[] = $product->getId();
 
+            $image_overview = str_replace('set', 'overview', $record->getProductsImages()->getImage());
+            
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
                 'title' => $product->getSku(),
-                'image' => $record->getProductsImages()->getImage(),
+                'image' => ($show_by_look)?$image_overview:$record->getProductsImages()->getImage(),
+                'image_flip' => ($show_by_look)?$record->getProductsImages()->getImage():$image_overview,
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
                     'title' => Tools::stripText($product->getSku()),
@@ -68,7 +72,7 @@ class CategoriesPeer extends BaseCategoriesPeer
                 )),
             );
         }
-
+        
         // get product prices
         $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 
@@ -89,7 +93,7 @@ class CategoriesPeer extends BaseCategoriesPeer
 
             $pages = array();
             foreach ($result->getLinks(20) as $page) {
-                $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+                $pages[$page] = $router->generate($route, array('pager' => $page, 'show' => $show), TRUE);
             }
 
             $data['paginate'] = array(

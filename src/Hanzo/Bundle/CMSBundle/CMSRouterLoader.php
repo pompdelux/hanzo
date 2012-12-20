@@ -99,12 +99,13 @@ class CMSRouterLoader implements LoaderInterface
                     $categories[$category_key] = $product_path;
 
                     // category route
-                    $route = new Route("/{$path}/{pager}", array(
+                    $route = new Route("/{$path}/{show}/{pager}", array(
                         '_controller' => 'CategoryBundle:Default:view',
                         '_format' => 'html',
                         'cms_id' => $id,
                         'category_id' => $settings->category_id,
                         'pager' => 1,
+                        'show' => 'look',
                         'ip_restricted' => true,
                     ), array(
                         'pager' => '\d+',
