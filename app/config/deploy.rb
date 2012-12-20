@@ -52,6 +52,7 @@ after 'deploy:restart', 'deploy:cleanup'
 after 'deploy:restart', 'deploy:send_email'
 #after 'deploy:restart', 'deploy:apcclear'
 after 'deploy:cleanup', 'deploy:apcclear'
+after 'deploy:apcclear', 'symfony:cache:varnish_clear'
 
 # clear cache after rollback. Doesnt seem to work because it tries to clear the old current dir
 #after 'deploy:rollback', 'symfony:cache:clear'
