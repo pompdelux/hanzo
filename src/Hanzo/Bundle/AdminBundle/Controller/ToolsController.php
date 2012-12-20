@@ -40,4 +40,16 @@ class ToolsController extends CoreController
         $this->getRequest()->getSession()->setFlash('notice', 'Billedesorterings synkronisering færdig..');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
+
+    public function clearVarnishCacheAction()
+    {
+        try {
+            $this->get('varnish.controle')->ban('/');
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+        }
+
+        $this->getRequest()->getSession()->setFlash('notice', 'Varnish cache tømt.');
+        return $this->redirect($this->generateUrl('admin_tools'));
+    }
 }

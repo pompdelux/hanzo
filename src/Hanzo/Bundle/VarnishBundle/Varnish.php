@@ -62,6 +62,11 @@ class Varnish
             return true;
         }
 
+        if (!$this->varnish) {
+            // no varnish module, we quit.
+            return false;
+        }
+
         if (!$this->varnish->connect()) {
             Tools::log('Could not connect to varnish....');
             return false;
