@@ -130,6 +130,66 @@ class Tools
         return implode("\n", $address);
     }
 
+
+    /**
+     * NICETO: not hardcoded
+     */
+    public static getBccEmailAddress($type, $order)
+    {
+        $attributes = $order->getAttributes();
+
+        $to = '';
+        switch ($type) {
+            case 'order':
+                switch ($attributes->global->domain_key) {
+                    case 'SalesFI':
+                    case 'FI':
+                        $to = 'orderfi@pompdelux.com';
+                        break;
+                    case 'SalesNL':
+                    case 'NL':
+                        $to = 'ordernl@pompdelux.com';
+                        break;
+                    case 'SalesSE':
+                    case 'SE':
+                        $to = 'order@pompdelux.se';
+                        break;
+                    case 'SalesNO':
+                    case 'NO':
+                        $to = 'order@pompdelux.no';
+                        break;
+                    default:
+                        $to = 'order@pompdelux.dk';
+                        break;
+                }
+
+                break;
+            case 'retur':
+                switch (substr($attributes->global->domain_name, -2)) {
+                    case 'dk':
+                    case 'om':
+                        $to = 'retur@pompdelux.dk';
+                        break;
+                    case 'se':
+                        $to = 'retur@pompdelux.se';
+                        break;
+                    case 'nl':
+                        $to = 'retur@pompdelux.nl';
+                        break;
+                    case 'fi':
+                        $to = 'retur@pompdelux.fi';
+                        break;
+                    case 'no':
+                        $to = 'retur@pompdelux.no';
+                        break;
+                }
+                break;
+        }
+
+        return $to;
+    }
+
+
     /**
      * Sequence generator, returns next sequesce id of a named sequence.
      * Unknown sequences is created on first request.
@@ -143,11 +203,10 @@ class Tools
             throw new \InvalidArgumentException("'{$name}' is not a valid sequence name.");
         }
 
-        Propel::setForceMasterConnection(true);
-        $con = Propel::getConnection(SequencesPeer::DATABASE_NAME);
+        $con = Propel::getConnection(SequencesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         $con->beginTransaction();
 
-        $item = SequencesQuery::create()->findPk($name);
+        $item = SequencesQuery::create()->findPk($name, $con);
 
         if (!$item instanceof Sequences) {
             $item = new Sequences();
@@ -158,10 +217,9 @@ class Tools
         $sequence_id = $item->getId();
 
         $item->setId($sequence_id + 1);
-        $item->save();
+        $item->save($con);
 
         $con->commit();
-        Propel::setForceMasterConnection(false);
 
         return $sequence_id;
     }

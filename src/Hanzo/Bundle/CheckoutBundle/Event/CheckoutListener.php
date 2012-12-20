@@ -241,32 +241,13 @@ class CheckoutListener
         }
 
         try {
-            // NICETO: not hardcoded
-            switch ($attributes->global->domain_key) {
-                case 'SalesFI':
-                case 'FI':
-                    $bcc = 'orderfi@pompdelux.com';
-                    break;
-                case 'SalesNL':
-                case 'NL':
-                    $bcc = 'ordernl@pompdelux.com';
-                    break;
-                case 'SalesSE':
-                case 'SE':
-                    $bcc = 'order@pompdelux.se';
-                    break;
-                case 'SalesNO':
-                case 'NO':
-                    $bcc = 'order@pompdelux.no';
-                    break;
-                default:
-                    $bcc = 'order@pompdelux.dk';
-                    break;
-            }
+            $bcc = Tools::getBccEmailAddress('order', $order);
 
             $this->mailer->setMessage('order.confirmation', $params);
             $this->mailer->setTo($email, $name);
-            $this->mailer->setBcc($bcc);
+            if ($bcc) {
+                $this->mailer->setBcc($bcc);
+            }
             $this->mailer->send();
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
