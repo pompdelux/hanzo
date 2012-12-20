@@ -213,7 +213,7 @@ var dialoug = (function($) {
       $element = $(selector);
     }
 
-    var tpl = '<div id="inject-notice-box">' + message + '</div>';
+    var tpl = '<div class="inject-notice-box">' + message + '</div>';
 
     if (undefined === position) {
       $element.after(tpl);
@@ -224,10 +224,12 @@ var dialoug = (function($) {
     else {
       $element.before(tpl);
     }
-    $('#inject-notice-box').hide()
+    $('.inject-notice-box').hide()
       .fadeIn(200, function() {
         $(this).delay(duration).
-        fadeOut(2000);
+        fadeOut(2000, function(){
+          $(this).remove();
+        });
       });
   };
 
