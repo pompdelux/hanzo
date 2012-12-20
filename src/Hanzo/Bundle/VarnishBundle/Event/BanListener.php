@@ -102,11 +102,11 @@ class BanListener
 
         // g/b filter, should not be here - but for now it works...
         if ($category->getContext()) {
-            switch (substr($category->getContext(), 0, 1)) {
-                case 'G':
+            switch (strtoupper(substr($category->getContext(), 0, 2))) {
+                case 'G_':
                     $query->filterByPath('%/girl%');
                     break;
-                case 'B':
+                case 'B_':
                     $query->filterByPath('%/boy%');
                     break;
                 case 'LG':

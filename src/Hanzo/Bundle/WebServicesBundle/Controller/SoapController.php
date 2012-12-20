@@ -28,7 +28,8 @@ class SoapController extends CoreController
         $service_class = str_replace('Controller', 'Services\Soap', __NAMESPACE__) . "\\{$service_name}\\$service_name";
         $handler = new $service_class (
             $this->getRequest(),
-            $this->get('Logger')
+            $this->get('Logger'),
+            $this->get('event_dispatcher')
         );
 
         $service = new \SoapServer($wsdl);
