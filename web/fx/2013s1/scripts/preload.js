@@ -1,9 +1,9 @@
 (function($) {
     $(window).on('load', function() {
         var preload = [];
-        $("img.hover").each(function() {
-            if($(this).data('hover')){
-                preload.push($(this).data('hover'));
+        $("img.flip").each(function() {
+            if($(this).data('flip')){
+                preload.push($(this).data('flip'));
             }
         });
         var img = document.createElement('img');

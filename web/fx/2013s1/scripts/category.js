@@ -107,9 +107,27 @@
       });
     };
 
+    pub.initFlip = function() {
+      var originalPicture = null;
+      $(document).on({
+        mouseenter: function () {
+          if($(this).data('flip')){
+            originalPicture = $(this).attr('src');
+            $(this).attr('src', $(this).data('flip'));
+          }
+        },
+        mouseleave: function () {
+          if(originalPicture){
+            $(this).attr('src',originalPicture);
+            originalPicture = null;
+          }
+        }
+      }, 'img.flip');
+    };
     return pub;
   })(jQuery);
 
   category.initPager();
+  category.initFlip();
 
 })(document, jQuery);
