@@ -43,7 +43,6 @@ use \PropelCollection;
 
 class ECommerceServices extends SoapService
 {
-
     /**
      * syncronize an item
      * @param object $data xmlformat:
@@ -875,6 +874,10 @@ class ECommerceServices extends SoapService
         // .....</ze code>.....
         // ....................
 
+        $timer_data = $this->getTimerPool(true);
+        if ($timer_pool) {
+            Tools::log('Time spend on order: #'.$order->getId()."\n".$timer_data);
+        }
 
         if (count($errors)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
@@ -1049,6 +1052,7 @@ class ECommerceServices extends SoapService
             $amount = $large . sprintf('%02d', $small);
             $gateway = $this->hanzo->container->get('payment.dibsapi');
 
+            $this->getLapTime();
             try {
                 $response = $gateway->call()->capture($order, $amount);
                 $result = $response->debug();
@@ -1058,6 +1062,7 @@ class ECommerceServices extends SoapService
                     'error: ' . $e->getMessage()
                 );
             }
+            $this->setTimestamp('time in gateway');
 
             if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
                 $error = array(
@@ -1098,8 +1103,10 @@ class ECommerceServices extends SoapService
 
         $doSendError = false;
         try {
+            $this->getLapTime();
             $response = $gateway->call()->refund($order, ($amount * -1));
             $result = $response->debug();
+            $this->addTimestamp('time in gateway');
 
 // un: 2012.11.29 - test logging all refunds.
 Tools::log('->->->->->->->->->-');
@@ -1121,6 +1128,7 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
                     'amount' => $data->amount,
                 );
 
+                $this->getLapTime();
                 $mailer = $this->hanzo->container->get('mail_manager');
 
                 if (in_array($domain, ['www.pompdelux.com'])) {
@@ -1136,6 +1144,7 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
 
                 $mailer->setTo($order->getEmail(), $name);
                 $mailer->send();
+                $this->addTimestamp('time sending emails');
 
                 $this->sendStatusMail = false;
             }
