@@ -7,7 +7,7 @@
 {% if app.session.hasFlash('notice') %}
   <div class="message">
     {{ app.session.flash('notice') }}
-  </div>
+  </div><br>
 {% endif %}
 
 
@@ -29,6 +29,11 @@
   <li><a href="{{ path('admin_tools_sync_images_sort') }}">Synkroniser billedesortering</a></li>
 </ul>
 
+<h2>Cache</h2>
+<p>Når Varnish cleares, så ryger <em>al</em> varnish caching på <em>alle</em> domæner - bare til info...</p>
+<ul>
+  <li><a href="{{ path('admin_tools_clear_varnish') }}">Ryd Varnish cache</a></li>
+</ul>
 
 {% endblock %}
 
