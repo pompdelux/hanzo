@@ -20,8 +20,10 @@
           currentColor = $(this).data('color');
           $('.product-color.current').removeClass('current');
           $(this).addClass('current');
+
+          var $swapped = $('.productimage-small a.color-'+currentColor +'.number-'+currentNumber);
           
-          product.swapImages($('.productimage-small a.color-'+currentColor +'.number-'+currentNumber));
+          product.swapImages($swapped);
 
           $('.productimage-small a').hide();
           $('.productimage-small a.color-'+currentColor).show();
@@ -58,6 +60,10 @@
       $large.data('id', small.id);
       $large.data('color', small.color);
       $large.data('number', small.number);
+      $large.removeClass('color-'+large.color);
+      $large.addClass('color-'+small.color);
+      $large.removeClass('number-'+large.number);
+      $large.addClass('number-'+small.number);
       $large_img.attr('src', small.medium);
 
       $small.data('src', large.medium);
@@ -65,6 +71,10 @@
       $small.data('id', large.id);
       $small.data('color', large.color);
       $small.data('number', large.number);
+      $small.removeClass('color-'+small.color);
+      $small.addClass('color-'+large.color);
+      $small.removeClass('number-'+small.number);
+      $small.addClass('number-'+large.number);
       $small_img.attr('src', large.small);
 
       $('.style-guide .element').hide();
