@@ -171,14 +171,12 @@
                 dialoug.confirm(Translator.get('js:notice'), response.message, function(c) {
                   if (c == 'ok') {
                     $('select.quantity', $form).closest('label').removeClass('off');
-                    $form.find('.button').show();
                     $form.append('<input type="hidden" name="date" value="' + product.date + '">');
                   }
                 });
               }
               else {
                 $('select.quantity', $form).closest('label').removeClass('off');
-                $form.find('.button').show();
               }
             }
           }
@@ -190,29 +188,33 @@
         event.preventDefault();
 
         var $form = $(this);
-        $.ajax({
-          url: $form.attr('action'),
-          dataType: 'json',
-          type: 'POST',
-          data: $form.serialize(),
-          async: false,
-          success: function(response, textStatus, jqXHR) {
-            if (false === response.status) {
-              if (response.message) {
-                dialoug.alert(Translator.get('js:notice'), response.message);
+        if($('select.size', $form).val() && $('select.color', $form).val() && $('select.quantity', $form).val()){
+          $.ajax({
+            url: $form.attr('action'),
+            dataType: 'json',
+            type: 'POST',
+            data: $form.serialize(),
+            async: false,
+            success: function(response, textStatus, jqXHR) {
+              if (false === response.status) {
+                if (response.message) {
+                  dialoug.alert(Translator.get('js:notice'), response.message);
+                }
               }
+              else {
+                window.scrollTo(window.scrollMinX, window.scrollMinY);
+                $('#mini-basket a').html(response.data);
+                dialoug.slideNotice(response.message);
+              }
+              _resetForm();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
             }
-            else {
-              window.scrollTo(window.scrollMinX, window.scrollMinY);
-              $('#mini-basket a').html(response.data);
-              dialoug.slideNotice(response.message);
-            }
-            _resetForm();
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
-          }
-        });
+          });
+        }else{
+          dialoug.injectNotice(Translator.get('js:form.buy.choose.first'), 'form.buy .button', 'before');
+        }
       });
 
     };
@@ -247,8 +249,6 @@
         $('select.size option:first', $this).prop('selected', true);
         $('select.color option:first', $this).prop('selected', true);
       }
-
-      $this.find('.button').hide();
     };
 
     return pub;

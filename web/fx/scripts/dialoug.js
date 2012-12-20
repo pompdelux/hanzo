@@ -193,6 +193,45 @@ var dialoug = (function($) {
   };
 
   /**
+   * Inject an notification
+   *
+   * @param string message
+   * @param int duration
+   * @param string selector
+   * @param position string, how to insert the element, currently the followint is supported:
+   *    after, append, before - default is after
+   */
+  pub.injectNotice = function(message, selector, position,  duration) {
+    var $element;
+    if (undefined === duration) {
+      duration = 4000;
+    }
+
+    if (selector === undefined) {
+      $element = $('#main');
+    } else {
+      $element = $(selector);
+    }
+
+    var tpl = '<div id="inject-notice-box">' + message + '</div>';
+
+    if (undefined === position) {
+      $element.after(tpl);
+    }
+    else if(position == 'append') {
+      $element.append(tpl);
+    }
+    else {
+      $element.before(tpl);
+    }
+    $('#inject-notice-box').hide()
+      .fadeIn(200, function() {
+        $(this).delay(duration).
+        fadeOut(2000);
+      });
+  };
+
+  /**
    * inserts a loading anim image and an optional text
    *
    * @see dialoug.stopLoading()
