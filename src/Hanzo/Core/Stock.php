@@ -8,11 +8,23 @@ use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStockQuery;
 use Hanzo\Model\ProductsStockPeer;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class Stock
 {
     protected $stock = array();
     protected $is_master = 0;
+
+    protected $event_dispatcher;
+    protected $locale;
+
+    public function __construct(EventDispatcher $event_dispatcher, $locale)
+    {
+        $this->event_dispatcher = $event_dispatcher;
+        $this->locale = $locale;
+    }
+
 
     /**
      * fetch the stock put of db and save it in a static var
@@ -213,11 +225,14 @@ class Stock
                 ;
 
                 if (0 == $total_stock) {
-                  $master = ProductsQuery::create()
-                    ->findOneBySku($product->getMaster(), $con)
-                  ;
-                  $master->setIsOutOfStock(true);
-                  $master->save();
+                    $master = ProductsQuery::create()
+                      ->findOneBySku($product->getMaster(), $con)
+                    ;
+
+                    $master->setIsOutOfStock(true);
+                    $master->save();
+
+                    $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, $this->locale));
                 }
             }
 

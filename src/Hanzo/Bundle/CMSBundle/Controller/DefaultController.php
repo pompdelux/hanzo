@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CMSBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,6 +18,10 @@ use Hanzo\Model\ProductsStockPeer;
 
 class DefaultController extends CoreController
 {
+    /**
+     * Cache cms page views for 24 hours
+     * @Cache(smaxage="86400")
+     */
     public function indexAction()
     {
         $hanzo = Hanzo::getInstance();
@@ -28,6 +33,10 @@ class DefaultController extends CoreController
         ));
     }
 
+    /**
+     * Cache cms page views for 24 hours
+     * @Cache(smaxage="86400")
+     */
     public function viewAction($id, $page = NULL)
     {
         $hanzo = Hanzo::getInstance();
@@ -44,25 +53,13 @@ class DefaultController extends CoreController
             }
         }
 
-        $response = new Response();
-        // TODO: fix this shit
-        // Disabled by request of un@bellcom.dk
-        /*$response->setLastModified($page->getUpdatedAt(null));
-
-        if ($response->isNotModified($this->getRequest())) {
-            return $response;
-        }*/
-
-        $response->setMaxAge(60);
-        $response->setSharedMaxAge(60);
-
         $html = $page->getContent();
         $find = '~(background|src)="(../|/)~';
         $replace = '$1="' . $hanzo->get('core.cdn');
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
-        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
+        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page));
     }
 
     public function testAction()

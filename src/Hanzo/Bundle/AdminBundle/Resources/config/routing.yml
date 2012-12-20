@@ -664,3 +664,7 @@ admin_tools_sync_images_sort:
     defaults:
         _controller: AdminBundle:Tools:syncImagesSorting
 
+admin_tools_clear_varnish:
+    pattern: /admin/tools/cache/clear-varnish
+    defaults:
+        _controller: AdminBundle:Tools:clearVarnishCache

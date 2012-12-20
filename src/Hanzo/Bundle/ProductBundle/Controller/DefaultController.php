@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\ProductBundle\Controller;
 
 use Criteria;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
@@ -21,6 +23,10 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
 
 class DefaultController extends CoreController
 {
+    /**
+     * Cache product view 5 minutes
+     * @Cache(smaxage="300")
+     */
     public function viewAction($product_id)
     {
         $hanzo = Hanzo::getInstance();

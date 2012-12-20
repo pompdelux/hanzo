@@ -6,15 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Hanzo\Model\CategoriesQuery,
-    Hanzo\Model\Categories,
-    Hanzo\Model\CategoriesI18nQuery,
-    Hanzo\Model\CategoriesI18n,
-    Hanzo\Model\LanguagesQuery;
+use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\Categories;
+use Hanzo\Model\CategoriesI18nQuery;
+use Hanzo\Model\CategoriesI18n;
+use Hanzo\Model\LanguagesQuery;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
+
+use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
 class CategoryController extends CoreController
 {
@@ -142,15 +144,18 @@ class CategoryController extends CoreController
             ->filterById($id)
             ->find($this->getDbConnection())
         ;
+
         $categories_i18n_to_change = null;
-        if($locale)
+
+        if($locale) {
             $categories_i18n_to_change = CategoriesI18nQuery::create()
                 ->filterByLocale($locale)
                 ->filterById($id)
                 ->findOne($this->getDbConnection())
             ;
-        else
+        } else {
             $categories_i18n_to_change = new CategoriesI18n();
+        }
 
         $form_add = $this->createFormBuilder($categories_i18n_to_change)
             ->add('locale', 'choice',
@@ -172,7 +177,9 @@ class CategoryController extends CoreController
                 )
             )->getForm()
         ;
+
         $request = $this->getRequest();
+
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
@@ -181,9 +188,11 @@ class CategoryController extends CoreController
                 $category->save($this->getDbConnection());
 
                 $this->get('session')->setFlash('notice', 'category.updated');
+                $this->get('event_dispatcher')->dispatch('category.node.updated', new FilterCategoryEvent($category, $locale, $this->getDbConnection()));
 
-                if(!$id)
+                if(!$id) {
                     return $this->redirect($this->generateUrl('admin_category_edit', array('id' => $category->getId())));
+                }
             }
         }
 
@@ -209,6 +218,12 @@ class CategoryController extends CoreController
             ->delete($this->getDbConnection())
         ;
 
+        // need a dummy category to handle cache expiration
+        $node = new Categories();
+        $node->setId($id);
+
+        $this->get('event_dispatcher')->dispatch('category.node.deleted', new FilterCategoryEvent($node, $locale, $this->getDbConnection()));
+
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
                 'status' => TRUE,
@@ -227,6 +242,12 @@ class CategoryController extends CoreController
             ->filterById($id)
             ->delete($this->getDbConnection())
         ;
+
+        // need a dummy category to handle cache expiration
+        $node = new Categories();
+        $node->setId($id);
+
+        $this->get('event_dispatcher')->dispatch('category.node.deleted', new FilterCategoryEvent($categories, null, $this->getDbConnection()));
 
         if ($this->getFormat() == 'json') {
             return $this->json_response(array(
