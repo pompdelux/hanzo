@@ -75,6 +75,20 @@ class DomainVoter implements VoterInterface
             207 => array( 'sv_SE' ), // Sweden
             );
 
+        // Restrict access to login webshop to only customers. 
+        if ( 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) // 1=Customers
+        {
+            $translator = $this->container->get('translator');
+
+            $request = $this->container->get('request');
+
+            $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
+
+            $msg = $translator->trans('login.restricted.only.customers',array( '%url%' => 'http://c.pompdelux.com/'.$useLocale.'/login', '%site_name%' => $country ),'account');
+            $this->container->get('session')->setFlash('error', $msg);
+            return VoterInterface::ACCESS_DENIED;
+        }
+
         // If the country is not set in the mapping it must run en_GB, so deny access if it doesn't
         if ( !isset($countryIdToLocaleMap[$countryId]) && $locale != 'en_GB' )
         {
