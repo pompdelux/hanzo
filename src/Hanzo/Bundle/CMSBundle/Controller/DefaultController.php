@@ -23,7 +23,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
-        $this->setTtl(86400);
+        $this->setSharedMaxAge(86400);
         return $this->forward('CMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
