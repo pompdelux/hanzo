@@ -53,11 +53,6 @@
         $(this).blur();
         $(document).trigger('shipping.method.changed', this);
       });
-      if($('#shipping-block input').length === 1){
-        var $input = $('#shipping-block input').first();
-        $input.click();
-        $(document).trigger('shipping.method.changed', $input);
-      }
 
       $('#payment-block input').on('change', function(event) {
         // event.preventDefault();
@@ -227,6 +222,14 @@
         jaiks.add('/checkout/coupon/apply', checkout.handleCouponUpdates, {code: $('input#form_code', $form).val()});
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
+      });
+      
+      $(document).ready(function(){
+        if($('#shipping-block input').length === 1){
+          var $input = $('#shipping-block input').first();
+          $input.click();
+          $(document).trigger('shipping.method.changed', $input);
+        }
       });
     };
 
