@@ -17,9 +17,6 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 
 class DefaultController extends CoreController
 {
-    /**
-     * @Cache(smaxage="300")
-     */
     public function categoryAction($id)
     {
         $hanzo = Hanzo::getInstance();
@@ -219,6 +216,7 @@ class DefaultController extends CoreController
             $result_set = $category_map;
         }
 
+        $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
             'page_type' => 'category-search',
             'content'   => $page->getContent(),
