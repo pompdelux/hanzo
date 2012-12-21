@@ -10,7 +10,7 @@
     </p>
     <div>
     	<label for="shipping_method_{{ method.externalid }}">{{ ('shipping_method.label.' ~ method.externalid)|trans({'%price%':method.price|money}, 'shipping') }}</label>
-      <input type="radio" name="method" id="shipping_method_{{method.externalid}}" value="{{ method.externalid }}"{% if method.externalid == selected_method %} checked{% endif %}>
+      <input type="radio" name="method" id="shipping_method_{{method.externalid}}" value="{{ method.externalid }}"{% if method.externalid == selected_method or methods|length == 1 %} checked{% endif %}>
     </div>
     <br>
   {% endfor %}
