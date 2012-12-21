@@ -54,7 +54,9 @@
         $(document).trigger('shipping.method.changed', this);
       });
       if($('#shipping-block input').length === 1){
-        $('#shipping-block input').click();
+        var $input = $('#shipping-block input').first();
+        $input.click();
+        $(document).trigger('shipping.method.changed', $input);
       }
 
       $('#payment-block input').on('change', function(event) {
