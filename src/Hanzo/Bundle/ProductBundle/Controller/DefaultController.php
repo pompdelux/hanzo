@@ -23,10 +23,6 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
 
 class DefaultController extends CoreController
 {
-    /**
-     * Cache product view 5 minutes
-     * @Cache(smaxage="300")
-     */
     public function viewAction($product_id)
     {
         $hanzo = Hanzo::getInstance();
@@ -174,6 +170,7 @@ class DefaultController extends CoreController
 
         $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
 
+        $this->setSharedMaxAge(300);
         $responce = $this->render('ProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
             'product' => $data,

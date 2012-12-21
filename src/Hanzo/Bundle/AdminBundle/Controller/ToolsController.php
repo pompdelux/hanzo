@@ -43,7 +43,7 @@ class ToolsController extends CoreController
     public function clearVarnishCacheAction()
     {
         try {
-            $this->get('varnish.controle')->ban('/');
+            $this->get('varnish.controle')->banUrl('/');
         } catch (\Exception $e) {
             Tools::log($e->getMessage());
         }

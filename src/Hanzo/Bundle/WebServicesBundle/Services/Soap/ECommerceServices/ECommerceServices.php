@@ -37,9 +37,12 @@ use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
+use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
+
 use Criteria;
-use \Exception;
-use \PropelCollection;
+use Exception;
+use Propel;
+use PropelCollection;
 
 class ECommerceServices extends SoapService
 {
@@ -592,7 +595,11 @@ class ECommerceServices extends SoapService
         } else {
             $master->setIsOutOfStock(false);
         }
+
         $master->save();
+
+        // purge varnish
+        $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
 
         // ....................
         // .....</ze code>.....

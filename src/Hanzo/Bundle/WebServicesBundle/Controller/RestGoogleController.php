@@ -37,6 +37,11 @@ class RestGoogleController extends CoreController
      */
     public function proxyAction($query = null, $country = null)
     {
+        // hack to get google to accept 21111 as malmö
+        if ($country == 'Sweden' && $query == 21111) {
+            $query = 'malmö';
+        }
+
         $request = sprintf('http://maps.google.com/maps/geo?q=%s&output=json&oe=utf8', ($query . ',' . $country));
         $response = array(
             'status' => TRUE,

@@ -10,6 +10,7 @@ use Propel;
 
 class CoreController extends Controller
 {
+    protected $shares_max_age = null;
     protected $cache;
     protected $request_format;
 
@@ -64,10 +65,37 @@ class CoreController extends Controller
         return $this->cache->set($this->cache->id($key), $data, $ttl);
     }
 
+
+    public function render($view, array $parameters = array(), Response $response = null)
+    {
+        $response = new Response();
+        if ($this->getSharedMaxAge() && 'webshop' == $this->get('kernel')->getSetting('store_mode')) {
+            $response->setSharedMaxAge($this->getSharedMaxAge());
+        }
+
+        return parent::render($view, $parameters, $response);
+    }
+
+
+    public function setSharedMaxAge($ttl)
+    {
+        $this->shares_max_age = (int) $ttl;
+    }
+
+    public function getSharedMaxAge()
+    {
+        return $this->shares_max_age;
+    }
+
+
     public function response($content, $status = 200, $headers = array())
     {
         // no need to doubble "encode"
         if ($content instanceof Response) {
+            if ($this->getSharedMaxAge() && 'webshop' == $this->get('kernel')->getSetting('store_mode')) {
+                $response->setSharedMaxAge($this->getSharedMaxAge());
+            }
+
             return $content;
         }
 
@@ -85,7 +113,13 @@ class CoreController extends Controller
             $headers['Cache-Control'] = 'no-cache';
         }
 
-        return new Response($content, $status, $headers);
+        $response = new Response($content, $status, $headers);
+
+        if ($this->getSharedMaxAge() && 'webshop' == $this->get('kernel')->getSetting('store_mode')) {
+            $response->setSharedMaxAge($this->getSharedMaxAge());
+        }
+
+        return $response;
     }
 
 
@@ -131,6 +165,21 @@ class CoreController extends Controller
 
 
     /**
+     * Gets the connection for which database to use
+     *
+     * @return Propel connection              [description]
+     */
+    public function getDbConnection()
+    {
+        if($this->getRequest()->getSession()->get('database')){
+            return Propel::getConnection( $this->getRequest()->getSession()->get('database') , Propel::CONNECTION_WRITE );
+        }else{
+            return Propel::getConnection();
+        }
+    }
+
+
+    /**
      * try to map language ids to folders, this is not a 1-1 match, so we need this little hack.
      *
      * @param  [type] $language_id [description]
@@ -143,19 +192,5 @@ class CoreController extends Controller
         }
 
         return 'DK';
-    }
-
-    /**
-     * Gets the connection for which database to use
-     *
-     * @return Propel connection              [description]
-     */
-    public function getDbConnection()
-    {
-        if($this->getRequest()->getSession()->get('database')){
-            return Propel::getConnection( $this->getRequest()->getSession()->get('database') , Propel::CONNECTION_WRITE );
-        }else{
-            return Propel::getConnection();
-        }
     }
 }

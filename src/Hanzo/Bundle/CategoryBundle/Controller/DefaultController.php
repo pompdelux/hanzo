@@ -26,8 +26,6 @@ class DefaultController extends CoreController
      * @param $cms_id
      * @param $category_id
      * @param $pager
-     * Cache product ProductBundle views for 30 minutes
-     * @Cache(smaxage="1800")
      */
     public function viewAction($cms_id, $category_id, $pager = 1)
     {
@@ -62,13 +60,11 @@ class DefaultController extends CoreController
             $this->setCache($cache_id, $html, 5);
         }
 
+        $this->setSharedMaxAge(1800);
         return $this->response($html);
     }
 
-    /**
-     * Cache product list views for 24 hours
-     * @Cache(smaxage="86400")
-     */
+
     public function listProductsAction($view = 'simple', $filter = 'G_')
     {
         $filter_map = array(
@@ -109,6 +105,7 @@ class DefaultController extends CoreController
         $max = ceil(count($records)/3);
         $records = array_chunk($records, $max);
 
+        $this->setSharedMaxAge(86400);
         return $this->render('CategoryBundle:Default:contextList.html.twig', array(
             'page_type' => 'context-list',
             'products' => $records,

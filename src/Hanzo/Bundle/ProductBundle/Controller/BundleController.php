@@ -24,10 +24,6 @@ use Hanzo\Model\ProductsToCategoriesQuery;
 
 class BundleController extends CoreController
 {
-    /**
-     * Cache product ProductBundle views for 24 hours
-     * @Cache(smaxage="86400")
-     */
     public function viewAction($image_id)
     {
         $hanzo = Hanzo::getInstance();
@@ -154,18 +150,16 @@ class BundleController extends CoreController
             $products[$id]['options'] = $options;
         }
 
+        $this->setSharedMaxAge(86400);
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,
         ));
+
         return $responce;
     }
 
 
-    /**
-     * Cache product custom ProductBundle views for 24 hours
-     * @Cache(smaxage="86400")
-     */
     public function customAction($set)
     {
         $hanzo = Hanzo::getInstance();
@@ -249,6 +243,7 @@ class BundleController extends CoreController
             $products[$id]['options'] = $options;
         }
 
+        $this->setSharedMaxAge(86400);
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,
