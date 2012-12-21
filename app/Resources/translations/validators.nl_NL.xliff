@@ -6,6 +6,10 @@
                 <source>email.exists</source>
                 <target>Dit e-mailadres bestaat al!</target>
             </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

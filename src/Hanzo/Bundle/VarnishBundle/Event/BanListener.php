@@ -80,6 +80,12 @@ class BanListener
         foreach ($categories as $category) {
             $this->purgeUrlsBasedOnCategory($category, $event->getLocale());
         }
+
+        try {
+            $this->varnish->ban('/.*/product/view/.*');
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+        }
     }
 
 
@@ -101,12 +107,14 @@ class BanListener
         }
 
         // g/b filter, should not be here - but for now it works...
+        $context = '';
         if ($category->getContext()) {
-            switch (substr($category->getContext(), 0, 1)) {
-                case 'G':
+            $context = strtoupper(substr($category->getContext(), 0, 2));
+            switch ($context) {
+                case 'G_':
                     $query->filterByPath('%/girl%');
                     break;
-                case 'B':
+                case 'B_':
                     $query->filterByPath('%/boy%');
                     break;
                 case 'LG':
@@ -125,6 +133,11 @@ class BanListener
                 $path = '/'.$item['Locale'].'/'.$item['Path'].'.*';
                 $this->varnish->banUrl($path);
             }
+
+            if ($context) {
+                $this->varnish->ban('/'.($locale ?: '.*').'/products/list/context/'.$context.'.*');
+            }
+
         } catch (\Exception $e) {
             Tools::log($e->getMessage());
         }

@@ -118,10 +118,11 @@ class AddressController extends CoreController
             $builder->add('address_line_1', null, array(
                 'label' => 'overnightbox.label',
                 'required' => true,
-                'translation_domain' => 'account'
+                'translation_domain' => 'account',
+                'max_length' => 150
             ));
         } else {
-            $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account'));
+            $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account', 'max_length' => 150));
         }
 
         $attr = [];

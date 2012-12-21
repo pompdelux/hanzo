@@ -2,9 +2,11 @@
 
 namespace Hanzo\Bundle\WebServicesBundle\Services\Soap;
 
+use Monolog;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Monolog;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Hanzo\Core\Hanzo;
 
@@ -13,17 +15,19 @@ class SoapService
     protected $request;
     protected $logger;
     protected $hanzo;
+    protected $event_dispatcher;
 
     protected $timer_start;
     protected $latest_lap_time = 0;
     protected $timer_pool = [];
 
-    public function __construct(Request $request, $logger)
+    public function __construct(Request $request, $logger, EventDispatcher $event_dispatcher)
     {
         $this->timer_start = $_SERVER['REQUEST_TIME_FLOAT'];
 
-        $this->request  = $request;
-        $this->logger   = $logger;
+        $this->request = $request;
+        $this->logger = $logger;
+        $this->event_dispatcher = $event_dispatcher;
 
         $logger->addDebug('Soap call ... initialized.');
         $this->hanzo = Hanzo::getInstance();
