@@ -48,14 +48,14 @@
         });
       });
 
-      if($('#shipping-block input').length === 1){
-        $('#shipping-block input').click();
-      }
       $('#shipping-block input').on('change', function(event) {
         // event.preventDefault();
         $(this).blur();
         $(document).trigger('shipping.method.changed', this);
       });
+      if($('#shipping-block input').length === 1){
+        $('#shipping-block input').click();
+      }
 
       $('#payment-block input').on('change', function(event) {
         // event.preventDefault();
