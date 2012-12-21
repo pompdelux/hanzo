@@ -82,7 +82,7 @@ class BanListener
         }
 
         try {
-            $this->varnish->banUrl('/.*/product/view/.*');
+            $this->varnish->banUrl('/.*/product/view/'.$item->getId());
         } catch (\Exception $e) {
             Tools::log($e->getMessage());
         }
