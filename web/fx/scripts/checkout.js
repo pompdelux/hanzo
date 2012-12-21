@@ -28,7 +28,7 @@
         dialoug.loading($this);
 
         var value = $(this).prop('value');
-        if ('' == value) {
+        if ('' === value) {
           return;
         }
 
@@ -145,7 +145,7 @@
 
             var field = element.name.match(/\[([a-z]{1}[a-z_0-9]+)\]/);
 
-            if (field && (element.value == '')) {
+            if (field && (element.value === '')) {
               $element.css({'border': '2px solid #f00'});
               address_errors.has_errors = true;
               address_errors.fields.push(field);
@@ -161,7 +161,7 @@
 
         var address_confirm = $('#address-block div.confirm');
 
-        if ($('input::checked', address_confirm).length == 0) {
+        if ($('input::checked', address_confirm).length === 0) {
           address_confirm.toggleClass('hidden');
 
           var t = document.getElementById('address-block').offsetTop;
@@ -223,6 +223,14 @@
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
       });
+      
+      $(document).ready(function(){
+        if($('#shipping-block input').length === 1){
+          var $input = $('#shipping-block input').first();
+          $input.click();
+          $(document).trigger('shipping.method.changed', $input);
+        }
+      });
     };
 
 
@@ -232,7 +240,7 @@
 
     pub.getStepStatus = function(step) {
       return step_states[step];
-    }
+    };
 
     pub.handleShippingMethodUpdates = function(response) {
       if (stop) { return; }
@@ -274,7 +282,7 @@
       }
 
       pub.handleSummeryUpdates(response);
-    }
+    };
 
     pub.handleCouponUpdates = function(response) {
       if (stop) { return; }
@@ -285,7 +293,7 @@
       } else {
         $('form .msg', $coupon).text(response.response.message).toggleClass('off');
       }
-    }
+    };
 
     pub.validateAddress = function(response) {
       if (stop) { return; }

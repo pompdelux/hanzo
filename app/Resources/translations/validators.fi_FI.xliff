@@ -6,6 +6,10 @@
                 <source>email.exists</source>
                 <target>Sähköpostiosoite on jo käytössä!</target>
             </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Koodissa on oltava vähintään 5 merkkiä</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

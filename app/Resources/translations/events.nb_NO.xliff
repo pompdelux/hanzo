@@ -38,6 +38,10 @@
                 <source>events.calendar.link</source>
                 <target>Kalender</target>
             </trans-unit>
+            <trans-unit id="events.calendar.link.back.to" approved="no">
+                <source>events.calendar.link.back.to</source>
+                <target>Back to calendar</target>
+            </trans-unit>
             <trans-unit id="events.create_event.link">
                 <source>events.create_event.link</source>
                 <target>Opprett nytt arrangement</target>

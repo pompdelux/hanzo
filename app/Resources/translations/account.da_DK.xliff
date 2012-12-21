@@ -367,6 +367,10 @@
                 <source>phone.required</source>
                 <target>Du skal angive dit telefonnummer</target>
             </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>Telefonnummer må kun indeholder tal</target>
+            </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
                 <target>Du skal angive din e-mailadresse</target>
@@ -386,6 +390,10 @@
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
                 <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
+            </trans-unit>
+            <trans-unit id="login.restricted.only.customers" approved="no">
+                <source>login.restricted.only.customers</source>
+                <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
