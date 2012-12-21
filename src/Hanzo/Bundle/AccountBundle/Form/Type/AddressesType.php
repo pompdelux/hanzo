@@ -24,6 +24,7 @@ class AddressesType extends AbstractType
             'required' => TRUE,
             'translation_domain' => 'account',
             'error_bubbling' => true,
+            'max_length' => 150
         ));
         $builder->add('postal_code', null, array(
             'required' => TRUE,
