@@ -358,6 +358,10 @@
                 <source>phone.required</source>
                 <target>Puhelinnumero on annettava</target>
             </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>Phone number should only be numbers</target>
+            </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
                 <target>Sähköpostiosoite on annettava</target>

@@ -351,6 +351,10 @@
                 <source>phone.required</source>
                 <target>Vermeld je telefoonnummer</target>
             </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>Phone number should only be numbers</target>
+            </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
                 <target>Vermeld je e-mailadres</target>
