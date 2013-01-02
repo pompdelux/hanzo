@@ -299,6 +299,14 @@
                 <source>address.last_name.required</source>
                 <target>Vermeld je achternaam.</target>
             </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Your first name muist be at least 2 characters long</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Your last name muist be at least 2 characters long</target>
+            </trans-unit>
             <trans-unit id="address.address_line_1.required">
                 <source>address.address_line_1.required</source>
                 <target>Vermeld je adres.</target>
@@ -354,6 +362,10 @@
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
                 <target>Phone number should only be numbers</target>
+            </trans-unit>
+            <trans-unit id="phone.min.length" approved="no">
+                <source>phone.min.length</source>
+                <target>Phone number should be at least 8 digits long</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
