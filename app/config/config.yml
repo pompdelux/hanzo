@@ -105,7 +105,7 @@ jms_security_extra:
 snc_redis:
     clients:
         default:
-            type: phpredis
+            type: predis
             alias: default
             dsn: 'redis://%redis_cache1_host%:%redis_cache1_port%/%redis_cache1_database%'
             options:
