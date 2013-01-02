@@ -421,13 +421,13 @@ class Tools
 
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageUrl($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
         return self::imagePath($src, $preset);
     }
 

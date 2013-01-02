@@ -27,6 +27,7 @@
     redis_cache1_database="0"
 
     cdn="http://cdn.hanzo.dk/"
+    cdn2="http://cdn.hanzo.dk/"
 
     varnish_host=""
     varnish_port=""
