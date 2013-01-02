@@ -82,7 +82,7 @@ class BanListener
         }
 
         try {
-            $this->varnish->ban('/.*/product/view/.*');
+            $this->varnish->banUrl('/.*/product/view/'.$item->getId());
         } catch (\Exception $e) {
             Tools::log($e->getMessage());
         }
@@ -135,7 +135,7 @@ class BanListener
             }
 
             if ($context) {
-                $this->varnish->ban('/'.($locale ?: '.*').'/products/list/context/'.$context.'.*');
+                $this->varnish->banUrl('/'.($locale ?: '.*').'/products/list/context/'.$context.'.*');
             }
 
         } catch (\Exception $e) {

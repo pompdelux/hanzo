@@ -18,25 +18,18 @@ use Hanzo\Model\ProductsStockPeer;
 
 class DefaultController extends CoreController
 {
-    /**
-     * Cache cms page views for 24 hours
-     * @Cache(smaxage="86400")
-     */
     public function indexAction()
     {
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
+        $this->setSharedMaxAge(86400);
         return $this->forward('CMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
         ));
     }
 
-    /**
-     * Cache cms page views for 24 hours
-     * @Cache(smaxage="86400")
-     */
     public function viewAction($id, $page = NULL)
     {
         $hanzo = Hanzo::getInstance();
@@ -59,6 +52,7 @@ class DefaultController extends CoreController
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
+        $this->setSharedMaxAge(86400);
         return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page));
     }
 
