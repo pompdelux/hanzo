@@ -5,14 +5,13 @@ namespace Hanzo\Core;
 use \Propel;
 use \BasePeer;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Model\CustomersPeer,
-    Hanzo\Model\Sequences,
-    Hanzo\Model\SequencesPeer,
-    Hanzo\Model\SequencesQuery
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Sequences;
+use Hanzo\Model\SequencesPeer;
+use Hanzo\Model\SequencesQuery;
 
 class Tools
 {
@@ -56,6 +55,13 @@ class Tools
         return $v;
     }
 
+
+    /**
+     * better strip tags implementation
+     *
+     * @param  string $text
+     * @return string
+     */
     public static function stripTags($text)
     {
         return preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', '', $text);
@@ -224,6 +230,7 @@ class Tools
         return $sequence_id;
     }
 
+
     /**
      * Wrapping the getPaymentGatewayId method to auto-generate gateway id's
      *
@@ -263,6 +270,7 @@ class Tools
         error_log($file.' +'.$line.' :: '.print_r($data, 1));
     }
 
+
     /**
      * debug
      *
@@ -281,29 +289,25 @@ class Tools
      **/
     public static function debug( $msg, $context, $data = array())
     {
-      $order    = OrdersPeer::getCurrent();
-      $customer = CustomersPeer::getCurrent();
+        $order    = OrdersPeer::getCurrent();
+        $customer = CustomersPeer::getCurrent();
 
-      $out  = "-----------------------[ Debug: ".$context." ]-----------------------\n";
-      $out .= $msg."\n";
-      $out .= "Customer ip / id       : ". $_SERVER['REMOTE_ADDR'] ." / ". $customer->getId() ."\n";
-      $out .= "Order id / state       : ". $order->getId() ." / ". $order->getState() ."\n";
-      $out .= "Order customer id      : ". $order->getCustomersId() ."\n";
+        $out  = "-----------------------[ Debug: ".$context." ]-----------------------\n";
+        $out .= $msg."\n";
+        $out .= "Customer ip / id       : ". $_SERVER['REMOTE_ADDR'] ." / ". $customer->getId() ."\n";
+        $out .= "Order id / state       : ". $order->getId() ." / ". $order->getState() ."\n";
+        $out .= "Order customer id      : ". $order->getCustomersId() ."\n";
 
-      if ( !empty($data) )
-      {
-        foreach ($data as $key => $value)
-        {
-          if ( is_array($value) )
-          {
-            $value = print_r($value,1);
-          }
-
-          $out .= str_pad( $key, 23 ).": ". $value."\n";
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                if (is_array($value)) {
+                    $value = print_r($value,1);
+                }
+                $out .= str_pad( $key, 23 ).": ". $value."\n";
+            }
         }
-      }
 
-      error_log($out);
+        error_log($out);
     }
 
     /**
@@ -364,6 +368,10 @@ class Tools
         return $env;
     }
 
+
+    /**
+     * handle requests for robots.txt - we autogenerate these
+     */
     public static function handleRobots()
     {
         // robots only allowed on the www domain
@@ -378,11 +386,13 @@ class Tools
         }
     }
 
+
     /**
      * build and return "in order edit warning"
+     *
      * @return string
      */
-    public static function getInEditWarning()
+    public static function getInEditWarning($compact = false)
     {
         $hanzo = self::getHanzoInstance();
         $session = $hanzo->getSession();
@@ -395,7 +405,40 @@ class Tools
             '%stop_url%' => $router->generate('_account', array('stop' => 1)),
         );
 
-        return '<div id="in-edit-warning">'.$trans->trans('order.edit.global.notice', $params).'</div>';
+        $html = '<div id="in-edit-warning">'.$trans->trans('order.edit.global.notice', $params).'</div>';
+
+        if ($compact) {
+            $html = explode("\n", $html);
+            $html = array_map('trim', $html);
+
+            return implode('', $html);
+        }
+
+        return $html;
+    }
+
+
+    /**
+     * helper function for setting cookies
+     *
+     * @param string  $name      name of the cookie
+     * @param string  $value     value of the cookie
+     * @param integer $ttl       cookie ttl, defaults to session cookie (0)
+     * @param boolean $http_only set to false if cookie is http only (ie. no javascript access)
+     */
+    public static function setCookie($name, $value, $ttl = 0, $http_only = true)
+    {
+        static $cookie_path;
+
+        if (empty($cookie_path)) {
+            $cookie_path = $_SERVER['SCRIPT_NAME'];
+            if ('/app.php' == $cookie_path) {
+                $cookie_path = '';
+            }
+            $cookie_path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
+        }
+
+        return setcookie($name, $value, $ttl, $cookie_path, $_SERVER['HTTP_HOST'], false, $http_only);
     }
 
 

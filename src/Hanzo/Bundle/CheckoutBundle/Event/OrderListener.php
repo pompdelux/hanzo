@@ -15,18 +15,24 @@ class OrderListener
     protected $ax;
     protected $cookie_path;
 
+    /**
+     * OrderListener constructor
+     *
+     * @param Session   $session Session object
+     * @param AxService $ax      AxService object
+     */
     public function __construct(Session $session, AxService $ax)
     {
         $this->session = $session;
         $this->ax = $ax;
-
-        $this->cookie_path = $_SERVER['SCRIPT_NAME'];
-        if ('/app.php' == $this->cookie_path) {
-            $this->cookie_path = '';
-        }
-        $this->cookie_path .= '/'.$this->session->getLocale().'';
     }
 
+
+    /**
+     * onEditStart event handeling
+     *
+     * @param  FilterOrderEvent $event [description]
+     */
     public function onEditStart(FilterOrderEvent $event)
     {
         $order = $event->getOrder();
@@ -36,8 +42,6 @@ class OrderListener
             $event->setStatus(false, 'unable.to.lock.order');
             return;
         }
-
-        $this->setEditCookie(true, substr($order->getAttributes()->global->domain_key, 0, 5));
 
         // first we create the edit version.
         $order->createNewVersion();
@@ -56,13 +60,20 @@ class OrderListener
         $this->session->set('order_id', $order->getId());
         $this->session->save();
 
+        // note, cookies must be set after session stuff is done
+        $this->setEditCookie(true, substr($order->getAttributes()->global->domain_key, 0, 5));
+
         $event->setStatus(true);
     }
 
+
+    /**
+     * onEditCancel event handeling
+     *
+     * @param  FilterOrderEvent $event
+     */
     public function onEditCancel(FilterOrderEvent $event)
     {
-        $this->setEditCookie(false);
-
         $order = $event->getOrder();
         // reset order object
         $order->toPreviousVersion();
@@ -73,13 +84,20 @@ class OrderListener
         $this->session->save();
         $this->session->migrate();
 
+        // note, cookies must be set after session stuff is done
+        $this->setEditCookie(false);
+
         $this->ax->lockUnlockSalesOrder($order, false);
     }
 
+
+    /**
+     * onEditDone event handler
+     *
+     * @param  FilterOrderEvent $event
+     */
     public function onEditDone(FilterOrderEvent $event)
     {
-        $this->setEditCookie(false);
-
         $order = $event->getOrder();
         $order->setSessionId($order->getId());
 
@@ -87,17 +105,30 @@ class OrderListener
         $this->session->remove('in_edit');
         $this->session->remove('order_id');
 
+        // note, cookies must be set after session stuff is done
+        $this->setEditCookie(false);
+
         $this->ax->lockUnlockSalesOrder($order, false);
     }
 
-    protected function setEditCookie($set = true, $domain = 'not_sales')
+
+    /**
+     * cookie helper - it could be stored in a session, but ....
+     *
+     * @param boolean $set    to set or delete
+     * @param mixed   $domain domain string
+     */
+    protected function setEditCookie($set = true, $domain = null)
     {
         if ((false == $set) && empty($_COOKIE['__ice'])) {
             return;
         }
 
-        $content = $set ? $domain : '';
+        $content  = $set ? $domain : '';
+        $notice   = $set ? Tools::getInEditWarning(true) : '';
         $lifetime = $set ? 0 : -3600;
-        setcookie('__ice', $content, $lifetime, $this->cookie_path, $_SERVER['HTTP_HOST'], false, true);
+
+        Tools::setCookie('__ice', $content, $lifetime, true);
+        Tools::setCookie('__ice_n', $notice, $lifetime, false);
     }
 }
