@@ -76,7 +76,7 @@ class DomainVoter implements VoterInterface
             );
 
         // Restrict access to login webshop to only customers. 
-        if ( 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) // 1=Customers
+        if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALE', $user->getRoles()) && 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) // 1=Customers
         {
             $translator = $this->container->get('translator');
 
