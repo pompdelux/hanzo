@@ -440,6 +440,8 @@ class AxService
 
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
+        Tools::debug( 'Delete order in AX Result:', __METHOD__, array( 'Result' => $result));
+        
         if ($result instanceof Exception) {
             $message = sprintf('An error occured while deleting order "%s", error message: "%s"',
                 $order->getId(),
