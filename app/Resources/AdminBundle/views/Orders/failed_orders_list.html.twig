@@ -24,7 +24,11 @@
           <td nowrap>
             <a href="{{ path('admin_orders_delete', {order_id : order.ordersId}) }}" rel="confirm" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.ordersId }}">Slet</a>
             <a href="{{ path('admin_orders_preview', {order_id : order.ordersId}) }}" class="preview-order">Gennemse</a>
-            <a href="{{ path('admin_orders_resync_sync', {order_id : order.ordersId}) }}" class="resend-order">Gensend</a>
+            {% if order.comment == 'ax.delete' %}
+              <a href="{{ path('admin_orders_resync_sync', {order_id : order.ordersId}) }}" class="resend-order">Genslet</a>
+            {% else %}
+              <a href="{{ path('admin_orders_resync_sync', {order_id : order.ordersId}) }}" class="resend-order">Gensend</a>
+            {% endif %}
           </td>
         </tr>
 

@@ -447,6 +447,9 @@ class AxService
             );
             $this->logger->addCritical($message);
 
+            // log ax transaction result
+            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', 'ax.delete', $con);
+            
             return false;
         }
 
