@@ -91,7 +91,8 @@ class RedisCache
         return $this->cache->pipeline()
             ->set($key, trim($data))
             ->expire($key, $ttl)
-            ->execute() // if we switch to phpredis, this must be renamed to exec()
+            ->exec() // if we switch to predis, this must be renamed to execute()
+            //->execute() // if we switch to phpredis, this must be renamed to exec()
         ;
 
         // // store cache and set ttl
