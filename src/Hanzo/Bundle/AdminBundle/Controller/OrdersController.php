@@ -257,7 +257,6 @@ class OrdersController extends CoreController
         ));
     }
 
-
     public function resyncAction($order_id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -276,14 +275,21 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        // delete old log entry
-        OrdersSyncLogQuery::create()
+        // find old log entry
+        $order_log = OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->filterByOrdersId($order_id)
-            ->delete($this->getDbConnection())
+            ->findOne($this->getDbConnection())
         ;
 
-        $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+        if($order_log->getComment() === 'ax.delete'){
+            $status = $this->get('ax_manager')->deleteOrder($order, $this->getDbConnection());
+        }else{
+            $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+        }
+
+        $order_log->delete($this->getDbConnection());
+
         $message = $status ?
             'Ordren #%d er nu sendt' :
             'Ordren #%d kunne ikke gensendes !'
