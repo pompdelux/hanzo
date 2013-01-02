@@ -90,7 +90,7 @@ class Varnish
             return true;
         }
 
-        $status = $this->varnish->banUrl('^'.$regex);
+        $status = $this->varnish->banUrl($regex);
 
         if (VARNISH_STATUS_OK !== $status) {
             if (isset($this->status_map[$status])) {
