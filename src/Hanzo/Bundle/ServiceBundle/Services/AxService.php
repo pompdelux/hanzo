@@ -440,7 +440,7 @@ class AxService
 
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
-        Tools::debug( 'Delete order in AX Result:', __METHOD__, array( 'Result' => json_encode($result)));
+        Tools::debug( 'Delete order in AX Result:', __METHOD__, array( 'Result' => $result));
         
         if ($result instanceof Exception) {
             $message = sprintf('An error occured while deleting order "%s", error message: "%s"',
@@ -450,9 +450,9 @@ class AxService
             $this->logger->addCritical($message);
 
             // log ax transaction result
-            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', 'ax.delete', $con);
+            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', $result->getMessage(), $con);
             
-            return false;
+            throw $result;
         }
 
         return true;
@@ -527,13 +527,14 @@ class AxService
      */
     protected function Send($service, $request)
     {
+        Tools::debug( 'AX Send:', __METHOD__, array( 'Service' => $service, 'Request' => json_encode($request), 'Skip Send' => $this->skip_send));
         if ($this->skip_send) {
             return true;
         }
 
         if (!$this->client) {
             if (!$this->Connect()) {
-                return false;
+                return new Exception('There was an error connecting with the server! Please try again later.');
             }
         }
 
