@@ -385,6 +385,11 @@ class DefaultController extends CoreController
         }
         // <<-- hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site
 
+        // if the basket is empty, make sure the cookie knows.
+        if (0 == count($products)) {
+            Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+        }
+
         return $this->render($template, array(
             'embedded' => $embed,
             'page_type' => 'basket',
