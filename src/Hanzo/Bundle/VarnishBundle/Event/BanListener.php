@@ -41,7 +41,16 @@ class BanListener
             $item = $item->getTranslation($event->getLocale(), $event->getConnection());
         }
 
-        $path = '/'.$item->getLocale('.*').'/'.$item->getPath();
+        $path = '^/'.$item->getLocale('.*').'/'.$item->getPath();
+
+        $settings = $item->getSettings(null, false);
+        if ($settings && $settings[0] == '{') {
+            $settings = json_decode($settings);
+
+            if ($settings->is_frontpage == 1) {
+                $path = '^/'.$item->getLocale('.*').'/$';
+            }
+        }
 
         try {
             $this->varnish->banUrl($path);
@@ -82,7 +91,7 @@ class BanListener
         }
 
         try {
-            $this->varnish->banUrl('/.*/product/view/'.$item->getId());
+            $this->varnish->banUrl('^/.*/product/view/'.$item->getId());
         } catch (\Exception $e) {
             Tools::log($e->getMessage());
         }
@@ -130,12 +139,12 @@ class BanListener
 
         try {
             foreach ($items as $index => $item) {
-                $path = '/'.$item['Locale'].'/'.$item['Path'].'.*';
+                $path = '^/'.$item['Locale'].'/'.$item['Path'].'.*';
                 $this->varnish->banUrl($path);
             }
 
             if ($context) {
-                $this->varnish->banUrl('/'.($locale ?: '.*').'/products/list/context/'.$context.'.*');
+                $this->varnish->banUrl('^/'.($locale ?: '.*').'/products/list/context/'.$context.'.*');
             }
 
         } catch (\Exception $e) {

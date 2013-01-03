@@ -139,35 +139,28 @@
     };
 
     pub.initBasket = function() {
-      /**
-       * we always fetch the basket via ajax, this
-       * way we can keep stuff in varnish without esi
-       */
       var $basket = $('#mini-basket a');
       if ($basket.length) {
 
-        $.ajax({
-          url: base_url + 'miniBasket',
-          dataType: 'json',
-          cache: false,
-          success: function(response) {
-            if (response.status) {
-              // populate mini basket
-              if (response.data.total) {
-                $basket.text(response.data.total);
-              }
-              // show "in edit" warning
-              if (response.data.warning && (0 == $('#body-checkout-process').length)) {
-                $('div#main').prepend(response.data.warning);
-              }
-            }
-          }
-        });
+        $.cookie.defaults = {
+          domain : cookie_params.domain,
+          path : cookie_params.path,
+          json : true
+        };
+
+        var basket = $.cookie('basket');
+        if (basket) {
+          $basket.text(basket);
+        }
+
+        var notice = $.cookie('__ice_n');
+        if (notice) {
+          $('div#main').prepend(notice);
+        }
       }
     };
 
     var getDocHeight = function(){
-      var D = document;
       return Math.max(Math.max(
           document.body.scrollHeight,
           document.documentElement.scrollHeight

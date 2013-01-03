@@ -85,6 +85,11 @@ class Hanzo
         }
 
         $config['core']['cdn'] = $this->container->getParameter('cdn');
+        if ($this->container->hasParameter('cdn2')) {
+            $config['core']['cdn2'] = $this->container->getParameter('cdn2');
+        } else {
+            $config['core']['cdn2'] = $config['core']['cdn'];
+        }
 
         foreach ($config as $section => $settings) {
             foreach ($settings as $key => $value) {

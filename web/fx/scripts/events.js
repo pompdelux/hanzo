@@ -131,7 +131,8 @@ $('#body-event #participants a.delete').on('click', function(event) {
 });
 
 $('#event-edit-form').submit(function(e){
-  if($(this).find('#form_event_date').val() === ''){ // IE fails to validate datetime fields, IDK why?
+  // IE fails to validate datetime fields, IDK why?
+  if ($(this).find('#form_event_date').val() === '') {
     $(this).find('#form_event_date').focus();
     e.preventDefault();
   }

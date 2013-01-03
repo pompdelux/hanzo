@@ -171,6 +171,8 @@
             }
             else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
+
+              $.cookie('basket', response.data);
               $('#mini-basket a').html(response.data);
               dialoug.slideNotice(response.message);
             }

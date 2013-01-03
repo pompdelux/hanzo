@@ -30,7 +30,9 @@
                   });
 
                   // update elements
-                  $('#mini-basket a').html('(' + response.data.quantity + ') ' + response.data.total);
+                  var content = '(' + response.data.quantity + ') ' + response.data.total;
+                  $.cookie('basket', content);
+                  $('#mini-basket a').html(content);
                   $('tfoot td.total').text(response.data.total);
 
                   // remove the proceed button if there are no products in the cart
@@ -227,6 +229,7 @@
                   $('td.actions a.edit', $tr).attr('href', response.data.product_id);
 
                   // totals
+                  $.cookie('basket', response.data.basket);
                   $('#mini-basket a').text(response.data.basket);
                   var find = /\([0-9+]\) /;
                   var total = response.data.basket.replace(find, '');

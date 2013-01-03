@@ -58,15 +58,6 @@
   </a>
 
   <div id="main" role="main">
-
-    {# if app.session.get('in_edit') %}
-      {{ 'order.edit.global.notice'|trans({
-        '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
-        '%order_id%' : app.session.get('order_id'),
-        '%stop_url%' : url('_account', {stop : 1})
-      })|raw }}
-    {% endif #}
-
     {% render 'CMSBundle:Menu:menu' with {'type': sub_menu.type, 'from': sub_menu.from, 'thread': sub_menu.thread, 'offset': sub_menu.offset } %}
     {% block content %}{% endblock %}
   </div><!-- /div#main -->
@@ -83,7 +74,7 @@
     <ul>
       <li><a href="{{ path('_account') }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       <li id="mini-basket" class="basket">
-        <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {{ fx_image_tag('images/loader-bar.gif') }}{# render 'BasketBundle:Default:miniBasket' #} </a>
+        <a href="{{ path('basket_view') }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
       <li><a href="{{ path('basket_view') }}">{{ "show.basket"|trans }}</a></li>
     </ul>
@@ -94,6 +85,10 @@
 </div>
 
 <script type="text/javascript">
+  var cookie_params = {
+    'domain' : '{{ app.request.getHttpHost() }}',
+    'path' : '{{ path('_homepage', {'_locale' : app.session.locale}) }}'
+  };
   var base_url = '{{ url('_homepage') }}';
   var cdn_url = '{{ cdn }}';
   var counter_offset = 1314691200;
@@ -110,6 +105,7 @@
   'fx/scripts/zoom/jquery.zoom.js'
   'fx/scripts/accounting/accounting.min.js'
   'fx/scripts/jquery.formparams.js'
+  'fx/scripts/jquery-cookie/jquery.cookie.js'
 
   'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'

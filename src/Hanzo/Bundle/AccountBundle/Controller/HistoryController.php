@@ -75,6 +75,8 @@ class HistoryController extends CoreController
             return $this->redirect($this->generateUrl('_account'));
         }
 
+        // update/set basket cookie
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
         return $this->redirect($this->generateUrl('basket_view'));
     }
 

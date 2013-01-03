@@ -273,6 +273,7 @@
 
       $.post(base_url+'add-to-basket', params, function (response) {
         if (response.status) {
+          $.cookie('basket', response.data);
           $('#mini-basket a').html(response.data);
           dialoug.slideNotice(response.message);
 
