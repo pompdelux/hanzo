@@ -435,7 +435,8 @@ class Tools
 
         if (empty($cookie_path)) {
             $cookie_path = $_SERVER['SCRIPT_NAME'];
-            if ('/app.php' == $cookie_path) {
+            // these need to go away..!
+            if ('/app.php' == $cookie_path || '/app_test.php' == $cookie_path) {
                 $cookie_path = '';
             }
             $cookie_path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
