@@ -398,15 +398,12 @@ class Orders extends BaseOrders
      **/
     public function setOrderLineShipping( ShippingMethods $shippingMethod, $isFee = false )
     {
-        if ( $isFee )
-        {
+        if ( $isFee ) {
             $price = $shippingMethod->getFee();
             $name  = $shippingMethod->getName();
             $sku    = $shippingMethod->getFeeExternalId();
             $type  = 'shipping.fee';
-        }
-        else
-        {
+        } else {
             $price = $shippingMethod->getPrice();
             $name  = $shippingMethod->getName();
             $sku   = $shippingMethod->getExternalId();
@@ -415,10 +412,9 @@ class Orders extends BaseOrders
 
         // first update existing product lines, if any
         $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        foreach ($lines as $index => $line)
-        {
-            if ( $line->getType() == $type )
-            {
+
+        foreach ($lines as $index => $line) {
+            if ( $line->getType() == $type ) {
                 $line->setProductsSku( $sku );
                 $line->setProductsName( $name );
                 $line->setPrice( $price );
@@ -681,8 +677,8 @@ class Orders extends BaseOrders
         $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
         foreach ($lines as $index => $line)
         {
-            if ( $line->getType() == $type ) // No check on sku, because it might be different, only look for type
-            {
+            // No check on sku, because it might be different, only look for type
+            if ( $line->getType() == $type ) {
                 $line->setProductsName( $name );
                 $line->setProductsSku( $sku );
                 $line->setPrice( $price );
