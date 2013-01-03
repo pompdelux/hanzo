@@ -148,21 +148,21 @@ class Tools
         switch ($type) {
             case 'order':
                 switch ($attributes->global->domain_key) {
-                    case 'SalesFI':
                     case 'FI':
+                    case 'SalesFI':
                         $to = 'orderfi@pompdelux.com';
                         break;
-                    case 'SalesNL':
                     case 'NL':
+                    case 'SalesNL':
                         $to = 'ordernl@pompdelux.com';
                         break;
-                    case 'SalesSE':
-                    case 'SE':
-                        $to = 'order@pompdelux.se';
-                        break;
-                    case 'SalesNO':
                     case 'NO':
+                    case 'SalesNO':
                         $to = 'order@pompdelux.no';
+                        break;
+                    case 'SE':
+                    case 'SalesSE':
+                        $to = 'order@pompdelux.se';
                         break;
                     default:
                         $to = 'order@pompdelux.dk';
@@ -171,22 +171,25 @@ class Tools
 
                 break;
             case 'retur':
-                switch (substr($attributes->global->domain_name, -2)) {
-                    case 'dk':
-                    case 'om':
+                switch ($attributes->global->domain_key) {
+                    case 'FI':
+                    case 'SalesFI':
+                        $to = 'returfi@pompdelux.dk';
+                        break;
+                    case 'NL':
+                    case 'SalesNL':
+                        $to = 'returnl@pompdelux.dk';
+                        break;
+                    case 'NO':
+                    case 'SalesNO':
+                        $to = 'returno@pompdelux.dk';
+                        break;
+                    case 'SE':
+                    case 'SalesSE':
+                        $to = 'returse@pompdelux.dk';
+                        break;
+                    default:
                         $to = 'retur@pompdelux.dk';
-                        break;
-                    case 'se':
-                        $to = 'retur@pompdelux.se';
-                        break;
-                    case 'nl':
-                        $to = 'retur@pompdelux.nl';
-                        break;
-                    case 'fi':
-                        $to = 'retur@pompdelux.fi';
-                        break;
-                    case 'no':
-                        $to = 'retur@pompdelux.no';
                         break;
                 }
                 break;
