@@ -47,14 +47,15 @@ class DefaultController extends CoreController
 
             $order = OrdersPeer::getCurrent();
 
-            // nuke old shipping lines
-            OrdersLinesQuery::create()
-                ->filterByOrdersId($order->getId())
-                ->filterByType('shipping')
-                ->_or()
-                ->filterByType('shipping.fee')
-                ->delete()
-            ;
+            // un@bellcom.dk, 2013.01.03 - fuckes stuff up, we try without ...
+            // // nuke old shipping lines
+            // OrdersLinesQuery::create()
+            //     ->filterByOrdersId($order->getId())
+            //     ->filterByType('shipping')
+            //     ->_or()
+            //     ->filterByType('shipping.fee')
+            //     ->delete()
+            // ;
 
             $order->setDeliveryMethod($request->get('method'));
             $order->setOrderLineShipping($method, ShippingMethods::TYPE_NORMAL);
