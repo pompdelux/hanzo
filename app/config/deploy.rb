@@ -44,6 +44,8 @@ before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 after 'symfony:cache:clear', 'symfony:cache:redis_clear'
 # also clear apc when clearing cache
 after 'symfony:cache:clear', 'deploy:apcclear'
+# also update permissions after cache:clear
+after 'symfony:cache:clear', 'deploy:update_permissions'
 
 before 'deploy:restart', 'deploy:symlinks'
 after 'deploy:restart', 'deploy:update_permissions'

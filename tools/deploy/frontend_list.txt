@@ -5,6 +5,8 @@ pdlfront-no1
 pdlfront-se1
 pdlfront-nl1
 pdlfront-fi1
+pdlfront-dk4
+pdlfront-dk5
 pdlstatic1
 pdladmin
 pdlkons-dk1
