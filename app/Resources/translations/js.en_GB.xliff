@@ -218,6 +218,34 @@
                 <source>checkout.choose.payment.method</source>
                 <target>Du skal vælge en betalingsmetode.</target>
             </trans-unit>
+            <trans-unit id="email.invalid" approved="no">
+                <source>email.invalid</source>
+                <target>Ivalid email</target>
+            </trans-unit>
+            <trans-unit id="email.repeat.invalid" approved="no">
+                <source>email.repeat.invalid</source>
+                <target>Email are not the same</target>
+            </trans-unit>
+            <trans-unit id="phone.invalid" approved="no">
+                <source>phone.invalid</source>
+                <target>ivalid phonenumber, must only contain digits and at least 8.</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match" approved="no">
+                <source>password.invalid.match</source>
+                <target>The password fields must match.</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Password must be a minimum of 5 characters long</target>
+            </trans-unit>
+            <trans-unit id="field.required" approved="no">
+                <source>field.required</source>
+                <target>All fields with (*) are required.</target>
+            </trans-unit>
+            <trans-unit id="approve.conditions.required" approved="no">
+                <source>approve.conditions.required</source>
+                <target>You have to approve POMPdeLUX terms and conditions.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

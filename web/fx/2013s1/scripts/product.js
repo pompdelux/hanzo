@@ -213,7 +213,7 @@
             }
           });
         }else{
-          dialoug.injectNotice(Translator.get('js:form.buy.choose.first'), 'form.buy .button', 'before');
+          dialoug.notice(Translator.get('js:form.buy.choose.first'), 'error', $('form.buy .button').parent());
         }
       });
 

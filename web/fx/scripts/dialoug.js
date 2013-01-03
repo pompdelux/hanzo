@@ -200,38 +200,44 @@ var dialoug = (function($) {
    * @param string selector
    * @param position string, how to insert the element, currently the followint is supported:
    *    after, append, before - default is after
-   */
-  pub.injectNotice = function(message, selector, position,  duration) {
-    var $element;
-    if (undefined === duration) {
-      duration = 4000;
-    }
+  //  */
+  // pub.injectNotice = function(message, selector, position, type,  duration) {
+  //   var $element;
+  //   if (undefined === duration) {
+  //     duration = 4000;
+  //   }
 
-    if (selector === undefined) {
-      $element = $('#main');
-    } else {
-      $element = $(selector);
-    }
+  //   if (selector === undefined) {
+  //     $element = $('#main');
+  //   } else {
+  //     $element = $(selector);
+  //   }
 
-    var tpl = '<div class="inject-notice-box">' + message + '</div>';
+  //   if (type === undefined) {
+  //     $type = 'notice';
+  //   } else {
+  //     $type = type;
+  //   }
 
-    if (undefined === position) {
-      $element.after(tpl);
-    }
-    else if(position == 'append') {
-      $element.append(tpl);
-    }
-    else {
-      $element.before(tpl);
-    }
-    $('.inject-notice-box').hide()
-      .fadeIn(200, function() {
-        $(this).delay(duration).
-        fadeOut(2000, function(){
-          $(this).remove();
-        });
-      });
-  };
+  //   var tpl = '<div class="inject-notice-box ' + $type + '"><div class="inner">' + message + '</div></div>';
+
+  //   if (undefined === position) {
+  //     $element.after(tpl);
+  //   }
+  //   else if(position == 'append') {
+  //     $element.append(tpl);
+  //   }
+  //   else {
+  //     $element.before(tpl);
+  //   }
+  //   $('.inject-notice-box').hide()
+  //     .fadeIn(200, function() {
+  //       $(this).delay(duration).
+  //       fadeOut(2000, function(){
+  //         $(this).remove();
+  //       });
+  //     });
+  // };
 
   /**
    * inserts a loading anim image and an optional text

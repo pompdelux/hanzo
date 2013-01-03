@@ -7,47 +7,62 @@
       {{ 'create.account.header'|trans({}, 'account')|raw }}
     </hgroup>
 </header>
-<h1>{{ 'create.account'|trans({}, 'account') }}</h1>
 
-<p>{{ 'create.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
+<div class="grid_6 alpha">
+  <h3>{{ 'create.account'|trans({}, 'account') }}</h3>
 
-{% if domain_key == 'DK' %}
-  {% render 'AccountBundle:NNO:widget' %}
-{% endif %}
+  <p>{{ 'create.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
-{% if errors %}
-  <div class="form-errors">
-    <h2>{{ 'create.account.error.title'|trans({}, 'account') }}</h2>
-    <p>{{ 'create.account.error'|trans({}, 'account') }}</p>
-    {{ errors|raw }}
-  </div>
-{% endif %}
+  {% if domain_key == 'DK' %}
+    {% render 'AccountBundle:NNO:widget' %}
+  {% endif %}
 
-<form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create" novalidate>
-  <div id="customers">
-    {{ form_row(form.first_name) }}
-    {{ form_row(form.last_name) }}
-    {{ form_row(form.addresses.0.address_line_1) }}
-    {{ form_row(form.addresses.0.postal_code) }}
-    {{ form_row(form.addresses.0.city) }}
-    {% if form.addresses.0.countries_id is defined %}{# If not defined we are probably on .com #}
-      {{ form_row(form.addresses.0.countries_id) }}
-    {% endif %}
-    {{ form_row(form.addresses.0.country) }}
-    {{ form_row(form.phone) }}
-    <br>
-    {{ form_row(form.email) }}
-    <br>
-    {{ form_row(form.password) }}
-    <br>
-    {{ form_row(form.newsletter) }}
-    <br>
-    {{ form_row(form.accept) }}
-    {{ form_row(form.addresses.0.type) }}
-    {{ form_row(form._token) }}
-  </div>
-  <input class="button off" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
-  {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
-</form>
+  <p>{{ 'create.pre-notice'|trans({}, 'account')|raw }}</p>
+
+  {% if errors %}
+    <div class="form-errors">
+      <h2>{{ 'create.account.error.title'|trans({}, 'account') }}</h2>
+      <p>{{ 'create.account.error'|trans({}, 'account') }}</p>
+      {{ errors|raw }}
+    </div>
+  {% endif %}
+
+
+  <form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
+    <div id="customers" class="">
+      <div class="grid_3 alpha">
+        {{ form_row(form.first_name) }}
+        {{ form_row(form.last_name) }}
+        {{ form_row(form.addresses.0.address_line_1) }}
+        {{ form_row(form.addresses.0.postal_code) }}
+        {{ form_row(form.addresses.0.city) }}
+        {% if form.addresses.0.countries_id is defined %}{# If not defined we are probably on .com #}
+          {{ form_row(form.addresses.0.countries_id) }}
+        {% endif %}
+        {{ form_row(form.addresses.0.country) }}
+      </div>
+      <div class="grid_3 omega">
+        {{ form_row(form.phone) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+        <div>
+          {{ form_widget(form.newsletter) }}
+          {{ form_label(form.newsletter) }}
+        </div>
+        <div>
+          {{ form_widget(form.accept) }}
+          {{ form_label(form.accept) }}
+        </div>
+        {{ form_row(form.addresses.0.type) }}
+        {{ form_row(form._token) }}
+      </div>
+    </div>
+    <input class="button button-black button-right" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
+    {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
+  </form>
+</div>
+<div class="grid_2 omega">
+  {{ fx_image_tag('images/splash_bg.jpg','354x450') }}
+</div>
 
 {% endblock %}

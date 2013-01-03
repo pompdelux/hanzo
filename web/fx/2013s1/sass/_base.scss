@@ -70,8 +70,10 @@ h2{
 	text-transform: uppercase;
 }
 h3{
-	font-size: 14px;
-	padding: 6px 0 0;
+	font-family: $font-serif;
+	font-weight: 100;
+	font-size: 16px;
+	padding: 6px 0 12px;
 }
 h4{
 	font-family: $font-serif;
@@ -92,23 +94,87 @@ hr {
 	width: 100%;
 }
 
-input {
-	border: 1px solid black;
-	padding: 3px 5px;
-	color: $font-color;
+aside{
+	padding-bottom: 24px;
+	h1,h2,h3,h4,h5{
+		border-bottom: 1px solid $font-color;
+		padding-bottom:6px;
+		margin-bottom: 12px;
+	}
 }
 
-input.text-button,
-button.text-button,
-a.text-button {
-	border: none;
-	background: transparent;
-	cursor: pointer;
-	font-family: $font-serif;
-	font-color: $font-color;
-	font-size: $font-size;
-	text-transform: uppercase;
+form{
+	label{
+		margin-top: 12px;
+		display: inline-block;
+		width: 90%;
+	}
+	&.full-width{
+		input{
+			&[type="text"],
+			&[type="email"],
+			&[type="date"],
+			&[type="password"]{
+				width: 97%;
+			}
+		}
+	}
+	input {
+		border: 1px solid $font-color;
+		padding: 6px 5px;
+		color: $font-color;
+		&[type="text"],
+		&[type="email"],
+		&[type="date"],
+		&[type="password"]{
+			font-family: $font-serif;
+		}
+	}
 }
+
+input.button,
+button.button,
+a.button {
+	border: none;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	
+	&:hover{
+		text-decoration: none;
+	}
+
+	&.text-button {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		font-family: $font-serif;
+		color: $font-color;
+		font-size: $font-size;
+		text-transform: uppercase;
+	}
+	&.button-black {
+		background: #474749;
+		font-family: $font-sans;
+		text-align: center;
+		width: 102px;
+		padding: 6px;
+		font-weight: bold;
+	}
+	&.button-right {
+		background: url(/fx/images/icons/button-right.png) right no-repeat #474749;
+		border-right: 6px solid #474749;
+		text-align: center;
+		line-height: 18px;
+		padding-right: 10px;
+		float: right;
+	}
+	&.off{
+		display: none;
+	}
+}
+
+
 
 @mixin image-button($url, $height, $width){
 	background: url($url) no-repeat;
@@ -124,6 +190,30 @@ a.text-button {
 	border: none;
 	text-indent: -999px;
 	display: inline-block;
+}
+
+table{
+	width: 100%;
+	margin: 6px 0 12px;
+	thead,tbody{
+		border-bottom: 1px solid $font-color;
+	}
+	thead{
+		font-family: $font-serif;
+		th{
+			padding:3px 6px;
+		}
+	}
+	tbody{
+		td{
+			padding: 12px 6px;
+		}
+	}
+	tfoot{
+		td{
+			padding: 6px;
+		}
+	}
 }
 
 
@@ -143,6 +233,26 @@ a.text-button {
 .pushright{float:right;}
 .small{font-size: 9px;}
 .strike {text-decoration:line-through;}
+
+/**
+|
+| dialoug notices
+|
+*/
+
+.inject-notice-box{
+	padding: 3px;
+	.inner{
+		border: 1px solid #000;
+		padding: 6px;
+		color: $font-color;
+	}
+	&.error{
+		.inner{
+			border-color: red;
+		}
+	}
+}
 
 /**
 |
