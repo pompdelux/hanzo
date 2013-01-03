@@ -246,7 +246,7 @@
 {% endblock %}
 
 {% block javascript %}
-{% if is_granted('ROLE_ADMIN') %}
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SALES') %}
   <script>
     var logged_in_as_admin = true;
   </script>

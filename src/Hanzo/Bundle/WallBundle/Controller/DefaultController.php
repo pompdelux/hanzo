@@ -365,7 +365,7 @@ class DefaultController extends CoreController
         }
         $wall_entry = WallQuery::create();
 
-        if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN') && FALSE == $this->get('security.context')->isGranted('ROLE_SALES')) {
             $wall_entry = $wall_entry->filterByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
         }
 
