@@ -180,8 +180,8 @@ class DefaultController extends CoreController
             $order->save();
 
             $data = array(
-                'total' => Tools::moneyFormat($order->getTotalPrice()),
-                'quantity' => $order->getTotalQuantity()
+                'total' => Tools::moneyFormat($order->getTotalPrice(true)),
+                'quantity' => $order->getTotalQuantity(true)
             );
 
             if ($this->getFormat() == 'json') {
