@@ -288,12 +288,8 @@ class OrdersController extends CoreController
         
         $order_log->delete($this->getDbConnection());
         try {
-            if($log_data->salesOrder->SalesTable->TransactionType === 'delete'){
-                $order->setIgnoreDeleteConstraints(true);
-                $order->delete($this->getDbConnection());
-            }else{
-                $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
-            }
+            $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+            
         } catch (Exception $e) {
 
             if ('json' === $this->getFormat()) {
