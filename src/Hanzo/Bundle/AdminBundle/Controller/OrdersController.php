@@ -286,6 +286,7 @@ class OrdersController extends CoreController
         ;
         $log_data = unserialize($order_log->getContent());
         
+        $order_log->delete($this->getDbConnection());
         try {
             if($log_data->salesOrder->SalesTable->TransactionType === 'delete'){
                 $order->setIgnoreDeleteConstraints(true);
@@ -302,8 +303,6 @@ class OrdersController extends CoreController
                 ));
             }            
         }
-        
-        $order_log->delete($this->getDbConnection());
 
         if ('json' === $this->getFormat()) {
             return $this->json_response(array(
@@ -330,6 +329,12 @@ class OrdersController extends CoreController
         ;
 
         if ($order) {
+            // find old log entry and delete it
+            $order_log = OrdersSyncLogQuery::create()
+                ->filterByState('failed')
+                ->filterByOrdersId($order_id)
+                ->delete($this->getDbConnection())
+            ;
             $order->setIgnoreDeleteConstraints(true);
             try {
                 $order->delete($this->getDbConnection());
