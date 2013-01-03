@@ -11,6 +11,7 @@
             <th nowrap>Ordre nr.</th>
             <th nowrap>Dato</th>
             <th nowrap>Fejlbesked</th>
+            <th nowrap>Metode</th>
             <th nowrap></th>
           </tr>
         </thead>
@@ -21,6 +22,7 @@
           <td nowrap>{{ order.ordersId }}</td>
           <td nowrap>{{ order.createdAt|date('d/m/Y H:i') }}</td>
           <td>{{ order.comment|replace({'--->' : '<br>--->'})|raw }}</td>
+          <td>{{ order.data.salesOrder.SalesTable.TransactionType }}</td>
           <td nowrap>
             <a href="#" class="delete-order" data-order-id="{{ order.ordersId }}" data-confirm-message="Er du sikker på du ønsker at slette ordrenummer: {{ order.ordersId }}">Slet</a>
             <a href="{{ path('admin_orders_preview', {order_id : order.ordersId}) }}" class="preview-order">Gennemse</a>
