@@ -45,7 +45,6 @@ class DefaultController extends CoreController
             ->endUse()
             ->groupById()
             ->withColumn('addresses.city', 'city')
-            ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
             ->filterByStatus(true)
             ->where('wall.parent_id IS NULL')
             ->orderByCreatedAt('DESC')
@@ -95,7 +94,6 @@ class DefaultController extends CoreController
                 ->endUse()
                 ->groupById()
                 ->withColumn('addresses.city', 'city')
-                ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
                 ->filterByStatus(true)
                 ->filterByParentId($wall_post->getId())
                 ->orderByCreatedAt('ASC')
@@ -109,7 +107,7 @@ class DefaultController extends CoreController
                     'message' => $this->wallEmo($sub_post->getMessate()),
                     'clean_message' => $sub_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($sub_post->getCreatedAt())),
-                    'author' => $sub_post->getAuthor(),
+                    'author' => $sub_post->getCustomers()->getFirstName().' '.$sub_post->getCustomers()->getLastName(),
                     'city' => $sub_post->getCity(),
                     'customers_id' => $sub_post->getCustomersId(),
                     'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $sub_post->getCustomersId()) ? true : false,
@@ -123,7 +121,7 @@ class DefaultController extends CoreController
                 'message' => $this->wallEmo($wall_post->getMessate()),
                 'clean_message' => $wall_post->getMessate(),
                 'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
-                'author' => $wall_post->getAuthor(),
+                'author' => $wall_post->getCustomers()->getFirstName().' '.$wall_post->getCustomers()->getLastName(),
                 'city' => $wall_post->getCity(),
                 'customers_id' => $wall_post->getCustomersId(),
                 'is_liked' => ($is_liked instanceof WallLikes) ? $is_liked->getStatus() : null,
@@ -263,7 +261,7 @@ class DefaultController extends CoreController
                     'message' => $this->wallEmo($wall_post->getMessate()),
                     'clean_message' => $wall_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
-                    'author' => $wall_post->getAuthor(),
+                    'author' => $wall_post->getCustomers()->getFirstName().' '.$wall_post->getCustomers()->getLastName(),
                     'customers_id' => $wall_post->getCustomersId(),
                     'is_liked' => false,
                     'is_author' => ($creator->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
@@ -281,7 +279,7 @@ class DefaultController extends CoreController
                     'message' => $this->wallEmo($wall_post->getMessate()),
                     'clean_message' => $wall_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
-                    'author' => $wall_post->getAuthor(),
+                    'author' => $wall_post->getCustomers()->getFirstName().' '.$wall_post->getCustomers()->getLastName(),
                     'customers_id' => $wall_post->getCustomersId(),
                     'is_author' => ($creator->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
                     'is_first' => false,
