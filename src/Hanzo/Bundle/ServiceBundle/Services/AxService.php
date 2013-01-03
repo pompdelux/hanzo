@@ -440,7 +440,7 @@ class AxService
 
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
-        Tools::debug( 'Delete order in AX Result:', __METHOD__, array( 'Result' => $result));
+        //Tools::debug( 'Delete order in AX Result:', __METHOD__, array( 'Result' => json_encode($result)));
         
         if ($result instanceof Exception) {
             $message = sprintf('An error occured while deleting order "%s", error message: "%s"',
@@ -527,7 +527,7 @@ class AxService
      */
     protected function Send($service, $request)
     {
-        //Tools::debug( 'AX Send:', __METHOD__, array( 'Service' => $service, 'Request' => json_encode($request), 'Skip Send' => $this->skip_send));
+        Tools::debug( 'AX Send:', __METHOD__, array( 'Service' => $service, 'Request' => json_encode($request), 'Skip Send' => $this->skip_send));
         if ($this->skip_send) {
             return true;
         }
