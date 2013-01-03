@@ -441,7 +441,7 @@ class Tools
             $cookie_path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
         }
 
-        return setcookie($name, $value, $ttl, $cookie_path, $_SERVER['HTTP_HOST'], false, $http_only);
+        return setcookie($name, $value, $ttl, $cookie_path, '.'.$_SERVER['HTTP_HOST'], false, $http_only);
     }
 
 
