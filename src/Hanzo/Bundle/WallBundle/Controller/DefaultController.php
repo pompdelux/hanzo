@@ -55,7 +55,6 @@ class DefaultController extends CoreController
 
             $likes = WallLikesQuery::create()
                 ->join('Customers')
-                ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'name')
                 ->filterByWallId($wall_post->getId())
                 ->orderByStatus('DESC')
                 ->find()
@@ -82,7 +81,7 @@ class DefaultController extends CoreController
                 $likes_arr[] = array(
                     'id' => $like->getId(),
                     'customers_id' => $like->getCustomersId(),
-                    'name' => $like->getName(),
+                    'name' => $like->getCustomers()->getFirstName().' '.$like->getCustomers()->getLastName(),
                     'status' => $like->getStatus()
                 );
             }
@@ -248,7 +247,6 @@ class DefaultController extends CoreController
 
             $wall_post = WallQuery::create()
                 ->join('Customers')
-                ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
                 ->findOneById($wall_entry->getId())
             ;
 
