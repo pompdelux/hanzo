@@ -139,10 +139,6 @@
     };
 
     pub.initBasket = function() {
-      /**
-       * we always fetch the basket via ajax, this
-       * way we can keep stuff in varnish without esi
-       */
       var $basket = $('#mini-basket a');
       if ($basket.length) {
 
@@ -165,7 +161,6 @@
     };
 
     var getDocHeight = function(){
-      var D = document;
       return Math.max(Math.max(
           document.body.scrollHeight,
           document.documentElement.scrollHeight
