@@ -225,6 +225,7 @@ class DefaultController extends CoreController
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
+        $errors = '';
         $form = $this->createForm(
             new CustomersType(false, new AddressesType( $countries )),
             $customer,
@@ -248,11 +249,16 @@ class DefaultController extends CoreController
 
                 $this->get('session')->setFlash('notice', 'account.updated');
                 return $this->redirect($this->generateUrl('_account'));
+            } else {
+                $errors = new FormErrors($form, $this->get('translator'), 'account');
+                $errors = $errors->toString();
             }
+
         }
 
         return $this->render('AccountBundle:Default:edit.html.twig', array(
             'page_type' => 'create-account',
+            'errors' => $errors,
             'form' => $form->createView(),
         ));
     }

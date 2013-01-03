@@ -8,6 +8,7 @@ use Hanzo\Core\Tools;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Propel;
+use Exception;
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\OrdersLines;
@@ -250,13 +251,14 @@ class OrdersController extends CoreController
         $orders = OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->find($this->getDbConnection());
-
+        foreach ($orders as &$order) {
+            $order->data = unserialize($order->getContent());
+        }
         return $this->render('AdminBundle:Orders:failed_orders_list.html.twig', array(
             'orders'  => $orders,
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
-
 
     public function resyncAction($order_id)
     {
@@ -276,27 +278,39 @@ class OrdersController extends CoreController
             return $this->response('Der findes ingen ordre med ID #' . $order_id);
         }
 
-        // delete old log entry
-        OrdersSyncLogQuery::create()
+        // find old log entry
+        $order_log = OrdersSyncLogQuery::create()
             ->filterByState('failed')
             ->filterByOrdersId($order_id)
-            ->delete($this->getDbConnection())
+            ->findOne($this->getDbConnection())
         ;
+        $log_data = unserialize($order_log->getContent());
+        
+        try {
+            if($log_data->salesOrder->SalesTable->TransactionType === 'delete'){
+                $order->setIgnoreDeleteConstraints(true);
+                $order->delete($this->getDbConnection());
+            }else{
+                $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
+            }
+        } catch (Exception $e) {
 
-        $status = $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
-        $message = $status ?
-            'Ordren #%d er nu sendt' :
-            'Ordren #%d kunne ikke gensendes !'
-        ;
+            if ('json' === $this->getFormat()) {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ));
+            }            
+        }
+        
+        $order_log->delete($this->getDbConnection());
 
         if ('json' === $this->getFormat()) {
             return $this->json_response(array(
-                'status' => false,
-                'message' => sprintf($message, $order_id),
+                'status' => true,
+                'message' => sprintf('Ordren #%d er nu sendt', $order_id),
             ));
         }
-
-        return $this->response('Der findes ingen ordre med ID #' . $order_id);
 
     }
 
@@ -317,7 +331,14 @@ class OrdersController extends CoreController
 
         if ($order) {
             $order->setIgnoreDeleteConstraints(true);
-            $order->delete($this->getDbConnection());
+            try {
+                $order->delete($this->getDbConnection());
+            } catch (Exception $e) {
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ));
+            }
         }
 
         if ('json' === $this->getFormat()) {
