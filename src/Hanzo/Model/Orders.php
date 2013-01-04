@@ -1176,7 +1176,7 @@ class Orders extends BaseOrders
                     // allow delete for priority deletes
                     Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
                 } else {
-                    throw new Exception($e->getMessage());
+                    throw $e;
                 }
             }
         }

@@ -315,6 +315,14 @@
                 <source>address.last_name.required</source>
                 <target>Efternavn skal udfyldes</target>
             </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Fornavn skal være min 2 tegn</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Efternavn skal være min 2 tegn</target>
+            </trans-unit>
             <trans-unit id="address.address_line_1.required">
                 <source>address.address_line_1.required</source>
                 <target>Du skal udfylde din adresse</target>
@@ -370,6 +378,10 @@
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
                 <target>Telefonnummer må kun indeholder tal</target>
+            </trans-unit>
+            <trans-unit id="phone.min.length" approved="no">
+                <source>phone.min.length</source>
+                <target>Dit telefonnummer skal bestå af minimum 8 tegn</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
