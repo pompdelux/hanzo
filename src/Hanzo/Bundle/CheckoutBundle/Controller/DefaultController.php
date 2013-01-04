@@ -126,6 +126,7 @@ class DefaultController extends CoreController
             $key = str_replace('Sales', '', $domain_key);
             $order->setAttribute('HomePartyId', 'global', 'WEB ' . $key);
         }
+
         if (empty($attributes->global->SalesResponsible)) {
             $key = str_replace('Sales', '', $domain_key);
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);

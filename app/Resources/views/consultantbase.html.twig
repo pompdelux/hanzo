@@ -152,6 +152,17 @@
 {% render 'NewsletterBundle:Default:js' %}
 
 <script>if (jaiks) {jaiks.exec();}</script>
+{#
+ # TODO: find a better solution.
+ # we need this hack to get single shipping types to play nice...
+#}
+{% if page_type is defined and page_type == 'checkout' %}
+<script>
+  if (1 == $('#shipping-block input').length) {
+    $('#shipping-block input').first().click();
+  }
+</script>
+{% endif %}
 {{ google_analytics_tag() }}
 </body>
 </html>

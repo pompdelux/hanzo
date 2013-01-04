@@ -21,9 +21,11 @@
         }
       });
 
+      // TODO: move to central place and re-use
       // zip with auto city
       $(document).on('focusout', 'input.auto-city', function(event) {
         var $this = $(this);
+        // TODO: use css class
         $this.css('border', '1px solid #231F20');
         dialoug.loading($this);
 
@@ -38,6 +40,7 @@
           if (response.status) {
             $city.val(response.data.city);
           } else {
+            // TODO: use css class
             $this.css('border', '2px solid #a10000');
             $this.val('');
             $city.val('');
@@ -49,13 +52,11 @@
       });
 
       $('#shipping-block input').on('change', function(event) {
-        // event.preventDefault();
         $(this).blur();
         $(document).trigger('shipping.method.changed', this);
       });
 
       $('#payment-block input').on('change', function(event) {
-        // event.preventDefault();
         $(this).blur();
         $(document).trigger('payment.method.changed', this);
       });
@@ -141,6 +142,7 @@
           var id = index;
           $('input, select', $form).each(function (index, element) {
             var $element = $(element);
+            // TODO: use css class
             $element.css({'border': '1px solid #231F20'});
 
             var field = element.name.match(/\[([a-z]{1}[a-z_0-9]+)\]/);
@@ -166,7 +168,6 @@
 
           var t = document.getElementById('address-block').offsetTop;
           $('html,body').animate({scrollTop: t});
-          //$('html,body').animate({scrollTop: $('#address-block').offset().top});
           return false;
         }
 
@@ -194,7 +195,6 @@
           $(this).closest('div').css('border-color', '#C8C4C3');
           var t = document.getElementById('checkout-buttons').offsetTop;
           $('html,body').animate({ scrollTop : t });
-          //$('html,body').animate({ scrollTop : $('#checkout-buttons').offset().top });
         }
       });
 
@@ -223,16 +223,7 @@
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
       });
-      
-      $(document).ready(function(){
-        if($('#shipping-block input').length === 1){
-          var $input = $('#shipping-block input').first();
-          $input.click();
-          $(document).trigger('shipping.method.changed', $input);
-        }
-      });
     };
-
 
     pub.setStepStatus = function(step, status) {
       step_states[step] = status;
@@ -274,7 +265,6 @@
       if (response.response.status) {
         var t = document.getElementById('checkout-block-summery').offsetTop;
         $('html,body').animate({scrollTop: t});
-        //$('html,body').animate({scrollTop: $('#checkout-block-summery').offset().top});
         $(document).trigger('payment.method.updated');
         pub.setStepStatus('payment', true);
       } else {

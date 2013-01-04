@@ -39,7 +39,7 @@ class DefaultController extends CoreController
 
             // update/set basket cookie
             Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
-            return $this->redirect($this->generateUrl('basket_view'));
+            return $this->redirect($this->generateUrl('_account'));
         }
 
         return $this->render('AccountBundle:Default:index.html.twig', array(

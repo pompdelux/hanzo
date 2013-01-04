@@ -1106,7 +1106,7 @@ class ECommerceServices extends SoapService
         $amount = $large . sprintf('%02d', $small);
 
         $gateway = $this->hanzo->container->get('payment.dibsapi');
-        $domain = $order->getAttributes()->global->domain_name;
+        $domain = strtoupper($order->getAttributes()->global->domain_key);
 
         $doSendError = false;
         try {
@@ -1138,7 +1138,7 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
                 $this->getLapTime();
                 $mailer = $this->hanzo->container->get('mail_manager');
 
-                if (in_array($domain, ['www.pompdelux.com'])) {
+                if (in_array($domain, ['COM'])) {
                     $mailer->setMessage('order.credited', $parameters, 'en_GB');
                 } else {
                     $mailer->setMessage('order.credited', $parameters);
