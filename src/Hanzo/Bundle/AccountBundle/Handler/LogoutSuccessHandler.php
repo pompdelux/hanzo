@@ -2,22 +2,52 @@
 
 namespace Hanzo\Bundle\AccountBundle\Handler;
 
+use Hanzo\Core\Tools;
+
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\DependencyInjection\Container;
 
 class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 {
-	
-	public function onLogoutSuccess(Request $request)
-	{
-		// redirect the user to where they were before the logout process begun.
-		$referer_url = $request->headers->get('referer');
+    /**
+     * setting up the service
+     *
+     * @param Container $container
+     * @param Router    $router
+     */
+    public function __construct(Container $container, Router $router)
+    {
+        $this->container = $container;
+        $this->router = $router;
+    }
 
-		$response = new RedirectResponse($referer_url);
-		return $response;
+
+    /**
+     * handle logout success response
+     *
+     * @param  Request $request
+     * @return RedirectResponse
+     */
+    public function onLogoutSuccess(Request $request)
+    {
+        switch ($this->container->get('kernel')->getSetting('store_mode')) {
+            case 'webshop':
+                $route = '_homepage';
+                break;
+            case 'consultant':
+                $route = 'login';
+                break;
+        }
+
+        Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+
+        $url = $this->router->generate($route, ['_locale' => $this->container->get('session')->getLocale()]);
+        $response = new RedirectResponse($url);
+
+    	return $response;
 	}
-
 }

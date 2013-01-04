@@ -1,8 +1,6 @@
 parameters:
     account_user_provider.class: Hanzo\Bundle\AccountBundle\Security\User\UserProvider
 
-#    account.example.class: Hanzo\Bundle\AccountBundle\Example
-
 services:
     hanzo.account.security.provider:
         class: %account_user_provider.class%
@@ -19,6 +17,3 @@ services:
         arguments:  [@service_container, @router]
         tags:
             - { name: 'monolog.logger', channel: 'security' }
-#    account.example:
-#        class: %account.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
