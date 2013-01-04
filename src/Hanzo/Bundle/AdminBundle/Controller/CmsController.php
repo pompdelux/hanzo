@@ -122,7 +122,6 @@ class CmsController extends CoreController
             $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
         }
 
-        $cms_node = new CmsNode();
         $cms_threads = CmsThreadQuery::create()
             ->joinWithI18n($locale)
             ->find($this->getDbConnection())
@@ -133,7 +132,8 @@ class CmsController extends CoreController
         foreach ($cms_threads as $cms_thread) {
             $cms_thread_choices[$cms_thread->getId()] = $cms_thread->getTitle();
         }
-        $form = $this->createFormBuilder($cms_node)
+        $node = new Cms();
+        $form = $this->createFormBuilder($node)
             ->add('type', 'choice', array(
                     'label'     => 'cms.edit.label.settings',
                     'choices'   => array(
@@ -145,6 +145,7 @@ class CmsController extends CoreController
                         'newsletter'  => 'cms.edit.type.newsletter',
                         'advanced_search'  => 'cms.edit.type.advanced_search',
                         'mannequin'  => 'cms.edit.type.mannequin',
+                        'bycolour'  => 'cms.edit.type.bycolour',
                         'heading'  => 'cms.edit.type.heading'
                     ),
                     'required'  => TRUE,
@@ -163,9 +164,8 @@ class CmsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $node = new Cms();
                 $settings = array();
-                switch ($cms_node->getType()) {
+                switch ($node->getType()) {
                     case 'category':
                         $node->setType('category');
                         $settings['category_id'] = 'x';
@@ -191,32 +191,34 @@ class CmsController extends CoreController
                         $settings['colorsheme'] = '';
                         $settings['ignore'] = '';
                         break;
+                    case 'bycolour':
+                        $node->setType('bycolour');
+                        $settings['category_ids'] = '';
+                        $settings['colorsheme'] = '';
+                        $settings['colors'] = '';
+                        $settings['ignore'] = '';
+                        break;
                     case 'frontpage':
                         $node->setType('frontpage');
                         $settings['is_frontpage'] = true;
-                        break;
-                    default:
-                        $node->setType($cms_node->getType());
                         break;
                 }
                 // Vi skal bruge titel på Thread til Path
                 $cms_thread = CmsThreadQuery::create()
                     ->joinWithI18n()
-                    ->filterById($cms_node->getCmsThreadId())
+                    ->filterById($node->getCmsThreadId())
                     ->findOne($this->getDbConnection())
                 ;
 
-                $node->setCmsThreadId($cms_node->getCmsThreadId());
-
                 $node->setIsActive(FALSE);
-                $node->setSettings(json_encode($settings));
                 $node->save($this->getDbConnection());
 
                 $trans = new CmsI18n();
                 $trans->setCms($node);
                 $trans->setLocale($locale);
+                $trans->setSettings(json_encode($settings));
                 $trans->save($this->getDbConnection());
-
+                
                 $this->get('session')->setFlash('notice', 'cms.added');
                 return $this->redirect($this->generateUrl('admin_cms_edit',
                     array(

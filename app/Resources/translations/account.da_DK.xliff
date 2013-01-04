@@ -422,11 +422,18 @@
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
                 <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
-                <ul>
+                <ul class="list">
                   <li>Tilføje flere varer</li>
                   <li>Ændre størrelsen og/eller farven på en vare</li>
                   <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
                 </ul>
+                </p>
+                <p>Hvis du ønsker at tilføje. ændre eller slette en vare på din ordre skal du gøre følgende:
+                <ol class="list">
+                  <li>Tilføje flere varer</li>
+                  <li>Ændre størrelsen og/eller farven på en vare</li>
+                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                </ol>
                 </p>
                 ]]></target>
             </trans-unit>

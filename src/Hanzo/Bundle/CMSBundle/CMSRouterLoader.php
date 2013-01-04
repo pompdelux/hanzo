@@ -86,8 +86,8 @@ class CMSRouterLoader implements LoaderInterface
             switch ($type) {
                 case 'category':
 
-                    // test ... we should never enter this if tho...
-                    if (!$settings instanceof \stdClass) {
+                    //test ... we should never enter this if tho...
+                    if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
                         Tools::log($page->toArray());
                         continue;
                     }
@@ -146,6 +146,29 @@ class CMSRouterLoader implements LoaderInterface
                         'id' => $id,
                     ));
                     $routes->add('mannequin_'.$id, $route);
+                    break;
+
+                case 'bycolour':
+                    $route = new Route("/".$path, array(
+                        '_controller' => 'CategoryBundle:ByColour:view',
+                        'id' => $id,
+                    ));
+                    $routes->add('bycolour_'.$id . '_' . $locale_lower, $route);
+
+                    $product_path = 'product_' . $id . '_' . $locale_lower ;
+                    // product route
+                    $route = new Route("/{$path}/{product_id}/{title}", array(
+                        '_controller' => 'ProductBundle:Default:view',
+                        '_format' => 'html',
+                        'product_id' => 0,
+                        'cms_id' => $id,
+                        'title' => '',
+                        'ip_restricted' => true,
+                    ), array(
+                        'product_id' => '\d+',
+                        '_format' => 'html|json',
+                    ));
+                    $routes->add($product_path, $route);
                     break;
 
                 case 'newsletter':

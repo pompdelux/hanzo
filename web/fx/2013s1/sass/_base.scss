@@ -234,6 +234,19 @@ table{
 .small{font-size: 9px;}
 .strike {text-decoration:line-through;}
 
+ul{
+	list-style-position: inside;
+	&.list {
+		list-style-type: disc;
+	}
+}
+ol{
+	list-style-position: inside;
+	&.list {
+		list-style-type: decimal;
+	}
+}
+
 /**
 |
 | dialoug notices

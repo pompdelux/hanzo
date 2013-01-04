@@ -414,22 +414,40 @@ table tfoot td {
   text-decoration: line-through;
 }
 
+/* line 237, ../sass/_base.scss */
+ul {
+  list-style-position: inside;
+}
+/* line 239, ../sass/_base.scss */
+ul.list {
+  list-style-type: disc;
+}
+
+/* line 243, ../sass/_base.scss */
+ol {
+  list-style-position: inside;
+}
+/* line 245, ../sass/_base.scss */
+ol.list {
+  list-style-type: decimal;
+}
+
 /**
 |
 | dialoug notices
 |
 */
-/* line 243, ../sass/_base.scss */
+/* line 256, ../sass/_base.scss */
 .inject-notice-box {
   padding: 3px;
 }
-/* line 245, ../sass/_base.scss */
+/* line 258, ../sass/_base.scss */
 .inject-notice-box .inner {
   border: 1px solid #000;
   padding: 6px;
   color: #444444;
 }
-/* line 251, ../sass/_base.scss */
+/* line 264, ../sass/_base.scss */
 .inject-notice-box.error .inner {
   border-color: red;
 }
@@ -439,7 +457,7 @@ table tfoot td {
 | Slideshow Cycle2 styles
 |
 */
-/* line 263, ../sass/_base.scss */
+/* line 276, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
@@ -447,18 +465,18 @@ table tfoot td {
   left: 16px;
   z-index: 101;
 }
-/* line 269, ../sass/_base.scss */
+/* line 282, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-/* line 275, ../sass/_base.scss */
+/* line 288, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-/* line 281, ../sass/_base.scss */
+/* line 294, ../sass/_base.scss */
 .cycle-slideshow .cycle-slide img {
   width: 100%;
 }
@@ -469,17 +487,17 @@ table tfoot td {
 |
 | TODO: Make it as a new grid with container_5{blablabla}
 */
-/* line 293, ../sass/_base.scss */
+/* line 306, ../sass/_base.scss */
 .container_8 .grid_1-5 {
   width: 186px;
 }
 
-/* line 296, ../sass/_base.scss */
+/* line 309, ../sass/_base.scss */
 .container_8 .grid_2-5 {
   width: 378px;
 }
 
-/* line 300, ../sass/_base.scss */
+/* line 313, ../sass/_base.scss */
 .container_8 .grid_1-5,
 .container_8 .grid_2-5 {
   display: inline;
@@ -488,7 +506,7 @@ table tfoot td {
   margin-right: 3px;
 }
 
-/* line 315, ../sass/_base.scss */
+/* line 328, ../sass/_base.scss */
 .main .grid_1,
 .main .grid_2,
 .main .grid_3,
@@ -503,56 +521,56 @@ table tfoot td {
   margin-bottom: 3px;
 }
 
-/* line 321, ../sass/_base.scss */
+/* line 334, ../sass/_base.scss */
 body.da form.buy .submit-button {
   background-position: 0 -625px;
   height: 84px;
   width: 87px;
 }
-/* line 326, ../sass/_base.scss */
+/* line 339, ../sass/_base.scss */
 body.da .buy-set {
   background-position: 0 -496px;
   height: 84px;
   width: 87px;
 }
-/* line 331, ../sass/_base.scss */
+/* line 344, ../sass/_base.scss */
 body.da .new-price {
   background-position: 0 -86px;
   height: 410px;
   width: 234px;
 }
-/* line 337, ../sass/_base.scss */
+/* line 350, ../sass/_base.scss */
 body.da .zoom .sprite {
   background-position: 0 -709px;
   height: 50px;
   width: 45px;
 }
-/* line 343, ../sass/_base.scss */
+/* line 356, ../sass/_base.scss */
 body.da a.video-popper .sprite, body.da #video-player-container a.video .sprite {
   background-position: 0 -842px;
   height: 50px;
   width: 58px;
 }
-/* line 348, ../sass/_base.scss */
+/* line 361, ../sass/_base.scss */
 body.da hr {
   background-position: 0 -892px;
   height: 15px;
 }
-/* line 351, ../sass/_base.scss */
+/* line 364, ../sass/_base.scss */
 body.da hr.left {
   background-position: 0 -759px;
 }
-/* line 354, ../sass/_base.scss */
+/* line 367, ../sass/_base.scss */
 body.da hr.right {
   background-position: 0 -822px;
 }
-/* line 359, ../sass/_base.scss */
+/* line 372, ../sass/_base.scss */
 body.da .basket .sprite {
   background-position: 0 -580px;
   height: 45px;
   width: 35px;
 }
-/* line 365, ../sass/_base.scss */
+/* line 378, ../sass/_base.scss */
 body.da .footer-menu-4 .sprite {
   background-position: 0 0;
   height: 86px;
