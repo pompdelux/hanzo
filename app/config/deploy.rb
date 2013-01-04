@@ -9,6 +9,11 @@ require 'capistrano/ext/multistage'
 set :stages,        %w(testing production)
 set :default_stage, "testing"
 
+set :whoami, `whoami`.strip
+set :hostname, `hostname`.strip
+set :pwd, `pwd`.strip
+set :hosts, ENV["HOSTS"]
+
 # mmh@bellcom.dk: use below to rsync the files instead of git clone. Requires capistrano_rsync_with_remote_cache installed (gem install)
 set :deploy_via,  :rsync_with_remote_cache
 # use other rsync_options. Default is: -az --delete
@@ -92,25 +97,24 @@ namespace :deploy do
   end
   desc "Send email after deploy"
   task :send_email do
-    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami`. $HOSTS | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts})' | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
   end
   desc "Send email after rollback"
   task :send_email_rollback do
-    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami`i. $HOSTS | mail -s 'Hanzo #{branch} rolled back' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
+    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts})' | mail -s 'Hanzo #{branch} rolled back' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
   end
   desc "Rollback warning"
   task :rollback_warning do
     puts "REMEMBER TO CLEAR THE CACHE AFTER A ROLLBACK! RUN:";puts "cap #{branch} symfony:cache:clear"
   end
-# hf@bellcom.dk, update translations and clear cache. Unused?
-  desc "Update translations"
-  task :translations do
-    run "#{current_path}/tools/deploy/translations.sh #{current_path}/app/Resources/ "
-  end
 # create symlinks 
   desc "Create logs and public_html symlinks"
   task :symlinks do
     run("cd #{deploy_to}/current;if [ ! -L logs ];then ln -s app/logs logs;fi;if [ ! -L public_html ];then ln -s web public_html;fi")
+  end
+  desc "Send deploy to New Relic"
+  task :newrelic_notify do
+    run_locally("curl -s -H 'x-api-key:75916fb33fa70e01ddca4bd9a761c56989504595a94d03a' -d 'deployment[application_id]=697785' -d 'deployment[host]=#{hostname}' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
   end
 end
 
