@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Timer;
+use Hanzo\Core\Tools;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\GothiaAccounts;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApiCallException;
