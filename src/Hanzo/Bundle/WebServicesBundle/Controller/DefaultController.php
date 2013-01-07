@@ -266,46 +266,46 @@ $xml = '
   </priceList>
 </SyncPriceList>
 ';
-// $x = json_decode(json_encode(simplexml_load_string($xml)));
-// $e = new ECommerceServices($this->get('request'), $this->get('logger'));
+$x = json_decode(json_encode(simplexml_load_string($xml)));
+$e = new ECommerceServices($this->get('request'), $this->get('logger'));
 
-// //$e->SyncItem($x);
-// $res = $e->SyncPriceList($x);
-// Tools::log($res);
+//$e->SyncItem($x);
+$res = $e->SyncPriceList($x);
+Tools::log($res);
 
 
-\Propel::getConnection()->useDebug(true);
+// \Propel::getConnection()->useDebug(true);
 
-$lat = 55.494099;
-$lon = 9.459;
-$radius = 100;
-$exclude_pompdelux = array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk');
-$exclude_bellcom = '%@bellcom.dk';
+// $lat = 55.494099;
+// $lon = 9.459;
+// $radius = 100;
+// $exclude_pompdelux = array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk');
+// $exclude_bellcom = '%@bellcom.dk';
 
-$query = AddressesQuery::create()
-    ->filterByDistanceFrom($lat, $lon, $radius)
-    ->filterByType('payment')
-    ->useCustomersQuery('', 'JOIN')
-        ->filterByGroupsId(2)
-        ->filterByIsActive(true)
-        ->filterByEmail($exclude_pompdelux, \Criteria::NOT_IN)
-        ->filterByEmail($exclude_bellcom, \Criteria::NOT_LIKE)
-    ->endUse()
-    ->limit(10)
-    ->orderBy('Distance')
-;
+// $query = AddressesQuery::create()
+//     ->filterByDistanceFrom($lat, $lon, $radius)
+//     ->filterByType('payment')
+//     ->useCustomersQuery('', 'JOIN')
+//         ->filterByGroupsId(2)
+//         ->filterByIsActive(true)
+//         ->filterByEmail($exclude_pompdelux, \Criteria::NOT_IN)
+//         ->filterByEmail($exclude_bellcom, \Criteria::NOT_LIKE)
+//     ->endUse()
+//     ->limit(10)
+//     ->orderBy('Distance')
+// ;
 
-$query
-    ->useCustomersQuery('', 'JOIN')
-        ->useConsultantsQuery('', 'JOIN')
-            ->filterByEventNotes('', \Criteria::NOT_EQUAL)
-        ->endUse()
-    ->endUse()
-;
+// $query
+//     ->useCustomersQuery('', 'JOIN')
+//         ->useConsultantsQuery('', 'JOIN')
+//             ->filterByEventNotes('', \Criteria::NOT_EQUAL)
+//         ->endUse()
+//     ->endUse()
+// ;
 
-$consultants = $query->find();
+// $consultants = $query->find();
 
-error_log(\Propel::getConnection()->getLastExecutedQuery());
+// error_log(\Propel::getConnection()->getLastExecutedQuery());
 
 
         return $this->render('WebServicesBundle:Default:index.html.twig', array('name' => $name));
