@@ -43,7 +43,9 @@ class SoapController extends CoreController
 
         $handler = new \Hanzo\Bundle\WebServicesBundle\Services\Soap\ECommerceServices\ECommerceServices (
             $this->getRequest(),
-            $this->get('Logger')
+            $this->get('Logger'),
+            new \Symfony\Component\EventDispatcher\EventDispatcher()
+
         );
 
         $d = new \stdClass();
