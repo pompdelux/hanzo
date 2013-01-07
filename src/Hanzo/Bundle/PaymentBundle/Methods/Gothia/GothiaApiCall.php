@@ -75,7 +75,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             $client = AFSWS_Init( 'live' );
         }
 
-        Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
+        #Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
 
         try
         {
@@ -83,7 +83,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         }
         catch (Exception $e)
         {
-            Tools::debug( $e->getMessage(), __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
+            #Tools::debug( $e->getMessage(), __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
             throw new GothiaApiCallException( $e->getMessage() );
         }
 
@@ -108,12 +108,12 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             $debugErrors = $errors;
             $debugErrors['Function'] = $function;
             $debugErrors['Callstring'] = $request;
-            Tools::debug( 'Call failed', __METHOD__, $debugErrors );
+            #Tools::debug( 'Call failed', __METHOD__, $debugErrors );
 
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
-        Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
+        #Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
 
         $gothiaApiCallResponse = new GothiaApiCallResponse( $response, $function );
 
@@ -141,7 +141,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( !isset($addresses[0]) )
         {
-            Tools::debug( 'Customer is missing an address', __METHOD__ );
+            #Tools::debug( 'Customer is missing an address', __METHOD__ );
             throw new GothiaApiCallException( 'Missing address' );
         }
 
@@ -156,7 +156,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( empty($customerId) )
         {
-            Tools::debug( 'Missing customer id', __METHOD__ );
+            #Tools::debug( 'Missing customer id', __METHOD__ );
             throw new GothiaApiCallException( 'Missing customer id' );
         }
 
@@ -276,7 +276,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         {
             $gothiaAccount = $customer->getGothiaAccounts();
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
-            Tools::debug( 'Test Gothia', __METHOD__, array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
+            #Tools::debug( 'Test Gothia', __METHOD__, array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
         }
 
         // hf@bellcom.dk, 29-aug-2011: remove last param to Reservation, @see comment in cancelReservation function -->>
@@ -329,13 +329,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( empty($customerId) )
         {
-            Tools::debug( 'Missing customer id', __METHOD__ );
+            #Tools::debug( 'Missing customer id', __METHOD__ );
             throw new GothiaApiCallException( 'Missing customer id' );
         }
 
         if ( empty($amount) )
         {
-            Tools::debug( 'Empty amount', __METHOD__ );
+            #Tools::debug( 'Empty amount', __METHOD__ );
             throw new GothiaApiCallException( 'Empty amount' );
         }
 

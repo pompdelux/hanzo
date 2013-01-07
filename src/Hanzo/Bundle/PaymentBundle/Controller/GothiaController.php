@@ -200,7 +200,7 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
-            Tools::debug( $g->getMessage(), __METHOD__);
+            #Tools::debug( $g->getMessage(), __METHOD__);
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
@@ -225,7 +225,7 @@ class GothiaController extends CoreController
         {
             if ( $response->data['PurchaseStop'] === 'true')
             {
-                Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
+                #Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
 
                 return $this->json_response(array(
                     'status' => FALSE,
@@ -233,7 +233,7 @@ class GothiaController extends CoreController
                 ));
             }
 
-            Tools::debug( 'Check customer error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+            #Tools::debug( 'Check customer error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
             return $this->json_response(array(
                 'status' => FALSE,
@@ -278,14 +278,6 @@ class GothiaController extends CoreController
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
                 $paytype = strtolower( $oldOrder->getBillingMethod() );
-                /*$attributes = $oldOrder->getOrdersAttributess()->toArray();
-                $paytype = false;
-
-                foreach ($attributes as $attribute) {
-                    if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) {
-                        $paytype = $attribute['CValue'];
-                    }
-                }*/
 
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
@@ -298,7 +290,7 @@ class GothiaController extends CoreController
                     }
                     catch( GothiaApiCallException $g )
                     {
-                        Tools::debug( $g->getMessage(), __METHOD__);
+                        #Tools::debug( $g->getMessage(), __METHOD__);
 
                         return $this->json_response(array(
                             'status' => FALSE,
@@ -308,7 +300,7 @@ class GothiaController extends CoreController
 
                     if ( $response->isError() )
                     {
-                        Tools::debug( 'Cancel reservation error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+                        #Tools::debug( 'Cancel reservation error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
                         return $this->json_response(array(
                             'status' => FALSE,
@@ -325,7 +317,7 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
-            Tools::debug( $g->getMessage(), __METHOD__);
+            #Tools::debug( $g->getMessage(), __METHOD__);
 
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
@@ -336,7 +328,7 @@ class GothiaController extends CoreController
 
         if ( $response->isError() )
         {
-            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+            #Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
@@ -359,7 +351,7 @@ class GothiaController extends CoreController
         }
         catch (Exception $e)
         {
-            Tools::debug( $e->getMessage(), __METHOD__);
+            #Tools::debug( $e->getMessage(), __METHOD__);
             $api->updateOrderFailed( $request, $order );
 
             return $this->json_response(array(
