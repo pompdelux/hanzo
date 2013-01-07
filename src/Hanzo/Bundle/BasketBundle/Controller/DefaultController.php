@@ -323,7 +323,7 @@ class DefaultController extends CoreController
             ;
 
             if (!$products2category) {
-                Tools::log($locale.' -> '.$line['products_name']);
+                //Tools::log($locale.' -> '.$line['products_name']);
                 continue;
             }
 
