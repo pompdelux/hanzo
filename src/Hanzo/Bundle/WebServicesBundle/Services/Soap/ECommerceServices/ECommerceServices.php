@@ -881,13 +881,10 @@ class ECommerceServices extends SoapService
         // .....</ze code>.....
         // ....................
 
-        $timer_data = $this->getTimerPool(true);
-        if ($timer_data) {
-            Tools::log('Time spend on order: #'.$order->getId()."\n".$timer_data);
-        }
 
         if (count($errors)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
+            $this->logTimer('Time spend on order: #'.$order->getId());
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
         }
 
@@ -896,6 +893,8 @@ class ECommerceServices extends SoapService
             'orderStatus' => 4,
             'sendMail' => $this->sendStatusMail,
         ));
+
+        $this->logTimer('Time spend on order: #'.$order->getId());
 
         return self::responseStatus('Ok', 'SalesOrderCaptureOrRefundResult');
     }
@@ -943,6 +942,7 @@ class ECommerceServices extends SoapService
         );
 
         if ($data->sendMail) {
+            $this->getLapTime();
             try {
                 $name = trim($order->getFirstName() . ' ' . $order->getLastName());
                 $mailer = Hanzo::getInstance()->container->get('mail_manager');
@@ -954,6 +954,7 @@ class ECommerceServices extends SoapService
             } catch (Exception $e) {
                 Tools::log($e->getMessage());
             }
+            $this->addTimestamp('time spend sending email');
         }
 
         $order->setState($status_map[$data->orderStatus]);

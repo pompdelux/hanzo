@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
 class SoapService
 {
@@ -92,5 +93,12 @@ class SoapService
         }
 
         return $this->timer_pool;
+    }
+
+    protected function logTimer($message = '', $threshold = 2)
+    {
+        if ((microtime(true) - $this->timer_start) > $threshold) {
+            Tools::log($message."n".$this->getTimerPool(true));
+        }
     }
 }
