@@ -40,7 +40,6 @@
 	top: 50%;
 	margin: -16px 0 0 -16px;
 	background: url(/fx/images/loading.gif) no-repeat;
-	opacity: 0.4;
 	z-index: 310;
 }
 

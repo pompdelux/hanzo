@@ -36,7 +36,7 @@
                         class: 'full-image-box'
                     }).css({
                         'height': $(window).outerHeight()
-                    }).append('<div class="loader"></div><a href="#" class="close"></div><a href="#" class="prev"></a><a href="#" class="next"></a>')
+                    }).append('<div class="loader"></div><a href="#" class="close"></div><a href="#" class="prev" style="display:none;"></a><a href="#" class="next" style="display:none;"></a>')
                     .append($image)
                     .hide()
                 ;
@@ -52,7 +52,6 @@
             }else{
                 $wrapper = $('div#'+settings.id);
             }
-            _renderButtons();
 
             $wrapper.mousemove(function(e){
                 var $this = $(this),
@@ -89,6 +88,7 @@
             $wrapper.appendTo($('body')).fadeIn(100);
 
             _next(0); // Set the initial picture in the box.
+            _renderButtons();
         },
         next : function( listIndex ){
             _next( listIndex );
