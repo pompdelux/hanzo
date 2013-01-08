@@ -63,7 +63,6 @@ class DefaultController extends CoreController
             $product_images = $product->getProductsImagess();
             foreach ($product_images as $image) {
                 $path_params = explode('_', explode('.', $image->getImage())[0]);
-
                 $images[$image->getId()] = array(
                     'id' => $image->getId(),
                     'name' => $image->getImage(),

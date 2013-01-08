@@ -6,9 +6,9 @@
 
     pub.initZoom = function() {
       
-      $('.productimage-large a').on('click', function(e){
+      $('.productimage-large a, a.picture-zoom').on('click', function(e){
         e.preventDefault();
-        $(this).find('img').fullImageBox();
+        $('.productimage-large a').find('img').fullImageBox();
       });
     };
 
