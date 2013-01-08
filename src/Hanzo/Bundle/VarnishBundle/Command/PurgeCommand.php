@@ -30,7 +30,7 @@ class PurgeCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $this->getContainer()->get('varnish.controle')->banUrl('/');
+            $this->getContainer()->get('varnish.controle')->banUrl('^/*');
             $output->writeln('<info>Varnish PURGE send.</info>');
         } catch (\Exception $e) {
             $output->writeln('<error>Could not PURGE Varnish, error was: </error><info>'.$e->getMessage().'</info>');
