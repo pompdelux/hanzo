@@ -1020,14 +1020,15 @@ form.buy .submit-button {
 /* line 13, ../sass/_product-list.scss */
 .product-list .block a .title {
   display: block;
+  font-weight: bold;
 }
-/* line 16, ../sass/_product-list.scss */
+/* line 17, ../sass/_product-list.scss */
 .product-list .block a .prices {
   display: block;
   color: #444444;
   margin-top: 6px;
 }
-/* line 21, ../sass/_product-list.scss */
+/* line 22, ../sass/_product-list.scss */
 .product-list .block a .new-price {
   position: absolute;
   bottom: 0;

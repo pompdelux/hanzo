@@ -5,7 +5,11 @@
     var pub = {};
 
     pub.initZoom = function() {
-      var e = $('.productimage-large a');
+      
+      $('.productimage-large a').on('click', function(e){
+        e.preventDefault();
+        $(this).find('img').fullImageBox();
+      });
     };
 
     pub.initColors = function() {

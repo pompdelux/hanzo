@@ -9,6 +9,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\CmsPeer;
+use Hanzo\Model\CmsQuery;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\CategoriesI18nQuery;
@@ -30,14 +31,17 @@ class ByColourController extends CoreController
         $route = $container->get('request')->get('_route');
         
         $router = $container->get('router');
-        $page = CmsPeer::getByPK($id, $locale);
 
-        $cache_key = array('bycolour', $id, $locale);
-        $data = null;//s$this->getCache($cache_key);
+        $cache_id = explode('_', $this->get('request')->get('_route'));
+        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1]);
 
-        if (!$data) {
+        // html/normal request
+        $cache_id[] = 'html';
+        $html = $this->getCache($cache_id);
+
+        if (!$html) {
+            $page = CmsPeer::getByPK($id, $locale);
             $settings = json_decode($page->getSettings());
-
 
             $includes = explode(',', $settings->category_ids);
             $ignores = explode(',', $settings->ignore);
@@ -138,20 +142,16 @@ class ByColourController extends CoreController
                 }
             }
 
-            $this->setCache($cache_key, array(
-                'settings' => $settings,
-                'products' => $products,
-            ));
-        } else {
-            $settings = $data['settings'];
-            $products = $data['products'];
+            $parent_page = CmsQuery::create()->filterById($page->getParentId())->findOne();
+
+            $this->get('twig')->addGlobal('page_type', 'bycolour-'.$page->getTitle());
+            $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$page->getTitle());
+            $this->get('twig')->addGlobal('show_new_price_badge', 1);
+            $this->get('twig')->addGlobal('cms_id', $parent_page->getParentId());
+            $html = $this->renderView('CategoryBundle:ByColour:view.html.twig', array('products' => $products));
+            $this->setCache($cache_id, $html, 5);
         }
 
-        return $this->render('CategoryBundle:ByColour:view.html.twig', array(
-            'products' => $products,
-            'page_type' => 'bycolour',
-            'cms_id' => $id,
-            'show_new_price_badge' => 1, //TODO: use a setting in db
-        ));
+        return $this->response($html);
     }
 }
