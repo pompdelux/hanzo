@@ -658,4 +658,25 @@
     </foreign-key>
   </table>
 
+  <table name="looks">
+    <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
+    <column name="title" type="VARCHAR" required="true" primaryString="true" />
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="title" />
+      <parameter name="default_locale" value="da_DK" />
+    </behavior>
+  </table>
+
+  <table name="products_images_to_looks">
+    <column name="products_images_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="looks_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="sort" type="INTEGER" required="false"/>
+    <foreign-key foreignTable="products_images" name="products_images_to_looks_ibfk_1" onDelete="CASCADE">
+      <reference local="products_images_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="looks" name="products_images_to_looks_ibfk_2" onDelete="CASCADE">
+      <reference local="looks_id" foreign="id"/>
+    </foreign-key>
+  </table>
+
 </database>

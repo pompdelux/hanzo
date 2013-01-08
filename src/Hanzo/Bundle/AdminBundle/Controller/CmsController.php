@@ -132,6 +132,13 @@ class CmsController extends CoreController
         foreach ($cms_threads as $cms_thread) {
             $cms_thread_choices[$cms_thread->getId()] = $cms_thread->getTitle();
         }
+
+        $parent_choices = array();
+
+        $parents = CmsQuery::create()->filterByIsActive(true)->find();
+        foreach ($parents as $parent) {
+            $parent_choices[$parent->getId()] = '('.$parent->getId().') '.$parent->getTitle();
+        }
         $node = new Cms();
         $form = $this->createFormBuilder($node)
             ->add('type', 'choice', array(
@@ -146,6 +153,7 @@ class CmsController extends CoreController
                         'advanced_search'  => 'cms.edit.type.advanced_search',
                         'mannequin'  => 'cms.edit.type.mannequin',
                         'bycolour'  => 'cms.edit.type.bycolour',
+                        'look'  => 'cms.edit.type.look',
                         'heading'  => 'cms.edit.type.heading'
                     ),
                     'required'  => TRUE,
@@ -155,6 +163,12 @@ class CmsController extends CoreController
                     'label' => 'cms.edit.label.cms_thread',
                     'choices' => $cms_thread_choices,
                     'required' => TRUE,
+                    'translation_domain' => 'admin'
+                ))
+            ->add('parent_id', 'choice', array(
+                    'label' => 'cms.edit.label.parent_id',
+                    'choices' => $parent_choices,
+                    'required' => false,
                     'translation_domain' => 'admin'
                 ))
             ->getForm();
@@ -169,6 +183,11 @@ class CmsController extends CoreController
                     case 'category':
                         $node->setType('category');
                         $settings['category_id'] = 'x';
+                        // Noget med category_id
+                        break;
+                    case 'look':
+                        $node->setType('look');
+                        $settings['look_id'] = 'x';
                         // Noget med category_id
                         break;
                     case 'category_search':
@@ -203,12 +222,6 @@ class CmsController extends CoreController
                         $settings['is_frontpage'] = true;
                         break;
                 }
-                // Vi skal bruge titel på Thread til Path
-                $cms_thread = CmsThreadQuery::create()
-                    ->joinWithI18n()
-                    ->filterById($node->getCmsThreadId())
-                    ->findOne($this->getDbConnection())
-                ;
 
                 $node->setIsActive(FALSE);
                 $node->save($this->getDbConnection());
@@ -285,6 +298,20 @@ class CmsController extends CoreController
             ->filterById($node->getCmsThreadId())
             ->findOne($this->getDbConnection())
         ;
+        $parent = CmsQuery::create()
+            ->joinWithI18n($locale)
+            ->filterById($node->getParentId())
+            ->findOne($this->getDbConnection())
+        ;
+        $parent_path = $parent->getPath();
+        if(empty($parent_path) || $parent_path === '#'){
+
+            $parent = CmsQuery::create()
+                ->joinWithI18n($locale)
+                ->filterById($parent->getParentId())
+                ->findOne($this->getDbConnection())
+            ;
+        }
 
         $form = $this->createForm(new CmsType(), $node);
 
@@ -329,7 +356,7 @@ class CmsController extends CoreController
             'form'      => $form->createView(),
             'node'      => $node,
             'languages' => $languages_availible,
-            'thread_title' =>$cms_thread->getTitle(),
+            'path'      => $parent->getPath(),
             'database' => $this->getRequest()->getSession()->get('database')
         ));
 

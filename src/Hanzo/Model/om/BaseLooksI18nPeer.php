@@ -9,68 +9,59 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\ProductsImages;
-use Hanzo\Model\ProductsImagesCategoriesSortPeer;
-use Hanzo\Model\ProductsImagesPeer;
-use Hanzo\Model\ProductsImagesProductReferencesPeer;
-use Hanzo\Model\ProductsImagesToLooksPeer;
-use Hanzo\Model\ProductsPeer;
-use Hanzo\Model\map\ProductsImagesTableMap;
+use Hanzo\Model\LooksI18n;
+use Hanzo\Model\LooksI18nPeer;
+use Hanzo\Model\LooksPeer;
+use Hanzo\Model\map\LooksI18nTableMap;
 
 /**
- * Base static class for performing query and update operations on the 'products_images' table.
+ * Base static class for performing query and update operations on the 'looks_i18n' table.
  *
  *
  *
  * @package propel.generator.src.Hanzo.Model.om
  */
-abstract class BaseProductsImagesPeer
+abstract class BaseLooksI18nPeer
 {
 
     /** the default database name for this class */
     const DATABASE_NAME = 'default';
 
     /** the table name for this class */
-    const TABLE_NAME = 'products_images';
+    const TABLE_NAME = 'looks_i18n';
 
     /** the related Propel class for this table */
-    const OM_CLASS = 'Hanzo\\Model\\ProductsImages';
+    const OM_CLASS = 'Hanzo\\Model\\LooksI18n';
 
     /** the related TableMap class for this table */
-    const TM_CLASS = 'ProductsImagesTableMap';
+    const TM_CLASS = 'LooksI18nTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 5;
+    const NUM_COLUMNS = 3;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 5;
+    const NUM_HYDRATE_COLUMNS = 3;
 
     /** the column name for the id field */
-    const ID = 'products_images.id';
+    const ID = 'looks_i18n.id';
 
-    /** the column name for the products_id field */
-    const PRODUCTS_ID = 'products_images.products_id';
+    /** the column name for the locale field */
+    const LOCALE = 'looks_i18n.locale';
 
-    /** the column name for the image field */
-    const IMAGE = 'products_images.image';
-
-    /** the column name for the color field */
-    const COLOR = 'products_images.color';
-
-    /** the column name for the type field */
-    const TYPE = 'products_images.type';
+    /** the column name for the title field */
+    const TITLE = 'looks_i18n.title';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
 
     /**
-     * An identiy map to hold any loaded instances of ProductsImages objects.
+     * An identiy map to hold any loaded instances of LooksI18n objects.
      * This must be public so that other peer classes can access this when hydrating from JOIN
      * queries.
-     * @var        array ProductsImages[]
+     * @var        array LooksI18n[]
      */
     public static $instances = array();
 
@@ -79,30 +70,30 @@ abstract class BaseProductsImagesPeer
      * holds an array of fieldnames
      *
      * first dimension keys are the type constants
-     * e.g. ProductsImagesPeer::$fieldNames[ProductsImagesPeer::TYPE_PHPNAME][0] = 'Id'
+     * e.g. LooksI18nPeer::$fieldNames[LooksI18nPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'ProductsId', 'Image', 'Color', 'Type', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'productsId', 'image', 'color', 'type', ),
-        BasePeer::TYPE_COLNAME => array (ProductsImagesPeer::ID, ProductsImagesPeer::PRODUCTS_ID, ProductsImagesPeer::IMAGE, ProductsImagesPeer::COLOR, ProductsImagesPeer::TYPE, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'PRODUCTS_ID', 'IMAGE', 'COLOR', 'TYPE', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'products_id', 'image', 'color', 'type', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Locale', 'Title', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'locale', 'title', ),
+        BasePeer::TYPE_COLNAME => array (LooksI18nPeer::ID, LooksI18nPeer::LOCALE, LooksI18nPeer::TITLE, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'LOCALE', 'TITLE', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'locale', 'title', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, )
     );
 
     /**
      * holds an array of keys for quick access to the fieldnames array
      *
      * first dimension keys are the type constants
-     * e.g. ProductsImagesPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
+     * e.g. LooksI18nPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ProductsId' => 1, 'Image' => 2, 'Color' => 3, 'Type' => 4, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'productsId' => 1, 'image' => 2, 'color' => 3, 'type' => 4, ),
-        BasePeer::TYPE_COLNAME => array (ProductsImagesPeer::ID => 0, ProductsImagesPeer::PRODUCTS_ID => 1, ProductsImagesPeer::IMAGE => 2, ProductsImagesPeer::COLOR => 3, ProductsImagesPeer::TYPE => 4, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'PRODUCTS_ID' => 1, 'IMAGE' => 2, 'COLOR' => 3, 'TYPE' => 4, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'products_id' => 1, 'image' => 2, 'color' => 3, 'type' => 4, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Locale' => 1, 'Title' => 2, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, ),
+        BasePeer::TYPE_COLNAME => array (LooksI18nPeer::ID => 0, LooksI18nPeer::LOCALE => 1, LooksI18nPeer::TITLE => 2, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'LOCALE' => 1, 'TITLE' => 2, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'locale' => 1, 'title' => 2, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, )
     );
 
     /**
@@ -117,10 +108,10 @@ abstract class BaseProductsImagesPeer
      */
     public static function translateFieldName($name, $fromType, $toType)
     {
-        $toNames = ProductsImagesPeer::getFieldNames($toType);
-        $key = isset(ProductsImagesPeer::$fieldKeys[$fromType][$name]) ? ProductsImagesPeer::$fieldKeys[$fromType][$name] : null;
+        $toNames = LooksI18nPeer::getFieldNames($toType);
+        $key = isset(LooksI18nPeer::$fieldKeys[$fromType][$name]) ? LooksI18nPeer::$fieldKeys[$fromType][$name] : null;
         if ($key === null) {
-            throw new PropelException("'$name' could not be found in the field names of type '$fromType'. These are: " . print_r(ProductsImagesPeer::$fieldKeys[$fromType], true));
+            throw new PropelException("'$name' could not be found in the field names of type '$fromType'. These are: " . print_r(LooksI18nPeer::$fieldKeys[$fromType], true));
         }
 
         return $toNames[$key];
@@ -137,11 +128,11 @@ abstract class BaseProductsImagesPeer
      */
     public static function getFieldNames($type = BasePeer::TYPE_PHPNAME)
     {
-        if (!array_key_exists($type, ProductsImagesPeer::$fieldNames)) {
+        if (!array_key_exists($type, LooksI18nPeer::$fieldNames)) {
             throw new PropelException('Method getFieldNames() expects the parameter $type to be one of the class constants BasePeer::TYPE_PHPNAME, BasePeer::TYPE_STUDLYPHPNAME, BasePeer::TYPE_COLNAME, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_NUM. ' . $type . ' was given.');
         }
 
-        return ProductsImagesPeer::$fieldNames[$type];
+        return LooksI18nPeer::$fieldNames[$type];
     }
 
     /**
@@ -153,12 +144,12 @@ abstract class BaseProductsImagesPeer
      *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
      * </code>
      * @param      string $alias The alias for the current table.
-     * @param      string $column The column name for current table. (i.e. ProductsImagesPeer::COLUMN_NAME).
+     * @param      string $column The column name for current table. (i.e. LooksI18nPeer::COLUMN_NAME).
      * @return string
      */
     public static function alias($alias, $column)
     {
-        return str_replace(ProductsImagesPeer::TABLE_NAME.'.', $alias.'.', $column);
+        return str_replace(LooksI18nPeer::TABLE_NAME.'.', $alias.'.', $column);
     }
 
     /**
@@ -176,17 +167,13 @@ abstract class BaseProductsImagesPeer
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(ProductsImagesPeer::ID);
-            $criteria->addSelectColumn(ProductsImagesPeer::PRODUCTS_ID);
-            $criteria->addSelectColumn(ProductsImagesPeer::IMAGE);
-            $criteria->addSelectColumn(ProductsImagesPeer::COLOR);
-            $criteria->addSelectColumn(ProductsImagesPeer::TYPE);
+            $criteria->addSelectColumn(LooksI18nPeer::ID);
+            $criteria->addSelectColumn(LooksI18nPeer::LOCALE);
+            $criteria->addSelectColumn(LooksI18nPeer::TITLE);
         } else {
             $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.products_id');
-            $criteria->addSelectColumn($alias . '.image');
-            $criteria->addSelectColumn($alias . '.color');
-            $criteria->addSelectColumn($alias . '.type');
+            $criteria->addSelectColumn($alias . '.locale');
+            $criteria->addSelectColumn($alias . '.title');
         }
     }
 
@@ -206,21 +193,21 @@ abstract class BaseProductsImagesPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsImagesPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(LooksI18nPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsImagesPeer::addSelectColumns($criteria);
+            LooksI18nPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
-        $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME); // Set the correct dbName
+        $criteria->setDbName(LooksI18nPeer::DATABASE_NAME); // Set the correct dbName
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
         // BasePeer returns a PDOStatement
         $stmt = BasePeer::doCount($criteria, $con);
@@ -239,7 +226,7 @@ abstract class BaseProductsImagesPeer
      *
      * @param      Criteria $criteria object used to create the SELECT statement.
      * @param      PropelPDO $con
-     * @return                 ProductsImages
+     * @return                 LooksI18n
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -247,7 +234,7 @@ abstract class BaseProductsImagesPeer
     {
         $critcopy = clone $criteria;
         $critcopy->setLimit(1);
-        $objects = ProductsImagesPeer::doSelect($critcopy, $con);
+        $objects = LooksI18nPeer::doSelect($critcopy, $con);
         if ($objects) {
             return $objects[0];
         }
@@ -265,7 +252,7 @@ abstract class BaseProductsImagesPeer
      */
     public static function doSelect(Criteria $criteria, PropelPDO $con = null)
     {
-        return ProductsImagesPeer::populateObjects(ProductsImagesPeer::doSelectStmt($criteria, $con));
+        return LooksI18nPeer::populateObjects(LooksI18nPeer::doSelectStmt($criteria, $con));
     }
     /**
      * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -283,16 +270,16 @@ abstract class BaseProductsImagesPeer
     public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
         if (!$criteria->hasSelectClause()) {
             $criteria = clone $criteria;
-            ProductsImagesPeer::addSelectColumns($criteria);
+            LooksI18nPeer::addSelectColumns($criteria);
         }
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+        $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
 
         // BasePeer returns a PDOStatement
         return BasePeer::doSelect($criteria, $con);
@@ -306,16 +293,16 @@ abstract class BaseProductsImagesPeer
      * to the cache in order to ensure that the same objects are always returned by doSelect*()
      * and retrieveByPK*() calls.
      *
-     * @param      ProductsImages $obj A ProductsImages object.
+     * @param      LooksI18n $obj A LooksI18n object.
      * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
      */
     public static function addInstanceToPool($obj, $key = null)
     {
         if (Propel::isInstancePoolingEnabled()) {
             if ($key === null) {
-                $key = (string) $obj->getId();
+                $key = serialize(array((string) $obj->getId(), (string) $obj->getLocale()));
             } // if key === null
-            ProductsImagesPeer::$instances[$key] = $obj;
+            LooksI18nPeer::$instances[$key] = $obj;
         }
     }
 
@@ -327,7 +314,7 @@ abstract class BaseProductsImagesPeer
      * methods in your stub classes -- you may need to explicitly remove objects
      * from the cache in order to prevent returning objects that no longer exist.
      *
-     * @param      mixed $value A ProductsImages object or a primary key value.
+     * @param      mixed $value A LooksI18n object or a primary key value.
      *
      * @return void
      * @throws PropelException - if the value is invalid.
@@ -335,17 +322,17 @@ abstract class BaseProductsImagesPeer
     public static function removeInstanceFromPool($value)
     {
         if (Propel::isInstancePoolingEnabled() && $value !== null) {
-            if (is_object($value) && $value instanceof ProductsImages) {
-                $key = (string) $value->getId();
-            } elseif (is_scalar($value)) {
+            if (is_object($value) && $value instanceof LooksI18n) {
+                $key = serialize(array((string) $value->getId(), (string) $value->getLocale()));
+            } elseif (is_array($value) && count($value) === 2) {
                 // assume we've been passed a primary key
-                $key = (string) $value;
+                $key = serialize(array((string) $value[0], (string) $value[1]));
             } else {
-                $e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or ProductsImages object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+                $e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or LooksI18n object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
                 throw $e;
             }
 
-            unset(ProductsImagesPeer::$instances[$key]);
+            unset(LooksI18nPeer::$instances[$key]);
         }
     } // removeInstanceFromPool()
 
@@ -356,14 +343,14 @@ abstract class BaseProductsImagesPeer
      * a multi-column primary key, a serialize()d version of the primary key will be returned.
      *
      * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-     * @return   ProductsImages Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+     * @return   LooksI18n Found object or null if 1) no instance exists for specified key or 2) instance pooling has been disabled.
      * @see        getPrimaryKeyHash()
      */
     public static function getInstanceFromPool($key)
     {
         if (Propel::isInstancePoolingEnabled()) {
-            if (isset(ProductsImagesPeer::$instances[$key])) {
-                return ProductsImagesPeer::$instances[$key];
+            if (isset(LooksI18nPeer::$instances[$key])) {
+                return LooksI18nPeer::$instances[$key];
             }
         }
 
@@ -377,24 +364,15 @@ abstract class BaseProductsImagesPeer
      */
     public static function clearInstancePool()
     {
-        ProductsImagesPeer::$instances = array();
+        LooksI18nPeer::$instances = array();
     }
 
     /**
-     * Method to invalidate the instance pool of all tables related to products_images
+     * Method to invalidate the instance pool of all tables related to looks_i18n
      * by a foreign key with ON DELETE CASCADE
      */
     public static function clearRelatedInstancePool()
     {
-        // Invalidate objects in ProductsImagesCategoriesSortPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsImagesCategoriesSortPeer::clearInstancePool();
-        // Invalidate objects in ProductsImagesProductReferencesPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsImagesProductReferencesPeer::clearInstancePool();
-        // Invalidate objects in ProductsImagesToLooksPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsImagesToLooksPeer::clearInstancePool();
     }
 
     /**
@@ -410,11 +388,11 @@ abstract class BaseProductsImagesPeer
     public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
     {
         // If the PK cannot be derived from the row, return null.
-        if ($row[$startcol] === null) {
+        if ($row[$startcol] === null && $row[$startcol + 1] === null) {
             return null;
         }
 
-        return (string) $row[$startcol];
+        return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1]));
     }
 
     /**
@@ -429,7 +407,7 @@ abstract class BaseProductsImagesPeer
     public static function getPrimaryKeyFromRow($row, $startcol = 0)
     {
 
-        return (int) $row[$startcol];
+        return array((int) $row[$startcol], (string) $row[$startcol + 1]);
     }
 
     /**
@@ -444,11 +422,11 @@ abstract class BaseProductsImagesPeer
         $results = array();
 
         // set the class once to avoid overhead in the loop
-        $cls = ProductsImagesPeer::getOMClass();
+        $cls = LooksI18nPeer::getOMClass();
         // populate the object(s)
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key = ProductsImagesPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj = ProductsImagesPeer::getInstanceFromPool($key))) {
+            $key = LooksI18nPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj = LooksI18nPeer::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
@@ -457,7 +435,7 @@ abstract class BaseProductsImagesPeer
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                ProductsImagesPeer::addInstanceToPool($obj, $key);
+                LooksI18nPeer::addInstanceToPool($obj, $key);
             } // if key exists
         }
         $stmt->closeCursor();
@@ -471,21 +449,21 @@ abstract class BaseProductsImagesPeer
      * @param      int $startcol The 0-based offset for reading from the resultset row.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
-     * @return array (ProductsImages object, last column rank)
+     * @return array (LooksI18n object, last column rank)
      */
     public static function populateObject($row, $startcol = 0)
     {
-        $key = ProductsImagesPeer::getPrimaryKeyHashFromRow($row, $startcol);
-        if (null !== ($obj = ProductsImagesPeer::getInstanceFromPool($key))) {
+        $key = LooksI18nPeer::getPrimaryKeyHashFromRow($row, $startcol);
+        if (null !== ($obj = LooksI18nPeer::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $startcol, true); // rehydrate
-            $col = $startcol + ProductsImagesPeer::NUM_HYDRATE_COLUMNS;
+            $col = $startcol + LooksI18nPeer::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = ProductsImagesPeer::OM_CLASS;
+            $cls = LooksI18nPeer::OM_CLASS;
             $obj = new $cls();
             $col = $obj->hydrate($row, $startcol);
-            ProductsImagesPeer::addInstanceToPool($obj, $key);
+            LooksI18nPeer::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -493,7 +471,7 @@ abstract class BaseProductsImagesPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related Products table
+     * Returns the number of rows matching criteria, joining the related Looks table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -501,7 +479,7 @@ abstract class BaseProductsImagesPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinProducts(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinLooks(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -509,26 +487,26 @@ abstract class BaseProductsImagesPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsImagesPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(LooksI18nPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsImagesPeer::addSelectColumns($criteria);
+            LooksI18nPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+        $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(ProductsImagesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
+        $criteria->addJoin(LooksI18nPeer::ID, LooksPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -544,61 +522,61 @@ abstract class BaseProductsImagesPeer
 
 
     /**
-     * Selects a collection of ProductsImages objects pre-filled with their Products objects.
+     * Selects a collection of LooksI18n objects pre-filled with their Looks objects.
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of ProductsImages objects.
+     * @return array           Array of LooksI18n objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinProducts(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinLooks(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
         // Set the correct dbName if it has not been overridden
         if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+            $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
         }
 
-        ProductsImagesPeer::addSelectColumns($criteria);
-        $startcol = ProductsImagesPeer::NUM_HYDRATE_COLUMNS;
-        ProductsPeer::addSelectColumns($criteria);
+        LooksI18nPeer::addSelectColumns($criteria);
+        $startcol = LooksI18nPeer::NUM_HYDRATE_COLUMNS;
+        LooksPeer::addSelectColumns($criteria);
 
-        $criteria->addJoin(ProductsImagesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
+        $criteria->addJoin(LooksI18nPeer::ID, LooksPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsImagesPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsImagesPeer::getInstanceFromPool($key1))) {
+            $key1 = LooksI18nPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = LooksI18nPeer::getInstanceFromPool($key1))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj1->hydrate($row, 0, true); // rehydrate
             } else {
 
-                $cls = ProductsImagesPeer::getOMClass();
+                $cls = LooksI18nPeer::getOMClass();
 
                 $obj1 = new $cls();
                 $obj1->hydrate($row);
-                ProductsImagesPeer::addInstanceToPool($obj1, $key1);
+                LooksI18nPeer::addInstanceToPool($obj1, $key1);
             } // if $obj1 already loaded
 
-            $key2 = ProductsPeer::getPrimaryKeyHashFromRow($row, $startcol);
+            $key2 = LooksPeer::getPrimaryKeyHashFromRow($row, $startcol);
             if ($key2 !== null) {
-                $obj2 = ProductsPeer::getInstanceFromPool($key2);
+                $obj2 = LooksPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
-                    $cls = ProductsPeer::getOMClass();
+                    $cls = LooksPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol);
-                    ProductsPeer::addInstanceToPool($obj2, $key2);
+                    LooksPeer::addInstanceToPool($obj2, $key2);
                 } // if obj2 already loaded
 
-                // Add the $obj1 (ProductsImages) to $obj2 (Products)
-                $obj2->addProductsImages($obj1);
+                // Add the $obj1 (LooksI18n) to $obj2 (Looks)
+                $obj2->addLooksI18n($obj1);
 
             } // if joined row was not null
 
@@ -627,26 +605,26 @@ abstract class BaseProductsImagesPeer
         // We need to set the primary table name, since in the case that there are no WHERE columns
         // it will be impossible for the BasePeer::createSelectSql() method to determine which
         // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(ProductsImagesPeer::TABLE_NAME);
+        $criteria->setPrimaryTableName(LooksI18nPeer::TABLE_NAME);
 
         if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
             $criteria->setDistinct();
         }
 
         if (!$criteria->hasSelectClause()) {
-            ProductsImagesPeer::addSelectColumns($criteria);
+            LooksI18nPeer::addSelectColumns($criteria);
         }
 
         $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+        $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(ProductsImagesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
+        $criteria->addJoin(LooksI18nPeer::ID, LooksPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -661,12 +639,12 @@ abstract class BaseProductsImagesPeer
     }
 
     /**
-     * Selects a collection of ProductsImages objects pre-filled with all related objects.
+     * Selects a collection of LooksI18n objects pre-filled with all related objects.
      *
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of ProductsImages objects.
+     * @return array           Array of LooksI18n objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
@@ -676,50 +654,50 @@ abstract class BaseProductsImagesPeer
 
         // Set the correct dbName if it has not been overridden
         if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+            $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
         }
 
-        ProductsImagesPeer::addSelectColumns($criteria);
-        $startcol2 = ProductsImagesPeer::NUM_HYDRATE_COLUMNS;
+        LooksI18nPeer::addSelectColumns($criteria);
+        $startcol2 = LooksI18nPeer::NUM_HYDRATE_COLUMNS;
 
-        ProductsPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + ProductsPeer::NUM_HYDRATE_COLUMNS;
+        LooksPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + LooksPeer::NUM_HYDRATE_COLUMNS;
 
-        $criteria->addJoin(ProductsImagesPeer::PRODUCTS_ID, ProductsPeer::ID, $join_behavior);
+        $criteria->addJoin(LooksI18nPeer::ID, LooksPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = ProductsImagesPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = ProductsImagesPeer::getInstanceFromPool($key1))) {
+            $key1 = LooksI18nPeer::getPrimaryKeyHashFromRow($row, 0);
+            if (null !== ($obj1 = LooksI18nPeer::getInstanceFromPool($key1))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj1->hydrate($row, 0, true); // rehydrate
             } else {
-                $cls = ProductsImagesPeer::getOMClass();
+                $cls = LooksI18nPeer::getOMClass();
 
                 $obj1 = new $cls();
                 $obj1->hydrate($row);
-                ProductsImagesPeer::addInstanceToPool($obj1, $key1);
+                LooksI18nPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
 
-            // Add objects for joined Products rows
+            // Add objects for joined Looks rows
 
-            $key2 = ProductsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+            $key2 = LooksPeer::getPrimaryKeyHashFromRow($row, $startcol2);
             if ($key2 !== null) {
-                $obj2 = ProductsPeer::getInstanceFromPool($key2);
+                $obj2 = LooksPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
-                    $cls = ProductsPeer::getOMClass();
+                    $cls = LooksPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol2);
-                    ProductsPeer::addInstanceToPool($obj2, $key2);
+                    LooksPeer::addInstanceToPool($obj2, $key2);
                 } // if obj2 loaded
 
-                // Add the $obj1 (ProductsImages) to the collection in $obj2 (Products)
-                $obj2->addProductsImages($obj1);
+                // Add the $obj1 (LooksI18n) to the collection in $obj2 (Looks)
+                $obj2->addLooksI18n($obj1);
             } // if joined row not null
 
             $results[] = $obj1;
@@ -738,7 +716,7 @@ abstract class BaseProductsImagesPeer
      */
     public static function getTableMap()
     {
-        return Propel::getDatabaseMap(ProductsImagesPeer::DATABASE_NAME)->getTable(ProductsImagesPeer::TABLE_NAME);
+        return Propel::getDatabaseMap(LooksI18nPeer::DATABASE_NAME)->getTable(LooksI18nPeer::TABLE_NAME);
     }
 
     /**
@@ -746,9 +724,9 @@ abstract class BaseProductsImagesPeer
      */
     public static function buildTableMap()
     {
-      $dbMap = Propel::getDatabaseMap(BaseProductsImagesPeer::DATABASE_NAME);
-      if (!$dbMap->hasTable(BaseProductsImagesPeer::TABLE_NAME)) {
-        $dbMap->addTableObject(new ProductsImagesTableMap());
+      $dbMap = Propel::getDatabaseMap(BaseLooksI18nPeer::DATABASE_NAME);
+      if (!$dbMap->hasTable(BaseLooksI18nPeer::TABLE_NAME)) {
+        $dbMap->addTableObject(new LooksI18nTableMap());
       }
     }
 
@@ -760,13 +738,13 @@ abstract class BaseProductsImagesPeer
      */
     public static function getOMClass()
     {
-        return ProductsImagesPeer::OM_CLASS;
+        return LooksI18nPeer::OM_CLASS;
     }
 
     /**
-     * Performs an INSERT on the database, given a ProductsImages or Criteria object.
+     * Performs an INSERT on the database, given a LooksI18n or Criteria object.
      *
-     * @param      mixed $values Criteria or ProductsImages object containing data that is used to create the INSERT statement.
+     * @param      mixed $values Criteria or LooksI18n object containing data that is used to create the INSERT statement.
      * @param      PropelPDO $con the PropelPDO connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -775,18 +753,18 @@ abstract class BaseProductsImagesPeer
     public static function doInsert($values, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         if ($values instanceof Criteria) {
             $criteria = clone $values; // rename for clarity
         } else {
-            $criteria = $values->buildCriteria(); // build Criteria from ProductsImages object
+            $criteria = $values->buildCriteria(); // build Criteria from LooksI18n object
         }
 
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+        $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
 
         try {
             // use transaction because $criteria could contain info
@@ -803,9 +781,9 @@ abstract class BaseProductsImagesPeer
     }
 
     /**
-     * Performs an UPDATE on the database, given a ProductsImages or Criteria object.
+     * Performs an UPDATE on the database, given a LooksI18n or Criteria object.
      *
-     * @param      mixed $values Criteria or ProductsImages object containing data that is used to create the UPDATE statement.
+     * @param      mixed $values Criteria or LooksI18n object containing data that is used to create the UPDATE statement.
      * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
      * @return int             The number of affected rows (if supported by underlying database driver).
      * @throws PropelException Any exceptions caught during processing will be
@@ -814,35 +792,43 @@ abstract class BaseProductsImagesPeer
     public static function doUpdate($values, PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
-        $selectCriteria = new Criteria(ProductsImagesPeer::DATABASE_NAME);
+        $selectCriteria = new Criteria(LooksI18nPeer::DATABASE_NAME);
 
         if ($values instanceof Criteria) {
             $criteria = clone $values; // rename for clarity
 
-            $comparison = $criteria->getComparison(ProductsImagesPeer::ID);
-            $value = $criteria->remove(ProductsImagesPeer::ID);
+            $comparison = $criteria->getComparison(LooksI18nPeer::ID);
+            $value = $criteria->remove(LooksI18nPeer::ID);
             if ($value) {
-                $selectCriteria->add(ProductsImagesPeer::ID, $value, $comparison);
+                $selectCriteria->add(LooksI18nPeer::ID, $value, $comparison);
             } else {
-                $selectCriteria->setPrimaryTableName(ProductsImagesPeer::TABLE_NAME);
+                $selectCriteria->setPrimaryTableName(LooksI18nPeer::TABLE_NAME);
             }
 
-        } else { // $values is ProductsImages object
+            $comparison = $criteria->getComparison(LooksI18nPeer::LOCALE);
+            $value = $criteria->remove(LooksI18nPeer::LOCALE);
+            if ($value) {
+                $selectCriteria->add(LooksI18nPeer::LOCALE, $value, $comparison);
+            } else {
+                $selectCriteria->setPrimaryTableName(LooksI18nPeer::TABLE_NAME);
+            }
+
+        } else { // $values is LooksI18n object
             $criteria = $values->buildCriteria(); // gets full criteria
             $selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
         }
 
         // set the correct dbName
-        $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+        $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
 
         return BasePeer::doUpdate($selectCriteria, $criteria, $con);
     }
 
     /**
-     * Deletes all rows from the products_images table.
+     * Deletes all rows from the looks_i18n table.
      *
      * @param      PropelPDO $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).
@@ -851,19 +837,19 @@ abstract class BaseProductsImagesPeer
     public static function doDeleteAll(PropelPDO $con = null)
     {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
         $affectedRows = 0; // initialize var to track total num of affected rows
         try {
             // use transaction because $criteria could contain info
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
-            $affectedRows += BasePeer::doDeleteAll(ProductsImagesPeer::TABLE_NAME, $con, ProductsImagesPeer::DATABASE_NAME);
+            $affectedRows += BasePeer::doDeleteAll(LooksI18nPeer::TABLE_NAME, $con, LooksI18nPeer::DATABASE_NAME);
             // Because this db requires some delete cascade/set null emulation, we have to
             // clear the cached instance *after* the emulation has happened (since
             // instances get re-added by the select statement contained therein).
-            ProductsImagesPeer::clearInstancePool();
-            ProductsImagesPeer::clearRelatedInstancePool();
+            LooksI18nPeer::clearInstancePool();
+            LooksI18nPeer::clearRelatedInstancePool();
             $con->commit();
 
             return $affectedRows;
@@ -874,9 +860,9 @@ abstract class BaseProductsImagesPeer
     }
 
     /**
-     * Performs a DELETE on the database, given a ProductsImages or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a LooksI18n or Criteria object OR a primary key value.
      *
-     * @param      mixed $values Criteria or ProductsImages object or primary key or array of primary keys
+     * @param      mixed $values Criteria or LooksI18n object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param      PropelPDO $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -887,32 +873,40 @@ abstract class BaseProductsImagesPeer
      public static function doDelete($values, PropelPDO $con = null)
      {
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         }
 
         if ($values instanceof Criteria) {
             // invalidate the cache for all objects of this type, since we have no
             // way of knowing (without running a query) what objects should be invalidated
             // from the cache based on this Criteria.
-            ProductsImagesPeer::clearInstancePool();
+            LooksI18nPeer::clearInstancePool();
             // rename for clarity
             $criteria = clone $values;
-        } elseif ($values instanceof ProductsImages) { // it's a model object
+        } elseif ($values instanceof LooksI18n) { // it's a model object
             // invalidate the cache for this single object
-            ProductsImagesPeer::removeInstanceFromPool($values);
+            LooksI18nPeer::removeInstanceFromPool($values);
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(ProductsImagesPeer::DATABASE_NAME);
-            $criteria->add(ProductsImagesPeer::ID, (array) $values, Criteria::IN);
-            // invalidate the cache for this object(s)
-            foreach ((array) $values as $singleval) {
-                ProductsImagesPeer::removeInstanceFromPool($singleval);
+            $criteria = new Criteria(LooksI18nPeer::DATABASE_NAME);
+            // primary key is composite; we therefore, expect
+            // the primary key passed to be an array of pkey values
+            if (count($values) == count($values, COUNT_RECURSIVE)) {
+                // array is not multi-dimensional
+                $values = array($values);
+            }
+            foreach ($values as $value) {
+                $criterion = $criteria->getNewCriterion(LooksI18nPeer::ID, $value[0]);
+                $criterion->addAnd($criteria->getNewCriterion(LooksI18nPeer::LOCALE, $value[1]));
+                $criteria->addOr($criterion);
+                // we can invalidate the cache for this single PK
+                LooksI18nPeer::removeInstanceFromPool($value);
             }
         }
 
         // Set the correct dbName
-        $criteria->setDbName(ProductsImagesPeer::DATABASE_NAME);
+        $criteria->setDbName(LooksI18nPeer::DATABASE_NAME);
 
         $affectedRows = 0; // initialize var to track total num of affected rows
 
@@ -922,7 +916,7 @@ abstract class BaseProductsImagesPeer
             $con->beginTransaction();
 
             $affectedRows += BasePeer::doDelete($criteria, $con);
-            ProductsImagesPeer::clearRelatedInstancePool();
+            LooksI18nPeer::clearRelatedInstancePool();
             $con->commit();
 
             return $affectedRows;
@@ -933,13 +927,13 @@ abstract class BaseProductsImagesPeer
     }
 
     /**
-     * Validates all modified columns of given ProductsImages object.
+     * Validates all modified columns of given LooksI18n object.
      * If parameter $columns is either a single column name or an array of column names
      * than only those columns are validated.
      *
      * NOTICE: This does not apply to primary or foreign keys for now.
      *
-     * @param      ProductsImages $obj The object to validate.
+     * @param      LooksI18n $obj The object to validate.
      * @param      mixed $cols Column name or array of column names.
      *
      * @return mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -949,8 +943,8 @@ abstract class BaseProductsImagesPeer
         $columns = array();
 
         if ($cols) {
-            $dbMap = Propel::getDatabaseMap(ProductsImagesPeer::DATABASE_NAME);
-            $tableMap = $dbMap->getTable(ProductsImagesPeer::TABLE_NAME);
+            $dbMap = Propel::getDatabaseMap(LooksI18nPeer::DATABASE_NAME);
+            $tableMap = $dbMap->getTable(LooksI18nPeer::TABLE_NAME);
 
             if (! is_array($cols)) {
                 $cols = array($cols);
@@ -966,65 +960,35 @@ abstract class BaseProductsImagesPeer
 
         }
 
-        return BasePeer::doValidate(ProductsImagesPeer::DATABASE_NAME, ProductsImagesPeer::TABLE_NAME, $columns);
+        return BasePeer::doValidate(LooksI18nPeer::DATABASE_NAME, LooksI18nPeer::TABLE_NAME, $columns);
     }
 
     /**
-     * Retrieve a single object by pkey.
-     *
-     * @param      int $pk the primary key.
-     * @param      PropelPDO $con the connection to use
-     * @return ProductsImages
+     * Retrieve object using using composite pkey values.
+     * @param   int $id
+     * @param   string $locale
+     * @param      PropelPDO $con
+     * @return   LooksI18n
      */
-    public static function retrieveByPK($pk, PropelPDO $con = null)
-    {
-
-        if (null !== ($obj = ProductsImagesPeer::getInstanceFromPool((string) $pk))) {
-            return $obj;
+    public static function retrieveByPK($id, $locale, PropelPDO $con = null) {
+        $_instancePoolKey = serialize(array((string) $id, (string) $locale));
+         if (null !== ($obj = LooksI18nPeer::getInstanceFromPool($_instancePoolKey))) {
+             return $obj;
         }
 
         if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+            $con = Propel::getConnection(LooksI18nPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
+        $criteria = new Criteria(LooksI18nPeer::DATABASE_NAME);
+        $criteria->add(LooksI18nPeer::ID, $id);
+        $criteria->add(LooksI18nPeer::LOCALE, $locale);
+        $v = LooksI18nPeer::doSelect($criteria, $con);
 
-        $criteria = new Criteria(ProductsImagesPeer::DATABASE_NAME);
-        $criteria->add(ProductsImagesPeer::ID, $pk);
-
-        $v = ProductsImagesPeer::doSelect($criteria, $con);
-
-        return !empty($v) > 0 ? $v[0] : null;
+        return !empty($v) ? $v[0] : null;
     }
-
-    /**
-     * Retrieve multiple objects by pkey.
-     *
-     * @param      array $pks List of primary keys
-     * @param      PropelPDO $con the connection to use
-     * @return ProductsImages[]
-     * @throws PropelException Any exceptions caught during processing will be
-     *		 rethrown wrapped into a PropelException.
-     */
-    public static function retrieveByPKs($pks, PropelPDO $con = null)
-    {
-        if ($con === null) {
-            $con = Propel::getConnection(ProductsImagesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-        }
-
-        $objs = null;
-        if (empty($pks)) {
-            $objs = array();
-        } else {
-            $criteria = new Criteria(ProductsImagesPeer::DATABASE_NAME);
-            $criteria->add(ProductsImagesPeer::ID, $pks, Criteria::IN);
-            $objs = ProductsImagesPeer::doSelect($criteria, $con);
-        }
-
-        return $objs;
-    }
-
-} // BaseProductsImagesPeer
+} // BaseLooksI18nPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseProductsImagesPeer::buildTableMap();
+BaseLooksI18nPeer::buildTableMap();
 

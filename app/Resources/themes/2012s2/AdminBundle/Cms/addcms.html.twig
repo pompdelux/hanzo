@@ -22,6 +22,7 @@
   <div id="cms-edit">
     {{ form_row(form.type) }}
     {{ form_row(form.cms_thread_id) }}
+    {{ form_row(form.parent_id) }}
     {{ form_row(form._token) }}
   </div>
   <input class="button right" type="submit" value="{{ 'add.cms'|trans({}, 'admin') }}">

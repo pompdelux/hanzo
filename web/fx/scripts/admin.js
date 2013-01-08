@@ -144,7 +144,7 @@
 
       // CMS edit page, title text field slug creation
       $('#cms_title').blur(function(e){
-        if($('#cms_path').val().length === 0){
+        if($('#cms_path').val().length === 0 && $('#cms_title').val().length !== 0){
           var slug = '';
           var chars = {
               'æ' : 'ae', 'Æ' : 'AE',
@@ -172,7 +172,7 @@
           slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
           slug = slug.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
           slug = slug.replace(/[-\s]+/g, '-');   // convert spaces
-          slug = thread_title + '/' + slug.replace(/-$/, '');         // remove trailing separator
+          slug = path + '/' + slug.replace(/-$/, '');         // remove trailing separator
           slug = slug.toLowerCase();
           $('#cms_path').val(slug);
         }

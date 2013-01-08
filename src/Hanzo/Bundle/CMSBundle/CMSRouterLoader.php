@@ -130,6 +130,52 @@ class CMSRouterLoader implements LoaderInterface
 
 
                     break;
+                
+                case 'look':
+
+                    //test ... we should never enter this if tho...
+                    if (!$settings instanceof \stdClass || !isset($settings->look_id)) {
+                        Tools::log($page->toArray());
+                        continue;
+                    }
+
+                    $look_key = '_' . $locale_lower . '_' . $settings->look_id;
+                    $look_path = 'look_' . $id . '_' . $locale_lower;
+                    $product_path = 'product_' . $id . '_' . $locale_lower ;
+
+                    $categories[$look_key] = $product_path;
+
+                    // look route
+                    $route = new Route("/{$path}/{show}/{pager}", array(
+                        '_controller' => 'CategoryBundle:ByLook:view',
+                        '_format' => 'html',
+                        'cms_id' => $id,
+                        'look_id' => $settings->look_id,
+                        'pager' => 1,
+                        'ip_restricted' => true,
+                    ), array(
+                        'pager' => '\d+',
+                        '_format' => 'html|json',
+                    ));
+                    $routes->add($look_path, $route);
+
+                    // product route
+                    $route = new Route("/{$path}/{product_id}/{title}", array(
+                        '_controller' => 'ProductBundle:Default:view',
+                        '_format' => 'html',
+                        'product_id' => 0,
+                        'cms_id' => $id,
+                        'look_id' => $settings->look_id,
+                        'title' => '',
+                        'ip_restricted' => true,
+                    ), array(
+                        'product_id' => '\d+',
+                        '_format' => 'html|json',
+                    ));
+                    $routes->add($product_path, $route);
+
+
+                    break;
 
                 case 'page':
                     $route = new Route("/".$path, array(
