@@ -26,5 +26,18 @@
 				text-indent: -999px;
 			}
 		}
+		&.look{
+			.buy-set{
+				display: none;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			a:hover{
+				.buy-set{
+					display: inline-block;
+				}
+			}
+		}
 	}
 }

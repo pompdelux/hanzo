@@ -18,11 +18,12 @@
       {% if loop.index % 3 == 1 %}
         <div class="grid_6 alpha omega">
       {% endif %}
-          <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
+          <div class="look block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
             <a href="{{ product.url }}" title="{{ "more.product.info"|trans() }}" style="height:410px;">
               {{ product_image_tag(product.image, '234x410', { 
                 'alt' : '',
               }) }}
+              <div class="buy-set"></div>
             </a>
           </div>
       {% if loop.index is divisibleby(3) %}
