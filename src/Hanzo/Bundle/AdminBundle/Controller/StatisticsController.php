@@ -197,6 +197,10 @@ class StatisticsController extends CoreController
             $stmt = $con->prepare($sql);
             $stmt->execute();
 
+            if ($db_name == 'default') {
+                $db_name = 'pdldbdk1';
+            }
+
             $data[$index] = [
                 'element' => $db_name,
                 'xkey' => 'y',

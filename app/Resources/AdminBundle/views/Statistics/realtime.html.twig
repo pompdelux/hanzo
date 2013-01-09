@@ -3,39 +3,54 @@
 {% block content %}
 
 <h1>Realtime statistik</h1>
-<p>Ordrestatistik for de sidste 24 timer, opdateres automatisk hver 5. minut.</p>
+<p>Ordrestatistik for de sidste 24 timer, opdateres automatisk hver 3. minut.</p>
 <p>Lad endelig være med at opdatere siden manuelt!</p>
 
+<div>
 {% for record in data %}
-  <h3>{{ record.element }}</h3>
-  <div class="chart" id="{{ record.element }}"></div>
+  <div class="chart-item chart-{{ record.element }}">
+    <h3>{{ record.element }} <span>sidst opdateret: <b>{{ "now"|date("H:i:s") }}<b></span></h3>
+    <div class="chart" id="{{ record.element }}"></div>
+  </div>
 {% else %}
   <div>ingen stats data klar</div>
 {% endfor %}
+</div>
 
 {% endblock %}
 
 {% block javascript %}
 <link rel="stylesheet" type="text/css" href="{{ cdn }}fx/scripts/morris.js/morris.css">
+<style type="text/css">
+.chart-item h3 {
+  background-color: #fff;
+  padding: 5px;
+  text-transform: uppercase;
+}
+.chart-item span {
+  font-weight: normal;
+  font-size: 13px;
+  text-transform: none;
+}
+</style>
 <script src="{{ cdn }}fx/scripts/raphael-min.js"></script>
 <script src="{{ cdn }}fx/scripts/morris.js/morris.min.js"></script>
-<script>$(function () {
+<script>
+(function ($, undefined) {
+  {% for record in data %}
+  var _{{ record.element }} = Morris.Line({{ record.data|raw }});
+  {% endfor %}
 
-{% for record in data %}
-var _{{ record.element }} = Morris.Line({{ record.data|raw }});
-{% endfor %}
-
-if ($('div.chart').length) {
   window.setInterval(function() {
     $.get(base_url+'statistics/realtime', function(response) {
       $.each(response, function(index, element) {
         var e = eval('_'+element.element);
         e.setData(element.data);
+        var d = new Date();
+        $('.chart-'+element.element+' h3 b').text(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds());
       });
-
     }, 'json');
-  }, 300000);
-}
-
-});</script>
+  }, 180000);
+})(jQuery);
+</script>
 {% endblock javascript %}
