@@ -431,18 +431,18 @@ class Tools
      */
     public static function setCookie($name, $value, $ttl = 0, $http_only = true)
     {
-        static $cookie_path;
+        static $path;
 
-        if (empty($cookie_path)) {
-            $cookie_path = $_SERVER['SCRIPT_NAME'];
-            // these need to go away..!
-            if ('/app.php' == $cookie_path || '/app_test.php' == $cookie_path) {
-                $cookie_path = '';
+        if (empty($path)) {
+            $path = $_SERVER['SCRIPT_NAME'];
+            // dev needs the "script name" to be part of the path but prod and test does not
+            if ('dev_' !== substr(self::getHanzoInstance()->container->get('kernel')->getEnvironment(), 0, 4)) {
+                $path = '';
             }
-            $cookie_path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
+            $path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
         }
 
-        return setcookie($name, $value, $ttl, $cookie_path, $_SERVER['HTTP_HOST'], false, $http_only);
+        return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $http_only);
     }
 
 

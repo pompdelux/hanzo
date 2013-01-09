@@ -1,0 +1,37 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+
+{% for record in data %}
+  <h3>{{ record.element }}</h3>
+  <div class="chart" id="{{ record.element }}"></div>
+{% else %}
+  <div>ingen stats data klar</div>
+{% endfor %}
+
+{% endblock %}
+
+{% block javascript %}
+<link rel="stylesheet" type="text/css" href="{{ cdn }}fx/scripts/morris.js/morris.css">
+<script src="{{ cdn }}fx/scripts/raphael-min.js"></script>
+<script src="{{ cdn }}fx/scripts/morris.js/morris.min.js"></script>
+<script>$(function () {
+
+{% for record in data %}
+var _{{ record.element }} = Morris.Line({{ record.data|raw }});
+{% endfor %}
+
+if ($('div.chart').length) {
+  window.setInterval(function() {
+    $.get(base_url+'statistics/realtime', function(response) {
+      $.each(response, function(index, element) {
+        var e = eval('_'+element.element);
+        e.setData(element.data);
+      });
+
+    }, 'json');
+  }, 300000);
+}
+
+});</script>
+{% endblock javascript %}

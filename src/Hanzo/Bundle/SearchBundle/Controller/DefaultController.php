@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\SearchBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -17,7 +18,7 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 
 class DefaultController extends CoreController
 {
-    public function categoryAction($id)
+    public function categoryAction(Request $request, $id)
     {
         $hanzo = Hanzo::getInstance();
         $locale = $hanzo->get('core.locale');
@@ -64,8 +65,8 @@ class DefaultController extends CoreController
         if ('POST' === $this->getRequest()->getMethod()) {
             $size = $this->getRequest()->get('size');
 
-            if (empty($sizes[$size])) {
-                $sizes[$size] = $sizes['146-152'];
+            if (empty($size) || empty($sizes[$size])) {
+                return $this->redirect($request->headers->get('referer'));
             }
 
             $product_ids  = array();

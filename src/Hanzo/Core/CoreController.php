@@ -171,9 +171,9 @@ class CoreController extends Controller
      */
     public function getDbConnection()
     {
-        if($this->getRequest()->getSession()->get('database')){
+        if ($this->getRequest()->getSession()->get('database')) {
             return Propel::getConnection( $this->getRequest()->getSession()->get('database') , Propel::CONNECTION_WRITE );
-        }else{
+        } else {
             return Propel::getConnection();
         }
     }

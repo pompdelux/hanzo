@@ -323,7 +323,7 @@ class DefaultController extends CoreController
             ;
 
             if (!$products2category) {
-                Tools::log($locale.' -> '.$line['products_name']);
+                //Tools::log($locale.' -> '.$line['products_name']);
                 continue;
             }
 
@@ -384,6 +384,11 @@ class DefaultController extends CoreController
             $continue_shopping = $router->generate('QuickOrderBundle_homepage');
         }
         // <<-- hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site
+
+        // if the basket is empty, make sure the cookie knows.
+        if (0 == count($products)) {
+            Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+        }
 
         return $this->render($template, array(
             'embedded' => $embed,

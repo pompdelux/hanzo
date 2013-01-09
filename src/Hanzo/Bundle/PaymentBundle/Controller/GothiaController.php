@@ -9,12 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Timer;
+use Hanzo\Core\Tools;
+
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\GothiaAccounts;
-use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi;
 use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApiCallException;
@@ -192,6 +194,8 @@ class GothiaController extends CoreController
 
         $customer->setGothiaAccounts( $gothiaAccount );
 
+        $timer = new Timer('gothia', true);
+
         try
         {
             // Validate information @ gothia
@@ -200,12 +204,14 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
-            Tools::debug( $g->getMessage(), __METHOD__);
+            $timer->logOne('checkCustomer call failed orderId #'.$order->getId());
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.checkcustomer.failed', array('%msg%' => $g->getMessage()), 'gothia'),
             ));
         }
+
+        $timer->logOne('checkCustomer call, orderId #'.$order->getId());
 
         if ( !$response->isError() )
         {
@@ -225,7 +231,7 @@ class GothiaController extends CoreController
         {
             if ( $response->data['PurchaseStop'] === 'true')
             {
-                Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
+                #Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
 
                 return $this->json_response(array(
                     'status' => FALSE,
@@ -233,7 +239,7 @@ class GothiaController extends CoreController
                 ));
             }
 
-            Tools::debug( 'Check customer error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+            #Tools::debug( 'Check customer error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
             return $this->json_response(array(
                 'status' => FALSE,
@@ -278,27 +284,20 @@ class GothiaController extends CoreController
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
 
                 $paytype = strtolower( $oldOrder->getBillingMethod() );
-                /*$attributes = $oldOrder->getOrdersAttributess()->toArray();
-                $paytype = false;
-
-                foreach ($attributes as $attribute) {
-                    if ( $attribute['Ns'] == 'payment' && $attribute['CKey'] == 'paytype' ) {
-                        $paytype = $attribute['CValue'];
-                    }
-                }*/
 
                 // The new order amount is different from the old order amount
                 // We will remove the old reservation, and create a new one
                 // but only if the old paytype was gothia
                 if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                 {
+                    $timer = new Timer('gothia', true);
                     try
                     {
                         $response = $api->call()->cancelReservation( $customer, $oldOrder );
                     }
                     catch( GothiaApiCallException $g )
                     {
-                        Tools::debug( $g->getMessage(), __METHOD__);
+                        $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
 
                         return $this->json_response(array(
                             'status' => FALSE,
@@ -306,10 +305,10 @@ class GothiaController extends CoreController
                         ));
                     }
 
+                    $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
+
                     if ( $response->isError() )
                     {
-                        Tools::debug( 'Cancel reservation error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
-
                         return $this->json_response(array(
                             'status' => FALSE,
                             'message' => $translator->trans('json.cancelreservation.error', array(), 'gothia'),
@@ -321,12 +320,12 @@ class GothiaController extends CoreController
 
         try
         {
+            $timer = new Timer('gothia', true);
             $response = $api->call()->placeReservation( $customer, $order );
+            $timer->logOne('placeReservation orderId #'.$order->getId());
         }
         catch( GothiaApiCallException $g )
         {
-            Tools::debug( $g->getMessage(), __METHOD__);
-
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
@@ -336,7 +335,7 @@ class GothiaController extends CoreController
 
         if ( $response->isError() )
         {
-            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+            #Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
@@ -359,7 +358,7 @@ class GothiaController extends CoreController
         }
         catch (Exception $e)
         {
-            Tools::debug( $e->getMessage(), __METHOD__);
+            #Tools::debug( $e->getMessage(), __METHOD__);
             $api->updateOrderFailed( $request, $order );
 
             return $this->json_response(array(
@@ -367,25 +366,6 @@ class GothiaController extends CoreController
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
             ));
         }
-    }
-
-    /**
-     * cancelAction
-     * Cancels a Gothia Payment, and restores the order in good state
-     * @return void
-     * @author Anders Bryrup <anders@bellcom.dk>
-     **/
-    public function cancelAction()
-    {
-        $translator = $this->get('translator');
-
-        $order = OrdersPeer::getCurrent();
-        $order->setState( Orders::STATE_BUILDING );
-        $order->save();
-
-        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
-
-        return $this->redirect($this->generateUrl('_checkout'));
     }
 
     /**

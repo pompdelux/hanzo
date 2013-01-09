@@ -18,7 +18,7 @@ PaymentBundle_dibs_form_update:
 
 PaymentBundle_dibs_cancel:
     pattern:  /payment/dibs/cancel
-    defaults: { _controller: PaymentBundle:Dibs:cancel }
+    defaults: { _controller: PaymentBundle:Default:cancel }
 
 _order_state_check:
     pattern: /payment/dibs/state-check
@@ -50,7 +50,7 @@ PaymentBundle_gothia_payment_confirm:
 
 PaymentBundle_gothia_payment_cancel:
     pattern:  /payment/gothia/cancel
-    defaults: { _controller: PaymentBundle:Gothia:cancel }
+    defaults: { _controller: PaymentBundle:Default:cancel }
 
 # COD }-------------------------
 _paybybill_callback:
@@ -73,3 +73,7 @@ _process_payment:
     pattern: /checkout/payment/process
     defaults:
         _controller: PaymentBundle:Default:getProcessButton
+
+_payment_cancel:
+    pattern:  /payment/cancel
+    defaults: { _controller: PaymentBundle:Default:cancel }

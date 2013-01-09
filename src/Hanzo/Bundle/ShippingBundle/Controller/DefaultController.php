@@ -37,6 +37,12 @@ class DefaultController extends CoreController
     }
 
 
+    /**
+     * set shipping method on order
+     *
+     * @param Request $request
+     * @return Response Returns JSON encoded response
+     */
     public function setMethodAction(Request $request)
     {
         $api     = $this->get('shipping.shippingapi');
@@ -45,18 +51,7 @@ class DefaultController extends CoreController
         if (isset($methods[$request->get('method')])) {
             $method = $methods[$request->get('method')];
 
-            $order = OrdersPeer::getCurrent();
-
-            // un@bellcom.dk, 2013.01.03 - fuckes stuff up, we try without ...
-            // // nuke old shipping lines
-            // OrdersLinesQuery::create()
-            //     ->filterByOrdersId($order->getId())
-            //     ->filterByType('shipping')
-            //     ->_or()
-            //     ->filterByType('shipping.fee')
-            //     ->delete()
-            // ;
-
+            $order = OrdersPeer::getCurrent(true);
             $order->setDeliveryMethod($request->get('method'));
             $order->setOrderLineShipping($method, ShippingMethods::TYPE_NORMAL);
 

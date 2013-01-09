@@ -19,7 +19,7 @@ class DefaultController extends CoreController
     public function indexAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
-            return $this->redirect($this->generateUrl('login'));
+            return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('session')->getLocale()]));
         }
 
         $code = explode('_', $this->get('session')->getLocale());

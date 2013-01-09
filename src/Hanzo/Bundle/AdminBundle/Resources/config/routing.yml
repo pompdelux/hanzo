@@ -594,6 +594,12 @@ admin_orders_delete:
     requirements:
         order_id: \d+
 
+admin_statistics_realtime:
+    pattern: /admin/statistics/realtime
+    defaults:
+        _controller: AdminBundle:Statistics:realtime
+        domain_key: null
+
 admin_statistics:
     pattern: /admin/statistics/{domain_key}
     defaults:

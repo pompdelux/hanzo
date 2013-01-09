@@ -32,7 +32,7 @@ class EventsController extends CoreController
     public function indexAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('login'));
+            return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('session')->getLocale()]));
         }
 
         $date_filter['max'] = date('Y-m-d H:i:s');
@@ -54,6 +54,7 @@ class EventsController extends CoreController
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
+
         $start = $this->getRequest()->get('start', null);
         $end = $this->getRequest()->get('end', null);
 
@@ -95,7 +96,7 @@ class EventsController extends CoreController
     public function viewAction($id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('login'));
+            return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('session')->getLocale()]));
         }
 
         $event = EventsQuery::create()->findPK($id);
@@ -113,7 +114,7 @@ class EventsController extends CoreController
     public function createAction($id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') && false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('login'));
+            return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('session')->getLocale()]));
         }
 
         $hanzo = Hanzo::getInstance();

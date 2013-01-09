@@ -2,15 +2,14 @@
 
 namespace Hanzo\Bundle\AccountBundle\Security\Authorization\Voter;
 
-use Symfony\Component\DependencyInjection\ContainerInterface,
-    Symfony\Component\Security\Core\Authorization\Voter\VoterInterface,
-    Symfony\Component\Security\Core\Authentication\Token\TokenInterface,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\Security\Core\User\UserInterface
-    ;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-use Hanzo\Model\Customers,
-    Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Customers;
+use Hanzo\Model\CustomersQuery;
 
 class DomainVoter implements VoterInterface
 {
@@ -58,7 +57,7 @@ class DomainVoter implements VoterInterface
         // No payment address... wtf?
         if ( is_null($paymentAddress) )
         {
-            error_log(__LINE__.':'.__FILE__.' DomainVoter: no payment address found, abstaining'); // hf@bellcom.dk debugging
+            #error_log(__LINE__.':'.__FILE__.' DomainVoter: no payment address found, abstaining'); // hf@bellcom.dk debugging
             return VoterInterface::ACCESS_ABSTAIN;
         }
 
@@ -75,7 +74,7 @@ class DomainVoter implements VoterInterface
             207 => array( 'sv_SE' ), // Sweden
             );
 
-        // Restrict access to login webshop to only customers. 
+        // Restrict access to login webshop to only customers.
         if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALES', $user->getRoles()) && 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) // 1=Customers
         {
             $translator = $this->container->get('translator');

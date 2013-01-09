@@ -215,10 +215,9 @@ class AxService
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
-                    // un@bellcom.dk, skal ind igen
-                    // case 'ABN':
-                    //     $custPaymMode = 'ABN';
-                    //     break;
+                    case 'ABN':
+                        $custPaymMode = 'ABN';
+                        break;
                 }
                 break;
 
@@ -440,8 +439,6 @@ class AxService
 
         $result = $this->Send('SyncSalesOrder', $syncSalesOrder);
 
-        //Tools::debug( 'Delete order in AX Result:', __METHOD__, array( 'Result' => json_encode($result)));
-        
         if ($result instanceof Exception) {
             $message = sprintf('An error occured while deleting order "%s", error message: "%s"',
                 $order->getId(),
@@ -451,7 +448,7 @@ class AxService
 
             // log ax transaction result
             $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', $result->getMessage(), $con);
-            
+
             throw $result;
         }
 

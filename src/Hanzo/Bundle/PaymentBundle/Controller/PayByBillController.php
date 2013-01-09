@@ -44,16 +44,6 @@ class PayByBillController extends CoreController
         return $this->redirect($this->generateUrl('_checkout_success'));
     }
 
-    /**
-     * cancelAction
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function cancelAction()
-    {
-        return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
-    }
-
 
     /**
      * blockAction

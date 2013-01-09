@@ -167,7 +167,7 @@ class CMSRouterLoader implements LoaderInterface
                     ), array(
                         '_format' => 'html|json'
                     ));
-                    $routes->add('newsletter_'.$id, $route);
+                    $routes->add($settings->type.'_search_'.$id, $route);
                     break;
             }
         }

@@ -12,6 +12,7 @@ security:
                 path:   logout
                 target: _homepage
                 invalidate_session: true
+                success_handler: hanzo.logout_success_handler
 
     access_control:
         - { path: ^/fx/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

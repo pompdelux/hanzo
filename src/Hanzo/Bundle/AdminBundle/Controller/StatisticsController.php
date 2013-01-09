@@ -2,16 +2,18 @@
 
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
-use Hanzo\Core\CoreController;
+use Propel;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
 
-use Hanzo\Model\OrdersLinesQuery,
-    Hanzo\Model\DomainsQuery,
-    Hanzo\Model\Orders;
+use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\DomainsQuery;
+use Hanzo\Model\Orders;
 
 class StatisticsController extends CoreController
 {
@@ -117,9 +119,9 @@ class StatisticsController extends CoreController
                         'CreatedAt' => $order['CreatedAt']
                     );
                 $orders_array[$order['CreatedAt']]['TotalProducts'] += $order['TotalProducts'];
-                $orders_array[$order['CreatedAt']]['TotalOrders'] += 1; 
+                $orders_array[$order['CreatedAt']]['TotalOrders'] += 1;
 
-                $orders_total['sumorders'] += 1; 
+                $orders_total['sumorders'] += 1;
                 $orders_total['sumproducts'] += $order['TotalProducts'];
             }
 
@@ -148,5 +150,81 @@ class StatisticsController extends CoreController
             'end' => $end,
             'database' => $this->getRequest()->getSession()->get('database')
         ));
+    }
+
+
+    /**
+     * generates realtime order stats
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function realtimeAction(Request $request)
+    {
+        $sources = [];
+        foreach ($this->get('propel.configuration')->getFlattenedParameters() as $key => $value) {
+            list($namespace, $name, $rest) = explode('.', $key, 3);
+
+            // only add one connection, and only if the user is set
+            if (($rest == 'connection.user') &&
+                ($namespace == 'datasources')
+            ) {
+                $value = trim($value);
+                if (!empty($value) && empty($sources[$name])) {
+                    $sources[$name] = $name;
+                    continue;
+                }
+            }
+        }
+
+        $sql = "
+            SELECT
+                DATE_FORMAT(created_at, '%Y-%m-%d %H') AS y,
+                COUNT(*) AS a
+            FROM
+                orders
+            WHERE
+                DATE_FORMAT(created_at, '%Y%m%d%H') > '".date('YmdH', strtotime('-24 hours'))."'
+                AND state > 20
+            GROUP BY y
+        ";
+
+        $data = [];
+        $index = 0;
+        foreach ($sources as $db_name) {
+            $con = Propel::getConnection($db_name, Propel::CONNECTION_WRITE);
+
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+
+            $data[$index] = [
+                'element' => $db_name,
+                'xkey' => 'y',
+                'ykeys' => ['a'],
+                'labels' => ['Antal Order'],
+            ];
+            while ($record = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $data[$index]['data'][] = [
+                    'y' => $record['y'],
+                    'a' => $record['a'],
+                ];
+            }
+
+            if (empty($data[$index]['data'])) {
+                unset($data[$index]);
+            } elseif ($this->getFormat() != 'json') {
+                $data[$index]['data'] = json_encode($data[$index]);
+            }
+
+            $index++;
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response($data);
+        }
+
+        return $this->render('AdminBundle:Statistics:realtime.html.twig', [
+            'data' => $data,
+        ]);
     }
 }

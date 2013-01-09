@@ -66,24 +66,6 @@ class DibsController extends CoreController
         return new Response('Ok', 200, array('Content-Type' => 'text/plain'));
     }
 
-    /**
-     * cancelAction
-     *
-     * @return void
-     * @author Henrik Farre <hf@bellcom.dk>
-     **/
-    public function cancelAction()
-    {
-        $translator = $this->get('translator');
-
-        $order = OrdersPeer::getCurrent();
-        $order->setState( Orders::STATE_BUILDING );
-        $order->save();
-
-        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
-
-        return $this->redirect($this->generateUrl('_checkout'));
-     }
 
     /**
      * blockAction

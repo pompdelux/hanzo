@@ -6,6 +6,7 @@ use Hanzo\Bundle\WebServicesBundle\Services\Soap\SoapService;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Timer;
 
 use Hanzo\Model\ProductsDomainsPrices;
 use Hanzo\Model\ProductsI18n;
@@ -881,13 +882,10 @@ class ECommerceServices extends SoapService
         // .....</ze code>.....
         // ....................
 
-        $timer_data = $this->getTimerPool(true);
-        if ($timer_data) {
-            Tools::log('Time spend on order: #'.$order->getId()."\n".$timer_data);
-        }
 
         if (count($errors)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
+            $this->timer->logAll('Time spend on order: #'.$order->getId());
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
         }
 
@@ -896,6 +894,8 @@ class ECommerceServices extends SoapService
             'orderStatus' => 4,
             'sendMail' => $this->sendStatusMail,
         ));
+
+        $this->timer->logAll('Time spend on order: #'.$order->getId());
 
         return self::responseStatus('Ok', 'SalesOrderCaptureOrRefundResult');
     }
@@ -943,6 +943,7 @@ class ECommerceServices extends SoapService
         );
 
         if ($data->sendMail) {
+            $this->timer->reset();
             try {
                 $name = trim($order->getFirstName() . ' ' . $order->getLastName());
                 $mailer = Hanzo::getInstance()->container->get('mail_manager');
@@ -954,6 +955,7 @@ class ECommerceServices extends SoapService
             } catch (Exception $e) {
                 Tools::log($e->getMessage());
             }
+            $this->timer->lap('time spend sending email');
         }
 
         $order->setState($status_map[$data->orderStatus]);
@@ -1059,7 +1061,7 @@ class ECommerceServices extends SoapService
             $amount = $large . sprintf('%02d', $small);
             $gateway = $this->hanzo->container->get('payment.dibsapi');
 
-            $this->getLapTime();
+            $this->timer->reset();
             try {
                 $response = $gateway->call()->capture($order, $amount);
                 $result = $response->debug();
@@ -1069,7 +1071,7 @@ class ECommerceServices extends SoapService
                     'error: ' . $e->getMessage()
                 );
             }
-            $this->addTimestamp('time in gateway');
+            $this->timer->lap('time in gateway');
 
             if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
                 $error = array(
@@ -1110,10 +1112,10 @@ class ECommerceServices extends SoapService
 
         $doSendError = false;
         try {
-            $this->getLapTime();
+            $this->timer->reset();
             $response = $gateway->call()->refund($order, ($amount * -1));
             $result = $response->debug();
-            $this->addTimestamp('time in gateway');
+            $this->timer->lap('time in gateway');
 
 // un: 2012.11.29 - test logging all refunds.
 Tools::log('->->->->->->->->->-');
@@ -1135,7 +1137,7 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
                     'amount' => $data->amount,
                 );
 
-                $this->getLapTime();
+                $this->timer->reset();
                 $mailer = $this->hanzo->container->get('mail_manager');
 
                 if (in_array($domain, ['COM'])) {
@@ -1151,7 +1153,7 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
 
                 $mailer->setTo($order->getEmail(), $name);
                 $mailer->send();
-                $this->addTimestamp('time sending emails');
+                $this->timer->lap('time sending emails');
 
                 $this->sendStatusMail = false;
             }
@@ -1214,5 +1216,10 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
         );
 
         return isset($c_map[$k]) ? $c_map[$k] : false;
+    }
+
+    protected function boot()
+    {
+        $this->timer = new Timer('ax');
     }
 }
