@@ -305,17 +305,19 @@
           if ('/' == response.response.data.url.substring(0, 1)) {
             response.response.data.url = response.response.data.url.substring(1);
           }
-
           document.location.href = base_url+response.response.data.url;
         } else if (undefined !== response.response.data.form) {
           $('#checkout-buttons').append(response.response.data.form);
           $('#checkout-buttons form').submit();
         }
 
-        dialoug.blockingNotice(
-          ExposeTranslation.get('js:checkout.payment.progress.alert.title'),
-          ExposeTranslation.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
-        );
+        // pop "please be patient" notice
+        window.setTimeout(function() {
+          dialoug.blockingNotice(
+            ExposeTranslation.get('js:checkout.payment.progress.alert.title'),
+            ExposeTranslation.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
+          );
+        }, 3000);
       }
     };
 
