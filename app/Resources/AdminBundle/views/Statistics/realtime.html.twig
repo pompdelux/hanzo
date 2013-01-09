@@ -2,6 +2,10 @@
 
 {% block content %}
 
+<h1>Realtime statistik</h1>
+<p>Ordrestatistik for de sidste 24 timer, opdateres automatisk hver 5. minut.</p>
+<p>Lad endelig være med at opdatere siden manuelt!</p>
+
 {% for record in data %}
   <h3>{{ record.element }}</h3>
   <div class="chart" id="{{ record.element }}"></div>
