@@ -46,6 +46,12 @@ class DefaultController extends CoreController
             }
         }
 
+        // access check - should be done better tho...
+        if ((10 == $page->getCmsThreadId()) && !$this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            return $this->redirect($this->generateUrl('_homepage', ['_locale' => $locale]));
+        }
+
+        // TODO: figure out wether this still is an issue or ....
         $html = $page->getContent();
         $find = '~(background|src)="(../|/)~';
         $replace = '$1="' . $hanzo->get('core.cdn');
