@@ -311,6 +311,11 @@
           $('#checkout-buttons').append(response.response.data.form);
           $('#checkout-buttons form').submit();
         }
+
+        dialoug.blockingNotice(
+          ExposeTranslation.get('js:checkout.payment.progress.alert.title'),
+          ExposeTranslation.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
+        );
       }
     };
 

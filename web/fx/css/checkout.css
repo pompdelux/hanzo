@@ -31,7 +31,7 @@ form.address label {
   margin-bottom: 5px;
 }
 
-#body-checkout div>div {
+#body-checkout #container div>div {
   overflow: hidden;
   padding: 3px;
 }
@@ -47,6 +47,14 @@ form.address label {
 }
 #body-checkout div.msg.error {
   padding: 20px;
+}
+
+#body-checkout div.dialoug.alert.notice h2 {
+  background: url(/fx/images/loader-bar.gif) no-repeat 5px center;
+  padding-left: 26px;
+  background-color: #CCC;
+  padding-top: 9px;
+  border: 1px solid #7B7577;
 }
 
 #coupon-block form {
