@@ -148,4 +148,22 @@ class DefaultController extends CoreController
         return $this->json_response($response);
     }
 
+
+    /**
+     * Cancels a Gothia Payment, and restores the order in good state
+     *
+     * @return void
+     **/
+    public function cancelAction()
+    {
+        $translator = $this->get('translator');
+
+        $order = OrdersPeer::getCurrent();
+        $order->setState( Orders::STATE_BUILDING );
+        $order->save();
+
+        $this->get('session')->setFlash('notice', $translator->trans( 'payment.canceled', array(), 'checkout' ));
+
+        return $this->redirect($this->generateUrl('_checkout'));
+    }
 }
