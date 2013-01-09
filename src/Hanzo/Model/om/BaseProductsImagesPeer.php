@@ -13,7 +13,6 @@ use Hanzo\Model\ProductsImages;
 use Hanzo\Model\ProductsImagesCategoriesSortPeer;
 use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsImagesProductReferencesPeer;
-use Hanzo\Model\ProductsImagesToLooksPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\map\ProductsImagesTableMap;
 
@@ -392,9 +391,6 @@ abstract class BaseProductsImagesPeer
         // Invalidate objects in ProductsImagesProductReferencesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         ProductsImagesProductReferencesPeer::clearInstancePool();
-        // Invalidate objects in ProductsImagesToLooksPeer instance pool,
-        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
-        ProductsImagesToLooksPeer::clearInstancePool();
     }
 
     /**

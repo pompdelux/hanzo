@@ -3515,6 +3515,31 @@ abstract class BaseProducts extends BaseObject implements Persistent
         return $this->getProductsImagesCategoriesSorts($query, $con);
     }
 
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Products is new, it will return
+     * an empty collection; or if this Products has previously
+     * been saved, it will retrieve related ProductsImagesCategoriesSorts from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Products.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|ProductsImagesCategoriesSort[] List of ProductsImagesCategoriesSort objects
+     */
+    public function getProductsImagesCategoriesSortsJoinCategories($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
+        $query->joinWith('Categories', $join_behavior);
+
+        return $this->getProductsImagesCategoriesSorts($query, $con);
+    }
+
     /**
      * Clears out the collProductsImagesProductReferencess collection
      *

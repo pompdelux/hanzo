@@ -108,4 +108,70 @@ class CategoriesPeer extends BaseCategoriesPeer
         return $data;
     }
 
+    public static function getStylesByCategoryId($category_id, $pager)
+    {
+        $hanzo = Hanzo::getInstance();
+        $container = $hanzo->container;
+        $route = $container->get('request')->get('_route');
+        $router = $container->get('router');
+        $domain_id = $hanzo->get('core.domain_id');
+        
+        $result = ProductsImagesProductReferencesQuery::create()
+            ->useProductsQuery()
+                ->where('products.MASTER IS NULL')
+                ->filterByIsOutOfStock(FALSE)
+                ->useProductsDomainsPricesQuery()
+                    ->filterByDomainsId($domain_id)
+                ->endUse()
+            ->endUse()
+            ->useProductsImagesQuery()
+                ->useProductsImagesCategoriesSortQuery()
+                    ->filterByCategoriesId($category_id)
+                    ->orderBySort()
+                ->endUse()
+                ->groupByImage()
+            ->endUse()
+            ->joinWithProductsImages()
+            ->paginate($pager, 12)
+        ;
+
+        $product_route = str_replace('category_', 'product_', $route);
+
+        $records = array();
+        foreach ($result as $record) {
+            $product = $record->getProducts();
+            
+            $records[] = array(
+                'image' => $record->getProductsImages()->getImage(),
+                'url' => $router->generate('product_set', array(
+                    'image_id' => $record->getProductsImages()->getId()
+                )),
+            );
+        }
+
+        $data = array(
+            'title' => '',
+            'products' => $records,
+            'paginate' => NULL,
+        );
+
+        if ($result->haveToPaginate()) {
+
+            $pages = array();
+            foreach ($result->getLinks(20) as $page) {
+                $pages[$page] = $router->generate($route, array('pager' => $page), TRUE);
+            }
+
+            $data['paginate'] = array(
+                'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage()), TRUE)),
+                'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage()), TRUE)),
+
+                'pages' => $pages,
+                'index' => $pager
+            );
+        }
+
+        return $data;
+    }
+
 } // CategoriesPeer

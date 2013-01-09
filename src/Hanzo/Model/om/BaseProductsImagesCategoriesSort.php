@@ -11,6 +11,8 @@ use \Persistent;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Hanzo\Model\Categories;
+use Hanzo\Model\CategoriesQuery;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsImages;
 use Hanzo\Model\ProductsImagesCategoriesSort;
@@ -80,6 +82,11 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
      * @var        ProductsImages
      */
     protected $aProductsImages;
+
+    /**
+     * @var        Categories
+     */
+    protected $aCategories;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -175,6 +182,10 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
         if ($this->categories_id !== $v) {
             $this->categories_id = $v;
             $this->modifiedColumns[] = ProductsImagesCategoriesSortPeer::CATEGORIES_ID;
+        }
+
+        if ($this->aCategories !== null && $this->aCategories->getId() !== $v) {
+            $this->aCategories = null;
         }
 
 
@@ -297,6 +308,9 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
         if ($this->aProducts !== null && $this->products_id !== $this->aProducts->getId()) {
             $this->aProducts = null;
         }
+        if ($this->aCategories !== null && $this->categories_id !== $this->aCategories->getId()) {
+            $this->aCategories = null;
+        }
         if ($this->aProductsImages !== null && $this->products_images_id !== $this->aProductsImages->getId()) {
             $this->aProductsImages = null;
         }
@@ -341,6 +355,7 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
 
             $this->aProducts = null;
             $this->aProductsImages = null;
+            $this->aCategories = null;
         } // if (deep)
     }
 
@@ -471,6 +486,13 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
                     $affectedRows += $this->aProductsImages->save($con);
                 }
                 $this->setProductsImages($this->aProductsImages);
+            }
+
+            if ($this->aCategories !== null) {
+                if ($this->aCategories->isModified() || $this->aCategories->isNew()) {
+                    $affectedRows += $this->aCategories->save($con);
+                }
+                $this->setCategories($this->aCategories);
             }
 
             if ($this->isNew() || $this->isModified()) {
@@ -645,6 +667,12 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
                 }
             }
 
+            if ($this->aCategories !== null) {
+                if (!$this->aCategories->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aCategories->getValidationFailures());
+                }
+            }
+
 
             if (($retval = ProductsImagesCategoriesSortPeer::doValidate($this, $columns)) !== true) {
                 $failureMap = array_merge($failureMap, $retval);
@@ -738,6 +766,9 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
             }
             if (null !== $this->aProductsImages) {
                 $result['ProductsImages'] = $this->aProductsImages->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
+            if (null !== $this->aCategories) {
+                $result['Categories'] = $this->aCategories->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
         }
 
@@ -1067,6 +1098,58 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
     }
 
     /**
+     * Declares an association between this object and a Categories object.
+     *
+     * @param             Categories $v
+     * @return ProductsImagesCategoriesSort The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setCategories(Categories $v = null)
+    {
+        if ($v === null) {
+            $this->setCategoriesId(NULL);
+        } else {
+            $this->setCategoriesId($v->getId());
+        }
+
+        $this->aCategories = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the Categories object, it will not be re-added.
+        if ($v !== null) {
+            $v->addProductsImagesCategoriesSort($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated Categories object
+     *
+     * @param PropelPDO $con Optional Connection object.
+     * @param $doQuery Executes a query to get the object if required
+     * @return Categories The associated Categories object.
+     * @throws PropelException
+     */
+    public function getCategories(PropelPDO $con = null, $doQuery = true)
+    {
+        if ($this->aCategories === null && ($this->categories_id !== null) && $doQuery) {
+            $this->aCategories = CategoriesQuery::create()->findPk($this->categories_id, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aCategories->addProductsImagesCategoriesSorts($this);
+             */
+        }
+
+        return $this->aCategories;
+    }
+
+    /**
      * Clears the current object and sets all attributes to their default values
      */
     public function clear()
@@ -1099,6 +1182,7 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
 
         $this->aProducts = null;
         $this->aProductsImages = null;
+        $this->aCategories = null;
     }
 
     /**

@@ -187,8 +187,7 @@ class CmsController extends CoreController
                         break;
                     case 'look':
                         $node->setType('look');
-                        $settings['look_id'] = 'x';
-                        // Noget med category_id
+                        $settings['category_id'] = 'x';
                         break;
                     case 'category_search':
                         $node->setType('search');
@@ -212,9 +211,9 @@ class CmsController extends CoreController
                         break;
                     case 'bycolour':
                         $node->setType('bycolour');
-                        $settings['category_ids'] = '';
+                        $settings['category_ids'] = 'x,y,z';
                         $settings['colorsheme'] = '';
-                        $settings['colors'] = '';
+                        $settings['colors'] = 'x,z';
                         $settings['ignore'] = '';
                         break;
                     case 'frontpage':

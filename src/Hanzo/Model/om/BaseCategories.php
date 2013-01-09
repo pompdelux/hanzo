@@ -18,6 +18,8 @@ use Hanzo\Model\CategoriesI18n;
 use Hanzo\Model\CategoriesI18nQuery;
 use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\ProductsImagesCategoriesSort;
+use Hanzo\Model\ProductsImagesCategoriesSortQuery;
 use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsToCategoriesQuery;
 
@@ -87,6 +89,12 @@ abstract class BaseCategories extends BaseObject implements Persistent
     protected $collCategoriessRelatedByIdPartial;
 
     /**
+     * @var        PropelObjectCollection|ProductsImagesCategoriesSort[] Collection to store aggregation of ProductsImagesCategoriesSort objects.
+     */
+    protected $collProductsImagesCategoriesSorts;
+    protected $collProductsImagesCategoriesSortsPartial;
+
+    /**
      * @var        PropelObjectCollection|ProductsToCategories[] Collection to store aggregation of ProductsToCategories objects.
      */
     protected $collProductsToCategoriess;
@@ -131,6 +139,12 @@ abstract class BaseCategories extends BaseObject implements Persistent
      * @var		PropelObjectCollection
      */
     protected $categoriessRelatedByIdScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $productsImagesCategoriesSortsScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -422,6 +436,8 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $this->aCategoriesRelatedByParentId = null;
             $this->collCategoriessRelatedById = null;
 
+            $this->collProductsImagesCategoriesSorts = null;
+
             $this->collProductsToCategoriess = null;
 
             $this->collCategoriesI18ns = null;
@@ -574,6 +590,23 @@ abstract class BaseCategories extends BaseObject implements Persistent
 
             if ($this->collCategoriessRelatedById !== null) {
                 foreach ($this->collCategoriessRelatedById as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->productsImagesCategoriesSortsScheduledForDeletion !== null) {
+                if (!$this->productsImagesCategoriesSortsScheduledForDeletion->isEmpty()) {
+                    ProductsImagesCategoriesSortQuery::create()
+                        ->filterByPrimaryKeys($this->productsImagesCategoriesSortsScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->productsImagesCategoriesSortsScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collProductsImagesCategoriesSorts !== null) {
+                foreach ($this->collProductsImagesCategoriesSorts as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -794,6 +827,14 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     }
                 }
 
+                if ($this->collProductsImagesCategoriesSorts !== null) {
+                    foreach ($this->collProductsImagesCategoriesSorts as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
                 if ($this->collProductsToCategoriess !== null) {
                     foreach ($this->collProductsToCategoriess as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -897,6 +938,9 @@ abstract class BaseCategories extends BaseObject implements Persistent
             }
             if (null !== $this->collCategoriessRelatedById) {
                 $result['CategoriessRelatedById'] = $this->collCategoriessRelatedById->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collProductsImagesCategoriesSorts) {
+                $result['ProductsImagesCategoriesSorts'] = $this->collProductsImagesCategoriesSorts->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collProductsToCategoriess) {
                 $result['ProductsToCategoriess'] = $this->collProductsToCategoriess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1073,6 +1117,12 @@ abstract class BaseCategories extends BaseObject implements Persistent
                 }
             }
 
+            foreach ($this->getProductsImagesCategoriesSorts() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addProductsImagesCategoriesSort($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getProductsToCategoriess() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addProductsToCategories($relObj->copy($deepCopy));
@@ -1200,6 +1250,9 @@ abstract class BaseCategories extends BaseObject implements Persistent
     {
         if ('CategoriesRelatedById' == $relationName) {
             $this->initCategoriessRelatedById();
+        }
+        if ('ProductsImagesCategoriesSort' == $relationName) {
+            $this->initProductsImagesCategoriesSorts();
         }
         if ('ProductsToCategories' == $relationName) {
             $this->initProductsToCategoriess();
@@ -1424,6 +1477,273 @@ abstract class BaseCategories extends BaseObject implements Persistent
         }
 
         return $this;
+    }
+
+    /**
+     * Clears out the collProductsImagesCategoriesSorts collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Categories The current object (for fluent API support)
+     * @see        addProductsImagesCategoriesSorts()
+     */
+    public function clearProductsImagesCategoriesSorts()
+    {
+        $this->collProductsImagesCategoriesSorts = null; // important to set this to null since that means it is uninitialized
+        $this->collProductsImagesCategoriesSortsPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collProductsImagesCategoriesSorts collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialProductsImagesCategoriesSorts($v = true)
+    {
+        $this->collProductsImagesCategoriesSortsPartial = $v;
+    }
+
+    /**
+     * Initializes the collProductsImagesCategoriesSorts collection.
+     *
+     * By default this just sets the collProductsImagesCategoriesSorts collection to an empty array (like clearcollProductsImagesCategoriesSorts());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initProductsImagesCategoriesSorts($overrideExisting = true)
+    {
+        if (null !== $this->collProductsImagesCategoriesSorts && !$overrideExisting) {
+            return;
+        }
+        $this->collProductsImagesCategoriesSorts = new PropelObjectCollection();
+        $this->collProductsImagesCategoriesSorts->setModel('ProductsImagesCategoriesSort');
+    }
+
+    /**
+     * Gets an array of ProductsImagesCategoriesSort objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Categories is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|ProductsImagesCategoriesSort[] List of ProductsImagesCategoriesSort objects
+     * @throws PropelException
+     */
+    public function getProductsImagesCategoriesSorts($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collProductsImagesCategoriesSortsPartial && !$this->isNew();
+        if (null === $this->collProductsImagesCategoriesSorts || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collProductsImagesCategoriesSorts) {
+                // return empty collection
+                $this->initProductsImagesCategoriesSorts();
+            } else {
+                $collProductsImagesCategoriesSorts = ProductsImagesCategoriesSortQuery::create(null, $criteria)
+                    ->filterByCategories($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collProductsImagesCategoriesSortsPartial && count($collProductsImagesCategoriesSorts)) {
+                      $this->initProductsImagesCategoriesSorts(false);
+
+                      foreach($collProductsImagesCategoriesSorts as $obj) {
+                        if (false == $this->collProductsImagesCategoriesSorts->contains($obj)) {
+                          $this->collProductsImagesCategoriesSorts->append($obj);
+                        }
+                      }
+
+                      $this->collProductsImagesCategoriesSortsPartial = true;
+                    }
+
+                    return $collProductsImagesCategoriesSorts;
+                }
+
+                if($partial && $this->collProductsImagesCategoriesSorts) {
+                    foreach($this->collProductsImagesCategoriesSorts as $obj) {
+                        if($obj->isNew()) {
+                            $collProductsImagesCategoriesSorts[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collProductsImagesCategoriesSorts = $collProductsImagesCategoriesSorts;
+                $this->collProductsImagesCategoriesSortsPartial = false;
+            }
+        }
+
+        return $this->collProductsImagesCategoriesSorts;
+    }
+
+    /**
+     * Sets a collection of ProductsImagesCategoriesSort objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $productsImagesCategoriesSorts A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Categories The current object (for fluent API support)
+     */
+    public function setProductsImagesCategoriesSorts(PropelCollection $productsImagesCategoriesSorts, PropelPDO $con = null)
+    {
+        $productsImagesCategoriesSortsToDelete = $this->getProductsImagesCategoriesSorts(new Criteria(), $con)->diff($productsImagesCategoriesSorts);
+
+        $this->productsImagesCategoriesSortsScheduledForDeletion = unserialize(serialize($productsImagesCategoriesSortsToDelete));
+
+        foreach ($productsImagesCategoriesSortsToDelete as $productsImagesCategoriesSortRemoved) {
+            $productsImagesCategoriesSortRemoved->setCategories(null);
+        }
+
+        $this->collProductsImagesCategoriesSorts = null;
+        foreach ($productsImagesCategoriesSorts as $productsImagesCategoriesSort) {
+            $this->addProductsImagesCategoriesSort($productsImagesCategoriesSort);
+        }
+
+        $this->collProductsImagesCategoriesSorts = $productsImagesCategoriesSorts;
+        $this->collProductsImagesCategoriesSortsPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related ProductsImagesCategoriesSort objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related ProductsImagesCategoriesSort objects.
+     * @throws PropelException
+     */
+    public function countProductsImagesCategoriesSorts(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collProductsImagesCategoriesSortsPartial && !$this->isNew();
+        if (null === $this->collProductsImagesCategoriesSorts || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collProductsImagesCategoriesSorts) {
+                return 0;
+            }
+
+            if($partial && !$criteria) {
+                return count($this->getProductsImagesCategoriesSorts());
+            }
+            $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByCategories($this)
+                ->count($con);
+        }
+
+        return count($this->collProductsImagesCategoriesSorts);
+    }
+
+    /**
+     * Method called to associate a ProductsImagesCategoriesSort object to this object
+     * through the ProductsImagesCategoriesSort foreign key attribute.
+     *
+     * @param    ProductsImagesCategoriesSort $l ProductsImagesCategoriesSort
+     * @return Categories The current object (for fluent API support)
+     */
+    public function addProductsImagesCategoriesSort(ProductsImagesCategoriesSort $l)
+    {
+        if ($this->collProductsImagesCategoriesSorts === null) {
+            $this->initProductsImagesCategoriesSorts();
+            $this->collProductsImagesCategoriesSortsPartial = true;
+        }
+        if (!in_array($l, $this->collProductsImagesCategoriesSorts->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddProductsImagesCategoriesSort($l);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	ProductsImagesCategoriesSort $productsImagesCategoriesSort The productsImagesCategoriesSort object to add.
+     */
+    protected function doAddProductsImagesCategoriesSort($productsImagesCategoriesSort)
+    {
+        $this->collProductsImagesCategoriesSorts[]= $productsImagesCategoriesSort;
+        $productsImagesCategoriesSort->setCategories($this);
+    }
+
+    /**
+     * @param	ProductsImagesCategoriesSort $productsImagesCategoriesSort The productsImagesCategoriesSort object to remove.
+     * @return Categories The current object (for fluent API support)
+     */
+    public function removeProductsImagesCategoriesSort($productsImagesCategoriesSort)
+    {
+        if ($this->getProductsImagesCategoriesSorts()->contains($productsImagesCategoriesSort)) {
+            $this->collProductsImagesCategoriesSorts->remove($this->collProductsImagesCategoriesSorts->search($productsImagesCategoriesSort));
+            if (null === $this->productsImagesCategoriesSortsScheduledForDeletion) {
+                $this->productsImagesCategoriesSortsScheduledForDeletion = clone $this->collProductsImagesCategoriesSorts;
+                $this->productsImagesCategoriesSortsScheduledForDeletion->clear();
+            }
+            $this->productsImagesCategoriesSortsScheduledForDeletion[]= clone $productsImagesCategoriesSort;
+            $productsImagesCategoriesSort->setCategories(null);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Categories is new, it will return
+     * an empty collection; or if this Categories has previously
+     * been saved, it will retrieve related ProductsImagesCategoriesSorts from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Categories.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|ProductsImagesCategoriesSort[] List of ProductsImagesCategoriesSort objects
+     */
+    public function getProductsImagesCategoriesSortsJoinProducts($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
+        $query->joinWith('Products', $join_behavior);
+
+        return $this->getProductsImagesCategoriesSorts($query, $con);
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Categories is new, it will return
+     * an empty collection; or if this Categories has previously
+     * been saved, it will retrieve related ProductsImagesCategoriesSorts from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Categories.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|ProductsImagesCategoriesSort[] List of ProductsImagesCategoriesSort objects
+     */
+    public function getProductsImagesCategoriesSortsJoinProductsImages($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
+        $query->joinWith('ProductsImages', $join_behavior);
+
+        return $this->getProductsImagesCategoriesSorts($query, $con);
     }
 
     /**
@@ -1924,6 +2244,11 @@ abstract class BaseCategories extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
+            if ($this->collProductsImagesCategoriesSorts) {
+                foreach ($this->collProductsImagesCategoriesSorts as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collProductsToCategoriess) {
                 foreach ($this->collProductsToCategoriess as $o) {
                     $o->clearAllReferences($deep);
@@ -1944,6 +2269,10 @@ abstract class BaseCategories extends BaseObject implements Persistent
             $this->collCategoriessRelatedById->clearIterator();
         }
         $this->collCategoriessRelatedById = null;
+        if ($this->collProductsImagesCategoriesSorts instanceof PropelCollection) {
+            $this->collProductsImagesCategoriesSorts->clearIterator();
+        }
+        $this->collProductsImagesCategoriesSorts = null;
         if ($this->collProductsToCategoriess instanceof PropelCollection) {
             $this->collProductsToCategoriess->clearIterator();
         }

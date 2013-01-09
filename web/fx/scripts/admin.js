@@ -266,6 +266,35 @@
         });
       });
 
+      //ProductsImagesCategoriesSort on Products page
+      $('.image-category-selector').change(function(){
+        var selectedOption = $(this).find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var image = reference[0];
+        var category = reference[1];
+        $.ajax({
+          url: '../add-image-to-category/',
+          dataType: 'json',
+          type: 'POST',
+          data: {image : image, category : category},
+          async: false,
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(Translator.get('js:notice', response.message));
+              }
+            }
+            else {
+              $('#item-' + image + ' .image-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-image-from-category/' + image + '/' + category + '" class="delete" title="Slet">Slet</a></span><span class="sku">' + selectedOption.text() + '</span></li>');
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+          }
+        });
+        $(this).val(0);
+      });
+
       // CategoriesToProducts on Products page
       $('#product-category-selector').change(function(){
         var selectedOption = $(this).find('option:selected');

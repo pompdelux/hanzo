@@ -21,8 +21,6 @@ use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsImagesProductReferences;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsImagesQuery;
-use Hanzo\Model\ProductsImagesToLooks;
-use Hanzo\Model\ProductsImagesToLooksQuery;
 use Hanzo\Model\ProductsQuery;
 
 /**
@@ -101,12 +99,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     protected $collProductsImagesProductReferencessPartial;
 
     /**
-     * @var        PropelObjectCollection|ProductsImagesToLooks[] Collection to store aggregation of ProductsImagesToLooks objects.
-     */
-    protected $collProductsImagesToLookss;
-    protected $collProductsImagesToLookssPartial;
-
-    /**
      * Flag to prevent endless save loop, if this object is referenced
      * by another object which falls in this transaction.
      * @var        boolean
@@ -131,12 +123,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
      * @var		PropelObjectCollection
      */
     protected $productsImagesProductReferencessScheduledForDeletion = null;
-
-    /**
-     * An array of objects scheduled for deletion.
-     * @var		PropelObjectCollection
-     */
-    protected $productsImagesToLookssScheduledForDeletion = null;
 
     /**
      * Get the [id] column value.
@@ -412,8 +398,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
             $this->collProductsImagesProductReferencess = null;
 
-            $this->collProductsImagesToLookss = null;
-
         } // if (deep)
     }
 
@@ -578,23 +562,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
 
             if ($this->collProductsImagesProductReferencess !== null) {
                 foreach ($this->collProductsImagesProductReferencess as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
-            }
-
-            if ($this->productsImagesToLookssScheduledForDeletion !== null) {
-                if (!$this->productsImagesToLookssScheduledForDeletion->isEmpty()) {
-                    ProductsImagesToLooksQuery::create()
-                        ->filterByPrimaryKeys($this->productsImagesToLookssScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
-                    $this->productsImagesToLookssScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collProductsImagesToLookss !== null) {
-                foreach ($this->collProductsImagesToLookss as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -794,14 +761,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                     }
                 }
 
-                if ($this->collProductsImagesToLookss !== null) {
-                    foreach ($this->collProductsImagesToLookss as $referrerFK) {
-                        if (!$referrerFK->validate($columns)) {
-                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-                        }
-                    }
-                }
-
 
             $this->alreadyInValidation = false;
         }
@@ -896,9 +855,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             }
             if (null !== $this->collProductsImagesProductReferencess) {
                 $result['ProductsImagesProductReferencess'] = $this->collProductsImagesProductReferencess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-            }
-            if (null !== $this->collProductsImagesToLookss) {
-                $result['ProductsImagesToLookss'] = $this->collProductsImagesToLookss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1081,12 +1037,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                 }
             }
 
-            foreach ($this->getProductsImagesToLookss() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addProductsImagesToLooks($relObj->copy($deepCopy));
-                }
-            }
-
             //unflag object copy
             $this->startCopy = false;
         } // if ($deepCopy)
@@ -1205,9 +1155,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
         }
         if ('ProductsImagesProductReferences' == $relationName) {
             $this->initProductsImagesProductReferencess();
-        }
-        if ('ProductsImagesToLooks' == $relationName) {
-            $this->initProductsImagesToLookss();
         }
     }
 
@@ -1449,6 +1396,31 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     {
         $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
         $query->joinWith('Products', $join_behavior);
+
+        return $this->getProductsImagesCategoriesSorts($query, $con);
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this ProductsImages is new, it will return
+     * an empty collection; or if this ProductsImages has previously
+     * been saved, it will retrieve related ProductsImagesCategoriesSorts from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in ProductsImages.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|ProductsImagesCategoriesSort[] List of ProductsImagesCategoriesSort objects
+     */
+    public function getProductsImagesCategoriesSortsJoinCategories($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = ProductsImagesCategoriesSortQuery::create(null, $criteria);
+        $query->joinWith('Categories', $join_behavior);
 
         return $this->getProductsImagesCategoriesSorts($query, $con);
     }
@@ -1696,248 +1668,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
     }
 
     /**
-     * Clears out the collProductsImagesToLookss collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return ProductsImages The current object (for fluent API support)
-     * @see        addProductsImagesToLookss()
-     */
-    public function clearProductsImagesToLookss()
-    {
-        $this->collProductsImagesToLookss = null; // important to set this to null since that means it is uninitialized
-        $this->collProductsImagesToLookssPartial = null;
-
-        return $this;
-    }
-
-    /**
-     * reset is the collProductsImagesToLookss collection loaded partially
-     *
-     * @return void
-     */
-    public function resetPartialProductsImagesToLookss($v = true)
-    {
-        $this->collProductsImagesToLookssPartial = $v;
-    }
-
-    /**
-     * Initializes the collProductsImagesToLookss collection.
-     *
-     * By default this just sets the collProductsImagesToLookss collection to an empty array (like clearcollProductsImagesToLookss());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param boolean $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initProductsImagesToLookss($overrideExisting = true)
-    {
-        if (null !== $this->collProductsImagesToLookss && !$overrideExisting) {
-            return;
-        }
-        $this->collProductsImagesToLookss = new PropelObjectCollection();
-        $this->collProductsImagesToLookss->setModel('ProductsImagesToLooks');
-    }
-
-    /**
-     * Gets an array of ProductsImagesToLooks objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this ProductsImages is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @return PropelObjectCollection|ProductsImagesToLooks[] List of ProductsImagesToLooks objects
-     * @throws PropelException
-     */
-    public function getProductsImagesToLookss($criteria = null, PropelPDO $con = null)
-    {
-        $partial = $this->collProductsImagesToLookssPartial && !$this->isNew();
-        if (null === $this->collProductsImagesToLookss || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collProductsImagesToLookss) {
-                // return empty collection
-                $this->initProductsImagesToLookss();
-            } else {
-                $collProductsImagesToLookss = ProductsImagesToLooksQuery::create(null, $criteria)
-                    ->filterByProductsImages($this)
-                    ->find($con);
-                if (null !== $criteria) {
-                    if (false !== $this->collProductsImagesToLookssPartial && count($collProductsImagesToLookss)) {
-                      $this->initProductsImagesToLookss(false);
-
-                      foreach($collProductsImagesToLookss as $obj) {
-                        if (false == $this->collProductsImagesToLookss->contains($obj)) {
-                          $this->collProductsImagesToLookss->append($obj);
-                        }
-                      }
-
-                      $this->collProductsImagesToLookssPartial = true;
-                    }
-
-                    return $collProductsImagesToLookss;
-                }
-
-                if($partial && $this->collProductsImagesToLookss) {
-                    foreach($this->collProductsImagesToLookss as $obj) {
-                        if($obj->isNew()) {
-                            $collProductsImagesToLookss[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collProductsImagesToLookss = $collProductsImagesToLookss;
-                $this->collProductsImagesToLookssPartial = false;
-            }
-        }
-
-        return $this->collProductsImagesToLookss;
-    }
-
-    /**
-     * Sets a collection of ProductsImagesToLooks objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param PropelCollection $productsImagesToLookss A Propel collection.
-     * @param PropelPDO $con Optional connection object
-     * @return ProductsImages The current object (for fluent API support)
-     */
-    public function setProductsImagesToLookss(PropelCollection $productsImagesToLookss, PropelPDO $con = null)
-    {
-        $productsImagesToLookssToDelete = $this->getProductsImagesToLookss(new Criteria(), $con)->diff($productsImagesToLookss);
-
-        $this->productsImagesToLookssScheduledForDeletion = unserialize(serialize($productsImagesToLookssToDelete));
-
-        foreach ($productsImagesToLookssToDelete as $productsImagesToLooksRemoved) {
-            $productsImagesToLooksRemoved->setProductsImages(null);
-        }
-
-        $this->collProductsImagesToLookss = null;
-        foreach ($productsImagesToLookss as $productsImagesToLooks) {
-            $this->addProductsImagesToLooks($productsImagesToLooks);
-        }
-
-        $this->collProductsImagesToLookss = $productsImagesToLookss;
-        $this->collProductsImagesToLookssPartial = false;
-
-        return $this;
-    }
-
-    /**
-     * Returns the number of related ProductsImagesToLooks objects.
-     *
-     * @param Criteria $criteria
-     * @param boolean $distinct
-     * @param PropelPDO $con
-     * @return int             Count of related ProductsImagesToLooks objects.
-     * @throws PropelException
-     */
-    public function countProductsImagesToLookss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-    {
-        $partial = $this->collProductsImagesToLookssPartial && !$this->isNew();
-        if (null === $this->collProductsImagesToLookss || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collProductsImagesToLookss) {
-                return 0;
-            }
-
-            if($partial && !$criteria) {
-                return count($this->getProductsImagesToLookss());
-            }
-            $query = ProductsImagesToLooksQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByProductsImages($this)
-                ->count($con);
-        }
-
-        return count($this->collProductsImagesToLookss);
-    }
-
-    /**
-     * Method called to associate a ProductsImagesToLooks object to this object
-     * through the ProductsImagesToLooks foreign key attribute.
-     *
-     * @param    ProductsImagesToLooks $l ProductsImagesToLooks
-     * @return ProductsImages The current object (for fluent API support)
-     */
-    public function addProductsImagesToLooks(ProductsImagesToLooks $l)
-    {
-        if ($this->collProductsImagesToLookss === null) {
-            $this->initProductsImagesToLookss();
-            $this->collProductsImagesToLookssPartial = true;
-        }
-        if (!in_array($l, $this->collProductsImagesToLookss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
-            $this->doAddProductsImagesToLooks($l);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param	ProductsImagesToLooks $productsImagesToLooks The productsImagesToLooks object to add.
-     */
-    protected function doAddProductsImagesToLooks($productsImagesToLooks)
-    {
-        $this->collProductsImagesToLookss[]= $productsImagesToLooks;
-        $productsImagesToLooks->setProductsImages($this);
-    }
-
-    /**
-     * @param	ProductsImagesToLooks $productsImagesToLooks The productsImagesToLooks object to remove.
-     * @return ProductsImages The current object (for fluent API support)
-     */
-    public function removeProductsImagesToLooks($productsImagesToLooks)
-    {
-        if ($this->getProductsImagesToLookss()->contains($productsImagesToLooks)) {
-            $this->collProductsImagesToLookss->remove($this->collProductsImagesToLookss->search($productsImagesToLooks));
-            if (null === $this->productsImagesToLookssScheduledForDeletion) {
-                $this->productsImagesToLookssScheduledForDeletion = clone $this->collProductsImagesToLookss;
-                $this->productsImagesToLookssScheduledForDeletion->clear();
-            }
-            $this->productsImagesToLookssScheduledForDeletion[]= clone $productsImagesToLooks;
-            $productsImagesToLooks->setProductsImages(null);
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this ProductsImages is new, it will return
-     * an empty collection; or if this ProductsImages has previously
-     * been saved, it will retrieve related ProductsImagesToLookss from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in ProductsImages.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return PropelObjectCollection|ProductsImagesToLooks[] List of ProductsImagesToLooks objects
-     */
-    public function getProductsImagesToLookssJoinLooks($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        $query = ProductsImagesToLooksQuery::create(null, $criteria);
-        $query->joinWith('Looks', $join_behavior);
-
-        return $this->getProductsImagesToLookss($query, $con);
-    }
-
-    /**
      * Clears the current object and sets all attributes to their default values
      */
     public function clear()
@@ -1977,11 +1707,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collProductsImagesToLookss) {
-                foreach ($this->collProductsImagesToLookss as $o) {
-                    $o->clearAllReferences($deep);
-                }
-            }
         } // if ($deep)
 
         if ($this->collProductsImagesCategoriesSorts instanceof PropelCollection) {
@@ -1992,10 +1717,6 @@ abstract class BaseProductsImages extends BaseObject implements Persistent
             $this->collProductsImagesProductReferencess->clearIterator();
         }
         $this->collProductsImagesProductReferencess = null;
-        if ($this->collProductsImagesToLookss instanceof PropelCollection) {
-            $this->collProductsImagesToLookss->clearIterator();
-        }
-        $this->collProductsImagesToLookss = null;
         $this->aProducts = null;
     }
 

@@ -1939,6 +1939,22 @@
         <source>admin.consultants.fronpage.content.updated</source>
         <target>Konsulent forsiden er nu opdateret.</target>
       </trans-unit>
+      <trans-unit id="admin.products.image-to-categories.selector.description">
+        <source>admin.products.image-to-categories.selector.description</source>
+        <target>Vælg kategori for at tildele billede til den</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.label.parent_id">
+        <source>cms.edit.label.parent_id</source>
+        <target>Forældre ID</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.type.bycolour">
+        <source>cms.edit.type.bycolour</source>
+        <target>By Colour Kategori</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.type.look">
+        <source>cms.edit.type.look</source>
+        <target>By Look Kategori</target>
+      </trans-unit>
       <trans-unit id="">
         <source></source>
         <target></target>

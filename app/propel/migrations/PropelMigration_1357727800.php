@@ -2,10 +2,10 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1357657040.
- * Generated on 2013-01-08 15:57:20 by andersbryrup
+ * up to version 1357727800.
+ * Generated on 2013-01-09 11:36:40 by andersbryrup
  */
-class PropelMigration_1357657040
+class PropelMigration_1357727800
 {
 
     public function preUp($manager)
@@ -42,14 +42,18 @@ class PropelMigration_1357657040
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE INDEX `cms_I_1` ON `cms` (`path`);
+DROP TABLE IF EXISTS `looks`;
 
-CREATE INDEX `cms_I_2` ON `cms` (`old_path`);
+DROP TABLE IF EXISTS `looks_i18n`;
 
-DROP INDEX `FI_orders_attributes_1` ON `orders_attributes`;
+DROP TABLE IF EXISTS `products_images_to_looks`;
 
-ALTER TABLE `products_images_to_looks`
-    ADD `sort` INTEGER AFTER `looks_id`;
+CREATE INDEX `FI_products_images_categories_sort_3` ON `products_images_categories_sort` (`categories_id`);
+
+ALTER TABLE `products_images_categories_sort` ADD CONSTRAINT `fk_products_images_categories_sort_3`
+    FOREIGN KEY (`categories_id`)
+    REFERENCES `categories` (`id`)
+    ON DELETE CASCADE;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
@@ -71,13 +75,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP INDEX `cms_I_1` ON `cms`;
+ALTER TABLE `products_images_categories_sort` DROP FOREIGN KEY `fk_products_images_categories_sort_3`;
 
-DROP INDEX `cms_I_2` ON `cms`;
-
-CREATE INDEX `FI_orders_attributes_1` ON `orders_attributes` (`orders_id`);
-
-ALTER TABLE `products_images_to_looks` DROP `sort`;
+DROP INDEX `FI_products_images_categories_sort_3` ON `products_images_categories_sort`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

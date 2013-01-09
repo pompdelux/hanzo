@@ -134,23 +134,23 @@ class CMSRouterLoader implements LoaderInterface
                 case 'look':
 
                     //test ... we should never enter this if tho...
-                    if (!$settings instanceof \stdClass || !isset($settings->look_id)) {
+                    if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
                         Tools::log($page->toArray());
                         continue;
                     }
 
-                    $look_key = '_' . $locale_lower . '_' . $settings->look_id;
+                    $look_key = '_' . $locale_lower . '_' . $settings->category_id;
                     $look_path = 'look_' . $id . '_' . $locale_lower;
                     $product_path = 'product_' . $id . '_' . $locale_lower ;
 
                     $categories[$look_key] = $product_path;
 
                     // look route
-                    $route = new Route("/{$path}/{show}/{pager}", array(
+                    $route = new Route("/{$path}/{pager}", array(
                         '_controller' => 'CategoryBundle:ByLook:view',
                         '_format' => 'html',
                         'cms_id' => $id,
-                        'look_id' => $settings->look_id,
+                        'category_id' => $settings->category_id,
                         'pager' => 1,
                         'ip_restricted' => true,
                     ), array(
@@ -165,7 +165,7 @@ class CMSRouterLoader implements LoaderInterface
                         '_format' => 'html',
                         'product_id' => 0,
                         'cms_id' => $id,
-                        'look_id' => $settings->look_id,
+                        'look_id' => $settings->category_id,
                         'title' => '',
                         'ip_restricted' => true,
                     ), array(
