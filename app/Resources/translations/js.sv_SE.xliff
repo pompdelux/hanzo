@@ -304,12 +304,11 @@
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>
-                <target>Du videresendes nu til betalingsvinduet!</target>
+                <target>Betalningsfönstret hämtas</target>
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.message" approved="no">
                 <source>checkout.payment.progress.alert.message</source>
-                <target><![CDATA[
-                    Nu ikke noget med at trykke på knapper eller noget andet navigering rundt - vi er ved at sende dig videre i betalingsforløbet, men lige her kan der være ret lange svartider (op til et par minutter).<br><br>Hvis ikke længere syntes det er ok at vente, så tryk på linket herunder. Lad endelig være med at gå tilbage i browseren, eller trykke på menulinks eller lignende!<br><br><a href="%url%">» Afbryde betalingen tak.</a>
+                <target><![CDATA[Vänligen vänta på att betalningsfönstret hämtas. Det kan ta upp till 30 sekunder. Om det går mer än 30 sekunder, ska du klicka på Avbryt betalning nedan och försöka igen.<br><br>Tack på förhand.<br><br><a href="%url%">» Avbryt betalning</a>
                 ]]></target>
             </trans-unit>
         </body>
