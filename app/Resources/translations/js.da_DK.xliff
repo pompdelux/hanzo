@@ -324,7 +324,7 @@
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>
-                <target>Betalingsvinduet er ved at blive hentet</target>
+                <target>Betalingsvinduet hentes</target>
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.message" approved="no">
                 <source>checkout.payment.progress.alert.message</source>
