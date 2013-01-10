@@ -1954,6 +1954,7 @@
       <trans-unit id="cms.edit.type.look">
         <source>cms.edit.type.look</source>
         <target>By Look Kategori</target>
+      </trans-unit>
       <trans-unit id="amount">
         <source>amount</source>
         <target>Beløb</target>

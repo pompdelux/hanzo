@@ -341,6 +341,7 @@
             <trans-unit id="approve.conditions.required" approved="no">
                 <source>approve.conditions.required</source>
                 <target>You have to approve POMPdeLUX terms and conditions.</target>
+            </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Het betaalscherm wordt geopend</target>

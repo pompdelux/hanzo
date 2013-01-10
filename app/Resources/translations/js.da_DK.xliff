@@ -353,6 +353,7 @@
             <trans-unit id="approve.conditions.required" approved="no">
                 <source>approve.conditions.required</source>
                 <target>Du skal godkende POMPdeLUX betingelser først</target>
+            </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Betalingsvinduet hentes</target>
