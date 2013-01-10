@@ -320,11 +320,11 @@
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>
-                <target>Please wait for the payment window to open</target>
+                <target>Maksuikkunaa avataan</target>
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.message" approved="no">
                 <source>checkout.payment.progress.alert.message</source>
-                <target><![CDATA[Please note that it can take up to 30 seconds before the payment window opens. If it takes longer than 30 seconds, just click on “Cancel” and then try again.<br><br>Thank you.<br><br><a href="%url%">» Cancel</a>]]></target>
+                <target><![CDATA[Odota maksuikkunan avautumista. Maksuikkunan avautuminen voi kestää 30 sekuntia. Jos kuluu yli 30 sekuntia, napsauta alla olevaa Keskeytä maksu -painiketta ja yritä uudelleen.<br><br>Kiitos jo etukäteen.<br><br><a href="%url%">» Keskeytä maksu</a>]]></target>
             </trans-unit>
         </body>
     </file>
