@@ -15,7 +15,7 @@
       <div style="display:none;">
         <ul id="archived-events">
           {% for archived_event in archived_events %}
-          <li><a href="{{ path('events_view' , {'id' : archived_event.id }) }}">( {{ archived_event.eventdate|date("d/m-Y")}} ) {{ archived_event.code }}</a></li> 
+          <li><a href="{{ path('events_view' , {'id' : archived_event.id }) }}">( {{ archived_event.eventdate|date("d/m-Y")}} ) - {{ archived_event.host }} - {{ archived_event.code }}</a></li> 
           {% endfor %}
         </ul>
       </div>
