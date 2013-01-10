@@ -6,12 +6,10 @@ var adminDeadOrders = (function($) {
     };
 
     function attachEvents() {
-        $("#dead-orders-form a.delete-order").click(function(e) {
+        $("#dead-orders-form a.delete-order, #failed-orders-form a.delete-order").click(function(e) {
             e.preventDefault();
             var orderId = $(this).data('order-id');
-            //console.log('HER');
             dialoug.confirm( Translator.get('js:notice'), $(this).data('confirm-message'), function(choise) {
-                //console.log(choise);
                 if (choise === 'ok') {
                     $.ajax({
                         url: base_url+'orders/delete/'+orderId,

@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="late.delivery.notice" approved="no">
                 <source>late.delivery.notice</source>
-                <target><![CDATA[<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.]]></target>
+                <target><![CDATA[<p>Your order includes item(s), which we do not have in stock at the moment. Your order will be shipped as soon as all items are available in stock. Your complete order will be shipped from our warehouse at the latest: <strong>%date%</strong>.]]></target>
             </trans-unit>
             <trans-unit id="delete.from.basket.warning" approved="no">
                 <source>delete.from.basket.warning</source>
@@ -216,7 +216,15 @@
             </trans-unit>
             <trans-unit id="checkout.choose.payment.method" approved="no">
                 <source>checkout.choose.payment.method</source>
-                <target>Du skal vælge en betalingsmetode.</target>
+                <target>Please select payment.</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+                <source>checkout.payment.progress.alert.title</source>
+                <target>Please wait for the payment window to open</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+                <source>checkout.payment.progress.alert.message</source>
+                <target><![CDATA[Please note that it can take up to 30 seconds before the payment window opens. If it takes longer than 30 seconds, just click on “Cancel” and then try again.<br><br>Thank you.<br><br><a href="%url%">» Cancel</a>]]></target>
             </trans-unit>
             <trans-unit id="email.invalid" approved="no">
                 <source>email.invalid</source>

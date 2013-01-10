@@ -6,7 +6,11 @@
 
 <p>{{ 'update.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
-{{ form_errors(form) }}
+{% if errors %}
+  <div class="form-errors">
+    {{ errors|raw }}
+  </div>
+{% endif %}
 
 <form action="{{ path('_account_edit') }}" method="post" {{ form_enctype(form) }} class="create" novalidate>
   <div id="customers">

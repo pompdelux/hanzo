@@ -215,10 +215,9 @@ class AxService
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
-                    // un@bellcom.dk, skal ind igen
-                    // case 'ABN':
-                    //     $custPaymMode = 'ABN';
-                    //     break;
+                    case 'ABN':
+                        $custPaymMode = 'ABN';
+                        break;
                 }
                 break;
 
@@ -447,7 +446,10 @@ class AxService
             );
             $this->logger->addCritical($message);
 
-            return false;
+            // log ax transaction result
+            $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, 'failed', $result->getMessage(), $con);
+
+            throw $result;
         }
 
         return true;
@@ -522,13 +524,14 @@ class AxService
      */
     protected function Send($service, $request)
     {
+        //Tools::debug( 'AX Send:', __METHOD__, array( 'Service' => $service, 'Request' => json_encode($request), 'Skip Send' => $this->skip_send));
         if ($this->skip_send) {
             return true;
         }
 
         if (!$this->client) {
             if (!$this->Connect()) {
-                return false;
+                return new Exception('There was an error connecting with the server! Please try again later.');
             }
         }
 

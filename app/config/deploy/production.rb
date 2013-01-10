@@ -43,6 +43,10 @@ def frontend_list_apache
   contentsArray = File.readlines("tools/deploy/frontend_list_apache.txt")
 end
 
+# only notify New Relic on production deplos
+after 'deploy:send_email', 'deploy:newrelic_notify'
+
+
 # own tasks. copy config, copy apc-clear.php and apcclear task
 namespace :deploy do
   desc "Copy default parameters.ini and hanzo.yml to shared dir"

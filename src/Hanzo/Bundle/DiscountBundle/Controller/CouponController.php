@@ -14,6 +14,7 @@ use Hanzo\Core\CoreController;
 use Hanzo\Model\Coupons;
 use Hanzo\Model\CouponsQuery;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersToCoupons;
 
 class CouponController extends CoreController
 {
@@ -43,10 +44,10 @@ class CouponController extends CoreController
             $coupon = CouponsQuery::create()
                 ->filterByCode($code)
                 ->filterByAmount(0, Criteria::GREATER_THAN)
-                ->filterByActiveFrom(time(), Criteria::GREATER_EQUAL)
+                ->filterByActiveFrom(time(), Criteria::LESS_EQUAL)
                 ->_or()
                 ->filterByActiveFrom(null, Criteria::ISNULL)
-                ->filterByActiveTo(time(), Criteria::LESS_EQUAL)
+                ->filterByActiveTo(time(), Criteria::GREATER_EQUAL)
                 ->_or()
                 ->filterByActiveTo(null, Criteria::ISNULL)
                 ->findOne()
@@ -80,10 +81,16 @@ class CouponController extends CoreController
                 }
 
                 if (0 == $coupon->getAmount()) {
-                    $coupon->isActive(false);
+                    $coupon->setIsActive(false);
                 }
 
                 $coupon->save();
+
+                $relation = new OrdersToCoupons();
+                $relation->setOrdersId($order->getId());
+                $relation->setCouponsId($coupon->getId());
+                $relation->setAmount($discount);
+                $relation->save();
 
                 $order->setDiscountLine($translator->trans('coupon', [], 'checkout'), -$discount, 'coupon.code');
                 $order->setAttribute('amount', 'coupon', $discount);

@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CMSBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,6 +23,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
+        $this->setSharedMaxAge(86400);
         return $this->forward('CMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
@@ -44,25 +46,20 @@ class DefaultController extends CoreController
             }
         }
 
-        $response = new Response();
-        // TODO: fix this shit
-        // Disabled by request of un@bellcom.dk
-        /*$response->setLastModified($page->getUpdatedAt(null));
+        // access check - should be done better tho...
+        if ((10 == $page->getCmsThreadId()) && !$this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+            return $this->redirect($this->generateUrl('_homepage', ['_locale' => $locale]));
+        }
 
-        if ($response->isNotModified($this->getRequest())) {
-            return $response;
-        }*/
-
-        $response->setMaxAge(60);
-        $response->setSharedMaxAge(60);
-
+        // TODO: figure out wether this still is an issue or ....
         $html = $page->getContent();
         $find = '~(background|src)="(../|/)~';
         $replace = '$1="' . $hanzo->get('core.cdn');
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
-        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
+        $this->setSharedMaxAge(86400);
+        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page));
     }
 
     public function blockAction($page = NULL)

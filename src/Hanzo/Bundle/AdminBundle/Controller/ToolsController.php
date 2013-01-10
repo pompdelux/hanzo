@@ -8,7 +8,6 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
-
 class ToolsController extends CoreController
 {
 
@@ -38,6 +37,18 @@ class ToolsController extends CoreController
         $this->get('replication_manager')->syncImageSorting();
 
         $this->getRequest()->getSession()->setFlash('notice', 'Billedesorterings synkronisering færdig..');
+        return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
+    public function clearVarnishCacheAction()
+    {
+        try {
+            $this->get('varnish.controle')->banUrl('^/');
+        } catch (\Exception $e) {
+            Tools::log($e->getMessage());
+        }
+
+        $this->getRequest()->getSession()->setFlash('notice', 'Varnish cache tømt.');
         return $this->redirect($this->generateUrl('admin_tools'));
     }
 }

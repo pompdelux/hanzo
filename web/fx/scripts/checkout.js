@@ -21,14 +21,16 @@
         }
       });
 
+      // TODO: move to central place and re-use
       // zip with auto city
       $(document).on('focusout', 'input.auto-city', function(event) {
         var $this = $(this);
+        // TODO: use css class
         $this.css('border', '1px solid #231F20');
         dialoug.loading($this);
 
         var value = $(this).prop('value');
-        if ('' == value) {
+        if ('' === value) {
           return;
         }
 
@@ -38,6 +40,7 @@
           if (response.status) {
             $city.val(response.data.city);
           } else {
+            // TODO: use css class
             $this.css('border', '2px solid #a10000');
             $this.val('');
             $city.val('');
@@ -49,13 +52,11 @@
       });
 
       $('#shipping-block input').on('change', function(event) {
-        // event.preventDefault();
         $(this).blur();
         $(document).trigger('shipping.method.changed', this);
       });
 
       $('#payment-block input').on('change', function(event) {
-        // event.preventDefault();
         $(this).blur();
         $(document).trigger('payment.method.changed', this);
       });
@@ -141,11 +142,12 @@
           var id = index;
           $('input, select', $form).each(function (index, element) {
             var $element = $(element);
+            // TODO: use css class
             $element.css({'border': '1px solid #231F20'});
 
             var field = element.name.match(/\[([a-z]{1}[a-z_0-9]+)\]/);
 
-            if (field && (element.value == '')) {
+            if (field && (element.value === '')) {
               $element.css({'border': '2px solid #f00'});
               address_errors.has_errors = true;
               address_errors.fields.push(field);
@@ -161,12 +163,11 @@
 
         var address_confirm = $('#address-block div.confirm');
 
-        if ($('input::checked', address_confirm).length == 0) {
+        if ($('input::checked', address_confirm).length === 0) {
           address_confirm.toggleClass('hidden');
 
           var t = document.getElementById('address-block').offsetTop;
           $('html,body').animate({scrollTop: t});
-          //$('html,body').animate({scrollTop: $('#address-block').offset().top});
           return false;
         }
 
@@ -194,7 +195,6 @@
           $(this).closest('div').css('border-color', '#C8C4C3');
           var t = document.getElementById('checkout-buttons').offsetTop;
           $('html,body').animate({ scrollTop : t });
-          //$('html,body').animate({ scrollTop : $('#checkout-buttons').offset().top });
         }
       });
 
@@ -225,14 +225,13 @@
       });
     };
 
-
     pub.setStepStatus = function(step, status) {
       step_states[step] = status;
     };
 
     pub.getStepStatus = function(step) {
       return step_states[step];
-    }
+    };
 
     pub.handleShippingMethodUpdates = function(response) {
       if (stop) { return; }
@@ -266,7 +265,6 @@
       if (response.response.status) {
         var t = document.getElementById('checkout-block-summery').offsetTop;
         $('html,body').animate({scrollTop: t});
-        //$('html,body').animate({scrollTop: $('#checkout-block-summery').offset().top});
         $(document).trigger('payment.method.updated');
         pub.setStepStatus('payment', true);
       } else {
@@ -274,7 +272,7 @@
       }
 
       pub.handleSummeryUpdates(response);
-    }
+    };
 
     pub.handleCouponUpdates = function(response) {
       if (stop) { return; }
@@ -285,7 +283,7 @@
       } else {
         $('form .msg', $coupon).text(response.response.message).toggleClass('off');
       }
-    }
+    };
 
     pub.validateAddress = function(response) {
       if (stop) { return; }
@@ -307,12 +305,19 @@
           if ('/' == response.response.data.url.substring(0, 1)) {
             response.response.data.url = response.response.data.url.substring(1);
           }
-
           document.location.href = base_url+response.response.data.url;
         } else if (undefined !== response.response.data.form) {
           $('#checkout-buttons').append(response.response.data.form);
           $('#checkout-buttons form').submit();
         }
+
+        // pop "please be patient" notice
+        window.setTimeout(function() {
+          dialoug.blockingNotice(
+            ExposeTranslation.get('js:checkout.payment.progress.alert.title'),
+            ExposeTranslation.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
+          );
+        }, 3000);
       }
     };
 

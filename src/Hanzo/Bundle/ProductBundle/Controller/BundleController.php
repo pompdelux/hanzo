@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\ProductBundle\Controller;
 
 use Criteria;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
@@ -148,10 +150,12 @@ class BundleController extends CoreController
             $products[$id]['options'] = $options;
         }
 
+        $this->setSharedMaxAge(86400);
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,
         ));
+
         return $responce;
     }
 
@@ -239,6 +243,7 @@ class BundleController extends CoreController
             $products[$id]['options'] = $options;
         }
 
+        $this->setSharedMaxAge(86400);
         $responce = $this->render('ProductBundle:Bundle:view.html.twig', array(
             'page_type' => 'bundle',
             'products' => $products,

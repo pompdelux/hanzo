@@ -67,9 +67,11 @@ class RestController extends CoreController
                 $route = $router->match($uri);
                 $sub_request = $this->get('request')->duplicate([], $call['data'], $route);
 
+                // TODO: implement $sub_request->setMethod() to allow better interaction with rest services.
                 $response = $kernel->handle($sub_request, HttpKernelInterface::SUB_REQUEST)->getContent();
 
                 // we assume that strings starting with "{" is json encoded data
+                // so we decode it to avoid double encoded data.
                 if ('{' == substr($response, 0, 1)) {
                     $response = json_decode($response);
                 }

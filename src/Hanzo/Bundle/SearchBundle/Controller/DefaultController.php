@@ -3,6 +3,7 @@
 namespace Hanzo\Bundle\SearchBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -17,10 +18,7 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 
 class DefaultController extends CoreController
 {
-    /**
-     * @Cache(maxage="1")
-     */
-    public function categoryAction($id)
+    public function categoryAction(Request $request, $id)
     {
         $hanzo = Hanzo::getInstance();
         $locale = $hanzo->get('core.locale');
@@ -67,8 +65,8 @@ class DefaultController extends CoreController
         if ('POST' === $this->getRequest()->getMethod()) {
             $size = $this->getRequest()->get('size');
 
-            if (empty($sizes[$size])) {
-                $sizes[$size] = $sizes['146-152'];
+            if (empty($size) || empty($sizes[$size])) {
+                return $this->redirect($request->headers->get('referer'));
             }
 
             $product_ids  = array();
@@ -219,6 +217,7 @@ class DefaultController extends CoreController
             $result_set = $category_map;
         }
 
+        $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
             'page_type' => 'category-search',
             'content'   => $page->getContent(),

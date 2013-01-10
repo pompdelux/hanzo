@@ -28,7 +28,8 @@ class SoapController extends CoreController
         $service_class = str_replace('Controller', 'Services\Soap', __NAMESPACE__) . "\\{$service_name}\\$service_name";
         $handler = new $service_class (
             $this->getRequest(),
-            $this->get('Logger')
+            $this->get('Logger'),
+            $this->get('event_dispatcher')
         );
 
         $service = new \SoapServer($wsdl);
@@ -42,7 +43,9 @@ class SoapController extends CoreController
 
         $handler = new \Hanzo\Bundle\WebServicesBundle\Services\Soap\ECommerceServices\ECommerceServices (
             $this->getRequest(),
-            $this->get('Logger')
+            $this->get('Logger'),
+            new \Symfony\Component\EventDispatcher\EventDispatcher()
+
         );
 
         $d = new \stdClass();

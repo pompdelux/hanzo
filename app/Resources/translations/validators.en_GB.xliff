@@ -6,6 +6,10 @@
                 <source>email.exists</source>
                 <target>Your E-Mail Address already exists in our records!</target>
             </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Password must be a minimum of 5 characters long</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

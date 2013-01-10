@@ -187,6 +187,7 @@ var quickorder = (function($) {
                     }
                     else {
                         window.scrollTo(window.scrollMinX, window.scrollMinY);
+                        $.cookie('basket', response.data);
                         $('#mini-basket a').html(response.data);
                         dialoug.slideNotice(response.message);
                         var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_basket_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "");

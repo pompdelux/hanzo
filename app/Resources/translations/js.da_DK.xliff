@@ -353,6 +353,13 @@
             <trans-unit id="approve.conditions.required" approved="no">
                 <source>approve.conditions.required</source>
                 <target>Du skal godkende POMPdeLUX betingelser først</target>
+            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+                <source>checkout.payment.progress.alert.title</source>
+                <target>Betalingsvinduet hentes</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+                <source>checkout.payment.progress.alert.message</source>
+                <target><![CDATA[Vent venligst på at betalingsvinduet bliver hentet. Det kan tage op til 30 sekunder at hente betalingsvinduet. Går der mere end 30 sekunder, skal du klikke på Afbryd betaling knappen herunder og prøve igen.<br><br>På forhånd tak.<br><br><a href="%url%">» Afbryde betaling</a>]]></target>
             </trans-unit>
         </body>
     </file>

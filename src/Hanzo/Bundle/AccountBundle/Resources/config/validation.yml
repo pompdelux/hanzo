@@ -15,6 +15,7 @@ Hanzo\Model\Addresses:
                 message: address.address_line_1.required
                 groups: [shipping, company_shipping, payment, overnightbox, customer]
             - MinLength: 2
+            - MaxLength: 150
         postal_code:
             - NotBlank:
                 message: address.postal_code.required
@@ -42,17 +43,30 @@ Hanzo\Model\Customers:
             - NotBlank:
                 message: address.first_name.required
                 groups: [customer, customer_edit]
-            - MinLength: 2
+            - MinLength: 
+                limit: 2
+                message: address.first_name.min.length
+                groups: [customer, customer_edit]
         last_name:
             - NotBlank:
                 message: address.last_name.required
                 groups: [customer, customer_edit]
-            - MinLength: 2
+            - MinLength:
+                limit: 2
+                message: address.last_name.min.length
+                groups: [customer, customer_edit]
         phone:
             - NotBlank:
                 message: phone.required
                 groups: [customer, customer_edit]
-            - MinLength: 8
+            - MinLength:
+                limit: 8
+                message: phone.min.length
+                groups: [customer, customer_edit]
+            - Type:
+                type: numeric
+                message: phone.not.valid
+                groups: [customer, customer_edit]
         email:
             - NotBlank:
                 message: email.required

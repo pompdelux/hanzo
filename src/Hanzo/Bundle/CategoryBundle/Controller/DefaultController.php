@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CategoryBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -68,8 +69,10 @@ class DefaultController extends CoreController
             $this->setCache($cache_id, $html, 5);
         }
 
+        $this->setSharedMaxAge(1800);
         return $this->response($html);
     }
+
 
     public function listProductsAction($view = 'simple', $filter = 'G_')
     {
@@ -111,6 +114,7 @@ class DefaultController extends CoreController
         $max = ceil(count($records)/3);
         $records = array_chunk($records, $max);
 
+        $this->setSharedMaxAge(86400);
         return $this->render('CategoryBundle:Default:contextList.html.twig', array(
             'page_type' => 'context-list',
             'products' => $records,

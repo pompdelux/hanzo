@@ -2,35 +2,26 @@
 
 namespace Hanzo\Model;
 
+use Exception;
 use BasePeer;
 use Criteria;
+use Propel;
 use PropelPDO;
 use PropelCollection;
+use OutOfBoundsException;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\om\BaseOrders;
 use Hanzo\Model\OrdersLines;
-use Hanzo\Model\OrdersLinesPeer;
-use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersStateLog;
-
 use Hanzo\Model\OrdersAttributes;
-use Hanzo\Model\OrdersAttributesQuery;
-
 use Hanzo\Model\OrdersVersions;
 use Hanzo\Model\OrdersVersionsQuery;
-
 use Hanzo\Model\ShippingMethods;
-
-use Hanzo\Model\CustomerQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\AddressesPeer;
-
-use Hanzo\Model\SettingsQuery;
-
-use Exception;
 
 /**
  * Skeleton subclass for representing a row from the 'orders' table.
@@ -106,36 +97,27 @@ class Orders extends BaseOrders
         $data['products'] = $this->getOrdersLiness()->toArray();
         $data['attributes'] = $this->getOrdersAttributess()->toArray();
 
-        // find current version id.
-        $version_id = OrdersVersionsQuery::create()
-            ->filterByOrdersId($this->getId())
-            ->orderByVersionId('desc')
-            ->findOne()
-        ;
+        $version_ids = $this->getVersionIds();
+        $version_1_exists = false;
 
-        if ($version_id) {
-            $version_id = $version_id->getVersionId() + 1;
+        if (count($version_ids)) {
+            $version_id = max($version_ids) +1;
+            if (isset($version_ids[1])) {
+                $version_1_exists = true;
+            }
         } else {
             $version_id = 1;
         }
 
         $now = time();
+        $data = serialize($data);
+
         $version = new OrdersVersions();
         $version->setOrdersId($this->getId());
         $version->setVersionId($version_id);
-        $version->setContent(serialize($data));
+        $version->setContent($data);
         $version->setCreatedAt($now);
         $version->save();
-
-        // for the first version we create entries for both first and second version
-        if ($version_id == 1) {
-            $version = new OrdersVersions();
-            $version->setOrdersId($this->getId());
-            $version->setVersionId($version_id + 1);
-            $version->setContent(serialize($data));
-            $version->setCreatedAt($now);
-            $version->save();
-        }
 
         $this->setVersionId($version_id + 1);
         return $this->save();
@@ -150,21 +132,20 @@ class Orders extends BaseOrders
     public function getVersionIds()
     {
         $versions = OrdersVersionsQuery::create()
+            ->select('VersionId')
             ->filterByOrdersId($this->getId())
             ->orderByVersionId('desc')
-            ->find()
-            ;
+            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
         $id = $this->getVersionId();
-        $ids = array(
-            $id => $id
-        );
 
+        $ids = [];
         foreach ($versions as $version) {
-            $ids[$version->getVersionId()] = $version->getVersionId();
+            $ids[$version] = $version;
         }
 
-        return array_keys($ids);
+        return $ids;
     }
 
 
@@ -176,7 +157,7 @@ class Orders extends BaseOrders
      */
     public function deleteVersion($version_id)
     {
-        if (($version_id == $this->getVersionId()) || !in_array($version_id, $this->getVersionIds())) {
+        if (!in_array($version_id, $this->getVersionIds())) {
             throw new OutOfBoundsException('Invalid version id');
         }
 
@@ -203,8 +184,9 @@ class Orders extends BaseOrders
 
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
-            ->findOneByVersionId($version_id)
-            ;
+            ->filterByVersionId($version_id)
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
         if (!$version instanceof OrdersVersions) {
             throw new OutOfBoundsException('No such version: ' . $version_id . ' of order nr: ' . $this->getId());
@@ -253,8 +235,9 @@ class Orders extends BaseOrders
 
         $version = OrdersVersionsQuery::create()
             ->filterByOrdersId($this->getId())
-            ->findOneByVersionId($version_id)
-            ;
+            ->filterByVersionId($version_id)
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
         if (!$version instanceof OrdersVersions) {
             throw new OutOfBoundsException('No such version: ' . $version_id . ' of order nr: ' . $this->getId());
@@ -276,14 +259,11 @@ class Orders extends BaseOrders
         }
         $order->setOrdersLiness($collection);
 
-        //$collection = new PropelObjectCollection();
         foreach ($data['attributes'] as $item) {
             $line = new OrdersAttributes();
             $line->fromArray($item);
             $order->addOrdersAttributes($line);
-            //$collection->prepend($line);
         }
-        //$order->setOrdersAttributess($collection);
 
         // save and return the version
         return $order;
@@ -297,18 +277,26 @@ class Orders extends BaseOrders
     public function toPreviousVersion()
     {
         // no previous version, return current
-        if (count($this->getVersionIds()) < 2) {
+        if (count($this->getVersionIds()) < 1) {
             return $this;
         }
 
+        $current_version = $this->getVersionId();
+
         $version = OrdersVersionsQuery::create()
+            ->select('VersionId')
             ->filterByOrdersId($this->getId())
             ->filterByVersionId($this->getVersionId(), \Criteria::LESS_THAN)
             ->orderByVersionId('desc')
-            ->findOne()
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
         ;
 
-        return $this->toVersion($version->getVersionId());
+        $this->toVersion($version);
+
+        // delete abandoned version
+        $this->deleteVersion($version);
+
+        return $this;
     }
 
 
@@ -324,7 +312,7 @@ class Orders extends BaseOrders
     public function setOrderLineQty($product, $quantity, $exact = FALSE, $date = '1970-01-01')
     {
         // first update existing product lines, if any
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         if ($this->getState() !== self::STATE_BUILDING) {
             $this->setState(self::STATE_BUILDING);
@@ -410,15 +398,12 @@ class Orders extends BaseOrders
      **/
     public function setOrderLineShipping( ShippingMethods $shippingMethod, $isFee = false )
     {
-        if ( $isFee )
-        {
+        if ( $isFee ) {
             $price = $shippingMethod->getFee();
             $name  = $shippingMethod->getName();
             $sku    = $shippingMethod->getFeeExternalId();
             $type  = 'shipping.fee';
-        }
-        else
-        {
+        } else {
             $price = $shippingMethod->getPrice();
             $name  = $shippingMethod->getName();
             $sku   = $shippingMethod->getExternalId();
@@ -426,11 +411,10 @@ class Orders extends BaseOrders
         }
 
         // first update existing product lines, if any
-        $lines = $this->getOrdersLiness();
-        foreach ($lines as $index => $line)
-        {
-            if ( $line->getType() == $type )
-            {
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+
+        foreach ($lines as $index => $line) {
+            if ( $line->getType() == $type ) {
                 $line->setProductsSku( $sku );
                 $line->setProductsName( $name );
                 $line->setPrice( $price );
@@ -459,7 +443,7 @@ class Orders extends BaseOrders
     public function getOrderLineShipping()
     {
         $shipping = array();
-        foreach ($this->getOrdersLiness() as $index => $line) {
+        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $index => $line) {
             if (in_array($line->getType(), array('shipping', 'shipping.fee'))) {
                 $shipping[] = $line;
             }
@@ -477,7 +461,7 @@ class Orders extends BaseOrders
     public function getOrderLineDiscount()
     {
         $discounts = array();
-        foreach ($this->getOrdersLiness() as $index => $line) {
+        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $index => $line) {
             if (in_array($line->getType(), array('discount' ))) {
                 $discounts[] = $line;
             }
@@ -570,7 +554,7 @@ class Orders extends BaseOrders
 
     public function getTotalPrice($products_only = false)
     {
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $total = 0;
         foreach ($lines as $line) {
@@ -598,7 +582,7 @@ class Orders extends BaseOrders
 
     public function getTotalQuantity($products_only = false)
     {
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $total = 0;
         foreach ($lines as $line) {
@@ -625,7 +609,7 @@ class Orders extends BaseOrders
      */
     public function setAttribute( $key, $ns, $value )
     {
-        $attributes = $this->getOrdersAttributess();
+        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         // Update existing attributes
         foreach ($attributes as $index => $attribute)
@@ -690,11 +674,11 @@ class Orders extends BaseOrders
 
         // Payment fee should always be set by the payment modules, so we can just update it
         // First update existing product lines, if any
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
         foreach ($lines as $index => $line)
         {
-            if ( $line->getType() == $type ) // No check on sku, because it might be different, only look for type
-            {
+            // No check on sku, because it might be different, only look for type
+            if ( $line->getType() == $type ) {
                 $line->setProductsName( $name );
                 $line->setProductsSku( $sku );
                 $line->setPrice( $price );
@@ -729,7 +713,7 @@ class Orders extends BaseOrders
     {
         $type = 'payment.fee';
 
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
         foreach ($lines as $index => $line)
         {
             if ( $line->getType() == $type )
@@ -753,7 +737,7 @@ class Orders extends BaseOrders
     {
         $type = 'shipping.fee';
 
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
         foreach ($lines as $index => $line)
         {
             if ( $line->getType() == $type )
@@ -778,7 +762,7 @@ class Orders extends BaseOrders
      */
     public function setOrderLine($type, $id, $name, $price = 0.00, $vat = 0.00, $quantity = 1)
     {
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         foreach ($lines as $index => $line) {
             if ($line->getType() == $type) {
@@ -913,7 +897,7 @@ class Orders extends BaseOrders
      **/
     public function clearFees()
     {
-        $lines = $this->getOrdersLiness();
+        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         foreach ($lines as $line)
         {
@@ -932,7 +916,7 @@ class Orders extends BaseOrders
      **/
     public function clearAttributesByKey( $key )
     {
-        $attributes = $this->getOrdersAttributess();
+        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         foreach ($attributes as $index => $attribute) {
             if ( $attribute->getCKey() == $key ) {
@@ -949,7 +933,7 @@ class Orders extends BaseOrders
      **/
     public function clearAttributesByNS( $ns )
     {
-        $attributes = $this->getOrdersAttributess();
+        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         foreach ($attributes as $index => $attribute) {
             if ( $attribute->getNs() == $ns ) {
@@ -991,7 +975,7 @@ class Orders extends BaseOrders
      */
     public function getAttachments()
     {
-        $attributes = $this->getOrdersAttributess();
+        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $attachments = array();
         foreach ($attributes as $attribute) {
@@ -1063,7 +1047,7 @@ class Orders extends BaseOrders
     public function hasProduct($product_id)
     {
         $isInt = preg_match('/^[0-9]+$/', $product_id);
-        foreach ($this->getOrdersLiness() as $line) {
+        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
             if ($isInt) {
                 if ($line->getProductsId() == $product_id) {
                     return true;
@@ -1153,7 +1137,7 @@ class Orders extends BaseOrders
         $result = $hanzo->get('HD.expected_delivery_date');
         $expected_at = is_null( $result ) ? '' : $result;
 
-        foreach ($this->getOrdersLiness() as $line) {
+        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $line) {
             $date = $line->getExpectedAt('Ymd');
             if (($date > $now) && ($date > $latest)) {
                 $latest = $date;
@@ -1192,7 +1176,7 @@ class Orders extends BaseOrders
                     // allow delete for priority deletes
                     Hanzo::getInstance()->container->get('ax_manager')->deleteOrder($this, $con);
                 } else {
-                    throw new Exception($e->getMessage());
+                    throw $e;
                 }
             }
         }
@@ -1221,10 +1205,10 @@ class Orders extends BaseOrders
 
         $data = array();
         $data['ordes'] = $this->toArray();
-        $data['orders_lines'] = $this->getOrdersLiness($con)->toArray();
-        $data['orders_attributes'] = $this->getOrdersAttributess($con)->toArray();
-        $data['orders_state_log'] = $this->getOrdersStateLogs($con)->toArray();
-        $data['orders_versions'] = $this->getOrdersVersionss($con)->toArray();
+        $data['orders_lines'] = $this->getOrdersLiness(null, $con)->toArray();
+        $data['orders_attributes'] = $this->getOrdersAttributess(null, $con)->toArray();
+        $data['orders_state_log'] = $this->getOrdersStateLogs(null, $con)->toArray();
+        $data['orders_versions'] = $this->getOrdersVersionss(null, $con)->toArray();
 
         if (defined('ACTION_TRIGGER')) {
             $trigger = 'cli';

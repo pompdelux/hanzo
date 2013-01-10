@@ -13,6 +13,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\CouponsQuery;
 use Hanzo\Model\Coupons;
 use Hanzo\Model\CouponsToCustomersQuery;
+use Hanzo\Model\OrdersToCouponsQuery;
 use Hanzo\Model\CouponsToCustomers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\DomainsSettingsQuery;
@@ -91,12 +92,13 @@ class CouponsController extends CoreController
 
         $request = $this->getRequest();
         $coupon = null;
-
+        $coupons_history = null;
         if ($id) {
             $coupon = CouponsQuery::create()
                 ->filterById($id)
                 ->findOne($this->getDbConnection())
             ;
+            $coupons_history = OrdersToCouponsQuery::create()->filterByCouponsId($id)->find();
         } else {
             $coupon = new Coupons();
 
@@ -133,7 +135,7 @@ class CouponsController extends CoreController
                 'label' => 'admin.coupons.code',
                 'translation_domain' => 'admin',
                 'required' => true
-            ))->add('amount', 'number', array(
+            ))->add('amount', 'text', array(
                 'label' => 'admin.coupons.amount',
                 'translation_domain' => 'admin',
                 'required' => true
@@ -179,6 +181,7 @@ class CouponsController extends CoreController
         return $this->render('AdminBundle:Coupons:view.html.twig', array(
             'form' => $form->createView(),
             'coupon' => $coupon,
+            'coupons_history' => $coupons_history,
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }

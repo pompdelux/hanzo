@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\ProductBundle\Controller;
 
 use Criteria;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
@@ -183,6 +185,7 @@ class DefaultController extends CoreController
         $this->get('twig')->addGlobal('body_classes', 'body-product product-'.$data['id']);
         $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
 
+        $this->setSharedMaxAge(300);
         $responce = $this->render('ProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
             'product' => $data,

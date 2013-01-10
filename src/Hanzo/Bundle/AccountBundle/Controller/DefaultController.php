@@ -36,6 +36,10 @@ class DefaultController extends CoreController
         // if we access the account page vith an active "edit" we close it.
         if ($session->has('in_edit')) {
             $this->get('event_dispatcher')->dispatch('order.edit.cancel', new FilterOrderEvent(OrdersPeer::getCurrent()));
+
+            // update/set basket cookie
+            Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+            return $this->redirect($this->generateUrl('_account'));
         }
 
         return $this->render('AccountBundle:Default:index.html.twig', array(
@@ -57,23 +61,19 @@ class DefaultController extends CoreController
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
-        if ( count( $countries ) == 1 ) // for .dk, .se, .no and maybe .nl
-        {
+        // for .dk, .se, .no and maybe .nl
+        if ( count( $countries ) == 1 ) {
             $addresses->setCountry( $countries[0]->getLocalName() );
             $addresses->setCountriesId( $countries[0]->getId() );
-        }
-        else
-        {
+        } else {
             // If the customer is located in Denmark, but browsing the en_GB site, the geoip will set country to Denmark,
             // and fail to select a country id in the dropdown as Denmark is excluded from that list
             // But when the customer submits the form "Denmark" is still send as a country so we try to override that here
 
-            if ('POST' !== $request->getMethod())
-            {
+            if ('POST' !== $request->getMethod()) {
                 $geoip = $this->get('geoip_manager');
                 $geoipResult = $geoip->lookup();
-                if ( !is_null( $geoipResult['country_id'] ) )
-                {
+                if ( !is_null( $geoipResult['country_id'] ) ) {
                     $addresses->setCountry( $geoipResult['country_localname'] );
                     $addresses->setCountriesId( $geoipResult['country_id'] );
                 }
@@ -89,12 +89,10 @@ class DefaultController extends CoreController
             array('validation_groups' => 'customer')
         );
 
-        if ( 'POST' === $request->getMethod() )
-        {
+        if ( 'POST' === $request->getMethod() ) {
             $form->bindRequest($request);
 
-            if ($form->isValid())
-            {
+            if ($form->isValid()) {
                 $customer->setPasswordClear($customer->getPassword());
                 $customer->setPassword(sha1($customer->getPassword()));
 
@@ -103,15 +101,14 @@ class DefaultController extends CoreController
 
                 $formData = $request->request->get('customers');
 
-                if ( count( $countries ) != 1 ) // for .dk, .se, .no and maybe .nl
-                {
+                // for .dk, .se, .no and maybe .nl
+                if ( count( $countries ) != 1 ) {
                     $countryById = CountriesQuery::create()
                         ->findPk($formData['addresses'][0]['countries_id']);
                     $addresses->setCountry($countryById->getName());
                 }
 
-                if ( isset( $formData['newsletter'] )  && $formData['newsletter'] )
-                {
+                if ( isset( $formData['newsletter'] )  && $formData['newsletter'] ) {
                     $api = $this->get('newsletterapi');
                     $response = $api->subscribe($customer->getEmail(), $api->getListIdAvaliableForDomain());
                     if ( is_object($response) && $response->is_error ) {
@@ -141,7 +138,7 @@ class DefaultController extends CoreController
                     $mailer->setTo($customer->getEmail(), $name);
                     $mailer->send();
                 } catch (\Swift_TransportException $e) {
-                    error_log(__LINE__.':'.__FILE__.' '.print_r($e->getMessage(),1)); // hf@bellcom.dk debugging
+                    Tools::log($e->getMessage());
                 }
 
                 $order = OrdersPeer::getCurrent();
@@ -229,6 +226,7 @@ class DefaultController extends CoreController
 
         $countries = CountriesPeer::getAvailableDomainCountries();
 
+        $errors = '';
         $form = $this->createForm(
             new CustomersType(false, new AddressesType( $countries )),
             $customer,
@@ -252,11 +250,16 @@ class DefaultController extends CoreController
 
                 $this->get('session')->setFlash('notice', 'account.updated');
                 return $this->redirect($this->generateUrl('_account'));
+            } else {
+                $errors = new FormErrors($form, $this->get('translator'), 'account');
+                $errors = $errors->toString();
             }
+
         }
 
         return $this->render('AccountBundle:Default:edit.html.twig', array(
             'page_type' => 'create-account',
+            'errors' => $errors,
             'form' => $form->createView(),
         ));
     }

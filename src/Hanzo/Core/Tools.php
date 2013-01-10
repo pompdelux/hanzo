@@ -5,14 +5,13 @@ namespace Hanzo\Core;
 use \Propel;
 use \BasePeer;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Model\Orders,
-    Hanzo\Model\OrdersPeer,
-    Hanzo\Model\CustomersPeer,
-    Hanzo\Model\Sequences,
-    Hanzo\Model\SequencesPeer,
-    Hanzo\Model\SequencesQuery
-    ;
+use Hanzo\Core\Hanzo;
+use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\CustomersPeer;
+use Hanzo\Model\Sequences;
+use Hanzo\Model\SequencesPeer;
+use Hanzo\Model\SequencesQuery;
 
 class Tools
 {
@@ -56,6 +55,13 @@ class Tools
         return $v;
     }
 
+
+    /**
+     * better strip tags implementation
+     *
+     * @param  string $text
+     * @return string
+     */
     public static function stripTags($text)
     {
         return preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', '', $text);
@@ -130,6 +136,69 @@ class Tools
         return implode("\n", $address);
     }
 
+
+    /**
+     * NICETO: not hardcoded
+     */
+    public static function getBccEmailAddress($type, $order)
+    {
+        $attributes = $order->getAttributes();
+
+        $to = '';
+        switch ($type) {
+            case 'order':
+                switch ($attributes->global->domain_key) {
+                    case 'FI':
+                    case 'SalesFI':
+                        $to = 'orderfi@pompdelux.com';
+                        break;
+                    case 'NL':
+                    case 'SalesNL':
+                        $to = 'ordernl@pompdelux.com';
+                        break;
+                    case 'NO':
+                    case 'SalesNO':
+                        $to = 'order@pompdelux.no';
+                        break;
+                    case 'SE':
+                    case 'SalesSE':
+                        $to = 'order@pompdelux.se';
+                        break;
+                    default:
+                        $to = 'order@pompdelux.dk';
+                        break;
+                }
+
+                break;
+            case 'retur':
+                switch ($attributes->global->domain_key) {
+                    case 'FI':
+                    case 'SalesFI':
+                        $to = 'returfi@pompdelux.dk';
+                        break;
+                    case 'NL':
+                    case 'SalesNL':
+                        $to = 'returnl@pompdelux.dk';
+                        break;
+                    case 'NO':
+                    case 'SalesNO':
+                        $to = 'returno@pompdelux.dk';
+                        break;
+                    case 'SE':
+                    case 'SalesSE':
+                        $to = 'returse@pompdelux.dk';
+                        break;
+                    default:
+                        $to = 'retur@pompdelux.dk';
+                        break;
+                }
+                break;
+        }
+
+        return $to;
+    }
+
+
     /**
      * Sequence generator, returns next sequesce id of a named sequence.
      * Unknown sequences is created on first request.
@@ -143,11 +212,10 @@ class Tools
             throw new \InvalidArgumentException("'{$name}' is not a valid sequence name.");
         }
 
-        Propel::setForceMasterConnection(true);
-        $con = Propel::getConnection(SequencesPeer::DATABASE_NAME);
+        $con = Propel::getConnection(SequencesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
         $con->beginTransaction();
 
-        $item = SequencesQuery::create()->findPk($name);
+        $item = SequencesQuery::create()->findPk($name, $con);
 
         if (!$item instanceof Sequences) {
             $item = new Sequences();
@@ -158,13 +226,13 @@ class Tools
         $sequence_id = $item->getId();
 
         $item->setId($sequence_id + 1);
-        $item->save();
+        $item->save($con);
 
         $con->commit();
-        Propel::setForceMasterConnection(false);
 
         return $sequence_id;
     }
+
 
     /**
      * Wrapping the getPaymentGatewayId method to auto-generate gateway id's
@@ -189,13 +257,22 @@ class Tools
      * @param mixed $data the data to log
      * @param integer $back how many levels back we dump trace for
      */
-    public static function log($data, $back = 0) {
+    public static function log($data, $back = 0)
+    {
         $bt = debug_backtrace();
         $line = $bt[$back]['line'];
-        $file = str_replace(realpath(__DIR__ . '/../../../'), '~', $bt[$back]['file']);
+        $root = realpath(__DIR__ . '/../../../');
+        $file = str_replace($root, '~', $bt[$back]['file']);
+
+        // handle logging when running in fast cgi mode (nginx)
+        if ('fpm-fcgi' == php_sapi_name()) {
+            error_log('['.date('r').'] '.$file.' +'.$line.' :: '.print_r($data, 1)."\n", 3, $root.'/app/logs/php.log');
+            return;
+        }
 
         error_log($file.' +'.$line.' :: '.print_r($data, 1));
     }
+
 
     /**
      * debug
@@ -215,29 +292,25 @@ class Tools
      **/
     public static function debug( $msg, $context, $data = array())
     {
-      $order    = OrdersPeer::getCurrent();
-      $customer = CustomersPeer::getCurrent();
+        $order    = OrdersPeer::getCurrent();
+        $customer = CustomersPeer::getCurrent();
 
-      $out  = "-----------------------[ Debug: ".$context." ]-----------------------\n";
-      $out .= $msg."\n";
-      $out .= "Customer ip / id       : ". $_SERVER['REMOTE_ADDR'] ." / ". $customer->getId() ."\n";
-      $out .= "Order id / state       : ". $order->getId() ." / ". $order->getState() ."\n";
-      $out .= "Order customer id      : ". $order->getCustomersId() ."\n";
+        $out  = "-----------------------[ Debug: ".$context." ]-----------------------\n";
+        $out .= $msg."\n";
+        $out .= "Customer ip / id       : ". $_SERVER['REMOTE_ADDR'] ." / ". $customer->getId() ."\n";
+        $out .= "Order id / state       : ". $order->getId() ." / ". $order->getState() ."\n";
+        $out .= "Order customer id      : ". $order->getCustomersId() ."\n";
 
-      if ( !empty($data) )
-      {
-        foreach ($data as $key => $value)
-        {
-          if ( is_array($value) )
-          {
-            $value = print_r($value,1);
-          }
-
-          $out .= str_pad( $key, 23 ).": ". $value."\n";
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                if (is_array($value)) {
+                    $value = print_r($value,1);
+                }
+                $out .= str_pad( $key, 23 ).": ". $value."\n";
+            }
         }
-      }
 
-      error_log($out);
+        error_log($out);
     }
 
     /**
@@ -298,6 +371,10 @@ class Tools
         return $env;
     }
 
+
+    /**
+     * handle requests for robots.txt - we autogenerate these
+     */
     public static function handleRobots()
     {
         // robots only allowed on the www domain
@@ -312,11 +389,13 @@ class Tools
         }
     }
 
+
     /**
      * build and return "in order edit warning"
+     *
      * @return string
      */
-    public static function getInEditWarning()
+    public static function getInEditWarning($compact = false)
     {
         $hanzo = self::getHanzoInstance();
         $session = $hanzo->getSession();
@@ -329,7 +408,41 @@ class Tools
             '%stop_url%' => $router->generate('_account', array('stop' => 1)),
         );
 
-        return '<div id="in-edit-warning">'.$trans->trans('order.edit.global.notice', $params).'</div>';
+        $html = '<div id="in-edit-warning">'.$trans->trans('order.edit.global.notice', $params).'</div>';
+
+        if ($compact) {
+            $html = explode("\n", $html);
+            $html = array_map('trim', $html);
+
+            return implode('', $html);
+        }
+
+        return $html;
+    }
+
+
+    /**
+     * helper function for setting cookies
+     *
+     * @param string  $name      name of the cookie
+     * @param string  $value     value of the cookie
+     * @param integer $ttl       cookie ttl, defaults to session cookie (0)
+     * @param boolean $http_only set to false if cookie is http only (ie. no javascript access)
+     */
+    public static function setCookie($name, $value, $ttl = 0, $http_only = true)
+    {
+        static $path;
+
+        if (empty($path)) {
+            $path = $_SERVER['SCRIPT_NAME'];
+            // dev needs the "script name" to be part of the path but prod and test does not
+            if ('dev_' !== substr(self::getHanzoInstance()->container->get('kernel')->getEnvironment(), 0, 4)) {
+                $path = '';
+            }
+            $path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
+        }
+
+        return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $http_only);
     }
 
 
@@ -355,13 +468,13 @@ class Tools
 
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageUrl($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn') . 'images/products/thumb/' . $src;
+        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
         return self::imagePath($src, $preset);
     }
 

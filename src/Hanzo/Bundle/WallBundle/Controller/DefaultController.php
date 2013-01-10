@@ -19,7 +19,7 @@ class DefaultController extends CoreController
     public function indexAction()
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ADMIN') && false === $this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
-            return $this->redirect($this->generateUrl('login'));
+            return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('session')->getLocale()]));
         }
 
         $code = explode('_', $this->get('session')->getLocale());
@@ -45,7 +45,6 @@ class DefaultController extends CoreController
             ->endUse()
             ->groupById()
             ->withColumn('addresses.city', 'city')
-            ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
             ->filterByStatus(true)
             ->where('wall.parent_id IS NULL')
             ->orderByCreatedAt('DESC')
@@ -56,7 +55,6 @@ class DefaultController extends CoreController
 
             $likes = WallLikesQuery::create()
                 ->join('Customers')
-                ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'name')
                 ->filterByWallId($wall_post->getId())
                 ->orderByStatus('DESC')
                 ->find()
@@ -83,7 +81,7 @@ class DefaultController extends CoreController
                 $likes_arr[] = array(
                     'id' => $like->getId(),
                     'customers_id' => $like->getCustomersId(),
-                    'name' => $like->getName(),
+                    'name' => $like->getCustomers()->getFirstName().' '.$like->getCustomers()->getLastName(),
                     'status' => $like->getStatus()
                 );
             }
@@ -95,7 +93,6 @@ class DefaultController extends CoreController
                 ->endUse()
                 ->groupById()
                 ->withColumn('addresses.city', 'city')
-                ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
                 ->filterByStatus(true)
                 ->filterByParentId($wall_post->getId())
                 ->orderByCreatedAt('ASC')
@@ -109,7 +106,7 @@ class DefaultController extends CoreController
                     'message' => $this->wallEmo($sub_post->getMessate()),
                     'clean_message' => $sub_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($sub_post->getCreatedAt())),
-                    'author' => $sub_post->getAuthor(),
+                    'author' => $sub_post->getCustomers()->getFirstName().' '.$sub_post->getCustomers()->getLastName(),
                     'city' => $sub_post->getCity(),
                     'customers_id' => $sub_post->getCustomersId(),
                     'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $sub_post->getCustomersId()) ? true : false,
@@ -123,7 +120,7 @@ class DefaultController extends CoreController
                 'message' => $this->wallEmo($wall_post->getMessate()),
                 'clean_message' => $wall_post->getMessate(),
                 'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
-                'author' => $wall_post->getAuthor(),
+                'author' => $wall_post->getCustomers()->getFirstName().' '.$wall_post->getCustomers()->getLastName(),
                 'city' => $wall_post->getCity(),
                 'customers_id' => $wall_post->getCustomersId(),
                 'is_liked' => ($is_liked instanceof WallLikes) ? $is_liked->getStatus() : null,
@@ -250,7 +247,6 @@ class DefaultController extends CoreController
 
             $wall_post = WallQuery::create()
                 ->join('Customers')
-                ->withColumn('CONCAT(customers.first_name, \' \', customers.last_name)', 'author')
                 ->findOneById($wall_entry->getId())
             ;
 
@@ -263,7 +259,7 @@ class DefaultController extends CoreController
                     'message' => $this->wallEmo($wall_post->getMessate()),
                     'clean_message' => $wall_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
-                    'author' => $wall_post->getAuthor(),
+                    'author' => $wall_post->getCustomers()->getFirstName().' '.$wall_post->getCustomers()->getLastName(),
                     'customers_id' => $wall_post->getCustomersId(),
                     'is_liked' => false,
                     'is_author' => ($creator->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
@@ -281,7 +277,7 @@ class DefaultController extends CoreController
                     'message' => $this->wallEmo($wall_post->getMessate()),
                     'clean_message' => $wall_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
-                    'author' => $wall_post->getAuthor(),
+                    'author' => $wall_post->getCustomers()->getFirstName().' '.$wall_post->getCustomers()->getLastName(),
                     'customers_id' => $wall_post->getCustomersId(),
                     'is_author' => ($creator->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
                     'is_first' => false,
@@ -365,7 +361,7 @@ class DefaultController extends CoreController
         }
         $wall_entry = WallQuery::create();
 
-        if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (FALSE == $this->get('security.context')->isGranted('ROLE_ADMIN') && FALSE == $this->get('security.context')->isGranted('ROLE_SALES')) {
             $wall_entry = $wall_entry->filterByCustomersId($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
         }
 

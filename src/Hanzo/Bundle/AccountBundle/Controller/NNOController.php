@@ -2,9 +2,11 @@
 
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
-use Hanzo\Core\CoreController,
-    Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools;
+use stdClass;
+
+use Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\Addresses;
@@ -42,7 +44,7 @@ class NNOController extends CoreController
 
         if (($result instanceof nnoSubscriberResult) &&
             (count($result->subscribers) == 1) &&
-            ($result->subscribers[0] instanceof nnoSubscriber)
+            ($result->subscribers[0] instanceof stdClass)
         ) {
             return $this->json_response(array(
                 'status' => TRUE,

@@ -6,6 +6,7 @@ use Hanzo\Bundle\WebServicesBundle\Services\Soap\SoapService;
 
 use Hanzo\Core\Tools;
 use Hanzo\Core\Hanzo;
+use Hanzo\Core\Timer;
 
 use Hanzo\Model\ProductsDomainsPrices;
 use Hanzo\Model\ProductsI18n;
@@ -37,13 +38,15 @@ use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
 
+use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
+
 use Criteria;
-use \Exception;
-use \PropelCollection;
+use Exception;
+use Propel;
+use PropelCollection;
 
 class ECommerceServices extends SoapService
 {
-
     /**
      * syncronize an item
      * @param object $data xmlformat:
@@ -593,7 +596,11 @@ class ECommerceServices extends SoapService
         } else {
             $master->setIsOutOfStock(false);
         }
+
         $master->save();
+
+        // purge varnish
+        $this->event_dispatcher->dispatch('product.stock.zero', new FilterCategoryEvent($master, null, Propel::getConnection(null, Propel::CONNECTION_WRITE)));
 
         // ....................
         // .....</ze code>.....
@@ -878,6 +885,7 @@ class ECommerceServices extends SoapService
 
         if (count($errors)) {
             $this->logger->addCritical(__METHOD__.' '.__LINE__.': SalesOrderCaptureOrRefundResult failed with the following error(s)', $errors);
+            $this->timer->logAll('Time spend on order: #'.$order->getId());
             return self::responseStatus('Error', 'SalesOrderCaptureOrRefundResult', $errors);
         }
 
@@ -886,6 +894,8 @@ class ECommerceServices extends SoapService
             'orderStatus' => 4,
             'sendMail' => $this->sendStatusMail,
         ));
+
+        $this->timer->logAll('Time spend on order: #'.$order->getId());
 
         return self::responseStatus('Ok', 'SalesOrderCaptureOrRefundResult');
     }
@@ -933,6 +943,7 @@ class ECommerceServices extends SoapService
         );
 
         if ($data->sendMail) {
+            $this->timer->reset();
             try {
                 $name = trim($order->getFirstName() . ' ' . $order->getLastName());
                 $mailer = Hanzo::getInstance()->container->get('mail_manager');
@@ -944,6 +955,7 @@ class ECommerceServices extends SoapService
             } catch (Exception $e) {
                 Tools::log($e->getMessage());
             }
+            $this->timer->lap('time spend sending email');
         }
 
         $order->setState($status_map[$data->orderStatus]);
@@ -1049,6 +1061,7 @@ class ECommerceServices extends SoapService
             $amount = $large . sprintf('%02d', $small);
             $gateway = $this->hanzo->container->get('payment.dibsapi');
 
+            $this->timer->reset();
             try {
                 $response = $gateway->call()->capture($order, $amount);
                 $result = $response->debug();
@@ -1058,6 +1071,7 @@ class ECommerceServices extends SoapService
                     'error: ' . $e->getMessage()
                 );
             }
+            $this->timer->lap('time in gateway');
 
             if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
                 $error = array(
@@ -1087,26 +1101,31 @@ class ECommerceServices extends SoapService
     protected function SalesOrderRefund($data, Orders $order)
     {
         $setStatus = false;
-        $error = array();
+        $errors = array();
 
         $amount = str_replace(',', '.', $data->amount);
         list($large, $small) = explode('.', $amount);
         $amount = $large . sprintf('%02d', $small);
 
         $gateway = $this->hanzo->container->get('payment.dibsapi');
+        $domain = strtoupper($order->getAttributes()->global->domain_key);
 
         $doSendError = false;
         try {
+            $this->timer->reset();
             $response = $gateway->call()->refund($order, ($amount * -1));
             $result = $response->debug();
+            $this->timer->lap('time in gateway');
 
 // un: 2012.11.29 - test logging all refunds.
+Tools::log('->->->->->->->->->-');
 Tools::log($data);
 Tools::log($result);
+Tools::log('-<-<-<-<-<-<-<-<-<-');
 
             if ($result['status'] != 0) {
                 $doSendError = true;
-                $error = array(
+                $errors = array(
                     'cound not refund order #' . $data->eOrderNumber,
                     'error: ' . $result['status_description']
                 );
@@ -1118,47 +1137,39 @@ Tools::log($result);
                     'amount' => $data->amount,
                 );
 
+                $this->timer->reset();
                 $mailer = $this->hanzo->container->get('mail_manager');
-                if ($order->getCurrencyCode() == 'EUR') {
+
+                if (in_array($domain, ['COM'])) {
                     $mailer->setMessage('order.credited', $parameters, 'en_GB');
                 } else {
                     $mailer->setMessage('order.credited', $parameters);
                 }
 
+                $bcc = Tools::getBccEmailAddress('order', $order);
+                if ($bcc) {
+                    $mailer->setBcc($bcc);
+                }
+
                 $mailer->setTo($order->getEmail(), $name);
                 $mailer->send();
+                $this->timer->lap('time sending emails');
 
                 $this->sendStatusMail = false;
             }
 
         } catch (Exception $e) {
             $doSendError = true;
-            $error = array(
+            $errors = array(
                 'cound not capture order #' . $data->eOrderNumber,
                 'error: ' . $e->getMessage()
             );
         }
 
         if($doSendError) {
-            $domain = $order->getAttributes()->global->domain_name;
-            switch (substr($domain, -2)) {
-                case 'dk':
-                case 'om':
-                    $to = 'retur@pompdelux.dk';
-                    break;
-                case 'se':
-                    $to = 'retur@pompdelux.se';
-                    break;
-                case 'nl':
-                    $to = 'retur@pompdelux.nl';
-                    break;
-                case 'fi':
-                    $to = 'retur@pompdelux.fi';
-                    break;
-                case 'no':
-                    $to = 'retur@pompdelux.no';
-                    break;
-            }
+            Tools::log($errors);
+
+            $to = Tools::getBccEmailAddress('retur', $order);
 
             $mailer = $this->hanzo->container->get('mail_manager');
             $mailer->setTo($to);
@@ -1173,7 +1184,7 @@ Tools::log($result);
             $mailer->send();
         }
 
-        return count($error) ? $error : true;
+        return count($errors) ? $errors : true;
     }
 
 
@@ -1205,5 +1216,10 @@ Tools::log($result);
         );
 
         return isset($c_map[$k]) ? $c_map[$k] : false;
+    }
+
+    protected function boot()
+    {
+        $this->timer = new Timer('ax');
     }
 }

@@ -8,7 +8,7 @@ var dialoug = (function($) {
   var templates = {
     'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
     'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">%ok%</a><a class="button left dialoug-confirm" data-case="cancel" href="">%cancel%</a></div></div>',
-    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>'
+    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>',
   };
 
 
@@ -154,6 +154,19 @@ var dialoug = (function($) {
     }
   };
 
+  pub.blockingNotice = function(title, message) {
+    $.colorbox({
+      'top' : '25%',
+      'maxWidth' : '500px',
+      'close' : '',
+      'overlayClose' : false,
+      'escKey' : false,
+      'html': templates.alert
+                       .replace('%title%', title)
+                       .replace('%message%', message)
+                       .replace('%type%', 'notice')
+    });
+  };
 
   /**
    * Slide in notification

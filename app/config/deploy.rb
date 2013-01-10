@@ -9,6 +9,11 @@ require 'capistrano/ext/multistage'
 set :stages,        %w(testing production)
 set :default_stage, "testing"
 
+set :whoami, `whoami`.strip
+set :hostname, `hostname`.strip
+set :pwd, `pwd`.strip
+set :hosts, ENV["HOSTS"]
+
 # mmh@bellcom.dk: use below to rsync the files instead of git clone. Requires capistrano_rsync_with_remote_cache installed (gem install)
 set :deploy_via,  :rsync_with_remote_cache
 # use other rsync_options. Default is: -az --delete
@@ -44,6 +49,8 @@ before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 after 'symfony:cache:clear', 'symfony:cache:redis_clear'
 # also clear apc when clearing cache
 after 'symfony:cache:clear', 'deploy:apcclear'
+# also update permissions after cache:clear
+after 'symfony:cache:clear', 'deploy:update_permissions'
 
 before 'deploy:restart', 'deploy:symlinks'
 after 'deploy:restart', 'deploy:update_permissions'
@@ -52,6 +59,7 @@ after 'deploy:restart', 'deploy:cleanup'
 after 'deploy:restart', 'deploy:send_email'
 #after 'deploy:restart', 'deploy:apcclear'
 after 'deploy:cleanup', 'deploy:apcclear'
+after 'deploy:apcclear', 'symfony:cache:varnish_clear'
 
 # clear cache after rollback. Doesnt seem to work because it tries to clear the old current dir
 #after 'deploy:rollback', 'symfony:cache:clear'
@@ -89,25 +97,24 @@ namespace :deploy do
   end
   desc "Send email after deploy"
   task :send_email do
-    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c lv@pompdelux.dk mmh@bellcom.dk"
+    run_locally "echo 'New deploy of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts})' | mail -s 'Hanzo #{branch} deployed' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
   end
   desc "Send email after rollback"
   task :send_email_rollback do
-    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: '`hostname`':'`pwd`'. By user: '`whoami` | mail -s 'Hanzo #{branch} rolled back' -c hd@pompdelux.dk -c lv@pompdelux.dk mmh@bellcom.dk"
+    run_locally "echo 'Rollback of hanzo branch: #{branch}. New current release: #{current_release}. Run from: #{hostname}:#{pwd}. By user: #{whoami} (#{hosts})' | mail -s 'Hanzo #{branch} rolled back' -c hd@pompdelux.dk -c lv@pompdelux.dk -c un@bellcom.dk mmh@bellcom.dk"
   end
   desc "Rollback warning"
   task :rollback_warning do
     puts "REMEMBER TO CLEAR THE CACHE AFTER A ROLLBACK! RUN:";puts "cap #{branch} symfony:cache:clear"
   end
-# hf@bellcom.dk, update translations and clear cache. Unused?
-  desc "Update translations"
-  task :translations do
-    run "#{current_path}/tools/deploy/translations.sh #{current_path}/app/Resources/ "
-  end
 # create symlinks 
   desc "Create logs and public_html symlinks"
   task :symlinks do
     run("cd #{deploy_to}/current;if [ ! -L logs ];then ln -s app/logs logs;fi;if [ ! -L public_html ];then ln -s web public_html;fi")
+  end
+  desc "Send deploy to New Relic"
+  task :newrelic_notify do
+    run_locally("curl -s -H 'x-api-key:75916fb33fa70e01ddca4bd9a761c56989504595a94d03a' -d 'deployment[application_id]=697785' -d 'deployment[host]=#{hostname}' -d 'deployment[user]=#{whoami}' https://rpm.newrelic.com/deployments.xml")
   end
 end
 
@@ -132,6 +139,16 @@ namespace :symfony do
   end
 end
 
+# own task. Clear Varnish
+namespace :symfony do
+  namespace :cache do
+    desc "Empty the varnish cache"
+    task :varnish_clear do
+      run("cd #{latest_release} && php app/console hanzo:varnish:purge --env=#{symfony_env_prods[0]}")
+    end
+  end
+end
+
 # own task. Run propel migrations
 namespace :propel do
   namespace :migration do
@@ -141,7 +158,7 @@ namespace :propel do
         run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
       end
     end
-    desc "Rigrations status"
+    desc "Migrations status"
     task :status, :roles => :db do
       symfony_env_prods.each do |i| 
         run("cd #{latest_release} && php app/console propel:migration:status --env=#{i}")

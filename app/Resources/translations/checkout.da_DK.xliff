@@ -303,11 +303,11 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min side som en pdf fil innen 24 timer.</target>
+        <target>Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min side som en pdf indenfor 24 timer.</target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
-        <target>Gothia faktura avgift</target>
+        <target>Gothia faktura afgift</target>
       </trans-unit>
       <trans-unit id="confirm.payment.fee">
         <source>confirm.payment.fee</source>

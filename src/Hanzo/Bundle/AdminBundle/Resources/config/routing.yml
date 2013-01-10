@@ -594,6 +594,12 @@ admin_orders_delete:
     requirements:
         order_id: \d+
 
+admin_statistics_realtime:
+    pattern: /admin/statistics/realtime
+    defaults:
+        _controller: AdminBundle:Statistics:realtime
+        domain_key: null
+
 admin_statistics:
     pattern: /admin/statistics/{domain_key}
     defaults:
@@ -682,3 +688,8 @@ admin_product_image_category_delete:
         _format: html|json
         image_id: \d+
         category_id: \d+
+
+admin_tools_clear_varnish:
+    pattern: /admin/tools/cache/clear-varnish
+    defaults:
+        _controller: AdminBundle:Tools:clearVarnishCache

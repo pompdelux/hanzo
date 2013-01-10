@@ -2,6 +2,8 @@
 
 namespace Hanzo\Bundle\AccountBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -24,12 +26,17 @@ class HistoryController extends CoreController
         ));
     }
 
-    public function viewAction($order_id)
+    public function viewAction(Request $request, $order_id)
     {
         $order = OrdersQuery::create()
             ->joinWithOrdersLines()
             ->findPk($order_id)
         ;
+
+        if (!$order instanceof Orders) {
+           return $this->redirect($request->headers->get('referer'));
+        }
+
         $order_lines = $order->getOrdersLiness();
         $order_attributes = $order->getOrdersAttributess();
 
@@ -75,6 +82,8 @@ class HistoryController extends CoreController
             return $this->redirect($this->generateUrl('_account'));
         }
 
+        // update/set basket cookie
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
         return $this->redirect($this->generateUrl('basket_view'));
     }
 
