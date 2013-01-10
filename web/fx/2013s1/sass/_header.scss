@@ -34,6 +34,7 @@ ul.menu,
 }	
 ul.main-menu,
 .main-menu > ul{
+	@include main-menu-style;
 	li:hover ul,
 	li:hover div{
 		left: 0;
@@ -52,8 +53,7 @@ ul.main-menu,
 }
 ul.sub-menu,
 .sub-menu > ul{
-	font-family: $font-sans;
-	font-size: 12px;
+	@include side-menu-style;
 	text-transform: uppercase;
 	li{
 		padding: 0 0 6px 0;
@@ -166,6 +166,7 @@ ul.breadcrumb {
 	min-height: 100px;
 	background: #d2c3c6;
 	height: 100px;
+	margin-bottom: 12px;
 	hgroup{
 		color: white;
 		padding: 10px;
@@ -175,10 +176,13 @@ ul.breadcrumb {
 		h1,h2,h3,h4,h5{
 			text-transform: uppercase;
 			padding: 0 0 10px;
+			font-size: 21px;
+			color: white;
 		}
 		h6{
 			font-size: $font-size;
 			font-weight: normal;
+			color: white;
 		}
 		a{
 			color: white;

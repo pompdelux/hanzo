@@ -20,14 +20,19 @@
       $('a.product-color').click(function(e){
         e.preventDefault();
         var currentNumber = $('.productimage-large a').data('number');
+        var currentType = $('.productimage-large a').data('type');
         if(!$(this).hasClass('current')){
           currentColor = $(this).data('color');
           $('.product-color.current').removeClass('current');
           $(this).addClass('current');
 
-          var $swapped = $('.productimage-small a.color-'+currentColor +'.number-'+currentNumber);
-          
-          product.swapImages($swapped);
+          var $swapped = $('.productimage-small a.color-'+currentColor +'.number-'+currentNumber+'.type-'+currentType);
+          if($swapped.length > 0){
+            product.swapImages($swapped);
+          }else{
+            $swapped = $('.productimage-small a.color-'+currentColor+'.type-'+currentType);
+            product.swapImages($swapped.first());
+          }
 
           $('.productimage-small a').hide();
           $('.productimage-small a.color-'+currentColor).show();
@@ -45,7 +50,8 @@
         large  : $small.attr('href'),
         id     : $small.data('id'),
         color  : $small.data('color'),
-        number : $small.data('number')
+        number : $small.data('number'),
+        type : $small.data('type')
       };
 
       var $large = $('.productimage-large a');
@@ -56,7 +62,8 @@
         large  : $large.attr('href'),
         id     : $large.data('id'),
         color  : $large.data('color'),
-        number : $large.data('number')
+        number : $large.data('number'),
+        type : $large.data('type')
       };
 
       $large.data('src', small.small);
@@ -64,10 +71,13 @@
       $large.data('id', small.id);
       $large.data('color', small.color);
       $large.data('number', small.number);
+      $large.data('type', small.type);
       $large.removeClass('color-'+large.color);
       $large.addClass('color-'+small.color);
       $large.removeClass('number-'+large.number);
       $large.addClass('number-'+small.number);
+      $large.removeClass('type-'+large.type);
+      $large.addClass('type-'+small.type);
       $large_img.attr('src', small.medium);
 
       $small.data('src', large.medium);
@@ -75,16 +85,18 @@
       $small.data('id', large.id);
       $small.data('color', large.color);
       $small.data('number', large.number);
+      $small.data('type', large.type);
       $small.removeClass('color-'+small.color);
       $small.addClass('color-'+large.color);
       $small.removeClass('number-'+small.number);
       $small.addClass('number-'+large.number);
+      $small.removeClass('type-'+small.type);
+      $small.addClass('type-'+large.type);
       $small_img.attr('src', large.small);
 
       $('.style-guide .element').hide();
       $('.style-guide .' + small.id).show();
 
-      product.initZoom();
       product.initStyleGuide();
     };
     // style guides

@@ -10,7 +10,7 @@
 
   <div class="productimages">
     <div class="productimage-large grid_4 alpha omega align-center">
-      <a href="{{ product_image_url(product.main_image.name, '0x715') }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '38x75') }}" data-color="{{ product.main_image.color }}" data-number="{{ product.main_image.number }}">
+      <a href="{{ product_image_url(product.main_image.name, '0x715') }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '38x75') }}" data-color="{{ product.main_image.color }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="color-{{ product.main_image.color}} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
         {{ product_image_tag(product.main_image.name, '165x330', {'rel':'full-image'}) }}
       </a>
     </div>
@@ -25,8 +25,8 @@
         {% if product.colors is not empty %}
           {% for color in product.colors %}
             <a href="#" class="product-color color-{{ color }} {{ (color==product.main_image.color) ? 'current': '' }}" data-color="{{ color }}">
-              <div class="sprite colorbuttons-sprite {{ color }}"></div>
-              {{ color }}
+              <div class="sprite-block colorbuttons colorbuttons-{{ color|lower }}"></div>
+              <span>{{ color }}</span>
             </a>
           {% endfor %}
         {% endif %}
@@ -43,7 +43,7 @@
     <div class="productimage-small grid_4 alpha omega bordered-top">
       <h4>{{ 'product.pictures.title'|trans }}</h4>
     {% for image in product.images %}
-      <a href="{{ product_image_url(image.name, '0x715') }}" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '165x330') }}" class="color-{{ image.color }} number-{{ image.number }}" data-number="{{ image.number }}" data-color="{{ image.color }}">
+      <a href="{{ product_image_url(image.name, '0x715') }}" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '165x330') }}" class="color-{{ image.color }} number-{{ image.number }} type-{{ image.type }}" data-number="{{ image.number }}" data-color="{{ image.color }}" data-type="{{ image.type }}">
         {{ product_image_tag(image.name, '38x75', {'rel':'full-image'}) }}
       </a>
     {% endfor %}
@@ -97,7 +97,7 @@
           <h4>{{ 'options.title'|trans }}</h4>
         </div>
         <label for="size">
-          {{ "size"|trans }}:
+          <span>{{ "size"|trans }}:</span>
           <select class="size" name="size">
             <option value="">{{ "choose"|trans }}</option>
           {% for size in product.sizes %}
@@ -108,7 +108,7 @@
         </label>
 
         <label for="color" class="off">
-          {{ "color"|trans }}:
+          <span>{{ "color"|trans }}:</span>
           <select class="color" name="color">
             <option value="">{{ "choose"|trans }}</option>
           {% for color in product.colors %}
@@ -118,7 +118,7 @@
         </label>
 
         <label for="quantity" class="off">
-          {{ "quantity"|trans }}:
+          <span>{{ "quantity"|trans }}:</span>
           <select class="quantity" name="quantity">
           {% for i in 1..10 %}
             <option value="{{ i }}">{{ i }}</option>
@@ -162,7 +162,7 @@
 
     <div class="panes">
       <div>
-        {{ 'delivery.info'|trans|raw }}
+        {{ 'delivery.info'|trans({'%delivery.date%': parameter('expected_delivery_date') })|raw }}
       </div>
       <div class="off">{{ 'return.info'|trans|raw }}</div>
     </div>

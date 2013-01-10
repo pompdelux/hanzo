@@ -71,6 +71,7 @@ class DefaultController extends CoreController
                     'number' => (int)$path_params[3]
                 );
             }
+            arsort($images);
 
             // set focus image
             if (($focus = $this->get('request')->get('focus', FALSE)) && isset($images[$focus])) {

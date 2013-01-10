@@ -23,6 +23,8 @@
             }
             if(!$(tempImage).length){
                 tempImage = document.createElement('img');
+            }else{
+                tempImage.src = '';
             }
             $image = $(image).addClass('full-image');
             $('img[rel=full-image]').each   (function(i){
@@ -121,6 +123,9 @@
             }else{
                 $('.loader').hide();
             }
+        })
+        .on('error', function(){
+            _next();
         });
 
         if($(list[index]).data('high-res')){

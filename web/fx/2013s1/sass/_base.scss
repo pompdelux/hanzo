@@ -1,20 +1,11 @@
 // Base
-$font-serif 			: "Merriweather", serif;
-$font-sans 				: Tahoma, Geneva, Verdana, sans-serif;
-$font-color             : #444;
-$font-size              : 14px;
-
-$link-color  			: #333;
-$link-size              : $font-size;
-$link-family  			: inherit;
 @import "compass/reset";
 @import "compass/utilities";
 
 
 @import "icons/da/*.png"; 
 @include all-da-sprites; // Generates a sprite from all images inside the folder
-// @import "icons/en/*.png"; 
-// @include all-en-sprites; // Generates a sprite from all images inside the folder
+
 // @import "icons/fi/*.png"; 
 // @include all-fi-sprites; // Generates a sprite from all images inside the folder
 // @import "icons/nl/*.png"; 
@@ -58,8 +49,7 @@ h1,h2,h3,h4,h5,h6{
 	}
 }
 h1{
-	font-family: $font-serif;
-	font-size: 26px;
+	@include heading-style;
 	padding: 6px 0 12px;
 }
 h2{
@@ -76,15 +66,12 @@ h3{
 	padding: 6px 0 12px;
 }
 h4{
-	font-family: $font-serif;
-	padding: 12px 0;
-	font-weight: 400;
+	@include heading-small-style;
 }
 
 p{
-	font-size: $font-size;
+	@include paragraph-style;
 	padding: 0 0 5px;
-	line-height: 17px;
 }
 
 hr {
@@ -172,24 +159,6 @@ a.button {
 	&.off{
 		display: none;
 	}
-}
-
-
-
-@mixin image-button($url, $height, $width){
-	background: url($url) no-repeat;
-	width: $width;
-	height: $height;
-	padding: 0;
-	border: none;
-	text-indent: -999px;
-	display: inline-block;
-}
-@mixin image-replacement{
-	padding: 0;
-	border: none;
-	text-indent: -999px;
-	display: inline-block;
 }
 
 table{
@@ -316,20 +285,21 @@ ol{
 	margin-left: 3px;
 	margin-right: 3px;
 }
-.main .grid_1,
-.main .grid_2,
-.main .grid_3,
-.main .grid_4,
-.main .grid_5,
-.main .grid_6,
-.main .grid_7,
-.main .grid_8,
-.main .grid_1-5,
-.main .grid_2-5 {
-	margin-top: 3px;
-	margin-bottom: 3px;
-}
 
+.main > .grid_1,
+.main > .grid_2,
+.main > .grid_3,
+.main > .grid_4,
+.main > .grid_5,
+.main > .grid_6,
+.main > .grid_7,
+.main > .grid_8,
+.main > .grid_1-5,
+.main > .grid_2-5,
+.container_8 .row{
+	margin-bottom: 6px;
+}
+ 
 body.da{
 	form.buy .submit-button{
 		@include da-sprite(put-to-basket);

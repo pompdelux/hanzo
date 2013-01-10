@@ -250,6 +250,7 @@
                 <target><![CDATA[
                     <p>Alle ordrer sendes med Post Danmark som pakkepost. Det vil sige, at både vi og vores kunder har muligged for at følge pakken med track & trace tuk deb bkuver leveret. Du kan også vælge at få din ordre sendt til din arbejdsplads - så koster det dig istedet 39,00 DKK.</p>
                     <p>Bemærk: Hvis du til et Home shopping arrangement køber for min. 1.400,00 DKK sender vi din ordre fragtfrit.</p>
+                    <p>Leveringstid: %delivery.date%</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">

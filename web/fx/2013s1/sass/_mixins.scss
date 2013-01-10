@@ -1,0 +1,56 @@
+
+@mixin image-button($url, $height, $width){
+	background: url($url) no-repeat;
+	width: $width;
+	height: $height;
+	padding: 0;
+	border: none;
+	text-indent: -999px;
+	display: inline-block;
+}
+@mixin image-replacement{
+	padding: 0;
+	border: none;
+	text-indent: -999px;
+	display: inline-block;
+}
+
+@mixin main-menu-style{
+	color:$main-menu-color;
+	font-size:$main-menu-size;
+	font-family:$main-menu-family;
+	font-weight:$main-menu-weight;
+	line-height:$main-menu-line-height;
+}
+
+@mixin side-menu-style{
+	color:$side-menu-color;
+	font-size:$side-menu-size;
+	font-family:$side-menu-family;
+	font-weight:$side-menu-weight;
+	line-height:$side-menu-line-height;
+}
+
+@mixin paragraph-style{
+	color:$paragraph-color;
+	font-size:$paragraph-size;
+	font-family:$paragraph-family;
+	font-weight:$paragraph-weight;
+	line-height:$paragraph-line-height;
+}
+
+@mixin heading-style{
+	color:$heading-color;
+	font-size:$heading-size;
+	font-family:$heading-family;
+	font-weight:$heading-weight;
+	line-height:$heading-line-height;
+}
+
+@mixin heading-small-style{
+	color:$heading-small-color;
+	font-size:$heading-small-size;
+	font-family:$heading-small-family;
+	font-weight:$heading-small-weight;
+	line-height:$heading-small-line-height;
+}

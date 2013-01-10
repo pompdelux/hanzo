@@ -2,8 +2,10 @@
 	.block{
 		a{
 			border: none;
-			font-family: $font-serif;
-			font-size: $font-size;
+			font-family: $product-family;
+			font-size: $product-size;
+			line-height: $product-line-height;
+			color: $product-color;
 			text-decoration: none;
 			text-align: center;
 			position: relative;
@@ -16,7 +18,6 @@
 			}
 			.prices{
 				display: block;
-				color: $font-color;
 				margin-top: 6px;
 			}
 			.new-price{
@@ -30,8 +31,8 @@
 			.buy-set{
 				display: none;
 				position: absolute;
-				bottom: 0;
-				right: 0;
+				bottom: 10px;
+				right: 10px;
 			}
 			a:hover{
 				.buy-set{

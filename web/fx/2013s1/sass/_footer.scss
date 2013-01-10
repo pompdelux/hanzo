@@ -6,7 +6,11 @@
 
 footer{
 	margin: 0;
-	font-size: $font-size;
+	color:$footer-color;
+	font-size:$footer-size;
+	font-family:$footer-family;
+	font-weight:$footer-weight;
+	line-height:$footer-line-height;
 	h2{
 		font-size: 16px;
 		font-family: $font-serif;
