@@ -11,7 +11,8 @@
         y = 0;
 
     var defaults = {
-          'id' : 'full-image-wrapper'
+          'id' : 'full-image-wrapper',
+          'selector' : 'a[rel=full-image]'
         };
 
     var methods = {
@@ -22,19 +23,19 @@
             if(!$(image).length){
                 image = document.createElement('img');
             }
-            // if(!$(tempImage).length){
+            if(!$(tempImage).length){
                 tempImage = document.createElement('img');
-            // }else{
-            //     tempImage.src = '';
-            // }
-            $image = $(image).addClass('full-image');
-            if(list.length === 0){
-                $('a[rel=full-image]').each(function(i){
-                    list.push({
-                        'src' : $(this).attr('href')
-                    });
-                });
+            }else{
+                tempImage.src = '';
             }
+            $image = $(image).addClass('full-image');
+
+            list = []; // Reset the list of images and create a new one
+            $(settings.selector).each(function(i){
+                list.push({
+                    'src' : $(this).attr('href')
+                });
+            });
 
             if(!$('#'+settings.id).length){
                 $image.hide();
@@ -132,7 +133,7 @@
     };
     function _next ( listIndex ) {
         if (undefined !== listIndex) {
-            if(list.length < listIndex){
+            if(list.length < listIndex || listIndex === -1){
                 return;
             }
             index = listIndex;

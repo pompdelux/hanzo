@@ -5,7 +5,8 @@
     var pub = {};
 
     pub.initZoom = function() {
-      $('.productimage-large a').fullImageBox();
+      var currentColor = $('.productimage-large a').data('color');
+      $('.productimage-large a').fullImageBox({'selector':'a[rel=full-image].color-'+currentColor});
       
       $('.productimage-large a, a.picture-zoom').on('click', function(e){
         e.preventDefault();
@@ -37,6 +38,7 @@
 
           $('.productimage-small a').hide();
           $('.productimage-small a.color-'+currentColor).show();
+          product.initZoom();
         }
       });
 

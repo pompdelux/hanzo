@@ -15,7 +15,7 @@
       if (0 === $target.length) { return; }
 
       var matches = document.location.href.match(/[0-9]$/);
-      var currtent_pager_id = matches ? matches[0] : 1;
+      var current_pager_id = matches ? matches[0] : 1;
 
       yatzy.compile('productItems');
 

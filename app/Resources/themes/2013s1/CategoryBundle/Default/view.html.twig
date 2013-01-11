@@ -64,8 +64,12 @@
 </div>
 
 {% if paginate %}
-  {% import "::macro.pager.html.twig" as p %}
-  {{ p.pager(paginate, 'product-list') }}
+  <div class="grid_8 row">
+    <div class="grid_2 push_6">
+      {% import "::macro.pager.html.twig" as p %}
+      {{ p.pager(paginate, 'product-list') }}
+    </div>
+  </div>
 {% endif %}
 
 {#  yatzy js template used by the pager, do not delete ! #}
