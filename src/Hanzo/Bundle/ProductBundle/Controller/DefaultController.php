@@ -29,6 +29,8 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $translator = $this->get('translator');
 
+        $router = $this->get('router');
+        $route = $this->get('request')->get('_route');
         $cache_id = array('product', $product_id);
         $data = $this->getCache($cache_id);
 
@@ -119,9 +121,6 @@ class DefaultController extends CoreController
                 ->find()
             ;
 
-            $route = $this->get('request')->get('_route');
-            $router = $this->get('router');
-
             $images_references = array();
             foreach ($references as $ref) {
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
@@ -168,7 +167,12 @@ class DefaultController extends CoreController
                 'out_of_stock' => $product->getIsOutOfStock(),
                 'colors' => $colors,
                 'sizes' => $sizes,
-                'images_references' => $images_references
+                'images_references' => $images_references,
+                'url' => $router->generate($route, array(
+                        'product_id' => $product->getId(),
+                        'title' => Tools::stripText($product->getSku()),
+                        'focus' => $focus
+                    ))
             );
 
             $this->setCache($cache_id, $data, 60);

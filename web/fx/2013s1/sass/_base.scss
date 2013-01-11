@@ -3,17 +3,6 @@
 @import "compass/utilities";
 
 
-@import "icons/da/*.png"; 
-@include all-da-sprites; // Generates a sprite from all images inside the folder
-
-// @import "icons/fi/*.png"; 
-// @include all-fi-sprites; // Generates a sprite from all images inside the folder
-// @import "icons/nl/*.png"; 
-// @include all-nl-sprites; // Generates a sprite from all images inside the folder
-// @import "icons/no/*.png"; 
-// @include all-no-sprites; // Generates a sprite from all images inside the folder
-// @import "icons/se/*.png"; 
-// @include all-se-sprites; // Generates a sprite from all images inside the folder
 .sprite{display:inline-block;}
 .sprite-block{display:block;}
 /**
@@ -79,6 +68,14 @@ hr {
 	clear: both;
 	margin: 0;
 	width: 100%;
+	@include icons-sprite(divider);
+	height: icons-sprite-height(divider);
+	&.left {
+		@include icons-sprite(divider_left);
+	}
+	&.right {
+		@include icons-sprite(divider_right); 
+	}
 }
 
 aside{
@@ -299,7 +296,7 @@ ol{
 .container_8 .row{
 	margin-bottom: 6px;
 }
- 
+
 body.da{
 	form.buy .submit-button{
 		@include da-sprite(put-to-basket);
@@ -315,40 +312,6 @@ body.da{
 		@include da-sprite(new-price);
 		height: da-sprite-height(new-price);
 		width: da-sprite-width(new-price); 
-	}
-
-	.zoom .sprite{
-		@include da-sprite(zoom);
-		height: da-sprite-height(zoom);
-		width: da-sprite-width(zoom); 
-	}
-
-	a.video-popper .sprite, #video-player-container a.video .sprite{
-		@include da-sprite(video);
-		height: da-sprite-height(video);
-		width: da-sprite-width(video); 
-	}
-	hr {
-		@include da-sprite(divider);
-		height: da-sprite-height(divider);
-		&.left {
-			@include da-sprite(divider_left);
-		}
-		&.right {
-			@include da-sprite(divider_right); 
-		}
-	}
-	.basket{
-		.sprite{
-			@include da-sprite(basket);
-			height: da-sprite-height(basket);
-			width: da-sprite-width(basket); 
-		}
-	}
-	.footer-menu-4 .sprite{
-		@include da-sprite(newsletter);
-		height: da-sprite-height(newsletter);
-		width: da-sprite-width(newsletter);
 	}
 }
 

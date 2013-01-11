@@ -1,3 +1,98 @@
+/* line 58, icons/da/*.png */
+.da-sprite, .da-buy-set, .da-new-price, .da-put-to-basket, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price {
+  background: url('/fx/2013s1/../images/icons/da-sface9107c5.png') no-repeat;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-buy-set {
+  background-position: 0 -410px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-new-price {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.da-put-to-basket {
+  background-position: 0 -494px;
+}
+
+/* line 146, icons/icons/*.png */
+.icons-sprite, .icons-basket, .icons-button-left, .icons-button-right, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pinterest, .icons-shopping-bag, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right {
+  background: url('/fx/2013s1/../images/icons/icons-sed4b2e669a.png') no-repeat;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-basket {
+  background-position: 0 -86px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-button-left {
+  background-position: 0 -476px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-button-right {
+  background-position: 0 -457px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-divider {
+  background-position: 0 -314px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-divider_left {
+  background-position: 0 -181px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-divider_right {
+  background-position: 0 -244px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-facebook {
+  background-position: 0 -393px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-gplus {
+  background-position: 0 -361px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-newsletter {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-pinterest {
+  background-position: 0 -329px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-shopping-bag {
+  background-position: 0 -201px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-twitter {
+  background-position: 0 -425px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-video {
+  background-position: 0 -264px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-zoom {
+  background-position: 0 -131px;
+}
+
 /**
 |
 | Menus and header styles
@@ -167,53 +262,56 @@ nav.main li ul li {
 #secondary-links li.basket .sprite {
   display: inline-block;
   vertical-align: middle;
+  background-position: 0 -86px;
+  height: 45px;
+  width: 35px;
 }
-/* line 123, ../sass/_header.scss */
+/* line 126, ../sass/_header.scss */
 #secondary-links li.basket a {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 128, ../sass/_header.scss */
+/* line 131, ../sass/_header.scss */
 #secondary-links li a {
   text-transform: uppercase;
 }
 
-/* line 134, ../sass/_header.scss */
+/* line 137, ../sass/_header.scss */
 ul.breadcrumb {
   list-style: none;
 }
-/* line 136, ../sass/_header.scss */
+/* line 139, ../sass/_header.scss */
 ul.breadcrumb li {
   display: inline-block;
 }
-/* line 138, ../sass/_header.scss */
+/* line 141, ../sass/_header.scss */
 ul.breadcrumb li:before {
   content: '>';
   padding: 0 6px;
 }
-/* line 142, ../sass/_header.scss */
+/* line 145, ../sass/_header.scss */
 ul.breadcrumb li.first:before {
   content: none;
 }
 
-/* line 149, ../sass/_header.scss */
+/* line 152, ../sass/_header.scss */
 .pager ul {
   list-style: none;
 }
-/* line 151, ../sass/_header.scss */
+/* line 154, ../sass/_header.scss */
 .pager ul li {
   display: inline-block;
 }
-/* line 154, ../sass/_header.scss */
+/* line 157, ../sass/_header.scss */
 .pager ul li.current a {
   text-decoration: underline;
 }
-/* line 158, ../sass/_header.scss */
+/* line 161, ../sass/_header.scss */
 .pager ul li.off {
   display: none;
 }
 
-/* line 164, ../sass/_header.scss */
+/* line 167, ../sass/_header.scss */
 .main header {
   display: table;
   min-height: 100px;
@@ -221,7 +319,7 @@ ul.breadcrumb li.first:before {
   height: 100px;
   margin-bottom: 12px;
 }
-/* line 170, ../sass/_header.scss */
+/* line 173, ../sass/_header.scss */
 .main header hgroup {
   color: white;
   padding: 10px;
@@ -229,31 +327,31 @@ ul.breadcrumb li.first:before {
   vertical-align: middle;
   text-align: center;
 }
-/* line 176, ../sass/_header.scss */
+/* line 179, ../sass/_header.scss */
 .main header hgroup h1, .main header hgroup h2, .main header hgroup h3, .main header hgroup h4, .main header hgroup h5 {
   text-transform: uppercase;
   padding: 0 0 10px;
   font-size: 21px;
   color: white;
 }
-/* line 182, ../sass/_header.scss */
+/* line 185, ../sass/_header.scss */
 .main header hgroup h6 {
   font-size: 14px;
   font-weight: normal;
   color: white;
 }
-/* line 187, ../sass/_header.scss */
+/* line 190, ../sass/_header.scss */
 .main header hgroup a {
   color: white;
 }
 
-/* line 193, ../sass/_header.scss */
+/* line 196, ../sass/_header.scss */
 .body-category .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
 
-/* line 198, ../sass/_header.scss */
+/* line 201, ../sass/_header.scss */
 .category-17 .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
@@ -296,20 +394,26 @@ footer .footer-menu.footer-menu-4 #newsletter-lists-container {
 footer .footer-menu.footer-menu-4 #newsletter-lists-container input[type=submit] {
   float: right;
 }
-/* line 34, ../sass/_footer.scss */
+/* line 32, ../sass/_footer.scss */
+footer .footer-menu.footer-menu-4 .sprite {
+  background-position: 0 0;
+  height: 86px;
+  width: 86px;
+}
+/* line 39, ../sass/_footer.scss */
 footer .copy {
   text-align: center;
 }
-/* line 36, ../sass/_footer.scss */
+/* line 41, ../sass/_footer.scss */
 footer .copy ul {
   display: inline-block;
 }
-/* line 38, ../sass/_footer.scss */
+/* line 43, ../sass/_footer.scss */
 footer .copy ul li {
   display: inline-block;
   padding: 0 5px;
 }
-/* line 43, ../sass/_footer.scss */
+/* line 48, ../sass/_footer.scss */
 footer .copy a {
   text-decoration: none;
 }
@@ -365,14 +469,26 @@ div.panes > div {
 .zoom {
   display: inline-block;
 }
-
 /* line 44, ../sass/_product.scss */
+.zoom .sprite {
+  background-position: 0 -131px;
+  height: 50px;
+  width: 45px;
+}
+
+/* line 50, ../sass/_product.scss */
 a.video-popper, #video-player-container a.video {
   display: inline-block;
   text-align: center;
 }
+/* line 54, ../sass/_product.scss */
+a.video-popper .sprite, #video-player-container a.video .sprite {
+  background-position: 0 -264px;
+  height: 50px;
+  width: 58px;
+}
 
-/* line 49, ../sass/_product.scss */
+/* line 61, ../sass/_product.scss */
 .body-product .prices {
   font-family: "Merriweather", serif;
   font-size: 26px;
@@ -380,34 +496,34 @@ a.video-popper, #video-player-container a.video {
   padding: 0 0 12px;
 }
 
-/* line 56, ../sass/_product.scss */
+/* line 68, ../sass/_product.scss */
 form.buy {
   margin-bottom: 16px;
 }
-/* line 58, ../sass/_product.scss */
+/* line 70, ../sass/_product.scss */
 form.buy label {
   display: block;
   padding: 0 6px 0 0;
   margin: 3px 0;
 }
-/* line 62, ../sass/_product.scss */
+/* line 74, ../sass/_product.scss */
 form.buy label span {
   display: block;
 }
-/* line 65, ../sass/_product.scss */
+/* line 77, ../sass/_product.scss */
 form.buy label select {
   width: 237px;
 }
-/* line 68, ../sass/_product.scss */
+/* line 80, ../sass/_product.scss */
 form.buy label a {
   margin-left: 18px;
   font-weight: bold;
 }
-/* line 72, ../sass/_product.scss */
+/* line 84, ../sass/_product.scss */
 form.buy label.off {
   display: none;
 }
-/* line 76, ../sass/_product.scss */
+/* line 88, ../sass/_product.scss */
 form.buy .submit-button {
   cursor: pointer;
   margin-top: 18px;
@@ -417,31 +533,31 @@ form.buy .submit-button {
   display: inline-block;
 }
 
-/* line 85, ../sass/_product.scss */
+/* line 97, ../sass/_product.scss */
 .productimage-small a,
 .style-guide a {
   vertical-align: top;
   display: inline-block;
   margin-right: 3px;
 }
-/* line 89, ../sass/_product.scss */
+/* line 101, ../sass/_product.scss */
 .productimage-small a img,
 .style-guide a img {
   padding: 1px;
 }
-/* line 92, ../sass/_product.scss */
+/* line 104, ../sass/_product.scss */
 .productimage-small a:hover,
 .style-guide a:hover {
   border-bottom: none;
   margin-bottom: 0;
 }
-/* line 95, ../sass/_product.scss */
+/* line 107, ../sass/_product.scss */
 .productimage-small a:hover img,
 .style-guide a:hover img {
   padding: 0px;
   border: 1px solid #888888;
 }
-/* line 100, ../sass/_product.scss */
+/* line 112, ../sass/_product.scss */
 .productimage-small a.buy-set,
 .style-guide a.buy-set {
   padding: 0;
@@ -450,7 +566,7 @@ form.buy .submit-button {
   display: inline-block;
 }
 
-/* line 105, ../sass/_product.scss */
+/* line 117, ../sass/_product.scss */
 .style-guide, .style-guide .element {
   display: none;
 }
@@ -500,35 +616,35 @@ form.buy .submit-button {
   background-position: 0 -78px;
 }
 
-/* line 111, ../sass/_product.scss */
+/* line 123, ../sass/_product.scss */
 a.product-color {
   margin: 6px;
   display: inline-block;
   text-align: center;
 }
-/* line 115, ../sass/_product.scss */
+/* line 127, ../sass/_product.scss */
 a.product-color .colorbuttons {
   margin: 0 auto;
 }
-/* line 119, ../sass/_product.scss */
+/* line 131, ../sass/_product.scss */
 a.product-color .colorbuttons.colorbuttons-navy {
   background-position: 0 -153px;
   padding-top: 26px;
   width: 26px;
 }
-/* line 125, ../sass/_product.scss */
+/* line 137, ../sass/_product.scss */
 a.product-color .colorbuttons.colorbuttons-violet {
   background-position: 0 -127px;
   padding-top: 26px;
   width: 26px;
 }
-/* line 133, ../sass/_product.scss */
+/* line 145, ../sass/_product.scss */
 a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy {
   background-position: 0 -26px;
   padding-top: 26px;
   width: 26px;
 }
-/* line 138, ../sass/_product.scss */
+/* line 150, ../sass/_product.scss */
 a.product-color.current .colorbuttons-violet, a.product-color:hover .colorbuttons-violet {
   background-position: 0 -78px;
   padding-top: 26px;
@@ -582,6 +698,22 @@ form.create label:after {
 /* line 10, ../sass/_account.scss */
 form.create label.required:after {
   content: ": *";
+}
+
+/* line 3, ../sass/_social.scss */
+.social-buttons a.icons-facebook {
+  height: 32px;
+  width: 32px;
+}
+/* line 7, ../sass/_social.scss */
+.social-buttons a.icons-twitter {
+  height: 32px;
+  width: 32px;
+}
+/* line 11, ../sass/_social.scss */
+.social-buttons a.icons-pinterest {
+  height: 32px;
+  width: 32px;
 }
 
 /* line 17, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
@@ -649,92 +781,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 154, icons/da/*.png */
-.da-sprite, .da-basket, .da-buy-set, .da-divider, .da-divider_left, .da-divider_right, .da-facebook, .da-gplus, .da-new-price, .da-newsletter, .da-pinterest, .da-put-to-basket, .da-shopping-bag, .da-twitter, .da-video, .da-zoom, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .zoom .sprite, body.da a.video-popper .sprite, body.da #video-player-container a.video .sprite, body.da hr, body.da hr.left, body.da hr.right, body.da .basket .sprite, body.da .footer-menu-4 .sprite {
-  background: url('/fx/2013s1/../images/icons/da-s905e310ac9.png') no-repeat;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-basket {
-  background-position: 0 -580px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-buy-set {
-  background-position: 0 -496px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-divider {
-  background-position: 0 -892px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-divider_left {
-  background-position: 0 -759px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-divider_right {
-  background-position: 0 -822px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-facebook {
-  background-position: 0 -971px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-gplus {
-  background-position: 0 -939px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-new-price {
-  background-position: 0 -86px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-newsletter {
-  background-position: 0 0;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-pinterest {
-  background-position: 0 -907px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-put-to-basket {
-  background-position: 0 -625px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-shopping-bag {
-  background-position: 0 -779px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-twitter {
-  background-position: 0 -1003px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-video {
-  background-position: 0 -842px;
-}
-
-/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
-.da-zoom {
-  background-position: 0 -709px;
-}
-
-/* line 17, ../sass/_base.scss */
+/* line 6, ../sass/_base.scss */
 .sprite {
   display: inline-block;
 }
 
-/* line 18, ../sass/_base.scss */
+/* line 7, ../sass/_base.scss */
 .sprite-block {
   display: block;
 }
@@ -744,43 +796,43 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 | Base styles
 |
 */
-/* line 24, ../sass/_base.scss */
+/* line 13, ../sass/_base.scss */
 body {
   color: #444444;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
 }
 
-/* line 29, ../sass/_base.scss */
+/* line 18, ../sass/_base.scss */
 .container {
   position: relative;
 }
 
-/* line 32, ../sass/_base.scss */
+/* line 21, ../sass/_base.scss */
 a {
   color: #333333;
   text-decoration: none;
 }
-/* line 35, ../sass/_base.scss */
+/* line 24, ../sass/_base.scss */
 a:hover {
   color: #444444;
   text-decoration: underline;
 }
 
-/* line 41, ../sass/_base.scss */
+/* line 30, ../sass/_base.scss */
 h1, h2, h3, h4, h5, h6 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
   padding: 0 0 20px 0;
   letter-spacing: 2px;
 }
-/* line 46, ../sass/_base.scss */
+/* line 35, ../sass/_base.scss */
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* line 51, ../sass/_base.scss */
+/* line 40, ../sass/_base.scss */
 h1 {
   color: #444444;
   font-size: 18px;
@@ -790,7 +842,7 @@ h1 {
   padding: 6px 0 12px;
 }
 
-/* line 55, ../sass/_base.scss */
+/* line 44, ../sass/_base.scss */
 h2 {
   font-weight: 100;
   font-size: 16px;
@@ -799,7 +851,7 @@ h2 {
   text-transform: uppercase;
 }
 
-/* line 62, ../sass/_base.scss */
+/* line 51, ../sass/_base.scss */
 h3 {
   font-family: "Merriweather", serif;
   font-weight: 100;
@@ -807,7 +859,7 @@ h3 {
   padding: 6px 0 12px;
 }
 
-/* line 68, ../sass/_base.scss */
+/* line 57, ../sass/_base.scss */
 h4 {
   color: #444444;
   font-size: 14px;
@@ -816,7 +868,7 @@ h4 {
   line-height: 18px;
 }
 
-/* line 72, ../sass/_base.scss */
+/* line 61, ../sass/_base.scss */
 p {
   color: #444444;
   font-size: 14px;
@@ -826,47 +878,57 @@ p {
   padding: 0 0 5px;
 }
 
-/* line 77, ../sass/_base.scss */
+/* line 66, ../sass/_base.scss */
 hr {
   border: none;
   clear: both;
   margin: 0;
   width: 100%;
+  background-position: 0 -314px;
+  height: 15px;
+}
+/* line 73, ../sass/_base.scss */
+hr.left {
+  background-position: 0 -181px;
+}
+/* line 76, ../sass/_base.scss */
+hr.right {
+  background-position: 0 -244px;
 }
 
-/* line 84, ../sass/_base.scss */
+/* line 81, ../sass/_base.scss */
 aside {
   padding-bottom: 24px;
 }
-/* line 86, ../sass/_base.scss */
+/* line 83, ../sass/_base.scss */
 aside h1, aside h2, aside h3, aside h4, aside h5 {
   border-bottom: 1px solid #444444;
   padding-bottom: 6px;
   margin-bottom: 12px;
 }
 
-/* line 94, ../sass/_base.scss */
+/* line 91, ../sass/_base.scss */
 form label {
   margin-top: 12px;
   display: inline-block;
   width: 90%;
 }
-/* line 104, ../sass/_base.scss */
+/* line 101, ../sass/_base.scss */
 form.full-width input[type="text"], form.full-width input[type="email"], form.full-width input[type="date"], form.full-width input[type="password"] {
   width: 97%;
 }
-/* line 109, ../sass/_base.scss */
+/* line 106, ../sass/_base.scss */
 form input {
   border: 1px solid #444444;
   padding: 6px 5px;
   color: #444444;
 }
-/* line 116, ../sass/_base.scss */
+/* line 113, ../sass/_base.scss */
 form input[type="text"], form input[type="email"], form input[type="date"], form input[type="password"] {
   font-family: "Merriweather", serif;
 }
 
-/* line 124, ../sass/_base.scss */
+/* line 121, ../sass/_base.scss */
 input.button,
 button.button,
 a.button {
@@ -875,13 +937,13 @@ a.button {
   cursor: pointer;
   display: inline-block;
 }
-/* line 130, ../sass/_base.scss */
+/* line 127, ../sass/_base.scss */
 input.button:hover,
 button.button:hover,
 a.button:hover {
   text-decoration: none;
 }
-/* line 134, ../sass/_base.scss */
+/* line 131, ../sass/_base.scss */
 input.button.text-button,
 button.button.text-button,
 a.button.text-button {
@@ -893,7 +955,7 @@ a.button.text-button {
   font-size: 14px;
   text-transform: uppercase;
 }
-/* line 143, ../sass/_base.scss */
+/* line 140, ../sass/_base.scss */
 input.button.button-black,
 button.button.button-black,
 a.button.button-black {
@@ -904,7 +966,7 @@ a.button.button-black {
   padding: 6px;
   font-weight: bold;
 }
-/* line 151, ../sass/_base.scss */
+/* line 148, ../sass/_base.scss */
 input.button.button-right,
 button.button.button-right,
 a.button.button-right {
@@ -915,35 +977,35 @@ a.button.button-right {
   padding-right: 10px;
   float: right;
 }
-/* line 159, ../sass/_base.scss */
+/* line 156, ../sass/_base.scss */
 input.button.off,
 button.button.off,
 a.button.off {
   display: none;
 }
 
-/* line 164, ../sass/_base.scss */
+/* line 161, ../sass/_base.scss */
 table {
   width: 100%;
   margin: 6px 0 12px;
 }
-/* line 167, ../sass/_base.scss */
+/* line 164, ../sass/_base.scss */
 table thead, table tbody {
   border-bottom: 1px solid #444444;
 }
-/* line 170, ../sass/_base.scss */
+/* line 167, ../sass/_base.scss */
 table thead {
   font-family: "Merriweather", serif;
 }
-/* line 172, ../sass/_base.scss */
+/* line 169, ../sass/_base.scss */
 table thead th {
   padding: 3px 6px;
 }
-/* line 177, ../sass/_base.scss */
+/* line 174, ../sass/_base.scss */
 table tbody td {
   padding: 12px 6px;
 }
-/* line 182, ../sass/_base.scss */
+/* line 179, ../sass/_base.scss */
 table tfoot td {
   padding: 6px;
 }
@@ -953,75 +1015,75 @@ table tfoot td {
 | Helpers
 |
 */
-/* line 194, ../sass/_base.scss */
+/* line 191, ../sass/_base.scss */
 .align-left {
   text-align: left;
 }
 
-/* line 195, ../sass/_base.scss */
+/* line 192, ../sass/_base.scss */
 .align-center {
   text-align: center;
 }
 
-/* line 196, ../sass/_base.scss */
+/* line 193, ../sass/_base.scss */
 .centerfy {
   margin: 0 auto;
 }
 
-/* line 197, ../sass/_base.scss */
+/* line 194, ../sass/_base.scss */
 .align-right {
   text-align: right;
 }
 
-/* line 198, ../sass/_base.scss */
+/* line 195, ../sass/_base.scss */
 .vert-align-top {
   vertical-align: top;
 }
 
-/* line 199, ../sass/_base.scss */
+/* line 196, ../sass/_base.scss */
 .vert-align-middle {
   vertical-align: middle;
 }
 
-/* line 200, ../sass/_base.scss */
+/* line 197, ../sass/_base.scss */
 .vert-align-bottom {
   vertical-align: baseline;
 }
 
-/* line 201, ../sass/_base.scss */
+/* line 198, ../sass/_base.scss */
 .pushleft {
   float: left;
 }
 
-/* line 202, ../sass/_base.scss */
+/* line 199, ../sass/_base.scss */
 .pushright {
   float: right;
 }
 
-/* line 203, ../sass/_base.scss */
+/* line 200, ../sass/_base.scss */
 .small {
   font-size: 9px;
 }
 
-/* line 204, ../sass/_base.scss */
+/* line 201, ../sass/_base.scss */
 .strike {
   text-decoration: line-through;
 }
 
-/* line 206, ../sass/_base.scss */
+/* line 203, ../sass/_base.scss */
 ul {
   list-style-position: inside;
 }
-/* line 208, ../sass/_base.scss */
+/* line 205, ../sass/_base.scss */
 ul.list {
   list-style-type: disc;
 }
 
-/* line 212, ../sass/_base.scss */
+/* line 209, ../sass/_base.scss */
 ol {
   list-style-position: inside;
 }
-/* line 214, ../sass/_base.scss */
+/* line 211, ../sass/_base.scss */
 ol.list {
   list-style-type: decimal;
 }
@@ -1031,17 +1093,17 @@ ol.list {
 | dialoug notices
 |
 */
-/* line 225, ../sass/_base.scss */
+/* line 222, ../sass/_base.scss */
 .inject-notice-box {
   padding: 3px;
 }
-/* line 227, ../sass/_base.scss */
+/* line 224, ../sass/_base.scss */
 .inject-notice-box .inner {
   border: 1px solid black;
   padding: 6px;
   color: #444444;
 }
-/* line 233, ../sass/_base.scss */
+/* line 230, ../sass/_base.scss */
 .inject-notice-box.error .inner {
   border-color: red;
 }
@@ -1051,7 +1113,7 @@ ol.list {
 | Slideshow Cycle2 styles
 |
 */
-/* line 245, ../sass/_base.scss */
+/* line 242, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
@@ -1059,18 +1121,18 @@ ol.list {
   left: 16px;
   z-index: 101;
 }
-/* line 251, ../sass/_base.scss */
+/* line 248, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-/* line 257, ../sass/_base.scss */
+/* line 254, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-/* line 263, ../sass/_base.scss */
+/* line 260, ../sass/_base.scss */
 .cycle-slideshow .cycle-slide img {
   width: 100%;
 }
@@ -1081,17 +1143,17 @@ ol.list {
 |
 | TODO: Make it as a new grid with container_5{blablabla}
 */
-/* line 275, ../sass/_base.scss */
+/* line 272, ../sass/_base.scss */
 .container_8 .grid_1-5 {
   width: 186px;
 }
 
-/* line 278, ../sass/_base.scss */
+/* line 275, ../sass/_base.scss */
 .container_8 .grid_2-5 {
   width: 378px;
 }
 
-/* line 282, ../sass/_base.scss */
+/* line 279, ../sass/_base.scss */
 .container_8 .grid_1-5,
 .container_8 .grid_2-5 {
   display: inline;
@@ -1100,7 +1162,7 @@ ol.list {
   margin-right: 3px;
 }
 
-/* line 299, ../sass/_base.scss */
+/* line 296, ../sass/_base.scss */
 .main > .grid_1,
 .main > .grid_2,
 .main > .grid_3,
@@ -1115,58 +1177,21 @@ ol.list {
   margin-bottom: 6px;
 }
 
-/* line 304, ../sass/_base.scss */
+/* line 301, ../sass/_base.scss */
 body.da form.buy .submit-button {
-  background-position: 0 -625px;
+  background-position: 0 -494px;
   height: 84px;
   width: 87px;
 }
-/* line 309, ../sass/_base.scss */
+/* line 306, ../sass/_base.scss */
 body.da .buy-set {
-  background-position: 0 -496px;
+  background-position: 0 -410px;
   height: 84px;
   width: 87px;
 }
-/* line 314, ../sass/_base.scss */
+/* line 311, ../sass/_base.scss */
 body.da .new-price {
-  background-position: 0 -86px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
-}
-/* line 320, ../sass/_base.scss */
-body.da .zoom .sprite {
-  background-position: 0 -709px;
-  height: 50px;
-  width: 45px;
-}
-/* line 326, ../sass/_base.scss */
-body.da a.video-popper .sprite, body.da #video-player-container a.video .sprite {
-  background-position: 0 -842px;
-  height: 50px;
-  width: 58px;
-}
-/* line 331, ../sass/_base.scss */
-body.da hr {
-  background-position: 0 -892px;
-  height: 15px;
-}
-/* line 334, ../sass/_base.scss */
-body.da hr.left {
-  background-position: 0 -759px;
-}
-/* line 337, ../sass/_base.scss */
-body.da hr.right {
-  background-position: 0 -822px;
-}
-/* line 342, ../sass/_base.scss */
-body.da .basket .sprite {
-  background-position: 0 -580px;
-  height: 45px;
-  width: 35px;
-}
-/* line 348, ../sass/_base.scss */
-body.da .footer-menu-4 .sprite {
-  background-position: 0 0;
-  height: 86px;
-  width: 86px;
 }

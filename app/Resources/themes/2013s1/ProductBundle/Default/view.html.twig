@@ -2,11 +2,18 @@
 
 {% block content %}
 
-<div class="grid_8 alpha omega">
-  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
-</div>
-
 <div class="grid_4 alpha">
+  <div class="grid_4 alpha omega row">
+    {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+  </div>
+  
+  <div class="grid_4 alpha omega align-right row">
+    {% include 'CMSBundle:Social:share.html.twig' with {
+      'url': product.url, 
+      'image': product_image_url(product.main_image.name, '0x715'), 
+      'description': product.title } 
+    %}
+  </div>
 
   <div class="productimages">
     <div class="productimage-large grid_4 alpha omega align-center">

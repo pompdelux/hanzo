@@ -50,10 +50,12 @@ $product-size			:12px;
 $product-family 		:$font-serif;
 $product-line-height	:18px;
 
+@import "sprites";
 @import "mixins";
 @import "header";
 @import "footer";
 @import "product";
 @import "product-list";
 @import "account";
+@import "social";
 @import "base";

@@ -29,6 +29,11 @@ footer{
 					float: right;
 				}
 			}
+			.sprite{
+				@include icons-sprite(newsletter);
+				height: icons-sprite-height(newsletter);
+				width: icons-sprite-width(newsletter);
+			}
 		}
 	}
 	.copy {

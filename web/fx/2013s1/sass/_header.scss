@@ -119,6 +119,9 @@ nav.main{
 			.sprite{
 				display: inline-block;
 				vertical-align: middle;
+				@include icons-sprite(basket);
+				height: icons-sprite-height(basket);
+				width: icons-sprite-width(basket); 
 			}
 			a{
 				display:inline-block;

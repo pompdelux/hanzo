@@ -40,10 +40,22 @@ div.panes > div {
 
 .zoom{
 	display: inline-block;
+
+	.sprite{
+		@include icons-sprite(zoom);
+		height: icons-sprite-height(zoom);
+		width: icons-sprite-width(zoom); 
+	}
 }
 a.video-popper, #video-player-container a.video {
 	display: inline-block;
 	text-align: center;
+
+	.sprite{
+		@include icons-sprite(video);
+		height: icons-sprite-height(video);
+		width: icons-sprite-width(video); 
+	}
 }
 
 .body-product .prices {
