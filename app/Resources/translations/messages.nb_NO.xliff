@@ -207,6 +207,10 @@
                     <a href="/nb_NO/forside/kundeservice/vilkar" target="_blank">POMPdeLUX vilkår.</a>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Share on %method%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

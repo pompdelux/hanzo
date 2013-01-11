@@ -206,6 +206,10 @@
                     <a href="/sv_SE/forside/kundservice/villkor" target="_blank">POMPdeLUX Villkor.</a>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Share on %method%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

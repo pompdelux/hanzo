@@ -304,6 +304,10 @@
                 </ul>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Del på %method%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

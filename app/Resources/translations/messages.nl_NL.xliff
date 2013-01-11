@@ -200,6 +200,10 @@
                     <a href="/nl_NL/voorpagina/klantenservice/voorwaarden" target="_blank">POMPdeLUX Voorwaarden.</a>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Share on %method%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

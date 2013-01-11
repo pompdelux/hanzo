@@ -184,6 +184,10 @@
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUX ehdot.</a>]]></target>
             </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Share on %method%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
