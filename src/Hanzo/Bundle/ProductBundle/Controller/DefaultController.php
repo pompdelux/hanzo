@@ -190,11 +190,12 @@ class DefaultController extends CoreController
         $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
 
         $this->setSharedMaxAge(300);
-        $responce = $this->render('ProductBundle:Default:view.html.twig', array(
+        $response = $this->render('ProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
             'product' => $data,
             'references' => $images_references,
+            'route' => $route
         ));
-        return $responce;
+        return $response;
     }
 }

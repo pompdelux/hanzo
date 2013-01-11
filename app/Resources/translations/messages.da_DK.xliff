@@ -308,6 +308,10 @@
                 <source>share.to.%method%</source>
                 <target>Del på %method%</target>
             </trans-unit>
+            <trans-unit id="back.to.category" approved="no">
+                <source>back.to.category</source>
+                <target>Tilbage til oversigten</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -5,6 +5,7 @@
 <div class="grid_4 alpha">
   <div class="grid_4 alpha omega row">
     {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+    <a href="{{ path(route) }}" title="{{ 'back.to.category'|trans }}" class="back-to-category"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}</a>
   </div>
   
   <div class="grid_4 alpha omega align-right row">
@@ -87,7 +88,7 @@
 </div>
 
 <div class="grid_4 omega">
-  <h1>{{ product.title }}</h1>
+  <h1 class="title">{{ product.title }}</h1>
 
   <div class="prices">
   {% if product.prices.sales is defined %}
@@ -108,9 +109,7 @@
 
     <form action="{{ url('basket_add', {}, true) }}" method="post" class="buy">
       <div class="options">
-        <div class="bordered">
-          <h4>{{ 'options.title'|trans }}</h4>
-        </div>
+        <h4 class="bordered">{{ 'options.title'|trans }}</h4>
         <label for="size">
           <span>{{ "size"|trans }}:</span>
           <select class="size" name="size">
