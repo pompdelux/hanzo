@@ -368,7 +368,7 @@ footer {
   color: #444444;
   font-size: 18px;
   font-family: "Merriweather", serif;
-  font-weight: bold;
+  font-weight: 900;
   line-height: 15px;
 }
 /* line 14, ../sass/_footer.scss */
@@ -822,7 +822,7 @@ a:hover {
 /* line 30, ../sass/_base.scss */
 h1, h2, h3, h4, h5, h6 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   padding: 0 0 20px 0;
   letter-spacing: 2px;
 }
@@ -837,7 +837,7 @@ h1 {
   color: #444444;
   font-size: 18px;
   font-family: "Merriweather", serif;
-  font-weight: bold;
+  font-weight: 900;
   line-height: 24px;
   padding: 6px 0 12px;
 }
@@ -854,7 +854,7 @@ h2 {
 /* line 51, ../sass/_base.scss */
 h3 {
   font-family: "Merriweather", serif;
-  font-weight: 100;
+  font-weight: 400;
   font-size: 16px;
   padding: 6px 0 12px;
 }
@@ -864,7 +864,7 @@ h4 {
   color: #444444;
   font-size: 14px;
   font-family: "Merriweather", serif;
-  font-weight: bold;
+  font-weight: 900;
   line-height: 18px;
 }
 
