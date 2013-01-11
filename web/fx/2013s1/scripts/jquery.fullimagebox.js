@@ -1,6 +1,7 @@
 (function( $ ){
 
-    var $wrapper,
+    var wrapper,
+        $wrapper,
         image,
         $image,
         tempImage,
@@ -21,24 +22,27 @@
             if(!$(image).length){
                 image = document.createElement('img');
             }
-            if(!$(tempImage).length){
+            // if(!$(tempImage).length){
                 tempImage = document.createElement('img');
-            }else{
-                tempImage.src = '';
-            }
+            // }else{
+            //     tempImage.src = '';
+            // }
             $image = $(image).addClass('full-image');
-            $('img[rel=full-image]').each   (function(i){
-                list.push($(this));
-            });
+            if(list.length === 0){
+                $('a[rel=full-image]').each(function(i){
+                    list.push({
+                        'src' : $(this).attr('href')
+                    });
+                });
+            }
 
             if(!$('#'+settings.id).length){
                 $image.hide();
-                $wrapper = $('<div/>', {
-                        id: settings.id,
-                        class: 'full-image-box'
-                    }).css({
+                wrapper = document.createElement('div');
+                $wrapper = $(wrapper).attr({'id':settings.id, 'class':'full-image-box'})
+                    .css({
                         'height': $(window).outerHeight()
-                    }).append('<div class="loader"></div><a href="#" class="close"></div><a href="#" class="prev" style="display:none;"></a><a href="#" class="next" style="display:none;"></a>')
+                    }).append('<div class="loader"></div><a href="#" class="close"></a><a href="#" class="prev" style="display:none;"></a><a href="#" class="next" style="display:none;"></a>')
                     .append($image)
                     .hide()
                 ;
@@ -51,10 +55,18 @@
                     e.preventDefault();
                     _next();
                 });
+                $(document, $wrapper).keydown(function(e){
+                    if (e.keyCode == 37) { 
+                        _next( index - 1 );
+                    }else if (e.keyCode == 39) { 
+                        _next();
+                    }
+                });
             }else{
                 $wrapper = $('div#'+settings.id);
             }
 
+            // Calculate the position of the image dependent of the mouse
             $wrapper.mousemove(function(e){
                 var $this = $(this),
                     ratio = ($this.height() - (e.pageY - $this.offset().top))/$this.height();
@@ -62,6 +74,7 @@
                 y = ratio * ($(image).height() - $this.height());
             });
 
+            // Set the image to the right position
             $wrapper.hover(
                 function(){
                     var $this = $(this);
@@ -78,30 +91,48 @@
                 }
             );
 
+
+            // When a new image is loaded into the temporary image, switch it to the main image. 
+            $(tempImage).on('load', function (e){
+                if(image.src !== tempImage.src){ // Workaround. fade was firing multiple times.
+                    $(image).fadeOut('300', function(){
+                        image.src = tempImage.src;
+                        console.log(image.src);
+                        _renderButtons();
+                        $('.loader').hide();
+                        $(this).fadeIn('300');
+                        console.log('FullImage changed to index: '+index);
+                    });
+                }else{
+                    $('.loader').hide();
+                }
+            })
+            .on('error', function(){
+                _next();
+            });
+
             $('.close, img.full-image', $wrapper).on('click', function(e){
                 e.preventDefault();
-                $wrapper.fadeOut(400, function(e){
-                    $wrapper.remove();
-                    list = [];
-                });
+                $wrapper.fadeOut(400);
             });
 
             $image.show();
-            $wrapper.appendTo($('body')).fadeIn(100);
-
-            _next(0); // Set the initial picture in the box.
-            _renderButtons();
+            $wrapper.appendTo($('body'));
         },
         next : function( listIndex ){
             _next( listIndex );
         },
         prev : function( ){
             _next( index - 1 );
+        },
+        open : function( ){
+            _next( _getIndex( this ) );
+            $wrapper.fadeIn(100);
         }
     };
     function _next ( listIndex ) {
         if (undefined !== listIndex) {
-            if(undefined === list[listIndex]){
+            if(list.length < listIndex){
                 return;
             }
             index = listIndex;
@@ -110,28 +141,10 @@
         }
         $('.loader', $wrapper).show();
 
-        // Load the new image into an temporary image, until loaded
-        $(tempImage).on('load', function (e){
-            if(image.src !== tempImage.src){ // Workaround. fade was firing multiple times.
-                $(image).fadeOut('300', function(){
-                    image.src = $(tempImage).attr('src');
-                    console.log(image.src);
-                    _renderButtons();
-                    $('.loader').hide();
-                    $(this).fadeIn('300');
-                });
-            }else{
-                $('.loader').hide();
-            }
-        })
-        .on('error', function(){
-            _next();
-        });
-
-        if($(list[index]).data('high-res')){
-            tempImage.src = $(list[index]).data('high-res');
+        if(list[index].src !== ''){
+            tempImage.src = list[index].src;
         }else{
-            tempImage.src = $(list[index]).attr('src');
+            _next();
         }
     }
     function _renderButtons(){
@@ -147,6 +160,16 @@
         }
     }
 
+    // Searches all images in the list for the same source.
+    // @return int index of image in list
+    function _getIndex( element ){
+        for (var i = list.length - 1; i >= 0; i--) {
+            if(list[i].src === $(element[0]).attr('href'))
+                return i;
+        };
+        return -1;
+    }
+
     $.fn.fullImageBox = function( method ) {
         // Method calling logic
         if ( methods[method] ) {
@@ -154,7 +177,7 @@
         } else if ( typeof method === 'object' || ! method ) {
             return methods.init.apply( this, arguments );
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
+            $.error( 'Method ' +  method + ' does not exist on jQuery.fullImageBox' );
         }
     };
 

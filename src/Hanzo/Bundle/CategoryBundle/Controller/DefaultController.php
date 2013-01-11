@@ -45,6 +45,7 @@ class DefaultController extends CoreController
             // for json we need the real image paths
             foreach ($data['products'] as $k => $product) {
                 $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '120x240');
+                $data['products'][$k]['image_flip'] = Tools::productImageUrl($product['image_flip'], '120x240');
             }
 
             return $this->json_response($data);

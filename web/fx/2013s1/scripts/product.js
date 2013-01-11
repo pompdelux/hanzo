@@ -5,10 +5,11 @@
     var pub = {};
 
     pub.initZoom = function() {
+      $('.productimage-large a').fullImageBox();
       
       $('.productimage-large a, a.picture-zoom').on('click', function(e){
         e.preventDefault();
-        $('.productimage-large a').find('img').fullImageBox();
+        $('.productimage-large a').first().fullImageBox('open');
       });
     };
 
@@ -229,7 +230,7 @@
             }
           });
         }else{
-          dialoug.notice(Translator.get('js:form.buy.choose.first'), 'error', $('form.buy .button').parent());
+          dialoug.notice(Translator.get('js:form.buy.choose.first'), 'error',3000, $('.button', $form).parent());
         }
       });
 
