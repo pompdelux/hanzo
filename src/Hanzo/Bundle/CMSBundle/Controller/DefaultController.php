@@ -47,7 +47,7 @@ class DefaultController extends CoreController
         }
 
         // access check - should be done better tho...
-        if ((10 == $page->getCmsThreadId()) && !$this->get('security.context')->isGranted('ROLE_CONSULTANT') ) {
+        if ((10 == $page->getCmsThreadId()) && !$this->get('security.context')->isGranted('ROLE_CONSULTANT') && !$this->get('security.context')->isGranted('ROLE_EMPLOYEE') ) {
             return $this->redirect($this->generateUrl('_homepage', ['_locale' => $locale]));
         }
 

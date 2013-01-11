@@ -179,7 +179,7 @@ class StatisticsController extends CoreController
 
         $sql = "
             SELECT
-                DATE_FORMAT(created_at, '%Y-%m-%d %H') AS y,
+                DATE_FORMAT(created_at, '%Y-%m-%d %H:00') AS y,
                 COUNT(*) AS a
             FROM
                 orders
@@ -196,6 +196,10 @@ class StatisticsController extends CoreController
 
             $stmt = $con->prepare($sql);
             $stmt->execute();
+
+            if ($db_name == 'default') {
+                $db_name = 'pdldbdk1';
+            }
 
             $data[$index] = [
                 'element' => $db_name,
