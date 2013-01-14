@@ -27,7 +27,7 @@
     'fx/css/jquery-ui.css'
     'fx/scripts/video-js/video-js.css'
     'fx/scripts/fullcalendar/fullcalendar.css'
-    
+
     'fx/2013s1/css/960_8_3_3.css'
     'fx/2013s1/css/jquery.fullimagebox.css'
     'fx/2013s1/css/style.css'
@@ -100,7 +100,7 @@
     <ul class="horizontal menu right">
       <li id="mini-basket" class="basket">
         <span class="sprite"></span>
-        <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {{ fx_image_tag('images/loader-bar.gif') }}{# render 'BasketBundle:Default:miniBasket' #} </a>
+        <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
       <li class="last"><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
     </ul>
@@ -133,6 +133,10 @@
 </footer>
 
 <script type="text/javascript">
+  var cookie_params = {
+    'domain' : '{{ app.request.getHttpHost() }}',
+    'path' : '{{ path('_homepage', {'_locale' : app.session.locale}) }}'
+  };
   var base_url = '{{ url('_homepage', {'_locale' : app.session.locale}) }}';
   var cdn_url = '{{ cdn }}';
   var counter_offset = 1314691200;
@@ -152,6 +156,7 @@
   'fx/scripts/jquery.formparams.js'
   'fx/scripts/jquery.cycle2.min.js'
   'fx/2013s1/scripts/jquery.fullimagebox.js'
+  'fx/scripts/jquery-cookie/jquery.cookie.js'
 
   'fx/scripts/flowplayer/flowplayer-3.2.11.min.js'
   'fx/scripts/countdown/jquery.countdown.js'
@@ -169,13 +174,13 @@
   'fx/scripts/colorbox.js'
   'fx/scripts/flowplayer.js'
   'fx/scripts/video.js'
+  'fx/2013s1/scripts/main.js'
   'fx/2013s1/scripts/social-buttons.js'
 
   'fx/2013s1/scripts/category.js'
   'fx/2013s1/scripts/product.js'
   'fx/scripts/cart.js'
   'fx/2013s1/scripts/account.js'
-  'fx/2013s1/scripts/main.js'
   'fx/2013s1/scripts/preload.js'
   'fx/scripts/checkout.js'
   'fx/scripts/dibs-process.js'
