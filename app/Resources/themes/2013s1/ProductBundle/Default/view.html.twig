@@ -7,12 +7,12 @@
     {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
     <a href="{{ path(route) }}" title="{{ 'back.to.category'|trans }}" class="back-to-category"><i class="sprite icons-arrow_left"></i>  {{ 'back.to.category'|trans }}</a>
   </div>
-  
+
   <div class="grid_4 alpha omega align-right row">
     {% include 'CMSBundle:Social:share.html.twig' with {
-      'url': product.url, 
-      'image': product_image_url(product.main_image.name, '0x715'), 
-      'description': product.title } 
+      'url': product.url,
+      'image': product_image_url(product.main_image.name, '0x715'),
+      'description': product.title }
     %}
   </div>
 
@@ -20,7 +20,7 @@
     <div class="productimage-large grid_4 alpha omega align-center">
       <a href="{{ product_image_url(product.main_image.name, '0x715') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '38x75') }}" data-color="{{ product.main_image.color }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="color-{{ product.main_image.color}} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
         {{ product_image_tag(
-            product.main_image.name, 
+            product.main_image.name,
             '165x330'
           )
         }}
@@ -57,7 +57,7 @@
     {% for image in product.images %}
       <a href="{{ product_image_url(image.name, '0x715') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '165x330') }}" class="color-{{ image.color }} number-{{ image.number }} type-{{ image.type }}" data-number="{{ image.number }}" data-color="{{ image.color }}" data-type="{{ image.type }}" data-high-res="{{ product_image_url(image.name, '0x13000') }}">
         {{ product_image_tag(
-            image.name, 
+            image.name,
             '38x75'
           )
         }}
@@ -81,9 +81,9 @@
     {% endfor %}
   </div>
 
-  <div class="grid_4 alpha omega latest-seen-poducts bordered-top">
+  <div class="grid_4 alpha omega latest-seen-poducts bordered-top productimage-small">
     <h4>{{ 'latest.seen.products.title'|trans }}</h4>
-    
+
   </div>
 </div>
 
@@ -99,7 +99,7 @@
   {% endif %}
   </div>
 
-  <div class="buybox clearfix"> 
+  <div class="buybox clearfix">
 
   {%  if product.sizes|length == 0 %}
 
