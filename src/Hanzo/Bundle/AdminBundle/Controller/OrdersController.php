@@ -284,12 +284,14 @@ class OrdersController extends CoreController
             ->filterByOrdersId($order_id)
             ->findOne($this->getDbConnection())
         ;
-        $log_data = unserialize($order_log->getContent());
-        
+        if ($order_log) {
+            $log_data = unserialize($order_log->getContent());
+        }
+
         $order_log->delete($this->getDbConnection());
         try {
             $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
-            
+
         } catch (Exception $e) {
 
             if ('json' === $this->getFormat()) {
@@ -297,7 +299,7 @@ class OrdersController extends CoreController
                     'status' => false,
                     'message' => $e->getMessage(),
                 ));
-            }            
+            }
         }
 
         if ('json' === $this->getFormat()) {
@@ -558,13 +560,13 @@ class OrdersController extends CoreController
         $customer   = $order->getCustomers();
         $translator = $this->get('translator');
 
-        try 
+        try
         {
             // Validate information @ gothia
             $api = $this->get('payment.gothiaapi');
             $response = $api->call()->checkCustomer( $customer );
-        } 
-        catch( GothiaApiCallException $g ) 
+        }
+        catch( GothiaApiCallException $g )
         {
             Tools::debug( $g->getMessage(), __METHOD__);
             return $this->json_response(array(
@@ -573,9 +575,9 @@ class OrdersController extends CoreController
             ));
         }
 
-        if ( $response->isError() ) 
+        if ( $response->isError() )
         {
-            if ( $response->data['PurchaseStop'] === 'true') 
+            if ( $response->data['PurchaseStop'] === 'true')
             {
                 Tools::debug( 'PurchaseStop', __METHOD__, array( 'Transaction id' => $response->transactionId ));
 
@@ -593,11 +595,11 @@ class OrdersController extends CoreController
             ));
         }
 
-        try 
+        try
         {
             $response = $api->call()->placeReservation( $customer, $order );
-        } 
-        catch( GothiaApiCallException $g ) 
+        }
+        catch( GothiaApiCallException $g )
         {
             Tools::debug( $g->getMessage(), __METHOD__);
 
@@ -607,7 +609,7 @@ class OrdersController extends CoreController
             ));
         }
 
-        if ( $response->isError() ) 
+        if ( $response->isError() )
         {
             Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
@@ -637,11 +639,11 @@ class OrdersController extends CoreController
         $customer   = $order->getCustomers();
         $translator = $this->get('translator');
 
-        try 
+        try
         {
             $response = $api->call()->cancelReservation( $customer, $order );
-        } 
-        catch( GothiaApiCallException $g ) 
+        }
+        catch( GothiaApiCallException $g )
         {
             Tools::debug( $g->getMessage(), __METHOD__);
 
@@ -651,7 +653,7 @@ class OrdersController extends CoreController
             ));
         }
 
-        if ( $response->isError() ) 
+        if ( $response->isError() )
         {
             Tools::debug( 'Cancel reservation error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
