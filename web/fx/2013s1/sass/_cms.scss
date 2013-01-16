@@ -1,0 +1,11 @@
+.body-pages{
+	// Specific styles for CMS pages
+	h3{
+		font-family: $font-sans;
+		font-size: $paragraph-size;
+		font-weight: bold;
+		text-transform: none;
+		padding: 6px 0 0;
+		letter-spacing: 0;
+	}
+}
