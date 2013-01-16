@@ -25,16 +25,16 @@
       {% for product in items %}
         <tr>
           <td class="image left">
-            {{ product_image_tag(product.basket_image, '100x0', { 'alt' : product.products_name }) }}
+            {{ product_image_tag(product.basket_image, '38x75', { 'alt' : product.products_name }) }}
             <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
               <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
-              <div class="color">
-                <label>{{ "color"|trans }}:</label>
-                <span>{{ product.products_color }}</span>
-              </div>
               <div class="size">
                 <label>{{ "size"|trans }}:</label>
                 <span>{{ product.products_size }}</span>
+              </div>
+              <div class="color">
+                <label>{{ "color"|trans }}:</label>
+                <span>{{ product.products_color }}</span>
               </div>
             </div>
           </td>

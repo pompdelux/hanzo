@@ -125,9 +125,9 @@ input.button,
 button.button,
 a.button {
 	border: none;
-	color: white;
 	cursor: pointer;
 	display: inline-block;
+	font-family: $font-serif;
 
 	&:hover{
 		text-decoration: none;
@@ -136,36 +136,32 @@ a.button {
 	&.text-button {
 		border: none;
 		background: transparent;
-		cursor: pointer;
-		font-family: $font-serif;
 		color: $font-color;
 		font-size: $font-size;
 		text-transform: uppercase;
 	}
-	&.button-black {
+
+	&.button-black,
+	&.button-right,
+	&.button-left {
 		background: #474749;
 		font-family: $font-sans;
 		text-align: center;
-		width: 102px;
 		padding: 6px;
 		font-weight: bold;
+		color: white;
+		line-height: 18px;
 	}
 	&.button-right {
 		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
 		border-right: 6px solid #474749;
-		text-align: center;
-		line-height: 18px;
 		padding: 6px 24px;
 		float: right;
-		font-weight: bold;
 	}
 	&.button-left {
 		background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
 		border-left: 6px solid #474749;
-		text-align: center;
-		line-height: 18px;
 		padding: 6px 24px;
-		font-weight: bold;
 	}
 	&.off{
 		display: none;
@@ -204,11 +200,13 @@ table{
 */
 .align-left,
 .left{text-align:left;}
+a.left{float: left;}
 .align-center,
 .center{text-align:center}
 .centerfy{margin: 0 auto;}
 .align-right,
 .right{text-align:right;}
+a.left{float: right;}
 .vert-align-top{vertical-align:top;}
 .vert-align-middle{vertical-align:middle;}
 .vert-align-bottom{vertical-align:baseline;}
@@ -216,6 +214,7 @@ table{
 .pushright{float:right;}
 .small{font-size: 9px;}
 .strike {text-decoration:line-through;}
+.upper {text-transform: uppercase;}
 
 ul{
 	list-style-position: inside;

@@ -708,56 +708,116 @@ form.create label.required:after {
   content: ": *";
 }
 
-/* line 3, ../sass/_basket.scss */
-.basket table.product-table th {
+/* line 5, ../sass/_basket.scss */
+.basket table.product-table th,
+.basket table.edit-element th,
+#cart-edit-element table.product-table th,
+#cart-edit-element table.edit-element th {
   font-family: "Merriweather", serif;
   font-weight: 400;
   padding: 12px 6px;
 }
-/* line 9, ../sass/_basket.scss */
-.basket table.product-table tbody tr {
-  border-bottom: 1px solid #444;
-}
-/* line 13, ../sass/_basket.scss */
-.basket table.product-table tfoot {
-  font-family: "Merriweather", serif;
+/* line 11, ../sass/_basket.scss */
+.basket table.product-table tbody tr,
+.basket table.edit-element tbody tr,
+#cart-edit-element table.product-table tbody tr,
+#cart-edit-element table.edit-element tbody tr {
+  border-bottom: 1px solid #444444;
 }
 /* line 15, ../sass/_basket.scss */
-.basket table.product-table tfoot td {
-  padding: 12px 6px;
+.basket table.product-table tfoot,
+.basket table.edit-element tfoot,
+#cart-edit-element table.product-table tfoot,
+#cart-edit-element table.edit-element tfoot {
+  font-family: "Merriweather", serif;
 }
 /* line 17, ../sass/_basket.scss */
-.basket table.product-table tfoot td.total {
+.basket table.product-table tfoot td,
+.basket table.edit-element tfoot td,
+#cart-edit-element table.product-table tfoot td,
+#cart-edit-element table.edit-element tfoot td {
+  padding: 12px 6px;
+}
+/* line 19, ../sass/_basket.scss */
+.basket table.product-table tfoot td.total,
+.basket table.edit-element tfoot td.total,
+#cart-edit-element table.product-table tfoot td.total,
+#cart-edit-element table.edit-element tfoot td.total {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
-/* line 22, ../sass/_basket.scss */
-.basket table.product-table .info {
+/* line 24, ../sass/_basket.scss */
+.basket table.product-table .info,
+.basket table.edit-element .info,
+#cart-edit-element table.product-table .info,
+#cart-edit-element table.edit-element .info {
   display: inline-block;
   vertical-align: top;
   line-height: 22px;
 }
-/* line 27, ../sass/_basket.scss */
-.basket table.product-table .title {
+/* line 29, ../sass/_basket.scss */
+.basket table.product-table .title,
+.basket table.edit-element .title,
+#cart-edit-element table.product-table .title,
+#cart-edit-element table.edit-element .title {
   font-family: "Merriweather", serif;
   font-weight: 900;
 }
-/* line 32, ../sass/_basket.scss */
-.basket table.product-table .actions a {
+/* line 34, ../sass/_basket.scss */
+.basket table.product-table .actions a,
+.basket table.edit-element .actions a,
+#cart-edit-element table.product-table .actions a,
+#cart-edit-element table.edit-element .actions a {
   display: block;
   line-height: 23px;
   text-decoration: underline;
 }
-/* line 39, ../sass/_basket.scss */
-.basket table.product-table .date span.not-in-stock {
+/* line 41, ../sass/_basket.scss */
+.basket table.product-table .date span.not-in-stock,
+.basket table.edit-element .date span.not-in-stock,
+#cart-edit-element table.product-table .date span.not-in-stock,
+#cart-edit-element table.edit-element .date span.not-in-stock {
   color: #A10000;
 }
-/* line 45, ../sass/_basket.scss */
-.basket .delivery-notice {
+/* line 47, ../sass/_basket.scss */
+.basket .delivery-notice,
+#cart-edit-element .delivery-notice {
   font-size: 11px;
 }
-/* line 48, ../sass/_basket.scss */
-.basket .buttons {
+/* line 50, ../sass/_basket.scss */
+.basket .buttons,
+#cart-edit-element .buttons {
   padding: 24px 0;
+}
+
+/* line 55, ../sass/_basket.scss */
+#cart-edit-element {
+  border: 5px solid black;
+  position: absolute;
+  z-index: 9999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: white;
+  /* notice message*/
+}
+/* line 64, ../sass/_basket.scss */
+#cart-edit-element a.button {
+  position: absolute;
+  bottom: 3px;
+  right: 10px;
+}
+/* line 70, ../sass/_basket.scss */
+#cart-edit-element .delivery-notice {
+  position: absolute;
+  top: 10px;
+  left: 345px;
+  width: 240px;
+}
+/* line 75, ../sass/_basket.scss */
+#cart-edit-element .delivery-notice strong {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 /* line 3, ../sass/_social.scss */
@@ -1053,9 +1113,9 @@ input.button,
 button.button,
 a.button {
   border: none;
-  color: white;
   cursor: pointer;
   display: inline-block;
+  font-family: "Merriweather", serif;
 }
 /* line 132, ../sass/_base.scss */
 input.button:hover,
@@ -1069,75 +1129,72 @@ button.button.text-button,
 a.button.text-button {
   border: none;
   background: transparent;
-  cursor: pointer;
-  font-family: "Merriweather", serif;
   color: #444444;
   font-size: 14px;
   text-transform: uppercase;
 }
-/* line 145, ../sass/_base.scss */
-input.button.button-black,
+/* line 143, ../sass/_base.scss */
+input.button.button-black, input.button.button-right, input.button.button-left,
 button.button.button-black,
-a.button.button-black {
+button.button.button-right,
+button.button.button-left,
+a.button.button-black,
+a.button.button-right,
+a.button.button-left {
   background: #474749;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  width: 102px;
   padding: 6px;
   font-weight: bold;
+  color: white;
+  line-height: 18px;
 }
-/* line 153, ../sass/_base.scss */
+/* line 152, ../sass/_base.scss */
 input.button.button-right,
 button.button.button-right,
 a.button.button-right {
   background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
   border-right: 6px solid #474749;
-  text-align: center;
-  line-height: 18px;
   padding: 6px 24px;
   float: right;
-  font-weight: bold;
 }
-/* line 162, ../sass/_base.scss */
+/* line 158, ../sass/_base.scss */
 input.button.button-left,
 button.button.button-left,
 a.button.button-left {
   background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
   border-left: 6px solid #474749;
-  text-align: center;
-  line-height: 18px;
   padding: 6px 24px;
-  font-weight: bold;
 }
-/* line 170, ../sass/_base.scss */
+/* line 163, ../sass/_base.scss */
 input.button.off,
 button.button.off,
 a.button.off {
   display: none;
 }
 
-/* line 175, ../sass/_base.scss */
+/* line 168, ../sass/_base.scss */
 table {
   width: 100%;
   margin: 6px 0 12px;
 }
-/* line 178, ../sass/_base.scss */
+/* line 171, ../sass/_base.scss */
 table thead, table tbody, table tfoot {
   border-bottom: 1px solid #444444;
 }
-/* line 181, ../sass/_base.scss */
+/* line 174, ../sass/_base.scss */
 table thead {
   font-family: "Merriweather", serif;
 }
-/* line 183, ../sass/_base.scss */
+/* line 176, ../sass/_base.scss */
 table thead th {
   padding: 3px 6px;
 }
-/* line 188, ../sass/_base.scss */
+/* line 181, ../sass/_base.scss */
 table tbody td {
   padding: 12px 6px;
 }
-/* line 193, ../sass/_base.scss */
+/* line 186, ../sass/_base.scss */
 table tfoot td {
   padding: 6px;
 }
@@ -1147,78 +1204,93 @@ table tfoot td {
 | Helpers
 |
 */
-/* line 206, ../sass/_base.scss */
+/* line 199, ../sass/_base.scss */
 .align-left,
 .left {
   text-align: left;
 }
 
-/* line 208, ../sass/_base.scss */
+/* line 200, ../sass/_base.scss */
+a.left {
+  float: left;
+}
+
+/* line 202, ../sass/_base.scss */
 .align-center,
 .center {
   text-align: center;
 }
 
-/* line 209, ../sass/_base.scss */
+/* line 203, ../sass/_base.scss */
 .centerfy {
   margin: 0 auto;
 }
 
-/* line 211, ../sass/_base.scss */
+/* line 205, ../sass/_base.scss */
 .align-right,
 .right {
   text-align: right;
 }
 
-/* line 212, ../sass/_base.scss */
+/* line 206, ../sass/_base.scss */
+a.left {
+  float: right;
+}
+
+/* line 207, ../sass/_base.scss */
 .vert-align-top {
   vertical-align: top;
 }
 
-/* line 213, ../sass/_base.scss */
+/* line 208, ../sass/_base.scss */
 .vert-align-middle {
   vertical-align: middle;
 }
 
-/* line 214, ../sass/_base.scss */
+/* line 209, ../sass/_base.scss */
 .vert-align-bottom {
   vertical-align: baseline;
 }
 
-/* line 215, ../sass/_base.scss */
+/* line 210, ../sass/_base.scss */
 .pushleft {
   float: left;
 }
 
-/* line 216, ../sass/_base.scss */
+/* line 211, ../sass/_base.scss */
 .pushright {
   float: right;
 }
 
-/* line 217, ../sass/_base.scss */
+/* line 212, ../sass/_base.scss */
 .small {
   font-size: 9px;
 }
 
-/* line 218, ../sass/_base.scss */
+/* line 213, ../sass/_base.scss */
 .strike {
   text-decoration: line-through;
 }
 
-/* line 220, ../sass/_base.scss */
+/* line 214, ../sass/_base.scss */
+.upper {
+  text-transform: uppercase;
+}
+
+/* line 216, ../sass/_base.scss */
 ul {
   list-style-position: inside;
 }
-/* line 222, ../sass/_base.scss */
+/* line 218, ../sass/_base.scss */
 ul.list {
   list-style-type: disc;
 }
 
-/* line 226, ../sass/_base.scss */
+/* line 222, ../sass/_base.scss */
 ol {
   list-style-position: inside;
 }
-/* line 228, ../sass/_base.scss */
+/* line 224, ../sass/_base.scss */
 ol.list {
   list-style-type: decimal;
 }
@@ -1228,17 +1300,17 @@ ol.list {
 | dialoug notices
 |
 */
-/* line 239, ../sass/_base.scss */
+/* line 235, ../sass/_base.scss */
 .inject-notice-box {
   padding: 3px;
 }
-/* line 241, ../sass/_base.scss */
+/* line 237, ../sass/_base.scss */
 .inject-notice-box .inner {
   border: 1px solid #000;
   padding: 6px;
   color: #444444;
 }
-/* line 247, ../sass/_base.scss */
+/* line 243, ../sass/_base.scss */
 .inject-notice-box.error .inner {
   border-color: red;
 }
@@ -1248,7 +1320,7 @@ ol.list {
 | Slideshow Cycle2 styles
 |
 */
-/* line 259, ../sass/_base.scss */
+/* line 255, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
@@ -1256,18 +1328,18 @@ ol.list {
   left: 16px;
   z-index: 101;
 }
-/* line 265, ../sass/_base.scss */
+/* line 261, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-/* line 271, ../sass/_base.scss */
+/* line 267, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-/* line 277, ../sass/_base.scss */
+/* line 273, ../sass/_base.scss */
 .cycle-slideshow .cycle-slide img {
   width: 100%;
 }
@@ -1278,17 +1350,17 @@ ol.list {
 |
 | TODO: Make it as a new grid with container_5{blablabla}
 */
-/* line 289, ../sass/_base.scss */
+/* line 285, ../sass/_base.scss */
 .container_8 .grid_1-5 {
   width: 186px;
 }
 
-/* line 292, ../sass/_base.scss */
+/* line 288, ../sass/_base.scss */
 .container_8 .grid_2-5 {
   width: 378px;
 }
 
-/* line 296, ../sass/_base.scss */
+/* line 292, ../sass/_base.scss */
 .container_8 .grid_1-5,
 .container_8 .grid_2-5 {
   display: inline;
@@ -1297,7 +1369,7 @@ ol.list {
   margin-right: 3px;
 }
 
-/* line 313, ../sass/_base.scss */
+/* line 309, ../sass/_base.scss */
 .main > .grid_1,
 .main > .grid_2,
 .main > .grid_3,
@@ -1312,19 +1384,19 @@ ol.list {
   margin-bottom: 6px;
 }
 
-/* line 318, ../sass/_base.scss */
+/* line 314, ../sass/_base.scss */
 body.da form.buy .submit-button {
   background-position: 0 -494px;
   height: 84px;
   width: 87px;
 }
-/* line 323, ../sass/_base.scss */
+/* line 319, ../sass/_base.scss */
 body.da .buy-set {
   background-position: 0 -410px;
   height: 84px;
   width: 87px;
 }
-/* line 328, ../sass/_base.scss */
+/* line 324, ../sass/_base.scss */
 body.da .new-price {
   background-position: 0 0;
   height: 410px;
