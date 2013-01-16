@@ -1,5 +1,5 @@
 
-// @import "colorbuttons/*.png"; 
+// @import "colorbuttons/*.png";
 // @include all-colorbuttons-sprites; // Generates a sprite from all images inside the folder
 
 .bordered,
@@ -43,7 +43,7 @@ div.panes > div {
 	.sprite{
 		@include icons-sprite(zoom);
 		height: icons-sprite-height(zoom);
-		width: icons-sprite-width(zoom); 
+		width: icons-sprite-width(zoom);
 	}
 }
 .body-product .breadcrumb{
@@ -53,7 +53,7 @@ div.panes > div {
 
 	.sprite{
 		height: icons-sprite-height(arrow_left);
-		width: icons-sprite-width(arrow_left); 
+		width: icons-sprite-width(arrow_left);
 	}
 }
 a.video-popper, #video-player-container a.video {
@@ -63,7 +63,7 @@ a.video-popper, #video-player-container a.video {
 	.sprite{
 		@include icons-sprite(video);
 		height: icons-sprite-height(video);
-		width: icons-sprite-width(video); 
+		width: icons-sprite-width(video);
 	}
 }
 
@@ -137,7 +137,7 @@ form.buy{
 	display: none;
 }
 
-@import "colorbuttons/*.png"; 
+@import "colorbuttons/*.png";
 @include all-colorbuttons-sprites; // Generates a sprite from all images inside the folder
 a.product-color{
 	margin: 6px;
@@ -146,13 +146,13 @@ a.product-color{
 	.colorbuttons {
 		margin: 0 auto;
 
-		// We need all colors ruled here:: 
+		// We need all colors ruled here::
 		&.colorbuttons-navy{
 			@include colorbuttons-sprite(navy);
 			padding-top: colorbuttons-sprite-height(navy);
 			width: colorbuttons-sprite-width(navy);
 		}
-		// We need all colors ruled here:: 
+		// We need all colors ruled here::
 		&.colorbuttons-violet{
 			@include colorbuttons-sprite(violet);
 			padding-top: colorbuttons-sprite-height(violet);
@@ -165,12 +165,12 @@ a.product-color{
 			@include colorbuttons-sprite(navy_aktiv);
 			padding-top: colorbuttons-sprite-height(navy_aktiv);
 			width: colorbuttons-sprite-width(navy_aktiv);
-		}	
+		}
 		.colorbuttons-violet{
 			@include colorbuttons-sprite(violet_aktiv);
 			padding-top: colorbuttons-sprite-height(violet_aktiv);
 			width: colorbuttons-sprite-width(violet_aktiv);
-		}	
+		}
 	}
 
 }

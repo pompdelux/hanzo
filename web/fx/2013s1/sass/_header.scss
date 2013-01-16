@@ -31,25 +31,6 @@ ul.menu,
 	&.right{
 		text-align: right;
 	}
-}	
-ul.main-menu,
-.main-menu > ul{
-	@include main-menu-style;
-	li:hover ul,
-	li:hover div{
-		left: 0;
-	}
-	li ul,
-	li div {
-		position: absolute;
-		left: -9999px;
-		z-index: 100;
-	}
-	li ul li a {
-		display: block;
-		position: relative;
-		z-index:100;
-	}
 }
 ul.sub-menu,
 .sub-menu > ul{
@@ -70,7 +51,7 @@ ul.sub-menu,
 		ul{
 			padding:6px 0 0 6px;
 			a{
-				display: inline-block;	
+				display: inline-block;
 				margin: 0 0 0 6px;
 			}
 		}
@@ -86,33 +67,16 @@ ul.horizontal,
 	}
 }
 
-// Specific main menus
-nav.main{
-	li{
-		padding: 2px 16px 0 0;
-		a{
-			text-transform: uppercase;
-		}
-
-		ul{
-			padding: 20px;
-			li{
-				padding: 5px 0;
-			}
-		}
-	}
-}
-
 // Specific Secondary menu
 #secondary-links{
 	position: absolute;
 	top: 0px;
 	right: 3px;
 	li{
-		padding: 16px 8px;
+		padding: 8px;
 		vertical-align: middle;
 		&.last{
-			padding-right: 0; 
+			padding-right: 0;
 		}
 		// Mini-basket in secondary links!
 		&.basket {
@@ -121,7 +85,7 @@ nav.main{
 				vertical-align: middle;
 				@include icons-sprite(basket);
 				height: icons-sprite-height(basket);
-				width: icons-sprite-width(basket); 
+				width: icons-sprite-width(basket);
 			}
 			a{
 				display:inline-block;

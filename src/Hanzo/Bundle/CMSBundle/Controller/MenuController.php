@@ -24,20 +24,17 @@ class MenuController extends CoreController
     protected $cms_thread = 20;
     protected $menu = array();
 
-    public function menuAction($type, $thread = NULL, $from = NULL, $offset = NULL)
+    public function menuAction($type, $thread = NULL, $from = NULL, $offset = NULL, $css_id = null)
     {
         $request = $this->get('request');
 
-        $cache_id = func_get_args();
-        array_unshift($cache_id, 'menu');
-        array_push($cache_id, $request->getPathInfo());
-
+        $cache_id = [
+            'menu',
+            $type,
+            $request->getRequestUri()
+        ];
         $html = $this->getCache($cache_id);
-        /**
 
-
-        **/
-        $html = NULL; // FIXME: redis overwrite
         if (!$html) {
             $hanzo = Hanzo::getInstance();
 
@@ -71,7 +68,7 @@ class MenuController extends CoreController
                     if (empty($this->menu['main'])) {
                         $this->menu['main'] = '';
                         // generate
-                        $this->generateFull(null, $type, $this->cms_thread);
+                        $this->generateFull(null, $type, $this->cms_thread, $css_id);
                     }
                     $html = $this->menu['main'];
                     break;
@@ -101,7 +98,7 @@ class MenuController extends CoreController
                     if (empty($this->menu[$type])) {
                         $this->menu[$type] = '';
 
-                        $this->generateFull($offset, $type);
+                        $this->generateFull($offset, $type, null, $css_id);
                     }
                     $html = $this->menu[$type];
                     break;
@@ -254,7 +251,7 @@ class MenuController extends CoreController
         }
     }
 
-    protected function generateFull($parent_id = NULL, $type, $from = NULL)
+    protected function generateFull($parent_id = NULL, $type, $from = NULL, $css_id = null)
     {
         $query = CmsQuery::create()
             ->joinWithI18n($this->locale)
@@ -262,12 +259,19 @@ class MenuController extends CoreController
             ->orderBySort()
             ->filterByParentId($parent_id)
         ;
+
         if(!empty($from)){
             $query->filterByCmsThreadId($from);
         }
+
         $result = $query->find();
         if ($result->count()) {
-            $this->menu[$type] .= '<ul>';
+
+            $ul = '<ul>';
+            if ($css_id) {
+                $ul = '<ul id="'.$css_id.'">';
+            }
+            $this->menu[$type] .= $ul;
 
             foreach($result as $record) {
 
@@ -339,7 +343,7 @@ class MenuController extends CoreController
                         $class = 'active';
                     }
                 }
-                
+
                 $class .= ($record === reset($this->trail))?' first':'';
                 $class .= ($record === end($this->trail))?' last':'';
 
@@ -350,9 +354,9 @@ class MenuController extends CoreController
                 }
 
                 if($record->getType() !== 'heading'){
-                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a></li>';    
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a></li>';
                 }
-                
+
             }
 
             $this->menu[$type] .= '</ul>';

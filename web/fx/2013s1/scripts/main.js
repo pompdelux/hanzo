@@ -31,17 +31,6 @@
         break;
       }
 
-      // fix footer if mobile unit
-      if ($('html').hasClass('touch')) {
-        placeFooter();
-        window.onorientationchange = function() {
-          placeFooter();
-        };
-        $('body').bind('near-you-container.loaded', function() {
-          placeFooter();
-        });
-      }
-
       // use inline labels if the "real" labels are hidden
       if ($('form.newsletter-subscription-form label').is(':hidden')) {
         $('form.newsletter-subscription-form input[title]').each(function() {
@@ -90,9 +79,38 @@
             }
           });
         });
-
       }
 
+      // menu handeling
+      var $menu = $('nav.main-menu');
+      $('> ul > li', $menu).each(function(index, element) {
+        var $element = $(element);
+        var subs = $('ul > li > ul > li', $element).length;
+        if (subs) {
+          var l = $('ul > li > ul', $element).length;
+          l = (l * 218);
+
+          if (subs < 30) {
+            l = l / 2;
+          }
+
+          $('ul > li', $element).css({ float:'left', width: '200px' });
+          $('> ul', $element).css({ width: l });
+        } else {
+          $('ul > li', $element).css({ display:'block' });
+        }
+      });
+      $('> ul > li > a', $menu).click(function(event) {
+        var $this = $(this).parent();
+        var $element = $('> ul', $this);
+
+        $('> ul > li > ul.on', $menu).not($element).removeClass('on');
+        $element.toggleClass('on');
+
+        if ($('ul', $this).length) {
+          event.preventDefault();
+        }
+      });
     };
 
     /**
@@ -116,30 +134,24 @@
      };
 
     pub.initBasket = function() {
-      /**
-       * we always fetch the basket via ajax, this
-       * way we can keep stuff in varnish without esi
-       */
       var $basket = $('#mini-basket a');
       if ($basket.length) {
 
-        $.ajax({
-          url: base_url + 'miniBasket',
-          dataType: 'json',
-          cache: false,
-          success: function(response) {
-            if (response.status) {
-              // populate mini basket
-              if (response.data.total) {
-                $basket.text(response.data.total);
-              }
-              // show "in edit" warning
-              if (response.data.warning) {
-                $('div#main').prepend(response.data.warning);
-              }
-            }
-          }
-        });
+        $.cookie.defaults = {
+          domain : cookie_params.domain,
+          path : cookie_params.path
+        };
+        $.cookie.json = true;
+
+        var basket = $.cookie('basket');
+        if (basket) {
+          $basket.text(basket);
+        }
+
+        var notice = $.cookie('__ice_n');
+        if (notice) {
+          $('div#main').prepend(notice);
+        }
       }
     };
 
@@ -155,15 +167,6 @@
           Math.max(document.body.clientHeight,
           document.documentElement.clientHeight
       ));
-    };
-
-    var placeFooter = function() {
-      $("footer").css({
-        position : 'absolute',
-        height: $('footer').height() + 'px',
-        top : (getDocHeight() - $('footer').outerHeight(true)) + 'px',
-        width : $('body').width()
-      });
     };
 
     return pub;

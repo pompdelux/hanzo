@@ -892,7 +892,7 @@ class ECommerceServices extends SoapService
         $this->SalesOrderLockUnlock((object) array(
             'eOrderNumber' => $data->eOrderNumber,
             'orderStatus' => 4,
-            'sendMail' => $this->sendStatusMail,
+            'sendMail' => 0,
         ));
 
         $this->timer->logAll('Time spend on order: #'.$order->getId());

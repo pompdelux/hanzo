@@ -7,7 +7,7 @@
     pub.initZoom = function() {
       var currentColor = $('.productimage-large a').data('color');
       $('.productimage-large a').fullImageBox({'selector':'a[rel=full-image].color-'+currentColor});
-      
+
       $('.productimage-large a, a.picture-zoom').on('click', function(e){
         e.preventDefault();
         $('.productimage-large a').first().fullImageBox('open');
@@ -41,7 +41,6 @@
           product.initZoom();
         }
       });
-
     };
 
     pub.swapImages = function(current) {
@@ -235,8 +234,41 @@
           dialoug.notice(Translator.get('js:form.buy.choose.first'), 'error',3000, $('.button', $form).parent());
         }
       });
-
     };
+
+
+    /**
+     * track products the visitor has last seen.
+     * currently we track the latest 10 products.
+     */
+    pub.initLastSeen = function() {
+      if($('input#master').length) {
+        var data = $.cookie('last_viewed') || { images:[], keys:[] };
+        var id = $('input#master').val().replace(/[^a-z0-9]+/gi, '');
+
+        if (-1 === data.keys.indexOf(id)) {
+          data.images.push({
+            title : $('h1').text(),
+            url   : document.location.href,
+            image : $('.productimage-large a').data('src')
+          });
+
+          data.keys.push(id);
+
+          if (data.keys.length > 10) {
+            data.keys.shift();
+            data.images.shift();
+          }
+
+          $.cookie('last_viewed', data);
+        }
+
+        $.each(data.images, function(index, data) {
+          $('.latest-seen-poducts').append('<a href="'+data.url+'"><img src="'+data.image+'" alt="'+data.title+'"></a> ');
+        });
+      }
+    };
+
 
     var _resetForm = function(section) {
       var $this = $('form.buy');
@@ -279,6 +311,7 @@
   product.initTabs();
   product.initSlideshow();
   product.initPurchase();
+  product.initLastSeen();
 
   // icon toggler
   $('.productimage-small a').click(function(e) {

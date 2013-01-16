@@ -2,11 +2,6 @@ imports:
     - resource: parameters.ini
     - resource: parameters.php
 
-parameters:
-    # Assetic
-    assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/fx/images'
-    assetic.filter.compass.http_path:  '/fx'
-
 framework:
     translator: null
     secret: '%secret%'
@@ -79,7 +74,9 @@ twig:
 
 assetic:
     debug: '%kernel.debug%'
-    use_controller: false
+    use_controller:
+        enabled: true
+        profiler: true
     java: /usr/bin/java
     sass: %sass_bin%
     node: %node_bin%
@@ -87,9 +84,7 @@ assetic:
         cssrewrite: ~
         compass:
             bin: %compass_bin%
-            apply_to: ".scss$"
-        yui_css:
-            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+            apply_to: "\.scss$"
         yui_js:
             jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
 
