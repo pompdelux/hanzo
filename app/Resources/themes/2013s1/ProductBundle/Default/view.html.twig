@@ -1,5 +1,13 @@
 {% extends layout %}
 
+{% block meta %}
+  {{ meta_tags(false) }}
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="{{ product.title }}">
+  <meta property="og:image" content="{{ product_image_url(product.main_image.name, '0x200') }}">
+  <meta property="og:description" content="{{ product.description|trim }}">
+{% endblock %}
+
 {% block content %}
 
 <div class="grid_4 alpha">
@@ -10,7 +18,7 @@
   
   <div class="grid_4 alpha omega align-right row">
     {% include 'CMSBundle:Social:share.html.twig' with {
-      'url': product.url, 
+      'url': app.request.uri, 
       'image': product_image_url(product.main_image.name, '0x715'), 
       'description': product.title } 
     %}

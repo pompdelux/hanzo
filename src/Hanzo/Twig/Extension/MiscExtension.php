@@ -131,14 +131,17 @@ class MiscExtension extends Twig_Extension
     /**
      * Returns any meta data associated with this domain.
      *
+     * @param bool choose to include or exclude all OG tags
      * @return string
      */
-     public function metaTags()
+     public function metaTags($includeOG = TRUE)
      {
          $meta = Hanzo::getInstance()->getByNs('meta');
 
          $result = '';
          foreach ($meta as $key => $value) {
+            if(!$includeOG && 0 === strpos($key, 'og:'))
+                continue;
              $attr = 'name';
              if (0 === strpos($key, 'og:')) {
                  $attr = 'property';

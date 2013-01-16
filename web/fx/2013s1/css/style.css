@@ -356,7 +356,7 @@ ul.breadcrumb li.first:before {
   color: white;
 }
 /* line 190, ../sass/_header.scss */
-.main header hgroup a {
+.main header hgroup a, .main header hgroup p {
   color: white;
 }
 

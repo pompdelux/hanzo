@@ -167,12 +167,7 @@ class DefaultController extends CoreController
                 'out_of_stock' => $product->getIsOutOfStock(),
                 'colors' => $colors,
                 'sizes' => $sizes,
-                'images_references' => $images_references,
-                'url' => $router->generate($route, array(
-                        'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
-                        'focus' => $focus
-                    ))
+                'images_references' => $images_references
             );
 
             $this->setCache($cache_id, $data, 60);
