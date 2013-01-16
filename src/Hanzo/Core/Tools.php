@@ -474,13 +474,21 @@ class Tools
 
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
+        $dir = 'images/products/thumb/';
+        if($preset === '0x0'){
+            $dir = 'images/products/';
+        }
+        $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageUrl($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
+        $dir = 'images/products/thumb/';
+        if($preset === '0x0'){
+            $dir = 'images/products/';
+        }
+        $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
         return self::imagePath($src, $preset);
     }
 
@@ -505,8 +513,10 @@ class Tools
             throw new \InvalidArgumentException("Preset: {$preset} is not valid.");
         }
 
-        if ($preset) {
+        if ($preset && $preset !== '0x0') {
             $preset .= ',';
+        }else{
+            $preset = '';
         }
 
         $url = parse_url($src);
