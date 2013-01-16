@@ -1,0 +1,103 @@
+<div class="basket">
+  {% if products %}
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th class="left">{{ "products"|trans }}</th>
+          <th class="center">{{ "on.stock"|trans }}</th>
+          <th class="right">{{ "price"|trans }}</th>
+          <th class="center">{{ "quantity"|trans }}</th>
+        {% if embedded == false %}
+          <th class="center">{{ "edit"|trans }}</th>
+        {% endif %}
+          <th class="right">{{ "total"|trans }}</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for group, items in products %}
+        <tr>
+        {% if embedded == false %}
+          <th class="group" colspan="6">{{ group|trans({}, 'checkout') }}</th>
+        {% else %}
+          <th class="group" colspan="5">{{ group|trans({}, 'checkout') }}</th>
+        {% endif %}
+        </tr>
+      {% for product in items %}
+        <tr>
+          <td class="image left">
+            {{ product_image_tag(product.basket_image, '100x0', { 'alt' : product.products_name }) }}
+            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+              <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
+              <div class="color">
+                <label>{{ "color"|trans }}:</label>
+                <span>{{ product.products_color }}</span>
+              </div>
+              <div class="size">
+                <label>{{ "size"|trans }}:</label>
+                <span>{{ product.products_size }}</span>
+              </div>
+            </div>
+          </td>
+          <td class="center date">
+            {% if product.expected_at %}
+              <span class="not-in-stock">{{ "on.stock.no"|trans }}</span>
+              <span>{{ "latest.shipment.date"|trans }} {{ product.expected_at|date('d-m-Y') }}</span>
+            {% else %}
+              <span>{{ "on.stock.yes"|trans }}</span>
+            {% endif %}
+          </td>
+          <td class="right price">
+          {% if product.price != product.original_price %}
+            <span class="normal strike">{{ product.original_price|money }}</span><br>
+          {% endif %}
+            {{ product.price|money }}
+          </td>
+          <td class="center quantity">{{ product.quantity }}</td>
+        {% if embedded == false %}
+          <td class="actions center">
+            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ "delete"|trans }}</a>
+            <a href="{{ product.products_id }}" class="edit">{{ "edit"|trans }}</a>
+          </td>
+        {% endif %}
+          <td class="right total">{{ (product.price * product.quantity)|money }}</td>
+        </tr>
+      {% endfor %}
+    {% endfor %}
+      </tbody>
+    {% if embedded == false %}
+      <tfoot>
+        <tr>
+          <td colspan="5">{{ "total"|trans }}:</td>
+          <td class="right total">{{ total|money }}</td>
+        </tr>
+      </tfoot>
+    {% endif %}
+    </table>
+
+
+    {% if embedded == false %}
+      <div class="delivery-notice">
+        {% if delivery_date %}
+          {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout')|raw }}
+        {% else %}
+          {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
+        {% endif %}
+      </div>
+
+      {% if app.user and app.user.user.groupsid in [2,3] %}
+        {% render 'EventsBundle:Events:selectEvent' %}
+      {% else %}
+        <div class="buttons">
+          <a class="button button-left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
+          <a class="button button-right proceed" href="{{ url('_checkout') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+        </div>
+      {% endif %}
+    {% endif %}
+
+  {% else %}
+    <p>{{ "cart.is.empty"|trans({}, 'checkout') }}</p>
+    <div class="buttons">
+      <a class="button left" href="{{ continue_shopping }}">{{ "continue.shopping"|trans({}, 'checkout') }}</a>
+    </div>
+  {% endif %}
+</div>

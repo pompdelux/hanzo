@@ -73,7 +73,7 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Fortsæt</target>
+                <target>Fortsæt til checkout</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>

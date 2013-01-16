@@ -78,6 +78,8 @@ hr {
 	}
 }
 
+strong, b {font-weight: bold;}
+
 aside{
 	padding-bottom: 24px;
 	h1,h2,h3,h4,h5{
@@ -146,12 +148,21 @@ a.button {
 		font-weight: bold;
 	}
 	&.button-right {
-		background: url(/fx/images/icons/button-right.png) right no-repeat #474749;
+		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
 		border-right: 6px solid #474749;
 		text-align: center;
 		line-height: 18px;
-		padding-right: 10px;
+		padding: 6px 24px;
 		float: right;
+		font-weight: bold;
+	}
+	&.button-left {
+		background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
+		border-left: 6px solid #474749;
+		text-align: center;
+		line-height: 18px;
+		padding: 6px 24px;
+		font-weight: bold;
 	}
 	&.off{
 		display: none;
@@ -161,7 +172,7 @@ a.button {
 table{
 	width: 100%;
 	margin: 6px 0 12px;
-	thead,tbody{
+	thead,tbody, tfoot{
 		border-bottom: 1px solid $font-color;
 	}
 	thead{
@@ -188,10 +199,13 @@ table{
 | Helpers
 |
 */
-.align-left{text-align:left;}
-.align-center{text-align:center}
+.align-left,
+.left{text-align:left;}
+.align-center,
+.center{text-align:center}
 .centerfy{margin: 0 auto;}
-.align-right{text-align:right;}
+.align-right,
+.right{text-align:right;}
 .vert-align-top{vertical-align:top;}
 .vert-align-middle{vertical-align:middle;}
 .vert-align-bottom{vertical-align:baseline;}

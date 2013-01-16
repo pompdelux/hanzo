@@ -1,0 +1,51 @@
+.basket{
+	table.product-table{
+		th{
+			font-family: $font-serif;
+			font-weight: $font-weight-thin;
+			padding: 12px 6px;
+		}
+		tbody{
+			tr{
+				border-bottom: 1px solid #444;
+			}
+		}
+		tfoot{
+			font-family: $font-serif;
+			td{
+				padding: 12px 6px;
+				&.total{
+					font-family: $font-sans;
+				}
+			}
+		}
+		.info{
+			display: inline-block;
+			vertical-align: top;
+			line-height: 22px;
+		}
+		.title{
+			font-family: $font-serif;
+			font-weight: $font-weight-bold;
+		}
+		.actions{
+			a{
+				display: block;
+				line-height: 23px;
+				text-decoration: underline;
+			}
+		}
+		.date {
+			span.not-in-stock{
+				color: #A10000;
+			}
+		}
+	}
+
+	.delivery-notice{
+		font-size: $small-size;
+	}
+	.buttons{
+		padding: 24px 0;
+	}
+}

@@ -327,15 +327,15 @@ ul.breadcrumb li.first:before {
 }
 
 /* line 167, ../sass/_header.scss */
-.main header {
+.container .main header {
   display: table;
   min-height: 100px;
   background: #d2c3c6;
   height: 100px;
-  margin-bottom: 12px;
+  margin-bottom: 28px;
 }
 /* line 173, ../sass/_header.scss */
-.main header hgroup {
+.container .main header hgroup {
   color: white;
   padding: 10px;
   display: table-cell;
@@ -343,20 +343,20 @@ ul.breadcrumb li.first:before {
   text-align: center;
 }
 /* line 179, ../sass/_header.scss */
-.main header hgroup h1, .main header hgroup h2, .main header hgroup h3, .main header hgroup h4, .main header hgroup h5 {
+.container .main header hgroup h1, .container .main header hgroup h2, .container .main header hgroup h3, .container .main header hgroup h4, .container .main header hgroup h5 {
   text-transform: uppercase;
   padding: 0 0 10px;
   font-size: 21px;
   color: white;
 }
 /* line 185, ../sass/_header.scss */
-.main header hgroup h6 {
+.container .main header hgroup h6 {
   font-size: 14px;
   font-weight: normal;
   color: white;
 }
 /* line 190, ../sass/_header.scss */
-.main header hgroup a, .main header hgroup p {
+.container .main header hgroup a, .container .main header hgroup p {
   color: white;
 }
 
@@ -741,6 +741,58 @@ form.create label.required:after {
   content: ": *";
 }
 
+/* line 3, ../sass/_basket.scss */
+.basket table.product-table th {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  padding: 12px 6px;
+}
+/* line 9, ../sass/_basket.scss */
+.basket table.product-table tbody tr {
+  border-bottom: 1px solid #444444;
+}
+/* line 13, ../sass/_basket.scss */
+.basket table.product-table tfoot {
+  font-family: "Merriweather", serif;
+}
+/* line 15, ../sass/_basket.scss */
+.basket table.product-table tfoot td {
+  padding: 12px 6px;
+}
+/* line 17, ../sass/_basket.scss */
+.basket table.product-table tfoot td.total {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+/* line 22, ../sass/_basket.scss */
+.basket table.product-table .info {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 22px;
+}
+/* line 27, ../sass/_basket.scss */
+.basket table.product-table .title {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+}
+/* line 32, ../sass/_basket.scss */
+.basket table.product-table .actions a {
+  display: block;
+  line-height: 23px;
+  text-decoration: underline;
+}
+/* line 39, ../sass/_basket.scss */
+.basket table.product-table .date span.not-in-stock {
+  color: #A10000;
+}
+/* line 45, ../sass/_basket.scss */
+.basket .delivery-notice {
+  font-size: 11px;
+}
+/* line 48, ../sass/_basket.scss */
+.basket .buttons {
+  padding: 24px 0;
+}
+
 /* line 3, ../sass/_social.scss */
 .social-buttons a.icons-facebook {
   height: 32px;
@@ -938,38 +990,43 @@ hr.right {
 }
 
 /* line 81, ../sass/_base.scss */
+strong, b {
+  font-weight: bold;
+}
+
+/* line 83, ../sass/_base.scss */
 aside {
   padding-bottom: 24px;
 }
-/* line 83, ../sass/_base.scss */
+/* line 85, ../sass/_base.scss */
 aside h1, aside h2, aside h3, aside h4, aside h5 {
   border-bottom: 1px solid #444444;
   padding-bottom: 6px;
   margin-bottom: 12px;
 }
 
-/* line 91, ../sass/_base.scss */
+/* line 93, ../sass/_base.scss */
 form label {
   margin-top: 12px;
   display: inline-block;
   width: 90%;
 }
-/* line 101, ../sass/_base.scss */
+/* line 103, ../sass/_base.scss */
 form.full-width input[type="text"], form.full-width input[type="email"], form.full-width input[type="date"], form.full-width input[type="password"] {
   width: 97%;
 }
-/* line 106, ../sass/_base.scss */
+/* line 108, ../sass/_base.scss */
 form input {
   border: 1px solid #444444;
   padding: 6px 5px;
   color: #444444;
 }
-/* line 113, ../sass/_base.scss */
+/* line 115, ../sass/_base.scss */
 form input[type="text"], form input[type="email"], form input[type="date"], form input[type="password"] {
   font-family: "Merriweather", serif;
 }
 
-/* line 121, ../sass/_base.scss */
+/* line 123, ../sass/_base.scss */
 input.button,
 button.button,
 a.button {
@@ -978,13 +1035,13 @@ a.button {
   cursor: pointer;
   display: inline-block;
 }
-/* line 127, ../sass/_base.scss */
+/* line 129, ../sass/_base.scss */
 input.button:hover,
 button.button:hover,
 a.button:hover {
   text-decoration: none;
 }
-/* line 131, ../sass/_base.scss */
+/* line 133, ../sass/_base.scss */
 input.button.text-button,
 button.button.text-button,
 a.button.text-button {
@@ -996,7 +1053,7 @@ a.button.text-button {
   font-size: 14px;
   text-transform: uppercase;
 }
-/* line 140, ../sass/_base.scss */
+/* line 142, ../sass/_base.scss */
 input.button.button-black,
 button.button.button-black,
 a.button.button-black {
@@ -1007,46 +1064,58 @@ a.button.button-black {
   padding: 6px;
   font-weight: bold;
 }
-/* line 148, ../sass/_base.scss */
+/* line 150, ../sass/_base.scss */
 input.button.button-right,
 button.button.button-right,
 a.button.button-right {
-  background: url(/fx/images/icons/button-right.png) right no-repeat #474749;
+  background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
   border-right: 6px solid #474749;
   text-align: center;
   line-height: 18px;
-  padding-right: 10px;
+  padding: 6px 24px;
   float: right;
+  font-weight: bold;
 }
-/* line 156, ../sass/_base.scss */
+/* line 159, ../sass/_base.scss */
+input.button.button-left,
+button.button.button-left,
+a.button.button-left {
+  background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
+  border-left: 6px solid #474749;
+  text-align: center;
+  line-height: 18px;
+  padding: 6px 24px;
+  font-weight: bold;
+}
+/* line 167, ../sass/_base.scss */
 input.button.off,
 button.button.off,
 a.button.off {
   display: none;
 }
 
-/* line 161, ../sass/_base.scss */
+/* line 172, ../sass/_base.scss */
 table {
   width: 100%;
   margin: 6px 0 12px;
 }
-/* line 164, ../sass/_base.scss */
-table thead, table tbody {
+/* line 175, ../sass/_base.scss */
+table thead, table tbody, table tfoot {
   border-bottom: 1px solid #444444;
 }
-/* line 167, ../sass/_base.scss */
+/* line 178, ../sass/_base.scss */
 table thead {
   font-family: "Merriweather", serif;
 }
-/* line 169, ../sass/_base.scss */
+/* line 180, ../sass/_base.scss */
 table thead th {
   padding: 3px 6px;
 }
-/* line 174, ../sass/_base.scss */
+/* line 185, ../sass/_base.scss */
 table tbody td {
   padding: 12px 6px;
 }
-/* line 179, ../sass/_base.scss */
+/* line 190, ../sass/_base.scss */
 table tfoot td {
   padding: 6px;
 }
@@ -1056,75 +1125,78 @@ table tfoot td {
 | Helpers
 |
 */
-/* line 191, ../sass/_base.scss */
-.align-left {
+/* line 203, ../sass/_base.scss */
+.align-left,
+.left {
   text-align: left;
 }
 
-/* line 192, ../sass/_base.scss */
-.align-center {
+/* line 205, ../sass/_base.scss */
+.align-center,
+.center {
   text-align: center;
 }
 
-/* line 193, ../sass/_base.scss */
+/* line 206, ../sass/_base.scss */
 .centerfy {
   margin: 0 auto;
 }
 
-/* line 194, ../sass/_base.scss */
-.align-right {
+/* line 208, ../sass/_base.scss */
+.align-right,
+.right {
   text-align: right;
 }
 
-/* line 195, ../sass/_base.scss */
+/* line 209, ../sass/_base.scss */
 .vert-align-top {
   vertical-align: top;
 }
 
-/* line 196, ../sass/_base.scss */
+/* line 210, ../sass/_base.scss */
 .vert-align-middle {
   vertical-align: middle;
 }
 
-/* line 197, ../sass/_base.scss */
+/* line 211, ../sass/_base.scss */
 .vert-align-bottom {
   vertical-align: baseline;
 }
 
-/* line 198, ../sass/_base.scss */
+/* line 212, ../sass/_base.scss */
 .pushleft {
   float: left;
 }
 
-/* line 199, ../sass/_base.scss */
+/* line 213, ../sass/_base.scss */
 .pushright {
   float: right;
 }
 
-/* line 200, ../sass/_base.scss */
+/* line 214, ../sass/_base.scss */
 .small {
   font-size: 9px;
 }
 
-/* line 201, ../sass/_base.scss */
+/* line 215, ../sass/_base.scss */
 .strike {
   text-decoration: line-through;
 }
 
-/* line 203, ../sass/_base.scss */
+/* line 217, ../sass/_base.scss */
 ul {
   list-style-position: inside;
 }
-/* line 205, ../sass/_base.scss */
+/* line 219, ../sass/_base.scss */
 ul.list {
   list-style-type: disc;
 }
 
-/* line 209, ../sass/_base.scss */
+/* line 223, ../sass/_base.scss */
 ol {
   list-style-position: inside;
 }
-/* line 211, ../sass/_base.scss */
+/* line 225, ../sass/_base.scss */
 ol.list {
   list-style-type: decimal;
 }
@@ -1134,17 +1206,17 @@ ol.list {
 | dialoug notices
 |
 */
-/* line 222, ../sass/_base.scss */
+/* line 236, ../sass/_base.scss */
 .inject-notice-box {
   padding: 3px;
 }
-/* line 224, ../sass/_base.scss */
+/* line 238, ../sass/_base.scss */
 .inject-notice-box .inner {
   border: 1px solid black;
   padding: 6px;
   color: #444444;
 }
-/* line 230, ../sass/_base.scss */
+/* line 244, ../sass/_base.scss */
 .inject-notice-box.error .inner {
   border-color: red;
 }
@@ -1154,7 +1226,7 @@ ol.list {
 | Slideshow Cycle2 styles
 |
 */
-/* line 242, ../sass/_base.scss */
+/* line 256, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
@@ -1162,18 +1234,18 @@ ol.list {
   left: 16px;
   z-index: 101;
 }
-/* line 248, ../sass/_base.scss */
+/* line 262, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-/* line 254, ../sass/_base.scss */
+/* line 268, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-/* line 260, ../sass/_base.scss */
+/* line 274, ../sass/_base.scss */
 .cycle-slideshow .cycle-slide img {
   width: 100%;
 }
@@ -1184,17 +1256,17 @@ ol.list {
 |
 | TODO: Make it as a new grid with container_5{blablabla}
 */
-/* line 272, ../sass/_base.scss */
+/* line 286, ../sass/_base.scss */
 .container_8 .grid_1-5 {
   width: 186px;
 }
 
-/* line 275, ../sass/_base.scss */
+/* line 289, ../sass/_base.scss */
 .container_8 .grid_2-5 {
   width: 378px;
 }
 
-/* line 279, ../sass/_base.scss */
+/* line 293, ../sass/_base.scss */
 .container_8 .grid_1-5,
 .container_8 .grid_2-5 {
   display: inline;
@@ -1203,7 +1275,7 @@ ol.list {
   margin-right: 3px;
 }
 
-/* line 296, ../sass/_base.scss */
+/* line 310, ../sass/_base.scss */
 .main > .grid_1,
 .main > .grid_2,
 .main > .grid_3,
@@ -1218,19 +1290,19 @@ ol.list {
   margin-bottom: 6px;
 }
 
-/* line 301, ../sass/_base.scss */
+/* line 315, ../sass/_base.scss */
 body.da form.buy .submit-button {
   background-position: 0 -494px;
   height: 84px;
   width: 87px;
 }
-/* line 306, ../sass/_base.scss */
+/* line 320, ../sass/_base.scss */
 body.da .buy-set {
   background-position: 0 -410px;
   height: 84px;
   width: 87px;
 }
-/* line 311, ../sass/_base.scss */
+/* line 325, ../sass/_base.scss */
 body.da .new-price {
   background-position: 0 0;
   height: 410px;

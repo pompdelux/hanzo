@@ -341,10 +341,10 @@ class DefaultController extends CoreController
             }
 
             $line['basket_image'] =
-                preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
-                '_basket_' .
+                preg_replace('/[^a-z0-9]/i', '', $line['products_name']) .
+                '_' . 
                 preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
-                '.jpg'
+                '_set_01.jpg'
             ;
 
             // find matching router

@@ -10,6 +10,12 @@ $link-color  			: #333;
 $link-size              : $font-size;
 $link-family  			: inherit;
 
+$small-color 			:#444;
+$small-size 			:11px;
+$small-family 			:$font-sans;
+$small-weight 			:normal;
+$small-line-height		:inherit;
+
 $main-menu-color 		:#444;
 $main-menu-size 		:14px;
 $main-menu-family 		:$font-serif;
@@ -58,5 +64,6 @@ $product-line-height	:18px;
 @import "product";
 @import "category";
 @import "account";
+@import "basket";
 @import "social";
 @import "base";
