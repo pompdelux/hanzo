@@ -1,4 +1,6 @@
 // Global Variables
+$html-background-color  : #fff;
+
 $font-serif 			: "Merriweather", serif;
 $font-sans 				: Tahoma, Geneva, Verdana, sans-serif;
 $font-color             : #444;
@@ -10,46 +12,46 @@ $link-color  			: #333;
 $link-size              : $font-size;
 $link-family  			: inherit;
 
-$main-menu-color 		:#444;
-$main-menu-size 		:14px;
-$main-menu-family 		:$font-serif;
-$main-menu-weight 		:normal;
-$main-menu-line-height	:inherit;
+$main-menu-color 		: #444;
+$main-menu-size 		: 14px;
+$main-menu-family 		: $font-serif;
+$main-menu-weight 		: normal;
+$main-menu-line-height	: inherit;
 
-$side-menu-color 		:#444;
-$side-menu-size			:12px;
-$side-menu-family 		:$font-sans;
-$side-menu-weight 		:normal;
-$side-menu-line-height	:18px;
+$side-menu-color 		: #444;
+$side-menu-size			: 12px;
+$side-menu-family 		: $font-sans;
+$side-menu-weight 		: normal;
+$side-menu-line-height	: 18px;
 
-$paragraph-color 		:#444;
-$paragraph-size			:14px;
-$paragraph-family 		:$font-sans;
-$paragraph-weight 		:normal;
-$paragraph-line-height	:15px;
+$paragraph-color 		: #444;
+$paragraph-size			: 14px;
+$paragraph-family 		: $font-sans;
+$paragraph-weight 		: normal;
+$paragraph-line-height	: 15px;
 
-$heading-color 			:#444;
-$heading-size			:18px;
-$heading-family 		:$font-serif;
-$heading-weight 		:$font-weight-bold;
-$heading-line-height	:24px;
+$heading-color 			: #444;
+$heading-size			: 18px;
+$heading-family 		: $font-serif;
+$heading-weight 		: $font-weight-bold;
+$heading-line-height	: 24px;
 
-$heading-small-color 		:#444;
-$heading-small-size			:14px;
-$heading-small-family 		:$font-serif;
-$heading-small-weight 		:$font-weight-bold;
-$heading-small-line-height	:18px;
+$heading-small-color 		: #444;
+$heading-small-size			: 14px;
+$heading-small-family 		: $font-serif;
+$heading-small-weight 		: $font-weight-bold;
+$heading-small-line-height	: 18px;
 
-$footer-color 			:#444;
-$footer-size			:18px;
-$footer-family 			:$font-serif;
-$footer-weight 			:$font-weight-bold;
-$footer-line-height		:15px;
+$footer-color 			: #444;
+$footer-size			: 18px;
+$footer-family 			: $font-serif;
+$footer-weight 			: $font-weight-bold;
+$footer-line-height		: 15px;
 
-$product-color 			:#444;
-$product-size			:12px;
-$product-family 		:$font-serif;
-$product-line-height	:18px;
+$product-color 			: #444;
+$product-size			: 12px;
+$product-family 		: $font-serif;
+$product-line-height	: 18px;
 
 @import "sprites";
 @import "mixins";
@@ -59,4 +61,5 @@ $product-line-height	:18px;
 @import "product-list";
 @import "account";
 @import "social";
+@import "topmenu";
 @import "base";
