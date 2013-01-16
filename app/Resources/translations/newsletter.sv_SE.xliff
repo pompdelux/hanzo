@@ -30,6 +30,14 @@
         <source>block.unsubscribe.submit_button</source>
         <target>Avregistrera</target>
       </trans-unit>
+      <trans-unit id="subscribed.text" approved="no">
+        <source>subscribed.text</source>
+        <target>Du er nu tilmeldt vores nyhedsbrev.</target>
+      </trans-unit>
+      <trans-unit id="invalid.email.address" approved="no">
+        <source>invalid.email.address</source>
+        <target>Den indtastede e-mailaddresse er ikke en gyldig adresse.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

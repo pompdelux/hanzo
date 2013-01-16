@@ -110,4 +110,34 @@ class DefaultController extends CoreController
             'lists' => (isset($lists->content->lists) ? $lists->content->lists : []),
         ]);
     }
+
+
+    public function subscribeAction(Request $request)
+    {
+        if ('POST' !== $request->getMethod()) {
+            return $this->redirect($this->generateUrl('_homepage'));
+        }
+
+        $api = $this->get('newsletterapi');
+        $id  = $api->getListIdAvaliableForDomain();
+
+        $email = $request->get('email');
+        $name = $request->get('name');
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $this->json_response([
+                'status' => false,
+                'message' => $this->get('translator')->trans('invalid.email.address', [], 'newsletter'),
+            ]);
+        }
+
+        $result = $api->subscribe($email, $id);
+        $api->sendNotificationEmail('subscribe', $email, $name);
+
+        return $this->json_response([
+            'status' => true,
+            'message' => $this->get('translator')->trans('subscribed.text', [], 'newsletter'),
+        ]);
+    }
+
 }

@@ -116,6 +116,9 @@ form{
 			font-family: $font-serif;
 		}
 	}
+	input.error{
+		border-color: $form-error-color;
+	}
 }
 
 input.button,

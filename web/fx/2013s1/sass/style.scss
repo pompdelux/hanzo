@@ -59,6 +59,8 @@ $product-size			: 12px;
 $product-family 		: $font-serif;
 $product-line-height	: 18px;
 
+$form-error-color       : red;
+
 @import "sprites";
 @import "mixins";
 @import "header";
