@@ -7,6 +7,7 @@
  * @author un@bellcom.dk
  */
 
+
 require __DIR__ . '/config.php';
 
 $source_dir = __DIR__ . '/../web/images/products/import/';
@@ -50,8 +51,10 @@ $products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and 
 $categories_stmt = $pdo->prepare('SELECT categories_id FROM products_to_categories WHERE products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 foreach ($images as $image) {
-    // ex: key = PANTYHOSE-2-PACK_01.jpg
-    @list($master, $junk) = explode('_', str_replace('-', ' ', $image));
+
+    // Luna-LS-Tshirt_Dark-Grey-Melange_overview_01.jpg
+    // master         color             type     index
+    @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
 
     if (empty($product_ids[$master])) {
         $products_stmt->execute(array(
@@ -70,6 +73,7 @@ foreach ($images as $image) {
         $categories_stmt->execute(array(
             ':products_id' => $products_id
         ));
+
         foreach ($categories_stmt->fetchAll(PDO::FETCH_OBJ) as $record) {
             $product_categories_ids[$products_id][$record->categories_id] = $record->categories_id;
         }
@@ -87,7 +91,9 @@ $select_sql = '
     SELECT id
     FROM products_images
     WHERE products_id = :products_id
-    AND image = :image
+        AND image = :image
+        AND color = :color
+        AND type = :type
 ';
 $select_slave_sql = '
     SELECT products_id
@@ -97,20 +103,24 @@ $select_slave_sql = '
 $product_sql = '
     INSERT INTO products_images
     SET products_id = :products_id,
-        image = :image
+        image = :image,
+        color = :color,
+        type = :type
 ';
 $product_slave_sql = '
     INSERT INTO products_images
     SET id = :id,
         products_id = :products_id,
-        image = :image
+        image = :image,
+        color = :color,
+        type = :type
 ';
 $category_select_sql = '
     SELECT sort
     FROM products_images_categories_sort
     WHERE products_id = :products_id
-    AND categories_id = :categories_id
-    AND products_images_id = :products_images_id
+        AND categories_id = :categories_id
+        AND products_images_id = :products_images_id
 ';
 $category_sql = '
     INSERT INTO products_images_categories_sort
@@ -141,9 +151,13 @@ foreach ($_databases as $key => $conn) {
 
             // loop images into db
             foreach($images as $image) {
+                @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+
                 $select_stm->execute(array(
                     ':products_id' => $products_id,
                     ':image' => $image,
+                    ':color' => $color,
+                    ':type' => $type,
                 ));
                 $image_id = $select_stm->fetchColumn();
 
@@ -152,6 +166,8 @@ foreach ($_databases as $key => $conn) {
                     $product_stm->execute(array(
                         ':products_id' => $products_id,
                         ':image' => $image,
+                        ':color' => $color,
+                        ':type' => $type,
                     ));
                     $image_id = $conn->lastInsertId();
                     $image2id[$image] = $image_id;
@@ -189,6 +205,8 @@ foreach ($_databases as $key => $conn) {
                     continue;
                 }
 
+                @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+
                 $image_id = $image2id[$image];
 
                 $select_stm->execute(array(
@@ -201,6 +219,8 @@ foreach ($_databases as $key => $conn) {
                         ':id' => $image_id,
                         ':products_id' => $products_id,
                         ':image' => $image,
+                        ':color' => $color,
+                        ':type' => $type,
                     ));
                 }
 
@@ -227,9 +247,6 @@ foreach ($_databases as $key => $conn) {
             }
         }
     }
-
-
-
 }
 
 // copy all images to the right location
@@ -307,3 +324,6 @@ if (count($failed)) {
         '-fhd@pompdelux.dk'
     );
 }
+
+// rescale all images
+require __DIR__ . '/scaleProductImages.php';
