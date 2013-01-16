@@ -22,17 +22,18 @@
 <link rel="shortcut icon" href="/fx/images/favicon.ico" title="POMPdeLUX" type="image/ico">
 
 {% stylesheets
-    'fx/css/colorbox/theme4/colorbox.css'
-    'fx/css/dialoug.css'
-    'fx/css/jquery-ui.css'
-    'fx/scripts/video-js/video-js.css'
-    'fx/scripts/fullcalendar/fullcalendar.css'
+  'fx/2013s1/css/960_8_3_3.css'
+  'fx/2013s1/css/jquery.fullimagebox.css'
 
-    'fx/2013s1/css/960_8_3_3.css'
-    'fx/2013s1/css/jquery.fullimagebox.css'
-    'fx/2013s1/css/style.css'
+  'fx/css/colorbox/theme4/colorbox.css'
+  'fx/css/dialoug.css'
+  'fx/css/jquery-ui.css'
+  'fx/scripts/video-js/video-js.css'
+  'fx/scripts/fullcalendar/fullcalendar.css'
 
-  filter='?yui_css'
+  'fx/2013s1/css/screen.css'
+  'fx/2013s1/css/style.css'
+
   output='fx/cache/all_2013s1.css'
   combine=true
 %}
@@ -64,16 +65,7 @@
   </header>
 
   <div id="main" role="main" class="main clearfix grid_8">
-    {# if app.session.get('in_edit') %}
-      {{ 'order.edit.global.notice'|trans({
-        '%history_url%' : url('_account_show_order', {order_id : app.session.get('order_id')}),
-        '%order_id%' : app.session.get('order_id'),
-        '%stop_url%' : url('_account', {stop : 1})
-      })|raw }}
-    {% endif #}
-
     {% block content %}{% endblock %}
-
   </div><!-- /div#main -->
 
   <nav id="secondary-links">
@@ -97,8 +89,8 @@
         </form>
       </li>
     </ul>
-    <ul class="horizontal menu right">
-      <li id="mini-basket" class="basket">
+    <ul class="horizontal menu right basket">
+      <li id="mini-basket">
         <span class="sprite"></span>
         <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
@@ -144,7 +136,6 @@
 
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
-
 
 {% javascripts
   'fx/scripts/jquery.min.js'
