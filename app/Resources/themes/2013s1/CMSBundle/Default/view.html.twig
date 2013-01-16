@@ -1,4 +1,18 @@
 {% extends layout %}
+
+
+{% block meta %}
+	{% if page_type|default('page') != 'frontpage' %}
+		{{ meta_tags(false) }}
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="{{ page.title|title }}">
+		<meta property="og:image" content="{{ fx_image_url('images/POMPdeLUX_logo_SS12.png', '200x200') }}">
+		<meta property="og:description" content="{{ page.content|trim|striptags|slice(0,150) }}">
+	{% else %}
+		{{ meta_tags() }}
+	{% endif %}
+{% endblock %}
+
 {% block content %}
 
 

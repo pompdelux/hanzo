@@ -32,7 +32,7 @@ class DefaultController extends CoreController
     public function viewAction($cms_id, $category_id, $show, $pager = 1)
     {
         $cache_id = explode('_', $this->get('request')->get('_route'));
-        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $pager);
+        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
         
         // json requests
         if ($this->getFormat() == 'json') {
@@ -63,9 +63,10 @@ class DefaultController extends CoreController
             $parent_page = CmsQuery::create()->filterById($cms_page->getParentId())->findOne();
 
             $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
-            $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id);
+            $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show);
             $this->get('twig')->addGlobal('show_new_price_badge', 1);
             $this->get('twig')->addGlobal('cms_id', $parent_page->getParentId());
+            $this->get('twig')->addGlobal('show_by_look', ($show === 'look'));
             $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);
         }

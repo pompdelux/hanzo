@@ -41,6 +41,7 @@ class CategoriesPeer extends BaseCategoriesPeer
             ->endUse()
             ->joinWithProducts()
             ->useProductsImagesQuery()
+                ->filterByType($show_by_look?'set':'overview')
                 ->groupByImage()
             ->endUse()
             ->joinWithProductsImages()
@@ -58,13 +59,14 @@ class CategoriesPeer extends BaseCategoriesPeer
             $product_ids[] = $product->getId();
 
             $image_overview = str_replace('set', 'overview', $record->getProductsImages()->getImage());
+            $image_set = str_replace('overview', 'set', $record->getProductsImages()->getImage());
             
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
                 'title' => $product->getSku(),
-                'image' => ($show_by_look)?$image_overview:$record->getProductsImages()->getImage(),
-                'image_flip' => ($show_by_look)?$record->getProductsImages()->getImage():$image_overview,
+                'image' => ($show_by_look)?$image_set:$image_overview,
+                'image_flip' => ($show_by_look)?$image_overview:$image_set,
                 'url' => $router->generate($product_route, array(
                     'product_id' => $product->getId(),
                     'title' => Tools::stripText($product->getSku()),

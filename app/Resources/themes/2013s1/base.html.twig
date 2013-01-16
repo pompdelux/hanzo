@@ -11,7 +11,10 @@
 <meta name="robots" content="all">
 
 <meta property="og:url" content="{{ app.request.uri }}">
-{{ meta_tags() }}
+
+{% block meta %}
+  {{ meta_tags() }}
+{% endblock %}
 
 <link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">

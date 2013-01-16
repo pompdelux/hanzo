@@ -465,6 +465,12 @@ class Tools
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
+    
+    public static function fxImageUrl($src, $preset = '', array $params = array())
+    {
+        $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
+        return self::imagePath($src, $preset);
+    }
 
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {

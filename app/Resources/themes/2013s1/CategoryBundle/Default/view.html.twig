@@ -11,7 +11,7 @@
 <div class="grid_8 alpha omega">
   <div class="grid_6 push_2">
     <div class="grid_3 alpha">
-      <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}">{{ 'category.selector.look'|trans }}</a>
+      <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
     </div>
   </div>
 </div>

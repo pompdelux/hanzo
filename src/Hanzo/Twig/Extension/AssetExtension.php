@@ -26,6 +26,7 @@ class AssetExtension extends Twig_Extension
             'product_image_tag' => new Twig_Function_Method($this, 'product_image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
             'product_image_url' => new Twig_Function_Method($this, 'product_image_url'),
             'fx_image_tag' => new Twig_Function_Method($this, 'fx_image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'fx_image_url' => new Twig_Function_Method($this, 'fx_image_url'),
             'image_path' => new Twig_Function_Method($this, 'image_path', array()),
             'image_tag' => new Twig_Function_Method($this, 'image_tag', array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
@@ -38,6 +39,15 @@ class AssetExtension extends Twig_Extension
     public function fx_image_tag($src, $preset = '', array $params = array())
     {
         return Tools::fxImageTag($src, $preset, $params);
+    }
+
+    /**
+     * @see Hanzo\Core\Tools\Tools::fxImageUrl
+     * NICETO: loose the wrapper, figure out how to use namespaces and load the Tools class in the getF*() methods
+     */
+    public function fx_image_url($src, $preset = '50x50', array $params = array())
+    {
+        return Tools::fxImageUrl($src, $preset, $params);
     }
 
     /**
