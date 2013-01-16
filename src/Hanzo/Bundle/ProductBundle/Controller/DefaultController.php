@@ -31,7 +31,8 @@ class DefaultController extends CoreController
 
         $router = $this->get('router');
         $route = $this->get('request')->get('_route');
-        $cache_id = array('product', $product_id);
+        $focus = $this->get('request')->get('focus', FALSE);
+        $cache_id = array('product', $product_id, $focus);
         $data = $this->getCache($cache_id);
 
         if (!$data) {
@@ -78,7 +79,7 @@ class DefaultController extends CoreController
             arsort($images);
 
             // set focus image
-            if (($focus = $this->get('request')->get('focus', FALSE)) && isset($images[$focus])) {
+            if ($focus && isset($images[$focus])) {
                 $main_image = $images[$focus];
             }
             else {

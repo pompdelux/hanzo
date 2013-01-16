@@ -32,7 +32,7 @@ class DefaultController extends CoreController
     public function viewAction($cms_id, $category_id, $show, $pager = 1)
     {
         $cache_id = explode('_', $this->get('request')->get('_route'));
-        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $pager);
+        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
         
         // json requests
         if ($this->getFormat() == 'json') {
