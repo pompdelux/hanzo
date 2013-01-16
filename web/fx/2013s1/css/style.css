@@ -686,7 +686,7 @@ a.product-color.current .colorbuttons-violet, a.product-color:hover .colorbutton
   width: 26px;
 }
 
-/* line 3, ../sass/_product-list.scss */
+/* line 3, ../sass/_category.scss */
 .product-list .block a {
   border: none;
   font-family: "Merriweather", serif;
@@ -697,33 +697,39 @@ a.product-color.current .colorbuttons-violet, a.product-color:hover .colorbutton
   text-align: center;
   position: relative;
 }
-/* line 15, ../sass/_product-list.scss */
+/* line 15, ../sass/_category.scss */
 .product-list .block a .title {
   display: block;
   font-weight: bold;
 }
-/* line 19, ../sass/_product-list.scss */
+/* line 19, ../sass/_category.scss */
 .product-list .block a .prices {
   display: block;
   margin-top: 6px;
 }
-/* line 23, ../sass/_product-list.scss */
+/* line 23, ../sass/_category.scss */
 .product-list .block a .new-price {
   position: absolute;
   bottom: 0;
   right: 0;
   text-indent: -999px;
 }
-/* line 31, ../sass/_product-list.scss */
+/* line 31, ../sass/_category.scss */
 .product-list .block.look .buy-set {
   display: none;
   position: absolute;
   bottom: 10px;
   right: 10px;
 }
-/* line 38, ../sass/_product-list.scss */
+/* line 38, ../sass/_category.scss */
 .product-list .block.look a:hover .buy-set {
   display: inline-block;
+}
+
+/* line 48, ../sass/_category.scss */
+.body-look a.show-by-look,
+.body-overview a.show-by-overview {
+  text-decoration: underline;
 }
 
 /* line 7, ../sass/_account.scss */
