@@ -242,29 +242,31 @@
      * currently we track the latest 10 products.
      */
     pub.initLastSeen = function() {
-      var data = $.cookie('last_viewed') || { images:[], keys:[] };
-      var id = $('input#master').val().replace(/[^a-z0-9]+/gi, '');
+      if($('input#master').length) {
+        var data = $.cookie('last_viewed') || { images:[], keys:[] };
+        var id = $('input#master').val().replace(/[^a-z0-9]+/gi, '');
 
-      if (-1 === data.keys.indexOf(id)) {
-        data.images.push({
-          title : $('h1').text(),
-          url   : document.location.href,
-          image : $('.productimage-large a').data('src')
-        });
+        if (-1 === data.keys.indexOf(id)) {
+          data.images.push({
+            title : $('h1').text(),
+            url   : document.location.href,
+            image : $('.productimage-large a').data('src')
+          });
 
-        data.keys.push(id);
+          data.keys.push(id);
 
-        if (data.keys.length > 10) {
-          data.keys.shift();
-          data.images.shift();
+          if (data.keys.length > 10) {
+            data.keys.shift();
+            data.images.shift();
+          }
+
+          $.cookie('last_viewed', data);
         }
 
-        $.cookie('last_viewed', data);
+        $.each(data.images, function(index, data) {
+          $('.latest-seen-poducts').append('<a href="'+data.url+'"><img src="'+data.image+'" alt="'+data.title+'"></a> ');
+        });
       }
-
-      $.each(data.images, function(index, data) {
-        $('.latest-seen-poducts').append('<a href="'+data.url+'"><img src="'+data.image+'" alt="'+data.title+'"></a> ');
-      });
     };
 
 
