@@ -753,6 +753,32 @@ nav.main-menu > ul > li > ul.on {
   box-shadow: #444444 4px 4px 8px;
 }
 
+.inject-notice-box {
+  padding: 3px;
+}
+.inject-notice-box .inner {
+  border: 1px solid black;
+  padding: 6px;
+  color: #444444;
+}
+.inject-notice-box.error .inner {
+  border-color: red;
+}
+
+.slide-notice-box {
+  position: absolute;
+  top: 77px;
+  right: 0;
+  padding: 6px;
+  background-color: whiteSmoke;
+  text-align: center;
+  -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
+  -moz-box-shadow: #c9c9c9 -1px 1px 2px;
+  box-shadow: #c9c9c9 -1px 1px 2px;
+  border-right: #f0f0f0 1px solid;
+  border-top: #f0f0f0 1px solid;
+}
+
 /**
 | _cms
 */
@@ -899,6 +925,7 @@ body {
 
 .container {
   position: relative;
+  overflow: hidden;
 }
 
 a {
@@ -1166,18 +1193,6 @@ ol {
 }
 ol.list {
   list-style-type: decimal;
-}
-
-.inject-notice-box {
-  padding: 3px;
-}
-.inject-notice-box .inner {
-  border: 1px solid black;
-  padding: 6px;
-  color: #444444;
-}
-.inject-notice-box.error .inner {
-  border-color: red;
 }
 
 .cycle-slideshow .cycle-pager {

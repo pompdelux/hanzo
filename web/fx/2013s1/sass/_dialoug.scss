@@ -1,0 +1,29 @@
+ 
+// Dialoug notices
+@import "compass/css3/box-shadow";
+
+.inject-notice-box{
+	padding: 3px;
+	.inner{
+		border: 1px solid #000;
+		padding: 6px;
+		color: $font-color;
+	}
+	&.error{
+		.inner{
+			border-color: red;
+		}
+	}
+}
+.slide-notice-box{
+	position: absolute;
+	top: 77px;
+	right: 0;
+	padding: 6px;
+	background-color: whiteSmoke;
+	text-align: center;
+
+    @include box-shadow(#C9C9C9 -1px 1px 2px);
+	border-right: #F0F0F0 1px solid;
+	border-top: #F0F0F0 1px solid;
+}

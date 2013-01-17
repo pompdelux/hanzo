@@ -14,7 +14,8 @@ body{
 	font-size: $font-size;
 }
 .container{
-	position: relative;}
+	position: relative;
+	overflow: hidden;}
 
 a{
 	color: $link-color;
@@ -225,22 +226,6 @@ ol{
 	list-style-position: inside;
 	&.list {
 		list-style-type: decimal;
-	}
-}
- 
-// Dialoug notices
-
-.inject-notice-box{
-	padding: 3px;
-	.inner{
-		border: 1px solid #000;
-		padding: 6px;
-		color: $font-color;
-	}
-	&.error{
-		.inner{
-			border-color: red;
-		}
 	}
 }
 

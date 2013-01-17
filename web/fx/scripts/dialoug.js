@@ -188,10 +188,10 @@ var dialoug = (function($) {
        selector = $('body');
     }
 
-    selector.prepend('<div id="slide-notice-box">' + message + '</div>');
+    selector.prepend('<div id="slide-notice-box" class="slide-notice-box">' + message + '</div>');
     var $slide = $('#slide-notice-box');
     var slideWidth = $slide.outerWidth();
-    var docWidth = $(document).width();
+    var docWidth = selector.width();
 
     $slide.css({
       left: docWidth + 'px',
