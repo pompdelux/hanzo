@@ -1,7 +1,11 @@
 {% extends layout %}
 {% block content %}
 
-<h1>{{ 'checkout.headline'|trans({}, 'checkout') }}</h1>
+<header class="grid_8 alpha omega">
+    <hgroup>
+        <h1>{{ 'checkout.headline'|trans({}, 'checkout') }}</h1>
+    </hgroup>
+</header>
 
 {% if app.session.hasFlash('notice') %}
   <div class="message error">
