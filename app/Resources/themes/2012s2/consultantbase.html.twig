@@ -87,7 +87,7 @@
 <script type="text/javascript">
   var cookie_params = {
     'domain' : '{{ app.request.getHttpHost() }}',
-    'path' : '{{ path('_homepage', {'_locale' : app.session.locale}) }}'
+    'path' : '{{ path('_homepage', {'_locale' : app.request.locale}) }}'
   };
   var base_url = '{{ url('_homepage') }}';
   var cdn_url = '{{ cdn }}';
@@ -95,7 +95,7 @@
 </script>
 
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
 
 {% javascripts
   'fx/scripts/jquery.min.js'
