@@ -66,8 +66,6 @@ services:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form:
-        resources: ['SimpleThingsFormExtraBundle:Form:translation_domain.html.twig']
 
 assetic:
     debug: '%kernel.debug%'
@@ -125,9 +123,6 @@ snc_redis:
         client: session
         ttl: 10800
         prefix: hanzo.session
-
-# simple_things_form_extra:
-#     translation_domain_forward_compat: true
 
 # settings for the cms bundle.
 cms:
