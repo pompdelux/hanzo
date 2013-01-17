@@ -1,6 +1,6 @@
 framework:
+    default_locale: sv_SE
     session:
-        default_locale: sv_SE
         path: '/sv_SE'
 
 propel:

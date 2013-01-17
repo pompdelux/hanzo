@@ -1,5 +1,5 @@
 framework:
+    default_locale: da_DK
     session:
-        default_locale: da_DK
         path: '/app_dev.php/da_DK'
 
