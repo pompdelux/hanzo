@@ -1,7 +1,0 @@
-parameters:
-#    hanzo_cms.example.class: Hanzo\Bundle\CMSBundle\Example
-
-services:
-#    hanzo_cms.example:
-#        class: %hanzo_cms.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

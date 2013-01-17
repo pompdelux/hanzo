@@ -12,16 +12,15 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\CmsI18nQuery;
 
-use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\Config\Loader\LoaderResolver;
+use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 class CMSRouterLoader implements LoaderInterface
 {
     private $loaded = false;
-    private $session;
+    private $locale;
     private $cache_dir;
 
     /**
@@ -30,9 +29,9 @@ class CMSRouterLoader implements LoaderInterface
      * @param Session $session   The current session object
      * @param string  $cache_dir Path to filesystem cache
      */
-    public function __construct(Session $session, $cache_dir)
+    public function __construct($locale, $cache_dir)
     {
-        $this->session = $session;
+        $this->locale = $locale;
         $this->cache_dir = $cache_dir;
     }
 
@@ -56,7 +55,7 @@ class CMSRouterLoader implements LoaderInterface
         $pages = CmsI18nQuery::create()
             ->rightJoinWithCms()
             ->orderByPath()
-            ->findByLocale($this->session->getLocale())
+            ->findByLocale($this->locale)
         ;
 
         foreach ($pages as $page) {
@@ -130,7 +129,7 @@ class CMSRouterLoader implements LoaderInterface
 
 
                     break;
-                
+
                 case 'look':
 
                     //test ... we should never enter this if tho...
@@ -268,5 +267,5 @@ class CMSRouterLoader implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function setResolver(LoaderResolver $resolver){}
+    public function setResolver(LoaderResolverInterface $resolver){}
 }
