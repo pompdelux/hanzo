@@ -106,22 +106,6 @@
                 <source>color</source>
                 <target>Farge</target>
             </trans-unit>
-            <trans-unit id="acc.1">
-                <source>Email address</source>
-                <target>E-post</target>
-            </trans-unit>
-            <trans-unit id="acc.2">
-                <source>Email address repeated</source>
-                <target>Gjenta e-postadressen</target>
-            </trans-unit>
-            <trans-unit id="acc.3" approved="no">
-                <source>Pass</source>
-                <target>Valgfri adgangskode</target>
-            </trans-unit>
-            <trans-unit id="acc.4" approved="no">
-                <source>Pass repeated</source>
-                <target>Gjenta adgangskode</target>
-            </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
                 <target>Firmanavn</target>
@@ -175,7 +159,7 @@
                         <li>+47 2274 2600</li>
 						<li>Retur av varer: POMPdeLUX C/O Tollpost Globe</li>
                         <li>Postens Godssenter</li>
-                        <li>NO-0668 Oslo</li>                        
+                        <li>NO-0668 Oslo</li>
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
 						<li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
                     </ul>

@@ -418,6 +418,22 @@
                 <source>unable.to.lock.order</source>
                 <target>Tilaustasi ei voi muuttaa juuri nyt. Yritä ystävällisesti myöhemmin uudelleen.</target>
             </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>Sähköpostiosoite</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Kirjoita sähköpostiosoite uudelleen</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Valinnan salasana</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Anna salasana uudelleen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

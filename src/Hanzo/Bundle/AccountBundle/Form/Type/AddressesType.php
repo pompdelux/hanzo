@@ -3,7 +3,7 @@
 namespace Hanzo\Bundle\AccountBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class AddressesType extends AbstractType
 {
@@ -14,7 +14,7 @@ class AddressesType extends AbstractType
         $this->countries = $countries;
     }
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setErrorBubbling(true);
 

@@ -419,6 +419,22 @@
                 <source>unable.to.lock.order</source>
                 <target>Ordern kan inte redigeras just nu. Försök igen senare. </target>
             </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadress</target>
+            </trans-unit>
+            <trans-unit id="acc.2" approved="no">
+                <source>Email address repeated</source>
+                <target>Upprepa e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3" approved="no">
+                <source>Pass</source>
+                <target>Valfritt lösenord</target>
+            </trans-unit>
+            <trans-unit id="acc.4" approved="no">
+                <source>Pass repeated</source>
+                <target>Upprepa lösenord</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

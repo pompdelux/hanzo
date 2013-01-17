@@ -423,6 +423,22 @@
                 <source>unable.to.lock.order</source>
                 <target>De order kan op dit moment niet gewijzigd worden. Probeer later graag nog een keer.</target>
             </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadres</target>
+            </trans-unit>
+            <trans-unit id="acc.2" approved="no">
+                <source>Email address repeated</source>
+                <target>Herhaal het e-mailadres</target>
+            </trans-unit>
+            <trans-unit id="acc.3" approved="no">
+                <source>Pass</source>
+                <target>Optioneel wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="acc.4" approved="no">
+                <source>Pass repeated</source>
+                <target>Herhaal het wachtwoord</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
