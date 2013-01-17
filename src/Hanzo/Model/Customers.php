@@ -166,5 +166,4 @@ class Customers extends BaseCustomers implements UserInterface
     }
 
     public function eraseCredentials() {}
-
 } // Customers

@@ -35,6 +35,8 @@ class DomainVoter implements VoterInterface
           return VoterInterface::ACCESS_ABSTAIN;
         }
 
+        $request = $object;
+
         $user = $token->getUser();
         if (!($user instanceof UserInterface))
         {
@@ -64,7 +66,8 @@ class DomainVoter implements VoterInterface
         // Hardcoded lookup table
         $country   = $paymentAddress->getCountry();
         $countryId = $paymentAddress->getCountriesId();
-        $locale    = $this->container->get('session')->getLocale();
+        $locale    = $request->getLocale();
+        $translator = $this->container->get('translator');
 
         $countryIdToLocaleMap = array(
             58  => array( 'da_DK' ), // Denmark
@@ -77,10 +80,6 @@ class DomainVoter implements VoterInterface
         // Restrict access to login webshop to only customers.
         if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALES', $user->getRoles()) && 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) // 1=Customers
         {
-            $translator = $this->container->get('translator');
-
-            $request = $this->container->get('request');
-
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.only.customers',array( '%url%' => 'http://c.pompdelux.com/'.$useLocale.'/login', '%site_name%' => $country ),'account');
@@ -91,10 +90,6 @@ class DomainVoter implements VoterInterface
         // If the country is not set in the mapping it must run en_GB, so deny access if it doesn't
         if ( !isset($countryIdToLocaleMap[$countryId]) && $locale != 'en_GB' )
         {
-            $translator = $this->container->get('translator');
-
-            $request = $this->container->get('request');
-
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/en_GB/login', '%site_name%' => 'International' ),'account');
             $this->container->get('session')->setFlash('error', $msg);
             return VoterInterface::ACCESS_DENIED;
@@ -103,10 +98,6 @@ class DomainVoter implements VoterInterface
         // If the country has an local shop it must use that
         if ( isset($countryIdToLocaleMap[$countryId]) && !( in_array($locale,$countryIdToLocaleMap[$countryId]) ) )
         {
-            $translator = $this->container->get('translator');
-
-            $request = $this->container->get('request');
-
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/'.$useLocale.'/login', '%site_name%' => $country ),'account');
