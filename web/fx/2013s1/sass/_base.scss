@@ -162,6 +162,12 @@ a.button {
 		border-left: 6px solid #474749;
 		padding: 6px 24px;
 	}
+	&.button-small {
+		font-size: $small-size;
+		padding: 3px;
+		line-height: $small-line-height;
+		font-weight: $small-weight;
+	}
 	&.off{
 		display: none;
 	}
@@ -205,7 +211,7 @@ a.left{float: left;}
 .centerfy{margin: 0 auto;}
 .align-right,
 .right{text-align:right;}
-a.left{float: right;}
+a.right{float: right;}
 .vert-align-top{vertical-align:top;}
 .vert-align-middle{vertical-align:middle;}
 .vert-align-bottom{vertical-align:baseline;}
