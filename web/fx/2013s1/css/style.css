@@ -647,6 +647,12 @@ form.address label {
   clear: both;
 }
 
+.payment-methods label {
+  margin: 0;
+  width: 90%;
+  vertical-align: middle;
+}
+
 #body-checkout div.msg.error {
   padding: 20px;
 }
