@@ -351,12 +351,12 @@ footer .footer-menu.footer-menu-4 {
   text-align: right;
 }
 /* line 25, ../sass/_footer.scss */
-footer .footer-menu.footer-menu-4 #newsletter-lists-container {
+footer .footer-menu.footer-menu-4 .container {
   text-align: left;
   display: inline-block;
 }
 /* line 28, ../sass/_footer.scss */
-footer .footer-menu.footer-menu-4 #newsletter-lists-container input[type=submit] {
+footer .footer-menu.footer-menu-4 .container input[type=submit] {
   float: right;
 }
 /* line 32, ../sass/_footer.scss */
@@ -365,20 +365,37 @@ footer .footer-menu.footer-menu-4 .sprite {
   height: 86px;
   width: 86px;
 }
-/* line 39, ../sass/_footer.scss */
+/* line 38, ../sass/_footer.scss */
+footer .footer-menu.footer-menu-4 input[type="email"],
+footer .footer-menu.footer-menu-4 input[type="text"] {
+  width: 188px;
+  display: block;
+}
+/* line 42, ../sass/_footer.scss */
+footer .footer-menu.footer-menu-4 #dialoug-message {
+  width: 200px;
+  border: 2px solid red;
+  text-align: center;
+}
+/* line 47, ../sass/_footer.scss */
+footer .footer-menu.footer-menu-4 form {
+  font-family: Tahoma, Geneva, Verdana, sans-serif !important;
+  width: 200px;
+}
+/* line 53, ../sass/_footer.scss */
 footer .copy {
   text-align: center;
 }
-/* line 41, ../sass/_footer.scss */
+/* line 55, ../sass/_footer.scss */
 footer .copy ul {
   display: inline-block;
 }
-/* line 43, ../sass/_footer.scss */
+/* line 57, ../sass/_footer.scss */
 footer .copy ul li {
   display: inline-block;
   padding: 0 5px;
 }
-/* line 48, ../sass/_footer.scss */
+/* line 62, ../sass/_footer.scss */
 footer .copy a {
   text-decoration: none;
 }
@@ -1095,8 +1112,12 @@ form input {
 form input[type="text"], form input[type="email"], form input[type="date"], form input[type="password"] {
   font-family: "Merriweather", serif;
 }
+/* line 118, ../sass/_base.scss */
+form input.error {
+  border-color: red;
+}
 
-/* line 122, ../sass/_base.scss */
+/* line 125, ../sass/_base.scss */
 input.button,
 button.button,
 a.button {
@@ -1105,13 +1126,13 @@ a.button {
   display: inline-block;
   font-family: "Merriweather", serif;
 }
-/* line 128, ../sass/_base.scss */
+/* line 131, ../sass/_base.scss */
 input.button:hover,
 button.button:hover,
 a.button:hover {
   text-decoration: none;
 }
-/* line 132, ../sass/_base.scss */
+/* line 135, ../sass/_base.scss */
 input.button.text-button,
 button.button.text-button,
 a.button.text-button {
@@ -1121,7 +1142,7 @@ a.button.text-button {
   font-size: 14px;
   text-transform: uppercase;
 }
-/* line 142, ../sass/_base.scss */
+/* line 145, ../sass/_base.scss */
 input.button.button-black, input.button.button-right, input.button.button-left,
 button.button.button-black,
 button.button.button-right,
@@ -1137,7 +1158,7 @@ a.button.button-left {
   color: white;
   line-height: 18px;
 }
-/* line 151, ../sass/_base.scss */
+/* line 154, ../sass/_base.scss */
 input.button.button-right,
 button.button.button-right,
 a.button.button-right {
@@ -1146,7 +1167,7 @@ a.button.button-right {
   padding: 6px 24px;
   float: right;
 }
-/* line 157, ../sass/_base.scss */
+/* line 160, ../sass/_base.scss */
 input.button.button-left,
 button.button.button-left,
 a.button.button-left {
@@ -1154,35 +1175,35 @@ a.button.button-left {
   border-left: 6px solid #474749;
   padding: 6px 24px;
 }
-/* line 162, ../sass/_base.scss */
+/* line 165, ../sass/_base.scss */
 input.button.off,
 button.button.off,
 a.button.off {
   display: none;
 }
 
-/* line 167, ../sass/_base.scss */
+/* line 170, ../sass/_base.scss */
 table {
   width: 100%;
   margin: 6px 0 12px;
 }
-/* line 170, ../sass/_base.scss */
+/* line 173, ../sass/_base.scss */
 table thead, table tbody, table tfoot {
   border-bottom: 1px solid #444444;
 }
-/* line 173, ../sass/_base.scss */
+/* line 176, ../sass/_base.scss */
 table thead {
   font-family: "Merriweather", serif;
 }
-/* line 175, ../sass/_base.scss */
+/* line 178, ../sass/_base.scss */
 table thead th {
   padding: 3px 6px;
 }
-/* line 180, ../sass/_base.scss */
+/* line 183, ../sass/_base.scss */
 table tbody td {
   padding: 12px 6px;
 }
-/* line 185, ../sass/_base.scss */
+/* line 188, ../sass/_base.scss */
 table tfoot td {
   padding: 6px;
 }
@@ -1192,93 +1213,93 @@ table tfoot td {
 | Helpers
 |
 */
-/* line 198, ../sass/_base.scss */
+/* line 201, ../sass/_base.scss */
 .align-left,
 .left {
   text-align: left;
 }
 
-/* line 199, ../sass/_base.scss */
+/* line 202, ../sass/_base.scss */
 a.left {
   float: left;
 }
 
-/* line 201, ../sass/_base.scss */
+/* line 204, ../sass/_base.scss */
 .align-center,
 .center {
   text-align: center;
 }
 
-/* line 202, ../sass/_base.scss */
+/* line 205, ../sass/_base.scss */
 .centerfy {
   margin: 0 auto;
 }
 
-/* line 204, ../sass/_base.scss */
+/* line 207, ../sass/_base.scss */
 .align-right,
 .right {
   text-align: right;
 }
 
-/* line 205, ../sass/_base.scss */
+/* line 208, ../sass/_base.scss */
 a.left {
   float: right;
 }
 
-/* line 206, ../sass/_base.scss */
+/* line 209, ../sass/_base.scss */
 .vert-align-top {
   vertical-align: top;
 }
 
-/* line 207, ../sass/_base.scss */
+/* line 210, ../sass/_base.scss */
 .vert-align-middle {
   vertical-align: middle;
 }
 
-/* line 208, ../sass/_base.scss */
+/* line 211, ../sass/_base.scss */
 .vert-align-bottom {
   vertical-align: baseline;
 }
 
-/* line 209, ../sass/_base.scss */
+/* line 212, ../sass/_base.scss */
 .pushleft {
   float: left;
 }
 
-/* line 210, ../sass/_base.scss */
+/* line 213, ../sass/_base.scss */
 .pushright {
   float: right;
 }
 
-/* line 211, ../sass/_base.scss */
+/* line 214, ../sass/_base.scss */
 .small {
   font-size: 9px;
 }
 
-/* line 212, ../sass/_base.scss */
+/* line 215, ../sass/_base.scss */
 .strike {
   text-decoration: line-through;
 }
 
-/* line 213, ../sass/_base.scss */
+/* line 216, ../sass/_base.scss */
 .upper {
   text-transform: uppercase;
 }
 
-/* line 215, ../sass/_base.scss */
+/* line 218, ../sass/_base.scss */
 ul {
   list-style-position: inside;
 }
-/* line 217, ../sass/_base.scss */
+/* line 220, ../sass/_base.scss */
 ul.list {
   list-style-type: disc;
 }
 
-/* line 221, ../sass/_base.scss */
+/* line 224, ../sass/_base.scss */
 ol {
   list-style-position: inside;
 }
-/* line 223, ../sass/_base.scss */
+/* line 226, ../sass/_base.scss */
 ol.list {
   list-style-type: decimal;
 }
@@ -1288,17 +1309,17 @@ ol.list {
 | dialoug notices
 |
 */
-/* line 234, ../sass/_base.scss */
+/* line 237, ../sass/_base.scss */
 .inject-notice-box {
   padding: 3px;
 }
-/* line 236, ../sass/_base.scss */
+/* line 239, ../sass/_base.scss */
 .inject-notice-box .inner {
   border: 1px solid black;
   padding: 6px;
   color: #444444;
 }
-/* line 242, ../sass/_base.scss */
+/* line 245, ../sass/_base.scss */
 .inject-notice-box.error .inner {
   border-color: red;
 }
@@ -1308,7 +1329,7 @@ ol.list {
 | Slideshow Cycle2 styles
 |
 */
-/* line 254, ../sass/_base.scss */
+/* line 257, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
@@ -1316,18 +1337,18 @@ ol.list {
   left: 16px;
   z-index: 101;
 }
-/* line 260, ../sass/_base.scss */
+/* line 263, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-/* line 266, ../sass/_base.scss */
+/* line 269, ../sass/_base.scss */
 .cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-/* line 272, ../sass/_base.scss */
+/* line 275, ../sass/_base.scss */
 .cycle-slideshow .cycle-slide img {
   width: 100%;
 }
@@ -1340,115 +1361,115 @@ ol.list {
 */
 /* =Grid >> 5 Columns
 --------------------------------------------------------------------------------*/
-/* line 286, ../sass/_base.scss */
+/* line 289, ../sass/_base.scss */
 .container_8 .grid_1-5 {
   width: 186px;
 }
 
-/* line 287, ../sass/_base.scss */
+/* line 290, ../sass/_base.scss */
 .container_8 .grid_2-5 {
   width: 378px;
 }
 
-/* line 288, ../sass/_base.scss */
+/* line 291, ../sass/_base.scss */
 .container_8 .grid_3-5 {
   width: 570px;
 }
 
-/* line 289, ../sass/_base.scss */
+/* line 292, ../sass/_base.scss */
 .container_8 .grid_4-5 {
   width: 762px;
 }
 
 /* =Prefix Extra Space >> 5 Columns
 --------------------------------------------------------------------------------*/
-/* line 293, ../sass/_base.scss */
+/* line 296, ../sass/_base.scss */
 .container_8 .prefix_1-5 {
   padding-left: 192px;
 }
 
-/* line 294, ../sass/_base.scss */
+/* line 297, ../sass/_base.scss */
 .container_8 .prefix_2-5 {
   padding-left: 384px;
 }
 
-/* line 295, ../sass/_base.scss */
+/* line 298, ../sass/_base.scss */
 .container_8 .prefix_3-5 {
   padding-left: 576px;
 }
 
-/* line 296, ../sass/_base.scss */
+/* line 299, ../sass/_base.scss */
 .container_8 .prefix_4-5 {
   padding-left: 768px;
 }
 
 /* =Suffix Extra Space >> 5 Columns
 --------------------------------------------------------------------------------*/
-/* line 300, ../sass/_base.scss */
+/* line 303, ../sass/_base.scss */
 .container_8 .suffix_1-5 {
   padding-right: 192px;
 }
 
-/* line 301, ../sass/_base.scss */
+/* line 304, ../sass/_base.scss */
 .container_8 .suffix_2-5 {
   padding-right: 384px;
 }
 
-/* line 302, ../sass/_base.scss */
+/* line 305, ../sass/_base.scss */
 .container_8 .suffix_3-5 {
   padding-right: 576px;
 }
 
-/* line 303, ../sass/_base.scss */
+/* line 306, ../sass/_base.scss */
 .container_8 .suffix_4-5 {
   padding-right: 768px;
 }
 
 /* `Push Space >> 5 Columns
 --------------------------------------------------------------------------------*/
-/* line 307, ../sass/_base.scss */
+/* line 310, ../sass/_base.scss */
 .container_8 .push_1-5 {
   left: 192px;
 }
 
-/* line 308, ../sass/_base.scss */
+/* line 311, ../sass/_base.scss */
 .container_8 .push_2-5 {
   left: 384px;
 }
 
-/* line 309, ../sass/_base.scss */
+/* line 312, ../sass/_base.scss */
 .container_8 .push_3-5 {
   left: 576px;
 }
 
-/* line 310, ../sass/_base.scss */
+/* line 313, ../sass/_base.scss */
 .container_8 .push_4-5 {
   left: 768px;
 }
 
 /* `Pull Space >> 5 Columns
 --------------------------------------------------------------------------------*/
-/* line 314, ../sass/_base.scss */
+/* line 317, ../sass/_base.scss */
 .container_8 .pull_1-5 {
   left: -192px;
 }
 
-/* line 315, ../sass/_base.scss */
+/* line 318, ../sass/_base.scss */
 .container_8 .pull_2-5 {
   left: -384px;
 }
 
-/* line 316, ../sass/_base.scss */
+/* line 319, ../sass/_base.scss */
 .container_8 .pull_3-5 {
   left: -576px;
 }
 
-/* line 317, ../sass/_base.scss */
+/* line 320, ../sass/_base.scss */
 .container_8 .pull_4-5 {
   left: -768px;
 }
 
-/* line 322, ../sass/_base.scss */
+/* line 325, ../sass/_base.scss */
 .push_1-5, .pull_1-5,
 .push_2-5, .pull_2-5,
 .push_3-5, .pull_3-5,
@@ -1456,7 +1477,7 @@ ol.list {
   position: relative;
 }
 
-/* line 329, ../sass/_base.scss */
+/* line 332, ../sass/_base.scss */
 .container_8 .grid_1-5,
 .container_8 .grid_2-5,
 .container_8 .grid_3-5,
@@ -1467,7 +1488,7 @@ ol.list {
   margin-right: 3px;
 }
 
-/* line 349, ../sass/_base.scss */
+/* line 352, ../sass/_base.scss */
 .main > .grid_1,
 .main > .grid_2,
 .main > .grid_3,
@@ -1484,19 +1505,19 @@ ol.list {
   margin-bottom: 6px;
 }
 
-/* line 354, ../sass/_base.scss */
+/* line 357, ../sass/_base.scss */
 body.da form.buy .submit-button {
   background-position: 0 -494px;
   height: 84px;
   width: 87px;
 }
-/* line 359, ../sass/_base.scss */
+/* line 362, ../sass/_base.scss */
 body.da .buy-set {
   background-position: 0 -410px;
   height: 84px;
   width: 87px;
 }
-/* line 364, ../sass/_base.scss */
+/* line 367, ../sass/_base.scss */
 body.da .new-price {
   background-position: 0 0;
   height: 410px;

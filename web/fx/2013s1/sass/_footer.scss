@@ -22,7 +22,7 @@ footer{
 		}
 		&.footer-menu-4{
 			text-align: right;
-			#newsletter-lists-container {
+			.container {
 				text-align: left;
 				display: inline-block;
 				input[type=submit] {
@@ -33,6 +33,20 @@ footer{
 				@include icons-sprite(newsletter);
 				height: icons-sprite-height(newsletter);
 				width: icons-sprite-width(newsletter);
+			}
+			input[type="email"],
+			input[type="text"]{
+				width: 188px;
+				display: block;
+			}
+			#dialoug-message{
+				width: 200px;
+				border: 2px solid red;
+				text-align: center;
+			}
+			form{
+				font-family:$font-sans !important;
+				width:200px;
 			}
 		}
 	}

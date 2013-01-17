@@ -6,3 +6,7 @@ _newsletter_action:
 _newsletter_account_action:
     pattern:  /account/newsletter
     defaults: { _controller: NewsletterBundle:Default:allLists }
+
+_newsletter_subscribe:
+    pattern:  /newsletter/subscribe/current
+    defaults: { _controller: NewsletterBundle:Default:subscribe }

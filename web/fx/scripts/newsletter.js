@@ -95,5 +95,26 @@ var newsletter = (function($) {
     });
   };
 
+  pub.footer = function() {
+    $('footer .footer-menu-4 form').on('submit', function(event) {
+      event.preventDefault();
+
+      var $form = $(this);
+      $('input[type="email"]', $form).removeClass('error');
+
+      $.post(this.action, $form.serialize(), function(response) {
+        dialoug.notice(response.message, 'info', 3000, $form);
+
+        if (response.status) {
+          $('input[type="text"], input[type="email"]', $form).val('');
+        } else {
+          $('input[type="email"]', $form).addClass('error');
+        }
+      }, 'json');
+    });
+  };
+
   return pub;
 })(jQuery);
+
+newsletter.footer();
