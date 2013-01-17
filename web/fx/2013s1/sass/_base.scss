@@ -1,15 +1,13 @@
-// Base
+/**
+| _base
+*/
 @import "compass/reset";
 @import "compass/utilities";
 
 
 .sprite{display:inline-block;}
 .sprite-block{display:block;}
-/**
-|
-| Base styles
-|
-*/
+
 body{
 	color: $font-color;
 	font-family: $font-sans;
@@ -198,11 +196,7 @@ table{
 }
 
 
-/**
-|
-| Helpers
-|
-*/
+// Helpers
 .align-left,
 .left{text-align:left;}
 a.left{float: left;}
@@ -233,12 +227,8 @@ ol{
 		list-style-type: decimal;
 	}
 }
-
-/**
-|
-| dialoug notices
-|
-*/
+ 
+// Dialoug notices
 
 .inject-notice-box{
 	padding: 3px;
@@ -254,11 +244,7 @@ ol{
 	}
 }
 
-/**
-|
-| Slideshow Cycle2 styles
-|
-*/
+// Slideshow Cycle2 styles
 .cycle-slideshow {
 	.cycle-pager{
 		display: inline-block;
@@ -283,43 +269,34 @@ ol{
 		}
 	}
 }
-/**
-|
-| Custom 960gs grids
-|
-| TODO: Make it as a new grid with container_5{blablabla}
-*/
+// Custom 960gs grids
+// TODO: Make it as a new grid with container_5{blablabla}
 
-/* =Grid >> 5 Columns
---------------------------------------------------------------------------------*/
+// =Grid >> 5 Columns
 .container_8 .grid_1-5 {width: 186px;} // One Fifth
 .container_8 .grid_2-5 {width: 378px;} // Two Fifth
 .container_8 .grid_3-5 {width: 570px;} // Three Fifth
 .container_8 .grid_4-5 {width: 762px;} // Four Fifth
 
-/* =Prefix Extra Space >> 5 Columns
---------------------------------------------------------------------------------*/
+// =Prefix Extra Space >> 5 Columns
 .container_8 .prefix_1-5 {padding-left: 192px;}
 .container_8 .prefix_2-5 {padding-left: 384px;}
 .container_8 .prefix_3-5 {padding-left: 576px;}
 .container_8 .prefix_4-5 {padding-left: 768px;}
 
-/* =Suffix Extra Space >> 5 Columns
---------------------------------------------------------------------------------*/
+// =Suffix Extra Space >> 5 Columns
 .container_8 .suffix_1-5 {padding-right: 192px;}
 .container_8 .suffix_2-5 {padding-right: 384px;}
 .container_8 .suffix_3-5 {padding-right: 576px;}
 .container_8 .suffix_4-5 {padding-right: 768px;}
 
-/* `Push Space >> 5 Columns
---------------------------------------------------------------------------------*/
+// `Push Space >> 5 Columns
 .container_8 .push_1-5 {left: 192px;}
 .container_8 .push_2-5 {left: 384px;}
 .container_8 .push_3-5 {left: 576px;}
 .container_8 .push_4-5 {left: 768px;}
 
-/* `Pull Space >> 5 Columns
---------------------------------------------------------------------------------*/
+// `Pull Space >> 5 Columns
 .container_8 .pull_1-5 {left: -192px;}
 .container_8 .pull_2-5 {left: -384px;}
 .container_8 .pull_3-5 {left: -576px;}
