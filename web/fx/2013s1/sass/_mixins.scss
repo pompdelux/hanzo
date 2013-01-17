@@ -56,9 +56,11 @@
 	line-height:$heading-small-line-height;
 }
 
+@mixin shadow{
+    @include box-shadow(#C9C9C9 -1px 1px 2px);
+	border: #F0F0F0 1px solid;
+}
 @mixin box{
 	background-color: whiteSmoke;
-    @include box-shadow(#C9C9C9 -1px 1px 2px);
-	border-right: #F0F0F0 1px solid;
-	border-top: #F0F0F0 1px solid;
+	@include shadow;
 }

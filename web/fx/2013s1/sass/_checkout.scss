@@ -51,6 +51,12 @@ form.address {
 	border: 2px solid #f00;
 	clear: both;
 }
+.shipping-method,
+.payment-module {
+	margin: 12px 0;
+	padding: 12px;
+	@include shadow;
+}
 .payment-methods {
 	label{
 		margin: 0;
