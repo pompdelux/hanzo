@@ -123,23 +123,16 @@ body {
     height: 0;
 }
 
-/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+/* For modern browsers */
 .clearfix:before,
 .clearfix:after {
-    content: "\0020";
-    display: block;
-    overflow: hidden;
-    visibility: hidden;
-    width: 0;
-    height: 0;
+    content:"";
+    display:table;
 }
 .clearfix:after {
-    clear: both;
+    clear:both;
 }
-/*
-The following zoom:1 rule is specifically for IE6 + IE7.
-Move to separate stylesheet if invalid CSS is a problem.
-*/
+/* For IE 6/7 (trigger hasLayout) */
 .clearfix {
-    zoom: 1;
+    zoom:1;
 }
