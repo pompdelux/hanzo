@@ -17,13 +17,6 @@ use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 
-/**
- * Base class that represents a row from the 'consultants' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseConsultants extends BaseObject implements Persistent
 {
     /**
@@ -383,7 +376,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 6; // 6 = ConsultantsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -609,22 +602,22 @@ abstract class BaseConsultants extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ConsultantsPeer::INITIALS)) {
-            $modifiedColumns[':p' . $index++]  = '`initials`';
+            $modifiedColumns[':p' . $index++]  = '`INITIALS`';
         }
         if ($this->isColumnModified(ConsultantsPeer::INFO)) {
-            $modifiedColumns[':p' . $index++]  = '`info`';
+            $modifiedColumns[':p' . $index++]  = '`INFO`';
         }
         if ($this->isColumnModified(ConsultantsPeer::EVENT_NOTES)) {
-            $modifiedColumns[':p' . $index++]  = '`event_notes`';
+            $modifiedColumns[':p' . $index++]  = '`EVENT_NOTES`';
         }
         if ($this->isColumnModified(ConsultantsPeer::HIDE_INFO)) {
-            $modifiedColumns[':p' . $index++]  = '`hide_info`';
+            $modifiedColumns[':p' . $index++]  = '`HIDE_INFO`';
         }
         if ($this->isColumnModified(ConsultantsPeer::MAX_NOTIFIED)) {
-            $modifiedColumns[':p' . $index++]  = '`max_notified`';
+            $modifiedColumns[':p' . $index++]  = '`MAX_NOTIFIED`';
         }
         if ($this->isColumnModified(ConsultantsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
 
         $sql = sprintf(
@@ -637,22 +630,22 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`initials`':
+                    case '`INITIALS`':
                         $stmt->bindValue($identifier, $this->initials, PDO::PARAM_STR);
                         break;
-                    case '`info`':
+                    case '`INFO`':
                         $stmt->bindValue($identifier, $this->info, PDO::PARAM_STR);
                         break;
-                    case '`event_notes`':
+                    case '`EVENT_NOTES`':
                         $stmt->bindValue($identifier, $this->event_notes, PDO::PARAM_STR);
                         break;
-                    case '`hide_info`':
+                    case '`HIDE_INFO`':
                         $stmt->bindValue($identifier, (int) $this->hide_info, PDO::PARAM_INT);
                         break;
-                    case '`max_notified`':
+                    case '`MAX_NOTIFIED`':
                         $stmt->bindValue($identifier, (int) $this->max_notified, PDO::PARAM_INT);
                         break;
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
                 }
@@ -716,11 +709,11 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1113,13 +1106,12 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null, $doQuery = true)
+    public function getCustomers(PropelPDO $con = null)
     {
-        if ($this->aCustomers === null && ($this->id !== null) && $doQuery) {
+        if ($this->aCustomers === null && ($this->id !== null)) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->id, $con);
             // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
             $this->aCustomers->setConsultants($this);

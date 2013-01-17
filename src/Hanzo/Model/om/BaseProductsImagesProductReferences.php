@@ -19,13 +19,6 @@ use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsQuery;
 
-/**
- * Base class that represents a row from the 'products_images_product_references' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsImagesProductReferences extends BaseObject implements Persistent
 {
     /**
@@ -194,7 +187,7 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 2; // 2 = ProductsImagesProductReferencesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -431,10 +424,10 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`products_images_id`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_IMAGES_ID`';
         }
         if ($this->isColumnModified(ProductsImagesProductReferencesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`products_id`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
         }
 
         $sql = sprintf(
@@ -447,10 +440,10 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`products_images_id`':
+                    case '`PRODUCTS_IMAGES_ID`':
                         $stmt->bindValue($identifier, $this->products_images_id, PDO::PARAM_INT);
                         break;
-                    case '`products_id`':
+                    case '`PRODUCTS_ID`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
                 }
@@ -514,11 +507,11 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -883,13 +876,12 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      * Get the associated ProductsImages object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return ProductsImages The associated ProductsImages object.
      * @throws PropelException
      */
-    public function getProductsImages(PropelPDO $con = null, $doQuery = true)
+    public function getProductsImages(PropelPDO $con = null)
     {
-        if ($this->aProductsImages === null && ($this->products_images_id !== null) && $doQuery) {
+        if ($this->aProductsImages === null && ($this->products_images_id !== null)) {
             $this->aProductsImages = ProductsImagesQuery::create()->findPk($this->products_images_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -935,13 +927,12 @@ abstract class BaseProductsImagesProductReferences extends BaseObject implements
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
+        if ($this->aProducts === null && ($this->products_id !== null)) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

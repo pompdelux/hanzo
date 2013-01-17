@@ -13,13 +13,6 @@ use Hanzo\Model\HelpdeskDataLog;
 use Hanzo\Model\HelpdeskDataLogPeer;
 use Hanzo\Model\map\HelpdeskDataLogTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'helpdesk_data_log' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseHelpdeskDataLogPeer
 {
 
@@ -44,14 +37,14 @@ abstract class BaseHelpdeskDataLogPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the key field */
-    const KEY = 'helpdesk_data_log.key';
+    /** the column name for the KEY field */
+    const KEY = 'helpdesk_data_log.KEY';
 
-    /** the column name for the data field */
-    const DATA = 'helpdesk_data_log.data';
+    /** the column name for the DATA field */
+    const DATA = 'helpdesk_data_log.DATA';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'helpdesk_data_log.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'helpdesk_data_log.CREATED_AT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -170,9 +163,9 @@ abstract class BaseHelpdeskDataLogPeer
             $criteria->addSelectColumn(HelpdeskDataLogPeer::DATA);
             $criteria->addSelectColumn(HelpdeskDataLogPeer::CREATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.key');
-            $criteria->addSelectColumn($alias . '.data');
-            $criteria->addSelectColumn($alias . '.created_at');
+            $criteria->addSelectColumn($alias . '.KEY');
+            $criteria->addSelectColumn($alias . '.DATA');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
         }
     }
 

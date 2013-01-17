@@ -42,10 +42,10 @@ class ProductsWashingInstructionsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('code', 'Code', 'INTEGER', true, null, null);
-        $this->addForeignKey('locale', 'Locale', 'VARCHAR', 'languages', 'locale', true, 5, null);
-        $this->addColumn('description', 'Description', 'LONGVARCHAR', true, null, null);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('CODE', 'Code', 'INTEGER', true, null, null);
+        $this->addForeignKey('LOCALE', 'Locale', 'VARCHAR', 'languages', 'LOCALE', true, 5, null);
+        $this->addColumn('DESCRIPTION', 'Description', 'LONGVARCHAR', true, null, null);
         // validators
     } // initialize()
 

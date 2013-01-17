@@ -19,13 +19,6 @@ use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersToCouponsPeer;
 use Hanzo\Model\OrdersToCouponsQuery;
 
-/**
- * Base class that represents a row from the 'orders_to_coupons' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
 {
     /**
@@ -232,7 +225,7 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = OrdersToCouponsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -469,13 +462,13 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersToCouponsPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`orders_id`';
+            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
         }
         if ($this->isColumnModified(OrdersToCouponsPeer::COUPONS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`coupons_id`';
+            $modifiedColumns[':p' . $index++]  = '`COUPONS_ID`';
         }
         if ($this->isColumnModified(OrdersToCouponsPeer::AMOUNT)) {
-            $modifiedColumns[':p' . $index++]  = '`amount`';
+            $modifiedColumns[':p' . $index++]  = '`AMOUNT`';
         }
 
         $sql = sprintf(
@@ -488,13 +481,13 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`orders_id`':
+                    case '`ORDERS_ID`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`coupons_id`':
+                    case '`COUPONS_ID`':
                         $stmt->bindValue($identifier, $this->coupons_id, PDO::PARAM_INT);
                         break;
-                    case '`amount`':
+                    case '`AMOUNT`':
                         $stmt->bindValue($identifier, $this->amount, PDO::PARAM_STR);
                         break;
                 }
@@ -558,11 +551,11 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -937,13 +930,12 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      * Get the associated Coupons object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Coupons The associated Coupons object.
      * @throws PropelException
      */
-    public function getCoupons(PropelPDO $con = null, $doQuery = true)
+    public function getCoupons(PropelPDO $con = null)
     {
-        if ($this->aCoupons === null && ($this->coupons_id !== null) && $doQuery) {
+        if ($this->aCoupons === null && ($this->coupons_id !== null)) {
             $this->aCoupons = CouponsQuery::create()->findPk($this->coupons_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -989,13 +981,12 @@ abstract class BaseOrdersToCoupons extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null, $doQuery = true)
+    public function getOrders(PropelPDO $con = null)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
+        if ($this->aOrders === null && ($this->orders_id !== null)) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

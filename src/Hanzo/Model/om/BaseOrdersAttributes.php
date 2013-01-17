@@ -17,13 +17,6 @@ use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersQuery;
 
-/**
- * Base class that represents a row from the 'orders_attributes' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersAttributes extends BaseObject implements Persistent
 {
     /**
@@ -259,7 +252,7 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = OrdersAttributesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -485,16 +478,16 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersAttributesPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`orders_id`';
+            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
         }
         if ($this->isColumnModified(OrdersAttributesPeer::NS)) {
-            $modifiedColumns[':p' . $index++]  = '`ns`';
+            $modifiedColumns[':p' . $index++]  = '`NS`';
         }
         if ($this->isColumnModified(OrdersAttributesPeer::C_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`c_key`';
+            $modifiedColumns[':p' . $index++]  = '`C_KEY`';
         }
         if ($this->isColumnModified(OrdersAttributesPeer::C_VALUE)) {
-            $modifiedColumns[':p' . $index++]  = '`c_value`';
+            $modifiedColumns[':p' . $index++]  = '`C_VALUE`';
         }
 
         $sql = sprintf(
@@ -507,16 +500,16 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`orders_id`':
+                    case '`ORDERS_ID`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`ns`':
+                    case '`NS`':
                         $stmt->bindValue($identifier, $this->ns, PDO::PARAM_STR);
                         break;
-                    case '`c_key`':
+                    case '`C_KEY`':
                         $stmt->bindValue($identifier, $this->c_key, PDO::PARAM_STR);
                         break;
-                    case '`c_value`':
+                    case '`C_VALUE`':
                         $stmt->bindValue($identifier, $this->c_value, PDO::PARAM_STR);
                         break;
                 }
@@ -580,11 +573,11 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -963,13 +956,12 @@ abstract class BaseOrdersAttributes extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null, $doQuery = true)
+    public function getOrders(PropelPDO $con = null)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
+        if ($this->aOrders === null && ($this->orders_id !== null)) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

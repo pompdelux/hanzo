@@ -19,10 +19,6 @@ use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\ProductsToCategoriesQuery;
 
 /**
- * Base class that represents a query for the 'products_to_categories' table.
- *
- *
- *
  * @method ProductsToCategoriesQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  * @method ProductsToCategoriesQuery orderByCategoriesId($order = Criteria::ASC) Order by the categories_id column
  *
@@ -49,8 +45,6 @@ use Hanzo\Model\ProductsToCategoriesQuery;
  *
  * @method array findByProductsId(int $products_id) Return ProductsToCategories objects filtered by the products_id column
  * @method array findByCategoriesId(int $categories_id) Return ProductsToCategories objects filtered by the categories_id column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsToCategoriesQuery extends ModelCriteria
 {
@@ -139,7 +133,7 @@ abstract class BaseProductsToCategoriesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `products_id`, `categories_id` FROM `products_to_categories` WHERE `products_id` = :p0 AND `categories_id` = :p1';
+        $sql = 'SELECT `PRODUCTS_ID`, `CATEGORIES_ID` FROM `products_to_categories` WHERE `PRODUCTS_ID` = :p0 AND `CATEGORIES_ID` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

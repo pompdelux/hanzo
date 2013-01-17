@@ -14,13 +14,6 @@ use Hanzo\Model\RelatedProducts;
 use Hanzo\Model\RelatedProductsPeer;
 use Hanzo\Model\map\RelatedProductsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'related_products' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseRelatedProductsPeer
 {
 
@@ -45,11 +38,11 @@ abstract class BaseRelatedProductsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the master field */
-    const MASTER = 'related_products.master';
+    /** the column name for the MASTER field */
+    const MASTER = 'related_products.MASTER';
 
-    /** the column name for the sku field */
-    const SKU = 'related_products.sku';
+    /** the column name for the SKU field */
+    const SKU = 'related_products.SKU';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -167,8 +160,8 @@ abstract class BaseRelatedProductsPeer
             $criteria->addSelectColumn(RelatedProductsPeer::MASTER);
             $criteria->addSelectColumn(RelatedProductsPeer::SKU);
         } else {
-            $criteria->addSelectColumn($alias . '.master');
-            $criteria->addSelectColumn($alias . '.sku');
+            $criteria->addSelectColumn($alias . '.MASTER');
+            $criteria->addSelectColumn($alias . '.SKU');
         }
     }
 

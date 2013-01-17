@@ -17,13 +17,6 @@ use Hanzo\Model\ProductsI18nPeer;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsQuery;
 
-/**
- * Base class that represents a row from the 'products_i18n' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsI18n extends BaseObject implements Persistent
 {
     /**
@@ -285,7 +278,7 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ProductsI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -511,16 +504,16 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(ProductsI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`locale`';
+            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
         }
         if ($this->isColumnModified(ProductsI18nPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`title`';
+            $modifiedColumns[':p' . $index++]  = '`TITLE`';
         }
         if ($this->isColumnModified(ProductsI18nPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`content`';
+            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
         }
 
         $sql = sprintf(
@@ -533,16 +526,16 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`locale`':
+                    case '`LOCALE`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`title`':
+                    case '`TITLE`':
                         $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
                         break;
-                    case '`content`':
+                    case '`CONTENT`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
                 }
@@ -606,11 +599,11 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -986,13 +979,12 @@ abstract class BaseProductsI18n extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && ($this->id !== null) && $doQuery) {
+        if ($this->aProducts === null && ($this->id !== null)) {
             $this->aProducts = ProductsQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

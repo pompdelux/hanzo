@@ -26,10 +26,6 @@ use Hanzo\Model\Wall;
 use Hanzo\Model\WallLikes;
 
 /**
- * Base class that represents a query for the 'customers' table.
- *
- *
- *
  * @method CustomersQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CustomersQuery orderByGroupsId($order = Criteria::ASC) Order by the groups_id column
  * @method CustomersQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
@@ -103,6 +99,7 @@ use Hanzo\Model\WallLikes;
  * @method Customers findOne(PropelPDO $con = null) Return the first Customers matching the query
  * @method Customers findOneOrCreate(PropelPDO $con = null) Return the first Customers matching the query, or a new Customers object populated from the query conditions when no match is found
  *
+ * @method Customers findOneById(int $id) Return the first Customers filtered by the id column
  * @method Customers findOneByGroupsId(int $groups_id) Return the first Customers filtered by the groups_id column
  * @method Customers findOneByFirstName(string $first_name) Return the first Customers filtered by the first_name column
  * @method Customers findOneByLastName(string $last_name) Return the first Customers filtered by the last_name column
@@ -127,8 +124,6 @@ use Hanzo\Model\WallLikes;
  * @method array findByIsActive(boolean $is_active) Return Customers objects filtered by the is_active column
  * @method array findByCreatedAt(string $created_at) Return Customers objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Customers objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCustomersQuery extends ModelCriteria
 {
@@ -205,20 +200,6 @@ abstract class BaseCustomersQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Customers A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -230,7 +211,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `groups_id`, `first_name`, `last_name`, `email`, `phone`, `password`, `password_clear`, `discount`, `is_active`, `created_at`, `updated_at` FROM `customers` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `GROUPS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `PASSWORD`, `PASSWORD_CLEAR`, `DISCOUNT`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

@@ -29,10 +29,6 @@ use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\RelatedProducts;
 
 /**
- * Base class that represents a query for the 'products' table.
- *
- *
- *
  * @method ProductsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ProductsQuery orderBySku($order = Criteria::ASC) Order by the sku column
  * @method ProductsQuery orderByMaster($order = Criteria::ASC) Order by the master column
@@ -126,6 +122,7 @@ use Hanzo\Model\RelatedProducts;
  * @method Products findOne(PropelPDO $con = null) Return the first Products matching the query
  * @method Products findOneOrCreate(PropelPDO $con = null) Return the first Products matching the query, or a new Products object populated from the query conditions when no match is found
  *
+ * @method Products findOneById(int $id) Return the first Products filtered by the id column
  * @method Products findOneBySku(string $sku) Return the first Products filtered by the sku column
  * @method Products findOneByMaster(string $master) Return the first Products filtered by the master column
  * @method Products findOneBySize(string $size) Return the first Products filtered by the size column
@@ -150,8 +147,6 @@ use Hanzo\Model\RelatedProducts;
  * @method array findByIsActive(boolean $is_active) Return Products objects filtered by the is_active column
  * @method array findByCreatedAt(string $created_at) Return Products objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Products objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsQuery extends ModelCriteria
 {
@@ -228,20 +223,6 @@ abstract class BaseProductsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Products A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -253,7 +234,7 @@ abstract class BaseProductsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `sku`, `master`, `size`, `color`, `unit`, `washing`, `has_video`, `is_out_of_stock`, `is_active`, `created_at`, `updated_at` FROM `products` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `SKU`, `MASTER`, `SIZE`, `COLOR`, `UNIT`, `WASHING`, `HAS_VIDEO`, `IS_OUT_OF_STOCK`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `products` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

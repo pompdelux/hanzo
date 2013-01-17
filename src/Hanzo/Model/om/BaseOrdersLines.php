@@ -21,13 +21,6 @@ use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 
-/**
- * Base class that represents a row from the 'orders_lines' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersLines extends BaseObject implements Persistent
 {
     /**
@@ -270,7 +263,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getExpectedAt($format = 'Y-m-d')
+    public function getExpectedAt($format = null)
     {
         if ($this->expected_at === null) {
             return null;
@@ -280,25 +273,22 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->expected_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expected_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->expected_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expected_at, true), $x);
+            }
         }
 
         if ($format === null) {
             // Because propel.useDateTimeClass is true, we return a DateTime object.
             return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -718,7 +708,7 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 14; // 14 = OrdersLinesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -959,46 +949,46 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersLinesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`orders_id`';
+            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`type`';
+            $modifiedColumns[':p' . $index++]  = '`TYPE`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`products_id`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SKU)) {
-            $modifiedColumns[':p' . $index++]  = '`products_sku`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_SKU`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`products_name`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_NAME`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_COLOR)) {
-            $modifiedColumns[':p' . $index++]  = '`products_color`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_COLOR`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRODUCTS_SIZE)) {
-            $modifiedColumns[':p' . $index++]  = '`products_size`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_SIZE`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::EXPECTED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`expected_at`';
+            $modifiedColumns[':p' . $index++]  = '`EXPECTED_AT`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::ORIGINAL_PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`original_price`';
+            $modifiedColumns[':p' . $index++]  = '`ORIGINAL_PRICE`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`price`';
+            $modifiedColumns[':p' . $index++]  = '`PRICE`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::VAT)) {
-            $modifiedColumns[':p' . $index++]  = '`vat`';
+            $modifiedColumns[':p' . $index++]  = '`VAT`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::QUANTITY)) {
-            $modifiedColumns[':p' . $index++]  = '`quantity`';
+            $modifiedColumns[':p' . $index++]  = '`QUANTITY`';
         }
         if ($this->isColumnModified(OrdersLinesPeer::UNIT)) {
-            $modifiedColumns[':p' . $index++]  = '`unit`';
+            $modifiedColumns[':p' . $index++]  = '`UNIT`';
         }
 
         $sql = sprintf(
@@ -1011,46 +1001,46 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`orders_id`':
+                    case '`ORDERS_ID`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`type`':
+                    case '`TYPE`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
-                    case '`products_id`':
+                    case '`PRODUCTS_ID`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`products_sku`':
+                    case '`PRODUCTS_SKU`':
                         $stmt->bindValue($identifier, $this->products_sku, PDO::PARAM_STR);
                         break;
-                    case '`products_name`':
+                    case '`PRODUCTS_NAME`':
                         $stmt->bindValue($identifier, $this->products_name, PDO::PARAM_STR);
                         break;
-                    case '`products_color`':
+                    case '`PRODUCTS_COLOR`':
                         $stmt->bindValue($identifier, $this->products_color, PDO::PARAM_STR);
                         break;
-                    case '`products_size`':
+                    case '`PRODUCTS_SIZE`':
                         $stmt->bindValue($identifier, $this->products_size, PDO::PARAM_STR);
                         break;
-                    case '`expected_at`':
+                    case '`EXPECTED_AT`':
                         $stmt->bindValue($identifier, $this->expected_at, PDO::PARAM_STR);
                         break;
-                    case '`original_price`':
+                    case '`ORIGINAL_PRICE`':
                         $stmt->bindValue($identifier, $this->original_price, PDO::PARAM_STR);
                         break;
-                    case '`price`':
+                    case '`PRICE`':
                         $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
                         break;
-                    case '`vat`':
+                    case '`VAT`':
                         $stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
                         break;
-                    case '`quantity`':
+                    case '`QUANTITY`':
                         $stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
                         break;
-                    case '`unit`':
+                    case '`UNIT`':
                         $stmt->bindValue($identifier, $this->unit, PDO::PARAM_STR);
                         break;
                 }
@@ -1121,11 +1111,11 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1603,13 +1593,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null, $doQuery = true)
+    public function getOrders(PropelPDO $con = null)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
+        if ($this->aOrders === null && ($this->orders_id !== null)) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1655,13 +1644,12 @@ abstract class BaseOrdersLines extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
+        if ($this->aProducts === null && ($this->products_id !== null)) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

@@ -19,10 +19,6 @@ use Hanzo\Model\CmsThreadPeer;
 use Hanzo\Model\CmsThreadQuery;
 
 /**
- * Base class that represents a query for the 'cms_thread' table.
- *
- *
- *
  * @method CmsThreadQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CmsThreadQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  *
@@ -44,12 +40,11 @@ use Hanzo\Model\CmsThreadQuery;
  * @method CmsThread findOne(PropelPDO $con = null) Return the first CmsThread matching the query
  * @method CmsThread findOneOrCreate(PropelPDO $con = null) Return the first CmsThread matching the query, or a new CmsThread object populated from the query conditions when no match is found
  *
+ * @method CmsThread findOneById(int $id) Return the first CmsThread filtered by the id column
  * @method CmsThread findOneByIsActive(boolean $is_active) Return the first CmsThread filtered by the is_active column
  *
  * @method array findById(int $id) Return CmsThread objects filtered by the id column
  * @method array findByIsActive(boolean $is_active) Return CmsThread objects filtered by the is_active column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCmsThreadQuery extends ModelCriteria
 {
@@ -126,20 +121,6 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   CmsThread A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -151,7 +132,7 @@ abstract class BaseCmsThreadQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `is_active` FROM `cms_thread` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `IS_ACTIVE` FROM `cms_thread` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

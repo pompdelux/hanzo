@@ -18,10 +18,6 @@ use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 
 /**
- * Base class that represents a query for the 'languages' table.
- *
- *
- *
  * @method LanguagesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method LanguagesQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method LanguagesQuery orderByLocalName($order = Criteria::ASC) Order by the local_name column
@@ -47,6 +43,7 @@ use Hanzo\Model\ProductsWashingInstructions;
  * @method Languages findOne(PropelPDO $con = null) Return the first Languages matching the query
  * @method Languages findOneOrCreate(PropelPDO $con = null) Return the first Languages matching the query, or a new Languages object populated from the query conditions when no match is found
  *
+ * @method Languages findOneById(int $id) Return the first Languages filtered by the id column
  * @method Languages findOneByName(string $name) Return the first Languages filtered by the name column
  * @method Languages findOneByLocalName(string $local_name) Return the first Languages filtered by the local_name column
  * @method Languages findOneByLocale(string $locale) Return the first Languages filtered by the locale column
@@ -59,8 +56,6 @@ use Hanzo\Model\ProductsWashingInstructions;
  * @method array findByLocale(string $locale) Return Languages objects filtered by the locale column
  * @method array findByIso2(string $iso2) Return Languages objects filtered by the iso2 column
  * @method array findByDirection(string $direction) Return Languages objects filtered by the direction column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseLanguagesQuery extends ModelCriteria
 {
@@ -137,20 +132,6 @@ abstract class BaseLanguagesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Languages A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -162,7 +143,7 @@ abstract class BaseLanguagesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `local_name`, `locale`, `iso2`, `direction` FROM `languages` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `LOCALE`, `ISO2`, `DIRECTION` FROM `languages` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

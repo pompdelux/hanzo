@@ -20,10 +20,6 @@ use Hanzo\Model\EventsQuery;
 use Hanzo\Model\Orders;
 
 /**
- * Base class that represents a query for the 'events' table.
- *
- *
- *
  * @method EventsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method EventsQuery orderByCode($order = Criteria::ASC) Order by the code column
  * @method EventsQuery orderByKey($order = Criteria::ASC) Order by the key column
@@ -87,6 +83,7 @@ use Hanzo\Model\Orders;
  * @method Events findOne(PropelPDO $con = null) Return the first Events matching the query
  * @method Events findOneOrCreate(PropelPDO $con = null) Return the first Events matching the query, or a new Events object populated from the query conditions when no match is found
  *
+ * @method Events findOneById(int $id) Return the first Events filtered by the id column
  * @method Events findOneByCode(string $code) Return the first Events filtered by the code column
  * @method Events findOneByKey(string $key) Return the first Events filtered by the key column
  * @method Events findOneByConsultantsId(int $consultants_id) Return the first Events filtered by the consultants_id column
@@ -125,8 +122,6 @@ use Hanzo\Model\Orders;
  * @method array findByNotifyHostess(boolean $notify_hostess) Return Events objects filtered by the notify_hostess column
  * @method array findByCreatedAt(string $created_at) Return Events objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Events objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseEventsQuery extends ModelCriteria
 {
@@ -203,20 +198,6 @@ abstract class BaseEventsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Events A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -228,7 +209,7 @@ abstract class BaseEventsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `code`, `key`, `consultants_id`, `customers_id`, `event_date`, `host`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `phone`, `email`, `description`, `type`, `is_open`, `notify_hostess`, `created_at`, `updated_at` FROM `events` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `CODE`, `KEY`, `CONSULTANTS_ID`, `CUSTOMERS_ID`, `EVENT_DATE`, `HOST`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `PHONE`, `EMAIL`, `DESCRIPTION`, `TYPE`, `IS_OPEN`, `NOTIFY_HOSTESS`, `CREATED_AT`, `UPDATED_AT` FROM `events` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

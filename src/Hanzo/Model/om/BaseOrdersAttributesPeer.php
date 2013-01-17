@@ -14,13 +14,6 @@ use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\map\OrdersAttributesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'orders_attributes' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersAttributesPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseOrdersAttributesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the orders_id field */
-    const ORDERS_ID = 'orders_attributes.orders_id';
+    /** the column name for the ORDERS_ID field */
+    const ORDERS_ID = 'orders_attributes.ORDERS_ID';
 
-    /** the column name for the ns field */
-    const NS = 'orders_attributes.ns';
+    /** the column name for the NS field */
+    const NS = 'orders_attributes.NS';
 
-    /** the column name for the c_key field */
-    const C_KEY = 'orders_attributes.c_key';
+    /** the column name for the C_KEY field */
+    const C_KEY = 'orders_attributes.C_KEY';
 
-    /** the column name for the c_value field */
-    const C_VALUE = 'orders_attributes.c_value';
+    /** the column name for the C_VALUE field */
+    const C_VALUE = 'orders_attributes.C_VALUE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseOrdersAttributesPeer
             $criteria->addSelectColumn(OrdersAttributesPeer::C_KEY);
             $criteria->addSelectColumn(OrdersAttributesPeer::C_VALUE);
         } else {
-            $criteria->addSelectColumn($alias . '.orders_id');
-            $criteria->addSelectColumn($alias . '.ns');
-            $criteria->addSelectColumn($alias . '.c_key');
-            $criteria->addSelectColumn($alias . '.c_value');
+            $criteria->addSelectColumn($alias . '.ORDERS_ID');
+            $criteria->addSelectColumn($alias . '.NS');
+            $criteria->addSelectColumn($alias . '.C_KEY');
+            $criteria->addSelectColumn($alias . '.C_VALUE');
         }
     }
 

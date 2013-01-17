@@ -15,10 +15,6 @@ use Hanzo\Model\ShippingMethodsPeer;
 use Hanzo\Model\ShippingMethodsQuery;
 
 /**
- * Base class that represents a query for the 'shipping_methods' table.
- *
- *
- *
  * @method ShippingMethodsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ShippingMethodsQuery orderByCarrier($order = Criteria::ASC) Order by the carrier column
  * @method ShippingMethodsQuery orderByMethod($order = Criteria::ASC) Order by the method column
@@ -46,6 +42,7 @@ use Hanzo\Model\ShippingMethodsQuery;
  * @method ShippingMethods findOne(PropelPDO $con = null) Return the first ShippingMethods matching the query
  * @method ShippingMethods findOneOrCreate(PropelPDO $con = null) Return the first ShippingMethods matching the query, or a new ShippingMethods object populated from the query conditions when no match is found
  *
+ * @method ShippingMethods findOneById(int $id) Return the first ShippingMethods filtered by the id column
  * @method ShippingMethods findOneByCarrier(string $carrier) Return the first ShippingMethods filtered by the carrier column
  * @method ShippingMethods findOneByMethod(string $method) Return the first ShippingMethods filtered by the method column
  * @method ShippingMethods findOneByExternalId(string $external_id) Return the first ShippingMethods filtered by the external_id column
@@ -64,8 +61,6 @@ use Hanzo\Model\ShippingMethodsQuery;
  * @method array findByFee(string $fee) Return ShippingMethods objects filtered by the fee column
  * @method array findByFeeExternalId(string $fee_external_id) Return ShippingMethods objects filtered by the fee_external_id column
  * @method array findByIsActive(boolean $is_active) Return ShippingMethods objects filtered by the is_active column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseShippingMethodsQuery extends ModelCriteria
 {
@@ -142,20 +137,6 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   ShippingMethods A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -167,7 +148,7 @@ abstract class BaseShippingMethodsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `carrier`, `method`, `external_id`, `calc_engine`, `price`, `fee`, `fee_external_id`, `is_active` FROM `shipping_methods` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `CARRIER`, `METHOD`, `EXTERNAL_ID`, `CALC_ENGINE`, `PRICE`, `FEE`, `FEE_EXTERNAL_ID`, `IS_ACTIVE` FROM `shipping_methods` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

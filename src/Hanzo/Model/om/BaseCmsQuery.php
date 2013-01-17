@@ -19,10 +19,6 @@ use Hanzo\Model\CmsQuery;
 use Hanzo\Model\CmsThread;
 
 /**
- * Base class that represents a query for the 'cms' table.
- *
- *
- *
  * @method CmsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CmsQuery orderByParentId($order = Criteria::ASC) Order by the parent_id column
  * @method CmsQuery orderByCmsThreadId($order = Criteria::ASC) Order by the cms_thread_id column
@@ -64,6 +60,7 @@ use Hanzo\Model\CmsThread;
  * @method Cms findOne(PropelPDO $con = null) Return the first Cms matching the query
  * @method Cms findOneOrCreate(PropelPDO $con = null) Return the first Cms matching the query, or a new Cms object populated from the query conditions when no match is found
  *
+ * @method Cms findOneById(int $id) Return the first Cms filtered by the id column
  * @method Cms findOneByParentId(int $parent_id) Return the first Cms filtered by the parent_id column
  * @method Cms findOneByCmsThreadId(int $cms_thread_id) Return the first Cms filtered by the cms_thread_id column
  * @method Cms findOneBySort(int $sort) Return the first Cms filtered by the sort column
@@ -80,8 +77,6 @@ use Hanzo\Model\CmsThread;
  * @method array findByIsActive(boolean $is_active) Return Cms objects filtered by the is_active column
  * @method array findByCreatedAt(string $created_at) Return Cms objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Cms objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCmsQuery extends ModelCriteria
 {
@@ -158,20 +153,6 @@ abstract class BaseCmsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Cms A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -183,7 +164,7 @@ abstract class BaseCmsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `parent_id`, `cms_thread_id`, `sort`, `type`, `is_active`, `created_at`, `updated_at` FROM `cms` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `PARENT_ID`, `CMS_THREAD_ID`, `SORT`, `TYPE`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `cms` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

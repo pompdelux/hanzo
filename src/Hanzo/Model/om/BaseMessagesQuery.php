@@ -18,10 +18,6 @@ use Hanzo\Model\MessagesPeer;
 use Hanzo\Model\MessagesQuery;
 
 /**
- * Base class that represents a query for the 'messages' table.
- *
- *
- *
  * @method MessagesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method MessagesQuery orderByNs($order = Criteria::ASC) Order by the ns column
  * @method MessagesQuery orderByKey($order = Criteria::ASC) Order by the key column
@@ -45,6 +41,7 @@ use Hanzo\Model\MessagesQuery;
  * @method Messages findOne(PropelPDO $con = null) Return the first Messages matching the query
  * @method Messages findOneOrCreate(PropelPDO $con = null) Return the first Messages matching the query, or a new Messages object populated from the query conditions when no match is found
  *
+ * @method Messages findOneById(int $id) Return the first Messages filtered by the id column
  * @method Messages findOneByNs(string $ns) Return the first Messages filtered by the ns column
  * @method Messages findOneByKey(string $key) Return the first Messages filtered by the key column
  * @method Messages findOneByCreatedAt(string $created_at) Return the first Messages filtered by the created_at column
@@ -55,8 +52,6 @@ use Hanzo\Model\MessagesQuery;
  * @method array findByKey(string $key) Return Messages objects filtered by the key column
  * @method array findByCreatedAt(string $created_at) Return Messages objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Messages objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseMessagesQuery extends ModelCriteria
 {
@@ -133,20 +128,6 @@ abstract class BaseMessagesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Messages A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -158,7 +139,7 @@ abstract class BaseMessagesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `ns`, `key`, `created_at`, `updated_at` FROM `messages` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `NS`, `KEY`, `CREATED_AT`, `UPDATED_AT` FROM `messages` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

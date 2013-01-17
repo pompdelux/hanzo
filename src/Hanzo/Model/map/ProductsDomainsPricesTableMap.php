@@ -42,13 +42,13 @@ class ProductsDomainsPricesTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('products_id', 'ProductsId', 'INTEGER' , 'products', 'id', true, null, null);
-        $this->addForeignPrimaryKey('domains_id', 'DomainsId', 'INTEGER' , 'domains', 'id', true, null, null);
-        $this->addColumn('price', 'Price', 'DECIMAL', true, 15, null);
-        $this->addColumn('vat', 'Vat', 'DECIMAL', true, 15, null);
-        $this->addColumn('currency_id', 'CurrencyId', 'INTEGER', true, null, null);
-        $this->addPrimaryKey('from_date', 'FromDate', 'TIMESTAMP', true, null, null);
-        $this->addColumn('to_date', 'ToDate', 'TIMESTAMP', false, null, null);
+        $this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
+        $this->addForeignPrimaryKey('DOMAINS_ID', 'DomainsId', 'INTEGER' , 'domains', 'ID', true, null, null);
+        $this->addColumn('PRICE', 'Price', 'DECIMAL', true, 15, null);
+        $this->addColumn('VAT', 'Vat', 'DECIMAL', true, 15, null);
+        $this->addColumn('CURRENCY_ID', 'CurrencyId', 'INTEGER', true, null, null);
+        $this->addPrimaryKey('FROM_DATE', 'FromDate', 'TIMESTAMP', true, null, null);
+        $this->addColumn('TO_DATE', 'ToDate', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 

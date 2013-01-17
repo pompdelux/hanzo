@@ -18,10 +18,6 @@ use Hanzo\Model\CmsThreadI18nPeer;
 use Hanzo\Model\CmsThreadI18nQuery;
 
 /**
- * Base class that represents a query for the 'cms_thread_i18n' table.
- *
- *
- *
  * @method CmsThreadI18nQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CmsThreadI18nQuery orderByLocale($order = Criteria::ASC) Order by the locale column
  * @method CmsThreadI18nQuery orderByTitle($order = Criteria::ASC) Order by the title column
@@ -48,8 +44,6 @@ use Hanzo\Model\CmsThreadI18nQuery;
  * @method array findById(int $id) Return CmsThreadI18n objects filtered by the id column
  * @method array findByLocale(string $locale) Return CmsThreadI18n objects filtered by the locale column
  * @method array findByTitle(string $title) Return CmsThreadI18n objects filtered by the title column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCmsThreadI18nQuery extends ModelCriteria
 {
@@ -138,7 +132,7 @@ abstract class BaseCmsThreadI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `locale`, `title` FROM `cms_thread_i18n` WHERE `id` = :p0 AND `locale` = :p1';
+        $sql = 'SELECT `ID`, `LOCALE`, `TITLE` FROM `cms_thread_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

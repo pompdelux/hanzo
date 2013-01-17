@@ -20,10 +20,6 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\ZipToCity;
 
 /**
- * Base class that represents a query for the 'countries' table.
- *
- *
- *
  * @method CountriesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CountriesQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method CountriesQuery orderByLocalName($order = Criteria::ASC) Order by the local_name column
@@ -73,6 +69,7 @@ use Hanzo\Model\ZipToCity;
  * @method Countries findOne(PropelPDO $con = null) Return the first Countries matching the query
  * @method Countries findOneOrCreate(PropelPDO $con = null) Return the first Countries matching the query, or a new Countries object populated from the query conditions when no match is found
  *
+ * @method Countries findOneById(int $id) Return the first Countries filtered by the id column
  * @method Countries findOneByName(string $name) Return the first Countries filtered by the name column
  * @method Countries findOneByLocalName(string $local_name) Return the first Countries filtered by the local_name column
  * @method Countries findOneByCode(int $code) Return the first Countries filtered by the code column
@@ -97,8 +94,6 @@ use Hanzo\Model\ZipToCity;
  * @method array findByCurrencyName(string $currency_name) Return Countries objects filtered by the currency_name column
  * @method array findByVat(string $vat) Return Countries objects filtered by the vat column
  * @method array findByCallingCode(int $calling_code) Return Countries objects filtered by the calling_code column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCountriesQuery extends ModelCriteria
 {
@@ -175,20 +170,6 @@ abstract class BaseCountriesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Countries A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -200,7 +181,7 @@ abstract class BaseCountriesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `local_name`, `code`, `iso2`, `iso3`, `continent`, `currency_id`, `currency_code`, `currency_name`, `vat`, `calling_code` FROM `countries` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `NAME`, `LOCAL_NAME`, `CODE`, `ISO2`, `ISO3`, `CONTINENT`, `CURRENCY_ID`, `CURRENCY_CODE`, `CURRENCY_NAME`, `VAT`, `CALLING_CODE` FROM `countries` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

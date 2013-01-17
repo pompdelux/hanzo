@@ -18,10 +18,6 @@ use Hanzo\Model\ZipToCityPeer;
 use Hanzo\Model\ZipToCityQuery;
 
 /**
- * Base class that represents a query for the 'zip_to_city' table.
- *
- *
- *
  * @method ZipToCityQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ZipToCityQuery orderByZip($order = Criteria::ASC) Order by the zip column
  * @method ZipToCityQuery orderByCountriesIso2($order = Criteria::ASC) Order by the countries_iso2 column
@@ -49,6 +45,7 @@ use Hanzo\Model\ZipToCityQuery;
  * @method ZipToCity findOne(PropelPDO $con = null) Return the first ZipToCity matching the query
  * @method ZipToCity findOneOrCreate(PropelPDO $con = null) Return the first ZipToCity matching the query, or a new ZipToCity object populated from the query conditions when no match is found
  *
+ * @method ZipToCity findOneById(int $id) Return the first ZipToCity filtered by the id column
  * @method ZipToCity findOneByZip(string $zip) Return the first ZipToCity filtered by the zip column
  * @method ZipToCity findOneByCountriesIso2(string $countries_iso2) Return the first ZipToCity filtered by the countries_iso2 column
  * @method ZipToCity findOneByCity(string $city) Return the first ZipToCity filtered by the city column
@@ -63,8 +60,6 @@ use Hanzo\Model\ZipToCityQuery;
  * @method array findByCountyId(string $county_id) Return ZipToCity objects filtered by the county_id column
  * @method array findByCountyName(string $county_name) Return ZipToCity objects filtered by the county_name column
  * @method array findByComment(string $comment) Return ZipToCity objects filtered by the comment column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseZipToCityQuery extends ModelCriteria
 {
@@ -141,20 +136,6 @@ abstract class BaseZipToCityQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   ZipToCity A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -166,7 +147,7 @@ abstract class BaseZipToCityQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `zip`, `countries_iso2`, `city`, `county_id`, `county_name`, `comment` FROM `zip_to_city` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `ZIP`, `COUNTRIES_ISO2`, `CITY`, `COUNTY_ID`, `COUNTY_NAME`, `COMMENT` FROM `zip_to_city` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

@@ -19,13 +19,6 @@ use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\ProductsToCategoriesQuery;
 
-/**
- * Base class that represents a row from the 'products_to_categories' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsToCategories extends BaseObject implements Persistent
 {
     /**
@@ -194,7 +187,7 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 2; // 2 = ProductsToCategoriesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -431,10 +424,10 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsToCategoriesPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`products_id`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
         }
         if ($this->isColumnModified(ProductsToCategoriesPeer::CATEGORIES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`categories_id`';
+            $modifiedColumns[':p' . $index++]  = '`CATEGORIES_ID`';
         }
 
         $sql = sprintf(
@@ -447,10 +440,10 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`products_id`':
+                    case '`PRODUCTS_ID`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`categories_id`':
+                    case '`CATEGORIES_ID`':
                         $stmt->bindValue($identifier, $this->categories_id, PDO::PARAM_INT);
                         break;
                 }
@@ -514,11 +507,11 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -883,13 +876,12 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
+        if ($this->aProducts === null && ($this->products_id !== null)) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -935,13 +927,12 @@ abstract class BaseProductsToCategories extends BaseObject implements Persistent
      * Get the associated Categories object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Categories The associated Categories object.
      * @throws PropelException
      */
-    public function getCategories(PropelPDO $con = null, $doQuery = true)
+    public function getCategories(PropelPDO $con = null)
     {
-        if ($this->aCategories === null && ($this->categories_id !== null) && $doQuery) {
+        if ($this->aCategories === null && ($this->categories_id !== null)) {
             $this->aCategories = CategoriesQuery::create()->findPk($this->categories_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

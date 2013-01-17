@@ -15,13 +15,6 @@ use Hanzo\Model\Redirects;
 use Hanzo\Model\RedirectsPeer;
 use Hanzo\Model\RedirectsQuery;
 
-/**
- * Base class that represents a row from the 'redirects' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseRedirects extends BaseObject implements Persistent
 {
     /**
@@ -248,7 +241,7 @@ abstract class BaseRedirects extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = RedirectsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -462,16 +455,16 @@ abstract class BaseRedirects extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(RedirectsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(RedirectsPeer::SOURCE)) {
-            $modifiedColumns[':p' . $index++]  = '`source`';
+            $modifiedColumns[':p' . $index++]  = '`SOURCE`';
         }
         if ($this->isColumnModified(RedirectsPeer::TARGET)) {
-            $modifiedColumns[':p' . $index++]  = '`target`';
+            $modifiedColumns[':p' . $index++]  = '`TARGET`';
         }
         if ($this->isColumnModified(RedirectsPeer::DOMAIN_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`domain_key`';
+            $modifiedColumns[':p' . $index++]  = '`DOMAIN_KEY`';
         }
 
         $sql = sprintf(
@@ -484,16 +477,16 @@ abstract class BaseRedirects extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`source`':
+                    case '`SOURCE`':
                         $stmt->bindValue($identifier, $this->source, PDO::PARAM_STR);
                         break;
-                    case '`target`':
+                    case '`TARGET`':
                         $stmt->bindValue($identifier, $this->target, PDO::PARAM_STR);
                         break;
-                    case '`domain_key`':
+                    case '`DOMAIN_KEY`':
                         $stmt->bindValue($identifier, $this->domain_key, PDO::PARAM_STR);
                         break;
                 }
@@ -564,11 +557,11 @@ abstract class BaseRedirects extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**

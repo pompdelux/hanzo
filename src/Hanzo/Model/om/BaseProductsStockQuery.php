@@ -18,10 +18,6 @@ use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsStockQuery;
 
 /**
- * Base class that represents a query for the 'products_stock' table.
- *
- *
- *
  * @method ProductsStockQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ProductsStockQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  * @method ProductsStockQuery orderByQuantity($order = Criteria::ASC) Order by the quantity column
@@ -43,6 +39,7 @@ use Hanzo\Model\ProductsStockQuery;
  * @method ProductsStock findOne(PropelPDO $con = null) Return the first ProductsStock matching the query
  * @method ProductsStock findOneOrCreate(PropelPDO $con = null) Return the first ProductsStock matching the query, or a new ProductsStock object populated from the query conditions when no match is found
  *
+ * @method ProductsStock findOneById(int $id) Return the first ProductsStock filtered by the id column
  * @method ProductsStock findOneByProductsId(int $products_id) Return the first ProductsStock filtered by the products_id column
  * @method ProductsStock findOneByQuantity(int $quantity) Return the first ProductsStock filtered by the quantity column
  * @method ProductsStock findOneByAvailableFrom(string $available_from) Return the first ProductsStock filtered by the available_from column
@@ -51,8 +48,6 @@ use Hanzo\Model\ProductsStockQuery;
  * @method array findByProductsId(int $products_id) Return ProductsStock objects filtered by the products_id column
  * @method array findByQuantity(int $quantity) Return ProductsStock objects filtered by the quantity column
  * @method array findByAvailableFrom(string $available_from) Return ProductsStock objects filtered by the available_from column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsStockQuery extends ModelCriteria
 {
@@ -129,20 +124,6 @@ abstract class BaseProductsStockQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   ProductsStock A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -154,7 +135,7 @@ abstract class BaseProductsStockQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `products_id`, `quantity`, `available_from` FROM `products_stock` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `PRODUCTS_ID`, `QUANTITY`, `AVAILABLE_FROM` FROM `products_stock` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

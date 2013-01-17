@@ -42,12 +42,12 @@ class SettingsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addPrimaryKey('c_key', 'CKey', 'VARCHAR', true, 64, null);
-        $this->addPrimaryKey('ns', 'Ns', 'VARCHAR', true, 64, null);
-        $this->addColumn('title', 'Title', 'VARCHAR', true, 128, null);
-        $this->addColumn('c_value', 'CValue', 'LONGVARCHAR', true, null, null);
-        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+        $this->addPrimaryKey('C_KEY', 'CKey', 'VARCHAR', true, 64, null);
+        $this->addPrimaryKey('NS', 'Ns', 'VARCHAR', true, 64, null);
+        $this->addColumn('TITLE', 'Title', 'VARCHAR', true, 128, null);
+        $this->addColumn('C_VALUE', 'CValue', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -67,11 +67,7 @@ class SettingsTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'timestampable' =>  array (
-  'create_column' => 'created_at',
-  'update_column' => 'updated_at',
-  'disable_updated_at' => 'false',
-),
+            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
         );
     } // getBehaviors()
 

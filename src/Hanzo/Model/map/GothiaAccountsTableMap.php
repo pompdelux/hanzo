@@ -42,10 +42,10 @@ class GothiaAccountsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('customers_id', 'CustomersId', 'INTEGER' , 'customers', 'id', true, null, null);
-        $this->addColumn('distribution_by', 'DistributionBy', 'VARCHAR', false, 255, null);
-        $this->addColumn('distribution_type', 'DistributionType', 'VARCHAR', false, 255, null);
-        $this->addColumn('social_security_num', 'SocialSecurityNum', 'VARCHAR', true, 12, null);
+        $this->addForeignPrimaryKey('CUSTOMERS_ID', 'CustomersId', 'INTEGER' , 'customers', 'ID', true, null, null);
+        $this->addColumn('DISTRIBUTION_BY', 'DistributionBy', 'VARCHAR', false, 255, null);
+        $this->addColumn('DISTRIBUTION_TYPE', 'DistributionType', 'VARCHAR', false, 255, null);
+        $this->addColumn('SOCIAL_SECURITY_NUM', 'SocialSecurityNum', 'VARCHAR', true, 12, null);
         // validators
     } // initialize()
 

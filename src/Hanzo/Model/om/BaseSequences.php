@@ -15,13 +15,6 @@ use Hanzo\Model\Sequences;
 use Hanzo\Model\SequencesPeer;
 use Hanzo\Model\SequencesQuery;
 
-/**
- * Base class that represents a row from the 'sequences' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseSequences extends BaseObject implements Persistent
 {
     /**
@@ -172,7 +165,7 @@ abstract class BaseSequences extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 2; // 2 = SequencesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -382,10 +375,10 @@ abstract class BaseSequences extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(SequencesPeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`name`';
+            $modifiedColumns[':p' . $index++]  = '`NAME`';
         }
         if ($this->isColumnModified(SequencesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
 
         $sql = sprintf(
@@ -398,10 +391,10 @@ abstract class BaseSequences extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`name`':
+                    case '`NAME`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
                 }
@@ -465,11 +458,11 @@ abstract class BaseSequences extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**

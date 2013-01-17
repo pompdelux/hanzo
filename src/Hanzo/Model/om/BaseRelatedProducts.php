@@ -17,13 +17,6 @@ use Hanzo\Model\RelatedProducts;
 use Hanzo\Model\RelatedProductsPeer;
 use Hanzo\Model\RelatedProductsQuery;
 
-/**
- * Base class that represents a row from the 'related_products' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseRelatedProducts extends BaseObject implements Persistent
 {
     /**
@@ -192,7 +185,7 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 2; // 2 = RelatedProductsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -429,10 +422,10 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(RelatedProductsPeer::MASTER)) {
-            $modifiedColumns[':p' . $index++]  = '`master`';
+            $modifiedColumns[':p' . $index++]  = '`MASTER`';
         }
         if ($this->isColumnModified(RelatedProductsPeer::SKU)) {
-            $modifiedColumns[':p' . $index++]  = '`sku`';
+            $modifiedColumns[':p' . $index++]  = '`SKU`';
         }
 
         $sql = sprintf(
@@ -445,10 +438,10 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`master`':
+                    case '`MASTER`':
                         $stmt->bindValue($identifier, $this->master, PDO::PARAM_STR);
                         break;
-                    case '`sku`':
+                    case '`SKU`':
                         $stmt->bindValue($identifier, $this->sku, PDO::PARAM_STR);
                         break;
                 }
@@ -512,11 +505,11 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -881,13 +874,12 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProductsRelatedByMaster(PropelPDO $con = null, $doQuery = true)
+    public function getProductsRelatedByMaster(PropelPDO $con = null)
     {
-        if ($this->aProductsRelatedByMaster === null && (($this->master !== "" && $this->master !== null)) && $doQuery) {
+        if ($this->aProductsRelatedByMaster === null && (($this->master !== "" && $this->master !== null))) {
             $this->aProductsRelatedByMaster = ProductsQuery::create()
                 ->filterByRelatedProductsRelatedByMaster($this) // here
                 ->findOne($con);
@@ -935,13 +927,12 @@ abstract class BaseRelatedProducts extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProductsRelatedBySku(PropelPDO $con = null, $doQuery = true)
+    public function getProductsRelatedBySku(PropelPDO $con = null)
     {
-        if ($this->aProductsRelatedBySku === null && (($this->sku !== "" && $this->sku !== null)) && $doQuery) {
+        if ($this->aProductsRelatedBySku === null && (($this->sku !== "" && $this->sku !== null))) {
             $this->aProductsRelatedBySku = ProductsQuery::create()
                 ->filterByRelatedProductsRelatedBySku($this) // here
                 ->findOne($con);
