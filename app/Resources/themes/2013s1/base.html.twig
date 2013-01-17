@@ -85,61 +85,62 @@
         </div>
       </li>
       <li class="last">
-        <form action="{{ path('_search', {'category_id': null}) }}" class="search-form">
+        <form action="{{ baseurl }}/{{ app.session.locale }}" class="search-form">
           <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
           <input type="text" name="q">
         </form>
       </li>
     </ul>
-    <ul class="horizontal menu right basket">
-      <li id="mini-basket">
+    <ul class="horizontal menu right">
+      <li id="mini-basket" class="basket">
         <span class="sprite"></span>
         <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
       <li class="last"><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </nav>
+  <footer class="container container_8">
+    <div class="grid_8">
+      <hr class="right">
+    </div>
+
+    <div class="grid_1-5 footer-menu footer-menu-1">
+      {{ "footer.menu_1"|trans|raw }}
+    </div>
+
+    <div class="grid_1-5 footer-menu footer-menu-2">
+      {{ "footer.menu_2"|trans|raw }}
+    </div>
+
+    <div class="grid_1-5 footer-menu footer-menu-3">
+      {{ "footer.menu_3"|trans|raw }}
+    </div>
+
+    <div class="grid_2-5 footer-menu footer-menu-4">
+      <div class="sprite"></div>
+      <div class="container">
+        <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
+        <form action="{{ path('_newsletter_subscribe') }}" method="post">
+          <div>
+            <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
+            <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
+          </div>
+          <div class="clearfix">
+            <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="grid_8">
+      <hr class="left">
+    </div>
+    <div class="copy grid_8">
+      {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
+    </div>
+  </footer>
 </div>
 
-<footer class="container container_8">
-  <div class="grid_8">
-    <hr class="right">
-  </div>
-
-  <div class="grid_1-5 footer-menu footer-menu-1">
-    {{ "footer.menu_1"|trans|raw }}
-  </div>
-
-  <div class="grid_1-5 footer-menu footer-menu-2">
-    {{ "footer.menu_2"|trans|raw }}
-  </div>
-
-  <div class="grid_1-5 footer-menu footer-menu-3">
-    {{ "footer.menu_3"|trans|raw }}
-  </div>
-
-  <div class="grid_2-5 footer-menu footer-menu-4">
-    <div class="sprite"></div>
-    <div class="container">
-      <h2>{{ 'block.subscribe.newsletter_heading'|trans({}, 'newsletter') }}</h2>
-      <form action="{{ path('_newsletter_subscribe') }}" method="post">
-          <input type="text" name="name" value="" title="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.name_label'|trans({}, 'newsletter') }}">
-          <input type="email" class="newsletter-subscriber-email" name="email" value="" title="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}" placeholder="{{ 'block.subscribe.email_label'|trans({}, 'newsletter') }}">
-        </div>
-        <div class="clearfix">
-          <input type="submit" class="button text-button" value="{{ 'block.subscribe.submit_button'|trans({}, 'newsletter') }}">
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="grid_8">
-    <hr class="left">
-  </div>
-  <div class="copy grid_8">
-    {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
-  </div>
-</footer>
 
 <script type="text/javascript">
   var cookie_params = {
