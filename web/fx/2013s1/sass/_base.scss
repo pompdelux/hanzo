@@ -125,7 +125,13 @@ a.button {
 	border: none;
 	cursor: pointer;
 	display: inline-block;
-	font-family: $font-serif;
+	background: #474749;
+	font-family: $font-sans;
+	text-align: center;
+	padding: 6px;
+	font-weight: bold;
+	color: white;
+	line-height: 18px;
 
 	&:hover{
 		text-decoration: none;
@@ -136,19 +142,9 @@ a.button {
 		background: transparent;
 		color: $font-color;
 		font-size: $font-size;
+		font-family: $font-serif;
+		font-weight: $font-weight-thin;
 		text-transform: uppercase;
-	}
-
-	&.button-black,
-	&.button-right,
-	&.button-left {
-		background: #474749;
-		font-family: $font-sans;
-		text-align: center;
-		padding: 6px;
-		font-weight: bold;
-		color: white;
-		line-height: 18px;
 	}
 	&.button-right {
 		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
@@ -166,9 +162,9 @@ a.button {
 		padding: 3px;
 		line-height: $small-line-height;
 		font-weight: $small-weight;
-	}
-	&.off{
-		display: none;
+		&:hover{
+			text-decoration: none;
+		}
 	}
 }
 

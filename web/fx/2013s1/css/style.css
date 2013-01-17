@@ -1161,7 +1161,13 @@ a.button {
   border: none;
   cursor: pointer;
   display: inline-block;
-  font-family: "Merriweather", serif;
+  background: #474749;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 6px;
+  font-weight: bold;
+  color: white;
+  line-height: 18px;
 }
 input.button:hover,
 button.button:hover,
@@ -1175,22 +1181,9 @@ a.button.text-button {
   background: transparent;
   color: #444444;
   font-size: 14px;
+  font-family: "Merriweather", serif;
+  font-weight: 400;
   text-transform: uppercase;
-}
-input.button.button-black, input.button.button-right, input.button.button-left,
-button.button.button-black,
-button.button.button-right,
-button.button.button-left,
-a.button.button-black,
-a.button.button-right,
-a.button.button-left {
-  background: #474749;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  padding: 6px;
-  font-weight: bold;
-  color: white;
-  line-height: 18px;
 }
 input.button.button-right,
 button.button.button-right,
@@ -1215,10 +1208,10 @@ a.button.button-small {
   line-height: inherit;
   font-weight: normal;
 }
-input.button.off,
-button.button.off,
-a.button.off {
-  display: none;
+input.button.button-small:hover,
+button.button.button-small:hover,
+a.button.button-small:hover {
+  text-decoration: none;
 }
 
 table {
