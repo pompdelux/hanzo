@@ -1,0 +1,41 @@
+{% extends layout %}
+{% block content %}
+
+<h1>{{ 'checkout.headline'|trans({}, 'checkout') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+  <div class="message error">
+    {{ app.session.flash('notice') }}
+  </div>
+{% endif %}
+
+{% render 'ShippingBundle:Default:block' %}
+
+<h2>{{ 'addresses'|trans({}, 'checkout') }}</h2>
+<div class="checkout-block" id="address-block">
+  {% render 'ShippingBundle:Address:form' with {type: 'payment'} %}
+  {% render 'ShippingBundle:Address:form' with {type: 'CURRENT-SHIPPING-ADDRESS'} %}
+
+  <div class="confirm msg hidden">
+    <h3>{{ 'confirm.title'|trans({}, 'checkout') }}</h3>
+    <input type="checkbox" name="addresses_confirmed" id="addresses-confirmed" value="1">
+    <label for="addresses-confirmed">{{ 'confirm.addresses.label'|trans({}, 'checkout') }}</label>
+  </div>
+</div>
+
+{% render 'PaymentBundle:Default:block' %}
+{% render 'DiscountBundle:Coupon:block' %}
+
+<h2>{{ 'confirm.title'|trans({}, 'checkout') }}</h2>
+<div id="checkout-block-summery" class="checkout-block" style="display: block; ">
+  {% render 'CheckoutBundle:Default:summery' %}
+</div>
+
+<div id="checkout-buttons">
+  <a class="button button-left" href="{{ path('basket_view') }}">{{ 'button.back'|trans({}, 'checkout') }}</a>
+  <a class="button button-right" id="checkout-execute" href="#">{{ 'button.process'|trans({}, 'checkout') }}</a>
+</div>
+
+
+{% endblock %}
+

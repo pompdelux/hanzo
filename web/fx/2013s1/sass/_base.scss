@@ -215,7 +215,24 @@ a.right{float: right;}
 .small{font-size: 9px;}
 .strike {text-decoration:line-through;}
 .upper {text-transform: uppercase;}
-
+.hidden { display: none; visibility: hidden; }
+.off {display: none;}
+.msg, .message {
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #231f20;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  &.error {
+  	border: 2px solid #f10000;
+  }
+}
+.box{
+	padding: 6px;
+	display: inline-block;
+	@include box;
+}
 ul{
 	list-style-position: inside;
 	&.list {

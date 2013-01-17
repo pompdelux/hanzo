@@ -1,0 +1,80 @@
+.checkout-block {
+	margin: 20px 0;
+	ul {
+		list-style: none;
+	}
+	label{
+		width: auto;
+	}
+}
+
+#body-checkout #main {
+	form {
+		margin-bottom: 10px;
+		> h3 {
+			margin-top: 20px;
+		}
+	}
+	h2 {
+		padding: 5px;
+		margin-top: 20px;
+		@include box;
+	}
+}
+
+form.address {
+	float: left;
+	overflow: hidden;
+	margin-right: 40px;
+	label {
+		display: block;
+		width: 110px;
+		float: left;
+	}
+}
+
+#body-checkout {
+	#main form.address > h3 {
+		margin-top: 0;
+		margin-bottom: 5px;
+	}
+	#container div > div {
+		overflow: hidden;
+		padding: 3px;
+	}
+}
+
+#address-block .confirm {
+	margin-top: 20px;
+	padding: 20px;
+	border: 2px solid #f00;
+	clear: both;
+}
+
+#body-checkout div {
+	&.msg.error {
+		padding: 20px;
+	}
+	&.dialoug.alert.notice h2 {
+		background: url(/fx/images/loader-bar.gif) no-repeat 5px center;
+		padding-left: 26px;
+		background-color: #CCC;
+		padding-top: 9px;
+		border: 1px solid #7B7577;
+	}
+}
+
+#coupon-block {
+	form {
+		overflow: hidden;
+		padding: 20px;
+		margin: 10px;
+		border: 1px solid #7B7577;
+		div.clearfix {
+			float: left;
+		}
+	}
+	#form_code {
+		margin: 0 10px;
+	}
+}

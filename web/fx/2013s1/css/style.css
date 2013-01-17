@@ -592,6 +592,84 @@ form.create label.required:after {
   content: ": *";
 }
 
+.checkout-block {
+  margin: 20px 0;
+}
+.checkout-block ul {
+  list-style: none;
+}
+.checkout-block label {
+  width: auto;
+}
+
+#body-checkout #main form {
+  margin-bottom: 10px;
+}
+#body-checkout #main form > h3 {
+  margin-top: 20px;
+}
+#body-checkout #main h2 {
+  padding: 5px;
+  margin-top: 20px;
+  background-color: whiteSmoke;
+  -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
+  -moz-box-shadow: #c9c9c9 -1px 1px 2px;
+  box-shadow: #c9c9c9 -1px 1px 2px;
+  border-right: #f0f0f0 1px solid;
+  border-top: #f0f0f0 1px solid;
+}
+
+form.address {
+  float: left;
+  overflow: hidden;
+  margin-right: 40px;
+}
+form.address label {
+  display: block;
+  width: 110px;
+  float: left;
+}
+
+#body-checkout #main form.address > h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+#body-checkout #container div > div {
+  overflow: hidden;
+  padding: 3px;
+}
+
+#address-block .confirm {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid red;
+  clear: both;
+}
+
+#body-checkout div.msg.error {
+  padding: 20px;
+}
+#body-checkout div.dialoug.alert.notice h2 {
+  background: url(/fx/images/loader-bar.gif) no-repeat 5px center;
+  padding-left: 26px;
+  background-color: #CCC;
+  padding-top: 9px;
+  border: 1px solid #7b7577;
+}
+
+#coupon-block form {
+  overflow: hidden;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #7b7577;
+}
+#coupon-block form div.clearfix {
+  float: left;
+}
+#coupon-block #form_code {
+  margin: 0 10px;
+}
+
 /**
 | _basket
 */
@@ -770,13 +848,40 @@ nav.main-menu > ul > li > ul.on {
   top: 77px;
   right: 0;
   padding: 6px;
-  background-color: whiteSmoke;
   text-align: center;
+  background-color: whiteSmoke;
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
   border-right: #f0f0f0 1px solid;
   border-top: #f0f0f0 1px solid;
+}
+
+#cboxContent .dialoug .buttons {
+  padding: 0 10px;
+}
+
+#dialoug-message {
+  border: 2px solid #d3c2a2;
+  color: #231f20;
+  margin: 10px 0;
+  display: none;
+}
+#dialoug-message.error {
+  border-color: #f00;
+}
+#dialoug-message p {
+  background-color: #fff;
+  padding: 10px;
+  margin: 0;
+}
+
+.dialoug-loading {
+  display: inline-block;
+  height: 16px;
+  background: url(/fx/images/loader-bar.gif) no-repeat left center;
+  padding-left: 20px;
+  margin-left: 5px;
 }
 
 /**
@@ -1179,6 +1284,38 @@ a.right {
 
 .upper {
   text-transform: uppercase;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.off {
+  display: none;
+}
+
+.msg, .message {
+  border: 2px solid black;
+  background-color: #fff;
+  color: #231f20;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.msg.error, .message.error {
+  border: 2px solid #f10000;
+}
+
+.box {
+  padding: 6px;
+  display: inline-block;
+  background-color: whiteSmoke;
+  -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
+  -moz-box-shadow: #c9c9c9 -1px 1px 2px;
+  box-shadow: #c9c9c9 -1px 1px 2px;
+  border-right: #f0f0f0 1px solid;
+  border-top: #f0f0f0 1px solid;
 }
 
 ul {
