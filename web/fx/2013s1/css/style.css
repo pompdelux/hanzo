@@ -593,6 +593,8 @@ form.create label.required:after {
 }
 
 .checkout-block {
+  overflow: hidden;
+  padding: 3px;
   margin: 20px 0;
 }
 .checkout-block ul {
@@ -625,18 +627,15 @@ form.address {
   margin-right: 40px;
 }
 form.address label {
-  display: block;
+  display: inline-block;
   width: 110px;
-  float: left;
+  vertical-align: top;
+  margin-top: 0 0 12px;
 }
 
 #body-checkout #main form.address > h3 {
   margin-top: 0;
   margin-bottom: 5px;
-}
-#body-checkout #container div > div {
-  overflow: hidden;
-  padding: 3px;
 }
 
 #address-block .confirm {
@@ -1317,6 +1316,7 @@ a.right {
   padding: 0.5em;
   font-weight: bold;
   margin-bottom: 1em;
+  clear: both;
 }
 .msg.error, .message.error {
   border: 2px solid #f10000;

@@ -1,4 +1,6 @@
 .checkout-block {
+	overflow: hidden;
+	padding: 3px;
 	margin: 20px 0;
 	ul {
 		list-style: none;
@@ -28,9 +30,10 @@ form.address {
 	overflow: hidden;
 	margin-right: 40px;
 	label {
-		display: block;
+		display: inline-block;
 		width: 110px;
-		float: left;
+		vertical-align: top;
+		margin-top: 0 0 12px;
 	}
 }
 
@@ -38,10 +41,6 @@ form.address {
 	#main form.address > h3 {
 		margin-top: 0;
 		margin-bottom: 5px;
-	}
-	#container div > div {
-		overflow: hidden;
-		padding: 3px;
 	}
 }
 

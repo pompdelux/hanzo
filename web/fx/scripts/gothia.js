@@ -56,6 +56,7 @@ var gothia = (function($) {
             $("#gothia-payment-step-1").slideUp();
             $("#gothia-payment-step-2").slideDown();
             confirmInit();
+            //$("#gothia-payment-step-2 form").submit(); TODO: Dette burde gøre så vi slap for et step!
           }
           else
           {
