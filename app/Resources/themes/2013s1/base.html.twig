@@ -85,9 +85,9 @@
         </div>
       </li>
       <li class="last">
-        <form action="#" class="search-form">
+        <form action="{{ path('_search', {'category_id': null}) }}" class="search-form">
           <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
-          <input type="text" name="search">
+          <input type="text" name="q">
         </form>
       </li>
     </ul>

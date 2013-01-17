@@ -303,7 +303,7 @@ footer .footer-menu.footer-menu-4 .sprite {
 }
 footer .footer-menu.footer-menu-4 input[type="email"],
 footer .footer-menu.footer-menu-4 input[type="text"] {
-  width: 188px;
+  width: 252px;
   display: block;
 }
 footer .footer-menu.footer-menu-4 #dialoug-message {
@@ -313,7 +313,7 @@ footer .footer-menu.footer-menu-4 #dialoug-message {
 }
 footer .footer-menu.footer-menu-4 form {
   font-family: Tahoma, Geneva, Verdana, sans-serif !important;
-  width: 200px;
+  width: 264px;
 }
 footer .copy {
   text-align: center;
@@ -1301,6 +1301,10 @@ a.right {
 
 .off {
   display: none;
+}
+
+.bottom-space {
+  margin-bottom: 40px;
 }
 
 .msg, .message {

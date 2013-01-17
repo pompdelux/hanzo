@@ -73,7 +73,7 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Fortsæt til checkout</target>
+                <target>Fortsæt</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
@@ -89,7 +89,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.text">
                 <source>my.account.login.text</source>
-                <target><![CDATA[<h2>Min side - Log in</h2><p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p>]]></target>
+                <target><![CDATA[<h3>Min side - Log in</h3><p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p>]]></target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>

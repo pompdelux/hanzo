@@ -293,8 +293,9 @@ class CmsController extends CoreController
             ->filterById($node->getParentId())
             ->findOne($this->getDbConnection())
         ;
-        $parent_path = $parent->getPath();
-        if(empty($parent_path) || $parent_path === '#'){
+        if($parent)
+            $parent_path = $parent->getPath();
+        if($parent && (empty($parent_path) || $parent_path === '#')){
 
             $parent = CmsQuery::create()
                 ->joinWithI18n($locale)
@@ -347,7 +348,7 @@ class CmsController extends CoreController
             'form'      => $form->createView(),
             'node'      => $node,
             'languages' => $languages_availible,
-            'path'      => $parent->getPath(),
+            'path'      => ($parent)?$parent->getPath():'',
             'database' => $this->getRequest()->getSession()->get('database')
         ));
 
