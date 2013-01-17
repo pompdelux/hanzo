@@ -22,18 +22,8 @@
 	</div>
 	<div class="grid_2 omega">
 		
-		<aside>
-			<h3>{{ 'my.account'|trans({}, 'account') }}</h3>
-			<ul>
-			  <li><a href="{{ path('_account_edit') }}">» {{ 'account.details'|trans({}, 'account') }}</a></li>
-			  <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
-			</ul>
-		</aside>
+		{% include 'AccountBundle:Default:aside.html.twig' %}
 
-		<aside id="account-block-newsletter-all">
-			<h3>{{ 'newsletter'|trans({}, 'account') }}</h3>
-			{% render 'NewsletterBundle:Default:allLists' %}
-		</aside>
 	</div>
 </div>
 

@@ -1174,6 +1174,7 @@ a.button {
   font-weight: bold;
   color: white;
   line-height: 18px;
+  white-space: normal;
 }
 input.button:hover,
 button.button:hover,
