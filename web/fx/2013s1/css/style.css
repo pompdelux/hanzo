@@ -748,6 +748,7 @@ form.address label {
 #cart-edit-element table.product-table .date span.not-in-stock,
 #cart-edit-element table.edit-element .date span.not-in-stock {
   color: #A10000;
+  display: block;
 }
 .basket .delivery-notice,
 #cart-edit-element .delivery-notice {
