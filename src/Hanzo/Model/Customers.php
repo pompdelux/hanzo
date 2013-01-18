@@ -165,5 +165,10 @@ class Customers extends BaseCustomers implements UserInterface
         return $this->getEmail();
     }
 
+    public function getUser()
+    {
+        return $this;
+    }
+
     public function eraseCredentials() {}
 } // Customers
