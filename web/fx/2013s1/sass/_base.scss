@@ -1,22 +1,21 @@
-// Base
+/**
+| _base
+*/
 @import "compass/reset";
 @import "compass/utilities";
 
 
 .sprite{display:inline-block;}
 .sprite-block{display:block;}
-/**
-|
-| Base styles
-|
-*/
+
 body{
 	color: $font-color;
 	font-family: $font-sans;
 	font-size: $font-size;
 }
 .container{
-	position: relative;}
+	position: relative;
+	overflow: hidden;}
 
 a{
 	color: $link-color;
@@ -45,7 +44,6 @@ h2{
 	font-weight: 100;
 	font-size: 16px;
 	padding: 6px 0;
-	letter-spacing: 2px;
 	text-transform: uppercase;
 }
 h3{
@@ -127,7 +125,14 @@ a.button {
 	border: none;
 	cursor: pointer;
 	display: inline-block;
-	font-family: $font-serif;
+	background: #474749;
+	font-family: $font-sans;
+	text-align: center;
+	padding: 6px;
+	font-weight: bold;
+	color: white;
+	line-height: 18px;
+	white-space: normal;
 
 	&:hover{
 		text-decoration: none;
@@ -138,19 +143,9 @@ a.button {
 		background: transparent;
 		color: $font-color;
 		font-size: $font-size;
+		font-family: $font-serif;
+		font-weight: $font-weight-thin;
 		text-transform: uppercase;
-	}
-
-	&.button-black,
-	&.button-right,
-	&.button-left {
-		background: #474749;
-		font-family: $font-sans;
-		text-align: center;
-		padding: 6px;
-		font-weight: bold;
-		color: white;
-		line-height: 18px;
 	}
 	&.button-right {
 		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
@@ -163,8 +158,14 @@ a.button {
 		border-left: 6px solid #474749;
 		padding: 6px 24px;
 	}
-	&.off{
-		display: none;
+	&.button-small {
+		font-size: $small-size;
+		padding: 3px;
+		line-height: $small-line-height;
+		font-weight: $small-weight;
+		&:hover{
+			text-decoration: none;
+		}
 	}
 }
 
@@ -193,11 +194,7 @@ table{
 }
 
 
-/**
-|
-| Helpers
-|
-*/
+// Helpers
 .align-left,
 .left{text-align:left;}
 a.left{float: left;}
@@ -206,7 +203,7 @@ a.left{float: left;}
 .centerfy{margin: 0 auto;}
 .align-right,
 .right{text-align:right;}
-a.left{float: right;}
+a.right{float: right;}
 .vert-align-top{vertical-align:top;}
 .vert-align-middle{vertical-align:middle;}
 .vert-align-bottom{vertical-align:baseline;}
@@ -215,7 +212,26 @@ a.left{float: right;}
 .small{font-size: 9px;}
 .strike {text-decoration:line-through;}
 .upper {text-transform: uppercase;}
-
+.hidden { display: none; visibility: hidden; }
+.off {display: none;}
+.bottom-space{margin-bottom: 40px;}
+.msg, .message {
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #231f20;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  clear: both;
+  &.error {
+  	border: 2px solid #f10000;
+  }
+}
+.box{
+	padding: 6px;
+	display: inline-block;
+	@include box;
+}
 ul{
 	list-style-position: inside;
 	&.list {
@@ -229,31 +245,7 @@ ol{
 	}
 }
 
-/**
-|
-| dialoug notices
-|
-*/
-
-.inject-notice-box{
-	padding: 3px;
-	.inner{
-		border: 1px solid #000;
-		padding: 6px;
-		color: $font-color;
-	}
-	&.error{
-		.inner{
-			border-color: red;
-		}
-	}
-}
-
-/**
-|
-| Slideshow Cycle2 styles
-|
-*/
+// Slideshow Cycle2 styles
 .cycle-slideshow {
 	.cycle-pager{
 		display: inline-block;
@@ -278,26 +270,56 @@ ol{
 		}
 	}
 }
-/**
-|
-| Custom 960gs grids
-|
-| TODO: Make it as a new grid with container_5{blablabla}
-*/
+// Custom 960gs grids
+// TODO: Make it as a new grid with container_5{blablabla}
 
-.container_8 .grid_1-5 { // One fifth of 960
-	width: 186px;
+// =Grid >> 5 Columns
+.container_8 .grid_1-5 {width: 186px;} // One Fifth
+.container_8 .grid_2-5 {width: 378px;} // Two Fifth
+.container_8 .grid_3-5 {width: 570px;} // Three Fifth
+.container_8 .grid_4-5 {width: 762px;} // Four Fifth
+
+// =Prefix Extra Space >> 5 Columns
+.container_8 .prefix_1-5 {padding-left: 192px;}
+.container_8 .prefix_2-5 {padding-left: 384px;}
+.container_8 .prefix_3-5 {padding-left: 576px;}
+.container_8 .prefix_4-5 {padding-left: 768px;}
+
+// =Suffix Extra Space >> 5 Columns
+.container_8 .suffix_1-5 {padding-right: 192px;}
+.container_8 .suffix_2-5 {padding-right: 384px;}
+.container_8 .suffix_3-5 {padding-right: 576px;}
+.container_8 .suffix_4-5 {padding-right: 768px;}
+
+// `Push Space >> 5 Columns
+.container_8 .push_1-5 {left: 192px;}
+.container_8 .push_2-5 {left: 384px;}
+.container_8 .push_3-5 {left: 576px;}
+.container_8 .push_4-5 {left: 768px;}
+
+// `Pull Space >> 5 Columns
+.container_8 .pull_1-5 {left: -192px;}
+.container_8 .pull_2-5 {left: -384px;}
+.container_8 .pull_3-5 {left: -576px;}
+.container_8 .pull_4-5 {left: -768px;}
+
+.push_1-5, .pull_1-5,
+.push_2-5, .pull_2-5,
+.push_3-5, .pull_3-5,
+.push_4-5, .pull_4-5 {
+        position: relative;
 }
-.container_8 .grid_2-5 { // Two fifth of 960
-	width: 378px;
-}
+
 .container_8 .grid_1-5,
-.container_8 .grid_2-5 {
+.container_8 .grid_2-5,
+.container_8 .grid_3-5,
+.container_8 .grid_4-5 {
 	display: inline;
 	float: left;
 	margin-left: 3px;
 	margin-right: 3px;
 }
+
 
 .main > .grid_1,
 .main > .grid_2,
@@ -309,6 +331,8 @@ ol{
 .main > .grid_8,
 .main > .grid_1-5,
 .main > .grid_2-5,
+.main > .grid_3-5,
+.main > .grid_4-5,
 .container_8 .row{
 	margin-bottom: 6px;
 }

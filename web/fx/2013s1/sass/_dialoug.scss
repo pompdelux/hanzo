@@ -1,0 +1,59 @@
+ 
+// Dialoug notices
+
+.inject-notice-box{
+	padding: 3px;
+	.inner{
+		border: 1px solid #000;
+		padding: 6px;
+		color: $font-color;
+	}
+	&.error{
+		.inner{
+			border-color: red;
+		}
+	}
+}
+.slide-notice-box{
+	position: absolute;
+	top: 77px;
+	right: 0;
+	padding: 6px;
+	text-align: center;
+	@include box;
+}
+
+#cboxContent {
+  .dialoug {
+    h2!, div.message! {}
+    .buttons {
+      padding: 0 10px;
+      a! {}
+    }
+  }
+  .alert!, .confirm! {}
+}
+
+#dialoug-message {
+  border: 2px solid #D3C2A2;
+  color: #231f20;
+  margin: 10px 0;
+  display: none;
+  &.info!, &.warning! {}
+  &.error {
+    border-color: #f00;
+  }
+  p {
+    background-color: #fff;
+    padding: 10px;
+    margin: 0;
+  }
+}
+
+.dialoug-loading {
+  display: inline-block;
+  height: 16px;
+  background: url(/fx/images/loader-bar.gif) no-repeat left center;
+  padding-left: 20px;
+  margin-left: 5px;
+}

@@ -1,3 +1,6 @@
+/**
+| _basket
+*/
 .basket,
 #cart-edit-element{
 	table.product-table,
@@ -40,6 +43,7 @@
 		.date {
 			span.not-in-stock{
 				color: #A10000;
+				display: block;
 			}
 		}
 	}
@@ -66,7 +70,7 @@
 		bottom: 3px;
 		right: 10px;
 	}
-	/* notice message*/
+	// notice message
 	.delivery-notice {
 		position: absolute;
 		top: 10px;

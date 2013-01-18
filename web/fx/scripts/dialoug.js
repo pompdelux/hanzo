@@ -173,16 +173,25 @@ var dialoug = (function($) {
    *
    * @param string message
    * @param int duration
+   * @param mixed selector string/jQuery
    */
-  pub.slideNotice = function(message, duration) {
+  pub.slideNotice = function(message, duration, selector) {
+
     if (undefined === duration) {
       duration = 2000;
     }
+    if (typeof(selector) === 'string') {
+      selector = $(selector);
+    }
 
-    $('body').prepend('<div id="slide-notice-box">' + message + '</div>');
+    if(undefined === selector){
+       selector = $('body');
+    }
+
+    selector.prepend('<div id="slide-notice-box" class="slide-notice-box">' + message + '</div>');
     var $slide = $('#slide-notice-box');
     var slideWidth = $slide.outerWidth();
-    var docWidth = $(document).width();
+    var docWidth = selector.width();
 
     $slide.css({
       left: docWidth + 'px',

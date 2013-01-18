@@ -58,8 +58,8 @@ class CategoriesPeer extends BaseCategoriesPeer
             $product = $record->getProducts();
             $product_ids[] = $product->getId();
 
-            $image_overview = str_replace('set', 'overview', $record->getProductsImages()->getImage());
-            $image_set = str_replace('overview', 'set', $record->getProductsImages()->getImage());
+            $image_overview = str_replace('_set_', '_overview_', $record->getProductsImages()->getImage());
+            $image_set = str_replace('_overview_', '_set_', $record->getProductsImages()->getImage());
             
             $records[] = array(
                 'sku' => $product->getSku(),
@@ -74,7 +74,7 @@ class CategoriesPeer extends BaseCategoriesPeer
                 )),
             );
         }
-        
+
         // get product prices
         $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
 

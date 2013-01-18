@@ -41,7 +41,7 @@
               </span>
             </a>
           </div>
-      {% if loop.index is divisibleby(3) %}
+      {% if loop.index is divisibleby(3) or loop.last %}
         </div>
       {% endif %}
 

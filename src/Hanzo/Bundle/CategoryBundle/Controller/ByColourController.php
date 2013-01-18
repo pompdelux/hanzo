@@ -120,7 +120,7 @@ class ByColourController extends CoreController
                     'title' => $product->getSku(),
                     'color' => $variant->getColor(),
                     'image' => $variant->getImage(),
-                    'image_flip' => str_replace('overview', 'set', $variant->getImage()),
+                    'image_flip' => str_replace('_overview_', '_set_', $variant->getImage()),
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
                         'title' => Tools::stripText($product->getSku()),

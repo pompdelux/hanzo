@@ -1,7 +1,5 @@
 /**
-|
-| Footer styles
-|
+| _footer
 */
 
 footer{
@@ -36,7 +34,7 @@ footer{
 			}
 			input[type="email"],
 			input[type="text"]{
-				width: 188px;
+				width: 252px;
 				display: block;
 			}
 			#dialoug-message{
@@ -46,7 +44,7 @@ footer{
 			}
 			form{
 				font-family:$font-sans !important;
-				width:200px;
+				width: 264px;
 			}
 		}
 	}
