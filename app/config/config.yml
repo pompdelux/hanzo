@@ -77,10 +77,10 @@ assetic:
         compass:
             bin: %compass_bin%
             apply_to: "\.scss$"
-        uglifyjs:
-            bin: %uglifyjs_bin%
-            no_copyright: false
-            apply_to: "\.js$"
+        #uglifyjs:
+        #    bin: %uglifyjs_bin%
+        #    no_copyright: false
+        #    apply_to: "\.js$"
 
 swiftmailer:
     transport: '%mailer_transport%'
