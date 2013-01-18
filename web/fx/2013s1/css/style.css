@@ -1079,7 +1079,8 @@ h1 {
   font-family: "Merriweather", serif;
   font-weight: 900;
   line-height: 24px;
-  padding: 6px 0 12px;
+  padding: 6px 0;
+  margin-bottom: 6px;
 }
 
 h2 {
@@ -1220,13 +1221,22 @@ button.button.button-small:hover,
 a.button.button-small:hover {
   text-decoration: none;
 }
+input.button.button-large,
+button.button.button-large,
+a.button.button-large {
+  padding: 6px 12px;
+  width: 234px;
+}
 
 table {
   width: 100%;
   margin: 6px 0 12px;
 }
-table thead, table tbody, table tfoot {
+table thead, table tfoot {
   border-bottom: 1px solid #444444;
+}
+table tfoot {
+  border-top: 1px solid #444444;
 }
 table thead {
   font-family: "Merriweather", serif;
@@ -1239,6 +1249,9 @@ table tbody td {
 }
 table tfoot td {
   padding: 6px;
+}
+table.horizontal th {
+  font-weight: bold;
 }
 
 .align-left,

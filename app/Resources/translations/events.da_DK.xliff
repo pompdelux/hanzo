@@ -430,6 +430,10 @@
                 <source>events.fetch_customer.newsletter.update</source>
                 <target>Ændre nyhedsbrevs tilmelding</target>
             </trans-unit>
+            <trans-unit id="events.myevents.header">
+                <source>events.myevents.header</source>
+                <target><![CDATA[<h1>Mine Events</h1>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

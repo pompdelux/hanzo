@@ -45,7 +45,7 @@ class EventsTableMap extends TableMap
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('code', 'Code', 'VARCHAR', true, 32, null);
         $this->addColumn('key', 'Key', 'VARCHAR', true, 64, null);
-        $this->addForeignKey('consultants_id', 'ConsultantsId', 'INTEGER', 'customers', 'id', true, null, null);
+        $this->addForeignKey('consultants_id', 'ConsultantsId', 'INTEGER', 'consultants', 'id', true, null, null);
         $this->addForeignKey('customers_id', 'CustomersId', 'INTEGER', 'customers', 'id', true, null, null);
         $this->addColumn('event_date', 'EventDate', 'TIMESTAMP', true, null, null);
         $this->addColumn('host', 'Host', 'VARCHAR', true, 128, null);
@@ -69,8 +69,8 @@ class EventsTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('CustomersRelatedByConsultantsId', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('consultants_id' => 'id', ), null, null);
-        $this->addRelation('CustomersRelatedByCustomersId', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('customers_id' => 'id', ), null, null);
+        $this->addRelation('Consultants', 'Hanzo\\Model\\Consultants', RelationMap::MANY_TO_ONE, array('consultants_id' => 'id', ), null, null);
+        $this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('customers_id' => 'id', ), null, null);
         $this->addRelation('EventsParticipants', 'Hanzo\\Model\\EventsParticipants', RelationMap::ONE_TO_MANY, array('id' => 'events_id', ), 'CASCADE', null, 'EventsParticipantss');
         $this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::ONE_TO_MANY, array('id' => 'events_id', ), 'RESTRICT', 'CASCADE', 'Orderss');
     } // buildRelations()

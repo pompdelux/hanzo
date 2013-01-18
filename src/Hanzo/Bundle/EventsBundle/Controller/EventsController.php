@@ -955,20 +955,129 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->joinWithConsultantsQuery()
+            ->useConsultantsQuery()
+                ->joinCustomers()
+            ->endUse()
+            ->joinConsultants()
             ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
             ->filterByCustomersId($customer->getId())
+            ->orderByEventDate()
             ->find()
         ;
         $myEvents = array();
 
+        // Generate forms and form views for all events,
+        // store them and the event data in the master events array myEvents.
+        // Multiple forms on one page, requires a Form object to each.
+        foreach ($events as $event) {
+            if ($event instanceof Events) {
+                $myEvents[$event->getId()] = array(
+                    'data' => $event,
+                    'form' =>   $this->createFormBuilder()
+                                    ->add('first_name', 'text',
+                                        array(
+                                            'label' => 'events.participants.first_name.label',
+                                            'translation_domain' => 'events'
+                                        )
+                                    )->add('last_name', 'text',
+                                        array(
+                                            'label' => 'events.participants.last_name.label',
+                                            'translation_domain' => 'events'
+                                        )
+                                    )->add('email', 'email',
+                                        array(
+                                            'label' => 'events.participants.email.label',
+                                            'translation_domain' => 'events'
+                                        )
+                                    )->add('phone', 'text',
+                                        array(
+                                            'label' => 'events.participants.phone.label',
+                                            'translation_domain' => 'events',
+                                            'required' => false
+                                        )
+                                    )->add('tell_a_friend', 'checkbox',
+                                        array(
+                                            'label' => 'events.participants.tell_a_friend.label',
+                                            'translation_domain' => 'events',
+                                            'required' => false
+                                        )
+                                    )->add('event_id', 'hidden', array('data' => $event->getId()))
+                                    ->getForm()
+                );
+                $myEvents[$event->getId()]['form_view'] = $myEvents[$event->getId()]['form']->createView();
+            }
+        }
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+
+            $form = $myEvents[$request->request->get('form')['event_id']]['form'];
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $event = $myEvents[$data['event_id']]['data'];
+
+                $events_participant = EventsParticipantsQuery::create()
+                    ->filterByEventsId($data['event_id'])
+                    ->findOneByEmail($data['email'])
+                ;
+
+                if(!$events_participant instanceof EventsParticipants){
+                    $events_participant = new EventsParticipants();
+                    $events_participant->setKey(sha1(time()))
+                                       ->setEventsId($data['event_id'])
+                                       ->setEmail($data['email']);
+
+                }
+                $events_participant->setInvitedBy($customer->getId());
+                $events_participant->setFirstName($data['first_name']);
+                $events_participant->setLastName($data['last_name']);
+                $events_participant->setPhone($data['phone']);
+                $events_participant->setTellAFriend($data['tell_a_friend']);
+                $events_participant->save();
+
+                // Now send out some emails!
+                if ($events_participant->getEmail()) {
+                    $mailer = $this->get('mail_manager');
+
+                    $mailer->setMessage('events.participant.invited', array(
+                        'event_date'       => $event->getEventDate('d/m'),
+                        'event_time'       => $event->getEventDate('H:i'),
+                        'to_name'          => $events_participant->getFirstName(). ' ' .$events_participant->getLastName(),
+                        'hostess'          => $event->getHost(),
+                        'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
+                        'zip'              => $event->getPostalCode(),
+                        'city'             => $event->getCity(),
+                        'email'            => $event->getEmail(),
+                        'phone'            => $event->getPhone(),
+                        'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
+                        'consultant_name'  => $myEvents[$data['event_id']]['data']->getCustomers()->getFirstName(). ' ' .$myEvents[$data['event_id']]['data']->getCustomers()->getLastName(),
+                        'consultant_email' => $myEvents[$data['event_id']]['data']->getCustomers()->getEmail()
+                    ));
+
+                    $mailer->setTo(
+                        $events_participant->getEmail(),
+                        $events_participant->getFirstName(). ' ' .$events_participant->getLastName()
+                    );
+                    $mailer->setFrom(array($event->getEmail() => $event->getHost()));
+                    $mailer->send();
+                }
+
+                if ($events_participant->getPhone()) {
+                    $this->get('sms_manager')->sendEventInvite($events_participant);
+                }
+
+                $this->get('session')->setFlash('notice', 'events.participant.invited');
+            }
+        }
+
+        // Store all participants in the master events array.
         foreach ($events as $event) {
             if ($event instanceof Events) {
                 $events_participants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
-                $myEvents[$event->getId()] = array(
-                    'event' => $event,
-                    'participants' => $events_participants
-                );
+                $myEvents[$event->getId()]['participants'] = $events_participants;
             }
         }
 

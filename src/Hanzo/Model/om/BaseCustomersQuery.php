@@ -68,13 +68,9 @@ use Hanzo\Model\WallLikes;
  * @method CustomersQuery rightJoinAddresses($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Addresses relation
  * @method CustomersQuery innerJoinAddresses($relationAlias = null) Adds a INNER JOIN clause to the query using the Addresses relation
  *
- * @method CustomersQuery leftJoinEventsRelatedByConsultantsId($relationAlias = null) Adds a LEFT JOIN clause to the query using the EventsRelatedByConsultantsId relation
- * @method CustomersQuery rightJoinEventsRelatedByConsultantsId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the EventsRelatedByConsultantsId relation
- * @method CustomersQuery innerJoinEventsRelatedByConsultantsId($relationAlias = null) Adds a INNER JOIN clause to the query using the EventsRelatedByConsultantsId relation
- *
- * @method CustomersQuery leftJoinEventsRelatedByCustomersId($relationAlias = null) Adds a LEFT JOIN clause to the query using the EventsRelatedByCustomersId relation
- * @method CustomersQuery rightJoinEventsRelatedByCustomersId($relationAlias = null) Adds a RIGHT JOIN clause to the query using the EventsRelatedByCustomersId relation
- * @method CustomersQuery innerJoinEventsRelatedByCustomersId($relationAlias = null) Adds a INNER JOIN clause to the query using the EventsRelatedByCustomersId relation
+ * @method CustomersQuery leftJoinEvents($relationAlias = null) Adds a LEFT JOIN clause to the query using the Events relation
+ * @method CustomersQuery rightJoinEvents($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Events relation
+ * @method CustomersQuery innerJoinEvents($relationAlias = null) Adds a INNER JOIN clause to the query using the Events relation
  *
  * @method CustomersQuery leftJoinOrders($relationAlias = null) Adds a LEFT JOIN clause to the query using the Orders relation
  * @method CustomersQuery rightJoinOrders($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Orders relation
@@ -876,107 +872,33 @@ abstract class BaseCustomersQuery extends ModelCriteria
      * @return   CustomersQuery The current query, for fluid interface
      * @throws   PropelException - if the provided filter is invalid.
      */
-    public function filterByEventsRelatedByConsultantsId($events, $comparison = null)
-    {
-        if ($events instanceof Events) {
-            return $this
-                ->addUsingAlias(CustomersPeer::ID, $events->getConsultantsId(), $comparison);
-        } elseif ($events instanceof PropelObjectCollection) {
-            return $this
-                ->useEventsRelatedByConsultantsIdQuery()
-                ->filterByPrimaryKeys($events->getPrimaryKeys())
-                ->endUse();
-        } else {
-            throw new PropelException('filterByEventsRelatedByConsultantsId() only accepts arguments of type Events or PropelCollection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the EventsRelatedByConsultantsId relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return CustomersQuery The current query, for fluid interface
-     */
-    public function joinEventsRelatedByConsultantsId($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('EventsRelatedByConsultantsId');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'EventsRelatedByConsultantsId');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the EventsRelatedByConsultantsId relation Events object
-     *
-     * @see       useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return   \Hanzo\Model\EventsQuery A secondary query class using the current class as primary query
-     */
-    public function useEventsRelatedByConsultantsIdQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
-    {
-        return $this
-            ->joinEventsRelatedByConsultantsId($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'EventsRelatedByConsultantsId', '\Hanzo\Model\EventsQuery');
-    }
-
-    /**
-     * Filter the query by a related Events object
-     *
-     * @param   Events|PropelObjectCollection $events  the related object to use as filter
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return   CustomersQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
-     */
-    public function filterByEventsRelatedByCustomersId($events, $comparison = null)
+    public function filterByEvents($events, $comparison = null)
     {
         if ($events instanceof Events) {
             return $this
                 ->addUsingAlias(CustomersPeer::ID, $events->getCustomersId(), $comparison);
         } elseif ($events instanceof PropelObjectCollection) {
             return $this
-                ->useEventsRelatedByCustomersIdQuery()
+                ->useEventsQuery()
                 ->filterByPrimaryKeys($events->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByEventsRelatedByCustomersId() only accepts arguments of type Events or PropelCollection');
+            throw new PropelException('filterByEvents() only accepts arguments of type Events or PropelCollection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the EventsRelatedByCustomersId relation
+     * Adds a JOIN clause to the query using the Events relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return CustomersQuery The current query, for fluid interface
      */
-    public function joinEventsRelatedByCustomersId($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinEvents($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('EventsRelatedByCustomersId');
+        $relationMap = $tableMap->getRelation('Events');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -991,14 +913,14 @@ abstract class BaseCustomersQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'EventsRelatedByCustomersId');
+            $this->addJoinObject($join, 'Events');
         }
 
         return $this;
     }
 
     /**
-     * Use the EventsRelatedByCustomersId relation Events object
+     * Use the Events relation Events object
      *
      * @see       useQuery()
      *
@@ -1008,11 +930,11 @@ abstract class BaseCustomersQuery extends ModelCriteria
      *
      * @return   \Hanzo\Model\EventsQuery A secondary query class using the current class as primary query
      */
-    public function useEventsRelatedByCustomersIdQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useEventsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinEventsRelatedByCustomersId($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'EventsRelatedByCustomersId', '\Hanzo\Model\EventsQuery');
+            ->joinEvents($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Events', '\Hanzo\Model\EventsQuery');
     }
 
     /**

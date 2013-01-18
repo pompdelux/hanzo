@@ -38,7 +38,8 @@ h1,h2,h3,h4,h5,h6{
 }
 h1{
 	@include heading-style;
-	padding: 6px 0 12px;
+	padding: 6px 0;
+	margin-bottom: 6px;
 }
 h2{
 	font-weight: 100;
@@ -167,13 +168,20 @@ a.button {
 			text-decoration: none;
 		}
 	}
+	&.button-large {
+		padding: 6px 12px;
+		width: 234px;
+	}
 }
 
 table{
 	width: 100%;
 	margin: 6px 0 12px;
-	thead,tbody, tfoot{
+	thead, tfoot{
 		border-bottom: 1px solid $font-color;
+	}
+	tfoot{
+		border-top: 1px solid $font-color;
 	}
 	thead{
 		font-family: $font-serif;
@@ -189,6 +197,11 @@ table{
 	tfoot{
 		td{
 			padding: 6px;
+		}
+	}
+	&.horizontal{
+		th{
+			font-weight: bold;
 		}
 	}
 }

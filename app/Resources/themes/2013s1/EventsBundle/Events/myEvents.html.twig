@@ -1,101 +1,140 @@
+{% extends layout %}
 
-{% for event in events %}
-  {% if event is defined %}
-    <table id="event" class="list">
-      <tbody>
-        <tr>
-          <th>{{ 'events.code'|trans({}, 'events') }}</th>
-          <td>{{ event.code }}</td>
-        </tr>
-        <tr>
-          <th>{{ 'events.event_date'|trans({}, 'events') }}</th>
-          <td>{{ event.eventdate }}</td>
-        </tr>
-        <tr>
-          <th>{{ 'events.host'|trans({}, 'events') }}</th>
-          <td>{{ event.host }}</td>
-        </tr>
-        <tr>
-          <th>{{ 'events.address_line_1'|trans({}, 'events') }}</th>
-          <td>{{ event.addressline1 }}</td>
-        </tr>
-        <tr>
-          <th>{{ 'events.postal_code'|trans({}, 'events') }}</th>
-          <td>{{ event.postalcode }}</td>
-        </tr>
-        <tr>
-          <th>{{ 'events.city'|trans({}, 'events') }}</th>
-          <td>{{ event.city }}</td>
-        </tr>
-        <tr>
-          <th>{{ 'events.phone'|trans({}, 'events') }}</th>
-          <td>{{ event.phone }}</td>
-        </tr>
-        <tr>
-          <th>{{ 'events.email'|trans({}, 'events') }}</th>
-          <td>{{ event.email }}</td>
-        </tr>
-      </tbody>
-    </table>
-    
+{% block content %}
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            {{ 'events.myevents.header'|trans({}, 'events')|raw }}
+        </hgroup>
+    </header>
 
-    {% if form is defined %}
-      <h1>{{ 'events.invite.header.text'|trans({}, 'events') }}</h1>
-      <p>{{ 'events.invite.description.text'|trans({}, 'events') }}</p>
-      <form action="{{ path('events_myEvents') }}" method="post" {{ form_enctype(form) }} class="create invite-form">
-        <div id="events">
-          {{ form_errors(form) }}
-          {{ form_widget(form.event_id, {value : event.id}) }}
-          {{ form_rest(form) }}
-          {{ form_row(form._token) }}
+    {% if app.session.hasFlash('notice') %}
+        <div class="message notice ">
+            {{ app.session.flash('notice')|trans({}, 'events') }}
         </div>
-        <input class="button right" type="submit" value="{{ 'events.invite.participant.button'|trans({}, 'events') }}">
-      </form>
-    {% else %}
-      <p>{{ 'events.too_late_to_invite.text'|trans({}, 'events') }}</p>
     {% endif %}
 
+    <div class="grid_8 alpha omega">
+        <div class="grid_6 alpha">
 
-    {% if participants|length > 0 %}
+            {% for event in events %}
+                {% if event is defined %}
+                    <div class="grid_6 alpha omega bottom-space">
+                        <div class="grid_6 alpha omega bottom-space">
+                            <h1 class="bordered-bottom">{{ 'events.invite.top.header.text'|trans({}, 'events') }}</h1>
+                            <div class="grid_3 alpha">
+                                <table id="event" class="horizontal">
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ 'events.code'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.code }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'events.event_date'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.eventdate }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'events.host'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.host }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'events.address_line_1'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.addressline1 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'events.postal_code'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.postalcode }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'events.city'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.city }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'events.phone'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.phone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ 'events.email'|trans({}, 'events') }}</th>
+                                            <td>{{ event.data.email }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-    <h1>{{ 'events.invite.participants.header.text'|trans({}, 'events') }}</h1>
-    <table id="participants" class="list">
-      <thead>
-        <tr>
-          <th>{{ 'events.name'|trans({}, 'events') }}</th>
-          <th>{{ 'events.email'|trans({}, 'events') }}</th>
-          <th>{{ 'events.phone'|trans({}, 'events') }}</th>
-          <th>{{ 'events.hasaccepted'|trans({}, 'events') }}</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for participant in participants %}
-        <tr>
-          <td class="name">{{ participant.firstname }} {{ participant.lastname }}</td>
-          <td><a href="mailto:{{ participant.email }}">{{ participant.email }}</a></td>
-          <td>{{ participant.phone }}</td>
-          <td>
-        {% if participant.respondedat %}
-          {% if participant.hasaccepted == 1 %}
-            {{ 'events.hasaccepted.yes'|trans({}, 'events') }}
-          {% else %}
-            {{ 'events.hasaccepted.no'|trans({}, 'events') }}
-          {% endif %}
-        {% endif %}
-          </td>
-          <td>
-              <a href="" data-event="{{ participant.eventsid }}" data-participant="{{ participant.id }}" class="delete">x</a>
-          </td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-    {% else %}
 
-    <p>{{ 'events.participants.no.participants'|trans({}, 'events') }}</p>
+                        {% if event.form_view is defined %}
+                            <h1 class="bordered-bottom">{{ 'events.invite.header.text'|trans({}, 'events') }}</h1>
+                            <p>{{ 'events.invite.description.text'|trans({}, 'events') }}</p>
+                            <form action="{{ path('events_myEvents') }}" method="post" {{ form_enctype(event.form_view) }} class="create invite-form full-width">
+                                <div id="events" class="grid_3 suffix_5 alpha omega bottom-space">
+                                    <div class="row">
+                                        {{ form_errors(event.form_view) }}
+                                        {{ form_widget(event.form_view.event_id, {value : event.data.id}) }}
+                                        {{ form_rest(event.form_view) }}
+                                        {{ form_row(event.form_view._token) }}
+                                    </div>
+                                    <div class="row">
+                                        <input class="button button-large" type="submit" value="{{ 'events.invite.participant.button'|trans({}, 'events') }}">
+                                    </div>
+                                </div>
+                            </form>
+                        {% else %}
+                            <p>{{ 'events.too_late_to_invite.text'|trans({}, 'events') }}</p>
+                        {% endif %}
 
-    {% endif %}
-    
-  {% endif %}{# if event is defined #}
-{% endfor %}
+
+                        {% if event.participants|length > 0 %}
+
+                        <h1 class="bordered-bottom">{{ 'events.invite.participants.header.text'|trans({}, 'events') }} ({{ event.participants|length }})</h1>
+                        <table class="participants" class="list bottom-space">
+                            <thead>
+                                <tr>
+                                    <th>{{ 'events.name'|trans({}, 'events') }}</th>
+                                    <th>{{ 'events.email'|trans({}, 'events') }}</th>
+                                    <th>{{ 'events.phone'|trans({}, 'events') }}</th>
+                                    <th>{{ 'events.hasaccepted'|trans({}, 'events') }}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for participant in event.participants %}
+                                <tr>
+                                    <td class="name">{{ participant.firstname }} {{ participant.lastname }}</td>
+                                    <td><a href="mailto:{{ participant.email }}">{{ participant.email }}</a></td>
+                                    <td>{{ participant.phone }}</td>
+                                    <td>
+                                {% if participant.respondedat %}
+                                    {% if participant.hasaccepted == 1 %}
+                                        {{ 'events.hasaccepted.yes'|trans({}, 'events') }}
+                                    {% else %}
+                                        {{ 'events.hasaccepted.no'|trans({}, 'events') }}
+                                    {% endif %}
+                                {% endif %}
+                                    </td>
+                                    <td>
+                                            <a href="" data-event="{{ participant.eventsid }}" data-participant="{{ participant.id }}" class="delete">x</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+
+                        <p>{{ 'events.participants.no.participants'|trans({}, 'events') }}</p>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endif %}{# if event is defined #}
+
+            {% else %}
+                    <p>{{ 'events.no.events'|trans({}, 'events') }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="grid_2 omega">
+            {% include 'AccountBundle:Default:aside.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

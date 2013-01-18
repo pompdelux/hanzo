@@ -15,6 +15,8 @@ use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Hanzo\Model\Consultants;
+use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
@@ -170,14 +172,14 @@ abstract class BaseEvents extends BaseObject implements Persistent
     protected $updated_at;
 
     /**
-     * @var        Customers
+     * @var        Consultants
      */
-    protected $aCustomersRelatedByConsultantsId;
+    protected $aConsultants;
 
     /**
      * @var        Customers
      */
-    protected $aCustomersRelatedByCustomersId;
+    protected $aCustomers;
 
     /**
      * @var        PropelObjectCollection|EventsParticipants[] Collection to store aggregation of EventsParticipants objects.
@@ -599,8 +601,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->modifiedColumns[] = EventsPeer::CONSULTANTS_ID;
         }
 
-        if ($this->aCustomersRelatedByConsultantsId !== null && $this->aCustomersRelatedByConsultantsId->getId() !== $v) {
-            $this->aCustomersRelatedByConsultantsId = null;
+        if ($this->aConsultants !== null && $this->aConsultants->getId() !== $v) {
+            $this->aConsultants = null;
         }
 
 
@@ -624,8 +626,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->modifiedColumns[] = EventsPeer::CUSTOMERS_ID;
         }
 
-        if ($this->aCustomersRelatedByCustomersId !== null && $this->aCustomersRelatedByCustomersId->getId() !== $v) {
-            $this->aCustomersRelatedByCustomersId = null;
+        if ($this->aCustomers !== null && $this->aCustomers->getId() !== $v) {
+            $this->aCustomers = null;
         }
 
 
@@ -1038,11 +1040,11 @@ abstract class BaseEvents extends BaseObject implements Persistent
     public function ensureConsistency()
     {
 
-        if ($this->aCustomersRelatedByConsultantsId !== null && $this->consultants_id !== $this->aCustomersRelatedByConsultantsId->getId()) {
-            $this->aCustomersRelatedByConsultantsId = null;
+        if ($this->aConsultants !== null && $this->consultants_id !== $this->aConsultants->getId()) {
+            $this->aConsultants = null;
         }
-        if ($this->aCustomersRelatedByCustomersId !== null && $this->customers_id !== $this->aCustomersRelatedByCustomersId->getId()) {
-            $this->aCustomersRelatedByCustomersId = null;
+        if ($this->aCustomers !== null && $this->customers_id !== $this->aCustomers->getId()) {
+            $this->aCustomers = null;
         }
     } // ensureConsistency
 
@@ -1083,8 +1085,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aCustomersRelatedByConsultantsId = null;
-            $this->aCustomersRelatedByCustomersId = null;
+            $this->aConsultants = null;
+            $this->aCustomers = null;
             $this->collEventsParticipantss = null;
 
             $this->collOrderss = null;
@@ -1218,18 +1220,18 @@ abstract class BaseEvents extends BaseObject implements Persistent
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aCustomersRelatedByConsultantsId !== null) {
-                if ($this->aCustomersRelatedByConsultantsId->isModified() || $this->aCustomersRelatedByConsultantsId->isNew()) {
-                    $affectedRows += $this->aCustomersRelatedByConsultantsId->save($con);
+            if ($this->aConsultants !== null) {
+                if ($this->aConsultants->isModified() || $this->aConsultants->isNew()) {
+                    $affectedRows += $this->aConsultants->save($con);
                 }
-                $this->setCustomersRelatedByConsultantsId($this->aCustomersRelatedByConsultantsId);
+                $this->setConsultants($this->aConsultants);
             }
 
-            if ($this->aCustomersRelatedByCustomersId !== null) {
-                if ($this->aCustomersRelatedByCustomersId->isModified() || $this->aCustomersRelatedByCustomersId->isNew()) {
-                    $affectedRows += $this->aCustomersRelatedByCustomersId->save($con);
+            if ($this->aCustomers !== null) {
+                if ($this->aCustomers->isModified() || $this->aCustomers->isNew()) {
+                    $affectedRows += $this->aCustomers->save($con);
                 }
-                $this->setCustomersRelatedByCustomersId($this->aCustomersRelatedByCustomersId);
+                $this->setCustomers($this->aCustomers);
             }
 
             if ($this->isNew() || $this->isModified()) {
@@ -1527,15 +1529,15 @@ abstract class BaseEvents extends BaseObject implements Persistent
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aCustomersRelatedByConsultantsId !== null) {
-                if (!$this->aCustomersRelatedByConsultantsId->validate($columns)) {
-                    $failureMap = array_merge($failureMap, $this->aCustomersRelatedByConsultantsId->getValidationFailures());
+            if ($this->aConsultants !== null) {
+                if (!$this->aConsultants->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aConsultants->getValidationFailures());
                 }
             }
 
-            if ($this->aCustomersRelatedByCustomersId !== null) {
-                if (!$this->aCustomersRelatedByCustomersId->validate($columns)) {
-                    $failureMap = array_merge($failureMap, $this->aCustomersRelatedByCustomersId->getValidationFailures());
+            if ($this->aCustomers !== null) {
+                if (!$this->aCustomers->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aCustomers->getValidationFailures());
                 }
             }
 
@@ -1703,11 +1705,11 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $keys[18] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
-            if (null !== $this->aCustomersRelatedByConsultantsId) {
-                $result['CustomersRelatedByConsultantsId'] = $this->aCustomersRelatedByConsultantsId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            if (null !== $this->aConsultants) {
+                $result['Consultants'] = $this->aConsultants->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
-            if (null !== $this->aCustomersRelatedByCustomersId) {
-                $result['CustomersRelatedByCustomersId'] = $this->aCustomersRelatedByCustomersId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            if (null !== $this->aCustomers) {
+                $result['Customers'] = $this->aCustomers->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
             if (null !== $this->collEventsParticipantss) {
                 $result['EventsParticipantss'] = $this->collEventsParticipantss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -2031,13 +2033,13 @@ abstract class BaseEvents extends BaseObject implements Persistent
     }
 
     /**
-     * Declares an association between this object and a Customers object.
+     * Declares an association between this object and a Consultants object.
      *
-     * @param             Customers $v
+     * @param             Consultants $v
      * @return Events The current object (for fluent API support)
      * @throws PropelException
      */
-    public function setCustomersRelatedByConsultantsId(Customers $v = null)
+    public function setConsultants(Consultants $v = null)
     {
         if ($v === null) {
             $this->setConsultantsId(NULL);
@@ -2045,12 +2047,12 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->setConsultantsId($v->getId());
         }
 
-        $this->aCustomersRelatedByConsultantsId = $v;
+        $this->aConsultants = $v;
 
         // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the Customers object, it will not be re-added.
+        // If this object has already been added to the Consultants object, it will not be re-added.
         if ($v !== null) {
-            $v->addEventsRelatedByConsultantsId($this);
+            $v->addEvents($this);
         }
 
 
@@ -2059,27 +2061,27 @@ abstract class BaseEvents extends BaseObject implements Persistent
 
 
     /**
-     * Get the associated Customers object
+     * Get the associated Consultants object
      *
      * @param PropelPDO $con Optional Connection object.
      * @param $doQuery Executes a query to get the object if required
-     * @return Customers The associated Customers object.
+     * @return Consultants The associated Consultants object.
      * @throws PropelException
      */
-    public function getCustomersRelatedByConsultantsId(PropelPDO $con = null, $doQuery = true)
+    public function getConsultants(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCustomersRelatedByConsultantsId === null && ($this->consultants_id !== null) && $doQuery) {
-            $this->aCustomersRelatedByConsultantsId = CustomersQuery::create()->findPk($this->consultants_id, $con);
+        if ($this->aConsultants === null && ($this->consultants_id !== null) && $doQuery) {
+            $this->aConsultants = ConsultantsQuery::create()->findPk($this->consultants_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aCustomersRelatedByConsultantsId->addEventssRelatedByConsultantsId($this);
+                $this->aConsultants->addEventss($this);
              */
         }
 
-        return $this->aCustomersRelatedByConsultantsId;
+        return $this->aConsultants;
     }
 
     /**
@@ -2089,7 +2091,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      * @return Events The current object (for fluent API support)
      * @throws PropelException
      */
-    public function setCustomersRelatedByCustomersId(Customers $v = null)
+    public function setCustomers(Customers $v = null)
     {
         if ($v === null) {
             $this->setCustomersId(NULL);
@@ -2097,12 +2099,12 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->setCustomersId($v->getId());
         }
 
-        $this->aCustomersRelatedByCustomersId = $v;
+        $this->aCustomers = $v;
 
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the Customers object, it will not be re-added.
         if ($v !== null) {
-            $v->addEventsRelatedByCustomersId($this);
+            $v->addEvents($this);
         }
 
 
@@ -2118,20 +2120,20 @@ abstract class BaseEvents extends BaseObject implements Persistent
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomersRelatedByCustomersId(PropelPDO $con = null, $doQuery = true)
+    public function getCustomers(PropelPDO $con = null, $doQuery = true)
     {
-        if ($this->aCustomersRelatedByCustomersId === null && ($this->customers_id !== null) && $doQuery) {
-            $this->aCustomersRelatedByCustomersId = CustomersQuery::create()->findPk($this->customers_id, $con);
+        if ($this->aCustomers === null && ($this->customers_id !== null) && $doQuery) {
+            $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aCustomersRelatedByCustomersId->addEventssRelatedByCustomersId($this);
+                $this->aCustomers->addEventss($this);
              */
         }
 
-        return $this->aCustomersRelatedByCustomersId;
+        return $this->aCustomers;
     }
 
 
@@ -2727,8 +2729,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->collOrderss->clearIterator();
         }
         $this->collOrderss = null;
-        $this->aCustomersRelatedByConsultantsId = null;
-        $this->aCustomersRelatedByCustomersId = null;
+        $this->aConsultants = null;
+        $this->aCustomers = null;
     }
 
     /**

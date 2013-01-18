@@ -9,13 +9,17 @@ use \Exception;
 use \PDO;
 use \Persistent;
 use \Propel;
+use \PropelCollection;
 use \PropelException;
+use \PropelObjectCollection;
 use \PropelPDO;
 use Hanzo\Model\Consultants;
 use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
+use Hanzo\Model\Events;
+use Hanzo\Model\EventsQuery;
 
 /**
  * Base class that represents a row from the 'consultants' table.
@@ -89,6 +93,12 @@ abstract class BaseConsultants extends BaseObject implements Persistent
     protected $aCustomers;
 
     /**
+     * @var        PropelObjectCollection|Events[] Collection to store aggregation of Events objects.
+     */
+    protected $collEventss;
+    protected $collEventssPartial;
+
+    /**
      * Flag to prevent endless save loop, if this object is referenced
      * by another object which falls in this transaction.
      * @var        boolean
@@ -101,6 +111,12 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      * @var        boolean
      */
     protected $alreadyInValidation = false;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var		PropelObjectCollection
+     */
+    protected $eventssScheduledForDeletion = null;
 
     /**
      * Applies default values to this object.
@@ -450,6 +466,8 @@ abstract class BaseConsultants extends BaseObject implements Persistent
         if ($deep) {  // also de-associate any related objects?
 
             $this->aCustomers = null;
+            $this->collEventss = null;
+
         } // if (deep)
     }
 
@@ -584,6 +602,23 @@ abstract class BaseConsultants extends BaseObject implements Persistent
                 }
                 $affectedRows += 1;
                 $this->resetModified();
+            }
+
+            if ($this->eventssScheduledForDeletion !== null) {
+                if (!$this->eventssScheduledForDeletion->isEmpty()) {
+                    EventsQuery::create()
+                        ->filterByPrimaryKeys($this->eventssScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->eventssScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collEventss !== null) {
+                foreach ($this->collEventss as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
             }
 
             $this->alreadyInSave = false;
@@ -759,6 +794,14 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             }
 
 
+                if ($this->collEventss !== null) {
+                    foreach ($this->collEventss as $referrerFK) {
+                        if (!$referrerFK->validate($columns)) {
+                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+                        }
+                    }
+                }
+
 
             $this->alreadyInValidation = false;
         }
@@ -851,6 +894,9 @@ abstract class BaseConsultants extends BaseObject implements Persistent
         if ($includeForeignObjects) {
             if (null !== $this->aCustomers) {
                 $result['Customers'] = $this->aCustomers->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
+            if (null !== $this->collEventss) {
+                $result['Eventss'] = $this->collEventss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1027,6 +1073,12 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             // store object hash to prevent cycle
             $this->startCopy = true;
 
+            foreach ($this->getEventss() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addEvents($relObj->copy($deepCopy));
+                }
+            }
+
             $relObj = $this->getCustomers();
             if ($relObj) {
                 $copyObj->setCustomers($relObj->copy($deepCopy));
@@ -1128,6 +1180,264 @@ abstract class BaseConsultants extends BaseObject implements Persistent
         return $this->aCustomers;
     }
 
+
+    /**
+     * Initializes a collection based on the name of a relation.
+     * Avoids crafting an 'init[$relationName]s' method name
+     * that wouldn't work when StandardEnglishPluralizer is used.
+     *
+     * @param string $relationName The name of the relation to initialize
+     * @return void
+     */
+    public function initRelation($relationName)
+    {
+        if ('Events' == $relationName) {
+            $this->initEventss();
+        }
+    }
+
+    /**
+     * Clears out the collEventss collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return Consultants The current object (for fluent API support)
+     * @see        addEventss()
+     */
+    public function clearEventss()
+    {
+        $this->collEventss = null; // important to set this to null since that means it is uninitialized
+        $this->collEventssPartial = null;
+
+        return $this;
+    }
+
+    /**
+     * reset is the collEventss collection loaded partially
+     *
+     * @return void
+     */
+    public function resetPartialEventss($v = true)
+    {
+        $this->collEventssPartial = $v;
+    }
+
+    /**
+     * Initializes the collEventss collection.
+     *
+     * By default this just sets the collEventss collection to an empty array (like clearcollEventss());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initEventss($overrideExisting = true)
+    {
+        if (null !== $this->collEventss && !$overrideExisting) {
+            return;
+        }
+        $this->collEventss = new PropelObjectCollection();
+        $this->collEventss->setModel('Events');
+    }
+
+    /**
+     * Gets an array of Events objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this Consultants is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @return PropelObjectCollection|Events[] List of Events objects
+     * @throws PropelException
+     */
+    public function getEventss($criteria = null, PropelPDO $con = null)
+    {
+        $partial = $this->collEventssPartial && !$this->isNew();
+        if (null === $this->collEventss || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collEventss) {
+                // return empty collection
+                $this->initEventss();
+            } else {
+                $collEventss = EventsQuery::create(null, $criteria)
+                    ->filterByConsultants($this)
+                    ->find($con);
+                if (null !== $criteria) {
+                    if (false !== $this->collEventssPartial && count($collEventss)) {
+                      $this->initEventss(false);
+
+                      foreach($collEventss as $obj) {
+                        if (false == $this->collEventss->contains($obj)) {
+                          $this->collEventss->append($obj);
+                        }
+                      }
+
+                      $this->collEventssPartial = true;
+                    }
+
+                    return $collEventss;
+                }
+
+                if($partial && $this->collEventss) {
+                    foreach($this->collEventss as $obj) {
+                        if($obj->isNew()) {
+                            $collEventss[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collEventss = $collEventss;
+                $this->collEventssPartial = false;
+            }
+        }
+
+        return $this->collEventss;
+    }
+
+    /**
+     * Sets a collection of Events objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param PropelCollection $eventss A Propel collection.
+     * @param PropelPDO $con Optional connection object
+     * @return Consultants The current object (for fluent API support)
+     */
+    public function setEventss(PropelCollection $eventss, PropelPDO $con = null)
+    {
+        $eventssToDelete = $this->getEventss(new Criteria(), $con)->diff($eventss);
+
+        $this->eventssScheduledForDeletion = unserialize(serialize($eventssToDelete));
+
+        foreach ($eventssToDelete as $eventsRemoved) {
+            $eventsRemoved->setConsultants(null);
+        }
+
+        $this->collEventss = null;
+        foreach ($eventss as $events) {
+            $this->addEvents($events);
+        }
+
+        $this->collEventss = $eventss;
+        $this->collEventssPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related Events objects.
+     *
+     * @param Criteria $criteria
+     * @param boolean $distinct
+     * @param PropelPDO $con
+     * @return int             Count of related Events objects.
+     * @throws PropelException
+     */
+    public function countEventss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    {
+        $partial = $this->collEventssPartial && !$this->isNew();
+        if (null === $this->collEventss || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collEventss) {
+                return 0;
+            }
+
+            if($partial && !$criteria) {
+                return count($this->getEventss());
+            }
+            $query = EventsQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByConsultants($this)
+                ->count($con);
+        }
+
+        return count($this->collEventss);
+    }
+
+    /**
+     * Method called to associate a Events object to this object
+     * through the Events foreign key attribute.
+     *
+     * @param    Events $l Events
+     * @return Consultants The current object (for fluent API support)
+     */
+    public function addEvents(Events $l)
+    {
+        if ($this->collEventss === null) {
+            $this->initEventss();
+            $this->collEventssPartial = true;
+        }
+        if (!in_array($l, $this->collEventss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddEvents($l);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param	Events $events The events object to add.
+     */
+    protected function doAddEvents($events)
+    {
+        $this->collEventss[]= $events;
+        $events->setConsultants($this);
+    }
+
+    /**
+     * @param	Events $events The events object to remove.
+     * @return Consultants The current object (for fluent API support)
+     */
+    public function removeEvents($events)
+    {
+        if ($this->getEventss()->contains($events)) {
+            $this->collEventss->remove($this->collEventss->search($events));
+            if (null === $this->eventssScheduledForDeletion) {
+                $this->eventssScheduledForDeletion = clone $this->collEventss;
+                $this->eventssScheduledForDeletion->clear();
+            }
+            $this->eventssScheduledForDeletion[]= clone $events;
+            $events->setConsultants(null);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Consultants is new, it will return
+     * an empty collection; or if this Consultants has previously
+     * been saved, it will retrieve related Eventss from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Consultants.
+     *
+     * @param Criteria $criteria optional Criteria object to narrow the query
+     * @param PropelPDO $con optional connection object
+     * @param string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return PropelObjectCollection|Events[] List of Events objects
+     */
+    public function getEventssJoinCustomers($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    {
+        $query = EventsQuery::create(null, $criteria);
+        $query->joinWith('Customers', $join_behavior);
+
+        return $this->getEventss($query, $con);
+    }
+
     /**
      * Clears the current object and sets all attributes to their default values
      */
@@ -1160,8 +1470,17 @@ abstract class BaseConsultants extends BaseObject implements Persistent
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
+            if ($this->collEventss) {
+                foreach ($this->collEventss as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
         } // if ($deep)
 
+        if ($this->collEventss instanceof PropelCollection) {
+            $this->collEventss->clearIterator();
+        }
+        $this->collEventss = null;
         $this->aCustomers = null;
     }
 
