@@ -186,7 +186,6 @@ class DefaultController extends CoreController
 
         $this->get('twig')->addGlobal('page_type', 'product-'.$data['id']);
         $this->get('twig')->addGlobal('body_classes', 'body-product product-'.$data['id']);
-        $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
 
         $this->setSharedMaxAge(300);
         $response = $this->render('ProductBundle:Default:view.html.twig', array(
