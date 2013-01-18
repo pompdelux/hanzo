@@ -141,7 +141,6 @@
           domain : cookie_params.domain,
           path : cookie_params.path
         };
-        $.cookie.json = true;
 
         var basket = $.cookie('basket');
         if (basket) {

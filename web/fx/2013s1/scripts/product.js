@@ -243,7 +243,14 @@
      */
     pub.initLastSeen = function() {
       if($('input#master').length) {
-        var data = $.cookie('last_viewed') || { images:[], keys:[] };
+        var data = $.cookie('last_viewed');
+
+        if (data) {
+          data = JSON.parse(data);
+        } else {
+          data = { images:[], keys:[] };
+        }
+
         var id = $('input#master').val().replace(/[^a-z0-9]+/gi, '');
 
         if (-1 === data.keys.indexOf(id)) {
@@ -260,7 +267,7 @@
             data.images.shift();
           }
 
-          $.cookie('last_viewed', data);
+          $.cookie('last_viewed', JSON.stringify(data));
         }
 
         $.each(data.images, function(index, data) {
