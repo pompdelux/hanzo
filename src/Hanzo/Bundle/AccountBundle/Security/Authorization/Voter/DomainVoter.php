@@ -30,16 +30,14 @@ class DomainVoter implements VoterInterface
 
     public function vote(TokenInterface $token, $object, array $attributes)
     {
-        if (!($object instanceof Request))
-        {
+        if (!($object instanceof Request)) {
           return VoterInterface::ACCESS_ABSTAIN;
         }
 
         $request = $object;
 
         $user = $token->getUser();
-        if (!($user instanceof UserInterface))
-        {
+        if (!($user instanceof UserInterface)) {
           return VoterInterface::ACCESS_ABSTAIN;
         }
 
@@ -47,19 +45,15 @@ class DomainVoter implements VoterInterface
         $addresses = $customer->getAddressess();
 
         $paymentAddress = null;
-        foreach ($addresses as $address)
-        {
-            if ( $address->getType() == 'payment' )
-            {
+        foreach ($addresses as $address) {
+            if ( $address->getType() == 'payment' ) {
                 $paymentAddress = $address;
                 break;
             }
         }
 
         // No payment address... wtf?
-        if ( is_null($paymentAddress) )
-        {
-            #error_log(__LINE__.':'.__FILE__.' DomainVoter: no payment address found, abstaining'); // hf@bellcom.dk debugging
+        if ( is_null($paymentAddress) ) {
             return VoterInterface::ACCESS_ABSTAIN;
         }
 
@@ -75,11 +69,10 @@ class DomainVoter implements VoterInterface
             151 => array( 'nl_NL' ), // Netherlands
             161 => array( 'nb_NO' ), // Norway
             207 => array( 'sv_SE' ), // Sweden
-            );
+        );
 
         // Restrict access to login webshop to only customers.
-        if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALES', $user->getRoles()) && 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) // 1=Customers
-        {
+        if (!in_array('ROLE_ADMIN', $user->getRoles()) && !in_array('ROLE_SALES', $user->getRoles()) && 'webshop' === $this->container->get('kernel')->getStoreMode() && $customer->getGroupsId() !== 1 ) {
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.only.customers',array( '%url%' => 'http://c.pompdelux.com/'.$useLocale.'/login', '%site_name%' => $country ),'account');
@@ -88,16 +81,14 @@ class DomainVoter implements VoterInterface
         }
 
         // If the country is not set in the mapping it must run en_GB, so deny access if it doesn't
-        if ( !isset($countryIdToLocaleMap[$countryId]) && $locale != 'en_GB' )
-        {
+        if ( !isset($countryIdToLocaleMap[$countryId]) && $locale != 'en_GB' ) {
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/en_GB/login', '%site_name%' => 'International' ),'account');
             $this->container->get('session')->setFlash('error', $msg);
             return VoterInterface::ACCESS_DENIED;
         }
 
         // If the country has an local shop it must use that
-        if ( isset($countryIdToLocaleMap[$countryId]) && !( in_array($locale,$countryIdToLocaleMap[$countryId]) ) )
-        {
+        if ( isset($countryIdToLocaleMap[$countryId]) && !( in_array($locale,$countryIdToLocaleMap[$countryId]) ) ) {
             $useLocale = $countryIdToLocaleMap[$countryId][0]; // Use the first locale
 
             $msg = $translator->trans('login.restricted.other_locale',array( '%url%' => $request->getBaseUrl().'/'.$useLocale.'/login', '%site_name%' => $country ),'account');
