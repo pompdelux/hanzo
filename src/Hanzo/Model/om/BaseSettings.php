@@ -131,15 +131,13 @@ abstract class BaseSettings extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [created_at] column value.
      *
-     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw unix timestamp integer will be returned.
-     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw DateTime object will be returned.
+     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getCreatedAt($format = 'Y-m-d H:i:s')
+    public function getCreatedAt($format = null)
     {
         if ($this->created_at === null) {
             return null;
@@ -158,8 +156,8 @@ abstract class BaseSettings extends BaseObject implements Persistent
         }
 
         if ($format === null) {
-            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
-            return (int) $dt->format('U');
+            // Because propel.useDateTimeClass is true, we return a DateTime object.
+            return $dt;
         } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
         } else {
@@ -170,15 +168,13 @@ abstract class BaseSettings extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
-     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw unix timestamp integer will be returned.
-     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw DateTime object will be returned.
+     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getUpdatedAt($format = 'Y-m-d H:i:s')
+    public function getUpdatedAt($format = null)
     {
         if ($this->updated_at === null) {
             return null;
@@ -197,8 +193,8 @@ abstract class BaseSettings extends BaseObject implements Persistent
         }
 
         if ($format === null) {
-            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
-            return (int) $dt->format('U');
+            // Because propel.useDateTimeClass is true, we return a DateTime object.
+            return $dt;
         } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
         } else {

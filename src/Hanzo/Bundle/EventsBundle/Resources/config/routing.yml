@@ -105,3 +105,8 @@ events_set_order_type:
     defaults:
         _controller: EventsBundle:Events:setOrderType
 
+events_my_events:
+    pattern: /account/my-events
+    defaults:
+        _controller: EventsBundle:Events:myEvents
+

@@ -38,12 +38,14 @@ h1,h2,h3,h4,h5,h6{
 }
 h1{
 	@include heading-style;
-	padding: 6px 0 12px;
+	padding: 6px 0;
+	margin-bottom: 6px;
 }
 h2{
 	font-weight: 100;
 	font-size: 16px;
-	padding: 6px 0;
+	padding: 3px 0;
+	margin-bottom: 3px;
 	text-transform: uppercase;
 }
 h3{
@@ -167,13 +169,20 @@ a.button {
 			text-decoration: none;
 		}
 	}
+	&.button-large {
+		padding: 6px 12px;
+		width: 234px;
+	}
 }
 
 table{
 	width: 100%;
 	margin: 6px 0 12px;
-	thead,tbody, tfoot{
+	thead, tfoot{
 		border-bottom: 1px solid $font-color;
+	}
+	tfoot{
+		border-top: 1px solid $font-color;
 	}
 	thead{
 		font-family: $font-serif;
@@ -189,6 +198,11 @@ table{
 	tfoot{
 		td{
 			padding: 6px;
+		}
+	}
+	&.horizontal{
+		th{
+			font-weight: bold;
 		}
 	}
 }
@@ -231,6 +245,34 @@ a.right{float: right;}
 	padding: 6px;
 	display: inline-block;
 	@include box;
+}
+.sprite{
+	&.delete,
+	&.edit,
+	&.show,
+	&.pdf{
+		display: inline-block;
+	}
+	&.delete{
+		@include icons-sprite(delete);
+		height: icons-sprite-height(delete);
+		width: icons-sprite-width(delete);
+	}
+	&.edit{
+		@include icons-sprite(edit);
+		height: icons-sprite-height(edit);
+		width: icons-sprite-width(edit);
+	}
+	&.show{
+		@include icons-sprite(show);
+		height: icons-sprite-height(show);
+		width: icons-sprite-width(show);
+	}
+	&.pdf{
+		@include icons-sprite(pdf);
+		height: icons-sprite-height(pdf);
+		width: icons-sprite-width(pdf);
+	}
 }
 ul{
 	list-style-position: inside;

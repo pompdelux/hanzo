@@ -15,6 +15,8 @@ use \PropelDateTime;
 use \PropelException;
 use \PropelObjectCollection;
 use \PropelPDO;
+use Hanzo\Model\Consultants;
+use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
@@ -163,14 +165,14 @@ abstract class BaseEvents extends BaseObject implements Persistent
     protected $updated_at;
 
     /**
-     * @var        Customers
+     * @var        Consultants
      */
-    protected $aCustomersRelatedByConsultantsId;
+    protected $aConsultants;
 
     /**
      * @var        Customers
      */
-    protected $aCustomersRelatedByCustomersId;
+    protected $aCustomers;
 
     /**
      * @var        PropelObjectCollection|EventsParticipants[] Collection to store aggregation of EventsParticipants objects.
@@ -285,15 +287,13 @@ abstract class BaseEvents extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [event_date] column value.
      *
-     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw unix timestamp integer will be returned.
-     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw DateTime object will be returned.
+     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getEventDate($format = 'Y-m-d H:i:s')
+    public function getEventDate($format = null)
     {
         if ($this->event_date === null) {
             return null;
@@ -312,8 +312,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
         }
 
         if ($format === null) {
-            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
-            return (int) $dt->format('U');
+            // Because propel.useDateTimeClass is true, we return a DateTime object.
+            return $dt;
         } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
         } else {
@@ -434,15 +434,13 @@ abstract class BaseEvents extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [created_at] column value.
      *
-     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw unix timestamp integer will be returned.
-     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw DateTime object will be returned.
+     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getCreatedAt($format = 'Y-m-d H:i:s')
+    public function getCreatedAt($format = null)
     {
         if ($this->created_at === null) {
             return null;
@@ -461,8 +459,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
         }
 
         if ($format === null) {
-            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
-            return (int) $dt->format('U');
+            // Because propel.useDateTimeClass is true, we return a DateTime object.
+            return $dt;
         } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
         } else {
@@ -473,15 +471,13 @@ abstract class BaseEvents extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
-     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
-     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw unix timestamp integer will be returned.
-     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw DateTime object will be returned.
+     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getUpdatedAt($format = 'Y-m-d H:i:s')
+    public function getUpdatedAt($format = null)
     {
         if ($this->updated_at === null) {
             return null;
@@ -500,8 +496,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
         }
 
         if ($format === null) {
-            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
-            return (int) $dt->format('U');
+            // Because propel.useDateTimeClass is true, we return a DateTime object.
+            return $dt;
         } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
         } else {
@@ -589,8 +585,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->modifiedColumns[] = EventsPeer::CONSULTANTS_ID;
         }
 
-        if ($this->aCustomersRelatedByConsultantsId !== null && $this->aCustomersRelatedByConsultantsId->getId() !== $v) {
-            $this->aCustomersRelatedByConsultantsId = null;
+        if ($this->aConsultants !== null && $this->aConsultants->getId() !== $v) {
+            $this->aConsultants = null;
         }
 
 
@@ -614,8 +610,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->modifiedColumns[] = EventsPeer::CUSTOMERS_ID;
         }
 
-        if ($this->aCustomersRelatedByCustomersId !== null && $this->aCustomersRelatedByCustomersId->getId() !== $v) {
-            $this->aCustomersRelatedByCustomersId = null;
+        if ($this->aCustomers !== null && $this->aCustomers->getId() !== $v) {
+            $this->aCustomers = null;
         }
 
 
@@ -1028,11 +1024,11 @@ abstract class BaseEvents extends BaseObject implements Persistent
     public function ensureConsistency()
     {
 
-        if ($this->aCustomersRelatedByConsultantsId !== null && $this->consultants_id !== $this->aCustomersRelatedByConsultantsId->getId()) {
-            $this->aCustomersRelatedByConsultantsId = null;
+        if ($this->aConsultants !== null && $this->consultants_id !== $this->aConsultants->getId()) {
+            $this->aConsultants = null;
         }
-        if ($this->aCustomersRelatedByCustomersId !== null && $this->customers_id !== $this->aCustomersRelatedByCustomersId->getId()) {
-            $this->aCustomersRelatedByCustomersId = null;
+        if ($this->aCustomers !== null && $this->customers_id !== $this->aCustomers->getId()) {
+            $this->aCustomers = null;
         }
     } // ensureConsistency
 
@@ -1073,8 +1069,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aCustomersRelatedByConsultantsId = null;
-            $this->aCustomersRelatedByCustomersId = null;
+            $this->aConsultants = null;
+            $this->aCustomers = null;
             $this->collEventsParticipantss = null;
 
             $this->collOrderss = null;
@@ -1208,18 +1204,18 @@ abstract class BaseEvents extends BaseObject implements Persistent
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aCustomersRelatedByConsultantsId !== null) {
-                if ($this->aCustomersRelatedByConsultantsId->isModified() || $this->aCustomersRelatedByConsultantsId->isNew()) {
-                    $affectedRows += $this->aCustomersRelatedByConsultantsId->save($con);
+            if ($this->aConsultants !== null) {
+                if ($this->aConsultants->isModified() || $this->aConsultants->isNew()) {
+                    $affectedRows += $this->aConsultants->save($con);
                 }
-                $this->setCustomersRelatedByConsultantsId($this->aCustomersRelatedByConsultantsId);
+                $this->setConsultants($this->aConsultants);
             }
 
-            if ($this->aCustomersRelatedByCustomersId !== null) {
-                if ($this->aCustomersRelatedByCustomersId->isModified() || $this->aCustomersRelatedByCustomersId->isNew()) {
-                    $affectedRows += $this->aCustomersRelatedByCustomersId->save($con);
+            if ($this->aCustomers !== null) {
+                if ($this->aCustomers->isModified() || $this->aCustomers->isNew()) {
+                    $affectedRows += $this->aCustomers->save($con);
                 }
-                $this->setCustomersRelatedByCustomersId($this->aCustomersRelatedByCustomersId);
+                $this->setCustomers($this->aCustomers);
             }
 
             if ($this->isNew() || $this->isModified()) {
@@ -1517,15 +1513,15 @@ abstract class BaseEvents extends BaseObject implements Persistent
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aCustomersRelatedByConsultantsId !== null) {
-                if (!$this->aCustomersRelatedByConsultantsId->validate($columns)) {
-                    $failureMap = array_merge($failureMap, $this->aCustomersRelatedByConsultantsId->getValidationFailures());
+            if ($this->aConsultants !== null) {
+                if (!$this->aConsultants->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aConsultants->getValidationFailures());
                 }
             }
 
-            if ($this->aCustomersRelatedByCustomersId !== null) {
-                if (!$this->aCustomersRelatedByCustomersId->validate($columns)) {
-                    $failureMap = array_merge($failureMap, $this->aCustomersRelatedByCustomersId->getValidationFailures());
+            if ($this->aCustomers !== null) {
+                if (!$this->aCustomers->validate($columns)) {
+                    $failureMap = array_merge($failureMap, $this->aCustomers->getValidationFailures());
                 }
             }
 
@@ -1693,11 +1689,11 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $keys[18] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
-            if (null !== $this->aCustomersRelatedByConsultantsId) {
-                $result['CustomersRelatedByConsultantsId'] = $this->aCustomersRelatedByConsultantsId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            if (null !== $this->aConsultants) {
+                $result['Consultants'] = $this->aConsultants->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
-            if (null !== $this->aCustomersRelatedByCustomersId) {
-                $result['CustomersRelatedByCustomersId'] = $this->aCustomersRelatedByCustomersId->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            if (null !== $this->aCustomers) {
+                $result['Customers'] = $this->aCustomers->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
             if (null !== $this->collEventsParticipantss) {
                 $result['EventsParticipantss'] = $this->collEventsParticipantss->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -2021,13 +2017,13 @@ abstract class BaseEvents extends BaseObject implements Persistent
     }
 
     /**
-     * Declares an association between this object and a Customers object.
+     * Declares an association between this object and a Consultants object.
      *
-     * @param             Customers $v
+     * @param             Consultants $v
      * @return Events The current object (for fluent API support)
      * @throws PropelException
      */
-    public function setCustomersRelatedByConsultantsId(Customers $v = null)
+    public function setConsultants(Consultants $v = null)
     {
         if ($v === null) {
             $this->setConsultantsId(NULL);
@@ -2035,12 +2031,12 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->setConsultantsId($v->getId());
         }
 
-        $this->aCustomersRelatedByConsultantsId = $v;
+        $this->aConsultants = $v;
 
         // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the Customers object, it will not be re-added.
+        // If this object has already been added to the Consultants object, it will not be re-added.
         if ($v !== null) {
-            $v->addEventsRelatedByConsultantsId($this);
+            $v->addEvents($this);
         }
 
 
@@ -2049,26 +2045,26 @@ abstract class BaseEvents extends BaseObject implements Persistent
 
 
     /**
-     * Get the associated Customers object
+     * Get the associated Consultants object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @return Customers The associated Customers object.
+     * @return Consultants The associated Consultants object.
      * @throws PropelException
      */
-    public function getCustomersRelatedByConsultantsId(PropelPDO $con = null)
+    public function getConsultants(PropelPDO $con = null)
     {
-        if ($this->aCustomersRelatedByConsultantsId === null && ($this->consultants_id !== null)) {
-            $this->aCustomersRelatedByConsultantsId = CustomersQuery::create()->findPk($this->consultants_id, $con);
+        if ($this->aConsultants === null && ($this->consultants_id !== null)) {
+            $this->aConsultants = ConsultantsQuery::create()->findPk($this->consultants_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aCustomersRelatedByConsultantsId->addEventssRelatedByConsultantsId($this);
+                $this->aConsultants->addEventss($this);
              */
         }
 
-        return $this->aCustomersRelatedByConsultantsId;
+        return $this->aConsultants;
     }
 
     /**
@@ -2078,7 +2074,7 @@ abstract class BaseEvents extends BaseObject implements Persistent
      * @return Events The current object (for fluent API support)
      * @throws PropelException
      */
-    public function setCustomersRelatedByCustomersId(Customers $v = null)
+    public function setCustomers(Customers $v = null)
     {
         if ($v === null) {
             $this->setCustomersId(NULL);
@@ -2086,12 +2082,12 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->setCustomersId($v->getId());
         }
 
-        $this->aCustomersRelatedByCustomersId = $v;
+        $this->aCustomers = $v;
 
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the Customers object, it will not be re-added.
         if ($v !== null) {
-            $v->addEventsRelatedByCustomersId($this);
+            $v->addEvents($this);
         }
 
 
@@ -2106,20 +2102,20 @@ abstract class BaseEvents extends BaseObject implements Persistent
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomersRelatedByCustomersId(PropelPDO $con = null)
+    public function getCustomers(PropelPDO $con = null)
     {
-        if ($this->aCustomersRelatedByCustomersId === null && ($this->customers_id !== null)) {
-            $this->aCustomersRelatedByCustomersId = CustomersQuery::create()->findPk($this->customers_id, $con);
+        if ($this->aCustomers === null && ($this->customers_id !== null)) {
+            $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aCustomersRelatedByCustomersId->addEventssRelatedByCustomersId($this);
+                $this->aCustomers->addEventss($this);
              */
         }
 
-        return $this->aCustomersRelatedByCustomersId;
+        return $this->aCustomers;
     }
 
 
@@ -2695,8 +2691,8 @@ abstract class BaseEvents extends BaseObject implements Persistent
             $this->collOrderss->clearIterator();
         }
         $this->collOrderss = null;
-        $this->aCustomersRelatedByConsultantsId = null;
-        $this->aCustomersRelatedByCustomersId = null;
+        $this->aConsultants = null;
+        $this->aCustomers = null;
     }
 
     /**

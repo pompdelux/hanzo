@@ -17,20 +17,20 @@
   background-position: 0 -494px;
 }
 
-.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pinterest, .icons-shopping-bag, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right {
-  background: url('/fx/2013s1/../images/icons/icons-s081cb7bc0e.png') no-repeat;
+.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+  background: url('/fx/2013s1/../images/icons/icons-s6db6c2955e.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -502px;
+  background-position: 0 -528px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -495px;
+  background-position: 0 -521px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -506px;
+  background-position: 0 -532px;
 }
 
 .icons-basket {
@@ -38,55 +38,71 @@
 }
 
 .icons-button-left {
-  background-position: 0 -476px;
+  background-position: 0 -502px;
 }
 
 .icons-button-right {
-  background-position: 0 -457px;
+  background-position: 0 -483px;
+}
+
+.icons-delete {
+  background-position: 0 -147px;
 }
 
 .icons-divider {
-  background-position: 0 -314px;
+  background-position: 0 -340px;
 }
 
 .icons-divider_left {
-  background-position: 0 -181px;
+  background-position: 0 -207px;
 }
 
 .icons-divider_right {
-  background-position: 0 -244px;
+  background-position: 0 -270px;
+}
+
+.icons-edit {
+  background-position: 0 -131px;
 }
 
 .icons-facebook {
-  background-position: 0 -393px;
+  background-position: 0 -419px;
 }
 
 .icons-gplus {
-  background-position: 0 -361px;
+  background-position: 0 -387px;
 }
 
 .icons-newsletter {
   background-position: 0 0;
 }
 
+.icons-pdf {
+  background-position: 0 -539px;
+}
+
 .icons-pinterest {
-  background-position: 0 -329px;
+  background-position: 0 -355px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -201px;
+  background-position: 0 -227px;
+}
+
+.icons-show {
+  background-position: 0 -555px;
 }
 
 .icons-twitter {
-  background-position: 0 -425px;
+  background-position: 0 -451px;
 }
 
 .icons-video {
-  background-position: 0 -264px;
+  background-position: 0 -290px;
 }
 
 .icons-zoom {
-  background-position: 0 -131px;
+  background-position: 0 -157px;
 }
 
 /**
@@ -380,7 +396,7 @@ div.panes > div {
   display: inline-block;
 }
 .zoom .sprite {
-  background-position: 0 -131px;
+  background-position: 0 -157px;
   height: 50px;
   width: 45px;
 }
@@ -399,7 +415,7 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -264px;
+  background-position: 0 -290px;
   height: 50px;
   width: 58px;
 }
@@ -740,14 +756,6 @@ form.address label {
   font-family: "Merriweather", serif;
   font-weight: 900;
 }
-.basket table.product-table .actions a,
-.basket table.edit-element .actions a,
-#cart-edit-element table.product-table .actions a,
-#cart-edit-element table.edit-element .actions a {
-  display: block;
-  line-height: 23px;
-  text-decoration: underline;
-}
 .basket table.product-table .date span.not-in-stock,
 .basket table.edit-element .date span.not-in-stock,
 #cart-edit-element table.product-table .date span.not-in-stock,
@@ -1079,13 +1087,15 @@ h1 {
   font-family: "Merriweather", serif;
   font-weight: 900;
   line-height: 24px;
-  padding: 6px 0 12px;
+  padding: 6px 0;
+  margin-bottom: 6px;
 }
 
 h2 {
   font-weight: 100;
   font-size: 16px;
-  padding: 6px 0;
+  padding: 3px 0;
+  margin-bottom: 3px;
   text-transform: uppercase;
 }
 
@@ -1118,14 +1128,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -314px;
+  background-position: 0 -340px;
   height: 15px;
 }
 hr.left {
-  background-position: 0 -181px;
+  background-position: 0 -207px;
 }
 hr.right {
-  background-position: 0 -244px;
+  background-position: 0 -270px;
 }
 
 strong, b {
@@ -1220,13 +1230,22 @@ button.button.button-small:hover,
 a.button.button-small:hover {
   text-decoration: none;
 }
+input.button.button-large,
+button.button.button-large,
+a.button.button-large {
+  padding: 6px 12px;
+  width: 234px;
+}
 
 table {
   width: 100%;
   margin: 6px 0 12px;
 }
-table thead, table tbody, table tfoot {
+table thead, table tfoot {
   border-bottom: 1px solid #444444;
+}
+table tfoot {
+  border-top: 1px solid #444444;
 }
 table thead {
   font-family: "Merriweather", serif;
@@ -1239,6 +1258,9 @@ table tbody td {
 }
 table tfoot td {
   padding: 6px;
+}
+table.horizontal th {
+  font-weight: bold;
 }
 
 .align-left,
@@ -1334,6 +1356,30 @@ a.right {
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
   border: #f0f0f0 1px solid;
+}
+
+.sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+  display: inline-block;
+}
+.sprite.delete {
+  background-position: 0 -147px;
+  height: 10px;
+  width: 15px;
+}
+.sprite.edit {
+  background-position: 0 -131px;
+  height: 16px;
+  width: 23px;
+}
+.sprite.show {
+  background-position: 0 -555px;
+  height: 16px;
+  width: 16px;
+}
+.sprite.pdf {
+  background-position: 0 -539px;
+  height: 16px;
+  width: 16px;
 }
 
 ul {

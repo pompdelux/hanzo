@@ -55,8 +55,8 @@
           <td class="center quantity">{{ product.quantity }}</td>
         {% if embedded == false %}
           <td class="actions center">
-            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ "delete"|trans }}</a>
-            <a href="{{ product.products_id }}" class="edit">{{ "edit"|trans }}</a>
+            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="sprite delete"></a>
+            <a href="{{ product.products_id }}" class="sprite edit"></a>
           </td>
         {% endif %}
           <td class="right total">{{ (product.price * product.quantity)|money }}</td>

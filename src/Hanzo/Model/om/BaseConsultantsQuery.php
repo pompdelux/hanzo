@@ -16,6 +16,7 @@ use Hanzo\Model\Consultants;
 use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\ConsultantsQuery;
 use Hanzo\Model\Customers;
+use Hanzo\Model\Events;
 
 /**
  * @method ConsultantsQuery orderByInitials($order = Criteria::ASC) Order by the initials column
@@ -39,6 +40,10 @@ use Hanzo\Model\Customers;
  * @method ConsultantsQuery leftJoinCustomers($relationAlias = null) Adds a LEFT JOIN clause to the query using the Customers relation
  * @method ConsultantsQuery rightJoinCustomers($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Customers relation
  * @method ConsultantsQuery innerJoinCustomers($relationAlias = null) Adds a INNER JOIN clause to the query using the Customers relation
+ *
+ * @method ConsultantsQuery leftJoinEvents($relationAlias = null) Adds a LEFT JOIN clause to the query using the Events relation
+ * @method ConsultantsQuery rightJoinEvents($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Events relation
+ * @method ConsultantsQuery innerJoinEvents($relationAlias = null) Adds a INNER JOIN clause to the query using the Events relation
  *
  * @method Consultants findOne(PropelPDO $con = null) Return the first Consultants matching the query
  * @method Consultants findOneOrCreate(PropelPDO $con = null) Return the first Consultants matching the query, or a new Consultants object populated from the query conditions when no match is found
@@ -476,6 +481,80 @@ abstract class BaseConsultantsQuery extends ModelCriteria
         return $this
             ->joinCustomers($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'Customers', '\Hanzo\Model\CustomersQuery');
+    }
+
+    /**
+     * Filter the query by a related Events object
+     *
+     * @param   Events|PropelObjectCollection $events  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return   ConsultantsQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
+     */
+    public function filterByEvents($events, $comparison = null)
+    {
+        if ($events instanceof Events) {
+            return $this
+                ->addUsingAlias(ConsultantsPeer::ID, $events->getConsultantsId(), $comparison);
+        } elseif ($events instanceof PropelObjectCollection) {
+            return $this
+                ->useEventsQuery()
+                ->filterByPrimaryKeys($events->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByEvents() only accepts arguments of type Events or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Events relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return ConsultantsQuery The current query, for fluid interface
+     */
+    public function joinEvents($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Events');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Events');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Events relation Events object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\EventsQuery A secondary query class using the current class as primary query
+     */
+    public function useEventsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinEvents($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Events', '\Hanzo\Model\EventsQuery');
     }
 
     /**
