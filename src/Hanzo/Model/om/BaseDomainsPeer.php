@@ -16,13 +16,6 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsQuantityDiscountPeer;
 use Hanzo\Model\map\DomainsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'domains' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseDomainsPeer
 {
 
@@ -47,14 +40,14 @@ abstract class BaseDomainsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the id field */
-    const ID = 'domains.id';
+    /** the column name for the ID field */
+    const ID = 'domains.ID';
 
-    /** the column name for the domain_name field */
-    const DOMAIN_NAME = 'domains.domain_name';
+    /** the column name for the DOMAIN_NAME field */
+    const DOMAIN_NAME = 'domains.DOMAIN_NAME';
 
-    /** the column name for the domain_key field */
-    const DOMAIN_KEY = 'domains.domain_key';
+    /** the column name for the DOMAIN_KEY field */
+    const DOMAIN_KEY = 'domains.DOMAIN_KEY';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -173,9 +166,9 @@ abstract class BaseDomainsPeer
             $criteria->addSelectColumn(DomainsPeer::DOMAIN_NAME);
             $criteria->addSelectColumn(DomainsPeer::DOMAIN_KEY);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.domain_name');
-            $criteria->addSelectColumn($alias . '.domain_key');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.DOMAIN_NAME');
+            $criteria->addSelectColumn($alias . '.DOMAIN_KEY');
         }
     }
 

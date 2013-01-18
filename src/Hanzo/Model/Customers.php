@@ -7,6 +7,7 @@ use PropelPDO;
 use Hanzo\Model\om\BaseCustomers;
 use Hanzo\Model\CustomersQuery;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Skeleton subclass for representing a row from the 'customers' table.
@@ -19,7 +20,7 @@ use Hanzo\Model\CustomersQuery;
  *
  * @package    propel.generator.home/un/Documents/Arbejde/Pompdelux/www/hanzo/Symfony/src/Hanzo/Model
  */
-class Customers extends BaseCustomers
+class Customers extends BaseCustomers implements UserInterface
 {
     protected $acl;
 
@@ -90,4 +91,84 @@ class Customers extends BaseCustomers
         return false;
     }
 
+
+    private $map = array(
+        'consultant' => array(
+            'ROLE_CONSULTANT',
+            'ROLE_USER',
+        ),
+        'customer' => array(
+            'ROLE_CUSTOMER',
+            'ROLE_USER',
+        ),
+        'employee' => array(
+            'ROLE_EMPLOYEE',
+            'ROLE_USER',
+        ),
+        'admin' => array(
+            'ROLE_ADMIN',
+            'ROLE_EMPLOYEE',
+            'ROLE_SALES',
+            'ROLE_USER',
+        ),
+    );
+
+    // NICETO: should not be hardcoded
+    private $admins = array(
+        'hd@pompdelux.dk',
+        'lv@pompdelux.dk',
+        'hf@bellcom.dk',
+        'ulrik@bellcom.dk',
+        'mmh@bellcom.dk',
+        'andersbryrup@gmail.com',
+        'hanzo@bellcom.dk',
+    );
+
+    private $sales = array(
+        'kk@pompdelux.dk',
+        'ak@pompdelux.dk',
+        'sj@pompdelux.dk',
+        'nj@pompdelux.dk',
+        'pc@pompdelux.dk',
+        // admins
+        'hd@pompdelux.dk',
+        'lv@pompdelux.dk',
+     );
+
+    public function getRoles()
+    {
+        $group = $this->getGroups();
+        $roles = $this->map[$group->getName()];
+
+        // NICETO: should not be hardcoded
+        if (in_array($this->getUsername(), $this->admins)) {
+            $roles[] = 'ROLE_EMPLOYEE';
+            $roles[] = 'ROLE_ADMIN';
+        }
+
+        // NICETO: should not be hardcoded
+        if (in_array($this->getUsername(), $this->sales)) {
+            $roles[] = 'ROLE_SALES';
+            $roles[] = 'ROLE_CONSULTANT';
+        }
+
+        return $roles;
+    }
+
+    public function getSalt()
+    {
+        return '';
+    }
+
+    public function getUsername()
+    {
+        return $this->getEmail();
+    }
+
+    public function getUser()
+    {
+        return $this;
+    }
+
+    public function eraseCredentials() {}
 } // Customers

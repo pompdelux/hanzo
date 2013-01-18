@@ -42,11 +42,11 @@ class ProductsImagesTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('products_id', 'ProductsId', 'INTEGER', 'products', 'id', true, null, null);
-        $this->addColumn('image', 'Image', 'VARCHAR', true, 255, null);
-        $this->addColumn('color', 'Color', 'VARCHAR', false, 128, null);
-        $this->addColumn('type', 'Type', 'VARCHAR', false, 128, null);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('PRODUCTS_ID', 'ProductsId', 'INTEGER', 'products', 'ID', true, null, null);
+        $this->addColumn('IMAGE', 'Image', 'VARCHAR', true, 255, null);
+        $this->addColumn('COLOR', 'Color', 'VARCHAR', false, 128, null);
+        $this->addColumn('TYPE', 'Type', 'VARCHAR', false, 128, null);
         // validators
     } // initialize()
 

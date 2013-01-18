@@ -13,13 +13,6 @@ use Hanzo\Model\Sequences;
 use Hanzo\Model\SequencesPeer;
 use Hanzo\Model\map\SequencesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'sequences' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseSequencesPeer
 {
 
@@ -44,11 +37,11 @@ abstract class BaseSequencesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the name field */
-    const NAME = 'sequences.name';
+    /** the column name for the NAME field */
+    const NAME = 'sequences.NAME';
 
-    /** the column name for the id field */
-    const ID = 'sequences.id';
+    /** the column name for the ID field */
+    const ID = 'sequences.ID';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -166,8 +159,8 @@ abstract class BaseSequencesPeer
             $criteria->addSelectColumn(SequencesPeer::NAME);
             $criteria->addSelectColumn(SequencesPeer::ID);
         } else {
-            $criteria->addSelectColumn($alias . '.name');
-            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.NAME');
+            $criteria->addSelectColumn($alias . '.ID');
         }
     }
 

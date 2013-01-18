@@ -18,10 +18,6 @@ use Hanzo\Model\GroupsPeer;
 use Hanzo\Model\GroupsQuery;
 
 /**
- * Base class that represents a query for the 'groups' table.
- *
- *
- *
  * @method GroupsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method GroupsQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method GroupsQuery orderByDiscount($order = Criteria::ASC) Order by the discount column
@@ -41,14 +37,13 @@ use Hanzo\Model\GroupsQuery;
  * @method Groups findOne(PropelPDO $con = null) Return the first Groups matching the query
  * @method Groups findOneOrCreate(PropelPDO $con = null) Return the first Groups matching the query, or a new Groups object populated from the query conditions when no match is found
  *
+ * @method Groups findOneById(int $id) Return the first Groups filtered by the id column
  * @method Groups findOneByName(string $name) Return the first Groups filtered by the name column
  * @method Groups findOneByDiscount(string $discount) Return the first Groups filtered by the discount column
  *
  * @method array findById(int $id) Return Groups objects filtered by the id column
  * @method array findByName(string $name) Return Groups objects filtered by the name column
  * @method array findByDiscount(string $discount) Return Groups objects filtered by the discount column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseGroupsQuery extends ModelCriteria
 {
@@ -125,20 +120,6 @@ abstract class BaseGroupsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Groups A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -150,7 +131,7 @@ abstract class BaseGroupsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `discount` FROM `groups` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `NAME`, `DISCOUNT` FROM `groups` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

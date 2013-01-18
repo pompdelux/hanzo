@@ -14,13 +14,6 @@ use Hanzo\Model\CmsThreadI18nPeer;
 use Hanzo\Model\CmsThreadPeer;
 use Hanzo\Model\map\CmsThreadI18nTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'cms_thread_i18n' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCmsThreadI18nPeer
 {
 
@@ -45,14 +38,14 @@ abstract class BaseCmsThreadI18nPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the id field */
-    const ID = 'cms_thread_i18n.id';
+    /** the column name for the ID field */
+    const ID = 'cms_thread_i18n.ID';
 
-    /** the column name for the locale field */
-    const LOCALE = 'cms_thread_i18n.locale';
+    /** the column name for the LOCALE field */
+    const LOCALE = 'cms_thread_i18n.LOCALE';
 
-    /** the column name for the title field */
-    const TITLE = 'cms_thread_i18n.title';
+    /** the column name for the TITLE field */
+    const TITLE = 'cms_thread_i18n.TITLE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -171,9 +164,9 @@ abstract class BaseCmsThreadI18nPeer
             $criteria->addSelectColumn(CmsThreadI18nPeer::LOCALE);
             $criteria->addSelectColumn(CmsThreadI18nPeer::TITLE);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.locale');
-            $criteria->addSelectColumn($alias . '.title');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.LOCALE');
+            $criteria->addSelectColumn($alias . '.TITLE');
         }
     }
 

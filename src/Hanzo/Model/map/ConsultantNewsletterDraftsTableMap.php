@@ -42,11 +42,11 @@ class ConsultantNewsletterDraftsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('consultants_id', 'ConsultantsId', 'INTEGER', 'customers', 'id', true, null, null);
-        $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
-        $this->getColumn('subject', false)->setPrimaryString(true);
-        $this->addColumn('content', 'Content', 'LONGVARCHAR', false, null, null);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('CONSULTANTS_ID', 'ConsultantsId', 'INTEGER', 'customers', 'ID', true, null, null);
+        $this->addColumn('SUBJECT', 'Subject', 'VARCHAR', true, 255, null);
+        $this->getColumn('SUBJECT', false)->setPrimaryString(true);
+        $this->addColumn('CONTENT', 'Content', 'LONGVARCHAR', false, null, null);
         // validators
     } // initialize()
 

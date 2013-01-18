@@ -15,10 +15,6 @@ use Hanzo\Model\HelpdeskDataLogPeer;
 use Hanzo\Model\HelpdeskDataLogQuery;
 
 /**
- * Base class that represents a query for the 'helpdesk_data_log' table.
- *
- *
- *
  * @method HelpdeskDataLogQuery orderByKey($order = Criteria::ASC) Order by the key column
  * @method HelpdeskDataLogQuery orderByData($order = Criteria::ASC) Order by the data column
  * @method HelpdeskDataLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
@@ -34,14 +30,13 @@ use Hanzo\Model\HelpdeskDataLogQuery;
  * @method HelpdeskDataLog findOne(PropelPDO $con = null) Return the first HelpdeskDataLog matching the query
  * @method HelpdeskDataLog findOneOrCreate(PropelPDO $con = null) Return the first HelpdeskDataLog matching the query, or a new HelpdeskDataLog object populated from the query conditions when no match is found
  *
+ * @method HelpdeskDataLog findOneByKey(string $key) Return the first HelpdeskDataLog filtered by the key column
  * @method HelpdeskDataLog findOneByData(string $data) Return the first HelpdeskDataLog filtered by the data column
  * @method HelpdeskDataLog findOneByCreatedAt(string $created_at) Return the first HelpdeskDataLog filtered by the created_at column
  *
  * @method array findByKey(string $key) Return HelpdeskDataLog objects filtered by the key column
  * @method array findByData(string $data) Return HelpdeskDataLog objects filtered by the data column
  * @method array findByCreatedAt(string $created_at) Return HelpdeskDataLog objects filtered by the created_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseHelpdeskDataLogQuery extends ModelCriteria
 {
@@ -118,20 +113,6 @@ abstract class BaseHelpdeskDataLogQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   HelpdeskDataLog A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneByKey($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -143,7 +124,7 @@ abstract class BaseHelpdeskDataLogQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `key`, `data`, `created_at` FROM `helpdesk_data_log` WHERE `key` = :p0';
+        $sql = 'SELECT `KEY`, `DATA`, `CREATED_AT` FROM `helpdesk_data_log` WHERE `KEY` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_STR);

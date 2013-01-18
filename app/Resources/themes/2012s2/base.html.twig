@@ -66,7 +66,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="container">
-  <a href="{{ path('_homepage', {'_locale' : app.session.locale}) }}" title="{{ "home"|trans }}">
+  <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
     {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '', {'id':'logo', 'alt':'POMPdeLUX'}) }}
   </a>
 
@@ -81,7 +81,7 @@
 
   <aside id="secondary-links">
     <ul>
-      <li><a href="{{ path('_account', {'_locale' : app.session.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+      <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       <li id="select-domain">
         <a class="open-menu" href="#">Change Country</a>
         <div style="display: none">
@@ -94,9 +94,9 @@
         </div>
       </li>
       <li id="mini-basket" class="basket">
-        <a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
+        <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
       </li>
-      <li><a href="{{ path('basket_view', {'_locale' : app.session.locale}) }}">{{ "show.basket"|trans }}</a></li>
+      <li><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </aside>
 
@@ -112,15 +112,15 @@
 <script type="text/javascript">
   var cookie_params = {
     'domain' : '{{ app.request.getHttpHost() }}',
-    'path' : '{{ path('_homepage', {'_locale' : app.session.locale}) }}'
+    'path' : '{{ path('_homepage', {'_locale' : app.request.locale}) }}'
   };
-  var base_url = '{{ url('_homepage', {'_locale' : app.session.locale}) }}';
+  var base_url = '{{ url('_homepage', {'_locale' : app.request.locale}) }}';
   var cdn_url = '{{ cdn }}';
   var counter_offset = 1314691200;
 </script>
 
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
 
 
 {% javascripts

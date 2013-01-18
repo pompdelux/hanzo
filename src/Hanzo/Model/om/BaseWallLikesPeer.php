@@ -15,13 +15,6 @@ use Hanzo\Model\WallLikesPeer;
 use Hanzo\Model\WallPeer;
 use Hanzo\Model\map\WallLikesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'wall_likes' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseWallLikesPeer
 {
 
@@ -46,17 +39,17 @@ abstract class BaseWallLikesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'wall_likes.id';
+    /** the column name for the ID field */
+    const ID = 'wall_likes.ID';
 
-    /** the column name for the wall_id field */
-    const WALL_ID = 'wall_likes.wall_id';
+    /** the column name for the WALL_ID field */
+    const WALL_ID = 'wall_likes.WALL_ID';
 
-    /** the column name for the customers_id field */
-    const CUSTOMERS_ID = 'wall_likes.customers_id';
+    /** the column name for the CUSTOMERS_ID field */
+    const CUSTOMERS_ID = 'wall_likes.CUSTOMERS_ID';
 
-    /** the column name for the status field */
-    const STATUS = 'wall_likes.status';
+    /** the column name for the STATUS field */
+    const STATUS = 'wall_likes.STATUS';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -176,10 +169,10 @@ abstract class BaseWallLikesPeer
             $criteria->addSelectColumn(WallLikesPeer::CUSTOMERS_ID);
             $criteria->addSelectColumn(WallLikesPeer::STATUS);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.wall_id');
-            $criteria->addSelectColumn($alias . '.customers_id');
-            $criteria->addSelectColumn($alias . '.status');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.WALL_ID');
+            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
+            $criteria->addSelectColumn($alias . '.STATUS');
         }
     }
 

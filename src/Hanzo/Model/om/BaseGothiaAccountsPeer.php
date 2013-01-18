@@ -14,13 +14,6 @@ use Hanzo\Model\GothiaAccounts;
 use Hanzo\Model\GothiaAccountsPeer;
 use Hanzo\Model\map\GothiaAccountsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'gothia_accounts' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseGothiaAccountsPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseGothiaAccountsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the customers_id field */
-    const CUSTOMERS_ID = 'gothia_accounts.customers_id';
+    /** the column name for the CUSTOMERS_ID field */
+    const CUSTOMERS_ID = 'gothia_accounts.CUSTOMERS_ID';
 
-    /** the column name for the distribution_by field */
-    const DISTRIBUTION_BY = 'gothia_accounts.distribution_by';
+    /** the column name for the DISTRIBUTION_BY field */
+    const DISTRIBUTION_BY = 'gothia_accounts.DISTRIBUTION_BY';
 
-    /** the column name for the distribution_type field */
-    const DISTRIBUTION_TYPE = 'gothia_accounts.distribution_type';
+    /** the column name for the DISTRIBUTION_TYPE field */
+    const DISTRIBUTION_TYPE = 'gothia_accounts.DISTRIBUTION_TYPE';
 
-    /** the column name for the social_security_num field */
-    const SOCIAL_SECURITY_NUM = 'gothia_accounts.social_security_num';
+    /** the column name for the SOCIAL_SECURITY_NUM field */
+    const SOCIAL_SECURITY_NUM = 'gothia_accounts.SOCIAL_SECURITY_NUM';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseGothiaAccountsPeer
             $criteria->addSelectColumn(GothiaAccountsPeer::DISTRIBUTION_TYPE);
             $criteria->addSelectColumn(GothiaAccountsPeer::SOCIAL_SECURITY_NUM);
         } else {
-            $criteria->addSelectColumn($alias . '.customers_id');
-            $criteria->addSelectColumn($alias . '.distribution_by');
-            $criteria->addSelectColumn($alias . '.distribution_type');
-            $criteria->addSelectColumn($alias . '.social_security_num');
+            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
+            $criteria->addSelectColumn($alias . '.DISTRIBUTION_BY');
+            $criteria->addSelectColumn($alias . '.DISTRIBUTION_TYPE');
+            $criteria->addSelectColumn($alias . '.SOCIAL_SECURITY_NUM');
         }
     }
 

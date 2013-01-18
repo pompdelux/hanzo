@@ -15,13 +15,6 @@ use Hanzo\Model\ProductsToCategories;
 use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\map\ProductsToCategoriesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'products_to_categories' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsToCategoriesPeer
 {
 
@@ -46,11 +39,11 @@ abstract class BaseProductsToCategoriesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the products_id field */
-    const PRODUCTS_ID = 'products_to_categories.products_id';
+    /** the column name for the PRODUCTS_ID field */
+    const PRODUCTS_ID = 'products_to_categories.PRODUCTS_ID';
 
-    /** the column name for the categories_id field */
-    const CATEGORIES_ID = 'products_to_categories.categories_id';
+    /** the column name for the CATEGORIES_ID field */
+    const CATEGORIES_ID = 'products_to_categories.CATEGORIES_ID';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,8 +161,8 @@ abstract class BaseProductsToCategoriesPeer
             $criteria->addSelectColumn(ProductsToCategoriesPeer::PRODUCTS_ID);
             $criteria->addSelectColumn(ProductsToCategoriesPeer::CATEGORIES_ID);
         } else {
-            $criteria->addSelectColumn($alias . '.products_id');
-            $criteria->addSelectColumn($alias . '.categories_id');
+            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
+            $criteria->addSelectColumn($alias . '.CATEGORIES_ID');
         }
     }
 

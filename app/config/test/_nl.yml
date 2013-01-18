@@ -1,7 +1,7 @@
 framework:
+    default_locale: nl_NL
     session:
-        default_locale: nl_NL
-        path: '/nl_NL'
+        cookie_path: '/nl_NL'
 
 propel:
     dbal:

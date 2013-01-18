@@ -456,6 +456,22 @@
                 <source>account.history.see.all.orders</source>
                 <target>See all orders</target>
             </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-post</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Gjenta e-postadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3" approved="no">
+                <source>Pass</source>
+                <target>Valgfri adgangskode</target>
+            </trans-unit>
+            <trans-unit id="acc.4" approved="no">
+                <source>Pass repeated</source>
+                <target>Gjenta adgangskode</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

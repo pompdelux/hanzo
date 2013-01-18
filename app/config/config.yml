@@ -5,7 +5,6 @@ imports:
 framework:
     translator: null
     secret: '%secret%'
-    charset: UTF-8
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
     form: true
@@ -16,10 +15,7 @@ framework:
     templating:
         engines: [twig]
         assets_version: '%assets_version%'
-    session:
-        # default_locale: '%locale%'
-        auto_start: false
-        path: '/%locale%'
+    session: ~
 
 services:
     stock:
@@ -46,7 +42,7 @@ services:
 
     hanzo.routing_loader:
         class: Hanzo\Bundle\CMSBundle\CMSRouterLoader
-        arguments: ['@session', '%kernel.cache_dir%']
+        arguments: ['%locale%', '%kernel.cache_dir%']
         tags:
             -   { name: routing.loader }
 
@@ -69,14 +65,10 @@ services:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form:
-        resources: ['SimpleThingsFormExtraBundle:Form:translation_domain.html.twig']
 
 assetic:
     debug: '%kernel.debug%'
-    use_controller:
-        enabled: true
-        profiler: true
+    use_controller: false
     java: /usr/bin/java
     sass: %sass_bin%
     node: %node_bin%
@@ -85,8 +77,10 @@ assetic:
         compass:
             bin: %compass_bin%
             apply_to: "\.scss$"
-        yui_js:
-            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+        uglifyjs:
+            bin: %uglifyjs_bin%
+            no_copyright: false
+            apply_to: "\.js$"
 
 swiftmailer:
     transport: '%mailer_transport%'
@@ -104,9 +98,11 @@ propel:
     logging: '%kernel.debug%'
 
 jms_security_extra:
-    secure_controllers: true
     secure_all_services: false
+    expressions: true
 
+# when switching to native redis session handeling
+# https://github.com/drak/NativeSession
 snc_redis:
     clients:
         default:
@@ -129,9 +125,7 @@ snc_redis:
         client: session
         ttl: 10800
         prefix: hanzo.session
-
-simple_things_form_extra:
-    translation_domain_forward_compat: true
+        use_as_default: true
 
 # settings for the cms bundle.
 cms:

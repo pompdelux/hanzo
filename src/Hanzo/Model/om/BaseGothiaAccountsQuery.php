@@ -18,10 +18,6 @@ use Hanzo\Model\GothiaAccountsPeer;
 use Hanzo\Model\GothiaAccountsQuery;
 
 /**
- * Base class that represents a query for the 'gothia_accounts' table.
- *
- *
- *
  * @method GothiaAccountsQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method GothiaAccountsQuery orderByDistributionBy($order = Criteria::ASC) Order by the distribution_by column
  * @method GothiaAccountsQuery orderByDistributionType($order = Criteria::ASC) Order by the distribution_type column
@@ -43,6 +39,7 @@ use Hanzo\Model\GothiaAccountsQuery;
  * @method GothiaAccounts findOne(PropelPDO $con = null) Return the first GothiaAccounts matching the query
  * @method GothiaAccounts findOneOrCreate(PropelPDO $con = null) Return the first GothiaAccounts matching the query, or a new GothiaAccounts object populated from the query conditions when no match is found
  *
+ * @method GothiaAccounts findOneByCustomersId(int $customers_id) Return the first GothiaAccounts filtered by the customers_id column
  * @method GothiaAccounts findOneByDistributionBy(string $distribution_by) Return the first GothiaAccounts filtered by the distribution_by column
  * @method GothiaAccounts findOneByDistributionType(string $distribution_type) Return the first GothiaAccounts filtered by the distribution_type column
  * @method GothiaAccounts findOneBySocialSecurityNum(string $social_security_num) Return the first GothiaAccounts filtered by the social_security_num column
@@ -51,8 +48,6 @@ use Hanzo\Model\GothiaAccountsQuery;
  * @method array findByDistributionBy(string $distribution_by) Return GothiaAccounts objects filtered by the distribution_by column
  * @method array findByDistributionType(string $distribution_type) Return GothiaAccounts objects filtered by the distribution_type column
  * @method array findBySocialSecurityNum(string $social_security_num) Return GothiaAccounts objects filtered by the social_security_num column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseGothiaAccountsQuery extends ModelCriteria
 {
@@ -129,20 +124,6 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   GothiaAccounts A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneByCustomersId($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -154,7 +135,7 @@ abstract class BaseGothiaAccountsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `customers_id`, `distribution_by`, `distribution_type`, `social_security_num` FROM `gothia_accounts` WHERE `customers_id` = :p0';
+        $sql = 'SELECT `CUSTOMERS_ID`, `DISTRIBUTION_BY`, `DISTRIBUTION_TYPE`, `SOCIAL_SECURITY_NUM` FROM `gothia_accounts` WHERE `CUSTOMERS_ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

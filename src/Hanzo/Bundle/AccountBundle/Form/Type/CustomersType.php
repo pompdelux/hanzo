@@ -3,7 +3,8 @@
 namespace Hanzo\Bundle\AccountBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CustomersType extends AbstractType
 {
@@ -16,20 +17,18 @@ class CustomersType extends AbstractType
         $this->is_new = (boolean) $is_new;
     }
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('first_name', null, array('translation_domain' => 'account', 'trim' => true));
-        $builder->add('last_name', null, array('translation_domain' => 'account', 'trim' => true));
+        $builder->add('first_name', null, array('trim' => true));
+        $builder->add('last_name', null, array('trim' => true));
 
         $builder->add('addresses', 'collection', array(
             'type' => $this->addressType,
-            'translation_domain' => 'account',
             'attr' => array('autocomplete' => 'off'),
         ));
 
         $builder->add('phone', null, array(
             'required' => TRUE,
-            'translation_domain' => 'account',
             'attr' => array('autocomplete' => 'off'),
         ));
 
@@ -38,7 +37,6 @@ class CustomersType extends AbstractType
             'invalid_message' => 'email.invalid.match',
             'first_name' => 'email_address',
             'second_name' => 'email_address_repeated',
-            'translation_domain' => 'account',
             'options' => array('attr' => array('autocomplete' => 'off')),
         ));
 
@@ -47,7 +45,6 @@ class CustomersType extends AbstractType
             'invalid_message' => 'password.invalid.match',
             'first_name' => 'pass',
             'second_name' => 'pass_repeated',
-            'translation_domain' => 'account',
             'required' => $this->is_new,
             'options' => array('attr' => array('autocomplete' => 'off')),
         ));
@@ -56,7 +53,6 @@ class CustomersType extends AbstractType
             $builder->add('newsletter', 'checkbox', array(
                 'label' => 'create.newsletter',
                 'required' => false,
-                'translation_domain' => 'account',
                 'property_path' => false,
                 'attr' => array('autocomplete' => 'off'),
             ));
@@ -64,7 +60,6 @@ class CustomersType extends AbstractType
             $builder->add('accept', 'checkbox', array(
                 'label' => 'create.accept',
                 'required' => true,
-                'translation_domain' => 'account',
                 'property_path' => false,
                 'attr' => array('autocomplete' => 'off'),
             ));
@@ -76,6 +71,13 @@ class CustomersType extends AbstractType
         return array(
             'data_class' => 'Hanzo\Model\Customers',
         );
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'translation_domain' => 'account'
+        ));
     }
 
     public function getName()

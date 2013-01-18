@@ -18,10 +18,6 @@ use Hanzo\Model\CmsI18nPeer;
 use Hanzo\Model\CmsI18nQuery;
 
 /**
- * Base class that represents a query for the 'cms_i18n' table.
- *
- *
- *
  * @method CmsI18nQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CmsI18nQuery orderByLocale($order = Criteria::ASC) Order by the locale column
  * @method CmsI18nQuery orderByTitle($order = Criteria::ASC) Order by the title column
@@ -68,8 +64,6 @@ use Hanzo\Model\CmsI18nQuery;
  * @method array findByContent(string $content) Return CmsI18n objects filtered by the content column
  * @method array findBySettings(string $settings) Return CmsI18n objects filtered by the settings column
  * @method array findByIsRestricted(boolean $is_restricted) Return CmsI18n objects filtered by the is_restricted column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCmsI18nQuery extends ModelCriteria
 {
@@ -158,7 +152,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `locale`, `title`, `path`, `old_path`, `content`, `settings`, `is_restricted` FROM `cms_i18n` WHERE `id` = :p0 AND `locale` = :p1';
+        $sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `PATH`, `OLD_PATH`, `CONTENT`, `SETTINGS`, `IS_RESTRICTED` FROM `cms_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

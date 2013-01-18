@@ -19,10 +19,6 @@ use Hanzo\Model\OrdersToCouponsPeer;
 use Hanzo\Model\OrdersToCouponsQuery;
 
 /**
- * Base class that represents a query for the 'orders_to_coupons' table.
- *
- *
- *
  * @method OrdersToCouponsQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersToCouponsQuery orderByCouponsId($order = Criteria::ASC) Order by the coupons_id column
  * @method OrdersToCouponsQuery orderByAmount($order = Criteria::ASC) Order by the amount column
@@ -53,8 +49,6 @@ use Hanzo\Model\OrdersToCouponsQuery;
  * @method array findByOrdersId(int $orders_id) Return OrdersToCoupons objects filtered by the orders_id column
  * @method array findByCouponsId(int $coupons_id) Return OrdersToCoupons objects filtered by the coupons_id column
  * @method array findByAmount(string $amount) Return OrdersToCoupons objects filtered by the amount column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersToCouponsQuery extends ModelCriteria
 {
@@ -143,7 +137,7 @@ abstract class BaseOrdersToCouponsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `orders_id`, `coupons_id`, `amount` FROM `orders_to_coupons` WHERE `orders_id` = :p0 AND `coupons_id` = :p1';
+        $sql = 'SELECT `ORDERS_ID`, `COUPONS_ID`, `AMOUNT` FROM `orders_to_coupons` WHERE `ORDERS_ID` = :p0 AND `COUPONS_ID` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

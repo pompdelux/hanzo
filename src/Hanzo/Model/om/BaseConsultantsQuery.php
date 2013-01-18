@@ -19,10 +19,6 @@ use Hanzo\Model\Customers;
 use Hanzo\Model\Events;
 
 /**
- * Base class that represents a query for the 'consultants' table.
- *
- *
- *
  * @method ConsultantsQuery orderByInitials($order = Criteria::ASC) Order by the initials column
  * @method ConsultantsQuery orderByInfo($order = Criteria::ASC) Order by the info column
  * @method ConsultantsQuery orderByEventNotes($order = Criteria::ASC) Order by the event_notes column
@@ -57,6 +53,7 @@ use Hanzo\Model\Events;
  * @method Consultants findOneByEventNotes(string $event_notes) Return the first Consultants filtered by the event_notes column
  * @method Consultants findOneByHideInfo(boolean $hide_info) Return the first Consultants filtered by the hide_info column
  * @method Consultants findOneByMaxNotified(boolean $max_notified) Return the first Consultants filtered by the max_notified column
+ * @method Consultants findOneById(int $id) Return the first Consultants filtered by the id column
  *
  * @method array findByInitials(string $initials) Return Consultants objects filtered by the initials column
  * @method array findByInfo(string $info) Return Consultants objects filtered by the info column
@@ -64,8 +61,6 @@ use Hanzo\Model\Events;
  * @method array findByHideInfo(boolean $hide_info) Return Consultants objects filtered by the hide_info column
  * @method array findByMaxNotified(boolean $max_notified) Return Consultants objects filtered by the max_notified column
  * @method array findById(int $id) Return Consultants objects filtered by the id column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseConsultantsQuery extends ModelCriteria
 {
@@ -142,20 +137,6 @@ abstract class BaseConsultantsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Consultants A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -167,7 +148,7 @@ abstract class BaseConsultantsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `initials`, `info`, `event_notes`, `hide_info`, `max_notified`, `id` FROM `consultants` WHERE `id` = :p0';
+        $sql = 'SELECT `INITIALS`, `INFO`, `EVENT_NOTES`, `HIDE_INFO`, `MAX_NOTIFIED`, `ID` FROM `consultants` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

@@ -16,13 +16,6 @@ use Hanzo\Model\EventsParticipantsPeer;
 use Hanzo\Model\EventsPeer;
 use Hanzo\Model\map\EventsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'events' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseEventsPeer
 {
 
@@ -47,62 +40,62 @@ abstract class BaseEventsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 19;
 
-    /** the column name for the id field */
-    const ID = 'events.id';
+    /** the column name for the ID field */
+    const ID = 'events.ID';
 
-    /** the column name for the code field */
-    const CODE = 'events.code';
+    /** the column name for the CODE field */
+    const CODE = 'events.CODE';
 
-    /** the column name for the key field */
-    const KEY = 'events.key';
+    /** the column name for the KEY field */
+    const KEY = 'events.KEY';
 
-    /** the column name for the consultants_id field */
-    const CONSULTANTS_ID = 'events.consultants_id';
+    /** the column name for the CONSULTANTS_ID field */
+    const CONSULTANTS_ID = 'events.CONSULTANTS_ID';
 
-    /** the column name for the customers_id field */
-    const CUSTOMERS_ID = 'events.customers_id';
+    /** the column name for the CUSTOMERS_ID field */
+    const CUSTOMERS_ID = 'events.CUSTOMERS_ID';
 
-    /** the column name for the event_date field */
-    const EVENT_DATE = 'events.event_date';
+    /** the column name for the EVENT_DATE field */
+    const EVENT_DATE = 'events.EVENT_DATE';
 
-    /** the column name for the host field */
-    const HOST = 'events.host';
+    /** the column name for the HOST field */
+    const HOST = 'events.HOST';
 
-    /** the column name for the address_line_1 field */
-    const ADDRESS_LINE_1 = 'events.address_line_1';
+    /** the column name for the ADDRESS_LINE_1 field */
+    const ADDRESS_LINE_1 = 'events.ADDRESS_LINE_1';
 
-    /** the column name for the address_line_2 field */
-    const ADDRESS_LINE_2 = 'events.address_line_2';
+    /** the column name for the ADDRESS_LINE_2 field */
+    const ADDRESS_LINE_2 = 'events.ADDRESS_LINE_2';
 
-    /** the column name for the postal_code field */
-    const POSTAL_CODE = 'events.postal_code';
+    /** the column name for the POSTAL_CODE field */
+    const POSTAL_CODE = 'events.POSTAL_CODE';
 
-    /** the column name for the city field */
-    const CITY = 'events.city';
+    /** the column name for the CITY field */
+    const CITY = 'events.CITY';
 
-    /** the column name for the phone field */
-    const PHONE = 'events.phone';
+    /** the column name for the PHONE field */
+    const PHONE = 'events.PHONE';
 
-    /** the column name for the email field */
-    const EMAIL = 'events.email';
+    /** the column name for the EMAIL field */
+    const EMAIL = 'events.EMAIL';
 
-    /** the column name for the description field */
-    const DESCRIPTION = 'events.description';
+    /** the column name for the DESCRIPTION field */
+    const DESCRIPTION = 'events.DESCRIPTION';
 
-    /** the column name for the type field */
-    const TYPE = 'events.type';
+    /** the column name for the TYPE field */
+    const TYPE = 'events.TYPE';
 
-    /** the column name for the is_open field */
-    const IS_OPEN = 'events.is_open';
+    /** the column name for the IS_OPEN field */
+    const IS_OPEN = 'events.IS_OPEN';
 
-    /** the column name for the notify_hostess field */
-    const NOTIFY_HOSTESS = 'events.notify_hostess';
+    /** the column name for the NOTIFY_HOSTESS field */
+    const NOTIFY_HOSTESS = 'events.NOTIFY_HOSTESS';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'events.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'events.CREATED_AT';
 
-    /** the column name for the updated_at field */
-    const UPDATED_AT = 'events.updated_at';
+    /** the column name for the UPDATED_AT field */
+    const UPDATED_AT = 'events.UPDATED_AT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -237,25 +230,25 @@ abstract class BaseEventsPeer
             $criteria->addSelectColumn(EventsPeer::CREATED_AT);
             $criteria->addSelectColumn(EventsPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.code');
-            $criteria->addSelectColumn($alias . '.key');
-            $criteria->addSelectColumn($alias . '.consultants_id');
-            $criteria->addSelectColumn($alias . '.customers_id');
-            $criteria->addSelectColumn($alias . '.event_date');
-            $criteria->addSelectColumn($alias . '.host');
-            $criteria->addSelectColumn($alias . '.address_line_1');
-            $criteria->addSelectColumn($alias . '.address_line_2');
-            $criteria->addSelectColumn($alias . '.postal_code');
-            $criteria->addSelectColumn($alias . '.city');
-            $criteria->addSelectColumn($alias . '.phone');
-            $criteria->addSelectColumn($alias . '.email');
-            $criteria->addSelectColumn($alias . '.description');
-            $criteria->addSelectColumn($alias . '.type');
-            $criteria->addSelectColumn($alias . '.is_open');
-            $criteria->addSelectColumn($alias . '.notify_hostess');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.updated_at');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.CODE');
+            $criteria->addSelectColumn($alias . '.KEY');
+            $criteria->addSelectColumn($alias . '.CONSULTANTS_ID');
+            $criteria->addSelectColumn($alias . '.CUSTOMERS_ID');
+            $criteria->addSelectColumn($alias . '.EVENT_DATE');
+            $criteria->addSelectColumn($alias . '.HOST');
+            $criteria->addSelectColumn($alias . '.ADDRESS_LINE_1');
+            $criteria->addSelectColumn($alias . '.ADDRESS_LINE_2');
+            $criteria->addSelectColumn($alias . '.POSTAL_CODE');
+            $criteria->addSelectColumn($alias . '.CITY');
+            $criteria->addSelectColumn($alias . '.PHONE');
+            $criteria->addSelectColumn($alias . '.EMAIL');
+            $criteria->addSelectColumn($alias . '.DESCRIPTION');
+            $criteria->addSelectColumn($alias . '.TYPE');
+            $criteria->addSelectColumn($alias . '.IS_OPEN');
+            $criteria->addSelectColumn($alias . '.NOTIFY_HOSTESS');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.UPDATED_AT');
         }
     }
 

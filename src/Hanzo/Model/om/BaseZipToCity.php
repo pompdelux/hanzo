@@ -17,13 +17,6 @@ use Hanzo\Model\ZipToCity;
 use Hanzo\Model\ZipToCityPeer;
 use Hanzo\Model\ZipToCityQuery;
 
-/**
- * Base class that represents a row from the 'zip_to_city' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseZipToCity extends BaseObject implements Persistent
 {
     /**
@@ -373,7 +366,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 7; // 7 = ZipToCityPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -603,25 +596,25 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ZipToCityPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(ZipToCityPeer::ZIP)) {
-            $modifiedColumns[':p' . $index++]  = '`zip`';
+            $modifiedColumns[':p' . $index++]  = '`ZIP`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COUNTRIES_ISO2)) {
-            $modifiedColumns[':p' . $index++]  = '`countries_iso2`';
+            $modifiedColumns[':p' . $index++]  = '`COUNTRIES_ISO2`';
         }
         if ($this->isColumnModified(ZipToCityPeer::CITY)) {
-            $modifiedColumns[':p' . $index++]  = '`city`';
+            $modifiedColumns[':p' . $index++]  = '`CITY`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COUNTY_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`county_id`';
+            $modifiedColumns[':p' . $index++]  = '`COUNTY_ID`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COUNTY_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`county_name`';
+            $modifiedColumns[':p' . $index++]  = '`COUNTY_NAME`';
         }
         if ($this->isColumnModified(ZipToCityPeer::COMMENT)) {
-            $modifiedColumns[':p' . $index++]  = '`comment`';
+            $modifiedColumns[':p' . $index++]  = '`COMMENT`';
         }
 
         $sql = sprintf(
@@ -634,25 +627,25 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`zip`':
+                    case '`ZIP`':
                         $stmt->bindValue($identifier, $this->zip, PDO::PARAM_STR);
                         break;
-                    case '`countries_iso2`':
+                    case '`COUNTRIES_ISO2`':
                         $stmt->bindValue($identifier, $this->countries_iso2, PDO::PARAM_STR);
                         break;
-                    case '`city`':
+                    case '`CITY`':
                         $stmt->bindValue($identifier, $this->city, PDO::PARAM_STR);
                         break;
-                    case '`county_id`':
+                    case '`COUNTY_ID`':
                         $stmt->bindValue($identifier, $this->county_id, PDO::PARAM_STR);
                         break;
-                    case '`county_name`':
+                    case '`COUNTY_NAME`':
                         $stmt->bindValue($identifier, $this->county_name, PDO::PARAM_STR);
                         break;
-                    case '`comment`':
+                    case '`COMMENT`':
                         $stmt->bindValue($identifier, $this->comment, PDO::PARAM_STR);
                         break;
                 }
@@ -723,11 +716,11 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1126,13 +1119,12 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
      * Get the associated Countries object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Countries The associated Countries object.
      * @throws PropelException
      */
-    public function getCountries(PropelPDO $con = null, $doQuery = true)
+    public function getCountries(PropelPDO $con = null)
     {
-        if ($this->aCountries === null && (($this->countries_iso2 !== "" && $this->countries_iso2 !== null)) && $doQuery) {
+        if ($this->aCountries === null && (($this->countries_iso2 !== "" && $this->countries_iso2 !== null))) {
             $this->aCountries = CountriesQuery::create()
                 ->filterByZipToCity($this) // here
                 ->findOne($con);
@@ -1141,7 +1133,7 @@ abstract class BaseZipToCity extends BaseObject implements Persistent
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aCountries->addZipToCitys($this);
+                $this->aCountries->addZipToCities($this);
              */
         }
 

@@ -21,13 +21,6 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery;
 use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsQuery;
 
-/**
- * Base class that represents a row from the 'products_images_categories_sort' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Persistent
 {
     /**
@@ -281,7 +274,7 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ProductsImagesCategoriesSortPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -529,16 +522,16 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsImagesCategoriesSortPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`products_id`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
         }
         if ($this->isColumnModified(ProductsImagesCategoriesSortPeer::CATEGORIES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`categories_id`';
+            $modifiedColumns[':p' . $index++]  = '`CATEGORIES_ID`';
         }
         if ($this->isColumnModified(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`products_images_id`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_IMAGES_ID`';
         }
         if ($this->isColumnModified(ProductsImagesCategoriesSortPeer::SORT)) {
-            $modifiedColumns[':p' . $index++]  = '`sort`';
+            $modifiedColumns[':p' . $index++]  = '`SORT`';
         }
 
         $sql = sprintf(
@@ -551,16 +544,16 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`products_id`':
+                    case '`PRODUCTS_ID`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`categories_id`':
+                    case '`CATEGORIES_ID`':
                         $stmt->bindValue($identifier, $this->categories_id, PDO::PARAM_INT);
                         break;
-                    case '`products_images_id`':
+                    case '`PRODUCTS_IMAGES_ID`':
                         $stmt->bindValue($identifier, $this->products_images_id, PDO::PARAM_INT);
                         break;
-                    case '`sort`':
+                    case '`SORT`':
                         $stmt->bindValue($identifier, $this->sort, PDO::PARAM_INT);
                         break;
                 }
@@ -624,11 +617,11 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1025,13 +1018,12 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
+        if ($this->aProducts === null && ($this->products_id !== null)) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1077,13 +1069,12 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
      * Get the associated ProductsImages object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return ProductsImages The associated ProductsImages object.
      * @throws PropelException
      */
-    public function getProductsImages(PropelPDO $con = null, $doQuery = true)
+    public function getProductsImages(PropelPDO $con = null)
     {
-        if ($this->aProductsImages === null && ($this->products_images_id !== null) && $doQuery) {
+        if ($this->aProductsImages === null && ($this->products_images_id !== null)) {
             $this->aProductsImages = ProductsImagesQuery::create()->findPk($this->products_images_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1129,13 +1120,12 @@ abstract class BaseProductsImagesCategoriesSort extends BaseObject implements Pe
      * Get the associated Categories object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Categories The associated Categories object.
      * @throws PropelException
      */
-    public function getCategories(PropelPDO $con = null, $doQuery = true)
+    public function getCategories(PropelPDO $con = null)
     {
-        if ($this->aCategories === null && ($this->categories_id !== null) && $doQuery) {
+        if ($this->aCategories === null && ($this->categories_id !== null)) {
             $this->aCategories = CategoriesQuery::create()->findPk($this->categories_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

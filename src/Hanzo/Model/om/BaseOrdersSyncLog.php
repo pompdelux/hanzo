@@ -19,13 +19,6 @@ use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\OrdersSyncLogPeer;
 use Hanzo\Model\OrdersSyncLogQuery;
 
-/**
- * Base class that represents a row from the 'orders_sync_log' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
 {
     /**
@@ -137,7 +130,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getCreatedAt($format = 'Y-m-d H:i:s')
+    public function getCreatedAt($format = null)
     {
         if ($this->created_at === null) {
             return null;
@@ -147,25 +140,22 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->created_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->created_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+            }
         }
 
         if ($format === null) {
             // Because propel.useDateTimeClass is true, we return a DateTime object.
             return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -357,7 +347,7 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 5; // 5 = OrdersSyncLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -583,19 +573,19 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersSyncLogPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`orders_id`';
+            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`created_at`';
+            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::STATE)) {
-            $modifiedColumns[':p' . $index++]  = '`state`';
+            $modifiedColumns[':p' . $index++]  = '`STATE`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`content`';
+            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
         }
         if ($this->isColumnModified(OrdersSyncLogPeer::COMMENT)) {
-            $modifiedColumns[':p' . $index++]  = '`comment`';
+            $modifiedColumns[':p' . $index++]  = '`COMMENT`';
         }
 
         $sql = sprintf(
@@ -608,19 +598,19 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`orders_id`':
+                    case '`ORDERS_ID`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`created_at`':
+                    case '`CREATED_AT`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`state`':
+                    case '`STATE`':
                         $stmt->bindValue($identifier, $this->state, PDO::PARAM_STR);
                         break;
-                    case '`content`':
+                    case '`CONTENT`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
-                    case '`comment`':
+                    case '`COMMENT`':
                         $stmt->bindValue($identifier, $this->comment, PDO::PARAM_STR);
                         break;
                 }
@@ -684,11 +674,11 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1074,13 +1064,12 @@ abstract class BaseOrdersSyncLog extends BaseObject implements Persistent
      * Get the associated Orders object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Orders The associated Orders object.
      * @throws PropelException
      */
-    public function getOrders(PropelPDO $con = null, $doQuery = true)
+    public function getOrders(PropelPDO $con = null)
     {
-        if ($this->aOrders === null && ($this->orders_id !== null) && $doQuery) {
+        if ($this->aOrders === null && ($this->orders_id !== null)) {
             $this->aOrders = OrdersQuery::create()->findPk($this->orders_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

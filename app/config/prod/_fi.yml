@@ -2,9 +2,9 @@ cms:
     frontpage: 538
 
 framework:
+    default_locale: fi_FI
     session:
-        default_locale: fi_FI
-        path: '/fi_FI'
+        cookie_path: '/fi_FI'
 
 propel:
     dbal:

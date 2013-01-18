@@ -18,10 +18,6 @@ use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\OrdersStateLogQuery;
 
 /**
- * Base class that represents a query for the 'orders_state_log' table.
- *
- *
- *
  * @method OrdersStateLogQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersStateLogQuery orderByState($order = Criteria::ASC) Order by the state column
  * @method OrdersStateLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
@@ -52,8 +48,6 @@ use Hanzo\Model\OrdersStateLogQuery;
  * @method array findByState(int $state) Return OrdersStateLog objects filtered by the state column
  * @method array findByCreatedAt(string $created_at) Return OrdersStateLog objects filtered by the created_at column
  * @method array findByMessage(string $message) Return OrdersStateLog objects filtered by the message column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersStateLogQuery extends ModelCriteria
 {
@@ -142,7 +136,7 @@ abstract class BaseOrdersStateLogQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `orders_id`, `state`, `created_at`, `message` FROM `orders_state_log` WHERE `orders_id` = :p0 AND `state` = :p1 AND `created_at` = :p2';
+        $sql = 'SELECT `ORDERS_ID`, `STATE`, `CREATED_AT`, `MESSAGE` FROM `orders_state_log` WHERE `ORDERS_ID` = :p0 AND `STATE` = :p1 AND `CREATED_AT` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

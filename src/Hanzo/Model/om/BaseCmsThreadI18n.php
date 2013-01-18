@@ -17,13 +17,6 @@ use Hanzo\Model\CmsThreadI18nPeer;
 use Hanzo\Model\CmsThreadI18nQuery;
 use Hanzo\Model\CmsThreadQuery;
 
-/**
- * Base class that represents a row from the 'cms_thread_i18n' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
 {
     /**
@@ -247,7 +240,7 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = CmsThreadI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -473,13 +466,13 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CmsThreadI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(CmsThreadI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`locale`';
+            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
         }
         if ($this->isColumnModified(CmsThreadI18nPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`title`';
+            $modifiedColumns[':p' . $index++]  = '`TITLE`';
         }
 
         $sql = sprintf(
@@ -492,13 +485,13 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`locale`':
+                    case '`LOCALE`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`title`':
+                    case '`TITLE`':
                         $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
                         break;
                 }
@@ -562,11 +555,11 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -932,13 +925,12 @@ abstract class BaseCmsThreadI18n extends BaseObject implements Persistent
      * Get the associated CmsThread object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return CmsThread The associated CmsThread object.
      * @throws PropelException
      */
-    public function getCmsThread(PropelPDO $con = null, $doQuery = true)
+    public function getCmsThread(PropelPDO $con = null)
     {
-        if ($this->aCmsThread === null && ($this->id !== null) && $doQuery) {
+        if ($this->aCmsThread === null && ($this->id !== null)) {
             $this->aCmsThread = CmsThreadQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

@@ -19,10 +19,6 @@ use Hanzo\Model\ProductsImagesProductReferencesPeer;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 
 /**
- * Base class that represents a query for the 'products_images_product_references' table.
- *
- *
- *
  * @method ProductsImagesProductReferencesQuery orderByProductsImagesId($order = Criteria::ASC) Order by the products_images_id column
  * @method ProductsImagesProductReferencesQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  *
@@ -49,8 +45,6 @@ use Hanzo\Model\ProductsImagesProductReferencesQuery;
  *
  * @method array findByProductsImagesId(int $products_images_id) Return ProductsImagesProductReferences objects filtered by the products_images_id column
  * @method array findByProductsId(int $products_id) Return ProductsImagesProductReferences objects filtered by the products_id column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
 {
@@ -139,7 +133,7 @@ abstract class BaseProductsImagesProductReferencesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `products_images_id`, `products_id` FROM `products_images_product_references` WHERE `products_images_id` = :p0 AND `products_id` = :p1';
+        $sql = 'SELECT `PRODUCTS_IMAGES_ID`, `PRODUCTS_ID` FROM `products_images_product_references` WHERE `PRODUCTS_IMAGES_ID` = :p0 AND `PRODUCTS_ID` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

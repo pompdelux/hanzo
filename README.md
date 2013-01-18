@@ -11,6 +11,11 @@ First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/refere
 4. Apache must be setup with mod_rewrite
 5. Apc for php is also a must-have module.
 6. Compass and Sass [compass](http://compass-style.org/install/)
+7. [Uglifyjs](https://github.com/mishoo/UglifyJS2)
+
+soon to come:
+
+1. [phpredis](https://github.com/nicolasff/phpredis) nativec extension til at kører sessions i redis, kræver også [NativeSession](https://github.com/drak/NativeSession) til symfony.
 
 
 ## Install:

@@ -18,10 +18,6 @@ use Hanzo\Model\EventsParticipantsPeer;
 use Hanzo\Model\EventsParticipantsQuery;
 
 /**
- * Base class that represents a query for the 'events_participants' table.
- *
- *
- *
  * @method EventsParticipantsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method EventsParticipantsQuery orderByEventsId($order = Criteria::ASC) Order by the events_id column
  * @method EventsParticipantsQuery orderByKey($order = Criteria::ASC) Order by the key column
@@ -67,6 +63,7 @@ use Hanzo\Model\EventsParticipantsQuery;
  * @method EventsParticipants findOne(PropelPDO $con = null) Return the first EventsParticipants matching the query
  * @method EventsParticipants findOneOrCreate(PropelPDO $con = null) Return the first EventsParticipants matching the query, or a new EventsParticipants object populated from the query conditions when no match is found
  *
+ * @method EventsParticipants findOneById(int $id) Return the first EventsParticipants filtered by the id column
  * @method EventsParticipants findOneByEventsId(int $events_id) Return the first EventsParticipants filtered by the events_id column
  * @method EventsParticipants findOneByKey(string $key) Return the first EventsParticipants filtered by the key column
  * @method EventsParticipants findOneByInvitedBy(int $invited_by) Return the first EventsParticipants filtered by the invited_by column
@@ -99,8 +96,6 @@ use Hanzo\Model\EventsParticipantsQuery;
  * @method array findByRespondedAt(string $responded_at) Return EventsParticipants objects filtered by the responded_at column
  * @method array findByCreatedAt(string $created_at) Return EventsParticipants objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return EventsParticipants objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseEventsParticipantsQuery extends ModelCriteria
 {
@@ -177,20 +172,6 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   EventsParticipants A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -202,7 +183,7 @@ abstract class BaseEventsParticipantsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `events_id`, `key`, `invited_by`, `first_name`, `last_name`, `email`, `phone`, `tell_a_friend`, `notify_by_sms`, `sms_send_at`, `has_accepted`, `expires_at`, `responded_at`, `created_at`, `updated_at` FROM `events_participants` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `EVENTS_ID`, `KEY`, `INVITED_BY`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `TELL_A_FRIEND`, `NOTIFY_BY_SMS`, `SMS_SEND_AT`, `HAS_ACCEPTED`, `EXPIRES_AT`, `RESPONDED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `events_participants` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

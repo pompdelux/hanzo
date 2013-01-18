@@ -19,10 +19,6 @@ use Hanzo\Model\WallPeer;
 use Hanzo\Model\WallQuery;
 
 /**
- * Base class that represents a query for the 'wall' table.
- *
- *
- *
  * @method WallQuery orderById($order = Criteria::ASC) Order by the id column
  * @method WallQuery orderByParentId($order = Criteria::ASC) Order by the parent_id column
  * @method WallQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
@@ -62,6 +58,7 @@ use Hanzo\Model\WallQuery;
  * @method Wall findOne(PropelPDO $con = null) Return the first Wall matching the query
  * @method Wall findOneOrCreate(PropelPDO $con = null) Return the first Wall matching the query, or a new Wall object populated from the query conditions when no match is found
  *
+ * @method Wall findOneById(int $id) Return the first Wall filtered by the id column
  * @method Wall findOneByParentId(int $parent_id) Return the first Wall filtered by the parent_id column
  * @method Wall findOneByCustomersId(int $customers_id) Return the first Wall filtered by the customers_id column
  * @method Wall findOneByMessate(string $messate) Return the first Wall filtered by the messate column
@@ -76,8 +73,6 @@ use Hanzo\Model\WallQuery;
  * @method array findByStatus(boolean $status) Return Wall objects filtered by the status column
  * @method array findByCreatedAt(string $created_at) Return Wall objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Wall objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseWallQuery extends ModelCriteria
 {
@@ -154,20 +149,6 @@ abstract class BaseWallQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Wall A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -179,7 +160,7 @@ abstract class BaseWallQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `parent_id`, `customers_id`, `messate`, `status`, `created_at`, `updated_at` FROM `wall` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `PARENT_ID`, `CUSTOMERS_ID`, `MESSATE`, `STATUS`, `CREATED_AT`, `UPDATED_AT` FROM `wall` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

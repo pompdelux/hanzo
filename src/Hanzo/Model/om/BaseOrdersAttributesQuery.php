@@ -18,10 +18,6 @@ use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersAttributesQuery;
 
 /**
- * Base class that represents a query for the 'orders_attributes' table.
- *
- *
- *
  * @method OrdersAttributesQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersAttributesQuery orderByNs($order = Criteria::ASC) Order by the ns column
  * @method OrdersAttributesQuery orderByCKey($order = Criteria::ASC) Order by the c_key column
@@ -52,8 +48,6 @@ use Hanzo\Model\OrdersAttributesQuery;
  * @method array findByNs(string $ns) Return OrdersAttributes objects filtered by the ns column
  * @method array findByCKey(string $c_key) Return OrdersAttributes objects filtered by the c_key column
  * @method array findByCValue(string $c_value) Return OrdersAttributes objects filtered by the c_value column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersAttributesQuery extends ModelCriteria
 {
@@ -142,7 +136,7 @@ abstract class BaseOrdersAttributesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `orders_id`, `ns`, `c_key`, `c_value` FROM `orders_attributes` WHERE `orders_id` = :p0 AND `ns` = :p1 AND `c_key` = :p2';
+        $sql = 'SELECT `ORDERS_ID`, `NS`, `C_KEY`, `C_VALUE` FROM `orders_attributes` WHERE `ORDERS_ID` = :p0 AND `NS` = :p1 AND `C_KEY` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

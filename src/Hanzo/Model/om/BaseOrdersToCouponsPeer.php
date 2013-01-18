@@ -15,13 +15,6 @@ use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersToCouponsPeer;
 use Hanzo\Model\map\OrdersToCouponsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'orders_to_coupons' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersToCouponsPeer
 {
 
@@ -46,14 +39,14 @@ abstract class BaseOrdersToCouponsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the orders_id field */
-    const ORDERS_ID = 'orders_to_coupons.orders_id';
+    /** the column name for the ORDERS_ID field */
+    const ORDERS_ID = 'orders_to_coupons.ORDERS_ID';
 
-    /** the column name for the coupons_id field */
-    const COUPONS_ID = 'orders_to_coupons.coupons_id';
+    /** the column name for the COUPONS_ID field */
+    const COUPONS_ID = 'orders_to_coupons.COUPONS_ID';
 
-    /** the column name for the amount field */
-    const AMOUNT = 'orders_to_coupons.amount';
+    /** the column name for the AMOUNT field */
+    const AMOUNT = 'orders_to_coupons.AMOUNT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -172,9 +165,9 @@ abstract class BaseOrdersToCouponsPeer
             $criteria->addSelectColumn(OrdersToCouponsPeer::COUPONS_ID);
             $criteria->addSelectColumn(OrdersToCouponsPeer::AMOUNT);
         } else {
-            $criteria->addSelectColumn($alias . '.orders_id');
-            $criteria->addSelectColumn($alias . '.coupons_id');
-            $criteria->addSelectColumn($alias . '.amount');
+            $criteria->addSelectColumn($alias . '.ORDERS_ID');
+            $criteria->addSelectColumn($alias . '.COUPONS_ID');
+            $criteria->addSelectColumn($alias . '.AMOUNT');
         }
     }
 

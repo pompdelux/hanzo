@@ -16,13 +16,6 @@ use Hanzo\Model\ProductsImagesPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\map\ProductsImagesCategoriesSortTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'products_images_categories_sort' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsImagesCategoriesSortPeer
 {
 
@@ -47,17 +40,17 @@ abstract class BaseProductsImagesCategoriesSortPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the products_id field */
-    const PRODUCTS_ID = 'products_images_categories_sort.products_id';
+    /** the column name for the PRODUCTS_ID field */
+    const PRODUCTS_ID = 'products_images_categories_sort.PRODUCTS_ID';
 
-    /** the column name for the categories_id field */
-    const CATEGORIES_ID = 'products_images_categories_sort.categories_id';
+    /** the column name for the CATEGORIES_ID field */
+    const CATEGORIES_ID = 'products_images_categories_sort.CATEGORIES_ID';
 
-    /** the column name for the products_images_id field */
-    const PRODUCTS_IMAGES_ID = 'products_images_categories_sort.products_images_id';
+    /** the column name for the PRODUCTS_IMAGES_ID field */
+    const PRODUCTS_IMAGES_ID = 'products_images_categories_sort.PRODUCTS_IMAGES_ID';
 
-    /** the column name for the sort field */
-    const SORT = 'products_images_categories_sort.sort';
+    /** the column name for the SORT field */
+    const SORT = 'products_images_categories_sort.SORT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -177,10 +170,10 @@ abstract class BaseProductsImagesCategoriesSortPeer
             $criteria->addSelectColumn(ProductsImagesCategoriesSortPeer::PRODUCTS_IMAGES_ID);
             $criteria->addSelectColumn(ProductsImagesCategoriesSortPeer::SORT);
         } else {
-            $criteria->addSelectColumn($alias . '.products_id');
-            $criteria->addSelectColumn($alias . '.categories_id');
-            $criteria->addSelectColumn($alias . '.products_images_id');
-            $criteria->addSelectColumn($alias . '.sort');
+            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
+            $criteria->addSelectColumn($alias . '.CATEGORIES_ID');
+            $criteria->addSelectColumn($alias . '.PRODUCTS_IMAGES_ID');
+            $criteria->addSelectColumn($alias . '.SORT');
         }
     }
 

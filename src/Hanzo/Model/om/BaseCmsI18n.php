@@ -17,13 +17,6 @@ use Hanzo\Model\CmsI18nPeer;
 use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\CmsQuery;
 
-/**
- * Base class that represents a row from the 'cms_i18n' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCmsI18n extends BaseObject implements Persistent
 {
     /**
@@ -451,7 +444,7 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 8; // 8 = CmsI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -677,28 +670,28 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CmsI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(CmsI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`locale`';
+            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
         }
         if ($this->isColumnModified(CmsI18nPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`title`';
+            $modifiedColumns[':p' . $index++]  = '`TITLE`';
         }
         if ($this->isColumnModified(CmsI18nPeer::PATH)) {
-            $modifiedColumns[':p' . $index++]  = '`path`';
+            $modifiedColumns[':p' . $index++]  = '`PATH`';
         }
         if ($this->isColumnModified(CmsI18nPeer::OLD_PATH)) {
-            $modifiedColumns[':p' . $index++]  = '`old_path`';
+            $modifiedColumns[':p' . $index++]  = '`OLD_PATH`';
         }
         if ($this->isColumnModified(CmsI18nPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`content`';
+            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
         }
         if ($this->isColumnModified(CmsI18nPeer::SETTINGS)) {
-            $modifiedColumns[':p' . $index++]  = '`settings`';
+            $modifiedColumns[':p' . $index++]  = '`SETTINGS`';
         }
         if ($this->isColumnModified(CmsI18nPeer::IS_RESTRICTED)) {
-            $modifiedColumns[':p' . $index++]  = '`is_restricted`';
+            $modifiedColumns[':p' . $index++]  = '`IS_RESTRICTED`';
         }
 
         $sql = sprintf(
@@ -711,28 +704,28 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`locale`':
+                    case '`LOCALE`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`title`':
+                    case '`TITLE`':
                         $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
                         break;
-                    case '`path`':
+                    case '`PATH`':
                         $stmt->bindValue($identifier, $this->path, PDO::PARAM_STR);
                         break;
-                    case '`old_path`':
+                    case '`OLD_PATH`':
                         $stmt->bindValue($identifier, $this->old_path, PDO::PARAM_STR);
                         break;
-                    case '`content`':
+                    case '`CONTENT`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
-                    case '`settings`':
+                    case '`SETTINGS`':
                         $stmt->bindValue($identifier, $this->settings, PDO::PARAM_STR);
                         break;
-                    case '`is_restricted`':
+                    case '`IS_RESTRICTED`':
                         $stmt->bindValue($identifier, (int) $this->is_restricted, PDO::PARAM_INT);
                         break;
                 }
@@ -796,11 +789,11 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1216,13 +1209,12 @@ abstract class BaseCmsI18n extends BaseObject implements Persistent
      * Get the associated Cms object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Cms The associated Cms object.
      * @throws PropelException
      */
-    public function getCms(PropelPDO $con = null, $doQuery = true)
+    public function getCms(PropelPDO $con = null)
     {
-        if ($this->aCms === null && ($this->id !== null) && $doQuery) {
+        if ($this->aCms === null && ($this->id !== null)) {
             $this->aCms = CmsQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

@@ -14,13 +14,6 @@ use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersStateLogPeer;
 use Hanzo\Model\map\OrdersStateLogTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'orders_state_log' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersStateLogPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseOrdersStateLogPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the orders_id field */
-    const ORDERS_ID = 'orders_state_log.orders_id';
+    /** the column name for the ORDERS_ID field */
+    const ORDERS_ID = 'orders_state_log.ORDERS_ID';
 
-    /** the column name for the state field */
-    const STATE = 'orders_state_log.state';
+    /** the column name for the STATE field */
+    const STATE = 'orders_state_log.STATE';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'orders_state_log.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'orders_state_log.CREATED_AT';
 
-    /** the column name for the message field */
-    const MESSAGE = 'orders_state_log.message';
+    /** the column name for the MESSAGE field */
+    const MESSAGE = 'orders_state_log.MESSAGE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseOrdersStateLogPeer
             $criteria->addSelectColumn(OrdersStateLogPeer::CREATED_AT);
             $criteria->addSelectColumn(OrdersStateLogPeer::MESSAGE);
         } else {
-            $criteria->addSelectColumn($alias . '.orders_id');
-            $criteria->addSelectColumn($alias . '.state');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.message');
+            $criteria->addSelectColumn($alias . '.ORDERS_ID');
+            $criteria->addSelectColumn($alias . '.STATE');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.MESSAGE');
         }
     }
 

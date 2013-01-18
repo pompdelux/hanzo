@@ -19,10 +19,6 @@ use Hanzo\Model\WallLikesPeer;
 use Hanzo\Model\WallLikesQuery;
 
 /**
- * Base class that represents a query for the 'wall_likes' table.
- *
- *
- *
  * @method WallLikesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method WallLikesQuery orderByWallId($order = Criteria::ASC) Order by the wall_id column
  * @method WallLikesQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
@@ -48,6 +44,7 @@ use Hanzo\Model\WallLikesQuery;
  * @method WallLikes findOne(PropelPDO $con = null) Return the first WallLikes matching the query
  * @method WallLikes findOneOrCreate(PropelPDO $con = null) Return the first WallLikes matching the query, or a new WallLikes object populated from the query conditions when no match is found
  *
+ * @method WallLikes findOneById(int $id) Return the first WallLikes filtered by the id column
  * @method WallLikes findOneByWallId(int $wall_id) Return the first WallLikes filtered by the wall_id column
  * @method WallLikes findOneByCustomersId(int $customers_id) Return the first WallLikes filtered by the customers_id column
  * @method WallLikes findOneByStatus(boolean $status) Return the first WallLikes filtered by the status column
@@ -56,8 +53,6 @@ use Hanzo\Model\WallLikesQuery;
  * @method array findByWallId(int $wall_id) Return WallLikes objects filtered by the wall_id column
  * @method array findByCustomersId(int $customers_id) Return WallLikes objects filtered by the customers_id column
  * @method array findByStatus(boolean $status) Return WallLikes objects filtered by the status column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseWallLikesQuery extends ModelCriteria
 {
@@ -134,20 +129,6 @@ abstract class BaseWallLikesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   WallLikes A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -159,7 +140,7 @@ abstract class BaseWallLikesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `wall_id`, `customers_id`, `status` FROM `wall_likes` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `WALL_ID`, `CUSTOMERS_ID`, `STATUS` FROM `wall_likes` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

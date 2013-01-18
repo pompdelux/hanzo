@@ -14,13 +14,6 @@ use Hanzo\Model\LanguagesPeer;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\map\LanguagesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'languages' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseLanguagesPeer
 {
 
@@ -45,23 +38,23 @@ abstract class BaseLanguagesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 6;
 
-    /** the column name for the id field */
-    const ID = 'languages.id';
+    /** the column name for the ID field */
+    const ID = 'languages.ID';
 
-    /** the column name for the name field */
-    const NAME = 'languages.name';
+    /** the column name for the NAME field */
+    const NAME = 'languages.NAME';
 
-    /** the column name for the local_name field */
-    const LOCAL_NAME = 'languages.local_name';
+    /** the column name for the LOCAL_NAME field */
+    const LOCAL_NAME = 'languages.LOCAL_NAME';
 
-    /** the column name for the locale field */
-    const LOCALE = 'languages.locale';
+    /** the column name for the LOCALE field */
+    const LOCALE = 'languages.LOCALE';
 
-    /** the column name for the iso2 field */
-    const ISO2 = 'languages.iso2';
+    /** the column name for the ISO2 field */
+    const ISO2 = 'languages.ISO2';
 
-    /** the column name for the direction field */
-    const DIRECTION = 'languages.direction';
+    /** the column name for the DIRECTION field */
+    const DIRECTION = 'languages.DIRECTION';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -183,12 +176,12 @@ abstract class BaseLanguagesPeer
             $criteria->addSelectColumn(LanguagesPeer::ISO2);
             $criteria->addSelectColumn(LanguagesPeer::DIRECTION);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.name');
-            $criteria->addSelectColumn($alias . '.local_name');
-            $criteria->addSelectColumn($alias . '.locale');
-            $criteria->addSelectColumn($alias . '.iso2');
-            $criteria->addSelectColumn($alias . '.direction');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.NAME');
+            $criteria->addSelectColumn($alias . '.LOCAL_NAME');
+            $criteria->addSelectColumn($alias . '.LOCALE');
+            $criteria->addSelectColumn($alias . '.ISO2');
+            $criteria->addSelectColumn($alias . '.DIRECTION');
         }
     }
 

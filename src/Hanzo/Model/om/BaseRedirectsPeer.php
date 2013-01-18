@@ -13,13 +13,6 @@ use Hanzo\Model\Redirects;
 use Hanzo\Model\RedirectsPeer;
 use Hanzo\Model\map\RedirectsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'redirects' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseRedirectsPeer
 {
 
@@ -44,17 +37,17 @@ abstract class BaseRedirectsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'redirects.id';
+    /** the column name for the ID field */
+    const ID = 'redirects.ID';
 
-    /** the column name for the source field */
-    const SOURCE = 'redirects.source';
+    /** the column name for the SOURCE field */
+    const SOURCE = 'redirects.SOURCE';
 
-    /** the column name for the target field */
-    const TARGET = 'redirects.target';
+    /** the column name for the TARGET field */
+    const TARGET = 'redirects.TARGET';
 
-    /** the column name for the domain_key field */
-    const DOMAIN_KEY = 'redirects.domain_key';
+    /** the column name for the DOMAIN_KEY field */
+    const DOMAIN_KEY = 'redirects.DOMAIN_KEY';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -174,10 +167,10 @@ abstract class BaseRedirectsPeer
             $criteria->addSelectColumn(RedirectsPeer::TARGET);
             $criteria->addSelectColumn(RedirectsPeer::DOMAIN_KEY);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.source');
-            $criteria->addSelectColumn($alias . '.target');
-            $criteria->addSelectColumn($alias . '.domain_key');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.SOURCE');
+            $criteria->addSelectColumn($alias . '.TARGET');
+            $criteria->addSelectColumn($alias . '.DOMAIN_KEY');
         }
     }
 

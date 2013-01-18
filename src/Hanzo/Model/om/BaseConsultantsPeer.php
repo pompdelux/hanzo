@@ -14,13 +14,6 @@ use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\map\ConsultantsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'consultants' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseConsultantsPeer
 {
 
@@ -45,23 +38,23 @@ abstract class BaseConsultantsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 6;
 
-    /** the column name for the initials field */
-    const INITIALS = 'consultants.initials';
+    /** the column name for the INITIALS field */
+    const INITIALS = 'consultants.INITIALS';
 
-    /** the column name for the info field */
-    const INFO = 'consultants.info';
+    /** the column name for the INFO field */
+    const INFO = 'consultants.INFO';
 
-    /** the column name for the event_notes field */
-    const EVENT_NOTES = 'consultants.event_notes';
+    /** the column name for the EVENT_NOTES field */
+    const EVENT_NOTES = 'consultants.EVENT_NOTES';
 
-    /** the column name for the hide_info field */
-    const HIDE_INFO = 'consultants.hide_info';
+    /** the column name for the HIDE_INFO field */
+    const HIDE_INFO = 'consultants.HIDE_INFO';
 
-    /** the column name for the max_notified field */
-    const MAX_NOTIFIED = 'consultants.max_notified';
+    /** the column name for the MAX_NOTIFIED field */
+    const MAX_NOTIFIED = 'consultants.MAX_NOTIFIED';
 
-    /** the column name for the id field */
-    const ID = 'consultants.id';
+    /** the column name for the ID field */
+    const ID = 'consultants.ID';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -183,12 +176,12 @@ abstract class BaseConsultantsPeer
             $criteria->addSelectColumn(ConsultantsPeer::MAX_NOTIFIED);
             $criteria->addSelectColumn(ConsultantsPeer::ID);
         } else {
-            $criteria->addSelectColumn($alias . '.initials');
-            $criteria->addSelectColumn($alias . '.info');
-            $criteria->addSelectColumn($alias . '.event_notes');
-            $criteria->addSelectColumn($alias . '.hide_info');
-            $criteria->addSelectColumn($alias . '.max_notified');
-            $criteria->addSelectColumn($alias . '.id');
+            $criteria->addSelectColumn($alias . '.INITIALS');
+            $criteria->addSelectColumn($alias . '.INFO');
+            $criteria->addSelectColumn($alias . '.EVENT_NOTES');
+            $criteria->addSelectColumn($alias . '.HIDE_INFO');
+            $criteria->addSelectColumn($alias . '.MAX_NOTIFIED');
+            $criteria->addSelectColumn($alias . '.ID');
         }
     }
 

@@ -14,13 +14,6 @@ use Hanzo\Model\CategoriesI18nPeer;
 use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\map\CategoriesI18nTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'categories_i18n' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCategoriesI18nPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseCategoriesI18nPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'categories_i18n.id';
+    /** the column name for the ID field */
+    const ID = 'categories_i18n.ID';
 
-    /** the column name for the locale field */
-    const LOCALE = 'categories_i18n.locale';
+    /** the column name for the LOCALE field */
+    const LOCALE = 'categories_i18n.LOCALE';
 
-    /** the column name for the title field */
-    const TITLE = 'categories_i18n.title';
+    /** the column name for the TITLE field */
+    const TITLE = 'categories_i18n.TITLE';
 
-    /** the column name for the content field */
-    const CONTENT = 'categories_i18n.content';
+    /** the column name for the CONTENT field */
+    const CONTENT = 'categories_i18n.CONTENT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseCategoriesI18nPeer
             $criteria->addSelectColumn(CategoriesI18nPeer::TITLE);
             $criteria->addSelectColumn(CategoriesI18nPeer::CONTENT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.locale');
-            $criteria->addSelectColumn($alias . '.title');
-            $criteria->addSelectColumn($alias . '.content');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.LOCALE');
+            $criteria->addSelectColumn($alias . '.TITLE');
+            $criteria->addSelectColumn($alias . '.CONTENT');
         }
     }
 

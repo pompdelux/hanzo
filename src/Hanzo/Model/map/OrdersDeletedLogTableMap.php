@@ -42,14 +42,14 @@ class OrdersDeletedLogTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addPrimaryKey('orders_id', 'OrdersId', 'INTEGER', true, null, null);
-        $this->addColumn('customers_id', 'CustomersId', 'INTEGER', false, null, null);
-        $this->addColumn('name', 'Name', 'VARCHAR', false, 255, null);
-        $this->addColumn('email', 'Email', 'VARCHAR', false, 255, null);
-        $this->addColumn('trigger', 'Trigger', 'VARCHAR', false, 255, null);
-        $this->addColumn('content', 'Content', 'CLOB', true, null, null);
-        $this->addColumn('deleted_by', 'DeletedBy', 'VARCHAR', true, 255, null);
-        $this->addColumn('deleted_at', 'DeletedAt', 'TIMESTAMP', true, null, null);
+        $this->addPrimaryKey('ORDERS_ID', 'OrdersId', 'INTEGER', true, null, null);
+        $this->addColumn('CUSTOMERS_ID', 'CustomersId', 'INTEGER', false, null, null);
+        $this->addColumn('NAME', 'Name', 'VARCHAR', false, 255, null);
+        $this->addColumn('EMAIL', 'Email', 'VARCHAR', false, 255, null);
+        $this->addColumn('TRIGGER', 'Trigger', 'VARCHAR', false, 255, null);
+        $this->addColumn('CONTENT', 'Content', 'CLOB', true, null, null);
+        $this->addColumn('DELETED_BY', 'DeletedBy', 'VARCHAR', true, 255, null);
+        $this->addColumn('DELETED_AT', 'DeletedAt', 'TIMESTAMP', true, null, null);
         // validators
     } // initialize()
 

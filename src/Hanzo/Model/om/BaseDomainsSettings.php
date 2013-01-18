@@ -17,13 +17,6 @@ use Hanzo\Model\DomainsSettings;
 use Hanzo\Model\DomainsSettingsPeer;
 use Hanzo\Model\DomainsSettingsQuery;
 
-/**
- * Base class that represents a row from the 'domains_settings' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseDomainsSettings extends BaseObject implements Persistent
 {
     /**
@@ -297,7 +290,7 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 5; // 5 = DomainsSettingsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -527,19 +520,19 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(DomainsSettingsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::DOMAIN_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`domain_key`';
+            $modifiedColumns[':p' . $index++]  = '`DOMAIN_KEY`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::C_KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`c_key`';
+            $modifiedColumns[':p' . $index++]  = '`C_KEY`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::NS)) {
-            $modifiedColumns[':p' . $index++]  = '`ns`';
+            $modifiedColumns[':p' . $index++]  = '`NS`';
         }
         if ($this->isColumnModified(DomainsSettingsPeer::C_VALUE)) {
-            $modifiedColumns[':p' . $index++]  = '`c_value`';
+            $modifiedColumns[':p' . $index++]  = '`C_VALUE`';
         }
 
         $sql = sprintf(
@@ -552,19 +545,19 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`domain_key`':
+                    case '`DOMAIN_KEY`':
                         $stmt->bindValue($identifier, $this->domain_key, PDO::PARAM_STR);
                         break;
-                    case '`c_key`':
+                    case '`C_KEY`':
                         $stmt->bindValue($identifier, $this->c_key, PDO::PARAM_STR);
                         break;
-                    case '`ns`':
+                    case '`NS`':
                         $stmt->bindValue($identifier, $this->ns, PDO::PARAM_STR);
                         break;
-                    case '`c_value`':
+                    case '`C_VALUE`':
                         $stmt->bindValue($identifier, $this->c_value, PDO::PARAM_STR);
                         break;
                 }
@@ -635,11 +628,11 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1018,13 +1011,12 @@ abstract class BaseDomainsSettings extends BaseObject implements Persistent
      * Get the associated Domains object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Domains The associated Domains object.
      * @throws PropelException
      */
-    public function getDomains(PropelPDO $con = null, $doQuery = true)
+    public function getDomains(PropelPDO $con = null)
     {
-        if ($this->aDomains === null && (($this->domain_key !== "" && $this->domain_key !== null)) && $doQuery) {
+        if ($this->aDomains === null && (($this->domain_key !== "" && $this->domain_key !== null))) {
             $this->aDomains = DomainsQuery::create()
                 ->filterByDomainsSettings($this) // here
                 ->findOne($con);

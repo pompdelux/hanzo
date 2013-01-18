@@ -21,13 +21,6 @@ use Hanzo\Model\CustomersQuery;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsQuery;
 
-/**
- * Base class that represents a row from the 'consultants' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseConsultants extends BaseObject implements Persistent
 {
     /**
@@ -399,7 +392,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 6; // 6 = ConsultantsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -615,7 +608,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
 
             if ($this->collEventss !== null) {
                 foreach ($this->collEventss as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -644,22 +637,22 @@ abstract class BaseConsultants extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ConsultantsPeer::INITIALS)) {
-            $modifiedColumns[':p' . $index++]  = '`initials`';
+            $modifiedColumns[':p' . $index++]  = '`INITIALS`';
         }
         if ($this->isColumnModified(ConsultantsPeer::INFO)) {
-            $modifiedColumns[':p' . $index++]  = '`info`';
+            $modifiedColumns[':p' . $index++]  = '`INFO`';
         }
         if ($this->isColumnModified(ConsultantsPeer::EVENT_NOTES)) {
-            $modifiedColumns[':p' . $index++]  = '`event_notes`';
+            $modifiedColumns[':p' . $index++]  = '`EVENT_NOTES`';
         }
         if ($this->isColumnModified(ConsultantsPeer::HIDE_INFO)) {
-            $modifiedColumns[':p' . $index++]  = '`hide_info`';
+            $modifiedColumns[':p' . $index++]  = '`HIDE_INFO`';
         }
         if ($this->isColumnModified(ConsultantsPeer::MAX_NOTIFIED)) {
-            $modifiedColumns[':p' . $index++]  = '`max_notified`';
+            $modifiedColumns[':p' . $index++]  = '`MAX_NOTIFIED`';
         }
         if ($this->isColumnModified(ConsultantsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
 
         $sql = sprintf(
@@ -672,22 +665,22 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`initials`':
+                    case '`INITIALS`':
                         $stmt->bindValue($identifier, $this->initials, PDO::PARAM_STR);
                         break;
-                    case '`info`':
+                    case '`INFO`':
                         $stmt->bindValue($identifier, $this->info, PDO::PARAM_STR);
                         break;
-                    case '`event_notes`':
+                    case '`EVENT_NOTES`':
                         $stmt->bindValue($identifier, $this->event_notes, PDO::PARAM_STR);
                         break;
-                    case '`hide_info`':
+                    case '`HIDE_INFO`':
                         $stmt->bindValue($identifier, (int) $this->hide_info, PDO::PARAM_INT);
                         break;
-                    case '`max_notified`':
+                    case '`MAX_NOTIFIED`':
                         $stmt->bindValue($identifier, (int) $this->max_notified, PDO::PARAM_INT);
                         break;
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
                 }
@@ -751,11 +744,11 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1165,13 +1158,12 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null, $doQuery = true)
+    public function getCustomers(PropelPDO $con = null)
     {
-        if ($this->aCustomers === null && ($this->id !== null) && $doQuery) {
+        if ($this->aCustomers === null && ($this->id !== null)) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->id, $con);
             // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
             $this->aCustomers->setConsultants($this);
@@ -1202,15 +1194,13 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Consultants The current object (for fluent API support)
+     * @return void
      * @see        addEventss()
      */
     public function clearEventss()
     {
         $this->collEventss = null; // important to set this to null since that means it is uninitialized
         $this->collEventssPartial = null;
-
-        return $this;
     }
 
     /**
@@ -1309,15 +1299,12 @@ abstract class BaseConsultants extends BaseObject implements Persistent
      *
      * @param PropelCollection $eventss A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Consultants The current object (for fluent API support)
      */
     public function setEventss(PropelCollection $eventss, PropelPDO $con = null)
     {
-        $eventssToDelete = $this->getEventss(new Criteria(), $con)->diff($eventss);
+        $this->eventssScheduledForDeletion = $this->getEventss(new Criteria(), $con)->diff($eventss);
 
-        $this->eventssScheduledForDeletion = unserialize(serialize($eventssToDelete));
-
-        foreach ($eventssToDelete as $eventsRemoved) {
+        foreach ($this->eventssScheduledForDeletion as $eventsRemoved) {
             $eventsRemoved->setConsultants(null);
         }
 
@@ -1328,8 +1315,6 @@ abstract class BaseConsultants extends BaseObject implements Persistent
 
         $this->collEventss = $eventss;
         $this->collEventssPartial = false;
-
-        return $this;
     }
 
     /**
@@ -1347,22 +1332,22 @@ abstract class BaseConsultants extends BaseObject implements Persistent
         if (null === $this->collEventss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collEventss) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getEventss());
+                }
+                $query = EventsQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getEventss());
+                return $query
+                    ->filterByConsultants($this)
+                    ->count($con);
             }
-            $query = EventsQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByConsultants($this)
-                ->count($con);
+        } else {
+            return count($this->collEventss);
         }
-
-        return count($this->collEventss);
     }
 
     /**
@@ -1378,7 +1363,7 @@ abstract class BaseConsultants extends BaseObject implements Persistent
             $this->initEventss();
             $this->collEventssPartial = true;
         }
-        if (!in_array($l, $this->collEventss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collEventss->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddEvents($l);
         }
 
@@ -1396,7 +1381,6 @@ abstract class BaseConsultants extends BaseObject implements Persistent
 
     /**
      * @param	Events $events The events object to remove.
-     * @return Consultants The current object (for fluent API support)
      */
     public function removeEvents($events)
     {
@@ -1406,11 +1390,9 @@ abstract class BaseConsultants extends BaseObject implements Persistent
                 $this->eventssScheduledForDeletion = clone $this->collEventss;
                 $this->eventssScheduledForDeletion->clear();
             }
-            $this->eventssScheduledForDeletion[]= clone $events;
+            $this->eventssScheduledForDeletion[]= $events;
             $events->setConsultants(null);
         }
-
-        return $this;
     }
 
 

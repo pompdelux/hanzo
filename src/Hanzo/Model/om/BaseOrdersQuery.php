@@ -26,10 +26,6 @@ use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersVersions;
 
 /**
- * Base class that represents a query for the 'orders' table.
- *
- *
- *
  * @method OrdersQuery orderById($order = Criteria::ASC) Order by the id column
  * @method OrdersQuery orderByVersionId($order = Criteria::ASC) Order by the version_id column
  * @method OrdersQuery orderBySessionId($order = Criteria::ASC) Order by the session_id column
@@ -157,6 +153,7 @@ use Hanzo\Model\OrdersVersions;
  * @method Orders findOne(PropelPDO $con = null) Return the first Orders matching the query
  * @method Orders findOneOrCreate(PropelPDO $con = null) Return the first Orders matching the query, or a new Orders object populated from the query conditions when no match is found
  *
+ * @method Orders findOneById(int $id) Return the first Orders filtered by the id column
  * @method Orders findOneByVersionId(int $version_id) Return the first Orders filtered by the version_id column
  * @method Orders findOneBySessionId(string $session_id) Return the first Orders filtered by the session_id column
  * @method Orders findOneByPaymentGatewayId(int $payment_gateway_id) Return the first Orders filtered by the payment_gateway_id column
@@ -235,8 +232,6 @@ use Hanzo\Model\OrdersVersions;
  * @method array findByFinishedAt(string $finished_at) Return Orders objects filtered by the finished_at column
  * @method array findByCreatedAt(string $created_at) Return Orders objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Orders objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersQuery extends ModelCriteria
 {
@@ -313,20 +308,6 @@ abstract class BaseOrdersQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Orders A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -338,7 +319,7 @@ abstract class BaseOrdersQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `version_id`, `session_id`, `payment_gateway_id`, `state`, `in_edit`, `customers_id`, `first_name`, `last_name`, `email`, `phone`, `languages_id`, `currency_code`, `billing_first_name`, `billing_last_name`, `billing_address_line_1`, `billing_address_line_2`, `billing_postal_code`, `billing_city`, `billing_country`, `billing_countries_id`, `billing_state_province`, `billing_company_name`, `billing_method`, `delivery_first_name`, `delivery_last_name`, `delivery_address_line_1`, `delivery_address_line_2`, `delivery_postal_code`, `delivery_city`, `delivery_country`, `delivery_countries_id`, `delivery_state_province`, `delivery_company_name`, `delivery_method`, `events_id`, `finished_at`, `created_at`, `updated_at` FROM `orders` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `VERSION_ID`, `SESSION_ID`, `PAYMENT_GATEWAY_ID`, `STATE`, `IN_EDIT`, `CUSTOMERS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `LANGUAGES_ID`, `CURRENCY_CODE`, `BILLING_FIRST_NAME`, `BILLING_LAST_NAME`, `BILLING_ADDRESS_LINE_1`, `BILLING_ADDRESS_LINE_2`, `BILLING_POSTAL_CODE`, `BILLING_CITY`, `BILLING_COUNTRY`, `BILLING_COUNTRIES_ID`, `BILLING_STATE_PROVINCE`, `BILLING_COMPANY_NAME`, `BILLING_METHOD`, `DELIVERY_FIRST_NAME`, `DELIVERY_LAST_NAME`, `DELIVERY_ADDRESS_LINE_1`, `DELIVERY_ADDRESS_LINE_2`, `DELIVERY_POSTAL_CODE`, `DELIVERY_CITY`, `DELIVERY_COUNTRY`, `DELIVERY_COUNTRIES_ID`, `DELIVERY_STATE_PROVINCE`, `DELIVERY_COMPANY_NAME`, `DELIVERY_METHOD`, `EVENTS_ID`, `FINISHED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `orders` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

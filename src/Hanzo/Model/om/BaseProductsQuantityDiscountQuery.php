@@ -19,10 +19,6 @@ use Hanzo\Model\ProductsQuantityDiscountPeer;
 use Hanzo\Model\ProductsQuantityDiscountQuery;
 
 /**
- * Base class that represents a query for the 'products_quantity_discount' table.
- *
- *
- *
  * @method ProductsQuantityDiscountQuery orderByProductsMaster($order = Criteria::ASC) Order by the products_master column
  * @method ProductsQuantityDiscountQuery orderByDomainsId($order = Criteria::ASC) Order by the domains_id column
  * @method ProductsQuantityDiscountQuery orderBySpan($order = Criteria::ASC) Order by the span column
@@ -57,8 +53,6 @@ use Hanzo\Model\ProductsQuantityDiscountQuery;
  * @method array findByDomainsId(int $domains_id) Return ProductsQuantityDiscount objects filtered by the domains_id column
  * @method array findBySpan(int $span) Return ProductsQuantityDiscount objects filtered by the span column
  * @method array findByDiscount(string $discount) Return ProductsQuantityDiscount objects filtered by the discount column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
 {
@@ -147,7 +141,7 @@ abstract class BaseProductsQuantityDiscountQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `products_master`, `domains_id`, `span`, `discount` FROM `products_quantity_discount` WHERE `products_master` = :p0 AND `domains_id` = :p1 AND `span` = :p2';
+        $sql = 'SELECT `PRODUCTS_MASTER`, `DOMAINS_ID`, `SPAN`, `DISCOUNT` FROM `products_quantity_discount` WHERE `PRODUCTS_MASTER` = :p0 AND `DOMAINS_ID` = :p1 AND `SPAN` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);

@@ -18,10 +18,6 @@ use Hanzo\Model\MessagesI18nPeer;
 use Hanzo\Model\MessagesI18nQuery;
 
 /**
- * Base class that represents a query for the 'messages_i18n' table.
- *
- *
- *
  * @method MessagesI18nQuery orderById($order = Criteria::ASC) Order by the id column
  * @method MessagesI18nQuery orderByLocale($order = Criteria::ASC) Order by the locale column
  * @method MessagesI18nQuery orderBySubject($order = Criteria::ASC) Order by the subject column
@@ -52,8 +48,6 @@ use Hanzo\Model\MessagesI18nQuery;
  * @method array findByLocale(string $locale) Return MessagesI18n objects filtered by the locale column
  * @method array findBySubject(string $subject) Return MessagesI18n objects filtered by the subject column
  * @method array findByBody(string $body) Return MessagesI18n objects filtered by the body column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseMessagesI18nQuery extends ModelCriteria
 {
@@ -142,7 +136,7 @@ abstract class BaseMessagesI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `locale`, `subject`, `body` FROM `messages_i18n` WHERE `id` = :p0 AND `locale` = :p1';
+        $sql = 'SELECT `ID`, `LOCALE`, `SUBJECT`, `BODY` FROM `messages_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

@@ -20,10 +20,6 @@ use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsToCategories;
 
 /**
- * Base class that represents a query for the 'categories' table.
- *
- *
- *
  * @method CategoriesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CategoriesQuery orderByParentId($order = Criteria::ASC) Order by the parent_id column
  * @method CategoriesQuery orderByContext($order = Criteria::ASC) Order by the context column
@@ -61,6 +57,7 @@ use Hanzo\Model\ProductsToCategories;
  * @method Categories findOne(PropelPDO $con = null) Return the first Categories matching the query
  * @method Categories findOneOrCreate(PropelPDO $con = null) Return the first Categories matching the query, or a new Categories object populated from the query conditions when no match is found
  *
+ * @method Categories findOneById(int $id) Return the first Categories filtered by the id column
  * @method Categories findOneByParentId(int $parent_id) Return the first Categories filtered by the parent_id column
  * @method Categories findOneByContext(string $context) Return the first Categories filtered by the context column
  * @method Categories findOneByIsActive(boolean $is_active) Return the first Categories filtered by the is_active column
@@ -69,8 +66,6 @@ use Hanzo\Model\ProductsToCategories;
  * @method array findByParentId(int $parent_id) Return Categories objects filtered by the parent_id column
  * @method array findByContext(string $context) Return Categories objects filtered by the context column
  * @method array findByIsActive(boolean $is_active) Return Categories objects filtered by the is_active column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCategoriesQuery extends ModelCriteria
 {
@@ -147,20 +142,6 @@ abstract class BaseCategoriesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Categories A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -172,7 +153,7 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `parent_id`, `context`, `is_active` FROM `categories` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `PARENT_ID`, `CONTEXT`, `IS_ACTIVE` FROM `categories` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

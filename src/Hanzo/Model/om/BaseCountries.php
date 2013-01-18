@@ -23,13 +23,6 @@ use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\ZipToCity;
 use Hanzo\Model\ZipToCityQuery;
 
-/**
- * Base class that represents a row from the 'countries' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCountries extends BaseObject implements Persistent
 {
     /**
@@ -132,8 +125,8 @@ abstract class BaseCountries extends BaseObject implements Persistent
     /**
      * @var        PropelObjectCollection|ZipToCity[] Collection to store aggregation of ZipToCity objects.
      */
-    protected $collZipToCitys;
-    protected $collZipToCitysPartial;
+    protected $collZipToCities;
+    protected $collZipToCitiesPartial;
 
     /**
      * @var        PropelObjectCollection|Orders[] Collection to store aggregation of Orders objects.
@@ -171,7 +164,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
-    protected $zipToCitysScheduledForDeletion = null;
+    protected $zipToCitiesScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -608,7 +601,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 12; // 12 = CountriesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -673,7 +666,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
             $this->collAddressess = null;
 
-            $this->collZipToCitys = null;
+            $this->collZipToCities = null;
 
             $this->collOrderssRelatedByBillingCountriesId = null;
 
@@ -814,24 +807,24 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
             if ($this->collAddressess !== null) {
                 foreach ($this->collAddressess as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
             }
 
-            if ($this->zipToCitysScheduledForDeletion !== null) {
-                if (!$this->zipToCitysScheduledForDeletion->isEmpty()) {
+            if ($this->zipToCitiesScheduledForDeletion !== null) {
+                if (!$this->zipToCitiesScheduledForDeletion->isEmpty()) {
                     ZipToCityQuery::create()
-                        ->filterByPrimaryKeys($this->zipToCitysScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->zipToCitiesScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->zipToCitysScheduledForDeletion = null;
+                    $this->zipToCitiesScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collZipToCitys !== null) {
-                foreach ($this->collZipToCitys as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+            if ($this->collZipToCities !== null) {
+                foreach ($this->collZipToCities as $referrerFK) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -849,7 +842,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
             if ($this->collOrderssRelatedByBillingCountriesId !== null) {
                 foreach ($this->collOrderssRelatedByBillingCountriesId as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -867,7 +860,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
             if ($this->collOrderssRelatedByDeliveryCountriesId !== null) {
                 foreach ($this->collOrderssRelatedByDeliveryCountriesId as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -900,40 +893,40 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CountriesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(CountriesPeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`name`';
+            $modifiedColumns[':p' . $index++]  = '`NAME`';
         }
         if ($this->isColumnModified(CountriesPeer::LOCAL_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`local_name`';
+            $modifiedColumns[':p' . $index++]  = '`LOCAL_NAME`';
         }
         if ($this->isColumnModified(CountriesPeer::CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`code`';
+            $modifiedColumns[':p' . $index++]  = '`CODE`';
         }
         if ($this->isColumnModified(CountriesPeer::ISO2)) {
-            $modifiedColumns[':p' . $index++]  = '`iso2`';
+            $modifiedColumns[':p' . $index++]  = '`ISO2`';
         }
         if ($this->isColumnModified(CountriesPeer::ISO3)) {
-            $modifiedColumns[':p' . $index++]  = '`iso3`';
+            $modifiedColumns[':p' . $index++]  = '`ISO3`';
         }
         if ($this->isColumnModified(CountriesPeer::CONTINENT)) {
-            $modifiedColumns[':p' . $index++]  = '`continent`';
+            $modifiedColumns[':p' . $index++]  = '`CONTINENT`';
         }
         if ($this->isColumnModified(CountriesPeer::CURRENCY_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`currency_id`';
+            $modifiedColumns[':p' . $index++]  = '`CURRENCY_ID`';
         }
         if ($this->isColumnModified(CountriesPeer::CURRENCY_CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`currency_code`';
+            $modifiedColumns[':p' . $index++]  = '`CURRENCY_CODE`';
         }
         if ($this->isColumnModified(CountriesPeer::CURRENCY_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`currency_name`';
+            $modifiedColumns[':p' . $index++]  = '`CURRENCY_NAME`';
         }
         if ($this->isColumnModified(CountriesPeer::VAT)) {
-            $modifiedColumns[':p' . $index++]  = '`vat`';
+            $modifiedColumns[':p' . $index++]  = '`VAT`';
         }
         if ($this->isColumnModified(CountriesPeer::CALLING_CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`calling_code`';
+            $modifiedColumns[':p' . $index++]  = '`CALLING_CODE`';
         }
 
         $sql = sprintf(
@@ -946,40 +939,40 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`name`':
+                    case '`NAME`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`local_name`':
+                    case '`LOCAL_NAME`':
                         $stmt->bindValue($identifier, $this->local_name, PDO::PARAM_STR);
                         break;
-                    case '`code`':
+                    case '`CODE`':
                         $stmt->bindValue($identifier, $this->code, PDO::PARAM_INT);
                         break;
-                    case '`iso2`':
+                    case '`ISO2`':
                         $stmt->bindValue($identifier, $this->iso2, PDO::PARAM_STR);
                         break;
-                    case '`iso3`':
+                    case '`ISO3`':
                         $stmt->bindValue($identifier, $this->iso3, PDO::PARAM_STR);
                         break;
-                    case '`continent`':
+                    case '`CONTINENT`':
                         $stmt->bindValue($identifier, $this->continent, PDO::PARAM_STR);
                         break;
-                    case '`currency_id`':
+                    case '`CURRENCY_ID`':
                         $stmt->bindValue($identifier, $this->currency_id, PDO::PARAM_INT);
                         break;
-                    case '`currency_code`':
+                    case '`CURRENCY_CODE`':
                         $stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
                         break;
-                    case '`currency_name`':
+                    case '`CURRENCY_NAME`':
                         $stmt->bindValue($identifier, $this->currency_name, PDO::PARAM_STR);
                         break;
-                    case '`vat`':
+                    case '`VAT`':
                         $stmt->bindValue($identifier, $this->vat, PDO::PARAM_STR);
                         break;
-                    case '`calling_code`':
+                    case '`CALLING_CODE`':
                         $stmt->bindValue($identifier, $this->calling_code, PDO::PARAM_INT);
                         break;
                 }
@@ -1050,11 +1043,11 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1089,8 +1082,8 @@ abstract class BaseCountries extends BaseObject implements Persistent
                     }
                 }
 
-                if ($this->collZipToCitys !== null) {
-                    foreach ($this->collZipToCitys as $referrerFK) {
+                if ($this->collZipToCities !== null) {
+                    foreach ($this->collZipToCities as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
                             $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
                         }
@@ -1230,8 +1223,8 @@ abstract class BaseCountries extends BaseObject implements Persistent
             if (null !== $this->collAddressess) {
                 $result['Addressess'] = $this->collAddressess->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collZipToCitys) {
-                $result['ZipToCitys'] = $this->collZipToCitys->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            if (null !== $this->collZipToCities) {
+                $result['ZipToCities'] = $this->collZipToCities->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collOrderssRelatedByBillingCountriesId) {
                 $result['OrderssRelatedByBillingCountriesId'] = $this->collOrderssRelatedByBillingCountriesId->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -1456,7 +1449,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
                 }
             }
 
-            foreach ($this->getZipToCitys() as $relObj) {
+            foreach ($this->getZipToCities() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addZipToCity($relObj->copy($deepCopy));
                 }
@@ -1539,7 +1532,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->initAddressess();
         }
         if ('ZipToCity' == $relationName) {
-            $this->initZipToCitys();
+            $this->initZipToCities();
         }
         if ('OrdersRelatedByBillingCountriesId' == $relationName) {
             $this->initOrderssRelatedByBillingCountriesId();
@@ -1555,15 +1548,13 @@ abstract class BaseCountries extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Countries The current object (for fluent API support)
+     * @return void
      * @see        addAddressess()
      */
     public function clearAddressess()
     {
         $this->collAddressess = null; // important to set this to null since that means it is uninitialized
         $this->collAddressessPartial = null;
-
-        return $this;
     }
 
     /**
@@ -1662,15 +1653,12 @@ abstract class BaseCountries extends BaseObject implements Persistent
      *
      * @param PropelCollection $addressess A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Countries The current object (for fluent API support)
      */
     public function setAddressess(PropelCollection $addressess, PropelPDO $con = null)
     {
-        $addressessToDelete = $this->getAddressess(new Criteria(), $con)->diff($addressess);
+        $this->addressessScheduledForDeletion = $this->getAddressess(new Criteria(), $con)->diff($addressess);
 
-        $this->addressessScheduledForDeletion = unserialize(serialize($addressessToDelete));
-
-        foreach ($addressessToDelete as $addressesRemoved) {
+        foreach ($this->addressessScheduledForDeletion as $addressesRemoved) {
             $addressesRemoved->setCountries(null);
         }
 
@@ -1681,8 +1669,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
         $this->collAddressess = $addressess;
         $this->collAddressessPartial = false;
-
-        return $this;
     }
 
     /**
@@ -1700,22 +1686,22 @@ abstract class BaseCountries extends BaseObject implements Persistent
         if (null === $this->collAddressess || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collAddressess) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getAddressess());
+                }
+                $query = AddressesQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getAddressess());
+                return $query
+                    ->filterByCountries($this)
+                    ->count($con);
             }
-            $query = AddressesQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCountries($this)
-                ->count($con);
+        } else {
+            return count($this->collAddressess);
         }
-
-        return count($this->collAddressess);
     }
 
     /**
@@ -1731,7 +1717,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->initAddressess();
             $this->collAddressessPartial = true;
         }
-        if (!in_array($l, $this->collAddressess->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collAddressess->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddAddresses($l);
         }
 
@@ -1749,7 +1735,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
     /**
      * @param	Addresses $addresses The addresses object to remove.
-     * @return Countries The current object (for fluent API support)
      */
     public function removeAddresses($addresses)
     {
@@ -1759,11 +1744,9 @@ abstract class BaseCountries extends BaseObject implements Persistent
                 $this->addressessScheduledForDeletion = clone $this->collAddressess;
                 $this->addressessScheduledForDeletion->clear();
             }
-            $this->addressessScheduledForDeletion[]= clone $addresses;
+            $this->addressessScheduledForDeletion[]= $addresses;
             $addresses->setCountries(null);
         }
-
-        return $this;
     }
 
 
@@ -1792,36 +1775,34 @@ abstract class BaseCountries extends BaseObject implements Persistent
     }
 
     /**
-     * Clears out the collZipToCitys collection
+     * Clears out the collZipToCities collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Countries The current object (for fluent API support)
-     * @see        addZipToCitys()
+     * @return void
+     * @see        addZipToCities()
      */
-    public function clearZipToCitys()
+    public function clearZipToCities()
     {
-        $this->collZipToCitys = null; // important to set this to null since that means it is uninitialized
-        $this->collZipToCitysPartial = null;
-
-        return $this;
+        $this->collZipToCities = null; // important to set this to null since that means it is uninitialized
+        $this->collZipToCitiesPartial = null;
     }
 
     /**
-     * reset is the collZipToCitys collection loaded partially
+     * reset is the collZipToCities collection loaded partially
      *
      * @return void
      */
-    public function resetPartialZipToCitys($v = true)
+    public function resetPartialZipToCities($v = true)
     {
-        $this->collZipToCitysPartial = $v;
+        $this->collZipToCitiesPartial = $v;
     }
 
     /**
-     * Initializes the collZipToCitys collection.
+     * Initializes the collZipToCities collection.
      *
-     * By default this just sets the collZipToCitys collection to an empty array (like clearcollZipToCitys());
+     * By default this just sets the collZipToCities collection to an empty array (like clearcollZipToCities());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1830,13 +1811,13 @@ abstract class BaseCountries extends BaseObject implements Persistent
      *
      * @return void
      */
-    public function initZipToCitys($overrideExisting = true)
+    public function initZipToCities($overrideExisting = true)
     {
-        if (null !== $this->collZipToCitys && !$overrideExisting) {
+        if (null !== $this->collZipToCities && !$overrideExisting) {
             return;
         }
-        $this->collZipToCitys = new PropelObjectCollection();
-        $this->collZipToCitys->setModel('ZipToCity');
+        $this->collZipToCities = new PropelObjectCollection();
+        $this->collZipToCities->setModel('ZipToCity');
     }
 
     /**
@@ -1853,47 +1834,47 @@ abstract class BaseCountries extends BaseObject implements Persistent
      * @return PropelObjectCollection|ZipToCity[] List of ZipToCity objects
      * @throws PropelException
      */
-    public function getZipToCitys($criteria = null, PropelPDO $con = null)
+    public function getZipToCities($criteria = null, PropelPDO $con = null)
     {
-        $partial = $this->collZipToCitysPartial && !$this->isNew();
-        if (null === $this->collZipToCitys || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collZipToCitys) {
+        $partial = $this->collZipToCitiesPartial && !$this->isNew();
+        if (null === $this->collZipToCities || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collZipToCities) {
                 // return empty collection
-                $this->initZipToCitys();
+                $this->initZipToCities();
             } else {
-                $collZipToCitys = ZipToCityQuery::create(null, $criteria)
+                $collZipToCities = ZipToCityQuery::create(null, $criteria)
                     ->filterByCountries($this)
                     ->find($con);
                 if (null !== $criteria) {
-                    if (false !== $this->collZipToCitysPartial && count($collZipToCitys)) {
-                      $this->initZipToCitys(false);
+                    if (false !== $this->collZipToCitiesPartial && count($collZipToCities)) {
+                      $this->initZipToCities(false);
 
-                      foreach($collZipToCitys as $obj) {
-                        if (false == $this->collZipToCitys->contains($obj)) {
-                          $this->collZipToCitys->append($obj);
+                      foreach($collZipToCities as $obj) {
+                        if (false == $this->collZipToCities->contains($obj)) {
+                          $this->collZipToCities->append($obj);
                         }
                       }
 
-                      $this->collZipToCitysPartial = true;
+                      $this->collZipToCitiesPartial = true;
                     }
 
-                    return $collZipToCitys;
+                    return $collZipToCities;
                 }
 
-                if($partial && $this->collZipToCitys) {
-                    foreach($this->collZipToCitys as $obj) {
+                if($partial && $this->collZipToCities) {
+                    foreach($this->collZipToCities as $obj) {
                         if($obj->isNew()) {
-                            $collZipToCitys[] = $obj;
+                            $collZipToCities[] = $obj;
                         }
                     }
                 }
 
-                $this->collZipToCitys = $collZipToCitys;
-                $this->collZipToCitysPartial = false;
+                $this->collZipToCities = $collZipToCities;
+                $this->collZipToCitiesPartial = false;
             }
         }
 
-        return $this->collZipToCitys;
+        return $this->collZipToCities;
     }
 
     /**
@@ -1902,29 +1883,24 @@ abstract class BaseCountries extends BaseObject implements Persistent
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param PropelCollection $zipToCitys A Propel collection.
+     * @param PropelCollection $zipToCities A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Countries The current object (for fluent API support)
      */
-    public function setZipToCitys(PropelCollection $zipToCitys, PropelPDO $con = null)
+    public function setZipToCities(PropelCollection $zipToCities, PropelPDO $con = null)
     {
-        $zipToCitysToDelete = $this->getZipToCitys(new Criteria(), $con)->diff($zipToCitys);
+        $this->zipToCitiesScheduledForDeletion = $this->getZipToCities(new Criteria(), $con)->diff($zipToCities);
 
-        $this->zipToCitysScheduledForDeletion = unserialize(serialize($zipToCitysToDelete));
-
-        foreach ($zipToCitysToDelete as $zipToCityRemoved) {
+        foreach ($this->zipToCitiesScheduledForDeletion as $zipToCityRemoved) {
             $zipToCityRemoved->setCountries(null);
         }
 
-        $this->collZipToCitys = null;
-        foreach ($zipToCitys as $zipToCity) {
+        $this->collZipToCities = null;
+        foreach ($zipToCities as $zipToCity) {
             $this->addZipToCity($zipToCity);
         }
 
-        $this->collZipToCitys = $zipToCitys;
-        $this->collZipToCitysPartial = false;
-
-        return $this;
+        $this->collZipToCities = $zipToCities;
+        $this->collZipToCitiesPartial = false;
     }
 
     /**
@@ -1936,28 +1912,28 @@ abstract class BaseCountries extends BaseObject implements Persistent
      * @return int             Count of related ZipToCity objects.
      * @throws PropelException
      */
-    public function countZipToCitys(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    public function countZipToCities(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
     {
-        $partial = $this->collZipToCitysPartial && !$this->isNew();
-        if (null === $this->collZipToCitys || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collZipToCitys) {
+        $partial = $this->collZipToCitiesPartial && !$this->isNew();
+        if (null === $this->collZipToCities || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collZipToCities) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getZipToCities());
+                }
+                $query = ZipToCityQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getZipToCitys());
+                return $query
+                    ->filterByCountries($this)
+                    ->count($con);
             }
-            $query = ZipToCityQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCountries($this)
-                ->count($con);
+        } else {
+            return count($this->collZipToCities);
         }
-
-        return count($this->collZipToCitys);
     }
 
     /**
@@ -1969,11 +1945,11 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     public function addZipToCity(ZipToCity $l)
     {
-        if ($this->collZipToCitys === null) {
-            $this->initZipToCitys();
-            $this->collZipToCitysPartial = true;
+        if ($this->collZipToCities === null) {
+            $this->initZipToCities();
+            $this->collZipToCitiesPartial = true;
         }
-        if (!in_array($l, $this->collZipToCitys->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collZipToCities->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddZipToCity($l);
         }
 
@@ -1985,27 +1961,24 @@ abstract class BaseCountries extends BaseObject implements Persistent
      */
     protected function doAddZipToCity($zipToCity)
     {
-        $this->collZipToCitys[]= $zipToCity;
+        $this->collZipToCities[]= $zipToCity;
         $zipToCity->setCountries($this);
     }
 
     /**
      * @param	ZipToCity $zipToCity The zipToCity object to remove.
-     * @return Countries The current object (for fluent API support)
      */
     public function removeZipToCity($zipToCity)
     {
-        if ($this->getZipToCitys()->contains($zipToCity)) {
-            $this->collZipToCitys->remove($this->collZipToCitys->search($zipToCity));
-            if (null === $this->zipToCitysScheduledForDeletion) {
-                $this->zipToCitysScheduledForDeletion = clone $this->collZipToCitys;
-                $this->zipToCitysScheduledForDeletion->clear();
+        if ($this->getZipToCities()->contains($zipToCity)) {
+            $this->collZipToCities->remove($this->collZipToCities->search($zipToCity));
+            if (null === $this->zipToCitiesScheduledForDeletion) {
+                $this->zipToCitiesScheduledForDeletion = clone $this->collZipToCities;
+                $this->zipToCitiesScheduledForDeletion->clear();
             }
-            $this->zipToCitysScheduledForDeletion[]= clone $zipToCity;
+            $this->zipToCitiesScheduledForDeletion[]= $zipToCity;
             $zipToCity->setCountries(null);
         }
-
-        return $this;
     }
 
     /**
@@ -2014,15 +1987,13 @@ abstract class BaseCountries extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Countries The current object (for fluent API support)
+     * @return void
      * @see        addOrderssRelatedByBillingCountriesId()
      */
     public function clearOrderssRelatedByBillingCountriesId()
     {
         $this->collOrderssRelatedByBillingCountriesId = null; // important to set this to null since that means it is uninitialized
         $this->collOrderssRelatedByBillingCountriesIdPartial = null;
-
-        return $this;
     }
 
     /**
@@ -2121,15 +2092,12 @@ abstract class BaseCountries extends BaseObject implements Persistent
      *
      * @param PropelCollection $orderssRelatedByBillingCountriesId A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Countries The current object (for fluent API support)
      */
     public function setOrderssRelatedByBillingCountriesId(PropelCollection $orderssRelatedByBillingCountriesId, PropelPDO $con = null)
     {
-        $orderssRelatedByBillingCountriesIdToDelete = $this->getOrderssRelatedByBillingCountriesId(new Criteria(), $con)->diff($orderssRelatedByBillingCountriesId);
+        $this->orderssRelatedByBillingCountriesIdScheduledForDeletion = $this->getOrderssRelatedByBillingCountriesId(new Criteria(), $con)->diff($orderssRelatedByBillingCountriesId);
 
-        $this->orderssRelatedByBillingCountriesIdScheduledForDeletion = unserialize(serialize($orderssRelatedByBillingCountriesIdToDelete));
-
-        foreach ($orderssRelatedByBillingCountriesIdToDelete as $ordersRelatedByBillingCountriesIdRemoved) {
+        foreach ($this->orderssRelatedByBillingCountriesIdScheduledForDeletion as $ordersRelatedByBillingCountriesIdRemoved) {
             $ordersRelatedByBillingCountriesIdRemoved->setCountriesRelatedByBillingCountriesId(null);
         }
 
@@ -2140,8 +2108,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
         $this->collOrderssRelatedByBillingCountriesId = $orderssRelatedByBillingCountriesId;
         $this->collOrderssRelatedByBillingCountriesIdPartial = false;
-
-        return $this;
     }
 
     /**
@@ -2159,22 +2125,22 @@ abstract class BaseCountries extends BaseObject implements Persistent
         if (null === $this->collOrderssRelatedByBillingCountriesId || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collOrderssRelatedByBillingCountriesId) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getOrderssRelatedByBillingCountriesId());
+                }
+                $query = OrdersQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getOrderssRelatedByBillingCountriesId());
+                return $query
+                    ->filterByCountriesRelatedByBillingCountriesId($this)
+                    ->count($con);
             }
-            $query = OrdersQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCountriesRelatedByBillingCountriesId($this)
-                ->count($con);
+        } else {
+            return count($this->collOrderssRelatedByBillingCountriesId);
         }
-
-        return count($this->collOrderssRelatedByBillingCountriesId);
     }
 
     /**
@@ -2190,7 +2156,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->initOrderssRelatedByBillingCountriesId();
             $this->collOrderssRelatedByBillingCountriesIdPartial = true;
         }
-        if (!in_array($l, $this->collOrderssRelatedByBillingCountriesId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collOrderssRelatedByBillingCountriesId->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersRelatedByBillingCountriesId($l);
         }
 
@@ -2208,7 +2174,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
     /**
      * @param	OrdersRelatedByBillingCountriesId $ordersRelatedByBillingCountriesId The ordersRelatedByBillingCountriesId object to remove.
-     * @return Countries The current object (for fluent API support)
      */
     public function removeOrdersRelatedByBillingCountriesId($ordersRelatedByBillingCountriesId)
     {
@@ -2221,8 +2186,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->orderssRelatedByBillingCountriesIdScheduledForDeletion[]= $ordersRelatedByBillingCountriesId;
             $ordersRelatedByBillingCountriesId->setCountriesRelatedByBillingCountriesId(null);
         }
-
-        return $this;
     }
 
 
@@ -2281,15 +2244,13 @@ abstract class BaseCountries extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Countries The current object (for fluent API support)
+     * @return void
      * @see        addOrderssRelatedByDeliveryCountriesId()
      */
     public function clearOrderssRelatedByDeliveryCountriesId()
     {
         $this->collOrderssRelatedByDeliveryCountriesId = null; // important to set this to null since that means it is uninitialized
         $this->collOrderssRelatedByDeliveryCountriesIdPartial = null;
-
-        return $this;
     }
 
     /**
@@ -2388,15 +2349,12 @@ abstract class BaseCountries extends BaseObject implements Persistent
      *
      * @param PropelCollection $orderssRelatedByDeliveryCountriesId A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Countries The current object (for fluent API support)
      */
     public function setOrderssRelatedByDeliveryCountriesId(PropelCollection $orderssRelatedByDeliveryCountriesId, PropelPDO $con = null)
     {
-        $orderssRelatedByDeliveryCountriesIdToDelete = $this->getOrderssRelatedByDeliveryCountriesId(new Criteria(), $con)->diff($orderssRelatedByDeliveryCountriesId);
+        $this->orderssRelatedByDeliveryCountriesIdScheduledForDeletion = $this->getOrderssRelatedByDeliveryCountriesId(new Criteria(), $con)->diff($orderssRelatedByDeliveryCountriesId);
 
-        $this->orderssRelatedByDeliveryCountriesIdScheduledForDeletion = unserialize(serialize($orderssRelatedByDeliveryCountriesIdToDelete));
-
-        foreach ($orderssRelatedByDeliveryCountriesIdToDelete as $ordersRelatedByDeliveryCountriesIdRemoved) {
+        foreach ($this->orderssRelatedByDeliveryCountriesIdScheduledForDeletion as $ordersRelatedByDeliveryCountriesIdRemoved) {
             $ordersRelatedByDeliveryCountriesIdRemoved->setCountriesRelatedByDeliveryCountriesId(null);
         }
 
@@ -2407,8 +2365,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
         $this->collOrderssRelatedByDeliveryCountriesId = $orderssRelatedByDeliveryCountriesId;
         $this->collOrderssRelatedByDeliveryCountriesIdPartial = false;
-
-        return $this;
     }
 
     /**
@@ -2426,22 +2382,22 @@ abstract class BaseCountries extends BaseObject implements Persistent
         if (null === $this->collOrderssRelatedByDeliveryCountriesId || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collOrderssRelatedByDeliveryCountriesId) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getOrderssRelatedByDeliveryCountriesId());
+                }
+                $query = OrdersQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getOrderssRelatedByDeliveryCountriesId());
+                return $query
+                    ->filterByCountriesRelatedByDeliveryCountriesId($this)
+                    ->count($con);
             }
-            $query = OrdersQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCountriesRelatedByDeliveryCountriesId($this)
-                ->count($con);
+        } else {
+            return count($this->collOrderssRelatedByDeliveryCountriesId);
         }
-
-        return count($this->collOrderssRelatedByDeliveryCountriesId);
     }
 
     /**
@@ -2457,7 +2413,7 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->initOrderssRelatedByDeliveryCountriesId();
             $this->collOrderssRelatedByDeliveryCountriesIdPartial = true;
         }
-        if (!in_array($l, $this->collOrderssRelatedByDeliveryCountriesId->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collOrderssRelatedByDeliveryCountriesId->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersRelatedByDeliveryCountriesId($l);
         }
 
@@ -2475,7 +2431,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
 
     /**
      * @param	OrdersRelatedByDeliveryCountriesId $ordersRelatedByDeliveryCountriesId The ordersRelatedByDeliveryCountriesId object to remove.
-     * @return Countries The current object (for fluent API support)
      */
     public function removeOrdersRelatedByDeliveryCountriesId($ordersRelatedByDeliveryCountriesId)
     {
@@ -2488,8 +2443,6 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->orderssRelatedByDeliveryCountriesIdScheduledForDeletion[]= $ordersRelatedByDeliveryCountriesId;
             $ordersRelatedByDeliveryCountriesId->setCountriesRelatedByDeliveryCountriesId(null);
         }
-
-        return $this;
     }
 
 
@@ -2584,8 +2537,8 @@ abstract class BaseCountries extends BaseObject implements Persistent
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collZipToCitys) {
-                foreach ($this->collZipToCitys as $o) {
+            if ($this->collZipToCities) {
+                foreach ($this->collZipToCities as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
@@ -2605,10 +2558,10 @@ abstract class BaseCountries extends BaseObject implements Persistent
             $this->collAddressess->clearIterator();
         }
         $this->collAddressess = null;
-        if ($this->collZipToCitys instanceof PropelCollection) {
-            $this->collZipToCitys->clearIterator();
+        if ($this->collZipToCities instanceof PropelCollection) {
+            $this->collZipToCities->clearIterator();
         }
-        $this->collZipToCitys = null;
+        $this->collZipToCities = null;
         if ($this->collOrderssRelatedByBillingCountriesId instanceof PropelCollection) {
             $this->collOrderssRelatedByBillingCountriesId->clearIterator();
         }

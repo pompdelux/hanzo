@@ -461,6 +461,22 @@
                 <source>newsletter</source>
                 <target>Nyhedsbreve</target>
             </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadresse</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Gentag e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Valgfrit adgangskode</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Gentag adgangskode</target>
+            </trans-unit>
             <trans-unit id="my.account.my.events" approved="no">
                 <source>my.account.my.events</source>
                 <target>Mine events</target>

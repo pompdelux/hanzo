@@ -42,10 +42,10 @@ class WallLikesTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('wall_id', 'WallId', 'INTEGER', 'wall', 'id', true, null, null);
-        $this->addForeignKey('customers_id', 'CustomersId', 'INTEGER', 'customers', 'id', true, null, null);
-        $this->addColumn('status', 'Status', 'BOOLEAN', true, 1, true);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('WALL_ID', 'WallId', 'INTEGER', 'wall', 'ID', true, null, null);
+        $this->addForeignKey('CUSTOMERS_ID', 'CustomersId', 'INTEGER', 'customers', 'ID', true, null, null);
+        $this->addColumn('STATUS', 'Status', 'BOOLEAN', true, 1, true);
         // validators
     } // initialize()
 

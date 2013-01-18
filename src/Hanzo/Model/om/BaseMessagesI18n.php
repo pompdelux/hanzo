@@ -17,13 +17,6 @@ use Hanzo\Model\MessagesI18nPeer;
 use Hanzo\Model\MessagesI18nQuery;
 use Hanzo\Model\MessagesQuery;
 
-/**
- * Base class that represents a row from the 'messages_i18n' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseMessagesI18n extends BaseObject implements Persistent
 {
     /**
@@ -285,7 +278,7 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = MessagesI18nPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -511,16 +504,16 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(MessagesI18nPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(MessagesI18nPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`locale`';
+            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
         }
         if ($this->isColumnModified(MessagesI18nPeer::SUBJECT)) {
-            $modifiedColumns[':p' . $index++]  = '`subject`';
+            $modifiedColumns[':p' . $index++]  = '`SUBJECT`';
         }
         if ($this->isColumnModified(MessagesI18nPeer::BODY)) {
-            $modifiedColumns[':p' . $index++]  = '`body`';
+            $modifiedColumns[':p' . $index++]  = '`BODY`';
         }
 
         $sql = sprintf(
@@ -533,16 +526,16 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`locale`':
+                    case '`LOCALE`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`subject`':
+                    case '`SUBJECT`':
                         $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
                         break;
-                    case '`body`':
+                    case '`BODY`':
                         $stmt->bindValue($identifier, $this->body, PDO::PARAM_STR);
                         break;
                 }
@@ -606,11 +599,11 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -986,13 +979,12 @@ abstract class BaseMessagesI18n extends BaseObject implements Persistent
      * Get the associated Messages object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Messages The associated Messages object.
      * @throws PropelException
      */
-    public function getMessages(PropelPDO $con = null, $doQuery = true)
+    public function getMessages(PropelPDO $con = null)
     {
-        if ($this->aMessages === null && ($this->id !== null) && $doQuery) {
+        if ($this->aMessages === null && ($this->id !== null)) {
             $this->aMessages = MessagesQuery::create()->findPk($this->id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

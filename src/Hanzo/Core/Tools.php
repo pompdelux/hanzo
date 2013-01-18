@@ -439,7 +439,7 @@ class Tools
             if ('dev_' !== substr(self::getHanzoInstance()->container->get('kernel')->getEnvironment(), 0, 4)) {
                 $path = '';
             }
-            $path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
+            $path .= '/'.self::getHanzoInstance()->container->get('request')->getLocale().'/';
         }
 
         return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $http_only);
@@ -465,7 +465,7 @@ class Tools
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
-    
+
     public static function fxImageUrl($src, $preset = '', array $params = array())
     {
         $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;

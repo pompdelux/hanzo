@@ -103,22 +103,6 @@
                 <source>color</source>
                 <target>Color</target>
             </trans-unit>
-            <trans-unit id="acc.1">
-                <source>Email address</source>
-                <target>Email address</target>
-            </trans-unit>
-            <trans-unit id="acc.2">
-                <source>Email address repeated</source>
-                <target>Email address repeated</target>
-            </trans-unit>
-            <trans-unit id="acc.3">
-                <source>Pass</source>
-                <target>Password</target>
-            </trans-unit>
-            <trans-unit id="acc.4">
-                <source>Pass repeated</source>
-                <target>Password repeated</target>
-            </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
                 <target>Company</target>

@@ -16,7 +16,7 @@ use Hanzo\Bundle\ServiceBundle\Services\AxService;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CheckoutListener
 {

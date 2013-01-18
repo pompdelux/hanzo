@@ -26,19 +26,23 @@ $ts = microtime(1);
 //     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 // }
 
-require_once __DIR__.'/../app/bootstrap.php.cache';
-require_once __DIR__.'/../app/AppKernel.php';
-
 use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\Tools;
+
+$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+require_once __DIR__.'/../app/AppKernel.php';
 
 $env = Tools::mapDomainToEnvironment();
 
 $kernel = new AppKernel('dev_'.$env, true);
 $kernel->loadClassCache();
-$handle = $kernel->handle(Request::createFromGlobals());
 
-header('X-hanzo-t: ' . (microtime(1) - $ts));
-header('X-hanzo-m: ' . $kernel->humanReadableSize(memory_get_peak_usage()));
+$request = Request::createFromGlobals();
+$response = $kernel->handle($request);
 
-$kernel->terminate($handle);
+$response->headers->set('X-hanzo-t', (microtime(1) - $ts));
+$response->headers->set('X-hanzo-m', $kernel->humanReadableSize(memory_get_peak_usage()));
+$response->send();
+
+$kernel->terminate($request, $response);
+
