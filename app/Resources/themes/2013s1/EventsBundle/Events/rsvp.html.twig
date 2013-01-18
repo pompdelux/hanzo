@@ -1,0 +1,104 @@
+{% extends layout %}
+
+{% block content %}
+<div class="grid_8 alpha omega">
+
+    {% if app.session.hasFlash('notice') %}
+    <div class="message notice">
+        {{ app.session.flash('notice')|trans({}, 'events') }}
+    </div>
+    {% endif %}
+
+    {% if event %}
+
+        <div class="grid_6 alpha omega bottom-space">
+            <h1 class="bordered-bottom">{{ 'events.rsvp.top.header.text'|trans({}, 'events') }}</h1>
+            <div class="grid_3 alpha">
+                <table id="event" class="horizontal">
+                    <tbody>
+                        <tr>
+                            <th>{{ 'events.code'|trans({}, 'events') }}</th>
+                            <td>{{ event.code }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.event_date'|trans({}, 'events') }}</th>
+                            <td>{{ event.eventdate }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.host'|trans({}, 'events') }}</th>
+                            <td>{{ event.host }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.address_line_1'|trans({}, 'events') }}</th>
+                            <td>{{ event.addressline1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.postal_code'|trans({}, 'events') }}</th>
+                            <td>{{ event.postalcode }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.city'|trans({}, 'events') }}</th>
+                            <td>{{ event.city }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.phone'|trans({}, 'events') }}</th>
+                            <td>{{ event.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.email'|trans({}, 'events') }}</th>
+                            <td>{{ event.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'events.description'|trans({}, 'events') }}</th>
+                            <td>{{ event.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {% if form_rsvp %}
+            <div class="grid_6 alpha omega bottom-space">
+                <h2 class="bordered-bottom">{{ 'events.rsvp.header.text'|trans({}, 'events') }}</h2>
+                <p>{{ 'events.rsvp.description.text'|trans({}, 'events') }}</p>
+                <div class="grid_3 alpha">
+                    <form action="{{ path('events_rsvp', {'key' : key}) }}" method="post" {{ form_enctype(form_rsvp) }} id="event-edit-form" class="create full-width">
+                        <div class="row">
+                            {{ form_rest(form_rsvp) }}
+                            {{ form_row(form_rsvp._token) }}
+                        </div>
+                        <div class="row">
+                            <input class="button button-large" type="submit" value="{{ 'events.participant.rsvp.button'|trans({}, 'events') }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <p>{{ 'events.too_late_to_rsvp.text'|trans({}, 'events') }}</p>
+        {% endif %}
+
+        {% if form_tell_a_friend %}
+            <div class="grid_6 alpha omega bottom-space">
+                <h2 class="bordered-bottom">{{ 'events.tell_a_friend.header.text'|trans({}, 'events') }}</h2>
+                <p>{{ 'events.tell_a_friend.description.text'|trans({}, 'events') }}</p>
+                <div class="grid_3 alpha">
+                    <form action="{{ path('events_tell_a_friend', {'key' : key}) }}" method="post" {{ form_enctype(form_tell_a_friend) }} id="event-edit-form" class="create full-width">
+                        <div class="row">
+                            {{ form_rest(form_tell_a_friend) }}
+                            {{ form_row(form_tell_a_friend._token) }}
+                        </div>
+                        <div class="row">
+                            <input class="button button-large" type="submit" value="{{ 'events.participant.tell_a_friend.button'|trans({}, 'events') }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+    <h1>{{ 'events.not_found.header.text'|trans({}, 'events') }}</h1>
+    <p>{{ 'events.not_found.description.text'|trans({}, 'events') }}</p>
+
+    {% endif %}
+</div>
+
+{% endblock %}
