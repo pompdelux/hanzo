@@ -68,9 +68,7 @@ twig:
 
 assetic:
     debug: '%kernel.debug%'
-    use_controller:
-        enabled: false
-        profiler: true
+    use_controller: false
     java: /usr/bin/java
     sass: %sass_bin%
     node: %node_bin%
@@ -79,8 +77,10 @@ assetic:
         compass:
             bin: %compass_bin%
             apply_to: "\.scss$"
-        yui_js:
-            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+        uglifyjs:
+            bin: /usr/local/bin/uglifyjs
+            no_copyright: false
+            apply_to: "\.js$"
 
 swiftmailer:
     transport: '%mailer_transport%'
@@ -101,6 +101,8 @@ jms_security_extra:
     secure_all_services: false
     expressions: true
 
+# when switching to native redis session handeling
+# https://github.com/drak/NativeSession
 snc_redis:
     clients:
         default:
