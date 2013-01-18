@@ -78,7 +78,7 @@ assetic:
             bin: %compass_bin%
             apply_to: "\.scss$"
         uglifyjs:
-            bin: /usr/local/bin/uglifyjs
+            bin: %uglifyjs_bin%
             no_copyright: false
             apply_to: "\.js$"
 
