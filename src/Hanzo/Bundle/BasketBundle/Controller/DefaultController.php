@@ -327,8 +327,6 @@ class DefaultController extends CoreController
                 continue;
             }
 
-            $line['expected_at'] = new \DateTime($line['expected_at']);
-
             $t = $line['expected_at']->getTimestamp();
             if (($t > 0) && ($t > time())) {
                 $line['expected_at'] = $t;
@@ -342,7 +340,7 @@ class DefaultController extends CoreController
 
             $line['basket_image'] =
                 preg_replace('/[^a-z0-9]/i', '', $line['products_name']) .
-                '_' . 
+                '_' .
                 preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
                 '_set_01.jpg'
             ;
