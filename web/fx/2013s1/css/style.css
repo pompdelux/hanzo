@@ -1150,6 +1150,9 @@ aside h1, aside h2, aside h3, aside h4, aside h5 {
   padding-bottom: 6px;
   margin-bottom: 12px;
 }
+aside h1 {
+  text-transform: uppercase;
+}
 
 form label {
   margin-top: 12px;
@@ -1236,6 +1239,11 @@ a.button.button-large {
   padding: 6px 12px;
   width: 234px;
 }
+input.button.button-full-width,
+button.button.button-full-width,
+a.button.button-full-width {
+  width: 100%;
+}
 
 table {
   width: 100%;
@@ -1268,10 +1276,6 @@ table.horizontal th {
   text-align: left;
 }
 
-a.left {
-  float: left;
-}
-
 .align-center,
 .center {
   text-align: center;
@@ -1286,7 +1290,14 @@ a.left {
   text-align: right;
 }
 
-a.right {
+a.left,
+input.left,
+button.left {
+  float: left;
+}
+a.right,
+input.right,
+button.right {
   float: right;
 }
 

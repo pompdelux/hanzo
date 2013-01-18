@@ -465,6 +465,10 @@
                 <source>my.account.my.events</source>
                 <target>Mine events</target>
             </trans-unit>
+            <trans-unit id="account.history.see.all.orders" approved="no">
+                <source>account.history.see.all.orders</source>
+                <target>Se alle ordrer</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
