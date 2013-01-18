@@ -26,8 +26,8 @@ class CMSRouterLoader implements LoaderInterface
     /**
      * setup required variables
      *
-     * @param Session $session   The current session object
-     * @param string  $cache_dir Path to filesystem cache
+     * @param string $locale    active locale
+     * @param string $cache_dir Path to filesystem cache
      */
     public function __construct($locale, $cache_dir)
     {
