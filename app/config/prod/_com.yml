@@ -1,7 +1,7 @@
 framework:
     default_locale: en_GB
     session:
-        path: '/en_GB'
+        cookie_path: '/en_GB'
 
 propel:
     dbal:

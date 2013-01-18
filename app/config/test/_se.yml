@@ -1,7 +1,7 @@
 framework:
     default_locale: sv_SE
     session:
-        path: '/sv_SE'
+        cookie_path: '/sv_SE'
 
 propel:
     dbal:

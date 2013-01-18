@@ -4,7 +4,7 @@ cms:
 framework:
     default_locale: fi_FI
     session:
-        path: '/fi_FI'
+        cookie_path: '/fi_FI'
 
 propel:
     dbal:
