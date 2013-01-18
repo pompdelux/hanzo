@@ -950,4 +950,31 @@ class EventsController extends CoreController
 
         return $this->redirect($this->generateUrl($goto));
     }
+
+    public function myEventsAction()
+    {
+        $customer = CustomersPeer::getCurrent();
+        $events = EventsQuery::create()
+            ->joinWithConsultantsQuery()
+            ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
+            ->filterByCustomersId($customer->getId())
+            ->find()
+        ;
+        $myEvents = array();
+
+        foreach ($events as $event) {
+            if ($event instanceof Events) {
+                $events_participants = EventsParticipantsQuery::create()->findByEventsId($event->getId());
+                $myEvents[$event->getId()] = array(
+                    'event' => $event,
+                    'participants' => $events_participants
+                );
+            }
+        }
+
+        return $this->render('EventsBundle:Events:myEvents.html.twig', array(
+            'page_type'     => 'event',
+            'events'        => $myEvents
+        ));
+    }
 }
