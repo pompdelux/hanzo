@@ -24,14 +24,12 @@ class CheckoutListener
     protected $mailer;
     protected $ax;
     protected $translator;
-    protected $session;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session)
+    public function __construct(MailService $mailer, AxService $ax, Translator $translator)
     {
         $this->mailer     = $mailer;
         $this->ax         = $ax;
         $this->translator = $translator;
-        $this->session    = $session;
     }
 
     public function onFinalize(FilterOrderEvent $event)
