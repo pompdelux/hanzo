@@ -1,4 +1,4 @@
 framework:
     default_locale: nb_NO
     session:
-        path: '/app_dev.php/nb_NO'
+        path: '/nb_NO'
