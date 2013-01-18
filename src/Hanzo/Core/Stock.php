@@ -79,7 +79,7 @@ class Stock
             $this->stock[$id]['total'] += $record->getQuantity();
             $this->stock[$id][$date] = array(
                 'id' => $record->getId(),
-                'date' => $record->getAvailableFrom('Y-m-d'),
+                'date' => $record->getAvailableFrom(),
                 'quantity' => $record->getQuantity(),
             );
         }
