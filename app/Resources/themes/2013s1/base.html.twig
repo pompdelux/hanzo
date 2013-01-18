@@ -36,7 +36,7 @@
   'fx/2013s1/css/screen.css'
   'fx/2013s1/css/style.css'
 
-  output='fx/cache/all_2013s1.css'
+  output='fx/cache/2013s1.css'
   combine=true
 %}
 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -85,7 +85,7 @@
         </div>
       </li>
       <li class="last">
-        <form action="{{ baseurl }}/{{ app.session.locale }}" class="search-form">
+        <form action="{{ baseurl }}/{{ app.request.locale }}" class="search-form">
           <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
           <input type="text" name="q">
         </form>
@@ -206,7 +206,7 @@
   'fx/scripts/faq.js'
 
   'fx/scripts/oldie.js'
-  filter='?yui_js'
+  filter='uglifyjs'
   output='fx/cache/all.js'
   combine=true
 %}
