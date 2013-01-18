@@ -327,7 +327,7 @@ class DefaultController extends CoreController
                 continue;
             }
 
-            $t = $line['expected_at']->getTimestamp();
+            $t = strtotime($line['expected_at']);
             if (($t > 0) && ($t > time())) {
                 $line['expected_at'] = $t;
                 if ($delivery_date < $line['expected_at']) {
