@@ -245,6 +245,34 @@ a.right{float: right;}
 	display: inline-block;
 	@include box;
 }
+.sprite{
+	&.delete,
+	&.edit,
+	&.show,
+	&.pdf{
+		display: inline-block;
+	}
+	&.delete{
+		@include icons-sprite(delete);
+		height: icons-sprite-height(delete);
+		width: icons-sprite-width(delete);
+	}
+	&.edit{
+		@include icons-sprite(edit);
+		height: icons-sprite-height(edit);
+		width: icons-sprite-width(edit);
+	}
+	&.show{
+		@include icons-sprite(show);
+		height: icons-sprite-height(show);
+		width: icons-sprite-width(show);
+	}
+	&.pdf{
+		@include icons-sprite(pdf);
+		height: icons-sprite-height(pdf);
+		width: icons-sprite-width(pdf);
+	}
+}
 ul{
 	list-style-position: inside;
 	&.list {
