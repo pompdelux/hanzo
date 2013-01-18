@@ -432,7 +432,11 @@
             </trans-unit>
             <trans-unit id="events.myevents.header">
                 <source>events.myevents.header</source>
-                <target><![CDATA[<h1>Mine Events</h1>]]></target>
+                <target><![CDATA[<h1>Mine Events</h1><p>Her vises alle de events hvor <b>du</b> er værtinde</p>]]></target>
+            </trans-unit>
+            <trans-unit id="events.event.header.text.%date%">
+                <source>events.event.header.text.%date%</source>
+                <target>Arrangement d. %date%:</target>
             </trans-unit>
         </body>
     </file>

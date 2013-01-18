@@ -461,6 +461,10 @@
                 <source>newsletter</source>
                 <target>Nyhedsbreve</target>
             </trans-unit>
+            <trans-unit id="my.account.my.events" approved="no">
+                <source>my.account.my.events</source>
+                <target>Mine events</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

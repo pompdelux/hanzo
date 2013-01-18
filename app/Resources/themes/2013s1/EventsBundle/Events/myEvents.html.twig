@@ -20,7 +20,7 @@
                 {% if event is defined %}
                     <div class="grid_6 alpha omega bottom-space">
                         <div class="grid_6 alpha omega bottom-space">
-                            <h1 class="bordered-bottom">{{ 'events.invite.top.header.text'|trans({}, 'events') }}</h1>
+                            <h1 class="bordered-bottom">{{ 'events.event.header.text.%date%'|trans({'%date%' : event.data.eventdate|date('d/m Y')}, 'events') }}</h1>
                             <div class="grid_3 alpha">
                                 <table id="event" class="horizontal">
                                     <tbody>
@@ -63,9 +63,9 @@
 
 
                         {% if event.form_view is defined %}
-                            <h1 class="bordered-bottom">{{ 'events.invite.header.text'|trans({}, 'events') }}</h1>
+                            <h2 class="bordered-bottom">{{ 'events.invite.header.text'|trans({}, 'events') }}</h2>
                             <p>{{ 'events.invite.description.text'|trans({}, 'events') }}</p>
-                            <form action="{{ path('events_myEvents') }}" method="post" {{ form_enctype(event.form_view) }} class="create invite-form full-width">
+                            <form action="{{ path('events_my_events') }}" method="post" {{ form_enctype(event.form_view) }} class="create invite-form full-width">
                                 <div id="events" class="grid_3 suffix_5 alpha omega bottom-space">
                                     <div class="row">
                                         {{ form_errors(event.form_view) }}
@@ -85,7 +85,7 @@
 
                         {% if event.participants|length > 0 %}
 
-                        <h1 class="bordered-bottom">{{ 'events.invite.participants.header.text'|trans({}, 'events') }} ({{ event.participants|length }})</h1>
+                        <h2 class="bordered-bottom">{{ 'events.invite.participants.header.text'|trans({}, 'events') }} ({{ event.participants|length }})</h2>
                         <table class="participants" class="list bottom-space">
                             <thead>
                                 <tr>
@@ -112,7 +112,7 @@
                                 {% endif %}
                                     </td>
                                     <td>
-                                            <a href="" data-event="{{ participant.eventsid }}" data-participant="{{ participant.id }}" class="delete">x</a>
+                                            <a href="" data-event="{{ participant.eventsid }}" data-participant="{{ participant.id }}" class="sprite delete"></a>
                                     </td>
                                 </tr>
                             {% endfor %}
