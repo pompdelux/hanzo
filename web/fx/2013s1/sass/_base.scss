@@ -107,14 +107,20 @@ form{
 				width: 97%;
 			}
 		}
+		textarea{
+			width: 97%;
+			height: 120px;
+		}
 	}
-	input {
+	input,
+	textarea {
 		border: 1px solid $font-color;
 		padding: 6px 5px;
 		color: $font-color;
 		&[type="text"],
 		&[type="email"],
 		&[type="date"],
+		&[type="datetime"],
 		&[type="password"]{
 			font-family: $font-serif;
 		}

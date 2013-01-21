@@ -10,7 +10,7 @@
   </div>
   {% endif %}
 
-  {% include 'BasketBundle:Default:block.html.twig' %}
+  {% render 'BasketBundle:Default:view' with { 'embed': true } %}
 
 {% endblock %}
 

@@ -147,6 +147,8 @@ ul.menu .dropdown,
   box-shadow: #c9c9c9 -1px 1px 2px;
   border: #f0f0f0 1px solid;
   padding: 9px;
+  max-height: 400px;
+  overflow-y: scroll;
 }
 nav > ul.right,
 ul.menu.right,
@@ -1237,6 +1239,71 @@ div.dialoug.like-pop li div {
   background-image: url(/fx/images/wall/emo/12.png);
 }
 
+#quickorder form {
+  padding-bottom: 50px;
+}
+#quickorder form label {
+  display: inline-block;
+  width: auto;
+}
+#quickorder form input, #quickorder form select {
+  margin-right: 5px;
+}
+#quickorder form input:focus, #quickorder form select:focus {
+  border: 2px solid white;
+}
+#quickorder .ui-autocomplete {
+  list-style-type: none;
+  padding: 0px 5px;
+  display: inline-block;
+}
+#quickorder .ui-autocomplete .ui-menu-item {
+  cursor: pointer;
+}
+#quickorder input#quantity {
+  width: 50px;
+  text-align: center;
+}
+
+.typeahead.dropdown-menu {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 4px 0;
+  margin: 1px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+}
+.typeahead.dropdown-menu a {
+  display: block;
+  padding: 3px 15px;
+  clear: both;
+  font-weight: normal;
+  line-height: 18px;
+  white-space: nowrap;
+  color: #333;
+}
+.typeahead.dropdown-menu li > a:hover {
+  text-decoration: none;
+  background-color: #D9D9D9;
+}
+.typeahead.dropdown-menu .active > a {
+  text-decoration: none;
+  background-color: #D9D9D9;
+}
+.typeahead.dropdown-menu .active > a:hover {
+  text-decoration: none;
+  background-color: #D9D9D9;
+}
+
 /**
 | _base
 */
@@ -1416,12 +1483,22 @@ form label {
 form.full-width input[type="text"], form.full-width input[type="email"], form.full-width input[type="date"], form.full-width input[type="password"] {
   width: 97%;
 }
-form input {
+form.full-width textarea {
+  width: 97%;
+  height: 120px;
+}
+form input,
+form textarea {
   border: 1px solid #444444;
   padding: 6px 5px;
   color: #444444;
 }
-form input[type="text"], form input[type="email"], form input[type="date"], form input[type="password"] {
+form input[type="text"], form input[type="email"], form input[type="date"], form input[type="datetime"], form input[type="password"],
+form textarea[type="text"],
+form textarea[type="email"],
+form textarea[type="date"],
+form textarea[type="datetime"],
+form textarea[type="password"] {
   font-family: "Merriweather", serif;
 }
 form input.error {
