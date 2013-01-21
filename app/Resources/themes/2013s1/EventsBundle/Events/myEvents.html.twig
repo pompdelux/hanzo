@@ -30,7 +30,7 @@
                                         </tr>
                                         <tr>
                                             <th>{{ 'events.event_date'|trans({}, 'events') }}</th>
-                                            <td>{{ event.data.eventdate }}</td>
+                                            <td>{{ event.data.eventdate|date('j. M Y - H:i') }}</td>
                                         </tr>
                                         <tr>
                                             <th>{{ 'events.host'|trans({}, 'events') }}</th>
@@ -62,7 +62,7 @@
                         </div>
 
 
-                        {% if event.form_view is defined %}
+                        {% if event.form_view is defined%}
                             <h2 class="bordered-bottom">{{ 'events.invite.header.text'|trans({}, 'events') }}</h2>
                             <p>{{ 'events.invite.description.text'|trans({}, 'events') }}</p>
                             <form action="{{ path('events_my_events') }}" method="post" {{ form_enctype(event.form_view) }} class="create invite-form full-width">

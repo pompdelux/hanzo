@@ -22,8 +22,9 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('session')->getLocale()]));
         }
 
-        $code = explode('_', $this->get('session')->getLocale());
-        $code = array_pop($code);
+        // $code = explode('_', $this->get('session')->getLocale());
+        $locale = explode('_', Hanzo::getInstance()->get('core.locale'));
+        $code = array_pop($locale);
 
         return $this->render('WallBundle:Default:wall.html.twig', array(
             'postfix' => $code,

@@ -57,9 +57,9 @@
                     _next();
                 });
                 $(document, $wrapper).keydown(function(e){
-                    if (e.keyCode == 37) { 
+                    if (e.keyCode == 37) {
                         _next( index - 1 );
-                    }else if (e.keyCode == 39) { 
+                    }else if (e.keyCode == 39) {
                         _next();
                     }
                 });
@@ -93,7 +93,7 @@
             );
 
 
-            // When a new image is loaded into the temporary image, switch it to the main image. 
+            // When a new image is loaded into the temporary image, switch it to the main image.
             $(tempImage).on('load', function (e){
                 if(image.src !== tempImage.src){ // Workaround. fade was firing multiple times.
                     $(image).fadeOut('300', function(){
@@ -107,10 +107,11 @@
                 }else{
                     $('.loader').hide();
                 }
-            })
-            .on('error', function(){
-                _next();
             });
+            // Handle if the image couldnt get loaded. This will trigger a next() but can only increment
+            // .on('error', function(){
+            //     _next();
+            // });
 
             $('.close, img.full-image', $wrapper).on('click', function(e){
                 e.preventDefault();
@@ -167,7 +168,7 @@
         for (var i = list.length - 1; i >= 0; i--) {
             if(list[i].src === $(element[0]).attr('href'))
                 return i;
-        };
+        }
         return -1;
     }
 
