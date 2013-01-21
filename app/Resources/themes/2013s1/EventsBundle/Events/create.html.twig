@@ -1,0 +1,56 @@
+{% extends layout %}
+
+{% block content %}
+    <nav class="grid_2 alpha sub-menu menu">
+        <ul>
+            <li>
+                <a href="{{ path('events_index') }}">
+                    {{ 'events.calendar.link'|trans({}, 'events') }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="grid_6 omega">
+        <h1>{{ 'events.create_event.header.text'|trans({}, 'events') }}</h1>
+
+        {% if app.session.hasFlash('notice') %}
+        <div class="message notice">
+            {{ app.session.flash('notice')|trans({}, 'events') }}
+        </div>
+        {% endif %}
+
+        <p>{{ 'events.create_event.description.text'|trans({}, 'events') }}</p>
+        <div class="grid_3">
+            <div id="find-customer">
+                <form id="find-customer-by-phone-form">
+                    <input type="text" id="find-customer-by-phone" placeholder="{{ 'events.find_customer_by_phone.placeholder'|trans({}, 'events') }}"><input type="submit" id="find-customer-by-phone-button" value="{{ 'events.find_customer_by_phone.button'|trans({}, 'events') }}">
+                </form>
+                <form id="find-customer-by-email-form">
+                    <input type="text" id="find-customer-by-email" placeholder="{{ 'events.find_customer_by_email.placeholder'|trans({}, 'events') }}"><input type="submit" id="find-customer-by-email-button" value="{{ 'events.find_customer_by_email.button'|trans({}, 'events') }}">
+                </form>
+            </div>
+            <form action="{{ path('events_create', {'id' : id}) }}" method="post" {{ form_enctype(form) }} id="event-edit-form" class="create full-width">
+                {{ form_errors(form) }}
+
+                <div id="events">
+                    {{ form_rest(form) }}
+                    {{ form_row(form._token) }}
+                </div>
+                <input class="button right" type="submit" value="{{ 'events.update.event'|trans({}, 'events') }}">
+                <a class="button left" href="{{ path('events_index') }}">{{ 'cancel'|trans({}, 'events') }}</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script src="/fx/scripts/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.datetimepicker').datetimepicker();
+    });
+</script>
+{% endblock %}

@@ -116,10 +116,8 @@ $(function() {
     wall.init();
   }
 
-  $('#wall-entry-form textarea').focus();
-
   $('textarea.grow[title]').each(function() {
-    if (this.value == '') {
+    if (this.value === '') {
       this.value = this.title;
     }
     $(this).focus(function() {
@@ -129,7 +127,7 @@ $(function() {
       $(this).parent().parent().find('dd input').show();
     });
     $(this).blur(function() {
-      if(this.value == '') {
+      if(this.value === '') {
         $(this).val($(this).attr('title')).removeClass('focused');
         $(this).parent().parent().find('dd input').hide();
       }
@@ -143,6 +141,7 @@ $(function() {
 
   $('textarea.grow').simpleautogrow();
   $('textarea.grow:hidden').css({top : "-2000px", left : "-2000px"});
+  $('#wall-entry-form textarea').focus();
 
   $('div.wall-post a[rel="wall-comment"]').live('click', function(e){
     e.preventDefault();

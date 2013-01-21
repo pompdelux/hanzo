@@ -290,6 +290,10 @@ ul.breadcrumb li.first:before {
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
 
+#logo {
+  margin-top: 6px;
+}
+
 /**
 | _footer
 */
