@@ -14,13 +14,6 @@ use Hanzo\Model\ProductsI18nPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\map\ProductsI18nTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'products_i18n' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsI18nPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseProductsI18nPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'products_i18n.id';
+    /** the column name for the ID field */
+    const ID = 'products_i18n.ID';
 
-    /** the column name for the locale field */
-    const LOCALE = 'products_i18n.locale';
+    /** the column name for the LOCALE field */
+    const LOCALE = 'products_i18n.LOCALE';
 
-    /** the column name for the title field */
-    const TITLE = 'products_i18n.title';
+    /** the column name for the TITLE field */
+    const TITLE = 'products_i18n.TITLE';
 
-    /** the column name for the content field */
-    const CONTENT = 'products_i18n.content';
+    /** the column name for the CONTENT field */
+    const CONTENT = 'products_i18n.CONTENT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseProductsI18nPeer
             $criteria->addSelectColumn(ProductsI18nPeer::TITLE);
             $criteria->addSelectColumn(ProductsI18nPeer::CONTENT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.locale');
-            $criteria->addSelectColumn($alias . '.title');
-            $criteria->addSelectColumn($alias . '.content');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.LOCALE');
+            $criteria->addSelectColumn($alias . '.TITLE');
+            $criteria->addSelectColumn($alias . '.CONTENT');
         }
     }
 

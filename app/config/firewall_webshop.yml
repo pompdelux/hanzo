@@ -29,11 +29,13 @@ security:
         - { path: ^/.*/admin, roles: ROLE_EMPLOYEE }
 
     providers:
-        custom_provider:
-            id: hanzo.account.security.provider
+        main:
+            propel:
+                class: Hanzo\Model\Customers
+                property: email
 
     encoders:
-        Hanzo\Bundle\AccountBundle\Security\User\ProxyUser:
+        Hanzo\Model\Customers:
             algorithm: sha1
             iterations: 1
             encode_as_base64: false

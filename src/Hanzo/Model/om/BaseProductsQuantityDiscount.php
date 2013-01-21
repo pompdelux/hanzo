@@ -19,13 +19,6 @@ use Hanzo\Model\ProductsQuantityDiscountPeer;
 use Hanzo\Model\ProductsQuantityDiscountQuery;
 use Hanzo\Model\ProductsQuery;
 
-/**
- * Base class that represents a row from the 'products_quantity_discount' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsQuantityDiscount extends BaseObject implements Persistent
 {
     /**
@@ -270,7 +263,7 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ProductsQuantityDiscountPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -507,16 +500,16 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::PRODUCTS_MASTER)) {
-            $modifiedColumns[':p' . $index++]  = '`products_master`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_MASTER`';
         }
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::DOMAINS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`domains_id`';
+            $modifiedColumns[':p' . $index++]  = '`DOMAINS_ID`';
         }
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::SPAN)) {
-            $modifiedColumns[':p' . $index++]  = '`span`';
+            $modifiedColumns[':p' . $index++]  = '`SPAN`';
         }
         if ($this->isColumnModified(ProductsQuantityDiscountPeer::DISCOUNT)) {
-            $modifiedColumns[':p' . $index++]  = '`discount`';
+            $modifiedColumns[':p' . $index++]  = '`DISCOUNT`';
         }
 
         $sql = sprintf(
@@ -529,16 +522,16 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`products_master`':
+                    case '`PRODUCTS_MASTER`':
                         $stmt->bindValue($identifier, $this->products_master, PDO::PARAM_STR);
                         break;
-                    case '`domains_id`':
+                    case '`DOMAINS_ID`':
                         $stmt->bindValue($identifier, $this->domains_id, PDO::PARAM_INT);
                         break;
-                    case '`span`':
+                    case '`SPAN`':
                         $stmt->bindValue($identifier, $this->span, PDO::PARAM_INT);
                         break;
-                    case '`discount`':
+                    case '`DISCOUNT`':
                         $stmt->bindValue($identifier, $this->discount, PDO::PARAM_STR);
                         break;
                 }
@@ -602,11 +595,11 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -994,13 +987,12 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && (($this->products_master !== "" && $this->products_master !== null)) && $doQuery) {
+        if ($this->aProducts === null && (($this->products_master !== "" && $this->products_master !== null))) {
             $this->aProducts = ProductsQuery::create()
                 ->filterByProductsQuantityDiscount($this) // here
                 ->findOne($con);
@@ -1048,13 +1040,12 @@ abstract class BaseProductsQuantityDiscount extends BaseObject implements Persis
      * Get the associated Domains object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Domains The associated Domains object.
      * @throws PropelException
      */
-    public function getDomains(PropelPDO $con = null, $doQuery = true)
+    public function getDomains(PropelPDO $con = null)
     {
-        if ($this->aDomains === null && ($this->domains_id !== null) && $doQuery) {
+        if ($this->aDomains === null && ($this->domains_id !== null)) {
             $this->aDomains = DomainsQuery::create()->findPk($this->domains_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

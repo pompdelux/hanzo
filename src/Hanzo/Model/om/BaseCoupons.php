@@ -21,13 +21,6 @@ use Hanzo\Model\CouponsQuery;
 use Hanzo\Model\OrdersToCoupons;
 use Hanzo\Model\OrdersToCouponsQuery;
 
-/**
- * Base class that represents a row from the 'coupons' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCoupons extends BaseObject implements Persistent
 {
     /**
@@ -200,7 +193,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getActiveFrom($format = 'Y-m-d H:i:s')
+    public function getActiveFrom($format = null)
     {
         if ($this->active_from === null) {
             return null;
@@ -210,25 +203,22 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->active_from);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->active_from, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->active_from);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->active_from, true), $x);
+            }
         }
 
         if ($format === null) {
             // Because propel.useDateTimeClass is true, we return a DateTime object.
             return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -240,7 +230,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getActiveTo($format = 'Y-m-d H:i:s')
+    public function getActiveTo($format = null)
     {
         if ($this->active_to === null) {
             return null;
@@ -250,25 +240,22 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->active_to);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->active_to, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->active_to);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->active_to, true), $x);
+            }
         }
 
         if ($format === null) {
             // Because propel.useDateTimeClass is true, we return a DateTime object.
             return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -290,7 +277,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getCreatedAt($format = 'Y-m-d H:i:s')
+    public function getCreatedAt($format = null)
     {
         if ($this->created_at === null) {
             return null;
@@ -300,25 +287,22 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->created_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->created_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+            }
         }
 
         if ($format === null) {
             // Because propel.useDateTimeClass is true, we return a DateTime object.
             return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -330,7 +314,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getUpdatedAt($format = 'Y-m-d H:i:s')
+    public function getUpdatedAt($format = null)
     {
         if ($this->updated_at === null) {
             return null;
@@ -340,25 +324,22 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->updated_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->updated_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+            }
         }
 
         if ($format === null) {
             // Because propel.useDateTimeClass is true, we return a DateTime object.
             return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -618,7 +599,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 9; // 9 = CouponsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -829,7 +810,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
 
             if ($this->collOrdersToCouponss !== null) {
                 foreach ($this->collOrdersToCouponss as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -862,31 +843,31 @@ abstract class BaseCoupons extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CouponsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(CouponsPeer::CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`code`';
+            $modifiedColumns[':p' . $index++]  = '`CODE`';
         }
         if ($this->isColumnModified(CouponsPeer::AMOUNT)) {
-            $modifiedColumns[':p' . $index++]  = '`amount`';
+            $modifiedColumns[':p' . $index++]  = '`AMOUNT`';
         }
         if ($this->isColumnModified(CouponsPeer::CURRENCY_CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`currency_code`';
+            $modifiedColumns[':p' . $index++]  = '`CURRENCY_CODE`';
         }
         if ($this->isColumnModified(CouponsPeer::ACTIVE_FROM)) {
-            $modifiedColumns[':p' . $index++]  = '`active_from`';
+            $modifiedColumns[':p' . $index++]  = '`ACTIVE_FROM`';
         }
         if ($this->isColumnModified(CouponsPeer::ACTIVE_TO)) {
-            $modifiedColumns[':p' . $index++]  = '`active_to`';
+            $modifiedColumns[':p' . $index++]  = '`ACTIVE_TO`';
         }
         if ($this->isColumnModified(CouponsPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`is_active`';
+            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
         }
         if ($this->isColumnModified(CouponsPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`created_at`';
+            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
         }
         if ($this->isColumnModified(CouponsPeer::UPDATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`updated_at`';
+            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
         }
 
         $sql = sprintf(
@@ -899,31 +880,31 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`code`':
+                    case '`CODE`':
                         $stmt->bindValue($identifier, $this->code, PDO::PARAM_STR);
                         break;
-                    case '`amount`':
+                    case '`AMOUNT`':
                         $stmt->bindValue($identifier, $this->amount, PDO::PARAM_STR);
                         break;
-                    case '`currency_code`':
+                    case '`CURRENCY_CODE`':
                         $stmt->bindValue($identifier, $this->currency_code, PDO::PARAM_STR);
                         break;
-                    case '`active_from`':
+                    case '`ACTIVE_FROM`':
                         $stmt->bindValue($identifier, $this->active_from, PDO::PARAM_STR);
                         break;
-                    case '`active_to`':
+                    case '`ACTIVE_TO`':
                         $stmt->bindValue($identifier, $this->active_to, PDO::PARAM_STR);
                         break;
-                    case '`is_active`':
+                    case '`IS_ACTIVE`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
                         break;
-                    case '`created_at`':
+                    case '`CREATED_AT`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`updated_at`':
+                    case '`UPDATED_AT`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
@@ -994,11 +975,11 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1409,15 +1390,13 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Coupons The current object (for fluent API support)
+     * @return void
      * @see        addOrdersToCouponss()
      */
     public function clearOrdersToCouponss()
     {
         $this->collOrdersToCouponss = null; // important to set this to null since that means it is uninitialized
         $this->collOrdersToCouponssPartial = null;
-
-        return $this;
     }
 
     /**
@@ -1516,15 +1495,12 @@ abstract class BaseCoupons extends BaseObject implements Persistent
      *
      * @param PropelCollection $ordersToCouponss A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Coupons The current object (for fluent API support)
      */
     public function setOrdersToCouponss(PropelCollection $ordersToCouponss, PropelPDO $con = null)
     {
-        $ordersToCouponssToDelete = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
+        $this->ordersToCouponssScheduledForDeletion = $this->getOrdersToCouponss(new Criteria(), $con)->diff($ordersToCouponss);
 
-        $this->ordersToCouponssScheduledForDeletion = unserialize(serialize($ordersToCouponssToDelete));
-
-        foreach ($ordersToCouponssToDelete as $ordersToCouponsRemoved) {
+        foreach ($this->ordersToCouponssScheduledForDeletion as $ordersToCouponsRemoved) {
             $ordersToCouponsRemoved->setCoupons(null);
         }
 
@@ -1535,8 +1511,6 @@ abstract class BaseCoupons extends BaseObject implements Persistent
 
         $this->collOrdersToCouponss = $ordersToCouponss;
         $this->collOrdersToCouponssPartial = false;
-
-        return $this;
     }
 
     /**
@@ -1554,22 +1528,22 @@ abstract class BaseCoupons extends BaseObject implements Persistent
         if (null === $this->collOrdersToCouponss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collOrdersToCouponss) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getOrdersToCouponss());
+                }
+                $query = OrdersToCouponsQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getOrdersToCouponss());
+                return $query
+                    ->filterByCoupons($this)
+                    ->count($con);
             }
-            $query = OrdersToCouponsQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCoupons($this)
-                ->count($con);
+        } else {
+            return count($this->collOrdersToCouponss);
         }
-
-        return count($this->collOrdersToCouponss);
     }
 
     /**
@@ -1585,7 +1559,7 @@ abstract class BaseCoupons extends BaseObject implements Persistent
             $this->initOrdersToCouponss();
             $this->collOrdersToCouponssPartial = true;
         }
-        if (!in_array($l, $this->collOrdersToCouponss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collOrdersToCouponss->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddOrdersToCoupons($l);
         }
 
@@ -1603,7 +1577,6 @@ abstract class BaseCoupons extends BaseObject implements Persistent
 
     /**
      * @param	OrdersToCoupons $ordersToCoupons The ordersToCoupons object to remove.
-     * @return Coupons The current object (for fluent API support)
      */
     public function removeOrdersToCoupons($ordersToCoupons)
     {
@@ -1613,11 +1586,9 @@ abstract class BaseCoupons extends BaseObject implements Persistent
                 $this->ordersToCouponssScheduledForDeletion = clone $this->collOrdersToCouponss;
                 $this->ordersToCouponssScheduledForDeletion->clear();
             }
-            $this->ordersToCouponssScheduledForDeletion[]= clone $ordersToCoupons;
+            $this->ordersToCouponssScheduledForDeletion[]= $ordersToCoupons;
             $ordersToCoupons->setCoupons(null);
         }
-
-        return $this;
     }
 
 

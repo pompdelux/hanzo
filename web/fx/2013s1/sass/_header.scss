@@ -25,6 +25,8 @@ ul.menu,
 		position: absolute;
 		left: 0;
 		background: white;
+		@include shadow;
+		padding: 9px;
 	}
 	&.right{
 		text-align: right;

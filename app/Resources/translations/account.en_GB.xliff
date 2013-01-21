@@ -61,7 +61,7 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Continue to checkout</target>
+                <target>Continue</target>
             </trans-unit>
             <trans-unit id="back">
                 <source>back</source>
@@ -422,6 +422,56 @@
             <trans-unit id="unable.to.lock.order" approved="no">
                 <source>unable.to.lock.order</source>
                 <target>You cannot change your order right now. Please try again later.</target>
+            </trans-unit>
+            <trans-unit id="my.account.%name%" approved="no">
+                <source>my.account.%name%</source>
+                <target>Welcome, %name%!</target>
+            </trans-unit>
+            <trans-unit id="my.account.description" approved="no">
+                <source>my.account.description</source>
+                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <ul class="list">
+                  <li>Tilføje flere varer</li>
+                  <li>Ændre størrelsen og/eller farven på en vare</li>
+                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                </ul>
+                </p>
+                <p>Hvis du ønsker at tilføje. ændre eller slette en vare på din ordre skal du gøre følgende:
+                <ol class="list">
+                  <li>Tilføje flere varer</li>
+                  <li>Ændre størrelsen og/eller farven på en vare</li>
+                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                </ol>
+                </p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="newsletter" approved="no">
+                <source>newsletter</source>
+                <target>Newsletters</target>
+            </trans-unit>
+            <trans-unit id="my.account.my.events" approved="no">
+                <source>my.account.my.events</source>
+                <target>My events</target>
+            </trans-unit>
+            <trans-unit id="account.history.see.all.orders" approved="no">
+                <source>account.history.see.all.orders</source>
+                <target>See all orders</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>Email address</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Email address repeated</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Password repeated</target>
             </trans-unit>
         </body>
     </file>

@@ -19,10 +19,6 @@ use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\Products;
 
 /**
- * Base class that represents a query for the 'orders_lines' table.
- *
- *
- *
  * @method OrdersLinesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method OrdersLinesQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersLinesQuery orderByType($order = Criteria::ASC) Order by the type column
@@ -68,6 +64,7 @@ use Hanzo\Model\Products;
  * @method OrdersLines findOne(PropelPDO $con = null) Return the first OrdersLines matching the query
  * @method OrdersLines findOneOrCreate(PropelPDO $con = null) Return the first OrdersLines matching the query, or a new OrdersLines object populated from the query conditions when no match is found
  *
+ * @method OrdersLines findOneById(int $id) Return the first OrdersLines filtered by the id column
  * @method OrdersLines findOneByOrdersId(int $orders_id) Return the first OrdersLines filtered by the orders_id column
  * @method OrdersLines findOneByType(string $type) Return the first OrdersLines filtered by the type column
  * @method OrdersLines findOneByProductsId(int $products_id) Return the first OrdersLines filtered by the products_id column
@@ -96,8 +93,6 @@ use Hanzo\Model\Products;
  * @method array findByVat(string $vat) Return OrdersLines objects filtered by the vat column
  * @method array findByQuantity(int $quantity) Return OrdersLines objects filtered by the quantity column
  * @method array findByUnit(string $unit) Return OrdersLines objects filtered by the unit column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersLinesQuery extends ModelCriteria
 {
@@ -174,20 +169,6 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   OrdersLines A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -199,7 +180,7 @@ abstract class BaseOrdersLinesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `orders_id`, `type`, `products_id`, `products_sku`, `products_name`, `products_color`, `products_size`, `expected_at`, `original_price`, `price`, `vat`, `quantity`, `unit` FROM `orders_lines` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `ORDERS_ID`, `TYPE`, `PRODUCTS_ID`, `PRODUCTS_SKU`, `PRODUCTS_NAME`, `PRODUCTS_COLOR`, `PRODUCTS_SIZE`, `EXPECTED_AT`, `ORIGINAL_PRICE`, `PRICE`, `VAT`, `QUANTITY`, `UNIT` FROM `orders_lines` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

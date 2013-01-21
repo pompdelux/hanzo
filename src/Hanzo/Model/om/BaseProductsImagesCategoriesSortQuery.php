@@ -20,10 +20,6 @@ use Hanzo\Model\ProductsImagesCategoriesSortPeer;
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
 
 /**
- * Base class that represents a query for the 'products_images_categories_sort' table.
- *
- *
- *
  * @method ProductsImagesCategoriesSortQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  * @method ProductsImagesCategoriesSortQuery orderByCategoriesId($order = Criteria::ASC) Order by the categories_id column
  * @method ProductsImagesCategoriesSortQuery orderByProductsImagesId($order = Criteria::ASC) Order by the products_images_id column
@@ -62,8 +58,6 @@ use Hanzo\Model\ProductsImagesCategoriesSortQuery;
  * @method array findByCategoriesId(int $categories_id) Return ProductsImagesCategoriesSort objects filtered by the categories_id column
  * @method array findByProductsImagesId(int $products_images_id) Return ProductsImagesCategoriesSort objects filtered by the products_images_id column
  * @method array findBySort(int $sort) Return ProductsImagesCategoriesSort objects filtered by the sort column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
 {
@@ -152,7 +146,7 @@ abstract class BaseProductsImagesCategoriesSortQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `products_id`, `categories_id`, `products_images_id`, `sort` FROM `products_images_categories_sort` WHERE `products_id` = :p0 AND `categories_id` = :p1 AND `products_images_id` = :p2';
+        $sql = 'SELECT `PRODUCTS_ID`, `CATEGORIES_ID`, `PRODUCTS_IMAGES_ID`, `SORT` FROM `products_images_categories_sort` WHERE `PRODUCTS_ID` = :p0 AND `CATEGORIES_ID` = :p1 AND `PRODUCTS_IMAGES_ID` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

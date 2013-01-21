@@ -15,10 +15,6 @@ use Hanzo\Model\SequencesPeer;
 use Hanzo\Model\SequencesQuery;
 
 /**
- * Base class that represents a query for the 'sequences' table.
- *
- *
- *
  * @method SequencesQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method SequencesQuery orderById($order = Criteria::ASC) Order by the id column
  *
@@ -32,12 +28,11 @@ use Hanzo\Model\SequencesQuery;
  * @method Sequences findOne(PropelPDO $con = null) Return the first Sequences matching the query
  * @method Sequences findOneOrCreate(PropelPDO $con = null) Return the first Sequences matching the query, or a new Sequences object populated from the query conditions when no match is found
  *
+ * @method Sequences findOneByName(string $name) Return the first Sequences filtered by the name column
  * @method Sequences findOneById(string $id) Return the first Sequences filtered by the id column
  *
  * @method array findByName(string $name) Return Sequences objects filtered by the name column
  * @method array findById(string $id) Return Sequences objects filtered by the id column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseSequencesQuery extends ModelCriteria
 {
@@ -114,20 +109,6 @@ abstract class BaseSequencesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Sequences A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneByName($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -139,7 +120,7 @@ abstract class BaseSequencesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `name`, `id` FROM `sequences` WHERE `name` = :p0';
+        $sql = 'SELECT `NAME`, `ID` FROM `sequences` WHERE `NAME` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_STR);

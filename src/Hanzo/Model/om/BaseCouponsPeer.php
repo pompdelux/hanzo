@@ -14,13 +14,6 @@ use Hanzo\Model\CouponsPeer;
 use Hanzo\Model\OrdersToCouponsPeer;
 use Hanzo\Model\map\CouponsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'coupons' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCouponsPeer
 {
 
@@ -45,32 +38,32 @@ abstract class BaseCouponsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 9;
 
-    /** the column name for the id field */
-    const ID = 'coupons.id';
+    /** the column name for the ID field */
+    const ID = 'coupons.ID';
 
-    /** the column name for the code field */
-    const CODE = 'coupons.code';
+    /** the column name for the CODE field */
+    const CODE = 'coupons.CODE';
 
-    /** the column name for the amount field */
-    const AMOUNT = 'coupons.amount';
+    /** the column name for the AMOUNT field */
+    const AMOUNT = 'coupons.AMOUNT';
 
-    /** the column name for the currency_code field */
-    const CURRENCY_CODE = 'coupons.currency_code';
+    /** the column name for the CURRENCY_CODE field */
+    const CURRENCY_CODE = 'coupons.CURRENCY_CODE';
 
-    /** the column name for the active_from field */
-    const ACTIVE_FROM = 'coupons.active_from';
+    /** the column name for the ACTIVE_FROM field */
+    const ACTIVE_FROM = 'coupons.ACTIVE_FROM';
 
-    /** the column name for the active_to field */
-    const ACTIVE_TO = 'coupons.active_to';
+    /** the column name for the ACTIVE_TO field */
+    const ACTIVE_TO = 'coupons.ACTIVE_TO';
 
-    /** the column name for the is_active field */
-    const IS_ACTIVE = 'coupons.is_active';
+    /** the column name for the IS_ACTIVE field */
+    const IS_ACTIVE = 'coupons.IS_ACTIVE';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'coupons.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'coupons.CREATED_AT';
 
-    /** the column name for the updated_at field */
-    const UPDATED_AT = 'coupons.updated_at';
+    /** the column name for the UPDATED_AT field */
+    const UPDATED_AT = 'coupons.UPDATED_AT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -195,15 +188,15 @@ abstract class BaseCouponsPeer
             $criteria->addSelectColumn(CouponsPeer::CREATED_AT);
             $criteria->addSelectColumn(CouponsPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.code');
-            $criteria->addSelectColumn($alias . '.amount');
-            $criteria->addSelectColumn($alias . '.currency_code');
-            $criteria->addSelectColumn($alias . '.active_from');
-            $criteria->addSelectColumn($alias . '.active_to');
-            $criteria->addSelectColumn($alias . '.is_active');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.updated_at');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.CODE');
+            $criteria->addSelectColumn($alias . '.AMOUNT');
+            $criteria->addSelectColumn($alias . '.CURRENCY_CODE');
+            $criteria->addSelectColumn($alias . '.ACTIVE_FROM');
+            $criteria->addSelectColumn($alias . '.ACTIVE_TO');
+            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.UPDATED_AT');
         }
     }
 

@@ -15,10 +15,6 @@ use Hanzo\Model\RedirectsPeer;
 use Hanzo\Model\RedirectsQuery;
 
 /**
- * Base class that represents a query for the 'redirects' table.
- *
- *
- *
  * @method RedirectsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method RedirectsQuery orderBySource($order = Criteria::ASC) Order by the source column
  * @method RedirectsQuery orderByTarget($order = Criteria::ASC) Order by the target column
@@ -36,6 +32,7 @@ use Hanzo\Model\RedirectsQuery;
  * @method Redirects findOne(PropelPDO $con = null) Return the first Redirects matching the query
  * @method Redirects findOneOrCreate(PropelPDO $con = null) Return the first Redirects matching the query, or a new Redirects object populated from the query conditions when no match is found
  *
+ * @method Redirects findOneById(int $id) Return the first Redirects filtered by the id column
  * @method Redirects findOneBySource(string $source) Return the first Redirects filtered by the source column
  * @method Redirects findOneByTarget(string $target) Return the first Redirects filtered by the target column
  * @method Redirects findOneByDomainKey(string $domain_key) Return the first Redirects filtered by the domain_key column
@@ -44,8 +41,6 @@ use Hanzo\Model\RedirectsQuery;
  * @method array findBySource(string $source) Return Redirects objects filtered by the source column
  * @method array findByTarget(string $target) Return Redirects objects filtered by the target column
  * @method array findByDomainKey(string $domain_key) Return Redirects objects filtered by the domain_key column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseRedirectsQuery extends ModelCriteria
 {
@@ -122,20 +117,6 @@ abstract class BaseRedirectsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Redirects A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -147,7 +128,7 @@ abstract class BaseRedirectsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `source`, `target`, `domain_key` FROM `redirects` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `SOURCE`, `TARGET`, `DOMAIN_KEY` FROM `redirects` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

@@ -18,10 +18,6 @@ use Hanzo\Model\OrdersVersionsPeer;
 use Hanzo\Model\OrdersVersionsQuery;
 
 /**
- * Base class that represents a query for the 'orders_versions' table.
- *
- *
- *
  * @method OrdersVersionsQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersVersionsQuery orderByVersionId($order = Criteria::ASC) Order by the version_id column
  * @method OrdersVersionsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
@@ -52,8 +48,6 @@ use Hanzo\Model\OrdersVersionsQuery;
  * @method array findByVersionId(int $version_id) Return OrdersVersions objects filtered by the version_id column
  * @method array findByCreatedAt(string $created_at) Return OrdersVersions objects filtered by the created_at column
  * @method array findByContent(string $content) Return OrdersVersions objects filtered by the content column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersVersionsQuery extends ModelCriteria
 {
@@ -142,7 +136,7 @@ abstract class BaseOrdersVersionsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `orders_id`, `version_id`, `created_at`, `content` FROM `orders_versions` WHERE `orders_id` = :p0 AND `version_id` = :p1';
+        $sql = 'SELECT `ORDERS_ID`, `VERSION_ID`, `CREATED_AT`, `CONTENT` FROM `orders_versions` WHERE `ORDERS_ID` = :p0 AND `VERSION_ID` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

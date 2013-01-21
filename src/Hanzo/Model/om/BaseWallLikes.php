@@ -19,13 +19,6 @@ use Hanzo\Model\WallLikesPeer;
 use Hanzo\Model\WallLikesQuery;
 use Hanzo\Model\WallQuery;
 
-/**
- * Base class that represents a row from the 'wall_likes' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseWallLikes extends BaseObject implements Persistent
 {
     /**
@@ -304,7 +297,7 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = WallLikesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -545,16 +538,16 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(WallLikesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(WallLikesPeer::WALL_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`wall_id`';
+            $modifiedColumns[':p' . $index++]  = '`WALL_ID`';
         }
         if ($this->isColumnModified(WallLikesPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`customers_id`';
+            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
         }
         if ($this->isColumnModified(WallLikesPeer::STATUS)) {
-            $modifiedColumns[':p' . $index++]  = '`status`';
+            $modifiedColumns[':p' . $index++]  = '`STATUS`';
         }
 
         $sql = sprintf(
@@ -567,16 +560,16 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`wall_id`':
+                    case '`WALL_ID`':
                         $stmt->bindValue($identifier, $this->wall_id, PDO::PARAM_INT);
                         break;
-                    case '`customers_id`':
+                    case '`CUSTOMERS_ID`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`status`':
+                    case '`STATUS`':
                         $stmt->bindValue($identifier, (int) $this->status, PDO::PARAM_INT);
                         break;
                 }
@@ -647,11 +640,11 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1029,13 +1022,12 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      * Get the associated Wall object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Wall The associated Wall object.
      * @throws PropelException
      */
-    public function getWall(PropelPDO $con = null, $doQuery = true)
+    public function getWall(PropelPDO $con = null)
     {
-        if ($this->aWall === null && ($this->wall_id !== null) && $doQuery) {
+        if ($this->aWall === null && ($this->wall_id !== null)) {
             $this->aWall = WallQuery::create()->findPk($this->wall_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1081,13 +1073,12 @@ abstract class BaseWallLikes extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null, $doQuery = true)
+    public function getCustomers(PropelPDO $con = null)
     {
-        if ($this->aCustomers === null && ($this->customers_id !== null) && $doQuery) {
+        if ($this->aCustomers === null && ($this->customers_id !== null)) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

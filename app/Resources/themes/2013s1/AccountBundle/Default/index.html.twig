@@ -21,29 +21,17 @@
       	{{ 'my.account.description'|trans({}, 'account')|raw }}
 	</div>
 	<div class="grid_2 omega">
-		
-		<aside>
-			<h3>{{ 'my.account'|trans({}, 'account') }}</h3>
-			<ul>
-			  <li><a href="{{ path('_account_edit') }}">» {{ 'account.details'|trans({}, 'account') }}</a></li>
-			  <li><a href="{{ path('logout') }}">» {{ 'my.account.logout'|trans({}, 'account') }}</a></li>
-			</ul>
-		</aside>
 
-		<aside id="account-block-newsletter-all">
-			<h3>{{ 'newsletter'|trans({}, 'account') }}</h3>
-			{% render 'NewsletterBundle:Default:allLists' %}
-		</aside>
+		{% include 'AccountBundle:Default:aside.html.twig' %}
+
 	</div>
-</div>
 
-<div class="grid_8 alpha omega">
-	
-	<h3>{{ 'previous.orders'|trans({}, 'account') }}</h3>
-	{% render 'AccountBundle:History:block' with { 'route' : app.request.attributes.get('_route') } %}
+	<div class="grid_8 alpha omega bottom-space">
 
-	{% render 'EventsBundle:Events:list' %}
+		<h3>{{ 'previous.orders'|trans({}, 'account') }}</h3>
+		{% render 'AccountBundle:History:block' with { 'route' : app.request.attributes.get('_route') } %}
 
+	</div>
 </div>
 
 

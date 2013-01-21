@@ -23,11 +23,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+
             new Propel\PropelBundle\PropelBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
-            new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
@@ -183,54 +184,6 @@ class AppKernel extends Kernel
     public function getCacheDir()
     {
         return parent::getCacheDir();
-    }
-
-
-    /**
-     * let us hande stuff after connection to client is closed.
-     *
-     * @param string $event      event key
-     * @param mixed  $parameters parameters to send to the event
-     */
-    public function setTerminateEvent($event, $parameters)
-    {
-        $this->terminate_events[$key] = $parameters;
-    }
-
-
-    /**
-     * wrap kernel->send() method to allow us to handle onClose events
-     *
-     * @param  Response $handle Response object
-     */
-    public function terminate(Response $handle)
-    {
-        if (count($this->terminate_events)) {
-
-            // add close headers.
-            $handle->headers->add(array(
-                'Content-Length' => mb_strlen($handle->getContent()),
-                'Connection' => 'close',
-            ));
-            $handle->send();
-
-            while (ob_get_length()) {
-                ob_end_flush();
-            }
-
-            ignore_user_abort(true);
-            flush();
-
-            // connection should be closed, let's fire up the events
-            $dispatcher = $this->container->get('event_dispatcher');
-            foreach ($this->terminate_events as $event => $parameters) {
-                $dispatcher->dispatch($event, $parameters);
-            }
-
-            return;
-        }
-
-        $handle->send();
     }
 
     public function setSetting($key, $value)

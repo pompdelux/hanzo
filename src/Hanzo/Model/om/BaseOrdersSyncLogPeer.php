@@ -14,13 +14,6 @@ use Hanzo\Model\OrdersSyncLog;
 use Hanzo\Model\OrdersSyncLogPeer;
 use Hanzo\Model\map\OrdersSyncLogTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'orders_sync_log' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersSyncLogPeer
 {
 
@@ -45,20 +38,20 @@ abstract class BaseOrdersSyncLogPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 5;
 
-    /** the column name for the orders_id field */
-    const ORDERS_ID = 'orders_sync_log.orders_id';
+    /** the column name for the ORDERS_ID field */
+    const ORDERS_ID = 'orders_sync_log.ORDERS_ID';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'orders_sync_log.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'orders_sync_log.CREATED_AT';
 
-    /** the column name for the state field */
-    const STATE = 'orders_sync_log.state';
+    /** the column name for the STATE field */
+    const STATE = 'orders_sync_log.STATE';
 
-    /** the column name for the content field */
-    const CONTENT = 'orders_sync_log.content';
+    /** the column name for the CONTENT field */
+    const CONTENT = 'orders_sync_log.CONTENT';
 
-    /** the column name for the comment field */
-    const COMMENT = 'orders_sync_log.comment';
+    /** the column name for the COMMENT field */
+    const COMMENT = 'orders_sync_log.COMMENT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -179,11 +172,11 @@ abstract class BaseOrdersSyncLogPeer
             $criteria->addSelectColumn(OrdersSyncLogPeer::CONTENT);
             $criteria->addSelectColumn(OrdersSyncLogPeer::COMMENT);
         } else {
-            $criteria->addSelectColumn($alias . '.orders_id');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.state');
-            $criteria->addSelectColumn($alias . '.content');
-            $criteria->addSelectColumn($alias . '.comment');
+            $criteria->addSelectColumn($alias . '.ORDERS_ID');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.STATE');
+            $criteria->addSelectColumn($alias . '.CONTENT');
+            $criteria->addSelectColumn($alias . '.COMMENT');
         }
     }
 

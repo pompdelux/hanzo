@@ -1,4 +1,5 @@
 
+@import "compass/css3/box-shadow";
 @mixin image-button($url, $height, $width){
 	background: url($url) no-repeat;
 	width: $width;
@@ -53,4 +54,13 @@
 	font-family:$heading-small-family;
 	font-weight:$heading-small-weight;
 	line-height:$heading-small-line-height;
+}
+
+@mixin shadow{
+    @include box-shadow(#C9C9C9 -1px 1px 2px);
+	border: #F0F0F0 1px solid;
+}
+@mixin box{
+	background-color: whiteSmoke;
+	@include shadow;
 }

@@ -42,10 +42,10 @@ class ProductsImagesCategoriesSortTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('products_id', 'ProductsId', 'INTEGER' , 'products', 'id', true, null, null);
-        $this->addForeignPrimaryKey('categories_id', 'CategoriesId', 'INTEGER' , 'categories', 'id', true, null, null);
-        $this->addForeignPrimaryKey('products_images_id', 'ProductsImagesId', 'INTEGER' , 'products_images', 'id', true, null, null);
-        $this->addColumn('sort', 'Sort', 'INTEGER', false, null, null);
+        $this->addForeignPrimaryKey('PRODUCTS_ID', 'ProductsId', 'INTEGER' , 'products', 'ID', true, null, null);
+        $this->addForeignPrimaryKey('CATEGORIES_ID', 'CategoriesId', 'INTEGER' , 'categories', 'ID', true, null, null);
+        $this->addForeignPrimaryKey('PRODUCTS_IMAGES_ID', 'ProductsImagesId', 'INTEGER' , 'products_images', 'ID', true, null, null);
+        $this->addColumn('SORT', 'Sort', 'INTEGER', false, null, null);
         // validators
     } // initialize()
 

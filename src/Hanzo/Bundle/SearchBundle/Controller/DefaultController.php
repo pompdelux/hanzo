@@ -229,12 +229,11 @@ class DefaultController extends CoreController
         ));
     }
 
-    public function advancedAction($id)
+    public function advancedAction($id = null)
     {
         $hanzo = Hanzo::getInstance();
         $locale = $hanzo->get('core.locale');
         $domain_id = $hanzo->get('core.domain_id');
-        $page = CmsPeer::getByPK($id, $locale);
 
         $result = array(
             'products' => array(),
@@ -334,8 +333,6 @@ class DefaultController extends CoreController
         return $this->render('SearchBundle:Default:advanced.html.twig', array(
             'page_type' => 'category-search',
             'route'     => $this->getRequest()->get('_route'),
-            'content'   => $page->getContent(),
-            'title'     => $page->getTitle(),
             'result'    => $result,
         ));
     }

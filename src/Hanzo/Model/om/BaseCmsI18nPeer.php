@@ -14,13 +14,6 @@ use Hanzo\Model\CmsI18nPeer;
 use Hanzo\Model\CmsPeer;
 use Hanzo\Model\map\CmsI18nTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'cms_i18n' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCmsI18nPeer
 {
 
@@ -45,29 +38,29 @@ abstract class BaseCmsI18nPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 8;
 
-    /** the column name for the id field */
-    const ID = 'cms_i18n.id';
+    /** the column name for the ID field */
+    const ID = 'cms_i18n.ID';
 
-    /** the column name for the locale field */
-    const LOCALE = 'cms_i18n.locale';
+    /** the column name for the LOCALE field */
+    const LOCALE = 'cms_i18n.LOCALE';
 
-    /** the column name for the title field */
-    const TITLE = 'cms_i18n.title';
+    /** the column name for the TITLE field */
+    const TITLE = 'cms_i18n.TITLE';
 
-    /** the column name for the path field */
-    const PATH = 'cms_i18n.path';
+    /** the column name for the PATH field */
+    const PATH = 'cms_i18n.PATH';
 
-    /** the column name for the old_path field */
-    const OLD_PATH = 'cms_i18n.old_path';
+    /** the column name for the OLD_PATH field */
+    const OLD_PATH = 'cms_i18n.OLD_PATH';
 
-    /** the column name for the content field */
-    const CONTENT = 'cms_i18n.content';
+    /** the column name for the CONTENT field */
+    const CONTENT = 'cms_i18n.CONTENT';
 
-    /** the column name for the settings field */
-    const SETTINGS = 'cms_i18n.settings';
+    /** the column name for the SETTINGS field */
+    const SETTINGS = 'cms_i18n.SETTINGS';
 
-    /** the column name for the is_restricted field */
-    const IS_RESTRICTED = 'cms_i18n.is_restricted';
+    /** the column name for the IS_RESTRICTED field */
+    const IS_RESTRICTED = 'cms_i18n.IS_RESTRICTED';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -191,14 +184,14 @@ abstract class BaseCmsI18nPeer
             $criteria->addSelectColumn(CmsI18nPeer::SETTINGS);
             $criteria->addSelectColumn(CmsI18nPeer::IS_RESTRICTED);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.locale');
-            $criteria->addSelectColumn($alias . '.title');
-            $criteria->addSelectColumn($alias . '.path');
-            $criteria->addSelectColumn($alias . '.old_path');
-            $criteria->addSelectColumn($alias . '.content');
-            $criteria->addSelectColumn($alias . '.settings');
-            $criteria->addSelectColumn($alias . '.is_restricted');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.LOCALE');
+            $criteria->addSelectColumn($alias . '.TITLE');
+            $criteria->addSelectColumn($alias . '.PATH');
+            $criteria->addSelectColumn($alias . '.OLD_PATH');
+            $criteria->addSelectColumn($alias . '.CONTENT');
+            $criteria->addSelectColumn($alias . '.SETTINGS');
+            $criteria->addSelectColumn($alias . '.IS_RESTRICTED');
         }
     }
 

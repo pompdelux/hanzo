@@ -15,10 +15,6 @@ use Hanzo\Model\OrdersDeletedLogPeer;
 use Hanzo\Model\OrdersDeletedLogQuery;
 
 /**
- * Base class that represents a query for the 'orders_deleted_log' table.
- *
- *
- *
  * @method OrdersDeletedLogQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersDeletedLogQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method OrdersDeletedLogQuery orderByName($order = Criteria::ASC) Order by the name column
@@ -44,6 +40,7 @@ use Hanzo\Model\OrdersDeletedLogQuery;
  * @method OrdersDeletedLog findOne(PropelPDO $con = null) Return the first OrdersDeletedLog matching the query
  * @method OrdersDeletedLog findOneOrCreate(PropelPDO $con = null) Return the first OrdersDeletedLog matching the query, or a new OrdersDeletedLog object populated from the query conditions when no match is found
  *
+ * @method OrdersDeletedLog findOneByOrdersId(int $orders_id) Return the first OrdersDeletedLog filtered by the orders_id column
  * @method OrdersDeletedLog findOneByCustomersId(int $customers_id) Return the first OrdersDeletedLog filtered by the customers_id column
  * @method OrdersDeletedLog findOneByName(string $name) Return the first OrdersDeletedLog filtered by the name column
  * @method OrdersDeletedLog findOneByEmail(string $email) Return the first OrdersDeletedLog filtered by the email column
@@ -60,8 +57,6 @@ use Hanzo\Model\OrdersDeletedLogQuery;
  * @method array findByContent(string $content) Return OrdersDeletedLog objects filtered by the content column
  * @method array findByDeletedBy(string $deleted_by) Return OrdersDeletedLog objects filtered by the deleted_by column
  * @method array findByDeletedAt(string $deleted_at) Return OrdersDeletedLog objects filtered by the deleted_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
 {
@@ -138,20 +133,6 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   OrdersDeletedLog A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneByOrdersId($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -163,7 +144,7 @@ abstract class BaseOrdersDeletedLogQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `orders_id`, `customers_id`, `name`, `email`, `trigger`, `content`, `deleted_by`, `deleted_at` FROM `orders_deleted_log` WHERE `orders_id` = :p0';
+        $sql = 'SELECT `ORDERS_ID`, `CUSTOMERS_ID`, `NAME`, `EMAIL`, `TRIGGER`, `CONTENT`, `DELETED_BY`, `DELETED_AT` FROM `orders_deleted_log` WHERE `ORDERS_ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

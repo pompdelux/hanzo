@@ -17,13 +17,6 @@ use Hanzo\Model\GothiaAccounts;
 use Hanzo\Model\GothiaAccountsPeer;
 use Hanzo\Model\GothiaAccountsQuery;
 
-/**
- * Base class that represents a row from the 'gothia_accounts' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseGothiaAccounts extends BaseObject implements Persistent
 {
     /**
@@ -259,7 +252,7 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = GothiaAccountsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -485,16 +478,16 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(GothiaAccountsPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`customers_id`';
+            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
         }
         if ($this->isColumnModified(GothiaAccountsPeer::DISTRIBUTION_BY)) {
-            $modifiedColumns[':p' . $index++]  = '`distribution_by`';
+            $modifiedColumns[':p' . $index++]  = '`DISTRIBUTION_BY`';
         }
         if ($this->isColumnModified(GothiaAccountsPeer::DISTRIBUTION_TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`distribution_type`';
+            $modifiedColumns[':p' . $index++]  = '`DISTRIBUTION_TYPE`';
         }
         if ($this->isColumnModified(GothiaAccountsPeer::SOCIAL_SECURITY_NUM)) {
-            $modifiedColumns[':p' . $index++]  = '`social_security_num`';
+            $modifiedColumns[':p' . $index++]  = '`SOCIAL_SECURITY_NUM`';
         }
 
         $sql = sprintf(
@@ -507,16 +500,16 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`customers_id`':
+                    case '`CUSTOMERS_ID`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`distribution_by`':
+                    case '`DISTRIBUTION_BY`':
                         $stmt->bindValue($identifier, $this->distribution_by, PDO::PARAM_STR);
                         break;
-                    case '`distribution_type`':
+                    case '`DISTRIBUTION_TYPE`':
                         $stmt->bindValue($identifier, $this->distribution_type, PDO::PARAM_STR);
                         break;
-                    case '`social_security_num`':
+                    case '`SOCIAL_SECURITY_NUM`':
                         $stmt->bindValue($identifier, $this->social_security_num, PDO::PARAM_STR);
                         break;
                 }
@@ -580,11 +573,11 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -957,13 +950,12 @@ abstract class BaseGothiaAccounts extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null, $doQuery = true)
+    public function getCustomers(PropelPDO $con = null)
     {
-        if ($this->aCustomers === null && ($this->customers_id !== null) && $doQuery) {
+        if ($this->aCustomers === null && ($this->customers_id !== null)) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             // Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
             $this->aCustomers->setGothiaAccounts($this);

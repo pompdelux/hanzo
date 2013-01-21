@@ -18,10 +18,6 @@ use Hanzo\Model\CouponsQuery;
 use Hanzo\Model\OrdersToCoupons;
 
 /**
- * Base class that represents a query for the 'coupons' table.
- *
- *
- *
  * @method CouponsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CouponsQuery orderByCode($order = Criteria::ASC) Order by the code column
  * @method CouponsQuery orderByAmount($order = Criteria::ASC) Order by the amount column
@@ -53,6 +49,7 @@ use Hanzo\Model\OrdersToCoupons;
  * @method Coupons findOne(PropelPDO $con = null) Return the first Coupons matching the query
  * @method Coupons findOneOrCreate(PropelPDO $con = null) Return the first Coupons matching the query, or a new Coupons object populated from the query conditions when no match is found
  *
+ * @method Coupons findOneById(int $id) Return the first Coupons filtered by the id column
  * @method Coupons findOneByCode(string $code) Return the first Coupons filtered by the code column
  * @method Coupons findOneByAmount(string $amount) Return the first Coupons filtered by the amount column
  * @method Coupons findOneByCurrencyCode(string $currency_code) Return the first Coupons filtered by the currency_code column
@@ -71,8 +68,6 @@ use Hanzo\Model\OrdersToCoupons;
  * @method array findByIsActive(boolean $is_active) Return Coupons objects filtered by the is_active column
  * @method array findByCreatedAt(string $created_at) Return Coupons objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Coupons objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCouponsQuery extends ModelCriteria
 {
@@ -149,20 +144,6 @@ abstract class BaseCouponsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Coupons A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -174,7 +155,7 @@ abstract class BaseCouponsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `code`, `amount`, `currency_code`, `active_from`, `active_to`, `is_active`, `created_at`, `updated_at` FROM `coupons` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `CODE`, `AMOUNT`, `CURRENCY_CODE`, `ACTIVE_FROM`, `ACTIVE_TO`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `coupons` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

@@ -17,21 +17,19 @@ use Hanzo\Bundle\CheckoutBundle\Event\FilterOrderEvent;
 
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CheckoutListener
 {
     protected $mailer;
     protected $ax;
     protected $translator;
-    protected $session;
 
-    public function __construct(MailService $mailer, AxService $ax, Translator $translator, Session $session)
+    public function __construct(MailService $mailer, AxService $ax, Translator $translator)
     {
         $this->mailer     = $mailer;
         $this->ax         = $ax;
         $this->translator = $translator;
-        $this->session    = $session;
     }
 
     public function onFinalize(FilterOrderEvent $event)

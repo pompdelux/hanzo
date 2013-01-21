@@ -13,13 +13,6 @@ use Hanzo\Model\Countries;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\map\CountriesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'countries' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCountriesPeer
 {
 
@@ -44,41 +37,41 @@ abstract class BaseCountriesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 12;
 
-    /** the column name for the id field */
-    const ID = 'countries.id';
+    /** the column name for the ID field */
+    const ID = 'countries.ID';
 
-    /** the column name for the name field */
-    const NAME = 'countries.name';
+    /** the column name for the NAME field */
+    const NAME = 'countries.NAME';
 
-    /** the column name for the local_name field */
-    const LOCAL_NAME = 'countries.local_name';
+    /** the column name for the LOCAL_NAME field */
+    const LOCAL_NAME = 'countries.LOCAL_NAME';
 
-    /** the column name for the code field */
-    const CODE = 'countries.code';
+    /** the column name for the CODE field */
+    const CODE = 'countries.CODE';
 
-    /** the column name for the iso2 field */
-    const ISO2 = 'countries.iso2';
+    /** the column name for the ISO2 field */
+    const ISO2 = 'countries.ISO2';
 
-    /** the column name for the iso3 field */
-    const ISO3 = 'countries.iso3';
+    /** the column name for the ISO3 field */
+    const ISO3 = 'countries.ISO3';
 
-    /** the column name for the continent field */
-    const CONTINENT = 'countries.continent';
+    /** the column name for the CONTINENT field */
+    const CONTINENT = 'countries.CONTINENT';
 
-    /** the column name for the currency_id field */
-    const CURRENCY_ID = 'countries.currency_id';
+    /** the column name for the CURRENCY_ID field */
+    const CURRENCY_ID = 'countries.CURRENCY_ID';
 
-    /** the column name for the currency_code field */
-    const CURRENCY_CODE = 'countries.currency_code';
+    /** the column name for the CURRENCY_CODE field */
+    const CURRENCY_CODE = 'countries.CURRENCY_CODE';
 
-    /** the column name for the currency_name field */
-    const CURRENCY_NAME = 'countries.currency_name';
+    /** the column name for the CURRENCY_NAME field */
+    const CURRENCY_NAME = 'countries.CURRENCY_NAME';
 
-    /** the column name for the vat field */
-    const VAT = 'countries.vat';
+    /** the column name for the VAT field */
+    const VAT = 'countries.VAT';
 
-    /** the column name for the calling_code field */
-    const CALLING_CODE = 'countries.calling_code';
+    /** the column name for the CALLING_CODE field */
+    const CALLING_CODE = 'countries.CALLING_CODE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -206,18 +199,18 @@ abstract class BaseCountriesPeer
             $criteria->addSelectColumn(CountriesPeer::VAT);
             $criteria->addSelectColumn(CountriesPeer::CALLING_CODE);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.name');
-            $criteria->addSelectColumn($alias . '.local_name');
-            $criteria->addSelectColumn($alias . '.code');
-            $criteria->addSelectColumn($alias . '.iso2');
-            $criteria->addSelectColumn($alias . '.iso3');
-            $criteria->addSelectColumn($alias . '.continent');
-            $criteria->addSelectColumn($alias . '.currency_id');
-            $criteria->addSelectColumn($alias . '.currency_code');
-            $criteria->addSelectColumn($alias . '.currency_name');
-            $criteria->addSelectColumn($alias . '.vat');
-            $criteria->addSelectColumn($alias . '.calling_code');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.NAME');
+            $criteria->addSelectColumn($alias . '.LOCAL_NAME');
+            $criteria->addSelectColumn($alias . '.CODE');
+            $criteria->addSelectColumn($alias . '.ISO2');
+            $criteria->addSelectColumn($alias . '.ISO3');
+            $criteria->addSelectColumn($alias . '.CONTINENT');
+            $criteria->addSelectColumn($alias . '.CURRENCY_ID');
+            $criteria->addSelectColumn($alias . '.CURRENCY_CODE');
+            $criteria->addSelectColumn($alias . '.CURRENCY_NAME');
+            $criteria->addSelectColumn($alias . '.VAT');
+            $criteria->addSelectColumn($alias . '.CALLING_CODE');
         }
     }
 

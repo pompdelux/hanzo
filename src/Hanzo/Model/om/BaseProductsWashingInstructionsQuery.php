@@ -19,10 +19,6 @@ use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 
 /**
- * Base class that represents a query for the 'products_washing_instructions' table.
- *
- *
- *
  * @method ProductsWashingInstructionsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ProductsWashingInstructionsQuery orderByCode($order = Criteria::ASC) Order by the code column
  * @method ProductsWashingInstructionsQuery orderByLocale($order = Criteria::ASC) Order by the locale column
@@ -48,6 +44,7 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
  * @method ProductsWashingInstructions findOne(PropelPDO $con = null) Return the first ProductsWashingInstructions matching the query
  * @method ProductsWashingInstructions findOneOrCreate(PropelPDO $con = null) Return the first ProductsWashingInstructions matching the query, or a new ProductsWashingInstructions object populated from the query conditions when no match is found
  *
+ * @method ProductsWashingInstructions findOneById(int $id) Return the first ProductsWashingInstructions filtered by the id column
  * @method ProductsWashingInstructions findOneByCode(int $code) Return the first ProductsWashingInstructions filtered by the code column
  * @method ProductsWashingInstructions findOneByLocale(string $locale) Return the first ProductsWashingInstructions filtered by the locale column
  * @method ProductsWashingInstructions findOneByDescription(string $description) Return the first ProductsWashingInstructions filtered by the description column
@@ -56,8 +53,6 @@ use Hanzo\Model\ProductsWashingInstructionsQuery;
  * @method array findByCode(int $code) Return ProductsWashingInstructions objects filtered by the code column
  * @method array findByLocale(string $locale) Return ProductsWashingInstructions objects filtered by the locale column
  * @method array findByDescription(string $description) Return ProductsWashingInstructions objects filtered by the description column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
 {
@@ -134,20 +129,6 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   ProductsWashingInstructions A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -159,7 +140,7 @@ abstract class BaseProductsWashingInstructionsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `code`, `locale`, `description` FROM `products_washing_instructions` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `CODE`, `LOCALE`, `DESCRIPTION` FROM `products_washing_instructions` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

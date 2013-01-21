@@ -45,7 +45,7 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 
         Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
 
-        $url = $this->router->generate($route, ['_locale' => $this->container->get('session')->getLocale()]);
+        $url = $this->router->generate($route, ['_locale' => $request->getLocale()]);
         $response = new RedirectResponse($url);
 
     	return $response;

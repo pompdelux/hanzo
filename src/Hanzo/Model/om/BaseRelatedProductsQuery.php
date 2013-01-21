@@ -18,10 +18,6 @@ use Hanzo\Model\RelatedProductsPeer;
 use Hanzo\Model\RelatedProductsQuery;
 
 /**
- * Base class that represents a query for the 'related_products' table.
- *
- *
- *
  * @method RelatedProductsQuery orderByMaster($order = Criteria::ASC) Order by the master column
  * @method RelatedProductsQuery orderBySku($order = Criteria::ASC) Order by the sku column
  *
@@ -48,8 +44,6 @@ use Hanzo\Model\RelatedProductsQuery;
  *
  * @method array findByMaster(string $master) Return RelatedProducts objects filtered by the master column
  * @method array findBySku(string $sku) Return RelatedProducts objects filtered by the sku column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseRelatedProductsQuery extends ModelCriteria
 {
@@ -138,7 +132,7 @@ abstract class BaseRelatedProductsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `master`, `sku` FROM `related_products` WHERE `master` = :p0 AND `sku` = :p1';
+        $sql = 'SELECT `MASTER`, `SKU` FROM `related_products` WHERE `MASTER` = :p0 AND `SKU` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);

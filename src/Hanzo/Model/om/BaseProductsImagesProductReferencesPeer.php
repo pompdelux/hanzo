@@ -15,13 +15,6 @@ use Hanzo\Model\ProductsImagesProductReferencesPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\map\ProductsImagesProductReferencesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'products_images_product_references' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsImagesProductReferencesPeer
 {
 
@@ -46,11 +39,11 @@ abstract class BaseProductsImagesProductReferencesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the products_images_id field */
-    const PRODUCTS_IMAGES_ID = 'products_images_product_references.products_images_id';
+    /** the column name for the PRODUCTS_IMAGES_ID field */
+    const PRODUCTS_IMAGES_ID = 'products_images_product_references.PRODUCTS_IMAGES_ID';
 
-    /** the column name for the products_id field */
-    const PRODUCTS_ID = 'products_images_product_references.products_id';
+    /** the column name for the PRODUCTS_ID field */
+    const PRODUCTS_ID = 'products_images_product_references.PRODUCTS_ID';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -168,8 +161,8 @@ abstract class BaseProductsImagesProductReferencesPeer
             $criteria->addSelectColumn(ProductsImagesProductReferencesPeer::PRODUCTS_IMAGES_ID);
             $criteria->addSelectColumn(ProductsImagesProductReferencesPeer::PRODUCTS_ID);
         } else {
-            $criteria->addSelectColumn($alias . '.products_images_id');
-            $criteria->addSelectColumn($alias . '.products_id');
+            $criteria->addSelectColumn($alias . '.PRODUCTS_IMAGES_ID');
+            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
         }
     }
 

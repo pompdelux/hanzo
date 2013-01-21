@@ -144,8 +144,7 @@
 
         $.cookie.defaults = {
           domain : cookie_params.domain,
-          path : cookie_params.path,
-          json : true
+          path : cookie_params.path
         };
 
         var basket = $.cookie('basket');

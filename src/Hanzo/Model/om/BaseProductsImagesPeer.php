@@ -16,13 +16,6 @@ use Hanzo\Model\ProductsImagesProductReferencesPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\map\ProductsImagesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'products_images' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsImagesPeer
 {
 
@@ -47,20 +40,20 @@ abstract class BaseProductsImagesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 5;
 
-    /** the column name for the id field */
-    const ID = 'products_images.id';
+    /** the column name for the ID field */
+    const ID = 'products_images.ID';
 
-    /** the column name for the products_id field */
-    const PRODUCTS_ID = 'products_images.products_id';
+    /** the column name for the PRODUCTS_ID field */
+    const PRODUCTS_ID = 'products_images.PRODUCTS_ID';
 
-    /** the column name for the image field */
-    const IMAGE = 'products_images.image';
+    /** the column name for the IMAGE field */
+    const IMAGE = 'products_images.IMAGE';
 
-    /** the column name for the color field */
-    const COLOR = 'products_images.color';
+    /** the column name for the COLOR field */
+    const COLOR = 'products_images.COLOR';
 
-    /** the column name for the type field */
-    const TYPE = 'products_images.type';
+    /** the column name for the TYPE field */
+    const TYPE = 'products_images.TYPE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -181,11 +174,11 @@ abstract class BaseProductsImagesPeer
             $criteria->addSelectColumn(ProductsImagesPeer::COLOR);
             $criteria->addSelectColumn(ProductsImagesPeer::TYPE);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.products_id');
-            $criteria->addSelectColumn($alias . '.image');
-            $criteria->addSelectColumn($alias . '.color');
-            $criteria->addSelectColumn($alias . '.type');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.PRODUCTS_ID');
+            $criteria->addSelectColumn($alias . '.IMAGE');
+            $criteria->addSelectColumn($alias . '.COLOR');
+            $criteria->addSelectColumn($alias . '.TYPE');
         }
     }
 

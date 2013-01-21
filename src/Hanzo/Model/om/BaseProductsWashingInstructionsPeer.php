@@ -14,13 +14,6 @@ use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\map\ProductsWashingInstructionsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'products_washing_instructions' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsWashingInstructionsPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseProductsWashingInstructionsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'products_washing_instructions.id';
+    /** the column name for the ID field */
+    const ID = 'products_washing_instructions.ID';
 
-    /** the column name for the code field */
-    const CODE = 'products_washing_instructions.code';
+    /** the column name for the CODE field */
+    const CODE = 'products_washing_instructions.CODE';
 
-    /** the column name for the locale field */
-    const LOCALE = 'products_washing_instructions.locale';
+    /** the column name for the LOCALE field */
+    const LOCALE = 'products_washing_instructions.LOCALE';
 
-    /** the column name for the description field */
-    const DESCRIPTION = 'products_washing_instructions.description';
+    /** the column name for the DESCRIPTION field */
+    const DESCRIPTION = 'products_washing_instructions.DESCRIPTION';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseProductsWashingInstructionsPeer
             $criteria->addSelectColumn(ProductsWashingInstructionsPeer::LOCALE);
             $criteria->addSelectColumn(ProductsWashingInstructionsPeer::DESCRIPTION);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.code');
-            $criteria->addSelectColumn($alias . '.locale');
-            $criteria->addSelectColumn($alias . '.description');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.CODE');
+            $criteria->addSelectColumn($alias . '.LOCALE');
+            $criteria->addSelectColumn($alias . '.DESCRIPTION');
         }
     }
 

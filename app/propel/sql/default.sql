@@ -501,6 +501,7 @@ CREATE TABLE `products_images_categories_sort`
     `sort` INTEGER,
     PRIMARY KEY (`products_id`,`categories_id`,`products_images_id`),
     INDEX `FI_products_images_categories_sort_2` (`products_images_id`),
+    INDEX `FI_products_images_categories_sort_3` (`categories_id`),
     CONSTRAINT `fk_products_images_categories_sort_1`
         FOREIGN KEY (`products_id`)
         REFERENCES `products` (`id`)
@@ -508,6 +509,10 @@ CREATE TABLE `products_images_categories_sort`
     CONSTRAINT `fk_products_images_categories_sort_2`
         FOREIGN KEY (`products_images_id`)
         REFERENCES `products_images` (`id`)
+        ON DELETE CASCADE,
+    CONSTRAINT `fk_products_images_categories_sort_3`
+        FOREIGN KEY (`categories_id`)
+        REFERENCES `categories` (`id`)
         ON DELETE CASCADE
 ) ENGINE=InnoDB;
 

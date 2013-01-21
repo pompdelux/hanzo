@@ -1,0 +1,66 @@
+{% if orders %}
+    <table id="order-status">
+        <thead>
+            <tr>
+                <th>{{ 'order.number'|trans({}, 'account') }}</th>
+                <th>{{ 'order.date'|trans({}, 'account') }}</th>
+                <th>{{ 'order.status'|trans({}, 'account') }}</th>
+                <th class="right">{{ 'order.actions'|trans({}, 'account') }}</th>
+                <th class="center">{{ 'order.invoice'|trans({}, 'account') }}</th>
+                <th class="right">{{ 'order.total'|trans({}, 'account') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>#{{ order.id }}</td>
+                <td>{{ order.created_at|date('d/m/Y') }}</td>
+                <td>{{ ('status.' ~ order.status)|trans({}, 'checkout') }}</td>
+                <td class="right">
+                {% if order.in_edit %}
+                        <a href="{{ path('_account_stop_edit_order', { 'order_id': order.id }) }}" title="" class="stop-edit">Stop editering</a>
+                {% else %}
+                    {% if order.can_modify %}
+                        <a href="{{ path('_account_delete_order', { 'order_id': order.id }) }}" title="{{ 'order.delete.title'|trans({}, 'account') }}" class="sprite delete"></a>
+                        <a href="{{ path('_account_edit_order', { 'order_id': order.id }) }}" title="{{ 'order.edit.title'|trans({}, 'account') }}" class="sprite edit"></a>
+                    {% endif %}
+                        <a href="{{ path('_account_show_order', { 'order_id': order.id }) }}" title="{{ 'order.invoice.title'|trans({}, 'account') }}" class="sprite show"></a>
+                {% endif %}
+                </td>
+                <td class="center pdf">
+                {% for pdf in order.attachments %}
+                    {% if loop.first %}
+                        {% set title = 'fetch.invoice'|trans({}, 'account') %}
+                    {% else %}
+                        {% set title = 'fetch.credit_note'|trans({}, 'account') %}
+                    {% endif %}
+                        <a href="{{ pdf }}" title="{{ title }}" class="icons-sprite"></a>
+                {% endfor %}
+                </td>
+                <td class="right">
+                {% if order.status != 50 %}
+                    {{ order.total|money }}
+                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    {% if (link) %}
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <a href="{{ path('_account_history') }}" class="button button-small">{{ 'account.history.see.all.orders'|trans({}, 'account') }}</a>
+                </td>
+            </tr>
+        </tfoot>
+    {% endif %}
+    </table>
+
+    {% if paginate %}
+        {% import "::macro.pager.html.twig" as p %}
+        {{ p.pager(paginate, 'product-list') }}
+    {% endif %}
+
+{% else %}
+    <p>{{ 'history.empty'|trans({}, 'account') }}</p>
+{% endif %}

@@ -38,12 +38,14 @@ h1,h2,h3,h4,h5,h6{
 }
 h1{
 	@include heading-style;
-	padding: 6px 0 12px;
+	padding: 6px 0;
+	margin-bottom: 6px;
 }
 h2{
 	font-weight: 100;
 	font-size: 16px;
-	padding: 6px 0;
+	padding: 3px 0;
+	margin-bottom: 3px;
 	text-transform: uppercase;
 }
 h3{
@@ -85,6 +87,9 @@ aside{
 		padding-bottom:6px;
 		margin-bottom: 12px;
 	}
+	h1{
+		text-transform: uppercase;
+	}
 }
 
 form{
@@ -125,7 +130,14 @@ a.button {
 	border: none;
 	cursor: pointer;
 	display: inline-block;
-	font-family: $font-serif;
+	background: #474749;
+	font-family: $font-sans;
+	text-align: center;
+	padding: 6px;
+	font-weight: bold;
+	color: white;
+	line-height: 18px;
+	white-space: normal;
 
 	&:hover{
 		text-decoration: none;
@@ -136,19 +148,9 @@ a.button {
 		background: transparent;
 		color: $font-color;
 		font-size: $font-size;
+		font-family: $font-serif;
+		font-weight: $font-weight-thin;
 		text-transform: uppercase;
-	}
-
-	&.button-black,
-	&.button-right,
-	&.button-left {
-		background: #474749;
-		font-family: $font-sans;
-		text-align: center;
-		padding: 6px;
-		font-weight: bold;
-		color: white;
-		line-height: 18px;
 	}
 	&.button-right {
 		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
@@ -166,17 +168,27 @@ a.button {
 		padding: 3px;
 		line-height: $small-line-height;
 		font-weight: $small-weight;
+		&:hover{
+			text-decoration: none;
+		}
 	}
-	&.off{
-		display: none;
+	&.button-large {
+		padding: 6px 12px;
+		width: 234px;
+	}
+	&.button-full-width {
+		width: 100%;
 	}
 }
 
 table{
 	width: 100%;
 	margin: 6px 0 12px;
-	thead,tbody, tfoot{
+	thead, tfoot{
 		border-bottom: 1px solid $font-color;
+	}
+	tfoot{
+		border-top: 1px solid $font-color;
 	}
 	thead{
 		font-family: $font-serif;
@@ -194,19 +206,28 @@ table{
 			padding: 6px;
 		}
 	}
+	&.horizontal{
+		th{
+			font-weight: bold;
+		}
+	}
 }
 
 
 // Helpers
 .align-left,
 .left{text-align:left;}
-a.left{float: left;}
 .align-center,
 .center{text-align:center}
 .centerfy{margin: 0 auto;}
 .align-right,
 .right{text-align:right;}
-a.right{float: right;}
+a,
+input,
+button {
+	&.left{float: left;}
+	&.right{float: right;}
+}
 .vert-align-top{vertical-align:top;}
 .vert-align-middle{vertical-align:middle;}
 .vert-align-bottom{vertical-align:baseline;}
@@ -215,7 +236,54 @@ a.right{float: right;}
 .small{font-size: 9px;}
 .strike {text-decoration:line-through;}
 .upper {text-transform: uppercase;}
-
+.hidden { display: none; visibility: hidden; }
+.off {display: none;}
+.bottom-space{margin-bottom: 40px;}
+.msg, .message {
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #231f20;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  clear: both;
+  &.error {
+  	border: 2px solid #f10000;
+  }
+}
+.box{
+	padding: 6px;
+	display: inline-block;
+	@include box;
+}
+.sprite{
+	&.delete,
+	&.edit,
+	&.show,
+	&.pdf{
+		display: inline-block;
+	}
+	&.delete{
+		@include icons-sprite(delete);
+		height: icons-sprite-height(delete);
+		width: icons-sprite-width(delete);
+	}
+	&.edit{
+		@include icons-sprite(edit);
+		height: icons-sprite-height(edit);
+		width: icons-sprite-width(edit);
+	}
+	&.show{
+		@include icons-sprite(show);
+		height: icons-sprite-height(show);
+		width: icons-sprite-width(show);
+	}
+	&.pdf{
+		@include icons-sprite(pdf);
+		height: icons-sprite-height(pdf);
+		width: icons-sprite-width(pdf);
+	}
+}
 ul{
 	list-style-position: inside;
 	&.list {

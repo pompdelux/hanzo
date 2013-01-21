@@ -42,18 +42,18 @@ class CustomersTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addForeignKey('groups_id', 'GroupsId', 'INTEGER', 'groups', 'id', true, null, 1);
-        $this->addColumn('first_name', 'FirstName', 'VARCHAR', true, 128, null);
-        $this->addColumn('last_name', 'LastName', 'VARCHAR', true, 128, null);
-        $this->addColumn('email', 'Email', 'VARCHAR', true, 255, null);
-        $this->addColumn('phone', 'Phone', 'VARCHAR', false, 32, null);
-        $this->addColumn('password', 'Password', 'VARCHAR', true, 128, null);
-        $this->addColumn('password_clear', 'PasswordClear', 'VARCHAR', false, 45, null);
-        $this->addColumn('discount', 'Discount', 'DECIMAL', false, 8, 0);
-        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
-        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addForeignKey('GROUPS_ID', 'GroupsId', 'INTEGER', 'groups', 'ID', true, null, 1);
+        $this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', true, 128, null);
+        $this->addColumn('LAST_NAME', 'LastName', 'VARCHAR', true, 128, null);
+        $this->addColumn('EMAIL', 'Email', 'VARCHAR', true, 255, null);
+        $this->addColumn('PHONE', 'Phone', 'VARCHAR', false, 32, null);
+        $this->addColumn('PASSWORD', 'Password', 'VARCHAR', true, 128, null);
+        $this->addColumn('PASSWORD_CLEAR', 'PasswordClear', 'VARCHAR', false, 45, null);
+        $this->addColumn('DISCOUNT', 'Discount', 'DECIMAL', false, 8, 0);
+        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -64,8 +64,7 @@ class CustomersTableMap extends TableMap
     {
         $this->addRelation('Groups', 'Hanzo\\Model\\Groups', RelationMap::MANY_TO_ONE, array('groups_id' => 'id', ), null, 'CASCADE');
         $this->addRelation('Addresses', 'Hanzo\\Model\\Addresses', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'Addressess');
-        $this->addRelation('EventsRelatedByConsultantsId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'consultants_id', ), null, null, 'EventssRelatedByConsultantsId');
-        $this->addRelation('EventsRelatedByCustomersId', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), null, null, 'EventssRelatedByCustomersId');
+        $this->addRelation('Events', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), null, null, 'Eventss');
         $this->addRelation('Orders', 'Hanzo\\Model\\Orders', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'SET NULL', 'CASCADE', 'Orderss');
         $this->addRelation('Wall', 'Hanzo\\Model\\Wall', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'Walls');
         $this->addRelation('WallLikes', 'Hanzo\\Model\\WallLikes', RelationMap::ONE_TO_MANY, array('id' => 'customers_id', ), 'CASCADE', null, 'WallLikess');
@@ -83,14 +82,8 @@ class CustomersTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'timestampable' =>  array (
-  'create_column' => 'created_at',
-  'update_column' => 'updated_at',
-  'disable_updated_at' => 'false',
-),
-            'delegate' =>  array (
-  'to' => 'consultants',
-),
+            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
+            'delegate' => array('to' => 'consultants', ),
         );
     } // getBehaviors()
 

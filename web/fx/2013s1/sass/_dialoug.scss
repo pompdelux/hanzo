@@ -1,6 +1,5 @@
  
 // Dialoug notices
-@import "compass/css3/box-shadow";
 
 .inject-notice-box{
 	padding: 3px;
@@ -20,10 +19,41 @@
 	top: 77px;
 	right: 0;
 	padding: 6px;
-	background-color: whiteSmoke;
 	text-align: center;
+	@include box;
+}
 
-    @include box-shadow(#C9C9C9 -1px 1px 2px);
-	border-right: #F0F0F0 1px solid;
-	border-top: #F0F0F0 1px solid;
+#cboxContent {
+  .dialoug {
+    h2!, div.message! {}
+    .buttons {
+      padding: 0 10px;
+      a! {}
+    }
+  }
+  .alert!, .confirm! {}
+}
+
+#dialoug-message {
+  border: 2px solid #D3C2A2;
+  color: #231f20;
+  margin: 10px 0;
+  display: none;
+  &.info!, &.warning! {}
+  &.error {
+    border-color: #f00;
+  }
+  p {
+    background-color: #fff;
+    padding: 10px;
+    margin: 0;
+  }
+}
+
+.dialoug-loading {
+  display: inline-block;
+  height: 16px;
+  background: url(/fx/images/loader-bar.gif) no-repeat left center;
+  padding-left: 20px;
+  margin-left: 5px;
 }

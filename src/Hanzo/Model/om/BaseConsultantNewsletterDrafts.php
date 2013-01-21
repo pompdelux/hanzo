@@ -17,13 +17,6 @@ use Hanzo\Model\ConsultantNewsletterDraftsQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 
-/**
- * Base class that represents a row from the 'consultant_newsletter_drafts' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Persistent
 {
     /**
@@ -259,7 +252,7 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ConsultantNewsletterDraftsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -489,16 +482,16 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::CONSULTANTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`consultants_id`';
+            $modifiedColumns[':p' . $index++]  = '`CONSULTANTS_ID`';
         }
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::SUBJECT)) {
-            $modifiedColumns[':p' . $index++]  = '`subject`';
+            $modifiedColumns[':p' . $index++]  = '`SUBJECT`';
         }
         if ($this->isColumnModified(ConsultantNewsletterDraftsPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`content`';
+            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
         }
 
         $sql = sprintf(
@@ -511,16 +504,16 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`consultants_id`':
+                    case '`CONSULTANTS_ID`':
                         $stmt->bindValue($identifier, $this->consultants_id, PDO::PARAM_INT);
                         break;
-                    case '`subject`':
+                    case '`SUBJECT`':
                         $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
                         break;
-                    case '`content`':
+                    case '`CONTENT`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
                 }
@@ -591,11 +584,11 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -964,13 +957,12 @@ abstract class BaseConsultantNewsletterDrafts extends BaseObject implements Pers
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null, $doQuery = true)
+    public function getCustomers(PropelPDO $con = null)
     {
-        if ($this->aCustomers === null && ($this->consultants_id !== null) && $doQuery) {
+        if ($this->aCustomers === null && ($this->consultants_id !== null)) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->consultants_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

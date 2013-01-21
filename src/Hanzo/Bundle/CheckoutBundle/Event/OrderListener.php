@@ -6,7 +6,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
 use Hanzo\Bundle\ServiceBundle\Services\AxService;
 
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class OrderListener

@@ -148,7 +148,7 @@ var cdn_url = '{{ cdn }}';
 <script src="//cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
 
 <script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translator.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.session.locale }) }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
 
 {% javascripts
   'fx/scripts/jquery.ui.nestedSortable.js'

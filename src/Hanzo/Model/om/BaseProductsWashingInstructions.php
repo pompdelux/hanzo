@@ -21,13 +21,6 @@ use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 
-/**
- * Base class that represents a row from the 'products_washing_instructions' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsWashingInstructions extends BaseObject implements Persistent
 {
     /**
@@ -275,7 +268,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ProductsWashingInstructionsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -492,7 +485,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
             if ($this->collProductss !== null) {
                 foreach ($this->collProductss as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -525,16 +518,16 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`code`';
+            $modifiedColumns[':p' . $index++]  = '`CODE`';
         }
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`locale`';
+            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
         }
         if ($this->isColumnModified(ProductsWashingInstructionsPeer::DESCRIPTION)) {
-            $modifiedColumns[':p' . $index++]  = '`description`';
+            $modifiedColumns[':p' . $index++]  = '`DESCRIPTION`';
         }
 
         $sql = sprintf(
@@ -547,16 +540,16 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`code`':
+                    case '`CODE`':
                         $stmt->bindValue($identifier, $this->code, PDO::PARAM_INT);
                         break;
-                    case '`locale`':
+                    case '`LOCALE`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`description`':
+                    case '`DESCRIPTION`':
                         $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
                         break;
                 }
@@ -627,11 +620,11 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1017,13 +1010,12 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      * Get the associated Languages object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Languages The associated Languages object.
      * @throws PropelException
      */
-    public function getLanguages(PropelPDO $con = null, $doQuery = true)
+    public function getLanguages(PropelPDO $con = null)
     {
-        if ($this->aLanguages === null && (($this->locale !== "" && $this->locale !== null)) && $doQuery) {
+        if ($this->aLanguages === null && (($this->locale !== "" && $this->locale !== null))) {
             $this->aLanguages = LanguagesQuery::create()
                 ->filterByProductsWashingInstructions($this) // here
                 ->findOne($con);
@@ -1061,15 +1053,13 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return ProductsWashingInstructions The current object (for fluent API support)
+     * @return void
      * @see        addProductss()
      */
     public function clearProductss()
     {
         $this->collProductss = null; // important to set this to null since that means it is uninitialized
         $this->collProductssPartial = null;
-
-        return $this;
     }
 
     /**
@@ -1168,15 +1158,12 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
      *
      * @param PropelCollection $productss A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function setProductss(PropelCollection $productss, PropelPDO $con = null)
     {
-        $productssToDelete = $this->getProductss(new Criteria(), $con)->diff($productss);
+        $this->productssScheduledForDeletion = $this->getProductss(new Criteria(), $con)->diff($productss);
 
-        $this->productssScheduledForDeletion = unserialize(serialize($productssToDelete));
-
-        foreach ($productssToDelete as $productsRemoved) {
+        foreach ($this->productssScheduledForDeletion as $productsRemoved) {
             $productsRemoved->setProductsWashingInstructions(null);
         }
 
@@ -1187,8 +1174,6 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
         $this->collProductss = $productss;
         $this->collProductssPartial = false;
-
-        return $this;
     }
 
     /**
@@ -1206,22 +1191,22 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
         if (null === $this->collProductss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collProductss) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getProductss());
+                }
+                $query = ProductsQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getProductss());
+                return $query
+                    ->filterByProductsWashingInstructions($this)
+                    ->count($con);
             }
-            $query = ProductsQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByProductsWashingInstructions($this)
-                ->count($con);
+        } else {
+            return count($this->collProductss);
         }
-
-        return count($this->collProductss);
     }
 
     /**
@@ -1237,7 +1222,7 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->initProductss();
             $this->collProductssPartial = true;
         }
-        if (!in_array($l, $this->collProductss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collProductss->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddProducts($l);
         }
 
@@ -1255,7 +1240,6 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
 
     /**
      * @param	Products $products The products object to remove.
-     * @return ProductsWashingInstructions The current object (for fluent API support)
      */
     public function removeProducts($products)
     {
@@ -1268,8 +1252,6 @@ abstract class BaseProductsWashingInstructions extends BaseObject implements Per
             $this->productssScheduledForDeletion[]= $products;
             $products->setProductsWashingInstructions(null);
         }
-
-        return $this;
     }
 
 

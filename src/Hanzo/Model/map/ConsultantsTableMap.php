@@ -42,12 +42,12 @@ class ConsultantsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addColumn('initials', 'Initials', 'VARCHAR', false, 6, null);
-        $this->addColumn('info', 'Info', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('event_notes', 'EventNotes', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('hide_info', 'HideInfo', 'BOOLEAN', true, 1, false);
-        $this->addColumn('max_notified', 'MaxNotified', 'BOOLEAN', true, 1, false);
-        $this->addForeignPrimaryKey('id', 'Id', 'INTEGER' , 'customers', 'id', true, null, null);
+        $this->addColumn('INITIALS', 'Initials', 'VARCHAR', false, 6, null);
+        $this->addColumn('INFO', 'Info', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('EVENT_NOTES', 'EventNotes', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('HIDE_INFO', 'HideInfo', 'BOOLEAN', true, 1, false);
+        $this->addColumn('MAX_NOTIFIED', 'MaxNotified', 'BOOLEAN', true, 1, false);
+        $this->addForeignPrimaryKey('ID', 'Id', 'INTEGER' , 'customers', 'ID', true, null, null);
         // validators
     } // initialize()
 
@@ -57,6 +57,7 @@ class ConsultantsTableMap extends TableMap
     public function buildRelations()
     {
         $this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Events', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'consultants_id', ), null, null, 'Eventss');
     } // buildRelations()
 
 } // ConsultantsTableMap

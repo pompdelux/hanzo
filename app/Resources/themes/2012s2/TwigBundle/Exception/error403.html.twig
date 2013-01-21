@@ -11,7 +11,7 @@
 <div style="padding: 10px;">
   <p>{{ '403.description'|trans({}, 'error')|raw }}</p>
 
-  <form name="{{ path('_search', {'_locale' : app.session.locale}) }}" action="" method="get">
+  <form name="{{ path('_search', {'_locale' : app.request.locale}) }}" action="" method="get">
     <input type="text" name="keywords" id="keywords" value="">
     <input class="button" type="submit" value="{{ 'Search'|trans }}">
     <input type="hidden" name="search_in_description" value="1">
