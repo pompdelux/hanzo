@@ -28,7 +28,8 @@ ul.menu,
 		@include shadow;
 		padding: 9px;
 		max-height: 400px;
-		overflow-y: scroll;
+		overflow-y: auto;
+		overflow-x: hidden;
 	}
 	&.right{
 		text-align: right;

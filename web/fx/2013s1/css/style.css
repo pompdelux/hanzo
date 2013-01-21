@@ -148,7 +148,8 @@ ul.menu .dropdown,
   border: #f0f0f0 1px solid;
   padding: 9px;
   max-height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 nav > ul.right,
 ul.menu.right,
