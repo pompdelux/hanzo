@@ -304,7 +304,38 @@ class CmsController extends CoreController
             ;
         }
 
-        $form = $this->createForm(new CmsType(), $node);
+        $form = $this->createFormBuilder($node)
+            ->add('locale', 'hidden')
+            ->add('is_active', 'checkbox', array(
+                'label'     => 'cms.edit.label.is_active',
+                'translation_domain' => 'admin',
+                'required'  => false
+            ))
+            ->add('is_restricted', 'checkbox', array(
+                'label'     => 'cms.edit.label.is_restricted',
+                'translation_domain' => 'admin',
+                'required'  => false
+            ))
+            ->add('title', null, array(
+                'label'     => 'cms.edit.label.title',
+                'required' => TRUE,
+                'translation_domain' => 'admin'
+            ))
+            ->add('path', null, array(
+                'label'     => 'cms.edit.label.path',
+                'required' => TRUE,
+                'translation_domain' => 'admin'
+            ))
+            ->add('content', 'textarea', array(
+                'label'     => 'cms.edit.label.content',
+                'required' => FALSE,
+                'translation_domain' => 'admin'
+            ))
+            ->add('settings', 'textarea', array(
+                'label'     => 'cms.edit.label.settings',
+                'required' => FALSE,
+                'translation_domain' => 'admin'
+            ))->getForm();
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
