@@ -145,7 +145,14 @@
     // handle "add to basket"
     pub.initPurchase = function() {
       _resetForm();
+      var in_progress = false;
       $('form.buy select.size, form.buy select.color').on('change', function() {
+
+        if (in_progress) {
+          return;
+        }
+        in_progress = true;
+
         var name = this.name;
         var value = this.value;
 
@@ -157,80 +164,89 @@
         }
 
         var $form = $(this).closest('form');
-        $.ajax({
+
+        var lookup = $.ajax({
           url: base_url + 'rest/v1/stock-check',
           dataType: 'json',
           data: $form.serialize(),
-          async: false,
-          success: function(response, textStatus, jqXHR) {
-            if (false === response.status) {
-              if (response.message) {
-                dialoug.alert(Translator.get('js:notice'), response.message);
-              }
-              return;
-            }
+          cache: false
+        });
 
-            if (undefined === response.data.products) {
-              $('div', $form).replaceWith(Translator.get('js:out.of.stock'));
-              return;
+        lookup.done(function(response) {
+          if (false === response.status) {
+            if (response.message) {
+              dialoug.alert(Translator.get('js:notice'), response.message);
             }
+            return;
+          }
 
-            // populate color select with options
-            if (name === 'size') {
-              $.each(response.data.products, function(index, product) {
-                $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
+          if (undefined === response.data.products) {
+            $('div', $form).replaceWith(Translator.get('js:out.of.stock'));
+            return;
+          }
+
+          // populate color select with options
+          if (name === 'size') {
+            $.each(response.data.products, function(index, product) {
+              $('select.color', $form).append('<option value="'+product.color+'">'+product.color+'</option>');
+            });
+            $('select.color', $form).closest('label').removeClass('off');
+          }
+
+          if (name == 'color') {
+            var product = response.data.products[0];
+            if (product.date) {
+              dialoug.confirm(Translator.get('js:notice'), response.message, function(c) {
+                if (c == 'ok') {
+                  $('select.quantity', $form).closest('label').removeClass('off');
+                  $form.append('<input type="hidden" name="date" value="' + product.date + '">');
+                }
               });
-              $('select.color', $form).closest('label').removeClass('off');
             }
-
-            if (name == 'color') {
-              var product = response.data.products[0];
-              if (product.date) {
-                dialoug.confirm(Translator.get('js:notice'), response.message, function(c) {
-                  if (c == 'ok') {
-                    $('select.quantity', $form).closest('label').removeClass('off');
-                    $form.append('<input type="hidden" name="date" value="' + product.date + '">');
-                  }
-                });
-              }
-              else {
-                $('select.quantity', $form).closest('label').removeClass('off');
-              }
+            else {
+              $('select.quantity', $form).closest('label').removeClass('off');
             }
           }
         });
-        dialoug.stopLoading();
+
+        lookup.always(function() {
+          dialoug.stopLoading();
+          in_progress = false;
+        });
+
+        lookup.fail(function (jqXHR, textStatus) {/* todo: implement failure handeling */});
       });
 
       $('form.buy').on('submit', function(event) {
         event.preventDefault();
 
         var $form = $(this);
-        if($('select.size', $form).val() && $('select.color', $form).val() && $('select.quantity', $form).val()){
-          $.ajax({
+        if ($('select.size', $form).val() && $('select.color', $form).val() && $('select.quantity', $form).val()){
+          var lookup = $.ajax({
             url: $form.attr('action'),
             dataType: 'json',
             type: 'POST',
             data: $form.serialize(),
-            async: false,
-            success: function(response, textStatus, jqXHR) {
-              if (false === response.status) {
-                if (response.message) {
-                  dialoug.alert(Translator.get('js:notice'), response.message);
-                }
-              }
-              else {
-                window.scrollTo(window.scrollMinX, window.scrollMinY);
-                $('#mini-basket a').html(response.data);
-                dialoug.slideNotice(response.message, undefined, '.container > header');
-              }
-              _resetForm();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
-            }
+            async: false
           });
-        }else{
+
+          lookup.done(function(response) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(Translator.get('js:notice'), response.message);
+              }
+            } else {
+              window.scrollTo(window.scrollMinX, window.scrollMinY);
+              $('#mini-basket a').html(response.data);
+              dialoug.slideNotice(response.message, undefined, '.container > header');
+            }
+            _resetForm();
+          });
+
+          lookup.fail(function() {
+            dialoug.error(Translator.get('js:notice!'), Translator.get('js:an.error.occurred'));
+          });
+        } else {
           dialoug.notice(Translator.get('js:form.buy.choose.first'), 'error',3000, $('.button', $form).parent());
         }
       });

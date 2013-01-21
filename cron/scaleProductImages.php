@@ -14,6 +14,8 @@ if (empty($images_found)) {
     exit;
 }
 
+_dbug("resizing images: ", false);
+$counter = 0;
 foreach ($images_found as $file) {
     $image = basename($file);
     $source_image = $source_dir . $image;
@@ -24,6 +26,7 @@ foreach ($images_found as $file) {
         if (!is_file($source_image) || (empty($w) && empty($h))) {
           continue;
         }
+        if ($_debug) { echo "."; }
 
         $im = @getimagesize($source_image);
 
@@ -45,4 +48,6 @@ foreach ($images_found as $file) {
         $im->writeImage("{$target_dir}{$dimensions},{$image}");
         $im->destroy();
     }
+    $counter++;
 }
+if ($_debug) { echo "\n {$counter} images resized to these sizes: ".implode(', ', $_sizes)."\n"; }
