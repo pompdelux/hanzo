@@ -19,3 +19,23 @@ $_sizes = [
     'product_large' => '165x330',
     'product_small' => '38x75',
 ];
+
+function _dbug($msg, $auto_newline = true) {
+    global $argv;
+    static $dbug = null;
+
+    if (null === $dbug) {
+        $dbug = false;
+        if (isset($argv[1]) && in_array($argv[1], ['debug', '--debug'])) {
+            $dbug = true;
+        }
+    }
+
+    if ($dbug) {
+        if ($auto_newline) {
+            echo date('Y-m-d H:i:s :: ').$msg."\n";
+        } else {
+            echo $msg;
+        }
+    }
+}
