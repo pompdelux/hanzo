@@ -1,0 +1,10 @@
+cms:
+    frontpage: 89
+    twig:
+        left_menu:
+            type: main
+            from: 10
+        sub_menu:
+            type: sub
+            from: 400
+            offset: 482

@@ -1,0 +1,29 @@
+imports:
+    - { resource: ../../config.yml }
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+
+framework:
+    templating:
+        assets_base_urls:
+            http: [ %cdn% ]
+
+assetic:
+    filters:
+        uglifyjs:
+            bin: %uglifyjs_bin%
+            no_copyright: false
+            apply_to: "\.js$"
+varnish:
+    host: %varnish_host%
+    port: %varnish_port%
+    secret: %varnish_secret%
