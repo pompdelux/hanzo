@@ -14,7 +14,7 @@ if (empty($images_found)) {
     exit;
 }
 
-_dbug("resizing images: ", false);
+_dbug(date('Y-m-d H:i:s')." :: resizing images: ", false);
 $counter = 0;
 foreach ($images_found as $file) {
     $image = basename($file);
@@ -26,7 +26,7 @@ foreach ($images_found as $file) {
         if (!is_file($source_image) || (empty($w) && empty($h))) {
           continue;
         }
-        if ($_debug) { echo "."; }
+        _dbug('.', false);
 
         $im = @getimagesize($source_image);
 
@@ -50,4 +50,4 @@ foreach ($images_found as $file) {
     }
     $counter++;
 }
-if ($_debug) { echo "\n {$counter} images resized to these sizes: ".implode(', ', $_sizes)."\n"; }
+_dbug("{$counter} images resized to these sizes: ".implode(', ', $_sizes));
