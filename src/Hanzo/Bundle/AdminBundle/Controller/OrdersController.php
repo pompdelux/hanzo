@@ -286,9 +286,9 @@ class OrdersController extends CoreController
         ;
         if ($order_log) {
             $log_data = unserialize($order_log->getContent());
+            $order_log->delete($this->getDbConnection());
         }
 
-        $order_log->delete($this->getDbConnection());
         try {
             $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
 
