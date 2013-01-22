@@ -6,6 +6,10 @@ use Propel;
 use PropelConfiguration;
 use Hanzo\Core\Tools;
 
+use Hanzo\Model\Categories;
+use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\LanguagesQuery;
+
 use Hanzo\Model\ProductsImages;
 use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsImagesProductReferences;
@@ -32,6 +36,46 @@ class ReplicationService
         $this->settings = $settings;
 
         $this->mapReplicatedConnections();
+    }
+
+
+    /**
+     * Syncronize images across databases
+     */
+    public function syncCategories()
+    {
+        $categories = CategoriesQuery::create()
+          ->joinWithI18n('da_DK')
+          ->find()
+        ;
+
+        foreach ($this->replicated_connections as $name) {
+            $conn = $this->getConnection($name);
+
+            CategoriesQuery::create()
+                ->filterById(0, \Criteria::GREATER_THAN)
+                ->delete($conn);
+
+            $languages = LanguagesQuery::create()
+                ->filterByLocale('da_DK', \Criteria::NOT_EQUAL)
+                ->find($conn);
+
+            foreach ($categories as $category) {
+                $c = CategoriesQuery::create()
+                    ->filterById($category->getId())
+                    ->findOneOrCreate($conn)
+                ;
+                $c->setParentId($category->getParentId());
+                $c->setContext($category->getContext());
+                $c->setIsActive($category->getIsActive());
+                foreach ($languages as $language) {
+                    $c->setLocale($language->getLocale());
+                    $c->setTitle($category->getTitle());
+                    $c->setContent($category->getContent());
+                }
+                $c->save($conn);
+            }
+        }
     }
 
 

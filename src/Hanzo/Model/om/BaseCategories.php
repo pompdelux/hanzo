@@ -661,9 +661,6 @@ abstract class BaseCategories extends BaseObject implements Persistent
         $index = 0;
 
         $this->modifiedColumns[] = CategoriesPeer::ID;
-        if (null !== $this->id) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . CategoriesPeer::ID . ')');
-        }
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(CategoriesPeer::ID)) {
@@ -714,7 +711,9 @@ abstract class BaseCategories extends BaseObject implements Persistent
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', $e);
         }
-        $this->setId($pk);
+        if ($pk !== null) {
+            $this->setId($pk);
+        }
 
         $this->setNew(false);
     }

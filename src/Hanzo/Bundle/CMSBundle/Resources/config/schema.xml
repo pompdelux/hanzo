@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="default" namespace="Hanzo\Model" defaultIdMethod="native">
-  <table name="categories">
+  <table name="categories" allowPkInsert="true">
     <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
     <column name="parent_id" type="INTEGER"  defaultValue="NULL" />
     <column name="context" type="VARCHAR" size="32" defaultValue="" />

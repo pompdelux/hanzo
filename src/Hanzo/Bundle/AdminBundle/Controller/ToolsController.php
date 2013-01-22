@@ -16,6 +16,14 @@ class ToolsController extends CoreController
         return $this->render('AdminBundle:Tools:index.html.twig');
     }
 
+    public function syncCategoriesAction()
+    {
+        $this->get('replication_manager')->syncCategories();
+
+        $this->getRequest()->getSession()->setFlash('notice', 'Kategori synkronisering færdig..');
+        return $this->redirect($this->generateUrl('admin_tools'));
+    }
+
     public function syncImagesAction()
     {
         $this->get('replication_manager')->syncProductsImages();

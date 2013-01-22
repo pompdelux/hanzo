@@ -638,10 +638,6 @@ abstract class BaseCategoriesPeer
             $criteria = $values->buildCriteria(); // build Criteria from Categories object
         }
 
-        if ($criteria->containsKey(CategoriesPeer::ID) && $criteria->keyContainsValue(CategoriesPeer::ID) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.CategoriesPeer::ID.')');
-        }
-
 
         // Set the correct dbName
         $criteria->setDbName(CategoriesPeer::DATABASE_NAME);
