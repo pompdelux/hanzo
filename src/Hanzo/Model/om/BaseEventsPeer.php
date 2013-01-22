@@ -9,7 +9,6 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
-use Hanzo\Model\ConsultantsPeer;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Events;
 use Hanzo\Model\EventsParticipantsPeer;
@@ -549,7 +548,7 @@ abstract class BaseEventsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related Consultants table
+     * Returns the number of rows matching criteria, joining the related CustomersRelatedByConsultantsId table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -557,7 +556,7 @@ abstract class BaseEventsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinConsultants(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinCustomersRelatedByConsultantsId(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -584,7 +583,7 @@ abstract class BaseEventsPeer
             $con = Propel::getConnection(EventsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, ConsultantsPeer::ID, $join_behavior);
+        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doCount($criteria, $con);
 
@@ -600,7 +599,7 @@ abstract class BaseEventsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related Customers table
+     * Returns the number of rows matching criteria, joining the related CustomersRelatedByCustomersId table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -608,7 +607,7 @@ abstract class BaseEventsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinCustomers(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinCustomersRelatedByCustomersId(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -651,7 +650,7 @@ abstract class BaseEventsPeer
 
 
     /**
-     * Selects a collection of Events objects pre-filled with their Consultants objects.
+     * Selects a collection of Events objects pre-filled with their Customers objects.
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
@@ -659,7 +658,7 @@ abstract class BaseEventsPeer
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinConsultants(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinCustomersRelatedByConsultantsId(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
@@ -670,9 +669,9 @@ abstract class BaseEventsPeer
 
         EventsPeer::addSelectColumns($criteria);
         $startcol = EventsPeer::NUM_HYDRATE_COLUMNS;
-        ConsultantsPeer::addSelectColumns($criteria);
+        CustomersPeer::addSelectColumns($criteria);
 
-        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, ConsultantsPeer::ID, $join_behavior);
+        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
 
         $stmt = BasePeer::doSelect($criteria, $con);
         $results = array();
@@ -692,20 +691,20 @@ abstract class BaseEventsPeer
                 EventsPeer::addInstanceToPool($obj1, $key1);
             } // if $obj1 already loaded
 
-            $key2 = ConsultantsPeer::getPrimaryKeyHashFromRow($row, $startcol);
+            $key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol);
             if ($key2 !== null) {
-                $obj2 = ConsultantsPeer::getInstanceFromPool($key2);
+                $obj2 = CustomersPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
-                    $cls = ConsultantsPeer::getOMClass();
+                    $cls = CustomersPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol);
-                    ConsultantsPeer::addInstanceToPool($obj2, $key2);
+                    CustomersPeer::addInstanceToPool($obj2, $key2);
                 } // if obj2 already loaded
 
-                // Add the $obj1 (Events) to $obj2 (Consultants)
-                $obj2->addEvents($obj1);
+                // Add the $obj1 (Events) to $obj2 (Customers)
+                $obj2->addEventsRelatedByConsultantsId($obj1);
 
             } // if joined row was not null
 
@@ -726,7 +725,7 @@ abstract class BaseEventsPeer
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinCustomers(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinCustomersRelatedByCustomersId(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
@@ -772,7 +771,7 @@ abstract class BaseEventsPeer
                 } // if obj2 already loaded
 
                 // Add the $obj1 (Events) to $obj2 (Customers)
-                $obj2->addEvents($obj1);
+                $obj2->addEventsRelatedByCustomersId($obj1);
 
             } // if joined row was not null
 
@@ -820,7 +819,7 @@ abstract class BaseEventsPeer
             $con = Propel::getConnection(EventsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, ConsultantsPeer::ID, $join_behavior);
+        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
 
         $criteria->addJoin(EventsPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
 
@@ -858,13 +857,13 @@ abstract class BaseEventsPeer
         EventsPeer::addSelectColumns($criteria);
         $startcol2 = EventsPeer::NUM_HYDRATE_COLUMNS;
 
-        ConsultantsPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + ConsultantsPeer::NUM_HYDRATE_COLUMNS;
+        CustomersPeer::addSelectColumns($criteria);
+        $startcol3 = $startcol2 + CustomersPeer::NUM_HYDRATE_COLUMNS;
 
         CustomersPeer::addSelectColumns($criteria);
         $startcol4 = $startcol3 + CustomersPeer::NUM_HYDRATE_COLUMNS;
 
-        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, ConsultantsPeer::ID, $join_behavior);
+        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, CustomersPeer::ID, $join_behavior);
 
         $criteria->addJoin(EventsPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
 
@@ -885,22 +884,22 @@ abstract class BaseEventsPeer
                 EventsPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
 
-            // Add objects for joined Consultants rows
+            // Add objects for joined Customers rows
 
-            $key2 = ConsultantsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+            $key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol2);
             if ($key2 !== null) {
-                $obj2 = ConsultantsPeer::getInstanceFromPool($key2);
+                $obj2 = CustomersPeer::getInstanceFromPool($key2);
                 if (!$obj2) {
 
-                    $cls = ConsultantsPeer::getOMClass();
+                    $cls = CustomersPeer::getOMClass();
 
                     $obj2 = new $cls();
                     $obj2->hydrate($row, $startcol2);
-                    ConsultantsPeer::addInstanceToPool($obj2, $key2);
+                    CustomersPeer::addInstanceToPool($obj2, $key2);
                 } // if obj2 loaded
 
-                // Add the $obj1 (Events) to the collection in $obj2 (Consultants)
-                $obj2->addEvents($obj1);
+                // Add the $obj1 (Events) to the collection in $obj2 (Customers)
+                $obj2->addEventsRelatedByConsultantsId($obj1);
             } // if joined row not null
 
             // Add objects for joined Customers rows
@@ -918,7 +917,7 @@ abstract class BaseEventsPeer
                 } // if obj3 loaded
 
                 // Add the $obj1 (Events) to the collection in $obj3 (Customers)
-                $obj3->addEvents($obj1);
+                $obj3->addEventsRelatedByCustomersId($obj1);
             } // if joined row not null
 
             $results[] = $obj1;
@@ -930,7 +929,7 @@ abstract class BaseEventsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related Consultants table
+     * Returns the number of rows matching criteria, joining the related CustomersRelatedByConsultantsId table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -938,7 +937,7 @@ abstract class BaseEventsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinAllExceptConsultants(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinAllExceptCustomersRelatedByConsultantsId(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -965,8 +964,6 @@ abstract class BaseEventsPeer
             $con = Propel::getConnection(EventsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(EventsPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
-
         $stmt = BasePeer::doCount($criteria, $con);
 
         if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -981,7 +978,7 @@ abstract class BaseEventsPeer
 
 
     /**
-     * Returns the number of rows matching criteria, joining the related Customers table
+     * Returns the number of rows matching criteria, joining the related CustomersRelatedByCustomersId table
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -989,7 +986,7 @@ abstract class BaseEventsPeer
      * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
      * @return int Number of matching rows.
      */
-    public static function doCountJoinAllExceptCustomers(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doCountJoinAllExceptCustomersRelatedByCustomersId(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         // we're going to modify criteria, so copy it first
         $criteria = clone $criteria;
@@ -1016,8 +1013,6 @@ abstract class BaseEventsPeer
             $con = Propel::getConnection(EventsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
         }
 
-        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, ConsultantsPeer::ID, $join_behavior);
-
         $stmt = BasePeer::doCount($criteria, $con);
 
         if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -1032,7 +1027,7 @@ abstract class BaseEventsPeer
 
 
     /**
-     * Selects a collection of Events objects pre-filled with all related objects except Consultants.
+     * Selects a collection of Events objects pre-filled with all related objects except CustomersRelatedByConsultantsId.
      *
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
@@ -1041,7 +1036,7 @@ abstract class BaseEventsPeer
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinAllExceptConsultants(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinAllExceptCustomersRelatedByConsultantsId(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
@@ -1054,11 +1049,6 @@ abstract class BaseEventsPeer
 
         EventsPeer::addSelectColumns($criteria);
         $startcol2 = EventsPeer::NUM_HYDRATE_COLUMNS;
-
-        CustomersPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + CustomersPeer::NUM_HYDRATE_COLUMNS;
-
-        $criteria->addJoin(EventsPeer::CUSTOMERS_ID, CustomersPeer::ID, $join_behavior);
 
 
         $stmt = BasePeer::doSelect($criteria, $con);
@@ -1077,25 +1067,6 @@ abstract class BaseEventsPeer
                 $obj1->hydrate($row);
                 EventsPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
-
-                // Add objects for joined Customers rows
-
-                $key2 = CustomersPeer::getPrimaryKeyHashFromRow($row, $startcol2);
-                if ($key2 !== null) {
-                    $obj2 = CustomersPeer::getInstanceFromPool($key2);
-                    if (!$obj2) {
-
-                        $cls = CustomersPeer::getOMClass();
-
-                    $obj2 = new $cls();
-                    $obj2->hydrate($row, $startcol2);
-                    CustomersPeer::addInstanceToPool($obj2, $key2);
-                } // if $obj2 already loaded
-
-                // Add the $obj1 (Events) to the collection in $obj2 (Customers)
-                $obj2->addEvents($obj1);
-
-            } // if joined row is not null
 
             $results[] = $obj1;
         }
@@ -1106,7 +1077,7 @@ abstract class BaseEventsPeer
 
 
     /**
-     * Selects a collection of Events objects pre-filled with all related objects except Customers.
+     * Selects a collection of Events objects pre-filled with all related objects except CustomersRelatedByCustomersId.
      *
      * @param      Criteria  $criteria
      * @param      PropelPDO $con
@@ -1115,7 +1086,7 @@ abstract class BaseEventsPeer
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinAllExceptCustomers(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+    public static function doSelectJoinAllExceptCustomersRelatedByCustomersId(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
     {
         $criteria = clone $criteria;
 
@@ -1128,11 +1099,6 @@ abstract class BaseEventsPeer
 
         EventsPeer::addSelectColumns($criteria);
         $startcol2 = EventsPeer::NUM_HYDRATE_COLUMNS;
-
-        ConsultantsPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + ConsultantsPeer::NUM_HYDRATE_COLUMNS;
-
-        $criteria->addJoin(EventsPeer::CONSULTANTS_ID, ConsultantsPeer::ID, $join_behavior);
 
 
         $stmt = BasePeer::doSelect($criteria, $con);
@@ -1151,25 +1117,6 @@ abstract class BaseEventsPeer
                 $obj1->hydrate($row);
                 EventsPeer::addInstanceToPool($obj1, $key1);
             } // if obj1 already loaded
-
-                // Add objects for joined Consultants rows
-
-                $key2 = ConsultantsPeer::getPrimaryKeyHashFromRow($row, $startcol2);
-                if ($key2 !== null) {
-                    $obj2 = ConsultantsPeer::getInstanceFromPool($key2);
-                    if (!$obj2) {
-
-                        $cls = ConsultantsPeer::getOMClass();
-
-                    $obj2 = new $cls();
-                    $obj2->hydrate($row, $startcol2);
-                    ConsultantsPeer::addInstanceToPool($obj2, $key2);
-                } // if $obj2 already loaded
-
-                // Add the $obj1 (Events) to the collection in $obj2 (Consultants)
-                $obj2->addEvents($obj1);
-
-            } // if joined row is not null
 
             $results[] = $obj1;
         }
