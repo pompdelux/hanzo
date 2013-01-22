@@ -30,7 +30,7 @@ foreach ($images_found as $file) {
 
     // skip unchanged files
     if (($srcmd5 === $tgdmd5) || (false !== strpos($image, '('))) {
-        continue;
+//        continue;
     }
 
     $images[$image] = $image;
@@ -155,6 +155,7 @@ foreach ($_databases as $key => $conn) {
             // loop images into db
             foreach($images as $image) {
                 @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+                $index = (int) $index;
 
                 $select_stm->execute(array(
                     ':products_id' => $products_id,
@@ -179,23 +180,25 @@ foreach ($_databases as $key => $conn) {
                 }
 
                 // add image to "products_images_to_categories"
-                foreach ($product_categories_ids[$products_id] as $category_id) {
-                    $category_select_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
+                if (1 === $index) {
+                    foreach ($product_categories_ids[$products_id] as $category_id) {
+                        $category_select_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
 
-                    // skip existing
-                    if (0 < $category_select_stm->fetchColumn()) {
-                        continue;
+                        // skip existing
+                        if (0 < $category_select_stm->fetchColumn()) {
+                            continue;
+                        }
+
+                        $category_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
                     }
-
-                    $category_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
                 }
             }
         }
@@ -210,6 +213,7 @@ foreach ($_databases as $key => $conn) {
                 }
 
                 @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+                $index = (int) $index;
 
                 $image_id = $image2id[$image];
 
@@ -228,25 +232,26 @@ foreach ($_databases as $key => $conn) {
                     ));
                 }
 
-
                 // add image to "products_images_to_categories"
-                foreach ($product_categories_ids[$products_id] as $category_id) {
-                    $category_select_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
+                if (1 === $index) {
+                    foreach ($product_categories_ids[$products_id] as $category_id) {
+                        $category_select_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
 
-                    // skip existing
-                    if (0 < $category_select_stm->fetchColumn()) {
-                        continue;
+                        // skip existing
+                        if (0 < $category_select_stm->fetchColumn()) {
+                            continue;
+                        }
+
+                        $category_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
                     }
-
-                    $category_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
                 }
             }
         }
@@ -329,4 +334,4 @@ if (count($failed)) {
 
 // rescale all images
 require __DIR__ . '/scaleProductImages.php';
-_dbug("\n- done");
+_dbug("- done");
