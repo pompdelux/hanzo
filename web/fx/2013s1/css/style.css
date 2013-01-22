@@ -1491,7 +1491,7 @@ form label {
   display: inline-block;
   width: 90%;
 }
-form.full-width input[type="text"], form.full-width input[type="email"], form.full-width input[type="date"], form.full-width input[type="password"] {
+form.full-width input[type="text"], form.full-width input[type="email"], form.full-width input[type="date"], form.full-width input[type="datetime"], form.full-width input[type="password"] {
   width: 97%;
 }
 form.full-width textarea {
@@ -1504,13 +1504,11 @@ form textarea {
   padding: 6px 5px;
   color: #444444;
 }
-form input[type="text"], form input[type="email"], form input[type="date"], form input[type="datetime"], form input[type="password"],
-form textarea[type="text"],
-form textarea[type="email"],
-form textarea[type="date"],
-form textarea[type="datetime"],
-form textarea[type="password"] {
+form input[type="text"], form input[type="email"], form input[type="date"], form input[type="datetime"], form input[type="password"] {
   font-family: "Merriweather", serif;
+}
+form input[type="text"].inline, form input[type="email"].inline, form input[type="date"].inline, form input[type="datetime"].inline, form input[type="password"].inline {
+  width: auto;
 }
 form input.error {
   border-color: red;
