@@ -314,8 +314,8 @@
         // pop "please be patient" notice
         window.setTimeout(function() {
           dialoug.blockingNotice(
-            ExposeTranslation.get('js:checkout.payment.progress.alert.title'),
-            ExposeTranslation.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
+            Translator.get('js:checkout.payment.progress.alert.title'),
+            Translator.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
           );
         }, 3000);
       }

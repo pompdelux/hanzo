@@ -551,7 +551,6 @@ class EventsController extends CoreController
         $form = null;
 
         if ($event instanceof Events) {
-            $consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
             $events_participant = new EventsParticipants();
 
             $form = $this->createFormBuilder($events_participant)
@@ -622,9 +621,7 @@ class EventsController extends CoreController
                             'city'             => $event->getCity(),
                             'email'            => $event->getEmail(),
                             'phone'            => $event->getPhone(),
-                            'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
-                            'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                            'consultant_email' => $consultant->getCustomers()->getEmail()
+                            'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true)
                         ));
 
                         $mailer->setTo(
@@ -774,8 +771,6 @@ class EventsController extends CoreController
             $event = EventsQuery::create()
                 ->findOneById($friend->getEventsId())
             ;
-
-            $consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
             $events_participant = new EventsParticipants();
 
             $form = $this->createFormBuilder($events_participant)
@@ -828,8 +823,8 @@ class EventsController extends CoreController
                             'email'            => $event->getEmail(),
                             'phone'            => $event->getPhone(),
                             'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
-                            'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                            'consultant_email' => $consultant->getCustomers()->getEmail()
+                            'consultant_name'  => $event->getCustomersRelatedByConsultantsId()->getFirstName(). ' ' .$event->getCustomersRelatedByConsultantsId()->getLastName(),
+                            'consultant_email' => $event->getCustomersRelatedByConsultantsId()->getEmail()
                         ));
 
                         $mailer->setTo(
@@ -955,10 +950,7 @@ class EventsController extends CoreController
     {
         $customer = CustomersPeer::getCurrent();
         $events = EventsQuery::create()
-            ->useConsultantsQuery()
-                ->joinCustomers()
-            ->endUse()
-            ->joinConsultants()
+            ->joinCustomersRelatedByConsultantsId()
             ->filterByEventDate(array('min' => date('Y-m-d H:i:s')))
             ->filterByCustomersId($customer->getId())
             ->orderByEventDate()
@@ -1011,7 +1003,7 @@ class EventsController extends CoreController
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
 
-            $form = $myEvents[$request->request->get('form')['event_id']]['form'];
+            $form = $myEvents[$request->request->get('form')['event_id']]['form']; // Get the correct form instance for the given event. The eventid is sent with a hidden field
             $form->bindRequest($request);
 
             if ($form->isValid()) {
@@ -1053,8 +1045,8 @@ class EventsController extends CoreController
                         'email'            => $event->getEmail(),
                         'phone'            => $event->getPhone(),
                         'link'             => $this->generateUrl('events_rsvp', array('key' => $events_participant->getKey()), true),
-                        'consultant_name'  => $myEvents[$data['event_id']]['data']->getCustomers()->getFirstName(). ' ' .$myEvents[$data['event_id']]['data']->getCustomers()->getLastName(),
-                        'consultant_email' => $myEvents[$data['event_id']]['data']->getCustomers()->getEmail()
+                        'consultant_name'  => $myEvents[$data['event_id']]['data']->getCustomersRelatedByConsultantsId()->getFirstName(). ' ' .$myEvents[$data['event_id']]['data']->getCustomersRelatedByConsultantsId()->getLastName(),
+                        'consultant_email' => $myEvents[$data['event_id']]['data']->getCustomersRelatedByConsultantsId()->getEmail()
                     ));
 
                     $mailer->setTo(

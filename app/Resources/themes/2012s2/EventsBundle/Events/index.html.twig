@@ -15,7 +15,7 @@
       <div style="display:none;">
         <ul id="archived-events">
           {% for archived_event in archived_events %}
-          <li><a href="{{ path('events_view' , {'id' : archived_event.id }) }}">( {{ archived_event.eventdate|date("d/m-Y")}} ) - {{ archived_event.host }} - {{ archived_event.code }}</a></li> 
+          <li><a href="{{ path('events_view' , {'id' : archived_event.id }) }}">( {{ archived_event.eventdate|date("d/m-Y")}} ) - {{ archived_event.host }} - {{ archived_event.code }}</a></li>
           {% endfor %}
         </ul>
       </div>
@@ -46,30 +46,30 @@
   		events: base_url+ 'events/getevents',
   		timeFormat: 'H:mm',
   		monthNames: [
-	  		ExposeTranslation.get('js:month.Januar'),
-	  		ExposeTranslation.get('js:month.February'),
-	  		ExposeTranslation.get('js:month.March'),
-	  		ExposeTranslation.get('js:month.April'),
-	  		ExposeTranslation.get('js:month.May'),
-	  		ExposeTranslation.get('js:month.June'),
-	  		ExposeTranslation.get('js:month.July'),
-	  		ExposeTranslation.get('js:month.August'),
-	  		ExposeTranslation.get('js:month.September'),
-	  		ExposeTranslation.get('js:month.October'),
-	  		ExposeTranslation.get('js:month.November'),
-	  		ExposeTranslation.get('js:month.December')
+	  		Translator.get('js:month.Januar'),
+	  		Translator.get('js:month.February'),
+	  		Translator.get('js:month.March'),
+	  		Translator.get('js:month.April'),
+	  		Translator.get('js:month.May'),
+	  		Translator.get('js:month.June'),
+	  		Translator.get('js:month.July'),
+	  		Translator.get('js:month.August'),
+	  		Translator.get('js:month.September'),
+	  		Translator.get('js:month.October'),
+	  		Translator.get('js:month.November'),
+	  		Translator.get('js:month.December')
   		],
   		dayNamesShort: [
-	  		ExposeTranslation.get('js:day.short.Sun'),
-	  		ExposeTranslation.get('js:day.short.Mon'),
-	  		ExposeTranslation.get('js:day.short.Tue'),
-	  		ExposeTranslation.get('js:day.short.Wed'),
-	  		ExposeTranslation.get('js:day.short.Thu'),
-	  		ExposeTranslation.get('js:day.short.Fri'),
-	  		ExposeTranslation.get('js:day.short.Sat')
+	  		Translator.get('js:day.short.Sun'),
+	  		Translator.get('js:day.short.Mon'),
+	  		Translator.get('js:day.short.Tue'),
+	  		Translator.get('js:day.short.Wed'),
+	  		Translator.get('js:day.short.Thu'),
+	  		Translator.get('js:day.short.Fri'),
+	  		Translator.get('js:day.short.Sat')
   		],
   		buttonText: {
-    		today:    ExposeTranslation.get('js:today'),
+    		today:    Translator.get('js:today'),
   		}
   	});
   });

@@ -66,10 +66,10 @@ class DefaultController extends CoreController
 
             $line['basket_image'] =
                 preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
-                '_basket_' .
-                preg_replace('/[^a-z0-9]/i', '', $line['products_color']) .
-                '.jpg'
-                ;
+                '_' .
+                preg_replace('/[^a-z0-9]/i', '-', $line['products_color']) .
+                '_set_01.jpg'
+            ;
 
             $master = ProductsQuery::create()->findOneBySku($line['products_name']);
             $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));

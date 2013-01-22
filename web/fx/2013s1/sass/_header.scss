@@ -27,9 +27,16 @@ ul.menu,
 		background: white;
 		@include shadow;
 		padding: 9px;
+		max-height: 400px;
+		overflow-y: auto;
+		overflow-x: hidden;
 	}
 	&.right{
 		text-align: right;
+		.dropdown{
+			left: auto;
+			right: 0;
+		}
 	}
 }
 ul.sub-menu,
@@ -165,4 +172,8 @@ ul.breadcrumb {
 .category-17 .main header{ // Specific for one category
 	background: #d2c3c6;
 	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
+}
+
+#logo {
+	margin-top: 6px;
 }

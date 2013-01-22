@@ -57,7 +57,6 @@ class ConsultantsTableMap extends TableMap
     public function buildRelations()
     {
         $this->addRelation('Customers', 'Hanzo\\Model\\Customers', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
-        $this->addRelation('Events', 'Hanzo\\Model\\Events', RelationMap::ONE_TO_MANY, array('id' => 'consultants_id', ), null, null, 'Eventss');
     } // buildRelations()
 
 } // ConsultantsTableMap
