@@ -156,6 +156,12 @@ ul.menu.right,
 .menu > ul.right {
   text-align: right;
 }
+nav > ul.right .dropdown,
+ul.menu.right .dropdown,
+.menu > ul.right .dropdown {
+  left: auto;
+  right: 0;
+}
 
 ul.sub-menu,
 .sub-menu > ul {

@@ -33,6 +33,10 @@ ul.menu,
 	}
 	&.right{
 		text-align: right;
+		.dropdown{
+			left: auto;
+			right: 0;
+		}
 	}
 }
 ul.sub-menu,
