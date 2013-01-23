@@ -1,4 +1,0 @@
-framework:
-    default_locale: sv_SE
-    session:
-        cookie_path: '/sv_SE'

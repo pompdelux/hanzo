@@ -1,4 +1,0 @@
-framework:
-    default_locale: nl_NL
-    session:
-        cookie_path: '/nl_NL'

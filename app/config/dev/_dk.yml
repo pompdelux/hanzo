@@ -1,5 +1,0 @@
-framework:
-    default_locale: da_DK
-    session:
-        cookie_path: '/da_DK'
-

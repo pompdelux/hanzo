@@ -121,7 +121,6 @@ class AppKernel extends Kernel
             }
         }
 
-        //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
         $twig->addGlobal('store_mode', $store_mode);
         $twig->addExtension(new Twig_Extension_Optimizer());
 
@@ -133,10 +132,10 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        list($dir, $lang,) = explode('_', $this->getEnvironment());
+        list($env, $lang,) = explode('_', $this->getEnvironment());
 
         $base_dir = __DIR__.'/config/';
-        $config_dir = $base_dir.$dir.'/';
+        $config_dir = $base_dir.'/env/'.$env.'/';
 
         $mode = $this->getStoreMode();
 
