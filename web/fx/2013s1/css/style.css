@@ -145,7 +145,7 @@ ul.menu .dropdown,
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #F0F0F0 1px solid;
+  border: #f0f0f0 1px solid;
   padding: 9px;
   max-height: 400px;
   overflow-y: auto;
@@ -179,8 +179,8 @@ ul.sub-menu li,
 }
 ul.sub-menu li.heading span,
 .sub-menu > ul li.heading span {
-  border-bottom: 1px solid #000;
-  border-top: 1px solid #000;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   display: block;
   line-height: 18px;
   padding: 3px 0 3px 6px;
@@ -369,12 +369,12 @@ footer .copy a {
 */
 .bordered,
 .bordered-bottom {
-  border-bottom: 1px solid #888;
+  border-bottom: 1px solid #888888;
 }
 
 .bordered,
 .bordered-top {
-  border-top: 1px solid #888;
+  border-top: 1px solid #888888;
   margin-top: 6px;
 }
 
@@ -500,7 +500,7 @@ latest-seen-poducts a:hover img,
 .productimage-small a:hover img,
 .style-guide a:hover img {
   padding: 0px;
-  border: 1px solid #888;
+  border: 1px solid #888888;
 }
 latest-seen-poducts a.buy-set,
 .productimage-small a.buy-set,
@@ -665,7 +665,7 @@ form.create label.required:after {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #F0F0F0 1px solid;
+  border: #f0f0f0 1px solid;
   clear: both;
 }
 
@@ -689,7 +689,7 @@ form.address label {
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid #f00;
+  border: 2px solid red;
   clear: both;
 }
 
@@ -700,7 +700,7 @@ form.address label {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #F0F0F0 1px solid;
+  border: #f0f0f0 1px solid;
 }
 
 .payment-methods label {
@@ -717,14 +717,14 @@ form.address label {
   padding-left: 26px;
   background-color: #CCC;
   padding-top: 9px;
-  border: 1px solid #7B7577;
+  border: 1px solid #7b7577;
 }
 
 #coupon-block form {
   overflow: hidden;
   padding: 20px;
   margin: 10px;
-  border: 1px solid #7B7577;
+  border: 1px solid #7b7577;
 }
 #coupon-block form div.clearfix {
   float: left;
@@ -748,7 +748,7 @@ form.address label {
 .basket table.edit-element tbody tr,
 #cart-edit-element table.product-table tbody tr,
 #cart-edit-element table.edit-element tbody tr {
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #444444;
 }
 .basket table.product-table tfoot,
 .basket table.edit-element tfoot,
@@ -800,7 +800,7 @@ form.address label {
 }
 
 #cart-edit-element {
-  border: 5px solid #000;
+  border: 5px solid black;
   position: absolute;
   z-index: 9999;
   -webkit-border-radius: 5px;
@@ -891,7 +891,7 @@ nav.main-menu > ul > li > ul.on {
   padding: 3px;
 }
 .inject-notice-box .inner {
-  border: 1px solid #000;
+  border: 1px solid black;
   padding: 6px;
   color: #444444;
 }
@@ -915,7 +915,7 @@ nav.main-menu > ul > li > ul.on {
 }
 
 #dialoug-message {
-  border: 2px solid #D3C2A2;
+  border: 2px solid #d3c2a2;
   color: #231f20;
   margin: 10px 0;
   display: none;
@@ -987,7 +987,7 @@ nav.main-menu > ul > li > ul.on {
 }
 
 .tx-irfaq-pi1 dd div {
-  border-top: 1px solid #4B3A47;
+  border-top: 1px solid #4b3a47;
   margin-top: 10px;
 }
 
@@ -1122,7 +1122,7 @@ div.dialoug.like-pop ul {
   padding: 0;
 }
 div.dialoug.like-pop li {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #cccccc;
   padding-top: 20px;
 }
 div.dialoug.like-pop li.like {
@@ -1272,9 +1272,6 @@ div.dialoug.like-pop li div {
 #quickorder form input, #quickorder form select {
   margin-right: 5px;
 }
-#quickorder form input:focus, #quickorder form select:focus {
-  border: 2px solid white;
-}
 #quickorder .ui-autocomplete {
   list-style-type: none;
   padding: 0px 5px;
@@ -1300,7 +1297,7 @@ div.dialoug.like-pop li div {
   margin: 1px 0 0;
   list-style: none;
   background-color: #ffffff;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   *border-right-width: 2px;
   *border-bottom-width: 2px;
@@ -1703,7 +1700,7 @@ button.right {
 }
 
 .msg, .message {
-  border: 2px solid #000;
+  border: 2px solid black;
   background-color: #fff;
   color: #231f20;
   padding: 0.5em;
@@ -1722,7 +1719,7 @@ button.right {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #F0F0F0 1px solid;
+  border: #f0f0f0 1px solid;
 }
 
 .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {

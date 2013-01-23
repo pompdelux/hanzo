@@ -51,7 +51,7 @@ var wall = (function($) {
   };
 
   function getWallPosts() {
-  if (false == jQuery.data(document.body, 'locked')) {
+  if (false === jQuery.data(document.body, 'locked')) {
     jQuery.data(document.body, 'locked', true);
     var pager = jQuery.data(document.body, 'page');
     $('#wall-posts').append('<div class="wall-loading-data"><span>Henter...</span> <img src="'+cdn_url+'fx/images/wall/ajax-loader-large.gif" alt="" /></div>');
@@ -141,7 +141,6 @@ $(function() {
 
   $('textarea.grow').simpleautogrow();
   $('textarea.grow:hidden').css({top : "-2000px", left : "-2000px"});
-  $('#wall-entry-form textarea').focus();
 
   $('div.wall-post a[rel="wall-comment"]').live('click', function(e){
     e.preventDefault();
