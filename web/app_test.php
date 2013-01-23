@@ -14,12 +14,12 @@ if (in_array($ext, $ignore) && !$isnewsletter) {
     exit;
 }
 
-require_once __DIR__.'/../app/bootstrap.php.cache';
-require_once __DIR__.'/../app/AppKernel.php';
-require_once __DIR__.'/../app/AppCache.php';
-
+use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\Tools;
+
+$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+Tools::handleRobots();
 
 // temporary redirects because of switch from cc-tld to .com. Remove when all old links are updated
 $tdl = explode('.', $_SERVER['HTTP_HOST']);
@@ -37,35 +37,35 @@ switch (array_pop($tdl)) {
     case 'nl':
         $lang = '/nl_NL/';
         break;
+    case 'fi':
+        $lang = '/fi_FI/';
+        break;
     case 'com':
-        if (!preg_match('/(da_DK|nb_NO|sv_SE|nl_NL|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
+        if (!preg_match('/(da_DK|nb_NO|sv_SE|nl_NL|fi_FI|en_GB)/', $_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')) {
           $lang = '/en_GB/';
         }
         break;
 }
 
 if ($lang) {
-  if (isset($_SERVER['HTTP_REFERER'])) {
-    $referer = $_SERVER['HTTP_REFERER'];
-  }
-  else {
-    $referer = "NOT SET";
-  }
-  // log to figure out when we can remove the redirects
   error_log(__LINE__.':'.__FILE__.' NOTICE: Doing redirect. From: http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"].' To: '.$goto.' Referer: '.$referer);
-  $goto = 'http://www.testpompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
+  $goto = 'http://www.pompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
   header('Location: '.$goto , true, 301);
   exit;
 }
 
 $env = Tools::mapDomainToEnvironment();
 
+require_once __DIR__.'/../app/AppKernel.php';
+require_once __DIR__.'/../app/AppCache.php';
+
 $kernel = new AppKernel('test_'.$env, false);
 $kernel->loadClassCache();
 $kernel = new AppCache($kernel);
-$handle = $kernel->handle(Request::createFromGlobals());
 
-header('X-hanzo-t: ' . (microtime(1) - $ts));
-header('X-hanzo-m: ' . $kernel->getKernel()->humanReadableSize(memory_get_peak_usage()));
-
-$kernel->getKernel()->terminate($handle);
+$request = Request::createFromGlobals();
+$response = $kernel->handle($request);
+$response->headers->set('X-hanzo-t', (microtime(1) - $ts));
+$response->headers->set('X-hanzo-m', $kernel->humanReadableSize(memory_get_peak_usage()));
+$response->send();
+$kernel->terminate($request, $response);
