@@ -269,7 +269,7 @@
 
         var id = $('input#master').val().replace(/[^a-z0-9]+/gi, '');
 
-        if (-1 === data.keys.indexOf(id)) {
+        if (-1 === $.inArray(id)) {
           data.images.push({
             title : $('h1').text(),
             url   : document.location.href,
@@ -291,7 +291,7 @@
         });
 
         // fallback option, hide container if empty
-        if (0 == data.keys.length) {
+        if (0 === data.keys.length) {
           $('.latest-seen-poducts').hide();
         }
       }
