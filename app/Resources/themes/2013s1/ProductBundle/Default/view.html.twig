@@ -19,24 +19,24 @@
   <div class="grid_4 alpha omega align-right row">
     {% include 'CMSBundle:Social:share.html.twig' with {
       'url': app.request.uri,
-      'image': product_image_url(product.main_image.name, '0x715'),
+      'image': product_image_url(product.main_image.name, '0x1670'),
       'description': product.title }
     %}
   </div>
 
   <div class="productimages">
     <div class="productimage-large grid_4 alpha omega align-center">
-      <a href="{{ product_image_url(product.main_image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '38x75') }}" data-color="{{ product.main_image.color }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="color-{{ product.main_image.color}} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
+      <a href="{{ product_image_url(product.main_image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" data-color="{{ product.main_image.color }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="color-{{ product.main_image.color}} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
         {{ product_image_tag(
             product.main_image.name,
-            '165x330'
+            '234x410'
           )
         }}
       </a>
     </div>
     <div class="grid_4 alpha omega">
       <div class="grid_1 alpha vert-align-middle">
-        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '38x75') }}" class="picture-zoom zoom">
+        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
           <div class="sprite sprite-block centerfy"></div>
           {{ 'click.to.zoom'|trans }}
         </a>
@@ -63,10 +63,10 @@
     <div class="productimage-small grid_4 alpha omega bordered-top">
       <h4>{{ 'product.pictures.title'|trans }}</h4>
     {% for image in product.images %}
-      <a href="{{ product_image_url(image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '165x330') }}" class="color-{{ image.color }} number-{{ image.number }} type-{{ image.type }}" data-number="{{ image.number }}" data-color="{{ image.color }}" data-type="{{ image.type }}">
+      <a href="{{ product_image_url(image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '234x410') }}" class="color-{{ image.color }} number-{{ image.number }} type-{{ image.type }}" data-number="{{ image.number }}" data-color="{{ image.color }}" data-type="{{ image.type }}">
         {{ product_image_tag(
             image.name,
-            '38x75'
+            '114x200'
           )
         }}
       </a>
@@ -82,7 +82,7 @@
     {% for id, references in references %}
       <div class="element image-id-{{ id }}">
       {% for item in references.references %}
-        <a href="{{ item.url }}" title="{{ item.image }}">{{ product_image_tag(item.image, '38x75') }}</a>
+        <a href="{{ item.url }}" title="{{ item.image }}">{{ product_image_tag(item.image, '114x200') }}</a>
       {% endfor %}
       <a href="{{ path('product_set', {'image_id': id}) }}" class="buy-set">» {{ 'buy.set'|trans }}</a>
       </div>
