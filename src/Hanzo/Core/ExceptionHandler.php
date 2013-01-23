@@ -11,6 +11,7 @@ namespace Hanzo\Core;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -87,7 +88,7 @@ class ExceptionHandler
                 }
             }
 
-        } elseif ($exception instanceof RouteNotFoundException) {
+        } elseif (($exception instanceof RouteNotFoundException) || ($exception instanceof ResourceNotFoundException)) {
             Tools::log($exception->getMessage() . ' :: ' . $request->getPathInfo());
 
             $response = new Response($this->service_container->get('templating')->render('TwigBundle:Exception:error404.html.twig', array(
