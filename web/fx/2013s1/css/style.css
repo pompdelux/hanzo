@@ -899,15 +899,13 @@ nav.main-menu > ul > li > ul.on {
 
 .slide-notice-box {
   position: absolute;
-  top: 77px;
+  top: 63px;
   right: 0;
-  padding: 6px;
+  padding: 8px 8px 19px 8px;
   text-align: center;
-  background-color: whiteSmoke;
-  -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
-  -moz-box-shadow: #c9c9c9 -1px 1px 2px;
-  box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  overflow: hidden;
+  background: white url("/fx/images/icons/icons/divider_left.png") no-repeat;
+  background-position: 0 25px;
 }
 
 #cboxContent .dialoug .buttons {
