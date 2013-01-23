@@ -8,7 +8,7 @@ var dialoug = (function($) {
   var templates = {
     'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
     'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">%ok%</a><a class="button left dialoug-confirm" data-case="cancel" href="">%cancel%</a></div></div>',
-    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>',
+    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>'
   };
 
 
@@ -154,6 +154,12 @@ var dialoug = (function($) {
     }
   };
 
+  /**
+   * popup notice with no way of closing
+   *
+   * @param  string title   title of the message
+   * @param  string message the message
+   */
   pub.blockingNotice = function(title, message) {
     $.colorbox({
       'top' : '25%',
@@ -167,6 +173,7 @@ var dialoug = (function($) {
                        .replace('%type%', 'notice')
     });
   };
+
 
   /**
    * Slide in notification
@@ -188,78 +195,35 @@ var dialoug = (function($) {
        selector = $('body');
     }
 
-    selector.prepend('<div id="slide-notice-box" class="slide-notice-box">' + message + '</div>');
+    $('body').append('<div id="slide-notice-box" class="slide-notice-box"><div>' + message + '</div></div>');
     var $slide = $('#slide-notice-box');
+    var $basket =$('li#mini-basket.basket');
+
+    var offset = $basket.offset();
     var slideWidth = $slide.outerWidth();
-    var docWidth = selector.width();
+
+    $('html,body').animate({ scrollTop : 0 });
+
+    $('div', $slide).css({
+      width : $slide.innerWidth()
+    });
 
     $slide.css({
-      left: docWidth + 'px',
-      width: slideWidth
+      left: (offset.left - 7),
+      width: 0
     });
 
     $slide.animate({
-      left: '-=' + (slideWidth + 10) + 'px'
-    }, {
-      complete: function() {
-        sleep(duration);
-        $slide.animate({
-          left: docWidth
-        }, {
-          complete: function() {
-            $slide.remove();
-          }
-        });
-      }
+      width: (slideWidth),
+      left: (offset.left - (slideWidth + 7))
+    }).delay(duration).animate({
+      left: offset.left,
+      width: 0
+    }, function() {
+      $slide.remove();
     });
   };
 
-  /**
-   * Inject an notification
-   *
-   * @param string message
-   * @param int duration
-   * @param string selector
-   * @param position string, how to insert the element, currently the followint is supported:
-   *    after, append, before - default is after
-  //  */
-  // pub.injectNotice = function(message, selector, position, type,  duration) {
-  //   var $element;
-  //   if (undefined === duration) {
-  //     duration = 4000;
-  //   }
-
-  //   if (selector === undefined) {
-  //     $element = $('#main');
-  //   } else {
-  //     $element = $(selector);
-  //   }
-
-  //   if (type === undefined) {
-  //     $type = 'notice';
-  //   } else {
-  //     $type = type;
-  //   }
-
-  //   var tpl = '<div class="inject-notice-box ' + $type + '"><div class="inner">' + message + '</div></div>';
-
-  //   if (undefined === position) {
-  //     $element.after(tpl);
-  //   }
-  //   else if(position == 'append') {
-  //     $element.append(tpl);
-  //   }
-  //   else {
-  //     $element.before(tpl);
-  //   }
-  //   $('.inject-notice-box').hide()
-  //     .fadeIn(200, function() {
-  //       $(this).delay(duration).
-  //       fadeOut(2000, function(){
-  //         $(this).remove();
-  //       });
-  //     });
-  // };
 
   /**
    * inserts a loading anim image and an optional text
