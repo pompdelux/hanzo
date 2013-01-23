@@ -308,6 +308,10 @@
                 <source>on.stock.no</source>
                 <target>Nej</target>
             </trans-unit>
+            <trans-unit id="pager.pages.%total%" approved="no">
+                <source>pager.pages.%total%</source>
+                <target>af %total%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

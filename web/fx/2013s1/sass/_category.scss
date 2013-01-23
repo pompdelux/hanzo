@@ -46,6 +46,17 @@
 	}
 }
 
+.pager{
+	li{
+		&.prew{
+			margin-right: 9px;
+		}
+		&.next{
+			margin-left: 9px;
+		}
+	}
+}
+
 // Show which type of show of categories we are on. Set or overview
 .body-look a.show-by-look,
 .body-overview a.show-by-overview{

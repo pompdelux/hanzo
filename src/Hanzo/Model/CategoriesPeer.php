@@ -47,8 +47,12 @@ class CategoriesPeer extends BaseCategoriesPeer
             ->joinWithProductsImages()
             ->orderBySort()
             ->filterByCategoriesId($category_id)
-            ->paginate($pager, 12)
         ;
+        if($pager){
+            $result = $result->paginate($pager, 12);
+        }else{
+            $result = $result->find();
+        }
 
         $product_route = str_replace('category_', 'product_', $route);
 
@@ -60,7 +64,7 @@ class CategoriesPeer extends BaseCategoriesPeer
 
             $image_overview = str_replace('_set_', '_overview_', $record->getProductsImages()->getImage());
             $image_set = str_replace('_overview_', '_set_', $record->getProductsImages()->getImage());
-            
+
             $records[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
@@ -117,7 +121,7 @@ class CategoriesPeer extends BaseCategoriesPeer
         $route = $container->get('request')->get('_route');
         $router = $container->get('router');
         $domain_id = $hanzo->get('core.domain_id');
-        
+
         $result = ProductsImagesProductReferencesQuery::create()
             ->useProductsQuery()
                 ->where('products.MASTER IS NULL')
@@ -142,7 +146,7 @@ class CategoriesPeer extends BaseCategoriesPeer
         $records = array();
         foreach ($result as $record) {
             $product = $record->getProducts();
-            
+
             $records[] = array(
                 'image' => $record->getProductsImages()->getImage(),
                 'url' => $router->generate('product_set', array(

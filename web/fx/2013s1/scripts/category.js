@@ -6,7 +6,6 @@
     var History = window.History;
     var title = document.title;
     var cache = [];
-    var killScroll = false; // IMPORTANT
 
     var $target = $('div.' + $('.pager.ajax').data('target'));
 
@@ -15,28 +14,26 @@
       if (0 === $target.length) { return; }
 
       var matches = document.location.href.match(/[0-9]$/);
-      var current_pager_id = matches ? matches[0] : 1;
+      var currtent_pager_id = matches ? matches[0] : 1;
 
       yatzy.compile('productItems');
 
-      // Detect that we are at the infinite-scroll-trigger, and call autoloading function
-      $(window).scroll(function(){ // IMPORTANT
-        if ($(window).scrollTop()+$(window).height()+200 >= ($('.infinite-scroll-trigger').offset().top)){ // IMPORTANT
-          if (killScroll === false) { // IMPORTANT - Keeps the loader from fetching more than once.
-            killScroll = true; // IMPORTANT - Set killScroll to true, to make sure we do not trigger this code again before it's done running.
-            $current = $('a' ,$('.pager.ajax li.current').next());
-            var t = title+'/'+ $current.attr('title') || null;
-
-            History.pushState({}, t, $current.attr('href'));
-          }
+      $('.pager.ajax a').on('click', function(event) {
+        if ( event.which == 2 || event.metaKey ) {
+          return true;
         }
+        event.preventDefault();
+
+        var t = title+' / '+this.title || null;
+
+        History.pushState({}, t, this.href);
       });
 
       $(window).on('statechange', function(event) {
         var
           State = History.getState(),
           url = State.url;
-
+        event.preventDefault();
         // start loading anim
         dialoug.loading('.pager.ajax ul', Translator.get('js:loading.std'));
 
@@ -71,10 +68,38 @@
           });
         }
 
+        // transition effects
+        matches = url.match(/[0-9]$/);
+        var vid = matches ? matches[0] : 1;
+
+        // settings for the pager animation
+        var direction = 'left';
+        var anim_params_in = {left : 0};
+        var anim_params_out = {left : -714};
+
+        if (currtent_pager_id > vid) {
+          direction = 'right';
+          anim_params_in = {left : 0};
+          anim_params_out = {left : 714};
+        }
+
+        currtent_pager_id = vid;
         var current = cache[url];
 
         // append the result to the document
-        $target.append(yatzy.render('productItems', current.products));
+        $new_item = $(yatzy.render('productItems', current.products));
+        $target.append($new_item);
+
+        // run the swithc page animation
+        $('.old-item', $target).hide('500', function() {
+          $(this).remove();
+          $new_item.show('500', function() {
+            $new_item.addClass('old-item').removeClass('new-item');
+          });
+        });
+        $('html, body').animate({
+          scrollTop: $target.offset().top
+        }, 500);
 
         // setup pager links
         var $next = $('.pager.ajax li.next');
@@ -99,7 +124,7 @@
 
         // stop loading anim
         dialoug.stopLoading();
-        killScroll = false; // Turn on infinite scroll again
+
         // trigger google analytics - if available
         if ( undefined !== window._gaq ) {
           _gaq.push(['_trackPageview']);
@@ -107,27 +132,9 @@
       });
     };
 
-    pub.initFlip = function() {
-      var originalPicture = null;
-      $(document).on({
-        mouseenter: function () {
-          if($(this).data('flip')){
-            originalPicture = $(this).attr('src');
-            $(this).attr('src', $(this).data('flip'));
-          }
-        },
-        mouseleave: function () {
-          if(originalPicture){
-            $(this).attr('src',originalPicture);
-            originalPicture = null;
-          }
-        }
-      }, 'img.flip');
-    };
     return pub;
   })(jQuery);
 
   category.initPager();
-  category.initFlip();
 
 })(document, jQuery);
