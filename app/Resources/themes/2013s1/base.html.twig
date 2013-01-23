@@ -210,12 +210,8 @@
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-
 {% block javascript %}
 {% endblock %}
-
-{% render 'NewsletterBundle:Default:js' %}
-
 <script>if (jaiks) {jaiks.exec();}</script>
 {{ google_analytics_tag() }}
 </body>
