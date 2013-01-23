@@ -210,6 +210,10 @@
                 <source>on.stock.no</source>
                 <target>No</target>
             </trans-unit>
+            <trans-unit id="pager.pages.%total%" approved="no">
+                <source>pager.pages.%total%</source>
+                <target>of %total%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
