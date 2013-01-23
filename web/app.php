@@ -72,6 +72,7 @@ require_once __DIR__.'/../app/AppKernel.php';
 $kernel = new AppKernel($env, $dev);
 $kernel->loadClassCache();
 if(false === $dev) {
+  require_once __DIR__.'/../app/AppCache.php';
   $kernel = new AppCache($kernel);
 }
 $request = Request::createFromGlobals();
