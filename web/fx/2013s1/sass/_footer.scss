@@ -31,6 +31,7 @@ footer{
 				@include icons-sprite(newsletter);
 				height: icons-sprite-height(newsletter);
 				width: icons-sprite-width(newsletter);
+				float: left;
 			}
 			input[type="email"],
 			input[type="text"]{

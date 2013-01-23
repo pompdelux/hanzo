@@ -255,7 +255,7 @@ var dialoug = (function($) {
       else {
         $this.before(tpl);
       }
-      loading_status = $('.dialoug-loading', $this.parent());
+      loading_status = true;
     });
   };
 
@@ -267,7 +267,7 @@ var dialoug = (function($) {
    */
   pub.stopLoading = function() {
     if (loading_status) {
-      loading_status.remove();
+      $('.dialoug-loading').remove();
       loading_status = false;
     }
   };

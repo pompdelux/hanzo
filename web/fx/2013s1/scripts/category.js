@@ -98,7 +98,7 @@
           });
         });
         $('html, body').animate({
-          scrollTop: $target.offset().top
+          scrollTop: $target.offset().top - 100
         }, 500);
 
         // setup pager links
@@ -106,7 +106,9 @@
         var $prew = $('.pager.ajax li.prew');
 
         $('.pager.ajax li').removeClass('current');
-        $('.pager.ajax li:eq(' + current.paginate.index + ')').addClass('current');
+        $('.pager.ajax').each(function(i){
+          $(this).find('li:eq(' + current.paginate.index + ')').addClass('current');
+        });
 
         $next.addClass('off');
         $prew.addClass('off');

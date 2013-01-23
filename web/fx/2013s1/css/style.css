@@ -334,6 +334,7 @@ footer .footer-menu.footer-menu-4 .sprite {
   background-position: 0 0;
   height: 86px;
   width: 86px;
+  float: left;
 }
 footer .footer-menu.footer-menu-4 input[type="email"],
 footer .footer-menu.footer-menu-4 input[type="text"] {
@@ -1327,6 +1328,9 @@ div.dialoug.like-pop li div {
 }
 
 /**
+| _ie
+*/
+/**
 | _base
 */
 html, body, div, span, applet, object, iframe,
@@ -1513,6 +1517,7 @@ form input,
 form textarea {
   border: 1px solid #444444;
   padding: 6px 5px;
+  margin: 2px 0;
   color: #444444;
 }
 form input[type="text"], form input[type="email"], form input[type="date"], form input[type="datetime"], form input[type="password"] {
