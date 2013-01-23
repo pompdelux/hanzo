@@ -14,10 +14,10 @@ $_databases = array(
 );
 
 $_sizes = [
-    'basket'        => '38x75',
+    'basket'        => '114x200',
     'category'      => '234x410',
-    'product_large' => '165x330',
-    'product_small' => '38x75',
+    'product_large' => '234x410',
+    'product_small' => '114x200',
 ];
 
 function _dbug($msg, $auto_newline = true) {

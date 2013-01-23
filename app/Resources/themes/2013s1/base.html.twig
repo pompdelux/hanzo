@@ -85,7 +85,7 @@
         </div>
       </li>
       <li class="last">
-        <form action="{{ baseurl }}/{{ app.request.locale }}/search" class="search-form">
+        <form action="{{ path('_homepage', {'_locale' : app.request.locale}) }}search" class="search-form">
           <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
           <input type="text" name="q">
         </form>

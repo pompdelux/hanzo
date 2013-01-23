@@ -30,12 +30,12 @@
 
     {% for product in result.products %}
 
-    {% if loop.index % 3 == 1 %}
+    {% if loop.index % 4 == 1 %}
       <div class="grid_8 alpha omega">
     {% endif %}
-      <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
+      <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 4 == 1 and loop.index is not divisibleby(4) %} alpha {% endif %}{% if loop.index is divisibleby(4) %} omega {% endif %}">
         <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
-          {{ product_image_tag(product.image, '120x240', { 'alt' : product.title }) }}
+          {{ product_image_tag(product.image, '114x200', { 'alt' : product.title }) }}
           <span class="title">{{ product.title }}</span>
           <span class="prices">
           {% if product.prices.sales is defined %}
@@ -48,7 +48,7 @@
         </a>
       </div>
 
-    {% if loop.index is divisibleby(3) or loop.last %}
+    {% if loop.index is divisibleby(4) or loop.last %}
       </div> <!-- //.grid_8 -->
     {% endif %}
 
