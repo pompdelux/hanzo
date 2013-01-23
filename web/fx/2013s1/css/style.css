@@ -334,6 +334,7 @@ footer .footer-menu.footer-menu-4 .sprite {
   background-position: 0 0;
   height: 86px;
   width: 86px;
+  float: left;
 }
 footer .footer-menu.footer-menu-4 input[type="email"],
 footer .footer-menu.footer-menu-4 input[type="text"] {
@@ -1325,6 +1326,9 @@ div.dialoug.like-pop li div {
   background-color: #D9D9D9;
 }
 
+/**
+| _ie
+*/
 /**
 | _base
 */
