@@ -197,11 +197,15 @@ class DefaultController extends CoreController
                             if ($id == $product->getId()) {
                                 $product_route = $router_keys['_' . strtolower($locale) . '_' . $category_ids[$category]];
 
+                                $image_overview = str_replace('_set_', '_overview_', $product->getProductsImagess()->getFirst()->getImage());
+                                $image_set = str_replace('_overview_', '_set_', $product->getProductsImagess()->getFirst()->getImage());
+
                                 $category_map[$category][$id] = array(
                                     'sku' => $product->getSku(),
                                     'id' => $product->getId(),
                                     'title' => $product->getSku(),
-                                    'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                                    'image' => $image_set,
+                                    'image_flip' => $image_overview,
                                     'prices' => $prices[$id],
                                     'url' => $router->generate($product_route, array(
                                         'product_id' => $product->getId(),
