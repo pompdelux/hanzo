@@ -228,6 +228,7 @@ ul.horizontal li,
   vertical-align: middle;
 }
 #secondary-links li a {
+  font-size: 0.8em;
   text-transform: uppercase;
 }
 
@@ -441,7 +442,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main .prices {
   font-family: "Merriweather", serif;
   font-size: 26px;
-  font-weight: bold;
+  font-weight: normal;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -1424,6 +1425,10 @@ a {
 a:hover {
   color: #444444;
   text-decoration: underline;
+}
+
+.main article a {
+  color: #c29954;
 }
 
 h1, h2, h3, h4, h5, h6 {
