@@ -10,6 +10,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\CmsPeer;
+use Hanzo\Model\CmsQuery;
 use Hanzo\Model\CmsI18nQuery;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\CategoriesQuery;
@@ -197,11 +198,15 @@ class DefaultController extends CoreController
                             if ($id == $product->getId()) {
                                 $product_route = $router_keys['_' . strtolower($locale) . '_' . $category_ids[$category]];
 
+                                $image_overview = str_replace('_set_', '_overview_', $product->getProductsImagess()->getFirst()->getImage());
+                                $image_set = str_replace('_overview_', '_set_', $product->getProductsImagess()->getFirst()->getImage());
+
                                 $category_map[$category][$id] = array(
                                     'sku' => $product->getSku(),
                                     'id' => $product->getId(),
                                     'title' => $product->getSku(),
-                                    'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                                    'image' => $image_set,
+                                    'image_flip' => $image_overview,
                                     'prices' => $prices[$id],
                                     'url' => $router->generate($product_route, array(
                                         'product_id' => $product->getId(),
@@ -217,6 +222,7 @@ class DefaultController extends CoreController
             $result_set = $category_map;
         }
 
+        $parent_page = CmsQuery::create()->filterById($page->getParentId())->findOne();
         $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
             'page_type' => 'category-search',
@@ -226,6 +232,7 @@ class DefaultController extends CoreController
             'sizes'     => (is_array($sizes) ? $sizes : array()),
             'route'     => $this->getRequest()->get('_route'),
             'selected'  => $this->getRequest()->get('size', ''),
+            'cms_id'    => $parent_page->getParentId()
         ));
     }
 

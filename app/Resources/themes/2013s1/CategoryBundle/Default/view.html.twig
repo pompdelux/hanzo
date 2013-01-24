@@ -33,11 +33,13 @@
           <div class="grid_6 alpha omega">
         {% endif %}
             <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
-              <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" style="height:410px;">
+              <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
                 {{ product_image_tag(product.image, '234x410', {
                   'alt' : product.title,
                   'class' : 'flip',
-                  'data-flip': product_image_url(product.image_flip, '234x410')
+                  'data-flip': product_image_url(product.image_flip, '234x410'),
+                  'height' : '410',
+                  'width' : '234'
                 }) }}
                 {% if product.prices.sales is defined and show_new_price_badge == 1 %}
                 <div class="new-price">{{ 'new.price'|trans }}</div>
