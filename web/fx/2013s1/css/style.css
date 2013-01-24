@@ -169,7 +169,7 @@ ul.sub-menu,
   font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
-  line-height: 18px;
+  line-height: 14px;
   text-transform: uppercase;
 }
 ul.sub-menu li,
@@ -307,13 +307,13 @@ ul.breadcrumb li.first:before {
 footer {
   margin: 0;
   color: #444444;
-  font-size: 18px;
+  font-size: 12px;
   font-family: "Merriweather", serif;
   font-weight: 900;
-  line-height: 15px;
+  line-height: 14px;
 }
 footer h2 {
-  font-size: 16px;
+  font-size: 12px;
   font-family: "Merriweather", serif;
   letter-spacing: 0;
 }
@@ -362,6 +362,9 @@ footer .copy ul li {
 }
 footer .copy a {
   text-decoration: none;
+}
+footer .menu {
+  font-size: 10px;
 }
 
 /**
@@ -509,6 +512,12 @@ latest-seen-poducts a.buy-set,
   border: none;
   text-indent: -999px;
   display: inline-block;
+  margin-top: 50px;
+}
+latest-seen-poducts .last,
+.productimage-small .last,
+.style-guide .last {
+  margin-right: 0;
 }
 
 .style-guide, .style-guide .element {
@@ -942,7 +951,7 @@ nav.main-menu > ul > li > ul.on {
 */
 .body-pages h3 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: none;
   padding: 6px 0 0;
@@ -1430,10 +1439,10 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 h1 {
   color: #444444;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Merriweather", serif;
   font-weight: 900;
-  line-height: 24px;
+  line-height: 22px;
   padding: 6px 0;
   margin-bottom: 6px;
 }
@@ -1455,18 +1464,18 @@ h3 {
 
 h4 {
   color: #444444;
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Merriweather", serif;
   font-weight: 900;
-  line-height: 18px;
+  line-height: 14px;
 }
 
 p {
   color: #444444;
-  font-size: 14px;
+  font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
-  line-height: 15px;
+  line-height: 13px;
   padding: 0 0 5px;
 }
 

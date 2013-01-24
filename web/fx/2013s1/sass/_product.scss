@@ -131,7 +131,11 @@ latest-seen-poducts,
 		}
 		&.buy-set{
 			@include image-replacement;
+			margin-top: 50px;
 		}
+	}
+	.last{
+		margin-right: 0;
 	}
 }
 .style-guide, .style-guide .element {
