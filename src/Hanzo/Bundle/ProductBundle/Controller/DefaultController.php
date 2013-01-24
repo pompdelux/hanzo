@@ -121,14 +121,14 @@ class DefaultController extends CoreController
                 natcasesort($colors);
                 natcasesort($sizes);
             }
-$c = \Propel::getConnection(NULL);
+//$c = \Propel::getConnection(NULL);
 
             $references = ProductsImagesQuery::create()
                 ->filterByProductsId($product->getId())
                 ->joinWithProductsImagesProductReferences()
                 ->find()
             ;
-\Hanzo\Core\Tools::log($c->getLastExecutedQuery());
+//\Hanzo\Core\Tools::log($c->getLastExecutedQuery());
 
             $references = ProductsImagesProductReferencesQuery::create()
                 ->useProductsImagesQuery()
