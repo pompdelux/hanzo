@@ -145,7 +145,7 @@ ul.menu .dropdown,
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
   padding: 9px;
   max-height: 400px;
   overflow-y: auto;
@@ -179,8 +179,8 @@ ul.sub-menu li,
 }
 ul.sub-menu li.heading span,
 .sub-menu > ul li.heading span {
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
   display: block;
   line-height: 18px;
   padding: 3px 0 3px 6px;
@@ -373,12 +373,12 @@ footer .menu {
 */
 .bordered,
 .bordered-bottom {
-  border-bottom: 1px solid #888888;
+  border-bottom: 1px solid #888;
 }
 
 .bordered,
 .bordered-top {
-  border-top: 1px solid #888888;
+  border-top: 1px solid #888;
   margin-top: 6px;
 }
 
@@ -504,7 +504,7 @@ latest-seen-poducts a:hover img,
 .productimage-small a:hover img,
 .style-guide a:hover img {
   padding: 0px;
-  border: 1px solid #888888;
+  border: 1px solid #888;
 }
 latest-seen-poducts a.buy-set,
 .productimage-small a.buy-set,
@@ -675,7 +675,7 @@ form.create label.required:after {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
   clear: both;
 }
 
@@ -699,7 +699,7 @@ form.address label {
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid red;
+  border: 2px solid #f00;
   clear: both;
 }
 
@@ -710,7 +710,7 @@ form.address label {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
 }
 
 .payment-methods label {
@@ -727,14 +727,14 @@ form.address label {
   padding-left: 26px;
   background-color: #CCC;
   padding-top: 9px;
-  border: 1px solid #7b7577;
+  border: 1px solid #7B7577;
 }
 
 #coupon-block form {
   overflow: hidden;
   padding: 20px;
   margin: 10px;
-  border: 1px solid #7b7577;
+  border: 1px solid #7B7577;
 }
 #coupon-block form div.clearfix {
   float: left;
@@ -758,7 +758,7 @@ form.address label {
 .basket table.edit-element tbody tr,
 #cart-edit-element table.product-table tbody tr,
 #cart-edit-element table.edit-element tbody tr {
-  border-bottom: 1px solid #444444;
+  border-bottom: 1px solid #444;
 }
 .basket table.product-table tfoot,
 .basket table.edit-element tfoot,
@@ -810,7 +810,7 @@ form.address label {
 }
 
 #cart-edit-element {
-  border: 5px solid black;
+  border: 5px solid #000;
   position: absolute;
   z-index: 9999;
   -webkit-border-radius: 5px;
@@ -901,7 +901,7 @@ nav.main-menu > ul > li > ul.on {
   padding: 3px;
 }
 .inject-notice-box .inner {
-  border: 1px solid black;
+  border: 1px solid #000;
   padding: 6px;
   color: #444444;
 }
@@ -925,7 +925,7 @@ nav.main-menu > ul > li > ul.on {
 }
 
 #dialoug-message {
-  border: 2px solid #d3c2a2;
+  border: 2px solid #D3C2A2;
   color: #231f20;
   margin: 10px 0;
   display: none;
@@ -997,7 +997,7 @@ nav.main-menu > ul > li > ul.on {
 }
 
 .tx-irfaq-pi1 dd div {
-  border-top: 1px solid #4b3a47;
+  border-top: 1px solid #4B3A47;
   margin-top: 10px;
 }
 
@@ -1132,7 +1132,7 @@ div.dialoug.like-pop ul {
   padding: 0;
 }
 div.dialoug.like-pop li {
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
   padding-top: 20px;
 }
 div.dialoug.like-pop li.like {
@@ -1307,7 +1307,7 @@ div.dialoug.like-pop li div {
   margin: 1px 0 0;
   list-style: none;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   *border-right-width: 2px;
   *border-bottom-width: 2px;
@@ -1543,7 +1543,8 @@ form input.error {
 
 input.button,
 button.button,
-a.button {
+a.button,
+.main article a.button {
   border: none;
   cursor: pointer;
   display: inline-block;
@@ -1552,18 +1553,20 @@ a.button {
   text-align: center;
   padding: 6px;
   font-weight: bold;
-  color: white;
+  color: white !important;
   line-height: 18px;
   white-space: normal;
 }
 input.button:hover,
 button.button:hover,
-a.button:hover {
+a.button:hover,
+.main article a.button:hover {
   text-decoration: none;
 }
 input.button.text-button,
 button.button.text-button,
-a.button.text-button {
+a.button.text-button,
+.main article a.button.text-button {
   border: none;
   background: transparent;
   color: #444444;
@@ -1574,7 +1577,8 @@ a.button.text-button {
 }
 input.button.button-right,
 button.button.button-right,
-a.button.button-right {
+a.button.button-right,
+.main article a.button.button-right {
   background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
   border-right: 6px solid #474749;
   padding: 6px 24px;
@@ -1582,14 +1586,16 @@ a.button.button-right {
 }
 input.button.button-left,
 button.button.button-left,
-a.button.button-left {
+a.button.button-left,
+.main article a.button.button-left {
   background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
   border-left: 6px solid #474749;
   padding: 6px 24px;
 }
 input.button.button-small,
 button.button.button-small,
-a.button.button-small {
+a.button.button-small,
+.main article a.button.button-small {
   font-size: 11px;
   padding: 3px;
   line-height: inherit;
@@ -1597,18 +1603,21 @@ a.button.button-small {
 }
 input.button.button-small:hover,
 button.button.button-small:hover,
-a.button.button-small:hover {
+a.button.button-small:hover,
+.main article a.button.button-small:hover {
   text-decoration: none;
 }
 input.button.button-large,
 button.button.button-large,
-a.button.button-large {
+a.button.button-large,
+.main article a.button.button-large {
   padding: 6px 12px;
   width: 234px;
 }
 input.button.button-full-width,
 button.button.button-full-width,
-a.button.button-full-width {
+a.button.button-full-width,
+.main article a.button.button-full-width {
   width: 100%;
 }
 
@@ -1714,7 +1723,7 @@ button.right {
 }
 
 .msg, .message {
-  border: 2px solid black;
+  border: 2px solid #000;
   background-color: #fff;
   color: #231f20;
   padding: 0.5em;
@@ -1733,7 +1742,7 @@ button.right {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
 }
 
 .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
