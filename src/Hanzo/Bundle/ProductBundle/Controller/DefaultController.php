@@ -197,8 +197,7 @@ class DefaultController extends CoreController
         $response = $this->render('ProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
             'product' => $data,
-            'references' => $images_references,
-            'cat_route' => str_replace('product', 'category', $route)
+            'references' => $images_references
         ));
         return $response;
     }
