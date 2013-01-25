@@ -401,6 +401,10 @@
          <source>coupon.description</source>
          <target>Herunder kan du taste din gavekortskode. Bruger du ikke hele beløbet på dit gavekort, kan du anvende gavekortskoden igen, næste gang du handler hos POMPdeLUX.</target>
       </trans-unit>
+      <trans-unit id="address.copy" approved="no">
+         <source>address.copy</source>
+         <target>Leveringsaddressen er den samme som min addresse</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -19,7 +19,9 @@
 <div class="checkout-block" id="address-block">
   {% render 'ShippingBundle:Address:form' with {type: 'payment'} %}
   {% render 'ShippingBundle:Address:form' with {type: 'CURRENT-SHIPPING-ADDRESS'} %}
-
+  <label class="off">
+    <input type="checkbox" id="address-copy">{{ 'address.copy'|trans({}, 'checkout') }}
+  </label>
   <div class="confirm msg hidden">
     <h3>{{ 'confirm.title'|trans({}, 'checkout') }}</h3>
     <input type="checkbox" name="addresses_confirmed" id="addresses-confirmed" value="1">

@@ -373,6 +373,10 @@
          <source>coupon.description</source>
          <target>Enter your gift card code below. If you do not spend the full value of the gift card, it will be retained on the card for next time you shop at POMPdeLUX.</target>
       </trans-unit>
+      <trans-unit id="address.copy" approved="no">
+         <source>address.copy</source>
+         <target>The deliveryaddress is the same as mine</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

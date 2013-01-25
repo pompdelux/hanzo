@@ -706,6 +706,13 @@ form.address label {
   margin-bottom: 5px;
 }
 
+#address-block > label {
+  clear: both;
+  display: block;
+}
+#address-block > label.off {
+  display: none;
+}
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
@@ -725,6 +732,7 @@ form.address label {
 
 .payment-methods label {
   margin: 0;
+  padding-left: 6px;
   width: 90%;
   vertical-align: middle;
 }
@@ -1347,6 +1355,16 @@ div.dialoug.like-pop li div {
 /**
 | _ie
 */
+.ie7 ul.horizontal,
+.ie7 .horizontal > ul {
+  clear: both;
+}
+.ie7 ul.horizontal li,
+.ie7 .horizontal > ul li {
+  display: inline;
+  float: left;
+}
+
 /**
 | _base
 */
@@ -1649,6 +1667,7 @@ table thead th {
 }
 table tbody td {
   padding: 12px 6px;
+  vertical-align: top;
 }
 table tfoot td {
   padding: 6px;

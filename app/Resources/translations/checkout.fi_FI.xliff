@@ -371,6 +371,10 @@
          <source>coupon.description</source>
          <target>Tähän voit antaa lahjakorttisi koodin. Jos et käytä lahjakorttiasi kokonaan, voit käyttää lahjakortin koodia uudelleen, kun seuraavan kerran teet ostoksia POMPdeLUXilla.</target>
       </trans-unit>
+      <trans-unit id="address.copy" approved="no">
+         <source>address.copy</source>
+         <target>The deliveryaddress is the same as mine</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -381,6 +381,10 @@
         <source>order.state_pre_payment.locked</source>
         <target>Je order wordt nu behandeld. Je kunt je order pas weer bewerken als de betaling ervan is goedgekeurd.</target>
       </trans-unit>
+      <trans-unit id="address.copy" approved="no">
+         <source>address.copy</source>
+         <target>The deliveryaddress is the same as mine</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

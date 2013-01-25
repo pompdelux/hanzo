@@ -223,6 +223,20 @@
         jaiks.add('/checkout/summery', checkout.handleSummeryUpdates);
         jaiks.exec();
       });
+
+      $('#address-copy').on('change',function(e){
+        e.preventDefault();
+        $copied = $('#address-block form:nth-child(2)');
+        if($(this).attr('checked')){
+          $('#address-block form:first input[type=text]').each(function(i){
+            $copied.find('#'+$(this).attr('id')).val($(this).val());
+          });
+        }else{
+          $copied.each(function(){
+            this.reset();
+          });
+        }
+      });
     };
 
     pub.setStepStatus = function(step, status) {
@@ -239,6 +253,11 @@
       if (response.response.status) {
         $('#address-block form:nth-child(2)').replaceWith(response.response.data.html);
         $(document).trigger('shipping.address.changed');
+        if($('input[name=method]:checked').val() === "10"){ // Private postal
+          $('#address-copy').prop('checked', false).parent().removeClass('off');
+        }else{
+          $('#address-copy').parent().addClass('off');
+        }
         $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
         pub.setStepStatus('shipping', true);
       } else {

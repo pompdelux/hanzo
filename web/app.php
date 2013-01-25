@@ -78,6 +78,6 @@ if(false === $dev) {
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->headers->set('X-hanzo-t', (microtime(1) - $ts));
-$response->headers->set('X-hanzo-m', $kernel->humanReadableSize(memory_get_peak_usage()));
+$response->headers->set('X-hanzo-m', Tools::humanReadableSize(memory_get_peak_usage()));
 $response->send();
 $kernel->terminate($request, $response);
