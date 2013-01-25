@@ -1347,6 +1347,16 @@ div.dialoug.like-pop li div {
 /**
 | _ie
 */
+.ie7 ul.horizontal,
+.ie7 .horizontal > ul {
+  clear: both;
+}
+.ie7 ul.horizontal li,
+.ie7 .horizontal > ul li {
+  display: inline;
+  float: left;
+}
+
 /**
 | _base
 */
@@ -1649,6 +1659,7 @@ table thead th {
 }
 table tbody td {
   padding: 12px 6px;
+  vertical-align: top;
 }
 table tfoot td {
   padding: 6px;

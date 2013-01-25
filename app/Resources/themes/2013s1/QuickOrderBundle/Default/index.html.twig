@@ -30,72 +30,76 @@
       <input type="button" id="reset" name="reset" class="off" value="{{ 'quickorder.reset.placeholder'|trans({}, 'quickorder') }}">
       <div id="autocomplete-container"></div>
   </form>
-
-  <form action="{{ url('basket_update') }}" method="post">
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th class="left">{{ "products"|trans }}</th>
-          <th class="right">{{ "latest.shipment.date"|trans }}</th>
-          <th class="right">{{ "price"|trans }}</th>
-          <th class="center">{{ "quantity"|trans }}</th>
-          <th class="right">{{ "total"|trans }}</th>
-          <th class=""></th>
-        </tr>
-      </thead>
-      <tbody>
-    {% for product in products %}
-        <tr>
-          <td class="image">
-            {{ product_image_tag(product.basket_image, '60x60', { 'alt' : product.products_name }) }}
-            <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
-              <a href="{{ product.url }}">{{ product.products_name }}</a>
-              <div class="size">
-                <label>{{ "size"|trans }}:</label>
-                <span>{{ product.products_size }}</span>
+  <div class="basket">
+    <form action="{{ url('basket_update') }}" method="post">
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th class="left">{{ "products"|trans }}</th>
+            <th class="center">{{ "on.stock"|trans }}</th>
+            <th class="right">{{ "price"|trans }}</th>
+            <th class="center">{{ "quantity"|trans }}</th>
+            <th class=""></th>
+            <th class="right">{{ "total"|trans }}</th>
+          </tr>
+        </thead>
+        <tbody>
+      {% for product in products %}
+          <tr>
+            <td class="image left">
+              {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+              <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+                <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
+                <div class="size">
+                  <label>{{ "size"|trans }}:</label>
+                  <span>{{ product.products_size }}</span>
+                </div>
+                <div class="color">
+                  <label>{{ "color"|trans }}:</label>
+                  <span>{{ product.products_color }}</span>
+                </div>
               </div>
-              <div class="color">
-                <label>{{ "color"|trans }}:</label>
-                <span>{{ product.products_color }}</span>
-              </div>
-            </div>
-          </td>
-          <td class="right date">
-            {% if product.expected_at %}
-              {{ product.expected_at|date('d-m-Y') }}
-            {% endif %}
-          </td>
-          <td class="right price">{{ product.price|money }}</td>
-          <td class="right quantity">{{ product.quantity }}</td>
-          <td class="right total">{{ (product.price * product.quantity)|money }}</td>
-          <td class="actions">
-            <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="delete">{{ fx_image_tag('images/delete_icon.png', '', { "alt":"delete"|trans }) }}</a>
-            <a href="{{ product.products_id }}" class="edit">{{ fx_image_tag('images/edit_icon.png', '', { "alt":"edit"|trans }) }}</a>
-          </td>
-        </tr>
-    {% endfor %}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="4">{{ "total"|trans }}:</td>
-          <td class="right total">{{ total|money }}</td>
-          <td></td>
-        </tr>
-      </tfoot>
-    </table>
-  </form>
-  {% if delivery_date %}
-    {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout')|raw }}
-  {% else %}
-    {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
-  {% endif %}
-
-  <div class="buttons">
-    {% if products %}
-    <a class="button button-right proceed-to-basket" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+            </td>
+            <td class="center date">
+              {% if product.expected_at %}
+                <span class="not-in-stock">{{ "on.stock.no"|trans }}</span>
+                <span>{{ "latest.shipment.date"|trans }} {{ product.expected_at|date('d-m-Y') }}</span>
+              {% else %}
+                <span>{{ "on.stock.yes"|trans }}</span>
+              {% endif %}
+            </td>
+            <td class="right price">{{ product.price|money }}</td>
+            <td class="center quantity">{{ product.quantity }}</td>
+            <td class="center actions">
+              <a href="{{ url('basket_remove', { 'product_id' : product.products_id }) }}" class="sprite delete"></a>
+              <a href="{{ product.products_id }}" class="sprite edit"></a>
+            </td>
+            <td class="right total">{{ (product.price * product.quantity)|money }}</td>
+          </tr>
+      {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">{{ "total"|trans }}:</td>
+            <td class="right total">{{ total|money }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+    {% if delivery_date %}
+      {{ 'late.delivery.date.notice'|trans({'%date%' : delivery_date|date('d-m-Y')}, 'checkout')|raw }}
     {% else %}
-    <a class="button button-right proceed-to-basket" style="display:none;" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+      {{ 'late.delivery.notice'|trans({}, 'checkout')|raw }}
     {% endif %}
+
+    <div class="buttons">
+      {% if products %}
+      <a class="button button-right proceed-to-basket" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+      {% else %}
+      <a class="button button-right proceed-to-basket" style="display:none;" href="{{ path('basket_view') }}">{{ "proceed"|trans({}, 'checkout') }}</a>
+      {% endif %}
+    </div>
+
   </div>
 </div>
 

@@ -3,6 +3,14 @@
 */
 .ie7{
 
+    ul.horizontal,
+    .horizontal > ul{
+        clear: both;
+        li{
+            display: inline;
+            float: left;
+        }
+    }
 }
 .ie8{
 
