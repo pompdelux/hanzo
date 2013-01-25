@@ -51,16 +51,14 @@
       {% endfor %}
     </div>
   </div>
-</div>
 
-{% if paginate %}
-  <div class="grid_8 alpha omega row">
-    <div class="grid_3 push_5 alpha omega right">
-      {% import "::macro.pager.html.twig" as p %}
-      {{ p.pager(paginate, 'product-list') }}
-    </div>
-  </div>
-{% endif %}
+    {% if paginate %}
+      <div class="grid_3 push_3 omega right">
+        {% import "::macro.pager.html.twig" as p %}
+        {{ p.pager(paginate, 'product-list') }}
+      </div>
+    {% endif %}
+</div>
 
 {#  yatzy js template used by the pager, do not delete ! #}
 
