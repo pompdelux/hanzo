@@ -393,6 +393,10 @@
          <source>coupon.description</source>
          <target>Nedan kan du skriva din presentkortskod. Om du inte använder hela beloppet på ditt presentkort, kan du använda presentkortskoden igen nästa gång du handlar hos POMPdeLUX.</target>
       </trans-unit>
+      <trans-unit id="address.copy" approved="no">
+         <source>address.copy</source>
+         <target>The deliveryaddress is the same as mine</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
