@@ -59,14 +59,8 @@
 
   <nav id="secondary-links">
     {% if is_granted('ROLE_USER') %}
-      <ul class="horizontal menu right">
+      <ul class="horizontal menu right last">
         <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-        <li class="last">
-          <form action="{{ baseurl }}/{{ app.request.locale }}" class="search-form">
-            <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
-            <input type="text" name="q">
-          </form>
-        </li>
       </ul>
       <ul class="horizontal menu right">
         <li id="mini-basket" class="basket">
