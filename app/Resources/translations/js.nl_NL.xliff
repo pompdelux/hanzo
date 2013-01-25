@@ -56,7 +56,7 @@
             </trans-unit>
             <trans-unit id="countdown.date">
                 <source>countdown.date</source>
-                <target>Augustus 28, 2012 10:00:00</target>
+                <target>March 7, 2013 10:00:00</target>
             </trans-unit>
             <trans-unit id="countdown.format">
                 <source>countdown.format</source>
@@ -316,11 +316,11 @@
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>
-                <target>Please wait for the payment window to open</target>
+                <target>Het betaalscherm wordt geopend</target>
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.message" approved="no">
                 <source>checkout.payment.progress.alert.message</source>
-                <target><![CDATA[Please note that it can take up to 30 seconds before the payment window opens. If it takes longer than 30 seconds, just click on “Cancel” and then try again.<br><br>Thank you.<br><br><a href="%url%">» Cancel</a>]]></target>
+                <target><![CDATA[Wacht totdat het betaalscherm geopend wordt. Het kan 30 seconden duren voordat het betaalscherm geopend is. Duurt het meer dan 30 seconden, klik dan op de “Betaling onderbreken” knop hieronder en probeer het opnieuw.<br><br>Bij voorbaat dank.<br><br><a href="%url%">» Betaling onderbreken</a>]]></target>
             </trans-unit>
         </body>
     </file>
