@@ -269,7 +269,7 @@
 
         var id = $('input#master').val().replace(/[^a-z0-9]+/gi, '');
 
-        if (-1 === $.inArray(id)) {
+        if (-1 === $.inArray(id, data.keys)) {
           data.images.push({
             title : $('h1').text(),
             url   : document.location.href,
@@ -278,7 +278,7 @@
 
           data.keys.push(id);
 
-          if (data.keys.length > 10) {
+          if (data.keys.length > 4) {
             data.keys.shift();
             data.images.shift();
           }

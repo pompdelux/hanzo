@@ -18,6 +18,7 @@ use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsStockQuery;
+use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
@@ -68,7 +69,6 @@ class DefaultController extends CoreController
             $product_images = $product->getProductsImagess();
             foreach ($product_images as $image) {
                 $path_params = explode('_', explode('.', $image->getImage())[0]);
-
                 $number = isset($path_params[3]) ? (int)$path_params[3] : 0;
 
                 $images[$image->getId()] = array(
@@ -79,7 +79,6 @@ class DefaultController extends CoreController
                     'number' => $number,
                 );
             }
-            arsort($images);
 
             // set focus image
             if ($focus && isset($images[$focus])) {
@@ -88,6 +87,13 @@ class DefaultController extends CoreController
             else {
                 $main_image = array_shift($images);
             }
+
+            $sorted = [];
+            foreach ($images as $key => $data) {
+                $sorted[$data['type'].$key] = $data;
+            }
+            ksort($sorted);
+            $images = $sorted;
 
             $current_color = $main_image['color'];
             $current_type  = $main_image['type'];

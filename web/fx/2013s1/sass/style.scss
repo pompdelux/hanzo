@@ -19,7 +19,7 @@ $small-weight 			:normal;
 $small-line-height		:inherit;
 
 $main-menu-color 		: #444;
-$main-menu-size 		: 14px;
+$main-menu-size 		: 12px;
 $main-menu-family 		: $font-serif;
 $main-menu-weight 		: normal;
 $main-menu-line-height	: inherit;
@@ -28,31 +28,31 @@ $side-menu-color 		: #444;
 $side-menu-size			: 12px;
 $side-menu-family 		: $font-sans;
 $side-menu-weight 		: normal;
-$side-menu-line-height	: 18px;
+$side-menu-line-height	: 14px;
 
 $paragraph-color 		: #444;
-$paragraph-size			: 14px;
+$paragraph-size			: 12px;
 $paragraph-family 		: $font-sans;
 $paragraph-weight 		: normal;
-$paragraph-line-height	: 15px;
+$paragraph-line-height	: 13px;
 
 $heading-color 			: #444;
-$heading-size			: 18px;
+$heading-size			: 16px;
 $heading-family 		: $font-serif;
 $heading-weight 		: $font-weight-bold;
-$heading-line-height	: 24px;
+$heading-line-height	: 22px;
 
 $heading-small-color 		: #444;
-$heading-small-size			: 14px;
+$heading-small-size			: 12px;
 $heading-small-family 		: $font-serif;
 $heading-small-weight 		: $font-weight-bold;
-$heading-small-line-height	: 18px;
+$heading-small-line-height	: 14px;
 
 $footer-color 			: #444;
-$footer-size			: 18px;
+$footer-size			: 12px;
 $footer-family 			: $font-serif;
 $footer-weight 			: $font-weight-bold;
-$footer-line-height		: 15px;
+$footer-line-height		: 14px;
 
 $product-color 			: #444;
 $product-size			: 12px;
@@ -60,6 +60,8 @@ $product-family 		: $font-serif;
 $product-line-height	: 18px;
 
 $form-error-color       : red;
+
+$content-link-color     : #c29954;
 
 @import "sprites";
 @import "mixins";

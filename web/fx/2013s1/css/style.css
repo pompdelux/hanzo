@@ -17,28 +17,20 @@
   background-position: 0 -494px;
 }
 
-.icons-sprite, .icons-arrow_double_left_white, .icons-arrow_double_right_white, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s7810dfd460.png') no-repeat;
-}
-
-.icons-arrow_double_left_white {
-  background-position: 0 -521px;
-}
-
-.icons-arrow_double_right_white {
-  background-position: 0 -529px;
+.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+  background: url('/fx/2013s1/../images/icons/icons-s064ec75c18.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -544px;
+  background-position: 0 -548px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -537px;
+  background-position: 0 -541px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -548px;
+  background-position: 0 -552px;
 }
 
 .icons-basket {
@@ -46,27 +38,35 @@
 }
 
 .icons-button-left {
-  background-position: 0 -502px;
+  background-position: 0 -522px;
 }
 
 .icons-button-right {
-  background-position: 0 -483px;
+  background-position: 0 -503px;
 }
 
 .icons-delete {
   background-position: 0 -147px;
 }
 
+.icons-delete_black {
+  background-position: 0 -157px;
+}
+
+.icons-delete_white {
+  background-position: 0 -167px;
+}
+
 .icons-divider {
-  background-position: 0 -340px;
+  background-position: 0 -360px;
 }
 
 .icons-divider_left {
-  background-position: 0 -207px;
+  background-position: 0 -227px;
 }
 
 .icons-divider_right {
-  background-position: 0 -270px;
+  background-position: 0 -290px;
 }
 
 .icons-edit {
@@ -74,11 +74,11 @@
 }
 
 .icons-facebook {
-  background-position: 0 -419px;
+  background-position: 0 -439px;
 }
 
 .icons-gplus {
-  background-position: 0 -387px;
+  background-position: 0 -407px;
 }
 
 .icons-newsletter {
@@ -86,31 +86,31 @@
 }
 
 .icons-pdf {
-  background-position: 0 -555px;
+  background-position: 0 -559px;
 }
 
 .icons-pinterest {
-  background-position: 0 -355px;
+  background-position: 0 -375px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -227px;
+  background-position: 0 -247px;
 }
 
 .icons-show {
-  background-position: 0 -571px;
+  background-position: 0 -575px;
 }
 
 .icons-twitter {
-  background-position: 0 -451px;
+  background-position: 0 -471px;
 }
 
 .icons-video {
-  background-position: 0 -290px;
+  background-position: 0 -310px;
 }
 
 .icons-zoom {
-  background-position: 0 -157px;
+  background-position: 0 -177px;
 }
 
 /**
@@ -177,7 +177,7 @@ ul.sub-menu,
   font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
-  line-height: 18px;
+  line-height: 14px;
   text-transform: uppercase;
 }
 ul.sub-menu li,
@@ -236,6 +236,7 @@ ul.horizontal li,
   vertical-align: middle;
 }
 #secondary-links li a {
+  font-size: 0.8em;
   text-transform: uppercase;
 }
 
@@ -314,14 +315,16 @@ ul.breadcrumb li.first:before {
 */
 footer {
   margin: 12px 0 !important;
+  margin: 0;
+  padding-top: 10px !important;
   color: #444444;
-  font-size: 18px;
+  font-size: 12px;
   font-family: "Merriweather", serif;
   font-weight: 900;
-  line-height: 15px;
+  line-height: 14px;
 }
 footer h2 {
-  font-size: 16px;
+  font-size: 12px;
   font-family: "Merriweather", serif;
   letter-spacing: 0;
 }
@@ -371,6 +374,9 @@ footer .copy ul li {
 footer .copy a {
   text-decoration: none;
 }
+footer .menu {
+  font-size: 10px;
+}
 
 /**
 | _product
@@ -418,7 +424,7 @@ div.panes > div {
   display: inline-block;
 }
 .zoom .sprite {
-  background-position: 0 -157px;
+  background-position: 0 -177px;
   height: 50px;
   width: 45px;
 }
@@ -437,7 +443,7 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -290px;
+  background-position: 0 -310px;
   height: 50px;
   width: 58px;
 }
@@ -446,7 +452,7 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main .prices {
   font-family: "Merriweather", serif;
   font-size: 26px;
-  font-weight: bold;
+  font-weight: normal;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -517,6 +523,12 @@ latest-seen-poducts a.buy-set,
   border: none;
   text-indent: -999px;
   display: inline-block;
+  margin-top: 50px;
+}
+latest-seen-poducts .last,
+.productimage-small .last,
+.style-guide .last {
+  margin-right: 0;
 }
 
 .style-guide, .style-guide .element {
@@ -860,7 +872,7 @@ nav.main-menu ul {
 nav.main-menu > ul > li {
   float: left;
   width: auto;
-  padding: 10px 12px 0;
+  padding: 10px 20px 0 0;
   position: relative;
 }
 nav.main-menu > ul > li > a {
@@ -950,7 +962,7 @@ nav.main-menu > ul > li > ul.on {
 */
 .body-pages h3 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: none;
   padding: 6px 0 0;
@@ -1422,6 +1434,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.main article a {
+  color: #c29954;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 900;
@@ -1435,10 +1451,10 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 h1 {
   color: #444444;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Merriweather", serif;
   font-weight: 900;
-  line-height: 24px;
+  line-height: 22px;
   padding: 6px 0;
   margin-bottom: 6px;
 }
@@ -1460,18 +1476,18 @@ h3 {
 
 h4 {
   color: #444444;
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Merriweather", serif;
   font-weight: 900;
-  line-height: 18px;
+  line-height: 14px;
 }
 
 p {
   color: #444444;
-  font-size: 14px;
+  font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
-  line-height: 15px;
+  line-height: 13px;
   padding: 0 0 5px;
 }
 
@@ -1480,14 +1496,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -340px;
+  background-position: 0 -360px;
   height: 15px;
 }
 hr.left {
-  background-position: 0 -207px;
+  background-position: 0 -227px;
 }
 hr.right {
-  background-position: 0 -270px;
+  background-position: 0 -290px;
 }
 
 strong, b {
@@ -1537,7 +1553,8 @@ form input.error {
 
 input.button,
 button.button,
-a.button {
+a.button,
+.main article a.button {
   border: none;
   cursor: pointer;
   display: inline-block;
@@ -1546,18 +1563,20 @@ a.button {
   text-align: center;
   padding: 6px;
   font-weight: bold;
-  color: white;
+  color: white !important;
   line-height: 18px;
   white-space: normal;
 }
 input.button:hover,
 button.button:hover,
-a.button:hover {
+a.button:hover,
+.main article a.button:hover {
   text-decoration: none;
 }
 input.button.text-button,
 button.button.text-button,
-a.button.text-button {
+a.button.text-button,
+.main article a.button.text-button {
   border: none;
   background: transparent;
   color: #444444;
@@ -1568,7 +1587,8 @@ a.button.text-button {
 }
 input.button.button-right,
 button.button.button-right,
-a.button.button-right {
+a.button.button-right,
+.main article a.button.button-right {
   background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
   border-right: 6px solid #474749;
   padding: 6px 24px;
@@ -1576,14 +1596,16 @@ a.button.button-right {
 }
 input.button.button-left,
 button.button.button-left,
-a.button.button-left {
+a.button.button-left,
+.main article a.button.button-left {
   background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
   border-left: 6px solid #474749;
   padding: 6px 24px;
 }
 input.button.button-small,
 button.button.button-small,
-a.button.button-small {
+a.button.button-small,
+.main article a.button.button-small {
   font-size: 11px;
   padding: 3px;
   line-height: inherit;
@@ -1591,18 +1613,21 @@ a.button.button-small {
 }
 input.button.button-small:hover,
 button.button.button-small:hover,
-a.button.button-small:hover {
+a.button.button-small:hover,
+.main article a.button.button-small:hover {
   text-decoration: none;
 }
 input.button.button-large,
 button.button.button-large,
-a.button.button-large {
+a.button.button-large,
+.main article a.button.button-large {
   padding: 6px 12px;
   width: 234px;
 }
 input.button.button-full-width,
 button.button.button-full-width,
-a.button.button-full-width {
+a.button.button-full-width,
+.main article a.button.button-full-width {
   width: 100%;
 }
 
@@ -1744,12 +1769,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -571px;
+  background-position: 0 -575px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -555px;
+  background-position: 0 -559px;
   height: 16px;
   width: 16px;
 }

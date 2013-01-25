@@ -25,6 +25,9 @@ a{
 		text-decoration: underline;
 	}
 }
+.main article a{
+	color: $content-link-color;
+}
 
 h1,h2,h3,h4,h5,h6{
 	font-family: $font-sans;
@@ -140,7 +143,8 @@ form{
 
 input.button,
 button.button,
-a.button {
+a.button,
+.main article a.button {
 	border: none;
 	cursor: pointer;
 	display: inline-block;
@@ -149,7 +153,7 @@ a.button {
 	text-align: center;
 	padding: 6px;
 	font-weight: bold;
-	color: white;
+	color: white !important;
 	line-height: 18px;
 	white-space: normal;
 
