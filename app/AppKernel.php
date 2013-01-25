@@ -167,13 +167,6 @@ class AppKernel extends Kernel
         return $mode;
     }
 
-    public function humanReadableSize($size)
-    {
-        $unit = array('b','kb','mb','gb','tb','pb');
-        return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . ' ' . $unit[$i];
-    }
-
-
     /**
      * allow us to override cache dir for the consultants section
      *
