@@ -176,6 +176,14 @@ class MenuController extends CoreController
                         $class = 'active';
                     }
 
+                    if($record->isFirst()){
+                        $class .= ' first';
+                    }
+
+                    if($result->isLast()){
+                        $class .= ' last';
+                    }
+
                     if (in_array($record->getType(), array('page', 'url'))) {
                         $params = $record->getSettings(null, false);
 
@@ -286,6 +294,14 @@ class MenuController extends CoreController
                         ($path == $this->path)
                     ) {
                         $class = 'active';
+                    }
+
+                    if($result->isFirst()){
+                        $class .= ' first';
+                    }
+
+                    if($result->isLast()){
+                        $class .= ' last';
                     }
 
                     if (in_array($record->getType(), array('page', 'url'))) {

@@ -97,6 +97,19 @@ class CMSRouterLoader implements LoaderInterface
 
                     $categories[$category_key] = $product_path;
 
+                    // product route
+                    $route = new Route("/{$path}/{product_id}/{title}", array(
+                        '_controller' => 'ProductBundle:Default:view',
+                        '_format' => 'html',
+                        'cms_id' => $id,
+                        'category_id' => $settings->category_id,
+                        'title' => '',
+                        'ip_restricted' => true,
+                    ), array(
+                        'product_id' => '\d+',
+                        '_format' => 'html|json',
+                    ));
+                    $routes->add($product_path, $route);
                     // category route
                     $route = new Route("/{$path}/{show}/{pager}", array(
                         '_controller' => 'CategoryBundle:Default:view',
@@ -107,25 +120,10 @@ class CMSRouterLoader implements LoaderInterface
                         'show' => 'look',
                         'ip_restricted' => true,
                     ), array(
-                        'pager' => '\d+',
                         '_format' => 'html|json',
                     ));
                     $routes->add($category_path, $route);
 
-                    // product route
-                    $route = new Route("/{$path}/{product_id}/{title}", array(
-                        '_controller' => 'ProductBundle:Default:view',
-                        '_format' => 'html',
-                        'product_id' => 0,
-                        'cms_id' => $id,
-                        'category_id' => $settings->category_id,
-                        'title' => '',
-                        'ip_restricted' => true,
-                    ), array(
-                        'product_id' => '\d+',
-                        '_format' => 'html|json',
-                    ));
-                    $routes->add($product_path, $route);
 
 
                     break;

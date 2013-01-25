@@ -17,20 +17,28 @@
   background-position: 0 -494px;
 }
 
-.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s6db6c2955e.png') no-repeat;
+.icons-sprite, .icons-arrow_double_left_white, .icons-arrow_double_right_white, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+  background: url('/fx/2013s1/../images/icons/icons-s7810dfd460.png') no-repeat;
 }
 
-.icons-arrow_down {
-  background-position: 0 -528px;
-}
-
-.icons-arrow_left {
+.icons-arrow_double_left_white {
   background-position: 0 -521px;
 }
 
+.icons-arrow_double_right_white {
+  background-position: 0 -529px;
+}
+
+.icons-arrow_down {
+  background-position: 0 -544px;
+}
+
+.icons-arrow_left {
+  background-position: 0 -537px;
+}
+
 .icons-arrow_right {
-  background-position: 0 -532px;
+  background-position: 0 -548px;
 }
 
 .icons-basket {
@@ -78,7 +86,7 @@
 }
 
 .icons-pdf {
-  background-position: 0 -539px;
+  background-position: 0 -555px;
 }
 
 .icons-pinterest {
@@ -90,7 +98,7 @@
 }
 
 .icons-show {
-  background-position: 0 -555px;
+  background-position: 0 -571px;
 }
 
 .icons-twitter {
@@ -305,7 +313,7 @@ ul.breadcrumb li.first:before {
 | _footer
 */
 footer {
-  margin: 0;
+  margin: 12px 0 !important;
   color: #444444;
   font-size: 18px;
   font-family: "Merriweather", serif;
@@ -1736,12 +1744,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -555px;
+  background-position: 0 -571px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -539px;
+  background-position: 0 -555px;
   height: 16px;
   width: 16px;
 }

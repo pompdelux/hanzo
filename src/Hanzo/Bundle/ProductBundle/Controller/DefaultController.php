@@ -192,7 +192,7 @@ class DefaultController extends CoreController
             'page_type' => 'product',
             'product' => $data,
             'references' => $images_references,
-            'route' => $route
+            'cat_route' => str_replace('product', 'category', $route)
         ));
         return $response;
     }

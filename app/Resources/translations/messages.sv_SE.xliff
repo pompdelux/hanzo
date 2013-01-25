@@ -214,6 +214,10 @@
                 <source>pager.pages.%total%</source>
                 <target>of %total%</target>
             </trans-unit>
+            <trans-unit id="pager.see_all.%total%" approved="no">
+                <source>pager.see_all.%total%</source>
+                <target>see all(%total%)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

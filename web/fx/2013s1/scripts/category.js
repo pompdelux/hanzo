@@ -102,26 +102,33 @@
         }, 500);
 
         // setup pager links
-        var $next = $('.pager.ajax li.next');
-        var $prew = $('.pager.ajax li.prew');
+        if(typeof current.paginate !== "undefined" && current.paginate !== null){
+          var $next = $('.pager.ajax li.next');
+          var $prew = $('.pager.ajax li.prew');
 
-        $('.pager.ajax li').removeClass('current');
-        $('.pager.ajax').each(function(i){
-          $(this).find('li:eq(' + current.paginate.index + ')').addClass('current');
-        });
+          $('.pager.ajax li').removeClass('current');
+          $('.pager.ajax').each(function(i){
+            $(this).find('li:eq(' + current.paginate.index + ')').addClass('current');
+          });
 
-        $next.addClass('off');
-        $prew.addClass('off');
+          $next.addClass('off');
+          $prew.addClass('off');
 
-        $next.children('a').attr('href', current.paginate.next);
-        $prew.children('a').attr('href', current.paginate.prew);
+          $next.children('a').attr('href', current.paginate.next);
+          $prew.children('a').attr('href', current.paginate.prew);
 
-        // switch on/off next and prev links
-        if ((undefined !== current.paginate.next) && current.paginate.next) {
-          $next.removeClass('off');
-        }
-        if ((undefined !== current.paginate.prew) && current.paginate.prew) {
-          $prew.removeClass('off');
+          // switch on/off next and prev links
+          if ((undefined !== current.paginate.next) && current.paginate.next) {
+            $next.removeClass('off');
+          }
+          if ((undefined !== current.paginate.prew) && current.paginate.prew) {
+            $prew.removeClass('off');
+          }
+        }else{
+          // No need off pagination. Remove if they exists
+          $('.pager.ajax').hide('300',function(e){
+            $(this).remove();
+          });
         }
 
         // stop loading anim
