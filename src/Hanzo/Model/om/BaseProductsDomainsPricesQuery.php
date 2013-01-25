@@ -19,10 +19,6 @@ use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsDomainsPricesQuery;
 
 /**
- * Base class that represents a query for the 'products_domains_prices' table.
- *
- *
- *
  * @method ProductsDomainsPricesQuery orderByProductsId($order = Criteria::ASC) Order by the products_id column
  * @method ProductsDomainsPricesQuery orderByDomainsId($order = Criteria::ASC) Order by the domains_id column
  * @method ProductsDomainsPricesQuery orderByPrice($order = Criteria::ASC) Order by the price column
@@ -69,8 +65,6 @@ use Hanzo\Model\ProductsDomainsPricesQuery;
  * @method array findByCurrencyId(int $currency_id) Return ProductsDomainsPrices objects filtered by the currency_id column
  * @method array findByFromDate(string $from_date) Return ProductsDomainsPrices objects filtered by the from_date column
  * @method array findByToDate(string $to_date) Return ProductsDomainsPrices objects filtered by the to_date column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
 {
@@ -159,7 +153,7 @@ abstract class BaseProductsDomainsPricesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `products_id`, `domains_id`, `price`, `vat`, `currency_id`, `from_date`, `to_date` FROM `products_domains_prices` WHERE `products_id` = :p0 AND `domains_id` = :p1 AND `from_date` = :p2';
+        $sql = 'SELECT `PRODUCTS_ID`, `DOMAINS_ID`, `PRICE`, `VAT`, `CURRENCY_ID`, `FROM_DATE`, `TO_DATE` FROM `products_domains_prices` WHERE `PRODUCTS_ID` = :p0 AND `DOMAINS_ID` = :p1 AND `FROM_DATE` = :p2';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

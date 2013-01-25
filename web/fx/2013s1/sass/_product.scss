@@ -1,0 +1,181 @@
+/**
+| _product
+*/
+
+.bordered,
+.bordered-bottom {
+	border-bottom: 1px solid #888;}
+.bordered,
+.bordered-top {
+	border-top: 1px solid #888;
+	margin-top: 6px;}
+
+/* - tabs */
+ul.tabs {
+	list-style: none;
+	margin: 0;
+	padding: 6px 0;
+	margin: 6px 0;
+	li {
+		display: inline-block;
+		margin-right: 15px;
+		a {
+			background: url(/fx/images/arrow_single_right_white.png) no-repeat center left;
+			padding-left: 20px;
+			font-family: $font-serif;
+			&.current {
+				background: url(/fx/images/arrow_single_down_white.png) no-repeat center left;
+			}
+			&:hover{
+				border-bottom: none;
+			}
+		}
+	}
+}
+div.panes > div {
+	padding: 6px;
+	margin-bottom: 18px;
+}
+
+.zoom{
+	display: inline-block;
+
+	.sprite{
+		@include icons-sprite(zoom);
+		height: icons-sprite-height(zoom);
+		width: icons-sprite-width(zoom);
+	}
+}
+.body-product .breadcrumb{
+	margin-bottom: 16px;
+}
+.back-to-category{
+
+	.sprite{
+		height: icons-sprite-height(arrow_left);
+		width: icons-sprite-width(arrow_left);
+	}
+}
+a.video-popper, #video-player-container a.video {
+	display: inline-block;
+	text-align: center;
+
+	.sprite{
+		@include icons-sprite(video);
+		height: icons-sprite-height(video);
+		width: icons-sprite-width(video);
+	}
+}
+
+.body-product .main{
+	h1.title,
+	.prices {
+		font-family: $font-serif;
+		font-size: 26px;
+		font-weight: normal;
+	}
+	.prices{
+		padding: 0 0 12px;
+	}
+
+	h4{
+		padding: 6px 0;
+		font-weight: $font-weight-thin;
+	}
+}
+
+form.buy{
+	margin-bottom: 16px;
+	label{
+		display: block;
+		padding: 0 6px 0 0;
+		margin: 3px 0;
+		span{
+			display: block;
+		}
+		select{
+			width:237px;
+		}
+		a {
+			margin-left: 18px;
+			font-weight: bold;
+		}
+		&.off {
+			display: none;
+		}
+	}
+	.submit-button{
+		cursor: pointer;
+		margin-top: 18px;
+		@include image-replacement;
+	}
+}
+
+latest-seen-poducts,
+.productimage-small,
+.style-guide{
+	a{
+		vertical-align: top;
+		display: inline-block;
+		margin-right: 3px;
+		img{
+			padding: 1px;
+		}
+		&:hover{
+			border-bottom: none;
+			margin-bottom: 0;
+			img{
+				padding: 0px;
+				border: 1px solid #888;
+			}
+		}
+		&.buy-set{
+			@include image-replacement;
+			margin-top: 50px;
+		}
+	}
+	.last{
+		margin-right: 0;
+	}
+}
+.style-guide, .style-guide .element {
+	display: none;
+}
+
+@import "colorbuttons/*.png";
+@include all-colorbuttons-sprites; // Generates a sprite from all images inside the folder
+a.product-color{
+	margin: 6px;
+	display: inline-block;
+	text-align: center;
+	.colorbuttons {
+		margin: 0 auto;
+
+		// We need all colors ruled here::
+		&.colorbuttons-navy{
+			@include colorbuttons-sprite(navy);
+			padding-top: colorbuttons-sprite-height(navy);
+			width: colorbuttons-sprite-width(navy);
+		}
+		// We need all colors ruled here::
+		&.colorbuttons-violet{
+			@include colorbuttons-sprite(violet);
+			padding-top: colorbuttons-sprite-height(violet);
+			width: colorbuttons-sprite-width(violet);
+		}
+	}
+	&.current,
+	&:hover{
+		.colorbuttons-navy{
+			@include colorbuttons-sprite(navy_aktiv);
+			padding-top: colorbuttons-sprite-height(navy_aktiv);
+			width: colorbuttons-sprite-width(navy_aktiv);
+		}
+		.colorbuttons-violet{
+			@include colorbuttons-sprite(violet_aktiv);
+			padding-top: colorbuttons-sprite-height(violet_aktiv);
+			width: colorbuttons-sprite-width(violet_aktiv);
+		}
+	}
+
+}

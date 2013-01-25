@@ -25,13 +25,6 @@ use Hanzo\Model\ProductsWashingInstructionsPeer;
 use Hanzo\Model\RelatedProductsPeer;
 use Hanzo\Model\map\ProductsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'products' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsPeer
 {
 
@@ -56,41 +49,41 @@ abstract class BaseProductsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 12;
 
-    /** the column name for the id field */
-    const ID = 'products.id';
+    /** the column name for the ID field */
+    const ID = 'products.ID';
 
-    /** the column name for the sku field */
-    const SKU = 'products.sku';
+    /** the column name for the SKU field */
+    const SKU = 'products.SKU';
 
-    /** the column name for the master field */
-    const MASTER = 'products.master';
+    /** the column name for the MASTER field */
+    const MASTER = 'products.MASTER';
 
-    /** the column name for the size field */
-    const SIZE = 'products.size';
+    /** the column name for the SIZE field */
+    const SIZE = 'products.SIZE';
 
-    /** the column name for the color field */
-    const COLOR = 'products.color';
+    /** the column name for the COLOR field */
+    const COLOR = 'products.COLOR';
 
-    /** the column name for the unit field */
-    const UNIT = 'products.unit';
+    /** the column name for the UNIT field */
+    const UNIT = 'products.UNIT';
 
-    /** the column name for the washing field */
-    const WASHING = 'products.washing';
+    /** the column name for the WASHING field */
+    const WASHING = 'products.WASHING';
 
-    /** the column name for the has_video field */
-    const HAS_VIDEO = 'products.has_video';
+    /** the column name for the HAS_VIDEO field */
+    const HAS_VIDEO = 'products.HAS_VIDEO';
 
-    /** the column name for the is_out_of_stock field */
-    const IS_OUT_OF_STOCK = 'products.is_out_of_stock';
+    /** the column name for the IS_OUT_OF_STOCK field */
+    const IS_OUT_OF_STOCK = 'products.IS_OUT_OF_STOCK';
 
-    /** the column name for the is_active field */
-    const IS_ACTIVE = 'products.is_active';
+    /** the column name for the IS_ACTIVE field */
+    const IS_ACTIVE = 'products.IS_ACTIVE';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'products.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'products.CREATED_AT';
 
-    /** the column name for the updated_at field */
-    const UPDATED_AT = 'products.updated_at';
+    /** the column name for the UPDATED_AT field */
+    const UPDATED_AT = 'products.UPDATED_AT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -225,18 +218,18 @@ abstract class BaseProductsPeer
             $criteria->addSelectColumn(ProductsPeer::CREATED_AT);
             $criteria->addSelectColumn(ProductsPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.sku');
-            $criteria->addSelectColumn($alias . '.master');
-            $criteria->addSelectColumn($alias . '.size');
-            $criteria->addSelectColumn($alias . '.color');
-            $criteria->addSelectColumn($alias . '.unit');
-            $criteria->addSelectColumn($alias . '.washing');
-            $criteria->addSelectColumn($alias . '.has_video');
-            $criteria->addSelectColumn($alias . '.is_out_of_stock');
-            $criteria->addSelectColumn($alias . '.is_active');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.updated_at');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.SKU');
+            $criteria->addSelectColumn($alias . '.MASTER');
+            $criteria->addSelectColumn($alias . '.SIZE');
+            $criteria->addSelectColumn($alias . '.COLOR');
+            $criteria->addSelectColumn($alias . '.UNIT');
+            $criteria->addSelectColumn($alias . '.WASHING');
+            $criteria->addSelectColumn($alias . '.HAS_VIDEO');
+            $criteria->addSelectColumn($alias . '.IS_OUT_OF_STOCK');
+            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.UPDATED_AT');
         }
     }
 

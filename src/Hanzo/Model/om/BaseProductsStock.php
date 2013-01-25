@@ -19,13 +19,6 @@ use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsStockQuery;
 
-/**
- * Base class that represents a row from the 'products_stock' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseProductsStock extends BaseObject implements Persistent
 {
     /**
@@ -145,10 +138,12 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [available_from] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getAvailableFrom($format = 'Y-m-d')
@@ -161,25 +156,22 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->available_from);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->available_from, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->available_from);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->available_from, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -321,7 +313,7 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 4; // 4 = ProductsStockPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -551,16 +543,16 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductsStockPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(ProductsStockPeer::PRODUCTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`products_id`';
+            $modifiedColumns[':p' . $index++]  = '`PRODUCTS_ID`';
         }
         if ($this->isColumnModified(ProductsStockPeer::QUANTITY)) {
-            $modifiedColumns[':p' . $index++]  = '`quantity`';
+            $modifiedColumns[':p' . $index++]  = '`QUANTITY`';
         }
         if ($this->isColumnModified(ProductsStockPeer::AVAILABLE_FROM)) {
-            $modifiedColumns[':p' . $index++]  = '`available_from`';
+            $modifiedColumns[':p' . $index++]  = '`AVAILABLE_FROM`';
         }
 
         $sql = sprintf(
@@ -573,16 +565,16 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`products_id`':
+                    case '`PRODUCTS_ID`':
                         $stmt->bindValue($identifier, $this->products_id, PDO::PARAM_INT);
                         break;
-                    case '`quantity`':
+                    case '`QUANTITY`':
                         $stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
                         break;
-                    case '`available_from`':
+                    case '`AVAILABLE_FROM`':
                         $stmt->bindValue($identifier, $this->available_from, PDO::PARAM_STR);
                         break;
                 }
@@ -653,11 +645,11 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1026,13 +1018,12 @@ abstract class BaseProductsStock extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && ($this->products_id !== null) && $doQuery) {
+        if ($this->aProducts === null && ($this->products_id !== null)) {
             $this->aProducts = ProductsQuery::create()->findPk($this->products_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

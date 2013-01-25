@@ -439,7 +439,7 @@ class Tools
             if ('dev_' !== substr(self::getHanzoInstance()->container->get('kernel')->getEnvironment(), 0, 4)) {
                 $path = '';
             }
-            $path .= '/'.self::getHanzoInstance()->getSession()->getLocale().'/';
+            $path .= '/'.self::getHanzoInstance()->container->get('request')->getLocale().'/';
         }
 
         return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $http_only);
@@ -466,15 +466,29 @@ class Tools
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
+    public static function fxImageUrl($src, $preset = '', array $params = array())
+    {
+        $src = self::getHanzoInstance()->get('core.cdn') . 'fx/' . $src;
+        return self::imagePath($src, $preset);
+    }
+
     public static function productImageTag($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
+        $dir = 'images/products/thumb/';
+        if($preset === '0x0'){
+            $dir = 'images/products/';
+        }
+        $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
         return self::generateImageTag(self::imagePath($src, $preset), $params);
     }
 
     public static function productImageUrl($src, $preset = '50x50', array $params = array())
     {
-        $src = self::getHanzoInstance()->get('core.cdn2') . 'images/products/thumb/' . $src;
+        $dir = 'images/products/thumb/';
+        if($preset === '0x0'){
+            $dir = 'images/products/';
+        }
+        $src = self::getHanzoInstance()->get('core.cdn2') . $dir . $src;
         return self::imagePath($src, $preset);
     }
 
@@ -499,8 +513,10 @@ class Tools
             throw new \InvalidArgumentException("Preset: {$preset} is not valid.");
         }
 
-        if ($preset) {
+        if ($preset && $preset !== '0x0') {
             $preset .= ',';
+        }else{
+            $preset = '';
         }
 
         $url = parse_url($src);

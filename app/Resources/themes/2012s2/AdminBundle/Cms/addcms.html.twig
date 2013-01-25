@@ -1,0 +1,32 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_cms') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+<h1>{{ 'add.cms.header.text'|trans({}, 'admin') }}</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<form action="{{ path('admin_cms_add') }}" method="post" {{ form_enctype(form) }}>
+  <div id="cms-edit">
+    {{ form_row(form.type) }}
+    {{ form_row(form.cms_thread_id) }}
+    {{ form_row(form.parent_id) }}
+    {{ form_row(form._token) }}
+  </div>
+  <input class="button right" type="submit" value="{{ 'add.cms'|trans({}, 'admin') }}">
+  <a class="button left" href="{{ path('admin_cms') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}

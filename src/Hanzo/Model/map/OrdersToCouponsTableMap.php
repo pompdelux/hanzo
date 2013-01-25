@@ -42,9 +42,9 @@ class OrdersToCouponsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('orders_id', 'OrdersId', 'INTEGER' , 'orders', 'id', true, null, null);
-        $this->addForeignPrimaryKey('coupons_id', 'CouponsId', 'INTEGER' , 'coupons', 'id', true, null, null);
-        $this->addColumn('amount', 'Amount', 'DECIMAL', true, 15, null);
+        $this->addForeignPrimaryKey('ORDERS_ID', 'OrdersId', 'INTEGER' , 'orders', 'ID', true, null, null);
+        $this->addForeignPrimaryKey('COUPONS_ID', 'CouponsId', 'INTEGER' , 'coupons', 'ID', true, null, null);
+        $this->addColumn('AMOUNT', 'Amount', 'DECIMAL', true, 15, null);
         // validators
     } // initialize()
 

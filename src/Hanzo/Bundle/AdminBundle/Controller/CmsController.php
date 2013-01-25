@@ -109,7 +109,6 @@ class CmsController extends CoreController
             $locale = LanguagesQuery::create()->orderById()->findOne($this->getDbConnection())->getLocale();
         }
 
-        $cms_node = new CmsNode();
         $cms_threads = CmsThreadQuery::create()
             ->joinWithI18n($locale)
             ->find($this->getDbConnection())
@@ -120,7 +119,15 @@ class CmsController extends CoreController
         foreach ($cms_threads as $cms_thread) {
             $cms_thread_choices[$cms_thread->getId()] = $cms_thread->getTitle();
         }
-        $form = $this->createFormBuilder($cms_node)
+
+        $parent_choices = array();
+
+        $parents = CmsQuery::create()->filterByIsActive(true)->find();
+        foreach ($parents as $parent) {
+            $parent_choices[$parent->getId()] = '('.$parent->getId().') '.$parent->getTitle();
+        }
+        $node = new Cms();
+        $form = $this->createFormBuilder($node)
             ->add('type', 'choice', array(
                     'label'     => 'cms.edit.label.settings',
                     'choices'   => array(
@@ -131,7 +138,10 @@ class CmsController extends CoreController
                         'category_search'  => 'cms.edit.type.category_search',
                         'newsletter'  => 'cms.edit.type.newsletter',
                         'advanced_search'  => 'cms.edit.type.advanced_search',
-                        'mannequin'  => 'cms.edit.type.mannequin'
+                        'mannequin'  => 'cms.edit.type.mannequin',
+                        'bycolour'  => 'cms.edit.type.bycolour',
+                        'look'  => 'cms.edit.type.look',
+                        'heading'  => 'cms.edit.type.heading'
                     ),
                     'required'  => TRUE,
                     'translation_domain' => 'admin'
@@ -142,6 +152,12 @@ class CmsController extends CoreController
                     'required' => TRUE,
                     'translation_domain' => 'admin'
                 ))
+            ->add('parent_id', 'choice', array(
+                    'label' => 'cms.edit.label.parent_id',
+                    'choices' => $parent_choices,
+                    'required' => false,
+                    'translation_domain' => 'admin'
+                ))
             ->getForm();
 
         $request = $this->getRequest();
@@ -149,13 +165,16 @@ class CmsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $node = new Cms();
                 $settings = array();
-                switch ($cms_node->getType()) {
+                switch ($node->getType()) {
                     case 'category':
                         $node->setType('category');
                         $settings['category_id'] = 'x';
                         // Noget med category_id
+                        break;
+                    case 'look':
+                        $node->setType('look');
+                        $settings['category_id'] = 'x';
                         break;
                     case 'category_search':
                         $node->setType('search');
@@ -177,19 +196,20 @@ class CmsController extends CoreController
                         $settings['colorsheme'] = '';
                         $settings['ignore'] = '';
                         break;
+                    case 'bycolour':
+                        $node->setType('bycolour');
+                        $settings['category_ids'] = 'x,y,z';
+                        $settings['colorsheme'] = '';
+                        $settings['colors'] = 'x,z';
+                        $settings['ignore'] = '';
+                        break;
                     case 'frontpage':
                         $node->setType('frontpage');
                         $settings['is_frontpage'] = true;
                         break;
-                    default:
-                        $node->setType($cms_node->getType());
-                        break;
                 }
 
-                $node->setCmsThreadId($cms_node->getCmsThreadId());
-
                 $node->setIsActive(FALSE);
-                $node->setSettings(json_encode($settings));
                 $node->save($this->getDbConnection());
 
                 try {
@@ -197,6 +217,7 @@ class CmsController extends CoreController
                     $trans->setCms($node);
                     $trans->setLocale($locale);
                     $trans->save($this->getDbConnection());
+                    $trans->setSettings(json_encode($settings));
                 } catch (\Exception $e) {}
 
                 $this->get('session')->setFlash('notice', 'cms.added');
@@ -267,25 +288,74 @@ class CmsController extends CoreController
             ->filterById($node->getCmsThreadId())
             ->findOne($this->getDbConnection())
         ;
+        $parent = CmsQuery::create()
+            ->joinWithI18n($locale)
+            ->filterById($node->getParentId())
+            ->findOne($this->getDbConnection())
+        ;
+        if($parent)
+            $parent_path = $parent->getPath();
+        if($parent && (empty($parent_path) || $parent_path === '#')){
 
-        $form = $this->createForm(new CmsType(), $node);
+            $parent = CmsQuery::create()
+                ->joinWithI18n($locale)
+                ->filterById($parent->getParentId())
+                ->findOne($this->getDbConnection())
+            ;
+        }
+
+        $form = $this->createFormBuilder($node)
+            ->add('locale', 'hidden')
+            ->add('is_active', 'checkbox', array(
+                'label'     => 'cms.edit.label.is_active',
+                'translation_domain' => 'admin',
+                'required'  => false
+            ))
+            ->add('is_restricted', 'checkbox', array(
+                'label'     => 'cms.edit.label.is_restricted',
+                'translation_domain' => 'admin',
+                'required'  => false
+            ))
+            ->add('title', null, array(
+                'label'     => 'cms.edit.label.title',
+                'required' => TRUE,
+                'translation_domain' => 'admin'
+            ))
+            ->add('path', null, array(
+                'label'     => 'cms.edit.label.path',
+                'required' => TRUE,
+                'translation_domain' => 'admin'
+            ))
+            ->add('content', 'textarea', array(
+                'label'     => 'cms.edit.label.content',
+                'required' => FALSE,
+                'translation_domain' => 'admin'
+            ))
+            ->add('settings', 'textarea', array(
+                'label'     => 'cms.edit.label.settings',
+                'required' => FALSE,
+                'translation_domain' => 'admin'
+            ))->getForm();
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-
-                // Find dublicate URL'er
-                $urls = CmsQuery::create()
-                    ->useCmsI18nQuery()
-                        ->filterByPath($node->getPath())
-                    ->endUse()
-                    ->joinCmsI18n(NULL, 'INNER JOIN')
-                    ->filterByIsActive(TRUE)
-                    ->where('cms.id <> ?', $node->getId())
-                    ->findOne($this->getDbConnection())
-                ;
+                $path = $node->getPath();
+                // Find dublicate URL'er hvis der er angivet en URL
+                $urls = null;
+                if($node->getPath() !== '#' AND !empty($path)){
+                    $urls = CmsQuery::create()
+                        ->useCmsI18nQuery()
+                            ->filterByPath($node->getPath())
+                        ->endUse()
+                        ->joinCmsI18n(NULL, 'INNER JOIN')
+                        ->filterByIsActive(TRUE)
+                        ->where('cms.id <> ?', $node->getId())
+                        ->findOne($this->getDbConnection())
+                    ;
+                }
 
                 // Findes der ikke nogle med samme url-path _eller_ er node IKKE aktiv
                 if( !($urls instanceof Cms) || !$node->getIsActive())
@@ -309,7 +379,7 @@ class CmsController extends CoreController
             'form'      => $form->createView(),
             'node'      => $node,
             'languages' => $languages_availible,
-            'thread_title' =>$cms_thread->getTitle(),
+            'path'      => ($parent)?$parent->getPath():'',
             'database' => $this->getRequest()->getSession()->get('database')
         ));
 

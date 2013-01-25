@@ -7,6 +7,7 @@
  * @author un@bellcom.dk
  */
 
+
 require __DIR__ . '/config.php';
 
 $source_dir = __DIR__ . '/../web/images/products/import/';
@@ -29,10 +30,15 @@ foreach ($images_found as $file) {
 
     // skip unchanged files
     if (($srcmd5 === $tgdmd5) || (false !== strpos($image, '('))) {
-        continue;
+//        continue;
     }
 
     $images[$image] = $image;
+}
+
+if (0 === count($images)) {
+    _dbug("no images to import, we stop here.");
+    exit;
 }
 
 // make sure the images are sorted
@@ -40,7 +46,6 @@ ksort($images, SORT_REGULAR);
 
 // create index from sort.
 $product_images = array();
-$extra_images = array();
 $product_ids = array();
 $product_categories_ids = array();
 $failed = array();
@@ -49,9 +54,12 @@ $pdo = $_databases['vip'];
 $products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $categories_stmt = $pdo->prepare('SELECT categories_id FROM products_to_categories WHERE products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
+_dbug("finding images product and category reference.");
 foreach ($images as $image) {
-    // ex: key = PANTYHOSE-2-PACK_01.jpg
-    @list($master, $junk) = explode('_', str_replace('-', ' ', $image));
+
+    // Luna-LS-Tshirt_Dark-Grey-Melange_overview_01.jpg
+    // master         color             type     index
+    @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
 
     if (empty($product_ids[$master])) {
         $products_stmt->execute(array(
@@ -70,14 +78,10 @@ foreach ($images as $image) {
         $categories_stmt->execute(array(
             ':products_id' => $products_id
         ));
+
         foreach ($categories_stmt->fetchAll(PDO::FETCH_OBJ) as $record) {
             $product_categories_ids[$products_id][$record->categories_id] = $record->categories_id;
         }
-    }
-
-    if (!preg_match('/^[0-9]+/', $junk)) {
-        $extra_images[$master][] = $image;
-        continue;
     }
 
     $product_images[$master][] = $image;
@@ -87,7 +91,9 @@ $select_sql = '
     SELECT id
     FROM products_images
     WHERE products_id = :products_id
-    AND image = :image
+        AND image = :image
+        AND color = :color
+        AND type = :type
 ';
 $select_slave_sql = '
     SELECT products_id
@@ -97,20 +103,24 @@ $select_slave_sql = '
 $product_sql = '
     INSERT INTO products_images
     SET products_id = :products_id,
-        image = :image
+        image = :image,
+        color = :color,
+        type = :type
 ';
 $product_slave_sql = '
     INSERT INTO products_images
     SET id = :id,
         products_id = :products_id,
-        image = :image
+        image = :image,
+        color = :color,
+        type = :type
 ';
 $category_select_sql = '
     SELECT sort
     FROM products_images_categories_sort
     WHERE products_id = :products_id
-    AND categories_id = :categories_id
-    AND products_images_id = :products_images_id
+        AND categories_id = :categories_id
+        AND products_images_id = :products_images_id
 ';
 $category_sql = '
     INSERT INTO products_images_categories_sort
@@ -124,6 +134,8 @@ $image2id = array();
 foreach ($_databases as $key => $conn) {
     // prepare statements for the different databases
 
+    _dbug("using database: {$key}");
+
     if ($key == 'vip') {
         $product_stm = $conn->prepare($product_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $select_stm = $conn->prepare($select_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -136,14 +148,20 @@ foreach ($_databases as $key => $conn) {
     $category_stm = $conn->prepare($category_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
     if ($key == 'vip') {
+        _dbug("finding master products");
         foreach ($product_images as $master => $images) {
             $products_id = $product_ids[$master];
 
             // loop images into db
             foreach($images as $image) {
+                @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+                $index = (int) $index;
+
                 $select_stm->execute(array(
                     ':products_id' => $products_id,
                     ':image' => $image,
+                    ':color' => $color,
+                    ':type' => $type,
                 ));
                 $image_id = $select_stm->fetchColumn();
 
@@ -152,6 +170,8 @@ foreach ($_databases as $key => $conn) {
                     $product_stm->execute(array(
                         ':products_id' => $products_id,
                         ':image' => $image,
+                        ':color' => $color,
+                        ':type' => $type,
                     ));
                     $image_id = $conn->lastInsertId();
                     $image2id[$image] = $image_id;
@@ -160,27 +180,30 @@ foreach ($_databases as $key => $conn) {
                 }
 
                 // add image to "products_images_to_categories"
-                foreach ($product_categories_ids[$products_id] as $category_id) {
-                    $category_select_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
+                if (1 === $index) {
+                    foreach ($product_categories_ids[$products_id] as $category_id) {
+                        $category_select_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
 
-                    // skip existing
-                    if (0 < $category_select_stm->fetchColumn()) {
-                        continue;
+                        // skip existing
+                        if (0 < $category_select_stm->fetchColumn()) {
+                            continue;
+                        }
+
+                        $category_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
                     }
-
-                    $category_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
                 }
             }
         }
     } else {
+        _dbug("pushing info to 'slaves'");
         foreach ($product_images as $master => $images) {
             $products_id = $product_ids[$master];
 
@@ -188,6 +211,9 @@ foreach ($_databases as $key => $conn) {
                 if (empty($image2id[$image])) {
                     continue;
                 }
+
+                @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+                $index = (int) $index;
 
                 $image_id = $image2id[$image];
 
@@ -201,44 +227,40 @@ foreach ($_databases as $key => $conn) {
                         ':id' => $image_id,
                         ':products_id' => $products_id,
                         ':image' => $image,
+                        ':color' => $color,
+                        ':type' => $type,
                     ));
                 }
 
-
                 // add image to "products_images_to_categories"
-                foreach ($product_categories_ids[$products_id] as $category_id) {
-                    $category_select_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
+                if (1 === $index) {
+                    foreach ($product_categories_ids[$products_id] as $category_id) {
+                        $category_select_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
 
-                    // skip existing
-                    if (0 < $category_select_stm->fetchColumn()) {
-                        continue;
+                        // skip existing
+                        if (0 < $category_select_stm->fetchColumn()) {
+                            continue;
+                        }
+
+                        $category_stm->execute(array(
+                            ':products_id' => $products_id,
+                            ':categories_id' => $category_id,
+                            ':products_images_id' => $image_id,
+                        ));
                     }
-
-                    $category_stm->execute(array(
-                        ':products_id' => $products_id,
-                        ':categories_id' => $category_id,
-                        ':products_images_id' => $image_id,
-                    ));
                 }
             }
         }
     }
-
-
-
 }
 
 // copy all images to the right location
+_dbug("copying images to source dir.");
 foreach ($product_images as $pid => $images) {
-    foreach($images as $image) {
-        copy($source_dir . $image, $target_dir . $image);
-    }
-}
-foreach ($extra_images as $pid => $images) {
     foreach($images as $image) {
         copy($source_dir . $image, $target_dir . $image);
     }
@@ -261,6 +283,7 @@ while ($record = $images_stmt->fetchObject()) {
 
 // cleanup
 // remove images from unused categories
+_dbug("delete unused image-to-category relations.");
 foreach ($_databases as $key => $conn) {
     foreach ($product_categories_ids as $products_id => $categories) {
         $ids = implode(',', $categories);
@@ -270,6 +293,7 @@ foreach ($_databases as $key => $conn) {
 
 // remove images altogether
 if (count($image_records_to_delete)) {
+    _dbug("delete unused image-to-category relations.");
     foreach ($_databases as $key => $conn) {
         $ids = implode(',', array_keys($image_records_to_delete));
         $conn->exec('DELETE FROM products_images WHERE id IN('.$ids.')');
@@ -307,3 +331,7 @@ if (count($failed)) {
         '-fhd@pompdelux.dk'
     );
 }
+
+// rescale all images
+require __DIR__ . '/scaleProductImages.php';
+_dbug("- done");

@@ -88,7 +88,7 @@ var account = (function($) {
 
         // set city to readonly
         $('#customers_addresses_0_city').focus(function () {
-          dialoug.loading( '#customers_addresses_0_city', ExposeTranslation.get('js:please.wait') );
+          dialoug.loading( '#customers_addresses_0_city', Translator.get('js:please.wait') );
           this.value = '';
           if ($('#customers_addresses_0_postal_code').val() === '') {
             $('#customers_addresses_0_postal_code')
@@ -130,7 +130,7 @@ var account = (function($) {
     $('a.edit').on('click', function(event) {
       event.preventDefault();
       var href = this.href;
-      dialoug.confirm(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:edit.order.notice'), function(c) {
+      dialoug.confirm(Translator.get('js:notice'), Translator.get('js:edit.order.notice'), function(c) {
         if (c == 'ok') {
           document.location.href = href;
         }
@@ -140,7 +140,7 @@ var account = (function($) {
     $('a.delete').on('click', function(event) {
       event.preventDefault();
       var href = this.href;
-      dialoug.confirm(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:delete.order.notice'), function(c) {
+      dialoug.confirm(Translator.get('js:notice'), Translator.get('js:delete.order.notice'), function(c) {
         if (c == 'ok') {
           document.location.href = href;
         }

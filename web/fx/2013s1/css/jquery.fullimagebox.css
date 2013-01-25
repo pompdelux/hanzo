@@ -1,0 +1,56 @@
+.full-image-box {
+    position : fixed;
+    z-index : 300;
+    top : 0;
+    left : 0;
+    width : 100%;
+    background: white;
+}
+.full-image-box img.full-image{
+	width:100%;
+	top:0;
+	left:0;
+	position: absolute;
+}
+.full-image-box .prev,
+.full-image-box .next{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: url(/fx/images/icons/icons/button-left.png) no-repeat center #000;
+	opacity: 0.4;
+	z-index: 310;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -25px;
+}
+.full-image-box .next{
+	right: 0;
+	left: auto;
+	background: url(/fx/images/icons/icons/button-right.png) no-repeat center #000;
+}
+
+.full-image-box .loader {
+	display: inline-block;
+	position: absolute;
+	height: 32px;
+	width: 32px;
+	left: 50%;
+	top: 50%;
+	margin: -16px 0 0 -16px;
+	background: url(/fx/images/loading.gif) no-repeat;
+	z-index: 310;
+}
+
+.full-image-box .close {
+	display: inline-block;
+	position: absolute;
+	height: 32px;
+	width: 32px;
+	right: 0;
+	top: 0;
+	background: url(/fx/images/delete_icon.png) no-repeat center #000;
+	opacity: 0.4;
+	z-index: 310;
+}

@@ -12,27 +12,26 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\CmsI18nQuery;
 
-use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\Config\Loader\LoaderResolver;
+use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 class CMSRouterLoader implements LoaderInterface
 {
     private $loaded = false;
-    private $session;
+    private $locale;
     private $cache_dir;
 
     /**
      * setup required variables
      *
-     * @param Session $session   The current session object
-     * @param string  $cache_dir Path to filesystem cache
+     * @param string $locale    active locale
+     * @param string $cache_dir Path to filesystem cache
      */
-    public function __construct(Session $session, $cache_dir)
+    public function __construct($locale, $cache_dir)
     {
-        $this->session = $session;
+        $this->locale = $locale;
         $this->cache_dir = $cache_dir;
     }
 
@@ -56,7 +55,7 @@ class CMSRouterLoader implements LoaderInterface
         $pages = CmsI18nQuery::create()
             ->rightJoinWithCms()
             ->orderByPath()
-            ->findByLocale($this->session->getLocale())
+            ->findByLocale($this->locale)
         ;
 
         foreach ($pages as $page) {
@@ -86,8 +85,8 @@ class CMSRouterLoader implements LoaderInterface
             switch ($type) {
                 case 'category':
 
-                    // test ... we should never enter this if tho...
-                    if (!$settings instanceof \stdClass) {
+                    //test ... we should never enter this if tho...
+                    if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
                         Tools::log($page->toArray());
                         continue;
                     }
@@ -99,12 +98,13 @@ class CMSRouterLoader implements LoaderInterface
                     $categories[$category_key] = $product_path;
 
                     // category route
-                    $route = new Route("/{$path}/{pager}", array(
+                    $route = new Route("/{$path}/{show}/{pager}", array(
                         '_controller' => 'CategoryBundle:Default:view',
                         '_format' => 'html',
                         'cms_id' => $id,
                         'category_id' => $settings->category_id,
                         'pager' => 1,
+                        'show' => 'look',
                         'ip_restricted' => true,
                     ), array(
                         'pager' => '\d+',
@@ -119,6 +119,52 @@ class CMSRouterLoader implements LoaderInterface
                         'product_id' => 0,
                         'cms_id' => $id,
                         'category_id' => $settings->category_id,
+                        'title' => '',
+                        'ip_restricted' => true,
+                    ), array(
+                        'product_id' => '\d+',
+                        '_format' => 'html|json',
+                    ));
+                    $routes->add($product_path, $route);
+
+
+                    break;
+
+                case 'look':
+
+                    //test ... we should never enter this if tho...
+                    if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
+                        Tools::log($page->toArray());
+                        continue;
+                    }
+
+                    $look_key = '_' . $locale_lower . '_' . $settings->category_id;
+                    $look_path = 'look_' . $id . '_' . $locale_lower;
+                    $product_path = 'product_' . $id . '_' . $locale_lower ;
+
+                    $categories[$look_key] = $product_path;
+
+                    // look route
+                    $route = new Route("/{$path}/{pager}", array(
+                        '_controller' => 'CategoryBundle:ByLook:view',
+                        '_format' => 'html',
+                        'cms_id' => $id,
+                        'category_id' => $settings->category_id,
+                        'pager' => 1,
+                        'ip_restricted' => true,
+                    ), array(
+                        'pager' => '\d+',
+                        '_format' => 'html|json',
+                    ));
+                    $routes->add($look_path, $route);
+
+                    // product route
+                    $route = new Route("/{$path}/{product_id}/{title}", array(
+                        '_controller' => 'ProductBundle:Default:view',
+                        '_format' => 'html',
+                        'product_id' => 0,
+                        'cms_id' => $id,
+                        'look_id' => $settings->category_id,
                         'title' => '',
                         'ip_restricted' => true,
                     ), array(
@@ -145,6 +191,29 @@ class CMSRouterLoader implements LoaderInterface
                         'id' => $id,
                     ));
                     $routes->add('mannequin_'.$id, $route);
+                    break;
+
+                case 'bycolour':
+                    $route = new Route("/".$path, array(
+                        '_controller' => 'CategoryBundle:ByColour:view',
+                        'id' => $id,
+                    ));
+                    $routes->add('bycolour_'.$id . '_' . $locale_lower, $route);
+
+                    $product_path = 'product_' . $id . '_' . $locale_lower ;
+                    // product route
+                    $route = new Route("/{$path}/{product_id}/{title}", array(
+                        '_controller' => 'ProductBundle:Default:view',
+                        '_format' => 'html',
+                        'product_id' => 0,
+                        'cms_id' => $id,
+                        'title' => '',
+                        'ip_restricted' => true,
+                    ), array(
+                        'product_id' => '\d+',
+                        '_format' => 'html|json',
+                    ));
+                    $routes->add($product_path, $route);
                     break;
 
                 case 'newsletter':
@@ -198,5 +267,5 @@ class CMSRouterLoader implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function setResolver(LoaderResolver $resolver){}
+    public function setResolver(LoaderResolverInterface $resolver){}
 }

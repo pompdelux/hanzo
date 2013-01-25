@@ -15,10 +15,6 @@ use Hanzo\Model\SettingsPeer;
 use Hanzo\Model\SettingsQuery;
 
 /**
- * Base class that represents a query for the 'settings' table.
- *
- *
- *
  * @method SettingsQuery orderByCKey($order = Criteria::ASC) Order by the c_key column
  * @method SettingsQuery orderByNs($order = Criteria::ASC) Order by the ns column
  * @method SettingsQuery orderByTitle($order = Criteria::ASC) Order by the title column
@@ -53,8 +49,6 @@ use Hanzo\Model\SettingsQuery;
  * @method array findByCValue(string $c_value) Return Settings objects filtered by the c_value column
  * @method array findByCreatedAt(string $created_at) Return Settings objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Settings objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseSettingsQuery extends ModelCriteria
 {
@@ -143,7 +137,7 @@ abstract class BaseSettingsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `c_key`, `ns`, `title`, `c_value`, `created_at`, `updated_at` FROM `settings` WHERE `c_key` = :p0 AND `ns` = :p1';
+        $sql = 'SELECT `C_KEY`, `NS`, `TITLE`, `C_VALUE`, `CREATED_AT`, `UPDATED_AT` FROM `settings` WHERE `C_KEY` = :p0 AND `NS` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);

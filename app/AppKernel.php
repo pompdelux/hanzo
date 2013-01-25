@@ -23,11 +23,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+
             new Propel\PropelBundle\PropelBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
-            new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
@@ -102,6 +103,9 @@ class AppKernel extends Kernel
         $twig = $this->container->get('twig');
         $twig->addGlobal('cdn', $this->container->getParameter('cdn'));
 
+        $theme = $this->container->get('liip_theme.active_theme');
+        $twig->addGlobal('current_theme', $theme->getName());
+
         if (isset($_SERVER['HTTP_HOST'])) {
             $script = $_SERVER['SCRIPT_NAME'];
             if ('/app.php' == $script) {
@@ -117,7 +121,6 @@ class AppKernel extends Kernel
             }
         }
 
-        //$twig->addGlobal('layout', $this->container->get('request')->attributes->get('_x_device', 'pc').'.base.html.twig');
         $twig->addGlobal('store_mode', $store_mode);
         $twig->addExtension(new Twig_Extension_Optimizer());
 
@@ -129,10 +132,10 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        list($dir, $lang,) = explode('_', $this->getEnvironment());
+        list($env, $lang,) = explode('_', $this->getEnvironment());
 
         $base_dir = __DIR__.'/config/';
-        $config_dir = $base_dir.$dir.'/';
+        $config_dir = $base_dir.'/env/'.$env.'/';
 
         $mode = $this->getStoreMode();
 
@@ -180,54 +183,6 @@ class AppKernel extends Kernel
     public function getCacheDir()
     {
         return parent::getCacheDir();
-    }
-
-
-    /**
-     * let us hande stuff after connection to client is closed.
-     *
-     * @param string $event      event key
-     * @param mixed  $parameters parameters to send to the event
-     */
-    public function setTerminateEvent($event, $parameters)
-    {
-        $this->terminate_events[$key] = $parameters;
-    }
-
-
-    /**
-     * wrap kernel->send() method to allow us to handle onClose events
-     *
-     * @param  Response $handle Response object
-     */
-    public function terminate(Response $handle)
-    {
-        if (count($this->terminate_events)) {
-
-            // add close headers.
-            $handle->headers->add(array(
-                'Content-Length' => mb_strlen($handle->getContent()),
-                'Connection' => 'close',
-            ));
-            $handle->send();
-
-            while (ob_get_length()) {
-                ob_end_flush();
-            }
-
-            ignore_user_abort(true);
-            flush();
-
-            // connection should be closed, let's fire up the events
-            $dispatcher = $this->container->get('event_dispatcher');
-            foreach ($this->terminate_events as $event => $parameters) {
-                $dispatcher->dispatch($event, $parameters);
-            }
-
-            return;
-        }
-
-        $handle->send();
     }
 
     public function setSetting($key, $value)

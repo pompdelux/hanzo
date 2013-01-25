@@ -15,13 +15,6 @@ use Hanzo\Model\CmsThreadI18nPeer;
 use Hanzo\Model\CmsThreadPeer;
 use Hanzo\Model\map\CmsThreadTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'cms_thread' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCmsThreadPeer
 {
 
@@ -46,11 +39,11 @@ abstract class BaseCmsThreadPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 2;
 
-    /** the column name for the id field */
-    const ID = 'cms_thread.id';
+    /** the column name for the ID field */
+    const ID = 'cms_thread.ID';
 
-    /** the column name for the is_active field */
-    const IS_ACTIVE = 'cms_thread.is_active';
+    /** the column name for the IS_ACTIVE field */
+    const IS_ACTIVE = 'cms_thread.IS_ACTIVE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,8 +168,8 @@ abstract class BaseCmsThreadPeer
             $criteria->addSelectColumn(CmsThreadPeer::ID);
             $criteria->addSelectColumn(CmsThreadPeer::IS_ACTIVE);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.is_active');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
         }
     }
 

@@ -1,0 +1,446 @@
+/**
+| _base
+*/
+@import "compass/reset";
+@import "compass/utilities";
+
+
+.sprite{display:inline-block;}
+.sprite-block{display:block;}
+
+body{
+	color: $font-color;
+	font-family: $font-sans;
+	font-size: $font-size;
+}
+.container{
+	position: relative;
+	overflow: hidden;}
+
+a{
+	color: $link-color;
+	text-decoration: none;
+	&:hover{
+		color: $font-color;
+		text-decoration: underline;
+	}
+}
+.main article a{
+	color: $content-link-color;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: $font-sans;
+	font-weight: $font-weight-bold;
+	padding: 0 0 20px 0;
+	letter-spacing: 2px;
+	a{
+		text-decoration: none;
+		color: inherit;
+	}
+}
+h1{
+	@include heading-style;
+	padding: 6px 0;
+	margin-bottom: 6px;
+}
+h2{
+	font-weight: 100;
+	font-size: 16px;
+	padding: 3px 0;
+	margin-bottom: 3px;
+	text-transform: uppercase;
+}
+h3{
+	font-family: $font-serif;
+	font-weight: $font-weight-thin;
+	font-size: 16px;
+	padding: 6px 0 12px;
+}
+h4{
+	@include heading-small-style;
+}
+
+p{
+	@include paragraph-style;
+	padding: 0 0 5px;
+}
+
+hr {
+	border: none;
+	clear: both;
+	margin: 0;
+	width: 100%;
+	@include icons-sprite(divider);
+	height: icons-sprite-height(divider);
+	&.left {
+		@include icons-sprite(divider_left);
+	}
+	&.right {
+		@include icons-sprite(divider_right);
+	}
+}
+
+strong, b {font-weight: bold;}
+
+aside{
+	padding-bottom: 24px;
+	h1,h2,h3,h4,h5{
+		border-bottom: 1px solid $font-color;
+		padding-bottom:6px;
+		margin-bottom: 12px;
+	}
+	h1{
+		text-transform: uppercase;
+	}
+}
+
+form{
+	label{
+		margin-top: 12px;
+		display: inline-block;
+		width: 90%;
+	}
+	&.full-width{
+		input{
+			&[type="text"],
+			&[type="email"],
+			&[type="date"],
+			&[type="datetime"],
+			&[type="password"]{
+				width: 97%;
+			}
+		}
+		textarea{
+			width: 97%;
+			height: 120px;
+		}
+	}
+	input,
+	textarea {
+		border: 1px solid $font-color;
+		padding: 6px 5px;
+		margin: 2px 0;
+		color: $font-color;
+	}
+	input{
+		&[type="text"],
+		&[type="email"],
+		&[type="date"],
+		&[type="datetime"],
+		&[type="password"]{
+			font-family: $font-serif;
+			&.inline{
+				width: auto;
+			}
+		}
+	}
+	input.error{
+		border-color: $form-error-color;
+	}
+
+}
+
+input.button,
+button.button,
+a.button,
+.main article a.button {
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	background: #474749;
+	font-family: $font-sans;
+	text-align: center;
+	padding: 6px;
+	font-weight: bold;
+	color: white !important;
+	line-height: 18px;
+	white-space: normal;
+
+	&:hover{
+		text-decoration: none;
+	}
+
+	&.text-button {
+		border: none;
+		background: transparent;
+		color: $font-color;
+		font-size: $font-size;
+		font-family: $font-serif;
+		font-weight: $font-weight-thin;
+		text-transform: uppercase;
+	}
+	&.button-right {
+		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
+		border-right: 6px solid #474749;
+		padding: 6px 24px;
+		float: right;
+	}
+	&.button-left {
+		background: url(/fx/images/icons/icons/button-left.png) left no-repeat #474749;
+		border-left: 6px solid #474749;
+		padding: 6px 24px;
+	}
+	&.button-small {
+		font-size: $small-size;
+		padding: 3px;
+		line-height: $small-line-height;
+		font-weight: $small-weight;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+	&.button-large {
+		padding: 6px 12px;
+		width: 234px;
+	}
+	&.button-full-width {
+		width: 100%;
+	}
+}
+
+table{
+	width: 100%;
+	margin: 6px 0 12px;
+	thead, tfoot{
+		border-bottom: 1px solid $font-color;
+	}
+	tfoot{
+		border-top: 1px solid $font-color;
+	}
+	thead{
+		font-family: $font-serif;
+		th{
+			padding:3px 6px;
+		}
+	}
+	tbody{
+		td{
+			padding: 12px 6px;
+		}
+	}
+	tfoot{
+		td{
+			padding: 6px;
+		}
+	}
+	&.horizontal{
+		th{
+			font-weight: bold;
+		}
+	}
+}
+
+
+// Helpers
+.align-left,
+.left{text-align:left;}
+.align-center,
+.center{text-align:center}
+.centerfy{margin: 0 auto;}
+.align-right,
+.right{text-align:right;}
+a,
+input,
+button {
+	&.left{float: left;}
+	&.right{float: right;}
+}
+.vert-align-top{vertical-align:top;}
+.vert-align-middle{vertical-align:middle;}
+.vert-align-bottom{vertical-align:baseline;}
+.pushleft{float:left;}
+.pushright{float:right;}
+.small{font-size: 9px;}
+.strike {text-decoration:line-through;}
+.upper {text-transform: uppercase;}
+.hidden { display: none; visibility: hidden; }
+.off {display: none;}
+.bottom-space{margin-bottom: 40px;}
+.msg, .message {
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #231f20;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  clear: both;
+  &.error {
+  	border: 2px solid #f10000;
+  }
+}
+.box{
+	padding: 6px;
+	display: inline-block;
+	@include box;
+}
+.sprite{
+	&.delete,
+	&.edit,
+	&.show,
+	&.pdf{
+		display: inline-block;
+	}
+	&.delete{
+		@include icons-sprite(delete);
+		height: icons-sprite-height(delete);
+		width: icons-sprite-width(delete);
+	}
+	&.edit{
+		@include icons-sprite(edit);
+		height: icons-sprite-height(edit);
+		width: icons-sprite-width(edit);
+	}
+	&.show{
+		@include icons-sprite(show);
+		height: icons-sprite-height(show);
+		width: icons-sprite-width(show);
+	}
+	&.pdf{
+		@include icons-sprite(pdf);
+		height: icons-sprite-height(pdf);
+		width: icons-sprite-width(pdf);
+	}
+}
+ul{
+	list-style-position: inside;
+	&.list {
+		list-style-type: disc;
+	}
+}
+ol{
+	list-style-position: inside;
+	&.list {
+		list-style-type: decimal;
+	}
+}
+
+// Slideshow Cycle2 styles
+.cycle-slideshow {
+	.cycle-pager{
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		left: 16px;
+		z-index: 101;
+		span{
+			color: #DDD;
+			font-size: 31px;
+			line-height: 10px;
+			cursor: pointer;
+			&.cycle-pager-active,
+			&:hover{
+				color: #BBB;
+			}
+		}
+	}
+	.cycle-slide{
+		img{
+			width: 100%;
+		}
+	}
+}
+// Custom 960gs grids
+// TODO: Make it as a new grid with container_5{blablabla}
+
+// =Grid >> 5 Columns
+.container_8 .grid_1-5 {width: 186px;} // One Fifth
+.container_8 .grid_2-5 {width: 378px;} // Two Fifth
+.container_8 .grid_3-5 {width: 570px;} // Three Fifth
+.container_8 .grid_4-5 {width: 762px;} // Four Fifth
+
+// =Prefix Extra Space >> 5 Columns
+.container_8 .prefix_1-5 {padding-left: 192px;}
+.container_8 .prefix_2-5 {padding-left: 384px;}
+.container_8 .prefix_3-5 {padding-left: 576px;}
+.container_8 .prefix_4-5 {padding-left: 768px;}
+
+// =Suffix Extra Space >> 5 Columns
+.container_8 .suffix_1-5 {padding-right: 192px;}
+.container_8 .suffix_2-5 {padding-right: 384px;}
+.container_8 .suffix_3-5 {padding-right: 576px;}
+.container_8 .suffix_4-5 {padding-right: 768px;}
+
+// `Push Space >> 5 Columns
+.container_8 .push_1-5 {left: 192px;}
+.container_8 .push_2-5 {left: 384px;}
+.container_8 .push_3-5 {left: 576px;}
+.container_8 .push_4-5 {left: 768px;}
+
+// `Pull Space >> 5 Columns
+.container_8 .pull_1-5 {left: -192px;}
+.container_8 .pull_2-5 {left: -384px;}
+.container_8 .pull_3-5 {left: -576px;}
+.container_8 .pull_4-5 {left: -768px;}
+
+.push_1-5, .pull_1-5,
+.push_2-5, .pull_2-5,
+.push_3-5, .pull_3-5,
+.push_4-5, .pull_4-5 {
+        position: relative;
+}
+
+.container_8 .grid_1-5,
+.container_8 .grid_2-5,
+.container_8 .grid_3-5,
+.container_8 .grid_4-5 {
+	display: inline;
+	float: left;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+
+.main > .grid_1,
+.main > .grid_2,
+.main > .grid_3,
+.main > .grid_4,
+.main > .grid_5,
+.main > .grid_6,
+.main > .grid_7,
+.main > .grid_8,
+.main > .grid_1-5,
+.main > .grid_2-5,
+.main > .grid_3-5,
+.main > .grid_4-5,
+.container_8 .row{
+	margin-bottom: 6px;
+}
+
+body.da{
+	form.buy .submit-button{
+		@include da-sprite(put-to-basket);
+		height: da-sprite-height(put-to-basket);
+		width: da-sprite-width(put-to-basket);
+	}
+	.buy-set{
+		@include da-sprite(buy-set);
+		height: da-sprite-height(buy-set);
+		width: da-sprite-width(buy-set);
+	}
+	.new-price{
+		@include da-sprite(new-price);
+		height: da-sprite-height(new-price);
+		width: da-sprite-width(new-price);
+	}
+}
+
+body.en{
+
+}
+
+body.fi{
+
+}
+
+body.no{
+
+}
+
+body.nl{
+
+}
+
+body.se{
+
+}

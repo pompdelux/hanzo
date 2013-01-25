@@ -59,7 +59,19 @@ class DefaultController extends CoreController
         $page->setContent($html);
 
         $this->setSharedMaxAge(86400);
-        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page));
+        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'body_classes' => 'body-'.$type, 'page' => $page, 'parent_id' => $page->getParentId()));
+    }
+
+    public function blockAction($page = NULL)
+    {
+        $hanzo = Hanzo::getInstance();
+        $locale = $hanzo->get('core.locale');
+        $route = $this->get('request')->get('_route');
+        die(print_r($route));
+        if(!$page instanceof Cms){
+            $page = CmsPeer::getByPK(1);
+        }
+        return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
     }
 
     public function testAction()

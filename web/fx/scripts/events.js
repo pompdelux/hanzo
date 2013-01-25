@@ -72,10 +72,10 @@ var events = (function($) {
             }
 
             if (undefined === response.data.first_name) {
-              dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
+              dialoug.alert(Translator.get('js:notice'), Translator.get('js:event.user.email.not.found'));
             }
           } else {
-            dialoug.alert(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.user.email.not.found'));
+            dialoug.alert(Translator.get('js:notice'), Translator.get('js:event.user.email.not.found'));
           }
 
           dialoug.stopLoading();
@@ -121,7 +121,7 @@ $('#body-event #participants a.delete').on('click', function(event) {
   var $this = $(this);
   var tr = $this.closest('tr');
 
-  dialoug.confirm( ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:event.confirm.delete.participant')+'<br><strong>'+tr.find('td.name').text()+'</strong>', function(choise) {
+  dialoug.confirm( Translator.get('js:notice'), Translator.get('js:event.confirm.delete.participant')+'<br><strong>'+tr.find('td.name').text()+'</strong>', function(choise) {
     if (choise === 'ok') {
       $.post(base_url+'events/remove/participant/'+$this.data('event')+'/'+$this.data('participant'), function(response) {
         tr.fadeOut();
@@ -150,7 +150,7 @@ $('#find-customer-by-phone-form').submit(function(e){
       success: function(response, textStatus, jqXHR) {
         if (false === response.status) {
           if (response.message) {
-            dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+            dialoug.alert(Translator.get('js:notice'), response.message);
           }
         } else {
           $('#form_host').val(response.data.christianname + ' ' + response.data.surname);
@@ -163,7 +163,7 @@ $('#find-customer-by-phone-form').submit(function(e){
         $submit.attr('disabled', false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+        dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
         $submit.attr('disabled', false);
       }
     });
@@ -181,7 +181,7 @@ $('#find-customer-by-email-form').submit(function(e){
       success: function(response, textStatus, jqXHR) {
         if (false === response.status) {
           if (response.message) {
-            dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+            dialoug.alert(Translator.get('js:notice'), response.message);
           }
         } else {
           $('#form_customers_id').val(response.data.id);
@@ -196,7 +196,7 @@ $('#find-customer-by-email-form').submit(function(e){
         $submit.attr('disabled', false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+        dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
         $submit.attr('disabled', false);
       }
     });
@@ -205,7 +205,7 @@ $('#find-customer-by-email-form').submit(function(e){
 $('.delete-event').click(function(e){
   e.preventDefault();
   var $a = $(this);
-  dialoug.confirm( ExposeTranslation.get('js:notice'), $(this).data('confirm-message'), function(choise) {
+  dialoug.confirm( Translator.get('js:notice'), $(this).data('confirm-message'), function(choise) {
     if (choise === 'ok') {
       window.location.href = $a.attr('href');
     }

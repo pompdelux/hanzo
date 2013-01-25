@@ -8,7 +8,7 @@ var dialoug = (function($) {
   var templates = {
     'alert' : '<div class="dialoug alert %type%"><h2>%title%</h2><p class="message">%message%</p></div>',
     'confirm' : '<div class="dialoug confirm"><h2>%title%</h2><div class="message">%message%</div><div class="buttons"><a class="button right dialoug-confirm" data-case="ok" href="">%ok%</a><a class="button left dialoug-confirm" data-case="cancel" href="">%cancel%</a></div></div>',
-    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>',
+    'notice' : '<div id="dialoug-message" class="%type%"><p>%message%</p></div>'
   };
 
 
@@ -36,8 +36,8 @@ var dialoug = (function($) {
     defaults.html = templates.confirm
       .replace('%title%', title)
       .replace('%message%', message)
-      .replace('%ok%', ExposeTranslation.get('js:ok'))
-      .replace('%cancel%', ExposeTranslation.get('js:cancel'))
+      .replace('%ok%', Translator.get('js:ok'))
+      .replace('%cancel%', Translator.get('js:cancel'))
     ;
 
     // fix scroll issue in ie.
@@ -76,7 +76,7 @@ var dialoug = (function($) {
     $.colorbox({
       'top' : '25%',
       'maxWidth' : '400px',
-      'close' : ExposeTranslation.get('js:close'),
+      'close' : Translator.get('js:close'),
       'html': templates.alert
                        .replace('%title%', title)
                        .replace('%message%', message)
@@ -154,6 +154,12 @@ var dialoug = (function($) {
     }
   };
 
+  /**
+   * popup notice with no way of closing
+   *
+   * @param  string title   title of the message
+   * @param  string message the message
+   */
   pub.blockingNotice = function(title, message) {
     $.colorbox({
       'top' : '25%',
@@ -168,42 +174,56 @@ var dialoug = (function($) {
     });
   };
 
+
   /**
    * Slide in notification
    *
    * @param string message
    * @param int duration
+   * @param mixed selector string/jQuery
    */
-  pub.slideNotice = function(message, duration) {
+  pub.slideNotice = function(message, duration, selector) {
+
     if (undefined === duration) {
       duration = 2000;
     }
+    if (typeof(selector) === 'string') {
+      selector = $(selector);
+    }
 
-    $('body').prepend('<div id="slide-notice-box">' + message + '</div>');
+    if(undefined === selector){
+       selector = $('body');
+    }
+
+    $('body').append('<div id="slide-notice-box" class="slide-notice-box"><div>' + message + '</div></div>');
     var $slide = $('#slide-notice-box');
+    var $basket =$('li#mini-basket.basket');
+
+    var offset = $basket.offset();
     var slideWidth = $slide.outerWidth();
-    var docWidth = $(document).width();
+
+    $('html,body').animate({ scrollTop : 0 });
+
+    $('div', $slide).css({
+      width : $slide.innerWidth()
+    });
 
     $slide.css({
-      left: docWidth + 'px',
-      width: slideWidth
+      left: (offset.left - 7),
+      width: 0
     });
 
     $slide.animate({
-      left: '-=' + (slideWidth + 10) + 'px'
-    }, {
-      complete: function() {
-        sleep(duration);
-        $slide.animate({
-          left: docWidth
-        }, {
-          complete: function() {
-            $slide.remove();
-          }
-        });
-      }
+      width: (slideWidth),
+      left: (offset.left - (slideWidth + 7))
+    }).delay(duration).animate({
+      left: offset.left,
+      width: 0
+    }, function() {
+      $slide.remove();
     });
   };
+
 
   /**
    * inserts a loading anim image and an optional text
@@ -235,7 +255,7 @@ var dialoug = (function($) {
       else {
         $this.before(tpl);
       }
-      loading_status = $('.dialoug-loading', $this.parent());
+      loading_status = true;
     });
   };
 
@@ -247,7 +267,7 @@ var dialoug = (function($) {
    */
   pub.stopLoading = function() {
     if (loading_status) {
-      loading_status.remove();
+      $('.dialoug-loading').remove();
       loading_status = false;
     }
   };

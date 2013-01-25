@@ -18,10 +18,6 @@ use Hanzo\Model\OrdersSyncLogPeer;
 use Hanzo\Model\OrdersSyncLogQuery;
 
 /**
- * Base class that represents a query for the 'orders_sync_log' table.
- *
- *
- *
  * @method OrdersSyncLogQuery orderByOrdersId($order = Criteria::ASC) Order by the orders_id column
  * @method OrdersSyncLogQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method OrdersSyncLogQuery orderByState($order = Criteria::ASC) Order by the state column
@@ -56,8 +52,6 @@ use Hanzo\Model\OrdersSyncLogQuery;
  * @method array findByState(string $state) Return OrdersSyncLog objects filtered by the state column
  * @method array findByContent(string $content) Return OrdersSyncLog objects filtered by the content column
  * @method array findByComment(string $comment) Return OrdersSyncLog objects filtered by the comment column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseOrdersSyncLogQuery extends ModelCriteria
 {
@@ -146,7 +140,7 @@ abstract class BaseOrdersSyncLogQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `orders_id`, `created_at`, `state`, `content`, `comment` FROM `orders_sync_log` WHERE `orders_id` = :p0 AND `created_at` = :p1';
+        $sql = 'SELECT `ORDERS_ID`, `CREATED_AT`, `STATE`, `CONTENT`, `COMMENT` FROM `orders_sync_log` WHERE `ORDERS_ID` = :p0 AND `CREATED_AT` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

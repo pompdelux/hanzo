@@ -16,13 +16,10 @@ use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesI18n;
 use Hanzo\Model\CategoriesPeer;
 use Hanzo\Model\CategoriesQuery;
+use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsToCategories;
 
 /**
- * Base class that represents a query for the 'categories' table.
- *
- *
- *
  * @method CategoriesQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CategoriesQuery orderByParentId($order = Criteria::ASC) Order by the parent_id column
  * @method CategoriesQuery orderByContext($order = Criteria::ASC) Order by the context column
@@ -45,6 +42,10 @@ use Hanzo\Model\ProductsToCategories;
  * @method CategoriesQuery rightJoinCategoriesRelatedById($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CategoriesRelatedById relation
  * @method CategoriesQuery innerJoinCategoriesRelatedById($relationAlias = null) Adds a INNER JOIN clause to the query using the CategoriesRelatedById relation
  *
+ * @method CategoriesQuery leftJoinProductsImagesCategoriesSort($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsImagesCategoriesSort relation
+ * @method CategoriesQuery rightJoinProductsImagesCategoriesSort($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsImagesCategoriesSort relation
+ * @method CategoriesQuery innerJoinProductsImagesCategoriesSort($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsImagesCategoriesSort relation
+ *
  * @method CategoriesQuery leftJoinProductsToCategories($relationAlias = null) Adds a LEFT JOIN clause to the query using the ProductsToCategories relation
  * @method CategoriesQuery rightJoinProductsToCategories($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ProductsToCategories relation
  * @method CategoriesQuery innerJoinProductsToCategories($relationAlias = null) Adds a INNER JOIN clause to the query using the ProductsToCategories relation
@@ -56,6 +57,7 @@ use Hanzo\Model\ProductsToCategories;
  * @method Categories findOne(PropelPDO $con = null) Return the first Categories matching the query
  * @method Categories findOneOrCreate(PropelPDO $con = null) Return the first Categories matching the query, or a new Categories object populated from the query conditions when no match is found
  *
+ * @method Categories findOneById(int $id) Return the first Categories filtered by the id column
  * @method Categories findOneByParentId(int $parent_id) Return the first Categories filtered by the parent_id column
  * @method Categories findOneByContext(string $context) Return the first Categories filtered by the context column
  * @method Categories findOneByIsActive(boolean $is_active) Return the first Categories filtered by the is_active column
@@ -64,8 +66,6 @@ use Hanzo\Model\ProductsToCategories;
  * @method array findByParentId(int $parent_id) Return Categories objects filtered by the parent_id column
  * @method array findByContext(string $context) Return Categories objects filtered by the context column
  * @method array findByIsActive(boolean $is_active) Return Categories objects filtered by the is_active column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseCategoriesQuery extends ModelCriteria
 {
@@ -142,20 +142,6 @@ abstract class BaseCategoriesQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Categories A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -167,7 +153,7 @@ abstract class BaseCategoriesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `parent_id`, `context`, `is_active` FROM `categories` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `PARENT_ID`, `CONTEXT`, `IS_ACTIVE` FROM `categories` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -530,6 +516,80 @@ abstract class BaseCategoriesQuery extends ModelCriteria
         return $this
             ->joinCategoriesRelatedById($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'CategoriesRelatedById', '\Hanzo\Model\CategoriesQuery');
+    }
+
+    /**
+     * Filter the query by a related ProductsImagesCategoriesSort object
+     *
+     * @param   ProductsImagesCategoriesSort|PropelObjectCollection $productsImagesCategoriesSort  the related object to use as filter
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return   CategoriesQuery The current query, for fluid interface
+     * @throws   PropelException - if the provided filter is invalid.
+     */
+    public function filterByProductsImagesCategoriesSort($productsImagesCategoriesSort, $comparison = null)
+    {
+        if ($productsImagesCategoriesSort instanceof ProductsImagesCategoriesSort) {
+            return $this
+                ->addUsingAlias(CategoriesPeer::ID, $productsImagesCategoriesSort->getCategoriesId(), $comparison);
+        } elseif ($productsImagesCategoriesSort instanceof PropelObjectCollection) {
+            return $this
+                ->useProductsImagesCategoriesSortQuery()
+                ->filterByPrimaryKeys($productsImagesCategoriesSort->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByProductsImagesCategoriesSort() only accepts arguments of type ProductsImagesCategoriesSort or PropelCollection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the ProductsImagesCategoriesSort relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return CategoriesQuery The current query, for fluid interface
+     */
+    public function joinProductsImagesCategoriesSort($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('ProductsImagesCategoriesSort');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'ProductsImagesCategoriesSort');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the ProductsImagesCategoriesSort relation ProductsImagesCategoriesSort object
+     *
+     * @see       useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return   \Hanzo\Model\ProductsImagesCategoriesSortQuery A secondary query class using the current class as primary query
+     */
+    public function useProductsImagesCategoriesSortQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinProductsImagesCategoriesSort($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'ProductsImagesCategoriesSort', '\Hanzo\Model\ProductsImagesCategoriesSortQuery');
     }
 
     /**

@@ -18,10 +18,6 @@ use Hanzo\Model\ProductsI18nPeer;
 use Hanzo\Model\ProductsI18nQuery;
 
 /**
- * Base class that represents a query for the 'products_i18n' table.
- *
- *
- *
  * @method ProductsI18nQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ProductsI18nQuery orderByLocale($order = Criteria::ASC) Order by the locale column
  * @method ProductsI18nQuery orderByTitle($order = Criteria::ASC) Order by the title column
@@ -52,8 +48,6 @@ use Hanzo\Model\ProductsI18nQuery;
  * @method array findByLocale(string $locale) Return ProductsI18n objects filtered by the locale column
  * @method array findByTitle(string $title) Return ProductsI18n objects filtered by the title column
  * @method array findByContent(string $content) Return ProductsI18n objects filtered by the content column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseProductsI18nQuery extends ModelCriteria
 {
@@ -142,7 +136,7 @@ abstract class BaseProductsI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `locale`, `title`, `content` FROM `products_i18n` WHERE `id` = :p0 AND `locale` = :p1';
+        $sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `CONTENT` FROM `products_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

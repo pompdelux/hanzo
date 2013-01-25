@@ -19,13 +19,6 @@ use Hanzo\Model\Groups;
 use Hanzo\Model\GroupsPeer;
 use Hanzo\Model\GroupsQuery;
 
-/**
- * Base class that represents a row from the 'groups' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseGroups extends BaseObject implements Persistent
 {
     /**
@@ -226,7 +219,7 @@ abstract class BaseGroups extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = GroupsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -426,7 +419,7 @@ abstract class BaseGroups extends BaseObject implements Persistent
 
             if ($this->collCustomerss !== null) {
                 foreach ($this->collCustomerss as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -459,13 +452,13 @@ abstract class BaseGroups extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(GroupsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(GroupsPeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`name`';
+            $modifiedColumns[':p' . $index++]  = '`NAME`';
         }
         if ($this->isColumnModified(GroupsPeer::DISCOUNT)) {
-            $modifiedColumns[':p' . $index++]  = '`discount`';
+            $modifiedColumns[':p' . $index++]  = '`DISCOUNT`';
         }
 
         $sql = sprintf(
@@ -478,13 +471,13 @@ abstract class BaseGroups extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`name`':
+                    case '`NAME`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`discount`':
+                    case '`DISCOUNT`':
                         $stmt->bindValue($identifier, $this->discount, PDO::PARAM_STR);
                         break;
                 }
@@ -555,11 +548,11 @@ abstract class BaseGroups extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -910,15 +903,13 @@ abstract class BaseGroups extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Groups The current object (for fluent API support)
+     * @return void
      * @see        addCustomerss()
      */
     public function clearCustomerss()
     {
         $this->collCustomerss = null; // important to set this to null since that means it is uninitialized
         $this->collCustomerssPartial = null;
-
-        return $this;
     }
 
     /**
@@ -1017,15 +1008,12 @@ abstract class BaseGroups extends BaseObject implements Persistent
      *
      * @param PropelCollection $customerss A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Groups The current object (for fluent API support)
      */
     public function setCustomerss(PropelCollection $customerss, PropelPDO $con = null)
     {
-        $customerssToDelete = $this->getCustomerss(new Criteria(), $con)->diff($customerss);
+        $this->customerssScheduledForDeletion = $this->getCustomerss(new Criteria(), $con)->diff($customerss);
 
-        $this->customerssScheduledForDeletion = unserialize(serialize($customerssToDelete));
-
-        foreach ($customerssToDelete as $customersRemoved) {
+        foreach ($this->customerssScheduledForDeletion as $customersRemoved) {
             $customersRemoved->setGroups(null);
         }
 
@@ -1036,8 +1024,6 @@ abstract class BaseGroups extends BaseObject implements Persistent
 
         $this->collCustomerss = $customerss;
         $this->collCustomerssPartial = false;
-
-        return $this;
     }
 
     /**
@@ -1055,22 +1041,22 @@ abstract class BaseGroups extends BaseObject implements Persistent
         if (null === $this->collCustomerss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collCustomerss) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getCustomerss());
+                }
+                $query = CustomersQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getCustomerss());
+                return $query
+                    ->filterByGroups($this)
+                    ->count($con);
             }
-            $query = CustomersQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByGroups($this)
-                ->count($con);
+        } else {
+            return count($this->collCustomerss);
         }
-
-        return count($this->collCustomerss);
     }
 
     /**
@@ -1086,7 +1072,7 @@ abstract class BaseGroups extends BaseObject implements Persistent
             $this->initCustomerss();
             $this->collCustomerssPartial = true;
         }
-        if (!in_array($l, $this->collCustomerss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collCustomerss->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddCustomers($l);
         }
 
@@ -1104,7 +1090,6 @@ abstract class BaseGroups extends BaseObject implements Persistent
 
     /**
      * @param	Customers $customers The customers object to remove.
-     * @return Groups The current object (for fluent API support)
      */
     public function removeCustomers($customers)
     {
@@ -1114,11 +1099,9 @@ abstract class BaseGroups extends BaseObject implements Persistent
                 $this->customerssScheduledForDeletion = clone $this->collCustomerss;
                 $this->customerssScheduledForDeletion->clear();
             }
-            $this->customerssScheduledForDeletion[]= clone $customers;
+            $this->customerssScheduledForDeletion[]= $customers;
             $customers->setGroups(null);
         }
-
-        return $this;
     }
 
     /**

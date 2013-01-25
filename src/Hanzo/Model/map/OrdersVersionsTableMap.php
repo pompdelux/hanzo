@@ -42,10 +42,10 @@ class OrdersVersionsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addForeignPrimaryKey('orders_id', 'OrdersId', 'INTEGER' , 'orders', 'id', true, null, null);
-        $this->addPrimaryKey('version_id', 'VersionId', 'INTEGER', true, null, null);
-        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
-        $this->addColumn('content', 'Content', 'CLOB', true, null, null);
+        $this->addForeignPrimaryKey('ORDERS_ID', 'OrdersId', 'INTEGER' , 'orders', 'ID', true, null, null);
+        $this->addPrimaryKey('VERSION_ID', 'VersionId', 'INTEGER', true, null, null);
+        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', true, null, null);
+        $this->addColumn('CONTENT', 'Content', 'CLOB', true, null, null);
         // validators
     } // initialize()
 

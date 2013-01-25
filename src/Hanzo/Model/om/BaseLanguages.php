@@ -19,13 +19,6 @@ use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
 
-/**
- * Base class that represents a row from the 'languages' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseLanguages extends BaseObject implements Persistent
 {
     /**
@@ -366,7 +359,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 6; // 6 = LanguagesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -566,7 +559,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
 
             if ($this->collProductsWashingInstructionss !== null) {
                 foreach ($this->collProductsWashingInstructionss as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                    if (!$referrerFK->isDeleted()) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
@@ -599,22 +592,22 @@ abstract class BaseLanguages extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(LanguagesPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(LanguagesPeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`name`';
+            $modifiedColumns[':p' . $index++]  = '`NAME`';
         }
         if ($this->isColumnModified(LanguagesPeer::LOCAL_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`local_name`';
+            $modifiedColumns[':p' . $index++]  = '`LOCAL_NAME`';
         }
         if ($this->isColumnModified(LanguagesPeer::LOCALE)) {
-            $modifiedColumns[':p' . $index++]  = '`locale`';
+            $modifiedColumns[':p' . $index++]  = '`LOCALE`';
         }
         if ($this->isColumnModified(LanguagesPeer::ISO2)) {
-            $modifiedColumns[':p' . $index++]  = '`iso2`';
+            $modifiedColumns[':p' . $index++]  = '`ISO2`';
         }
         if ($this->isColumnModified(LanguagesPeer::DIRECTION)) {
-            $modifiedColumns[':p' . $index++]  = '`direction`';
+            $modifiedColumns[':p' . $index++]  = '`DIRECTION`';
         }
 
         $sql = sprintf(
@@ -627,22 +620,22 @@ abstract class BaseLanguages extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`name`':
+                    case '`NAME`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`local_name`':
+                    case '`LOCAL_NAME`':
                         $stmt->bindValue($identifier, $this->local_name, PDO::PARAM_STR);
                         break;
-                    case '`locale`':
+                    case '`LOCALE`':
                         $stmt->bindValue($identifier, $this->locale, PDO::PARAM_STR);
                         break;
-                    case '`iso2`':
+                    case '`ISO2`':
                         $stmt->bindValue($identifier, $this->iso2, PDO::PARAM_STR);
                         break;
-                    case '`direction`':
+                    case '`DIRECTION`':
                         $stmt->bindValue($identifier, $this->direction, PDO::PARAM_STR);
                         break;
                 }
@@ -713,11 +706,11 @@ abstract class BaseLanguages extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1098,15 +1091,13 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
-     * @return Languages The current object (for fluent API support)
+     * @return void
      * @see        addProductsWashingInstructionss()
      */
     public function clearProductsWashingInstructionss()
     {
         $this->collProductsWashingInstructionss = null; // important to set this to null since that means it is uninitialized
         $this->collProductsWashingInstructionssPartial = null;
-
-        return $this;
     }
 
     /**
@@ -1205,15 +1196,12 @@ abstract class BaseLanguages extends BaseObject implements Persistent
      *
      * @param PropelCollection $productsWashingInstructionss A Propel collection.
      * @param PropelPDO $con Optional connection object
-     * @return Languages The current object (for fluent API support)
      */
     public function setProductsWashingInstructionss(PropelCollection $productsWashingInstructionss, PropelPDO $con = null)
     {
-        $productsWashingInstructionssToDelete = $this->getProductsWashingInstructionss(new Criteria(), $con)->diff($productsWashingInstructionss);
+        $this->productsWashingInstructionssScheduledForDeletion = $this->getProductsWashingInstructionss(new Criteria(), $con)->diff($productsWashingInstructionss);
 
-        $this->productsWashingInstructionssScheduledForDeletion = unserialize(serialize($productsWashingInstructionssToDelete));
-
-        foreach ($productsWashingInstructionssToDelete as $productsWashingInstructionsRemoved) {
+        foreach ($this->productsWashingInstructionssScheduledForDeletion as $productsWashingInstructionsRemoved) {
             $productsWashingInstructionsRemoved->setLanguages(null);
         }
 
@@ -1224,8 +1212,6 @@ abstract class BaseLanguages extends BaseObject implements Persistent
 
         $this->collProductsWashingInstructionss = $productsWashingInstructionss;
         $this->collProductsWashingInstructionssPartial = false;
-
-        return $this;
     }
 
     /**
@@ -1243,22 +1229,22 @@ abstract class BaseLanguages extends BaseObject implements Persistent
         if (null === $this->collProductsWashingInstructionss || null !== $criteria || $partial) {
             if ($this->isNew() && null === $this->collProductsWashingInstructionss) {
                 return 0;
-            }
+            } else {
+                if($partial && !$criteria) {
+                    return count($this->getProductsWashingInstructionss());
+                }
+                $query = ProductsWashingInstructionsQuery::create(null, $criteria);
+                if ($distinct) {
+                    $query->distinct();
+                }
 
-            if($partial && !$criteria) {
-                return count($this->getProductsWashingInstructionss());
+                return $query
+                    ->filterByLanguages($this)
+                    ->count($con);
             }
-            $query = ProductsWashingInstructionsQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByLanguages($this)
-                ->count($con);
+        } else {
+            return count($this->collProductsWashingInstructionss);
         }
-
-        return count($this->collProductsWashingInstructionss);
     }
 
     /**
@@ -1274,7 +1260,7 @@ abstract class BaseLanguages extends BaseObject implements Persistent
             $this->initProductsWashingInstructionss();
             $this->collProductsWashingInstructionssPartial = true;
         }
-        if (!in_array($l, $this->collProductsWashingInstructionss->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+        if (!$this->collProductsWashingInstructionss->contains($l)) { // only add it if the **same** object is not already associated
             $this->doAddProductsWashingInstructions($l);
         }
 
@@ -1292,7 +1278,6 @@ abstract class BaseLanguages extends BaseObject implements Persistent
 
     /**
      * @param	ProductsWashingInstructions $productsWashingInstructions The productsWashingInstructions object to remove.
-     * @return Languages The current object (for fluent API support)
      */
     public function removeProductsWashingInstructions($productsWashingInstructions)
     {
@@ -1302,11 +1287,9 @@ abstract class BaseLanguages extends BaseObject implements Persistent
                 $this->productsWashingInstructionssScheduledForDeletion = clone $this->collProductsWashingInstructionss;
                 $this->productsWashingInstructionssScheduledForDeletion->clear();
             }
-            $this->productsWashingInstructionssScheduledForDeletion[]= clone $productsWashingInstructions;
+            $this->productsWashingInstructionssScheduledForDeletion[]= $productsWashingInstructions;
             $productsWashingInstructions->setLanguages(null);
         }
-
-        return $this;
     }
 
     /**

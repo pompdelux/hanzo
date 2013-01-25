@@ -1,0 +1,19 @@
+/**
+| _social
+*/
+.social-buttons{
+	a{
+		&.icons-facebook{
+			height: icons-sprite-height(facebook);
+			width: icons-sprite-width(facebook);
+		}
+		&.icons-twitter{
+			height: icons-sprite-height(twitter);
+			width: icons-sprite-width(twitter);
+		}
+		&.icons-pinterest{
+			height: icons-sprite-height(pinterest);
+			width: icons-sprite-width(pinterest);
+		}
+	}
+}

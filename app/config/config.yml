@@ -5,7 +5,6 @@ imports:
 framework:
     translator: null
     secret: '%secret%'
-    charset: UTF-8
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
     form: true
@@ -16,10 +15,7 @@ framework:
     templating:
         engines: [twig]
         assets_version: '%assets_version%'
-    session:
-        # default_locale: '%locale%'
-        auto_start: false
-        path: '/%locale%'
+    session: ~
 
 services:
     stock:
@@ -46,7 +42,7 @@ services:
 
     hanzo.routing_loader:
         class: Hanzo\Bundle\CMSBundle\CMSRouterLoader
-        arguments: ['@session', '%kernel.cache_dir%']
+        arguments: ['%locale%', '%kernel.cache_dir%']
         tags:
             -   { name: routing.loader }
 
@@ -69,19 +65,22 @@ services:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form:
-        resources: ['SimpleThingsFormExtraBundle:Form:translation_domain.html.twig']
 
 assetic:
     debug: '%kernel.debug%'
     use_controller: false
     java: /usr/bin/java
+    sass: %sass_bin%
+    node: %node_bin%
     filters:
-        cssrewrite: null
-        yui_css:
-            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
-        yui_js:
-            jar: '%kernel.root_dir%/../bin/YUICompressor/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar'
+        cssrewrite: ~
+        compass:
+            bin: %compass_bin%
+            apply_to: "\.scss$"
+        #uglifyjs:
+        #    bin: %uglifyjs_bin%
+        #    no_copyright: false
+        #    apply_to: "\.js$"
 
 swiftmailer:
     transport: '%mailer_transport%'
@@ -97,11 +96,22 @@ propel:
     path: '%kernel.root_dir%/../vendor/propel'
     phing_path: '%kernel.root_dir%/../vendor/phing'
     logging: '%kernel.debug%'
+    build_properties:
+        propel.project: '%database_name%'
+        propel.addValidators: all
+        propel.namespace.autoPackage: true
+        propel.useDateTimeClass: false
+        propel.defaultTimeStampFormat: "Y-m-d H:i:s"
+        propel.defaultTimeFormat: "H:i:s"
+        propel.defaultDateFormat: "Y-m-d"
+
 
 jms_security_extra:
-    secure_controllers: true
     secure_all_services: false
+    expressions: true
 
+# when switching to native redis session handeling
+# https://github.com/drak/NativeSession
 snc_redis:
     clients:
         default:
@@ -124,9 +134,7 @@ snc_redis:
         client: session
         ttl: 10800
         prefix: hanzo.session
-
-simple_things_form_extra:
-    translation_domain_forward_compat: true
+        use_as_default: true
 
 # settings for the cms bundle.
 cms:
@@ -139,6 +147,15 @@ cms:
             type: sub
             from: 400
             offset: 482
+        footer1_menu:
+            type: footer1
+            thread: 30
+        footer2_menu:
+            type: footer2
+            thread: 31
+        footer3_menu:
+            type: footer3
+            thread: 32
 
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:
@@ -148,16 +165,15 @@ ekino_new_relic:
 # @see https://github.com/liip/LiipThemeBundle
 liip_theme:
     themes: ['2012s2', '2013s1']
-    active_theme: '2012s2'
+    active_theme: '2013s1'
     path_patterns:
         app_resource:
             - %%app_path%%/themes/%%current_theme%%/%%template%%
-            - %%app_path%%/themes/fallback_theme/%%template%%
+            - %%app_path%%/themes/2012s2/%%template%%
             - %%app_path%%/views/%%template%%
         bundle_resource:
             - %%bundle_path%%/Resources/themes/%%current_theme%%/%%template%%
-            - %%bundle_path%%/Resources/themes/fallback_theme/%%template%%
+            - %%bundle_path%%/Resources/themes/2012s2/%%template%%
         bundle_resource_dir:
             - %%dir%%/themes/%%current_theme%%/%%bundle_name%%/%%template%%
-            - %%dir%%/themes/fallback_theme/%%bundle_name%%/%%template%%
-            - %%dir%%/%%bundle_name%%/%%override_path%%
+            - %%dir%%/themes/2012s2/%%bundle_name%%/%%template%%

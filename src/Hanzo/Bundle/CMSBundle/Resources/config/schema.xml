@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="default" namespace="Hanzo\Model" defaultIdMethod="native">
-  <table name="categories">
+  <table name="categories" allowPkInsert="true">
     <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
     <column name="parent_id" type="INTEGER"  defaultValue="NULL" />
     <column name="context" type="VARCHAR" size="32" defaultValue="" />
@@ -355,6 +355,8 @@
     <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="products_id" type="INTEGER" required="true"/>
     <column name="image" type="VARCHAR" size="255" required="true"/>
+    <column name="color" type="VARCHAR" size="128" required="false"/>
+    <column name="type" type="VARCHAR" size="128" required="false"/>
     <foreign-key foreignTable="products" name="fk_products_images_1" onDelete="CASCADE">
       <reference local="products_id" foreign="id"/>
     </foreign-key>
@@ -370,6 +372,9 @@
     </foreign-key>
     <foreign-key foreignTable="products_images" name="fk_products_images_categories_sort_2" onDelete="CASCADE">
       <reference local="products_images_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="categories" name="fk_products_images_categories_sort_3" onDelete="CASCADE">
+      <reference local="categories_id" foreign="id"/>
     </foreign-key>
   </table>
 

@@ -14,13 +14,11 @@ if (in_array($ext, $ignore) && !$isnewsletter) {
     exit;
 }
 
-require_once __DIR__.'/../app/bootstrap.php.cache';
-require_once __DIR__.'/../app/AppKernel.php';
-require_once __DIR__.'/../app/AppCache.php';
-
+use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\Tools;
 
+$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 Tools::handleRobots();
 
 // temporary redirects because of switch from cc-tld to .com. Remove when all old links are updated
@@ -51,27 +49,35 @@ switch (array_pop($tdl)) {
 
 if ($lang) {
   $goto = 'http://www.pompdelux.com'.str_replace('//', '/', $lang.str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['REQUEST_URI']));
-  // disabled 27/7-2012 to reduce logging. Most internal links are fixed, but some external sites still use old links. Enable again later to see if the redirect is still needed.
-  #if (isset($_SERVER['HTTP_REFERER'])) {
-  #  $referer = $_SERVER['HTTP_REFERER'];
-  #}
-  #else {
-  #  $referer = "NOT SET";
-  #}
-  #// log redirects to figure out when we can remove them. Comment out if it fills the log and try it again later
-  #error_log(__LINE__.':'.__FILE__.' NOTICE: Doing redirect. From: http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"].' To: '.$goto.' Referer: '.$referer);
   header('Location: '.$goto , true, 301);
   exit;
 }
 
 $env = Tools::mapDomainToEnvironment();
 
-$kernel = new AppKernel('prod_'.$env, false);
+if (in_array(@$_SERVER['REMOTE_ADDR'], array('::1', '127.0.0.1'))) {
+  $dev = true;
+  $env = 'dev_'.$env;
+} else {
+  $dev = false;
+  $env = 'prod_'.$env;
+
+
+  $loader = new ApcClassLoader('sf2', $loader);
+  $loader->register(true);
+}
+
+require_once __DIR__.'/../app/AppKernel.php';
+
+$kernel = new AppKernel($env, $dev);
 $kernel->loadClassCache();
-$kernel = new AppCache($kernel);
-$handle = $kernel->handle(Request::createFromGlobals());
-
-header('X-hanzo-t: ' . (microtime(1) - $ts));
-header('X-hanzo-m: ' . $kernel->getKernel()->humanReadableSize(memory_get_peak_usage()));
-
-$kernel->getKernel()->terminate($handle);
+if(false === $dev) {
+  require_once __DIR__.'/../app/AppCache.php';
+  $kernel = new AppCache($kernel);
+}
+$request = Request::createFromGlobals();
+$response = $kernel->handle($request);
+$response->headers->set('X-hanzo-t', (microtime(1) - $ts));
+$response->headers->set('X-hanzo-m', $kernel->humanReadableSize(memory_get_peak_usage()));
+$response->send();
+$kernel->terminate($request, $response);

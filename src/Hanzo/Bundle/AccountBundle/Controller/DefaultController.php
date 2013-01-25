@@ -44,6 +44,7 @@ class DefaultController extends CoreController
 
         return $this->render('AccountBundle:Default:index.html.twig', array(
             'page_type' => 'account',
+            'user' => CustomersPeer::getCurrent(),
         ));
     }
 

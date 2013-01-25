@@ -6,7 +6,7 @@ var gothia = (function($) {
 
       $("#gothia-confirm-container form").on('submit', function(event) {
         event.preventDefault();
-        dialoug.loading( '#action-submit-gothia-confirm', ExposeTranslation.get('js:please.wait') );
+        dialoug.loading( '#action-submit-gothia-confirm', Translator.get('js:please.wait') );
         var data = $(this).serialize();
         var url = $(this).attr('action');
         $.ajax({
@@ -21,12 +21,12 @@ var gothia = (function($) {
             }
             else
             {
-              dialoug.error( ExposeTranslation.get('js:an.error.occurred'), data.message );
+              dialoug.error( Translator.get('js:an.error.occurred'), data.message );
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
             dialoug.stopLoading();
-              dialoug.error( ExposeTranslation.get('js:an.error.occurred'), errorThrown );
+              dialoug.error( Translator.get('js:an.error.occurred'), errorThrown );
           }
         });
       });
@@ -41,7 +41,7 @@ var gothia = (function($) {
       var data = $(this).serialize();
       var url = $(this).attr('action');
 
-      dialoug.loading( '#form_social_security_num', ExposeTranslation.get('js:please.wait') );
+      dialoug.loading( '#form_social_security_num', Translator.get('js:please.wait') );
       $("#gothia-account-container form input").attr('disabled', 'disabled');
 
       $.ajax({
@@ -56,17 +56,18 @@ var gothia = (function($) {
             $("#gothia-payment-step-1").slideUp();
             $("#gothia-payment-step-2").slideDown();
             confirmInit();
+            //$("#gothia-payment-step-2 form").submit(); TODO: Dette burde gøre så vi slap for et step!
           }
           else
           {
             $("#gothia-account-container form input").removeAttr('disabled');
-            dialoug.error( ExposeTranslation.get('js:an.error.occurred'), data.message );
+            dialoug.error( Translator.get('js:an.error.occurred'), data.message );
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
           $("#gothia-account-container form input").removeAttr('disabled');
           dialoug.stopLoading();
-          dialoug.error( ExposeTranslation.get('js:an.error.occurred'), errorThrown );
+          dialoug.error( Translator.get('js:an.error.occurred'), errorThrown );
         }
       });
     });

@@ -11,12 +11,14 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
+use Hanzo\Model\CmsQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsStockQuery;
+use Hanzo\Model\ProductsImagesQuery;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsWashingInstructions;
 use Hanzo\Model\ProductsWashingInstructionsQuery;
@@ -28,7 +30,10 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $translator = $this->get('translator');
 
-        $cache_id = array('product', $product_id);
+        $router = $this->get('router');
+        $route = $this->get('request')->get('_route');
+        $focus = $this->get('request')->get('focus', FALSE);
+        $cache_id = array('product', $product_id, $focus);
         $data = $this->getCache($cache_id);
 
         if (!$data) {
@@ -47,6 +52,7 @@ class DefaultController extends CoreController
                     ->endUse()
                     ->joinWithProductsDomainsPrices()
                     ->joinWithProductsImages()
+                    ->joinWithProductsToCategories()
                 ->endUse()
                 ->findById($product_id)
             ;
@@ -62,20 +68,35 @@ class DefaultController extends CoreController
             $images = array();
             $product_images = $product->getProductsImagess();
             foreach ($product_images as $image) {
+                $path_params = explode('_', explode('.', $image->getImage())[0]);
+                $number = isset($path_params[3]) ? (int)$path_params[3] : 0;
+
                 $images[$image->getId()] = array(
                     'id' => $image->getId(),
                     'name' => $image->getImage(),
+                    'color' => $image->getColor(),
+                    'type' => $image->getType(),
+                    'number' => $number,
                 );
             }
 
             // set focus image
-            if (($focus = $this->get('request')->get('focus', FALSE)) && isset($images[$focus])) {
+            if ($focus && isset($images[$focus])) {
                 $main_image = $images[$focus];
-                unset($images[$focus]);
             }
             else {
                 $main_image = array_shift($images);
             }
+
+            $sorted = [];
+            foreach ($images as $key => $data) {
+                $sorted[$data['type'].$key] = $data;
+            }
+            ksort($sorted);
+            $images = $sorted;
+
+            $current_color = $main_image['color'];
+            $current_type  = $main_image['type'];
 
             $colors = $sizes = array();
             $product_ids = array();
@@ -110,13 +131,11 @@ class DefaultController extends CoreController
                 ->find()
             ;
 
-            $route = $this->get('request')->get('_route');
-            $router = $this->get('router');
-
             $images_references = array();
             foreach ($references as $ref) {
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
                     'title' => $ref->getProducts()->getSku(),
+                    'image' => $ref->getProductsImages()->getImage(),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),
@@ -142,6 +161,9 @@ class DefaultController extends CoreController
                 $washing = stripslashes($result->getDescription());
                 $washing = preg_replace($find, $replace, $washing);
             }
+            //print_r(get_class_methods($product->getProductsToCategoriess()));
+            //$cms_page = CmsQuery::create()->joinWithI18n($hanzo->get('core.locale'))->findOneById($product->getProductsToCategoriess()->getFirst()->getCategoriesId()); // Find this cms' parent. category
+            //$parent_page = CmsQuery::create()->joinWithI18n($hanzo->get('core.locale'))->filterById($cms_page->getParentId())->findOne(); // 's parent
 
             $data = array(
                 'id' => $product->getId(),
@@ -168,14 +190,16 @@ class DefaultController extends CoreController
         $images_references = $data['images_references'];
         unset($data['images_references']);
 
-        $this->get('twig')->addExtension(new \Twig_Extensions_Extension_Debug());
+        $this->get('twig')->addGlobal('page_type', 'product-'.$data['id']);
+        $this->get('twig')->addGlobal('body_classes', 'body-product product-'.$data['id']);
 
         $this->setSharedMaxAge(300);
-        $responce = $this->render('ProductBundle:Default:view.html.twig', array(
+        $response = $this->render('ProductBundle:Default:view.html.twig', array(
             'page_type' => 'product',
             'product' => $data,
             'references' => $images_references,
+            'route' => $route
         ));
-        return $responce;
+        return $response;
     }
 }

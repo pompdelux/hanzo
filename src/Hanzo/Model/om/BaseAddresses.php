@@ -21,13 +21,6 @@ use Hanzo\Model\CountriesQuery;
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
 
-/**
- * Base class that represents a row from the 'addresses' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseAddresses extends BaseObject implements Persistent
 {
     /**
@@ -334,10 +327,12 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [created_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getCreatedAt($format = 'Y-m-d H:i:s')
@@ -350,34 +345,33 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->created_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->created_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getUpdatedAt($format = 'Y-m-d H:i:s')
@@ -390,25 +384,22 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->updated_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->updated_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -818,7 +809,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 16; // 16 = AddressesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1066,52 +1057,52 @@ abstract class BaseAddresses extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(AddressesPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`customers_id`';
+            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
         }
         if ($this->isColumnModified(AddressesPeer::TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`type`';
+            $modifiedColumns[':p' . $index++]  = '`TYPE`';
         }
         if ($this->isColumnModified(AddressesPeer::FIRST_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`first_name`';
+            $modifiedColumns[':p' . $index++]  = '`FIRST_NAME`';
         }
         if ($this->isColumnModified(AddressesPeer::LAST_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`last_name`';
+            $modifiedColumns[':p' . $index++]  = '`LAST_NAME`';
         }
         if ($this->isColumnModified(AddressesPeer::ADDRESS_LINE_1)) {
-            $modifiedColumns[':p' . $index++]  = '`address_line_1`';
+            $modifiedColumns[':p' . $index++]  = '`ADDRESS_LINE_1`';
         }
         if ($this->isColumnModified(AddressesPeer::ADDRESS_LINE_2)) {
-            $modifiedColumns[':p' . $index++]  = '`address_line_2`';
+            $modifiedColumns[':p' . $index++]  = '`ADDRESS_LINE_2`';
         }
         if ($this->isColumnModified(AddressesPeer::POSTAL_CODE)) {
-            $modifiedColumns[':p' . $index++]  = '`postal_code`';
+            $modifiedColumns[':p' . $index++]  = '`POSTAL_CODE`';
         }
         if ($this->isColumnModified(AddressesPeer::CITY)) {
-            $modifiedColumns[':p' . $index++]  = '`city`';
+            $modifiedColumns[':p' . $index++]  = '`CITY`';
         }
         if ($this->isColumnModified(AddressesPeer::COUNTRY)) {
-            $modifiedColumns[':p' . $index++]  = '`country`';
+            $modifiedColumns[':p' . $index++]  = '`COUNTRY`';
         }
         if ($this->isColumnModified(AddressesPeer::COUNTRIES_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`countries_id`';
+            $modifiedColumns[':p' . $index++]  = '`COUNTRIES_ID`';
         }
         if ($this->isColumnModified(AddressesPeer::STATE_PROVINCE)) {
-            $modifiedColumns[':p' . $index++]  = '`state_province`';
+            $modifiedColumns[':p' . $index++]  = '`STATE_PROVINCE`';
         }
         if ($this->isColumnModified(AddressesPeer::COMPANY_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`company_name`';
+            $modifiedColumns[':p' . $index++]  = '`COMPANY_NAME`';
         }
         if ($this->isColumnModified(AddressesPeer::LATITUDE)) {
-            $modifiedColumns[':p' . $index++]  = '`latitude`';
+            $modifiedColumns[':p' . $index++]  = '`LATITUDE`';
         }
         if ($this->isColumnModified(AddressesPeer::LONGITUDE)) {
-            $modifiedColumns[':p' . $index++]  = '`longitude`';
+            $modifiedColumns[':p' . $index++]  = '`LONGITUDE`';
         }
         if ($this->isColumnModified(AddressesPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`created_at`';
+            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
         }
         if ($this->isColumnModified(AddressesPeer::UPDATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`updated_at`';
+            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
         }
 
         $sql = sprintf(
@@ -1124,52 +1115,52 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`customers_id`':
+                    case '`CUSTOMERS_ID`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`type`':
+                    case '`TYPE`':
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
-                    case '`first_name`':
+                    case '`FIRST_NAME`':
                         $stmt->bindValue($identifier, $this->first_name, PDO::PARAM_STR);
                         break;
-                    case '`last_name`':
+                    case '`LAST_NAME`':
                         $stmt->bindValue($identifier, $this->last_name, PDO::PARAM_STR);
                         break;
-                    case '`address_line_1`':
+                    case '`ADDRESS_LINE_1`':
                         $stmt->bindValue($identifier, $this->address_line_1, PDO::PARAM_STR);
                         break;
-                    case '`address_line_2`':
+                    case '`ADDRESS_LINE_2`':
                         $stmt->bindValue($identifier, $this->address_line_2, PDO::PARAM_STR);
                         break;
-                    case '`postal_code`':
+                    case '`POSTAL_CODE`':
                         $stmt->bindValue($identifier, $this->postal_code, PDO::PARAM_STR);
                         break;
-                    case '`city`':
+                    case '`CITY`':
                         $stmt->bindValue($identifier, $this->city, PDO::PARAM_STR);
                         break;
-                    case '`country`':
+                    case '`COUNTRY`':
                         $stmt->bindValue($identifier, $this->country, PDO::PARAM_STR);
                         break;
-                    case '`countries_id`':
+                    case '`COUNTRIES_ID`':
                         $stmt->bindValue($identifier, $this->countries_id, PDO::PARAM_INT);
                         break;
-                    case '`state_province`':
+                    case '`STATE_PROVINCE`':
                         $stmt->bindValue($identifier, $this->state_province, PDO::PARAM_STR);
                         break;
-                    case '`company_name`':
+                    case '`COMPANY_NAME`':
                         $stmt->bindValue($identifier, $this->company_name, PDO::PARAM_STR);
                         break;
-                    case '`latitude`':
+                    case '`LATITUDE`':
                         $stmt->bindValue($identifier, $this->latitude, PDO::PARAM_STR);
                         break;
-                    case '`longitude`':
+                    case '`LONGITUDE`':
                         $stmt->bindValue($identifier, $this->longitude, PDO::PARAM_STR);
                         break;
-                    case '`created_at`':
+                    case '`CREATED_AT`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`updated_at`':
+                    case '`UPDATED_AT`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
@@ -1233,11 +1224,11 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1742,13 +1733,12 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      * Get the associated Customers object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Customers The associated Customers object.
      * @throws PropelException
      */
-    public function getCustomers(PropelPDO $con = null, $doQuery = true)
+    public function getCustomers(PropelPDO $con = null)
     {
-        if ($this->aCustomers === null && ($this->customers_id !== null) && $doQuery) {
+        if ($this->aCustomers === null && ($this->customers_id !== null)) {
             $this->aCustomers = CustomersQuery::create()->findPk($this->customers_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
@@ -1794,13 +1784,12 @@ abstract class BaseAddresses extends BaseObject implements Persistent
      * Get the associated Countries object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Countries The associated Countries object.
      * @throws PropelException
      */
-    public function getCountries(PropelPDO $con = null, $doQuery = true)
+    public function getCountries(PropelPDO $con = null)
     {
-        if ($this->aCountries === null && ($this->countries_id !== null) && $doQuery) {
+        if ($this->aCountries === null && ($this->countries_id !== null)) {
             $this->aCountries = CountriesQuery::create()->findPk($this->countries_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

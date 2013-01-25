@@ -19,10 +19,6 @@ use Hanzo\Model\Countries;
 use Hanzo\Model\Customers;
 
 /**
- * Base class that represents a query for the 'addresses' table.
- *
- *
- *
  * @method AddressesQuery orderByCustomersId($order = Criteria::ASC) Order by the customers_id column
  * @method AddressesQuery orderByType($order = Criteria::ASC) Order by the type column
  * @method AddressesQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
@@ -105,8 +101,6 @@ use Hanzo\Model\Customers;
  * @method array findByLongitude(double $longitude) Return Addresses objects filtered by the longitude column
  * @method array findByCreatedAt(string $created_at) Return Addresses objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Addresses objects filtered by the updated_at column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseAddressesQuery extends ModelCriteria
 {
@@ -195,7 +189,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `customers_id`, `type`, `first_name`, `last_name`, `address_line_1`, `address_line_2`, `postal_code`, `city`, `country`, `countries_id`, `state_province`, `company_name`, `latitude`, `longitude`, `created_at`, `updated_at` FROM `addresses` WHERE `customers_id` = :p0 AND `type` = :p1';
+        $sql = 'SELECT `CUSTOMERS_ID`, `TYPE`, `FIRST_NAME`, `LAST_NAME`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `COUNTRY`, `COUNTRIES_ID`, `STATE_PROVINCE`, `COMPANY_NAME`, `LATITUDE`, `LONGITUDE`, `CREATED_AT`, `UPDATED_AT` FROM `addresses` WHERE `CUSTOMERS_ID` = :p0 AND `TYPE` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);

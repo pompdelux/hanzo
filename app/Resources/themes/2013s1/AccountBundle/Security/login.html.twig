@@ -1,0 +1,66 @@
+{% extends layout %}
+
+{% block content %}
+
+{% if store_mode == 'webshop' %}
+    <header class="grid_8 alpha omega">
+        <hgroup>
+                {{ 'my.account.login.header'|trans({}, 'account')|raw }}
+        </hgroup>
+    </header>
+{% else %}
+    <h1>Login</h1>
+{% endif %}
+
+{% if error %}
+    <div class="msg error">{{ error.message|trans({}, 'account') }}</div>
+{% endif %}
+
+{% if app.session.hasFlash('error') %}
+<div class="msg error">
+  {{ app.session.flash('error')|raw }}
+</div>
+{% endif %}
+
+<div class="grid_4 alpha">
+    {{ 'my.account.login.text'|trans({}, 'account')|raw }}
+</div>
+
+<div class="grid_3 push_1 omega">
+
+{% if store_mode == 'webshop' %}
+    <div class="grid_3 alpha omega bottom-space">
+        <h3>{{ 'new.customer'|trans({}, 'account') }}</h3>
+        {{ 'my.account.login.notice'|trans({}, 'account')|raw }}
+        <a href="{{ url('_account_create') }}" class="button button-black button-right">{{ "create.account.link"|trans({}, 'account') }}</a>
+    </div>
+{% endif %}
+
+    <div class="grid_3 alpha omega bottom-space">
+        <h3>{{ 'existing.customer'|trans({}, 'account') }}</h3>
+        <form action="{{ path('login_check') }}" method="post" class="full-width">
+            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'email'|trans({}, 'account') }}">
+
+            <input type="password" id="password" name="_password" placeholder="{{ 'password'|trans({}, 'account') }}">
+
+            <input type="hidden" name="_target_path" value="{{ url(target) }}">
+            <input type="submit" name="login" value="{{ 'my.account.login'|trans({}, 'account') }}" class="button button-black button-right">
+        </form>
+    </div>
+
+    <div class="grid_3 alpha omega bottom-space">
+        <h3>{{ 'password.forgotten'|trans({}, 'account') }}</h3>
+        <p><a href="{{ url('_account_lost_password') }}">{{ 'retrive.password'|trans({}, 'account') }}</a></p>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+(function($) {
+  $('#username').focus();
+})(jQuery);
+</script>
+{% endblock %}

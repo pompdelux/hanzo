@@ -10,6 +10,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsImagesCategoriesSortQuery;
+use Hanzo\Model\ProductsImagesCategoriesSort;
 use Hanzo\Model\ProductsImagesProductReferences;
 use Hanzo\Model\ProductsImagesProductReferencesQuery;
 use Hanzo\Model\ProductsToCategoriesQuery;
@@ -177,6 +178,22 @@ class ProductsController extends CoreController
         $product_images_list = array();
 
         foreach ($product_images as $record) {
+            $product_image_in_categories = ProductsImagesCategoriesSortQuery::create()
+                ->joinWithCategories()
+                ->filterByProductsImagesId($record->getId())
+                ->find($this->getDbConnection())
+            ;
+
+
+            $image_categories_list = array();
+            foreach ($product_image_in_categories as $ref) {
+
+                $image_categories_list[] = array(
+                    'id' => $record->getId(),
+                    'category_id' => $ref->getCategoriesId(),
+                    'title' => $ref->getCategories()->getContext()
+                );
+            }
 
             $products_refs = ProductsImagesProductReferencesQuery::create()
                 ->joinWithProducts()
@@ -202,9 +219,9 @@ class ProductsController extends CoreController
                 'id' => $record->getProductsId(),
                 'image' => $record->getImage(),
                 'image_id' => $record->getId(),
-                'product_ref_ids' => $products_refs_list
-            );
-        }
+                'product_ref_ids' => $products_refs_list,
+                'image_categories' => $image_categories_list
+            );        }
 
 
         $form_hasVideo = $this->createFormBuilder($current_product)
@@ -591,6 +608,64 @@ class ProductsController extends CoreController
             return $this->json_response(array(
                 'status' => TRUE,
                 'message' => $this->get('translator')->trans('delete.imageReference.success', array(), 'admin'),
+            ));
+        }
+    }
+
+    public function addImageToCategoryAction()
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        $requests = $this->get('request');
+        $image_id = $requests->get('image');
+        $category_id = $requests->get('category');
+        $image = ProductsImagesQuery::create()->findOneById($image_id);
+
+        $reference = new ProductsImagesCategoriesSort();
+        $reference->setProductsId($image->getProductsId());
+        $reference->setProductsImagesId($image_id);
+        $reference->setCategoriesId($category_id);
+
+        try {
+            $reference->save($this->getDbConnection());
+
+        } catch (PropelException $e) {
+            if ($this->getFormat() == 'json') {
+                return $this->json_response(array(
+                    'status' => FALSE,
+                    'message' => $this->get('translator')->trans('save.changes.failed', array(), 'admin')
+                ));
+            }
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('save.changes.success', array(), 'admin')
+            ));
+        }
+    }
+
+    public function deleteImageFromCategoryAction($image_id, $category_id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        $ref = ProductsImagesCategoriesSortQuery::create()
+            ->filterByProductsImagesId($image_id)
+            ->filterByCategoriesId($category_id)
+            ->findOne($this->getDbConnection())
+        ;
+
+        if($ref){
+            $ref->delete($this->getDbConnection());
+        }
+
+        if ($this->getFormat() == 'json') {
+            return $this->json_response(array(
+                'status' => TRUE,
+                'message' => $this->get('translator')->trans('delete.success', array(), 'admin'),
             ));
         }
     }

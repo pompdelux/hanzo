@@ -13,13 +13,6 @@ use Hanzo\Model\ShippingMethods;
 use Hanzo\Model\ShippingMethodsPeer;
 use Hanzo\Model\map\ShippingMethodsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'shipping_methods' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseShippingMethodsPeer
 {
 
@@ -44,32 +37,32 @@ abstract class BaseShippingMethodsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 9;
 
-    /** the column name for the id field */
-    const ID = 'shipping_methods.id';
+    /** the column name for the ID field */
+    const ID = 'shipping_methods.ID';
 
-    /** the column name for the carrier field */
-    const CARRIER = 'shipping_methods.carrier';
+    /** the column name for the CARRIER field */
+    const CARRIER = 'shipping_methods.CARRIER';
 
-    /** the column name for the method field */
-    const METHOD = 'shipping_methods.method';
+    /** the column name for the METHOD field */
+    const METHOD = 'shipping_methods.METHOD';
 
-    /** the column name for the external_id field */
-    const EXTERNAL_ID = 'shipping_methods.external_id';
+    /** the column name for the EXTERNAL_ID field */
+    const EXTERNAL_ID = 'shipping_methods.EXTERNAL_ID';
 
-    /** the column name for the calc_engine field */
-    const CALC_ENGINE = 'shipping_methods.calc_engine';
+    /** the column name for the CALC_ENGINE field */
+    const CALC_ENGINE = 'shipping_methods.CALC_ENGINE';
 
-    /** the column name for the price field */
-    const PRICE = 'shipping_methods.price';
+    /** the column name for the PRICE field */
+    const PRICE = 'shipping_methods.PRICE';
 
-    /** the column name for the fee field */
-    const FEE = 'shipping_methods.fee';
+    /** the column name for the FEE field */
+    const FEE = 'shipping_methods.FEE';
 
-    /** the column name for the fee_external_id field */
-    const FEE_EXTERNAL_ID = 'shipping_methods.fee_external_id';
+    /** the column name for the FEE_EXTERNAL_ID field */
+    const FEE_EXTERNAL_ID = 'shipping_methods.FEE_EXTERNAL_ID';
 
-    /** the column name for the is_active field */
-    const IS_ACTIVE = 'shipping_methods.is_active';
+    /** the column name for the IS_ACTIVE field */
+    const IS_ACTIVE = 'shipping_methods.IS_ACTIVE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -194,15 +187,15 @@ abstract class BaseShippingMethodsPeer
             $criteria->addSelectColumn(ShippingMethodsPeer::FEE_EXTERNAL_ID);
             $criteria->addSelectColumn(ShippingMethodsPeer::IS_ACTIVE);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.carrier');
-            $criteria->addSelectColumn($alias . '.method');
-            $criteria->addSelectColumn($alias . '.external_id');
-            $criteria->addSelectColumn($alias . '.calc_engine');
-            $criteria->addSelectColumn($alias . '.price');
-            $criteria->addSelectColumn($alias . '.fee');
-            $criteria->addSelectColumn($alias . '.fee_external_id');
-            $criteria->addSelectColumn($alias . '.is_active');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.CARRIER');
+            $criteria->addSelectColumn($alias . '.METHOD');
+            $criteria->addSelectColumn($alias . '.EXTERNAL_ID');
+            $criteria->addSelectColumn($alias . '.CALC_ENGINE');
+            $criteria->addSelectColumn($alias . '.PRICE');
+            $criteria->addSelectColumn($alias . '.FEE');
+            $criteria->addSelectColumn($alias . '.FEE_EXTERNAL_ID');
+            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
         }
     }
 

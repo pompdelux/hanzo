@@ -105,8 +105,8 @@
       if ($countdown) {
         $countdown.countdown({
           timezone: +1,
-          until: new Date(ExposeTranslation.get('js:countdown.date')),
-          layout: '<strong>' + ExposeTranslation.get('js:countdown.format') + '</strong>'
+          until: new Date(Translator.get('js:countdown.date')),
+          layout: '<strong>' + Translator.get('js:countdown.format') + '</strong>'
         });
         var lang = $('html').attr('lang');
         if (lang !== 'en') {
@@ -144,8 +144,7 @@
 
         $.cookie.defaults = {
           domain : cookie_params.domain,
-          path : cookie_params.path,
-          json : true
+          path : cookie_params.path
         };
 
         var basket = $.cookie('basket');

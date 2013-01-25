@@ -20,13 +20,6 @@ use Hanzo\Model\WallLikesPeer;
 use Hanzo\Model\WallPeer;
 use Hanzo\Model\map\CustomersTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'customers' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCustomersPeer
 {
 
@@ -51,41 +44,41 @@ abstract class BaseCustomersPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 12;
 
-    /** the column name for the id field */
-    const ID = 'customers.id';
+    /** the column name for the ID field */
+    const ID = 'customers.ID';
 
-    /** the column name for the groups_id field */
-    const GROUPS_ID = 'customers.groups_id';
+    /** the column name for the GROUPS_ID field */
+    const GROUPS_ID = 'customers.GROUPS_ID';
 
-    /** the column name for the first_name field */
-    const FIRST_NAME = 'customers.first_name';
+    /** the column name for the FIRST_NAME field */
+    const FIRST_NAME = 'customers.FIRST_NAME';
 
-    /** the column name for the last_name field */
-    const LAST_NAME = 'customers.last_name';
+    /** the column name for the LAST_NAME field */
+    const LAST_NAME = 'customers.LAST_NAME';
 
-    /** the column name for the email field */
-    const EMAIL = 'customers.email';
+    /** the column name for the EMAIL field */
+    const EMAIL = 'customers.EMAIL';
 
-    /** the column name for the phone field */
-    const PHONE = 'customers.phone';
+    /** the column name for the PHONE field */
+    const PHONE = 'customers.PHONE';
 
-    /** the column name for the password field */
-    const PASSWORD = 'customers.password';
+    /** the column name for the PASSWORD field */
+    const PASSWORD = 'customers.PASSWORD';
 
-    /** the column name for the password_clear field */
-    const PASSWORD_CLEAR = 'customers.password_clear';
+    /** the column name for the PASSWORD_CLEAR field */
+    const PASSWORD_CLEAR = 'customers.PASSWORD_CLEAR';
 
-    /** the column name for the discount field */
-    const DISCOUNT = 'customers.discount';
+    /** the column name for the DISCOUNT field */
+    const DISCOUNT = 'customers.DISCOUNT';
 
-    /** the column name for the is_active field */
-    const IS_ACTIVE = 'customers.is_active';
+    /** the column name for the IS_ACTIVE field */
+    const IS_ACTIVE = 'customers.IS_ACTIVE';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'customers.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'customers.CREATED_AT';
 
-    /** the column name for the updated_at field */
-    const UPDATED_AT = 'customers.updated_at';
+    /** the column name for the UPDATED_AT field */
+    const UPDATED_AT = 'customers.UPDATED_AT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -213,18 +206,18 @@ abstract class BaseCustomersPeer
             $criteria->addSelectColumn(CustomersPeer::CREATED_AT);
             $criteria->addSelectColumn(CustomersPeer::UPDATED_AT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.groups_id');
-            $criteria->addSelectColumn($alias . '.first_name');
-            $criteria->addSelectColumn($alias . '.last_name');
-            $criteria->addSelectColumn($alias . '.email');
-            $criteria->addSelectColumn($alias . '.phone');
-            $criteria->addSelectColumn($alias . '.password');
-            $criteria->addSelectColumn($alias . '.password_clear');
-            $criteria->addSelectColumn($alias . '.discount');
-            $criteria->addSelectColumn($alias . '.is_active');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.updated_at');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.GROUPS_ID');
+            $criteria->addSelectColumn($alias . '.FIRST_NAME');
+            $criteria->addSelectColumn($alias . '.LAST_NAME');
+            $criteria->addSelectColumn($alias . '.EMAIL');
+            $criteria->addSelectColumn($alias . '.PHONE');
+            $criteria->addSelectColumn($alias . '.PASSWORD');
+            $criteria->addSelectColumn($alias . '.PASSWORD_CLEAR');
+            $criteria->addSelectColumn($alias . '.DISCOUNT');
+            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.UPDATED_AT');
         }
     }
 

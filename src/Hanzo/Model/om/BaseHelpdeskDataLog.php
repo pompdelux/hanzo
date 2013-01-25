@@ -17,13 +17,6 @@ use Hanzo\Model\HelpdeskDataLog;
 use Hanzo\Model\HelpdeskDataLogPeer;
 use Hanzo\Model\HelpdeskDataLogQuery;
 
-/**
- * Base class that represents a row from the 'helpdesk_data_log' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
 {
     /**
@@ -100,10 +93,12 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [created_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getCreatedAt($format = 'Y-m-d H:i:s')
@@ -116,25 +111,22 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->created_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->created_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -244,7 +236,7 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 3; // 3 = HelpdeskDataLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -454,13 +446,13 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(HelpdeskDataLogPeer::KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`key`';
+            $modifiedColumns[':p' . $index++]  = '`KEY`';
         }
         if ($this->isColumnModified(HelpdeskDataLogPeer::DATA)) {
-            $modifiedColumns[':p' . $index++]  = '`data`';
+            $modifiedColumns[':p' . $index++]  = '`DATA`';
         }
         if ($this->isColumnModified(HelpdeskDataLogPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`created_at`';
+            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
         }
 
         $sql = sprintf(
@@ -473,13 +465,13 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`key`':
+                    case '`KEY`':
                         $stmt->bindValue($identifier, $this->key, PDO::PARAM_STR);
                         break;
-                    case '`data`':
+                    case '`DATA`':
                         $stmt->bindValue($identifier, $this->data, PDO::PARAM_STR);
                         break;
-                    case '`created_at`':
+                    case '`CREATED_AT`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
                 }
@@ -543,11 +535,11 @@ abstract class BaseHelpdeskDataLog extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**

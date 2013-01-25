@@ -15,13 +15,6 @@ use Hanzo\Model\ShippingMethods;
 use Hanzo\Model\ShippingMethodsPeer;
 use Hanzo\Model\ShippingMethodsQuery;
 
-/**
- * Base class that represents a row from the 'shipping_methods' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseShippingMethods extends BaseObject implements Persistent
 {
     /**
@@ -484,7 +477,7 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 9; // 9 = ShippingMethodsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -698,31 +691,31 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ShippingMethodsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::CARRIER)) {
-            $modifiedColumns[':p' . $index++]  = '`carrier`';
+            $modifiedColumns[':p' . $index++]  = '`CARRIER`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::METHOD)) {
-            $modifiedColumns[':p' . $index++]  = '`method`';
+            $modifiedColumns[':p' . $index++]  = '`METHOD`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::EXTERNAL_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`external_id`';
+            $modifiedColumns[':p' . $index++]  = '`EXTERNAL_ID`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::CALC_ENGINE)) {
-            $modifiedColumns[':p' . $index++]  = '`calc_engine`';
+            $modifiedColumns[':p' . $index++]  = '`CALC_ENGINE`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::PRICE)) {
-            $modifiedColumns[':p' . $index++]  = '`price`';
+            $modifiedColumns[':p' . $index++]  = '`PRICE`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::FEE)) {
-            $modifiedColumns[':p' . $index++]  = '`fee`';
+            $modifiedColumns[':p' . $index++]  = '`FEE`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::FEE_EXTERNAL_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`fee_external_id`';
+            $modifiedColumns[':p' . $index++]  = '`FEE_EXTERNAL_ID`';
         }
         if ($this->isColumnModified(ShippingMethodsPeer::IS_ACTIVE)) {
-            $modifiedColumns[':p' . $index++]  = '`is_active`';
+            $modifiedColumns[':p' . $index++]  = '`IS_ACTIVE`';
         }
 
         $sql = sprintf(
@@ -735,31 +728,31 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`carrier`':
+                    case '`CARRIER`':
                         $stmt->bindValue($identifier, $this->carrier, PDO::PARAM_STR);
                         break;
-                    case '`method`':
+                    case '`METHOD`':
                         $stmt->bindValue($identifier, $this->method, PDO::PARAM_STR);
                         break;
-                    case '`external_id`':
+                    case '`EXTERNAL_ID`':
                         $stmt->bindValue($identifier, $this->external_id, PDO::PARAM_STR);
                         break;
-                    case '`calc_engine`':
+                    case '`CALC_ENGINE`':
                         $stmt->bindValue($identifier, $this->calc_engine, PDO::PARAM_STR);
                         break;
-                    case '`price`':
+                    case '`PRICE`':
                         $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
                         break;
-                    case '`fee`':
+                    case '`FEE`':
                         $stmt->bindValue($identifier, $this->fee, PDO::PARAM_STR);
                         break;
-                    case '`fee_external_id`':
+                    case '`FEE_EXTERNAL_ID`':
                         $stmt->bindValue($identifier, $this->fee_external_id, PDO::PARAM_STR);
                         break;
-                    case '`is_active`':
+                    case '`IS_ACTIVE`':
                         $stmt->bindValue($identifier, (int) $this->is_active, PDO::PARAM_INT);
                         break;
                 }
@@ -830,11 +823,11 @@ abstract class BaseShippingMethods extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**

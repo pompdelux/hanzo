@@ -17,13 +17,6 @@ use Hanzo\Model\MannequinImagesQuery;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 
-/**
- * Base class that represents a row from the 'mannequin_images' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseMannequinImages extends BaseObject implements Persistent
 {
     /**
@@ -413,7 +406,7 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 7; // 7 = MannequinImagesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -639,25 +632,25 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(MannequinImagesPeer::MASTER)) {
-            $modifiedColumns[':p' . $index++]  = '`master`';
+            $modifiedColumns[':p' . $index++]  = '`MASTER`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::COLOR)) {
-            $modifiedColumns[':p' . $index++]  = '`color`';
+            $modifiedColumns[':p' . $index++]  = '`COLOR`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::LAYER)) {
-            $modifiedColumns[':p' . $index++]  = '`layer`';
+            $modifiedColumns[':p' . $index++]  = '`LAYER`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::IMAGE)) {
-            $modifiedColumns[':p' . $index++]  = '`image`';
+            $modifiedColumns[':p' . $index++]  = '`IMAGE`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::ICON)) {
-            $modifiedColumns[':p' . $index++]  = '`icon`';
+            $modifiedColumns[':p' . $index++]  = '`ICON`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::WEIGHT)) {
-            $modifiedColumns[':p' . $index++]  = '`weight`';
+            $modifiedColumns[':p' . $index++]  = '`WEIGHT`';
         }
         if ($this->isColumnModified(MannequinImagesPeer::IS_MAIN)) {
-            $modifiedColumns[':p' . $index++]  = '`is_main`';
+            $modifiedColumns[':p' . $index++]  = '`IS_MAIN`';
         }
 
         $sql = sprintf(
@@ -670,25 +663,25 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`master`':
+                    case '`MASTER`':
                         $stmt->bindValue($identifier, $this->master, PDO::PARAM_STR);
                         break;
-                    case '`color`':
+                    case '`COLOR`':
                         $stmt->bindValue($identifier, $this->color, PDO::PARAM_STR);
                         break;
-                    case '`layer`':
+                    case '`LAYER`':
                         $stmt->bindValue($identifier, $this->layer, PDO::PARAM_INT);
                         break;
-                    case '`image`':
+                    case '`IMAGE`':
                         $stmt->bindValue($identifier, $this->image, PDO::PARAM_STR);
                         break;
-                    case '`icon`':
+                    case '`ICON`':
                         $stmt->bindValue($identifier, $this->icon, PDO::PARAM_STR);
                         break;
-                    case '`weight`':
+                    case '`WEIGHT`':
                         $stmt->bindValue($identifier, $this->weight, PDO::PARAM_INT);
                         break;
-                    case '`is_main`':
+                    case '`IS_MAIN`':
                         $stmt->bindValue($identifier, (int) $this->is_main, PDO::PARAM_INT);
                         break;
                 }
@@ -752,11 +745,11 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1162,13 +1155,12 @@ abstract class BaseMannequinImages extends BaseObject implements Persistent
      * Get the associated Products object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Products The associated Products object.
      * @throws PropelException
      */
-    public function getProducts(PropelPDO $con = null, $doQuery = true)
+    public function getProducts(PropelPDO $con = null)
     {
-        if ($this->aProducts === null && (($this->master !== "" && $this->master !== null)) && $doQuery) {
+        if ($this->aProducts === null && (($this->master !== "" && $this->master !== null))) {
             $this->aProducts = ProductsQuery::create()
                 ->filterByMannequinImages($this) // here
                 ->findOne($con);

@@ -14,13 +14,6 @@ use Hanzo\Model\OrdersVersions;
 use Hanzo\Model\OrdersVersionsPeer;
 use Hanzo\Model\map\OrdersVersionsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'orders_versions' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersVersionsPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseOrdersVersionsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the orders_id field */
-    const ORDERS_ID = 'orders_versions.orders_id';
+    /** the column name for the ORDERS_ID field */
+    const ORDERS_ID = 'orders_versions.ORDERS_ID';
 
-    /** the column name for the version_id field */
-    const VERSION_ID = 'orders_versions.version_id';
+    /** the column name for the VERSION_ID field */
+    const VERSION_ID = 'orders_versions.VERSION_ID';
 
-    /** the column name for the created_at field */
-    const CREATED_AT = 'orders_versions.created_at';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'orders_versions.CREATED_AT';
 
-    /** the column name for the content field */
-    const CONTENT = 'orders_versions.content';
+    /** the column name for the CONTENT field */
+    const CONTENT = 'orders_versions.CONTENT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseOrdersVersionsPeer
             $criteria->addSelectColumn(OrdersVersionsPeer::CREATED_AT);
             $criteria->addSelectColumn(OrdersVersionsPeer::CONTENT);
         } else {
-            $criteria->addSelectColumn($alias . '.orders_id');
-            $criteria->addSelectColumn($alias . '.version_id');
-            $criteria->addSelectColumn($alias . '.created_at');
-            $criteria->addSelectColumn($alias . '.content');
+            $criteria->addSelectColumn($alias . '.ORDERS_ID');
+            $criteria->addSelectColumn($alias . '.VERSION_ID');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.CONTENT');
         }
     }
 

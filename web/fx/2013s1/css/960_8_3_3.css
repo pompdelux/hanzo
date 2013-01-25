@@ -1,0 +1,138 @@
+/**
+ * 960px grid system ~ Core CSS.
+ * 8 Columns ~ Margin left: 3px ~ Margin right: 3px
+ *
+ * Based on the 960.gs grid system - http://960.gs/
+ * by Nathan Smith
+ *
+ * Created by the Grid System Generator - v1.04
+ * Learn more ~ http://www.gridsystemgenerator.com/
+ */
+
+/*
+ * Forces backgrounds to span full width,
+ * even if there is horizontal scrolling.
+ * Increase this if your layout is wider.
+ *
+ * Note: IE6 works fine without this fix.
+ */
+body {
+    min-width: 960px;
+}
+
+/* =Containers
+ *--------------------------------------------------------------------------------*/
+.container_8
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+}
+
+/* =Grid >> Global
+--------------------------------------------------------------------------------*/
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8 {
+    display: inline;
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.push_1, .pull_1,
+.push_2, .pull_2,
+.push_3, .pull_3,
+.push_4, .pull_4,
+.push_5, .pull_5,
+.push_6, .pull_6,
+.push_7, .pull_7 {
+    position: relative;
+}
+
+/* =Grid >> Children (Alpha ~ First, Omega ~ Last)
+--------------------------------------------------------------------------------*/
+.alpha {margin-left: 0;}
+.omega {margin-right: 0;}
+
+/* =Grid >> 8 Columns
+--------------------------------------------------------------------------------*/
+.container_8 .grid_1 {width: 114px;}
+.container_8 .grid_2 {width: 234px;}
+.container_8 .grid_3 {width: 354px;}
+.container_8 .grid_4 {width: 474px;}
+.container_8 .grid_5 {width: 594px;}
+.container_8 .grid_6 {width: 714px;}
+.container_8 .grid_7 {width: 834px;}
+.container_8 .grid_8 {width: 954px;}
+
+/* =Prefix Extra Space >> 8 Columns
+--------------------------------------------------------------------------------*/
+.container_8 .prefix_1 {padding-left: 120px;}
+.container_8 .prefix_2 {padding-left: 240px;}
+.container_8 .prefix_3 {padding-left: 360px;}
+.container_8 .prefix_4 {padding-left: 480px;}
+.container_8 .prefix_5 {padding-left: 600px;}
+.container_8 .prefix_6 {padding-left: 720px;}
+.container_8 .prefix_7 {padding-left: 840px;}
+
+/* =Suffix Extra Space >> 8 Columns
+--------------------------------------------------------------------------------*/
+.container_8 .suffix_1 {padding-right: 120px;}
+.container_8 .suffix_2 {padding-right: 240px;}
+.container_8 .suffix_3 {padding-right: 360px;}
+.container_8 .suffix_4 {padding-right: 480px;}
+.container_8 .suffix_5 {padding-right: 600px;}
+.container_8 .suffix_6 {padding-right: 720px;}
+.container_8 .suffix_7 {padding-right: 840px;}
+
+/* `Push Space >> 8 Columns
+--------------------------------------------------------------------------------*/
+.container_8 .push_1 {left: 120px;}
+.container_8 .push_2 {left: 240px;}
+.container_8 .push_3 {left: 360px;}
+.container_8 .push_4 {left: 480px;}
+.container_8 .push_5 {left: 600px;}
+.container_8 .push_6 {left: 720px;}
+.container_8 .push_7 {left: 840px;}
+
+/* `Pull Space >> 8 Columns
+--------------------------------------------------------------------------------*/
+.container_8 .pull_1 {left: -120px;}
+.container_8 .pull_2 {left: -240px;}
+.container_8 .pull_3 {left: -360px;}
+.container_8 .pull_4 {left: -480px;}
+.container_8 .pull_5 {left: -600px;}
+.container_8 .pull_6 {left: -720px;}
+.container_8 .pull_7 {left: -840px;}
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+/* http://sonspring.com/journal/clearing-floats */
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+/* For modern browsers */
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+    zoom:1;
+}

@@ -14,13 +14,6 @@ use Hanzo\Model\MessagesI18nPeer;
 use Hanzo\Model\MessagesPeer;
 use Hanzo\Model\map\MessagesI18nTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'messages_i18n' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseMessagesI18nPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseMessagesI18nPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'messages_i18n.id';
+    /** the column name for the ID field */
+    const ID = 'messages_i18n.ID';
 
-    /** the column name for the locale field */
-    const LOCALE = 'messages_i18n.locale';
+    /** the column name for the LOCALE field */
+    const LOCALE = 'messages_i18n.LOCALE';
 
-    /** the column name for the subject field */
-    const SUBJECT = 'messages_i18n.subject';
+    /** the column name for the SUBJECT field */
+    const SUBJECT = 'messages_i18n.SUBJECT';
 
-    /** the column name for the body field */
-    const BODY = 'messages_i18n.body';
+    /** the column name for the BODY field */
+    const BODY = 'messages_i18n.BODY';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseMessagesI18nPeer
             $criteria->addSelectColumn(MessagesI18nPeer::SUBJECT);
             $criteria->addSelectColumn(MessagesI18nPeer::BODY);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.locale');
-            $criteria->addSelectColumn($alias . '.subject');
-            $criteria->addSelectColumn($alias . '.body');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.LOCALE');
+            $criteria->addSelectColumn($alias . '.SUBJECT');
+            $criteria->addSelectColumn($alias . '.BODY');
         }
     }
 

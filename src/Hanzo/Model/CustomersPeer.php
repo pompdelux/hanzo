@@ -38,7 +38,7 @@ class CustomersPeer extends BaseCustomersPeer
         // load users based on security context
         $acl = Hanzo::getInstance()->container->get('security.context');
         if ($acl->isGranted('IS_AUTHENTICATED_FULLY')) {
-            self::$current = $acl->getToken()->getUser()->getUser();
+            self::$current = $acl->getToken()->getUser();
         }
 
         self::$current = self::$current ?: new Customers;

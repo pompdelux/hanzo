@@ -1,0 +1,17 @@
+/**
+| _sprites
+*/
+
+@import "icons/da/*.png";
+@include all-da-sprites; //
+@import "icons/icons/*.png";
+@include all-icons-sprites; // Generates a sprite from all images inside the folder
+
+// @import "icons/fi/*.png";
+// @include all-fi-sprites; // Generates a sprite from all images inside the folder
+// @import "icons/nl/*.png";
+// @include all-nl-sprites; // Generates a sprite from all images inside the folder
+// @import "icons/no/*.png";
+// @include all-no-sprites; // Generates a sprite from all images inside the folder
+// @import "icons/se/*.png";
+// @include all-se-sprites; // Generates a sprite from all images inside the folder

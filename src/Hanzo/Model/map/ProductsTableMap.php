@@ -42,18 +42,18 @@ class ProductsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('sku', 'Sku', 'VARCHAR', true, 128, null);
-        $this->addForeignKey('master', 'Master', 'VARCHAR', 'products', 'sku', false, 128, null);
-        $this->addColumn('size', 'Size', 'VARCHAR', false, 32, null);
-        $this->addColumn('color', 'Color', 'VARCHAR', false, 128, null);
-        $this->addColumn('unit', 'Unit', 'VARCHAR', false, 12, null);
-        $this->addForeignKey('washing', 'Washing', 'INTEGER', 'products_washing_instructions', 'code', false, null, null);
-        $this->addColumn('has_video', 'HasVideo', 'BOOLEAN', true, 1, true);
-        $this->addColumn('is_out_of_stock', 'IsOutOfStock', 'BOOLEAN', true, 1, false);
-        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
-        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
-        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('SKU', 'Sku', 'VARCHAR', true, 128, null);
+        $this->addForeignKey('MASTER', 'Master', 'VARCHAR', 'products', 'SKU', false, 128, null);
+        $this->addColumn('SIZE', 'Size', 'VARCHAR', false, 32, null);
+        $this->addColumn('COLOR', 'Color', 'VARCHAR', false, 128, null);
+        $this->addColumn('UNIT', 'Unit', 'VARCHAR', false, 12, null);
+        $this->addForeignKey('WASHING', 'Washing', 'INTEGER', 'products_washing_instructions', 'CODE', false, null, null);
+        $this->addColumn('HAS_VIDEO', 'HasVideo', 'BOOLEAN', true, 1, true);
+        $this->addColumn('IS_OUT_OF_STOCK', 'IsOutOfStock', 'BOOLEAN', true, 1, false);
+        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -88,20 +88,8 @@ class ProductsTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'i18n' =>  array (
-  'i18n_table' => '%TABLE%_i18n',
-  'i18n_phpname' => '%PHPNAME%I18n',
-  'i18n_columns' => 'title, content',
-  'i18n_pk_name' => NULL,
-  'locale_column' => 'locale',
-  'default_locale' => 'da_DK',
-  'locale_alias' => '',
-),
-            'timestampable' =>  array (
-  'create_column' => 'created_at',
-  'update_column' => 'updated_at',
-  'disable_updated_at' => 'false',
-),
+            'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title, content', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
+            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
         );
     } // getBehaviors()
 

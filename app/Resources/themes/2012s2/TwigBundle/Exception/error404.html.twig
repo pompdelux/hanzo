@@ -1,0 +1,21 @@
+{% set browser_title = ' / '~'404.title'|trans({}, 'error') %}
+{% set page_type = 'exception' %}
+{% set body_classes = 'cms global error-404' %}
+
+{% extends '::base.html.twig' %}
+
+{% block content %}
+
+<h1>{{ '404.title'|trans({}, 'error') }}</h1>
+
+<div style="padding: 10px;">
+  <p>{{ '404.description'|trans({}, 'error')|raw }}</p>
+
+  <form name="{{ path('_search', {'_locale' : app.request.locale}) }}" action="" method="get">
+    <input type="text" name="keywords" id="keywords" value="">
+    <input class="button" type="submit" value="{{ 'Search'|trans }}">
+    <input type="hidden" name="search_in_description" value="1">
+  </form>
+</div>
+
+{% endblock %}

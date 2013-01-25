@@ -17,13 +17,6 @@ use Hanzo\Model\OrdersDeletedLog;
 use Hanzo\Model\OrdersDeletedLogPeer;
 use Hanzo\Model\OrdersDeletedLogQuery;
 
-/**
- * Base class that represents a row from the 'orders_deleted_log' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
 {
     /**
@@ -180,10 +173,12 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [deleted_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getDeletedAt($format = 'Y-m-d H:i:s')
@@ -196,25 +191,22 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->deleted_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->deleted_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->deleted_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->deleted_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -434,7 +426,7 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 8; // 8 = OrdersDeletedLogPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -644,28 +636,28 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(OrdersDeletedLogPeer::ORDERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`orders_id`';
+            $modifiedColumns[':p' . $index++]  = '`ORDERS_ID`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::CUSTOMERS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`customers_id`';
+            $modifiedColumns[':p' . $index++]  = '`CUSTOMERS_ID`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`name`';
+            $modifiedColumns[':p' . $index++]  = '`NAME`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::EMAIL)) {
-            $modifiedColumns[':p' . $index++]  = '`email`';
+            $modifiedColumns[':p' . $index++]  = '`EMAIL`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::TRIGGER)) {
-            $modifiedColumns[':p' . $index++]  = '`trigger`';
+            $modifiedColumns[':p' . $index++]  = '`TRIGGER`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::CONTENT)) {
-            $modifiedColumns[':p' . $index++]  = '`content`';
+            $modifiedColumns[':p' . $index++]  = '`CONTENT`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::DELETED_BY)) {
-            $modifiedColumns[':p' . $index++]  = '`deleted_by`';
+            $modifiedColumns[':p' . $index++]  = '`DELETED_BY`';
         }
         if ($this->isColumnModified(OrdersDeletedLogPeer::DELETED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`deleted_at`';
+            $modifiedColumns[':p' . $index++]  = '`DELETED_AT`';
         }
 
         $sql = sprintf(
@@ -678,28 +670,28 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`orders_id`':
+                    case '`ORDERS_ID`':
                         $stmt->bindValue($identifier, $this->orders_id, PDO::PARAM_INT);
                         break;
-                    case '`customers_id`':
+                    case '`CUSTOMERS_ID`':
                         $stmt->bindValue($identifier, $this->customers_id, PDO::PARAM_INT);
                         break;
-                    case '`name`':
+                    case '`NAME`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`email`':
+                    case '`EMAIL`':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
                         break;
-                    case '`trigger`':
+                    case '`TRIGGER`':
                         $stmt->bindValue($identifier, $this->trigger, PDO::PARAM_STR);
                         break;
-                    case '`content`':
+                    case '`CONTENT`':
                         $stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
                         break;
-                    case '`deleted_by`':
+                    case '`DELETED_BY`':
                         $stmt->bindValue($identifier, $this->deleted_by, PDO::PARAM_STR);
                         break;
-                    case '`deleted_at`':
+                    case '`DELETED_AT`':
                         $stmt->bindValue($identifier, $this->deleted_at, PDO::PARAM_STR);
                         break;
                 }
@@ -763,11 +755,11 @@ abstract class BaseOrdersDeletedLog extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**

@@ -1,0 +1,95 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
+<head>
+<title>Simple File Manager</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+
+<link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
+<link rel="dns-prefetch" href="//cdn.jquerytools.org">
+<link rel="dns-prefetch" href="//html5shim.googlecode.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" type="image/ico">
+{% stylesheets
+  'fx/css/boilerplate.css'
+  'fx/css/faq.css'
+  'fx/css/colorbox/theme4/colorbox.css'
+  'fx/scripts/video-js/video-js.css'
+  'fx/scripts/vegas/jquery.vegas.css'
+  'fx/scripts/fullcalendar/fullcalendar.css'
+
+  'fx/css/main.css'
+  'fx/css/category.css'
+  'fx/css/product.css'
+  'fx/css/cart.css'
+  'fx/css/account.css'
+  'fx/css/dialoug.css'
+  'fx/css/checkout.css'
+  'fx/css/maps.css'
+  'fx/css/search.css'
+  'fx/css/mannequin.css'
+  'fx/css/wall.css'
+  'fx/css/events.css'
+  'fx/css/mobile.css'
+  'fx/css/quickorder.css'
+
+  filter='?yui_css'
+  output='fx/cache/all.css'
+  combine=true
+%}
+<link rel="stylesheet" href="{{ asset_url }}" media="all">
+{% endstylesheets %}
+
+<script type="text/javascript" src="{{ cdn }}fx/scripts/modernizr-2.5.3.js"></script></head>
+<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
+
+<div id="container">
+
+    <h1>Vælg billede</h1>
+    {% if images %}
+    <ul>
+      {% for image in images %}
+      <li><a href="{{ image.absolute }}" class="image"><img src="{{ image.relative }}" style="width: 100px" /></a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+
+<script type="text/javascript">
+  var base_url = '{{ url('_homepage') }}';
+  var cdn_url = '{{ cdn }}';
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="/fx/scripts/tinymce/jscripts/tiny_mce/tiny_mce_popup.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/bazingaexposetranslation/js/translation.js') }}"></script>
+<script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".image").click( function(e) {
+      e.preventDefault();
+      var url = $(this).attr('href');
+
+    if ( url != '' && typeof(url) != 'undefined' )
+    {
+      var win = tinyMCEPopup.getWindowArg("window");
+        win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = url;
+        //for image browsers
+        try { win.ImageDialog.showPreviewImage(url); }
+        catch (e) { void(e); }
+          tinyMCEPopup.close();
+    }
+    });
+  });
+</script>
+
+</body>
+</html>

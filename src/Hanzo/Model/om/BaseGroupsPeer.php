@@ -13,13 +13,6 @@ use Hanzo\Model\Groups;
 use Hanzo\Model\GroupsPeer;
 use Hanzo\Model\map\GroupsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'groups' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseGroupsPeer
 {
 
@@ -44,14 +37,14 @@ abstract class BaseGroupsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 3;
 
-    /** the column name for the id field */
-    const ID = 'groups.id';
+    /** the column name for the ID field */
+    const ID = 'groups.ID';
 
-    /** the column name for the name field */
-    const NAME = 'groups.name';
+    /** the column name for the NAME field */
+    const NAME = 'groups.NAME';
 
-    /** the column name for the discount field */
-    const DISCOUNT = 'groups.discount';
+    /** the column name for the DISCOUNT field */
+    const DISCOUNT = 'groups.DISCOUNT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -170,9 +163,9 @@ abstract class BaseGroupsPeer
             $criteria->addSelectColumn(GroupsPeer::NAME);
             $criteria->addSelectColumn(GroupsPeer::DISCOUNT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.name');
-            $criteria->addSelectColumn($alias . '.discount');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.NAME');
+            $criteria->addSelectColumn($alias . '.DISCOUNT');
         }
     }
 

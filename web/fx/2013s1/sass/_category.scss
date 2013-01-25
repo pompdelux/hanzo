@@ -1,0 +1,65 @@
+/**
+| _category
+*/
+.product-list{
+	.block{
+		a{
+			border: none;
+			font-family: $product-family;
+			font-size: $product-size;
+			line-height: $product-line-height;
+			color: $product-color;
+			text-decoration: none;
+			text-align: center;
+			position: relative;
+			display: block;
+			img{
+
+			}
+			.title{
+				display: block;
+				font-weight: bold;
+			}
+			.prices{
+				display: block;
+				margin-top: 6px;
+			}
+			.new-price{
+				position: absolute;
+				bottom:0;
+				right:0;
+				text-indent: -999px;
+			}
+		}
+		&.look{
+			.buy-set{
+				display: none;
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+			}
+			a:hover{
+				.buy-set{
+					display: inline-block;
+				}
+			}
+		}
+	}
+}
+
+.pager{
+	li{
+		&.prew{
+			margin-right: 9px;
+		}
+		&.next{
+			margin-left: 9px;
+		}
+	}
+}
+
+// Show which type of show of categories we are on. Set or overview
+.body-look a.show-by-look,
+.body-overview a.show-by-overview{
+	text-decoration: underline;
+}

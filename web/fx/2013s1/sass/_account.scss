@@ -1,0 +1,15 @@
+/**
+| _account
+*/
+#body-login .main{}
+
+form.create {
+	label{
+		&:after {
+			content: ":";
+		}
+		&.required:after {
+			content: ": *";
+		}
+	}
+}

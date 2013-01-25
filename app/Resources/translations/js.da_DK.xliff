@@ -322,6 +322,38 @@
                 <source>checkout.choose.payment.method</source>
                 <target>Du skal vælge en betalingsmetode.</target>
             </trans-unit>
+            <trans-unit id="form.buy.choose.first" approved="no">
+                <source>form.buy.choose.first</source>
+                <target>Du skal vælge størrelse og farve først.</target>
+            </trans-unit>
+            <trans-unit id="email.invalid" approved="no">
+                <source>email.invalid</source>
+                <target>Ugyldig email</target>
+            </trans-unit>
+            <trans-unit id="email.repeat.invalid" approved="no">
+                <source>email.repeat.invalid</source>
+                <target>Email er ikke ens</target>
+            </trans-unit>
+            <trans-unit id="phone.invalid" approved="no">
+                <source>phone.invalid</source>
+                <target>Ugyldig telefonnummer. Må kun indeholde tal og skal være mindst 8 tegn.</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match" approved="no">
+                <source>password.invalid.match</source>
+                <target>Adgangskode bekræftigelsen skal være den samme som dit adgangskoden.</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Adgangskode skal være min 5 tegn</target>
+            </trans-unit>
+            <trans-unit id="field.required" approved="no">
+                <source>field.required</source>
+                <target>Alle felter med (*) er nødvendige.</target>
+            </trans-unit>
+            <trans-unit id="approve.conditions.required" approved="no">
+                <source>approve.conditions.required</source>
+                <target>Du skal godkende POMPdeLUX betingelser først</target>
+            </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>
                 <target>Betalingsvinduet hentes</target>

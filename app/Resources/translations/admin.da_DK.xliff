@@ -226,6 +226,10 @@
         <source>cms.edit.type.mannequin</source>
         <target>Mannequin</target>
       </trans-unit>
+      <trans-unit id="cms.edit.type.heading">
+        <source>cms.edit.type.heading</source>
+        <target>Overskrift (%link))</target>
+      </trans-unit>
       <trans-unit id="admin_products_sort_header_text_category">
         <source>admin.products.sort.header.text.%category-name%</source>
         <target>Rediger rækkefølgen for produkter i kategorien %category-name%</target>
@@ -1934,6 +1938,22 @@
       <trans-unit id="admin.consultants.fronpage.content.updated">
         <source>admin.consultants.fronpage.content.updated</source>
         <target>Konsulent forsiden er nu opdateret.</target>
+      </trans-unit>
+      <trans-unit id="admin.products.image-to-categories.selector.description">
+        <source>admin.products.image-to-categories.selector.description</source>
+        <target>Vælg kategori for at tildele billede til den</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.label.parent_id">
+        <source>cms.edit.label.parent_id</source>
+        <target>Forældre ID</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.type.bycolour">
+        <source>cms.edit.type.bycolour</source>
+        <target>By Colour Kategori</target>
+      </trans-unit>
+      <trans-unit id="cms.edit.type.look">
+        <source>cms.edit.type.look</source>
+        <target>By Look Kategori</target>
       </trans-unit>
       <trans-unit id="amount">
         <source>amount</source>

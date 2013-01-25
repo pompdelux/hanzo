@@ -14,13 +14,6 @@ use Hanzo\Model\MannequinImagesPeer;
 use Hanzo\Model\ProductsPeer;
 use Hanzo\Model\map\MannequinImagesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'mannequin_images' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseMannequinImagesPeer
 {
 
@@ -45,26 +38,26 @@ abstract class BaseMannequinImagesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 7;
 
-    /** the column name for the master field */
-    const MASTER = 'mannequin_images.master';
+    /** the column name for the MASTER field */
+    const MASTER = 'mannequin_images.MASTER';
 
-    /** the column name for the color field */
-    const COLOR = 'mannequin_images.color';
+    /** the column name for the COLOR field */
+    const COLOR = 'mannequin_images.COLOR';
 
-    /** the column name for the layer field */
-    const LAYER = 'mannequin_images.layer';
+    /** the column name for the LAYER field */
+    const LAYER = 'mannequin_images.LAYER';
 
-    /** the column name for the image field */
-    const IMAGE = 'mannequin_images.image';
+    /** the column name for the IMAGE field */
+    const IMAGE = 'mannequin_images.IMAGE';
 
-    /** the column name for the icon field */
-    const ICON = 'mannequin_images.icon';
+    /** the column name for the ICON field */
+    const ICON = 'mannequin_images.ICON';
 
-    /** the column name for the weight field */
-    const WEIGHT = 'mannequin_images.weight';
+    /** the column name for the WEIGHT field */
+    const WEIGHT = 'mannequin_images.WEIGHT';
 
-    /** the column name for the is_main field */
-    const IS_MAIN = 'mannequin_images.is_main';
+    /** the column name for the IS_MAIN field */
+    const IS_MAIN = 'mannequin_images.IS_MAIN';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -187,13 +180,13 @@ abstract class BaseMannequinImagesPeer
             $criteria->addSelectColumn(MannequinImagesPeer::WEIGHT);
             $criteria->addSelectColumn(MannequinImagesPeer::IS_MAIN);
         } else {
-            $criteria->addSelectColumn($alias . '.master');
-            $criteria->addSelectColumn($alias . '.color');
-            $criteria->addSelectColumn($alias . '.layer');
-            $criteria->addSelectColumn($alias . '.image');
-            $criteria->addSelectColumn($alias . '.icon');
-            $criteria->addSelectColumn($alias . '.weight');
-            $criteria->addSelectColumn($alias . '.is_main');
+            $criteria->addSelectColumn($alias . '.MASTER');
+            $criteria->addSelectColumn($alias . '.COLOR');
+            $criteria->addSelectColumn($alias . '.LAYER');
+            $criteria->addSelectColumn($alias . '.IMAGE');
+            $criteria->addSelectColumn($alias . '.ICON');
+            $criteria->addSelectColumn($alias . '.WEIGHT');
+            $criteria->addSelectColumn($alias . '.IS_MAIN');
         }
     }
 

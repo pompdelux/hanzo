@@ -58,7 +58,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice'), response.message);
+                dialoug.alert(Translator.get('js:notice'), response.message);
               }
             } else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
@@ -66,7 +66,7 @@
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
       });
@@ -75,7 +75,7 @@
       $('#sortable-list a.delete').click(function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> CMS noden?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> CMS noden?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -98,7 +98,7 @@
       $('#inactive_nodes a.delete').click(function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> CMS noden?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> CMS noden?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -121,7 +121,7 @@
       $('#orders a.delete').click(function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> ordren?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> ordren?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -144,7 +144,7 @@
 
       // CMS edit page, title text field slug creation
       $('#cms_title').blur(function(e){
-        if($('#cms_path').val().length === 0){
+        if($('#cms_path').val().length === 0 && $('#cms_title').val().length !== 0){
           var slug = '';
           var chars = {
               'æ' : 'ae', 'Æ' : 'AE',
@@ -172,7 +172,7 @@
           slug = slug.replace(/[^-\w\s$\*\(\)\'\!\_]/g, '-');  // remove unneeded chars
           slug = slug.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
           slug = slug.replace(/[-\s]+/g, '-');   // convert spaces
-          slug = thread_title + '/' + slug.replace(/-$/, '');         // remove trailing separator
+          slug = path + '/' + slug.replace(/-$/, '');         // remove trailing separator
           slug = slug.toLowerCase();
           $('#cms_path').val(slug);
         }
@@ -201,7 +201,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             }
             else {
@@ -210,7 +210,7 @@
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
       });
@@ -230,7 +230,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             }
             else {
@@ -238,7 +238,7 @@
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
         $(this).val(0);
@@ -248,7 +248,7 @@
       $('#product-images-list a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Billede referencen?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Billede referencen?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -266,6 +266,35 @@
         });
       });
 
+      //ProductsImagesCategoriesSort on Products page
+      $('.image-category-selector').change(function(){
+        var selectedOption = $(this).find('option:selected');
+        var reference = selectedOption.val().split('-');
+        var image = reference[0];
+        var category = reference[1];
+        $.ajax({
+          url: '../add-image-to-category/',
+          dataType: 'json',
+          type: 'POST',
+          data: {image : image, category : category},
+          async: false,
+          success: function(response, textStatus, jqXHR) {
+            if (false === response.status) {
+              if (response.message) {
+                dialoug.alert(Translator.get('js:notice', response.message));
+              }
+            }
+            else {
+              $('#item-' + image + ' .image-categories').append('<li><span class="actions"><a href="' + base_url + 'products/delete-image-from-category/' + image + '/' + category + '" class="delete" title="Slet">Slet</a></span><span class="sku">' + selectedOption.text() + '</span></li>');
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
+          }
+        });
+        $(this).val(0);
+      });
+
       // CategoriesToProducts on Products page
       $('#product-category-selector').change(function(){
         var selectedOption = $(this).find('option:selected');
@@ -281,7 +310,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             }
             else {
@@ -289,7 +318,7 @@
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
         $(this).val(0);
@@ -298,7 +327,7 @@
       $('#product-categories a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Kategorien fra produktet ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Kategorien fra produktet ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -331,7 +360,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             }
             else {
@@ -339,7 +368,7 @@
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
         $(this).val(0);
@@ -348,7 +377,7 @@
       $('#product-related-products a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> produktet fra realterede produkter ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> produktet fra realterede produkter ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -369,7 +398,7 @@
       $('#translation-list a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> oversættelsen til kategorien ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> oversættelsen til kategorien ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -390,7 +419,7 @@
       $('#category-list a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kategori ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kategori ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -411,7 +440,7 @@
       $('#washing a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kategori ?', function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kategori ?', function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -432,7 +461,7 @@
       $('#messages a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne besked ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne besked ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -453,7 +482,7 @@
       $('#redirects a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne Redirect ?', function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne Redirect ?', function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -474,7 +503,7 @@
       $('#zip_to_city a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> dette Post Nummer ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> dette Post Nummer ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -495,7 +524,7 @@
       $('#customers a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kunde ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> denne kunde ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -527,7 +556,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             }else {
               window.scrollTo(window.scrollMinX, window.scrollMinY);
@@ -535,7 +564,7 @@
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
         $(this).val(0);
@@ -544,7 +573,7 @@
       $('#coupons a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Gavekortet ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>slette</strong> Gavekortet ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -564,7 +593,7 @@
       $('#coupons-to-customers a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne bruger ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne bruger ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -595,7 +624,7 @@
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             }
             else {
@@ -603,7 +632,7 @@
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
         $(this).val(0);
@@ -611,7 +640,7 @@
       $('#helpdesk a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne ?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne ?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -632,7 +661,7 @@
       $('#styles a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne style?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne style?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -652,7 +681,7 @@
       $('#quantity_discounts a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne rabat?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> denne rabat?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -673,7 +702,7 @@
       $('#languages a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> dette sprog?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> dette sprog?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -694,7 +723,7 @@
       $('#events a.delete').live('click',function(e){
         e.preventDefault();
         var $a = $(this);
-        dialoug.confirm(ExposeTranslation.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> dette event?',function(choice) {
+        dialoug.confirm(Translator.get('js:notice'), 'Er du sikker på du vil <strong>fjerne</strong> dette event?',function(choice) {
           if (choice == 'ok') {
             $.ajax({
               url : $a.attr('href'),
@@ -782,10 +811,10 @@
 function helpdesk_open (key) {
   var pptable = prettyPrint($.parseJSON(key), { maxDepth : 6 });
   var defaults = {
-    'close' : ExposeTranslation.get('js:close'),
+    'close' : Translator.get('js:close'),
     'overlayClose' : true,
     'escKey' : true,
-    'html' : '<div class="dialoug alert info"><h2>' + ExposeTranslation.get('js:notice') + '</h2>' + pptable.innerHTML + '</div>'
+    'html' : '<div class="dialoug alert info"><h2>' + Translator.get('js:notice') + '</h2>' + pptable.innerHTML + '</div>'
   };
   $.colorbox(defaults);
   return false;

@@ -1,4 +1,0 @@
-framework:
-    session:
-        default_locale: nl_NL
-        path: '/app_dev.php/nl_NL'

@@ -103,22 +103,6 @@
                 <source>color</source>
                 <target>Color</target>
             </trans-unit>
-            <trans-unit id="acc.1">
-                <source>Email address</source>
-                <target>Email address</target>
-            </trans-unit>
-            <trans-unit id="acc.2">
-                <source>Email address repeated</source>
-                <target>Email address repeated</target>
-            </trans-unit>
-            <trans-unit id="acc.3">
-                <source>Pass</source>
-                <target>Password</target>
-            </trans-unit>
-            <trans-unit id="acc.4">
-                <source>Pass repeated</source>
-                <target>Password repeated</target>
-            </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
                 <target>Company</target>
@@ -201,6 +185,30 @@
                 <target><![CDATA[
                     <a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">Terms and conditions</a>
                 ]]></target>
+            </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Share on %method%</target>
+            </trans-unit>
+            <trans-unit id="back.to.category" approved="no">
+                <source>back.to.category</source>
+                <target>Back to category</target>
+            </trans-unit>
+            <trans-unit id="on.stock" approved="no">
+                <source>on.stock</source>
+                <target>On stock</target>
+            </trans-unit>
+            <trans-unit id="on.stock.yes" approved="no">
+                <source>on.stock.yes</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="on.stock.no" approved="no">
+                <source>on.stock.no</source>
+                <target>No</target>
+            </trans-unit>
+            <trans-unit id="pager.pages.%total%" approved="no">
+                <source>pager.pages.%total%</source>
+                <target>of %total%</target>
             </trans-unit>
         </body>
     </file>

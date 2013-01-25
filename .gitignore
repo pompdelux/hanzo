@@ -9,4 +9,5 @@
 /src/Hanzo/Bundle/BasketBundle/Resources/config/category_map.php
 /.rsync_cache/
 /web/images/frontpage/*.jpg
+.sass-cache
 /.tags*

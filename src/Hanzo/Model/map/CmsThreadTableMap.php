@@ -42,8 +42,8 @@ class CmsThreadTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('is_active', 'IsActive', 'BOOLEAN', true, 1, true);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
         // validators
     } // initialize()
 
@@ -65,15 +65,7 @@ class CmsThreadTableMap extends TableMap
     public function getBehaviors()
     {
         return array(
-            'i18n' =>  array (
-  'i18n_table' => '%TABLE%_i18n',
-  'i18n_phpname' => '%PHPNAME%I18n',
-  'i18n_columns' => 'title',
-  'i18n_pk_name' => NULL,
-  'locale_column' => 'locale',
-  'default_locale' => 'da_DK',
-  'locale_alias' => '',
-),
+            'i18n' => array('i18n_table' => '%TABLE%_i18n', 'i18n_phpname' => '%PHPNAME%I18n', 'i18n_columns' => 'title', 'locale_column' => 'locale', 'default_locale' => 'da_DK', 'locale_alias' => '', ),
         );
     } // getBehaviors()
 

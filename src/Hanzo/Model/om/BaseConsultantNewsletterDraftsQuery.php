@@ -18,10 +18,6 @@ use Hanzo\Model\ConsultantNewsletterDraftsQuery;
 use Hanzo\Model\Customers;
 
 /**
- * Base class that represents a query for the 'consultant_newsletter_drafts' table.
- *
- *
- *
  * @method ConsultantNewsletterDraftsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method ConsultantNewsletterDraftsQuery orderByConsultantsId($order = Criteria::ASC) Order by the consultants_id column
  * @method ConsultantNewsletterDraftsQuery orderBySubject($order = Criteria::ASC) Order by the subject column
@@ -43,6 +39,7 @@ use Hanzo\Model\Customers;
  * @method ConsultantNewsletterDrafts findOne(PropelPDO $con = null) Return the first ConsultantNewsletterDrafts matching the query
  * @method ConsultantNewsletterDrafts findOneOrCreate(PropelPDO $con = null) Return the first ConsultantNewsletterDrafts matching the query, or a new ConsultantNewsletterDrafts object populated from the query conditions when no match is found
  *
+ * @method ConsultantNewsletterDrafts findOneById(int $id) Return the first ConsultantNewsletterDrafts filtered by the id column
  * @method ConsultantNewsletterDrafts findOneByConsultantsId(int $consultants_id) Return the first ConsultantNewsletterDrafts filtered by the consultants_id column
  * @method ConsultantNewsletterDrafts findOneBySubject(string $subject) Return the first ConsultantNewsletterDrafts filtered by the subject column
  * @method ConsultantNewsletterDrafts findOneByContent(string $content) Return the first ConsultantNewsletterDrafts filtered by the content column
@@ -51,8 +48,6 @@ use Hanzo\Model\Customers;
  * @method array findByConsultantsId(int $consultants_id) Return ConsultantNewsletterDrafts objects filtered by the consultants_id column
  * @method array findBySubject(string $subject) Return ConsultantNewsletterDrafts objects filtered by the subject column
  * @method array findByContent(string $content) Return ConsultantNewsletterDrafts objects filtered by the content column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseConsultantNewsletterDraftsQuery extends ModelCriteria
 {
@@ -129,20 +124,6 @@ abstract class BaseConsultantNewsletterDraftsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   ConsultantNewsletterDrafts A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -154,7 +135,7 @@ abstract class BaseConsultantNewsletterDraftsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `consultants_id`, `subject`, `content` FROM `consultant_newsletter_drafts` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `CONSULTANTS_ID`, `SUBJECT`, `CONTENT` FROM `consultant_newsletter_drafts` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

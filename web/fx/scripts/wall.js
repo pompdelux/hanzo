@@ -51,7 +51,7 @@ var wall = (function($) {
   };
 
   function getWallPosts() {
-  if (false == jQuery.data(document.body, 'locked')) {
+  if (false === jQuery.data(document.body, 'locked')) {
     jQuery.data(document.body, 'locked', true);
     var pager = jQuery.data(document.body, 'page');
     $('#wall-posts').append('<div class="wall-loading-data"><span>Henter...</span> <img src="'+cdn_url+'fx/images/wall/ajax-loader-large.gif" alt="" /></div>');
@@ -92,9 +92,9 @@ var wall = (function($) {
       'top' : '25%',
       'width' : '50%',
       'height' : '50%',
-      'close' : ExposeTranslation.get('js:close'),
+      'close' : Translator.get('js:close'),
       'html': '<div class="dialoug alert %type%"><h2>%title%</h2>%message%</div>'
-              .replace('%title%', ExposeTranslation.get('js:wall.like.popup.header'))
+              .replace('%title%', Translator.get('js:wall.like.popup.header'))
               .replace('%message%', $(this).find('div.like-pop').html())
               .replace('%type%', 'like-pop')
     });
@@ -116,10 +116,8 @@ $(function() {
     wall.init();
   }
 
-  $('#wall-entry-form textarea').focus();
-
   $('textarea.grow[title]').each(function() {
-    if (this.value == '') {
+    if (this.value === '') {
       this.value = this.title;
     }
     $(this).focus(function() {
@@ -129,7 +127,7 @@ $(function() {
       $(this).parent().parent().find('dd input').show();
     });
     $(this).blur(function() {
-      if(this.value == '') {
+      if(this.value === '') {
         $(this).val($(this).attr('title')).removeClass('focused');
         $(this).parent().parent().find('dd input').hide();
       }
@@ -151,7 +149,7 @@ $(function() {
       'top' : '25%',
       'width' : '50%',
       'height' : '50%',
-      'close' : ExposeTranslation.get('js:close'),
+      'close' : Translator.get('js:close'),
       'html': $form
     }, function(){
       $form.find('textarea.grow').simpleautogrow();
@@ -168,7 +166,7 @@ $(function() {
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             } else {
               var result = yatzy.render('subPostItems', response.data);
@@ -177,7 +175,7 @@ $(function() {
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
       });
@@ -191,7 +189,7 @@ $(function() {
       'top' : '25%',
       'width' : '50%',
       'height' : '50%',
-      'close' : ExposeTranslation.get('js:close'),
+      'close' : Translator.get('js:close'),
       'html': $form
     }, function(){
       $form.find('textarea.grow').simpleautogrow();
@@ -208,7 +206,7 @@ $(function() {
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             } else {
               $('#wall-post-'+response.id+' .content').text(response.input);
@@ -216,7 +214,7 @@ $(function() {
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
       });
@@ -237,7 +235,7 @@ $(function() {
       success: function(response, textStatus, jqXHR) {
         if (false === response.status) {
           if (response.message) {
-            dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+            dialoug.alert(Translator.get('js:notice', response.message));
           }
         } else {
           var result = yatzy.render('postItems', response.data);
@@ -245,7 +243,7 @@ $(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+        dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
       }
     });
   });
@@ -262,14 +260,14 @@ $(function() {
       success: function(response, textStatus, jqXHR) {
         if (false === response.status) {
           if (response.message) {
-            dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+            dialoug.alert(Translator.get('js:notice', response.message));
           }
         } else {
            $a.find('span').toggleClass('show').toggleClass('hidden');
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+        dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
       }
     });
   });
@@ -277,7 +275,7 @@ $(function() {
   $('div.wall-post a[rel="wall-delete"]').live('click', function(e){
     e.preventDefault();
     $a = $(this);
-    dialoug.confirm(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:wall.delete.entry.confirm'),function(choice) {
+    dialoug.confirm(Translator.get('js:notice'), Translator.get('js:wall.delete.entry.confirm'),function(choice) {
       if (choice == 'ok') {
         $.ajax({
           url: $a.attr('href'),
@@ -288,7 +286,7 @@ $(function() {
           success: function(response, textStatus, jqXHR) {
             if (false === response.status) {
               if (response.message) {
-                dialoug.alert(ExposeTranslation.get('js:notice', response.message));
+                dialoug.alert(Translator.get('js:notice', response.message));
               }
             } else {
               $a.parent().parent().parent().parent().fadeOut('slow', function() {
@@ -297,7 +295,7 @@ $(function() {
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            dialoug.error(ExposeTranslation.get('js:notice'), ExposeTranslation.get('js:an.error.occurred'));
+            dialoug.error(Translator.get('js:notice'), Translator.get('js:an.error.occurred'));
           }
         });
       }

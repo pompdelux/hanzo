@@ -85,7 +85,11 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p><h2>Er du ny kunde?</h2>]]></target>
+                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.text">
+                <source>my.account.login.text</source>
+                <target><![CDATA[<h3>Min side - Log in</h3><p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p>]]></target>
             </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
@@ -107,9 +111,17 @@
                 <source>my.account.login.title</source>
                 <target>Min side - Log in</target>
             </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
+            </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
                 <target>Min side</target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Velkommen!</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.logout">
                 <source>my.account.logout</source>
@@ -191,6 +203,10 @@
                 <source>create.account</source>
                 <target>Opret konto</target>
             </trans-unit>
+            <trans-unit id="create.account.header" approved="no">
+                <source>create.account.header</source>
+                <target><![CDATA[<h1>Velkommen - Opret dig som kunde</h1>]]></target>
+            </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
                 <target>Ret konto</target>
@@ -205,7 +221,11 @@
             </trans-unit>
             <trans-unit id="67">
                 <source>create.notice</source>
-                <target><![CDATA[<strong>Bemærk:</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a><br><br>På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
+                <target><![CDATA[<strong>Bemærk:</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
+            </trans-unit>
+            <trans-unit id="create.pre-notice">
+                <source>create.pre-notice</source>
+                <target><![CDATA[På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
             </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
@@ -414,6 +434,56 @@
             <trans-unit id="unable.to.lock.order" approved="no">
                 <source>unable.to.lock.order</source>
                 <target>Ordren kan ikke redigeres i øjeblikket. Prøv igen senere.</target>
+            </trans-unit>
+            <trans-unit id="my.account.%name%" approved="no">
+                <source>my.account.%name%</source>
+                <target>Velkommen, %name%!</target>
+            </trans-unit>
+            <trans-unit id="my.account.description" approved="no">
+                <source>my.account.description</source>
+                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <ul class="list">
+                  <li>Tilføje flere varer</li>
+                  <li>Ændre størrelsen og/eller farven på en vare</li>
+                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                </ul>
+                </p>
+                <p>Hvis du ønsker at tilføje. ændre eller slette en vare på din ordre skal du gøre følgende:
+                <ol class="list">
+                  <li>Tilføje flere varer</li>
+                  <li>Ændre størrelsen og/eller farven på en vare</li>
+                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                </ol>
+                </p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="newsletter" approved="no">
+                <source>newsletter</source>
+                <target>Nyhedsbreve</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadresse</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Gentag e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Valgfrit adgangskode</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Gentag adgangskode</target>
+            </trans-unit>
+            <trans-unit id="my.account.my.events" approved="no">
+                <source>my.account.my.events</source>
+                <target>Mine events</target>
+            </trans-unit>
+            <trans-unit id="account.history.see.all.orders" approved="no">
+                <source>account.history.see.all.orders</source>
+                <target>Se alle ordrer</target>
             </trans-unit>
         </body>
     </file>

@@ -1,4 +1,0 @@
-framework:
-    session:
-        default_locale: sv_SE
-        path: '/app_dev.php/sv_SE'

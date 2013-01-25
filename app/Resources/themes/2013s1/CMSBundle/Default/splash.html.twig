@@ -1,0 +1,46 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ html_lang }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
+<head>
+<link rel="dns-prefetch" href="{{ cdn|replace({'http:':''}) }}">
+<link rel="dns-prefetch" href="//cdn.jquerytools.org">
+<link rel="dns-prefetch" href="//html5shim.googlecode.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<meta charset="utf-8">
+<title>POMPdeLUX - Cool clothes for kids! {{ browser_title|default('') }}</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+<meta http-equiv="imagetoolbar" content="false">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="all">
+
+<link rel="shortcut icon" href="{{ image_path('/fx/images/favicon.ico') }}" title="POMPdeLUX" />
+<script type="text/javascript" src="{{ cdn|replace({'http:':''}) }}fx/scripts/modernizr-2.5.3.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=Merriweather:400,700,900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{{ cdn }}fx/css/boilerplate.css" />
+<link rel="stylesheet" type="text/css" href="{{ cdn }}fx/css/splash.css" />
+
+</head>
+<body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('cms global') }}">
+
+<div id="container">
+  <div id="selector">
+    <h1>Select your country</h1>
+    <ul>
+      <li><a href="{{ baseurl }}/da_DK/">Denmark</a></li>
+	  <li><a href="{{ baseurl }}/fi_FI/">Finland</a></li>
+      <li><a href="{{ baseurl }}/en_GB/">International</a></li>
+      <li><a href="{{ baseurl }}/nl_NL/">Netherlands</a></li>
+	  <li><a href="{{ baseurl }}/nb_NO/">Norway</a></li>      
+      <li><a href="{{ baseurl }}/sv_SE/">Sweden</a></li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

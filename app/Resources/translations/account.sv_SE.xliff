@@ -99,9 +99,17 @@
                 <source>password</source>
                 <target>Lösenord</target>
             </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+            </trans-unit>
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
                 <target>Min sida - Login</target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Welcome!</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
@@ -410,6 +418,56 @@
             <trans-unit id="unable.to.lock.order" approved="no">
                 <source>unable.to.lock.order</source>
                 <target>Ordern kan inte redigeras just nu. Försök igen senare. </target>
+            </trans-unit>
+            <trans-unit id="my.account.%name%" approved="no">
+                <source>my.account.%name%</source>
+                <target>Welcome, %name%!</target>
+            </trans-unit>
+            <trans-unit id="my.account.description" approved="no">
+                <source>my.account.description</source>
+                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <ul class="list">
+                  <li>Tilføje flere varer</li>
+                  <li>Ændre størrelsen og/eller farven på en vare</li>
+                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                </ul>
+                </p>
+                <p>Hvis du ønsker at tilføje. ændre eller slette en vare på din ordre skal du gøre følgende:
+                <ol class="list">
+                  <li>Tilføje flere varer</li>
+                  <li>Ændre størrelsen og/eller farven på en vare</li>
+                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                </ol>
+                </p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="newsletter" approved="no">
+                <source>newsletter</source>
+                <target>Newsletters</target>
+            </trans-unit>
+            <trans-unit id="my.account.my.events" approved="no">
+                <source>my.account.my.events</source>
+                <target>My events</target>
+            </trans-unit>
+            <trans-unit id="account.history.see.all.orders" approved="no">
+                <source>account.history.see.all.orders</source>
+                <target>See all orders</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadress</target>
+            </trans-unit>
+            <trans-unit id="acc.2" approved="no">
+                <source>Email address repeated</source>
+                <target>Upprepa e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3" approved="no">
+                <source>Pass</source>
+                <target>Valfritt lösenord</target>
+            </trans-unit>
+            <trans-unit id="acc.4" approved="no">
+                <source>Pass repeated</source>
+                <target>Upprepa lösenord</target>
             </trans-unit>
         </body>
     </file>

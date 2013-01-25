@@ -18,10 +18,6 @@ use Hanzo\Model\MannequinImagesQuery;
 use Hanzo\Model\Products;
 
 /**
- * Base class that represents a query for the 'mannequin_images' table.
- *
- *
- *
  * @method MannequinImagesQuery orderByMaster($order = Criteria::ASC) Order by the master column
  * @method MannequinImagesQuery orderByColor($order = Criteria::ASC) Order by the color column
  * @method MannequinImagesQuery orderByLayer($order = Criteria::ASC) Order by the layer column
@@ -64,8 +60,6 @@ use Hanzo\Model\Products;
  * @method array findByIcon(string $icon) Return MannequinImages objects filtered by the icon column
  * @method array findByWeight(int $weight) Return MannequinImages objects filtered by the weight column
  * @method array findByIsMain(boolean $is_main) Return MannequinImages objects filtered by the is_main column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseMannequinImagesQuery extends ModelCriteria
 {
@@ -154,7 +148,7 @@ abstract class BaseMannequinImagesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `master`, `color`, `layer`, `image`, `icon`, `weight`, `is_main` FROM `mannequin_images` WHERE `master` = :p0 AND `color` = :p1';
+        $sql = 'SELECT `MASTER`, `COLOR`, `LAYER`, `IMAGE`, `ICON`, `WEIGHT`, `IS_MAIN` FROM `mannequin_images` WHERE `MASTER` = :p0 AND `COLOR` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_STR);

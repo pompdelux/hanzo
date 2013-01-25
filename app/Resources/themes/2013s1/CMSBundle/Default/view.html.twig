@@ -1,0 +1,43 @@
+{% extends layout %}
+
+
+{% block meta %}
+    {% if page_type|default('page') != 'frontpage' %}
+        {{ meta_tags(false) }}
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{{ page.title|title }}">
+        <meta property="og:image" content="{{ fx_image_url('images/POMPdeLUX_logo_SS12.png', '200x200') }}">
+        <meta property="og:description" content="{{ page.content|trim|striptags|slice(0,150) }}">
+    {% else %}
+        {{ meta_tags() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if page_type|default('page') != 'frontpage' %}
+    {% if parent_id is not null %}{# pages with subpages #}
+        <div class="grid_2 alpha sub-menu menu">
+            {% render 'CMSBundle:Menu:menu' with {'type': 'cat', 'offset': parent_id } %}
+        </div>
+        <div class="grid_6 omega">
+            <h1>{{ page.title }}</h1>
+            <article>
+                {{ parse(page.content) }}
+            </article>
+        </div>
+    {% else %}{# pages without subpages #}
+        <div class="grid_8 omega">
+            <h1>{{ page.title }}</h1>
+            <article>
+                {{ parse(page.content) }}
+            </article>
+        </div>
+    {% endif %}
+{% else %}{# Frontpages #}
+    <article>
+        {{ parse(page.content) }}
+    </article>
+{% endif %}
+
+{% endblock %}

@@ -19,13 +19,6 @@ use Hanzo\Model\EventsParticipantsPeer;
 use Hanzo\Model\EventsParticipantsQuery;
 use Hanzo\Model\EventsQuery;
 
-/**
- * Base class that represents a row from the 'events_participants' table.
- *
- *
- *
- * @package    propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseEventsParticipants extends BaseObject implements Persistent
 {
     /**
@@ -291,10 +284,12 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [sms_send_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getSmsSendAt($format = 'Y-m-d')
@@ -307,25 +302,22 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->sms_send_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->sms_send_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->sms_send_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->sms_send_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -341,10 +333,12 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
     /**
      * Get the [optionally formatted] temporal [expires_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getExpiresAt($format = 'Y-m-d H:i:s')
@@ -357,34 +351,33 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->expires_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expires_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->expires_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->expires_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
      * Get the [optionally formatted] temporal [responded_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getRespondedAt($format = 'Y-m-d H:i:s')
@@ -397,34 +390,33 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->responded_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->responded_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->responded_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->responded_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
      * Get the [optionally formatted] temporal [created_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getCreatedAt($format = 'Y-m-d H:i:s')
@@ -437,34 +429,33 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->created_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->created_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
      * Get the [optionally formatted] temporal [updated_at] column value.
      *
+     * This accessor only only work with unix epoch dates.  Consider enabling the propel.useDateTimeClass
+     * option in order to avoid converstions to integers (which are limited in the dates they can express).
      *
      * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     *				 If format is null, then the raw unix timestamp integer will be returned.
+     * @return mixed Formatted date/time value as string or (integer) unix timestamp (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
     public function getUpdatedAt($format = 'Y-m-d H:i:s')
@@ -477,25 +468,22 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             // while technically this is not a default value of null,
             // this seems to be closest in meaning.
             return null;
-        }
-
-        try {
-            $dt = new DateTime($this->updated_at);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+        } else {
+            try {
+                $dt = new DateTime($this->updated_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+            }
         }
 
         if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
+            // We cast here to maintain BC in API; obviously we will lose data if we're dealing with pre-/post-epoch dates.
+            return (int) $dt->format('U');
+        } elseif (strpos($format, '%') !== false) {
             return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
         }
-
-        return $dt->format($format);
-
     }
 
     /**
@@ -939,7 +927,7 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             if ($rehydrate) {
                 $this->ensureConsistency();
             }
-            $this->postHydrate($row, $startcol, $rehydrate);
+
             return $startcol + 16; // 16 = EventsParticipantsPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
@@ -1177,52 +1165,52 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(EventsParticipantsPeer::ID)) {
-            $modifiedColumns[':p' . $index++]  = '`id`';
+            $modifiedColumns[':p' . $index++]  = '`ID`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::EVENTS_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`events_id`';
+            $modifiedColumns[':p' . $index++]  = '`EVENTS_ID`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::KEY)) {
-            $modifiedColumns[':p' . $index++]  = '`key`';
+            $modifiedColumns[':p' . $index++]  = '`KEY`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::INVITED_BY)) {
-            $modifiedColumns[':p' . $index++]  = '`invited_by`';
+            $modifiedColumns[':p' . $index++]  = '`INVITED_BY`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::FIRST_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`first_name`';
+            $modifiedColumns[':p' . $index++]  = '`FIRST_NAME`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::LAST_NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`last_name`';
+            $modifiedColumns[':p' . $index++]  = '`LAST_NAME`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::EMAIL)) {
-            $modifiedColumns[':p' . $index++]  = '`email`';
+            $modifiedColumns[':p' . $index++]  = '`EMAIL`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::PHONE)) {
-            $modifiedColumns[':p' . $index++]  = '`phone`';
+            $modifiedColumns[':p' . $index++]  = '`PHONE`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::TELL_A_FRIEND)) {
-            $modifiedColumns[':p' . $index++]  = '`tell_a_friend`';
+            $modifiedColumns[':p' . $index++]  = '`TELL_A_FRIEND`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::NOTIFY_BY_SMS)) {
-            $modifiedColumns[':p' . $index++]  = '`notify_by_sms`';
+            $modifiedColumns[':p' . $index++]  = '`NOTIFY_BY_SMS`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::SMS_SEND_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`sms_send_at`';
+            $modifiedColumns[':p' . $index++]  = '`SMS_SEND_AT`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::HAS_ACCEPTED)) {
-            $modifiedColumns[':p' . $index++]  = '`has_accepted`';
+            $modifiedColumns[':p' . $index++]  = '`HAS_ACCEPTED`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::EXPIRES_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`expires_at`';
+            $modifiedColumns[':p' . $index++]  = '`EXPIRES_AT`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::RESPONDED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`responded_at`';
+            $modifiedColumns[':p' . $index++]  = '`RESPONDED_AT`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::CREATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`created_at`';
+            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
         }
         if ($this->isColumnModified(EventsParticipantsPeer::UPDATED_AT)) {
-            $modifiedColumns[':p' . $index++]  = '`updated_at`';
+            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
         }
 
         $sql = sprintf(
@@ -1235,52 +1223,52 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`events_id`':
+                    case '`EVENTS_ID`':
                         $stmt->bindValue($identifier, $this->events_id, PDO::PARAM_INT);
                         break;
-                    case '`key`':
+                    case '`KEY`':
                         $stmt->bindValue($identifier, $this->key, PDO::PARAM_STR);
                         break;
-                    case '`invited_by`':
+                    case '`INVITED_BY`':
                         $stmt->bindValue($identifier, $this->invited_by, PDO::PARAM_INT);
                         break;
-                    case '`first_name`':
+                    case '`FIRST_NAME`':
                         $stmt->bindValue($identifier, $this->first_name, PDO::PARAM_STR);
                         break;
-                    case '`last_name`':
+                    case '`LAST_NAME`':
                         $stmt->bindValue($identifier, $this->last_name, PDO::PARAM_STR);
                         break;
-                    case '`email`':
+                    case '`EMAIL`':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
                         break;
-                    case '`phone`':
+                    case '`PHONE`':
                         $stmt->bindValue($identifier, $this->phone, PDO::PARAM_STR);
                         break;
-                    case '`tell_a_friend`':
+                    case '`TELL_A_FRIEND`':
                         $stmt->bindValue($identifier, (int) $this->tell_a_friend, PDO::PARAM_INT);
                         break;
-                    case '`notify_by_sms`':
+                    case '`NOTIFY_BY_SMS`':
                         $stmt->bindValue($identifier, (int) $this->notify_by_sms, PDO::PARAM_INT);
                         break;
-                    case '`sms_send_at`':
+                    case '`SMS_SEND_AT`':
                         $stmt->bindValue($identifier, $this->sms_send_at, PDO::PARAM_STR);
                         break;
-                    case '`has_accepted`':
+                    case '`HAS_ACCEPTED`':
                         $stmt->bindValue($identifier, (int) $this->has_accepted, PDO::PARAM_INT);
                         break;
-                    case '`expires_at`':
+                    case '`EXPIRES_AT`':
                         $stmt->bindValue($identifier, $this->expires_at, PDO::PARAM_STR);
                         break;
-                    case '`responded_at`':
+                    case '`RESPONDED_AT`':
                         $stmt->bindValue($identifier, $this->responded_at, PDO::PARAM_STR);
                         break;
-                    case '`created_at`':
+                    case '`CREATED_AT`':
                         $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`updated_at`':
+                    case '`UPDATED_AT`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
@@ -1353,11 +1341,11 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
             $this->validationFailures = array();
 
             return true;
+        } else {
+            $this->validationFailures = $res;
+
+            return false;
         }
-
-        $this->validationFailures = $res;
-
-        return false;
     }
 
     /**
@@ -1846,13 +1834,12 @@ abstract class BaseEventsParticipants extends BaseObject implements Persistent
      * Get the associated Events object
      *
      * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
      * @return Events The associated Events object.
      * @throws PropelException
      */
-    public function getEvents(PropelPDO $con = null, $doQuery = true)
+    public function getEvents(PropelPDO $con = null)
     {
-        if ($this->aEvents === null && ($this->events_id !== null) && $doQuery) {
+        if ($this->aEvents === null && ($this->events_id !== null)) {
             $this->aEvents = EventsQuery::create()->findPk($this->events_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference

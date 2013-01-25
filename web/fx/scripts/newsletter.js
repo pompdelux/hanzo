@@ -29,15 +29,15 @@ var newsletter = (function($) {
   };
 
   function subscriptionsUpdate( email, lists, action ) {
-    dialoug.loading( selectorName, ExposeTranslation.get('js:please.wait') );
+    dialoug.loading( selectorName, Translator.get('js:please.wait') );
 
     $.getJSON(newsletter_jsonp_url, {method: 'subscriptions:'+action, email: email, lists: lists}, function(data) {
       if ( data.is_error ) {
-        dialoug.error( ExposeTranslation.get('js:an.error.occurred'), ExposeTranslation.get('js:'+data.content.msg, { 'email': email }) );
+        dialoug.error( Translator.get('js:an.error.occurred'), Translator.get('js:'+data.content.msg, { 'email': email }) );
       }
       else {
         $.post(base_url+'newsletter/'+action, {email:email}); // send mail to customer
-        dialoug.notice( ExposeTranslation.get('js:action.completed' ), 'info', 2000 );
+        dialoug.notice( Translator.get('js:action.completed' ), 'info', 2000 );
       }
       dialoug.stopLoading();
     });
@@ -70,12 +70,12 @@ var newsletter = (function($) {
   }
 
   pub.lists.get = function( id ) {
-    dialoug.loading( selectorName, ExposeTranslation.get('js:please.wait') );
+    dialoug.loading( selectorName, Translator.get('js:please.wait') );
     var email = getEmail();
 
     $.getJSON(newsletter_jsonp_url, {method: 'lists:get', email: email}, function(data) {
       if ( data.is_error ) {
-        dialoug.error( ExposeTranslation.get('js:an.error.occurred'), data.content.msg  );
+        dialoug.error( Translator.get('js:an.error.occurred'), data.content.msg  );
       }
       else {
         var $el = $(selectorName+' ul');
@@ -95,5 +95,26 @@ var newsletter = (function($) {
     });
   };
 
+  pub.footer = function() {
+    $('footer .footer-menu-4 form').on('submit', function(event) {
+      event.preventDefault();
+
+      var $form = $(this);
+      $('input[type="email"]', $form).removeClass('error');
+
+      $.post(this.action, $form.serialize(), function(response) {
+        dialoug.notice(response.message, 'info', 3000, $form);
+
+        if (response.status) {
+          $('input[type="text"], input[type="email"]', $form).val('');
+        } else {
+          $('input[type="email"]', $form).addClass('error');
+        }
+      }, 'json');
+    });
+  };
+
   return pub;
 })(jQuery);
+
+newsletter.footer();

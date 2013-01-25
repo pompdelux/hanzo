@@ -1,0 +1,180 @@
+/**
+| _header
+*/
+
+// All menus
+nav > ul,
+ul.menu,
+.menu > ul{
+	font-size: $font-size;
+	font-family: $font-serif;
+	color:$font-color;
+	li {
+		position: relative;
+		a{
+			color:$font-color;
+			text-decoration: none;
+		}
+		&.active > a,
+		&.active-trail > a,
+		a:hover{
+			text-decoration: underline;
+		}
+	}
+	.dropdown{
+		position: absolute;
+		left: 0;
+		background: white;
+		@include shadow;
+		padding: 9px;
+		max-height: 400px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+	&.right{
+		text-align: right;
+		.dropdown{
+			left: auto;
+			right: 0;
+		}
+	}
+}
+ul.sub-menu,
+.sub-menu > ul{
+	@include side-menu-style;
+	text-transform: uppercase;
+	li{
+		padding: 0 0 6px 0;
+		line-height: 18px;
+		&.heading{
+			span{
+				border-bottom: 1px solid #000;
+				border-top: 1px solid #000;
+				display: block;
+				line-height: 18px;
+				padding: 3px 0 3px 6px;
+			}
+		}
+		ul{
+			padding:6px 0 0 6px;
+			a{
+				display: inline-block;
+				margin: 0 0 0 6px;
+			}
+		}
+	}
+}
+
+// horizontal helper. Lets all list get horizontal
+ul.horizontal,
+.horizontal > ul{
+	list-style: none;
+	li{
+		display: inline-block;
+	}
+}
+
+// Specific Secondary menu
+#secondary-links{
+	position: absolute;
+	top: 0px;
+	right: 3px;
+	li{
+		padding: 8px;
+		vertical-align: middle;
+		&.last{
+			padding-right: 0;
+		}
+		// Mini-basket in secondary links!
+		&.basket {
+			.sprite{
+				display: inline-block;
+				vertical-align: middle;
+				@include icons-sprite(basket);
+				height: icons-sprite-height(basket);
+				width: icons-sprite-width(basket);
+			}
+			a{
+				display:inline-block;
+				vertical-align: middle;
+			}
+		}
+		a{
+			font-size: 0.8em;
+			text-transform: uppercase;
+		}
+	}
+}
+
+ul.breadcrumb {
+	list-style: none;
+	li {
+		display: inline-block;
+		&:before{
+			content: '>';
+			padding: 0 6px;
+		}
+		&.first:before{
+			content: none;
+		}
+
+	}
+}
+
+.pager ul{
+	list-style: none;
+	li{
+		display: inline-block;
+		&.current{
+			a{
+				text-decoration: underline;
+			}
+		}
+		&.off{
+			display: none;
+		}
+	}
+}
+
+.container .main header{
+	display: table;
+	min-height: 100px;
+	background: #d2c3c6;
+	height: 100px;
+	margin-bottom: 28px;
+	hgroup{
+		color: white;
+		padding: 10px;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		h1,h2,h3,h4,h5{
+			text-transform: uppercase;
+			padding: 0 0 10px;
+			font-size: 21px;
+			color: white;
+		}
+		h6{
+			font-size: $font-size;
+			font-weight: normal;
+			color: white;
+		}
+		a,p{
+			color: white;
+		}
+	}
+}
+
+.body-category .main header{ // Specific for all categories
+	background: #d2c3c6;
+	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
+}
+
+.category-17 .main header{ // Specific for one category
+	background: #d2c3c6;
+	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
+}
+
+#logo {
+	margin-top: 6px;
+}

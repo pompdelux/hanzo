@@ -42,9 +42,9 @@ class GroupsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('name', 'Name', 'VARCHAR', true, 45, null);
-        $this->addColumn('discount', 'Discount', 'DECIMAL', false, 15, null);
+        $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
+        $this->addColumn('NAME', 'Name', 'VARCHAR', true, 45, null);
+        $this->addColumn('DISCOUNT', 'Discount', 'DECIMAL', false, 15, null);
         // validators
     } // initialize()
 

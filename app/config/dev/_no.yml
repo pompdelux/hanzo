@@ -1,4 +1,0 @@
-framework:
-    session:
-        default_locale: nb_NO
-        path: '/app_dev.php/nb_NO'

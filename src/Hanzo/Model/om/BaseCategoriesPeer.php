@@ -12,16 +12,10 @@ use \PropelPDO;
 use Hanzo\Model\Categories;
 use Hanzo\Model\CategoriesI18nPeer;
 use Hanzo\Model\CategoriesPeer;
+use Hanzo\Model\ProductsImagesCategoriesSortPeer;
 use Hanzo\Model\ProductsToCategoriesPeer;
 use Hanzo\Model\map\CategoriesTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'categories' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseCategoriesPeer
 {
 
@@ -46,17 +40,17 @@ abstract class BaseCategoriesPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'categories.id';
+    /** the column name for the ID field */
+    const ID = 'categories.ID';
 
-    /** the column name for the parent_id field */
-    const PARENT_ID = 'categories.parent_id';
+    /** the column name for the PARENT_ID field */
+    const PARENT_ID = 'categories.PARENT_ID';
 
-    /** the column name for the context field */
-    const CONTEXT = 'categories.context';
+    /** the column name for the CONTEXT field */
+    const CONTEXT = 'categories.CONTEXT';
 
-    /** the column name for the is_active field */
-    const IS_ACTIVE = 'categories.is_active';
+    /** the column name for the IS_ACTIVE field */
+    const IS_ACTIVE = 'categories.IS_ACTIVE';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -183,10 +177,10 @@ abstract class BaseCategoriesPeer
             $criteria->addSelectColumn(CategoriesPeer::CONTEXT);
             $criteria->addSelectColumn(CategoriesPeer::IS_ACTIVE);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.parent_id');
-            $criteria->addSelectColumn($alias . '.context');
-            $criteria->addSelectColumn($alias . '.is_active');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.PARENT_ID');
+            $criteria->addSelectColumn($alias . '.CONTEXT');
+            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
         }
     }
 
@@ -389,6 +383,9 @@ abstract class BaseCategoriesPeer
         // Invalidate objects in CategoriesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         CategoriesPeer::clearInstancePool();
+        // Invalidate objects in ProductsImagesCategoriesSortPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        ProductsImagesCategoriesSortPeer::clearInstancePool();
         // Invalidate objects in ProductsToCategoriesPeer instance pool,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         ProductsToCategoriesPeer::clearInstancePool();
@@ -639,10 +636,6 @@ abstract class BaseCategoriesPeer
             $criteria = clone $values; // rename for clarity
         } else {
             $criteria = $values->buildCriteria(); // build Criteria from Categories object
-        }
-
-        if ($criteria->containsKey(CategoriesPeer::ID) && $criteria->keyContainsValue(CategoriesPeer::ID) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.CategoriesPeer::ID.')');
         }
 
 

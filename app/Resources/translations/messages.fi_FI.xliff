@@ -106,22 +106,6 @@
                 <source>color</source>
                 <target>Väri</target>
             </trans-unit>
-            <trans-unit id="acc.1">
-                <source>Email address</source>
-                <target>Sähköpostiosoite</target>
-            </trans-unit>
-            <trans-unit id="acc.2">
-                <source>Email address repeated</source>
-                <target>Kirjoita sähköpostiosoite uudelleen</target>
-            </trans-unit>
-            <trans-unit id="acc.3">
-                <source>Pass</source>
-                <target>Valinnan salasana</target>
-            </trans-unit>
-            <trans-unit id="acc.4">
-                <source>Pass repeated</source>
-                <target>Anna salasana uudelleen</target>
-            </trans-unit>
             <trans-unit id="company.address">
                 <source>company.address</source>
                 <target>Yritys</target>
@@ -183,6 +167,30 @@
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUX ehdot.</a>]]></target>
+            </trans-unit>
+            <trans-unit id="share.to.%method%" approved="no">
+                <source>share.to.%method%</source>
+                <target>Share on %method%</target>
+            </trans-unit>
+            <trans-unit id="back.to.category" approved="no">
+                <source>back.to.category</source>
+                <target>Back to category</target>
+            </trans-unit>
+            <trans-unit id="on.stock" approved="no">
+                <source>on.stock</source>
+                <target>On stock</target>
+            </trans-unit>
+            <trans-unit id="on.stock.yes" approved="no">
+                <source>on.stock.yes</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="on.stock.no" approved="no">
+                <source>on.stock.no</source>
+                <target>No</target>
+            </trans-unit>
+            <trans-unit id="pager.pages.%total%" approved="no">
+                <source>pager.pages.%total%</source>
+                <target>of %total%</target>
             </trans-unit>
         </body>
     </file>

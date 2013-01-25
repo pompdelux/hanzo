@@ -18,10 +18,6 @@ use Hanzo\Model\DomainsSettingsPeer;
 use Hanzo\Model\DomainsSettingsQuery;
 
 /**
- * Base class that represents a query for the 'domains_settings' table.
- *
- *
- *
  * @method DomainsSettingsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method DomainsSettingsQuery orderByDomainKey($order = Criteria::ASC) Order by the domain_key column
  * @method DomainsSettingsQuery orderByCKey($order = Criteria::ASC) Order by the c_key column
@@ -45,6 +41,7 @@ use Hanzo\Model\DomainsSettingsQuery;
  * @method DomainsSettings findOne(PropelPDO $con = null) Return the first DomainsSettings matching the query
  * @method DomainsSettings findOneOrCreate(PropelPDO $con = null) Return the first DomainsSettings matching the query, or a new DomainsSettings object populated from the query conditions when no match is found
  *
+ * @method DomainsSettings findOneById(int $id) Return the first DomainsSettings filtered by the id column
  * @method DomainsSettings findOneByDomainKey(string $domain_key) Return the first DomainsSettings filtered by the domain_key column
  * @method DomainsSettings findOneByCKey(string $c_key) Return the first DomainsSettings filtered by the c_key column
  * @method DomainsSettings findOneByNs(string $ns) Return the first DomainsSettings filtered by the ns column
@@ -55,8 +52,6 @@ use Hanzo\Model\DomainsSettingsQuery;
  * @method array findByCKey(string $c_key) Return DomainsSettings objects filtered by the c_key column
  * @method array findByNs(string $ns) Return DomainsSettings objects filtered by the ns column
  * @method array findByCValue(string $c_value) Return DomainsSettings objects filtered by the c_value column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseDomainsSettingsQuery extends ModelCriteria
 {
@@ -133,20 +128,6 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   DomainsSettings A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -158,7 +139,7 @@ abstract class BaseDomainsSettingsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `domain_key`, `c_key`, `ns`, `c_value` FROM `domains_settings` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `DOMAIN_KEY`, `C_KEY`, `NS`, `C_VALUE` FROM `domains_settings` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);

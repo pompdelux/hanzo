@@ -10,6 +10,12 @@ First off, the same requirements as [symfony2](http://symfony.com/doc/2.0/refere
 3. Java must be installed (to compile compressed js and css files - we use yuicompressor)
 4. Apache must be setup with mod_rewrite
 5. Apc for php is also a must-have module.
+6. Compass and Sass [compass](http://compass-style.org/install/)
+7. [Uglifyjs](https://github.com/mishoo/UglifyJS2)
+
+soon to come:
+
+1. [phpredis](https://github.com/nicolasff/phpredis) nativec extension til at kører sessions i redis, kræver også [NativeSession](https://github.com/drak/NativeSession) til symfony.
 
 
 ## Install:
@@ -58,3 +64,55 @@ redis:
 - flushing the cache: `FLUSHALL`
 - find a key: `KEYS *xx*`
 - help, well: `HELP` or go see the [docs](http://redis.io/documentation), they are great.
+
+## Themes
+
+- [Sass](http://sass-lang.com/)
+- [Compass](http://compass-style.org/)
+
+Assets for themes are located under `fx/THEME/`
+
+###Create a new theme with compass:
+
+1. `cd fx`
+2. `compass create THEME_NAME --css-dir "css" --javascripts-dir "scripts" --images-dir "images"`
+
+--
+
+Styles are grouped in seperate `.scss` files. e.g. Payment styles are located in `_payment.scss` and importet in `style.scss` (@import "payment"). All sub `.scss` files which should be imported into another instead of being a independet css file, should be prepended with a `_` like `_account.scss`. This way they wont be compiled themself.
+
+The directory of a theme will look like this when built with compass (note that compass only generates the `sass` and `css` folders):
+
+- `fx/THEME/`
+  - `css/`
+     - `style.scss`
+     - `ie.css`
+  - `scripts/`
+  - `images/`
+  - `sass/`
+     - `_base.scss`
+     - `_header.scss`
+     - `_footer.scss`
+     - `ie.scss`
+     - `style.scss`
+  - `config.rb`
+
+Follow the [best practices](http://compass-style.org/help/tutorials/best_practices/)
+
+When editing Sass files be sure to build the `style.scss` file. You can make compass watch by:
+
+1. `cd fx/[theme]/`
+2. `compass watch`
+
+--
+
+- `_base.scss` - Includes all globale variables and @imports
+- `style.scss` - Main stylesheet which includes _base and others
+  - `payment.scss` - Styles for payment
+  - ...
+
+#Assetic on locale
+
+To make all assets works locally remember to run this:
+
+`php app/console assetic:dump --env=dev_dk`

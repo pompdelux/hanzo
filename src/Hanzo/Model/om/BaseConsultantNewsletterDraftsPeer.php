@@ -14,13 +14,6 @@ use Hanzo\Model\ConsultantNewsletterDraftsPeer;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\map\ConsultantNewsletterDraftsTableMap;
 
-/**
- * Base static class for performing query and update operations on the 'consultant_newsletter_drafts' table.
- *
- *
- *
- * @package propel.generator.src.Hanzo.Model.om
- */
 abstract class BaseConsultantNewsletterDraftsPeer
 {
 
@@ -45,17 +38,17 @@ abstract class BaseConsultantNewsletterDraftsPeer
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
     const NUM_HYDRATE_COLUMNS = 4;
 
-    /** the column name for the id field */
-    const ID = 'consultant_newsletter_drafts.id';
+    /** the column name for the ID field */
+    const ID = 'consultant_newsletter_drafts.ID';
 
-    /** the column name for the consultants_id field */
-    const CONSULTANTS_ID = 'consultant_newsletter_drafts.consultants_id';
+    /** the column name for the CONSULTANTS_ID field */
+    const CONSULTANTS_ID = 'consultant_newsletter_drafts.CONSULTANTS_ID';
 
-    /** the column name for the subject field */
-    const SUBJECT = 'consultant_newsletter_drafts.subject';
+    /** the column name for the SUBJECT field */
+    const SUBJECT = 'consultant_newsletter_drafts.SUBJECT';
 
-    /** the column name for the content field */
-    const CONTENT = 'consultant_newsletter_drafts.content';
+    /** the column name for the CONTENT field */
+    const CONTENT = 'consultant_newsletter_drafts.CONTENT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -175,10 +168,10 @@ abstract class BaseConsultantNewsletterDraftsPeer
             $criteria->addSelectColumn(ConsultantNewsletterDraftsPeer::SUBJECT);
             $criteria->addSelectColumn(ConsultantNewsletterDraftsPeer::CONTENT);
         } else {
-            $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.consultants_id');
-            $criteria->addSelectColumn($alias . '.subject');
-            $criteria->addSelectColumn($alias . '.content');
+            $criteria->addSelectColumn($alias . '.ID');
+            $criteria->addSelectColumn($alias . '.CONSULTANTS_ID');
+            $criteria->addSelectColumn($alias . '.SUBJECT');
+            $criteria->addSelectColumn($alias . '.CONTENT');
         }
     }
 

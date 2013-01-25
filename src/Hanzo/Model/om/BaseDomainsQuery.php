@@ -20,10 +20,6 @@ use Hanzo\Model\ProductsDomainsPrices;
 use Hanzo\Model\ProductsQuantityDiscount;
 
 /**
- * Base class that represents a query for the 'domains' table.
- *
- *
- *
  * @method DomainsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method DomainsQuery orderByDomainName($order = Criteria::ASC) Order by the domain_name column
  * @method DomainsQuery orderByDomainKey($order = Criteria::ASC) Order by the domain_key column
@@ -51,14 +47,13 @@ use Hanzo\Model\ProductsQuantityDiscount;
  * @method Domains findOne(PropelPDO $con = null) Return the first Domains matching the query
  * @method Domains findOneOrCreate(PropelPDO $con = null) Return the first Domains matching the query, or a new Domains object populated from the query conditions when no match is found
  *
+ * @method Domains findOneById(int $id) Return the first Domains filtered by the id column
  * @method Domains findOneByDomainName(string $domain_name) Return the first Domains filtered by the domain_name column
  * @method Domains findOneByDomainKey(string $domain_key) Return the first Domains filtered by the domain_key column
  *
  * @method array findById(int $id) Return Domains objects filtered by the id column
  * @method array findByDomainName(string $domain_name) Return Domains objects filtered by the domain_name column
  * @method array findByDomainKey(string $domain_key) Return Domains objects filtered by the domain_key column
- *
- * @package    propel.generator.src.Hanzo.Model.om
  */
 abstract class BaseDomainsQuery extends ModelCriteria
 {
@@ -135,20 +130,6 @@ abstract class BaseDomainsQuery extends ModelCriteria
     }
 
     /**
-     * Alias of findPk to use instance pooling
-     *
-     * @param     mixed $key Primary key to use for the query
-     * @param     PropelPDO $con A connection object
-     *
-     * @return   Domains A model object, or null if the key is not found
-     * @throws   PropelException
-     */
-     public function findOneById($key, $con = null)
-     {
-        return $this->findPk($key, $con);
-     }
-
-    /**
      * Find object by primary key using raw SQL to go fast.
      * Bypass doSelect() and the object formatter by using generated code.
      *
@@ -160,7 +141,7 @@ abstract class BaseDomainsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `domain_name`, `domain_key` FROM `domains` WHERE `id` = :p0';
+        $sql = 'SELECT `ID`, `DOMAIN_NAME`, `DOMAIN_KEY` FROM `domains` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
