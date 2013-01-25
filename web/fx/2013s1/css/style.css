@@ -706,6 +706,13 @@ form.address label {
   margin-bottom: 5px;
 }
 
+#address-block > label {
+  clear: both;
+  display: block;
+}
+#address-block > label.off {
+  display: none;
+}
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
@@ -725,6 +732,7 @@ form.address label {
 
 .payment-methods label {
   margin: 0;
+  padding-left: 6px;
   width: 90%;
   vertical-align: middle;
 }
