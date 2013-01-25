@@ -12,21 +12,23 @@ $env = explode('_', $container->getParameter('kernel.environment'));
 
 // prefix all other than dev
 if ('dev' != $env[0]) {
-  switch ($env[1]) {
-    default:
-      $db_prefix = $env[0].'_dk_';
-      break;
-    case 'se':
-      $db_prefix = $env[0].'_se_';
-      break;
-    case 'no':
-      $db_prefix = $env[0].'_no_';
-      break;
-    // case 'nl':
-    //   $db_prefix = $env[0].'_se_';
-    //   break;
-  }
+    switch ($env[1]) {
+        default:
+            $db_prefix = $env[0].'_dk_';
+            break;
+        case 'se':
+            $db_prefix = $env[0].'_se_';
+            break;
+        case 'no':
+            $db_prefix = $env[0].'_no_';
+            break;
+      // case 'nl':
+      //   $db_prefix = $env[0].'_se_';
+      //   break;
+    }
 }
+
+#\Hanzo\Core\Tools::log($container->getParameterBag()->all());
 
 $dbUser     = $container->getParameter($db_prefix.'database_user');
 $dbPassword = $container->getParameter($db_prefix.'database_password');

@@ -5,9 +5,9 @@
     database_name="hanzo"
     database_user="root"
     database_password=""
-    database_slave_1_user=
-    database_slave_1_password=
-    database_slave_1_dsn=
+    database_slave_1_user=""
+    database_slave_1_password=""
+    database_slave_1_dsn=""
 
     mailer_transport="mail"
     mailer_host="localhost"
