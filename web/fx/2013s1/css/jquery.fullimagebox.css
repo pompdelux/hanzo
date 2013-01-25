@@ -6,7 +6,7 @@
     width : 100%;
     background: white;
 }
-.full-image-box img.full-image{
+.full-image-box .full-image{
 	width:100%;
 	top:0;
 	left:0;
@@ -50,7 +50,7 @@
 	width: 32px;
 	right: 0;
 	top: 0;
-	background: url(/fx/images/delete_icon.png) no-repeat center #000;
+	background: url(/fx/images/icons/icons/delete_white.png) no-repeat center #000;
 	opacity: 0.4;
 	z-index: 310;
 }

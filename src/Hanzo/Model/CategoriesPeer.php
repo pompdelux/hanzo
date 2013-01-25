@@ -48,10 +48,10 @@ class CategoriesPeer extends BaseCategoriesPeer
             ->orderBySort()
             ->filterByCategoriesId($category_id)
         ;
-        if($pager){
-            $result = $result->paginate($pager, 12);
+        if($pager === 'all'){
+            $result = $result->paginate(null, null);
         }else{
-            $result = $result->find();
+            $result = $result->paginate($pager, 12);
         }
 
         $product_route = str_replace('category_', 'product_', $route);
@@ -107,7 +107,11 @@ class CategoriesPeer extends BaseCategoriesPeer
                 'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage()), TRUE)),
 
                 'pages' => $pages,
-                'index' => $pager
+                'index' => $pager,
+                'see_all' => array(
+                    'total' => $result->getNbResults(),
+                    'url' => $router->generate($route, array('pager' => 'all'), TRUE)
+                )
             );
         }
 
