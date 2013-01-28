@@ -47,7 +47,7 @@ class BanListener
         if ($settings && $settings[0] == '{') {
             $settings = json_decode($settings);
 
-            if ($settings->is_frontpage == 1) {
+            if (isset($settings->is_frontpage) && $settings->is_frontpage == 1) {
                 $path = '^/'.$item->getLocale('.*').'/$';
             }
         }

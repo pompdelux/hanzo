@@ -104,6 +104,7 @@ propel:
         propel.defaultTimeStampFormat: "Y-m-d H:i:s"
         propel.defaultTimeFormat: "H:i:s"
         propel.defaultDateFormat: "Y-m-d"
+        propel.behavior.geocodable.class: "%kernel.root_dir%.propel.propel-behaviors.GeocodableBehavior.src.GeocodableBehavior"
 
 
 jms_security_extra:
