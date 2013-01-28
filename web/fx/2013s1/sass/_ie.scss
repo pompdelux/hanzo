@@ -22,5 +22,37 @@
     nav.main-menu > ul > li > ul.on {
         border: #F0F0F0 1px solid;
     }
+    #secondary-links .menu.horizontal{
+        float: right;
+        li{
+            a {
+                line-height: 40px;
+            }
+            .dropdown a{
+                line-height: $main-menu-line-height;
+            }
+        }
+        &.second{
+            clear: both;
+            li a{
+                line-height: icons-sprite-height(basket);
+            }
+        }
+    }
+
+    hr {
+        display : list-item;
+        list-style : url(/fx/images/icons/icons/divider.png) inside;
+        //filter : alpha(opacity=0);
+        margin-left: -10px;
+        width : 100%;
+
+        &.left {
+            list-style : url(/fx/images/icons/icons/divider_left.png) inside;
+        }
+        &.right {
+            list-style : url(/fx/images/icons/icons/divider_right.png) inside;
+        }
+    }
 }
 

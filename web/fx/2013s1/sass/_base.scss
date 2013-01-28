@@ -164,7 +164,7 @@ a.button,
 	&.text-button {
 		border: none;
 		background: transparent;
-		color: $font-color;
+		color: $font-color !important;
 		font-size: $font-size;
 		font-family: $font-serif;
 		font-weight: $font-weight-thin;
@@ -391,7 +391,6 @@ ol{
 	margin-left: 3px;
 	margin-right: 3px;
 }
-
 
 .main > .grid_1,
 .main > .grid_2,
