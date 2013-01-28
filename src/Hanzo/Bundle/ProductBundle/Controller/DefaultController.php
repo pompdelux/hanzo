@@ -130,7 +130,7 @@ class DefaultController extends CoreController
                 ->filterByProductsImagesId($image_ids)
                 ->useProductsQuery()
                     ->useProductsImagesQuery('ref') // I think!
-                        ->filterByType('set')
+                        ->filterByType('overview')
                         ->groupByProductsId()
                     ->endUse()
                     ->joinWithProductsImages()
