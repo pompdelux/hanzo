@@ -47,8 +47,19 @@
 	}
 }
 
-.pager{
+
+.pager ul{
+	list-style: none;
 	li{
+		display: inline-block;
+		&.current{
+			a{
+				text-decoration: underline;
+			}
+		}
+		&.off{
+			display: none;
+		}
 		&.prew{
 			margin-right: 9px;
 		}

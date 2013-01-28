@@ -118,21 +118,20 @@ form{
 	}
 	input,
 	textarea {
-		border: 1px solid $font-color;
 		padding: 6px 5px;
 		margin: 2px 0;
 		color: $font-color;
+		font-family: $font-serif;
 	}
-	input{
-		&[type="text"],
-		&[type="email"],
-		&[type="date"],
-		&[type="datetime"],
-		&[type="password"]{
-			font-family: $font-serif;
-			&.inline{
-				width: auto;
-			}
+	textarea,
+	input[type="text"],
+	input[type="email"],
+	input[type="date"],
+	input[type="datetime"],
+	input[type="password"]{
+		border: 1px solid $font-color;
+		&.inline{
+			width: auto;
 		}
 	}
 	input.error{

@@ -254,19 +254,6 @@ ul.breadcrumb li.first:before {
   content: none;
 }
 
-.pager ul {
-  list-style: none;
-}
-.pager ul li {
-  display: inline-block;
-}
-.pager ul li.current a {
-  text-decoration: underline;
-}
-.pager ul li.off {
-  display: none;
-}
-
 .container .main header {
   display: table;
   min-height: 100px;
@@ -425,6 +412,7 @@ div.panes > div {
 
 .zoom {
   display: inline-block;
+  text-align: center;
 }
 .zoom .sprite {
   background-position: 0 -177px;
@@ -493,33 +481,34 @@ form.buy .submit-button {
   border: none;
   text-indent: -999px;
   display: inline-block;
+  display: block;
 }
 
-latest-seen-poducts a,
+.latest-seen-poducts a,
 .productimage-small a,
 .style-guide a {
   vertical-align: top;
   display: inline-block;
   margin-right: 3px;
 }
-latest-seen-poducts a img,
+.latest-seen-poducts a img,
 .productimage-small a img,
 .style-guide a img {
   padding: 1px;
 }
-latest-seen-poducts a:hover,
+.latest-seen-poducts a:hover,
 .productimage-small a:hover,
 .style-guide a:hover {
   border-bottom: none;
   margin-bottom: 0;
 }
-latest-seen-poducts a:hover img,
+.latest-seen-poducts a:hover img,
 .productimage-small a:hover img,
 .style-guide a:hover img {
   padding: 0px;
   border: 1px solid #888888;
 }
-latest-seen-poducts a.buy-set,
+.latest-seen-poducts a.buy-set,
 .productimage-small a.buy-set,
 .style-guide a.buy-set {
   padding: 0;
@@ -528,7 +517,7 @@ latest-seen-poducts a.buy-set,
   display: inline-block;
   margin-top: 50px;
 }
-latest-seen-poducts .last,
+.latest-seen-poducts .last,
 .productimage-small .last,
 .style-guide .last {
   margin-right: 0;
@@ -538,7 +527,7 @@ latest-seen-poducts .last,
   display: none;
 }
 
-.colorbuttons-sprite, .colorbuttons-blue, .colorbuttons-blue_aktiv, .colorbuttons-grey-melange, .colorbuttons-grey-melange_aktiv, .colorbuttons-navy, .colorbuttons-navy_aktiv, .colorbuttons-violet, .colorbuttons-violet_aktiv, a.product-color .colorbuttons.colorbuttons-navy, a.product-color .colorbuttons.colorbuttons-violet, a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy, a.product-color.current .colorbuttons-violet, a.product-color:hover .colorbuttons-violet {
+.colorbuttons-sprite, .colorbuttons-blue, .colorbuttons-blue_aktiv, .colorbuttons-grey-melange, .colorbuttons-grey-melange_aktiv, .colorbuttons-navy, .colorbuttons-navy_aktiv, .colorbuttons-violet, .colorbuttons-violet_aktiv, a.product-color .colorbuttons.colorbuttons-navy, a.product-color .colorbuttons.colorbuttons-violet, a.product-color .colorbuttons.colorbuttons-brown, a.product-color .colorbuttons.colorbuttons-wine, a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy, a.product-color.current .colorbuttons-violet, a.product-color:hover .colorbuttons-violet, a.product-color.current .colorbuttons-brown, a.product-color:hover .colorbuttons-brown, a.product-color.current .colorbuttons-wine, a.product-color:hover .colorbuttons-wine {
   background: url('/fx/2013s1/../images/colorbuttons-s3a460b5c13.png') no-repeat;
 }
 
@@ -580,27 +569,40 @@ a.product-color {
   text-align: center;
 }
 a.product-color .colorbuttons {
+  display: block;
   margin: 0 auto;
 }
 a.product-color .colorbuttons.colorbuttons-navy {
   background-position: 0 -153px;
-  padding-top: 26px;
+  height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons.colorbuttons-violet {
   background-position: 0 -127px;
-  padding-top: 26px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons.colorbuttons-brown {
+  background-position: 0 -153px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons.colorbuttons-wine {
+  background-position: 0 -127px;
+  height: 26px;
   width: 26px;
 }
 a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy {
   background-position: 0 -26px;
-  padding-top: 26px;
-  width: 26px;
 }
 a.product-color.current .colorbuttons-violet, a.product-color:hover .colorbuttons-violet {
   background-position: 0 -78px;
-  padding-top: 26px;
-  width: 26px;
+}
+a.product-color.current .colorbuttons-brown, a.product-color:hover .colorbuttons-brown {
+  background-position: 0 -26px;
+}
+a.product-color.current .colorbuttons-wine, a.product-color:hover .colorbuttons-wine {
+  background-position: 0 -78px;
 }
 
 /**
@@ -641,10 +643,22 @@ a.product-color.current .colorbuttons-violet, a.product-color:hover .colorbutton
   display: inline-block;
 }
 
-.pager li.prew {
+.pager ul {
+  list-style: none;
+}
+.pager ul li {
+  display: inline-block;
+}
+.pager ul li.current a {
+  text-decoration: underline;
+}
+.pager ul li.off {
+  display: none;
+}
+.pager ul li.prew {
   margin-right: 9px;
 }
-.pager li.next {
+.pager ul li.next {
   margin-left: 9px;
 }
 
@@ -1369,6 +1383,20 @@ div.dialoug.like-pop li div {
   display: inline;
   float: left;
 }
+.ie7 a.product-color {
+  display: inline;
+}
+.ie7 a.product-color .colorbuttons {
+  display: block;
+  margin: 0;
+}
+.ie7 ul.tabs {
+  height: 14px;
+}
+.ie7 ul.tabs li {
+  display: inline;
+  float: left;
+}
 
 .oldie nav.main-menu > ul > li > ul.on {
   border: #f0f0f0 1px solid;
@@ -1399,6 +1427,30 @@ div.dialoug.like-pop li div {
 }
 .oldie hr.right {
   list-style: url(/fx/images/icons/icons/divider_right.png) inside;
+}
+.oldie .pager ul {
+  list-style: none;
+  display: inline;
+  float: right;
+}
+.oldie .pager ul li {
+  float: left;
+  padding: 0 3px;
+}
+.oldie ul.breadcrumb {
+  display: inline;
+}
+.oldie ul.breadcrumb li {
+  float: left;
+  padding: 0 6px;
+}
+.oldie ul.breadcrumb li.first {
+  padding: 0 6px 0 0;
+}
+.oldie .back-to-category {
+  margin-top: 12px;
+  clear: both;
+  display: block;
 }
 
 /**
@@ -1590,15 +1642,25 @@ form.full-width textarea {
 }
 form input,
 form textarea {
-  border: 1px solid #444444;
   padding: 6px 5px;
   margin: 2px 0;
   color: #444444;
-}
-form input[type="text"], form input[type="email"], form input[type="date"], form input[type="datetime"], form input[type="password"] {
   font-family: "Merriweather", serif;
 }
-form input[type="text"].inline, form input[type="email"].inline, form input[type="date"].inline, form input[type="datetime"].inline, form input[type="password"].inline {
+form textarea,
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="datetime"],
+form input[type="password"] {
+  border: 1px solid #444444;
+}
+form textarea.inline,
+form input[type="text"].inline,
+form input[type="email"].inline,
+form input[type="date"].inline,
+form input[type="datetime"].inline,
+form input[type="password"].inline {
   width: auto;
 }
 form input.error {
