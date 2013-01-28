@@ -42,6 +42,8 @@ set :use_sudo, true
 
 ssh_options[:forward_agent] = true
 
+before 'symfony:assetic:dump', 'deploy:update_permissions'
+
 before 'symfony:cache:warmup', 'symfony:cache:assets_update'
 before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 

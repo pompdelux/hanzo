@@ -2,7 +2,13 @@
 # Hanzo / Pompdelux testing deploy. 
 #
 
-set :deploy_to,   "/var/www/testpompdelux" 
+# needed to get verbose output. -v doesnt work
+logger.level = Logger::MAX_LEVEL
+
+# 
+set :dump_assetic_assets,   true
+
+set :deploy_to,   "/var/www/testpompdelux"
 
 #symfony_env_prods = ["test_dk", "test_se", "test_no", "test_com", "test_nl"]
 set :symfony_env_prods, ["test_dk", "test_dk_consultant"]
@@ -74,6 +80,17 @@ namespace :symfony do
       end
     end
   end
-end
 
+#  namespace :assetic do
+#    desc "Dumps all assets to the filesystem"
+#    task :dump, :roles => :app,  :except => { :no_release => true } do
+#      capifony_pretty_print "--> Dumping all assets to the filesystem"
+#      symfony_env_prods.each do |i|
+#        run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{i} --no-debug'"
+#      end
+#      capifony_puts_ok
+#    end
+#  end
+
+end
 
