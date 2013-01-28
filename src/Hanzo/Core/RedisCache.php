@@ -88,17 +88,7 @@ class RedisCache
           $data = ':[S]:' . serialize($data);
         }
 
-        return $this->cache->pipeline()
-            ->set($key, trim($data))
-            ->expire($key, $ttl)
-            ->execute() // if we switch to phpredis, this must be renamed to exec()
-        ;
-
-        // // store cache and set ttl
-        // return $this->cache->pipeline(function($pipe) use ($key, $data, $ttl) {
-        //     $pipe->set($key, trim($data));
-        //     $pipe->expire($key, $ttl);
-        // });
+        return $this->cache->setex($key, $ttl, trim($data));
     }
 
     /**
