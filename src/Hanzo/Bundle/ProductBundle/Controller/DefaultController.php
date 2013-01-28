@@ -66,10 +66,12 @@ class DefaultController extends CoreController
 
             // find all product images
             $images = array();
+            $image_ids = array();
             $product_images = $product->getProductsImagess();
             foreach ($product_images as $image) {
                 $path_params = explode('_', explode('.', $image->getImage())[0]);
                 $number = isset($path_params[3]) ? (int)$path_params[3] : 0;
+                $image_ids[] = $image->getId(); // Used for references
 
                 $images[$image->getId()] = array(
                     'id' => $image->getId(),
@@ -123,19 +125,24 @@ class DefaultController extends CoreController
             }
 
             $references = ProductsImagesProductReferencesQuery::create()
-                ->useProductsImagesQuery()
-                    ->filterByProductsId($product->getId())
+                ->withColumn('products_images.ID') // Terrible way to do it.!
+                ->withColumn('ref.IMAGE') // But it works!
+                ->filterByProductsImagesId($image_ids)
+                ->useProductsQuery()
+                    ->useProductsImagesQuery('ref') // I think!
+                        ->filterByType('overview')
+                        ->groupByProductsId()
+                    ->endUse()
+                    ->joinWithProductsImages()
                 ->endUse()
-                ->joinWithProductsImages()
                 ->joinWithProducts()
                 ->find()
             ;
-
             $images_references = array();
             foreach ($references as $ref) {
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
                     'title' => $ref->getProducts()->getSku(),
-                    'image' => $ref->getProductsImages()->getImage(),
+                    'image' => $ref->getRefIMAGE(),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),
