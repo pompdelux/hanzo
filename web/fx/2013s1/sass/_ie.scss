@@ -3,6 +3,7 @@
 */
 .ie7{
 
+    footer .copy ul,
     ul.horizontal,
     .horizontal > ul{
         clear: both;
@@ -18,5 +19,8 @@
 
 .oldie{
 
+    nav.main-menu > ul > li > ul.on {
+        border: #F0F0F0 1px solid;
+    }
 }
 

@@ -1355,14 +1355,20 @@ div.dialoug.like-pop li div {
 /**
 | _ie
 */
+.ie7 footer .copy ul,
 .ie7 ul.horizontal,
 .ie7 .horizontal > ul {
   clear: both;
 }
+.ie7 footer .copy ul li,
 .ie7 ul.horizontal li,
 .ie7 .horizontal > ul li {
   display: inline;
   float: left;
+}
+
+.oldie nav.main-menu > ul > li > ul.on {
+  border: #f0f0f0 1px solid;
 }
 
 /**
