@@ -2,15 +2,15 @@
 
 namespace Hanzo\Bundle\ServiceBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 
 use Hanzo\Model\ZipToCity;
-use Hanzo\Model\ZipToCityPeer;
 use Hanzo\Model\ZipToCityQuery;
 
 class DefaultController extends CoreController
@@ -27,9 +27,9 @@ class DefaultController extends CoreController
      * @return Response
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function getCityFromZipAction($zip_code)
+    public function getCityFromZipAction(Request $request, $zip_code)
     {
-        $code = explode('_', $this->get('session')->getLocale());
+        $code = explode('_', $request->getLocale());
         $code = array_pop($code);
 
         $query = ZipToCityQuery::create()
