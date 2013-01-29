@@ -12,6 +12,20 @@
             float: left;
         }
     }
+    a.product-color{
+        display: inline;
+        .colorbuttons{
+            display: block;
+            margin: 0;
+        }
+    }
+    ul.tabs {
+        height: $heading-small-line-height;
+        li{
+            display: inline;
+            float: left;
+        }
+    }
 }
 .ie8{
 
@@ -21,6 +35,62 @@
 
     nav.main-menu > ul > li > ul.on {
         border: #F0F0F0 1px solid;
+    }
+    #secondary-links .menu.horizontal{
+        float: right;
+        li{
+            a {
+                line-height: 40px;
+            }
+            .dropdown a{
+                line-height: $main-menu-line-height;
+            }
+        }
+        &.second{
+            clear: both;
+            li a{
+                line-height: icons-sprite-height(basket);
+            }
+        }
+    }
+
+    hr {
+        display : list-item;
+        list-style : url(/fx/images/icons/icons/divider.png) inside;
+        //filter : alpha(opacity=0);
+        margin-left: -10px;
+        width : 100%;
+
+        &.left {
+            list-style : url(/fx/images/icons/icons/divider_left.png) inside;
+        }
+        &.right {
+            list-style : url(/fx/images/icons/icons/divider_right.png) inside;
+        }
+    }
+    .pager ul{
+        list-style: none;
+        display: inline;
+        float: right;
+        li{
+            float: left;
+            padding: 0 3px;
+        }
+    }
+    ul.breadcrumb{
+        display: inline;
+        li{
+            float: left;
+            padding: 0 6px;
+            &.first{
+                padding:0 6px 0 0;
+            }
+        }
+    }
+    .back-to-category{
+        margin-top: 12px;
+        clear: both;
+        display: block;
     }
 }
 

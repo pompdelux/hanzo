@@ -94,15 +94,16 @@
 
 
             // When a new image is loaded into the temporary image, switch it to the main image.
-            $(tempImage).on('load', function (e){
+            $(tempImage).bind('load', function (e){
                 if(image.src !== tempImage.src){ // Workaround. fade was firing multiple times.
                     $(image).fadeOut('300', function(){
                         image.src = tempImage.src;
-                        console.log(image.src);
                         _renderButtons();
                         $('.loader').hide();
                         $(this).fadeIn('300');
-                        console.log('FullImage changed to index: '+index);
+                        if (console && console.log) {
+                            console.log('FullImage changed to index: '+index);
+                        }
                     });
                 }else{
                     $('.loader').hide();

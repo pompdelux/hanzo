@@ -12,11 +12,13 @@ body{
 	color: $font-color;
 	font-family: $font-sans;
 	font-size: $font-size;
+	overflow-y: scroll;
 }
-.container{
-	position: relative;
-	overflow: hidden;}
+#container{
+	position: relative;}
+.container{}
 
+#main{z-index: 1;}
 a{
 	color: $link-color;
 	text-decoration: none;
@@ -118,21 +120,20 @@ form{
 	}
 	input,
 	textarea {
-		border: 1px solid $font-color;
 		padding: 6px 5px;
 		margin: 2px 0;
 		color: $font-color;
+		font-family: $font-serif;
 	}
-	input{
-		&[type="text"],
-		&[type="email"],
-		&[type="date"],
-		&[type="datetime"],
-		&[type="password"]{
-			font-family: $font-serif;
-			&.inline{
-				width: auto;
-			}
+	textarea,
+	input[type="text"],
+	input[type="email"],
+	input[type="date"],
+	input[type="datetime"],
+	input[type="password"]{
+		border: 1px solid $font-color;
+		&.inline{
+			width: auto;
 		}
 	}
 	input.error{
@@ -164,7 +165,7 @@ a.button,
 	&.text-button {
 		border: none;
 		background: transparent;
-		color: $font-color;
+		color: $font-color !important;
 		font-size: $font-size;
 		font-family: $font-serif;
 		font-weight: $font-weight-thin;
@@ -392,7 +393,6 @@ ol{
 	margin-right: 3px;
 }
 
-
 .main > .grid_1,
 .main > .grid_2,
 .main > .grid_3,
@@ -407,6 +407,7 @@ ol{
 .main > .grid_4-5,
 .container_8 .row{
 	margin-bottom: 6px;
+	z-index: 1;
 }
 
 body.da{

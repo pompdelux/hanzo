@@ -76,7 +76,7 @@
                 $i.css('fontSize', '2.6em');
                 $h4.hide();
                 $i.prop('title', title);
-                if ('' == $('#mannequin-basket tfoot td.total').text()) {
+                if ('' === $('#mannequin-basket tfoot td.total').text()) {
                   $elm.hide();
                 }
               });

@@ -39,6 +39,7 @@ div.panes > div {
 
 .zoom{
 	display: inline-block;
+	text-align: center;
 
 	.sprite{
 		@include icons-sprite(zoom);
@@ -108,10 +109,11 @@ form.buy{
 		cursor: pointer;
 		margin-top: 18px;
 		@include image-replacement;
+		display: block;
 	}
 }
 
-latest-seen-poducts,
+.latest-seen-poducts,
 .productimage-small,
 .style-guide{
 	a{
@@ -149,18 +151,29 @@ a.product-color{
 	display: inline-block;
 	text-align: center;
 	.colorbuttons {
+		display: block;
 		margin: 0 auto;
-
 		// We need all colors ruled here::
 		&.colorbuttons-navy{
 			@include colorbuttons-sprite(navy);
-			padding-top: colorbuttons-sprite-height(navy);
+			height: colorbuttons-sprite-height(navy);
 			width: colorbuttons-sprite-width(navy);
 		}
 		// We need all colors ruled here::
 		&.colorbuttons-violet{
 			@include colorbuttons-sprite(violet);
-			padding-top: colorbuttons-sprite-height(violet);
+			height: colorbuttons-sprite-height(violet);
+			width: colorbuttons-sprite-width(violet);
+		}
+		&.colorbuttons-brown{
+			@include colorbuttons-sprite(navy);
+			height: colorbuttons-sprite-height(navy);
+			width: colorbuttons-sprite-width(navy);
+		}
+		// We need all colors ruled here::
+		&.colorbuttons-wine{
+			@include colorbuttons-sprite(violet);
+			height: colorbuttons-sprite-height(violet);
 			width: colorbuttons-sprite-width(violet);
 		}
 	}
@@ -168,13 +181,15 @@ a.product-color{
 	&:hover{
 		.colorbuttons-navy{
 			@include colorbuttons-sprite(navy_aktiv);
-			padding-top: colorbuttons-sprite-height(navy_aktiv);
-			width: colorbuttons-sprite-width(navy_aktiv);
 		}
 		.colorbuttons-violet{
 			@include colorbuttons-sprite(violet_aktiv);
-			padding-top: colorbuttons-sprite-height(violet_aktiv);
-			width: colorbuttons-sprite-width(violet_aktiv);
+		}
+		.colorbuttons-brown{
+			@include colorbuttons-sprite(navy_aktiv);
+		}
+		.colorbuttons-wine{
+			@include colorbuttons-sprite(violet_aktiv);
 		}
 	}
 

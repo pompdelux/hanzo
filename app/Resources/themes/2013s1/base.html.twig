@@ -71,7 +71,7 @@
   </div><!-- /div#main -->
 
   <nav id="secondary-links">
-    <ul class="horizontal menu right">
+    <ul class="horizontal menu right first">
       <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       <li id="select-domain">
         <a class="open-menu" href="#">Change Country</a>
@@ -91,7 +91,7 @@
         </form>
       </li>
     </ul>
-    <ul class="horizontal menu right">
+    <ul class="horizontal menu right second">
       <li id="mini-basket" class="basket">
         <span class="sprite"></span>
         <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
@@ -205,6 +205,7 @@
   'fx/scripts/mannequin.js'
   'fx/scripts/faq.js'
 
+  'fx/scripts/jquery.placeholder-enhanced.min.js'
   'fx/scripts/oldie.js'
   output='fx/cache/2013s1.js'
   combine=true

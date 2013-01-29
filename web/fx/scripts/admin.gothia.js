@@ -4,7 +4,7 @@ var admin_gothia = (function($) {
   var current_order_id = null;
 
   pub.init = function() {
-  
+
     $("#gothia-admin-order-lookup").submit(function(e) {
       e.preventDefault();
 

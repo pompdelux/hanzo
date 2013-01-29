@@ -144,7 +144,7 @@ var consultantNewsletter = (function($) {
       });
     });
   };
- 
+
   return pub;
 })(jQuery);
 

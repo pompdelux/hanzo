@@ -43,14 +43,16 @@
       </div>
       <div class="grid_2 align-center vert-align-middle">
         {% if product.colors is not empty %}
-          {% spaceless %}
-          {% for color in product.colors %}
-            <a href="#" class="product-color color-{{ color }} {{ (color==product.main_image.color) ? 'current': '' }}" data-color="{{ color }}">
-              <div class="sprite-block colorbuttons colorbuttons-{{ color|lower }}"></div>
-              <span>{{ color }}</span>
-            </a>
-          {% endfor %}
-          {% endspaceless %}
+          <div class="centerfy">
+            {% spaceless %}
+            {% for color in product.colors %}
+              <a href="#" class="product-color color-{{ color }} {{ (color==product.main_image.color) ? 'current': '' }}" data-color="{{ color }}">
+                <div class="sprite-block colorbuttons colorbuttons-{{ color|lower }}"></div>
+                <span>{{ color }}</span>
+              </a>
+            {% endfor %}
+            {% endspaceless %}
+          </div>
         {% endif %}
       </div>
       <div class="grid_1 omega align-right vert-align-middle">
@@ -155,7 +157,7 @@
       </div>
 
       <div class="align-center">
-        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button">
+        <input type="submit" value="{{ "add.to.basket"|trans }}" class="button submit-button centerfy">
       </div>
       <input type="hidden" id="master" name="master" value="{{ product.sku }}">
     </form>
