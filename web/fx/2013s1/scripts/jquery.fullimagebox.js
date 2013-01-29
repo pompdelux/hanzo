@@ -95,16 +95,26 @@
 
             // When a new image is loaded into the temporary image, switch it to the main image.
             $(tempImage).bind('load', function (e){
+                //alert('loaded '+image.src===tempImage.src);
                 if(image.src !== tempImage.src){ // Workaround. fade was firing multiple times.
-                    $(image).fadeOut('300', function(){
+
+                    $image.animate({opacity: 'hide'}, 400, function() {
+                        if (jQuery.browser.msie)
+                            this.style.removeAttribute('filter');
+
                         image.src = tempImage.src;
                         _renderButtons();
-                        $('.loader').hide();
-                        $(this).fadeIn('300');
-                        if (console && console.log) {
-                            console.log('FullImage changed to index: '+index);
-                        }
+
+                        $image.animate({opacity: 'show'}, 400, function() {
+                            if (jQuery.browser.msie)
+                                this.style.removeAttribute('filter');
+                            $('.loader').animate({opacity: 'hide'}, 240);
+                            if (console && console.log) {
+                                console.log('FullImage changed to index: '+index);
+                            }
+                        });
                     });
+
                 }else{
                     $('.loader').hide();
                 }
@@ -136,9 +146,10 @@
     function _next ( listIndex ) {
         if (undefined !== listIndex) {
             if(list.length < listIndex || listIndex === -1){
-                return;
+                index = 0;
+            }else{
+                index = listIndex;
             }
-            index = listIndex;
         }else{
             index++;
         }
