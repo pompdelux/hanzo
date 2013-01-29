@@ -1423,6 +1423,7 @@ div.dialoug.like-pop li div {
 .oldie hr {
   display: list-item;
   list-style: url(/fx/images/icons/icons/divider.png) inside;
+  filter: alpha(opacity=0);
   margin-left: -10px;
   width: 100%;
 }
