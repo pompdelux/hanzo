@@ -889,6 +889,10 @@ form.address label {
 /**
 | _topmenu
 */
+nav.main-menu {
+  z-index: 200;
+  position: relative;
+}
 nav.main-menu ul {
   list-style: none;
   padding: 0;
@@ -1524,11 +1528,15 @@ body {
   color: #444444;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
+  overflow-y: scroll;
 }
 
-.container {
+#container {
   position: relative;
-  overflow: hidden;
+}
+
+#main {
+  z-index: 1;
 }
 
 a {
@@ -2041,6 +2049,7 @@ ol.list {
 .main > .grid_4-5,
 .container_8 .row {
   margin-bottom: 6px;
+  z-index: 1;
 }
 
 body.da form.buy .submit-button {

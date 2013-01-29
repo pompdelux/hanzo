@@ -4,6 +4,8 @@
 @import "compass/css3/box-shadow";
 
 nav.main-menu {
+  z-index: 200; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
+  position: relative;
   ul {
     list-style: none;
     padding: 0;
