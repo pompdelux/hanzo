@@ -1,0 +1,20 @@
+{% extends layout %}
+{% block content %}
+
+<h1>{{ 'my.account.order.view'|trans({'%order_id%': order.id}, 'account') }}</h1>
+<div class="grid_6 alpha omega">
+    {% for address in addresses %}
+      <div class="grid_2 address">
+        <h4>{{ ('address.' ~ address.type)|trans({}, 'account') }}</h3>
+        {% include 'AccountBundle:Default:address_block.html.twig' with {'address': address, 'type': address.type} %}
+      </div>
+    {% endfor %}
+</div>
+
+  <div class="products clearfix"><br>
+    {% render 'BasketBundle:Default:view' with { 'embed': true, 'orders_id': order.id } %}
+
+    {% include 'CheckoutBundle:Default:order_block.html.twig' with {'order': order} %}
+  </div>
+
+{% endblock %}
