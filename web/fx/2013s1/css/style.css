@@ -1415,11 +1415,11 @@ div.dialoug.like-pop li div {
   display: inline;
   line-height: 31px;
 }
-.ie7 footer li {
+.ie7 footer .footer-menu li {
   display: inline;
   width: 100%;
 }
-.ie7 footer li a {
+.ie7 footer .footer-menu li a {
   display: block;
 }
 
