@@ -33,7 +33,7 @@ class DefaultController extends CoreController
     {
         $cache_id = explode('_', $this->get('request')->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
-        
+
         // json requests
         if ($this->getFormat() == 'json') {
             $data = $this->getCache($cache_id);
@@ -44,8 +44,8 @@ class DefaultController extends CoreController
 
             // for json we need the real image paths
             foreach ($data['products'] as $k => $product) {
-                $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '120x240');
-                $data['products'][$k]['image_flip'] = Tools::productImageUrl($product['image_flip'], '120x240');
+                $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '234x410');
+                $data['products'][$k]['image_flip'] = Tools::productImageUrl($product['image_flip'], '234x410');
             }
 
             return $this->json_response($data);

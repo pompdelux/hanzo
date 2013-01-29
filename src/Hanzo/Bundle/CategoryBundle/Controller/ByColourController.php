@@ -29,7 +29,7 @@ class ByColourController extends CoreController
         $locale = $hanzo->get('core.locale');
         $domain_id = $hanzo->get('core.domain_id');
         $route = $container->get('request')->get('_route');
-        
+
         $router = $container->get('router');
 
         $cache_id = explode('_', $this->get('request')->get('_route'));
