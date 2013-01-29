@@ -26,6 +26,24 @@
             float: left;
         }
     }
+    .cycle-slideshow {
+        .cycle-pager{
+            span{
+                display: inline;
+                line-height: 31px;
+            }
+        }
+    }
+    footer .footer-menu li{
+        display: inline;
+        width: 100%;
+        a{
+            display: block;
+        }
+    }
+    hr{ // Only needs in ie7
+        filter : alpha(opacity=0);
+    }
 }
 .ie8{
 
@@ -39,17 +57,19 @@
     #secondary-links .menu.horizontal{
         float: right;
         li{
-            a {
+            > a {
                 line-height: 40px;
+                display: block;
             }
             .dropdown a{
-                line-height: $main-menu-line-height;
+                line-height: 14px;
             }
         }
         &.second{
             clear: both;
             li a{
                 line-height: icons-sprite-height(basket);
+                display: inline;
             }
         }
     }
@@ -58,8 +78,6 @@
         // IE Bug. HRs have ugly borders in IE7-8
         display : list-item;
         list-style : url(/fx/images/icons/icons/divider.png) inside;
-        filter : alpha(opacity=0);
-        margin-left: -10px;
         width : 100%;
 
         &.left {

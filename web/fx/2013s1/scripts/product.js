@@ -6,7 +6,9 @@
 
     pub.initZoom = function() {
       var currentColor = $('.productimage-large a').data('color');
-      $('.productimage-large a').fullImageBox({'selector':'a[rel=full-image].color-'+currentColor});
+      if($('.productimage-large a').length !== 0){
+        $('.productimage-large a').fullImageBox({'selector':'a[rel=full-image].color-'+currentColor});
+      }
 
       $('.productimage-large a, a.picture-zoom').on('click', function(e){
         e.preventDefault();

@@ -43,7 +43,7 @@ class ByLookController extends CoreController
 
             // for json we need the real image paths
             foreach ($data['products'] as $k => $product) {
-                $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '120x240');
+                $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '234x410');
             }
             return $this->json_response($data);
         }
