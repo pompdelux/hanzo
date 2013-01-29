@@ -30,7 +30,13 @@ switch ($ext)
       $source = dirname($target) . '/';
     }
 
+    if (false === strpos($info['basename'], ',')) {
+      header("HTTP/1.1 404 Not Found");
+      die('404 - file not found');
+    }
+
     $exp = explode('?', $info['basename']);
+
     list ($dimensions, $image) = explode(',', array_shift($exp));
     list ($w, $h) = explode('x', $dimensions);
 
