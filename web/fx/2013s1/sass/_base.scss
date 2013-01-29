@@ -12,13 +12,14 @@ body{
 	color: $font-color;
 	font-family: $font-sans;
 	font-size: $font-size;
-	overflow-y: scroll;
 }
-#container{
-	position: relative;}
-.container{}
 
-#main{z-index: 1;}
+body.debug .container_8{background: whiteSmoke;}
+
+.container{
+	position: relative;
+	overflow: hidden;}
+
 a{
 	color: $link-color;
 	text-decoration: none;
@@ -407,7 +408,6 @@ ol{
 .main > .grid_4-5,
 .container_8 .row{
 	margin-bottom: 6px;
-	z-index: 1;
 }
 
 body.da{

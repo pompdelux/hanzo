@@ -122,6 +122,8 @@ ul.menu,
   font-size: 14px;
   font-family: "Merriweather", serif;
   color: #444444;
+  z-index: 200;
+  position: relative;
 }
 nav > ul li,
 ul.menu li,
@@ -158,6 +160,7 @@ ul.menu .dropdown,
   max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
+  z-index: 141;
 }
 nav > ul.right,
 ul.menu.right,
@@ -216,6 +219,7 @@ ul.horizontal li,
   position: absolute;
   top: 0px;
   right: 3px;
+  z-index: 300;
 }
 #secondary-links li {
   padding: 8px;
@@ -238,6 +242,12 @@ ul.horizontal li,
 #secondary-links li a {
   font-size: 0.8em;
   text-transform: uppercase;
+}
+#secondary-links li .dropdown {
+  z-index: 201;
+}
+#secondary-links .second {
+  z-index: 1;
 }
 
 ul.breadcrumb {
@@ -1408,11 +1418,12 @@ div.dialoug.like-pop li div {
 .oldie #secondary-links .menu.horizontal {
   float: right;
 }
-.oldie #secondary-links .menu.horizontal li a {
+.oldie #secondary-links .menu.horizontal li > a {
   line-height: 40px;
+  display: block;
 }
 .oldie #secondary-links .menu.horizontal li .dropdown a {
-  line-height: inherit;
+  line-height: 14px;
 }
 .oldie #secondary-links .menu.horizontal.second {
   clear: both;
@@ -1424,7 +1435,6 @@ div.dialoug.like-pop li div {
   display: list-item;
   list-style: url(/fx/images/icons/icons/divider.png) inside;
   filter: alpha(opacity=0);
-  margin-left: -10px;
   width: 100%;
 }
 .oldie hr.left {
@@ -1529,15 +1539,15 @@ body {
   color: #444444;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
-  overflow-y: scroll;
 }
 
-#container {
+body.debug .container_8 {
+  background: whiteSmoke;
+}
+
+.container {
   position: relative;
-}
-
-#main {
-  z-index: 1;
+  overflow: hidden;
 }
 
 a {
@@ -2050,7 +2060,6 @@ ol.list {
 .main > .grid_4-5,
 .container_8 .row {
   margin-bottom: 6px;
-  z-index: 1;
 }
 
 body.da form.buy .submit-button {

@@ -39,11 +39,12 @@
     #secondary-links .menu.horizontal{
         float: right;
         li{
-            a {
+            > a {
                 line-height: 40px;
+                display: block;
             }
             .dropdown a{
-                line-height: $main-menu-line-height;
+                line-height: 14px;
             }
         }
         &.second{
@@ -59,7 +60,6 @@
         display : list-item;
         list-style : url(/fx/images/icons/icons/divider.png) inside;
         filter : alpha(opacity=0);
-        margin-left: -10px;
         width : 100%;
 
         &.left {

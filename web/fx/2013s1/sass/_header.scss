@@ -9,6 +9,8 @@ ul.menu,
 	font-size: $font-size;
 	font-family: $font-serif;
 	color:$font-color;
+	z-index: 200; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
+	position: relative;
 	li {
 		position: relative;
 		a{
@@ -30,6 +32,7 @@ ul.menu,
 		max-height: 400px;
 		overflow-y: auto;
 		overflow-x: hidden;
+		z-index: 141;
 	}
 	&.right{
 		text-align: right;
@@ -79,6 +82,7 @@ ul.horizontal,
 	position: absolute;
 	top: 0px;
 	right: 3px;
+	z-index: 300;
 	li{
 		padding: 8px;
 		vertical-align: middle;
@@ -103,6 +107,12 @@ ul.horizontal,
 			font-size: 0.8em;
 			text-transform: uppercase;
 		}
+		.dropdown{
+			z-index: 201; // This dropdown needs to be ontop of the main menu
+		}
+	}
+	.second{
+		z-index: 1;
 	}
 }
 
