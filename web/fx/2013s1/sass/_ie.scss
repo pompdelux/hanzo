@@ -55,9 +55,10 @@
     }
 
     hr {
+        // IE Bug. HRs have ugly borders in IE7-8
         display : list-item;
         list-style : url(/fx/images/icons/icons/divider.png) inside;
-        //filter : alpha(opacity=0);
+        filter : alpha(opacity=0);
         margin-left: -10px;
         width : 100%;
 
