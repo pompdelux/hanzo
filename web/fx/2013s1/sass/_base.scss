@@ -171,6 +171,9 @@ a.button,
 		font-family: $font-serif;
 		font-weight: $font-weight-thin;
 		text-transform: uppercase;
+		&:hover{
+			text-decoration: underline;
+		}
 	}
 	&.button-right {
 		background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;

@@ -41,6 +41,9 @@
             display: block;
         }
     }
+    hr{ // Only needs in ie7
+        filter : alpha(opacity=0);
+    }
 }
 .ie8{
 
@@ -75,7 +78,6 @@
         // IE Bug. HRs have ugly borders in IE7-8
         display : list-item;
         list-style : url(/fx/images/icons/icons/divider.png) inside;
-        filter : alpha(opacity=0);
         width : 100%;
 
         &.left {

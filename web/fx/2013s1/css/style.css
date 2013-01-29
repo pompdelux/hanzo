@@ -239,7 +239,7 @@ ul.horizontal li,
   display: inline-block;
   vertical-align: middle;
 }
-#secondary-links li a {
+#secondary-links li a, #secondary-links li input {
   font-size: 0.8em;
   text-transform: uppercase;
 }
@@ -1422,6 +1422,9 @@ div.dialoug.like-pop li div {
 .ie7 footer .footer-menu li a {
   display: block;
 }
+.ie7 hr {
+  filter: alpha(opacity=0);
+}
 
 .oldie nav.main-menu > ul > li > ul.on {
   border: #f0f0f0 1px solid;
@@ -1446,7 +1449,6 @@ div.dialoug.like-pop li div {
 .oldie hr {
   display: list-item;
   list-style: url(/fx/images/icons/icons/divider.png) inside;
-  filter: alpha(opacity=0);
   width: 100%;
 }
 .oldie hr.left {
@@ -1731,6 +1733,12 @@ a.button.text-button,
   font-family: "Merriweather", serif;
   font-weight: 400;
   text-transform: uppercase;
+}
+input.button.text-button:hover,
+button.button.text-button:hover,
+a.button.text-button:hover,
+.main article a.button.text-button:hover {
+  text-decoration: underline;
 }
 input.button.button-right,
 button.button.button-right,
