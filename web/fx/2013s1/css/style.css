@@ -317,7 +317,7 @@ footer {
   color: #444444;
   font-size: 12px;
   font-family: "Merriweather", serif;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 14px;
 }
 footer h2 {
@@ -1411,6 +1411,17 @@ div.dialoug.like-pop li div {
   display: inline;
   float: left;
 }
+.ie7 .cycle-slideshow .cycle-pager span {
+  display: inline;
+  line-height: 31px;
+}
+.ie7 footer li {
+  display: inline;
+  width: 100%;
+}
+.ie7 footer li a {
+  display: block;
+}
 
 .oldie nav.main-menu > ul > li > ul.on {
   border: #f0f0f0 1px solid;
@@ -1430,6 +1441,7 @@ div.dialoug.like-pop li div {
 }
 .oldie #secondary-links .menu.horizontal.second li a {
   line-height: 45px;
+  display: inline;
 }
 .oldie hr {
   display: list-item;

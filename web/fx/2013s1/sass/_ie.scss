@@ -26,6 +26,21 @@
             float: left;
         }
     }
+    .cycle-slideshow {
+        .cycle-pager{
+            span{
+                display: inline;
+                line-height: 31px;
+            }
+        }
+    }
+    footer li{
+        display: inline;
+        width: 100%;
+        a{
+            display: block;
+        }
+    }
 }
 .ie8{
 
@@ -51,6 +66,7 @@
             clear: both;
             li a{
                 line-height: icons-sprite-height(basket);
+                display: inline;
             }
         }
     }
