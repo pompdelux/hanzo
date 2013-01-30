@@ -1713,6 +1713,7 @@ a.button,
   color: white !important;
   line-height: 18px;
   white-space: normal;
+  -webkit-appearance: none;
 }
 input.button:hover,
 button.button:hover,
