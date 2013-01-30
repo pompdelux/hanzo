@@ -8,6 +8,7 @@
                 {{ 'events.create_event.link'|trans({}, 'events') }}
             </a>
         </li>
+        {% if archived_events|length > 0 %}
         <li id="select-archived-events">
             <a class="open-menu" href="#">
                 {{ 'events.calendar.archived.header.text'|trans({}, 'events') }}
@@ -20,6 +21,7 @@
                 </ul>
             </div>
         </li>
+        {% endif %}
     </ul>
 </nav>
 <div class="grid_6 omega">
