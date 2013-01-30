@@ -438,6 +438,10 @@
                 <source>events.event.header.text.%date%</source>
                 <target>Arrangement d. %date%:</target>
             </trans-unit>
+            <trans-unit id="events.no.events" approved="no">
+                <source>events.no.events</source>
+                <target>Der kunne ikke findes nogle fremtidige arrangementer.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

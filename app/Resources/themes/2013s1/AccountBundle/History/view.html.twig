@@ -10,11 +10,12 @@
       </div>
     {% endfor %}
 </div>
-
+<div class="grid_8 alpha omega">
   <div class="products clearfix"><br>
     {% render 'BasketBundle:Default:view' with { 'embed': true, 'orders_id': order.id } %}
 
     {% include 'CheckoutBundle:Default:order_block.html.twig' with {'order': order} %}
   </div>
+</div>
 
 {% endblock %}
