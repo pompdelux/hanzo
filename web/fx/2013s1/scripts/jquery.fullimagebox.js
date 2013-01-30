@@ -109,9 +109,6 @@
                             if (jQuery.browser.msie)
                                 this.style.removeAttribute('filter');
                             $('.loader').animate({opacity: 'hide'}, 240);
-                            if (console && console.log) {
-                                console.log('FullImage changed to index: '+index);
-                            }
                         });
                     });
 

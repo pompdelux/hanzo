@@ -434,6 +434,10 @@
                 <source>events.event.header.text.%date%</source>
                 <target>Event at %date%:</target>
             </trans-unit>
+            <trans-unit id="events.no.events" approved="no">
+                <source>events.no.events</source>
+                <target>Couldn't find any future events for you.</target>
+            </trans-unit>
        </body>
     </file>
 </xliff>
