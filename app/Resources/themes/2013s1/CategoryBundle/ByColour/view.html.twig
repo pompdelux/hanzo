@@ -24,7 +24,7 @@
                 'alt' : product.title,
                 'data-flip': product_image_url(product.image_flip, '234x410')
               }) }}
-              {% if product.prices.sales is defined and show_new_price_badge == 1 %}
+              {% if product.prices.sales is defined and show_new_price_badge %}
               <div class="new-price"></div>
               {% endif %}
             </a>
