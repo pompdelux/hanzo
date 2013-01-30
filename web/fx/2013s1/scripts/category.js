@@ -145,18 +145,20 @@
       var originalPicture = null;
       $(document).on({
         mouseenter: function () {
-          if($(this).data('flip')){
-            originalPicture = $(this).attr('src');
-            $(this).attr('src', $(this).data('flip'));
+          $img = $(this).find('img[data-flip]');
+          if($img.data('flip')){
+            originalPicture = $img.attr('src');
+            $img.attr('src', $img.data('flip'));
           }
         },
         mouseleave: function () {
+          $img = $(this).find('img[data-flip]');
           if(originalPicture){
-            $(this).attr('src',originalPicture);
+            $img.attr('src',originalPicture);
             originalPicture = null;
           }
         }
-      }, 'img.flip');
+      }, '.flip-this');
     };
     return pub;
   })(jQuery);
