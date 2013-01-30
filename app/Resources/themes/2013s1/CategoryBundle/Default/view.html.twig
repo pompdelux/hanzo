@@ -43,7 +43,7 @@
                     'width' : '234'
                   }) }}
                   {% if product.prices.sales is defined and show_new_price_badge == 1 %}
-                  <div class="new-price">{{ 'new.price'|trans }}</div>
+                  <div class="new-price"></div>
                   {% endif %}
                 </a>
                 <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
