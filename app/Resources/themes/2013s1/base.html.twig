@@ -46,15 +46,6 @@
 </head>
 <body id="body-{{ page_type|default('page') }}" class="{{ body_classes|default('') }} {{ html_lang }}">
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/{{ locale }}/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 <div id="container" class="container container_8">
   <header class="grid_8 row">
     <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
@@ -155,7 +146,6 @@
 <script type="text/javascript" src="{{ url('bazinga_exposetranslation_js', { 'domain_name': 'js', '_locale' : app.request.locale }) }}"></script>
 
 {% javascripts
-  'fx/scripts/console.fix.js'
   'fx/scripts/jquery.min.js'
   'fx/scripts/json2.js'
   'fx/scripts/jquery.tools.min.js'
