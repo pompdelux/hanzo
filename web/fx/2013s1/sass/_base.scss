@@ -158,7 +158,7 @@ a.button,
 	color: white !important;
 	line-height: 18px;
 	white-space: normal;
-
+	-webkit-appearance: none; // Ipad default lookalike
 	&:hover{
 		text-decoration: none;
 	}
