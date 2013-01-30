@@ -4,9 +4,9 @@
 @import "compass/css3/box-shadow";
 
 nav.main-menu {
-  z-index: 200; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
-  position: relative;
   ul {
+    z-index: 210; // z-index and rpoition to fix rendering in IE7. This must be higher than the actually z-index of child
+    position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -42,7 +42,7 @@ nav.main-menu {
         &.on {
           left: 0;
           top: auto;
-          z-index: 140;
+          z-index: 150;
           @include box-shadow($paragraph-color 4px 4px 8px);
         }
       }
