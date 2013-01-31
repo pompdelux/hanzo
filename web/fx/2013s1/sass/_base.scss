@@ -85,7 +85,12 @@ hr {
 }
 
 strong, b {font-weight: bold;}
-
+i,em{font-style:italic;}
+blockquote{
+	font-style: italic;
+	padding: 3px;
+	border: 1px solid #F5F5F5;
+}
 aside{
 	padding-bottom: 24px;
 	h1,h2,h3,h4,h5{
