@@ -1921,6 +1921,10 @@ button.right {
   border: 2px solid #f10000;
 }
 
+.no-text {
+  line-height: 0;
+}
+
 .box {
   padding: 6px;
   display: inline-block;
@@ -1969,23 +1973,29 @@ ol.list {
   list-style-type: decimal;
 }
 
-.cycle-slideshow .cycle-pager {
+.cycle-slideshow-wrapper {
+  line-height: 0;
+}
+.cycle-slideshow-wrapper .cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
-  bottom: 0;
+  bottom: 2px;
   left: 16px;
   z-index: 101;
 }
-.cycle-slideshow .cycle-pager span {
+.cycle-slideshow-wrapper .cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-.cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
+.cycle-slideshow-wrapper .cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow-wrapper .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-.cycle-slideshow .cycle-slide img {
+.cycle-slideshow-wrapper .cycle-slideshow .cycle-slide {
+  line-height: 0;
+}
+.cycle-slideshow-wrapper .cycle-slideshow .cycle-slide img {
   width: 100%;
 }
 
