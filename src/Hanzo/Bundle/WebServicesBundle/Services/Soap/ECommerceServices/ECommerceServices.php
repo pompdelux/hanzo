@@ -85,7 +85,7 @@ class ECommerceServices extends SoapService
      */
     public function SyncItem($data)
     {
-        require __DIR__.'/products_id_map.php';
+#        require __DIR__.'/products_id_map.php';
 
         $errors = array();
         $item = $data->item->InventTable;
@@ -168,7 +168,7 @@ class ECommerceServices extends SoapService
 
                     if (!$product instanceof Products) {
                         $product = new Products();
-                        $product->setId($products_id_map[strtolower($sku)]);
+#                        $product->setId($products_id_map[strtolower($sku)]);
                         $product->setSku($sku);
 
                         // products i18n
@@ -216,7 +216,7 @@ class ECommerceServices extends SoapService
 
                 if (!$product instanceof Products) {
                     $product = new Products();
-                    $product->setId($products_id_map[strtolower($sku)]);
+#                    $product->setId($products_id_map[strtolower($sku)]);
                     $product->setSku($sku);
                     $product->setMaster($item->ItemName);
                     $product->setColor($entry->InventColorId);
@@ -723,7 +723,10 @@ class ECommerceServices extends SoapService
         $address->setCity($data->AddressCity);
         $address->setCountry($country->getName());
         $address->setCountriesId($country->getId());
-        $address->geocode();
+
+        try {
+            $address->geocode();
+        } catch (Exception $e) { /* ignore this, we can live with addresses without geo locations */ }
 
         if ($customer->isNew()) {
             $customer->addAddresses($address);
