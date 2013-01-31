@@ -351,6 +351,10 @@
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Vent vennligst på at betalingsvinduet blir hentet. Det kan ta opptil 30 sekunder å hente betalingsvinduet. Går det mer enn 30 sekunder, skal du klikke på knappen Avbryt betaling under og prøve igjen.<br><br>På forhånd takk.<br><br><a href="%url%">» Avbryt betaling</a>]]></target>
             </trans-unit>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
+                <target>Klikk her for å få mer informasjon om %name%.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
