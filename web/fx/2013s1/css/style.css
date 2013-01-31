@@ -1403,6 +1403,22 @@ div.dialoug.like-pop li div {
 }
 
 /**
+| _find-consultants
+*/
+.near-you-container .entry {
+  margin-bottom: 6px;
+}
+.near-you-container .entry img {
+  display: block;
+}
+.near-you-container .row {
+  border-bottom: 1px solid grey;
+}
+.near-you-container .row:last-child {
+  border-bottom: none;
+}
+
+/**
 | _ie
 */
 .ie7 footer .copy ul,
@@ -1666,6 +1682,16 @@ hr.right {
 
 strong, b {
   font-weight: bold;
+}
+
+i, em {
+  font-style: italic;
+}
+
+blockquote {
+  font-style: italic;
+  padding: 3px;
+  border: 1px solid whitesmoke;
 }
 
 aside {
