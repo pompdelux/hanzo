@@ -40,10 +40,10 @@ class SmsService
         // $settings['provider.get_smsc'];
 
         // defaults
-        $this->settings['provider.get_smsc'] = 0;
+        $this->settings['provider.get_smsc']        = 0;
+        $this->settings['send.event.reminders']     = 0;
         $this->settings['send.event.confirmations'] = 0;
         $this->settings['send.event.confirmations'] = 0;
-        $this->settings['send.event.reminders'] = 0;
 
         $this->settings = $settings;
     }
@@ -74,7 +74,7 @@ Tools::log('sending sms invite to:'.$participant->getPhone());
         $provider->addMessage($to, utf8_decode($message));
 
         $response = $provider->send();
-
+$parameters['%to%'] = $to;
 Tools::log($parameters);
 Tools::log($response);
         return $response;
@@ -106,6 +106,7 @@ Tools::log('sending sms conformation to:'.$participant->getPhone());
 
         $response = $provider->send();
 
+$parameters['%to%'] = $to;
 Tools::log($parameters);
 Tools::log($response);
         return $response;
@@ -180,12 +181,12 @@ Tools::log($response);
     protected function getProvider()
     {
         return new UnwireProvider(new PhpStreamAdapter(), array(
-            'user' => $this->settings['provider.user'],
-            'password' => $this->settings['provider.password'],
-            'appnr' => $this->settings['provider.appnr'],
+            'user'      => $this->settings['provider.user'],
+            'password'  => $this->settings['provider.password'],
+            'appnr'     => $this->settings['provider.appnr'],
             'mediacode' => $this->settings['provider.mediacode'],
-            'price' => $this->settings['provider.price'],
-            'get_smsc' => (boolean) $this->settings['provider.get_smsc'],
+            'price'     => $this->settings['provider.price'],
+            'get_smsc'  => (boolean) $this->settings['provider.get_smsc'],
         ));
     }
 }
