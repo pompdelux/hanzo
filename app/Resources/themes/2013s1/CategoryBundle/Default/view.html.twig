@@ -8,14 +8,14 @@
     </hgroup>
 </header>
 
-<div class="grid_8 alpha omega">
+<div class="grid_8 alpha omega row">
   <div class="grid_6 push_2">
-    <div class="grid_3 alpha">
+    <div class="grid_2 alpha">
       <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
     </div>
 
     {% if paginate %}
-      <div class="grid_3 omega right">
+      <div class="grid_4 omega right">
         {% import "::macro.pager.html.twig" as p %}
         {{ p.pager(paginate, 'product-list') }}
       </div>
@@ -27,7 +27,7 @@
     {% render 'CMSBundle:Menu:menu' with {'type': 'cat', 'offset': cms_id } %}
   </div>
   <div class="grid_6 omega">
-    <div class="product-list clearfix grid_6 alpha omega">
+    <div class="product-list clearfix grid_6 alpha omega row">
       <div class="old-item">
         {% for product in products %}
           {% if loop.index % 3 == 1 %}
@@ -71,7 +71,7 @@
       </div>
     </div>
     {% if paginate %}
-      <div class="grid_3 push_3 omega right">
+      <div class="grid_4 push_2 omega right">
         {% import "::macro.pager.html.twig" as p %}
         {{ p.pager(paginate, 'product-list') }}
       </div>
