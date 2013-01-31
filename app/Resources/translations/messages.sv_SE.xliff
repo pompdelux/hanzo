@@ -157,10 +157,8 @@
                         <li>Org. nr. 556782-8602</li>
                         <li><a href="mailto:mail@pompdelux.se">mail@pompdelux.se</a></li>
                         <li>+46 8-6117103</li>
-                    </ul>
-                    <ul style="width:280px;">
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
-						<li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
+                        <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
                 ]]></target>
             </trans-unit>

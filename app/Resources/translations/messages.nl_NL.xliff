@@ -155,10 +155,8 @@
                         <li>BTW 851856147B01</li>
                         <li><a href="mailto:mail@pompdelux.nl">mail@pompdelux.nl</a></li>
                         <li>085-3001100 (Nederlands en Engels)</li>
-                    </ul>
-                    <ul style="width:400px;">
                         <li><img src="%cdn%fx/images/creditcards_nl.png" alt="credit cards" title="credit cards"></li>
-						<li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
+                        <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
                 ]]></target>
             </trans-unit>
