@@ -1973,29 +1973,26 @@ ol.list {
   list-style-type: decimal;
 }
 
-.cycle-slideshow-wrapper {
-  line-height: 0;
-}
-.cycle-slideshow-wrapper .cycle-slideshow .cycle-pager {
+.cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
   bottom: 2px;
   left: 16px;
   z-index: 101;
 }
-.cycle-slideshow-wrapper .cycle-slideshow .cycle-pager span {
+.cycle-slideshow .cycle-pager span {
   color: #DDD;
   font-size: 31px;
   line-height: 10px;
   cursor: pointer;
 }
-.cycle-slideshow-wrapper .cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow-wrapper .cycle-slideshow .cycle-pager span:hover {
+.cycle-slideshow .cycle-pager span.cycle-pager-active, .cycle-slideshow .cycle-pager span:hover {
   color: #BBB;
 }
-.cycle-slideshow-wrapper .cycle-slideshow .cycle-slide {
+.cycle-slideshow .cycle-slide {
   line-height: 0;
 }
-.cycle-slideshow-wrapper .cycle-slideshow .cycle-slide img {
+.cycle-slideshow .cycle-slide img {
   width: 100%;
 }
 

@@ -324,31 +324,28 @@ ol{
 }
 
 // Slideshow Cycle2 styles
-.cycle-slideshow-wrapper {
-	line-height: 0;
-	.cycle-slideshow {
-		.cycle-pager{
-			display: inline-block;
-			position: absolute;
-			bottom: 2px;
-			left: 16px;
-			z-index: 101;
-			span{
-				color: #DDD;
-				font-size: 31px;
-				line-height: 10px;
-				cursor: pointer;
-				&.cycle-pager-active,
-				&:hover{
-					color: #BBB;
-				}
+.cycle-slideshow {
+	.cycle-pager{
+		display: inline-block;
+		position: absolute;
+		bottom: 2px;
+		left: 16px;
+		z-index: 101;
+		span{
+			color: #DDD;
+			font-size: 31px;
+			line-height: 10px;
+			cursor: pointer;
+			&.cycle-pager-active,
+			&:hover{
+				color: #BBB;
 			}
 		}
-		.cycle-slide{
-			line-height: 0;
-			img{
-				width: 100%;
-			}
+	}
+	.cycle-slide{
+		line-height: 0;
+		img{
+			width: 100%;
 		}
 	}
 }
