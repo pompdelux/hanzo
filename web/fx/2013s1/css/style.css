@@ -660,6 +660,10 @@ a.product-color.current .colorbuttons-wine, a.product-color:hover .colorbuttons-
   display: inline-block;
 }
 
+html.touch .product-list .buy-set {
+  display: inline-block;
+}
+
 .pager ul {
   list-style: none;
 }

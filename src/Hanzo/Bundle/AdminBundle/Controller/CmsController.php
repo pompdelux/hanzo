@@ -216,8 +216,8 @@ class CmsController extends CoreController
                     $trans = new CmsI18n();
                     $trans->setCms($node);
                     $trans->setLocale($locale);
-                    $trans->save($this->getDbConnection());
                     $trans->setSettings(json_encode($settings));
+                    $trans->save($this->getDbConnection());
                 } catch (\Exception $e) {}
 
                 $this->get('session')->setFlash('notice', 'cms.added');
