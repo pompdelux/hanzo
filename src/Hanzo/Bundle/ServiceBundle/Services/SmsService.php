@@ -50,7 +50,7 @@ class SmsService
 
     public function sendEventInvite($participant)
     {
-        if (0 == $this->settings['send.event.invites']) {
+        if ((false === Tools::isBellcomRequest()) && (0 == $this->settings['send.event.invites'])) {
             return;
         }
 
@@ -72,14 +72,16 @@ class SmsService
         $provider = $this->getProvider();
         $provider->addMessage($to, utf8_decode($message));
 
-        return $provider->send();
+        $response = $provider->send();
+Tools::log($response);
+        return $response;
     }
 
     public function sendEventConfirmationReply($participant)
     {
-        if (0 == $this->settings['send.event.confirmations']) {
-            return;
-        }
+        // if ((0 == $this->settings['send.event.confirmations'])) {
+        //     return;
+        // }
 
         $event = $participant->getEvents();
         $parameters = array(
@@ -98,7 +100,9 @@ class SmsService
         $provider = $this->getProvider();
         $provider->addMessage($to, utf8_decode($message));
 
-        return $provider->send();
+        $response = $provider->send();
+Tools::log($response);
+        return $response;
     }
 
     /**
@@ -108,7 +112,7 @@ class SmsService
      */
     public function eventReminder($locale = 'da_DK')
     {
-        if (0 == $this->settings['send.event.reminders']) {
+        if ((0 == $this->settings['send.event.reminders'])) {
             return;
         }
 
