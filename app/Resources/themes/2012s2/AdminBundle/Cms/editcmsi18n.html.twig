@@ -59,7 +59,9 @@
     $(document).ready(function(){
       /* Pretty print the settings in the textarea */
       var settings = $('#cms_settings').val();
-      $('#cms_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
+      if(settings !== "undefined"){
+        $('#cms_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
+      }
     });
 </script>
 
