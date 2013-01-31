@@ -25,8 +25,8 @@
           <h2>Toimitusaika</h2> <p>Odotettu toimitusaika: %date%.</p>
           <h2>Yhteystiedot</h2> <p>Tarvittaessa voit ottaa yhteyttä meihin.</p> <p>Puhelin +45-86-78 7871</p> <p>Sähköposti: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
           <h2>Oma sivu</h2> <p> Tilausten tarkastelu ja paljon muuta<br> <a href="%account%">&amp;raquo; Min side</a> </p>
-          <h2>FAQ</h2> <p> Tästä löydät yleisimmät kysymykset ja vastaukset POMPdeLUXista.<br> <a href="/p/forside-kundeservice-faq">&amp;raquo; FAQ</a> </p>
-          <h2>Uutiset</h2> <p> Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.<br> <a href="/p/forside-nyheder">&amp;raquo; Nyheder</a> </p>
+          <h2>FAQ</h2> <p> Tästä löydät yleisimmät kysymykset ja vastaukset POMPdeLUXista.<br> <a href="/fi_FI/koti/asiakaspalvelu/faq">&amp;raquo; FAQ</a> </p>
+          <h2>Uutiset</h2> <p> Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.<br> <a href="/fi_FI/koti/uutiset">&amp;raquo; Nyheder</a> </p>
         ]]></target>
       </trans-unit>
       <trans-unit id="checkout.failed.title">
