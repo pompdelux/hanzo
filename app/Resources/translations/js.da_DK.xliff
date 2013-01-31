@@ -366,6 +366,10 @@
                 <source>more.product.info</source>
                 <target>Klik her for at mere information om %name%.</target>
             </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Klik her for at mere information.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

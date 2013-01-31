@@ -314,6 +314,10 @@
                 <source>pager.see_all.%total%</source>
                 <target>se alle(%total%)</target>
             </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Klik her for at mere information.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

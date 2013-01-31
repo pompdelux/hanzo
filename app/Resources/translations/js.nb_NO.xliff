@@ -355,6 +355,10 @@
                 <source>more.product.info</source>
                 <target>Klikk her for å få mer informasjon om %name%.</target>
             </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Klikk her for å få mer informasjon.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
