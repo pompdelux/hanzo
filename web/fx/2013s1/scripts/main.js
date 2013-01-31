@@ -118,7 +118,7 @@
      */
      pub.initCountdown = function() {
       // frontpage count down
-      var $countdown = $('td.countdown strong');
+      var $countdown = $('.countdown strong');
 
       if ($countdown) {
         $countdown.countdown({
