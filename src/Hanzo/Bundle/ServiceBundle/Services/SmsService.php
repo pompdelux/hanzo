@@ -53,6 +53,7 @@ class SmsService
         if ((false === Tools::isBellcomRequest()) && (0 == $this->settings['send.event.invites'])) {
             return;
         }
+Tools::log('sending sms invite to:'.$participant->getPhone());
 
         $event = $participant->getEvents();
         $parameters = array(
@@ -73,6 +74,8 @@ class SmsService
         $provider->addMessage($to, utf8_decode($message));
 
         $response = $provider->send();
+
+Tools::log($parameters);
 Tools::log($response);
         return $response;
     }
@@ -82,6 +85,7 @@ Tools::log($response);
         // if ((0 == $this->settings['send.event.confirmations'])) {
         //     return;
         // }
+Tools::log('sending sms conformation to:'.$participant->getPhone());
 
         $event = $participant->getEvents();
         $parameters = array(
@@ -101,6 +105,8 @@ Tools::log($response);
         $provider->addMessage($to, utf8_decode($message));
 
         $response = $provider->send();
+
+Tools::log($parameters);
 Tools::log($response);
         return $response;
     }
