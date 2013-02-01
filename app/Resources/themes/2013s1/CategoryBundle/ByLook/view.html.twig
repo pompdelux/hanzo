@@ -2,11 +2,15 @@
 
 {% block content %}
 
-<header class="grid_8 alpha omega">
-    <hgroup>
-        {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
-    </hgroup>
-</header>
+{% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
+  <header class="grid_8 alpha omega">
+      <hgroup>
+          {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
+      </hgroup>
+  </header>
+{% else %}
+<!-- {{ 'headers.'~page_type }} -->
+{% endif %}
 
 
 {% if paginate %}
