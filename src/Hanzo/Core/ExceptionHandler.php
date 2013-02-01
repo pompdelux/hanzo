@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 use Predis\Network\ConnectionException as PredisConnectionException;
@@ -87,7 +88,7 @@ class ExceptionHandler
                 }
             }
 
-        } elseif ($exception instanceof RouteNotFoundException) {
+        } elseif (($exception instanceof ResourceNotFoundException) || ($exception instanceof RouteNotFoundException)) {
             Tools::log($exception->getMessage() . ' :: ' . $request->getPathInfo());
 
             $response = new Response($this->service_container->get('templating')->render('TwigBundle:Exception:error404.html.twig', array(
