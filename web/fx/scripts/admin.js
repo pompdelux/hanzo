@@ -143,8 +143,8 @@
       });
 
       // CMS edit page, title text field slug creation
-      $('#cms_title').blur(function(e){
-        if($('#cms_path').val().length === 0 && $('#cms_title').val().length !== 0){
+      $('#cms-edit-form #form_title').blur(function(e){
+        if($('#form_path').val().length === 0 && $('#form_title').val().length !== 0){
           var slug = '';
           var chars = {
               'æ' : 'ae', 'Æ' : 'AE',
@@ -160,7 +160,7 @@
               ' ' : '-',
               '/' : '-'
           };
-          var title = $('#cms_title').val();
+          var title = $('#form_title').val();
 
           for (var i = 0; i < title.length; i++) {
               if ( chars[title.charAt(i)] ) {
@@ -174,7 +174,7 @@
           slug = slug.replace(/[-\s]+/g, '-');   // convert spaces
           slug = path + '/' + slug.replace(/-$/, '');         // remove trailing separator
           slug = slug.toLowerCase();
-          $('#cms_path').val(slug);
+          $('#form_path').val(slug);
         }
       });
 
