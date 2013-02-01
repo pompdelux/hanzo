@@ -142,8 +142,6 @@ class ByColourController extends CoreController
                 }
             }
 
-            $parent_page = CmsQuery::create()->filterById($page->getParentId())->findOne();
-
             $this->get('twig')->addGlobal('page_type', 'bycolour-'.$page->getTitle());
             $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$page->getTitle());
             $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));

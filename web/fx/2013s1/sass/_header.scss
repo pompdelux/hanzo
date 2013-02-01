@@ -58,6 +58,12 @@ ul.sub-menu,
 				padding: 3px 0 3px 6px;
 			}
 		}
+		&.item{
+			a{
+				line-height: 18px;
+				padding: 3px 0 3px 12px;
+			}
+		}
 		ul{
 			padding:6px 0 0 6px;
 			a{
@@ -118,6 +124,9 @@ ul.horizontal,
 
 ul.breadcrumb {
 	list-style: none;
+	font-size: $side-menu-size;
+	font-family: $side-menu-family;
+	color:$side-menu-color;
 	li {
 		display: inline-block;
 		&:before{
@@ -127,7 +136,15 @@ ul.breadcrumb {
 		&.first:before{
 			content: none;
 		}
-
+		a{
+			color:$font-color;
+			text-decoration: none;
+		}
+		&.active > a,
+		&.active-trail > a,
+		a:hover{
+			text-decoration: underline;
+		}
 	}
 }
 

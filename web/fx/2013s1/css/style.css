@@ -196,6 +196,11 @@ ul.sub-menu li.heading span,
   line-height: 18px;
   padding: 3px 0 3px 6px;
 }
+ul.sub-menu li.item a,
+.sub-menu > ul li.item a {
+  line-height: 18px;
+  padding: 3px 0 3px 12px;
+}
 ul.sub-menu li ul,
 .sub-menu > ul li ul {
   padding: 6px 0 0 6px;
@@ -252,6 +257,9 @@ ul.horizontal li,
 
 ul.breadcrumb {
   list-style: none;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: #444444;
 }
 ul.breadcrumb li {
   display: inline-block;
@@ -262,6 +270,14 @@ ul.breadcrumb li:before {
 }
 ul.breadcrumb li.first:before {
   content: none;
+}
+ul.breadcrumb li a {
+  color: #444444;
+  text-decoration: none;
+}
+ul.breadcrumb li.active > a, ul.breadcrumb li.active-trail > a,
+ul.breadcrumb li a:hover {
+  text-decoration: underline;
 }
 
 .container .main header {
@@ -437,11 +453,6 @@ div.panes > div {
 
 .body-product .breadcrumb {
   margin-bottom: 16px;
-}
-
-.back-to-category .sprite {
-  height: 7px;
-  width: 4px;
 }
 
 a.video-popper, #video-player-container a.video {
@@ -1836,6 +1847,16 @@ button.button.button-full-width,
 a.button.button-full-width,
 .main article a.button.button-full-width {
   width: 100%;
+}
+
+.back-button {
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: #444444;
+}
+.back-button .sprite {
+  height: 7px;
+  width: 4px;
 }
 
 table {
