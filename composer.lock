@@ -1,5 +1,5 @@
 {
-    "hash": "b5df25ac5b90125da614d4d048170316",
+    "hash": "a15403cf1729226d59b52b337977fc9b",
     "packages": [
         {
             "name": "doctrine/common",
@@ -69,6 +69,43 @@
                 "annotations",
                 "persistence"
             ]
+        },
+        {
+            "name": "drak/native-session",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drak/NativeSession",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/drak/NativeSession/archive/1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/http-foundation": ">=2.1.0"
+            },
+            "time": "2012-12-13 15:40:15",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Drak": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Drak",
+                    "email": "drak@zikula.org"
+                }
+            ],
+            "description": "Native session handlers for Symfony2"
         },
         {
             "name": "ekino/newrelic-bundle",
@@ -1517,6 +1554,7 @@
         "kriswallsmith/assetic": 20,
         "snc/redis-bundle": 20,
         "ekino/newrelic-bundle": 20,
-        "liip/theme-bundle": 20
+        "liip/theme-bundle": 20,
+        "drak/native-session": 20
     }
 }

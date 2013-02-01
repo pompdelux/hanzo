@@ -17,6 +17,7 @@ use Hanzo\Model\om\BaseOrders;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersAttributes;
+use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersVersions;
 use Hanzo\Model\OrdersVersionsQuery;
 use Hanzo\Model\ShippingMethods;
@@ -207,6 +208,12 @@ class Orders extends BaseOrders
         }
         $this->setOrdersLiness($collection);
 
+        OrdersAttributesQuery::create()
+            ->findByOrdersId($this->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->delete()
+        ;
+        $this->clearOrdersAttributess();
+
         $collection = new PropelCollection();
         foreach ($data['attributes'] as $item) {
             $line = new OrdersAttributes();
@@ -290,7 +297,6 @@ class Orders extends BaseOrders
             ->orderByVersionId('desc')
             ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
         ;
-
         $this->toVersion($version);
 
         // delete abandoned version

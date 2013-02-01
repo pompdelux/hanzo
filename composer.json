@@ -25,7 +25,8 @@
         "willdurand/expose-translation-bundle": "*",
         "mrbase/smesg": "*",
         "ekino/newrelic-bundle": "master-dev",
-        "liip/theme-bundle": "dev-master"
+        "liip/theme-bundle": "dev-master",
+        "drak/native-session": "master-dev"
     },
     "scripts": {
         "post-install-cmd": [

@@ -15,9 +15,17 @@ framework:
     templating:
         engines: [twig]
         assets_version: '%assets_version%'
-    session: ~
+    session:
+        storage_id: session.storage.native
+        handler_id: session.handler.redis
 
 services:
+    # native redis session handeling
+    # https://github.com/drak/NativeSession
+    session.handler.redis:
+        class: Drak\NativeSession\NativeRedisSessionHandler
+        arguments: [ 'tcp://%redis_session_host%:%redis_session_port%?prefix=hanzo.session:&database=%redis_session_database%' ]
+
     stock:
         class: Hanzo\Core\Stock
         arguments: [ '@event_dispatcher', '%locale%' ]
@@ -111,8 +119,6 @@ jms_security_extra:
     secure_all_services: false
     expressions: true
 
-# when switching to native redis session handeling
-# https://github.com/drak/NativeSession
 snc_redis:
     clients:
         default:
@@ -123,19 +129,6 @@ snc_redis:
                 connection_persistent: true
                 connection_timeout: 30
                 read_write_timeout: 0
-        session:
-            type: predis
-            alias: session
-            dsn: 'redis://%redis_session_host%:%redis_session_port%/%redis_session_database%'
-            options:
-                connection_persistent: true
-                connection_timeout: 30
-                read_write_timeout: 0
-    session:
-        client: session
-        ttl: 10800
-        prefix: hanzo.session
-        use_as_default: true
 
 # settings for the cms bundle.
 cms:
