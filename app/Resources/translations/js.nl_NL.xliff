@@ -350,6 +350,14 @@
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Wacht totdat het betaalscherm geopend wordt. Het kan 30 seconden duren voordat het betaalscherm geopend is. Duurt het meer dan 30 seconden, klik dan op de “Betaling onderbreken” knop hieronder en probeer het opnieuw.<br><br>Bij voorbaat dank.<br><br><a href="%url%">» Betaling onderbreken</a>]]></target>
             </trans-unit>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
+                <target>Klik hier voor meer informatie over %name%.</target>
+            </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Klik hier voor meer informatie.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

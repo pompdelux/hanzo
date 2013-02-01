@@ -362,6 +362,14 @@
                 <source>checkout.payment.progress.alert.message</source>
                 <target><![CDATA[Vent venligst på at betalingsvinduet bliver hentet. Det kan tage op til 30 sekunder at hente betalingsvinduet. Går der mere end 30 sekunder, skal du klikke på Afbryd betaling knappen herunder og prøve igen.<br><br>På forhånd tak.<br><br><a href="%url%">» Afbryde betaling</a>]]></target>
             </trans-unit>
+            <trans-unit id="more.product.info">
+                <source>more.product.info</source>
+                <target>Klik her for at mere information om %name%.</target>
+            </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Klik her for at mere information.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

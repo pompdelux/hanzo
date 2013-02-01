@@ -1,0 +1,16 @@
+/**
+| _find-consultants
+*/
+
+.near-you-container{
+    .entry{
+        margin-bottom: 6px;
+        img{display:block;}
+    }
+    .row{
+        border-bottom: 1px solid grey;
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+}

@@ -161,7 +161,7 @@
                         <li>Postens Godssenter</li>
                         <li>NO-0668 Oslo</li>
                         <li><img src="%cdn%fx/images/creditcards_se.png" alt="credit cards" title="credit cards"></li>
-						<li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
+                        <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
                 ]]></target>
             </trans-unit>
@@ -218,6 +218,10 @@
             <trans-unit id="pager.see_all.%total%" approved="no">
                 <source>pager.see_all.%total%</source>
                 <target>see all(%total%)</target>
+            </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Klikk her for å få mer informasjon.</target>
             </trans-unit>
         </body>
     </file>

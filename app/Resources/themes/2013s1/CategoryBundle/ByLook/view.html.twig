@@ -2,16 +2,20 @@
 
 {% block content %}
 
-<header class="grid_8 alpha omega">
-    <hgroup>
-        {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
-    </hgroup>
-</header>
+{% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
+  <header class="grid_8 alpha omega">
+      <hgroup>
+          {{ ('headers.'~page_type)|trans({}, 'category')|raw }}
+      </hgroup>
+  </header>
+{% else %}
+<!-- {{ 'headers.'~page_type }} -->
+{% endif %}
 
 
 {% if paginate %}
   <div class="grid_8 alpha omega row">
-    <div class="grid_3 push_5 alpha omega right">
+    <div class="grid_4 push_4 alpha omega right">
       {% import "::macro.pager.html.twig" as p %}
       {{ p.pager(paginate, 'product-list') }}
     </div>
@@ -23,7 +27,7 @@
     {% render 'CMSBundle:Menu:menu' with {'type': 'cat', 'offset': cms_id } %}
   </div>
   <div class="grid_6 omega">
-    <div class="product-list clearfix grid_6 alpha omega">
+    <div class="product-list clearfix grid_6 alpha omega row">
       <div class="old-item">
         {% for product in products %}
           {% if loop.index % 3 == 1 %}
@@ -53,7 +57,7 @@
       </div>
     </div>
     {% if paginate %}
-      <div class="grid_3 push_3 omega right">
+      <div class="grid_4 push_2 omega right">
         {% import "::macro.pager.html.twig" as p %}
         {{ p.pager(paginate, 'product-list') }}
       </div>
@@ -69,9 +73,10 @@
       <? if((i+1)%3 === 1) {?>
         <div class="grid_6 alpha omega">
       <?}?>
-      <div class="block block-num-<?=(i+1)?> grid_2 <? if((i+1)%3===1){?>alpha<?}?> <? if((i+1)%3===0){?>omega<?}?>">
+      <div class="look block block-num-<?=(i+1)?> grid_2 <? if((i+1)%3===1){?>alpha<?}?> <? if((i+1)%3===0){?>omega<?}?>">
         <a href="<?=data[i].url?>" title="<?=Translator.get('more.product.info')?>">
           <img src="<?=data[i].image?>" alt="" height="410" width="234">
+          <div class="buy-set"></div>
         </a>
       </div>
       <? if((i+1)%3 === 0 || (i+1) === l){?>

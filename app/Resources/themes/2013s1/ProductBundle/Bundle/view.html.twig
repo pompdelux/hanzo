@@ -65,7 +65,9 @@
     huh ?!?
   {% endfor %}
 
-
-  <a href="javascript: history.go(-1);" class="button left">{{ 'button.back'|trans }}</a>
+<div class="grid_8 alpha omega">
+  <a href="javascript: history.go(-1);" class="button button-left">{{ 'button.back'|trans }}</a>
+  <a href="{{ url('basket_view', {'_locale' : app.request.locale}) }}" class="button button-right proceed">{{ "proceed"|trans({}, 'checkout') }}</a>
+</div>
 
 {% endblock %}

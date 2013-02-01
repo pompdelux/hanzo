@@ -85,7 +85,12 @@ hr {
 }
 
 strong, b {font-weight: bold;}
-
+i,em{font-style:italic;}
+blockquote{
+	font-style: italic;
+	padding: 3px;
+	border: 1px solid #F5F5F5;
+}
 aside{
 	padding-bottom: 24px;
 	h1,h2,h3,h4,h5{
@@ -275,6 +280,7 @@ button {
   	border: 2px solid #f10000;
   }
 }
+.no-text{line-height:0;}
 .box{
 	padding: 6px;
 	display: inline-block;
@@ -327,7 +333,7 @@ ol{
 	.cycle-pager{
 		display: inline-block;
 		position: absolute;
-		bottom: 0;
+		bottom: 2px;
 		left: 16px;
 		z-index: 101;
 		span{
@@ -342,6 +348,7 @@ ol{
 		}
 	}
 	.cycle-slide{
+		line-height: 0;
 		img{
 			width: 100%;
 		}

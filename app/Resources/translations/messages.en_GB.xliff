@@ -153,10 +153,8 @@
                         <li>CVR-nr 29622035</li>
                         <li><a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a></li>
                         <li>+45 8736 1000</li>
-                    </ul>
-                    <ul style="width:290px;">
                         <li><img src="%cdn%fx/images/creditcards_com.png" alt="credit cards" title="credit cards"></li>
-						<li><div class="fb-like" data-send="true" data-layout="button_count" data-width="225" data-show-faces="false" data-font="tahoma"></div></li>
+                        <li><a href="http://www.facebook.com/sharer.php?u=%url%" class="facebook-button social-button" title="Share this page on facebook">Share</a></li>
                     </ul>
                 ]]></target>
             </trans-unit>
@@ -213,6 +211,10 @@
             <trans-unit id="pager.see_all.%total%" approved="no">
                 <source>pager.see_all.%total%</source>
                 <target>see all(%total%)</target>
+            </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Click for more information.</target>
             </trans-unit>
         </body>
     </file>

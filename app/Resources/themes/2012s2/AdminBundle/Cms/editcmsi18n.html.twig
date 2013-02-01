@@ -58,8 +58,10 @@
   var path = "{{ path }}";
     $(document).ready(function(){
       /* Pretty print the settings in the textarea */
-      var settings = $('#cms_settings').val();
-      $('#cms_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
+      var settings = $('#form_settings').val();
+      if(settings !== "undefined"){
+        $('#form_settings').val(JSON.stringify(JSON.parse(settings),null,'\t'));
+      }
     });
 </script>
 

@@ -127,7 +127,7 @@
       <hr class="left row">
     </div>
     <div class="copy grid_8">
-      {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
+      {{ 'footer.address'|trans({'%cdn%':cdn, '%url%':app.request.uri|url_encode })|raw }}
     </div>
   </footer>
 </div>
