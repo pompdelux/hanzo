@@ -1605,6 +1605,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   color: #444444;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
