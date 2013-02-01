@@ -16,6 +16,11 @@
 {% block content %}
 
 {% if page_type|default('page') != 'frontpage' %}
+    <div class="grid_8 alpha omega row">
+      {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+    </div>
+
+    <div class="grid_8 alpha omega">
     {% if parent_id is not null %}{# pages with subpages #}
         <div class="grid_2 alpha sub-menu menu">
             {% render 'CMSBundle:Menu:menu' with {'type': 'cat', 'offset': parent_id } %}
@@ -27,13 +32,12 @@
             </article>
         </div>
     {% else %}{# pages without subpages #}
-        <div class="grid_8 omega">
             <h1>{{ page.title }}</h1>
             <article>
                 {{ parse(page.content) }}
             </article>
-        </div>
     {% endif %}
+    </div>
 {% else %}{# Frontpages #}
     <article>
         {{ parse(page.content) }}

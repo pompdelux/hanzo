@@ -209,6 +209,16 @@ a.button,
 	}
 }
 
+.back-button{
+	font-size: $side-menu-size;
+	font-family: $side-menu-family;
+	color:$side-menu-color;
+	.sprite{
+		height: icons-sprite-height(arrow_left);
+		width: icons-sprite-width(arrow_left);
+	}
+}
+
 table{
 	width: 100%;
 	margin: 6px 0 12px;

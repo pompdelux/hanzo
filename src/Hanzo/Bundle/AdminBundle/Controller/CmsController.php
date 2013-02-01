@@ -406,10 +406,10 @@ class CmsController extends CoreController
                 $cms_thread = substr($node['item_id'],1);
                 continue;
             }
-            if (empty($sort[$node['parent_id']])) // Init the sort number to 1 if its not already is set
-                $sort[$node['parent_id']] = 1;
+            if (empty($sort[$cms_thread])) // Init the sort number to 1 if its not already is set
+                $sort[$cms_thread] = 1;
             else // If sort number are set, increment it
-                $sort[$node['parent_id']]++;
+                $sort[$cms_thread]++;
 
             $cmsNode = CmsQuery::create()->findOneById($node['item_id'], $this->getDbConnection());
             if (substr($node['parent_id'],0,1) == 't') // Its a top level cms page. It has no parent_id. This parent_id is the id of which cms_thread
@@ -417,7 +417,7 @@ class CmsController extends CoreController
             else
                 $cmsNode->setParentId($node['parent_id']); // Its a normal page with a parent
 
-            $cmsNode->setSort($sort[$node['parent_id']]);
+            $cmsNode->setSort($sort[$cms_thread]);
             $cmsNode->setCmsThreadId($cms_thread);
             $cmsNode->save($this->getDbConnection());
         }
