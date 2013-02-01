@@ -136,13 +136,17 @@ ul.menu li a,
   color: #444444;
   text-decoration: none;
 }
-nav > ul li.active > a, nav > ul li.active-trail > a,
+nav > ul li.active > a, nav > ul li.active > span, nav > ul li.active-trail > a, nav > ul li.active-trail > span,
 nav > ul li a:hover,
 ul.menu li.active > a,
+ul.menu li.active > span,
 ul.menu li.active-trail > a,
+ul.menu li.active-trail > span,
 ul.menu li a:hover,
 .menu > ul li.active > a,
+.menu > ul li.active > span,
 .menu > ul li.active-trail > a,
+.menu > ul li.active-trail > span,
 .menu > ul li a:hover {
   text-decoration: underline;
 }
@@ -1599,6 +1603,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .sprite-block {
   display: block;
+}
+
+html {
+  overflow-y: scroll;
 }
 
 body {

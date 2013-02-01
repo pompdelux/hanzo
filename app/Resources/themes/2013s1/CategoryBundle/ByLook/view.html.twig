@@ -36,7 +36,7 @@
             <div class="grid_6 alpha omega row">
           {% endif %}
               <div class="look block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
-                <a href="{{ product.url }}" title="{{ "more.product.info"|trans() }}">
+                <a href="{{ product.url }}" title="{{ "more.bundle.info"|trans() }}">
                   {{ product_image_tag(product.image, '234x410', {
                     'alt' : '',
                     'height' : '410',
@@ -76,7 +76,7 @@
         <div class="grid_6 alpha omega">
       <?}?>
       <div class="look block block-num-<?=(i+1)?> grid_2 <? if((i+1)%3===1){?>alpha<?}?> <? if((i+1)%3===0){?>omega<?}?>">
-        <a href="<?=data[i].url?>" title="<?=Translator.get('more.product.info')?>">
+        <a href="<?=data[i].url?>" title="<?=Translator.get('more.bundle.info')?>">
           <img src="<?=data[i].image?>" alt="" height="410" width="234">
           <div class="buy-set"></div>
         </a>

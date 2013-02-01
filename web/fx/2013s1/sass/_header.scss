@@ -18,7 +18,9 @@ ul.menu,
 			text-decoration: none;
 		}
 		&.active > a,
+		&.active > span,
 		&.active-trail > a,
+		&.active-trail > span,
 		a:hover{
 			text-decoration: underline;
 		}
