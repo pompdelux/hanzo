@@ -212,6 +212,10 @@
                 <source>pager.see_all.%total%</source>
                 <target>see all(%total%)</target>
             </trans-unit>
+            <trans-unit id="more.bundle.info">
+                <source>more.bundle.info</source>
+                <target>Click for more information.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
