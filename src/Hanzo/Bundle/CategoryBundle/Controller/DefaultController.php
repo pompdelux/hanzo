@@ -61,13 +61,12 @@ class DefaultController extends CoreController
 
             $data = CategoriesPeer::getCategoryProductsByCategoryId($category_id, $pager, $show);
 
-            $cms_page = CmsQuery::create()->findOneById($cms_id); // Find this cms' parent's parent.
-            $parent_page = CmsQuery::create()->filterById($cms_page->getParentId())->findOne();
+            $cms_page = CmsQuery::create()->findOneById($cms_id);
 
             $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
             $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show);
             $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
-            $this->get('twig')->addGlobal('cms_id', $parent_page->getParentId());
+            $this->get('twig')->addGlobal('cms_id', $cms_page->getParentId());
             $this->get('twig')->addGlobal('show_by_look', ($show === 'look'));
             $html = $this->renderView('CategoryBundle:Default:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);

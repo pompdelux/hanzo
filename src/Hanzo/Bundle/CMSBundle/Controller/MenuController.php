@@ -24,7 +24,7 @@ class MenuController extends CoreController
     protected $cms_thread = 20;
     protected $menu = array();
 
-    public function menuAction($type, $thread = NULL, $from = NULL, $offset = NULL, $css_id = null)
+    public function menuAction($type, $thread = NULL, $from = NULL, $offset = NULL, $css_id = null, $include_self = null)
     {
         $request = $this->get('request');
 
@@ -81,7 +81,7 @@ class MenuController extends CoreController
                         if ($from && !isset($this->trail[$from])) {
                             break;
                         }
-                        $this->generateFlat($offset, $type);
+                        $this->generateFlat($offset, $type, $include_self);
                     }
                     $html = $this->menu[$type];
                     break;
@@ -217,45 +217,81 @@ class MenuController extends CoreController
         }
     }
 
-
-    protected function generateFlat($parent_id, $type)
+    // Used for left menu, in new design
+    protected function generateFlat($parent_id, $type, $include_self = false)
     {
-        $result = CmsQuery::create()
+        $query = CmsQuery::create()
             ->joinWithI18n($this->locale)
             ->filterByCmsThreadId($this->cms_thread)
             ->filterByIsActive(TRUE)
             ->orderBySort()
             ->filterByParentId($parent_id)
-            ->find()
         ;
 
+        if($include_self){
+            $query = $query->_or()
+                ->filterById($parent_id)
+            ;
+        }
+
+        $result = $query->find();
         if ($result->count()) {
-            $this->menu[$type] .= '<nav class="'.$type.'"><ul>';
+            $ul = '<ul class="'.$type.'">';
+            $this->menu[$type] .= $ul;
 
             foreach($result as $record) {
-
-                $class = 'inactive';
-                if ((isset($this->trail[$record->getId()])) ||
-                    ($record->getPath() == $this->path)
-                ) {
-                    $class = 'active';
-                }
-                if (in_array($record->getType(), array('page', 'url'))) {
-                    $params = $record->getSettings(null, false);
-                    if ($params && isset($params->class)) {
-                        $class .= ' ' . $params->class;
-                    }
-                }
 
                 $path = $record->getPath();
                 if ($record->getType() == 'frontpage') {
                     $path = '';
                 }
 
-                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $this->base_url . '/' . $this->locale . '/' . $path . '">' . $record->getTitle() . '</a></li>';
+                if ($record->getTitle()) {
+                    $class = 'inactive';
+                    if ((isset($this->trail[$record->getId()])) ||
+                        ($path == $this->path)
+                    ) {
+                        $class = 'active';
+                    }
+
+                    if($result->isFirst()){
+                        $class .= ' first';
+                    }
+
+                    if($result->isLast()){
+                        $class .= ' last';
+                    }
+
+                    if (in_array($record->getType(), array('page', 'url'))) {
+                        $params = $record->getSettings(null, false);
+
+                        if (isset($params->class)) {
+                            $class .= ' ' . $params->class;
+                        } elseif (isset($params->is_frontpage)) {
+                            if ($this->path == '/') {
+                                $class = 'active';
+                            }
+                            $path = '';
+                        }
+                    }
+
+                    if (preg_match('~^(f|ht)tps?://~', $path)) {
+                        $uri = $path;
+                    } else {
+                        $uri = $this->base_url . '/' . $this->locale . '/' . $path;
+                    }
+
+                    if($record->getType() !== 'heading'){
+                        $this->menu[$type] .= '<li class="' . $class . ' item"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
+                    }else{
+                        $this->menu[$type] .= '<li class="' . $class . ' heading"><span>' . $record->getTitle() . '</span>';
+                    }
+
+                    $this->menu[$type] .= '</li>';
+                }
             }
 
-            $this->menu[$type] .= '</ul></nav>';
+            $this->menu[$type] .= '</ul>';
         }
     }
 
