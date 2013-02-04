@@ -219,7 +219,7 @@ class EventsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $consultant = ConsultantsQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+                $consultant = CustomersPeer::getCurrent();
 
                 $customers_id = $event->getCustomersId(); // from the form
                 $host = null; // Customers Object
