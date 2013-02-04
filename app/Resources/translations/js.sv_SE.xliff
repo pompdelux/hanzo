@@ -339,11 +339,11 @@
                 <source>approve.conditions.required</source>
                 <target>You have to approve POMPdeLUX terms and conditions.</target>
             </trans-unit>
-            <trans-unit id="more.product.info">
+            <trans-unit id="more.product.info" approved="no">
                 <source>more.product.info</source>
                 <target>Klicka här för att få mer information om %name%.</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info">
+            <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
                 <target>Klicka här för att få mer information.</target>
             </trans-unit>
