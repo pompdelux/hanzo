@@ -1725,9 +1725,14 @@ i, em {
 }
 
 blockquote {
-  font-style: italic;
-  padding: 3px;
-  border: 1px solid whitesmoke;
+  background-image: url(/fx/images/citat2.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  padding-left: 60px;
+  padding-top: 20px;
+  margin-left: 0;
+  font-size: 18px;
+  font-family: "Merriweather", serif;
 }
 
 aside {
