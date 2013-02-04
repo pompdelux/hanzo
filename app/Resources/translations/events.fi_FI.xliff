@@ -374,6 +374,18 @@
                 <source>event.closed</source>
                 <target>Arrangementet er nu lukket</target>
             </trans-unit>
+            <trans-unit id="event.sms.confirmation.reply" approved="no">
+                <source>event.sms.confirmation.reply</source>
+                <target>Hej %name%. Tak for din tilmelding til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg glæder mig til at se dig! %hostess%</target>
+            </trans-unit>
+            <trans-unit id="event.sms.invite" approved="no">
+                <source>event.sms.invite</source>
+                <target>Hej %name%. %hostess% vil gerne invitere dig til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se det lækre børnetøj, så svar på denne sms med teksten "pdl %event_id%". Jeg håber, vi ses!</target>
+            </trans-unit>
+            <trans-unit id="event.sms.reminder" approved="no">
+                <source>event.sms.reminder</source>
+                <target>Hej %name% Husk POMPdeLUX home shopping arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

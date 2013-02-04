@@ -22,10 +22,10 @@ class SmsController extends CoreController
 
     // TODO this should not be hardcoded ! but we need to figure out where to store the information...
     protected $appnr_map = array(
-        1231 => 45,
-        2201 => 47,
-        17163 => 358,
-        72445 => 46,
+        1231  => 45,  // dk
+        2201  => 47,  // no
+        17163 => 358, // fi
+        72445 => 46,  // se
     );
 
     public function rsvpAction(Request $request)
