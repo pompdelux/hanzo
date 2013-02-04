@@ -267,13 +267,10 @@ ul.breadcrumb {
 }
 ul.breadcrumb li {
   display: inline-block;
+  padding: 0 3px;
 }
-ul.breadcrumb li:before {
-  content: '>';
-  padding: 0 6px;
-}
-ul.breadcrumb li.first:before {
-  content: none;
+ul.breadcrumb li.first {
+  padding: 0 3px 0 0;
 }
 ul.breadcrumb li a {
   color: #444444;
