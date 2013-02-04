@@ -1071,7 +1071,8 @@ class ECommerceServices extends SoapService
             } catch (DibsApiCallException $e) {
                 $error = array(
                     'cound not capture order #' . $data->eOrderNumber,
-                    'error: ' . $e->getMessage()
+                    'error: ' . $e->getMessage(),
+                    'line : ' . __LINE__
                 );
             }
             $this->timer->lap('time in gateway');
@@ -1085,7 +1086,8 @@ class ECommerceServices extends SoapService
         } catch (Exception $e) {
             $error = array(
                 'cound not capture order #' . $data->eOrderNumber,
-                'error: ' . $e->getMessage()
+                'error: ' . $e->getMessage(),
+                'line : ' . __LINE__
             );
         }
 
@@ -1130,7 +1132,8 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
                 $doSendError = true;
                 $errors = array(
                     'cound not refund order #' . $data->eOrderNumber,
-                    'error: ' . $result['status_description']
+                    'error: ' . $result['status_description'],
+                    'line : ' . __LINE__
                 );
             } else {
                 $name = $order->getFirstName() . ' ' . $order->getLastName();
@@ -1164,8 +1167,9 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
         } catch (Exception $e) {
             $doSendError = true;
             $errors = array(
-                'cound not capture order #' . $data->eOrderNumber,
-                'error: ' . $e->getMessage()
+                'cound not refund order #' . $data->eOrderNumber,
+                'error: ' . $e->getMessage(),
+                'line : ' . __LINE__
             );
         }
 
@@ -1179,7 +1183,7 @@ Tools::log('-<-<-<-<-<-<-<-<-<-');
             $mailer->setsubject('Refundering fejlede på ordre #' . $data->eOrderNumber);
             $mailer->setBody(
                 "Fejlen opstået på: {$domain}\n\n".
-                "E-ordrenummer: ".$data->eOrderNumber." Transaktionsnummer: ".$order->getPaymentGatewayId()."\n\n".
+                "E-ordrenummer: ".$data->eOrderNumber." PaymentOrderId: ".$order->getPaymentGatewayId()."\n\n".
                 "Fejlbeskeder:\n- ".
                 implode("\n- ", $errors)."\n\n".
                 "Med venlig hilsen DIBS\n"
