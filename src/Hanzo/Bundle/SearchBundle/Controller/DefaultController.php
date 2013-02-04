@@ -234,7 +234,6 @@ class DefaultController extends CoreController
             $result_set = $category_map;
         }
 
-        $parent_page = CmsQuery::create()->filterById($page->getParentId())->findOne();
         $this->setSharedMaxAge(300);
         return $this->render('SearchBundle:Default:category.html.twig', array(
             'page_type' => 'category-search',
@@ -244,7 +243,7 @@ class DefaultController extends CoreController
             'sizes'     => (is_array($sizes) ? $sizes : array()),
             'route'     => $this->getRequest()->get('_route'),
             'selected'  => $this->getRequest()->get('size', ''),
-            'cms_id'    => $parent_page->getParentId()
+            'cms_id'    => $page->getParentId()
         ));
     }
 
