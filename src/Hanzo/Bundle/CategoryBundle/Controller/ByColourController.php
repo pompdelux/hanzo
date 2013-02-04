@@ -104,7 +104,9 @@ class ByColourController extends CoreController
                     ProductsImagesPeer::COLOR,
                     '\''.implode('\',\'', $color_map).'\''
                 ))
+                ->filterByColor($color_map)
                 ->filterByType('overview')
+                ->groupById()
                 ->find()
             ;
 
