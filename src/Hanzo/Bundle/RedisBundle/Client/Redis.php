@@ -11,10 +11,16 @@ Class Redis
     protected $logger = null;
     protected $connected = false;
     protected $parameters = [];
-
     protected $name;
 
 
+    /**
+     * constructor method
+     *
+     * @param string $name        Name of the connection
+     * @param string $environment The kernel environment variable
+     * @param array  $parameters  Configuration parameters
+     */
     public function __construct($name, $environment, array $parameters = [])
     {
         $this->parameters = $parameters;
@@ -28,27 +34,41 @@ Class Redis
         }
     }
 
+
+    /**
+     * setup logging
+     *
+     * @param Logger $logger
+     */
     public function setLogger(Logger $logger)
     {
         $this->logger = $logger;
     }
 
+
+    /**
+     * wrap all redis calls to handle profiling
+     *
+     * @param  string $name      Redis method
+     * @param  array  $arguments Arguments to parse on the real method
+     * @return boolean
+     * @throws InvalidArgumentException    If the command called does not exist
+     * @throws RedisCommunicationException If the call to redis fails
+     */
     public function __call($name, $arguments = [])
     {
         if (!$this->connected) {
             $this->connect();
         }
 
-        // ignore commands
+        // ignore connect commands
         if (in_array($name, ['connect', 'pconnect'])) {
             return;
         }
 
         $log = true;
         switch (strtolower($name)) {
-            case 'connect':
             case 'open':
-            case 'pconnect':
             case 'popen':
             case 'close':
             case 'setoption':
@@ -122,6 +142,8 @@ Class Redis
 
         if ($this->connected) {
             if ($this->redis->select($this->parameters['database'])) {
+
+                // setup default options
                 $this->redis->setOption(\Redis::OPT_PREFIX, $this->parameters['prefix']);
                 $this->redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);
 
@@ -156,6 +178,7 @@ Class Redis
         return mb_substr(trim(strtoupper($command) . ' ' . implode(' ', $list)), 0, 256);
     }
 
+
     /**
      * Flatten arguments to single dimension array
      *
@@ -175,4 +198,5 @@ Class Redis
                 $this->flatten($item, $list);
             }
         }
-    }}
+    }
+}
