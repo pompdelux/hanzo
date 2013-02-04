@@ -56,7 +56,10 @@
     }
     #secondary-links .menu.horizontal{
         float: right;
+        clear: both;
         li{
+            display: inline;
+            float: left;
             > a {
                 line-height: 40px;
                 display: block;
@@ -66,7 +69,6 @@
             }
         }
         &.second{
-            clear: both;
             li a{
                 line-height: icons-sprite-height(basket);
                 display: inline;

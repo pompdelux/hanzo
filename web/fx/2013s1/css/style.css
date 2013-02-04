@@ -1433,7 +1433,7 @@ div.dialoug.like-pop li div {
   display: block;
 }
 .near-you-container .row {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid whitesmoke;
 }
 .near-you-container .row:last-child {
   border-bottom: none;
@@ -1487,6 +1487,11 @@ div.dialoug.like-pop li div {
 }
 .oldie #secondary-links .menu.horizontal {
   float: right;
+  clear: both;
+}
+.oldie #secondary-links .menu.horizontal li {
+  display: inline;
+  float: left;
 }
 .oldie #secondary-links .menu.horizontal li > a {
   line-height: 40px;
@@ -1494,9 +1499,6 @@ div.dialoug.like-pop li div {
 }
 .oldie #secondary-links .menu.horizontal li .dropdown a {
   line-height: 14px;
-}
-.oldie #secondary-links .menu.horizontal.second {
-  clear: both;
 }
 .oldie #secondary-links .menu.horizontal.second li a {
   line-height: 45px;

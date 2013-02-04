@@ -225,7 +225,6 @@
       });
 
       $('#address-copy').on('change',function(e){
-        e.preventDefault();
         $copied = $('#address-block form:nth-child(2)');
         if($(this).attr('checked')){
           $('#address-block form:first input[type=text]').each(function(i){
