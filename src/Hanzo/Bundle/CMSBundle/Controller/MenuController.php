@@ -381,7 +381,7 @@ class MenuController extends CoreController
             $this->menu[$type] .= '<ul class="breadcrumb">';
 
             foreach ($this->trail as $record) {
-
+                $class = '';
                 $path = $record->getPath();
                 if ($record->getType() == 'frontpage') {
                     $path = '';
