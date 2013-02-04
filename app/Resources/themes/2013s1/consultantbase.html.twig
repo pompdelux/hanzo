@@ -59,10 +59,10 @@
 
   <nav id="secondary-links">
     {% if is_granted('ROLE_USER') %}
-      <ul class="horizontal menu right last">
-        <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
+      <ul class="horizontal menu right first">
+        <li class="last"><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
       </ul>
-      <ul class="horizontal menu right">
+      <ul class="horizontal menu right second">
         <li id="mini-basket" class="basket">
           <span class="sprite"></span>
           <a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}" title="{{ "show.basket"|trans }}"> {% render 'BasketBundle:Default:miniBasket' %} </a>
