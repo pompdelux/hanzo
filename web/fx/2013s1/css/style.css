@@ -1433,7 +1433,7 @@ div.dialoug.like-pop li div {
   display: block;
 }
 .near-you-container .row {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid whitesmoke;
 }
 .near-you-container .row:last-child {
   border-bottom: none;
