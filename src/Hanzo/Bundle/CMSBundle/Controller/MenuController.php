@@ -376,7 +376,7 @@ class MenuController extends CoreController
 
     protected function generateBreadcrumb($type = 'breadcrumb')
     {
-        if($count = count($this->trail)){
+        if($count = count($this->trail) > 1){
             $this->trail = array_reverse($this->trail);
             $this->menu[$type] .= '<ul class="breadcrumb">';
 
