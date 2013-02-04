@@ -145,7 +145,7 @@ class ByColourController extends CoreController
             }
 
             $this->get('twig')->addGlobal('page_type', 'bycolour-'.$id);
-            $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$page->getTitle());
+            $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$id);
             $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
             $this->get('twig')->addGlobal('cms_id', $page->getParentId());
             $html = $this->renderView('CategoryBundle:ByColour:view.html.twig', array('products' => $products));

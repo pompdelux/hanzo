@@ -116,6 +116,10 @@
 /**
 | _header
 */
+#logo {
+  margin-top: 6px;
+}
+
 nav > ul,
 ul.menu,
 .menu > ul {
@@ -310,6 +314,8 @@ ul.breadcrumb li a:hover {
   color: white;
 }
 
+.body-bycolour .main header,
+.body-bylook .main header,
 .body-category .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
@@ -320,8 +326,14 @@ ul.breadcrumb li a:hover {
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
 
-#logo {
-  margin-top: 6px;
+.bylook-62 .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
+}
+
+.bycolour-582 .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
 
 /**
@@ -1713,9 +1725,14 @@ i, em {
 }
 
 blockquote {
-  font-style: italic;
-  padding: 3px;
-  border: 1px solid whitesmoke;
+  background-image: url(/fx/images/citat2.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  padding-left: 60px;
+  padding-top: 20px;
+  margin-left: 0;
+  font-size: 18px;
+  font-family: "Merriweather", serif;
 }
 
 aside {
