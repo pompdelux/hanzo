@@ -28,7 +28,6 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
             new Propel\PropelBundle\PropelBundle(),
-            new Snc\RedisBundle\SncRedisBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
@@ -54,6 +53,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\WallBundle\WallBundle(),
             new Hanzo\Bundle\WebServicesBundle\WebServicesBundle(),
             new Hanzo\Bundle\VarnishBundle\VarnishBundle(),
+            new Hanzo\Bundle\RedisBundle\RedisBundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {

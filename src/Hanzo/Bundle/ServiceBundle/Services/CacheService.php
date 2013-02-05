@@ -7,7 +7,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\CmsQuery;
 
-use Predis\Client AS PredisClient;
+use Hanzo\Bundle\RedisBundle\Client\Redis;
 
 class CacheService
 {
@@ -19,7 +19,7 @@ class CacheService
         $this->redis = $parameters[0];
         $this->settings = $settings;
 
-        if (!$this->redis instanceof PredisClient) {
+        if (!$this->redis instanceof Redis) {
             throw new \InvalidArgumentException('Predis\Client expected as first parameter.');
         }
     }

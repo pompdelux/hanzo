@@ -8,9 +8,8 @@ function AFSWS_Init( $mode = 'live' )
 {
 	// Ange sökvägen till webservicen
 	$wsdl = 'http://clienttesthorizon.gothiagroup.com/AFSServices/AFSService.svc?wsdl';
-    if ( $mode != 'test')
-    {
-	  $wsdl = 'http://horizon.gothiagroup.com/AFSServices/AFSService.svc?wsdl';
+    if ( $mode != 'test') {
+	    $wsdl = 'https://horizonws.gothiagroup.com/AFSServices/AFSService.svc?wsdl';
     }
 
 	// Skapa en klient för den angiva webservicen
@@ -62,7 +61,7 @@ function AFSWS_ClosedTag($tagName, $namespace = '')
 function AFSWS_User($username, $password, $clientID)
 {
 	$ns = 'akt';
-	
+
 	$userData = AFSWS_Tag('Username', $username, $ns);
 	$userData = $userData.AFSWS_Tag('Password', $password, $ns);
 	$userData = $userData.AFSWS_Tag('ClientID', $clientID, $ns);
@@ -90,7 +89,7 @@ function AFSWS_GetErrors($response)
 			}
 		}
 	}
-	
+
 	return $errorMessages;
 }
 
@@ -101,7 +100,7 @@ function AFSWS_GetCustomer($user, $search)
 }
 
 // Funktion för att söka efter en kund via många olika sökparametrar
-function AFSWS_GetCustomerInfo($customerNo = null, $orgno = null, $firstname = null, $lastname = null, $ssn = null, $bornDate = null, $address = null, 
+function AFSWS_GetCustomerInfo($customerNo = null, $orgno = null, $firstname = null, $lastname = null, $ssn = null, $bornDate = null, $address = null,
 	$postalCode = null, $postalPlace = null, $countryCode = null)
 {
 	$customerData = AFSWS_Tag('Address', $address);
@@ -126,12 +125,12 @@ function AFSWS_CheckCustomer($user, $customer)
 }
 
 // Funktion för att skapa ett kundobjekt
-function AFSWS_Customer($address = null, $countryCode = null, $currencyCode = null, $customerNo = null, $customerCategory = null, $directPhone = null, 
+function AFSWS_Customer($address = null, $countryCode = null, $currencyCode = null, $customerNo = null, $customerCategory = null, $directPhone = null,
 	$distributionBy = null, $distributionType = null, $email = null, $fax = null, $firstName = null, $lastName = null, $mobilePhone = null, $orgNoSSN = null,
 	$phone = null, $postalCode = null, $postalPlace = null, $statCodeAlphaNum = null, $statCodeNum = null)
 {
 	$ns = 'akt1';
-	
+
 	$customerData = AFSWS_Tag('Address', $address, $ns);
 	$customerData = $customerData.AFSWS_Tag('CountryCode', $countryCode, $ns);
 	$customerData = $customerData.AFSWS_Tag('CurrencyCode', $currencyCode, $ns);
@@ -151,18 +150,18 @@ function AFSWS_Customer($address = null, $countryCode = null, $currencyCode = nu
 	$customerData = $customerData.AFSWS_Tag('PostalPlace', $postalPlace, $ns);
 	$customerData = $customerData.AFSWS_Tag('StatCodeAlphaNumeric', $statCodeAlphaNum, $ns);
 	$customerData = $customerData.AFSWS_Tag('StatCodeNumeric', $statCodeNum, $ns);
-	
+
 	return AFSWS_Tag('customer', $customerData);
 }
 
 // Funktion för att skapa ett orderobjekt
-function AFSWS_Order($allowPartlyShipment = null, $comments = null, $currencyCode = null, $customerNo = null, $deliveryAddress = null, 
-	$deliveryCountryCode = null, $deliveryPostalCode = null, $deliveryPostalPlace = null, $discountProfileNo = null, $estimatedShipDate = null, 
+function AFSWS_Order($allowPartlyShipment = null, $comments = null, $currencyCode = null, $customerNo = null, $deliveryAddress = null,
+	$deliveryCountryCode = null, $deliveryPostalCode = null, $deliveryPostalPlace = null, $discountProfileNo = null, $estimatedShipDate = null,
 	$exchangeRate = null, $invoiceLayoutNo = null, $invoiceProfileNo = null, $orderDate = null, $orderLines = null, $orderNo = null, $ourRef = null,
 	$statCodeAlphaNum = null, $statCodeNum = null, $yourRef = null)
 {
 	$ns = 'akt1';
-	
+
 	$orderData = AFSWS_Tag('AllowPartlyShipment', $allowPartlyShipment, $ns);
 	$orderData = $orderData.AFSWS_Tag('Comments', $comments, $ns);
 	$orderData = $orderData.AFSWS_Tag('CurrencyCode', $currencyCode, $ns);
@@ -191,7 +190,7 @@ function AFSWS_Order($allowPartlyShipment = null, $comments = null, $currencyCod
 function AFSWS_OrderLine($itemDescription, $itemID, $orderLineNo, $quantity, $taxPercent, $unitCode, $unitPrice)
 {
 	$ns = 'akt1';
-	
+
 	$orderLineData = AFSWS_Tag('ItemDescription', $itemDescription, $ns);
 	$orderLineData = $orderLineData.AFSWS_Tag('ItemID', $itemID, $ns);
 	$orderLineData = $orderLineData.AFSWS_Tag('OrderLineNo', $orderLineNo, $ns);
@@ -199,7 +198,7 @@ function AFSWS_OrderLine($itemDescription, $itemID, $orderLineNo, $quantity, $ta
 	$orderLineData = $orderLineData.AFSWS_Tag('TaxPercent', $taxPercent, $ns);
 	$orderLineData = $orderLineData.AFSWS_Tag('UnitCode', $unitCode, $ns);
 	$orderLineData = $orderLineData.AFSWS_Tag('UnitPrice', $unitPrice, $ns);
-	
+
 	return AFSWS_Tag('AFSOrderLine', $orderLineData, $ns);
 }
 
@@ -207,11 +206,11 @@ function AFSWS_OrderLine($itemDescription, $itemID, $orderLineNo, $quantity, $ta
 function AFSWS_OrderOptions($accountOfferType = null, $noInvoicePurchase = null, $orderActivationType = null)
 {
 	$ns = 'akt1';
-	
+
 	$orderOptions = AFSWS_Tag('AccountOfferType', $accountOfferType, $ns);
 	$orderOptions = $orderOptions.AFSWS_Tag('NoInvoicePurchase', $noInvoicePurchase, $ns);
 	$orderOptions = $orderOptions.AFSWS_Tag('OrderActivationType', $orderActivationType, $ns);
-	
+
 	return AFSWS_Tag('orderOptions', $orderOptions);
 }
 
@@ -251,7 +250,7 @@ function AFSWS_PlaceReservation( $user, $reservation )
 {
   return '<PlaceReservation xmlns="http://tempuri.org/">'.$user.$reservation.'</PlaceReservation>';
 }
-  
+
 /**
  * AFSWS_Reservation
  * @param string $accountOfferType
@@ -276,7 +275,7 @@ function AFSWS_Reservation($accountOfferType, $amount, $currencyCode, $customerN
 }
 
 /**
- * AFSWS_CancelReservation( 
+ * AFSWS_CancelReservation(
  * @param string $user
  * @param string $cancelReservation
  * @return string

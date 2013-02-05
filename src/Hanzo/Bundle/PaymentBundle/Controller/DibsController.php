@@ -34,8 +34,7 @@ class DibsController extends CoreController
         $request = $this->get('request');
         $orderId = $request->get('orderid');
 
-        if ( $orderId === false )
-        {
+        if ( $orderId === false ) {
             Tools::log( 'Dibs callback did not supply a valid order id' );
             Tools::log( $_POST );
             return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
@@ -43,22 +42,18 @@ class DibsController extends CoreController
 
         $order = OrdersPeer::retriveByPaymentGatewayId( $orderId );
 
-        if ( !($order instanceof Orders) )
-        {
+        if ( !($order instanceof Orders) ) {
             Tools::log( 'Dibs callback did not supply a valid order id: "'. $orderId .'"' );
             Tools::log( $_POST );
             return new Response('Failed', 500, array('Content-Type' => 'text/plain'));
         }
 
-        try
-        {
+        try {
             $api->verifyCallback( $request, $order );
             $api->updateOrderSuccess( $request, $order );
 
             $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             Tools::log( $e->getMessage() );
             $api->updateOrderFailed( $request, $order );
         }
@@ -76,18 +71,23 @@ class DibsController extends CoreController
     public function blockAction()
     {
         $api = $this->get('payment.dibsapi');
+        $redis = $this->get('redis.permanent');
+
+        $dibs_status = $redis->hget('service.status', 'dibs');
 
         $isJson = ('json' === $this->getFormat() ) ? true : false;
 
-        if ( !$api->isActive() )
-        {
-            if ( $isJson )
-            {
+        if (!$api->isActive() || ('DOWN' == $dibs_status)) {
+            if ($isJson) {
                 return $this->json_response( array('status' => false) );
-            }
-            else
-            {
-                return new Response( '', 200, array('Content-Type' => 'text/html'));
+            } else {
+
+                $html = '';
+                if ('DOWN' == $dibs_status) {
+                    $html = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
+                }
+
+                return new Response( $html, 200, array('Content-Type' => 'text/html'));
             }
         }
 
@@ -95,12 +95,9 @@ class DibsController extends CoreController
         $settings = $api->buildFormFields($order);
         $cardtypes = $api->getEnabledPaytypes();
 
-        if ( $isJson )
-        {
+        if ($isJson) {
             return $this->json_response( array('status' => true, 'fields' => $settings) );
-        }
-        else
-        {
+        } else {
             return $this->render('PaymentBundle:Dibs:block.html.twig',array( 'cardtypes' => $cardtypes, 'form_fields' => $settings ));
         }
     }
@@ -119,8 +116,7 @@ class DibsController extends CoreController
         $goto    = false;
         $session = $this->get('session');
 
-        if ( $session->has('last_successful_order_id') )
-        {
+        if ($session->has('last_successful_order_id')) {
             $goto = true;
         }
 
@@ -139,8 +135,7 @@ class DibsController extends CoreController
     {
         $order = OrdersPeer::retriveByPaymentGatewayId( $order_id );
 
-        if ( !empty($order) && $order->getId() !== $this->get('session')->get('order_id') )
-        {
+        if (!empty($order) && ($order->getId() !== $this->get('session')->get('order_id'))) {
           error_log(__LINE__.':'.__FILE__.' Order id mismatch, in url: '.$order_id. ' in session: '. $this->get('session')->get('order_id') ); // hf@bellcom.dk debugging
         }
 
