@@ -7,10 +7,34 @@ use Hanzo\Bundle\RedisBundle\Logger\Logger;
 
 Class Redis
 {
+    /**
+     * Redis instance
+     * @var Redis
+     */
     protected $redis = null;
+
+    /**
+     * Logger
+     * @var Logger
+     */
     protected $logger = null;
+
+    /**
+     * Wether or not we are connected to the redis server
+     * @var boolean
+     */
     protected $connected = false;
+
+    /**
+     * Redis connection parameters
+     * @var array
+     */
     protected $parameters = [];
+
+    /**
+     * Name/label of the connection, used for logging
+     * @var string
+     */
     protected $name;
 
 
@@ -157,6 +181,10 @@ Class Redis
 
         $error = $this->redis->getLastError();
         $this->redis->clearLastError();
+
+        if ($this->logger) {
+            $this->logger->err('Could not connect to redis server (' . $error . ')');
+        }
 
         throw new RedisCommunicationException('Could not connect to Redis: '.$error);
     }
