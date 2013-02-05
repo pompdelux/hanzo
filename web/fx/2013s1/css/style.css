@@ -17,68 +17,68 @@
   background-position: 0 -494px;
 }
 
-.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s064ec75c18.png') no-repeat;
+.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+  background: url('/fx/2013s1/../images/icons/icons-s23707167a9.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -548px;
+  background-position: 0 -524px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -541px;
+  background-position: 0 -517px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -552px;
+  background-position: 0 -528px;
 }
 
 .icons-basket {
-  background-position: 0 -86px;
+  background-position: 0 -102px;
 }
 
 .icons-button-left {
-  background-position: 0 -522px;
+  background-position: 0 -411px;
 }
 
 .icons-button-right {
-  background-position: 0 -503px;
+  background-position: 0 -392px;
 }
 
 .icons-delete {
-  background-position: 0 -147px;
+  background-position: 0 -142px;
 }
 
 .icons-delete_black {
-  background-position: 0 -157px;
+  background-position: 0 -152px;
 }
 
 .icons-delete_white {
-  background-position: 0 -167px;
+  background-position: 0 -162px;
 }
 
 .icons-divider {
-  background-position: 0 -360px;
+  background-position: 0 -300px;
 }
 
 .icons-divider_left {
-  background-position: 0 -227px;
+  background-position: 0 -217px;
 }
 
 .icons-divider_right {
-  background-position: 0 -290px;
+  background-position: 0 -280px;
 }
 
 .icons-edit {
-  background-position: 0 -131px;
+  background-position: 0 -86px;
 }
 
 .icons-facebook {
-  background-position: 0 -439px;
+  background-position: 0 -430px;
 }
 
 .icons-gplus {
-  background-position: 0 -407px;
+  background-position: 0 -360px;
 }
 
 .icons-newsletter {
@@ -86,31 +86,31 @@
 }
 
 .icons-pdf {
-  background-position: 0 -559px;
+  background-position: 0 -535px;
 }
 
 .icons-pinterest {
-  background-position: 0 -375px;
+  background-position: 0 -459px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -247px;
+  background-position: 0 -237px;
 }
 
 .icons-show {
-  background-position: 0 -575px;
+  background-position: 0 -551px;
 }
 
 .icons-twitter {
-  background-position: 0 -471px;
+  background-position: 0 -488px;
 }
 
 .icons-video {
-  background-position: 0 -310px;
+  background-position: 0 -315px;
 }
 
 .icons-zoom {
-  background-position: 0 -177px;
+  background-position: 0 -172px;
 }
 
 /**
@@ -140,17 +140,13 @@ ul.menu li a,
   color: #444444;
   text-decoration: none;
 }
-nav > ul li.active > a, nav > ul li.active > span, nav > ul li.active-trail > a, nav > ul li.active-trail > span,
+nav > ul li.active > a, nav > ul li.active-trail > a,
 nav > ul li a:hover,
 ul.menu li.active > a,
-ul.menu li.active > span,
 ul.menu li.active-trail > a,
-ul.menu li.active-trail > span,
 ul.menu li a:hover,
 .menu > ul li.active > a,
-.menu > ul li.active > span,
 .menu > ul li.active-trail > a,
-.menu > ul li.active-trail > span,
 .menu > ul li a:hover {
   text-decoration: underline;
 }
@@ -196,12 +192,19 @@ ul.sub-menu li,
   padding: 0 0 6px 0;
   line-height: 18px;
 }
-ul.sub-menu li.heading span,
-.sub-menu > ul li.heading span {
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+ul.sub-menu li.heading span, ul.sub-menu li.self-included,
+.sub-menu > ul li.heading span,
+.sub-menu > ul li.self-included {
+  font-weight: bold;
   display: block;
   line-height: 18px;
+}
+ul.sub-menu li.self-included a,
+.sub-menu > ul li.self-included a {
+  text-decoration: none;
+}
+ul.sub-menu li.heading span,
+.sub-menu > ul li.heading span {
   padding: 3px 0 3px 6px;
 }
 ul.sub-menu li.item a,
@@ -244,9 +247,9 @@ ul.horizontal li,
 #secondary-links li.basket .sprite {
   display: inline-block;
   vertical-align: middle;
-  background-position: 0 -86px;
-  height: 45px;
-  width: 35px;
+  background-position: 0 -102px;
+  height: 40px;
+  width: 31px;
 }
 #secondary-links li.basket a {
   display: inline-block;
@@ -283,6 +286,12 @@ ul.breadcrumb li a {
 ul.breadcrumb li.active > a, ul.breadcrumb li.active-trail > a,
 ul.breadcrumb li a:hover {
   text-decoration: underline;
+}
+ul.breadcrumb li i.arrow-right {
+  margin-top: 3px;
+}
+ul.breadcrumb li.last i.arrow-right {
+  display: none;
 }
 
 .container .main header {
@@ -366,6 +375,9 @@ footer .footer-menu.footer-menu-4 .container {
 }
 footer .footer-menu.footer-menu-4 .container input[type=submit] {
   float: right;
+  font-size: 12px;
+  font-family: "Merriweather", serif;
+  letter-spacing: 0;
 }
 footer .footer-menu.footer-menu-4 .sprite {
   background-position: 0 0;
@@ -377,6 +389,7 @@ footer .footer-menu.footer-menu-4 input[type="email"],
 footer .footer-menu.footer-menu-4 input[type="text"] {
   width: 252px;
   display: block;
+  padding: 4px 5px;
 }
 footer .footer-menu.footer-menu-4 #dialoug-message {
   width: 200px;
@@ -388,6 +401,7 @@ footer .footer-menu.footer-menu-4 form {
   width: 264px;
 }
 footer .copy {
+  margin-top: 3px;
   text-align: center;
   font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -459,9 +473,9 @@ div.panes > div {
   text-align: center;
 }
 .zoom .sprite {
-  background-position: 0 -177px;
-  height: 50px;
-  width: 45px;
+  background-position: 0 -172px;
+  height: 45px;
+  width: 41px;
 }
 
 .body-product .breadcrumb {
@@ -473,15 +487,15 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -310px;
-  height: 50px;
-  width: 58px;
+  background-position: 0 -315px;
+  height: 45px;
+  width: 52px;
 }
 
 .body-product .main h1.title,
 .body-product .main .prices {
   font-family: "Merriweather", serif;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: normal;
 }
 .body-product .main .prices {
@@ -508,7 +522,6 @@ form.buy label select {
 }
 form.buy label a {
   margin-left: 18px;
-  font-weight: bold;
 }
 form.buy label.off {
   display: none;
@@ -688,7 +701,11 @@ html.touch .product-list .buy-set {
   display: inline-block;
 }
 
+.pager {
+  display: inline;
+}
 .pager ul {
+  display: inline;
   list-style: none;
 }
 .pager ul li {
@@ -919,16 +936,16 @@ form.address label {
 | _social
 */
 .social-buttons a.icons-facebook {
-  height: 32px;
-  width: 32px;
+  height: 29px;
+  width: 29px;
 }
 .social-buttons a.icons-twitter {
-  height: 32px;
-  width: 32px;
+  height: 29px;
+  width: 29px;
 }
 .social-buttons a.icons-pinterest {
-  height: 32px;
-  width: 32px;
+  height: 29px;
+  width: 29px;
 }
 
 .facebook-button {
@@ -1055,6 +1072,9 @@ nav.main-menu > ul > li > ul.on {
   text-transform: none;
   padding: 6px 0 0;
   letter-spacing: 0;
+}
+.body-pages .breadcrumb {
+  margin-bottom: 12px;
 }
 
 /**
@@ -1510,7 +1530,7 @@ div.dialoug.like-pop li div {
   line-height: 14px;
 }
 .oldie #secondary-links .menu.horizontal.second li a {
-  line-height: 45px;
+  line-height: 40px;
   display: inline;
 }
 .oldie hr {
@@ -1706,14 +1726,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -360px;
+  background-position: 0 -300px;
   height: 15px;
 }
 hr.left {
-  background-position: 0 -227px;
+  background-position: 0 -217px;
 }
 hr.right {
-  background-position: 0 -290px;
+  background-position: 0 -280px;
 }
 
 strong, b {
@@ -1883,6 +1903,27 @@ a.button.button-full-width,
   width: 4px;
 }
 
+.arrow-right {
+  margin-left: 6px;
+  background-position: 0 -528px;
+  height: 7px;
+  width: 4px;
+}
+
+.arrow-left {
+  margin-right: 6px;
+  background-position: 0 -517px;
+  height: 7px;
+  width: 4px;
+}
+
+.arrow-right,
+.arrow-left {
+  display: inline-block;
+  vertical-align: text-top;
+  margin-top: 5px;
+}
+
 table {
   width: 100%;
   margin: 6px 0 12px;
@@ -2012,26 +2053,30 @@ button.right {
   border: #f0f0f0 1px solid;
 }
 
+.to-top {
+  margin-right: 12px;
+}
+
 .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
   display: inline-block;
 }
 .sprite.delete {
-  background-position: 0 -147px;
+  background-position: 0 -142px;
   height: 10px;
   width: 15px;
 }
 .sprite.edit {
-  background-position: 0 -131px;
+  background-position: 0 -86px;
   height: 16px;
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -575px;
+  background-position: 0 -551px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -559px;
+  background-position: 0 -535px;
   height: 16px;
   width: 16px;
 }
@@ -2053,7 +2098,7 @@ ol.list {
 .cycle-slideshow .cycle-pager {
   display: inline-block;
   position: absolute;
-  bottom: 2px;
+  bottom: 8px;
   left: 16px;
   z-index: 101;
 }

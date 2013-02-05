@@ -198,6 +198,10 @@
                 <source>more.bundle.info</source>
                 <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
             </trans-unit>
+            <trans-unit id="goto.top.link" approved="no">
+                <source>goto.top.link</source>
+                <target>Goto top</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

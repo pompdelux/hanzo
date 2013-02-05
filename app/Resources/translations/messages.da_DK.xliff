@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="previous">
                 <source>previous</source>
-                <target>« Forrige</target>
+                <target>Forrige</target>
             </trans-unit>
             <trans-unit id="pager.page">
                 <source>pager.page</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="next">
                 <source>next</source>
-                <target>Næste »</target>
+                <target>Næste</target>
             </trans-unit>
             <trans-unit id="product.details">
                 <source>product.details</source>
@@ -314,9 +314,13 @@
                 <source>pager.see_all.%total%</source>
                 <target>se alle(%total%)</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info">
+            <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
                 <target>Klik her for at mere information.</target>
+            </trans-unit>
+            <trans-unit id="goto.top.link" approved="no">
+                <source>goto.top.link</source>
+                <target>Til top</target>
             </trans-unit>
         </body>
     </file>

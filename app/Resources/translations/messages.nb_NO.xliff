@@ -223,6 +223,10 @@
                 <source>more.bundle.info</source>
                 <target>Klikk her for å få mer informasjon.</target>
             </trans-unit>
+            <trans-unit id="goto.top.link" approved="no">
+                <source>goto.top.link</source>
+                <target>Goto top</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

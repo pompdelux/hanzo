@@ -36,10 +36,20 @@ class DefaultController extends CoreController
             $selected_payment_type = $order->getBillingMethod().':'.$order->getAttributes()->payment->paytype;
         }
 
+        $redis = $this->get('redis.permanent');
+        $dibs_status = $redis->hget('service.status', 'dibs');
+
+
         $modules = [];
         foreach ($this->services as $service => $controller) {
+
             $service = $this->get($service);
             if ($service && $service->isActive()) {
+
+                if ('Dibs' == $controller && 'DOWN' === $dibs_status) {
+                    $modules[] = '<div class="down">'.$this->get('translator')->trans('dibs.down.message', [], 'checkout').'</div>';
+                    continue;
+                }
 
                 $parameters = [
                     'order' => $order,
@@ -95,7 +105,11 @@ class DefaultController extends CoreController
         // Handle payment fee
         // Currently hardcoded to 0 vat
         // It also only supports one order line with payment fee, as all others are deleted
-        $order->setOrderLinePaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+
+        if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
+            $order->setOrderLinePaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+        }
+
         $order->setUpdatedAt(time());
         $order->save();
 

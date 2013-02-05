@@ -60,7 +60,7 @@ class Hanzo
         if (('cli' !== PHP_SAPI) && empty($_SERVER['HTTP_SOAPACTION'])) {
 
             try {
-                $this->cache = $this->container->get('hanzo.cache');
+                $this->cache = $this->container->get('redis.main');
             } catch (ConnectionException $e) {
                 $event = new GetResponseForExceptionEvent($container->get('kernel'), new Request(), HttpKernelInterface::MASTER_REQUEST, $e);
                 $container->get('event_dispatcher')->dispatch(KernelEvents::EXCEPTION, $event);
@@ -69,7 +69,7 @@ class Hanzo
         }
 
         if ($this->cache) {
-            $cache_id = $this->cache->id($this->kernel->getSetting('domain_key'),'core.settings');
+            $cache_id = $this->cache->generateKey($this->kernel->getSetting('domain_key'),'core.settings');
             if ($cache = $this->cache->get($cache_id)) {
                 $this->settings = $cache;
             }
@@ -80,7 +80,7 @@ class Hanzo
             $this->initDomain();
 
             if ($this->cache) {
-                $this->cache->set($cache_id, $this->settings);
+                $this->cache->setex($cache_id, 3600, $this->settings);
             }
         }
 

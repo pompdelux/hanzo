@@ -212,9 +212,13 @@
                 <source>pager.see_all.%total%</source>
                 <target>see all(%total%)</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info">
+            <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
                 <target>Click for more information.</target>
+            </trans-unit>
+            <trans-unit id="goto.top.link" approved="no">
+                <source>goto.top.link</source>
+                <target>Goto top</target>
             </trans-unit>
         </body>
     </file>

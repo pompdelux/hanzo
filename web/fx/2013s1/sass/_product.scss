@@ -65,7 +65,7 @@ a.video-popper, #video-player-container a.video {
 	h1.title,
 	.prices {
 		font-family: $font-serif;
-		font-size: 26px;
+		font-size: $product-title-size;
 		font-weight: normal;
 	}
 	.prices{
@@ -92,7 +92,6 @@ form.buy{
 		}
 		a {
 			margin-left: 18px;
-			font-weight: bold;
 		}
 		&.off {
 			display: none;

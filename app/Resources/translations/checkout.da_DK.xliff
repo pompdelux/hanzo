@@ -405,6 +405,15 @@
          <source>address.copy</source>
          <target>Leveringsaddressen er den samme som min addresse</target>
       </trans-unit>
+      <trans-unit id="dibs.down.message">
+         <source>dibs.down.message</source>
+         <target><![CDATA[
+          Kære kunde<br>
+          Betalingssystemet (DIBS) er i øjeblikket ude af drift, du kan derfor ikke betale med kreditkort. Du kan i stedet benytte Gothia faktura betaling eller vende tilbage senere.<br>
+          Med venlig hilsen<br>
+          POMPdeLUX
+          ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

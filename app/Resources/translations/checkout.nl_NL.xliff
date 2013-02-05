@@ -385,6 +385,15 @@
          <source>address.copy</source>
          <target>The deliveryaddress is the same as mine</target>
       </trans-unit>
+      <trans-unit id="dibs.down.message">
+         <source>dibs.down.message</source>
+         <target><![CDATA[
+          Beste klant,<br>
+          Het betaalsysteem (DIBS) is op het moment buiten gebruik en je kunt daarom niet met een creditcard betalen. Probeer het later opnieuw – bij voorbaat dank.<br>
+          Met vriendelijke groet,<br>
+          POMPdeLUX
+          ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

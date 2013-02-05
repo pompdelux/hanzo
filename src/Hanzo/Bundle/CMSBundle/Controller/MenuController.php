@@ -43,10 +43,7 @@ class MenuController extends CoreController
 
             if ($thread) {
                 $this->cms_thread = $thread;
-            } else {
-                $this->cms_thread = $hanzo->get('core.main_menu_thread');
             }
-
             if (empty($this->path)) {
                 $this->path = str_replace($this->locale, '', $request->getPathInfo());
 
@@ -262,6 +259,10 @@ class MenuController extends CoreController
                         $class .= ' last';
                     }
 
+                    if($record->getId() === $parent_id){
+                        $class .= ' self-included';
+                    }
+
                     if (in_array($record->getType(), array('page', 'url'))) {
                         $params = $record->getSettings(null, false);
 
@@ -331,6 +332,9 @@ class MenuController extends CoreController
                     ) {
                         $class = 'active';
                     }
+                    error_log(isset($this->trail[$record->getId()]) && $this->trail[$record->getId()]);
+                    error_log($record->getId());
+                    error_log($path.' - - - - '.$this->path);
 
                     if($result->isFirst()){
                         $class .= ' first';
@@ -400,9 +404,6 @@ class MenuController extends CoreController
                         $class .= ' first';
                     }elseif($record === end($this->trail)){ // Last
                         $class .= ' last';
-                        $this->menu[$type] .= '<li class="seperator">&gt;</li>';
-                    }else{
-                        $this->menu[$type] .= '<li class="seperator">&gt;</li>';
                     }
 
                     if (preg_match('~^(f|ht)tps?://~', $path)) {
@@ -411,7 +412,7 @@ class MenuController extends CoreController
                         $uri = $this->base_url . '/' . $this->locale . '/' . $path;
                     }
 
-                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a></li>';
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '<i class="sprite arrow-right"></i></a></li>';
                 }
 
             }

@@ -22,9 +22,7 @@ ul.menu,
 			text-decoration: none;
 		}
 		&.active > a,
-		&.active > span,
 		&.active-trail > a,
-		&.active-trail > span,
 		a:hover{
 			text-decoration: underline;
 		}
@@ -55,14 +53,17 @@ ul.sub-menu,
 	li{
 		padding: 0 0 6px 0;
 		line-height: 18px;
-		&.heading{
-			span{
-				border-bottom: 1px solid #000;
-				border-top: 1px solid #000;
-				display: block;
-				line-height: 18px;
-				padding: 3px 0 3px 6px;
-			}
+		&.heading span,
+		&.self-included{
+			font-weight: bold;
+			display: block;
+			line-height: 18px;
+		}
+		&.self-included a{
+			text-decoration: none;
+		}
+		&.heading span{
+			padding: 3px 0 3px 6px;
 		}
 		&.item{
 			a{
@@ -148,6 +149,10 @@ ul.breadcrumb {
 		a:hover{
 			text-decoration: underline;
 		}
+		i.arrow-right{
+			margin-top: 3px;
+		}
+		&.last i.arrow-right{display:none;}
 	}
 }
 

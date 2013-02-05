@@ -2,10 +2,6 @@
 
 {% block content %}
 
-<div class="grid_8 alpha omega row">
-  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
-</div>
-
 {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
   <header class="grid_8 alpha omega">
       <hgroup>
@@ -15,6 +11,10 @@
 {% else %}
 <!-- {{ 'headers.'~page_type }} -->
 {% endif %}
+
+<div class="grid_8 alpha omega row">
+  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+</div>
 
 <div class="grid_8 alpha omega">
   <div class="grid_2 alpha sub-menu menu">

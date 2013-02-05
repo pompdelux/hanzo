@@ -375,6 +375,15 @@
          <source>address.copy</source>
          <target>The deliveryaddress is the same as mine</target>
       </trans-unit>
+      <trans-unit id="dibs.down.message">
+         <source>dibs.down.message</source>
+         <target><![CDATA[
+          Hyvä asiakas,<br>
+          Maksujärjestelmä (DIBS) on toistaiseksi pois käytöstä, minkä vuoksi et voi maksaa luottokortilla. Voit valita maksutavaksi Gothia-laskun tai palata myöhemmin asiaan.<br>
+          Ystävällisin terveisin,<br>
+          POMPdeLUX
+          ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
