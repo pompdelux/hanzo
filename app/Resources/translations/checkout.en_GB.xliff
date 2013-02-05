@@ -377,6 +377,15 @@
          <source>address.copy</source>
          <target>The deliveryaddress is the same as mine</target>
       </trans-unit>
+      <trans-unit id="dibs.down.message">
+         <source>dibs.down.message</source>
+         <target><![CDATA[
+          Dear customer,<br>
+          Our payment system (DIBS) is currently out of order. Therefore you cannot pay with credit card. Please try again later.<br>
+          Kind regards<br>
+          POMPdeLUX
+          ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
