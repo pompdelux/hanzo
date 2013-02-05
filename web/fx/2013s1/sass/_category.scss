@@ -48,23 +48,27 @@
 }
 html.touch .product-list .buy-set{display: inline-block;}
 
-.pager ul{
-	list-style: none;
-	li{
-		display: inline-block;
-		&.current{
-			a{
-				text-decoration: underline;
+.pager{
+	display: inline;
+	ul{
+		display: inline;
+		list-style: none;
+		li{
+			display: inline-block;
+			&.current{
+				a{
+					text-decoration: underline;
+				}
 			}
-		}
-		&.off{
-			display: none;
-		}
-		&.prew{
-			margin-right: 9px;
-		}
-		&.next{
-			margin-left: 9px;
+			&.off{
+				display: none;
+			}
+			&.prew{
+				margin-right: 9px;
+			}
+			&.next{
+				margin-left: 9px;
+			}
 		}
 	}
 }

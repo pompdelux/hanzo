@@ -154,6 +154,15 @@
       }
     };
 
+    pub.initToTop = function() {
+      $('.to-top').on('click', function(e){
+        e.preventDefault();
+        $("html, body").animate({
+          scrollTop: 0
+        }, "slow");
+      });
+    };
+
     var getDocHeight = function(){
       var D = document;
       return Math.max(Math.max(
@@ -174,5 +183,6 @@
   gui.initUI();
   gui.initCountdown();
   gui.initBasket();
+  gui.initToTop();
 
 })(document, jQuery);

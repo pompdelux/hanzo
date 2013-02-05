@@ -140,17 +140,13 @@ ul.menu li a,
   color: #444444;
   text-decoration: none;
 }
-nav > ul li.active > a, nav > ul li.active > span, nav > ul li.active-trail > a, nav > ul li.active-trail > span,
+nav > ul li.active > a, nav > ul li.active-trail > a,
 nav > ul li a:hover,
 ul.menu li.active > a,
-ul.menu li.active > span,
 ul.menu li.active-trail > a,
-ul.menu li.active-trail > span,
 ul.menu li a:hover,
 .menu > ul li.active > a,
-.menu > ul li.active > span,
 .menu > ul li.active-trail > a,
-.menu > ul li.active-trail > span,
 .menu > ul li a:hover {
   text-decoration: underline;
 }
@@ -198,8 +194,7 @@ ul.sub-menu li,
 }
 ul.sub-menu li.heading span,
 .sub-menu > ul li.heading span {
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+  font-weight: bold;
   display: block;
   line-height: 18px;
   padding: 3px 0 3px 6px;
@@ -693,7 +688,11 @@ html.touch .product-list .buy-set {
   display: inline-block;
 }
 
+.pager {
+  display: inline;
+}
 .pager ul {
+  display: inline;
   list-style: none;
 }
 .pager ul li {
@@ -2015,6 +2014,10 @@ button.right {
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
   border: #f0f0f0 1px solid;
+}
+
+.to-top {
+  margin-right: 12px;
 }
 
 .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {

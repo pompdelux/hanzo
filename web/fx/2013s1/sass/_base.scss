@@ -305,6 +305,10 @@ button {
 	display: inline-block;
 	@include box;
 }
+
+.to-top{
+	margin-right: 12px;
+}
 .sprite{
 	&.delete,
 	&.edit,

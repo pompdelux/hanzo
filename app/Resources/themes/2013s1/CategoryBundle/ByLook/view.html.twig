@@ -2,10 +2,6 @@
 
 {% block content %}
 
-<div class="grid_8 alpha omega row">
-  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
-</div>
-
 {% if ('headers.'~page_type)|trans({}, 'category') != 'headers.'~page_type %}
   <header class="grid_8 alpha omega">
       <hgroup>
@@ -15,6 +11,10 @@
 {% else %}
 <!-- {{ 'headers.'~page_type }} -->
 {% endif %}
+
+<div class="grid_8 alpha omega row">
+  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+</div>
 
 <div class="grid_8 alpha omega row">
   {% if paginate %}
@@ -58,12 +58,13 @@
         {% endfor %}
       </div>
     </div>
-    {% if paginate %}
-      <div class="grid_4 push_2 omega right">
-        {% import "::macro.pager.html.twig" as p %}
-        {{ p.pager(paginate, 'product-list') }}
-      </div>
-    {% endif %}
+    <div class="grid_4 push_2 omega right">
+      <a href="#" class="to-top">{{ 'goto.top.link'|trans }}</a>
+      {% if paginate %}
+          {% import "::macro.pager.html.twig" as p %}
+          {{ p.pager(paginate, 'product-list') }}
+      {% endif %}
+    </div>
   </div>
 </div>
 

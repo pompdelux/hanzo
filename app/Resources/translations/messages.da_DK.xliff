@@ -314,9 +314,13 @@
                 <source>pager.see_all.%total%</source>
                 <target>se alle(%total%)</target>
             </trans-unit>
-            <trans-unit id="more.bundle.info">
+            <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
                 <target>Klik her for at mere information.</target>
+            </trans-unit>
+            <trans-unit id="goto.top.link" approved="no">
+                <source>goto.top.link</source>
+                <target>Til top</target>
             </trans-unit>
         </body>
     </file>

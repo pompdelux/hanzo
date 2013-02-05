@@ -22,9 +22,7 @@ ul.menu,
 			text-decoration: none;
 		}
 		&.active > a,
-		&.active > span,
 		&.active-trail > a,
-		&.active-trail > span,
 		a:hover{
 			text-decoration: underline;
 		}
@@ -57,8 +55,7 @@ ul.sub-menu,
 		line-height: 18px;
 		&.heading{
 			span{
-				border-bottom: 1px solid #000;
-				border-top: 1px solid #000;
+				font-weight: bold;
 				display: block;
 				line-height: 18px;
 				padding: 3px 0 3px 6px;
