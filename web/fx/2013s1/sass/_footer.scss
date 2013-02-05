@@ -27,6 +27,9 @@ footer{
 				display: inline-block;
 				input[type=submit] {
 					float: right;
+					font-size: 12px;
+					font-family: $font-serif;
+					letter-spacing: 0;
 				}
 			}
 			.sprite{
@@ -39,6 +42,7 @@ footer{
 			input[type="text"]{
 				width: 252px;
 				display: block;
+				padding: 4px 5px;
 			}
 			#dialoug-message{
 				width: 200px;
@@ -52,6 +56,7 @@ footer{
 		}
 	}
 	.copy {
+		margin-top: 3px;
 		text-align:center;
 		font-size:$footer-size;
 		font-family:$font-sans;
