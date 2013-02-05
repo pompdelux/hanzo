@@ -228,6 +228,26 @@ a.button,
 	}
 }
 
+
+.arrow-right{
+	margin-left: 6px;
+	@include icons-sprite(arrow_right);
+	height: icons-sprite-height(arrow_right);
+	width: icons-sprite-width(arrow_right);
+}
+.arrow-left{
+	margin-right: 6px;
+	@include icons-sprite(arrow_left);
+	height: icons-sprite-height(arrow_left);
+	width: icons-sprite-width(arrow_left);
+}
+.arrow-right,
+.arrow-left{
+	display:inline-block;
+	vertical-align:text-top;
+	margin-top: 5px;
+}
+
 table{
 	width: 100%;
 	margin: 6px 0 12px;

@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="previous">
                 <source>previous</source>
-                <target>« Forrige</target>
+                <target>Forrige</target>
             </trans-unit>
             <trans-unit id="pager.page">
                 <source>pager.page</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="next">
                 <source>next</source>
-                <target>Næste »</target>
+                <target>Næste</target>
             </trans-unit>
             <trans-unit id="product.details">
                 <source>product.details</source>

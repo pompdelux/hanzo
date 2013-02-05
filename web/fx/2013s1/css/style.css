@@ -17,20 +17,20 @@
   background-position: 0 -494px;
 }
 
-.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s0ed5662cca.png') no-repeat;
+.icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
+  background: url('/fx/2013s1/../images/icons/icons-s23707167a9.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -543px;
+  background-position: 0 -524px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -536px;
+  background-position: 0 -517px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -547px;
+  background-position: 0 -528px;
 }
 
 .icons-basket {
@@ -38,11 +38,11 @@
 }
 
 .icons-button-left {
-  background-position: 0 -517px;
+  background-position: 0 -411px;
 }
 
 .icons-button-right {
-  background-position: 0 -498px;
+  background-position: 0 -392px;
 }
 
 .icons-delete {
@@ -58,15 +58,15 @@
 }
 
 .icons-divider {
-  background-position: 0 -355px;
+  background-position: 0 -300px;
 }
 
 .icons-divider_left {
-  background-position: 0 -222px;
+  background-position: 0 -217px;
 }
 
 .icons-divider_right {
-  background-position: 0 -285px;
+  background-position: 0 -280px;
 }
 
 .icons-edit {
@@ -74,11 +74,11 @@
 }
 
 .icons-facebook {
-  background-position: 0 -434px;
+  background-position: 0 -430px;
 }
 
 .icons-gplus {
-  background-position: 0 -402px;
+  background-position: 0 -360px;
 }
 
 .icons-newsletter {
@@ -86,27 +86,27 @@
 }
 
 .icons-pdf {
-  background-position: 0 -554px;
+  background-position: 0 -535px;
 }
 
 .icons-pinterest {
-  background-position: 0 -370px;
+  background-position: 0 -459px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -242px;
+  background-position: 0 -237px;
 }
 
 .icons-show {
-  background-position: 0 -570px;
+  background-position: 0 -551px;
 }
 
 .icons-twitter {
-  background-position: 0 -466px;
+  background-position: 0 -488px;
 }
 
 .icons-video {
-  background-position: 0 -305px;
+  background-position: 0 -315px;
 }
 
 .icons-zoom {
@@ -286,6 +286,12 @@ ul.breadcrumb li a {
 ul.breadcrumb li.active > a, ul.breadcrumb li.active-trail > a,
 ul.breadcrumb li a:hover {
   text-decoration: underline;
+}
+ul.breadcrumb li i.arrow-right {
+  margin-top: 3px;
+}
+ul.breadcrumb li.last i.arrow-right {
+  display: none;
 }
 
 .container .main header {
@@ -468,8 +474,8 @@ div.panes > div {
 }
 .zoom .sprite {
   background-position: 0 -172px;
-  height: 50px;
-  width: 45px;
+  height: 45px;
+  width: 41px;
 }
 
 .body-product .breadcrumb {
@@ -481,15 +487,15 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -305px;
-  height: 50px;
-  width: 58px;
+  background-position: 0 -315px;
+  height: 45px;
+  width: 52px;
 }
 
 .body-product .main h1.title,
 .body-product .main .prices {
   font-family: "Merriweather", serif;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: normal;
 }
 .body-product .main .prices {
@@ -516,7 +522,6 @@ form.buy label select {
 }
 form.buy label a {
   margin-left: 18px;
-  font-weight: bold;
 }
 form.buy label.off {
   display: none;
@@ -931,16 +936,16 @@ form.address label {
 | _social
 */
 .social-buttons a.icons-facebook {
-  height: 32px;
-  width: 32px;
+  height: 29px;
+  width: 29px;
 }
 .social-buttons a.icons-twitter {
-  height: 32px;
-  width: 32px;
+  height: 29px;
+  width: 29px;
 }
 .social-buttons a.icons-pinterest {
-  height: 32px;
-  width: 32px;
+  height: 29px;
+  width: 29px;
 }
 
 .facebook-button {
@@ -1721,14 +1726,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -355px;
+  background-position: 0 -300px;
   height: 15px;
 }
 hr.left {
-  background-position: 0 -222px;
+  background-position: 0 -217px;
 }
 hr.right {
-  background-position: 0 -285px;
+  background-position: 0 -280px;
 }
 
 strong, b {
@@ -1898,6 +1903,27 @@ a.button.button-full-width,
   width: 4px;
 }
 
+.arrow-right {
+  margin-left: 6px;
+  background-position: 0 -528px;
+  height: 7px;
+  width: 4px;
+}
+
+.arrow-left {
+  margin-right: 6px;
+  background-position: 0 -517px;
+  height: 7px;
+  width: 4px;
+}
+
+.arrow-right,
+.arrow-left {
+  display: inline-block;
+  vertical-align: text-top;
+  margin-top: 5px;
+}
+
 table {
   width: 100%;
   margin: 6px 0 12px;
@@ -2045,12 +2071,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -570px;
+  background-position: 0 -551px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -554px;
+  background-position: 0 -535px;
   height: 16px;
   width: 16px;
 }

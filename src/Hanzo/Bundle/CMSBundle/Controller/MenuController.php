@@ -404,9 +404,6 @@ class MenuController extends CoreController
                         $class .= ' first';
                     }elseif($record === end($this->trail)){ // Last
                         $class .= ' last';
-                        $this->menu[$type] .= '<li class="seperator">&gt;</li>';
-                    }else{
-                        $this->menu[$type] .= '<li class="seperator">&gt;</li>';
                     }
 
                     if (preg_match('~^(f|ht)tps?://~', $path)) {
@@ -415,7 +412,7 @@ class MenuController extends CoreController
                         $uri = $this->base_url . '/' . $this->locale . '/' . $path;
                     }
 
-                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a></li>';
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '<i class="sprite arrow-right"></i></a></li>';
                 }
 
             }

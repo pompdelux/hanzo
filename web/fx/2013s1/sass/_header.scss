@@ -149,6 +149,10 @@ ul.breadcrumb {
 		a:hover{
 			text-decoration: underline;
 		}
+		i.arrow-right{
+			margin-top: 3px;
+		}
+		&.last i.arrow-right{display:none;}
 	}
 }
 
