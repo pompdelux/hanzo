@@ -50,19 +50,19 @@ class CoreController extends Controller
     protected function getCache($key)
     {
         if (empty($this->cache)) {
-            $this->cache = $this->get('hanzo.cache');
+            $this->cache = $this->get('redis.main');
         }
 
-        return $this->cache->get($this->cache->id($key));
+        return $this->cache->get($this->cache->generateKey($key));
     }
 
     protected function setCache($key, $data, $ttl = 3600)
     {
         if (empty($this->cache)) {
-            $this->cache = $this->get('hanzo.cache');
+            $this->cache = $this->get('redis.main');
         }
 
-        return $this->cache->set($this->cache->id($key), $data, $ttl);
+        return $this->cache->setex($this->cache->generateKey($key), $ttl, $data);
     }
 
 
