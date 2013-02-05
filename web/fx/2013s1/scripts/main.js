@@ -118,13 +118,13 @@
      */
      pub.initCountdown = function() {
       // frontpage count down
-      var $countdown = $('.countdown strong');
+      var $countdown = $('.countdown');
 
       if ($countdown) {
         $countdown.countdown({
           timezone: +1,
           until: new Date(Translator.get('js:countdown.date')),
-          layout: '<strong>' + Translator.get('js:countdown.format') + '</strong>'
+          layout: '<span>' + Translator.get('js:countdown.format') + '</span>'
         });
         var lang = $('html').attr('lang');
         if (lang !== 'en') {
