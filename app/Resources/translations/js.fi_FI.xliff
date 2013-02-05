@@ -354,7 +354,7 @@
                 <source>approve.conditions.required</source>
                 <target>You have to approve POMPdeLUX terms and conditions.</target>
             </trans-unit>
-            <trans-unit id="more.product.info">
+            <trans-unit id="more.product.info" approved="no">
                 <source>more.product.info</source>
                 <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
             </trans-unit>

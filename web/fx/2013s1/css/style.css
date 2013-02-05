@@ -116,6 +116,10 @@
 /**
 | _header
 */
+#logo {
+  margin-top: 6px;
+}
+
 nav > ul,
 ul.menu,
 .menu > ul {
@@ -136,13 +140,17 @@ ul.menu li a,
   color: #444444;
   text-decoration: none;
 }
-nav > ul li.active > a, nav > ul li.active-trail > a,
+nav > ul li.active > a, nav > ul li.active > span, nav > ul li.active-trail > a, nav > ul li.active-trail > span,
 nav > ul li a:hover,
 ul.menu li.active > a,
+ul.menu li.active > span,
 ul.menu li.active-trail > a,
+ul.menu li.active-trail > span,
 ul.menu li a:hover,
 .menu > ul li.active > a,
+.menu > ul li.active > span,
 .menu > ul li.active-trail > a,
+.menu > ul li.active-trail > span,
 .menu > ul li a:hover {
   text-decoration: underline;
 }
@@ -263,13 +271,10 @@ ul.breadcrumb {
 }
 ul.breadcrumb li {
   display: inline-block;
+  padding: 0 3px;
 }
-ul.breadcrumb li:before {
-  content: '>';
-  padding: 0 6px;
-}
-ul.breadcrumb li.first:before {
-  content: none;
+ul.breadcrumb li.first {
+  padding: 0 3px 0 0;
 }
 ul.breadcrumb li a {
   color: #444444;
@@ -309,6 +314,8 @@ ul.breadcrumb li a:hover {
   color: white;
 }
 
+.body-bycolour .main header,
+.body-bylook .main header,
 .body-category .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
@@ -319,8 +326,14 @@ ul.breadcrumb li a:hover {
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
 
-#logo {
-  margin-top: 6px;
+.bylook-62 .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
+}
+
+.bycolour-582 .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
 
 /**
@@ -1429,7 +1442,7 @@ div.dialoug.like-pop li div {
   display: block;
 }
 .near-you-container .row {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid whitesmoke;
 }
 .near-you-container .row:last-child {
   border-bottom: none;
@@ -1483,6 +1496,11 @@ div.dialoug.like-pop li div {
 }
 .oldie #secondary-links .menu.horizontal {
   float: right;
+  clear: both;
+}
+.oldie #secondary-links .menu.horizontal li {
+  display: inline;
+  float: left;
 }
 .oldie #secondary-links .menu.horizontal li > a {
   line-height: 40px;
@@ -1490,9 +1508,6 @@ div.dialoug.like-pop li div {
 }
 .oldie #secondary-links .menu.horizontal li .dropdown a {
   line-height: 14px;
-}
-.oldie #secondary-links .menu.horizontal.second {
-  clear: both;
 }
 .oldie #secondary-links .menu.horizontal.second li a {
   line-height: 45px;
@@ -1601,6 +1616,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   color: #444444;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
@@ -1706,9 +1725,14 @@ i, em {
 }
 
 blockquote {
-  font-style: italic;
-  padding: 3px;
-  border: 1px solid whitesmoke;
+  background-image: url(/fx/images/citat2.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  padding-left: 60px;
+  padding-top: 20px;
+  margin-left: 0;
+  font-size: 18px;
+  font-family: "Merriweather", serif;
 }
 
 aside {

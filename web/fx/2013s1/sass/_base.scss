@@ -8,6 +8,10 @@
 .sprite{display:inline-block;}
 .sprite-block{display:block;}
 
+html {
+    overflow-y: scroll;
+}
+
 body{
 	color: $font-color;
 	font-family: $font-sans;
@@ -87,9 +91,14 @@ hr {
 strong, b {font-weight: bold;}
 i,em{font-style:italic;}
 blockquote{
-	font-style: italic;
-	padding: 3px;
-	border: 1px solid #F5F5F5;
+	background-image: url(/fx/images/citat2.png);
+	background-position: top left;
+	background-repeat: no-repeat;
+	padding-left: 60px;
+	padding-top: 20px;
+	margin-left: 0;
+	font-size: 18px;
+	font-family: $font-serif;
 }
 aside{
 	padding-bottom: 24px;

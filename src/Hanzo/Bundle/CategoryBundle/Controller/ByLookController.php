@@ -58,8 +58,8 @@ class ByLookController extends CoreController
 
             $cms_page = CmsQuery::create()->findOneById($cms_id);
 
-            $this->get('twig')->addGlobal('page_type', 'look-'.$category_id);
-            $this->get('twig')->addGlobal('body_classes', 'body-look look-'.$category_id);
+            $this->get('twig')->addGlobal('page_type', 'bylook-'.$category_id);
+            $this->get('twig')->addGlobal('body_classes', 'body-bylook bylook-'.$category_id);
             $this->get('twig')->addGlobal('cms_id', $cms_page->getParentId());
             $html = $this->renderView('CategoryBundle:ByLook:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);

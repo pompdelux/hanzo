@@ -219,7 +219,7 @@ class EventsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $consultant = ConsultantsQuery::create()->findPK($this->get('security.context')->getToken()->getUser()->getPrimaryKey());
+                $consultant = CustomersPeer::getCurrent();
 
                 $customers_id = $event->getCustomersId(); // from the form
                 $host = null; // Customers Object
@@ -311,11 +311,11 @@ class EventsController extends CoreController
                                 'to_city'          => $event->getCity(),
                                 'to_phone'         => $event->getPhone(),
                                 'link'             => $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
-                                'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                                'consultant_email' => $consultant->getCustomers()->getEmail()
+                                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
+                                'consultant_email' => $consultant->getEmail()
                             ));
                             $mailer->setTo(array($old_event->getEmail() => $old_event->getHost()));
-                            $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
+                            $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
                             $mailer->send();
 
                             // Send an email to the new Host
@@ -335,11 +335,11 @@ class EventsController extends CoreController
                                 'password'         => $host->getPasswordClear(),
                                 'phone'            => $event->getPhone(),
                                 'link'             => $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
-                                'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                                'consultant_email' => $consultant->getCustomers()->getEmail()
+                                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
+                                'consultant_email' => $consultant->getEmail()
                             ));
                             $mailer->setTo(array($event->getEmail() => $event->getHost()));
-                            $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
+                            $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
                             $mailer->send();
                         }
 
@@ -366,8 +366,8 @@ class EventsController extends CoreController
                                 'phone'            => $event->getPhone(),
                                 'email'            => $event->getEmail(),
                                 'link'             => $this->generateUrl('events_rsvp', array('key' => $participant->getKey()), true),
-                                'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                                'consultant_email' => $consultant->getCustomers()->getEmail()
+                                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
+                                'consultant_email' => $consultant->getEmail()
                             ));
                             $mailer->setTo(array($participant->getEmail() => $participant->getFirstName(). ' ' .$participant->getLastName()));
                             $mailer->setFrom(array($event->getEmail() => $event->getHost()));
@@ -389,11 +389,11 @@ class EventsController extends CoreController
                             'password'         => $host->getPasswordClear(),
                             'phone'            => $event->getPhone(),
                             'link'             => $this->generateUrl('events_invite', array('key' => $event->getKey()), true),
-                            'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                            'consultant_email' => $consultant->getCustomers()->getEmail()
+                            'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
+                            'consultant_email' => $consultant->getEmail()
                         ));
                         $mailer->setTo(array($event->getEmail() => $event->getHost()));
-                        $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
+                        $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
                         $mailer->send();
                     }
                 }
@@ -481,7 +481,7 @@ class EventsController extends CoreController
                 return $this->redirect($this->generateUrl('events_index'));
             }
 
-            $consultant = ConsultantsQuery::create()->joinWithCustomers()->findPK($event->getConsultantsId());
+            $consultant = CustomersQuery::create()->joinWithConsultants()->findPK($event->getConsultantsId());
             // Send some emails for the host and participants
             $participants = EventsParticipantsQuery::create()
                 ->filterByEventsId($event->getId())
@@ -498,12 +498,12 @@ class EventsController extends CoreController
                 'address'          => $event->getAddressLine1(). ' ' .$event->getAddressLine2(),
                 'zip'              => $event->getPostalCode(),
                 'city'             => $event->getCity(),
-                'consultant_name'  => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName(),
-                'consultant_email' => $consultant->getCustomers()->getEmail()
+                'consultant_name'  => $consultant->getFirstName(). ' ' .$consultant->getLastName(),
+                'consultant_email' => $consultant->getEmail()
             ));
 
             $mailer->setTo(array($event->getEmail() => $event->getHost()));
-            $mailer->setFrom(array($consultant->getCustomers()->getEmail() => $consultant->getCustomers()->getFirstName(). ' ' .$consultant->getCustomers()->getLastName()));
+            $mailer->setFrom(array($consultant->getEmail() => $consultant->getFirstName(). ' ' .$consultant->getLastName()));
             $mailer->send();
 
             foreach ($participants as $participant) {

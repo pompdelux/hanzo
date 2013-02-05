@@ -51,7 +51,7 @@
     <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
       {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
     </a>
-    <nav class="menu main-menu horizontal">
+    <nav class="menu main-menu">
       {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
     </nav><!-- /nav.main -->
     <hr class="right">

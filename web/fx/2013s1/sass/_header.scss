@@ -2,6 +2,10 @@
 | _header
 */
 
+#logo {
+	margin-top: 6px;
+}
+
 // All menus
 nav > ul,
 ul.menu,
@@ -18,7 +22,9 @@ ul.menu,
 			text-decoration: none;
 		}
 		&.active > a,
+		&.active > span,
 		&.active-trail > a,
+		&.active-trail > span,
 		a:hover{
 			text-decoration: underline;
 		}
@@ -129,12 +135,9 @@ ul.breadcrumb {
 	color:$side-menu-color;
 	li {
 		display: inline-block;
-		&:before{
-			content: '>';
-			padding: 0 6px;
-		}
-		&.first:before{
-			content: none;
+		padding: 0 3px;
+		&.first{
+			padding: 0 3px 0 0;
 		}
 		a{
 			color:$font-color;
@@ -177,16 +180,9 @@ ul.breadcrumb {
 	}
 }
 
+.body-bycolour .main header,
+.body-bylook .main header,
 .body-category .main header{ // Specific for all categories
 	background: #d2c3c6;
 	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
-}
-
-.category-17 .main header{ // Specific for one category
-	background: #d2c3c6;
-	background: url('/fx/images/headers/Top_Kjoler_955x200.jpg') no-repeat top center;
-}
-
-#logo {
-	margin-top: 6px;
 }

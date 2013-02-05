@@ -287,6 +287,16 @@
                 <target><![CDATA[<h1>Kjoler en</h1>
                 <p>Køb kjoler til fest, kjoler til galla og kjoler til hverdag online hos os. Du fortjener loyalitetsrabart hver gang, du shopper kjoler - jo flere kjoler du køber, jo billigere bliver det! Hvis du søger kjoler.</p>]]></target>
             </trans-unit>
+
+            <trans-unit id="headers.bycolour-582" approved="no">
+                <source>headers.bycolour-582</source>
+                <target><![CDATA[<h1>Navy</h1>]]></target>
+            </trans-unit>
+
+            <trans-unit id="headers.bylook-62" approved="no">
+                <source>headers.bylook-62</source>
+                <target><![CDATA[<h1>Cowboy</h1>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
