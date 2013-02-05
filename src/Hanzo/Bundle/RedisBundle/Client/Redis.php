@@ -79,7 +79,7 @@ Class Redis
      * @throws InvalidArgumentException    If the command called does not exist
      * @throws RedisCommunicationException If the call to redis fails
      */
-    public function __call($name, $arguments = [])
+    public function __call($name, array $arguments = [])
     {
         if (!$this->connected) {
             $this->connect();
@@ -126,7 +126,6 @@ Class Redis
         }
 
         throw new InvalidArgumentException('No such redis command: '.$name);
-
     }
 
 
@@ -200,31 +199,11 @@ Class Redis
      */
     private function getCommandString($command, array $arguments)
     {
-        $list = array();
-        $this->flatten($arguments, $list);
+        $list = [];
+        foreach ($arguments as $argument) {
+            $list[] = is_scalar($argument) ? $argument : '[.. complex type ..]';
+        }
 
         return mb_substr(trim(strtoupper($command) . ' ' . implode(' ', $list)), 0, 256);
-    }
-
-
-    /**
-     * Flatten arguments to single dimension array
-     *
-     * @param array $arguments An array of command arguments
-     * @param array $list Holder of results
-     */
-    private function flatten($arguments, array &$list)
-    {
-        foreach ($arguments as $key => $item) {
-            if (!is_numeric($key)) {
-                $list[] = $key;
-            }
-
-            if (is_scalar($item)) {
-                $list[] = strval($item);
-            } else {
-                $this->flatten($item, $list);
-            }
-        }
     }
 }
