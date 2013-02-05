@@ -64,9 +64,11 @@ a.video-popper, #video-player-container a.video {
 .body-product .main{
 	h1.title,
 	.prices {
-		font-family: $font-serif;
+		font-family: $product-title-family;
 		font-size: $product-title-size;
-		font-weight: normal;
+		font-weight: $product-title-weight;
+		line-height: $product-title-line-height;
+		color: $product-title-color;
 	}
 	.prices{
 		padding: 0 0 12px;

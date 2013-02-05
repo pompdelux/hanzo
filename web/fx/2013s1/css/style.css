@@ -199,18 +199,18 @@ ul.sub-menu li.heading span, ul.sub-menu li.self-included,
   display: block;
   line-height: 18px;
 }
-ul.sub-menu li.self-included a,
-.sub-menu > ul li.self-included a {
-  text-decoration: none;
-}
-ul.sub-menu li.heading span,
-.sub-menu > ul li.heading span {
-  padding: 3px 0 3px 6px;
-}
 ul.sub-menu li.item a,
 .sub-menu > ul li.item a {
   line-height: 18px;
   padding: 3px 0 3px 12px;
+}
+ul.sub-menu li.item.self-included a,
+.sub-menu > ul li.item.self-included a {
+  text-decoration: none;
+}
+ul.sub-menu li.item.heading span,
+.sub-menu > ul li.item.heading span {
+  padding: 3px 0 3px 6px;
 }
 ul.sub-menu li ul,
 .sub-menu > ul li ul {
@@ -495,8 +495,10 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main h1.title,
 .body-product .main .prices {
   font-family: "Merriweather", serif;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: normal;
+  line-height: 18px;
+  color: #444444;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
