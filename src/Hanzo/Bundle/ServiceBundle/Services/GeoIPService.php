@@ -39,7 +39,7 @@ class GeoIPService
 
             // map local ip addresses to "kolding"
             if (preg_match('/^(127.0.0.1|192.168.|10.)/', $ip)) {
-                return  array(
+                return [
                     'country' => 'DK',
                     'country_name' => 'Denmark',
                     'country_localname' => 'Danmark',
@@ -48,13 +48,13 @@ class GeoIPService
                     'city' => 'Kolding',
                     'lat' => 55.494099,
                     'lon' => 9.459000,
-                );
+                ];
             }
         }
 
-        $cache = Hanzo::getInstance()->cache;
-        $cache_key = $cache->id('geocache', $ip);
-        $data = $cache->get($cache_key);
+        $cache = Hanzo::getInstance()->container->get('redis.permanent');
+        $cache_key = $cache->generateKey('geocache');
+        $data = $cache->hget($cache_key, $ip);
 
         if (!$data) {
             $data = array();
@@ -70,7 +70,7 @@ class GeoIPService
                 $record = CountriesQuery::create()
                     ->filterByIso2( $result[0] )
                     ->findOne()
-                    ;
+                ;
 
                 $countryID        = null;
                 $countryName      = null;
@@ -81,7 +81,7 @@ class GeoIPService
                     $countryLocalName = $record->getLocalName();
                 }
 
-                $data = array(
+                $data = [
                     'country'           => $result[0],
                     'country_name'      => $countryName,
                     'country_localname' => $countryLocalName,
@@ -90,10 +90,11 @@ class GeoIPService
                     'city'              => $result[2],
                     'lat'               => $result[3],
                     'lon'               => $result[4],
-                );
+                ];
 
                 // cache the result for one week
-                $cache->set($cache_key, $data, 604800);
+                $cache->hset($cache_key, $ip, $data);
+                $cache->expire($cache_key, 604800);
             }
         }
 
