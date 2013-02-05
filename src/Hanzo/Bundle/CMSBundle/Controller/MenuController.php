@@ -43,10 +43,7 @@ class MenuController extends CoreController
 
             if ($thread) {
                 $this->cms_thread = $thread;
-            } else {
-                $this->cms_thread = $hanzo->get('core.main_menu_thread');
             }
-
             if (empty($this->path)) {
                 $this->path = str_replace($this->locale, '', $request->getPathInfo());
 
@@ -262,6 +259,10 @@ class MenuController extends CoreController
                         $class .= ' last';
                     }
 
+                    if($record->getId() === $parent_id){
+                        $class .= ' self-included';
+                    }
+
                     if (in_array($record->getType(), array('page', 'url'))) {
                         $params = $record->getSettings(null, false);
 
@@ -331,6 +332,9 @@ class MenuController extends CoreController
                     ) {
                         $class = 'active';
                     }
+                    error_log(isset($this->trail[$record->getId()]) && $this->trail[$record->getId()]);
+                    error_log($record->getId());
+                    error_log($path.' - - - - '.$this->path);
 
                     if($result->isFirst()){
                         $class .= ' first';

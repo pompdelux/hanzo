@@ -192,11 +192,19 @@ ul.sub-menu li,
   padding: 0 0 6px 0;
   line-height: 18px;
 }
-ul.sub-menu li.heading span,
-.sub-menu > ul li.heading span {
+ul.sub-menu li.heading span, ul.sub-menu li.self-included,
+.sub-menu > ul li.heading span,
+.sub-menu > ul li.self-included {
   font-weight: bold;
   display: block;
   line-height: 18px;
+}
+ul.sub-menu li.self-included a,
+.sub-menu > ul li.self-included a {
+  text-decoration: none;
+}
+ul.sub-menu li.heading span,
+.sub-menu > ul li.heading span {
   padding: 3px 0 3px 6px;
 }
 ul.sub-menu li.item a,
@@ -1059,6 +1067,9 @@ nav.main-menu > ul > li > ul.on {
   text-transform: none;
   padding: 6px 0 0;
   letter-spacing: 0;
+}
+.body-pages .breadcrumb {
+  margin-bottom: 12px;
 }
 
 /**

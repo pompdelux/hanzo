@@ -53,13 +53,17 @@ ul.sub-menu,
 	li{
 		padding: 0 0 6px 0;
 		line-height: 18px;
-		&.heading{
-			span{
-				font-weight: bold;
-				display: block;
-				line-height: 18px;
-				padding: 3px 0 3px 6px;
-			}
+		&.heading span,
+		&.self-included{
+			font-weight: bold;
+			display: block;
+			line-height: 18px;
+		}
+		&.self-included a{
+			text-decoration: none;
+		}
+		&.heading span{
+			padding: 3px 0 3px 6px;
 		}
 		&.item{
 			a{
