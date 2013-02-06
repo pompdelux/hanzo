@@ -151,6 +151,11 @@ ul.breadcrumb {
 		a:hover{
 			text-decoration: underline;
 		}
+		&.heading{
+			a:hover{
+				text-decoration:none;
+				cursor: default;}
+		}
 		i.arrow-right{
 			margin-top: 3px;
 		}

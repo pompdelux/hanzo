@@ -286,6 +286,10 @@ ul.breadcrumb li.active > a, ul.breadcrumb li.active-trail > a,
 ul.breadcrumb li a:hover {
   text-decoration: underline;
 }
+ul.breadcrumb li.heading a:hover {
+  text-decoration: none;
+  cursor: default;
+}
 ul.breadcrumb li i.arrow-right {
   margin-top: 3px;
 }
