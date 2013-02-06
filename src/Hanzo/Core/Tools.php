@@ -252,7 +252,6 @@ class Tools
 
     /**
      * shortcut for logging data to the error log
-     * only requests comming from bellcom ip addresses will be logged.
      *
      * @param mixed $data the data to log
      * @param integer $back how many levels back we dump trace for
@@ -450,6 +449,22 @@ class Tools
         }
 
         return setcookie($name, $value, $ttl, $path, $_SERVER['HTTP_HOST'], false, $http_only);
+    }
+
+
+    /**
+     * returns true if the request is send form a bellcom address
+     * usefull when testing stuff when live
+     *
+     * @return boolean
+     */
+    public static function isBellcomRequest()
+    {
+        return in_array($_SERVER['REMOTE_ADDR'], [
+            '127.0.0.1',      // localhost
+            '90.185.206.100', // office@kolding
+            '87.104.21.83',   // un@home
+        ]);
     }
 
 

@@ -9,6 +9,11 @@ var maps = (function($) {
       var url = base_url + "rest/v1/gm/proxy/" + encodeURI($("#geo-zipcode-container #geo-zipcode").val()) + "/" + geo_zipcode_params.country;
 
       $.getJSON(url, function(response) {
+        if (undefined === response.data.Placemark) {
+          dialoug.stopLoading();
+          return;
+        }
+
         var req = '/' + geo_zipcode_params.type + '/' + response.data.Placemark[0].Point.coordinates[1] + '/' + response.data.Placemark[0].Point.coordinates[0];
         $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function(result) {
           dataToContainer(result.data);
@@ -22,11 +27,7 @@ var maps = (function($) {
 
   pub.initContainer = function() {
     dialoug.loading('#near-you-container', Translator.get('js:loading.std'), 'prepend');
-
     var req = '/'+near_you_params.type+'/0/0';
-    // for (var key in near_you_params) {
-    //   req = req + '/' + near_you_params[key];
-    // }
 
     $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function(result) {
       dataToContainer(result.data);

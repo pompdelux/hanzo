@@ -40,19 +40,20 @@ class SmsService
         // $settings['provider.get_smsc'];
 
         // defaults
-        $this->settings['provider.get_smsc'] = 0;
+        $this->settings['provider.get_smsc']        = 0;
+        $this->settings['send.event.reminders']     = 0;
         $this->settings['send.event.confirmations'] = 0;
         $this->settings['send.event.confirmations'] = 0;
-        $this->settings['send.event.reminders'] = 0;
 
         $this->settings = $settings;
     }
 
     public function sendEventInvite($participant)
     {
-        if (0 == $this->settings['send.event.invites']) {
+        if ((false === Tools::isBellcomRequest()) && (0 == $this->settings['send.event.invites'])) {
             return;
         }
+Tools::log('sending sms invite to:'.$participant->getPhone());
 
         $event = $participant->getEvents();
         $parameters = array(
@@ -72,14 +73,19 @@ class SmsService
         $provider = $this->getProvider();
         $provider->addMessage($to, utf8_decode($message));
 
-        return $provider->send();
+        $response = $provider->send();
+$parameters['%to%'] = $to;
+Tools::log($parameters);
+Tools::log($response);
+        return $response;
     }
 
     public function sendEventConfirmationReply($participant)
     {
-        if (0 == $this->settings['send.event.confirmations']) {
-            return;
-        }
+        // if ((0 == $this->settings['send.event.confirmations'])) {
+        //     return;
+        // }
+Tools::log('sending sms conformation to:'.$participant->getPhone());
 
         $event = $participant->getEvents();
         $parameters = array(
@@ -98,7 +104,12 @@ class SmsService
         $provider = $this->getProvider();
         $provider->addMessage($to, utf8_decode($message));
 
-        return $provider->send();
+        $response = $provider->send();
+
+$parameters['%to%'] = $to;
+Tools::log($parameters);
+Tools::log($response);
+        return $response;
     }
 
     /**
@@ -108,7 +119,7 @@ class SmsService
      */
     public function eventReminder($locale = 'da_DK')
     {
-        if (0 == $this->settings['send.event.reminders']) {
+        if ((0 == $this->settings['send.event.reminders'])) {
             return;
         }
 
@@ -170,12 +181,12 @@ class SmsService
     protected function getProvider()
     {
         return new UnwireProvider(new PhpStreamAdapter(), array(
-            'user' => $this->settings['provider.user'],
-            'password' => $this->settings['provider.password'],
-            'appnr' => $this->settings['provider.appnr'],
+            'user'      => $this->settings['provider.user'],
+            'password'  => $this->settings['provider.password'],
+            'appnr'     => $this->settings['provider.appnr'],
             'mediacode' => $this->settings['provider.mediacode'],
-            'price' => $this->settings['provider.price'],
-            'get_smsc' => (boolean) $this->settings['provider.get_smsc'],
+            'price'     => $this->settings['provider.price'],
+            'get_smsc'  => (boolean) $this->settings['provider.get_smsc'],
         ));
     }
 }

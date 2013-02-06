@@ -9,6 +9,8 @@ unwire addresser:
 
 namespace Hanzo\Bundle\EventsBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -20,13 +22,13 @@ class SmsController extends CoreController
 
     // TODO this should not be hardcoded ! but we need to figure out where to store the information...
     protected $appnr_map = array(
-        1231 => 45,
-        2201 => 47,
-        17163 => 358,
-        72445 => 46,
+        1231  => 45,  // dk
+        2201  => 47,  // no
+        17163 => 358, // fi
+        72445 => 46,  // se
     );
 
-    public function rsvpAction()
+    public function rsvpAction(Request $request)
     {
         // Array (
         //     [sender] => 4529927366
@@ -36,11 +38,14 @@ class SmsController extends CoreController
         //     [sessionid] => 4529927366:20120730221204
         // )
 
-        $sender = trim($this->getRequest()->get('sender'));
-        $appnr = trim($this->getRequest()->get('appnr'));
-        $smsc = trim($this->getRequest()->get('smsc'));
-        $text = trim($this->getRequest()->get('text'));
-        $sessionid = trim($this->getRequest()->get('sessionid'));
+        $sender    = trim($request->get('sender'));
+        $appnr     = trim($request->get('appnr'));
+        $smsc      = trim($request->get('smsc'));
+        $text      = trim($request->get('text'));
+        $sessionid = trim($request->get('sessionid'));
+
+Tools::log($_GET);
+Tools::log($_POST);
 
         // TODO should not be bardcoded
         if (in_array($appnr, array(1231, 2201, 17163, 72445)) &&
