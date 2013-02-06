@@ -276,17 +276,17 @@ class MenuController extends CoreController
                         }
                     }
 
-                    if (preg_match('~^(f|ht)tps?://~', $path)) {
+                    if($record->getType() === 'heading'){
+                        $uri = '#';
+                        $class .= ' heading';
+                    }elseif (preg_match('~^(f|ht)tps?://~', $path)) {
                         $uri = $path;
                     } else {
                         $uri = $this->base_url . '/' . $this->locale . '/' . $path;
                     }
 
-                    if($record->getType() !== 'heading'){
-                        $this->menu[$type] .= '<li class="' . $class . ' item"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
-                    }else{
-                        $this->menu[$type] .= '<li class="' . $class . ' heading"><span>' . $record->getTitle() . '</span>';
-                    }
+                    $this->menu[$type] .= '<li class="' . $class . ' item"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
+
 
                     $this->menu[$type] .= '</li>';
                 }
@@ -357,17 +357,17 @@ class MenuController extends CoreController
                         }
                     }
 
-                    if (preg_match('~^(f|ht)tps?://~', $path)) {
+                    if($record->getType() === 'heading'){
+                        $uri = '#';
+                        $class .= ' heading';
+                    }elseif (preg_match('~^(f|ht)tps?://~', $path)) {
                         $uri = $path;
                     } else {
                         $uri = $this->base_url . '/' . $this->locale . '/' . $path;
                     }
 
-                    if($record->getType() !== 'heading'){
-                        $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
-                    }else{
-                        $this->menu[$type] .= '<li class="' . $class . ' heading"><span>' . $record->getTitle() . '</span>';
-                    }
+                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
+
                     $this->generateFull($record->getId(), $type);
 
                     $this->menu[$type] .= '</li>';
@@ -385,35 +385,36 @@ class MenuController extends CoreController
             $this->menu[$type] .= '<ul class="breadcrumb">';
 
             foreach ($this->trail as $record) {
-                if($record->getType() !== 'heading'){
-                    $class = '';
-                    $path = $record->getPath();
-                    if ($record->getType() == 'frontpage') {
-                        $path = '';
-                    }
-
-                    if ($record->getTitle()) {
-                        $class = 'inactive';
-                        if ((isset($this->trail[$record->getId()])) ||
-                            ($path == $this->path)
-                        ) {
-                            $class = 'active';
-                        }
-                    }
-                    if($record === reset($this->trail)){ // First
-                        $class .= ' first';
-                    }elseif($record === end($this->trail)){ // Last
-                        $class .= ' last';
-                    }
-
-                    if (preg_match('~^(f|ht)tps?://~', $path)) {
-                        $uri = $path;
-                    } else {
-                        $uri = $this->base_url . '/' . $this->locale . '/' . $path;
-                    }
-
-                    $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '<i class="sprite arrow-right"></i></a></li>';
+                $class = '';
+                $path = $record->getPath();
+                if ($record->getType() == 'frontpage') {
+                    $path = '';
                 }
+
+                if ($record->getTitle()) {
+                    $class = 'inactive';
+                    if ((isset($this->trail[$record->getId()])) ||
+                        ($path == $this->path)
+                    ) {
+                        $class = 'active';
+                    }
+                }
+                if($record === reset($this->trail)){ // First
+                    $class .= ' first';
+                }elseif($record === end($this->trail)){ // Last
+                    $class .= ' last';
+                }
+
+                if($record->getType() === 'heading'){
+                    $uri = '#';
+                    $class .= ' heading';
+                }elseif (preg_match('~^(f|ht)tps?://~', $path)) {
+                    $uri = $path;
+                } else {
+                    $uri = $this->base_url . '/' . $this->locale . '/' . $path;
+                }
+
+                $this->menu[$type] .= '<li class="' . $class . '"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '<i class="sprite arrow-right"></i></a></li>';
 
             }
 
