@@ -53,6 +53,9 @@ class CMSRouterLoader implements LoaderInterface
         $routes = new RouteCollection();
 
         $pages = CmsI18nQuery::create()
+            ->useCmsQuery()
+                ->filterByIsActive(true)
+            ->endUse()
             ->rightJoinWithCms()
             ->orderByPath()
             ->findByLocale($this->locale)
