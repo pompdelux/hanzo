@@ -192,23 +192,20 @@ ul.sub-menu li,
   padding: 0 0 6px 0;
   line-height: 18px;
 }
-ul.sub-menu li.heading span, ul.sub-menu li.self-included,
-.sub-menu > ul li.heading span,
-.sub-menu > ul li.self-included {
-  font-weight: bold;
-  display: block;
-  line-height: 18px;
-}
 ul.sub-menu li.item a,
 .sub-menu > ul li.item a {
   line-height: 18px;
   padding: 3px 0 3px 12px;
 }
-ul.sub-menu li.heading span, ul.sub-menu li.self-included a,
-.sub-menu > ul li.heading span,
+ul.sub-menu li.heading a, ul.sub-menu li.self-included a,
+.sub-menu > ul li.heading a,
 .sub-menu > ul li.self-included a {
+  font-weight: bold;
+  display: block;
+  line-height: 18px;
   text-decoration: none;
   padding: 3px 0 3px 0px;
+  cursor: default;
 }
 ul.sub-menu li ul,
 .sub-menu > ul li ul {
