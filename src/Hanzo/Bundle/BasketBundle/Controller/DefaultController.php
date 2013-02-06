@@ -314,19 +314,6 @@ class DefaultController extends CoreController
                 continue;
             }
 
-            // find first products2category match
-            $products2category = ProductsToCategoriesQuery::create()
-                ->useProductsQuery()
-                ->filterBySku($line['products_name'])
-                ->endUse()
-                ->findOne()
-            ;
-
-            if (!$products2category) {
-                //Tools::log($locale.' -> '.$line['products_name']);
-                continue;
-            }
-
             $t = strtotime($line['expected_at']);
             if (($t > 0) && ($t > time())) {
                 $line['expected_at'] = $t;
@@ -338,29 +325,42 @@ class DefaultController extends CoreController
                 $line['expected_at'] = NULL;
             }
 
-            $line['basket_image'] =
-                preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
-                '_' .
-                preg_replace('/[^a-z0-9]/i', '-', $line['products_color']) .
-                '_set_01.jpg'
+            // find first products2category match
+            $products2category = ProductsToCategoriesQuery::create()
+                ->useProductsQuery()
+                ->filterBySku($line['products_name'])
+                ->endUse()
+                ->findOne()
             ;
 
-            // find matching router
-            $key = '_' . $locale . '_' . $products2category->getCategoriesId();
-            $group = $category2group[$products2category->getCategoriesId()];
+            if ($products2category) {
+                $line['basket_image'] =
+                    preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
+                    '_' .
+                    preg_replace('/[^a-z0-9]/i', '-', $line['products_color']) .
+                    '_set_01.jpg'
+                ;
 
-            $line['url'] = '#';
-            $master = ProductsQuery::create()->findOneBySku($line['products_name']);
+                // find matching router
+                $key = '_' . $locale . '_' . $products2category->getCategoriesId();
+                $group = $category2group[$products2category->getCategoriesId()];
 
-            if ('consultant' == $mode) {
-                $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
-            } else {
-                if (isset($router_keys[$key])) {
-                    $line['url'] = $router->generate($router_keys[$key], array(
-                        'product_id' => $master->getId(),
-                        'title' => Tools::stripText($line['products_name']),
-                    ));
+                $master = ProductsQuery::create()->findOneBySku($line['products_name']);
+
+                if ('consultant' == $mode) {
+                    $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+                } else {
+                    if (isset($router_keys[$key])) {
+                        $line['url'] = $router->generate($router_keys[$key], array(
+                            'product_id' => $master->getId(),
+                            'title' => Tools::stripText($line['products_name']),
+                        ));
+                    }
                 }
+            } else {
+                $line['url'] = '';
+                $line['basket_image'] = '';
+                $group = 0;
             }
 
             $products[$group][] = $line;
