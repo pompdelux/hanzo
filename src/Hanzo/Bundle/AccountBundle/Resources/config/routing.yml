@@ -26,12 +26,6 @@ _account_lost_password:
     defaults:
         _controller: AccountBundle:Default:passwordForgotten
 
-_account_nno:
-    pattern: /account/nno/{phone}
-    defaults:
-        _controller: AccountBundle:NNO:check
-        phone: ''
-
 _account_history:
     pattern: /account/history
     defaults:
@@ -81,3 +75,10 @@ _account_check:
     pattern: /account/check/{type}
     defaults:
         _controller: AccountBundle:Default:check
+
+_account_phone_lookup:
+    pattern: /account/nno/{number}
+    defaults:
+        _controller: AccountBundle:Default:phoneLookup
+        _format: json
+        number: ''

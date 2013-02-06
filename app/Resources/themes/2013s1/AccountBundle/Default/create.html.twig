@@ -14,7 +14,7 @@
   <p>{{ 'create.notice'|trans({'%url%' : url('_account') }, 'account')|raw }}</p>
 
   {% if domain_key == 'DK' %}
-    {% render 'AccountBundle:NNO:widget' %}
+    {% render 'NnoBundle:Default:widget' %}
   {% endif %}
 
   <p>{{ 'create.pre-notice'|trans({}, 'account')|raw }}</p>
