@@ -120,6 +120,9 @@ ul.horizontal,
 			font-size: 0.8em;
 			text-transform: uppercase;
 		}
+		input{
+			padding: 4px 5px;
+		}
 		.dropdown{
 			z-index: 201; // This dropdown needs to be ontop of the main menu
 		}
