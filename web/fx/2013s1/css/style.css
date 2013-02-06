@@ -207,6 +207,7 @@ ul.sub-menu li.item a,
 ul.sub-menu li.item.self-included a,
 .sub-menu > ul li.item.self-included a {
   text-decoration: none;
+  padding: 3px 0 3px 6px;
 }
 ul.sub-menu li.item.heading span,
 .sub-menu > ul li.item.heading span {
