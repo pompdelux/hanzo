@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="events.calendar.header.text">
                 <source>events.calendar.header.text</source>
-                <target>Event kalender</target>
+                <target>Arrangemang kalender</target>
             </trans-unit>
             <trans-unit id="events.account.title">
                 <source>events.account.title</source>
@@ -277,7 +277,7 @@
             </trans-unit>
             <trans-unit id="events.participants.no.participants">
                 <source>events.participants.no.participants</source>
-                <target>Det finns inga deltagare på detta event</target>
+                <target>Det finns inga deltagare på detta arrangemang</target>
             </trans-unit>
             <trans-unit id="events.rsvp.header.text">
                 <source>events.rsvp.header.text</source>

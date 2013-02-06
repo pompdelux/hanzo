@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="events.calendar.link.back.to" approved="no">
                 <source>events.calendar.link.back.to</source>
-                <target>Back to calendar</target>
+                <target>takaisin kalenteriin</target>
             </trans-unit>
             <trans-unit id="events.create_event.link">
                 <source>events.create_event.link</source>

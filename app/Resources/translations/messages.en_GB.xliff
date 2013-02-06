@@ -129,7 +129,7 @@
             </trans-unit>
             <trans-unit id="event.id">
                 <source>event.id</source>
-                <target>Event ID</target>
+                <target>Arrangemang ID</target>
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
