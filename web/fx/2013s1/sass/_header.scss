@@ -64,13 +64,13 @@ ul.sub-menu,
 				line-height: 18px;
 				padding: 3px 0 3px 12px;
 			}
-			&.self-included a{
-				text-decoration: none;
-			}
-			&.heading span{
-				padding: 3px 0 3px 6px;
-			}
 		}
+		&.heading span,
+		&.self-included a{
+			text-decoration: none;
+			padding: 3px 0 3px 0px;
+		}
+
 		ul{
 			padding:6px 0 0 6px;
 			a{
@@ -137,6 +137,7 @@ ul.breadcrumb {
 	font-size: $side-menu-size;
 	font-family: $side-menu-family;
 	color:$side-menu-color;
+    margin-bottom:12px;
 	li {
 		display: inline-block;
 		padding: 0 3px;

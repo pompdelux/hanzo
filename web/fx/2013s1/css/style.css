@@ -204,13 +204,11 @@ ul.sub-menu li.item a,
   line-height: 18px;
   padding: 3px 0 3px 12px;
 }
-ul.sub-menu li.item.self-included a,
-.sub-menu > ul li.item.self-included a {
+ul.sub-menu li.heading span, ul.sub-menu li.self-included a,
+.sub-menu > ul li.heading span,
+.sub-menu > ul li.self-included a {
   text-decoration: none;
-}
-ul.sub-menu li.item.heading span,
-.sub-menu > ul li.item.heading span {
-  padding: 3px 0 3px 6px;
+  padding: 3px 0 3px 0px;
 }
 ul.sub-menu li ul,
 .sub-menu > ul li ul {
@@ -274,6 +272,7 @@ ul.breadcrumb {
   font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   color: #444444;
+  margin-bottom: 12px;
 }
 ul.breadcrumb li {
   display: inline-block;
@@ -1077,9 +1076,6 @@ nav.main-menu > ul > li > ul.on {
   text-transform: none;
   padding: 6px 0 0;
   letter-spacing: 0;
-}
-.body-pages .breadcrumb {
-  margin-bottom: 12px;
 }
 
 /**
