@@ -91,11 +91,6 @@ bazinga_exposetranslation_js:
     requirements:
         _format: js
 
-
-liip_theme:
-    resource: "@LiipThemeBundle/Resources/config/routing.xml"
-    prefix: /{_locale}/theme
-
 # leverage the template controller in the FrameworkBundle to show static pages:
 # @see http://coderwall.com/p/pj1opa
 _splash:
@@ -104,10 +99,15 @@ _splash:
         _controller: FrameworkBundle:Template:template
         template: CMSBundle:Default:splash.html.twig
 
-
 liip_theme:
     resource: "@LiipThemeBundle/Resources/config/routing.xml"
     prefix: /{_locale}/theme
+
+NnoBundle:
+    resource: "@NnoBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+
+
 
 # Internal routing configuration to handle ESI
 #_internal:

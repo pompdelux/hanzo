@@ -38,3 +38,5 @@
     varnish_port=""
     varnish_secret=""
     varnish_timeout=""
+
+    nno_api_key="delux"
