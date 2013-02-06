@@ -142,7 +142,7 @@
             <trans-unit id="events.phone.required.error">
                 <source>events.phone.required.error</source>
                 <target>Telefonnumret är ogiltigt – det måste vara minst 8 siffror utan mellanrum eller andra tecken (12345678).</target>
-            </trans-unit>
+           </trans-unit>
             <trans-unit id="events.email">
                 <source>events.email</source>
                 <target>E-mail</target>
@@ -409,23 +409,23 @@
             </trans-unit>
             <trans-unit id="event.close">
                 <source>event.close</source>
-                <target>Luk arrangement</target>
+                <target>Stäng arrangemang</target>
             </trans-unit>
             <trans-unit id="event.closed">
                 <source>event.closed</source>
-                <target>Arrangementet er nu lukket</target>
+                <target>Arrangemanget är stängt</target>
             </trans-unit>
             <trans-unit id="event.sms.confirmation.reply" approved="no">
                 <source>event.sms.confirmation.reply</source>
-                <target>Hej %name%. Tak for din tilmelding til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jeg glæder mig til at se dig! %hostess%</target>
+                <target>Hej %name%. Tack för din anmälan till POMPdeLUX Home shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Jag ser frame mot att träffa dig! %hostess%</target>
             </trans-unit>
             <trans-unit id="event.sms.invite" approved="no">
                 <source>event.sms.invite</source>
-                <target>Hej %name%. %hostess% vil gerne invitere dig til POMPdeLUX Home shopping arrangement den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Hvis du vil med og se det lækre børnetøj, så svar på denne sms med teksten "pdl %event_id%". Jeg håber, vi ses!</target>
+                <target>Hej %name%. %hostess% vill gärna bjuda in dig till ett POMPdeLUX Home shopping arrangemang den %event_date% kl. %event_time% på adressen %address%, %zip% %city%. Om du vill komma och se de fina barnkläderna, ska du svara på detta sms med texten "pdl %event_id%". Jag hoppas vi ses!</target>
             </trans-unit>
             <trans-unit id="event.sms.reminder" approved="no">
                 <source>event.sms.reminder</source>
-                <target>Hej %name% Husk POMPdeLUX home shopping arrangementet den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
+                <target>Hej %name% Glöm inte POMPdeLUX home shopping arrangemanget den %event_date% kl. %event_time% På adressen: %address%, %zip% %city% Mvh POMPdeLUX</target>
             </trans-unit>
         </body>
     </file>
