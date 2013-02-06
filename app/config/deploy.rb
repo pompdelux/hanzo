@@ -42,6 +42,8 @@ set :use_sudo, true
 
 ssh_options[:forward_agent] = true
 
+before 'symfony:assetic:dump', 'deploy:update_permissions'
+
 before 'symfony:cache:warmup', 'symfony:cache:assets_update'
 before 'symfony:cache:warmup', 'symfony:cache:redis_clear'
 
@@ -334,11 +336,27 @@ namespace :symfony do
     end
 
     namespace :build do
-      desc "Build the Model classes."
-      task :model do
-        symfony_env_prods.each do |i| 
-          run "cd #{latest_release} && #{php_bin} #{symfony_console} propel:build-model --env=#{i}"
+#      desc "Build the Model classes."
+#      task :model do
+#        symfony_env_prods.each do |i| 
+#          run "cd #{latest_release} && #{php_bin} #{symfony_console} propel:build-model --env=#{i}"
+#        end
+#      end
+
+# from newer version 
+      desc "Builds the Model classes"
+      task :model, :roles => :app, :except => { :no_release => true } do
+        command = "propel:model:build"
+        if /2\.0\.[0-9]+.*/ =~ symfony_version
+          command = "propel:build-model"
         end
+
+        capifony_pretty_print "--> Generating Propel classes"
+
+        symfony_env_prods.each do |i| 
+          run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} #{command} --env=#{i}'"
+        end
+        capifony_puts_ok
       end
 
       desc "Build SQL statements."

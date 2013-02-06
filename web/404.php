@@ -77,4 +77,6 @@ switch ($ext)
 
     break;
 }
-
+// send a 404 header for all other files
+header("HTTP/1.1 404 Not Found");
+die('404 - file not found');
