@@ -192,25 +192,20 @@ ul.sub-menu li,
   padding: 0 0 6px 0;
   line-height: 18px;
 }
-ul.sub-menu li.heading span, ul.sub-menu li.self-included,
-.sub-menu > ul li.heading span,
-.sub-menu > ul li.self-included {
-  font-weight: bold;
-  display: block;
-  line-height: 18px;
-}
 ul.sub-menu li.item a,
 .sub-menu > ul li.item a {
   line-height: 18px;
   padding: 3px 0 3px 12px;
 }
-ul.sub-menu li.item.self-included a,
-.sub-menu > ul li.item.self-included a {
+ul.sub-menu li.heading a, ul.sub-menu li.self-included a,
+.sub-menu > ul li.heading a,
+.sub-menu > ul li.self-included a {
+  font-weight: bold;
+  display: block;
+  line-height: 18px;
   text-decoration: none;
-}
-ul.sub-menu li.item.heading span,
-.sub-menu > ul li.item.heading span {
-  padding: 3px 0 3px 6px;
+  padding: 3px 0 3px 0px;
+  cursor: default;
 }
 ul.sub-menu li ul,
 .sub-menu > ul li ul {
@@ -259,6 +254,9 @@ ul.horizontal li,
   font-size: 0.8em;
   text-transform: uppercase;
 }
+#secondary-links li input {
+  padding: 4px 5px;
+}
 #secondary-links li .dropdown {
   z-index: 201;
 }
@@ -271,6 +269,7 @@ ul.breadcrumb {
   font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   color: #444444;
+  margin-bottom: 12px;
 }
 ul.breadcrumb li {
   display: inline-block;
@@ -286,6 +285,10 @@ ul.breadcrumb li a {
 ul.breadcrumb li.active > a, ul.breadcrumb li.active-trail > a,
 ul.breadcrumb li a:hover {
   text-decoration: underline;
+}
+ul.breadcrumb li.heading a:hover {
+  text-decoration: none;
+  cursor: default;
 }
 ul.breadcrumb li i.arrow-right {
   margin-top: 3px;
@@ -495,8 +498,10 @@ a.video-popper .sprite, #video-player-container a.video .sprite {
 .body-product .main h1.title,
 .body-product .main .prices {
   font-family: "Merriweather", serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: normal;
+  line-height: 18px;
+  color: #444444;
 }
 .body-product .main .prices {
   padding: 0 0 12px;
@@ -1072,9 +1077,6 @@ nav.main-menu > ul > li > ul.on {
   text-transform: none;
   padding: 6px 0 0;
   letter-spacing: 0;
-}
-.body-pages .breadcrumb {
-  margin-bottom: 12px;
 }
 
 /**

@@ -53,24 +53,22 @@ ul.sub-menu,
 	li{
 		padding: 0 0 6px 0;
 		line-height: 18px;
-		&.heading span,
-		&.self-included{
-			font-weight: bold;
-			display: block;
-			line-height: 18px;
-		}
 		&.item{
 			a{
 				line-height: 18px;
 				padding: 3px 0 3px 12px;
 			}
-			&.self-included a{
-				text-decoration: none;
-			}
-			&.heading span{
-				padding: 3px 0 3px 6px;
-			}
 		}
+		&.heading a,
+		&.self-included a{
+			font-weight: bold;
+			display: block;
+			line-height: 18px;
+			text-decoration: none;
+			padding: 3px 0 3px 0px;
+			cursor: default;
+		}
+
 		ul{
 			padding:6px 0 0 6px;
 			a{
@@ -120,6 +118,9 @@ ul.horizontal,
 			font-size: 0.8em;
 			text-transform: uppercase;
 		}
+		input{
+			padding: 4px 5px;
+		}
 		.dropdown{
 			z-index: 201; // This dropdown needs to be ontop of the main menu
 		}
@@ -134,6 +135,7 @@ ul.breadcrumb {
 	font-size: $side-menu-size;
 	font-family: $side-menu-family;
 	color:$side-menu-color;
+    margin-bottom:12px;
 	li {
 		display: inline-block;
 		padding: 0 3px;
@@ -148,6 +150,11 @@ ul.breadcrumb {
 		&.active-trail > a,
 		a:hover{
 			text-decoration: underline;
+		}
+		&.heading{
+			a:hover{
+				text-decoration:none;
+				cursor: default;}
 		}
 		i.arrow-right{
 			margin-top: 3px;
