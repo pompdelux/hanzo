@@ -14,3 +14,31 @@ propel:
                 dsn:                  mysql:host=%test_dk_database_host%;dbname=%test_dk_database_name%
                 options:              {}
                 attributes:           {}
+            pdldbnl1:
+                driver:               %database_driver%
+                user:                 %test_nl_database_user%
+                password:             %test_nl_database_password%
+                dsn:                  mysql:host=%test_nl_database_host%;dbname=%test_nl_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbse1:
+                driver:               %database_driver%
+                user:                 %test_se_database_user%
+                password:             %test_se_database_password%
+                dsn:                  mysql:host=%test_se_database_host%;dbname=%test_se_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbno1:
+                driver:               %database_driver%
+                user:                 %test_no_database_user%
+                password:             %test_no_database_password%
+                dsn:                  mysql:host=%test_no_database_host%;dbname=%test_no_database_name%
+                options:              {}
+                attributes:           {}
+            pdldbfi1:
+                driver:               %database_driver%
+                user:                 %test_fi_database_user%
+                password:             %test_fi_database_password%
+                dsn:                  mysql:host=%test_fi_database_host%;dbname=%test_fi_database_name%
+                options:              {}
+                attributes:           {}
