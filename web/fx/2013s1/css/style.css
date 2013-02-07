@@ -197,9 +197,9 @@ ul.sub-menu li.item a,
   line-height: 18px;
   padding: 3px 0 3px 12px;
 }
-ul.sub-menu li.heading a, ul.sub-menu li.self-included a,
-.sub-menu > ul li.heading a,
-.sub-menu > ul li.self-included a {
+ul.sub-menu li.heading > a, ul.sub-menu li.self-included > a,
+.sub-menu > ul li.heading > a,
+.sub-menu > ul li.self-included > a {
   font-weight: bold;
   display: block;
   line-height: 18px;
@@ -1007,6 +1007,14 @@ nav.main-menu > ul > li > ul > li > ul {
 nav.main-menu > ul > li > ul > li > ul > li {
   float: none;
   padding-top: 12px;
+}
+nav.main-menu > ul > li > ul li.heading > a, nav.main-menu > ul > li > ul li.self-included > a {
+  font-weight: bold;
+  display: block;
+  line-height: 18px;
+  text-decoration: none;
+  padding: 3px 0 3px 0px;
+  cursor: default;
 }
 nav.main-menu > ul > li > ul.on {
   left: 0;

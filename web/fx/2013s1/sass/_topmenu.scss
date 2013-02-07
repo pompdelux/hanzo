@@ -39,6 +39,17 @@ nav.main-menu {
             }
           }
         }
+        li {
+          &.heading > a,
+          &.self-included > a{
+            font-weight: bold;
+            display: block;
+            line-height: 18px;
+            text-decoration: none;
+            padding: 3px 0 3px 0px;
+            cursor: default;
+          }
+        }
         &.on {
           left: 0;
           top: auto;
