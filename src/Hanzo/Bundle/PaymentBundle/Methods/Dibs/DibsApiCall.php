@@ -83,6 +83,9 @@ class DibsApiCall implements PaymentMethodApiCallInterface
     protected function call( $function, array $params, $useAuthHeaders = false )
     {
         //$logger = Hanzo::getInstance()->container->get('logger');
+if ($function == 'cgi-adm/refund.cgi') {
+    \Hanzo\Core\Tools::log($params);
+}
 
         $ch = curl_init();
 
@@ -223,11 +226,13 @@ class DibsApiCall implements PaymentMethodApiCallInterface
      */
     public function refund( Orders $order, $amount )
     {
-        $attributes       = $order->getAttributes();
+        $attributes = $order->getAttributes();
 
         if ( !isset($attributes->payment->transact) )
         {
+\Hanzo\Core\Tools::log('Throw Exception');
             throw new DibsApiCallException( 'DIBS api refund action: order contains no transaction id, order id was: '.$order->getId() );
+\Hanzo\Core\Tools::log('After Exception is thrown ????');
         }
 
         $transaction      = $attributes->payment->transact;

@@ -9,7 +9,14 @@
 <h1>{{ '404.title'|trans({}, 'error') }}</h1>
 
 <div style="padding: 10px;">
-  <p>{{ '404.description'|trans({}, 'error')|raw }}</p>
+
+  <p>
+    {% if webshop_closed is defined %}
+      {{ '404.webshop_closed.description'|trans({}, 'error')|raw }}
+    {% else %}
+      {{ '404.description'|trans({}, 'error')|raw }}
+    {% endif %}
+  </p>
 
   <form name="{{ path('_search', {'_locale' : app.request.locale}) }}" action="" method="get">
     <input type="text" name="q" id="keywords" value="">

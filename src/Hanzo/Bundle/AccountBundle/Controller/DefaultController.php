@@ -3,6 +3,7 @@ namespace Hanzo\Bundle\AccountBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\HttpFoundation\Request;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
@@ -500,5 +501,42 @@ class DefaultController extends CoreController
         }
 
         return $this->redirect($this->generateUrl('_account'));
+    }
+
+
+    /**
+     * try to find customers by phone nuber
+     *
+     * @param  integer $number phone number
+     * @return Response
+     */
+    public function phoneLookupAction(Request $request, $number)
+    {
+        $address = AddressesQuery::create()
+            ->useCustomersQuery()
+                ->filterByPhone($number)
+            ->endUse()
+            ->joinWithCustomers()
+            ->filterByType('payment')
+            ->findOne()
+        ;
+
+        // if not found, and in .dk, try NNO
+        if ((!$address instanceof Addresses) && ('da_DK' == $request->getLocale())) {
+            return $this->forward('NnoBundle:Default:lookup', ['number' => $number]);
+        }
+
+        return $this->json_response([
+            'status' => TRUE,
+            'message' => $this->get('translator')->trans('create.nno.address_found', [], 'account'),
+            'data' => [
+                'christianname' => $address->getFirstName(),
+                'surname' => $address->getLastName(),
+                'zipcode' => $address->getPostalCode(),
+                'district' => $address->getCity(),
+                'address' => $address->getAddressLine1(),
+                'phone' => $number,
+            ]
+        ]);
     }
 }

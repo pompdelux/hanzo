@@ -40,7 +40,7 @@
             </trans-unit>
             <trans-unit id="events.calendar.link.back.to" approved="no">
                 <source>events.calendar.link.back.to</source>
-                <target>Back to calendar</target>
+                <target>takaisin kalenteriin</target>
             </trans-unit>
             <trans-unit id="events.create_event.link">
                 <source>events.create_event.link</source>
@@ -336,43 +336,55 @@
             </trans-unit>
             <trans-unit id="events.fetch_customer.placeholder">
                 <source>events.fetch_customer.placeholder</source>
-                <target>E-mail eller tlf. nr.</target>
+                <target>Sähköpostiosoite tai  puhelinnumero </target>
             </trans-unit>
             <trans-unit id="events.fetch_customer.button">
                 <source>events.fetch_customer.button</source>
-                <target>Hent</target>
+                <target>Hae</target>
             </trans-unit>
             <trans-unit id="choose.event.type" approved="no">
                 <source>choose.event.type</source>
-                <target>Vælg arrangement type</target>
+                <target> Valitse tapahtuman muoto</target>
             </trans-unit>
             <trans-unit id="event.type.private" approved="no">
                 <source>event.type.private</source>
-                <target>Privat køb</target>
+                <target>Yksityis osto</target>
             </trans-unit>
             <trans-unit id="event.type.gift" approved="no">
                 <source>event.type.gift</source>
-                <target>Gave køb</target>
+                <target>Lahja osto</target>
             </trans-unit>
             <trans-unit id="event.type.friend" approved="no">
                 <source>event.type.friend</source>
-                <target>Veninde køb</target>
+                <target>Ystävän osto</target>
             </trans-unit>
             <trans-unit id="event.type.other" approved="no">
                 <source>event.type.other</source>
-                <target>Udenfor arrangement</target>
+                <target>Ulkopuolinen tapahtuma</target>
             </trans-unit>
             <trans-unit id="hostess.discount" approved="no">
                 <source>hostess.discount</source>
-                <target>Værtinderabat</target>
+                <target>Emännänale</target>
             </trans-unit>
             <trans-unit id="event.close">
                 <source>event.close</source>
-                <target>Luk arrangement</target>
+                <target>Sulje tapahtuma</target>
             </trans-unit>
             <trans-unit id="event.closed">
                 <source>event.closed</source>
-                <target>Arrangementet er nu lukket</target>
+                <target>Tapahtuma on nyt suljettu</target>
+            </trans-unit>
+            <trans-unit id="event.sms.confirmation.reply" approved="no">
+                <source>event.sms.confirmation.reply</source>
+                <target>Hei%name%. Kiitoksia ilmoittautumisestasi POMPdeLUX Home shopping tapahtumaan %event_date% klo. %event_time% osoitteessa %address%, %zip% %city%. Iloisiin tapaamisiin! %hostess%</target>
+            </trans-unit>
+            <trans-unit id="event.sms.invite" approved="no">
+                <source>event.sms.invite</source>
+                <target>Hei%name%. %hostess% haluan kutsua sinut POMPdeLUX Home shopping tapahtumaan %event_date% klo. %event_time% osoitteessa %address%, %zip% %city%. Jos haluat tulla mukaan tutustumaan näihin ihaniin lastenvaatteisiin, niin vastaa tähän tekstiviestillä tekstillä "pdl %event_id%". Toivottavasti näemme!</target>
+            </trans-unit>
+            <trans-unit id="event.sms.reminder" approved="no">
+                <source>event.sms.reminder</source>
+                <target>Hei %name% Muista POMPdeLUX home shopping tapahtuma %event_date% klo. %event_time% Osoitteessa: %address%, %zip% %city% Ystävällisin terveisin POMPdeLUX</target>
             </trans-unit>
             <trans-unit id="events.myevents.header" approved="no">
                 <source>events.myevents.header</source>
@@ -387,5 +399,5 @@
                 <target>Couldn't find any future events for you.</target>
             </trans-unit>
         </body>
-    </file>
+   </file>
 </xliff>

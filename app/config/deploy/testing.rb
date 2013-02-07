@@ -2,7 +2,13 @@
 # Hanzo / Pompdelux testing deploy. 
 #
 
-set :deploy_to,   "/var/www/testpompdelux" 
+# needed to get verbose output. -v doesnt work
+logger.level = Logger::MAX_LEVEL
+
+# 
+set :dump_assetic_assets,   true
+
+set :deploy_to,   "/var/www/testpompdelux"
 
 #symfony_env_prods = ["test_dk", "test_se", "test_no", "test_com", "test_nl"]
 set :symfony_env_prods, ["test_dk", "test_dk_consultant"]
@@ -12,6 +18,13 @@ set :adminserver, "pomp-test"
 
 # if we ever get other brances, specify which one to deploy here
 set   :branch, "testing"
+
+# use composer for symfony 2.1
+set :use_composer, true
+set :composer_bin, "/usr/local/bin/composer"
+
+# dont delete web/app_* please
+set :clear_controllers, false
 
 #set :update_vendors, true
 set :update_vendors, false
@@ -43,5 +56,41 @@ namespace :deploy do
   task :copy_test_config do
     run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters_testing.ini && wget -q --output-document=#{shared_path}/app/config/hanzo.yml http://tools.bellcom.dk/hanzo/hanzo_testing.yml")
   end
+end
+
+# overridden because of chmod without sudo, and loop envinroments
+namespace :symfony do
+  namespace :cache do
+    [:clear, :warmup].each do |action|
+      desc "Cache #{action.to_s}"
+      task action, :roles => :app, :except => { :no_release => true } do
+        case action
+        when :clear
+          capifony_pretty_print "--> Clearing cache"
+        when :warmup
+          capifony_pretty_print "--> Warming up cache"
+        end
+
+        symfony_env_prods.each do |i|
+          run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:#{action.to_s} --env=#{i}'"
+        end
+#        run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:#{action.to_s} --env=#{symfony_env_prod}'"
+#        run "#{try_sudo} chmod -R g+w #{latest_release}/#{cache_path}"
+        capifony_puts_ok
+      end
+    end
+  end
+
+#  namespace :assetic do
+#    desc "Dumps all assets to the filesystem"
+#    task :dump, :roles => :app,  :except => { :no_release => true } do
+#      capifony_pretty_print "--> Dumping all assets to the filesystem"
+#      symfony_env_prods.each do |i|
+#        run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{i} --no-debug'"
+#      end
+#      capifony_puts_ok
+#    end
+#  end
+
 end
 

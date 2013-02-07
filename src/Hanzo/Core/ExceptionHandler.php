@@ -52,6 +52,7 @@ class ExceptionHandler
         // 404 hangeling
         if ($exception instanceof NotFoundHttpException) {
             $path = $request->getPathInfo();
+            $hanzo = Hanzo::getInstance();
 
             // attempt to fix images in old newsletters. Redirect to static
             if (substr($path, 6, 19) == '/images/nyhedsbrev/') {
@@ -73,7 +74,7 @@ class ExceptionHandler
             } else {
                 // test for redirects
                 $redirect = RedirectsQuery::create()
-                    ->filterByDomainKey(Hanzo::getInstance()->get('core.domain_key'))
+                    ->filterByDomainKey($hanzo->get('core.domain_key'))
                     ->findOneBySource($path)
                 ;
 
@@ -86,6 +87,12 @@ class ExceptionHandler
                     $response = new Response('', 302, array('Location' => $url));
                     $event->setResponse($response);
                 }
+            }
+
+            // if webshop is offline, then set another message than "not found"
+            if (0 == $hanzo->get('webshop.closed', 0)) {
+                $twig = $this->service_container->get('twig');
+                $twig->addGlobal('webshop_closed', true);
             }
 
         } elseif (($exception instanceof RouteNotFoundException) || ($exception instanceof ResourceNotFoundException)) {

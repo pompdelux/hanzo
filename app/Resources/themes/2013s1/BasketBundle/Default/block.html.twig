@@ -15,19 +15,23 @@
       </thead>
       <tbody>
     {% for group, items in products %}
+        {% if group != '0' %}
         <tr>
-        {% if embedded == false %}
-          <th class="group" colspan="6">{{ group|trans({}, 'checkout') }}</th>
-        {% else %}
-          <th class="group" colspan="5">{{ group|trans({}, 'checkout') }}</th>
-        {% endif %}
+          <th class="group" colspan="{% if embedded == false %}6{% else %}5{% endif %}">{{ group|trans({}, 'checkout') }}</th>
         </tr>
+        {% endif %}
       {% for product in items %}
         <tr>
           <td class="image left">
+          {% if product.basket_image %}
             {{ product_image_tag(product.basket_image, '57x100', { 'alt' : product.products_name }) }}
+          {% endif %}
             <div class="info" data-product_id="{{ product.products_id }}" data-confirmed="">
+            {% if product.url %}
               <a href="{{ product.url }}" class="title">{{ product.products_name }}</a>
+            {% else %}
+              {{ product.products_name }}
+            {% endif %}
               <div class="size">
                 <label>{{ "size"|trans }}:</label>
                 <span>{{ product.products_size }}</span>

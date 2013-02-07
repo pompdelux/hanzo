@@ -12,6 +12,7 @@ use Hanzo\Core\Stock;
 use Hanzo\Core\CoreController;
 
 use Hanzo\Model\ProductsDomainsPricesPeer;
+use Hanzo\Model\Products;
 use Hanzo\Model\ProductsI18nQuery;
 use Hanzo\Model\ProductsStockPeer;
 use Hanzo\Model\ProductsQuery;
@@ -56,6 +57,10 @@ class BundleController extends CoreController
                 ->joinWithProductsImages()
                 ->findOne()
             ;
+
+            if (!$product instanceof Products) {
+                return $this->redirect($this->generateUrl('_homepage'));
+            }
 
             $product_ids[] = $product->getId();
             $products2category = ProductsToCategoriesQuery::create()

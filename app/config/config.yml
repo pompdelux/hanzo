@@ -154,6 +154,8 @@ redis:
             prefix: hanzo
             database: 2
 
+nno:
+    api_key: %nno_api_key%
 
 # @see https://github.com/ekino/EkinoNewRelicBundle
 ekino_new_relic:

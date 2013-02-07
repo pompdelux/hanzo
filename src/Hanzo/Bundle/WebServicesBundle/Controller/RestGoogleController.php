@@ -42,7 +42,10 @@ class RestGoogleController extends CoreController
             $query = 'malmö';
         }
 
-        $request = sprintf('http://maps.google.com/maps/geo?q=%s&output=json&oe=utf8', ($query . ',' . $country));
+        $query = rawurlencode($query);
+        $country = rawurlencode($country);
+
+        $request = sprintf('http://maps.google.com/maps/geo?q=%s&output=json&oe=utf8', ($query.','.$country));
         $response = array(
             'status' => TRUE,
             'data' => json_decode(file_get_contents($request))

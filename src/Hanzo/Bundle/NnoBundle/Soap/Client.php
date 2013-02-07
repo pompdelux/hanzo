@@ -1,6 +1,6 @@
 <?php
 
-namespace Hanzo\Bundle\AccountBundle\NNO;
+namespace Hanzo\Bundle\NnoBundle\Soap;
 
 /**
  * NavneNumreBasis class
@@ -9,14 +9,14 @@ namespace Hanzo\Bundle\AccountBundle\NNO;
  * @copyright bellcom open source aps
  * @package   integration
  */
-class NNO extends \SoapClient
+class Client extends \SoapClient
 {
 
   private static $classmap = array(
-    'SearchQuestion'   => 'Hanzo\Bundle\AccountBundle\NNO\SearchQuestion',
-    'SearchIDQuestion' => 'Hanzo\Bundle\AccountBundle\NNO\nnoSearchIDQuestion',
-    'SubscriberResult' => 'Hanzo\Bundle\AccountBundle\NNO\nnoSubscriberResult',
-    'Subscriber'       => 'Hanzo\Bundle\AccountBundle\NNO\nnoSubscriber',
+    'SearchQuestion'   => 'Hanzo\Bundle\NnoBundle\Soap\SearchQuestion',
+    'SearchIDQuestion' => 'Hanzo\Bundle\NnoBundle\Soap\nnoSearchIDQuestion',
+    'SubscriberResult' => 'Hanzo\Bundle\NnoBundle\Soap\nnoSubscriberResult',
+    'Subscriber'       => 'Hanzo\Bundle\NnoBundle\Soap\nnoSubscriber',
    );
 
   public function  __construct($wsdl = "http://tunnel.nno.dk/NNService/1.0/NNService.wsdl", array $options = array('trace' => 1))
