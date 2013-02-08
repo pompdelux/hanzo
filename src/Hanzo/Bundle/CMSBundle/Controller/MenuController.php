@@ -332,9 +332,6 @@ class MenuController extends CoreController
                     ) {
                         $class = 'active';
                     }
-                    error_log(isset($this->trail[$record->getId()]) && $this->trail[$record->getId()]);
-                    error_log($record->getId());
-                    error_log($path.' - - - - '.$this->path);
 
                     if($result->isFirst()){
                         $class .= ' first';

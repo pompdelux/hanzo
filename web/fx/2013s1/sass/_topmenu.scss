@@ -11,6 +11,7 @@ nav.main-menu {
     padding: 0;
     margin: 0;
   }
+  // Main menu-items
   > ul > li {
     float: left;
     width: auto;
@@ -20,6 +21,7 @@ nav.main-menu {
       a {
         display: block;
       }
+      // Sub menu-items
       ul {
         position: absolute;
         left: -9999px;
@@ -28,15 +30,29 @@ nav.main-menu {
         margin-top: 10px;
         z-index: 1;
         background-color: #fff;
+        font-family: $font-sans;
+        text-transform: uppercase;
         > li {
           float: none;
           padding: 10px 8px;
+          // Sub Sub menu-items
           > ul {
             padding-left: 10px;
             > li {
               float: none;
               padding-top: 12px;
             }
+          }
+        }
+        li {
+          &.heading > a,
+          &.self-included > a{
+            font-weight: bold;
+            display: block;
+            line-height: 18px;
+            text-decoration: none;
+            padding: 3px 0 3px 0px;
+            cursor: default;
           }
         }
         &.on {

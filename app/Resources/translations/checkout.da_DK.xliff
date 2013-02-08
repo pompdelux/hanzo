@@ -403,7 +403,7 @@
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>Leveringsaddressen er den samme som min addresse</target>
+         <target>Leveringsaddressen er den samme som Privataddressen</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>

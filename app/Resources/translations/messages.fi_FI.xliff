@@ -166,6 +166,105 @@
                 <source>create.account.vilkaar.link</source>
                 <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUX ehdot.</a>]]></target>
             </trans-unit>
+            <trans-unit id="category.selector.look" approved="no">
+                <source>category.selector.look</source>
+                <target>Looks</target>
+            </trans-unit>
+            <trans-unit id="category.selector.overview" approved="no">
+                <source>category.selector.overview</source>
+                <target>Overview</target>
+            </trans-unit>
+            <trans-unit id="options.title" approved="no">
+                <source>options.title</source>
+                <target>Colour and size</target>
+            </trans-unit>
+            <trans-unit id="choose.size.note" approved="no">
+                <source>choose.size.note</source>
+                <target>(The size is the childs height in cm.)</target>
+            </trans-unit>
+            <trans-unit id="click.to.zoom" approved="no">
+                <source>click.to.zoom</source>
+                <target>Click for zoom</target>
+            </trans-unit>
+            <trans-unit id="click.to.video" approved="no">
+                <source>click.to.video</source>
+                <target>Video</target>
+            </trans-unit>
+            <trans-unit id="product.pictures.title" approved="no">
+                <source>product.pictures.title</source>
+                <target>Pictures</target>
+            </trans-unit>
+            <trans-unit id="buy.the.set.title" approved="no">
+                <source>buy.the.set.title</source>
+                <target>Buy the set</target>
+            </trans-unit>
+            <trans-unit id="latest.seen.products.title" approved="no">
+                <source>latest.seen.products.title</source>
+                <target>Also watched</target>
+            </trans-unit>
+            <trans-unit id="delivery.title" approved="no">
+                <source>delivery.title</source>
+                <target>Delivery</target>
+            </trans-unit>
+            <trans-unit id="delivery.info" approved="no">
+                <source>delivery.info</source>
+                <target><![CDATA[
+                    <p>Alle ordrer sendes med Post Danmark som pakkepost. Det vil sige, at både vi og vores kunder har muligged for at følge pakken med track & trace tuk deb bkuver leveret. Du kan også vælge at få din ordre sendt til din arbejdsplads - så koster det dig istedet 39,00 DKK.</p>
+                    <p>Bemærk: Hvis du til et Home shopping arrangement køber for min. 1.400,00 DKK sender vi din ordre fragtfrit.</p>
+                    <p>Leveringstid: %delivery.date%</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="return.title" approved="no">
+                <source>return.title</source>
+                <target>Return</target>
+            </trans-unit>
+            <trans-unit id="return.info" approved="no">
+                <source>return.info</source>
+                <target><![CDATA[
+                    <p>Varerne skal være ubrugte og returneres i original emballage, med hængemærker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrudt emballage. Postposen, som du modtager dine varer i, er lavet, så den kan bruges to gange. På posen kan du se, hvor du skal klippe, så du kan anvende den igen. Vi refunderer derfor ikke penge for returemballage, ligesom vi ikke refunderer penge for porto, hvis du kun sender dele af din ordre retur. Vi modtager ikke returvarer, der bliver sendt pr. efterkrav.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_1" approved="no">
+                <source>footer.menu_1</source>
+                <target><![CDATA[
+                <h2>KUNDESERVICE</h2>
+                <ul class="menu">
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_2" approved="no">
+                <source>footer.menu_2</source>
+                <target><![CDATA[
+                <h2>HOME SHOPPING</h2>
+                <ul class="menu">
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="footer.menu_3" approved="no">
+                <source>footer.menu_3</source>
+                <target><![CDATA[
+                <h2>MERE POMPdeLUX</h2>
+                <ul class="menu">
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
                 <source>share.to.%method%</source>
                 <target>Share on %method%</target>
@@ -196,7 +295,7 @@
             </trans-unit>
             <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
-                <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
+                <target>Click for more information.</target>
             </trans-unit>
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>

@@ -102,11 +102,13 @@ class GothiaController extends CoreController
         // Use form validation?
 
         if('FI' == str_replace('Sales', '', $domainKey)){
+            /**
+             * Finland uses social security numbers with dash DDMMYY-CCCC
+             */
             if(!strpos($SSN, '-')){ // FI has to have dash. If it isnt there, add it. Could be made better?
                 $SSN = substr($SSN, 0, 6).'-'.substr($SSN, 6);
             }
 
-            //Finland cases
             if (strlen($SSN) < 11) {
                 return $this->json_response(array(
                     'status' => FALSE,
@@ -121,9 +123,11 @@ class GothiaController extends CoreController
                 ));
             }
         }elseif('NO' == str_replace('Sales', '', $domainKey)){
+            /**
+             * Norway uses social security numbers without dash but with 5 digits DDMMYY-CCCCC
+             */
             $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
-            //Norway cases
             if (strlen($SSN) < 11) {
                 return $this->json_response(array(
                     'status' => FALSE,
@@ -137,10 +141,15 @@ class GothiaController extends CoreController
                     'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
                 ));
             }
-        }elseif('DK' == str_replace('Sales', '', $domainKey)){
+        }elseif('DK' == str_replace('Sales', '', $domainKey) ||
+                'NL' == str_replace('Sales', '', $domainKey)){
+            /**
+             * Denmark uses birthdate DDMMYYYY
+             * Netherland uses birthdate DDMMYYYY
+             */
+
             $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 
-            //Denmark cases
             if (strlen($SSN) < 8) {
                 return $this->json_response(array(
                     'status' => FALSE,
@@ -155,6 +164,9 @@ class GothiaController extends CoreController
                 ));
             }
         }else{
+            /**
+             * All others uses social security number without dash DDMMYYCCCC
+             */
 
             $SSN = strtr( $SSN, array( '-' => '', ' ' => '' ) );
 

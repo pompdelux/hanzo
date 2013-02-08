@@ -75,10 +75,6 @@
                 <source>retrive.password</source>
                 <target>» Ontvang je wachtwoord per e-mail</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice">
-                <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.</p><h2>Nieuwe klant?</h2>]]></target>
-            </trans-unit>
             <trans-unit id="47">
                 <source>New customer</source>
                 <target>Nieuwe klant</target>
@@ -102,14 +98,6 @@
             <trans-unit id="my.account.login.title">
                 <source>my.account.login.title</source>
                 <target>Mijn pagina - Login</target>
-            </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
-                <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
-            </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
-                <source>my.account.header</source>
-                <target><![CDATA[<h1>Welcome!</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login">
                 <source>my.account.login</source>
@@ -311,14 +299,6 @@
                 <source>address.last_name.required</source>
                 <target>Vermeld je achternaam.</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
-                <source>address.first_name.min.length</source>
-                <target>Your first name muist be at least 2 characters long</target>
-            </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
-                <source>address.last_name.min.length</source>
-                <target>Your last name muist be at least 2 characters long</target>
-            </trans-unit>
             <trans-unit id="address.address_line_1.required">
                 <source>address.address_line_1.required</source>
                 <target>Vermeld je adres.</target>
@@ -472,6 +452,30 @@
             <trans-unit id="acc.4" approved="no">
                 <source>Pass repeated</source>
                 <target>Herhaal het wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.notice" approved="no">
+                <source>my.account.login.notice</source>
+                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.text">
+                <source>my.account.login.text</source>
+                <target><![CDATA[<p>Om op de website van POMPdeLUX te kunnen bestellen, moet je geregistreerd zijn als klant. Als geregistreerde klant kun je je order controleren en wijzigen totdat deze verstuurd wordt. Je kunt de maat en kleur van de artikelen, die je besteld hebt, wijzigen en artikelen toevoegen of verwijderen zo lang je order op "Afwachten" staat, dwz. minimaal 24 uur nadat je besteld hebt.<br><br>Als klant bij POMPdeLUX  kun je op deze pagina ook je eerdere orders en facturen bekijken.</p><h2>Nieuwe klant?</h2>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Welcome!</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Your first name muist be at least 2 characters long</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Your last name muist be at least 2 characters long</target>
             </trans-unit>
         </body>
     </file>
