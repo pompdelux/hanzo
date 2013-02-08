@@ -72,6 +72,9 @@ p{
 	@include paragraph-style;
 	padding: 0 0 5px;
 }
+article{
+	@include paragraph-style;
+}
 
 hr {
 	border: none;

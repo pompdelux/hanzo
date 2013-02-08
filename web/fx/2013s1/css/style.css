@@ -1735,6 +1735,14 @@ p {
   padding: 0 0 5px;
 }
 
+article {
+  color: #444444;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 13px;
+}
+
 hr {
   border: none;
   clear: both;

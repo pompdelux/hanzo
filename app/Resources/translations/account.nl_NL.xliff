@@ -477,6 +477,10 @@
                 <source>address.last_name.min.length</source>
                 <target>Your last name muist be at least 2 characters long</target>
             </trans-unit>
+            <trans-unit id="create.pre-notice" approved="no">
+                <source>create.pre-notice</source>
+                <target><![CDATA[On this page you must enter your personal info (and <u>not</u> company info).]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
