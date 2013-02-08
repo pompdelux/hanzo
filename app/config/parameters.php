@@ -28,7 +28,18 @@ if ('dev' != $env[0]) {
     }
 }
 
-#\Hanzo\Core\Tools::log($container->getParameterBag()->all());
+// ffs this is just not right !!!
+$locale_map = [
+    'com' => 'en_GB',
+    'da'  => 'da_DK',
+    'fi'  => 'fi_FI',
+    'nl'  => 'nl_NL',
+    'no'  => 'nb_NO',
+    'se'  => 'sv_SE',
+];
+$container->setParameter('locale', $locale_map[$env[1]]);
+
+\Hanzo\Core\Tools::log($container->getParameterBag()->all());
 
 $dbUser     = $container->getParameter($db_prefix.'database_user');
 $dbPassword = $container->getParameter($db_prefix.'database_password');

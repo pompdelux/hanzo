@@ -1,0 +1,19 @@
+framework:
+    default_locale: fi_FI
+    session:
+        cookie_path: '/fi_FI'
+
+propel:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:     %database_fi_driver%
+                user:       %database_fi_user%
+                password:   %database_fi_password%
+                dsn:        mysql:host=%database_fi_host%;dbname=%database_fi_name%
+                options:    {}
+                attributes: {}
+
+cms:
+    frontpage: 538
