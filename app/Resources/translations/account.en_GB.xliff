@@ -477,6 +477,10 @@
                 <source>my.account.header</source>
                 <target><![CDATA[<h1>Welcome!</h1>]]></target>
             </trans-unit>
+            <trans-unit id="create.pre-notice" approved="no">
+                <source>create.pre-notice</source>
+                <target><![CDATA[On this page you must enter your personal info (and <u>not</u> company info).]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
