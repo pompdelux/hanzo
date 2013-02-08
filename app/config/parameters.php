@@ -45,8 +45,6 @@ $locale_map = [
 ];
 $container->setParameter('locale', $locale_map[$lang]);
 
-\Hanzo\Core\Tools::log($container->getParameterBag()->all());
-
 $dbUser     = $container->getParameter($db_prefix.'database_user');
 $dbPassword = $container->getParameter($db_prefix.'database_password');
 $dbName     = $container->getParameter($db_prefix.'database_name');
