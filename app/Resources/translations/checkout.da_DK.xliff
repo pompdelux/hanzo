@@ -234,10 +234,6 @@
         <source>basket</source>
         <target>Kurv</target>
       </trans-unit>
-      <trans-unit id="basket.header">
-        <source>basket.header</source>
-        <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/faq">FAQ</a><br>FRI FRAGT for minimum DKK 1400,-</p>]]></target>
-      </trans-unit>
       <trans-unit id="continue.shopping">
         <source>continue.shopping</source>
         <target>Shop videre</target>
@@ -413,6 +409,10 @@
           Med venlig hilsen<br>
           POMPdeLUX
           ]]></target>
+      </trans-unit>
+      <trans-unit id="basket.header" approved="no">
+        <source>basket.header</source>
+        <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/faq">FAQ</a><br>FRI FRAGT for minimum DKK 1400,-</p>]]></target>
       </trans-unit>
     </body>
   </file>

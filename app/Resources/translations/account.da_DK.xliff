@@ -207,10 +207,6 @@
                 <source>create.notice</source>
                 <target><![CDATA[<strong>Bemærk:</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
             </trans-unit>
-            <trans-unit id="create.pre-notice">
-                <source>create.pre-notice</source>
-                <target><![CDATA[På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
-            </trans-unit>
             <trans-unit id="68">
                 <source>nno.title</source>
                 <target>Hent dine adresseoplysninger fra De Gule Sider (TDC).</target>
@@ -485,6 +481,10 @@
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
                 <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="create.pre-notice" approved="no">
+                <source>create.pre-notice</source>
+                <target><![CDATA[På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
             </trans-unit>
         </body>
     </file>
