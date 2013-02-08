@@ -997,6 +997,8 @@ nav.main-menu > ul > li > ul {
   z-index: 1;
   background-color: #fff;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
   text-transform: uppercase;
 }
 nav.main-menu > ul > li > ul > li {

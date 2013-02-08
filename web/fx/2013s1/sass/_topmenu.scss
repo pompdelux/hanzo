@@ -30,7 +30,9 @@ nav.main-menu {
         margin-top: 10px;
         z-index: 1;
         background-color: #fff;
-        font-family: $font-sans;
+        font-family: $side-menu-family;
+        font-size: $side-menu-size;
+        line-height: $side-menu-line-height;
         text-transform: uppercase;
         > li {
           float: none;
