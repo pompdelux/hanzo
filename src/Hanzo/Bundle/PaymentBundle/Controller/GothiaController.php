@@ -302,6 +302,7 @@ class GothiaController extends CoreController
                 // but only if the old paytype was gothia
                 if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                 {
+                    $timer = new Timer('gothia', true);
 
                     try {
                         $response = $oldOrder->cancelPayment();
@@ -316,7 +317,6 @@ class GothiaController extends CoreController
 
 
                     // ab@bellcom.dk
-                    // $timer = new Timer('gothia', true);
                     // try
                     // {
                     //     $response = $api->call()->cancelReservation( $customer, $oldOrder );
@@ -330,8 +330,6 @@ class GothiaController extends CoreController
                     //         'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
                     //     ));
                     // }
-
-                    $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
 
                     if ( $response->isError() )
                     {

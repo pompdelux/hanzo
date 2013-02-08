@@ -317,6 +317,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
      **/
     public function cancelReservation( Customers $customer, Orders $order )
     {
+        $timer = new Timer('gothia', true);
+
         $total      = $order->getTotalPrice();
 
         if ( empty($total) )
@@ -356,10 +358,14 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         // <<-- hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :)
 
         $response = $this->call('CancelReservation', $callString);
+
+        $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
+
         if ( !$response->isError() )
         {
           $order->setAttribute('is_canceled', 'payment', true);
         }
+
         return $response;
     }
 
