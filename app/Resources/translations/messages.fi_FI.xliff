@@ -301,6 +301,10 @@
                 <source>goto.top.link</source>
                 <target>Goto top</target>
             </trans-unit>
+            <trans-unit id="order.deleted" approved="no">
+                <source>order.deleted</source>
+                <target>E.order no. %id% has been cancelled.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
