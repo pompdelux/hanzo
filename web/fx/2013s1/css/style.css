@@ -996,6 +996,8 @@ nav.main-menu > ul > li > ul {
   margin-top: 10px;
   z-index: 1;
   background-color: #fff;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
 }
 nav.main-menu > ul > li > ul > li {
   float: none;
