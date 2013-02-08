@@ -10,6 +10,12 @@
 $db_prefix = '';
 $env = explode('_', $container->getParameter('kernel.environment'));
 
+if (empty($env[1])) {
+    $lang = 'dk';
+} else {
+    $lang = $env[1];
+}
+
 // prefix all other than dev
 if ('dev' != $env[0]) {
     switch ($env[1]) {
@@ -31,13 +37,13 @@ if ('dev' != $env[0]) {
 // ffs this is just not right !!!
 $locale_map = [
     'com' => 'en_GB',
-    'da'  => 'da_DK',
+    'dk'  => 'da_DK',
     'fi'  => 'fi_FI',
     'nl'  => 'nl_NL',
     'no'  => 'nb_NO',
     'se'  => 'sv_SE',
 ];
-$container->setParameter('locale', $locale_map[$env[1]]);
+$container->setParameter('locale', $locale_map[$lang]);
 
 \Hanzo\Core\Tools::log($container->getParameterBag()->all());
 
