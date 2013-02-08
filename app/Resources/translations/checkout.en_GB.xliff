@@ -375,7 +375,7 @@
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
-         <target>The deliveryaddress is the same as mine</target>
+         <target>The deliveryaddress is the same as my Privateaddress</target>
       </trans-unit>
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>

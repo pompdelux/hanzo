@@ -74,10 +74,6 @@
                 <source>retrive.password</source>
                 <target>» Saat salasanan sähköpostilla</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice">
-                <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on "Odottaa" eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.<br><br>POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.</p><h2>Oletko uusi asiakas?</h2>]]></target>
-            </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
                 <target>Uusi asiakas</target>
@@ -98,17 +94,9 @@
                 <source>my.account.login.title</source>
                 <target>Omat sivut - Kirjaudu sisään</target>
             </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
-                <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
-            </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
                 <target>Omat sivut</target>
-            </trans-unit>
-            <trans-unit id="my.account.header" approved="no">
-                <source>my.account.header</source>
-                <target><![CDATA[<h1>Welcome!</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.logout">
                 <source>my.account.logout</source>
@@ -318,14 +306,6 @@
                 <source>address.last_name.required</source>
                 <target>Sukunimi on annettava</target>
             </trans-unit>
-            <trans-unit id="address.first_name.min.length" approved="no">
-                <source>address.first_name.min.length</source>
-                <target>Your first name muist be at least 2 characters long</target>
-            </trans-unit>
-            <trans-unit id="address.last_name.min.length" approved="no">
-                <source>address.last_name.min.length</source>
-                <target>Your last name muist be at least 2 characters long</target>
-            </trans-unit>
             <trans-unit id="address.address_line_1.required">
                 <source>address.address_line_1.required</source>
                 <target>Osoite on annettava</target>
@@ -467,6 +447,30 @@
             <trans-unit id="acc.4">
                 <source>Pass repeated</source>
                 <target>Anna salasana uudelleen</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.notice" approved="no">
+                <source>my.account.login.notice</source>
+                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.text" approved="no">
+                <source>my.account.login.text</source>
+                <target><![CDATA[<p>Kun teet ostoksia POMPdeLUXilla, sinun tulee olla kirjautuneena asiakkaaksi sivustolle. Silloin voit tarkistaa ja korjata tilauksiasi siihen asti, kun ne pakataan ja lähetetään varastostamme. Voit muuttaa tilattujen tuotteiden värejä ja kokoja sekä lisätä ja poistaa tuotteita niin kauan, kun tilauksesi tila on "Odottaa" eli vähintään 24 tuntia tuotteiden tilaamisen jälkeen.<br><br>POMPdeLUXin asiakkaana näet tällä sivulla myös aikaisemmat tilauksesi ja laskusi.</p><h2>Oletko uusi asiakas?</h2>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Welcome!</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Your first name muist be at least 2 characters long</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Your last name muist be at least 2 characters long</target>
             </trans-unit>
         </body>
     </file>

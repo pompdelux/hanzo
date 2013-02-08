@@ -83,14 +83,6 @@
                 <source>retrive.password</source>
                 <target>» Få din adgangskode tilsendt pr. e-post</target>
             </trans-unit>
-            <trans-unit id="my.account.login.notice">
-                <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
-            </trans-unit>
-            <trans-unit id="my.account.login.text">
-                <source>my.account.login.text</source>
-                <target><![CDATA[<h3>Min side - Log in</h3><p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p>]]></target>
-            </trans-unit>
             <trans-unit id="new.customer">
                 <source>new.customer</source>
                 <target>Ny kunde</target>
@@ -106,14 +98,6 @@
             <trans-unit id="password">
                 <source>password</source>
                 <target>Adgangskode</target>
-            </trans-unit>
-            <trans-unit id="my.account.login.title">
-                <source>my.account.login.title</source>
-                <target>Min side - Log in</target>
-            </trans-unit>
-            <trans-unit id="my.account.login.header" approved="no">
-                <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account">
                 <source>my.account</source>
@@ -484,6 +468,23 @@
             <trans-unit id="account.history.see.all.orders" approved="no">
                 <source>account.history.see.all.orders</source>
                 <target>Se alle ordrer</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.notice" approved="no">
+                <source>my.account.login.notice</source>
+                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.text" approved="no">
+                <source>my.account.login.text</source>
+                <target><![CDATA[<h3>Min side - Log in</h3><p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p>]]></target>
+            </trans-unit>
+
+            <trans-unit id="my.account.login.title">
+                <source>my.account.login.title</source>
+                <target>Min side - Log in</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
             </trans-unit>
         </body>
     </file>
