@@ -6,6 +6,7 @@ use Exception;
 
 use Hanzo\Core\Hanzo,
     Hanzo\Core\Tools,
+    Hanzo\Core\Timer,
     Hanzo\Model\Orders,
     Hanzo\Model\Customers,
     Hanzo\Model\GothiaAccounts,
