@@ -302,20 +302,34 @@ class GothiaController extends CoreController
                 // but only if the old paytype was gothia
                 if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                 {
-                    $timer = new Timer('gothia', true);
-                    try
-                    {
-                        $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                    }
-                    catch( GothiaApiCallException $g )
-                    {
+
+                    try {
+                        $response = $oldOrder->cancelPayment();
+                    } catch (Exception $e) {
                         $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
 
                         return $this->json_response(array(
                             'status' => FALSE,
-                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
                         ));
                     }
+
+
+                    // ab@bellcom.dk
+                    // $timer = new Timer('gothia', true);
+                    // try
+                    // {
+                    //     $response = $api->call()->cancelReservation( $customer, $oldOrder );
+                    // }
+                    // catch( GothiaApiCallException $g )
+                    // {
+                    //     $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
+
+                    //     return $this->json_response(array(
+                    //         'status' => FALSE,
+                    //         'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                    //     ));
+                    // }
 
                     $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
 

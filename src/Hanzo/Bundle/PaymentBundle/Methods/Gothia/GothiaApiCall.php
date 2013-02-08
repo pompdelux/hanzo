@@ -356,7 +356,10 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         // <<-- hf@bellcom.dk, 29-aug-2011: remove 2.nd param to CancelReservationObj, pr request of Gothia... don't know why, don't care why :)
 
         $response = $this->call('CancelReservation', $callString);
-
+        if ( !$response->isError() )
+        {
+          $order->setAttribute('is_canceled', 'payment', true);
+        }
         return $response;
     }
 
