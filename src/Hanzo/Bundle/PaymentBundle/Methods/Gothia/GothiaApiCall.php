@@ -75,8 +75,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             $client = AFSWS_Init( 'live' );
         }
 
-        #Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
-
         try
         {
             $response = $client->call( $function, $request );
@@ -113,7 +111,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
-        #Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
+        if ( $this->api->getTest() )
+        {
+          Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
+          Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
+        }
 
         $gothiaApiCallResponse = new GothiaApiCallResponse( $response, $function );
 
@@ -130,12 +132,14 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     {
         $hanzo = Hanzo::getInstance();
         $domain_key = str_replace('Sales', '', $hanzo->get('core.domain_key'));
-        $currency_map = array(
-            'SE' => 'SEK',
-            'FI' => 'EUR',
-            'NO' => 'NOK',
-            'DK' => 'DKK'
-        );
+        // Used default currency from domain_settings instead
+        // $currency_map = array(
+        //     'SE' => 'SEK',
+        //     'FI' => 'EUR',
+        //     'NL' => 'EUR',
+        //     'NO' => 'NOK',
+        //     'DK' => 'DKK'
+        // );
 
         $addresses     = $customer->getAddressess();
 
@@ -165,7 +169,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             AFSWS_Customer(
                 $address->getAddressLine1().' '.$address->getAddressLine2(),
                 $domain_key,
-                $currency_map[$domain_key],
+                $hanzo->get('core.currency'), // $currency_map[$domain_key], ab@bellcom.dk 070213
                 $customerId,
                 'Person',
                 null,
@@ -253,6 +257,9 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
               break;
           case "25031969": // Danish cases
               $customerId = 100002;
+              break;
+          case "01051982": // Netherland cases
+              $customerId = 'T1234';
               break;
         }
 
