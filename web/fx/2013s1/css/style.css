@@ -318,7 +318,6 @@ ul.sub-menu li ul,
 ul.sub-menu li ul a,
 .sub-menu > ul li ul a {
   display: inline-block;
-  margin: 0 0 0 6px;
 }
 
 ul.horizontal,
