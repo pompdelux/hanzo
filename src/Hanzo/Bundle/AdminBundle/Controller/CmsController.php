@@ -122,7 +122,7 @@ class CmsController extends CoreController
 
         $parent_choices = array();
 
-        $parents = CmsQuery::create()->filterByIsActive(true)->find();
+        $parents = CmsQuery::create()->filterByIsActive(true)->find($this->getDbConnection());
         foreach ($parents as $parent) {
             $parent_choices[$parent->getId()] = '('.$parent->getId().') '.$parent->getTitle();
         }
