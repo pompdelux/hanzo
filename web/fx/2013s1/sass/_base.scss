@@ -100,8 +100,10 @@ blockquote{
 	padding-left: 60px;
 	padding-top: 20px;
 	margin-left: 0;
+	line-height: 22px;
 	font-size: 18px;
 	font-family: $font-serif;
+	margin: 12px 0;
 }
 aside{
 	padding-bottom: 24px;
@@ -464,42 +466,4 @@ ol{
 .main > .grid_4-5,
 .container_8 .row{
 	margin-bottom: 6px;
-}
-
-body.da{
-	form.buy .submit-button{
-		@include da-sprite(put-to-basket);
-		height: da-sprite-height(put-to-basket);
-		width: da-sprite-width(put-to-basket);
-	}
-	.buy-set{
-		@include da-sprite(buy-set);
-		height: da-sprite-height(buy-set);
-		width: da-sprite-width(buy-set);
-	}
-	.new-price{
-		@include da-sprite(new-price);
-		height: da-sprite-height(new-price);
-		width: da-sprite-width(new-price);
-	}
-}
-
-body.en{
-
-}
-
-body.fi{
-
-}
-
-body.no{
-
-}
-
-body.nl{
-
-}
-
-body.se{
-
 }
