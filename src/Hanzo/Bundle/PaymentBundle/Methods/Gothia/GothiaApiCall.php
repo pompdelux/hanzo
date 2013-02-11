@@ -339,13 +339,13 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( empty($customerId) )
         {
-            #Tools::debug( 'Missing customer id', __METHOD__ );
+            Tools::debug( 'Missing customer id', __METHOD__ );
             throw new GothiaApiCallException( 'Missing customer id' );
         }
 
         if ( empty($amount) )
         {
-            #Tools::debug( 'Empty amount', __METHOD__ );
+            Tools::debug( 'Empty amount', __METHOD__ );
             throw new GothiaApiCallException( 'Empty amount' );
         }
 
@@ -360,11 +360,11 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         $response = $this->call('CancelReservation', $callString);
 
-        $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
+        $timer->logOne('cancelReservation, orderId #'.$order->getId());
 
         if ( !$response->isError() )
         {
-          $order->setAttribute('is_canceled', 'payment', true);
+          $order->setAttribute('is_canceled', 'payment', 'yes')->save();
         }
 
         return $response;

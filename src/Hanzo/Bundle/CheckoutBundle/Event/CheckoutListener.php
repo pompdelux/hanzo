@@ -233,7 +233,8 @@ class CheckoutListener
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
                 $orderAttributes = $oldOrder->getAttributes();
-                if(!isset($orderAttributes->payment->is_canceled) || $orderAttributes->payment->is_canceled === FALSE){
+                // Only cancel if it havent been before.
+                if(!isset($orderAttributes->payment->is_canceled) || (isset($orderAttributes->payment->is_canceled) && $orderAttributes->payment->is_canceled !== 'yes')){
                     try {
                         $oldOrder->cancelPayment();
                     } catch (\Exception $e) {
