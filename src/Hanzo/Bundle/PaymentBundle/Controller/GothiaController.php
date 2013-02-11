@@ -308,7 +308,7 @@ class GothiaController extends CoreController
                         $response = $oldOrder->cancelPayment();
                     } catch (Exception $e) {
                         $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
-
+                        Tools::debug('Cancel reservation failed', __METHOD__, array('Message' => $e->getMessage(), 'Order' => $oldOrder));
                         return $this->json_response(array(
                             'status' => FALSE,
                             'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
