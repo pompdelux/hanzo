@@ -118,10 +118,7 @@ class DefaultController extends CoreController
                 }
 
                 $customer->save();
-
-                // login user
-                $user = new ProxyUser($customer);
-                $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
+                $token = new UsernamePasswordToken($customer, null, 'secured_area', $customer->getRoles());
 
                 $this->container->get('security.context')->setToken($token);
                 $this->get('session')->setFlash('notice', $translator->trans('account.created', [], 'account'));

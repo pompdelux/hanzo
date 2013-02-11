@@ -58,6 +58,7 @@ class OrdersPeer extends BaseOrdersPeer
 
                 if ($security->isGranted('ROLE_USER')) {
                     $user = $security->getToken()->getUser();
+
                     self::$current->setCustomersId($user->getId());
                     self::$current->setEmail($user->getEmail());
                     self::$current->setFirstName($user->getFirstName());
