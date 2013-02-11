@@ -56,7 +56,6 @@ class MenuController extends CoreController
                     $this->generateTrail();
                 }
             }
-
             // now we have a trail to the current page, lets generate the requested menu.
 
             $html = '';
@@ -71,7 +70,7 @@ class MenuController extends CoreController
                     break;
 
                 case 'sub':
-                    if (empty($this->menu[$type]) && $offset) {
+                    if (empty($this->menu[$type])) {
                         $this->menu[$type] = '';
 
                         // generate
@@ -133,7 +132,19 @@ class MenuController extends CoreController
                 $this->generateTrail($item->getParentId());
             }
         }
-
+    }
+    /**
+     * Find the top node in the active trail. Doing it this way saves a call to db.
+     *
+     * @return int top nodes id
+     */
+    protected function getTopIdFromTrail()
+    {
+        foreach ($this->trail as $top) {
+            if(!$top->getParentId())
+                return $top->getId();
+        }
+        return null;
     }
 
 
@@ -215,7 +226,16 @@ class MenuController extends CoreController
     }
 
     // Used for left menu, in new design
-    protected function generateFlat($parent_id, $type, $include_self = false)
+    /**
+     * Generates a menu with sub levels.
+     *
+     * @param int       $parent_id     The node to start from, if null the id of top is used
+     * @param string    $type          the name of the menu
+     * @param boolean   $include_self  If parent is set, set this to include the parent into the menu
+     *
+     * @return void
+     */
+    protected function generateFlat($parent_id = null, $type, $include_self = false)
     {
         $query = CmsQuery::create()
             ->joinWithI18n($this->locale)
@@ -224,9 +244,13 @@ class MenuController extends CoreController
             ->orderBySort()
         ;
 
-        if($include_self){
+        if (!$parent_id) {
+            $parent_id = $this->getTopIdFromTrail();
+        }
+
+        if ($include_self) {
             $query = $query->filterById($parent_id);
-        }else{
+        } else {
             $query = $query->filterByParentId($parent_id);
         }
 
@@ -244,10 +268,10 @@ class MenuController extends CoreController
 
                 if ($record->getTitle()) {
                     $class = 'inactive';
-                    if ((isset($this->trail[$record->getId()])) ||
-                        ($path == $this->path)
-                    ) {
+                    if($path == trim($this->path, '/')) {
                         $class = 'active';
+                    }elseif ((isset($this->trail[$record->getId()]))){
+                        $class = 'active-trail';
                     }
 
                     if($result->isFirst()){
