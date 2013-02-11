@@ -960,12 +960,6 @@ form.address label {
   font-weight: 400;
   padding: 12px 6px;
 }
-.basket table.product-table tbody tr,
-.basket table.edit-element tbody tr,
-#cart-edit-element table.product-table tbody tr,
-#cart-edit-element table.edit-element tbody tr {
-  border-bottom: 1px solid #444444;
-}
 .basket table.product-table tfoot,
 .basket table.edit-element tfoot,
 #cart-edit-element table.product-table tfoot,
