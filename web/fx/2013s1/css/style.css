@@ -1,20 +1,8 @@
 /**
 | _sprites
 */
-.da-sprite, .da-buy-set, .da-new-price, .da-put-to-basket, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price {
+.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price {
   background: url('/fx/2013s1/../images/icons/da-sface9107c5.png') no-repeat;
-}
-
-.da-buy-set {
-  background-position: 0 -410px;
-}
-
-.da-new-price {
-  background-position: 0 0;
-}
-
-.da-put-to-basket {
-  background-position: 0 -494px;
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
@@ -111,6 +99,122 @@
 
 .icons-zoom {
   background-position: 0 -172px;
+}
+
+.fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price {
+  background: url('/fx/2013s1/../images/icons/fi-sec0815cf5c.png') no-repeat;
+}
+
+.nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price {
+  background: url('/fx/2013s1/../images/icons/nl-s030a8906ce.png') no-repeat;
+}
+
+.no-sprite, body.no form.buy .submit-button, body.no .buy-set, body.no .new-price {
+  background: url('/fx/2013s1/../images/icons/no-sf32cb30fcf.png') no-repeat;
+}
+
+.se-sprite, body.se form.buy .submit-button, body.se .buy-set, body.se .new-price {
+  background: url('/fx/2013s1/../images/icons/se-se58d7d38cd.png') no-repeat;
+}
+
+.en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price {
+  background: url('/fx/2013s1/../images/icons/en-sfa91a3521a.png') no-repeat;
+}
+
+body.da form.buy .submit-button {
+  background-position: 0 -494px;
+  height: 84px;
+  width: 87px;
+}
+body.da .buy-set {
+  background-position: 0 -410px;
+  height: 84px;
+  width: 87px;
+}
+body.da .new-price {
+  background-position: 0 0;
+  height: 410px;
+  width: 234px;
+}
+
+body.en form.buy .submit-button {
+  background-position: 0 -410px;
+  height: 84px;
+  width: 84px;
+}
+body.en .buy-set {
+  background-position: 0 -494px;
+  height: 84px;
+  width: 84px;
+}
+body.en .new-price {
+  background-position: 0 0;
+  height: 410px;
+  width: 234px;
+}
+
+body.fi form.buy .submit-button {
+  background-position: 0 -494px;
+  height: 84px;
+  width: 84px;
+}
+body.fi .buy-set {
+  background-position: 0 -410px;
+  height: 84px;
+  width: 84px;
+}
+body.fi .new-price {
+  background-position: 0 0;
+  height: 410px;
+  width: 234px;
+}
+
+body.no form.buy .submit-button {
+  background-position: 0 -494px;
+  height: 84px;
+  width: 84px;
+}
+body.no .buy-set {
+  background-position: 0 -410px;
+  height: 84px;
+  width: 84px;
+}
+body.no .new-price {
+  background-position: 0 0;
+  height: 410px;
+  width: 234px;
+}
+
+body.nl form.buy .submit-button {
+  background-position: 0 -494px;
+  height: 84px;
+  width: 84px;
+}
+body.nl .buy-set {
+  background-position: 0 -410px;
+  height: 84px;
+  width: 84px;
+}
+body.nl .new-price {
+  background-position: 0 0;
+  height: 410px;
+  width: 234px;
+}
+
+body.se form.buy .submit-button {
+  background-position: 0 -494px;
+  height: 84px;
+  width: 84px;
+}
+body.se .buy-set {
+  background-position: 0 -410px;
+  height: 84px;
+  width: 84px;
+}
+body.se .new-price {
+  background-position: 0 0;
+  height: 410px;
+  width: 234px;
 }
 
 /**
@@ -2251,20 +2355,4 @@ ol.list {
 .main > .grid_4-5,
 .container_8 .row {
   margin-bottom: 6px;
-}
-
-body.da form.buy .submit-button {
-  background-position: 0 -494px;
-  height: 84px;
-  width: 87px;
-}
-body.da .buy-set {
-  background-position: 0 -410px;
-  height: 84px;
-  width: 87px;
-}
-body.da .new-price {
-  background-position: 0 0;
-  height: 410px;
-  width: 234px;
 }
