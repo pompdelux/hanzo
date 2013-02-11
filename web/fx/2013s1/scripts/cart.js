@@ -71,7 +71,7 @@
         $act.css({
           'top': tr_offset.top - 18,
           'left' : tr_offset.left,
-          'height' : $tr.height() + 30,
+//          'height' : $tr.height() + 30,
           'width' : $tr.width() - 10
         });
         $('body').prepend($act);
@@ -176,7 +176,7 @@
         });
 
         $edit.on('change', 'select#quantity', function() {
-          $(this).closest('div').after('<input type="button" class="button button-black" value="'+Translator.get('js:update')+'">');
+          $(this).closest('div').after('<input type="button" class="button button-right" value="'+Translator.get('js:update')+'">');
         });
 
         $edit.on('click', 'input.button', function() {
