@@ -92,8 +92,10 @@ class CoreController extends Controller
     {
         // no need to doubble "encode"
         if ($content instanceof Response) {
-            if ($this->getSharedMaxAge() && 'webshop' == $this->get('kernel')->getSetting('store_mode')) {
-                $response->setSharedMaxAge($this->getSharedMaxAge());
+            if ('webshop' == $this->get('kernel')->getSetting('store_mode')) {
+                if ($this->getSharedMaxAge()) {
+                    $content->setSharedMaxAge($this->getSharedMaxAge());
+                }
             }
 
             return $content;
@@ -115,8 +117,10 @@ class CoreController extends Controller
 
         $response = new Response($content, $status, $headers);
 
-        if ($this->getSharedMaxAge() && 'webshop' == $this->get('kernel')->getSetting('store_mode')) {
-            $response->setSharedMaxAge($this->getSharedMaxAge());
+        if ('webshop' == $this->get('kernel')->getSetting('store_mode')) {
+            if ($this->getSharedMaxAge()) {
+                $response->setSharedMaxAge($this->getSharedMaxAge());
+            }
         }
 
         return $response;
