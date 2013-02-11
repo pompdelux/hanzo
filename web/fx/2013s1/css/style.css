@@ -1870,8 +1870,10 @@ blockquote {
   padding-left: 60px;
   padding-top: 20px;
   margin-left: 0;
+  line-height: 22px;
   font-size: 18px;
   font-family: "Merriweather", serif;
+  margin: 12px 0;
 }
 
 aside {
