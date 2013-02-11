@@ -5,7 +5,6 @@
 # needed to get verbose output. -v doesnt work
 logger.level = Logger::MAX_LEVEL
 
-# 
 set :dump_assetic_assets,   true
 
 set :deploy_to,   "/var/www/testpompdelux"
