@@ -23,7 +23,7 @@
     <div class="grid_8 alpha omega">
     {% if parent_id is not null %}{# pages with subpages #}
         <div class="grid_2 alpha sub-menu menu">
-            {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'offset': parent_id, 'include_self' : true } %}
+            {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'include_self' : true } %}
         </div>
         <div class="grid_6 omega">
             <article>

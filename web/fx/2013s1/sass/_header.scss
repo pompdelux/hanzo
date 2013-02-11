@@ -51,12 +51,11 @@ ul.sub-menu,
 	@include side-menu-style;
 	text-transform: uppercase;
 	li{
-		padding: 0 0 6px 0;
+		padding: 6px 0 6px 0;
 		line-height: 18px;
 		&.item{
 			a{
 				line-height: 18px;
-				padding: 3px 0 3px 12px;
 			}
 		}
 		&.heading > a,
@@ -65,12 +64,15 @@ ul.sub-menu,
 			display: block;
 			line-height: 18px;
 			text-decoration: none;
-			padding: 3px 0 3px 0px;
 			cursor: default;
+		}
+		&.active-trail > a{
+			text-decoration: none;
+			&:hover{text-decoration:underline;}
 		}
 
 		ul{
-			padding:6px 0 0 6px;
+			padding:6px 0 0 12px;
 			a{
 				display: inline-block;
 			}
