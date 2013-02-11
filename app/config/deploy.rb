@@ -14,6 +14,9 @@ set :hostname, `hostname`.strip
 set :pwd, `pwd`.strip
 set :hosts, ENV["HOSTS"]
 
+# do dump the js and css with uglify
+set :dump_assetic_assets,   true
+
 # mmh@bellcom.dk: use below to rsync the files instead of git clone. Requires capistrano_rsync_with_remote_cache installed (gem install)
 set :deploy_via,  :rsync_with_remote_cache
 # use other rsync_options. Default is: -az --delete
@@ -156,15 +159,17 @@ namespace :propel do
   namespace :migration do
     desc "Run migrations"
     task :migrate, :roles => :db do
-      symfony_env_prods.each do |i| 
-        run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
-      end
+    #  symfony_env_prods.each do |i| 
+        #run("cd #{latest_release} && php app/console propel:migration:migrate --env=#{i}")
+        run("cd #{latest_release} && php app/console propel:migration:migrate --env=prod_dk")
+    #  end
     end
     desc "Migrations status"
     task :status, :roles => :db do
-      symfony_env_prods.each do |i| 
-        run("cd #{latest_release} && php app/console propel:migration:status --env=#{i}")
-      end
+#      symfony_env_prods.each do |i| 
+        #run("cd #{latest_release} && php app/console propel:migration:status --env=#{i}")
+        run("cd #{latest_release} && php app/console propel:migration:status --env=prod_fi")
+#      end
     end
   end
 end
@@ -191,10 +196,8 @@ namespace :symfony do
 
   namespace :assetic do
     desc "Dumps all assets to the filesystem"
-    task :dump do
-      symfony_env_prods.each do |i| 
-        run "cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump #{web_path} --env=#{i} --no-debug"
-      end
+    task :dump, :roles => :static do
+      run "cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump #{web_path} --env=prod_dk --no-debug"
     end
   end
 

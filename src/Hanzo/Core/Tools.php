@@ -441,10 +441,12 @@ class Tools
 
         if (empty($path)) {
             $path = $_SERVER['SCRIPT_NAME'];
+
             // dev needs the "script name" to be part of the path but prod and test does not
-            if ('dev_' !== substr(self::getHanzoInstance()->container->get('kernel')->getEnvironment(), 0, 4)) {
+            if (false === strpos('.php', $_SERVER['REQUEST_URI'])) {
                 $path = '';
             }
+
             $path .= '/'.self::getHanzoInstance()->container->get('request')->getLocale().'/';
         }
 
