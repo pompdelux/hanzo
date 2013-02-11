@@ -244,18 +244,14 @@ class MenuController extends CoreController
             ->orderBySort()
         ;
 
+        if (!$parent_id) {
+            $parent_id = $this->getTopIdFromTrail();
+        }
+
         if ($include_self) {
-            if ($parent_id) {
-                $query = $query->filterById($parent_id);
-            } else {
-                $query = $query->filterById($this->getTopIdFromTrail());
-            }
+            $query = $query->filterById($parent_id);
         } else {
-            if ($parent_id) {
-                $query = $query->filterByParentId($parent_id);
-            } else {
-                $query = $query->filterByParentId($this->getTopIdFromTrail());
-            }
+            $query = $query->filterByParentId($parent_id);
         }
 
         $result = $query->find();
