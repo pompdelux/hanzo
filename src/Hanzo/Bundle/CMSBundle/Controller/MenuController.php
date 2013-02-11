@@ -133,7 +133,11 @@ class MenuController extends CoreController
             }
         }
     }
-
+    /**
+     * Find the top node in the active trail. Doing it this way saves a call to db.
+     *
+     * @return int top nodes id
+     */
     protected function getTopIdFromTrail()
     {
         foreach ($this->trail as $top) {
@@ -224,9 +228,11 @@ class MenuController extends CoreController
     // Used for left menu, in new design
     /**
      * Generates a menu with sub levels.
-     * @param  int  $parent_id    The node to start from, if null the id of top is used
-     * @param  string  $type         the name of the menu
-     * @param  boolean $include_self If parent is set, set this to include the parent into the menu
+     *
+     * @param int       $parent_id     The node to start from, if null the id of top is used
+     * @param string    $type          the name of the menu
+     * @param boolean   $include_self  If parent is set, set this to include the parent into the menu
+     *
      * @return void
      */
     protected function generateFlat($parent_id = null, $type, $include_self = false)
