@@ -23,7 +23,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $page = CmsPeer::getFrontpage($hanzo->get('core.locale'));
 
-        #$this->setSharedMaxAge(86400);
+        $this->setSharedMaxAge(86400);
         return $this->forward('CMSBundle:Default:view', array(
             'id'  => NULL,
             'page' => $page
@@ -58,7 +58,7 @@ class DefaultController extends CoreController
         $html = preg_replace($find, $replace, $html);
         $page->setContent($html);
 
-        #$this->setSharedMaxAge(86400);
+        $this->setSharedMaxAge(86400);
         return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'body_classes' => 'body-'.$type, 'page' => $page, 'parent_id' => $page->getParentId()));
     }
 
