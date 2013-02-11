@@ -214,6 +214,9 @@ class CmsController extends CoreController
 
                 try {
                     $trans = new CmsI18n();
+                    if($node->getType() === 'heading'){
+                        $trans->setPath('#');
+                    }
                     $trans->setCms($node);
                     $trans->setLocale($locale);
                     $trans->setSettings(json_encode($settings));

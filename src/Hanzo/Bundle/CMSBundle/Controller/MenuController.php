@@ -222,13 +222,12 @@ class MenuController extends CoreController
             ->filterByCmsThreadId($this->cms_thread)
             ->filterByIsActive(TRUE)
             ->orderBySort()
-            ->filterByParentId($parent_id)
         ;
 
         if($include_self){
-            $query = $query->_or()
-                ->filterById($parent_id)
-            ;
+            $query = $query->filterById($parent_id);
+        }else{
+            $query = $query->filterByParentId($parent_id);
         }
 
         $result = $query->find();
@@ -259,7 +258,7 @@ class MenuController extends CoreController
                         $class .= ' last';
                     }
 
-                    if($record->getId() === $parent_id){
+                    if($include_self && $record->getId() === $parent_id){
                         $class .= ' self-included';
                     }
 
@@ -287,6 +286,7 @@ class MenuController extends CoreController
 
                     $this->menu[$type] .= '<li class="' . $class . ' item"><a href="'. $uri . '" class="page-'.$record->getId().' '.$record->getType().'">' . $record->getTitle() . '</a>';
 
+                    $this->generateFlat($record->getId(), $type, false);
 
                     $this->menu[$type] .= '</li>';
                 }

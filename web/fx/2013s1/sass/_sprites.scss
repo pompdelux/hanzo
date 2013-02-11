@@ -3,15 +3,126 @@
 */
 
 @import "icons/da/*.png";
-@include all-da-sprites; //
+//@include all-da-sprites; //
 @import "icons/icons/*.png";
 @include all-icons-sprites; // Generates a sprite from all images inside the folder
 
-// @import "icons/fi/*.png";
-// @include all-fi-sprites; // Generates a sprite from all images inside the folder
-// @import "icons/nl/*.png";
-// @include all-nl-sprites; // Generates a sprite from all images inside the folder
-// @import "icons/no/*.png";
-// @include all-no-sprites; // Generates a sprite from all images inside the folder
-// @import "icons/se/*.png";
-// @include all-se-sprites; // Generates a sprite from all images inside the folder
+@import "icons/fi/*.png";
+//@include all-fi-sprites; // Generates a sprite from all images inside the folder
+@import "icons/nl/*.png";
+//@include all-nl-sprites; // Generates a sprite from all images inside the folder
+@import "icons/no/*.png";
+//@include all-no-sprites; // Generates a sprite from all images inside the folder
+@import "icons/se/*.png";
+//@include all-se-sprites; // Generates a sprite from all images inside the folder
+@import "icons/en/*.png";
+//@include all-en-sprites; // Generates a sprite from all images inside the folder
+
+
+body.da{
+    form.buy .submit-button{
+        @include da-sprite(put-to-basket);
+        height: da-sprite-height(put-to-basket);
+        width: da-sprite-width(put-to-basket);
+    }
+    .buy-set{
+        @include da-sprite(buy-set);
+        height: da-sprite-height(buy-set);
+        width: da-sprite-width(buy-set);
+    }
+    .new-price{
+        @include da-sprite(new-price);
+        height: da-sprite-height(new-price);
+        width: da-sprite-width(new-price);
+    }
+}
+
+body.en{
+    form.buy .submit-button{
+        @include en-sprite(put-to-basket);
+        height: en-sprite-height(put-to-basket);
+        width: en-sprite-width(put-to-basket);
+    }
+    .buy-set{
+        @include en-sprite(buy-set);
+        height: en-sprite-height(buy-set);
+        width: en-sprite-width(buy-set);
+    }
+    .new-price{
+        @include en-sprite(new-price);
+        height: en-sprite-height(new-price);
+        width: en-sprite-width(new-price);
+    }
+}
+
+body.fi{
+    form.buy .submit-button{
+        @include fi-sprite(put-to-basket);
+        height: fi-sprite-height(put-to-basket);
+        width: fi-sprite-width(put-to-basket);
+    }
+    .buy-set{
+        @include fi-sprite(buy-set);
+        height: fi-sprite-height(buy-set);
+        width: fi-sprite-width(buy-set);
+    }
+    .new-price{
+        @include fi-sprite(new-price);
+        height: fi-sprite-height(new-price);
+        width: fi-sprite-width(new-price);
+    }
+}
+
+body.no{
+    form.buy .submit-button{
+        @include no-sprite(put-to-basket);
+        height: no-sprite-height(put-to-basket);
+        width: no-sprite-width(put-to-basket);
+    }
+    .buy-set{
+        @include no-sprite(buy-set);
+        height: no-sprite-height(buy-set);
+        width: no-sprite-width(buy-set);
+    }
+    .new-price{
+        @include no-sprite(new-price);
+        height: no-sprite-height(new-price);
+        width: no-sprite-width(new-price);
+    }
+}
+
+body.nl{
+    form.buy .submit-button{
+        @include nl-sprite(put-to-basket);
+        height: nl-sprite-height(put-to-basket);
+        width: nl-sprite-width(put-to-basket);
+    }
+    .buy-set{
+        @include nl-sprite(buy-set);
+        height: nl-sprite-height(buy-set);
+        width: nl-sprite-width(buy-set);
+    }
+    .new-price{
+        @include nl-sprite(new-price);
+        height: nl-sprite-height(new-price);
+        width: nl-sprite-width(new-price);
+    }
+}
+
+body.se{
+    form.buy .submit-button{
+        @include se-sprite(put-to-basket);
+        height: se-sprite-height(put-to-basket);
+        width: se-sprite-width(put-to-basket);
+    }
+    .buy-set{
+        @include se-sprite(buy-set);
+        height: se-sprite-height(buy-set);
+        width: se-sprite-width(buy-set);
+    }
+    .new-price{
+        @include se-sprite(new-price);
+        height: se-sprite-height(new-price);
+        width: se-sprite-width(new-price);
+    }
+}
