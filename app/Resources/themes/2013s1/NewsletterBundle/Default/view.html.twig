@@ -1,0 +1,19 @@
+{% extends layout %}
+
+{% block content %}
+
+
+<div class="grid_8 alpha omega row">
+  {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+</div>
+
+<div class="grid_8 alpha omega">
+    <div class="grid_2 alpha sub-menu menu">
+        {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'include_self' : true } %}
+    </div>
+    <div class="grid_6 omega">
+        <h1>{{ page.title }}</h1>
+        {% render 'NewsletterBundle:Default:block' %}
+    </div>
+</div>
+{% endblock %}
