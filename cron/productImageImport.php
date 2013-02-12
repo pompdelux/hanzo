@@ -59,7 +59,7 @@ foreach ($images as $image) {
 
     // Luna-LS-Tshirt_Dark-Grey-Melange_overview_01.jpg
     // master         color             type     index
-    @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+    @list($master, $color, $type, $index) = explode('_', str_replace(['9', '-'], ['/', ' '], pathinfo($image, PATHINFO_FILENAME)));
 
     if (empty($product_ids[$master])) {
         $products_stmt->execute(array(
@@ -154,7 +154,7 @@ foreach ($_databases as $key => $conn) {
 
             // loop images into db
             foreach($images as $image) {
-                @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+                @list($master, $color, $type, $index) = explode('_', str_replace(['9', '-'], ['/', ' '], pathinfo($image, PATHINFO_FILENAME)));
                 $index = (int) $index;
 
                 $select_stm->execute(array(
@@ -212,7 +212,7 @@ foreach ($_databases as $key => $conn) {
                     continue;
                 }
 
-                @list($master, $color, $type, $index) = explode('_', str_replace('-', ' ', pathinfo($image, PATHINFO_FILENAME)));
+                @list($master, $color, $type, $index) = explode('_', str_replace(['9', '-'], ['/', ' '], pathinfo($image, PATHINFO_FILENAME)));
                 $index = (int) $index;
 
                 $image_id = $image2id[$image];
