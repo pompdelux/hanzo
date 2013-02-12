@@ -83,23 +83,21 @@
 
       // menu handeling
       var $menu = $('nav.main-menu');
-      $('> ul > li', $menu).each(function(index, element) {
+      var menu_width = 0;
+      $('li.heading', $menu).each(function(index, element) {
         var $element = $(element);
-        var subs = $('ul > li > ul > li', $element).length;
-        if (subs) {
-          var l = $('ul > li > ul', $element).length;
-          l = (l * 218);
-
-          if (subs < 30) {
-            l = l / 2;
-          }
-
-          $('ul > li', $element).css({ float:'left', width: '200px' });
-          $('> ul', $element).css({ width: l });
-        } else {
-          $('ul > li', $element).css({ display:'block' });
+        if (menu_width < $element.width()) {
+          menu_width = $element.width() - 40;
         }
+        $element.addClass('floaded');
       });
+      $('li.heading').closest('ul').each(function(index, element) {
+        var $element = $(element);
+        var count = $('> li', $element).length;
+        $element.css('width', (menu_width * count));
+      });
+
+
       $('> ul > li > a', $menu).click(function(event) {
         var $this = $(this).parent();
         var $element = $('> ul', $this);

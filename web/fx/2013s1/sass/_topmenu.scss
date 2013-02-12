@@ -47,6 +47,10 @@ nav.main-menu {
           }
         }
         li {
+          &.floaded{
+            float: left;
+            margin-right: 10px;
+          }
           &.heading > a,
           &.self-included > a{
             font-weight: bold;
