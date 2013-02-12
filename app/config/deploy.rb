@@ -40,8 +40,8 @@ set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", 
 require 'capistrano/deepmodules'
 set :git_enable_submodules, 1
 
-#set :use_sudo, false
-set :use_sudo, true
+set :use_sudo, false
+#set :use_sudo, true
 
 ssh_options[:forward_agent] = true
 
