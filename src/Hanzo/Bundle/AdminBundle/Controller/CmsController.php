@@ -345,13 +345,13 @@ class CmsController extends CoreController
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $path = $node->getPath();
+                $path = trim($node->getPath(),'/');
                 // Find dublicate URL'er hvis der er angivet en URL
                 $urls = null;
-                if($node->getPath() !== '#' AND !empty($path)){
+                if($path !== '#' AND !empty($path)){
                     $urls = CmsQuery::create()
                         ->useCmsI18nQuery()
-                            ->filterByPath($node->getPath())
+                            ->filterByPath($path)
                         ->endUse()
                         ->joinCmsI18n(NULL, 'INNER JOIN')
                         ->filterByIsActive(TRUE)
@@ -363,6 +363,7 @@ class CmsController extends CoreController
                 // Findes der ikke nogle med samme url-path _eller_ er node IKKE aktiv
                 if( !($urls instanceof Cms) || !$node->getIsActive())
                 {
+                    $node->setPath($path); // Trimmed version
                     $node->save($this->getDbConnection());
 
                     if($node->getIsActive()){
@@ -623,7 +624,7 @@ class CmsController extends CoreController
                     $menu .= '<span class="record-title">' . $record->getTitle() . '</span>';
                     $menu .= '<span class="record-type">' . $record->getType() . '</span>';
                     $menu .= '<div class="actions">';
-                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit">' . $t->trans('page.edit', array(), 'admin') . '</a>';
+                    $menu .= '<a href="'. $this->get('router')->generate('admin_cms_edit', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.edit', array(), 'admin') . '" class="edit">' . $t->trans('page.edit', array(), 'admin') . '</a>';
                     $menu .= '<a href="'. $this->get('router')->generate('admin_cms_delete', array('id' => $record->getId(), 'locale' => $record->getLocale())) .'" title="' . $t->trans('page.delete', array(), 'admin') . '" class="delete">' . $t->trans('page.delete', array(), 'admin') . '</a>';
                     $menu .= '</div>';
                     $menu .= '</div>';
