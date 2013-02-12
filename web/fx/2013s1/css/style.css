@@ -293,13 +293,12 @@ ul.sub-menu,
 }
 ul.sub-menu li,
 .sub-menu > ul li {
-  padding: 0 0 6px 0;
+  padding: 6px 0 6px 0;
   line-height: 18px;
 }
 ul.sub-menu li.item a,
 .sub-menu > ul li.item a {
   line-height: 18px;
-  padding: 3px 0 3px 12px;
 }
 ul.sub-menu li.heading > a, ul.sub-menu li.self-included > a,
 .sub-menu > ul li.heading > a,
@@ -308,12 +307,19 @@ ul.sub-menu li.heading > a, ul.sub-menu li.self-included > a,
   display: block;
   line-height: 18px;
   text-decoration: none;
-  padding: 3px 0 3px 0px;
   cursor: default;
+}
+ul.sub-menu li.active-trail > a,
+.sub-menu > ul li.active-trail > a {
+  text-decoration: none;
+}
+ul.sub-menu li.active-trail > a:hover,
+.sub-menu > ul li.active-trail > a:hover {
+  text-decoration: underline;
 }
 ul.sub-menu li ul,
 .sub-menu > ul li ul {
-  padding: 6px 0 0 6px;
+  padding: 6px 0 0 12px;
 }
 ul.sub-menu li ul a,
 .sub-menu > ul li ul a {
