@@ -362,6 +362,10 @@
                 <source>more.bundle.info</source>
                 <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
             </trans-unit>
+            <trans-unit id="events.error.email.or.phone" approved="no">
+                <source>events.error.email.or.phone</source>
+                <target>Email or phone is required.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

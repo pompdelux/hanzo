@@ -370,6 +370,10 @@
                 <source>more.bundle.info</source>
                 <target>Klik her for at mere information.</target>
             </trans-unit>
+            <trans-unit id="events.error.email.or.phone" approved="no">
+                <source>events.error.email.or.phone</source>
+                <target>Email eller telefon er krævet.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

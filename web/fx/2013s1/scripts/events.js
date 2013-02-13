@@ -18,7 +18,7 @@ var events = (function($) {
         e.preventDefault();
         dialoug.notice(Translator.get('js:events.error.email.or.phone'), 'error',3000, $(this));
       }
-      if(!$('#form_email', $(this)).val() && !email_regex.test($('#form_email', $(this)).val())){
+      if($('#form_email', $(this)).val() && !email_regex.test($('#form_email', $(this)).val())){
         e.preventDefault();
         dialoug.notice(Translator.get('js:email.invalid'), 'error',3000, $(this));
       }

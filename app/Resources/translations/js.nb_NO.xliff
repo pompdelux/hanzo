@@ -359,6 +359,10 @@
                 <source>more.bundle.info</source>
                 <target>Klikk her for å få mer informasjon.</target>
             </trans-unit>
+            <trans-unit id="events.error.email.or.phone" approved="no">
+                <source>events.error.email.or.phone</source>
+                <target>Email or phone is required.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
