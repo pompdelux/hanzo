@@ -1073,11 +1073,7 @@ class EventsController extends CoreController
                 }
 
                 $this->get('session')->setFlash('notice', 'events.participant.invited');
-            }else{
-                $error = new FormError($this->get('translator')->trans('event.email.or.phone.error', array(), 'events'));
-                $form->get('email')->addError($error);
             }
-            $myEvents[$request->request->get('form')['event_id']]['form'] = $form;
         }
 
         // Store all participants in the master events array.
