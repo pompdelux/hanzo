@@ -84,14 +84,14 @@
       // menu handeling
       var $menu = $('nav.main-menu');
       var menu_width = 0;
-      $('li.heading', $menu).each(function(index, element) {
+      $('li li.heading', $menu).each(function(index, element) {
         var $element = $(element);
         if (menu_width < $element.width()) {
           menu_width = $element.width() - 40;
         }
         $element.addClass('floaded');
       });
-      $('li.heading').closest('ul').each(function(index, element) {
+      $('li li.heading').closest('ul').each(function(index, element) {
         var $element = $(element);
         var count = $('> li', $element).length;
         $element.css('width', (menu_width * count));
