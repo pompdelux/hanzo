@@ -368,16 +368,16 @@ ul{
 	list-style-position: inside;
 	&.list {
 		list-style-type: disc;
+		@include paragraph-style;
 	}
 }
-#main ul{list-style-type: disc;}
 ol{
 	list-style-position: inside;
 	&.list {
 		list-style-type: decimal;
+		@include paragraph-style;
 	}
 }
-#main ol{list-style-type: disc;}
 
 // Slideshow Cycle2 styles
 .cycle-slideshow {

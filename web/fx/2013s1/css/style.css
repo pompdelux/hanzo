@@ -2221,10 +2221,11 @@ ul {
 }
 ul.list {
   list-style-type: disc;
-}
-
-#main ul {
-  list-style-type: disc;
+  color: #444444;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 15px;
 }
 
 ol {
@@ -2232,10 +2233,11 @@ ol {
 }
 ol.list {
   list-style-type: decimal;
-}
-
-#main ol {
-  list-style-type: disc;
+  color: #444444;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 15px;
 }
 
 .cycle-slideshow .cycle-pager {
