@@ -1025,21 +1025,21 @@ class EventsController extends CoreController
                     ->filterByEmail($data['email'])
                     ->_or()
                     ->filterByPhone($data['phone'])
-                ;
+                    ->findOne();
 
                 if(!$events_participant instanceof EventsParticipants){
                     $events_participant = new EventsParticipants();
                     $events_participant->setKey(sha1(time()))
-                                       ->setEventsId($data['event_id'])
-                                       ->setEmail($data['email'])
-                                       ->setPhone($data['phone']);
+                                       ->setEventsId($data['event_id']);
 
                 }
-                $events_participant->setInvitedBy($customer->getId());
-                $events_participant->setFirstName($data['first_name']);
-                $events_participant->setLastName($data['last_name']);
-                $events_participant->setTellAFriend($data['tell_a_friend']);
-                $events_participant->save();
+                $events_participant->setInvitedBy($customer->getId())
+                    ->setEmail($data['email'])
+                    ->setPhone($data['phone'])
+                    ->setFirstName($data['first_name'])
+                    ->setLastName($data['last_name'])
+                    ->setTellAFriend($data['tell_a_friend'])
+                    ->save();
 
                 // Now send out some emails!
                 if ($events_participant->getEmail()) {
