@@ -1020,12 +1020,16 @@ class EventsController extends CoreController
 
                 $event = $myEvents[$data['event_id']]['data'];
 
-                $events_participant = EventsParticipantsQuery::create()
+                $query = EventsParticipantsQuery::create()
                     ->filterByEventsId($data['event_id'])
-                    ->filterByEmail($data['email'])
-                    ->_or()
-                    ->filterByPhone($data['phone'])
-                    ->findOne();
+                ;
+                if (!empty($data['email'])) {
+                    $query->filterByEmail($data['email']);
+                }
+                if (!empty($data['phone']) && empty($data['email'])) {
+                    $query->filterByPhone($data['phone']);
+                }
+                $events_participant = $query->findOne();
 
                 if(!$events_participant instanceof EventsParticipants){
                     $events_participant = new EventsParticipants();
