@@ -1582,6 +1582,9 @@ div.dialoug.like-pop li div {
 .near-you-container .entry img {
   display: block;
 }
+.near-you-container .entry .box {
+  width: 216px;
+}
 .near-you-container .row {
   border-bottom: 1px solid whitesmoke;
 }
