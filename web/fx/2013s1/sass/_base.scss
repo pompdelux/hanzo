@@ -370,12 +370,14 @@ ul{
 		list-style-type: disc;
 	}
 }
+#main ul{list-style-type: disc;}
 ol{
 	list-style-position: inside;
 	&.list {
 		list-style-type: decimal;
 	}
 }
+#main ol{list-style-type: disc;}
 
 // Slideshow Cycle2 styles
 .cycle-slideshow {
