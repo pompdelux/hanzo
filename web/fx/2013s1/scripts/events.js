@@ -10,7 +10,20 @@ var calendar = (function($) {
 // Used by events create customer
 var events = (function($) {
   var pub = {};
-
+  pub.init = function(){
+    $('form.invite-form').submit(function(e){
+      // regex source: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+      var email_regex = RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+      if(!$('#form_email', $(this)).val() && !$('#form_phone', $(this)).val()){
+        e.preventDefault();
+        dialoug.notice(Translator.get('js:events.error.email.or.phone'), 'error',3000, $(this));
+      }
+      if(!$('#form_email', $(this)).val() && !email_regex.test($('#form_email', $(this)).val())){
+        e.preventDefault();
+        dialoug.notice(Translator.get('js:email.invalid'), 'error',3000, $(this));
+      }
+    });
+  };
   pub.choose_evet_type_init = function() {
     var $select = $('select#sales-type');
     var $hostess = $select.next();
@@ -102,7 +115,7 @@ var events = (function($) {
 
   return pub;
 })(jQuery);
-
+events.init();
 if ($("#calendar").length) {
   calendar.init();
 }

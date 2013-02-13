@@ -687,7 +687,8 @@ class EventsController extends CoreController
                     )->add('email', 'email',
                         array(
                             'label' => 'events.participants.email.label',
-                            'translation_domain' => 'events'
+                            'translation_domain' => 'events',
+                            'required' => false
                         )
                     )->add('phone', 'text',
                         array(
@@ -790,7 +791,8 @@ class EventsController extends CoreController
                 )->add('email', 'email',
                     array(
                         'label' => 'events.participants.email.label',
-                        'translation_domain' => 'events'
+                        'translation_domain' => 'events',
+                        'required' => false
                     )
                 )->add('phone', 'text',
                     array(
@@ -982,13 +984,16 @@ class EventsController extends CoreController
                                     )->add('email', 'email',
                                         array(
                                             'label' => 'events.participants.email.label',
-                                            'translation_domain' => 'events'
+                                            'translation_domain' => 'events',
+                                            'required' => false,
+                                            'error_bubbling' => true
                                         )
                                     )->add('phone', 'text',
                                         array(
                                             'label' => 'events.participants.phone.label',
                                             'translation_domain' => 'events',
-                                            'required' => false
+                                            'required' => false,
+                                            'error_bubbling' => true
                                         )
                                     )->add('tell_a_friend', 'checkbox',
                                         array(
@@ -1006,30 +1011,33 @@ class EventsController extends CoreController
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
 
-            $form = $myEvents[$request->request->get('form')['event_id']]['form']; // Get the correct form instance for the given event. The eventid is sent with a hidden field
+            $form = &$myEvents[$request->request->get('form')['event_id']]['form']; // Get the correct form instance for the given event. The eventid is sent with a hidden field
             $form->bindRequest($request);
 
-            if ($form->isValid()) {
-                $data = $form->getData();
+            $data = $form->getData();
+
+            if (!(empty($data['email']) && empty($data['phone'])) && $form->isValid()) {
 
                 $event = $myEvents[$data['event_id']]['data'];
 
                 $events_participant = EventsParticipantsQuery::create()
                     ->filterByEventsId($data['event_id'])
-                    ->findOneByEmail($data['email'])
+                    ->filterByEmail($data['email'])
+                    ->_or()
+                    ->filterByPhone($data['phone'])
                 ;
 
                 if(!$events_participant instanceof EventsParticipants){
                     $events_participant = new EventsParticipants();
                     $events_participant->setKey(sha1(time()))
                                        ->setEventsId($data['event_id'])
-                                       ->setEmail($data['email']);
+                                       ->setEmail($data['email'])
+                                       ->setPhone($data['phone']);
 
                 }
                 $events_participant->setInvitedBy($customer->getId());
                 $events_participant->setFirstName($data['first_name']);
                 $events_participant->setLastName($data['last_name']);
-                $events_participant->setPhone($data['phone']);
                 $events_participant->setTellAFriend($data['tell_a_friend']);
                 $events_participant->save();
 
@@ -1065,7 +1073,11 @@ class EventsController extends CoreController
                 }
 
                 $this->get('session')->setFlash('notice', 'events.participant.invited');
+            }else{
+                $error = new FormError($this->get('translator')->trans('event.email.or.phone.error', array(), 'events'));
+                $form->get('email')->addError($error);
             }
+            $myEvents[$request->request->get('form')['event_id']]['form'] = $form;
         }
 
         // Store all participants in the master events array.
