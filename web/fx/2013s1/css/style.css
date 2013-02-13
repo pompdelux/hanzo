@@ -1812,6 +1812,7 @@ h2 {
   padding: 3px 0;
   margin-bottom: 3px;
   text-transform: uppercase;
+  line-height: 18px;
 }
 
 h3 {
@@ -1834,7 +1835,7 @@ p {
   font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
-  line-height: 13px;
+  line-height: 15px;
   padding: 0 0 5px;
 }
 
@@ -1843,7 +1844,7 @@ article {
   font-size: 12px;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: normal;
-  line-height: 13px;
+  line-height: 15px;
 }
 
 hr {
