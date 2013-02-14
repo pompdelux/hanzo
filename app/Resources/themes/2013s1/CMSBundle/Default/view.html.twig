@@ -17,7 +17,7 @@
 
 {% if page_type|default('page') != 'frontpage' %}
     <div class="grid_8 alpha omega row">
-      {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
+      {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': left_menu.thread} %}
     </div>
 
     <div class="grid_8 alpha omega">
