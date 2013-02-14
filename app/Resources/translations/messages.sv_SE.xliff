@@ -194,19 +194,19 @@
             </trans-unit>
             <trans-unit id="category.selector.overview" approved="no">
                 <source>category.selector.overview</source>
-                <target>Overview</target>
+                <target>Översikt</target>
             </trans-unit>
             <trans-unit id="options.title" approved="no">
                 <source>options.title</source>
-                <target>Colour and size</target>
+                <target>Färg och storlek</target>
             </trans-unit>
             <trans-unit id="choose.size.note" approved="no">
                 <source>choose.size.note</source>
-                <target>(The size is the childs height in cm.)</target>
+                <target>(Storleken är barnets längd i cm.)</target>
             </trans-unit>
             <trans-unit id="click.to.zoom" approved="no">
                 <source>click.to.zoom</source>
-                <target>Click for zoom</target>
+                <target>Klicka för zoom</target>
             </trans-unit>
             <trans-unit id="click.to.video" approved="no">
                 <source>click.to.video</source>
@@ -214,36 +214,35 @@
             </trans-unit>
             <trans-unit id="product.pictures.title" approved="no">
                 <source>product.pictures.title</source>
-                <target>Pictures</target>
+                <target>Bilder</target>
             </trans-unit>
             <trans-unit id="buy.the.set.title" approved="no">
                 <source>buy.the.set.title</source>
-                <target>Buy the set</target>
+                <target>Köp settet</target>
             </trans-unit>
             <trans-unit id="latest.seen.products.title" approved="no">
                 <source>latest.seen.products.title</source>
-                <target>Also watched</target>
+                <target>Även sedd</target>
             </trans-unit>
             <trans-unit id="delivery.title" approved="no">
                 <source>delivery.title</source>
-                <target>Delivery</target>
+                <target>Leverans</target>
             </trans-unit>
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle ordrer sendes med Post Danmark som pakkepost. Det vil sige, at både vi og vores kunder har muligged for at følge pakken med track & trace tuk deb bkuver leveret. Du kan også vælge at få din ordre sendt til din arbejdsplads - så koster det dig istedet 39,00 DKK.</p>
-                    <p>Bemærk: Hvis du til et Home shopping arrangement køber for min. 1.400,00 DKK sender vi din ordre fragtfrit.</p>
+                    <p>Alla varor skickas som paketpost med Post Danmark och www.posten.se. Du har därför möjlighet att följa ditt paket via ett kollinummer från det att det skickas från oss till att det blir levererat hos ditt postombud. Om du beställer dina varor via ett Home shopping arrangemang kostar frakten 49,00 SEK. Om du beställer varor i vår Webshop kostar frakten 69,00 SEK. </p>
                     <p>Leveringstid: %delivery.date%</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
                 <source>return.title</source>
-                <target>Return</target>
+                <target>Retur</target>
             </trans-unit>
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varerne skal være ubrugte og returneres i original emballage, med hængemærker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrudt emballage. Postposen, som du modtager dine varer i, er lavet, så den kan bruges to gange. På posen kan du se, hvor du skal klippe, så du kan anvende den igen. Vi refunderer derfor ikke penge for returemballage, ligesom vi ikke refunderer penge for porto, hvis du kun sender dele af din ordre retur. Vi modtager ikke returvarer, der bliver sendt pr. efterkrav.</p>
+                    <p>Varorna ska vara oanvända och returneras i original förpackning med labels osv. Strumpor, leggings och strumpbyxor kan endast returneras i obruten förpackning. Postpåsen som dina varor levereras i är gjord så att den kan användas två gånger. Du kan se på påsen hur du gör för att använda den igen. Vi återbetalar därför inte pengar för returemballage och heller inte för porto om du endast returnerar delar av din order. Vi tar inte emot returvaror som skickats mot postförskott.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
@@ -292,39 +291,39 @@
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
                 <source>share.to.%method%</source>
-                <target>Share on %method%</target>
+                <target>Dela%method%</target>
             </trans-unit>
             <trans-unit id="back.to.category" approved="no">
                 <source>back.to.category</source>
-                <target>Back to category</target>
+                <target>Tillbaka till kategorin</target>
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
-                <target>On stock</target>
+                <target>På lager</target>
             </trans-unit>
             <trans-unit id="on.stock.yes" approved="no">
                 <source>on.stock.yes</source>
-                <target>Yes</target>
+                <target>Ja</target>
             </trans-unit>
             <trans-unit id="on.stock.no" approved="no">
                 <source>on.stock.no</source>
-                <target>No</target>
+                <target>Nej</target>
             </trans-unit>
             <trans-unit id="pager.pages.%total%" approved="no">
                 <source>pager.pages.%total%</source>
-                <target>of %total%</target>
+                <target>av %total%</target>
             </trans-unit>
             <trans-unit id="pager.see_all.%total%" approved="no">
                 <source>pager.see_all.%total%</source>
-                <target>see all(%total%)</target>
+                <target>se alla(%total%)</target>
             </trans-unit>
             <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
-                <target>Click for more information.</target>
+                <target>Klicka för mer information.</target>
             </trans-unit>
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
-                <target>Goto top</target>
+                <target>Gå till toppen</target>
             </trans-unit>
         </body>
     </file>

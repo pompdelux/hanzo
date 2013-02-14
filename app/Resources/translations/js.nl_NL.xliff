@@ -316,31 +316,31 @@
             </trans-unit>
             <trans-unit id="email.invalid" approved="no">
                 <source>email.invalid</source>
-                <target>Ivalid email</target>
+                <target>Ongeldige e-mail</target>
             </trans-unit>
             <trans-unit id="email.repeat.invalid" approved="no">
                 <source>email.repeat.invalid</source>
-                <target>Email are not the same</target>
+                <target>De e-mails zijn niet hetzelfde</target>
             </trans-unit>
             <trans-unit id="phone.invalid" approved="no">
                 <source>phone.invalid</source>
-                <target>ivalid phonenumber, must only contain digits and at least 8.</target>
+                <target>Ongeldig telefoonnummer, het mag alleen cijfers bevatten - en minstens 8 cijfers</target>
             </trans-unit>
             <trans-unit id="password.invalid.match" approved="no">
                 <source>password.invalid.match</source>
-                <target>The password fields must match.</target>
+                <target>De wachtwoorden moeten hetzelfde zijn</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Password must be a minimum of 5 characters long</target>
+                <target>Het wachtwoord moet uit minstens 5 tekens bestaan</target>
             </trans-unit>
             <trans-unit id="field.required" approved="no">
                 <source>field.required</source>
-                <target>All fields with (*) are required.</target>
+                <target>Alle velden met (*) moeten ingevuld worden.</target>
             </trans-unit>
             <trans-unit id="approve.conditions.required" approved="no">
                 <source>approve.conditions.required</source>
-                <target>You have to approve POMPdeLUX terms and conditions.</target>
+                <target>Je moet de POMPdeLUX voorwaarden accepteren.</target>
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>

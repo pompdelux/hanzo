@@ -100,7 +100,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[Voit muokata tilausta seuraavasti:<br><br>1) Aloita muokkaus klikkaamalla "Muokkaa". Tilatut tuotteet siirretään sen jälkeen takaisin ostoskoriin.<br><br>2) Jos haluat muuttaa tuotteen väriä tai kokoa, napsauta kynää ostoskorissa. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita.<br><br>3) Kun muutokset ovat valmiit, napsauta "Näytä ostoskori" ja seuraa vaihteita 1 – 5. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.<br><br><b>Huomaa:</b> Visa Electronia tai MasterCardia käytettäessä on huomioitava seuraavaa:<ul><li>Ostosten koko määrä huomioidaan toistaiseksi, kun tilausta on muutettu. </li><li>POMPdeLUX poistaa alkuperäisen tilauksen katevarauksen, joten meidän osaltamme varattuna on vain muutetun tilauksen kokonaissumma. Rahoituslaitoksissa varauksen poistaminen saattaa kuitenkin kestää jopa 6 viikkoa. </li></ul>]]></target>
+                <target><![CDATA[Voit muokata tilausta seuraavasti:<br><br>1) Aloita muokkaus klikkaamalla "Muokkaa". Tilatut tuotteet siirretään sen jälkeen takaisin ostoskoriin.<br><br>2) Jos haluat muuttaa tuotteen väriä tai kokoa, napsauta kynää ostoskorissa. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita.<br><br>3) Kun muutokset ovat valmiit, napsauta "Näytä ostoskori" ja suorita vaiheet 1–5. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.<br><br><b>Huomaa:</b> Visa Electronia tai MasterCardia käytettäessä on huomioitava seuraavaa:<ul><li>Ostosten koko määrä huomioidaan toistaiseksi, kun tilausta on muutettu. </li><li>POMPdeLUX poistaa alkuperäisen tilauksen katevarauksen, joten meidän osaltamme varattuna on vain muutetun tilauksen kokonaissumma. Rahoituslaitoksissa varauksen poistaminen saattaa kuitenkin kestää jopa 6 viikkoa. </li></ul>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
@@ -132,7 +132,7 @@
             </trans-unit>
             <trans-unit id="wall.share">
                 <source>wall.share</source>
-                <target>Osa</target>
+                <target>Jaa</target>
             </trans-unit>
             <trans-unit id="wall.remove.like.link">
                 <source>wall.remove.like.link</source>
@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="wall.add.like.link">
                 <source>wall.add.like.link</source>
-                <target>Tykkää sisältöä</target>
+                <target>Tykkää sisällöstä</target>
             </trans-unit>
             <trans-unit id="wall.remove.dislike.link">
                 <source>wall.remove.dislike.link</source>
@@ -148,7 +148,7 @@
             </trans-unit>
             <trans-unit id="wall.add.dislike.link">
                 <source>wall.add.dislike.link</source>
-                <target>Älä tykkää sisältöä</target>
+                <target>Älä tykkää sisällöstä</target>
             </trans-unit>
             <trans-unit id="wall.edit.entry">
                 <source>wall.edit.entry</source>
@@ -164,7 +164,7 @@
             </trans-unit>
             <trans-unit id="wall.likes.plural.%likes%">
                 <source>wall.likes.plural.%likes%</source>
-                <target>%likes% pitivät tästä sisällöstä.</target>
+                <target>%likes% piti tästä sisällöstä.</target>
             </trans-unit>
             <trans-unit id="wall.likes.single.%likes%">
                 <source>wall.likes.single.%likes%</source>
@@ -308,7 +308,7 @@
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
-                <target>Jatkaa</target>
+                <target>Jatka</target>
             </trans-unit>
             <trans-unit id="checkout.choose.shipping.method" approved="no">
                 <source>checkout.choose.shipping.method</source>
@@ -324,35 +324,35 @@
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.message" approved="no">
                 <source>checkout.payment.progress.alert.message</source>
-                <target><![CDATA[Odota maksuikkunan avautumista. Maksuikkunan avautuminen voi kestää 30 sekuntia. Jos kuluu yli 30 sekuntia, napsauta alla olevaa Keskeytä maksu -painiketta ja yritä uudelleen.<br><br>Kiitos jo etukäteen.<br><br><a href="%url%">» Keskeytä maksu</a>]]></target>
+                <target><![CDATA[Odota maksuikkunan avautumista. Maksuikkunan avautuminen voi kestää 30 sekuntia. Jos kuluu yli 30 sekuntia, napsauta alla olevaa Keskeytä maksu  painiketta ja yritä uudelleen.<br><br>Kiitos jo etukäteen.<br><br><a href="%url%">» Keskeytä maksu</a>]]></target>
             </trans-unit>
             <trans-unit id="email.invalid" approved="no">
                 <source>email.invalid</source>
-                <target>Ivalid email</target>
+                <target>Sähköpostiosoite ei kelpaa</target>
             </trans-unit>
             <trans-unit id="email.repeat.invalid" approved="no">
                 <source>email.repeat.invalid</source>
-                <target>Email are not the same</target>
+                <target>Sähköpostiosoitteet eivät ole samoja</target>
             </trans-unit>
             <trans-unit id="phone.invalid" approved="no">
                 <source>phone.invalid</source>
-                <target>ivalid phonenumber, must only contain digits and at least 8.</target>
+                <target>Puhelinnumero ei kelpaa. Siinä on oltava vähintään 8 numeroa eikä muita merkkejä.</target>
             </trans-unit>
             <trans-unit id="password.invalid.match" approved="no">
                 <source>password.invalid.match</source>
-                <target>The password fields must match.</target>
+                <target>Salasanakenttien on vastattava toisiaan.</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Password must be a minimum of 5 characters long</target>
+                <target>Salasanassa on oltava vähintään 5 merkkiä</target>
             </trans-unit>
             <trans-unit id="field.required" approved="no">
                 <source>field.required</source>
-                <target>All fields with (*) are required.</target>
+                <target>Kaikki tähdellä (*) merkityt kentät on täytettävä.</target>
             </trans-unit>
             <trans-unit id="approve.conditions.required" approved="no">
                 <source>approve.conditions.required</source>
-                <target>You have to approve POMPdeLUX terms and conditions.</target>
+                <target>Sinun on hyväksyttävä POMPdeLUXin ehdot.</target>
             </trans-unit>
             <trans-unit id="more.product.info" approved="no">
                 <source>more.product.info</source>

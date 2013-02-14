@@ -281,7 +281,7 @@
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
-        <target>Gothia maksu</target>
+        <target>Gothia-maksu</target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
@@ -386,7 +386,7 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Basket</h1><p>Need help? <a href="/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Ostoskori</h1><p>Tarvitsetko apua? <a href="/faq">FAQ</a></p>]]></target>
       </trans-unit>
     </body>
   </file>

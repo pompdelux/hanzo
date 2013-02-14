@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="User account is disabled." approved="no">
                 <source>User account is disabled.</source>
-                <target>User account is disabled.</target>
+                <target>Käyttäjätili ei ole käytössä.</target>
             </trans-unit>
             <trans-unit id="fetch.invoice">
                 <source>fetch.invoice</source>
@@ -56,11 +56,11 @@
             </trans-unit>
             <trans-unit id="password.forgotten.not_found">
                 <source>password.forgotten.not_found</source>
-                <target><![CDATA[Sähköpostiosoitettasi ei valitettavasti löytynyt. Yritä uudestaan ja tarkasta, että olet kirjoittanut sähköpostiosoitteesi oikein.<br><br>Jos sähköpostiosoite on oikein ja tämä viesti tulee uudelleen esiin, tietojasi ei löydy järjestelmästämme. Ota yhteyttä asiakaspalveluluumme, niin korjaamme asian.<br> <a href="/fi_FI/forside/asiakaspalvelu">» Kundeservice</a>]]></target>
+                <target><![CDATA[Sähköpostiosoitettasi ei valitettavasti löytynyt. Yritä uudestaan ja tarkasta, että olet kirjoittanut sähköpostiosoitteesi oikein.<br><br>Jos sähköpostiosoite on oikein ja tämä viesti tulee uudelleen esiin, tietojasi ei löydy järjestelmästämme. Ota yhteyttä asiakaspalveluumme, niin korjaamme asian.<br> <a href="/fi_FI/forside/asiakaspalvelu">» Kundeservice</a>]]></target>
             </trans-unit>
             <trans-unit id="password.forgotten.resend">
                 <source>password.forgotten.resend</source>
-                <target>Salasana on lähetty antamaasi sähköpostiosoitteeseen.</target>
+                <target>Salasana on lähetetty antamaasi sähköpostiosoitteeseen.</target>
             </trans-unit>
             <trans-unit id="proceed">
                 <source>proceed</source>
@@ -80,7 +80,7 @@
             </trans-unit>
             <trans-unit id="existing.customer">
                 <source>existing.customer</source>
-                <target>Nykyisten asiakas</target>
+                <target>Nykyinen asiakas</target>
             </trans-unit>
             <trans-unit id="email">
                 <source>email</source>
@@ -360,11 +360,11 @@
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Phone number should only be numbers</target>
+                <target>Puhelinnumerossa saa olla vain numeroita</target>
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Phone number should be at least 8 digits long</target>
+                <target>Puhelinnumerossa on oltava vähintään 8 numeroa</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
@@ -384,11 +384,11 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
+                <target><![CDATA[Profiilisi on luotu sivustossa %site_name%. Sinun tulee siten käyttää verkkokauppaa: <a href="%url%">%site_name%</a>.<br>Jos sinulla on kysyttävää, ota yhteyttä asiakaspalveluumme.]]></target>
             </trans-unit>
             <trans-unit id="login.restricted.only.customers" approved="no">
                 <source>login.restricted.only.customers</source>
-                <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
+<target><![CDATA[Profiiliksesi on luotu myyntiedustaja tai työntekijä. Käytä siksi: <a href="%url%">tätä sisäänkirjautumislomaketta</a>.]]></target>
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
@@ -400,37 +400,37 @@
             </trans-unit>
             <trans-unit id="my.account.%name%" approved="no">
                 <source>my.account.%name%</source>
-                <target>Welcome, %name%!</target>
+                <target>Tervetuloa, %name%!</target>
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <target><![CDATA[<p>Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.<br>Voit tehdä tilaukseesi seuraavia muutoksia:
                 <ul class="list">
-                  <li>Tilføje flere varer</li>
-                  <li>Ændre størrelsen og/eller farven på en vare</li>
-                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                  <li>Voit lisätä tuotteita</li>
+                  <li>Voit muuttaa tuotteen kokoa ja/tai väriä</li>
+                  <li>Voit poistaa ostamasi tuotteen, jota et sittenkään halua</li>
                 </ul>
                 </p>
-                <p>Hvis du ønsker at tilføje. ændre eller slette en vare på din ordre skal du gøre følgende:
+                <p>Jos haluat lisätä, vaihtaa tai poistaa tuotteen, toimi seuraavasti:
                 <ol class="list">
-                  <li>Tilføje flere varer</li>
-                  <li>Ændre størrelsen og/eller farven på en vare</li>
-                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                  <li>Lisää tuotteita</li>
+                  <li>Muuta tuotteen kokoa ja/tai väriä</li>
+                  <li>Poista ostamasi tuote, jota et sittenkään halua</li>
                 </ol>
                 </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
-                <target>Newsletters</target>
+                <target>Uutiskirjeet</target>
             </trans-unit>
             <trans-unit id="my.account.my.events" approved="no">
                 <source>my.account.my.events</source>
-                <target>My events</target>
+                <target>Tilaisuuteni</target>
             </trans-unit>
             <trans-unit id="account.history.see.all.orders" approved="no">
                 <source>account.history.see.all.orders</source>
-                <target>See all orders</target>
+                <target>Katso kaikki tilaukset</target>
             </trans-unit>
             <trans-unit id="acc.1">
                 <source>Email address</source>
@@ -450,7 +450,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+                <target><![CDATA[<p>Tervetuloa – liity asiakkaaksi!</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
@@ -458,23 +458,23 @@
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+                <target><![CDATA[<h1>Tervetuloa omille sivuille</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.header" approved="no">
                 <source>my.account.header</source>
-                <target><![CDATA[<h1>Welcome!</h1>]]></target>
+                <target><![CDATA[<h1>Tervetuloa!</h1>]]></target>
             </trans-unit>
             <trans-unit id="address.first_name.min.length" approved="no">
                 <source>address.first_name.min.length</source>
-                <target>Your first name muist be at least 2 characters long</target>
+                <target>Etunimessä on oltava vähintään 2 merkkiä</target>
             </trans-unit>
             <trans-unit id="address.last_name.min.length" approved="no">
                 <source>address.last_name.min.length</source>
-                <target>Your last name muist be at least 2 characters long</target>
+                <target>Sukunimessä on oltava vähintään 2 merkkiä</target>
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[On this page you must enter your personal info (and <u>not</u> company info).]]></target>
+                <target><![CDATA[Anna tällä sivulla henkilötietosi (<u>ei</u> yritystietoja).]]></target>
             </trans-unit>
         </body>
     </file>

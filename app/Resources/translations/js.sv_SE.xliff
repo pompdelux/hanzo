@@ -313,31 +313,31 @@
             </trans-unit>
             <trans-unit id="email.invalid" approved="no">
                 <source>email.invalid</source>
-                <target>Ivalid email</target>
+                <target>Ogiltig email</target>
             </trans-unit>
             <trans-unit id="email.repeat.invalid" approved="no">
                 <source>email.repeat.invalid</source>
-                <target>Email are not the same</target>
+                <target>Email matchar inte</target>
             </trans-unit>
             <trans-unit id="phone.invalid" approved="no">
                 <source>phone.invalid</source>
-                <target>ivalid phonenumber, must only contain digits and at least 8.</target>
+                <target>Ogiltigt telefonnummer. Får endast innehålla siffror och minst 8.</target>
             </trans-unit>
             <trans-unit id="password.invalid.match" approved="no">
                 <source>password.invalid.match</source>
-                <target>The password fields must match.</target>
+                <target>Lösenord fälten måste matcha.</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Password must be a minimum of 5 characters long</target>
+                <target>Lösenordet måste innehålla minst 5 siffror och/eller bokstäver</target>
             </trans-unit>
             <trans-unit id="field.required" approved="no">
                 <source>field.required</source>
-                <target>All fields with (*) are required.</target>
+                <target>Alla fält med (*) måste fyllas i.</target>
             </trans-unit>
             <trans-unit id="approve.conditions.required" approved="no">
                 <source>approve.conditions.required</source>
-                <target>You have to approve POMPdeLUX terms and conditions.</target>
+                <target>Du måste godkänna POMPdeLUX villkor.</target>
             </trans-unit>
             <trans-unit id="more.product.info" approved="no">
                 <source>more.product.info</source>

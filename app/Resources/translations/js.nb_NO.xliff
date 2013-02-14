@@ -111,7 +111,7 @@
                 <target>Telefon</target>
             </trans-unit>
             <trans-unit id="email">
-                <source>email</source>
+                <source>Email</source>
                 <target>E-post</target>
             </trans-unit>
             <trans-unit id="mannequin.empty" approved="no">
@@ -317,31 +317,31 @@
             </trans-unit>
             <trans-unit id="email.invalid" approved="no">
                 <source>email.invalid</source>
-                <target>Ivalid email</target>
+                <target>Ugyldig e-postadresse</target>
             </trans-unit>
             <trans-unit id="email.repeat.invalid" approved="no">
                 <source>email.repeat.invalid</source>
-                <target>Email are not the same</target>
+                <target>E-postadressen er ikke den samme</target>
             </trans-unit>
             <trans-unit id="phone.invalid" approved="no">
                 <source>phone.invalid</source>
-                <target>ivalid phonenumber, must only contain digits and at least 8.</target>
+                <target>Ugyldig telefonnummer. Det kan kun inneholde tall og minst 8.</target>
             </trans-unit>
             <trans-unit id="password.invalid.match" approved="no">
                 <source>password.invalid.match</source>
-                <target>The password fields must match.</target>
+                <target>Passord-feltene må matche.</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Password must be a minimum of 5 characters long</target>
+                <target>Passordet må bestå av minst 5 tegn</target>
             </trans-unit>
             <trans-unit id="field.required" approved="no">
                 <source>field.required</source>
-                <target>All fields with (*) are required.</target>
+                <target>Alle områder merket med (*) må fylles ut.</target>
             </trans-unit>
             <trans-unit id="approve.conditions.required" approved="no">
                 <source>approve.conditions.required</source>
-                <target>You have to approve POMPdeLUX terms and conditions.</target>
+                <target>Du må akseptere POMPdeLUX’ betingelser og vilkår.</target>
             </trans-unit>
             <trans-unit id="checkout.payment.progress.alert.title" approved="no">
                 <source>checkout.payment.progress.alert.title</source>

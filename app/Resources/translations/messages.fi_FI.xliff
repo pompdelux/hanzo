@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="more.product.info">
                 <source>more.product.info</source>
-                <target>Saat lisätietoja tuotteesta %name% napsauttamalla tästä.</target>
+                <target>Saat lisätietoja tuotteesta %name% napsauttamalla tätä.</target>
             </trans-unit>
             <trans-unit id="all.products.out.of.stock">
                 <source>all.products.out.of.stock</source>
@@ -116,7 +116,7 @@
             </trans-unit>
             <trans-unit id="event.id">
                 <source>event.id</source>
-                <target>Tapahtuma nro</target>
+                <target>Tilaisuuden nro</target>
             </trans-unit>
             <trans-unit id="store.address">
                 <source>store.address</source>
@@ -125,12 +125,12 @@
             <trans-unit id="order.edit.global.notice">
                 <source>order.edit.global.notice</source>
                 <target><![CDATA[
-                  <h2>Huomaa:</h2> <p> Olet muokkaamassa E-tilausnumeroa<a href="%history_url%" title="se ordren">%order_id%</a>.<br> Jos haluat keskeyttää tilauksen muokkaamisen - <a href="%stop_url%" title="stop editering af ordren">napsauta tästä.</a> </p> <p>Jos haluat muuttaa väriä tai kokoa, klikkaa ostoskorissa olevaa kynää. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita. </p> <p class="last">Kun muutokset ovat valmiit, napsauta "Näytä ostoskori" ja seuraa vaihteita 1 – 6. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.</p>]]>
+                  <h2>Huomaa:</h2> <p> Olet muokkaamassa E-tilausnumeroa<a href="%history_url%" title="se ordren">%order_id%</a>.<br> Jos haluat keskeyttää tilauksen muokkaamisen - <a href="%stop_url%" title="stop editering af ordren">napsauta tätä.</a> </p> <p>Jos haluat muuttaa väriä tai kokoa, napsauta ostoskorissa olevaa kynää. Jos haluat lisätä tuotteita, napsauta verkkokaupan valikoita. </p> <p class="last">Kun muutokset ovat valmiit, napsauta "Näytä ostoskori" ja suorita vaiheet 1–6. Kun olet maksanut tilauksen uudelleen luottokortilla, vanha maksu poistetaan automaattisesti.</p>]]>
                 </target>
             </trans-unit>
             <trans-unit id="customer.service.contact.info">
                 <source>customer.service.contact.info</source>
-                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a hrfef="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 10 - 14<br>Perjantaisin 10 - 14<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
+                <target><![CDATA[Asiakaspalvelu<br>Puhelin: 09 34870870<br>Sähköposti: <a hrfef="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a><br>Maanantaista torstaihin klo 10–14<br>Perjantaisin 10–14<br>Suljettu lauantaisin, sunnuntaisin ja pyhäpäivinä]]></target>
             </trans-unit>
             <trans-unit id="footer.address">
                 <source>footer.address</source>
@@ -164,7 +164,7 @@
             </trans-unit>
             <trans-unit id="create.account.vilkaar.link">
                 <source>create.account.vilkaar.link</source>
-                <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUX ehdot.</a>]]></target>
+                <target><![CDATA[<a href="/fi_FI/koti/asiakaspalvelu/ehdot" target="_blank">POMPdeLUXin ehdot.</a>]]></target>
             </trans-unit>
             <trans-unit id="category.selector.look" approved="no">
                 <source>category.selector.look</source>
@@ -176,15 +176,15 @@
             </trans-unit>
             <trans-unit id="options.title" approved="no">
                 <source>options.title</source>
-                <target>Colour and size</target>
+                <target>Väri ja koko</target>
             </trans-unit>
             <trans-unit id="choose.size.note" approved="no">
                 <source>choose.size.note</source>
-                <target>(The size is the childs height in cm.)</target>
+                <target>(Koko tarkoittaa lapsen pituutta senttimetreinä.)</target>
             </trans-unit>
             <trans-unit id="click.to.zoom" approved="no">
                 <source>click.to.zoom</source>
-                <target>Click for zoom</target>
+                <target>Zoomaa napsauttamalla</target>
             </trans-unit>
             <trans-unit id="click.to.video" approved="no">
                 <source>click.to.video</source>
@@ -192,36 +192,35 @@
             </trans-unit>
             <trans-unit id="product.pictures.title" approved="no">
                 <source>product.pictures.title</source>
-                <target>Pictures</target>
+                <target>Kuvat</target>
             </trans-unit>
             <trans-unit id="buy.the.set.title" approved="no">
                 <source>buy.the.set.title</source>
-                <target>Buy the set</target>
+                <target>Osta setti</target>
             </trans-unit>
             <trans-unit id="latest.seen.products.title" approved="no">
                 <source>latest.seen.products.title</source>
-                <target>Also watched</target>
+                <target>Myös katsottu</target>
             </trans-unit>
             <trans-unit id="delivery.title" approved="no">
                 <source>delivery.title</source>
-                <target>Delivery</target>
+                <target>Toimitus</target>
             </trans-unit>
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle ordrer sendes med Post Danmark som pakkepost. Det vil sige, at både vi og vores kunder har muligged for at følge pakken med track & trace tuk deb bkuver leveret. Du kan også vælge at få din ordre sendt til din arbejdsplads - så koster det dig istedet 39,00 DKK.</p>
-                    <p>Bemærk: Hvis du til et Home shopping arrangement køber for min. 1.400,00 DKK sender vi din ordre fragtfrit.</p>
+                    <p>Paketit toimitetaan Mypack-noutopisteeseen. Toimitusmaksu on 12 euroa (10 euroa, mikäli ostat tuotteet edustajan kautta esim. kotimyyntitilaisuudesta tai Avoimet ovet  tilaisuudesta). Jos et nouda tuotteita, rahat palautetaan tilillesi 20 euron käsittelykuluja lukuun ottamatta. </p>
                     <p>Leveringstid: %delivery.date%</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
                 <source>return.title</source>
-                <target>Return</target>
+                <target>Palautus</target>
             </trans-unit>
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varerne skal være ubrugte og returneres i original emballage, med hængemærker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrudt emballage. Postposen, som du modtager dine varer i, er lavet, så den kan bruges to gange. På posen kan du se, hvor du skal klippe, så du kan anvende den igen. Vi refunderer derfor ikke penge for returemballage, ligesom vi ikke refunderer penge for porto, hvis du kun sender dele af din ordre retur. Vi modtager ikke returvarer, der bliver sendt pr. efterkrav.</p>
+                    <p>Tuotteiden on oltava käyttämättömiä, ja ne tulee palauttaa alkuperäisissä pakkauksissaan tuote- ja hintalappuineen. Sukat, leggingsit ja sukkahousut voi palauttaa vain, mikäli niiden pakkaukset ovat avaamattomia. Alkuperäinen postituspussi on vahvarakenteinen, joten sen voi käyttää toiseen kertaan. Pussiin on merkitty leikkauslinja uudelleenkäyttöä varten. Tämän vuoksi emme hyvitä palautuspakkauksen hintaa emmekä palautuspostimaksua, jos palautat vain osan tilauksestasi. Emme ota vastaan jälkivaatimuksella lähetettyjä palautustuotteita.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
@@ -270,43 +269,43 @@
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
                 <source>share.to.%method%</source>
-                <target>Share on %method%</target>
+                <target>Jaa %method%</target>
             </trans-unit>
             <trans-unit id="back.to.category" approved="no">
                 <source>back.to.category</source>
-                <target>Back to category</target>
+                <target>Takaisin kategoriaan</target>
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
-                <target>On stock</target>
+                <target>Varastossa</target>
             </trans-unit>
             <trans-unit id="on.stock.yes" approved="no">
                 <source>on.stock.yes</source>
-                <target>Yes</target>
+                <target>Kyllä</target>
             </trans-unit>
             <trans-unit id="on.stock.no" approved="no">
                 <source>on.stock.no</source>
-                <target>No</target>
+                <target>Ei</target>
             </trans-unit>
             <trans-unit id="pager.pages.%total%" approved="no">
                 <source>pager.pages.%total%</source>
-                <target>of %total%</target>
+                <target>summasta %total %</target>
             </trans-unit>
             <trans-unit id="pager.see_all.%total%" approved="no">
                 <source>pager.see_all.%total%</source>
-                <target>see all(%total%)</target>
+                <target>katso kaikki(%total%)</target>
             </trans-unit>
             <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
-                <target>Click for more information.</target>
+                <target>Saat lisätietoja napsauttamalla.</target>
             </trans-unit>
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
-                <target>Goto top</target>
+                <target>Siirry ylös</target>
             </trans-unit>
             <trans-unit id="order.deleted" approved="no">
                 <source>order.deleted</source>
-                <target>E.order no. %id% has been cancelled.</target>
+                <target>E-tilausnro %id% on peruttu.</target>
             </trans-unit>
         </body>
     </file>

@@ -197,19 +197,19 @@
             </trans-unit>
             <trans-unit id="category.selector.overview" approved="no">
                 <source>category.selector.overview</source>
-                <target>Overview</target>
+                <target>Oversikt</target>
             </trans-unit>
             <trans-unit id="options.title" approved="no">
                 <source>options.title</source>
-                <target>Colour and size</target>
+                <target>Farge og størrelse</target>
             </trans-unit>
             <trans-unit id="choose.size.note" approved="no">
                 <source>choose.size.note</source>
-                <target>(The size is the childs height in cm.)</target>
+                <target>(Størrelsen er barnets høyde i cm.)</target>
             </trans-unit>
             <trans-unit id="click.to.zoom" approved="no">
                 <source>click.to.zoom</source>
-                <target>Click for zoom</target>
+                <target>Klikk for å zoome</target>
             </trans-unit>
             <trans-unit id="click.to.video" approved="no">
                 <source>click.to.video</source>
@@ -217,36 +217,35 @@
             </trans-unit>
             <trans-unit id="product.pictures.title" approved="no">
                 <source>product.pictures.title</source>
-                <target>Pictures</target>
+                <target>Bilder</target>
             </trans-unit>
             <trans-unit id="buy.the.set.title" approved="no">
                 <source>buy.the.set.title</source>
-                <target>Buy the set</target>
+                <target>Kjøp settet</target>
             </trans-unit>
             <trans-unit id="latest.seen.products.title" approved="no">
                 <source>latest.seen.products.title</source>
-                <target>Also watched</target>
+                <target>Du har tidligere kikket på</target>
             </trans-unit>
             <trans-unit id="delivery.title" approved="no">
                 <source>delivery.title</source>
-                <target>Delivery</target>
+                <target>Levering</target>
             </trans-unit>
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle ordrer sendes med Post Danmark som pakkepost. Det vil sige, at både vi og vores kunder har muligged for at følge pakken med track & trace tuk deb bkuver leveret. Du kan også vælge at få din ordre sendt til din arbejdsplads - så koster det dig istedet 39,00 DKK.</p>
-                    <p>Bemærk: Hvis du til et Home shopping arrangement køber for min. 1.400,00 DKK sender vi din ordre fragtfrit.</p>
+                    <p>Alle varer sendes som pakkepost med Post Danmark / Tollpost Globe. Du har derfor mulighet for å følge pakken via track & trace fra den sendes til den blir levert. Pakkene sendes som privatpakke og skal avhentes på utleveringssted. Frakten er NOK 49,00 hvis du kjøper varene til et Home shopping arrangement og NOK 69,00 når du kjøper varene i vår Webshop. </p>
                     <p>Leveringstid: %delivery.date%</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
                 <source>return.title</source>
-                <target>Return</target>
+                <target>Tilbake</target>
             </trans-unit>
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varerne skal være ubrugte og returneres i original emballage, med hængemærker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrudt emballage. Postposen, som du modtager dine varer i, er lavet, så den kan bruges to gange. På posen kan du se, hvor du skal klippe, så du kan anvende den igen. Vi refunderer derfor ikke penge for returemballage, ligesom vi ikke refunderer penge for porto, hvis du kun sender dele af din ordre retur. Vi modtager ikke returvarer, der bliver sendt pr. efterkrav.</p>
+                    <p>Varene skal være ubrukte og returneres i original emballasje med hengemerker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrutt emballasje. Postposen som du mottar varene i er fremstilt slik at den kan brukes to ganger. På posen kan du se hvor du skal klippe slik at du kan bruke den igjen. Vi refunderer derfor ikke penger for returemballasje, og vi refunderer heller ikke penger for porto hvis du kun sender deler av ordren i retur. Vi mottar ikke returvarer som sendes per etterkrav.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
@@ -295,39 +294,39 @@
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
                 <source>share.to.%method%</source>
-                <target>Share on %method%</target>
+                <target>Del på%method%</target>
             </trans-unit>
             <trans-unit id="back.to.category" approved="no">
                 <source>back.to.category</source>
-                <target>Back to category</target>
+                <target>Tilbake til kategori</target>
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
-                <target>On stock</target>
+                <target>På lager</target>
             </trans-unit>
             <trans-unit id="on.stock.yes" approved="no">
                 <source>on.stock.yes</source>
-                <target>Yes</target>
+                <target>Ja</target>
             </trans-unit>
             <trans-unit id="on.stock.no" approved="no">
                 <source>on.stock.no</source>
-                <target>No</target>
+                <target>Nei</target>
             </trans-unit>
             <trans-unit id="pager.pages.%total%" approved="no">
                 <source>pager.pages.%total%</source>
-                <target>of %total%</target>
+                <target>av %total%</target>
             </trans-unit>
             <trans-unit id="pager.see_all.%total%" approved="no">
                 <source>pager.see_all.%total%</source>
-                <target>see all(%total%)</target>
+                <target>se alle(%total%)</target>
             </trans-unit>
             <trans-unit id="more.bundle.info" approved="no">
                 <source>more.bundle.info</source>
-                <target>Click for more information.</target>
+                <target>Klikk for mer informasjon.</target>
             </trans-unit>
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
-                <target>Goto top</target>
+                <target>Gå til toppen</target>
             </trans-unit>
         </body>
     </file>

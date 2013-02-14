@@ -305,7 +305,7 @@
             </trans-unit>
             <trans-unit id="address.city.required">
                 <source>address.city.required</source>
-                <target>City must be provided.</target>
+                <target>Stad måste anges.</target>
             </trans-unit>
             <trans-unit id="address.countries_id.required">
                 <source>address.countries_id.required</source>
@@ -353,7 +353,7 @@
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Phone number should be at least 8 digits long</target>
+                <target>Telefonnumret måste innehålla 8 siffror</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
@@ -385,11 +385,11 @@
             </trans-unit>
             <trans-unit id="login.restricted.other_locale">
                 <source>login.restricted.other_locale</source>
-                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
+                <target><![CDATA[Din profil har registrerats på %site_name%. Du bör därför använda: <a href="%url%">%site_name%</a> webshop.<br>Om du har ytterligare frågor är du välkommen att kontakta vår kundservice.]]></target>
             </trans-unit>
             <trans-unit id="login.restricted.only.customers" approved="no">
                 <source>login.restricted.only.customers</source>
-                <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
+                <target><![CDATA[Din profil är registrerad som en säljare eller anställd. Du bör därför använda: <a href="%url%">Denna inloggning</a>.]]></target>
             </trans-unit>
             <trans-unit id="stop.editing.order">
                 <source>stop.editing.order</source>
@@ -405,33 +405,33 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <target><![CDATA[<p>Du kan ändra i ordern så länge den har statusen “Väntar”.<br>Du kan göra följande ändringar på din order:
                 <ul class="list">
-                  <li>Tilføje flere varer</li>
-                  <li>Ændre størrelsen og/eller farven på en vare</li>
-                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                  <li>Lägg till fler varor</li>
+                  <li>Ändra storlek och/eller färg på en vara</li>
+                  <li>Radera en vara</li>
                 </ul>
                 </p>
-                <p>Hvis du ønsker at tilføje. ændre eller slette en vare på din ordre skal du gøre følgende:
+                <p>Om du vill lägga till, ändra eller radera en vara på din order, ska du göra följande:
                 <ol class="list">
-                  <li>Tilføje flere varer</li>
-                  <li>Ændre størrelsen og/eller farven på en vare</li>
-                  <li>Slette en vare du har købt, men alligevel ikke ønsker</li>
+                  <li>Lägg till fler varor</li>
+                  <li>Ändra storlek och/eller färg på en vara</li>
+                  <li>Radera en vara</li>
                 </ol>
                 </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
-                <target>Newsletters</target>
+                <target>Nyhetsbrev</target>
             </trans-unit>
             <trans-unit id="my.account.my.events" approved="no">
                 <source>my.account.my.events</source>
-                <target>My events</target>
+                <target>Mina arrangemang</target>
             </trans-unit>
             <trans-unit id="account.history.see.all.orders" approved="no">
                 <source>account.history.see.all.orders</source>
-                <target>See all orders</target>
+                <target>Se alla ordrar</target>
             </trans-unit>
             <trans-unit id="acc.1">
                 <source>Email address</source>
@@ -451,7 +451,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+                <target><![CDATA[<p>Välkommen – upprätta dig som kund!</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>
@@ -459,23 +459,23 @@
             </trans-unit>
             <trans-unit id="my.account.login.header" approved="no">
                 <source>my.account.login.header</source>
-                <target><![CDATA[<h1>Welcome to my page</h1>]]></target>
+                <target><![CDATA[<h1>Välkommen till Min sida</h1>]]></target>
             </trans-unit>
             <trans-unit id="my.account.header" approved="no">
                 <source>my.account.header</source>
-                <target><![CDATA[<h1>Welcome!</h1>]]></target>
+                <target><![CDATA[<h1>Välkommen!</h1>]]></target>
             </trans-unit>
             <trans-unit id="address.first_name.min.length" approved="no">
                 <source>address.first_name.min.length</source>
-                <target>Your first name muist be at least 2 characters long</target>
+                <target>Ditt förnamn måste innehålla minst 2 bokstäver</target>
             </trans-unit>
             <trans-unit id="address.last_name.min.length" approved="no">
                 <source>address.last_name.min.length</source>
-                <target>Your last name muist be at least 2 characters long</target>
+                <target>Ditt efternamn måste innehålla minst 2 bokstäver</target>
             </trans-unit>
             <trans-unit id="create.pre-notice" approved="no">
                 <source>create.pre-notice</source>
-                <target><![CDATA[On this page you must enter your personal info (and <u>not</u> company info).]]></target>
+                <target><![CDATA[På denna sida ska du skriva dina personliga upplysningar (och <u>inte</u> företagsnamn).]]></target>
             </trans-unit>
         </body>
     </file>

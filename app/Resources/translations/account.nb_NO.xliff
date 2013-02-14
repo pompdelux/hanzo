@@ -4,11 +4,11 @@
         <body>
             <trans-unit id="The presented password is invalid." approved="no">
                 <source>The presented password is invalid.</source>
-                <target>No match for E-Mail Address and/or Password.</target>
+                <target>E-postadresse og/eller passord er ikke tastet inn korrekt.</target>
             </trans-unit>
             <trans-unit id="The presented password cannot be empty." approved="no">
                 <source>The presented password cannot be empty.</source>
-                <target>No match for E-Mail Address and/or Password.</target>
+                <target>E-postadresse og/eller passord er ikke tastet inn korrekt.</target>
             </trans-unit>
             <trans-unit id="User account is disabled." approved="no">
                 <source>User account is disabled.</source>
@@ -454,7 +454,7 @@
             </trans-unit>
             <trans-unit id="my.account.login.notice" approved="no">
                 <source>my.account.login.notice</source>
-                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+                <target><![CDATA[<p>Velkommen - opret dig som kunde!</p>]]></target>
             </trans-unit>
             <trans-unit id="my.account.login.text" approved="no">
                 <source>my.account.login.text</source>

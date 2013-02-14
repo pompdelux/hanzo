@@ -8,290 +8,302 @@
       </trans-unit>
       <trans-unit id="checkout_json_err_no_order">
         <source>json.err.no_order</source>
-        <target>De order is er niet</target>
+        <target>Ordren finnes ikke</target>
       </trans-unit>
       <trans-unit id="checkout_err_unknown_shipping_method">
         <source>err.unknown_shipping_method</source>
-        <target></target>
+        <target>Ukjent leveringsform</target>
       </trans-unit>
       <trans-unit id="checkout.success.title">
         <source>checkout.success.title</source>
-        <target>Orderbevestiging</target>
+        <target>Ordrebekreftelse</target>
       </trans-unit>
       <trans-unit id="checkout.success.text">
         <source>checkout.success.text</source>
         <target><![CDATA[
-          <h2>E-ordernummer</h2>
-          <p>E-ordernummer: <b>%id%</b></p>
+          <h2>E-ordrenummer</h2>
+          <p>E-ordrenummer: <b>%id%</b></p>
 
-          <h2>Levertijd</h2>
-          <p>Verwachte levertijd: %date% werkdag(en).</p>
+          <h2>Leveringstid</h2>
+          <p>Den aktuelle leveringstiden er i øyeblikket: %date% ukedager.</p>
 
-          <h2>Contact</h2>
-          <p>Heb je vragen, neem dan contact op met ons.</p>
-          <p>E-mailadres: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
+          <h2>Kontakt</h2>
+          <p>Kontakt oss gjerne dersom du har spørsmål.</p>
+          <p>Telefon  +47 2274 2600</p>
+          <p>E-post: <a href="mailto:mail@pompdelux.no">mail@pompdelux.no</a></p>
 
-          <h2>Mijn pagina</h2>
+          <h2>Min side</h2>
           <p>
-            Bekijk je order e.d.<br>
-            <a href="%account%">&raquo; Mijn pagina</a>
+            Se din ordre og mye mer <br>
+            <a href="%account%">&raquo; Min side</a>
           </p>
 
           <h2>FAQ</h2>
           <p>
-            Hier kun je veelgestelde vragen zien over POMPdeLUX.<br>
-            <a href="/nl_NL/voorpagina/klantenservice/faq">&raquo; FAQ</a>
+            Her kan du finne ofte stilte spørsmål og svar om POMPdeLUX.<br>
+            <a href="/nb_NO/forside/kundeservice/fakta">&raquo; FAQ</a>
           </p>
 
-          <h2>Nieuws</h2>
+          <h2>Nyheter</h2>
           <p>
-            Onder het menupunt Nieuws staat het laatste nieuws.<br>
-            <a href="/nl_NL/voorpagina/nieuws">&raquo; Nieuws</a>
+            Under menyen Nyheter kan du holde deg oppdatert med seneste aktuelle nyheter.<br>
+            <a href="/nb_NO/forside/nyheter">&raquo; Nyheter</a>
           </p>
         ]]></target>
       </trans-unit>
       <trans-unit id="checkout.failed.title">
         <source>checkout.failed.title</source>
-        <target>De betaling is mislukt</target>
+        <target>Betaling feilet</target>
       </trans-unit>
       <trans-unit id="checkout.failed.text">
         <source>checkout.failed.text</source>
-        <target>Er ging iets fout bij de betaling / orderbehandeling. Gelieve contact op te nemen met de klantenservice</target>
+        <target><![CDATA[
+            Det oppstod en feil ved betaling / ordrebehandling. Kontakt vennligst kundeservice<br><br>
+            <p>E-ordrenummer: <b>%order_id%</b></p>
+            ]]></target>
       </trans-unit>
       <trans-unit id="confirm.title">
         <source>confirm.title</source>
-        <target>Keur goed</target>
+        <target>Godkjenn</target>
       </trans-unit>
       <trans-unit id="confirm.addresses.label" approved="no">
         <source>confirm.addresses.label</source>
-        <target>Ja, de bovenstaande adressen zijn correct.</target>
+        <target>Ja, adressene over er korrekte.</target>
       </trans-unit>
       <trans-unit id="confirm.order_id">
         <source>confirm.order_id</source>
-        <target>E-ordernummer</target>
+        <target>E-ordrenummer</target>
       </trans-unit>
       <trans-unit id="addresses">
         <source>addresses</source>
-        <target>Adressen</target>
+        <target>Adresser</target>
       </trans-unit>
       <trans-unit id="no_addresses">
         <source>no_addresses</source>
-        <target>Er zijn geen adressen ingevuld</target>
+        <target>Det er ikke oprettet noen adresser</target>
       </trans-unit>
       <trans-unit id="shipping.address.edit">
         <source>shipping.address.edit</source>
-        <target>» Wijzig verzendadres</target>
+        <target>» Rett leveringsadresse</target>
       </trans-unit>
       <trans-unit id="shipping.address">
         <source>shipping.address</source>
-        <target>Verzendadres</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
+
       <trans-unit id="shipping.address.overnight">
         <source>shipping.address.overnight</source>
-        <target>Verzendadres</target>
+        <target>Leveringsadresse</target>
       </trans-unit>
       <trans-unit id="shipping.address.overnight.edit">
         <source>shipping.address.overnight.edit</source>
-        <target>» Wijzig verzendadres postbus</target>
+        <target>» Rett døgnpostadresse</target>
       </trans-unit>
       <trans-unit id="shipping.address.no_overnight">
         <source>shipping.address.no_overnight</source>
-        <target>Geen verzendadres postbus ingevuld</target>
+        <target>Ingen døgnboksadresse opprettet</target>
       </trans-unit>
       <trans-unit id="payment.method">
         <source>payment.method</source>
-        <target>Betaalmethode</target>
+        <target>Betalingsmetode</target>
       </trans-unit>
       <trans-unit id="payment.address">
         <source>payment.address</source>
-        <target>Huisadres</target>
+        <target>Privatadresse</target>
       </trans-unit>
       <trans-unit id="payment.title">
         <source>payment.title</source>
-        <target>Betaalwijze</target>
+        <target>Betalingsmåte</target>
       </trans-unit>
       <trans-unit id="payment.text">
         <source>payment.text</source>
-        <target>Kies hoe je deze order wilt betalen.</target>
+        <target>Velg hvordan du vil betale denne ordren.</target>
       </trans-unit>
       <trans-unit id="confirm.vat">
         <source>confirm.vat</source>
-        <target>Bedrag BTW</target>
+        <target>Moms (inkludert i prisen)</target>
       </trans-unit>
       <trans-unit id="confirm.sub_total">
         <source>confirm.sub_total</source>
-        <target>Totaal artikelen</target>
+        <target>Varer i alt</target>
       </trans-unit>
       <trans-unit id="confirm.total">
         <source>confirm.total</source>
-        <target>Totale bedrag</target>
+        <target>Samlet beløp</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.title">
         <source>payment.paybybill.title</source>
-        <target>Geld overmaken per bank</target>
+        <target>Bankoverføring</target>
       </trans-unit>
       <trans-unit id="payment.paybybill.text">
         <source>payment.paybybill.text</source>
-        <target>Maak het geld uiterlijk 8 dagen nadat je de artikelen hebt ontvangen over naar rekeningnummer: "yy-yy xx-xx-xx-xx-xx".</target>
+        <target><![CDATA[Velg betalingsmåte<br><br><b>Bemerk:</b> Bankoverføring må brukes dersom internettforbindelse mangler.]]></target>
       </trans-unit>
       <trans-unit id="payment.paybybill.label">
         <source>payment.paybybill.label</source>
-        <target>Geld overmaken per bank</target>
+        <target>Bankoverføring</target>
       </trans-unit>
       <trans-unit id="payment.gateway_id">
         <source>payment.gateway_id</source>
-        <target>Betaal ID</target>
+        <target>Betalings-ID</target>
       </trans-unit>
       <trans-unit id="payment.transaction_id">
         <source>payment.transaction_id</source>
-        <target>Transactienummer</target>
+        <target>Transaksjonsnummer</target>
       </trans-unit>
       <trans-unit id="payment.fee">
         <source>payment.fee</source>
-        <target>Betaalkosten</target>
+        <target>Betalingsgebyr</target>
       </trans-unit>
       <trans-unit id="payment.canceled">
         <source>payment.canceled</source>
-        <target>Je betaling werd afgebroken</target>
+        <target>Din betaling ble avbrutt</target>
       </trans-unit>
       <trans-unit id="customer.id">
         <source>customer.id</source>
-        <target>Klantennummer</target>
+        <target>Kundenummer</target>
       </trans-unit>
       <trans-unit id="quantity">
         <source>quantity</source>
-        <target>Aantal</target>
+        <target>Antall</target>
       </trans-unit>
       <trans-unit id="products">
         <source>products</source>
-        <target>Producten</target>
+        <target>Produkter</target>
       </trans-unit>
       <trans-unit id="product.name">
         <source>product.name</source>
-        <target>Naam artikel</target>
+        <target>Varenavn</target>
       </trans-unit>
       <trans-unit id="product.size">
         <source>product.size</source>
-        <target>Maat</target>
+        <target>Størrelse</target>
       </trans-unit>
       <trans-unit id="product.color">
         <source>product.color</source>
-        <target>Kleur</target>
+        <target>Farge</target>
       </trans-unit>
       <trans-unit id="product.price">
         <source>product.price</source>
-        <target>Prijs per stuk</target>
+        <target>Stk. pris</target>
       </trans-unit>
       <trans-unit id="product.total">
         <source>product.total</source>
-        <target>Totaal</target>
+        <target>I alt</target>
       </trans-unit>
       <trans-unit id="total.excl_vat">
         <source>total.excl_vat</source>
-        <target>Totaal excl. verzend- en administratiekosten</target>
+        <target>Total ekskl. frakt og ekspedisjonsgebyr</target>
       </trans-unit>
       <trans-unit id="total.vat">
         <source>total.vat</source>
-        <target>BTW is</target>
+        <target>Moms utgjør</target>
       </trans-unit>
       <trans-unit id="total.incl_vat">
         <source>total.incl_vat</source>
-        <target>Totaal incl. verzend- en administratiekosten</target>
+        <target>Total inkl. frakt, moms og ekspedisjonsgebyr</target>
       </trans-unit>
       <trans-unit id="expected_at">
         <source>expected_at</source>
-        <target>Verwachte behandeltijd</target>
+        <target>Forventet ekspedisjonstid</target>
       </trans-unit>
       <trans-unit id="my.account.info">
         <source>my.account.info</source>
-        <target>Bekijk je orders, wijzig je persoonlijke gegevens, je wachtwoord en nog veel meer.</target>
+        <target>Se ordrene dine, rett i dine personlige opplysninger, rett adgangskode og mye mer.</target>
       </trans-unit>
       <trans-unit id="my.account.username">
         <source>my.account.username</source>
-        <target>Gebruikersnaam</target>
+        <target>Brukernavn</target>
       </trans-unit>
       <trans-unit id="my.account.password">
         <source>my.account.password</source>
-        <target>Wachtwoord</target>
+        <target>Kodeord</target>
       </trans-unit>
       <trans-unit id="shipping.fee">
         <source>shipping.fee</source>
-        <target>Administratiekosten</target>
+        <target>Ekspedisjonsgebyr</target>
       </trans-unit>
       <trans-unit id="shipping.fee.description">
         <source>shipping.fee.description</source>
-        <target>Op alle orders worden %amount% administratiekosten gelegd.</target>
+        <target>Alle ordrer pålegges et ekspedisjonsgebyr på %amount%</target>
       </trans-unit>
       <trans-unit id="basket">
         <source>basket</source>
-        <target>Winkelmandje</target>
+        <target>Trinn 1 av 6 - Kurv</target>
       </trans-unit>
       <trans-unit id="continue.shopping">
         <source>continue.shopping</source>
-        <target>Door met winkelen</target>
+        <target>Shop videre</target>
       </trans-unit>
       <trans-unit id="proceed">
         <source>proceed</source>
-        <target>Ga door</target>
+        <target>Fortsett</target>
       </trans-unit>
       <trans-unit id="cart.is.empty">
         <source>cart.is.empty</source>
-        <target>Je winkelmandje is leeg.</target>
+        <target>Du har ikke noen varer i kurven for øyeblikket.</target>
       </trans-unit>
       <trans-unit id="no.such.product.in.cart">
         <source>no.such.product.in.cart</source>
-        <target>Het gewenste product zit niet in je winkelmandjeDet efterspurgte produkt er ikke i din kurv.</target>
+        <target>Det etterspurte produktet er ikke i kurven.</target>
       </trans-unit>
       <trans-unit id="late.delivery.notice">
         <source>late.delivery.notice</source>
-        <target><![CDATA[<strong>Let op:</strong> Als je order artikelen bevat die niet op voorraad zijn, versturen we je order pas als we alle artikelen op voorraad hebben.]]></target>
+        <target><![CDATA[<strong>Merk:</strong> Hvis ordren din inneholder varer med avsendelsesdatoer, så sender vi først ordren når vi har alle varene på lager.]]></target>
       </trans-unit>
       <trans-unit id="button.back">
         <source>button.back</source>
-        <target>Terug</target>
+        <target>Tilbake</target>
       </trans-unit>
       <trans-unit id="button.edit">
         <source>button.edit</source>
-        <target>Wijzig</target>
+        <target>Rett</target>
       </trans-unit>
       <trans-unit id="button.process">
         <source>button.process</source>
-        <target>Ga naar betalen</target>
+        <target>Bekreft ordren</target>
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
         <target><![CDATA[
-          <p>Je order bevat (een) artikel(en) (dat)die we op het moment niet op voorraad hebben. Je order wordt gepakt als we alle artikelen op voorraad hebben.</p
-          <p>Je order wordt uiterlijk verstuurd op: <strong>%date%</strong>.</p>
+          <p>Din ordre inneholder vare(r) som vi ikke har på lager for øyeblikket. Ordren pakkes når vi har alle varene på lager. Vi forventer å sende hele ordren fra lageret senest: <strong>%date%</strong>.</p>
         ]]></target>
       </trans-unit>
       <trans-unit id="status.20" approved="no">
         <source>status.20</source>
-        <target>Betaling goedgekeurd</target>
+        <target>Betaling godkjent</target>
       </trans-unit>
       <trans-unit id="status.30">
         <source>status.30</source>
-        <target>Afwachten</target>
+        <target>Venter</target>
       </trans-unit>
       <trans-unit id="status.40">
         <source>status.40</source>
-        <target>In behandeling</target>
+        <target>Under behandling</target>
       </trans-unit>
       <trans-unit id="status.50">
         <source>status.50</source>
-        <target>Gefactureerd</target>
+        <target>Fakturert</target>
       </trans-unit>
       <trans-unit id="status.neg.50">
         <source>status.neg.50</source>
-        <target>Orderwijziging</target>
+        <target>Order redigering</target>
       </trans-unit>
-      <trans-unit id="payment.gothia.title">
+       <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
-        <target>Gothia factuur</target>
+        <target>Gothia faktura</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia factuur (Kies je ervoor om met PayByBill te betalen, dan kost dit 29,00 SEK extra)</target>
+        <target>Gothia faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min side som en pdf fil innen 24 timer.</target>
+      </trans-unit>
+      <trans-unit id="payment.fee.gothia.title">
+        <source>payment.fee.gothia.title</source>
+        <target>Gothia faktura avgift</target>
+      </trans-unit>
+      <trans-unit id="confirm.payment.fee">
+        <source>confirm.payment.fee</source>
+        <target>Fakturaavgift</target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>
@@ -313,13 +325,21 @@
         <source>payment.dibs.paytype.master</source>
         <target>Mastercard/Eurocard</target>
       </trans-unit>
+      <trans-unit id="payment.dibs.processing.title">
+        <source>payment.dibs.processing.title</source>
+        <target>Din ordre behandles av Webshoppen</target>
+      </trans-unit>
+      <trans-unit id="order.state_pre_payment.locked">
+        <source>order.state_pre_payment.locked</source>
+        <target>Din ordre er under betaling. Du kan først redigere i ordren din igjen når betalingen er godkjent.</target>
+      </trans-unit>
       <trans-unit id="discount.private">
         <source>discount.private</source>
-        <target>Korting:</target>
+        <target>Rabatt:</target>
       </trans-unit>
       <trans-unit id="discount.group">
         <source>discount.group</source>
-        <target>Korting:</target>
+        <target>Rabatt:</target>
       </trans-unit>
       <trans-unit id="discount.hostess">
         <source>discount.hostess</source>
@@ -327,11 +347,11 @@
       </trans-unit>
       <trans-unit id="discount.friend">
         <source>discount.friend</source>
-        <target>Korting:</target>
+        <target>Rabatt:</target>
       </trans-unit>
       <trans-unit id="discount.gift">
         <source>discount.gift</source>
-        <target>Korting:</target>
+        <target>Rabatt:</target>
       </trans-unit>
       <trans-unit id="product.group.g">
         <source>product.group.g</source>
@@ -351,35 +371,27 @@
       </trans-unit>
       <trans-unit id="coupon">
          <source>coupon</source>
-         <target>Cadeaubon</target>
+         <target>Gavekort</target>
       </trans-unit>
       <trans-unit id="toggle.coupon.form">
          <source>toggle.coupon.form</source>
-         <target>» Typ je cadeauboncode</target>
+         <target>» Tast inn gavekortkode</target>
       </trans-unit>
       <trans-unit id="invalid.coupon.code">
          <source>invalid.coupon.code</source>
-         <target>Ongeldige cadeauboncode</target>
+         <target>Ugyldig gavekortkode</target>
       </trans-unit>
       <trans-unit id="coupon.label">
          <source>coupon.label</source>
-         <target>Cadeauboncode:</target>
+         <target>Gavekortkode:</target>
       </trans-unit>
       <trans-unit id="apply.coupon.discount">
          <source>apply.coupon.discount</source>
-         <target>Sla op</target>
+         <target>Lagre</target>
       </trans-unit>
       <trans-unit id="coupon.description">
          <source>coupon.description</source>
-         <target>Hieronder kun je je cadeauboncode invullen. Gebruik je niet het volledige tegoed op je cadeaubon, dan kun je de code nogmaals gebruiken als je de volgende keer bij POMPdeLUX winkelt.</target>
-      </trans-unit>
-	   <trans-unit id="payment.dibs.paytype.ideal">
-         <source>payment.dibs.paytype.ideal</source>
-         <target>iDEAL/ABN</target>
-      </trans-unit>
-	  <trans-unit id="order.state_pre_payment.locked">
-        <source>order.state_pre_payment.locked</source>
-        <target>Je order wordt nu behandeld. Je kunt je order pas weer bewerken als de betaling ervan is goedgekeurd.</target>
+         <target>Nedenfor kan du taste inn gavekortkoden. Hvis du ikke bruker hele beløpet på gavekortet, kan du bruke gavekortkoden igjen neste gang du handler hos POMPdeLUX.</target>
       </trans-unit>
       <trans-unit id="address.copy" approved="no">
          <source>address.copy</source>
@@ -388,15 +400,15 @@
       <trans-unit id="dibs.down.message">
          <source>dibs.down.message</source>
          <target><![CDATA[
-          Beste klant,<br>
-          Het betaalsysteem (DIBS) is op het moment buiten gebruik en je kunt daarom niet met een creditcard betalen. Probeer het later opnieuw – bij voorbaat dank.<br>
-          Met vriendelijke groet,<br>
+          Kjære kunde<br>
+          Betalingssystemet (DIBS) er for øyeblikket ute av drift, og du kan derfor ikke betale med kredittkort. Du kan i stedet benytte Gothia fakturabetaling eller komme tilbake senere.<br>
+          Med vennlig hilsen<br>
           POMPdeLUX
           ]]></target>
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Basket</h1><p>Need help? <a href="/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Handlekurv</h1><p>Trenger du hjelp? <a href="/faq">Ofte stilte spørsmål</a></p>]]></target>
       </trans-unit>
     </body>
   </file>
