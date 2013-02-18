@@ -62,6 +62,8 @@ Tools::log($_POST);
                 ->filterByEventsId($event_id)
                 ->filterByPhone($lookup)
                 ->_or()
+                ->filterByPhone('0'.$lookup)
+                ->_or()
                 ->filterByPhone($sender)
                 ->filterByRespondedAt(null, \Criteria::ISNULL)
                 ->findOne()
