@@ -14,6 +14,7 @@ use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
 use Hanzo\Model\ProductsStock;
 use Hanzo\Model\ProductsToCategories;
+use Hanzo\Model\ProductsToCategoriesQuery;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersQuery;
@@ -189,6 +190,11 @@ class ECommerceServices extends SoapService
                         }
 
                     } else {
+                        ProductsToCategoriesQuery::create()
+                            ->findByProductsId($product->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
+                            ->delete()
+                        ;
+                        $product->clearProductsToCategoriess();
 
                         $collection = new PropelCollection();
                         foreach ($categories as $category) {
