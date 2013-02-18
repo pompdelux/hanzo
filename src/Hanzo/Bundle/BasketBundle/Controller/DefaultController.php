@@ -374,7 +374,7 @@ class DefaultController extends CoreController
         }
 
         // hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site -->>
-        $continue_shopping = $router->generate('_homepage');
+        $continue_shopping = 'javascript:history.go(-1)';
 
         $hanzo = Hanzo::getInstance();
         $domain_key = $hanzo->get('core.domain_key');
