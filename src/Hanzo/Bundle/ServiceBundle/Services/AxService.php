@@ -181,6 +181,34 @@ class AxService
             $line->SalesQty = 1;
             $line->SalesUnit = 'Stk.';
             $salesLine[] = $line;
+
+            switch(str_replace('SALES', '', strtoupper($attributes->global->domain_key))) {
+                case 'DK':
+                    $bag_price = '40.00';
+                    break;
+                case 'FI':
+                    $bag_price = '5.30';
+                    break;
+                case 'NL':
+                    $bag_price = '5.30';
+                    break;
+                case 'NO':
+                    $bag_price = '60.00';
+                    break;
+                case 'SE':
+                    $bag_price = '60.00';
+                    break;
+            }
+
+            $line = new stdClass();
+            $line->ItemId = 'POMP BIG BAG One Size Khaki';
+            $line->SalesPrice = $bag_price;
+            $line->LineDiscPercent = 100;
+            $line->SalesQty = 1;
+            $line->InventColorId = 'Khaki';
+            $line->InventSizeId = 'One Size';
+            $line->SalesUnit = 'Stk.';
+            $salesLine[] = $line;
         }
 
         // gavekort
