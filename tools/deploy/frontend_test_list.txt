@@ -1,2 +1,0 @@
-pomp-test
-pomptest-db

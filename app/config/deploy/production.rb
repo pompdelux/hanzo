@@ -4,6 +4,7 @@
 
 set :deploy_to,   "/var/www/pompdelux"
 
+# default environment, used by default functions
 set :symfony_env_prod, "prod_dk"
 set :symfony_env_prods, ["prod_dk", "prod_se", "prod_no", "prod_com", "prod_nl", "prod_fi", "prod_dk_consultant", "prod_se_consultant", "prod_no_consultant", "prod_nl_consultant", "prod_fi_consultant"]
 
@@ -40,27 +41,5 @@ namespace :deploy do
   desc "Copy default vhost from stat"
   task :copy_vhost, :roles => :apache do
     run("sudo wget -q --output-document=/etc/apache2/sites-available/pompdelux http://tools.bellcom.dk/hanzo/pompdelux-vhost.txt")
-  end
-end
-
-# overridden because of chmod without sudo, and loop envinroments
-namespace :symfony do
-  namespace :cache do
-    [:clear, :warmup].each do |action|
-      desc "Cache #{action.to_s}"
-      task action, :roles => :app, :except => { :no_release => true } do
-        case action
-        when :clear
-          capifony_pretty_print "--> Clearing cache"
-        when :warmup
-          capifony_pretty_print "--> Warming up cache"
-        end
-
-        symfony_env_prods.each do |i|
-          run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:#{action.to_s} --env=#{i}'"
-        end
-        capifony_puts_ok
-      end
-    end
   end
 end
