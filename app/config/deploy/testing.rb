@@ -1,95 +1,37 @@
 #
-# Hanzo / Pompdelux testing deploy. 
+# Hanzo / Pompdelux testing deploy
 #
-
-# needed to get verbose output. -v doesnt work
-logger.level = Logger::MAX_LEVEL
-
-set :dump_assetic_assets,   true
 
 set :deploy_to,   "/var/www/testpompdelux"
 
-#symfony_env_prods = ["test_dk", "test_se", "test_no", "test_com", "test_nl"]
-set :symfony_env_prods, ["test_dk", "test_dk_consultant"]
-#symfony_env_prods = ["test_dk", "test_se", "test_no"]
+# default environment, used by default functions
+set :symfony_env_prod, "test_dk"
+set :symfony_env_prods, ["test_dk", "test_se", "test_no", "test_com", "test_nl", "test_fi", "test_dk_consultant"]
 
 set :adminserver, "pomp-test"
+set :staticserver, "pomptest-db"
 
-# if we ever get other brances, specify which one to deploy here
-set   :branch, "testing"
+set :branch, "testing"
 
-# use composer for symfony 2.1
-set :use_composer, true
-set :composer_bin, "/usr/local/bin/composer"
+# list of server to deploy to
+role :app, 'pomp-test', 'pomptest-db'
 
-# dont delete web/app_* please
-set :clear_controllers, false
-
-#set :update_vendors, true
-set :update_vendors, false
-
-role(:web) do
-   frontend_test_list
-end
-# :app is the same list of servers as :web. its default and may be used internally?
-role(:app) do
-   frontend_test_list
-end
-
+# :apache should contain our apache servers. Used in reload_apache and apcclear
 role :apache, "pomp-test"
 
 # our redis server. clear cache here
 role :redis, adminserver, :primary => true
 
+# our static server. run assets dumps here
+role :static, staticserver, :primary => true
+
 # where to run migrations. :db is also a default and may be used internally.
 role :db, adminserver, :primary => true  # where to run migrations
 
-# function to get web frontends from a file
-def frontend_test_list
-  contentsArray = Array.new
-  contentsArray = File.readlines("tools/deploy/frontend_test_list.txt")
-end
-# own tasks. copy config, copy apc-clear.php and apcclear task
+# own tasks. copy config
 namespace :deploy do
   desc "Copy default parameters.ini and hanzo.yml to shared dir"
   task :copy_test_config do
     run("mkdir -p #{shared_path}/app/config/ && wget -q --output-document=#{shared_path}/app/config/parameters.ini http://tools.bellcom.dk/hanzo/parameters_testing.ini && wget -q --output-document=#{shared_path}/app/config/hanzo.yml http://tools.bellcom.dk/hanzo/hanzo_testing.yml")
   end
 end
-
-# overridden because of chmod without sudo, and loop envinroments
-namespace :symfony do
-  namespace :cache do
-    [:clear, :warmup].each do |action|
-      desc "Cache #{action.to_s}"
-      task action, :roles => :app, :except => { :no_release => true } do
-        case action
-        when :clear
-          capifony_pretty_print "--> Clearing cache"
-        when :warmup
-          capifony_pretty_print "--> Warming up cache"
-        end
-
-        symfony_env_prods.each do |i|
-          run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:#{action.to_s} --env=#{i}'"
-        end
-#        run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:#{action.to_s} --env=#{symfony_env_prod}'"
-#        run "#{try_sudo} chmod -R g+w #{latest_release}/#{cache_path}"
-        capifony_puts_ok
-      end
-    end
-  end
-
-#  namespace :assetic do
-#    desc "Dumps all assets to the filesystem"
-#    task :dump, :roles => :app,  :except => { :no_release => true } do
-#      capifony_pretty_print "--> Dumping all assets to the filesystem"
-#      symfony_env_prods.each do |i|
-#        run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} assetic:dump --env=#{i} --no-debug'"
-#      end
-#      capifony_puts_ok
-#    end
-#  end
-
-end
-
