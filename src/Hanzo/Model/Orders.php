@@ -1237,7 +1237,7 @@ class Orders extends BaseOrders
         try {
             $entry->save($con);
         } catch (Exception $e) {
-            Tools::log($e->getMessage());
+            //Tools::log($e->getMessage());
         }
 
         return parent::preDelete($con);
