@@ -141,6 +141,15 @@
           }
         });
       });
+      // Add CMS page. Only show children of chosen thread
+
+      $('#form_cms_thread_id').change(function(e){
+        var $sel = $('#form_parent_id'),
+            thread = $(this).val();
+        $('optgroup, optgroup > option', $sel).hide();
+        $('optgroup[label^="' + thread + '"]', $sel).children().andSelf().show();
+      });
+
 
       // CMS edit page, title text field slug creation
       $('#cms-edit-form #form_title').blur(function(e){
