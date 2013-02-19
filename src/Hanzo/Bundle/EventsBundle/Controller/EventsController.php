@@ -80,7 +80,7 @@ class EventsController extends CoreController
                 'id' => $event->getId(),
                 'title' => $event->getCode(),
                 'allDay' => false,
-                'start' => $event->getEventDate('U'),
+                'start' => $event->getEventDate('c'),
                 'url' => $this->get('router')->generate('events_view', array('id' => $event->getId())),
                 'className' => $event->getType(),
                 'editable' => false,
