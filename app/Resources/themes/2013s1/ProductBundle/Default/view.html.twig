@@ -28,7 +28,7 @@
 
     <div class="productimages">
       <div class="productimage-large grid_8 alpha omega align-center">
-        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" data-color="{{ product.main_image.color }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="color-{{ product.main_image.color}} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
+        <a href="{{ product_image_url(product.main_image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" data-color="{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="color-{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
           {{ product_image_tag(
               product.main_image.name,
               '234x410'
@@ -48,8 +48,8 @@
             <div class="centerfy">
               {% spaceless %}
               {% for color in product.colors %}
-                <a href="#" class="product-color color-{{ color }} {{ (color==product.main_image.color) ? 'current': '' }}" data-color="{{ color }}">
-                  <div class="sprite-block colorbuttons colorbuttons-{{ color|lower }}"></div>
+                <a href="#" class="product-color color-{{ color|lower|replace({' ':'-', '/':'9'}) }}" data-color="{{ color|lower|replace({' ':'-', '/':'9'}) }}">
+                  <div class="sprite-block colorbuttons colorbuttons-{{ color|lower|replace({' ':'-', '/':'9'}) }}"></div>
                   <span>{{ color }}</span>
                 </a>
               {% endfor %}
@@ -70,7 +70,7 @@
         <h4>{{ 'product.pictures.title'|trans }}</h4>
       {% spaceless %}
       {% for image in product.images %}
-        <a href="{{ product_image_url(image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '234x410') }}" class="color-{{ image.color }} number-{{ image.number }} type-{{ image.type }}{% if loop.last %} last{% endif %}" data-number="{{ image.number }}" data-color="{{ image.color }}" data-type="{{ image.type }}">
+        <a href="{{ product_image_url(image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '234x410') }}" class="color-{{ image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ image.number }} type-{{ image.type }}{% if loop.last %} last{% endif %}" data-number="{{ image.number }}" data-color="{{ image.color|lower|replace({' ':'-', '/':'9'}) }}" data-type="{{ image.type }}">
           {{ product_image_tag(
               image.name,
               '114x200'

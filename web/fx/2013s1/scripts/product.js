@@ -18,6 +18,7 @@
 
     pub.initColors = function() {
       var currentColor = $('.productimage-large a').data('color');
+      $('.product-color .color-'+currentColor).addClass('current');
       $('.productimage-small a').hide();
       $('.productimage-small a.color-'+currentColor).show();
 
@@ -31,12 +32,11 @@
           $(this).addClass('current');
 
           var $swapped = $('.productimage-small a.color-'+currentColor +'.number-'+currentNumber+'.type-'+currentType);
-          if($swapped.length > 0){
-            product.swapImages($swapped);
-          }else{
+          if($swapped.length === 0){
             $swapped = $('.productimage-small a.color-'+currentColor+'.type-'+currentType);
-            product.swapImages($swapped.first());
           }
+
+          product.swapImages($swapped.first());
 
           $('.productimage-small a').hide();
           $('.productimage-small a.color-'+currentColor).show();
