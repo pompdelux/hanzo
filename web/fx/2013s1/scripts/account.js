@@ -102,7 +102,7 @@ var account = (function($) {
       $('#customers_phone', $form).blur(function() {
         $form.removeClass('hasError');
         $element = $('#customers_phone', $form);
-        if($element.val() && /^\d+$/.test($element.val()) !== true || $element.val().length < 8){
+        if($element.val() && (/^\d+$/.test($element.val()) !== true || $element.val().length < 8)){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:phone.invalid'), 'error', 4800, $form);
             $element
