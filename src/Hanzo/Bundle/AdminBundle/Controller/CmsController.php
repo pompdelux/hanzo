@@ -115,17 +115,14 @@ class CmsController extends CoreController
         ;
 
         $cms_thread_choices = array();
+        $parent_choices = array();
 
         foreach ($cms_threads as $cms_thread) {
             $cms_thread_choices[$cms_thread->getId()] = $cms_thread->getTitle();
+            $parent_choices[$cms_thread->getId(). ' ' .$cms_thread->getTitle()] = $this->getSelectCms($cms_thread->getId(), $locale);
+
         }
 
-        $parent_choices = array();
-
-        $parents = CmsQuery::create()->filterByIsActive(true)->find($this->getDbConnection());
-        foreach ($parents as $parent) {
-            $parent_choices[$parent->getId()] = '('.$parent->getId().') '.$parent->getTitle();
-        }
         $node = new Cms();
         $form = $this->createFormBuilder($node)
             ->add('type', 'choice', array(
@@ -143,18 +140,21 @@ class CmsController extends CoreController
                         'look'  => 'cms.edit.type.look',
                         'heading'  => 'cms.edit.type.heading'
                     ),
+                    'empty_value' => 'Vælg en type',
                     'required'  => TRUE,
                     'translation_domain' => 'admin'
                 ))
             ->add('cms_thread_id', 'choice', array(
                     'label' => 'cms.edit.label.cms_thread',
                     'choices' => $cms_thread_choices,
+                    'empty_value' => 'Vælg en Thread',
                     'required' => TRUE,
                     'translation_domain' => 'admin'
                 ))
             ->add('parent_id', 'choice', array(
                     'label' => 'cms.edit.label.parent_id',
                     'choices' => $parent_choices,
+                    'empty_value' => 'Vælg evt. en forældre',
                     'required' => false,
                     'translation_domain' => 'admin'
                 ))
@@ -643,4 +643,36 @@ class CmsController extends CoreController
         return $menu;
     }
 
+    /**
+     * Creates an single dimension array og cms pages. Used as the options in a select.
+     * @param  int    $from_thread the thread
+     * @param  int    $parent      The parent, initial null
+     * @return array               the array
+     */
+    protected function getSelectCms($from_thread, $locale, $parent = null, $indention = 0)
+    {
+        $menu = array();
+
+        $query = CmsQuery::create()
+            ->filterByCmsThreadId($from_thread)
+            ->joinWithI18n($locale, \Criteria::RIGHT_JOIN)
+            ->groupById()
+            ->orderBySort()
+        ;
+
+        if (empty($parent)) {
+            $query->filterByParentId(NULL, \Criteria::ISNULL);
+        }
+        else {
+            $query->filterByParentId($parent);
+        }
+        $result = $query->find($this->getDbConnection());
+
+        foreach ($result as $cms) {
+            $menu[$cms->getId()] = str_repeat('- ', $indention) . $cms->getId(). ' - ' .$cms->getTitle();
+            $menu = $menu + $this->getSelectCms($from_thread, $locale, $cms->getId(), $indention + 1);
+        }
+
+        return $menu;
+    }
 }
