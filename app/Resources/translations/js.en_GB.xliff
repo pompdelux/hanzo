@@ -96,7 +96,7 @@
             </trans-unit>
             <trans-unit id="edit.order.notice">
                 <source>edit.order.notice</source>
-                <target><![CDATA[<p>To edit your order you have to do the following:</p><p>1) Click on "Edit" to edit the order. Your items will then be returned to the basket.</p><p>2) If you wish to change colour or size, click on the pencil in the basket. If you wish to add items, click on the menu Webshop.<br><br>3) When you have finished editing, click on "Show basket" and follow step 1 to 5. When you have completed your order with new credit card payment, the old payment will automatically be cancelled.</p>]]></target>
+                <target><![CDATA[<p>To edit your order you have to do the following:</p><p>1) Click on "Edit" to edit the order. Your items will then be returned to the basket.</p><p>2) If you wish to change colour or size, click on the pencil in the basket. If you wish to add items, click on the menu Online shop.<br><br>3) When you have finished editing, click on "Show basket" and follow step 1 to 5. When you have completed your order with new credit card payment, the old payment will automatically be cancelled.</p>]]></target>
             </trans-unit>
             <trans-unit id="delete.order.notice">
                 <source>delete.order.notice</source>
