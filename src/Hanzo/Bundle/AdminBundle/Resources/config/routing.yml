@@ -513,6 +513,10 @@ admin_postalcode_delete:
         _controller: AdminBundle:PostalCode:delete
     requirements:
         id: \d+
+admin_postalcode_import:
+    pattern:  /admin/settings/postalcode/import
+    defaults:
+        _controller: AdminBundle:PostalCode:import
 
 admin_settings_languages:
     pattern:  /admin/settings/languages/{id}

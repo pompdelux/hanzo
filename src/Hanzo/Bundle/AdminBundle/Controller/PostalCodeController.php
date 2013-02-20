@@ -3,18 +3,19 @@
 namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormError;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\CoreController;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\CoreController;
 
-use Hanzo\Model\ZipToCityQuery,
-	Hanzo\Model\ZipToCity,
-	Hanzo\Model\DomainsQuery,
-	Hanzo\Model\CountriesQuery;
-
+use Hanzo\Model\ZipToCityQuery;
+use Hanzo\Model\ZipToCity;
+use Hanzo\Model\DomainsQuery;
+use Hanzo\Model\CountriesQuery;
 
 class PostalCodeController extends CoreController
 {
@@ -178,6 +179,95 @@ class PostalCodeController extends CoreController
         return $this->render('AdminBundle:PostalCode:view.html.twig', array(
             'form'      => $form->createView(),
             'zip_to_city'  => $zip_to_city,
+            'database' => $this->getRequest()->getSession()->get('database')
+        ));
+    }
+
+    public function importAction(Request $request)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $domains_availible = ZipToCityQuery::Create()
+            ->select('CountriesIso2')
+            ->groupByCountriesIso2()
+            ->find($this->getDbConnection())
+        ;
+
+        $domains = [''=>''];
+        foreach ($domains_availible as $domain) {
+            $domains[$domain] = $domain;
+        }
+
+        $form = $this->createFormBuilder()
+            ->add('domain', 'choice', [
+                'choices' => $domains,
+                'required' => true,
+            ])
+            ->add('attachment', 'file', [
+                'label' => 'CSV Fil',
+                'required' => true,
+            ])
+            ->getForm()
+        ;
+
+        if ('POST' === $request->getMethod()) {
+            $form->bind($request);
+            $form_data = $form->getData();
+
+            if (empty($form_data['domain'])) {
+                $form->addError(new FormError('Der skal vælges et domain!'));
+            }
+
+            $file = $form['attachment']->getData();
+            if (('text/csv' !== $file->getClientMimeType()) ||
+                ('.csv' !== substr($file->getClientOriginalName(), -4))
+            ) {
+                $form->addError(new FormError('Filen skal overholde det beskrevne format og være gemt som .csv fil!'));
+            }
+
+            $error = null;
+            if ($form->isValid()) {
+                $handle = $file->openFile();
+
+                $loop = 0;
+                while ($line = $handle->fgets()) {
+                    $data = str_getcsv($line);
+                    if (0 === $loop) {
+                        $count = count($data);
+                        if ($count > 5 || $count < 2) {
+                            $error = 'invalid.file.format';
+                            break;
+                        }
+
+                        ZipToCityQuery::create()
+                            ->filterByCountriesIso2($form_data['domain'])
+                            ->delete($this->getDbConnection())
+                        ;
+                    }
+
+                    $code = new ZipToCity();
+                    $code->fromArray([
+                        'CountriesIso2' => $form_data['domain'],
+                        'Zip'        => $data[0],
+                        'City'       => $data[1],
+                        'CountyId'   => @$data[2],
+                        'CountyName' => @$data[3],
+                        'Comment'    => @$data[4],
+                    ]);
+                    $code->save($this->getDbConnection());
+
+                    $loop++;
+                }
+
+                $this->get('session')->setFlash('notice', $loop.' postnumre er nu importeret til: '.$form_data['domain']);
+                return $this->redirect($this->generateUrl('admin_postalcode_import'));
+            }
+        }
+
+        return $this->render('AdminBundle:PostalCode:import.html.twig', array(
+            'form'      => $form->createView(),
             'database' => $this->getRequest()->getSession()->get('database')
         ));
     }
