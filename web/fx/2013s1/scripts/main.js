@@ -71,7 +71,7 @@
           $.each(response.data, function (i, element) {
             if (undefined !== element.mtime) {
               var date = new Date(element.mtime);
-              date = date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' '+date.getHours()+':'+date.getMinutes();
+              date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes();
               var $elm = $('a.media_file.index-'+element.index);
               var $em = $elm.next('em');
               var label = $elm.data('datelabel');
