@@ -127,7 +127,7 @@
                         You are now editing E-order  number  <a href="%history_url%" title="se ordren">%order_id%</a>.<br>
                         If you wish to stop editing <a href="%stop_url%" title="stop editering af ordren">click here.</a>
                     </p>
-                    <p>If you wish to change colour or size, click on the pencil in the basket. If you wish to add items, click on the menu Webshop.</p>
+                    <p>If you wish to change colour or size, click on the pencil in the basket. If you wish to add items, click on the menu Online shop.</p>
                     <p class="last">When you have finished editing, click on "Show basket" and follow step 1 to 6. When you have completed your order with new credit card payment, the old payment will automatically be cancelled.</p>
                 ]]></target>
             </trans-unit>
