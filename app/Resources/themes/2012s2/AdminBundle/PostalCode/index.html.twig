@@ -28,16 +28,9 @@
         </ul>
       </div>
     </li>
-    <li>
-      <a href="{{ path('admin_postalcode') }}">
-        {{ 'admin.zip_to_city.list.link'|trans({}, 'admin') }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('admin_postalcode_edit') }}">
-        {{ 'admin.zip_to_city.add.link'|trans({}, 'admin') }}
-      </a>
-    </li>
+    <li><a href="{{ path('admin_postalcode') }}">{{ 'admin.zip_to_city.list.link'|trans({}, 'admin') }}</a></li>
+    <li><a href="{{ path('admin_postalcode_import') }}">Importer</a></li>
+    <li><a href="{{ path('admin_postalcode_edit') }}">{{ 'admin.zip_to_city.add.link'|trans({}, 'admin') }}</a></li>
   </ul>
 </nav>
 

@@ -1,0 +1,55 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_postalcode') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+<h1>Importer postnumre</h1>
+
+{% for type, flashMessages in app.session.flashbag.all() %}
+    {% for flashMessage in flashMessages %}
+        <div class="flash-{{ type }}">
+            {{ flashMessage }}
+        </div><br>
+    {% endfor %}
+{% endfor %}
+
+<p>
+  <ol>
+    <li>Filen skal gemmes som csv fil</li>
+    <li>Der må ikke være nogen "header" linie(r) i filen</li>
+    <li>Filen skal indeholde følgende:
+      <ul>
+        <li>postnummer</li>
+        <li>bynavn</li>
+        <li>kommune nummer *</li>
+        <li>kommune navn *</li>
+        <li>kommentar *</li>
+      </ul>
+      <small>* er ikke påkrævede!</small>
+    </li>
+    <li><em>Alle eksisterende data slettes, så det skal være en komplet importfil!</em></li>
+  </ol>
+  eks:<pre>
+    "2100","København Ø"
+    "0001","Oslo","0301","Oslo","P"
+  </pre>
+</p>
+
+
+<form action="{{ path('admin_postalcode_import') }}" method="post" {{ form_enctype(form) }}>
+  <div>
+    {{ form_widget(form) }}
+  </div><br>
+
+  <input class="button right" type="submit" value="Import">
+  <a class="button left" href="{{ path('admin_postalcode') }}">{{ 'cancel'|trans({}, 'admin') }}</a>
+</form>
+
+{% endblock %}
