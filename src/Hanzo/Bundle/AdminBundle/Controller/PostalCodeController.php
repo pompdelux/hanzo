@@ -243,20 +243,20 @@ class PostalCodeController extends CoreController
 
                         ZipToCityQuery::create()
                             ->filterByCountriesIso2($form_data['domain'])
-                            ->delete()
+                            ->delete($this->getDbConnection())
                         ;
                     }
 
                     $code = new ZipToCity();
                     $code->fromArray([
                         'CountriesIso2' => $form_data['domain'],
-                        'Zip'         => $data[0],
-                        'City'        => $data[1],
+                        'Zip'        => $data[0],
+                        'City'       => $data[1],
                         'CountyId'   => @$data[2],
                         'CountyName' => @$data[3],
-                        'Comment'     => @$data[4],
+                        'Comment'    => @$data[4],
                     ]);
-                    $code->save();
+                    $code->save($this->getDbConnection());
 
                     $loop++;
                 }
