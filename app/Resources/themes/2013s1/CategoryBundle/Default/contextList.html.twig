@@ -1,0 +1,19 @@
+{% extends layout %}
+
+{% block content %}
+
+<h1>{{ page_title }}</h1>
+
+
+{% for p in products %}
+<div class="grid_2 {{ loop.first?'alpha':'' }}">
+  <ul>
+  {% for product in p %}
+    {#<li><a href="{{ product.url }}">{{ product.title }}</a></li>#}
+    <li><a href="{{ path('product_info', {product_id: product.id}) }}">{{ product.title }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
+{% endfor %}
+
+{% endblock %}

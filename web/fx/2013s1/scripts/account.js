@@ -22,8 +22,11 @@ var account = (function($) {
         }else if(!email_regex.test($element.val())){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:email.invalid'), 'error', 4800, $element.parent());
-            $element.focus();
-            $element.select();
+            $element
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
         }
 
         $.ajax({
@@ -37,8 +40,11 @@ var account = (function($) {
             if (response.status === false) {
               $form.addClass('hasError');
               dialoug.notice(response.message, 'error', 4800, $form);
-              $element.focus();
-              $element.select();
+              $element
+                .fadeOut(100).fadeIn(100)
+                .fadeOut(100).fadeIn(100)
+                .fadeOut(100).fadeIn(100)
+                .focus();
             }
           }
         });
@@ -49,11 +55,14 @@ var account = (function($) {
         $email = $('#customers_email_email_address', $form);
         $element = $('#customers_email_email_address_repeated', $form);
 
-        if($email.val() !== $element.val()){
+        if($element.val() && $email.val() !== $element.val()){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:email.repeat.invalid'), 'error', 4800, $form);
-            $element.focus();
-            $element.select();
+            $element
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
         }
 
       });
@@ -62,11 +71,14 @@ var account = (function($) {
         $form.removeClass('hasError');
         $element = $('#customers_password_pass', $form);
 
-        if($element.val().length < 5){
+        if($element.val() && $element.val().length < 5){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:password.min.length'), 'error', 4800, $form);
-            $element.focus();
-            $element.select();
+            $element
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
         }
 
       });
@@ -76,22 +88,28 @@ var account = (function($) {
         $password = $('#customers_password_pass', $form);
         $element = $('#customers_password_pass_repeated', $form);
 
-        if($password.val() !== $element.val()){
+        if($element.val() && $password.val() !== $element.val()){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:password.invalid.match'), 'error', 4800, $form);
-            $element.focus();
-            $element.select();
+            $element
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
         }
 
       });
       $('#customers_phone', $form).blur(function() {
         $form.removeClass('hasError');
         $element = $('#customers_phone', $form);
-        if(/^\d+$/.test($element.val()) !== true || $element.val().length < 8){
+        if($element.val() && (/^\d+$/.test($element.val()) !== true || $element.val().length < 8)){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:phone.invalid'), 'error', 4800, $form);
-            $element.focus();
-            $element.select();
+            $element
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
         }
       });
 
