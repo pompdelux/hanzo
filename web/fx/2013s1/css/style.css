@@ -2097,7 +2097,7 @@ table.horizontal th {
 }
 
 .centerfy {
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 .align-right,
