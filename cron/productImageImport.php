@@ -30,7 +30,7 @@ foreach ($images_found as $file) {
 
     // skip unchanged files
     if (($srcmd5 === $tgdmd5) || (false !== strpos($image, '('))) {
-//        continue;
+        continue;
     }
 
     $images[$image] = $image;
@@ -333,5 +333,7 @@ if (count($failed)) {
 }
 
 // rescale all images
-require __DIR__ . '/scaleProductImages.php';
+if (count($products_images)) {
+    require __DIR__ . '/scaleProductImages.php';
+}
 _dbug("- done");
