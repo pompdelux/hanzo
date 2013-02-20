@@ -48,7 +48,7 @@
             <div class="centerfy">
               {% spaceless %}
               {% for color in product.colors %}
-                <a href="#" class="product-color color-{{ color|lower|replace({' ':'-'}) }} {{ (color==product.main_image.color) ? 'current': '' }}" data-color="{{ color|lower|replace({' ':'-'}) }}">
+                <a href="#" class="product-color color-{{ color|lower|replace({' ':'-'}) }}" data-color="{{ color|lower|replace({' ':'-'}) }}">
                   <div class="sprite-block colorbuttons colorbuttons-{{ color|lower|replace({' ':'-'}) }}"></div>
                   <span>{{ color }}</span>
                 </a>
