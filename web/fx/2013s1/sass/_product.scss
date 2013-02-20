@@ -140,6 +140,19 @@ form.buy{
 
 @import "colorbuttons/*.png";
 @include all-colorbuttons-sprites; // Generates a sprite from all images inside the folder
+@mixin colorbutton($name){
+	.colorbuttons-#{$name}{
+		@include colorbuttons-sprite($name);
+		height: colorbuttons-sprite-height($name);
+		width: colorbuttons-sprite-width($name);
+	}
+	&.current,
+	&:hover{
+		.colorbuttons-#{$name}{
+			@include colorbuttons-sprite(#{$name}_active);
+		}
+	}
+}
 a.product-color{
 	margin: 3px;
 	display: inline-block;
@@ -149,44 +162,52 @@ a.product-color{
 	.colorbuttons {
 		display: block;
 		margin: 0 auto;
-		// We need all colors ruled here::
-		&.colorbuttons-navy{
-			@include colorbuttons-sprite(navy);
-			height: colorbuttons-sprite-height(navy);
-			width: colorbuttons-sprite-width(navy);
-		}
-		// We need all colors ruled here::
-		&.colorbuttons-violet{
-			@include colorbuttons-sprite(violet);
-			height: colorbuttons-sprite-height(violet);
-			width: colorbuttons-sprite-width(violet);
-		}
-		&.colorbuttons-brown{
-			@include colorbuttons-sprite(navy);
-			height: colorbuttons-sprite-height(navy);
-			width: colorbuttons-sprite-width(navy);
-		}
-		// We need all colors ruled here::
-		&.colorbuttons-wine{
-			@include colorbuttons-sprite(violet);
-			height: colorbuttons-sprite-height(violet);
-			width: colorbuttons-sprite-width(violet);
-		}
 	}
-	&.current,
-	&:hover{
-		.colorbuttons-navy{
-			@include colorbuttons-sprite(navy_aktiv);
-		}
-		.colorbuttons-violet{
-			@include colorbuttons-sprite(violet_aktiv);
-		}
-		.colorbuttons-brown{
-			@include colorbuttons-sprite(navy_aktiv);
-		}
-		.colorbuttons-wine{
-			@include colorbuttons-sprite(violet_aktiv);
-		}
-	}
+	@include colorbutton(black9rose);
+	@include colorbutton(black);
+	@include colorbutton(blue9grey-melange);
+	@include colorbutton(blue);
+	@include colorbutton(camel);
+	@include colorbutton(gold);
+	@include colorbutton(green9grey);
+	@include colorbutton(green);
+	@include colorbutton(grey9off-white);
+	@include colorbutton(grey-melange);
+	@include colorbutton(grey);
+	@include colorbutton(khaki);
+	@include colorbutton(light-blue);
+	@include colorbutton(light-grey-melange);
+	@include colorbutton(navy9camel);
+	@include colorbutton(navy9honey);
+	@include colorbutton(navy9off-white);
+	@include colorbutton(navy9white);
+	@include colorbutton(navy-melange);
+	@include colorbutton(navy);
+	@include colorbutton(off-white9blue);
+	@include colorbutton(off-white);
+	@include colorbutton(peach9grey-melange);
+	@include colorbutton(peach);
+	@include colorbutton(red);
+	@include colorbutton(rose);
+	@include colorbutton(sand);
+	@include colorbutton(turquoise);
+	@include colorbutton(white9off-white);
+	@include colorbutton(white);
+	@include colorbutton(yellow);
+
+	// .colorbuttons {
+	// 	// We need all colors ruled here::
+	// 	&.colorbuttons-navy{
+	// 		@include colorbuttons-sprite(navy);
+	// 		height: colorbuttons-sprite-height(navy);
+	// 		width: colorbuttons-sprite-width(navy);
+	// 	}
+	// }
+	// &.current,
+	// &:hover{
+	// 	.colorbuttons-navy{
+	// 		@include colorbuttons-sprite(navy_aktiv);
+	// 	}
+	// }
 
 }
