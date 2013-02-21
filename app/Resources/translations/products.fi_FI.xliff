@@ -476,19 +476,19 @@
             <br><br>	Saatavana: Grey (harmaa), Brown (ruskea), Blue (sininen) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer Little SS TSHIRT">
-        <source>description.Christoffer_Little_SS_TSHIRT</source>
+      <trans-unit id="Christopher Little SS TSHIRT">
+        <source>description.Christopher_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Merimiestyyliä! 
-            Pue lämpimänä kesäpäivänä päälle Christoffer-T-paita, hyppää lempishortseihin, laita kengät jalkaan ja juokse täyttä vauhtia ulos leikkimään. Omantunnon asiatkin ovat kunnossa, koska Christoffer on Ökö-Tex-merkitty.
+            Pue lämpimänä kesäpäivänä päälle Christopher-T-paita, hyppää lempishortseihin, laita kengät jalkaan ja juokse täyttä vauhtia ulos leikkimään. Omantunnon asiatkin ovat kunnossa, koska Christopher on Ökö-Tex-merkitty.
             <br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer TANKTOP">
-        <source>description.Christoffer_TANKTOP</source>
+      <trans-unit id="Christopher TANKTOP">
+        <source>description.Christopher_TANKTOP</source>
         <target>
           <![CDATA[Merimiestyyliä! 
-            Pue lämpimänä kesäpäivänä päälle Christoffer TANKTOP, hyppää lempishortseihin, laita kengät jalkaan ja juokse täyttä vauhtia ulos leikkimään. Omantunnon asiatkin ovat kunnossa, koska Christoffer on Ökö-Tex-merkitty.
+            Pue lämpimänä kesäpäivänä päälle Christopher TANKTOP, hyppää lempishortseihin, laita kengät jalkaan ja juokse täyttä vauhtia ulos leikkimään. Omantunnon asiatkin ovat kunnossa, koska Christopher on Ökö-Tex-merkitty.
             <br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
@@ -766,7 +766,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Emma PANTS ">
-        <source>description.Emma_PANTS_</source>
+        <source>description.Emma_PANTS</source>
         <target>
           <![CDATA[Aivan ihanat baggy-malliset housut pehmeää pellavaa. Pehmeät ja joustavat lahkeensuut.	<br><br>	Saatavana: Khaki ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % pellava]]>
         </target>
@@ -789,14 +789,8 @@
           <![CDATA[Kultaa, kimalletta ja pehmeää neulosta. Erika on yksinkertainen, ihana ja supertyylikäs. Kimaltavat napit ja painijanselkä pienille ballerinoille ja prinsessoille.	<br><br>	Saatavana: Rose (roosa), Peach (persikka), Black (musta) ja Khaki.	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 75% puuvilla, 25% metallikuitu]]>
         </target>
       </trans-unit>
-      <trans-unit id="Esmeralda BEDLINEN">
-        <source>description.Ethan_BAGGY_LONG_SHORTS</source>
-        <target>
-          <![CDATA[<br><br>		<br><br>		<br><br>	Materiaali: 100 % puuvilla]]>
-        </target>
-      </trans-unit>
       <trans-unit id="Ethan BAGGY LONG SHORTS">
-        <source>description.Ethan_Little_PANTS</source>
+        <source>description.Ethan_BAGGY_LONG_SHORTS</source>
         <target>
           <![CDATA[Ethan BAGGY LONG SHORTS -shortseissa olet valmis kesän hauskuuksiin ja leikkeihin. 
             Ethanissa on erityisen suuret taskut sivuilla, joten niihin mahtuu paljon kiviä rannalta, jojo tai muuta mukavaa matkan varrelta. Suurempi vyötärön leveys ja tietenkin säädettävä vyötärö.
@@ -805,7 +799,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Ethan Little PANTS">
-        <source>description.Ethan_Little_SHORTS</source>
+        <source>description.Ethan_Little_PANTS</source>
         <target>
           <![CDATA[Oih, baggyt näyttävät junioreilla sekä suloisilta että siisteiltä! 
             Ethanissa on sekä tyyliä ja vahvuutta: 
@@ -815,7 +809,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Ethan Little SHORTS">
-        <source>description.Faith_BLOUSE</source>
+        <source>description.Ethan_Little_SHORTS</source>
         <target>
           <![CDATA[Paikoillanne, valmiit, hep!
             Ethan Little SHORTS -shortsit ovat coolit, sillä niissä on ¾-lahkeet, baggy-malli ja takataskuihin ommellut tähdet. 
@@ -824,7 +818,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Faith BLOUSE">
-        <source>description.Faith_PANTS</source>
+        <source>description.Faith_BLOUSE</source>
         <target>
           <![CDATA[Oversize-pusero, joka sopii sekä tyttömäiseen että urheilulliseen tyyliin. Faith on superpehmeää trikoota, ja siinä on kultapilkkuista nauhaa pitkin hihoja ja rusettina lantiolla. Yhdistä se tiukkaan toppiin ja slimfit-farkkuihin.
             
@@ -833,7 +827,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Faith PANTS">
-        <source>description.Felix_Little_PULLOVER</source>
+        <source>description.Faith_PANTS</source>
         <target>
           <![CDATA[Tässä on ehdottomat housut pehmeintä trikoomateriaalia. Niissä on trendikäs reunus, jossa on kultapilkkuinen kiristysnauha ja villit vetoketjut nilkoissa. 
             Laita vain kädet taskuihin ja anna mennä tyylillä.
@@ -841,7 +835,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Felix Little PULLOVER">
-        <source>description.Felix_PULLOVER</source>
+        <source>description.Felix_Little_PULLOVER</source>
         <target>
           <![CDATA[Felix on ihanan raidallinen! Siinä on pehmeää denimiä yksityiskohtina, jotka piristävät muutoin klassista neuletta. 
             Yhdistä upeisiin chinoihin tai farkkuihin ja muista ottaa mukaan viileämpiä kesäiltoja varten. 
@@ -849,14 +843,14 @@
         </target>
       </trans-unit>
       <trans-unit id="Felix PULLOVER">
-        <source>description.Finley_CARDIGAN</source>
+        <source>description.Felix_PULLOVER</source>
         <target>
           <![CDATA[Felix on ihanan raidallinen! Siinä on pehmeää denimiä yksityiskohtina, jotka piristävät muutoin klassista neuletta. 
             Yhdistä upeisiin chinoihin tai farkkuihin ja muista ottaa mukaan viileämpiä kesäiltoja varten. <br><br>	Saatavana: Navy/Camel (laivastonsininen/kameli) ja Navy/White (laivastonsininen/valkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Finley CARDIGAN">
-        <source>description.Finley_Little_CARDIGAN</source>
+        <source>description.Finley_CARDIGAN</source>
         <target>
           <![CDATA[Finley CARDIGAN on ihanan raidallinen! Sopii hyvin viileään grilli-iltaan. 
             Yhdistä upeisiin chinoihin tai farkkuihin ja muista ottaa mukaan viileämpiä hetkiä varten. 
@@ -864,7 +858,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Finley Little CARDIGAN">
-        <source>description.Finley_Little_PULLOVER</source>
+        <source>description.Finley_Little_CARDIGAN</source>
         <target>
           <![CDATA[Finley Little CARDIGAN on ihanan raidallinen! Sopii hyvin viileään grilli-iltaan. 
             Yhdistä upeisiin chinoihin tai farkkuihin ja muista ottaa mukaan viileämpiä hetkiä varten. 
@@ -872,7 +866,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Finley Little PULLOVER">
-        <source>description.Fiona_HAIRDECO</source>
+        <source>description.Finley_Little_PULLOVER</source>
         <target>
           <![CDATA[Finley on ihanan raidallinen liivi, jossa on herttaisia neuleyksityiskohtia. Yhdistä neutraaliin paitaan, upeisiin chinoihin tai farkkuihin ja muista ottaa mukaan viileämpiä hetkiä varten. 
             
@@ -880,13 +874,13 @@
         </target>
       </trans-unit>
       <trans-unit id="Fiona HAIRDECO">
-        <source>description.Fitz_Little_JUMPSUIT</source>
+        <source>description.Fiona_HAIRDECO</source>
         <target>
           <![CDATA[Kaunis kolmiosainen pakkaus – kaksi hiuspantaa ja yksi koriste. Koristele hiukset nahkakukilla, kauniilla helmillä ja supertyylikkäällä palmikoidulla nahalla. 	<br><br>	Saatavana: Camel (kameli) ja Black (musta).	<br><br>	Yksi koko	<br><br>]]>
         </target>
       </trans-unit>
       <trans-unit id="Fitz Little JUMPSUIT">
-        <source>description.Fitz_Little_SHORTS</source>
+        <source>description.Fitz_Little_JUMPSUIT</source>
         <target>
           <![CDATA[Ah, miten mukava! Kaunis haalari, jossa on ihanan pehmeä vuori. 
             Sopii hyvin kotiasuksi ja ihaniin kesäpäiviin ulkona. Fitzillä on Ökö-Tex-hyväksyntä, joten myös omatunto viihtyy.
@@ -894,32 +888,32 @@
         </target>
       </trans-unit>
       <trans-unit id="Fitz Little SHORTS">
-        <source>description.Fitz_SHORTS</source>
+        <source>description.Fitz_Little_SHORTS</source>
         <target>
           <![CDATA[Kauniina Fitz Little SHORTS -shortseissa! Pehmeä college-kangas on mukavaa päällä. Näyttävät hyvältä! Ja sopivat hyvin leikkeihin. Fitzillä on Ökö-Tex-hyväksyntä, joten myös omatunto nauttii.	<br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Fitz SHORTS">
-        <source>description.Flora_DRESS</source>
+        <source>description.Fitz_SHORTS</source>
         <target>
           <![CDATA[Ihanat ihanat ihanat Fitz -shortsit! Pehmeä college-kangas on ihanaa päällä. Näyttävät ihanilta! Ja tuntuvat leikeissä ihanilta.  Fitzillä on Ökö-Tex-hyväksyntä, joten myös omatunto nauttii.	<br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Flora DRESS">
-        <source>description.Flora_Little_DRESS</source>
+        <source>description.Flora_DRESS</source>
         <target>
           <![CDATA[Floraa vain on ilo katsella. Yksinkertainen malli, iloiset värit ja kaunis vyö – siitä ei voi olla pitämättä.	<br><br>	Saatavana: Rose (roosa), Peach (persikka) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % pellava                Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Flora Little DRESS">
-        <source>description.Gary_JACKET</source>
+        <source>description.Flora_Little_DRESS</source>
         <target>
           <![CDATA[Floraa vain on ilo katsella. Yksinkertainen malli, iloiset värit ja kauniit röyhelöt pääntiessä ja lantiolla – siitä ei voi olla pitämättä. Napitus niskassa ja vuori. Kultanauha lantiolla tuo takaisin kauniin 70-luvun.
             <br><br>	Saatavana: Rose (roosa), Peach (persikka) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % pellava                Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Gary JACKET">
-        <source>description.Gary_Little_JACKET</source>
+        <source>description.Gary_JACKET</source>
         <target>
           <![CDATA[Miten pehmeä ja ihana! Gary JACKET -fleecetakki, jossa on urheilullisia yksityiskohtia ja vintage-merkkejä. 
             Supercool T-paidan ja farkkujen kanssa.   
@@ -927,7 +921,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Gary Little JACKET">
-        <source>description.George_SS_TSHIRT</source>
+        <source>description.Gary_Little_JACKET</source>
         <target>
           <![CDATA[Miten pehmeä ja ihana! Gary Little JACKET -fleecetakki, jossa on urheilullisia yksityiskohtia ja vintage-merkkejä. 
             Supercool T-paidan ja farkkujen kanssa.   
@@ -935,57 +929,57 @@
         </target>
       </trans-unit>
       <trans-unit id="George SS TSHIRT">
-        <source>description.Gordon_Little_SS_TSHIRT</source>
+        <source>description.George_SS_TSHIRT</source>
         <target>
           <![CDATA[Tunne suurkaupungit rytmit! Georgen kanssa olet mukana sykkeessä hyvällä omallatunnolla, sillä Georgella on Ökö-Tex-hyväksyntä.  
             <br><br>	Saatavana: Grey (harmaa) ja White (valkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Gordon Little SS TSHIRT">
-        <source>description.Gordon_SS_TSHIRT</source>
+        <source>description.Gordon_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Kiiruhda täyttä vauhtia eteenpäin Gordon T-paidassa. Paidassa on hauska liikkua; se on ihanan pehmeää puuvillaa ja rinnassa on 3D-painatus. Myös omantunnon asiat ovat hyvin, koska Gordonilla on Ökö-Tex-hyväksyntä.  
             <br><br>	Saatavana: Grey Melange (meleerattu harmaa), Green (vihreä) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Gordon SS TSHIRT">
-        <source>description.Gwynneth_Little_SS_TSHIRT</source>
+        <source>description.Gordon_SS_TSHIRT</source>
         <target>
           <![CDATA[Bruum bruum! Kiiruhda täyttä vauhtia eteenpäin Gordon T-paidassa. Paidassa on hauska liikkua; se on ihanan pehmeää puuvillaa ja rinnassa on 3D-painatus. Myös omantunnon asiat ovat hyvin, koska Gordonilla on Ökö-Tex-hyväksyntä.	<br><br>	Saatavana: Grey Melange (meleerattu harmaa), Green (vihreä) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Gwynneth Little SS TSHIRT">
-        <source>description.Gwynneth_SS_TSHIRT</source>
+        <source>description.Gwynneth_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Aivan upea, kullanvärisiä yksityiskohtia ja hyvä omatunto Ökö-Tex-hyväksynnän myötä. Gwynneth on ihana ja supersuloinen. 	<br><br>	Saatavana: Green (vihreä), Rose (roosa) ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 92% viskoosi, 8% elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Gwynneth SS TSHIRT">
-        <source>description.Hailey_TOP</source>
+        <source>description.Gwynneth_SS_TSHIRT</source>
         <target>
           <![CDATA[Riikinkukkoprintti, pehmeä kangas ja hyvän omantunnon Ökö-Tex-hyväksyntä tekevät Gwynneth T-paidasta ihanan ja supersuloisen.	<br><br>	Saatavana: Green (vihreä), Rose (roosa) ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 92 % viskoosi, 8 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Hailey TOP">
-        <source>description.Hannibal_HOODIE</source>
+        <source>description.Hailey_TOP</source>
         <target>
           <![CDATA[Pehmeää hurmaavaa pitsiä. Hailey on isoäidin tyylinen toppi tyylikkäällä säväyksellä.	<br><br>	Saatavana: Navy (laivastonsininen) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Hannibal HOODIE">
-        <source>description.Hannibal_Little_HOODIE</source>
+        <source>description.Hannibal_HOODIE</source>
         <target>
           <![CDATA[Mukava ja herttainen Hannibal, jolle rinnassa oleva pelinumero antaa urheilullisen säväyksen. Myös omatunto voi olla rauhassa, koska Hannibal-vaatteilla on Ökö-Tex-hyväksyntä.	<br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Hannibal Little HOODIE">
-        <source>description.Hannibal_Little_PANTS</source>
+        <source>description.Hannibal_Little_HOODIE</source>
         <target>
           <![CDATA[Mukava ja herttainen Hannibal, jolle rinnassa oleva pelinumero antaa urheilullisen säväyksen. Myös omatunto voi olla rauhassa, koska Hannibal-vaatteilla on Ökö-Tex-hyväksyntä.	<br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Hannibal Little PANTS">
-        <source>description.Hannibal_LONG_SHORTS</source>
+        <source>description.Hannibal_Little_PANTS</source>
         <target>
           <![CDATA[Rento tyyli coolilla tavalla! 
             Mukavat ja herttaiset baggy-malliset Hannibal Little PANTS -housut ovat superihanat. Upean pehmeät sekä ulko- että sisäpuolelta. Oleskeluun, arkeen ja leikkeihin. Myös omatunto voi olla rauhassa, koska Hannibal-vaatteilla on Ökö-Tex-hyväksyntä.
@@ -994,7 +988,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Hannibal LONG SHORTS">
-        <source>description.Hannibal_PANTS</source>
+        <source>description.Hannibal_LONG_SHORTS</source>
         <target>
           <![CDATA[Rento tyyli coolilla tavalla! 
             Mukavat ja herttaiset baggy-malliset Hannibal LONG SHORTS -shortsit ovat superihanat. Upean pehmeät sekä ulko- että sisäpuolelta. Oleskeluun, arkeen ja leikkeihin. Myös omatunto voi olla rauhassa, koska Hannibal-vaatteilla on Ökö-Tex-hyväksyntä.
@@ -1002,27 +996,27 @@
         </target>
       </trans-unit>
       <trans-unit id="Hannibal PANTS">
-        <source>description.Harper_Little_JUMPSUIT</source>
+        <source>description.Hannibal_PANTS</source>
         <target>
           <![CDATA[Mukavat ja herttaiset Hannibal-housut, joille reidessä oleva pelinumero antaa urheilullisen sävyksen. Supersiistiä baggy-tyyliä. Upean pehmeät sekä ulko- että sisäpuolelta. Oleskeluun, arkeen ja leikkeihin. Kyllä, myös omatunto voi olla rauhassa, koska Hannibal-vaatteilla on Ökö-Tex-hyväksyntä.
             <br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Harper Little JUMPSUIT">
-        <source>description.Harper_SHORT_SUIT</source>
+        <source>description.Harper_Little_JUMPSUIT</source>
         <target>
           <![CDATA[Hyppää sisään ja viihdy ilmavassa ja pehmeässä Harperissa. Sydänpainatuksen ja röyhelöhihojen ansiosta Harper Little JUMPSUIT sopii sekä kotiasuksi että ulkoiluun.
             <br><br>	Saatavana: Green (vihreä), Khaki ja Rose (roosa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Harper SHORT SUIT">
-        <source>description.Hector_Little_SHORTS</source>
+        <source>description.Harper_SHORT_SUIT</source>
         <target>
           <![CDATA[Hyppää sisään ja viihdy ilmavassa ja pehmeässä Harperissa. Sydänpainatuksen, spagettiolkaimien ja solmittavalla rusetilla varustettujen puhvishortsien ansiosta Harper SHORT SUIT sopii sekä kotiasuksi että ulkoleikkeihin.	<br><br>	Saatavana: Green (vihreä), Khaki ja Rose (roosa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Hector Little SHORTS">
-        <source>description.Hector_SHORTS</source>
+        <source>description.Hector_Little_SHORTS</source>
         <target>
           <![CDATA[Raidalliset shortsit hienolle purjehtijapojalle, vaaralliselle merirosvolle, superjalkapalloilijalle – kyllä, raidat sopivat kaikille. 
             Kangas on joustavaa ja kulutusta kestävää, ja siinä on rypistetty vintage-tyyli, mikä tekee niistä vielä räväkämmät. Hector sopii leikkeihin, hauskanpitoon ja kesäjuhliin.
@@ -1031,7 +1025,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Hector SHORTS">
-        <source>description.Hunter_Little_SS_TSHIRT</source>
+        <source>description.Hector_SHORTS</source>
         <target>
           <![CDATA[Raidalliset shortsit hienolle purjehtijapojalle, vaaralliselle merirosvolle, superjalkapalloilijalle – kyllä, raidat sopivat kaikille. 
             Kangas on joustavaa ja kulutusta kestävää, ja siinä on rypistetty vintage-tyyli, mikä tekee niistä vielä räväkämmät. Hector sopii leikkeihin, hauskanpitoon ja kesäjuhliin.
@@ -1039,25 +1033,25 @@
         </target>
       </trans-unit>
       <trans-unit id="Hunter Little SS TSHIRT">
-        <source>description.Hunter_SS_TSHIRT</source>
+        <source>description.Hunter_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Urheilullinen ja tyylikäs Hunter, jossa on 3D-painatus vatsan ja rinnan kohdalla. Upeita yksityiskohtia, ihanan pehmeä ja Ökö-Tex-hyväksyntä!	<br><br>	Saatavana: Turquoise (turkoosi), Red (punainen) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Hunter SS TSHIRT">
-        <source>description.Jack_HAT</source>
+        <source>description.Hunter_SS_TSHIRT</source>
         <target>
           <![CDATA[Urheilullinen ja tyylikäs Hunter, jossa on 3D-painatus vatsan ja rinnan kohdalla. Upeita yksityiskohtia, ihanan pehmeä ja Ökö-Tex-hyväksyntä!	<br><br>	Saatavana: Turquoise (turkoosi), Red (punainen) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Jack HAT">
-        <source>description.Jagger_SHORTS</source>
+        <source>description.Jack_HAT</source>
         <target>
           <![CDATA[Poikien Jack-hattu on tosi cool ja superhyvä paahteisena kesäpäivänä. Tervetuloa aurinko ja kesä! 	<br><br>	Saatavana: Navy (laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen päänympärystä senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla          Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Jagger SHORTS">
-        <source>description.James_Little_LS_GRANDDAD_</source>
+        <source>description.Jagger_SHORTS</source>
         <target>
           <![CDATA[Jagger-shortsit näyttävät farkuilta coolilla tavalla! 
             Jagger on nimittäin pehmeää college-kangasta, mutta se näyttää farkkukankaalta ja muistuttaa cowboy-shortseja. Ihanan pehmeät ja mukavat.
@@ -1065,34 +1059,34 @@
         </target>
       </trans-unit>
       <trans-unit id="James Little LS GRANDDAD ">
-        <source>description.James_Little_SS_GRANDDAD_</source>
+        <source>description.James_Little_LS_GRANDDAD_</source>
         <target>
           <![CDATA[Laita jalkaan vaarin tohvelit, työnnä päivän lehti kainaloon ja vedä päälle James ja upeat farkut ja ota pienet nokoset. T-paidalla on Ökö-Tex-hyväksyntä, siinä on siistejä raitoja ja klassinen vaarinpaidan napitus.	<br><br>	Saatavana: Grey Melange/White (meleerattu harmaa/valkoinen), Blue/Grey Melange (sininen/meleerattu harmaa), Blue (sininen) ja Navy/Honey (laivastonsininen/keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="James Little SS GRANDDAD ">
-        <source>description.James_LS_GRANDDAD_</source>
+        <source>description.James_Little_SS_GRANDDAD_</source>
         <target>
           <![CDATA[Laita jalkaan vaarin tohvelit, työnnä päivän lehti kainaloon ja vedä päälle James ja upeat farkut ja ota pienet nokoset. T-paidalla on Ökö-Tex-hyväksyntä, siinä on siistejä raitoja ja klassinen vaarinpaidan napitus.
             <br><br>	Saatavana: Grey Melange/White (meleerattu harmaa/valkoinen), Blue/Grey Melange (sininen/meleerattu harmaa), Blue (sininen) ja Navy/Honey (laivastonsininen/keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="James LS GRANDDAD ">
-        <source>description.James_SS_GRANDDAD_</source>
+        <source>description.James_LS_GRANDDAD_</source>
         <target>
           <![CDATA[Laita jalkaan vaarin tohvelit, työnnä päivän lehti kainaloon ja vedä päälle James ja upeat farkut ja ota pienet nokoset. T-paidalla on Ökö-Tex-hyväksyntä, siinä on siistejä raitoja ja klassinen vaarinpaidan napitus.
             <br><br>	Saatavana: Grey Melange/White (meleerattu harmaa/valkoinen), Blue/Grey Melange (sininen/meleerattu harmaa), Blue (sininen) ja Navy/Honey (laivastonsininen/keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="James SS GRANDDAD ">
-        <source>description.Jason_SOCKS</source>
+        <source>description.James_SS_GRANDDAD_</source>
         <target>
           <![CDATA[Laita jalkaan vaarin tohvelit, työnnä päivän lehti kainaloon ja vedä päälle James ja upeat farkut ja ota pienet nokoset. T-paidalla on Ökö-Tex-hyväksyntä, siinä on siistejä raitoja ja klassinen vaarinpaidan napitus.
             <br><br>	Saatavana: Grey Melange/White (meleerattu harmaa/valkoinen), Blue/Grey Melange (sininen/meleerattu harmaa), Blue (sininen) ja Navy/Honey (laivastonsininen/keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Jason SOCKS">
-        <source>description.Joan_KNEE_SOCKS</source>
+        <source>description.Jason_SOCKS</source>
         <target>
           <![CDATA[Kapeita vai leveitä raitoja sukissa? – Sinun ei tarvitse valita, koska kaikissa pakkauksissa on yhdet molempia. 
             Jason-sukat ovat superpehmeät, ja niitä on luonnollisesti saatavana koko mallistoon sopivissa väreissä. 
@@ -1101,7 +1095,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Joan KNEE SOCKS">
-        <source>description.Joan_LEGGINGS</source>
+        <source>description.Joan_KNEE_SOCKS</source>
         <target>
           <![CDATA[Tytöt ansaitsevat paljon kultaa ja kimallusta!
             Muun muassa siksi Joan KNEE SOCKS -sukat ovat täynnä niitä pehmeimmässä ja ihanimmassa muodossaan. 
@@ -1110,7 +1104,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Joan LEGGINGS">
-        <source>description.Joan_Little_LEGGINGS</source>
+        <source>description.Joan_LEGGINGS</source>
         <target>
           <![CDATA[Tytöt ansaitsevat paljon kultaa ja kimallusta!
             Muun muassa siksi Joan LEGGINGS ovat täynnä niitä pehmeimmässä ja ihanimmassa muodossaan. 
@@ -1118,7 +1112,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Joan Little LEGGINGS">
-        <source>description.Jobelle_BELT</source>
+        <source>description.Joan_Little_LEGGINGS</source>
         <target>
           <![CDATA[Tytöt ansaitsevat paljon kultaa ja kimallusta!
             Muun muassa siksi Joan Little LEGGINGS ovat täynnä niitä pehmeimmässä ja ihanimmassa muodossaan. 
@@ -1127,49 +1121,49 @@
         </target>
       </trans-unit>
       <trans-unit id="Jobelle BELT">
-        <source>description.Kalinka_CAP</source>
+        <source>description.Jobelle_BELT</source>
         <target>
           <![CDATA[Superhieno asuste! Palmikoitu ja kaunis kukka ihanaa nahkaa. Sopii kaikkeen ja etenkin Fiona-hiuspantaan, jossa on samanlaisia kukkia. Vyö on säädettävä, ja sen pituus on 83 cm.	<br><br>	Saatavana: Camel (kameli).	<br><br>	Yksi koko	<br><br>	Materiaali: Nahka]]>
         </target>
       </trans-unit>
       <trans-unit id="Kalinka CAP">
-        <source>description.Kath_Little_PANTS</source>
+        <source>description.Kalinka_CAP</source>
         <target>
           <![CDATA[Kalinka CAP on ihan pakko saada! Paljettilippistä ei tarvitse sen enempää selitellä. Weeee looooove it!	<br><br>	Saatavana: Rose (roosa), Gold (kulta) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen päänympärystä senttimetreinä.	<br><br>	Materiaali: 100 % polyesteri          Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath Little PANTS">
-        <source>description.Kath_Little_TUNIC</source>
+        <source>description.Kath_Little_PANTS</source>
         <target>
           <![CDATA[Oiiih miten pehmeät ja ihanat! Mukavat kotihousuiksi ja majojen rakentamiseen, mutta sopivat hyvin myös juhliin ja hienommille daameille.	<br><br>	Saatavana: Black (musta). Khaki, Grey Melange (meleerattu harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath Little TUNIC">
-        <source>description.Kath_PANTS</source>
+        <source>description.Kath_Little_TUNIC</source>
         <target>
           <![CDATA[Pehmeä ja kevyt kuin kesätuuli. Kath on niin kaunis valoisina päivinä. Ja niin hieno yhteensopivan vyötärönauhan kanssa.	<br><br>	Saatavana: Black (musta). Khaki, Grey Melange (meleerattu harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath PANTS">
-        <source>description.Kath_TUNIC</source>
+        <source>description.Kath_PANTS</source>
         <target>
           <![CDATA[Oiiih miten pehmeät ja ihanat! Mukavat kotihousuiksi ja majojen rakentamiseen, mutta sopivat hyvin myös juhliin ja hienommille daameille.	<br><br>	Saatavana: Black (musta). Khaki, Grey Melange (meleerattu harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath TUNIC">
-        <source>description.Kimberly_PANTS</source>
+        <source>description.Kath_TUNIC</source>
         <target>
           <![CDATA[Pehmeä ja kevyt kuin kesätuuli. Kath-tunika on niin kaunis valoisina päivinä. Ja niin hieno vyötäröllä olevan yhteensopivan nauhan kanssa.	<br><br>	Saatavana: Black (musta). Khaki, Grey Melange (meleerattu harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Kimberly PANTS">
-        <source>description.Laura_DRESS</source>
+        <source>description.Kimberly_PANTS</source>
         <target>
           <![CDATA[Vedä Kimberlyt jalkaan, pue päälle lempitoppi ja lähde matkaan. Kimberly-housut sopivat lähes kaikkeen vaatekaapissasi.	<br><br>	Saatavana: Rose (roosa), Yellow (keltainen) ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 97% puuvilla, 3% elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Laura DRESS">
-        <source>description.Leah_Little_LS_TSHIRT</source>
+        <source>description.Laura_DRESS</source>
         <target>
           <![CDATA[Suurkaupungin tyyliä ja maalaisidylliä yhdistettynä.
             Kaunis musta-kultainen printti edessä ja trikoota kaikissa kanttauksissa, mikä saa pehmeän mekon laskeutumaan kauniisti. 
@@ -1178,81 +1172,81 @@
         </target>
       </trans-unit>
       <trans-unit id="Leah Little LS TSHIRT">
-        <source>description.Leah_LS_TSHIRT</source>
+        <source>description.Leah_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Ihanan pehmeä ja hyvännäköinen Leah! Sopivan yksinkertainen ja supertyylikäs. Sillä on myös Ökö-Tex- ja GOTS-hyväksynnät!	<br><br>	Saatavana: Blue (sininen) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Leah LS TSHIRT">
-        <source>description.Liam_Little_RAIN_SET</source>
+        <source>description.Leah_LS_TSHIRT</source>
         <target>
           <![CDATA[Ihanan pehmeä ja hyvännäköinen Leah! Sopivan yksinkertainen ja supertyylikäs. Sillä on myös Ökö-Tex- ja GOTS-hyväksynnät!	<br><br>	Saatavana: Blue (sininen) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Liam Little RAIN SET">
-        <source>description.Liam_RAIN_SET</source>
+        <source>description.Liam_Little_RAIN_SET</source>
         <target>
           <![CDATA[Myös sadepäivät ovat täynnä vauhtia ja hauskuutta. Liam-housut ovat täynnä vauhtiraitoja ja mukana on yhteensopiva takki. Molemmat ovat satumaisen pehmeitä ja tietysti sekä tuulen- että vedenpitäviä. Niillä on myös Ökö-Tex-hyväksyntä. Takissa on monia tyylikkäitä yksityiskohtia, kuten hieno koppakuoriaisheijastin taskussa, irrotettava huppu ja tuuletusaukot. Housuissa on olkaimet ja jalkalenkit, joten niissä voi myös hyppiä lätäköissä ilman että jalat kastuvat. 	<br><br>	Saatavana: Camel/Navy (kameli/laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % polyuretaani                Vuori: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Liam RAIN SET">
-        <source>description.Lilly_Little_RAIN_SET</source>
+        <source>description.Liam_RAIN_SET</source>
         <target>
           <![CDATA[Myös sadepäivät ovat täynnä vauhtia ja hauskuutta. Liam-housut ovat täynnä vauhtiraitoja ja mukana on yhteensopiva takki. Molemmat ovat satumaisen pehmeitä ja tietysti sekä tuulen- että vedenpitäviä. Niillä on myös Ökö-Tex-hyväksyntä. Takissa on monia tyylikkäitä yksityiskohtia, kuten hieno koppakuoriaisheijastin taskussa, irrotettava huppu ja tuuletusaukot. Housuissa on elastinen vyötärö ja jalkalenkit, joten niissä voi myös hyppiä lätäköissä ilman että jalat kastuvat. 	<br><br>	Saatavana: Camel/Navy (kameli/laivastonsininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % polyuretaani                Vuori: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Lilly Little RAIN SET">
-        <source>description.Lilly_RAIN_SET</source>
+        <source>description.Lilly_Little_RAIN_SET</source>
         <target>
           <![CDATA[Myös sadepäivät ovat täynnä vauhtia ja hauskuutta. Lilly-housut ovat täynnä tähtiä ja mukana on yhteensopiva takki. Molemmat ovat satumaisen pehmeitä ja tietysti sekä tuulen- että vedenpitäviä. Niillä on myös Ökö-Tex-hyväksyntä. Takissa on monia tyylikkäitä yksityiskohtia, kuten hieno heijastin taskussa, irrotettava huppu ja tuuletusaukot. Housuissa on olkaimet ja jalkalenkit, joten niissä voi myös hyppiä lätäköissä ilman että jalat kastuvat. 	<br><br>	Saatavana: Khaki.	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % polyuretaani                Vuori: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Lilly RAIN SET">
-        <source>description.Liva_Little_PANTS</source>
+        <source>description.Lilly_RAIN_SET</source>
         <target>
           <![CDATA[Myös sadepäivät ovat täynnä vauhtia ja hauskuutta. Lilly-housut ovat täynnä tähtiä ja mukana on yhteensopiva takki. Molemmat ovat satumaisen pehmeitä ja tietysti sekä tuulen- että vedenpitäviä. Niillä on myös Ökö-Tex-hyväksyntä. Takissa on monia tyylikkäitä yksityiskohtia, kuten hieno heijastin taskussa, irrotettava huppu ja tuuletusaukot. Housuissa on elastinen vyötärö ja jalkalenkit, joten niissä voi myös hyppiä lätäköissä ilman että jalat kastuvat. 	<br><br>	Saatavana: Khaki.	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % polyuretaani                Vuori: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Liva Little PANTS">
-        <source>description.Liva_Little_TOP</source>
+        <source>description.Liva_Little_PANTS</source>
         <target>
           <![CDATA[Baggy-malliset mamelukit! Pienissä Liva-housuissa sinusta tulee isoäidin suosikki. Liva-housuissa on suloiset röyhelöt ja puuvillanpehmeä joustava vyötärö.
             <br><br>	Saatavana: Rose (roosa) ja Off White (luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla                Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Liva Little TOP">
-        <source>description.Liva_TOP</source>
+        <source>description.Liva_Little_TOP</source>
         <target>
           <![CDATA[Liva osuu suoraan sydämeen. Niin hieno ja söpö.  A-linjainen ja kevyt rantaleikkeihin ja kesänokosille.	<br><br>	Saatavana: Rose (roosa) ja Off White (luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla                Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Liva TOP">
-        <source>description.Lucy_DRESS</source>
+        <source>description.Liva_TOP</source>
         <target>
           <![CDATA[Liva osuu suoraan sydämeen. Niin hieno ja söpö. A-linjainen ja kevyt rantaleikkeihin ja kesänokosille.	<br><br>	Saatavana: Rose (roosa) ja Off White (luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla                Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Lucy DRESS">
-        <source>description.Lucy_Little_TSHIRT</source>
+        <source>description.Lucy_DRESS</source>
         <target>
           <![CDATA[Lucy DRESS on saanut vaikutteita isoäidin pitseistä ja isoisän aluspaidoista.
             Hieno nykyaikainen mekko, jossa on rypytykset ja kiristysnauha vyötäröllä. Kevyt ja ilmava leikkeihin ja hauskanpitoon. Lucy on kaunis myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.<br><br>	Saatavana: Rose (roosa), White (valkoinen), Peach (persikka) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvilla, 20 % pellava]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy Little TSHIRT">
-        <source>description.Lucy_TSHIRT</source>
+      <trans-unit id="Lucy Little SS TSHIRT">
+        <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[All you need is love! Paljon rakkautta suloisen pehmeälle Lucylle! Lucy on kaunis myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.	<br><br>	Saatavana: Rose (roosa), White (valkoinen), Peach (persikka) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvilla, 20 % pellava]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy TSHIRT">
-        <source>description.Madison_CARDIGAN</source>
+      <trans-unit id="Lucy SS TSHIRT">
+        <source>description.Lucy_SS_TSHIRT</source>
         <target>
           <![CDATA[All you need is love! Paljon rakkautta suloisen pehmeälle Lucylle! Lucy on kaunis myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.	<br><br>	Saatavana: Rose (roosa), White (valkoinen), Peach (persikka) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvilla, 20 % pellava]]>
         </target>
       </trans-unit>
       <trans-unit id="Madison CARDIGAN">
-        <source>description.Madison_Little_CARDIGAN</source>
+        <source>description.Madison_CARDIGAN</source>
         <target>
           <![CDATA[Oih, uudet ja hieman villit värimme sopivat tähän neuletakkiin superhyvin. Hienon neuleen ansiosta se sopii kauniisiin mekkoihimme ja viimeistelee toisaalta myös arkiasun. 
             Neuletakissa on pitsiä niskassa ja hienoin nauha napitusta pitkin.
@@ -1260,7 +1254,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Madison Little CARDIGAN">
-        <source>description.Malou_Little_PANTS</source>
+        <source>description.Madison_Little_CARDIGAN</source>
         <target>
           <![CDATA[Oih, uudet ja hieman villit värimme sopivat tähän neuletakkiin superhyvin. Hienon neuleen ansiosta se sopii kauniisiin mekkoihimme ja viimeistelee toisaalta myös arkiasun. 
             Neuletakissa on pitsiä niskassa ja hienoin nauha napitusta pitkin.
@@ -1268,14 +1262,14 @@
         </target>
       </trans-unit>
       <trans-unit id="Malou Little PANTS">
-        <source>description.Malou_Little_SHORTS</source>
+        <source>description.Malou_Little_PANTS</source>
         <target>
           <![CDATA[Niin suloiset ja mukavat. Malou Little PANTS -housut ovat klassista ilmapallomalliamme ja sopivat lähes kaikkiin suosikkipaitoihisi ja -kenkiisi. Housuilla on myös Ökö-Tex-hyväksyntä, joten omatuntokin viihtyy. Ja niissä on tietenkin kuuluisa säädettävä vyötärömme. 
             <br><br>	Saatavana: Khaki, White (valkoinen) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla          Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Malou Little SHORTS">
-        <source>description.Malou_PANTS</source>
+        <source>description.Malou_Little_SHORTS</source>
         <target>
           <![CDATA[Malou Little SHORTS -shortsit ovat niin suloiset ja mukavat. 
             Nämä viehättävän tyylikkkäät shortsit sopivat leggingsien kanssa tai ilman sekä viileisiin että lämpimiin päiviin.
@@ -1284,14 +1278,14 @@
         </target>
       </trans-unit>
       <trans-unit id="Malou PANTS">
-        <source>description.Mary_BLOUSE</source>
+        <source>description.Malou_PANTS</source>
         <target>
           <![CDATA[Niin suloiset ja mukavat. Malou PANTS -housut ovat klassista ilmapallomalliamme ja sopivat lähes kaikkiin suosikkipaitoihisi ja -kenkiisi. Housuilla on myös Ökö-Tex-hyväksyntä, joten omatuntokin viihtyy. Ja niissä on tietenkin kuuluisa säädettävä vyötärömme. 
             <br><br>	Saatavana: Khaki, White (valkoinen) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla          Vuori: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Mary BLOUSE">
-        <source>description.Mary_Little_TUNIC</source>
+        <source>description.Mary_BLOUSE</source>
         <target>
           <![CDATA[Röyhelöt ovat ihan ehdottomia tytöille ja Mary BLOUSE -paidassa niitä on onneksi paljon. 
             Niitä on sekä pääntiessä että pieninä hihoina. Paidassa on myös lantiolla päälle ommeltu nauha, joka voidaan solmia sivulle. Upea röyhelöunelma.
@@ -1299,47 +1293,47 @@
         </target>
       </trans-unit>
       <trans-unit id="Mary Little TUNIC">
-        <source>description.Mia_JACKET</source>
+        <source>description.Mary_Little_TUNIC</source>
         <target>
           <![CDATA[Pienessä Mary-tunikassa on röyhelöä kauluksessa ja hihansuissa. Harsomaisen kevyt ihanuus, jossa on edessä napit. Herttaiselle prinsessalle hameen kanssa tai coolimmalle tytölle tiukkojen housujen ja vaikka Adele HOODIE -hupparin kanssa.
             <br><br>	Saatavana: Off White (luonnonvalkoinen), Rose (roosa) ja Green (vihreä).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Mia JACKET">
-        <source>description.Mia_Little_JACKET</source>
+        <source>description.Mia_JACKET</source>
         <target>
           <![CDATA[Takki, joka pitää lämpimänä viileämpinä päivinä ja viimeistelee sekä arkivaatteet että juhla-asun yhtä kauniisti. Prinsessaleikkaus, röyhelö/vetoketju edessä ja hyvät taskut, joihin saa helposti mahtumaan simpukankuoren tai pari. Mukana myös vyö.
             <br><br>	Saatavana: Black (musta), Rose (roosa) ja Sand (hiekka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	"Materiaali: 65 % polyesteri, 35 % puuvilla 				 Vuori: 100 % puuvilla                          "]]>
         </target>
       </trans-unit>
       <trans-unit id="Mia Little JACKET">
-        <source>description.Morgan_SS_TSHIRT</source>
+        <source>description.Mia_Little_JACKET</source>
         <target>
           <![CDATA[Takki, joka pitää lämpimänä viileämpinä päivinä ja viimeistelee sekä päiväkotivaatteet että juhla-asun yhtä kauniisti. Prinsessaleikkaus, röyhelö/vetoketju edessä ja hyvät taskut, joihin saa helposti mahtumaan simpukankuoren tai pari. 
             <br><br>	Saatavana: Black (musta), Rose (roosa) ja Sand (hiekka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	"Materiaali: 65 % polyesteri, 35 % puuvilla 				 Vuori: 100 % puuvilla                          "]]>
         </target>
       </trans-unit>
       <trans-unit id="Morgan SS TSHIRT">
-        <source>description.Nola_LEGGINGS</source>
+        <source>description.Morgan_SS_TSHIRT</source>
         <target>
-          <![CDATA[Ihana jalkapallotyylinen Morgan sopii hyvin meneville pojille. Myös omatunto voi olla mukana pelissä, koska Morganilla on Ökö-Tex-hyväksyntä.	<br><br>	Saatavana: Blue (sininen) ja Red (punainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
+          <![CDATA[Ihana jalkapallotyylinen Morgan sopii hyvin meneville pojille. Myös omatunto voi olla mukana pelissä, koska Morganilla on Ökö-Tex-hyväksyntä.	<br><br>	Saatavana: Blue (sininen) ja Red (punainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola LEGGINGS">
-        <source>description.Nola_Little_LEGGINGS</source>
+        <source>description.Nola_LEGGINGS</source>
         <target>
           <![CDATA[Nämä pehmeät leggingsit perusmallistostamme ovat aivan täydelliset kaikkeen tanssiin, juoksuun ja muuhun hyppelyyn. Niillä on myös Ökö-Tex-hyväksyntä, joten sinun ei tarvitse olla huolissasi, jos ne ovat aivan ihoa vasten. Pehmeä ja joustava vyötärö. Yhdistä sopivaan pitkähihaiseen T-paitaan, vedä päälle lempimekko ja olet valmis.	<br><br>	Saatavana: Rose (roosa), Green (vihreä), Khaki ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 46 % puuvilla, 46 % modaali, 8 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola Little LEGGINGS">
-        <source>description.Nola_Little_LS_TSHIRT</source>
+        <source>description.Nola_Little_LEGGINGS</source>
         <target>
           <![CDATA[Nämä pehmeät leggingsit perusmallistostamme ovat aivan täydelliset kaikkeen tanssiin, juoksuun ja muuhun hyppelyyn. Niillä on myös Ökö-Tex-hyväksyntä, joten sinun ei tarvitse olla huolissasi, jos ne ovat aivan ihoa vasten. Pehmeä ja joustava vyötärö. Yhdistä sopivaan pitkähihaiseen T-paitaan, vedä päälle lempimekko ja olet valmis.
             <br><br>	Saatavana: Rose (roosa), Green (vihreä), Khaki ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 46 % puuvilla, 46 % modaali, 8 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola Little LS TSHIRT">
-        <source>description.Nola_LS_TSHIRT</source>
+        <source>description.Nola_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Perusmallistomme pehmeä ja miellyttävä T-paita, joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa. 
             Sillä on myös Ökö-Tex-hyväksyntä, joten sinun ei tarvitse olla huolissasi siitä, että se tulee aivan ihoa vasten.  
@@ -1349,7 +1343,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Nola LS TSHIRT">
-        <source>description.Nola_TOP</source>
+        <source>description.Nola_LS_TSHIRT</source>
         <target>
           <![CDATA[Perusmallistomme pehmeä ja miellyttävä T-paita, joka sopii täydellisesti yhteen kaikkien vaatteiden kanssa. 
             Sillä on myös Ökö-Tex-hyväksyntä, joten sinun ei tarvitse olla huolissasi siitä, että se tulee aivan ihoa vasten.  
@@ -1358,20 +1352,20 @@
         </target>
       </trans-unit>
       <trans-unit id="Nola TOP">
-        <source>description.Patrick_FOOTIES</source>
+        <source>description.Nola_TOP</source>
         <target>
           <![CDATA[Pehmeä ja miellyttävä toppi sekä arkeen että juhlaan. Nola on perusmallistostamme, ja sillä on Ökö-Tex-hyväksyntä, joten sinun ei tarvitse olla huolissasi siitä, että se tulee aivan ihoa vasten. Yhdistä se yhteensopiviin Nola LEGGINGS -leggingseihin, pue päälle lempialaosa ja valloita maailma.
             <br><br>	Saatavana: Rose (roosa), Green (vihreä), Khaki ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 46 % puuvilla, 46 % modaali, 8 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Patrick FOOTIES">
-        <source>description.Pearl_DRESS</source>
+        <source>description.Patrick_FOOTIES</source>
         <target>
           <![CDATA[Patrick pukee jalat hyvin Ökö-Tex-hyväksyntänsä ja ihanan designin ansiosta.	<br><br>	Saatavana: Navy (laivastonsininen) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen kengänkokoa.	<br><br>	Materiaali: 77 % puuvilla, 19 % polyamidi, 4 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Pearl DRESS">
-        <source>description.Pearl_Little_DRESS</source>
+        <source>description.Pearl_DRESS</source>
         <target>
           <![CDATA[Pearl DRESS on puuvillanpehmeä, kevyt, ilmava ja suloinen. Siinä on yhdistetty herkkiä värejä raitoihin. 
             Täydellinen kaikkeen, mitä keväällä ja kesällä on tarjottavanaan.
@@ -1379,7 +1373,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Pearl Little DRESS">
-        <source>description.Polly_Little_TOP</source>
+        <source>description.Pearl_Little_DRESS</source>
         <target>
           <![CDATA[Pearl Little DRESS on puuvillanpehmeä, kevyt, ilmava ja suloinen. Siinä on yhdistetty herkkiä värejä raitoihin. 
             Täydellinen kaikkeen, mitä keväällä ja kesällä on tarjottavanaan.
@@ -1387,7 +1381,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Polly Little TOP">
-        <source>description.Polly_TOP</source>
+        <source>description.Polly_Little_TOP</source>
         <target>
           <![CDATA[Polly Little TOP on sädehtivän kimaltava toppimme, jossa on supersuloisia yksityiskohtia. 
             Röyhelöt hihoissa ja pääntiessä ja A-linjainen malli. Suloinen Polly sopii sekä arkeen että juhlaan.
@@ -1395,7 +1389,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Polly TOP">
-        <source>description.Preston_BOXER</source>
+        <source>description.Polly_TOP</source>
         <target>
           <![CDATA[Polly TOP on sädehtivän kimaltava toppimme, jossa on eteen sidottava nauha. 
             Polly antaa hyvän säväyksen leggingseille, farkuille, shortseille ja kyllä, se sopii mielestämme joka tilanteeseen. 
@@ -1403,43 +1397,43 @@
         </target>
       </trans-unit>
       <trans-unit id="Preston BOXER">
-        <source>description.Preston_Little_BODY</source>
+        <source>description.Preston_BOXER</source>
         <target>
           <![CDATA[Niin ihanat ja pehmeät bokserit! Preston-bokserit ovat tosi tyylikkäät ja hauskat suloisine koppakuoriaisineen. Niiden käyttäminenkin on hauskaa, koska niillä on sekä Ökö-Tex- että GOTS-hyväksyntä. 	<br><br>	Saatavana: Navy/ Off White (laivastonsininen/luonnonvalkoinen) ja Grey/Off White (harmaa/luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little BODY">
-        <source>description.Preston_Little_LS_BODY</source>
+        <source>description.Preston_Little_BODY</source>
         <target>
           <![CDATA[Niin ihana, herttainen ja pehmeä pieni body! Preston on tosi tyylikäs ja hauska suloisine koppakuoriaisineen.  Sen käyttäminenkin on hauskaa, koska sillä on sekä Ökö-Tex- että GOTS-hyväksyntä. 	<br><br>	Saatavana: Navy/ Off White (laivastonsininen/luononvalkoinen) ja Grey/Off White (harmaa/luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little LS BODY">
-        <source>description.Preston_Little_PY</source>
+        <source>description.Preston_Little_LS_BODY</source>
         <target>
           <![CDATA[Niin ihana, herttainen ja pehmeä pieni pitkähihainen body! Preston on tosi tyylikäs ja hauska suloisine koppakuoriaisineen.  Sen käyttäminenkin on hauskaa, koska sillä on sekä Ökö-Tex- että GOTS-hyväksyntä. 	<br><br>	Saatavana: Navy (laivastonsininen) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little PY">
-        <source>description.Preston_Little_SLEEPER</source>
+        <source>description.Preston_Little_PY</source>
         <target>
           <![CDATA[Niin ihana, herttainen ja pehmeä pyjama!  Preston on tosi tyylikäs ja hauska suloisine koppakuoriaisineen.  Sen käyttäminenkin on hauskaa, koska sillä on sekä Ökö-Tex- että GOTS-hyväksyntä. 	<br><br>	Saatavana: Navy (laivastonsininen) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little SLEEPER">
-        <source>description.Preston_PY</source>
+        <source>description.Preston_Little_SLEEPER</source>
         <target>
           <![CDATA[Niin ihana yöpuku. Niin suloinen, pehmeä ja siisti! Preston on tosi tyylikäs ja hauska suloisine koppakuoriaisineen.  Sen käyttäminenkin on hauskaa, koska sillä on sekä Ökö-Tex- että GOTS-hyväksyntä. 	<br><br>	Saatavana: Navy (laivastonsininen) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston PY">
-        <source>description.Preston_TANKTOP</source>
+        <source>description.Preston_PY</source>
         <target>
           <![CDATA[Niin ihana pyjama. Niin suloinen pehmeä ja siisti! Preston on tosi tyylikäs ja hauska suloisine koppakuoriaisineen.  Sen käyttäminenkin on hauskaa, koska sillä on sekä Ökö-Tex- että GOTS-hyväksyntä. 	<br><br>	Saatavana: Navy (laivastonsininen) ja Grey (harmaa). 	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston TANKTOP">
-        <source>description.Rachel_Little_TUNIC</source>
+        <source>description.Preston_TANKTOP</source>
         <target>
           <![CDATA[Superhieno aluspaita! Preston on hauska ja siisti hauskoine koppakuoriaisineen. Toisessa topissa koppakuoriaiset ryömivät kaikkialla ja toisessa on vain yksi kurkistamassa niskasta. Tyylikäs kesällä myös sellaisenaan!
             Sen käyttäminenkin on hauskaa, koska sillä on sekä Ökö-Tex- että GOTS-hyväksyntä. 
@@ -1447,27 +1441,27 @@
         </target>
       </trans-unit>
       <trans-unit id="Rachel Little TUNIC">
-        <source>description.Rachel_TUNIC</source>
+        <source>description.Rachel_Little_TUNIC</source>
         <target>
           <![CDATA[Ilmava ja leikkisän kevyt sekä hienosti leikattu Rachel on mukana muodissa ja menossa. Viileä limonadi käteen ja kesästä nauttimaan Rachel yllä!
             <br><br>	Saatavana: Brown (ruskea), Blue (sininen) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Rachel TUNIC">
-        <source>description.Riana_LEGGINGS</source>
+        <source>description.Rachel_TUNIC</source>
         <target>
           <![CDATA[Ilmava ja leikkisän kevyt sekä hienosti leikattu Rachel on mukana muodissa ja menossa. Viileä limonadi käteen ja kesästä nauttimaan Rachel yllä!
             <br><br>	Saatavana: Brown (ruskea), Blue (sininen) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Riana LEGGINGS">
-        <source>description.Rosemary_JUMPSUIT</source>
+        <source>description.Riana_LEGGINGS</source>
         <target>
           <![CDATA[Perhosia vatsassa ja perhosia leggingseissä. Valmiina kevään ja kesän leikkeihin!	<br><br>	Saatavana: Rose (roosa), Khaki ja Off White (luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 98 % puuvilla, 2 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Rosemary JUMPSUIT">
-        <source>description.Rosemary_Little_SS_TSHIRT</source>
+        <source>description.Rosemary_JUMPSUIT</source>
         <target>
           <![CDATA[Olemme hulluina Rosemary-sarjaan! Urheilullisuutta, kimalletta ja paljetteja! Jihuu! 
             Rosemary JUMPSUIT on pehmeä ja kevyt. Superasu supertyttöjen oleskeluhetkiin sekä kesän urheiluihin ja hauskanpitoon. 
@@ -1475,7 +1469,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Rosemary Little SS TSHIRT">
-        <source>description.Rosemary_SS_TSHIRT</source>
+        <source>description.Rosemary_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Olemme hulluina Rosemary-sarjaan! Urheilullisuutta, kimalletta ja paljetteja! Jihuu! 
             Rosemary Little SS TSHIRT on pehmeä ja kevyt. Superpaita supertyttöjen kesäurheiluun ja hauskanpitoon.
@@ -1483,7 +1477,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Rosemary SS TSHIRT">
-        <source>description.Samantha_CARDIGAN</source>
+        <source>description.Rosemary_SS_TSHIRT</source>
         <target>
           <![CDATA[Olemme hulluina Rosemary-sarjaan! Urheilullisuutta, kimalletta ja paljetteja! Jihuu! 
             Rosemary SS TSHIRT on pehmeä ja kevyt. Superpaita supertyttöjen kesäurheiluun ja hauskanpitoon.
@@ -1491,7 +1485,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Samantha CARDIGAN">
-        <source>description.Samantha_Little_CARDIGAN</source>
+        <source>description.Samantha_CARDIGAN</source>
         <target>
           <![CDATA[Leikittele kontrasteilla ja käytä A-linjaista Samantha-neuletakkia mekkojen ja leveiden tunikojen päällä.
             Materiaali sisältää muun muassa bambua, joka tekee neuletakista superpehmeän. 
@@ -1499,7 +1493,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Samantha Little CARDIGAN">
-        <source>description.Scarlett_Little_LEGGINGS</source>
+        <source>description.Samantha_Little_CARDIGAN</source>
         <target>
           <![CDATA[Leikittele kontrasteilla ja käytä A-linjaista Samantha-neuletakkia mekkojen ja leveiden tunikojen päällä. 
             Rinnassa ja selässä on rypytykset, jotka korostavat tyttömäisyyttä. 
@@ -1508,13 +1502,13 @@
         </target>
       </trans-unit>
       <trans-unit id="Scarlett Little LEGGINGS">
-        <source>description.Scarlett_CHINOS</source>
+        <source>description.Scarlett_Little_LEGGINGS</source>
         <target>
           <![CDATA[Olemme hulluina Scarlett -leggingseihin! Nilkkarypytykset tekevät niistä hienostuneet mutta rennot ja takasaumat ovat hyvä yksityiskohta. Ja niissä on tietenkin kuuluisa säädettävä vyötärömme.	<br><br>	Saatavana: Rose (roosa), Sand (hiekka) ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 97 % puuvilla, 3 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Scarlett CHINOS">
-        <source>description.Selja_HAT</source>
+        <source>description.Scarlett_CHINOS</source>
         <target>
           <![CDATA[Chinot ovat ehdoton juttu! Nilkkarypytykset tekevät Scarlett -chinoista hienostuneet mutta rennot. 
             Ja niissä on tietenkin kuuluisa säädettävä vyötärömme.
@@ -1522,13 +1516,13 @@
         </target>
       </trans-unit>
       <trans-unit id="Selja HAT">
-        <source>description.Shane_SS_TSHIRT</source>
+        <source>description.Selja_HAT</source>
         <target>
           <![CDATA[Selja on oikean Dancing Queenin kruunu ja tuo mieleen isoäidin virkkaukset yhdistettynä ABBAn 70-luvun tunnelmiin.	<br><br>	Saatavana: Off White (luonnonvalkoinen), Grey (harmaa) ja Black (musta).	<br><br>	Kokomerkintä tarkoittaa lapsen päänympärystä senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Shane SS TSHIRT">
-        <source>description.Shelly_DRESS</source>
+        <source>description.Shane_SS_TSHIRT</source>
         <target>
           <![CDATA[Ihanat värit ja supertyylikäs painatus! Shane sopii ”Old Indian” -tyylinsä ansiosta lähes mihin tahansa. 
             Ja täydellisesti valoisiin kesäpäiviin. Sillä on myös Ökö-Tex-hyväksyntä.
@@ -1536,28 +1530,28 @@
         </target>
       </trans-unit>
       <trans-unit id="Shelly DRESS">
-        <source>description.Shelly_Little_DRESS</source>
+        <source>description.Shelly_DRESS</source>
         <target>
           <![CDATA[Kaunis Shelly! Mekko, joka on yksinkertaisuudessaan ehdoton osa jokaisen prinsessan vaatevarastoa. 
             Kun päälläsi on 1000 kerrosta tylliä – ainakin melkein – ja suuri rusetti vyötäröllä pääset taikaiskusta mukaan suosikkisatukirjasi tarinaan. <br><br>	Saatavana: Off White (luonnonvalkoinen), Green (vihreä) ja Rose (roosa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali 1: 50 % puuvilla, 47 % polyesteri, 3 % elastaani             Materiaali 2: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little DRESS">
-        <source>description.Shelly_Little_SKIRT</source>
+        <source>description.Shelly_Little_DRESS</source>
         <target>
           <![CDATA[Kaunis Shelly! Mekko, joka on yksinkertaisuudessaan ehdoton osa jokaisen prinsessan vaatevarastoa.
             Kun päälläsi on 1000 kerrosta tylliä – ainakin melkein – ja suuri rusetti vyötäröllä pääset taikaiskusta mukaan suosikkisatukirjasi tarinaan. <br><br>	Saatavana: Off White (luonnonvalkoinen), Green (vihreä) ja Rose (roosa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali 1: 50 % puuvilla, 47 % polyesteri, 3 % elastaani             Materiaali 2: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little SKIRT">
-        <source>description.Shelly_SKIRT</source>
+        <source>description.Shelly_Little_SKIRT</source>
         <target>
           <![CDATA[Kaikilla tositytöillä pitää olla Shelly! Aivan hurmaava ja viehättävä hame. 
             Shelly tekee kaikista tytöistä oikeita tanssidiivoja! Kuten aina, siinä on säädettävä vyötärö.<br><br>	Saatavana: Off White (luonnonvalkoinen), Green (vihreä) ja Rose (roosa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali 1: 50 % puuvilla, 47 % polyesteri, 3 % elastaani             Materiaali 2: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly SKIRT">
-        <source>description.Sophia_Little_PANTS_</source>
+        <source>description.Shelly_SKIRT</source>
         <target>
           <![CDATA[Kaikilla tositytöillä pitää olla Shelly! Aivan hurmaava ja viehättävä hame. 
             Shelly tekee kaikista tytöistä oikeita tanssidiivoja! Kuten aina, siinä on säädettävä vyötärö.
@@ -1565,7 +1559,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little PANTS ">
-        <source>description.Sophia_Little_SHORT_SUIT</source>
+        <source>description.Sophia_Little_PANTS</source>
         <target>
           <![CDATA[Suloinen pilkkukuvio ja haaremihousut yhdistettynä baggy-malliin – kaikki, mitä rakastamme. 
             Housut, joita et vain pidä päällä, vaan joissa viihdyt mukavasti ja kauniisti.
@@ -1573,106 +1567,106 @@
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little SHORT SUIT">
-        <source>description.Sophia_Little_TUNIC</source>
+        <source>description.Sophia_Little_SHORT_SUIT</source>
         <target>
           <![CDATA[Suloisen pilkkukuvion, rinnassa olevan rusetin, spagettiolkaimien ja puhvishortsien solmittavan rusetin ansiosta Sophia -puku sopii kaikille pienille kesädiivoille. 
             <br><br>	Saatavana: Peach (persikka), Rose (roosa) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little TUNIC">
-        <source>description.Sophia_TUNIC</source>
+        <source>description.Sophia_Little_TUNIC</source>
         <target>
           <![CDATA[Tämä tunika on yksi klassikoistamme. Tällä kertaa se on koristeltu suloisella, pilkullisella kuviolla, ja siinä on joustava pääntie ja hihansuut. Vaivaton ja säväyttävä tyyli – yhdistä vain leggingseihin tai sukkahousuihin ja olet valmiina leikkeihin. 
             <br><br>	Saatavana: Peach (persikka), Rose (roosa) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Sophia TUNIC">
-        <source>description.Stella_DRESS</source>
+        <source>description.Sophia_TUNIC</source>
         <target>
           <![CDATA[Tämä tunika on yksi klassikoistamme. Tällä kertaa se on koristeltu suloisella, pilkullisella kuviolla, ja siinä on joustava pääntie ja hihansuut. Vaivaton ja säväyttävä tyyli – yhdistä vain leggingseihin tai sukkahousuihin ja olet valmiina leikkeihin.
             <br><br>	Saatavana: Peach (persikka), Rose (roosa) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Stella DRESS">
-        <source>description.Stella_Little_TUNIC</source>
+        <source>description.Stella_DRESS</source>
         <target>
           <![CDATA[Stella DRESS on visertävän kaunis lintukuvioinen mekko. Elastinen vyötärö antaa trendikkään ylisuuren silhuetin.
             <br><br>	Saatavana: Peach (persikka), Rose (roosa) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Stella Little TUNIC">
-        <source>description.Stella_TUNIC</source>
+        <source>description.Stella_Little_TUNIC</source>
         <target>
           <![CDATA[Kaunis lintukuvioinen Stella Little TUNIC tekee sinusta visertävän kauniin. Tunikassa on lintujen kanssa samanvärinen nauha ja rusetti.	<br><br>	Saatavana: Peach (persikka), Rose (roosa) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Stella TUNIC">
-        <source>description.Suri_DRESS</source>
+        <source>description.Stella_TUNIC</source>
         <target>
           <![CDATA[Kaunis lintukuvioinen Stella TUNIC tekee sinusta visertävän kauniin. Tunikassa on lintujen kanssa samanvärinen nauha ja rusetti.	<br><br>	Saatavana: Peach (persikka), Rose (roosa) ja Yellow (keltainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Suri DRESS">
-        <source>description.Suri_Little_DRESS</source>
+        <source>description.Suri_DRESS</source>
         <target>
           <![CDATA[Suri on kaikkea – arkimekko, paljettiunelma ja räväkämmän tytön mekko. Mekossa on ulkopuolinen paksu vetoketju, ja se koostuu paljettiyläosasta ja pehmeästä trikoohameesta, joka laskeutuu yhtä hyvin sukkahousujen kuin upeiden farkkujenkin päälle.
             <br><br>	Saatavana: Khaki, Rose (roosa) ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Suri Little DRESS">
-        <source>description.Suri_WAISTCOAT</source>
+        <source>description.Suri_Little_DRESS</source>
         <target>
           <![CDATA[Suri on kaikkea – arkimekko, paljettiunelma ja räväkämmän tytön mekko. Mekossa on ulkopuolinen paksu vetoketju, ja se koostuu paljettiyläosasta ja pehmeästä trikoohameesta, joka laskeutuu hienosti sukkahousujen tai leggingsien päälle.
             <br><br>	Saatavana: Khaki, Rose (roosa) ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Suri WAISTCOAT">
-        <source>description.Tess_PANTS</source>
+        <source>description.Suri_WAISTCOAT</source>
         <target>
           <![CDATA[Paljetteja, paljetteja ja vielä kerran paljetteja! Tämä liivi on yksinkertaisuudessaan ja paljettien paljoudessaan ehdoton vaate. Pitää vain valita, minkä värisenä sen haluaa.
             <br><br>	Saatavana: Khaki, Rose (roosa) ja Grey (harmaa).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % viskoosi, 5 % elastaani   Koristeet: 100 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Tess PANTS">
-        <source>description.Tess_SHORT_SUIT</source>
+        <source>description.Tess_PANTS</source>
         <target>
           <![CDATA[Liehuvan ilmavat, pehmeät ja hyvännäköiset! Kaunis kukkakuvio, ihanan leveä rypytys vyötäröllä, rusetti ja hienoja rypytykset nilkoissa. Kauniit!	<br><br>	Saatavana: Yellow (keltainen) ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 60 % viskoosi, 40 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Tess SHORT SUIT">
-        <source>description.Theodore_Little_LS_GRANDDAD</source>
+        <source>description.Tess_SHORT_SUIT</source>
         <target>
           <![CDATA[Liehuvan ilmava, pehmeä ja hyvännäköinen! Oikea kesävaate! Kaunis kukkakuvio, ihanan leveä rypytys vyötäröllä, rusetti, leveät lahkeet ja painonapit, joten riisuminen ja pukeminen sujuvat helposti ja nopeasti. Kaunis!	<br><br>	Saatavana: Yellow (keltainen) ja Peach (persikka).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 60 % viskoosi, 40 % polyesteri]]>
         </target>
       </trans-unit>
       <trans-unit id="Theodore Little LS GRANDDAD">
-        <source>description.Theodore_LS_GRANDDAD</source>
+        <source>description.Theodore_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[Vaarinpaita, joka sopii kaikkeen – sellaisenaan tai toisen paidan kanssa. 
             Mikä parasta, se tuntuu ihanan puuvillaribin ansiosta superpehmeältä päällä ja napeissa on kivat yksityiskohdat. Theodorella on luonnollisesti Ökö-Tex-hyväksyntä.<br><br>	Saatavana: Blue (sininen), Grey Melange (meleerattu harmaa) ja White (valkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Theodore LS GRANDDAD">
-        <source>description.Thomas_Little_SHORTS</source>
+        <source>description.Theodore_LS_GRANDDAD</source>
         <target>
           <![CDATA[Vaarinpaita, joka sopii kaikkeen – sellaisenaan tai toisen paidan kanssa. 
             Mikä parasta, se tuntuu ihanan puuvillaribin ansiosta superpehmeältä päällä ja napeissa on kivat yksityiskohdat. Theodorella on luonnollisesti Ökö-Tex-hyväksyntä.<br><br>	Saatavana: Blue (sininen), Grey Melange (meleerattu harmaa) ja White (valkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % puuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Thomas Little SHORTS">
-        <source>description.Thomas_SHORTS</source>
+        <source>description.Thomas_Little_SHORTS</source>
         <target>
           <![CDATA[Thomas-shortseissa olet kesän tyylikkäin poika.  Olemme valinneet yksinkertaisen mallin, joka voidaan yhdistää kaikkeen.	<br><br>	Saatavana: Red (punainen), Camel (kameli) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Thomas SHORTS">
-        <source>description.Tiana_LEGGINGS</source>
+        <source>description.Thomas_SHORTS</source>
         <target>
           <![CDATA[Kääri lahkeet ylös lämpimällä ilmalla tai anna niiden olla hieman pidempänä hienompia tilaisuuksia varten. Olemme aivan ihastuneet Thomas -shortseihin.	<br><br>	Saatavana: Red (punainen), Camel (kameli) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Tiana LEGGINGS">
-        <source>description.Tristan_SHIRT</source>
+        <source>description.Tiana_LEGGINGS</source>
         <target>
           <![CDATA[Hyppää Tiana -leggingseihin ja vedä päälle lempitoppisi, -mekkosi tai -puserosi ja ei kun menoksi. 
             Valmiina arkeen, juhliin ja hauskoihin leikkeihin.
@@ -1680,26 +1674,26 @@
         </target>
       </trans-unit>
       <trans-unit id="Tristan SHIRT">
-        <source>description.Uma_Little_DRESS</source>
+        <source>description.Tristan_SHIRT</source>
         <target>
           <![CDATA[Tristan sopii hyvin sekä arki- että juhlahousujen kanssa. Se on liehuva ja pehmeä – ihana lämpimänä kesäpäivänä, mutta mukava myös vähän viileämmällä ilmalla vaikkapa T-paidan kanssa.	<br><br>	Saatavana: Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 55 % pellava, 45 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Uma Little DRESS">
-        <source>description.Uma_LONG_TUNIC</source>
+        <source>description.Uma_Little_DRESS</source>
         <target>
           <![CDATA[Oiiiih Uma on niin röyhelöinen, ilmava ja kevyt, että OIIIIH yksinkertaisesti kuvaa Uma Little DRESS -mekkoamme parhaiten.	<br><br>	Saatavana: Rose (roosa), Grey (harmaa) ja Off White (luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Uma LONG TUNIC">
-        <source>description.Victoria_Little_JEANS</source>
+        <source>description.Uma_LONG_TUNIC</source>
         <target>
           <![CDATA[Oiiiih Uma on niin röyhelöinen, ilmava ja kevyt, että OIIIIH yksinkertaisesti kuvaa Uma LONG TUNIC -tunikaamme parhaiten. Tunikan voi koota vyötärölle mustalla/valkoisella vyöllä.
             <br><br>	Saatavana: Rose (roosa), Grey (harmaa) ja Off White (luonnonvalkoinen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Victoria Little JEANS">
-        <source>description.Victoria_Little_SKIRT</source>
+        <source>description.Victoria_Little_JEANS</source>
         <target>
           <![CDATA[Aivan satumaiset farkut, joissa on 1000 tähteä. 
             Mukavan joustava vyötärö ja lahkeet ja säädettävä vyötärö.  
@@ -1708,7 +1702,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Victoria Little SKIRT">
-        <source>description.Victoria_SHORTS</source>
+        <source>description.Victoria_Little_SKIRT</source>
         <target>
           <![CDATA[Aivan satumainen alaosa, joissa on 1000 tähteä. Mukavan joustava rypytys vyötäröllä ja yksityiskohtina hieno rusetti edessä ja pienet siistit takataskut.
             Yhdistä tämä printtikuvioiseen T-paitaan ja johonkin monista kauniista sukkahousuistamme. 
@@ -1716,31 +1710,31 @@
         </target>
       </trans-unit>
       <trans-unit id="Victoria SHORTS">
-        <source>description.Viktor_Little_JEANS</source>
+        <source>description.Victoria_SHORTS</source>
         <target>
           <![CDATA[Victoria pukee sinut upeasti pehmeään denimiin, joka on täynnä tähtiä. Valmiina päivän auringonpaisteisiin seikkailuihin. Ja niissä on tietenkin kuuluisa säädettävä vyötärömme. 	<br><br>	Saatavana: Blue Denim (sininen denim).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Viktor Little JEANS">
-        <source>description.Viviann_Little_BODY</source>
+        <source>description.Viktor_Little_JEANS</source>
         <target>
           <![CDATA[Valmiina tähtihetkiin! Viktor pukee kultakimpaleen pehmeään denimiin, joka on täynnä tähtiä. Valmiina päivän leikkeihin.  Ja niissä on pehmeä elastinen vyötärö kiristysnauhalla.	<br><br>	Saatavana: Blue Denim (sininen denim).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Viviann Little BODY">
-        <source>description.Viviann_TSHIRT</source>
+        <source>description.Viviann_Little_BODY</source>
         <target>
           <![CDATA[Pienet joustavat puhvihihat herkissä väreissä ja ihanissa kultaraidoissa! Uskomattoman pehmeä ja kaunis! 	<br><br>	Saatavana: Rose (roosa), Off White (luonnonvalkoinen) ja Green (vihreä).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 86 % viskoosi, 8 % metallikuitu, 6 % elastaani.]]>
         </target>
       </trans-unit>
       <trans-unit id="Viviann TSHIRT">
-        <source>description.Zoe_SHORTS</source>
+        <source>description.Viviann_TSHIRT</source>
         <target>
           <![CDATA[Pienet joustavat puhvihihat herkissä väreissä ja ihanissa kultaraidoissa! Uskomattoman pehmeä ja kaunis!	<br><br>	Saatavana: Rose (roosa), Off White (luonnonvalkoinen) ja Green (vihreä).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 86 % viskoosi, 8 % metallikuitu, 6 % elastaani.]]>
         </target>
       </trans-unit>
       <trans-unit id="Zoe SHORTS">
-        <source>description.Zola_HIPSTER</source>
+        <source>description.Zoe_SHORTS</source>
         <target>
           <![CDATA[Tähtiä, tähtiä ja pilkkuja. Pirteissä Zoe-shortseissa on tähtiä joka puolella.  
             Vyötäröllä on hieno kangasvyö, jossa on pilkkuja. Valmiina päivän auringonpaisteisiin seikkailuihin. Pssst... vyötä voi käyttää myös huivina tai bandanana.
@@ -1748,7 +1742,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Zola HIPSTER">
-        <source>description.Zola_Little_BODY</source>
+        <source>description.Zola_HIPSTER</source>
         <target>
           <![CDATA[Hip hei mitkä ihanuudet!
             Zola-hipsterit eivät ole ainoastaan hyvät omalletunnolle Ökö-Tex- ja GOTS-merkintöjensä ansiosta, vaan ne ovat myös ilo silmälle ja niin ihanan pehmeät.
@@ -1757,33 +1751,41 @@
         </target>
       </trans-unit>
       <trans-unit id="Zola Little BODY">
-        <source>description.Zola_Little_LS_BODY</source>
+        <source>description.Zola_Little_BODY</source>
         <target>
           <![CDATA[Zola ei ole ainoastaan hyvä omalletunnolle Ökö-Tex- ja GOTS-merkintöjensä ansiosta, vaan se on myös ilo silmälle ja niin ihanan pehmeä. Pieni ihana body, jossa on suloiset kanttaukset. Saatavana satumaisena kukkaprinttinä ja yksivärisenä.	<br><br>	Saatavana: Rose (roosa) ja Off White/Blue (luonnonvalkoinen/sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola Little LS BODY">
-        <source>description.Zola_Little_SLEEPER</source>
+        <source>description.Zola_Little_LS_BODY</source>
         <target>
           <![CDATA[Zola ei ole ainoastaan hyvä omalletunnolle Ökö-Tex- ja GOTS-merkintöjensä ansiosta, vaan se on myös ilo silmälle ja niin ihanan pehmeä. Pieni ihana body, jossa on suloiset kanttaukset ja rusetti pääntiessä. Saatavana satumaisena kukkaprinttinä ja yksivärisenä.	<br><br>	Saatavana: Rose (roosa) ja Off White/Blue (luonnonvalkoinen/sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola Little SLEEPER">
-        <source>description.Zola_NIGHTDRESS</source>
+        <source>description.Zola_Little_SLEEPER</source>
         <target>
           <![CDATA[Niin suloinen ja pehmeä ja hieno! Zola ei ole ainoastaan hyvä omalletunnolle Ökö-Tex- ja GOTS-merkintöjensä ansiosta, vaan se on myös ilo silmälle ja niin ihanan pehmeä. Pääntiessä hienot trikooreunat ja satumainen kukkakuvio, jota Nukkumattikin rakastaa.	<br><br>	Saatavana: Rose (roosa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola NIGHTDRESS">
-        <source>description.Zola_PANTIES</source>
+        <source>description.Zola_NIGHTDRESS</source>
         <target>
           <![CDATA[Niin suloinen ja pehmeä ja hieno! Zola ei ole ainoastaan hyvä omalletunnolle Ökö-Tex- ja GOTS-merkintöjensä ansiosta, vaan se on myös ilo silmälle ja niin ihanan pehmeä. Lyhythihainen yöpaita, jossa on hienot kanttaukset pääntiessä ja satumainen kukkakuvio.	<br><br>	Saatavana: Rose (roosa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola PANTIES">
-        <source>description.Zola_TOP</source>
+        <source>description.Zola_PANTIES</source>
         <target>
           <![CDATA[Niin suloinen ja pehmeä ja hieno! Zola-pikkuhousut eivät ole ainoastaan hyvät omalletunnolle Ökö-Tex- ja GOTS-merkintöjensä ansiosta, vaan ne ovat myös ilo silmälle ja niin ihanan pehmeät. Kauniit pikkuhousut, joissa on suloiset kanttaukset. Saatavana satumaisena kukkaprinttinä tai yksivärisenä.
+            <br><br>	Saatavana: Rose (roosa) ja Off White/Blue (luonnonvalkoinen/sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
+        </target>
+      </trans-unit>
+      <trans-unit id="Zola TOP">
+        <source>description.Zola_TOP</source>
+        <target>
+          <![CDATA[Niin suloinen ja pehmeä ja hieno! Zola ei ole ainoastaan hyvä omalletunnolle Ökö-Tex- ja GOTS-merkintöjensä ansiosta, vaan se on myös ilo silmälle ja niin ihanan pehmeä.
+            Pääntiessä hienot trikooreunat ja satumainen kukkakuvio, jota Nukkumattikin rakastaa.
             <br><br>	Saatavana: Rose (roosa) ja Off White/Blue (luonnonvalkoinen/sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 95 % luomupuuvilla, 5 % elastaani]]>
         </target>
       </trans-unit>
