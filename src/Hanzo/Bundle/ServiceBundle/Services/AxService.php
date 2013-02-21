@@ -201,7 +201,7 @@ class AxService
             }
 
             $line = new stdClass();
-            $line->ItemId = 'POMP BIG BAG One Size Khaki';
+            $line->ItemId = 'POMP BIG BAG';
             $line->SalesPrice = $bag_price;
             $line->LineDiscPercent = 100;
             $line->SalesQty = 1;
