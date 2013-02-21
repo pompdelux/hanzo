@@ -192,7 +192,8 @@ var quickorder = (function($) {
                         dialoug.slideNotice(response.message);
 
                         var img = master.toString().replace(/[^a-zA-Z0-9_]/g, "-") + '_' + color.toString().replace(/[^a-zA-Z0-9_]/g, "-");
-                        img = cdn_url + 'images/products/thumb/38x75,' + img + '_set_01.jpg';
+                        img = cdn_url + 'images/products/thumb/57x100,' + img + '_set_01.jpg';
+
                         $('table tbody').prepend(' ' +
                             '<tr> ' +
                               '<td class="image"><img src="'+img+'" alt="'+master+'"> '+
