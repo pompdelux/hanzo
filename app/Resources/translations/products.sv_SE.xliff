@@ -479,21 +479,21 @@
             <br><br>	Finns i: Grey (grå), Brown (brun), Blue (blå) och Black (svart).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 95 % viskos, 5 % elastan]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer Little SS TSHIRT">
-        <source>description.Christoffer_Little_SS_TSHIRT</source>
+      <trans-unit id="Christopher Little SS TSHIRT">
+        <source>description.Christopher_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Den marina stilen! 
-            Varma sommardagar är det bara att dra på Christoffer T-shirt, hoppa i favoritshortsen, ta på sig skorna och ge sig ut.
-            Christoffer är Öko-Tex-märkt, så du kan segla för fulla segel med gott samvete.
+            Varma sommardagar är det bara att dra på Christopher T-shirt, hoppa i favoritshortsen, ta på sig skorna och ge sig ut.
+            Christopher är Öko-Tex-märkt, så du kan segla för fulla segel med gott samvete.
             <br><br>	Finns i: Grey Melange (gråmelerad) och Navy (marinblå).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer TANKTOP">
-        <source>description.Christoffer_TANKTOP</source>
+      <trans-unit id="Christopher TANKTOP">
+        <source>description.Christopher_TANKTOP</source>
         <target>
           <![CDATA[Den marina stilen! 
-            Varma sommardagar är det bara att dra på Christoffer TANKTOP, hoppa i favoritshortsen, ta på sig skorna och ge sig ut.
-            Christoffer är Öko-Tex-märkt, så du kan segla för fulla segel med gott samvete.
+            Varma sommardagar är det bara att dra på Christopher TANKTOP, hoppa i favoritshortsen, ta på sig skorna och ge sig ut.
+            Christopher är Öko-Tex-märkt, så du kan segla för fulla segel med gott samvete.
             <br><br>	Finns i: Grey Melange (gråmelerad) och Navy (marinblå).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
         </target>
       </trans-unit>
@@ -776,7 +776,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Emma PANTS ">
-        <source>description.Emma_PANTS_</source>
+        <source>description.Emma_PANTS</source>
         <target>
           <![CDATA[Helt ljuvliga byxor i mjukt linne med lös passform och mjuk resår vid bensluten.	<br><br>	Finns i: Khaki (kaki) och Grey (grå).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % linne]]>
         </target>
@@ -1075,14 +1075,14 @@
         </target>
       </trans-unit>
       <trans-unit id="James Little LS GRANDDAD ">
-        <source>description.James_Little_LS_GRANDDAD_</source>
+        <source>description.James_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[Låna farfars tofflor, stick dagens tidning under armen, dra på dig James tillsammans med ett par snygga jeans och lägg dig och vila. 
             T-shirten är tillverkad enligt Öko-Tex, har snygga ränder och klassisk farfarsknäppning fram.<br><br>	Finns i: Grey Melange/White (gråmelerad/vit), Blue/Grey Melange (blå/gråmelerad), Blue (blå) och Navy/Honey (marinblå/gul).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 95 % bomull, 5 % elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="James Little SS GRANDDAD ">
-        <source>description.James_Little_SS_GRANDDAD_</source>
+        <source>description.James_Little_SS_GRANDDAD</source>
         <target>
           <![CDATA[Låna farfars tofflor, stick dagens tidning under armen, dra på dig James tillsammans med ett par snygga jeans och lägg dig och vila. 
             T-shirten är tillverkad enligt Öko-Tex, har snygga ränder och klassisk farfarsknäppning fram.
@@ -1090,7 +1090,7 @@
         </target>
       </trans-unit>
       <trans-unit id="James LS GRANDDAD ">
-        <source>description.James_LS_GRANDDAD_</source>
+        <source>description.James_LS_GRANDDAD</source>
         <target>
           <![CDATA[Låna farfars tofflor, stick dagens tidning under armen, dra på dig James tillsammans med ett par snygga jeans och lägg dig och vila. 
             T-shirten är tillverkad enligt Öko-Tex, har snygga ränder och klassisk farfarsknäppning fram.
@@ -1098,7 +1098,7 @@
         </target>
       </trans-unit>
       <trans-unit id="James SS GRANDDAD ">
-        <source>description.James_SS_GRANDDAD_</source>
+        <source>description.James_SS_GRANDDAD</source>
         <target>
           <![CDATA[Låna farfars tofflor, stick dagens tidning under armen, dra på dig James tillsammans med ett par snygga jeans och lägg dig och vila. 
             T-shirten är tillverkad enligt Öko-Tex, har snygga ränder och klassisk farfarsknäppning fram.
@@ -1253,14 +1253,14 @@
             En snygg och modern klänning med skärning fram och knytband i midjan. Lätt och luftig till lek och skratt. Lucy är också bra för samvetet med sin Öko-Tex-märkning.<br><br>	Finns i: Rose (rosa), White (vit), Peach (aprikos) och Blue (blå).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 80 % bomull, 20 % linne]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy Little TSHIRT">
-        <source>description.Lucy_Little_TSHIRT</source>
+      <trans-unit id="Lucy Little SS TSHIRT">
+        <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[All you need is love! Massor av kärlek till underbara Lucy! Lucy är också bra för samvetet med sin Öko-Tex-märkning.	<br><br>	Finns i: Rose (rosa), White (vit), Peach (aprikos) och Blue (blå).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 80 % bomull, 20 % linne]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy TSHIRT">
-        <source>description.Lucy_TSHIRT</source>
+      <trans-unit id="Lucy SS TSHIRT">
+        <source>description.Lucy_SS_TSHIRT</source>
         <target>
           <![CDATA[All you need is love! Massor av kärlek till underbara Lucy! Lucy är också bra för samvetet med sin Öko-Tex-märkning.	<br><br>	Finns i: Rose (rosa), White (vit), Peach (aprikos) och Blue (blå).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 80 % bomull, 20 % linne]]>
         </target>
@@ -1336,7 +1336,7 @@
       <trans-unit id="Morgan SS TSHIRT">
         <source>description.Morgan_SS_TSHIRT</source>
         <target>
-          <![CDATA[Med sin snygga fotbollsstil är Morgan perfekt för pojkar med spring i benen. Samvetet mår också bra eftersom Morgan är Öko-Tex-märkt.	<br><br>	Finns i: Blue (blå) och Red (röd).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % bomull]]>
+          <![CDATA[Med sin snygga fotbollsstil är Morgan perfekt för pojkar med spring i benen. Samvetet mår också bra eftersom Morgan är Öko-Tex-märkt.	<br><br>	Finns i: Blue (blå) och Red (röd).	<br><br>	Storleken är barnets längd i cm.	<br><br>	Material: 100 % polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola LEGGINGS">
@@ -1582,7 +1582,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little PANTS ">
-        <source>description.Sophia_Little_PANTS_</source>
+        <source>description.Sophia_Little_PANTS</source>
         <target>
           <![CDATA[Fint prickmönster, haremsbyxa med lös passform – ett återkommande plagg som vi älskar. 
             Ett par byxor som du inte bara tar på dig utan flyttar in och bor i, skönt och bekvämt.
