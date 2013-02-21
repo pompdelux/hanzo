@@ -10,7 +10,7 @@ if (!empty($_GET['callback']) && !empty($_GET['data'])) {
 
         if (is_file($file)) {
             $mtime = filemtime($file);
-            $_GET['data'][$index]['mtime'] = date('r', $mtime);
+            $_GET['data'][$index]['mtime'] = date('m/d/Y H:i', $mtime);
         }
     }
 }
