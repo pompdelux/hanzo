@@ -82,20 +82,20 @@
       <trans-unit id="Allyson BIKINI">
         <source>description.Allyson_BIKINI</source>
         <target>
-          <![CDATA[Vi elsker sol, sommer og jordbæris. Allyson er perfekt til små vannelskere i solen. Med sitt morsomme fyrverkeri av blomstermønster, sløyfer og en liten rysj bak er Allyson klar til sol, strand, svømmebasseng og vannsprøyting.	<br><br>	Fås i: Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 90% Polyamid, 10% Elastan]]>
+          <![CDATA[Vi elsker sol, sommer og jordbæris. Allyson er perfekt til små badeengler i solen. Med sitt morsomme fyrverkeri av blomstermønster, sløyfer og en liten rysj bak er Allyson klar til sol, strand, svømmebasseng og vannsprøyting.	<br><br>	Fås i: Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 90% Polyamid, 10% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Allyson Little SWIMSUIT">
         <source>description.Allyson_Little_SWIMSUIT</source>
         <target>
-          <![CDATA[Vi elsker sol, sommer og jordbæris. Allyson er perfekt til små vannelskere i solen. Med sitt morsomme fyrverkeri av blomstermønster, sløyfer og en liten rysj bak er Allyson klar til sol, strand, svømmebasseng og vannsprøyting.
+          <![CDATA[Vi elsker sol, sommer og jordbæris. Allyson er perfekt til små badeengler i solen. Med sitt morsomme fyrverkeri av blomstermønster, sløyfer og en liten rysj bak er Allyson klar til sol, strand, svømmebasseng og vannsprøyting.
             <br><br>	Fås i: Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 90% Polyamid, 10% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Allyson SWIMSUIT">
         <source>description.Allyson_SWIMSUIT</source>
         <target>
-          <![CDATA[Vi elsker sol, sommer og jordbæris. Allyson er perfekt til små vannelskere i solen. Med sitt morsomme fyrverkeri av blomstermønster, sløyfer og en liten rysj bak er Allyson klar til sol, strand, svømmebasseng og vannsprøyting.
+          <![CDATA[Vi elsker sol, sommer og jordbæris. Allyson er perfekt til små badeengler i solen. Med sitt morsomme fyrverkeri av blomstermønster, sløyfer og en liten rysj bak er Allyson klar til sol, strand, svømmebasseng og vannsprøyting.
             <br><br>	Fås i: Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 90% Polyamid, 10% Elastan]]>
         </target>
       </trans-unit>
@@ -477,8 +477,8 @@
             <br><br>	Fås i: Grey (grå), Brown (brun), Blue (blå) og Black (sort).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer Little SS TSHIRT">
-        <source>description.Christoffer_Little_SS_TSHIRT</source>
+      <trans-unit id="Christopher Little SS TSHIRT">
+        <source>description.Christopher_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Navy style! 
             En varm sommerdag, på med Christoffer t-shirt, hopp i yndlingsshortsene, ta på sko og hopp ut i verden
@@ -486,8 +486,8 @@
             <br><br>	Fås i: Grey Melange (gråmelert) og Navy (marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer TANKTOP">
-        <source>description.Christoffer_TANKTOP</source>
+      <trans-unit id="Christopher TANKTOP">
+        <source>description.Christopher_TANKTOP</source>
         <target>
           <![CDATA[Navy style! 
             En varm sommerdag, på med Christoffer TANKTOP, hopp i yndlingsshortsene, ta på sko og hopp ut i verden
@@ -770,7 +770,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Emma PANTS ">
-        <source>description.Emma_PANTS_</source>
+        <source>description.Emma_PANTS</source>
         <target>
           <![CDATA[Utrolig skjønne bukser i myk lin med baggy passform og myk strikk ved anklene.	<br><br>	Fås i: Khaki og Grey (grå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Lin]]>
         </target>
@@ -794,7 +794,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Ethan BAGGY LONG SHORTS">
-        <source>description.Ethan_Little_PANTS</source>
+        <source>description.Ethan_BAGGY_LONG_SHORTS</source>
         <target>
           <![CDATA[Med Ethan BAGGY LONG SHORTS er du helt klar til masse moro og lek i solen. 
             Ethan har fått ekstra store lommer i sidene slik at det er plass til å samle stein på stranden 
@@ -804,7 +804,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Ethan Little PANTS">
-        <source>description.Ethan_Little_SHORTS</source>
+        <source>description.Ethan_Little_PANTS</source>
         <target>
           <![CDATA[Åh, små gutter i baggy-bukser er bare så søte og tøffe! 
             Ethan har både stil og styrke med slitesterke lapper på knærne og stilrene detaljer i det myke stoffet. 
@@ -812,7 +812,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Ethan Little SHORTS">
-        <source>description.Faith_BLOUSE</source>
+        <source>description.Ethan_Little_SHORTS</source>
         <target>
           <![CDATA[Klar, ferdig, stjerne-baggy!
             Ethan Little SHORTS er kul med pirat-cut i baggy style, med påsydde stjerner på de lavthengende lommene. 
@@ -821,7 +821,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Faith BLOUSE">
-        <source>description.Faith_PANTS</source>
+        <source>description.Faith_BLOUSE</source>
         <target>
           <![CDATA[Her er oversize-genseren, som både er feminin og sporty. Faith er i supermyk jersey og har skjønne gyldne bånd ned langs ermene og som sløyfe på hoften. Sett den sammen med en stram topp og et par slimfit jeans. 
             
@@ -830,7 +830,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Faith PANTS">
-        <source>description.Felix_Little_PULLOVER</source>
+        <source>description.Faith_PANTS</source>
         <target>
           <![CDATA[Disse buksene er helt enestående i mykeste jerseykvalitet, trendy linning med gullnistret bindebånd og rå glidelåser ved anklene. 
             Bare stikk hendene ned i lommene og slapp av med stil. 
@@ -838,7 +838,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Felix Little PULLOVER">
-        <source>description.Felix_PULLOVER</source>
+        <source>description.Felix_Little_PULLOVER</source>
         <target>
           <![CDATA[Felix er en lekker stripete sak! Den har myke denimdetaljer, som oppgraderer det ellers klassiske strikkeplagget. 
             Style den med et par tøffe chinos eller jeans og sørg for å ha den med i vesken til kjølige sommerkvelder. 
@@ -846,14 +846,14 @@
         </target>
       </trans-unit>
       <trans-unit id="Felix PULLOVER">
-        <source>description.Finley_CARDIGAN</source>
+        <source>description.Felix_PULLOVER</source>
         <target>
           <![CDATA[Felix er en lekker stripete sak! Den har myke denimdetaljer, som oppgraderer det ellers klassiske strikkeplagget. 
             Style den med et par tøffe chinos eller jeans og sørg for å ha den med i vesken til kjølige sommerkvelder. <br><br>	Fås i: Navy/Camel (marine/camel) og Navy/White (marine/hvit).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Finley CARDIGAN">
-        <source>description.Finley_Little_CARDIGAN</source>
+        <source>description.Finley_CARDIGAN</source>
         <target>
           <![CDATA[Finley CARDIGAN er en lekker stripete sak! Ideell på en kjølig grillkveld. 
             Style den med et par tøffe chinos eller jeans og sørg for å ha den med i vesken til kjølige stunder. 
@@ -861,7 +861,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Finley Little CARDIGAN">
-        <source>description.Finley_Little_PULLOVER</source>
+        <source>description.Finley_Little_CARDIGAN</source>
         <target>
           <![CDATA[Finley Little CARDIGAN er en lekker stripete sak! Ideell å ta på en kjølig grillkveld. 
             Style den med et par tøffe chinos eller jeans og sørg for å ha den med i vesken til kjølige stunder. 
@@ -869,7 +869,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Finley Little PULLOVER">
-        <source>description.Fiona_HAIRDECO</source>
+        <source>description.Finley_Little_PULLOVER</source>
         <target>
           <![CDATA[Finley er en lekker stripete vest med søte strikk-detaljer. Style den med en nøytral bluse, et par tøffe chinos eller jeans og sørg for å ha den med i vesken til kjølige stunder. 
             
@@ -877,13 +877,13 @@
         </target>
       </trans-unit>
       <trans-unit id="Fiona HAIRDECO">
-        <source>description.Fitz_Little_JUMPSUIT</source>
+        <source>description.Fiona_HAIRDECO</source>
         <target>
           <![CDATA[Skjønn pakke med tre deler - to hårbøyler og et hårbånd. Pynt håret med lærblomster, skjønne perler og super moderne flettet lær. 	<br><br>	Fås i: Camel og Black (sort).	<br><br>	One size	<br><br>]]>
         </target>
       </trans-unit>
       <trans-unit id="Fitz Little JUMPSUIT">
-        <source>description.Fitz_Little_SHORTS</source>
+        <source>description.Fitz_Little_JUMPSUIT</source>
         <target>
           <![CDATA[Åhh, nå skal vi kose oss! Herlig jumpsuit med skjønt, mykt fôr. 
             Skjønn til hjemmekos og god og varm på reisen. Og så er Fitz Oeko-tex-merket - så man kan ha god samvittighet.
@@ -891,32 +891,32 @@
         </target>
       </trans-unit>
       <trans-unit id="Fitz Little SHORTS">
-        <source>description.Fitz_SHORTS</source>
+        <source>description.Fitz_Little_SHORTS</source>
         <target>
           <![CDATA[Lekker i Fitz Little SHORTS! Skjønn å hoppe i med et mykt og deilig sweatstoff. Lekker å se på! Og deilig å leke i! Og så er Fitz Oeko-Tex-merket - så man kan ha god samvittighet.	<br><br>	Fås i: Grey Melange (gråmelert) og Navy (marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Fitz SHORTS">
-        <source>description.Flora_DRESS</source>
+        <source>description.Fitz_SHORTS</source>
         <target>
           <![CDATA[Superlekker i Fitz SHORTS! Herlige å hoppe i med et mykt og deilig sweatstoff. Lekre å se på! Og deilig å leke i!  Og så er Fitz Oeko-Tex-merket - så man kan ha god samvittighet.	<br><br>	Fås i: Grey Melange (gråmelert) og Navy (marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Flora DRESS">
-        <source>description.Flora_Little_DRESS</source>
+        <source>description.Flora_DRESS</source>
         <target>
           <![CDATA[Man blir bare så glad av å se på Flora. I sin enkle form, glade farger og et søt belte er den bare skjønn.	<br><br>	Fås i: Rose (rosa), Peach (fersken) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Lin                      Fôr: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Flora Little DRESS">
-        <source>description.Gary_JACKET</source>
+        <source>description.Flora_Little_DRESS</source>
         <target>
           <![CDATA[Man blir bare så glad av å se på Flora. I sin enkle form, sine glade farger og flotte rysjer ved halsutskjæring og hofte blir man bare så glad i den. Med knappelukking i nakken og foran. Gullbåndet over rysjene på hoften gir den et deilig 70-talls-preg .
             <br><br>	Fås i: Rose (rosa), Peach (fersken) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Lin                      Fôr: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Gary JACKET">
-        <source>description.Gary_Little_JACKET</source>
+        <source>description.Gary_JACKET</source>
         <target>
           <![CDATA[Åhhh så myk og deilig! Gary JACKET i fleece med sporty detaljer og vintage-merker. 
             Kjempetøff over en t-skjorte og et par jeans.   
@@ -924,7 +924,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Gary Little JACKET">
-        <source>description.George_SS_TSHIRT</source>
+        <source>description.Gary_Little_JACKET</source>
         <target>
           <![CDATA[Åhhh så myk og deilig! Gary Little JACKET i fleece med sporty detaljer og vintage-merker. 
             Kjempetøff over en t-skjorte og et par jeans.   
@@ -932,58 +932,58 @@
         </target>
       </trans-unit>
       <trans-unit id="George SS TSHIRT">
-        <source>description.Gordon_Little_SS_TSHIRT</source>
+        <source>description.George_SS_TSHIRT</source>
         <target>
           <![CDATA[Merk storbyens rytmer! Med George er du med på notene, og med på den gode samvittighetsbølgen, for George er merket med Oeko-Tex.  
             <br><br>	Fås i: Grey (grå) og White (hvit).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Gordon Little SS TSHIRT">
-        <source>description.Gordon_SS_TSHIRT</source>
+        <source>description.Gordon_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Med speederen i bunn og full fart frem i Gordon Little SS TSHIRT. Deilig myk bomull og med 3D-trykk på brystet som er moro å ta på. Og med god samvittighet, for Gordon er merket med Oeko-Tex.  
             <br><br>	Fås i: Grey Melange (gråmelert), Green (grønn) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Gordon SS TSHIRT">
-        <source>description.Gwynneth_Little_SS_TSHIRT</source>
+        <source>description.Gordon_SS_TSHIRT</source>
         <target>
           <![CDATA[Wrooom wroom! Med speederen i bunn og full fart frem i Gordon SS TSHIRT. Deilig myk bomull og med 3D-trykk på brystet som er moro å ta på. Og med god samvittighet, for Gordon er merket med Oeko-Tex.	<br><br>	Fås i: Grey Melange (gråmelert), Green (grønn) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Gwynneth Little SS TSHIRT">
-        <source>description.Gwynneth_SS_TSHIRT</source>
+        <source>description.Gwynneth_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Fe-fantastisk, med gulldetaljer og Oeko-Tex-merket. Gwynneth er utrolig deilig og søt. 	<br><br>	Fås i: Green (grønn), Rose (rosa) og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 92% Viskose, 8% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Gwynneth SS TSHIRT">
-        <source>description.Hailey_TOP</source>
+        <source>description.Gwynneth_SS_TSHIRT</source>
         <target>
           <![CDATA[Med påfugltrykk i bølgende mykt stoff og Oeko-Tex-merket er 
             Gwynneth SS TSHIRT bare helt skjønn.<br><br>	Fås i: Green (grønn), Rose (rosa) og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 92% Viskose, 8% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Hailey TOP">
-        <source>description.Hannibal_HOODIE</source>
+        <source>description.Hailey_TOP</source>
         <target>
           <![CDATA[Myke bedårende blonder. Hailey er mormorundertrøyen med et moderne fiff.	<br><br>	Fås i: Navy (marine) og Grey (grå). 	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Hannibal HOODIE">
-        <source>description.Hannibal_Little_HOODIE</source>
+        <source>description.Hannibal_HOODIE</source>
         <target>
           <![CDATA[Koselige Hannibal med et sporty streif med spillernummer på brystet. Og samvittigheten er god, for Hannibal  er merket med Oeko-Tex.	<br><br>	Fås i: Grey Melange (gråmelert) og Navy (marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Hannibal Little HOODIE">
-        <source>description.Hannibal_Little_PANTS</source>
+        <source>description.Hannibal_Little_HOODIE</source>
         <target>
           <![CDATA[Koselige Hannibal med et sporty streif med spillernummer på brystet. Og samvittigheten er god, for Hannibal  er merket med Oeko-Tex.	<br><br>	Fås i: Grey Melange (gråmelert) og Navy (marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Hannibal Little PANTS">
-        <source>description.Hannibal_LONG_SHORTS</source>
+        <source>description.Hannibal_Little_PANTS</source>
         <target>
           <![CDATA[Dette er total avslappingsstil på den kule måten! 
             De koselige Hannibal Little PANTS er kjempeskjønne og i baggy style. Fantastisk myk både utenpå og inni. Til kos, hverdag og lek. Og samvittigheten er god, for Hannibal  er merket med Oeko-Tex.
@@ -992,7 +992,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Hannibal LONG SHORTS">
-        <source>description.Hannibal_PANTS</source>
+        <source>description.Hannibal_LONG_SHORTS</source>
         <target>
           <![CDATA[Dette er total avslappingsstil på den kule måten! 
             De koselige Hannibal LONG SHORTS er kjempeskjønne og i baggy style. Fantastisk myk både utenpå og inni. Til kos, hverdag og lek. Og samvittigheten er god, for Hannibal er merket med Oeko-Tex.
@@ -1000,27 +1000,27 @@
         </target>
       </trans-unit>
       <trans-unit id="Hannibal PANTS">
-        <source>description.Harper_Little_JUMPSUIT</source>
+        <source>description.Hannibal_PANTS</source>
         <target>
           <![CDATA[Skjønne Hannibal med et ekstra sporty streif med spillernummer på låret og en kjempekul baggy-stil. Fantastisk myk både utenpå og inni. Til kos, hverdag og lek. Og samvittigheten er god, for Hannibal  er merket med Oeko-Tex.
             <br><br>	Fås i: Grey Melange (gråmelert) og Navy (marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Harper Little JUMPSUIT">
-        <source>description.Harper_SHORT_SUIT</source>
+        <source>description.Harper_Little_JUMPSUIT</source>
         <target>
           <![CDATA[Hopp i dem og kos deg i luftige myke Harper. Med hjertelig trykk og rysjeermer er Harper Little JUMPSUIT stilen som både passer til hjemmekos og utetid.
             <br><br>	Fås i: Green (grønn), Khaki og Rose (rosa).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Harper SHORT SUIT">
-        <source>description.Hector_Little_SHORTS</source>
+        <source>description.Harper_SHORT_SUIT</source>
         <target>
           <![CDATA[Hopp i dem og kos deg i luftige myke Harper. Med et hjertelig trykk, spagettistropper og puff-shorts med knutesløyfeavslutning er Harper SHORT SUIT stilen, som både passer til hjemmekos og utelek.	<br><br>	Fås i: Green (grønn), Khaki og Rose (rosa).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Hector Little SHORTS">
-        <source>description.Hector_SHORTS</source>
+        <source>description.Hector_Little_SHORTS</source>
         <target>
           <![CDATA[Stripede shorts til den fine seilergutten, farlige piraten, super fotballspilleren – ja, striper passer til alle. 
             Vi har valgt et elastisk slitesterkt stoff og har gitt det et slitt og krøllet vintage-look for å gjøre dem ekstra tøffe. Hector passer til lek, moro og sommerfester.
@@ -1029,7 +1029,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Hector SHORTS">
-        <source>description.Hunter_Little_SS_TSHIRT</source>
+        <source>description.Hector_SHORTS</source>
         <target>
           <![CDATA[Stripede shorts til den fine seilergutten, farlige piraten, super fotballspilleren – ja, striper passer til alle. 
             Vi har valgt et elastisk slitesterkt stoff og har gitt det et slitt og krøllet vintasje-look for å gjøre dem ekstra tøffe. Hector passer til lek, moro og sommerfester.
@@ -1037,25 +1037,25 @@
         </target>
       </trans-unit>
       <trans-unit id="Hunter Little SS TSHIRT">
-        <source>description.Hunter_SS_TSHIRT</source>
+        <source>description.Hunter_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Sporty og stilige Hunter med 3d-trykk på magen og brystet. Kule detaljer, deilig myk og merket med Oeko-Tex!	<br><br>	Fås i: Turquoise (turkis), Red (rød) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Hunter SS TSHIRT">
-        <source>description.Jack_HAT</source>
+        <source>description.Hunter_SS_TSHIRT</source>
         <target>
           <![CDATA[Sporty og stilige Hunter med 3d-trykk på magen og brystet. Kule detaljer, deilig myk og merket med Oeko-Tex!	<br><br>	Fås i: Turquoise (turkis), Red (rød) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Jack HAT">
-        <source>description.Jagger_SHORTS</source>
+        <source>description.Jack_HAT</source>
         <target>
           <![CDATA[Bølle Jack-hatten er i flott sailor-stil og veldig god på en varm sommerdag. Nå kan sol og sommer bare komme! 	<br><br>	Fås i: Navy (marine).	<br><br>	Størrelsen er barnets hodeomkrets angitt i cm	<br><br>	Kvalitet: 100% Bomull          Fôr:100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Jagger SHORTS">
-        <source>description.James_Little_LS_GRANDDAD_</source>
+        <source>description.Jagger_SHORTS</source>
         <target>
           <![CDATA[Denim look-a-like, på den kule måten! 
             Jagger er nemlig i mykt sweatstoff, med denimeffekt slik at de ligner denim-shorts. Myke og behagelige.
@@ -1063,14 +1063,14 @@
         </target>
       </trans-unit>
       <trans-unit id="James Little LS GRANDDAD ">
-        <source>description.James_Little_SS_GRANDDAD_</source>
+        <source>description.James_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[Ta på deg bestefars tøfler, stikk dagens avis under armen, ta på deg James og et par tøffe jeans. 
             T-shirten er Oeko-Tex-produsert, har tøffe striper og klassisk bestefar-knappelukking ned foran.<br><br>	Fås i: Grey Melange/White (gråmelert/hvit), Blue/Grey Melange (blå/gråmelert), Blue (blå) og Navy/Honey (marine/gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="James Little SS GRANDDAD ">
-        <source>description.James_LS_GRANDDAD_</source>
+        <source>description.James_Little_SS_GRANDDAD</source>
         <target>
           <![CDATA[Ta på deg bestefars tøfler, stikk dagens avis under armen, ta på deg James og et par tøffe jeans. 
             T-shirten er Oeko-Tex-produsert, har tøffe striper og klassisk bestefar-knappelukking ned foran.
@@ -1078,7 +1078,7 @@
         </target>
       </trans-unit>
       <trans-unit id="James LS GRANDDAD ">
-        <source>description.James_SS_GRANDDAD_</source>
+        <source>description.James_LS_GRANDDAD</source>
         <target>
           <![CDATA[Ta på deg bestefars tøfler, stikk dagens avis under armen, ta på deg James og et par tøffe jeans. 
             T-shirten er Oeko-Tex-produsert, har tøffe striper og klassisk bestefar-knappelukking ned foran.
@@ -1086,7 +1086,7 @@
         </target>
       </trans-unit>
       <trans-unit id="James SS GRANDDAD ">
-        <source>description.Jason_SOCKS</source>
+        <source>description.James_SS_GRANDDAD</source>
         <target>
           <![CDATA[Ta på deg bestefars tøfler, stikk dagens avis under armen, ta på deg James og et par tøffe jeans. 
             T-shirten er Oeko-Tex-produsert, har tøffe striper og klassisk bestefar-knappelukking ned foran.
@@ -1094,7 +1094,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Jason SOCKS">
-        <source>description.Joan_KNEE_SOCKS</source>
+        <source>description.Jason_SOCKS</source>
         <target>
           <![CDATA[Smale eller brede striper på strømpene? - Du trenger ikke velge, for det er et par av hver i alle pakker. 
             Jason er super myke og fås selvfølgelig i matchende farger til hele kolleksjonen. 
@@ -1103,7 +1103,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Joan KNEE SOCKS">
-        <source>description.Joan_LEGGINGS</source>
+        <source>description.Joan_KNEE_SOCKS</source>
         <target>
           <![CDATA[Jenter elsker gull og glitter!
             Blant annet derfor er Joan KNEE SOCKS fulle av det - og samtidig deilig myke. 
@@ -1112,7 +1112,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Joan LEGGINGS">
-        <source>description.Joan_Little_LEGGINGS</source>
+        <source>description.Joan_LEGGINGS</source>
         <target>
           <![CDATA[Jenter elsker gull og glitter!
             Blant annet derfor er Joan LEGGINGS fulle av det - og samtidig deilig myke. 
@@ -1122,7 +1122,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Joan Little LEGGINGS">
-        <source>description.Jobelle_BELT</source>
+        <source>description.Joan_Little_LEGGINGS</source>
         <target>
           <![CDATA[Jenter elsker gull og glitter!
             Blant annet derfor er Joan Little LEGGINGS fulle av det - og samtidig deilig myke. 
@@ -1131,49 +1131,49 @@
         </target>
       </trans-unit>
       <trans-unit id="Jobelle BELT">
-        <source>description.Kalinka_CAP</source>
+        <source>description.Jobelle_BELT</source>
         <target>
           <![CDATA[Superkult tilbehør! Flettet og skjønn blomst i deilig skinn. Passer til alt, og spesielt til vår Fiona hårbøyle med matchende blomster. Beltet er justerbart og har en lengde på 83 cm.	<br><br>	Fås i: Camel.	<br><br>	One size	<br><br>	Kvalitet: Lær]]>
         </target>
       </trans-unit>
       <trans-unit id="Kalinka CAP">
-        <source>description.Kath_Little_PANTS</source>
+        <source>description.Kalinka_CAP</source>
         <target>
           <![CDATA[Kalinka CAP er rett og slett et must! Paljett-caps er vel forklaring nok. Weeee looooove it!	<br><br>	Fås i: Rose (rosa), Gold (gull) og Black (sort).	<br><br>	Størrelsen er barnets hodeomkrets angitt i cm	<br><br>	Kvalitet: 100% Polyester    For:100% Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath Little PANTS">
-        <source>description.Kath_Little_TUNIC</source>
+        <source>description.Kath_Little_PANTS</source>
         <target>
           <![CDATA[Åhhh, så myke og deilige! Behagelige til kos og hulebygging, men også fine til fest og fine damer.	<br><br>	Fås i: Black (sort), Khaki, Grey Melange (gråmelert) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath Little TUNIC">
-        <source>description.Kath_PANTS</source>
+        <source>description.Kath_Little_TUNIC</source>
         <target>
           <![CDATA[Myk og lett som sommervinden. Kath er virkelig skjønn på de lyse dagene. Og veldig fin med matchende bånd rundt livet.	<br><br>	Fås i: Black (sort), Khaki, Grey Melange (gråmelert) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath PANTS">
-        <source>description.Kath_TUNIC</source>
+        <source>description.Kath_PANTS</source>
         <target>
           <![CDATA[Åhhh, så myke og deilige! Behagelige til kos og hulebygging, men også fine til fest og fine damer.	<br><br>	Fås i: Black (sort), Khaki, Grey Melange (gråmelert) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Kath TUNIC">
-        <source>description.Kimberly_PANTS</source>
+        <source>description.Kath_TUNIC</source>
         <target>
           <![CDATA[Myk og lett som sommervinden. Kath tunika er virkelig skjønn på de lyse dagene. Og veldig skjønn med matchende bånd rundt livet.	<br><br>	Fås i: Black (sort), Khaki, Grey Melange (gråmelert) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Kimberly PANTS">
-        <source>description.Laura_DRESS</source>
+        <source>description.Kimberly_PANTS</source>
         <target>
           <![CDATA[Trekk på deg Kimberly, trekk yndlingstoppen ned over hodet og hopp ut i verden. Kimberly passer til nesten alt i klesskapet ditt.	<br><br>	Fås i: Rose (rosa), Yellow (gul) og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 97% Bomull, 3% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Laura DRESS">
-        <source>description.Leah_Little_LS_TSHIRT</source>
+        <source>description.Laura_DRESS</source>
         <target>
           <![CDATA[Storbystil og bondegårdsidyll i en herlig miks.
             Med fint trykk i sort og gull på forsiden og med jersey i alle kanter får den myke kjolen et flott fall. 
@@ -1182,80 +1182,80 @@
         </target>
       </trans-unit>
       <trans-unit id="Leah Little LS TSHIRT">
-        <source>description.Leah_LS_TSHIRT</source>
+        <source>description.Leah_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Skjønne myke og lekre Leah! Helt enkel og tøff til det aller meste. Og så er den merket med både Oeko-Tex og GOTS!	<br><br>	Fås i: Blue (blå) og Black (sort).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Organisk bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Leah LS TSHIRT">
-        <source>description.Liam_Little_RAIN_SET</source>
+        <source>description.Leah_LS_TSHIRT</source>
         <target>
           <![CDATA[Skjønne myke og lekre Leah! Helt enkel og tøff til det aller meste. Og så er den merket med både Oeko-Tex og GOTS!	<br><br>	Fås i: Blue (blå) og Black (sort).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Organisk bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Liam Little RAIN SET">
-        <source>description.Liam_RAIN_SET</source>
+        <source>description.Liam_Little_RAIN_SET</source>
         <target>
           <![CDATA[Regnværsdager er også fulle av fart og moro. Liam har massevis av fartsstriper på buksene og en matchende jakke. Begge er så utrolig myke og selvfølgelig både vind- og vanntette og Oeko-Tex-merket. Jakken har mange kule detaljer, bl.a. en stilig billerefleks i lommen, avtakbar hette og luftkanaler. Buksene har seler og fotstropper, så hopp i vei i vannpyttene uten at føttene blir våte. 	<br><br>	Fås i: Camel/Navy (camel/marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Polyuretan             Fôr: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Liam RAIN SET">
-        <source>description.Lilly_Little_RAIN_SET</source>
+        <source>description.Liam_RAIN_SET</source>
         <target>
           <![CDATA[Regnværsdager er også fulle av fart og moro. Liam har massevis av fartsstriper på buksene og en matchende jakke. Begge er så utrolig myke og selvfølgelig både vind- og vanntette og Oeko-Tex-merket. Jakken har mange kule detaljer, bl.a. en stilig billerefleks i lommen, avtakbar hette og luftkanaler. Buksene har justerbar strikk i livet og fotstropper, så hopp i vei i vannpyttene uten at føttene blir våte. 	<br><br>	Fås i: Camel/Navy (camel/marine).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Polyuretan             Fôr: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Lilly Little RAIN SET">
-        <source>description.Lilly_RAIN_SET</source>
+        <source>description.Lilly_Little_RAIN_SET</source>
         <target>
           <![CDATA[Regnværsdager er også fulle av fart og moro. Lilly har massevis av stjerner på buksene og en matchende jakke. Begge er så utrolig myke og selvfølgelig både vind- og vanntette og Oeko-Tex-merket. Jakken har mange kule detaljer, bl.a. en søt liten refleks i lommen, avtakbar hette og luftkanaler. Buksene har seler og fotstropper, så hopp i vei i vannpyttene uten at føttene blir våte. 	<br><br>	Fås i: Khaki.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Polyuretan             Fôr: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Lilly RAIN SET">
-        <source>description.Liva_Little_PANTS</source>
+        <source>description.Lilly_RAIN_SET</source>
         <target>
           <![CDATA[Regnværsdager er også fulle av fart og moro. Lilly har massevis av stjerner på buksene og en matchende jakke. Begge er så utrolig myke og selvfølgelig både vind- og vanntette og Oeko-Tex-merket. Jakken har mange kule detaljer, bl.a. en søt liten refleks i lommen, avtakbar hette og luftkanaler. Buksene har justerbar strikk i livet og fotstropper, så hopp i vei i vannpyttene uten at føttene blir våte. 	<br><br>	Fås i: Khaki.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Polyuretan             Fôr: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Liva Little PANTS">
-        <source>description.Liva_Little_TOP</source>
+        <source>description.Liva_Little_PANTS</source>
         <target>
           <![CDATA[Baggy mamelukker! Du blir bestemors lille yndling i Liva Little PANTS. Liva har kjempesøte rysjer og en bomullsmyk elastisk kant.	<br><br>	Fås i: Rose (rosa) og Off White.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull                Fôr: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Liva Little TOP">
-        <source>description.Liva_TOP</source>
+        <source>description.Liva_Little_TOP</source>
         <target>
           <![CDATA[Liva går rett i hjertet. Så fin og nusselig. A-formet og lett til strandturer og en sommerblund.	<br><br>	Fås i: Rose (rosa) og Off White.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull                Fôr: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Liva TOP">
-        <source>description.Lucy_DRESS</source>
+        <source>description.Liva_TOP</source>
         <target>
           <![CDATA[Liva går rett i hjertet. Så fin og nusselig. A-formet og lett til strandturer og en sommerblund.	<br><br>	Fås i: Rose (rosa) og Off White.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull                Fôr: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Lucy DRESS">
-        <source>description.Lucy_Little_TSHIRT</source>
+        <source>description.Lucy_DRESS</source>
         <target>
           <![CDATA[I en inspirasjonsmiks av bestemors blonder og bestefars undertrøyer er Lucy DRESS blitt til.
             En fin moderne kjole med overskjæring og bindebånd i livet. Lett og luftig til lek og latter. Lucy gir også god samvittighet med sitt Oeko-Tex-merke.<br><br>	Fås i: Rose (rosa), White (hvit), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 80% Bomull, 20% Lin]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy Little TSHIRT">
-        <source>description.Lucy_TSHIRT</source>
+      <trans-unit id="Lucy Little SS TSHIRT">
+        <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[All you need is love! Masse kjærlighet til søte myke Lucy! Lucy gir også god samvittighet med sitt Oeko-Tex-merke.	<br><br>	Fås i: Rose (rosa), White (hvit), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 80% Bomull, 20% Lin]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy TSHIRT">
-        <source>description.Madison_CARDIGAN</source>
+      <trans-unit id="Lucy SS TSHIRT">
+        <source>description.Lucy_SS_TSHIRT</source>
         <target>
           <![CDATA[All you need is love! Masse kjærlighet til søte myke Lucy! Lucy gir også god samvittighet med sitt Oeko-Tex-merke.	<br><br>	Fås i: Rose (rosa), White (hvit), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 80% Bomull, 20% Lin]]>
         </target>
       </trans-unit>
       <trans-unit id="Madison CARDIGAN">
-        <source>description.Madison_Little_CARDIGAN</source>
+        <source>description.Madison_CARDIGAN</source>
         <target>
           <![CDATA[Åhh, våre nye og litt ville farger passer kjempebra sammen med denne cardiganen. Fin strikk gjør den ideell til våre skjønne kjoler og kan samtidig fullende hverdagssettet. 
             Cardiganen har blonde i nakken og et veldig fint bånd ned langs knappelukkingen.
@@ -1263,7 +1263,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Madison Little CARDIGAN">
-        <source>description.Malou_Little_PANTS</source>
+        <source>description.Madison_Little_CARDIGAN</source>
         <target>
           <![CDATA[Åhh, våre nye og litt ville farger passer kjempebra sammen med denne cardiganen. Fin strikk gjør den ideell til våre skjønne kjoler og kan samtidig fullende hverdagssettet. 
             Cardiganen har blonde i nakken og et veldig fint bånd ned langs knappelukkingen.
@@ -1271,14 +1271,14 @@
         </target>
       </trans-unit>
       <trans-unit id="Malou Little PANTS">
-        <source>description.Malou_Little_SHORTS</source>
+        <source>description.Malou_Little_PANTS</source>
         <target>
           <![CDATA[Så skjønne - og så behagelige. Malou Little PANTS er i vår klassiske ballongsilhuett og passer til nesten alle yndlingsbluser og sko. Og selvfølgelig har de justerbar linning. Dessuten er buksene Oeko-Tex-merket, så Malou gir i tillegg god samvittighet.
             <br><br>	Fås i: Khaki, White (hvit) og Black (sort).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Bomull          Fôr:100% Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Malou Little SHORTS">
-        <source>description.Malou_PANTS</source>
+        <source>description.Malou_Little_SHORTS</source>
         <target>
           <![CDATA[Malou Little SHORTS er bare så skjønne og behagelige. 
             Med eller uten leggings under - de er supersøte til både kjølige og varme dager. Og selvfølgelig har de justerbar linning. Dessuten er Malou Oeko-Tex-merket, så Malou gir i tillegg god samvittighet.
@@ -1286,14 +1286,14 @@
         </target>
       </trans-unit>
       <trans-unit id="Malou PANTS">
-        <source>description.Mary_BLOUSE</source>
+        <source>description.Malou_PANTS</source>
         <target>
           <![CDATA[Så skjønne - og så behagelige. Malou PANTS er i vår klassiske ballongsilhuett og passer til nesten alle yndlingsbluser og sko. Og selvfølgelig har de justerbar linning. Dessuten er buksene Oeko-Tex-merket, så Malou gir i tillegg god samvittighet.
             <br><br>	Fås i: Khaki, White (hvit) og Black (sort).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100% Bomull          Fôr:100% Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Mary BLOUSE">
-        <source>description.Mary_Little_TUNIC</source>
+        <source>description.Mary_BLOUSE</source>
         <target>
           <![CDATA[Rysjer er et must, når man er jente med stor J - og rysjer er det heldigvis mange av på Mary BLOUSE. 
             De er både rundt halsen og som små ermer. Blusen har også et påsydd bånd på hoften som kan knytes i siden. Rysjer, latter og glede.
@@ -1301,47 +1301,47 @@
         </target>
       </trans-unit>
       <trans-unit id="Mary Little TUNIC">
-        <source>description.Mia_JACKET</source>
+        <source>description.Mary_Little_TUNIC</source>
         <target>
           <![CDATA[Vår lille Mary tunika har rysjekrage og rysjer i ermet. Florlett og delikat med knappelukking ned foran. Til den søte prinsessen med et skjørt under, eller til den litt kulere jenta med stramme bukser under og kanskje Adele HOODIE over.
             <br><br>	Fås i: Off White, Rose (rosa) og Green (grønn).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Mia JACKET">
-        <source>description.Mia_Little_JACKET</source>
+        <source>description.Mia_JACKET</source>
         <target>
           <![CDATA[Jakken som holder på varmen på kjølige dager og som både avslutter hverdagssettet og festklærne. Med prinsessesnitt, rysjer/glidelåslukking foran og gode lommer, hvor det fint kan være et skjell, en stein eller to. Med tilhørende belte.
             <br><br>	Fås i: Black (sort), Rose (rosa) og Sand.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 65% Polyester, 35% Bomull                                          Fôr: 100 % bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Mia Little JACKET">
-        <source>description.Morgan_SS_TSHIRT</source>
+        <source>description.Mia_Little_JACKET</source>
         <target>
           <![CDATA[Jakken holder på varmen på kjølige dager, og den avslutter både hverdagssettet og festklærne på en skjønn måte. Med prinsessesnitt, rysjer/glidelåslukking foran og gode lommer, hvor det fint kan være et skjell, en stein eller to. 
             <br><br>	Fås i: Black (sort), Rose (rosa) og Sand.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 65% Polyester, 35% Bomull                                          Fôr: 100 % bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Morgan SS TSHIRT">
-        <source>description.Nola_LEGGINGS</source>
+        <source>description.Morgan_SS_TSHIRT</source>
         <target>
-          <![CDATA[I lekker fotballstil er Morgan skjønn til gutter med masse energi. Og med god samvittighet, for Morgan er Oeko-Tex-merket.	<br><br>	Fås i: Blue (blå) og Red (rød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
+          <![CDATA[I lekker fotballstil er Morgan skjønn til gutter med masse energi. Og med god samvittighet, for Morgan er Oeko-Tex-merket.	<br><br>	Fås i: Blue (blå) og Red (rød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola LEGGINGS">
-        <source>description.Nola_Little_LEGGINGS</source>
+        <source>description.Nola_LEGGINGS</source>
         <target>
           <![CDATA[Disse myke leggingsene fra vårt basisprogram er helt perfekte til dans, løp og andre krumspring. Og så er de Oeko-Tex-produsert, slik at du ikke trenger å bekymre deg om at de sitter helt inntil huden. Myk og elastisk i livet. Sett den sammen med den matchende langermede t-skjorten, trekk yndlingskjolen ned over hodet, og så er du klar.	<br><br>	Fås i: Rose (rosa), Green (grønn), Khaki og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 46% Bomull, 46% Modal, 8% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola Little LEGGINGS">
-        <source>description.Nola_Little_LS_TSHIRT</source>
+        <source>description.Nola_Little_LEGGINGS</source>
         <target>
           <![CDATA[Disse myke leggingsene fra vårt basisprogram er helt perfekte til dans, løp og andre krumspring. Og så er de Oeko-Tex-produsert slik at du ikke trenger å bekymre deg om at de sitter helt inntil huden. Med myk elastisk talje. Sett den sammen med den matchende langermede T-skjorten, trekk yndlingskjolen ned over hodet, og så er du klar.
             <br><br>	Fås i: Rose (rosa), Green (grønn), Khaki og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 46% Bomull, 46% Modal, 8% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola Little LS TSHIRT">
-        <source>description.Nola_LS_TSHIRT</source>
+        <source>description.Nola_Little_LS_TSHIRT</source>
         <target>
           <![CDATA[Myk og behagelig t-skjorte fra vårt basisprogram, perfekt til å kombinere med andre plagg. 
             Og så er de Oeko-Tex-produsert, slik at du ikke trenger å bekymre deg for at de sitter helt inntil huden.  
@@ -1351,7 +1351,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Nola LS TSHIRT">
-        <source>description.Nola_TOP</source>
+        <source>description.Nola_LS_TSHIRT</source>
         <target>
           <![CDATA[Myk og behagelig t-skjorte fra vårt basisprogram, perfekt til å kombinere med andre plagg. 
             Og så er de Oeko-Tex-produsert, slik at du ikke trenger å bekymre deg for at de sitter helt inntil huden.  
@@ -1360,7 +1360,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Nola TOP">
-        <source>description.Patrick_FOOTIES</source>
+        <source>description.Nola_TOP</source>
         <target>
           <![CDATA[Myk og behagelig topp til både hverdag og fest. Nola er fra vårt basisprogram, og er Oeko-Tex-produsert, 
             og du trenger ikke bekymre deg for at den sitter helt tett på huden. Sett den sammen med de matchende Nola LEGGINGS, yndlingsskjørtet og innta eventyrverdenen.
@@ -1368,13 +1368,13 @@
         </target>
       </trans-unit>
       <trans-unit id="Patrick FOOTIES">
-        <source>description.Pearl_DRESS</source>
+        <source>description.Patrick_FOOTIES</source>
         <target>
           <![CDATA[Patrick pakker føttene godt inn med sin Oeko-Tex-merking og lekre design.	<br><br>	Fås i: Navy (marine) og Grey (grå). 	<br><br>	Størrelsen er barnets skostørrelse.	<br><br>	Kvalitet: 77% Bomull, 19% Polyamid, 4% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Pearl DRESS">
-        <source>description.Pearl_Little_DRESS</source>
+        <source>description.Pearl_DRESS</source>
         <target>
           <![CDATA[Pearl DRESS er bomullsmyk, lett og luftig, søt og i sarte farger mikset med striper. 
             Perfekt til alt våren og sommeren byr på.
@@ -1382,7 +1382,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Pearl Little DRESS">
-        <source>description.Polly_Little_TOP</source>
+        <source>description.Pearl_Little_DRESS</source>
         <target>
           <![CDATA[Pearl Little DRESS er bomullsmyk, lett og luftig, søt og i sarte farger mikset med striper. 
             Perfekt til alt våren og sommeren byr på.
@@ -1390,7 +1390,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Polly Little TOP">
-        <source>description.Polly_TOP</source>
+        <source>description.Polly_Little_TOP</source>
         <target>
           <![CDATA[Polly Little TOP er vår glitrende glittertopp med supersøte detaljer. 
             Rysjer i ermer og halsoverskjæring ved brystet og i en A-form. Den nusselige Polly passer både til hverdag og fest.
@@ -1398,7 +1398,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Polly TOP">
-        <source>description.Preston_BOXER</source>
+        <source>description.Polly_TOP</source>
         <target>
           <![CDATA[Polly TOP er vår glitrende topp med knute som knytes foran. 
             Polly gir et ekstra piff til leggings, jeans, shorts - ja, vi synes den passer til alt. 
@@ -1406,70 +1406,70 @@
         </target>
       </trans-unit>
       <trans-unit id="Preston BOXER">
-        <source>description.Preston_Little_BODY</source>
+        <source>description.Preston_BOXER</source>
         <target>
           <![CDATA[Åh, så skjønne og myke boxershorts! Preston er kjempetøffe og med søte biller på. Og du kan rolig ta dem på, de er nemlig både Oeko-Tex-og GOTS-merket. 	<br><br>	Fås i: Navy/Off White (marine/off white) og Grey/Off White (grå/off white).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little BODY">
-        <source>description.Preston_Little_LS_BODY</source>
+        <source>description.Preston_Little_BODY</source>
         <target>
           <![CDATA[Å, for en skjønn og myk liten body! Preston er kjempetøff og den er med søte biller. Og du kan rolig ta den på, den er nemlig både Oeko-Tex-og GOTS-merket. 	<br><br>	Fås i: Navy/Off White (marine/off white) og Grey/Off White (grå/off white).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little LS BODY">
-        <source>description.Preston_Little_PY</source>
+        <source>description.Preston_Little_LS_BODY</source>
         <target>
           <![CDATA[Å, for en skjønn og myk liten langermet body! Preston er kjempetøff og den er med søte biller. Og du kan rolig ta den på, den er nemlig både Oeko-Tex-og GOTS-merket. 	<br><br>	Fås i: Navy (marine) og Grey (grå). 	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little PY">
-        <source>description.Preston_Little_SLEEPER</source>
+        <source>description.Preston_Little_PY</source>
         <target>
           <![CDATA[Å, for en skjønn og myk pyjamas!  Preston er kjempetøff og den er med søte biller. Og du kan rolig ta den på, den er nemlig både Oeko-Tex-og GOTS-merket. 	<br><br>	Fås i: Navy (marine) og Grey (grå). 	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston Little SLEEPER">
-        <source>description.Preston_PY</source>
+        <source>description.Preston_Little_SLEEPER</source>
         <target>
           <![CDATA[Åh, for en herlig nattdrakt - den er både søt, myk og tøff! Preston er kjempetøff og den er med søte biller. Og du kan rolig ta den på, den er nemlig både Oeko-Tex-og GOTS-merket. 	<br><br>	Fås i: Navy (marine) og Grey (grå). 	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston PY">
-        <source>description.Preston_TANKTOP</source>
+        <source>description.Preston_PY</source>
         <target>
           <![CDATA[Åh, for en herlig pyjamas - den er både søt, myk og tøff! Preston er kjempetøff og den er med søte biller. Og du kan rolig ta den på, den er nemlig både Oeko-Tex-og GOTS-merket. 	<br><br>	Fås i: Navy (marine) og Grey (grå). 	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Preston TANKTOP">
-        <source>description.Rachel_Little_TUNIC</source>
+        <source>description.Preston_TANKTOP</source>
         <target>
           <![CDATA[Kjempekul undertrøye! Preston er gøyal og tøff med sine skjønne biller. På den ene toppen kryper billene over alt, og på den andre siden sitter det bare en enkelt bille og kikker i nakken. Også stilig om sommeren uten genser over! Og du kan rolig ta den på, den er nemlig både Oeko-Tex-og GOTS-merket. 
             <br><br>	Fås i: Navy/ Off White (marine/off white) og Grey/Off White (grå/off white).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Rachel Little TUNIC">
-        <source>description.Rachel_TUNIC</source>
+        <source>description.Rachel_Little_TUNIC</source>
         <target>
           <![CDATA[Luftig og lekende lett med et fint snitt er Rachel helt med på moten. En kjølig limonade i hånden og ut i sommeren med Rachel på!
             <br><br>	Fås i: Brown (brun), Blue (blå) og Black (sort).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Rachel TUNIC">
-        <source>description.Riana_LEGGINGS</source>
+        <source>description.Rachel_TUNIC</source>
         <target>
           <![CDATA[Luftig og lekende lett med et fint snitt er Rachel helt med på moten. En kjølig limonade i hånden og ut i sommeren med Rachel på!
             <br><br>	Fås i: Brown (brun), Blue (blå) og Black (sort).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Riana LEGGINGS">
-        <source>description.Rosemary_JUMPSUIT</source>
+        <source>description.Riana_LEGGINGS</source>
         <target>
           <![CDATA[Sommerfugler i magen og sommerfugler på leggings. Bare så klar til vår og sommerlek!	<br><br>	Fås i: Rose (rosa), Khaki og Off White.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 98% Bomull, 2% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Rosemary JUMPSUIT">
-        <source>description.Rosemary_Little_SS_TSHIRT</source>
+        <source>description.Rosemary_JUMPSUIT</source>
         <target>
           <![CDATA[Vi elsker Rosemary-serien! Sporty med glitter og paljetter! Juhu! 
             Rosemary JUMPSUIT er myk og lett. Super til superjenter som koser seg sammen og til sommerens sport og moro.
@@ -1477,7 +1477,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Rosemary Little SS TSHIRT">
-        <source>description.Rosemary_SS_TSHIRT</source>
+        <source>description.Rosemary_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Vi elsker Rosemary-serien! Sporty med glitter og paljetter! Juhu! 
             Rosemary Little SS TSHIRT er myk og lett. Super til superjenter og til sport og sommermoro.
@@ -1485,7 +1485,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Rosemary SS TSHIRT">
-        <source>description.Samantha_CARDIGAN</source>
+        <source>description.Rosemary_SS_TSHIRT</source>
         <target>
           <![CDATA[Vi elsker Rosemary-serien! Sporty med glitter og paljetter! Juhu! 
             Rosemary SS TSHIRT er myk og lett. Super til superjenter og til sport og sommermoro.
@@ -1493,7 +1493,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Samantha CARDIGAN">
-        <source>description.Samantha_Little_CARDIGAN</source>
+        <source>description.Samantha_CARDIGAN</source>
         <target>
           <![CDATA[Spill på kontrastene og bruk A-formede Samantha strikk-cardigan over kjoler og tunikaer med vidde.
             Kvaliteten inneholder blant annet bambus, som gjør cardiganen supermyk. 
@@ -1501,7 +1501,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Samantha Little CARDIGAN">
-        <source>description.Scarlett_Little_LEGGINGS</source>
+        <source>description.Samantha_Little_CARDIGAN</source>
         <target>
           <![CDATA[Spill på kontrastene og bruk A-formede Samantha strikk-cardigan over kjoler og tunikaer med vidde. 
             Med rynker over brystet og på ryggen som understreker det feminine. 
@@ -1510,13 +1510,13 @@
         </target>
       </trans-unit>
       <trans-unit id="Scarlett Little LEGGINGS">
-        <source>description.Scarlett_CHINOS</source>
+        <source>description.Scarlett_Little_LEGGINGS</source>
         <target>
           <![CDATA[Vi elsker Scarlett! Rynkene ved anklene gir dem en raffinert men avslappet look, og sømmene bak er en god detalj. Og de har selvfølgelig det justerbare livet, som vi kjenner.	<br><br>	Fås i: Rose (rosa), Sand og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 97% Bomull, 3% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Scarlett CHINOS">
-        <source>description.Selja_HAT</source>
+        <source>description.Scarlett_CHINOS</source>
         <target>
           <![CDATA[Chinos er tingen! Rynkene ved anklene gir Scarlett CHINOS en raffinert, men avslappet look. 
             Og de har selvfølgelig det justerbare livet, som vi kjenner.
@@ -1524,13 +1524,13 @@
         </target>
       </trans-unit>
       <trans-unit id="Selja HATT">
-        <source>description.Shane_SS_TSHIRT</source>
+        <source>description.Selja_HAT</source>
         <target>
           <![CDATA[Selja er kronen på en skikkelig Dancing Queen og den oser av mormors hekletøy, blandet med ABBAs 70-tallsstemning. 	<br><br>	Fås i: Off White, Grey (grå) og Black (sort).	<br><br>	Størrelsen er barnets hodeomkrets angitt i cm	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Shane SS TSHIRT">
-        <source>description.Shelly_DRESS</source>
+        <source>description.Shane_SS_TSHIRT</source>
         <target>
           <![CDATA[Herlige farger og superkult trykk! Shane er med sin ”Old Indian” tøff til det meste. 
             Og helt perfekt til det lyse sommerhalvåret. Og den er merket med Oeko-Tex.
@@ -1538,26 +1538,26 @@
         </target>
       </trans-unit>
       <trans-unit id="Shelly DRESS">
-        <source>description.Shelly_Little_DRESS</source>
+        <source>description.Shelly_DRESS</source>
         <target>
           <![CDATA[Skjønne Shelly! Kjolen som rett og slett et must i en prinsessegarderobe. Med 1000 lag tyll - i hvert fall nesten - og en stor sløyfe i livet, blir du med et trylleslag dratt med inn i ditt favoritteventyr, når du har på deg denne kjolen. 	<br><br>	Fås i: Off White, Green (grønn) og Rose (rosa).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet 1: 50% Bomull, 47% Polyester, 3% Elastan             Kvalitet 2: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little DRESS">
-        <source>description.Shelly_Little_SKIRT</source>
+        <source>description.Shelly_Little_DRESS</source>
         <target>
           <![CDATA[Skjønne Shelly! Kjolen der rett og slett et must i en prinsessegarderobe. Med 1000 lag tyll - i hvert fall nesten - og en stor sløyfe i livet, blir du med et trylleslag dratt med inn i ditt favoritteventyr, når du har på deg denne kjolen. 	<br><br>	Fås i: Off White, Green (grønn) og Rose (rosa).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet 1: 50% Bomull, 47% Polyester, 3% Elastan             Kvalitet 2: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little SKIRT">
-        <source>description.Shelly_SKIRT</source>
+        <source>description.Shelly_Little_SKIRT</source>
         <target>
           <![CDATA[Ekte jenter må ha en Shelly! Strutt, sjarm og smekkert SKIRT. 
             Shelly forvandler en hver jente til en ekte dansediva! Som alltid er det justerbart liv.<br><br>	Fås i: Off White, Green (grønn) og Rose (rosa).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet 1: 50% Bomull, 47% Polyester, 3% Elastan             Kvalitet 2: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly SKIRT">
-        <source>description.Sophia_Little_PANTS_</source>
+        <source>description.Shelly_SKIRT</source>
         <target>
           <![CDATA[Ekte jenter må ha en Shelly! Strutt, sjarm og smekkert SKIRT. 
             Shelly forvandler en hver jente til en ekte dansediva! Som alltid er det justerbart liv.
@@ -1565,7 +1565,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little PANTS ">
-        <source>description.Sophia_Little_SHORT_SUIT</source>
+        <source>description.Sophia_Little_PANTS</source>
         <target>
           <![CDATA[Søtt, prikkete mønster, haremsbukser mikset med baggy -  en gjenganger vi elsker. 
             Et par herlige bukser som du ikke bare tar på deg, men flytter inn i og bor i.
@@ -1573,28 +1573,28 @@
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little SHORT SUIT">
-        <source>description.Sophia_Little_TUNIC</source>
+        <source>description.Sophia_Little_SHORT_SUIT</source>
         <target>
           <![CDATA[Med søtt prikkete mønster, sløyfe på brystet, spagettistropper og puff-shorts med knutesløyfe-avslutning, er Sophia Little SHORT SUIT stilen til en hver liten sommerdiva. 
             <br><br>	Fås i: Peach (fersken), Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little TUNIC">
-        <source>description.Sophia_TUNIC</source>
+        <source>description.Sophia_Little_TUNIC</source>
         <target>
           <![CDATA[Denne tunikaen er en av våre klassikere. Denne gangen prydet av det søte, prikkede mønsteret og elastisk i hals og ermer. En enkel og flott style du kan trekke på over et par leggings eller strømpebukser, og så er du klar til lek.
             <br><br>	Fås i: Peach (fersken), Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Sophia TUNIC">
-        <source>description.Stella_DRESS</source>
+        <source>description.Sophia_TUNIC</source>
         <target>
           <![CDATA[Denne tunikaen er en av våre klassikere. Denne gangen prydet av det søte, prikkede mønsteret og elastisk i hals og ermer. En enkel og flott style du kan trekke på over et par leggings eller strømpebukser, og så er du klar til lek.
             <br><br>	Fås i: Peach (fersken), Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Stella DRESS">
-        <source>description.Stella_Little_TUNIC</source>
+        <source>description.Stella_DRESS</source>
         <target>
           <![CDATA[Kledd i en flott kjole med fugler på er bedre enn ti fugler i klesskapet. Stella DRESS med strikk i livet, som gir den en trendy oversize silhuett.
             
@@ -1602,78 +1602,78 @@
         </target>
       </trans-unit>
       <trans-unit id="Stella Little TUNIC">
-        <source>description.Stella_TUNIC</source>
+        <source>description.Stella_Little_TUNIC</source>
         <target>
           <![CDATA[Kledd i en vakker tunika med fugler gjør Stella Little TUNIC deg kvitrende vakker, med bånd og sløyfe som matcher fuglens farger.	<br><br>	Fås i: Peach (fersken), Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Stella TUNIC">
-        <source>description.Suri_DRESS</source>
+        <source>description.Stella_TUNIC</source>
         <target>
           <![CDATA[Kledd i en vakker tunika med fugler gjør Stella TUNIC deg kvitrende vakker, med bånd og sløyfe som matcher fuglens farger.	<br><br>	Fås i: Peach (fersken), Rose (rosa) og Yellow (gul).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Suri DRESS">
-        <source>description.Suri_Little_DRESS</source>
+        <source>description.Suri_DRESS</source>
         <target>
           <![CDATA[Suri er alt - hverdagskjole, paljettdrøm og kjolen til tøffe jenter. Kjolen har utvendig grov glidelås, og består av en paljettoverdel med mykt jerseyskjørt, som faller fint over både strømpebukser og et par kule jeans.
             <br><br>	Fås i: Khaki, Rose (rosa) og Grey (grå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Suri Little DRESS">
-        <source>description.Suri_WAISTCOAT</source>
+        <source>description.Suri_Little_DRESS</source>
         <target>
           <![CDATA[Suri er alt - hverdagskjole, paljettdrøm og kjolen til tøffe jenter. Kjolen har utvendig grov glidelås, og består av en paljettoverdel med mykt jerseyskjørt, som faller fint over et par strømpebukser eller leggings.
             <br><br>	Fås i: Khaki, Rose (rosa) og Grey (grå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Suri WAISTCOAT">
-        <source>description.Tess_PANTS</source>
+        <source>description.Suri_WAISTCOAT</source>
         <target>
           <![CDATA[Paljetter, paljetter og atter paljetter! Denne vesten er i sin super enkelthet og med et hav av paljetter et must. Det eneste problemet blir å velge hvilken farge man skal ha den i.
             <br><br>	Fås i: Khaki, Rose (rosa) og Grey (grå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan  Dekorasjon: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Tess PANTS">
-        <source>description.Tess_SHORT_SUIT</source>
+        <source>description.Tess_PANTS</source>
         <target>
           <![CDATA[Flagrende luftig, myk og lekker! Et skjønt blomstermønster, lekker bred smock i livet, sløyfe og fine rynkedetaljer i anklene. Herlig!	<br><br>	Fås i: Yellow (gul) og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 60% Viskose, 40% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Tess SHORT SUIT">
-        <source>description.Theodore_Little_LS_GRANDDAD</source>
+        <source>description.Tess_SHORT_SUIT</source>
         <target>
           <![CDATA[Flagrende luftig, myk og lekker! En skikkelig sommerdrakt! Et skjønt blomstermønster, lekker bred smock i livet, sløyfe, løse livlige ben og trykknapper, så den er lett og rask å få av og på. Herlig!	<br><br>	Fås i: Yellow (gul) og Peach (fersken).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 60% Viskose, 40% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Theodore Little LS GRANDDAD">
-        <source>description.Theodore_LS_GRANDDAD</source>
+        <source>description.Theodore_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[En bestefar-trøye kan brukes til alt, med eller uten noe over. 
             Og det beste av alt er, at den er supermyk å ha på med deilig ribbekant i bomull og detaljer i knappene. Theodore er selvfølgelig også merket med Oeko-tex.<br><br>	Fås i: Blue (blå), Grey Melange (gråmelert) og White (hvit).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Theodore LS GRANDDAD">
-        <source>description.Thomas_Little_SHORTS</source>
+        <source>description.Theodore_LS_GRANDDAD</source>
         <target>
           <![CDATA[En bestefar-trøye kan brukes til alt, med eller uten noe over. 
             Og det beste av alt er, at den er supermyk å ha på med deilig ribbekant i bomull og detaljer i knappene. Theodore er selvfølgelig også merket med Oeko-tex.<br><br>	Fås i: Blue (blå), Grey Melange (gråmelert) og White (hvit).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Bomull, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Thomas Little SHORTS">
-        <source>description.Thomas_SHORTS</source>
+        <source>description.Thomas_Little_SHORTS</source>
         <target>
           <![CDATA[I Thomas blir du sommerens tøffing. Vi har valgt en enkel design, som kan mikses med alt.	<br><br>	Fås i: Red (rød), Camel og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Thomas SHORTS">
-        <source>description.Tiana_LEGGINGS</source>
+        <source>description.Thomas_SHORTS</source>
         <target>
           <![CDATA[Brett benene opp i varmen eller la dem henge, hvis du skal være litt fin.  Vi elsker Thomas SHORTS.	<br><br>	Fås i: Red (rød), Camel og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Tiana LEGGINGS">
-        <source>description.Tristan_SHIRT</source>
+        <source>description.Tiana_LEGGINGS</source>
         <target>
           <![CDATA[Hopp i Tiana LEGGINGS og trekk yndlingstoppen, kjolen eller blusen over hodet - da er du klar. 
             Klar til hverdag, fest og masse lek.
@@ -1681,33 +1681,33 @@
         </target>
       </trans-unit>
       <trans-unit id="Tristan SHIRT">
-        <source>description.Uma_Little_DRESS</source>
+        <source>description.Tristan_SHIRT</source>
         <target>
           <![CDATA[Tristan er lekker både som finbukser og hverdagsbukser. De er løse og myke - skjønne på en varm sommerdag, men også deilige på kjøligere dager. Kanskje med en t-skjorte under.	<br><br>	Fås i: Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 55% Lin, 45% Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Uma Little DRESS">
-        <source>description.Uma_LONG_TUNIC</source>
+        <source>description.Uma_Little_DRESS</source>
         <target>
           <![CDATA[Åhhhh, noe så nyyydelig - Uma er med rysjer, og så luftig og lett - nyyydelig beskriver virkelig Uma Little DRESS best.	<br><br>	Fås i: Rose (rosa), Grey (grå) og Off White.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Uma LONG TUNIC">
-        <source>description.Victoria_Little_JEANS</source>
+        <source>description.Uma_LONG_TUNIC</source>
         <target>
           <![CDATA[Åhhhh, så nyyydelig - Uma er med rysjer, og så luftig og lett - nyyydelig beskriver Uma LONG TUNIC best. Tunikaen kan samles i livet av et belte i sort/hvitt.
             <br><br>	Fås i: Rose (rosa), Grey (grå) og Off White.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Victoria Little JEANS">
-        <source>description.Victoria_Little_SKIRT</source>
+        <source>description.Victoria_Little_JEANS</source>
         <target>
           <![CDATA[Et par gjennomført eventyrlige denimbukser fylt med 1000 stjerner. Så behagelig med elastisk avslutning i både livet og benene og justerbar i livet. I de små lommene er det plass til eventyrlige hemmeligheter og sten som glimter. 
             <br><br>	Fås i: Blue Denim.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Victoria Little SKIRT">
-        <source>description.Victoria_SHORTS</source>
+        <source>description.Victoria_Little_SKIRT</source>
         <target>
           <![CDATA[Et gjennomført eventyrlig ballongskjørt fylt med 1000 stjerner. Så makelig med elastisk smock i livet, og så detaljert med en fin sløyfe på magen og små tøffe baklommer.
             Sett den sammen med en t-skjorte med trykk og et par av våre mange skjønne strømpebukser. 
@@ -1715,31 +1715,31 @@
         </target>
       </trans-unit>
       <trans-unit id="Victoria SHORTS">
-        <source>description.Viktor_Little_JEANS</source>
+        <source>description.Victoria_SHORTS</source>
         <target>
           <![CDATA[Victoria pakker deg godt inn i myk denim full av nattens stjerner, klar til dagens solstråleeventyr. Og de har selvfølgelig det justerbare livet, som vi kjenner. 	<br><br>	Fås i: Blue Denim.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Viktor Little JEANS">
-        <source>description.Viviann_Little_BODY</source>
+        <source>description.Viktor_Little_JEANS</source>
         <target>
           <![CDATA[Klar til stjernestunder! Viktor pakker gullklumpen inn i myk denim full av nattens stjerner, klar til lek om dagen. Og en mykt strikk i livet sammen med et bindebånd.	<br><br>	Fås i: Blue Denim.	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Viviann Little BODY">
-        <source>description.Viviann_TSHIRT</source>
+        <source>description.Viviann_Little_BODY</source>
         <target>
           <![CDATA[Små elastiske puffermer i sart farge og lekre gullstriper! Svimlende myk og lekker! 	<br><br>	Fås i: Rose (rosa), Off White og Green (grønn).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 86% Viskose, 8% Metallfibre, 6% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Viviann TSHIRT">
-        <source>description.Zoe_SHORTS</source>
+        <source>description.Viviann_TSHIRT</source>
         <target>
           <![CDATA[Små elastiske puffermer i sart farge og lekre gullstriper! Svimlende myk og lekker!	<br><br>	Fås i: Rose (rosa), Off White og Green (grønn).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 86% Viskose, 8% Metallfibre, 6% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Zoe SHORTS">
-        <source>description.Zola_HIPSTER</source>
+        <source>description.Zoe_SHORTS</source>
         <target>
           <![CDATA[Stjerner, stjerner og prikker. Zoe er våre friske små shorts med stjerner over alt. 
             I livet avsluttes de av et fint stoffbelte med prikker. Full av nattens stjerner, klar til dagens solstråleeventyr. Pssst... beltet kan også brukes som skjerf eller bandana.
@@ -1747,7 +1747,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Zola HIPSTER">
-        <source>description.Zola_Little_BODY</source>
+        <source>description.Zola_HIPSTER</source>
         <target>
           <![CDATA[Hip hurra og herlige herligheter!
             Zola er ikke bare god for samvittigheten med sine Oeko-Tex og GOTS merkinger, den er også flott og deilig myk!
@@ -1756,31 +1756,31 @@
         </target>
       </trans-unit>
       <trans-unit id="Zola Little BODY">
-        <source>description.Zola_Little_LS_BODY</source>
+        <source>description.Zola_Little_BODY</source>
         <target>
           <![CDATA[Zola er ikke bare god for samvittigheten med sine Oeko-Tex og GOTS merkinger, den er også flott og deilig myk! Liten lekker body med søte kantbånd. Fås i eventyrlig blomstertrykk og ensfarget.	<br><br>	Fås i: Rose (rosa) og Off White/Blue (off white/blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola Little LS BODY">
-        <source>description.Zola_Little_SLEEPER</source>
+        <source>description.Zola_Little_LS_BODY</source>
         <target>
           <![CDATA[Zola er ikke bare god for samvittigheten med sine Oeko-Tex og GOTS merkinger, den er også flott og deilig myk! Liten lekker body med søte kantbånd og en sløyfe i halsen. Fås i eventyrlig blomstertrykk og ensfarget.	<br><br>	Fås i: Rose (rosa) og Off White/Blue (off white/blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola Little SLEEPER">
-        <source>description.Zola_NIGHTDRESS</source>
+        <source>description.Zola_Little_SLEEPER</source>
         <target>
           <![CDATA[Å, så søt og myk og fin! Zola er ikke bare god for samvittigheten med sine Oeko-Tex og GOTS merkinger, den er også flott og deilig myk! Fine jerseykanter i halsen og et eventyrlig blomstermønster, som Ole Lukkøye også vil elske.	<br><br>	Fås i: Rose (rosa) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola NIGHTDRESS">
-        <source>description.Zola_PANTIES</source>
+        <source>description.Zola_NIGHTDRESS</source>
         <target>
           <![CDATA[Å, så søt og myk og fin! Zola er ikke bare god for samvittigheten med sine Oeko-Tex og GOTS merkinger, den er også flott og deilig myk! Med korte ermer og med fine kanter i halsen og et eventyrlig blomstermønster.	<br><br>	Fås i: Rose (rosa) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="Zola PANTIES">
-        <source>description.Zola_TOP</source>
+        <source>description.Zola_PANTIES</source>
         <target>
           <![CDATA[Å, så søt og myk og fin! Zola er ikke bare god for samvittigheten med sine Oeko-Tex og GOTS merkinger, den er også flott og deilig myk! Liten fin truse med søte kantbånd - fås i eventyrlig blomsterprint og ensfarget.
             <br><br>	Fås i: Rose (rosa) og Off White/Blue (off white/blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 95% Økologisk bomull,  5% Elastan]]>
