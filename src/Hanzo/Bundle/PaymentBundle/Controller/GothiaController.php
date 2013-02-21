@@ -303,21 +303,33 @@ class GothiaController extends CoreController
                 if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                 {
                     $timer = new Timer('gothia', true);
-                    try
-                    {
-                        $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                    }
-                    catch( GothiaApiCallException $g )
-                    {
-                        $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
 
+                    try {
+                        $response = $oldOrder->cancelPayment();
+                    } catch (Exception $e) {
+                        $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
+                        Tools::debug('Cancel reservation failed', __METHOD__, array('Message' => $e->getMessage()));
                         return $this->json_response(array(
                             'status' => FALSE,
-                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
                         ));
                     }
 
-                    $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
+
+                    // ab@bellcom.dk
+                    // try
+                    // {
+                    //     $response = $api->call()->cancelReservation( $customer, $oldOrder );
+                    // }
+                    // catch( GothiaApiCallException $g )
+                    // {
+                    //     $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
+
+                    //     return $this->json_response(array(
+                    //         'status' => FALSE,
+                    //         'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
+                    //     ));
+                    // }
 
                     if ( $response->isError() )
                     {
@@ -347,7 +359,7 @@ class GothiaController extends CoreController
 
         if ( $response->isError() )
         {
-            #Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
+            Tools::debug( 'Confirm action error', __METHOD__, array( 'Transaction id' => $response->transactionId, 'Data' => $response->data ));
 
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
@@ -373,6 +385,7 @@ class GothiaController extends CoreController
             #Tools::debug( $e->getMessage(), __METHOD__);
             $api->updateOrderFailed( $request, $order );
 
+            Tools::debug('Place reservation failed', __METHOD__, array('Message' => $e->getMessage()));
             return $this->json_response(array(
                 'status' => FALSE,
                 'message' => $translator->trans('json.placereservation.error', array(), 'gothia'),
