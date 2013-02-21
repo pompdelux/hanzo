@@ -3,6 +3,7 @@ parameters:
     payment.gothiaapi.class: Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi
     payment.paybybill.class: Hanzo\Bundle\PaymentBundle\Methods\PayByBill\PayByBillApi
     payment.coupon.class: Hanzo\Bundle\PaymentBundle\Methods\Coupon\CouponApi
+    payment.pensio.class: Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioApi
 
 services:
     payment.dibsapi:
@@ -40,3 +41,12 @@ services:
             service:     couponapi
             parameters:  ~
             class:       %payment.coupon.class%
+
+    payment.pensioapi:
+        class:           %payment.pensio.class%
+        factory_service: service_factory
+        factory_method:  get
+        arguments:
+            service:     pensioapi
+            parameters:  ~
+            class:       %payment.pensio.class%

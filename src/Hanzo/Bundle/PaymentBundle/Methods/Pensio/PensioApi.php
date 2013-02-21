@@ -1,5 +1,17 @@
 <?php /* vim: set sw=4: */
 
+/*
+
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'method_enabled', '1');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'gateway', 'testgateway');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'terminal', 'Pomp De Lux iDEAL Test Terminal');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'secret', '');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'api_user', 'un@bellcom.dk');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'api_pass', 'y2etx3@vz5Jc');
+
+*/
+
+
 namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 
 use Exception;
@@ -17,15 +29,20 @@ use Symfony\Component\HttpFoundation\Request;
 class PensioApi implements PaymentMethodApiInterface
 {
     /**
-     * undocumented class variable
+     * api settings
      *
      * @var array
      */
     protected $settings = [
         'active'   => false,
-        'checksum' => null,
+        'gateway'  => 'testgateway',
+        'terminal' => '',
+        'secret'   => null,
         'fee'      => 0.00,
         'fee.id'   => null,
+
+        'api_user' => '',
+        'api_pass' => '',
     ];
 
     /**
@@ -39,7 +56,13 @@ class PensioApi implements PaymentMethodApiInterface
         foreach ($settings as $key => $value) {
             $this->settings[$key] = $value;
         }
+
         $this->settings['active'] = (isset($this->settings['method_enabled']) && $this->settings['method_enabled'] ? true : false);
+
+        // without gateway and terminal we cannot enable the module.
+        if ($this->settings['active'] && (!$this->settings['terminal'] || !$this->settings['gateway'])) {
+            $this->settings['active'] = false;
+        }
     }
 
     /**
@@ -90,31 +113,31 @@ class PensioApi implements PaymentMethodApiInterface
         return $this->settings['fee.id'];
     }
 
+
     /**
-     * updateOrderFailed
-     *
-     * TODO: priority: low, should use shared methods between all payment methods
-     *
-     * @return void
+     * these must be here or the interface get's angry...
+     * @param  Request $request
+     * @param  Orders  $order
      */
-    public function updateOrderFailed( Request $request, Orders $order)
+    public function updateOrderSuccess(Request $request, Orders $order)
     {
-        $order->setState( Orders::STATE_ERROR_PAYMENT );
-        $order->setAttribute('paytype' , 'payment', 'Pensio');
-        $order->save();
+        $this->updateOrderStatus(Orders::STATE_PAYMENT_OK, $request, $order);
+    }
+    public function updateOrderFailed(Request $request, Orders $order)
+    {
+        $this->updateOrderStatus(Orders::STATE_ERROR_PAYMENT, $request, $order);
     }
 
-    /**
-     * updateOrderSuccess
-     *
-     * TODO: priority: low, should use shared methods between all payment methods
-     *
-     * @return void
-     */
-    public function updateOrderSuccess( Request $request, Orders $order )
-    {
-        $order->setState( Orders::STATE_PAYMENT_OK );
 
+    /**
+     * set order status and attributes based on pament status
+     *
+     * @param  Integer $status  Status id
+     * @param  Request $request
+     * @param  Orders  $order
+     */
+    public function updateOrderStatus($status, Request $request, Orders $order)
+    {
         $params = [
             'status',
             'error_message',
@@ -135,10 +158,17 @@ class PensioApi implements PaymentMethodApiInterface
         }
 
         $order->setAttribute('paytype', 'payment', 'Pensio');
+        $order->setState($status);
         $order->save();
     }
 
 
+    /**
+     * validate the callback before processing the order.
+     *
+     * @param  Request $request
+     * @param  Orders  $order
+     */
     public function verifyCallback(Request $request, Orders $order)
     {
         if ($order->getState() != Orders::STATE_PRE_PAYMENT) {
@@ -150,12 +180,21 @@ class PensioApi implements PaymentMethodApiInterface
         }
 
 
-        if ($request->get('checksum') && $this->settings['checksum'])
-//            'checksum',
-
-        return true;
+        if ($request->get('checksum') && $this->settings['secret']) {
+            $md5 = md5($order->getTotalPrice().$order->getCurrencyCode().$order->getPaymentGatewayId().$this->settings['secret']);
+            if (0 !== strcmp($md5, $request->get('checksum'))) {
+                throw new Exception('Payment failed: checksum mismatch');
+            }
+        }
     }
 
+
+    /**
+     * Build and return the form used in the checkout flow.
+     *
+     * @param  Orders $order The order object
+     * @return string        The form used to proceed to the Pensio payment window
+     */
     public function getProcessButton(Orders $order)
     {
         $language = LanguagesQuery::create()->select('iso2')->findOneById($order->getLanguagesId());

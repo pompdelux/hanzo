@@ -1,10 +1,12 @@
+{% set simple_layout = true %}
+{% set page_type = 'pensio-wait' %}
 {% extends layout %}
 {% block content %}
     <h1>{{ 'wait.heading'|trans({}, 'pensio') }}</h1>
     <div class="description">
         {{ 'wait.description'|trans({
-            'server' : app.server.HTTP_HOST,
-            'goto' : url('_pensio_status', {'success': 'ok'})
+            '%server%' : app.server.HTTP_HOST,
+            '%goto%' : url('_pensio_status', {'success': 'ok'})
         }, 'pensio') }}
     </div>
 

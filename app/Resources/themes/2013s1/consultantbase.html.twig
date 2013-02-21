@@ -45,11 +45,13 @@
     <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
       {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
     </a>
+  {% if simple_layout is not defined %}
     <nav class="menu main-menu horizontal">
       {% if is_granted('ROLE_USER') %}
         {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': 10, 'from': left_menu.from } %}
       {% endif %}
     </nav><!-- /nav.main -->
+  {% endif %}
     <hr class="right">
   </header>
 
@@ -57,6 +59,7 @@
     {% block content %}{% endblock %}
   </div><!-- /div#main -->
 
+{% if simple_layout is not defined %}
   <nav id="secondary-links">
     {% if is_granted('ROLE_USER') %}
       <ul class="horizontal menu right first">
@@ -71,11 +74,11 @@
       </ul>
     {% endif %}
   </nav>
+{% endif %}
   <footer class="container container_8">
     <div class="grid_8">
       <hr class="left row">
     </div>
-
     <div class="copy grid_8">
       {{ 'footer.address'|trans({'%cdn%':cdn})|raw }}
     </div>

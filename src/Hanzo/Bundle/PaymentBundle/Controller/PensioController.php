@@ -1,5 +1,12 @@
 <?php /* vim: set sw=4: */
 
+/**
+ * Terminal: Pomp De Lux iDEAL Test Terminal
+ * Bruger..: un@bellcom.dk
+ * Password: y2etx3@vz5Jc
+ */
+
+
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
@@ -27,7 +34,7 @@ class PensioController extends CoreController
     /**
      * the form template to hand off to Pensio
      *
-     * @Template("PaymentBundle:Pensio:form")
+     * @Template("PaymentBundle:Pensio:form.html.twig")
      * @param  Request $request
      * @return Response
      */
@@ -43,6 +50,7 @@ class PensioController extends CoreController
 
         return [
             'order_id' => $order->getId(),
+            'payment_id' => $order->getPaymentGatewayId(),
             'amount' => $order->getTotalPrice()
         ];
     }
@@ -51,7 +59,7 @@ class PensioController extends CoreController
     /**
      * redirect page
      *
-     * @Template("PaymentBundle:Pensio:wait")
+     * @Template("PaymentBundle:Pensio:wait.html.twig")
      * @param  Request $request
      * @return Response
      */
@@ -102,7 +110,7 @@ class PensioController extends CoreController
 
             try {
                 $api->verifyCallback($request, $order);
-                $api->updateOrderSatus($request, $order, true);
+                $api->updateOrderSatus(Orders::STATE_PAYMENT_OK, $request, $order);
 
                 $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
             } catch (Exception $e) {
@@ -114,15 +122,17 @@ class PensioController extends CoreController
                 return $this->redirect($this->generateUrl('_checkout_success'));
             }
 
-            $api->updateOrderSatus($request, $order, false);
+            $api->updateOrderSatus(Orders::STATE_ERROR_PAYMENT, $request, $order);
+
+            return $this->render('PaymentBundle:Pensio:failed.html.twig', [
+                'message'    => $request->get('error_message'),
+                'order_id'   => $order->getId(),
+                'amount'     => $order->getTotalPrice(),
+                'payment_id' => $order->getPaymentGatewayId()
+            ]);
         }
 
-        return $this->render('PaymentBundle:Pensio:failed.html.twig', [
-            'message'    => $request->get('error_message'),
-            'order_id'   => $order->getId(),
-            'amount'     => $order->getTotalPrice(),
-            'payment_id' => $order->getPaymentGatewayId()
-        ]);
+        return new Response('FAILED', 500, array('Content-Type' => 'text/plain'));
     }
 
 
