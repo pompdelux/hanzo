@@ -1,0 +1,11 @@
+{% extends layout %}
+{% block content %}
+    <h1>{{ 'failed.heading'|trans({}, 'pensio') }}</h1>
+    <div class="description">{{ 'failed.description'|trans({}, 'pensio') }}</div>
+
+    <ul>
+        <li>{{ 'form.order_id'|trans({'order_id': order_id}, 'pensio') }}</li>
+        <li class="total">{{ 'form.amount'|trans({'amount': amount|money}, 'pensio') }}</li>
+    </ul>
+{% endblock %}
+

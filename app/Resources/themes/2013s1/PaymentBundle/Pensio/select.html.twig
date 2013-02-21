@@ -1,0 +1,7 @@
+<h3>{{ 'payment.pensio.title'|trans({}, 'checkout') }}</h3>
+<ul class="payment-methods" id="payment-method-pensio" data-provider="pensio">
+  <li>
+    <input type="radio" value="pensio:pensio" id="pensio" name="paytype"{% if selected_payment_type == 'pensio:pensio' %} checked{% endif %}>
+    <label for="pensio"><img alt="pensio" src="{{ cdn }}fx/images/icons/pensio.gif"> {{ 'payment.pensio.desc'|trans({}, 'checkout') }}</label>
+  </li>
+</ul>

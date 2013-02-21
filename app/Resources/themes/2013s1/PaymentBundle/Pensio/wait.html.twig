@@ -1,0 +1,13 @@
+{% extends layout %}
+{% block content %}
+    <h1>{{ 'wait.heading'|trans({}, 'pensio') }}</h1>
+    <div class="description">
+        {{ 'wait.description'|trans({
+            'server' : app.server.HTTP_HOST,
+            'goto' : url('_pensio_status', {'success': 'ok'})
+        }, 'pensio') }}
+    </div>
+
+    {# NOTE: DO NOT, UNDER ANY CIRCUMSTANCE, CHANGE THE FORM TAG IN ANY WAY ! #}
+    <div id="PensioRedirectForm"></div>
+{% endblock %}
