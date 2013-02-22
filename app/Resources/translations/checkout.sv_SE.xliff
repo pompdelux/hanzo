@@ -412,7 +412,9 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Order amount is too low</target>
+        <target>Din värdinnerabatt är större än beställningsbeloppet.
+Du måste lägga till fler varor.
+</target>
       </trans-unit>
     </body>
   </file>
