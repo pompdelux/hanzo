@@ -410,6 +410,10 @@
         <source>basket.header</source>
         <target><![CDATA[<h1>Korg</h1><p>Hjälp? <a href="/faq">Vanliga frågor och svar</a></p>]]></target>
       </trans-unit>
+      <trans-unit id="order.amount.to.low" approved="no">
+        <source>order.amount.to.low</source>
+        <target>Order amount is too low</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

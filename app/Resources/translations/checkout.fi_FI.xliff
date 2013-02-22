@@ -388,6 +388,10 @@
         <source>basket.header</source>
         <target><![CDATA[<h1>Ostoskori</h1><p>Tarvitsetko apua? <a href="/faq">FAQ</a></p>]]></target>
       </trans-unit>
+      <trans-unit id="order.amount.to.low" approved="no">
+        <source>order.amount.to.low</source>
+        <target>Order amount is too low</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
