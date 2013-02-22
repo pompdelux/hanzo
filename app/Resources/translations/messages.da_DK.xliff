@@ -230,9 +230,14 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle ordrer sendes med Post Danmark som pakkepost. Det vil sige, at både vi og vores kunder har muligged for at følge pakken med track & trace tuk deb bkuver leveret. Du kan også vælge at få din ordre sendt til din arbejdsplads - så koster det dig istedet 39,00 DKK.</p>
-                    <p>Bemærk: Hvis du til et Home shopping arrangement køber for min. 1.400,00 DKK sender vi din ordre fragtfrit.</p>
-                    <p>Leveringstid: %delivery.date%</p>
+                    <p>Alle varer sendes som pakkepost med <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>. Du har derfor mulighed for at f&oslash;lge din pakke via <a href="http://www.postdanmark.dk/contentfull.dk?content=/cms/da-dk/app/tracktrace/track_og_trace.htm&amp;menufile=" target="_blank">track &amp; trace</a> fra den afsendes, til den bliver leveret. <br />
+    Du kan v&aelig;lge mellem to forsendelsesmuligheder:
+    <ul>
+      <li><strong>Erhvervspakke:</strong> Hvis du gerne vil have leveret pakken på din arbejdsplads, vælger du erhvervspakke. Det koster DKK 39,00 (dog kun DKK 29,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement). Husk at udfylde firmanavn, kontaktperson og firmaadresse i leveringsadressen.</li>
+      <li><strong>Privatpakke:</strong> Hvis du gerne vil have leveret pakken på din privatadresse, koster det DKK 59,00 (DKK 49,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement).</li>
+      <li><strong>Døgnpost:</strong> For at du kan få sendt pakker til Døgnposten, skal du oplyse dit navn og det ID, du valgte ved tilmeldingen til Døgnposten. Det koster DKK 39,00 at få leveret pakker til Døgnposten (dog kun DKK 29,00 hvis du køber varerne til et Home shopping eller Åbent hus arrangement) Oplys Døgnpostens nummer og adresse som leveringsadresse og din egen adresse som betalingsadresse. </li>
+    </ul>
+    N&aring;r du har modtaget pakken, b&oslash;r du kontrollere varerne. Hvis pakken og/eller indholdet er beskadiget, bedes du straks tage kontakt til vores <a href="/da_DK/forside/kundeservice">Kundeservice</a> eller til <a href="http://www.postdanmark.dk" target="_blank">Post Danmark</a>.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
