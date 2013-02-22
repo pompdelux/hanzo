@@ -412,7 +412,9 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Order amount is too low</target>
+        <target>Je gastvrouwkorting is groter dan het totale aankoopbedrag.
+Je moet meer artikelen toevoegen.
+</target>
       </trans-unit>
     </body>
   </file>
