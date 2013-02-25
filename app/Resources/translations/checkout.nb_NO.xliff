@@ -412,7 +412,9 @@
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
-        <target>Order amount is too low</target>
+        <target>Vertinnerabatten overstiger ditt samlede kjøp. 
+Du må tilføye flere varer.
+</target>
       </trans-unit>
     </body>
   </file>
