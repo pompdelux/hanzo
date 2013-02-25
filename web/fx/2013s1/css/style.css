@@ -109,11 +109,11 @@
   background: url('/fx/2013s1/../images/icons/nl-s030a8906ce.png') no-repeat;
 }
 
-.no-sprite, body.no form.buy .submit-button, body.no .buy-set, body.no .new-price {
+.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price {
   background: url('/fx/2013s1/../images/icons/no-sf32cb30fcf.png') no-repeat;
 }
 
-.se-sprite, body.se form.buy .submit-button, body.se .buy-set, body.se .new-price {
+.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price {
   background: url('/fx/2013s1/../images/icons/se-se58d7d38cd.png') no-repeat;
 }
 
@@ -169,17 +169,17 @@ body.fi .new-price {
   width: 234px;
 }
 
-body.no form.buy .submit-button {
+body.nb form.buy .submit-button {
   background-position: 0 -494px;
   height: 84px;
   width: 84px;
 }
-body.no .buy-set {
+body.nb .buy-set {
   background-position: 0 -410px;
   height: 84px;
   width: 84px;
 }
-body.no .new-price {
+body.nb .new-price {
   background-position: 0 0;
   height: 410px;
   width: 234px;
@@ -201,17 +201,17 @@ body.nl .new-price {
   width: 234px;
 }
 
-body.se form.buy .submit-button {
+body.sv form.buy .submit-button {
   background-position: 0 -494px;
   height: 84px;
   width: 84px;
 }
-body.se .buy-set {
+body.sv .buy-set {
   background-position: 0 -410px;
   height: 84px;
   width: 84px;
 }
-body.se .new-price {
+body.sv .new-price {
   background-position: 0 0;
   height: 410px;
   width: 234px;
