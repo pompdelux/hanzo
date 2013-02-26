@@ -18,6 +18,10 @@
         <source>shipping_method.desc.60</source>
         <target></target>
       </trans-unit>
+	        <trans-unit id="shipping_method.desc.70">
+        <source>shipping_method.desc.70</source>
+        <target></target>
+      </trans-unit>
       <trans-unit id="shipping_method.label.60">
         <source>shipping_method.label.60</source>
         <target>DPD %price%</target>
