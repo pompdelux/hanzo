@@ -166,8 +166,10 @@ a.product-color{
 	}
 	@include colorbutton(black9rose);
 	@include colorbutton(black);
+	@include colorbutton(blue-denim);
 	@include colorbutton(blue9grey-melange);
 	@include colorbutton(blue);
+	@include colorbutton(brown);
 	@include colorbutton(camel);
 	@include colorbutton(gold);
 	@include colorbutton(green9grey);
@@ -175,6 +177,7 @@ a.product-color{
 	@include colorbutton(grey9off-white);
 	@include colorbutton(grey-melange);
 	@include colorbutton(grey);
+	@include colorbutton(honey);
 	@include colorbutton(khaki);
 	@include colorbutton(light-blue);
 	@include colorbutton(light-grey-melange);
@@ -194,6 +197,7 @@ a.product-color{
 	@include colorbutton(turquoise);
 	@include colorbutton(white9off-white);
 	@include colorbutton(white);
+	@include colorbutton(wine);
 	@include colorbutton(yellow);
 
 	// .colorbuttons {
