@@ -97,7 +97,7 @@
       $('li li.heading').closest('ul').each(function(index, element) {
         var $element = $(element);
         var count = $('> li', $element).length;
-        $element.css('width', (menu_width * count));
+        $element.css('width', (menu_width * count) + 5);
       });
 
 
