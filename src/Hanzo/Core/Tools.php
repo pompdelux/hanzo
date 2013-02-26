@@ -291,6 +291,11 @@ class Tools
      **/
     public static function debug( $msg, $context, $data = array())
     {
+        // we do not have access to session data here...
+        if (('cli' === PHP_SAPI)) {
+            return;
+        }
+
         $order    = OrdersPeer::getCurrent();
         $customer = CustomersPeer::getCurrent();
 
