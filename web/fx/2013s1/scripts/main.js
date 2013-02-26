@@ -87,9 +87,11 @@
       var menu_width = 0;
       $('li li.heading', $menu).each(function(index, element) {
         var $element = $(element);
-        if (menu_width < $element.width()) {
-          menu_width = $element.width() - 40;
+        var tmp_width = $element.width() - 40;
+        if (menu_width < tmp_width) {
+          menu_width = tmp_width;
         }
+
         $element.addClass('floaded');
       });
       $('li li.heading').closest('ul').each(function(index, element) {
