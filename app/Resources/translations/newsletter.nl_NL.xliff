@@ -32,11 +32,11 @@
       </trans-unit>
       <trans-unit id="subscribed.text" approved="no">
         <source>subscribed.text</source>
-        <target>You are now subscribed to our newsletter.</target>
+        <target>Je bent nu aangemeld voor onze nieuwsbrief.</target>
       </trans-unit>
       <trans-unit id="invalid.email.address" approved="no">
         <source>invalid.email.address</source>
-        <target>The entered email isnt valid</target>
+        <target>De ingevoerde e-mail is ongeldig</target>
       </trans-unit>
     </body>
   </file>
