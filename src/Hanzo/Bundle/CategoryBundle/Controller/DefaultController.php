@@ -76,17 +76,19 @@ class DefaultController extends CoreController
                     ->groupByImage()
                 ->endUse()
                 ->joinWithProductsImages()
-                ->orderBySort()
                 ->filterByCategoriesId($category_id)
             ;
 
             // If there are any colors in the settings to order from, add the order column here.
+            // Else order by normal Sort in db
             if($color_map){
                 $result = $result->addDescendingOrderByColumn(sprintf(
                     "FIELD(%s, %s)",
                     ProductsImagesPeer::COLOR,
                     '\''.implode('\',\'', $color_map).'\''
                 ));
+            }else{
+                $result = $result->orderBySort();
             }
 
             if($pager === 'all'){
