@@ -82,11 +82,13 @@ class DefaultController extends CoreController
             // If there are any colors in the settings to order from, add the order column here.
             // Else order by normal Sort in db
             if($color_map){
-                $result = $result->addDescendingOrderByColumn(sprintf(
-                    "FIELD(%s, %s)",
-                    ProductsImagesPeer::COLOR,
-                    '\''.implode('\',\'', $color_map).'\''
-                ));
+                $result = $result->useProductsImagesQuery()
+                    ->addDescendingOrderByColumn(sprintf(
+                        "FIELD(%s, %s)",
+                        ProductsImagesPeer::COLOR,
+                        '\''.implode('\',\'', $color_map).'\''
+                    ))
+                ->endUse();
             }else{
                 $result = $result->orderBySort();
             }
