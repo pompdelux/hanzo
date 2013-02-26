@@ -145,7 +145,7 @@
      <trans-unit id="payment.transaction_id">
         <source>payment.transaction_id</source>
         <target>Transactienummer</target>
-      </trans-unit
+      </trans-unit>
      <trans-unit id="payment.fee">
         <source>payment.fee</source>
         <target>Betaalkosten</target>
