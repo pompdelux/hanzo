@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
+use Propel;
 use PropelCollection;
 
 use Hanzo\Core\Hanzo;
@@ -9,6 +10,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\OrdersSyncLogQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
@@ -98,10 +100,25 @@ class CheckoutListener
         $order->setUpdatedAt(time());
         $order->save();
 
+        // trigger ax sync
+        $this->ax->sendOrder($order);
+
+        // ONLY send email and cancel payments if the order is logged !
+        $logged = OrdersSyncLogQuery::create()
+            ->select('State')
+            ->filterByOrdersId($order->getId())
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
+        if (!$logged) {
+            return;
+        }
+
+        // build and send order confirmation.
+
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), array(), 'shipping');
+        $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping');
 
         $shipping_cost = 0.00;
         $shipping_fee = 0.00;
@@ -256,9 +273,6 @@ class CheckoutListener
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
         }
-
-        // trigger ax sync
-        $this->ax->sendOrder($order);
     }
 
 
