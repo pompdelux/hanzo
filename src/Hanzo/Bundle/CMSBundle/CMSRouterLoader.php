@@ -90,6 +90,7 @@ class CMSRouterLoader implements LoaderInterface
 
                     //test ... we should never enter this if tho...
                     if (!$settings instanceof \stdClass || !isset($settings->category_id)) {
+                        Tools::log($settings);
                         Tools::log($page->toArray());
                         continue;
                     }
