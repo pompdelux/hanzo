@@ -115,8 +115,12 @@ class Customers extends BaseCustomers implements UserInterface
 
     // NICETO: should not be hardcoded
     private $admins = array(
+        // pompdelux
+        'pd@pompdelux.dk',
+        'mh@pompdelux.dk',
         'hd@pompdelux.dk',
         'lv@pompdelux.dk',
+        // bellcom
         'hf@bellcom.dk',
         'ulrik@bellcom.dk',
         'mmh@bellcom.dk',
