@@ -30,7 +30,7 @@ foreach ($images_found as $file) {
 
     // skip unchanged files
     if (($srcmd5 === $tgdmd5) || (false !== strpos($image, '('))) {
-        continue;
+        #continue;
     }
 
     $images[$image] = $image;
@@ -40,6 +40,8 @@ if (0 === count($images)) {
     _dbug("no images to import, we stop here.");
     exit;
 }
+_dbug("importing ".count($images)." images");
+
 
 // make sure the images are sorted
 ksort($images, SORT_REGULAR);
@@ -333,7 +335,7 @@ if (count($failed)) {
 }
 
 // rescale all images
-if (count($products_images)) {
+if (count($product_images)) {
     require __DIR__ . '/scaleProductImages.php';
 }
 _dbug("- done");
