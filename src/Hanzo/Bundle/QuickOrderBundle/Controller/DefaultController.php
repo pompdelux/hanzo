@@ -67,7 +67,7 @@ class DefaultController extends CoreController
             $line['basket_image'] =
                 preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
                 '_' .
-                preg_replace('/[^a-z0-9]/i', '-', $line['products_color']) .
+                preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $line['products_color'])) .
                 '_set_01.jpg'
             ;
 
@@ -76,6 +76,8 @@ class DefaultController extends CoreController
 
             $products[] = $line;
         }
+
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         return $this->render('QuickOrderBundle:Default:index.html.twig',
             array(
@@ -86,7 +88,7 @@ class DefaultController extends CoreController
                 'delivery_date' => $delivery_date
             )
         );
-        }
+    }
 
     public function getSkuAction()
     {
