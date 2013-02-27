@@ -77,6 +77,8 @@ class DefaultController extends CoreController
             $products[] = $line;
         }
 
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+
         return $this->render('QuickOrderBundle:Default:index.html.twig',
             array(
                 'embedded' => false,
@@ -86,7 +88,7 @@ class DefaultController extends CoreController
                 'delivery_date' => $delivery_date
             )
         );
-        }
+    }
 
     public function getSkuAction()
     {
