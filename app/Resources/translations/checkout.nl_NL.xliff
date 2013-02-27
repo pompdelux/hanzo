@@ -34,8 +34,7 @@
             <a href="%account%">&raquo; Mijn pagina</a>
           </p>
           <h2>FAQ</h2>
-          <p>
-            Hier kun je veelgestelde vragen zien over POMPdeLUX.<br>
+          <p>Hier kun je veelgestelde vragen zien over POMPdeLUX.<br>
             <a href="/nl_NL/voorpagina/klantenservice/faq">&raquo; FAQ</a>
           </p>
           <h2>Nieuws</h2>
@@ -286,7 +285,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia factuur (Kies je ervoor om met PayByBill te betalen),<!-- dan kost dit EUR 6,00 extra)--></target>
+        <target>Gothia factuur (Kies je ervoor om met PayByBill te betalen)</target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
