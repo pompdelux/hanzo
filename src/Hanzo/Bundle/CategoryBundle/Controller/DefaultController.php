@@ -107,8 +107,10 @@ class DefaultController extends CoreController
                 $product = $record->getProducts();
                 $product_ids[] = $product->getId();
 
-                $image_overview = str_replace('_set_', '_overview_', $record->getProductsImages()->getImage());
-                $image_set = str_replace('_overview_', '_set_', $record->getProductsImages()->getImage());
+                // Always use 01.
+                $image = preg_replace('/_(\d{2})/', '_xx', $record->getProductsImages()->getImage());
+                $image_overview = str_replace('_set_', '_overview_', $image);
+                $image_set = str_replace('_overview_', '_set_', $image);
 
                 $records[] = array(
                     'sku' => $product->getSku(),
