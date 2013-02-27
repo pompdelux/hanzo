@@ -119,28 +119,28 @@ class LocationLocator
 
         $response = @file_get_contents($query, false, $context);
 
-if (!is_null($response)) {
-    $json = json_decode($response);
+        if (!is_null($response)) {
+            $json = json_decode($response);
 
-    $service_points = [];
-    if (isset($json->servicePointInformationResponse) && isset($json->servicePointInformationResponse->servicePoints)) {
-        foreach ($json->servicePointInformationResponse->servicePoints as $service_point) {
-            if (isset($service_points[$service_point->servicePointId])) {
-                continue;
+            $service_points = [];
+            if (isset($json->servicePointInformationResponse) && isset($json->servicePointInformationResponse->servicePoints)) {
+                foreach ($json->servicePointInformationResponse->servicePoints as $service_point) {
+                    if (isset($service_points[$service_point->servicePointId])) {
+                        continue;
+                    }
+
+                    $opening_hours = [];
+                    foreach ($service_point->openingHours as $entry) {
+                        $opening_hours[$entry->from1.' - '.$entry->to1][] = $entry;
+                    }
+                    $service_point->openingHours = $opening_hours;
+
+                    $service_points[$service_point->servicePointId] = $service_point;
+                }
             }
-
-            $opening_hours = [];
-            foreach ($service_point->openingHours as $entry) {
-                $opening_hours[$entry->from1.'|'.$entry->to1][] = $entry->day;
-            }
-            $service_point->openingHours = $opening_hours;
-
-            $service_points[$service_point->servicePointId] = $service_point;
         }
-    }
-}
 
-return $service_points;
+        return $service_points;
 
 
 
