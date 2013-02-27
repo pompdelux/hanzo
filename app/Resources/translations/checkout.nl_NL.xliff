@@ -23,8 +23,8 @@
         <target><![CDATA[
           <h2>E-ordernummer</h2>
           <p>E-ordernummer: <b>%id%</b></p>
-         <h2>Levertijd</h2>
-          <p>Verwachte levertijd: %date% werkdag(en).</p>
+         <h2>Behandlingstijd en levering</h2>
+          <p>Bestellingen worden behandeld binnen: %date%(en)worden hierna verzonden.</p>
           <h2>Contact</h2>
           <p>Heb je vragen, neem dan contact op met ons.</p>
           <p>E-mailadres: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.nl</a></p>
@@ -32,11 +32,6 @@
           <p>
             Bekijk je order e.d.<br>
             <a href="%account%">&raquo; Mijn pagina</a>
-          </p>
-          <h2>FAQ</h2>
-          <p>
-            Her kan du finne ofte stilte spørsmål og svar om POMPdeLUX.<br>
-            <a href="/nb_NO/forside/kundeservice/fakta">&raquo; FAQ</a>
           </p>
           <h2>FAQ</h2>
           <p>
@@ -291,7 +286,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia factuur (Kies je ervoor om met PayByBill te betalen, dan kost dit EUR 6,00 extra)</target>
+        <target>Gothia factuur (Kies je ervoor om met PayByBill te betalen),<!-- dan kost dit EUR 6,00 extra)--></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
