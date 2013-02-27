@@ -1,3 +1,6 @@
+HanzoLocationLocatorBundle:
+    resource: "@HanzoLocationLocatorBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
 DiscountBundle:
     resource: "@DiscountBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

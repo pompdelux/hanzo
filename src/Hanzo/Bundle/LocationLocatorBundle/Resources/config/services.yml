@@ -1,0 +1,7 @@
+parameters:
+    hanzo_location_locator.class: Hanzo\Bundle\LocationLocatorBundle\LocationLocator
+
+services:
+    hanzo_location_locator:
+        class: %hanzo_location_locator.class%
+        arguments: [%postnord_api_key%]
