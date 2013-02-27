@@ -100,7 +100,7 @@ class ExceptionHandler
 
             $response = new Response($this->service_container->get('templating')->render('TwigBundle:Exception:error404.html.twig', array(
                 'exception' => $exception
-            )));
+            )), 404);
 
             $event->setResponse($response);
 

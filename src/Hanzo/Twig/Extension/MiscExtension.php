@@ -68,7 +68,8 @@ class MiscExtension extends Twig_Extension
      */
     public function getFilters() {
         return array(
-            'money' => new Twig_Filter_Method($this, 'moneyFormat'),
+            'money'  => new Twig_Filter_Method($this, 'moneyFormat'),
+            'og_description' => new Twig_Filter_Method($this, 'ogDescription'),
         );
     }
 
@@ -325,5 +326,13 @@ DOC;
         }
 
         return $html;
-     }
+    }
+
+    public function ogDescription($description)
+    {
+        $description = explode('<br>', $description);
+        $description = trim($description[0]);
+
+        return $description;
+    }
 }

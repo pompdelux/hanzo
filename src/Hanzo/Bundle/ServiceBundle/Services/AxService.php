@@ -277,12 +277,12 @@ class AxService
         $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
         $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
         $salesTable->InvoiceAccount          = $order->getCustomersId();
-        $salesTable->FreightFeeAmt           = (float) number_format($shipping_cost, 4, '.', '');
+        $salesTable->FreightFeeAmt           = number_format((float) $shipping_cost, 4, '.', '');
         $salesTable->FreightType             = $freight_type;
         $salesTable->HandlingFeeType         = 90;
-        $salesTable->HandlingFeeAmt          = (float) number_format($handeling_fee, 4, '.', '');
+        $salesTable->HandlingFeeAmt          = number_format((float) $handeling_fee, 4, '.', '');
         $salesTable->PayByBillFeeType        = 91;
-        $salesTable->PayByBillFeeAmt         = (float) number_format($payment_cost, 4, '.', ''); // TODO: only for gothia?
+        $salesTable->PayByBillFeeAmt         = number_format((float) $payment_cost, 4, '.', ''); // TODO: only for gothia?
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;

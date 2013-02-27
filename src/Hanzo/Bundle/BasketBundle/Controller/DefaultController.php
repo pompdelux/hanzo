@@ -94,6 +94,8 @@ class DefaultController extends CoreController
                     $latest['expected_at'] = $date;
                 }
 
+                Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
+
                 if ($this->getFormat() == 'json') {
                     return $this->json_response(array(
                         'status' => TRUE,
@@ -126,6 +128,8 @@ class DefaultController extends CoreController
         if ($return) {
             return $total;
         }
+
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         $warning = '';
         if ($this->getFormat() == 'json') {
@@ -183,6 +187,8 @@ class DefaultController extends CoreController
                 'total' => Tools::moneyFormat($order->getTotalPrice(true)),
                 'quantity' => $order->getTotalQuantity(true)
             );
+
+            Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
             if ($this->getFormat() == 'json') {
                 return $this->json_response(array(
@@ -337,7 +343,7 @@ class DefaultController extends CoreController
                 $line['basket_image'] =
                     preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
                     '_' .
-                    preg_replace('/[^a-z0-9]/i', '-', $line['products_color']) .
+                    preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $line['products_color'])) .
                     '_set_01.jpg'
                 ;
 
@@ -383,10 +389,7 @@ class DefaultController extends CoreController
         }
         // <<-- hf@bellcom.dk, 21-aug-2012: link continue shopping to quickorder on consultant site
 
-        // if the basket is empty, make sure the cookie knows.
-        if (0 == count($products)) {
-            Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
-        }
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         return $this->render($template, array(
             'embedded' => $embed,

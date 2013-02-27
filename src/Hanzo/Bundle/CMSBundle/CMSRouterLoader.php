@@ -76,7 +76,7 @@ class CMSRouterLoader implements LoaderInterface
 
             $processed[$path] = $path;
 
-            $settings = $page->getSettings();
+            $settings = trim($page->getSettings());
             if (substr($settings, 0, 2) == 'a:') {
                 // serialized settings
                 $settings = unserialize(stripslashes($settings));
