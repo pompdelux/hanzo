@@ -108,7 +108,7 @@ class DefaultController extends CoreController
                 $product_ids[] = $product->getId();
 
                 // Always use 01.
-                $image = preg_replace('/_(\d{2})/', '_xx', $record->getProductsImages()->getImage());
+                $image = preg_replace('/_(\d{2})/', '_01', $record->getProductsImages()->getImage());
                 $image_overview = str_replace('_set_', '_overview_', $image);
                 $image_set = str_replace('_overview_', '_set_', $image);
 

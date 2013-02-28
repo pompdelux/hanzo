@@ -68,7 +68,7 @@ class DefaultController extends CoreController
                 preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
                 '_' .
                 preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $line['products_color'])) .
-                '_set_01.jpg'
+                '_overview_01.jpg'
             ;
 
             $master = ProductsQuery::create()->findOneBySku($line['products_name']);
