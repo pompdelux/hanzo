@@ -225,12 +225,14 @@ class DefaultController extends CoreController
                     break;
                 }
 
-                $lookup = new SearchQuestion();
-                $lookup->phone = $value;
-                $lookup->username = 'delux';
+                // $lookup = new SearchQuestion();
+                // $lookup->phone = $value;
+                // $lookup->username = 'delux';
 
-                $nno = new NNO();
-                $result = $nno->lookupSubscribers($lookup);
+                // $nno = new NNO();
+                // $result = $nno->lookupSubscribers($lookup);
+
+                $nno = $this->get('nno');
 
                 if (($result instanceof nnoSubscriberResult) &&
                   (count($result->subscribers) == 1) &&
