@@ -99,9 +99,10 @@ class DefaultController extends CoreController
         if (empty($address)) {
             $customer = new Customers();
             $address = new Addresses();
-            if ( count( $countries ) == 1 ) {
-                $address->setCountry( $countries[0]->getLocalName() );
-                $address->setCountriesId( $countries[0]->getId() );
+
+            if (count($countries) == 1) {
+                $address->setCountry($countries[0]->getLocalName());
+                $address->setCountriesId($countries[0]->getId());
             }
 
             $customer->addAddresses($address);
@@ -109,11 +110,9 @@ class DefaultController extends CoreController
 
         }
 
-
         $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => $validation_groups));
-
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
@@ -224,13 +223,6 @@ class DefaultController extends CoreController
                 if (!in_array($domain_key, array('DK', 'SalesDK'))) {
                     break;
                 }
-
-                // $lookup = new SearchQuestion();
-                // $lookup->phone = $value;
-                // $lookup->username = 'delux';
-
-                // $nno = new NNO();
-                // $result = $nno->lookupSubscribers($lookup);
 
                 $nno = $this->get('nno');
 

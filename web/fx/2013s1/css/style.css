@@ -1546,6 +1546,11 @@ form.address label {
   margin: 0 10px;
 }
 
+#body-events-create-customer form ul li {
+  color: red;
+  padding: 5px 0;
+}
+
 /**
 | _basket
 */

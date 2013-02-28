@@ -100,3 +100,9 @@ form.address {
 		margin: 0 10px;
 	}
 }
+#body-events-create-customer {
+	form ul li {
+		color: $form-error-color;
+		padding: 5px 0;
+	}
+}
