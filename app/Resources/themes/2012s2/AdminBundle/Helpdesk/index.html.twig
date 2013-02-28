@@ -31,9 +31,9 @@
       <td>{{ helpdesk.createdat }}</td>
       <th>
         <script>
-          var {{ helpdesk.key }} = '{{ helpdesk.data|raw }}';
+          var x{{ helpdesk.key }} = '{{ helpdesk.data|raw }}';
         </script>
-        <a href="#" onclick="helpdesk_open({{ helpdesk.key }});return false;">
+        <a href="#" onclick="helpdesk_open(x{{ helpdesk.key }});return false;">
           {{ 'admin.helpdesk.view'|trans({}, 'admin') }}
         </a>
         <a href="{{ path('admin_helpdesk_delete', {'key' : helpdesk.key }) }}" class="delete">
