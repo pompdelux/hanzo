@@ -44,13 +44,15 @@ class MenuController extends CoreController
             if ($thread) {
                 $this->cms_thread = $thread;
             }
+
             if (empty($this->path)) {
                 $this->path = str_replace($this->locale, '', $request->getPathInfo());
 
                 // NICETO this could be done better, but how ?
-                if (preg_match('~(?:/[0-9]+/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
+                if (preg_match('~(?:/(?:overview|[0-9]+)/?([a-z0-9\-]+)?)~', $this->path, $matches)) {
                     $this->path = str_replace($matches[0], '', $this->path);
                 }
+
                 // home does not have a trail.
                 if ($this->path != '/') {
                     $this->generateTrail();
