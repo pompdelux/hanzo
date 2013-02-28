@@ -64,7 +64,7 @@ Hanzo\Model\Customers:
                 message: phone.min.length
                 groups: [customer, customer_edit]
             - Regex:
-                pattern: "/^\d+$/"
+                pattern: "/^\d$/"
                 match:   true
                 message: phone.not.valid
                 groups: [customer, customer_edit]
