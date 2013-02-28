@@ -260,7 +260,7 @@
      * currently we track the latest 10 products.
      */
     pub.initLastSeen = function() {
-      if($('input#master').length) {
+      if($('#body-product input#master').length) {
         var data = $.cookie('last_viewed');
 
         if (data) {
