@@ -112,7 +112,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
-        if ( $this->api->getTest() )
+        if ( $this->api->getTest() || Tools::isBellcomRequest() )
         {
           Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
           Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
@@ -168,7 +168,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $callString = AFSWS_CheckCustomer(
 	        $this->userString(),
             AFSWS_Customer(
-                $address->getAddressLine1().' '.$address->getAddressLine2(),
+                trim($address->getAddressLine1().' '.$address->getAddressLine2()),
                 $domain_key,
                 $hanzo->get('core.currency'), // $currency_map[$domain_key], ab@bellcom.dk 070213
                 $customerId,
@@ -183,7 +183,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 null,
                 $gothiaAccount->getSocialSecurityNum(),
                 $customer->getPhone(),
-                $address->getPostalCode(),
+                str_replace(' ', '', $address->getPostalCode()),
                 $address->getCity(),
                 null
             )
