@@ -28,7 +28,7 @@
   {% for helpdesk in helpdesk_data %}
     <tr>
       <td>{{ helpdesk.key }}</td>
-      <td>{{ helpdesk.createdat }}</td>
+      <td>{{ helpdesk.createdAt }}</td>
       <th>
         <script>
           var x{{ helpdesk.key }} = '{{ helpdesk.data|raw }}';

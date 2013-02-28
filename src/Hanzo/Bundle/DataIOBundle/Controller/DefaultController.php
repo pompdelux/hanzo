@@ -26,6 +26,7 @@ class DefaultController extends CoreController
         if ('POST' === $request->getMethod()) {
             $log = new HelpdeskDataLog();
             $log->setKey($_POST['uniqid']);
+            $log->setCreatedAt(date());
 
             unset($_POST['uniqid']);
 
@@ -50,7 +51,7 @@ class DefaultController extends CoreController
 
             return new Response('', 200);
         } else {
-            $aZ09 = array_merge(range('A', 'Z'), range('a', 'z'),range(0, 9));
+            $aZ09 = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
             shuffle($aZ09);
             foreach (array_rand($aZ09, 2) as $k) {
               $uniqid .= $aZ09[$k];
