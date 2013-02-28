@@ -336,6 +336,15 @@ if (count($failed)) {
 
 // rescale all images
 if (count($product_images)) {
+    $tmp = [];
+    foreach ($product_images as $master => $images) {
+        foreach($images as $image) {
+            $tmp[] = $image;
+        }
+    }
+    $product_images = $tmp;
+    unset($tmp);
+
     require __DIR__ . '/scaleProductImages.php';
 }
 _dbug("- done");
