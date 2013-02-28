@@ -6,7 +6,10 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Tools;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Propel;
 use Exception;
 use Hanzo\Model\Orders;
@@ -267,6 +270,7 @@ class OrdersController extends CoreController
         }
 
         $order = OrdersQuery::create()->findOneById($order_id, $this->getDbConnection());
+
         if (!$order instanceof Orders) {
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
@@ -284,6 +288,7 @@ class OrdersController extends CoreController
             ->filterByOrdersId($order_id)
             ->findOne($this->getDbConnection())
         ;
+
         if ($order_log) {
             $log_data = unserialize($order_log->getContent());
             $order_log->delete($this->getDbConnection());
@@ -291,15 +296,15 @@ class OrdersController extends CoreController
 
         try {
             $this->get('ax_manager')->sendOrder($order, false, $this->getDbConnection());
-
         } catch (Exception $e) {
-
             if ('json' === $this->getFormat()) {
                 return $this->json_response(array(
                     'status' => false,
                     'message' => $e->getMessage(),
                 ));
             }
+
+            return false;
         }
 
         if ('json' === $this->getFormat()) {
@@ -309,7 +314,45 @@ class OrdersController extends CoreController
             ));
         }
 
+        return true;
     }
+
+
+    /**
+     * @Template()
+     */
+    public function bulkSendOrdersAction(Request $request)
+    {
+        $form = $this->createFormBuilder()
+            ->add('range', 'text')
+            ->getForm()
+        ;
+
+        $status = [];
+        if ('POST' == $request->getMethod()) {
+            $form->bind($request);
+            $values = $form->getData();
+
+            list($min, $max) = explode('-', $values['range']);
+
+            $orders = OrdersQuery::create()
+                ->filterById(trim($min), \Criteria::GREATER_EQUAL)
+                ->filterById(trim($max), \Criteria::LESS_EQUAL)
+                ->find($this->getDbConnection())
+            ;
+
+            foreach ($orders as $order) {
+                $status[$order->getId()] = $this->resyncAction($order->getId()) ? 'OK' : 'FAILED';
+            }
+
+        }
+
+        return [
+            'form'   => $form->createView(),
+            'status' => $status
+        ];
+    }
+
 
     /**
      * deleteOrder

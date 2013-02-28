@@ -582,6 +582,11 @@ admin_orders_resync_sync:
     requirements:
         order_id: \d+
 
+admin_orders_bulk_resync_sync:
+    pattern: /admin/orders/bulk-sync
+    defaults:
+        _controller: AdminBundle:Orders:bulkSendOrders
+
 admin_orders_preview:
     pattern: /admin/orders/preview/{order_id}
     defaults:
