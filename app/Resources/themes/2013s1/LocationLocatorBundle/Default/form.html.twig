@@ -1,0 +1,12 @@
+<form action="{{ path('hanzo_location_locator') }}" method="post" {{ form_enctype(form) }} class="location-locator">
+    {{ form_errors(form) }}
+    <div class="wrapper">
+        {{ form_row(form.q) }}
+        <input type="submit" value="{{ 'submit.label'|trans([], 'locator') }}" class="button">
+    </div>
+    {{ form_rest(form) }}
+</form>
+
+{% if records|length > 0 %}
+    {% include 'LocationLocatorBundle:Default:result.html.twig' %}
+{% endif %}
