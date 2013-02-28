@@ -349,7 +349,8 @@ class OrdersController extends CoreController
 
         return [
             'form'   => $form->createView(),
-            'status' => $status
+            'status' => $status,
+            'database' => $request->getSession()->get('database')
         ];
     }
 
