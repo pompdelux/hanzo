@@ -226,20 +226,16 @@ class DefaultController extends CoreController
                     break;
                 }
 
-                $nno = $this->get('nno');
+                $result = $this->get('nno')->findOne($value);
 
-                if (($result instanceof nnoSubscriberResult) &&
-                  (count($result->subscribers) == 1) &&
-                  ($result->subscribers[0] instanceof nnoSubscriber)
-                ) {
-                    $record = $result->subscribers[0];
+                if ($result) {
                     $data = array(
-                        'first_name' => $record->christianname,
-                        'last_name'  => $record->surname,
-                        'phone' => $record->phone,
-                        'address_line_1' => $record->address,
-                        'postal_code' => $record->zipcode,
-                        'city' => $record->district,
+                        'first_name' => $result['christianname'],
+                        'last_name'  => $result['surname'],
+                        'phone' => $result['phone'],
+                        'address_line_1' => $result['address'],
+                        'postal_code' => $result['zipcode'],
+                        'city' => $result['district'],
                         'countries_id' => 58,
                         'country' => 'Denmark',
                     );
