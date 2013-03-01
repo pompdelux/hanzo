@@ -552,7 +552,7 @@ class AxService
      */
     protected function Send($service, $request)
     {
-        Tools::debug( 'AX Send:', __METHOD__, array( 'Service' => $service, 'Request' => json_encode($request), 'Skip Send' => $this->skip_send));
+        // Tools::debug( 'AX Send:', __METHOD__, array( 'Service' => $service, 'Request' => json_encode($request), 'Skip Send' => $this->skip_send));
         if ($this->skip_send) {
             return true;
         }

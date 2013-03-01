@@ -10,6 +10,34 @@
                 <source>password.min.length</source>
                 <target>Dit kodeord skal bestå af minimum 5 tegn</target>
             </trans-unit>
+            <trans-unit id="phone.required" approved="no">
+                <source>phone.required</source>
+                <target>Telefonnummer skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="phone.min.length" approved="no">
+                <source>phone.min.length</source>
+                <target>Et telefonnummer består af {{ limit }} tal|Et telefonnummer består af {{ limit }} tal</target>
+            </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>Telefonnummeret må kun bestå af tal</target>
+            </trans-unit>
+            <trans-unit id="email.required" approved="no">
+                <source>email.required</source>
+                <target>Du skal angive E-mailadresse</target>
+            </trans-unit>
+            <trans-unit id="email.invalid.match" approved="no">
+                <source>email.invalid.match</source>
+                <target>De to e-mailadresser matcher ikke</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.required" approved="no">
+                <source>address.first_name.required</source>
+                <target>Du skal udfylde fornavn</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required" approved="no">
+                <source>address.last_name.required</source>
+                <target>Du skal udfylde efternavn</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

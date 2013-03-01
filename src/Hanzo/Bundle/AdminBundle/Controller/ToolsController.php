@@ -13,7 +13,9 @@ class ToolsController extends CoreController
 
     public function indexAction()
     {
-        return $this->render('AdminBundle:Tools:index.html.twig');
+        return $this->render('AdminBundle:Tools:index.html.twig', [
+            'database' => $this->getRequest()->getSession()->get('database')
+        ]);
     }
 
     public function syncCategoriesAction()

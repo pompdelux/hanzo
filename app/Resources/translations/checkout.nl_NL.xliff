@@ -285,7 +285,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia factuur (Kies je ervoor om met PayByBill te betalen)</target>
+        <target>Gothia factuur</target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
