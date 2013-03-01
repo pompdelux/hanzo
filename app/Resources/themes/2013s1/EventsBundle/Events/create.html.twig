@@ -30,7 +30,7 @@
                     <input type="text" id="find-customer-by-email" placeholder="{{ 'events.find_customer_by_email.placeholder'|trans({}, 'events') }}"><input type="submit" id="find-customer-by-email-button" value="{{ 'events.find_customer_by_email.button'|trans({}, 'events') }}">
                 </form>
             </div>
-            <form action="{{ path('events_create', {'id' : id}) }}" method="post" {{ form_enctype(form) }} id="event-edit-form" class="create full-width">
+            <form action="{{ path('events_create', {'id' : id}) }}" method="post" {{ form_enctype(form) }} id="event-edit-form" class="create full-width" novalidate>
                 {{ form_errors(form) }}
 
                 <div id="events">

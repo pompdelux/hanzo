@@ -38,6 +38,22 @@
                 <source>address.last_name.required</source>
                 <target>Sukunimi on annettava</target>
             </trans-unit>
+            <trans-unit id="host.required" approved="no">
+                <source>host.required</source>
+                <target>Du skal angive værtinde</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.required" approved="no">
+                <source>address_line_1.required</source>
+                <target>Du skal udfylde adressen</target>
+            </trans-unit>
+            <trans-unit id="postal_code.required" approved="no">
+                <source>postal_code.required</source>
+                <target>Du skal udfylde postnummer</target>
+            </trans-unit>
+            <trans-unit id="city.required" approved="no">
+                <source>city.required</source>
+                <target>Du skal udfylde by</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

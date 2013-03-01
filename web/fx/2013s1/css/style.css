@@ -1546,11 +1546,6 @@ form.address label {
   margin: 0 10px;
 }
 
-#body-events-create-customer form ul li {
-  color: red;
-  padding: 5px 0;
-}
-
 /**
 | _basket
 */
@@ -2971,4 +2966,9 @@ ol.list {
 .main > .grid_4-5,
 .container_8 .row {
   margin-bottom: 6px;
+}
+
+form ul.form-errors li {
+  color: red;
+  padding: 5px 0;
 }

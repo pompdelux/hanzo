@@ -470,3 +470,8 @@ ol{
 .container_8 .row{
 	margin-bottom: 6px;
 }
+
+form ul.form-errors li {
+	color: $form-error-color;
+	padding: 5px 0;
+}
