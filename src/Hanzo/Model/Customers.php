@@ -134,6 +134,7 @@ class Customers extends BaseCustomers implements UserInterface
         'sj@pompdelux.dk',
         'nj@pompdelux.dk',
         'pc@pompdelux.dk',
+        'mc@pompdelux.dk',
         // admins
         'hd@pompdelux.dk',
         'lv@pompdelux.dk',
