@@ -18,10 +18,6 @@
                 <source>phone.min.length</source>
                 <target>Et telefonnummer består av {{ limit }} tall|Et telefonnummer består av {{ limit }} tall</target>
             </trans-unit>
-            <trans-unit id="phone.min.length" approved="no">
-                <source>phone.min.length</source>
-                <target>Et telefonnummer består af {{ limit }} tal|Et telefonnummer består af {{ limit }} tal</target>
-            </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
                 <target>Telefonnummeret må kun bestå av tall</target>
