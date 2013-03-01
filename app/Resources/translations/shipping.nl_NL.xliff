@@ -19,7 +19,7 @@
         <target></target>
       </trans-unit>	  
 	        <trans-unit id="shipping_method.name.70">
-        <source>shipping_method.desc.70</source>
+        <source>shipping_method.name.70</source>
         <target>DHL</target>
       </trans-unit>
 	  	   <trans-unit id="shipping_method.desc.70">
@@ -27,7 +27,7 @@
         <target><![CDATA[Je bestelling wordt verstuurd naar je privéadres. Heb je een ander afleveradres (bijv. van de buren), wijzig dan het afleveradres door te klikken op: Wijzig afleveradres.]]</target>
       </trans-unit>
 	  <trans-unit id="shipping_method.label.70">
-        <source>shipping_method.desc.70</source>
+        <source>shipping_method.label.70</source>
         <target>DHL %price%</target>
       </trans-unit>
       <trans-unit id="shipping_method.label.60">
