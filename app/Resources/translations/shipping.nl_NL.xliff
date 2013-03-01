@@ -17,19 +17,19 @@
       <trans-unit id="shipping_method.desc.60">
         <source>shipping_method.desc.60</source>
         <target></target>
-      </trans-unit>	  
-	        <trans-unit id="shipping_method.desc.70">
-        <source>shipping_method.desc.70</source>
-        <target>DHL</target>
       </trans-unit>
-	  	   <!--<trans-unit id="shipping_method.desc.70">
-        <source>shipping_method.desc.70</source>
-        <target>Je bestelling wordt verstuurd naar je privéadres. Heb je een ander afleveradres (bijv. van de buren), wijzig dan het afleveradres door te klikken op: Wijzig afleveradres.</target>
+	  <trans-unit id="shipping_method.name.70">
+        <source>shipping_method.name.70</source>
+        <target>DHL</target>
       </trans-unit>
 	  <trans-unit id="shipping_method.desc.70">
         <source>shipping_method.desc.70</source>
+        <target><![CDATA[Je bestelling wordt verstuurd naar je privéadres. Heb je een ander afleveradres (bijv. van de buren), wijzig dan het afleveradres door te klikken op: Wijzig afleveradres.]]></target>
+		</trans-unit>
+		<trans-unit id="shipping_method.label.70">
+        <source>shipping_method.label.70</source>
         <target>DHL %price%</target>
-      </trans-unit>-->
+      </trans-unit>
       <trans-unit id="shipping_method.label.60">
         <source>shipping_method.label.60</source>
         <target>DPD %price%</target>
@@ -37,7 +37,7 @@
       <trans-unit id="shipping_fee.name">
         <source>shipping_fee.name</source>
         <target>Administratiekosten</target>
-      </trans-unit>
+		</trans-unit>
       <trans-unit id="shipping_fee.desc">
         <source>shipping_fee.desc</source>
         <target>Administratiekosten %price%</target>

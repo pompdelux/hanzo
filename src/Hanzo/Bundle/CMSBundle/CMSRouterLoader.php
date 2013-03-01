@@ -199,6 +199,7 @@ class CMSRouterLoader implements LoaderInterface
                         '_controller' => 'CategoryBundle:ByColour:view',
                         'id' => $id,
                         'show' => 'look',
+                        'ip_restricted' => true,
                     ));
                     $routes->add('bycolour_'.$id . '_' . $locale_lower, $route);
 

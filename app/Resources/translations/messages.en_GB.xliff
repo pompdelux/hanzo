@@ -324,7 +324,7 @@
             </trans-unit>
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
-                <target>Goto top</target>
+                <target>Go to top</target>
             </trans-unit>
         </body>
     </file>

@@ -4,39 +4,55 @@
         <body>
             <trans-unit id="email.exists">
                 <source>email.exists</source>
-                <target>Sähköpostiosoite on jo käytössä!</target>
+                <target>Sähköpostiosoite on jo olemassa!</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Koodissa on oltava vähintään 5 merkkiä</target>
+                <target>Salasanassa on oltava vähintään 5 merkkiä</target>
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Telefonnummer skal udfyldes</target>
+                <target>Puhelinnumero on annettava</target>
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Et telefonnummer består af {{ limit }} tal|Et telefonnummer består af {{ limit }} tal</target>
+                <target>Puhelinnumero muodostuu {{ limit }} numerosta|Puhelinnumero muodostuu {{ limit }} numerosta</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Telefonnummeret må kun bestå af tal</target>
+                <target>Puhelinnumerossa on oltava vain numeroita</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
-                <target>Du skal angive E-mailadresse</target>
+                <target>Sähköpostiosoite on annettava</target>
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
                 <source>email.invalid.match</source>
-                <target>De to e-mailadresser matcher ikke</target>
+                <target>Sähköpostiosoitteet eivät vastaa toisiaan</target>
             </trans-unit>
             <trans-unit id="address.first_name.required" approved="no">
                 <source>address.first_name.required</source>
-                <target>Du skal udfylde fornavn</target>
+                <target>Etunimi on annettava</target>
             </trans-unit>
             <trans-unit id="address.last_name.required" approved="no">
                 <source>address.last_name.required</source>
-                <target>Du skal udfylde efternavn</target>
+                <target>Sukunimi on annettava</target>
+            </trans-unit>
+            <trans-unit id="host.required" approved="no">
+                <source>host.required</source>
+                <target>Du skal angive værtinde</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.required" approved="no">
+                <source>address_line_1.required</source>
+                <target>Du skal udfylde adressen</target>
+            </trans-unit>
+            <trans-unit id="postal_code.required" approved="no">
+                <source>postal_code.required</source>
+                <target>Du skal udfylde postnummer</target>
+            </trans-unit>
+            <trans-unit id="city.required" approved="no">
+                <source>city.required</source>
+                <target>Du skal udfylde by</target>
             </trans-unit>
         </body>
     </file>
