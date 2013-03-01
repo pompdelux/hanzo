@@ -104,26 +104,30 @@ class DefaultController extends CoreController
             $records = array();
             $product_ids = array();
             foreach ($result as $record) {
-                $product = $record->getProducts();
-                $product_ids[] = $product->getId();
 
-                // Always use 01.
-                $image = preg_replace('/_(\d{2})/', '_01', $record->getProductsImages()->getImage());
-                $image_overview = str_replace('_set_', '_overview_', $image);
-                $image_set = str_replace('_overview_', '_set_', $image);
+                $image = $record->getProductsImages()->getImage();
 
-                $records[] = array(
-                    'sku' => $product->getSku(),
-                    'id' => $product->getId(),
-                    'title' => $product->getSku(),
-                    'image' => ($show_by_look)?$image_set:$image_overview,
-                    'image_flip' => ($show_by_look)?$image_overview:$image_set,
-                    'url' => $router->generate($product_route, array(
-                        'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
-                        'focus' => $record->getProductsImages()->getId()
-                    )),
-                );
+                // Only use 01.
+                if (preg_match('/_01.jpg/', $image)) {
+                    $product = $record->getProducts();
+                    $product_ids[] = $product->getId();
+
+                    $image_overview = str_replace('_set_', '_overview_', $image);
+                    $image_set = str_replace('_overview_', '_set_', $image);
+
+                    $records[] = array(
+                        'sku' => $product->getSku(),
+                        'id' => $product->getId(),
+                        'title' => $product->getSku(),
+                        'image' => ($show_by_look)?$image_set:$image_overview,
+                        'image_flip' => ($show_by_look)?$image_overview:$image_set,
+                        'url' => $router->generate($product_route, array(
+                            'product_id' => $product->getId(),
+                            'title' => Tools::stripText($product->getSku()),
+                            'focus' => $record->getProductsImages()->getId()
+                        )),
+                    );
+                }
             }
 
             // get product prices
