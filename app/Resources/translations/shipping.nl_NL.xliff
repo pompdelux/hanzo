@@ -24,7 +24,7 @@
       </trans-unit>
 	  <trans-unit id="shipping_method.desc.70">
         <source>shipping_method.desc.70</source>
-        <target><![CDATA[Je bestelling wordt verstuurd naar je privéadres. Heb je een ander afleveradres (bijv. van de buren), wijzig dan het afleveradres door te klikken op: Wijzig afleveradres.]]</target>
+        <target><![CDATA[Je bestelling wordt verstuurd naar je privéadres. Heb je een ander afleveradres (bijv. van de buren), wijzig dan het afleveradres door te klikken op: Wijzig afleveradres.]]></target>
 		</trans-unit>
 		<trans-unit id="shipping_method.label.70">
         <source>shipping_method.label.70</source>
