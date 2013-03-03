@@ -232,14 +232,11 @@ class CheckoutListener
             if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                $orderAttributes = $oldOrder->getAttributes();
-                // Only cancel if it havent been before.
-                if(!isset($orderAttributes->payment->is_canceled) || (isset($orderAttributes->payment->is_canceled) && $orderAttributes->payment->is_canceled !== 'yes')){
-                    try {
-                        $oldOrder->cancelPayment();
-                    } catch (\Exception $e) {
-                        Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
-                    }
+
+                try {
+                    $oldOrder->cancelPayment();
+                } catch (\Exception $e) {
+                    Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                 }
             }
         }

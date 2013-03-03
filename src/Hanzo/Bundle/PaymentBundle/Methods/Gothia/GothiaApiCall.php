@@ -364,6 +364,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( !$response->isError() )
         {
+          // not used. Didnt work to set attribute?
           $order->setAttribute('is_canceled', 'payment', 'yes')->save();
         }
 
