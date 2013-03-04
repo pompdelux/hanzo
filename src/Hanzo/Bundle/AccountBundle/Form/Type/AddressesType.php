@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AccountBundle\Form\Type;
 
+use Hanzo\Core\Hanzo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -26,10 +27,17 @@ class AddressesType extends AbstractType
             'error_bubbling' => true,
             'max_length' => 150
         ));
+
+        $attr = [];
+        if (in_array(Hanzo::getInstance()->get('core.domain_key'), ['DK', 'NO', 'SE', 'SalesDK', 'SalesNO', 'SalesSE'])) {
+            $attr = ['class' => 'auto-city'];
+        }
+
         $builder->add('postal_code', null, array(
             'required' => TRUE,
             'translation_domain' => 'account',
             'error_bubbling' => true,
+            'attr' => $attr,
         ));
         $builder->add('city', null, array(
             'required' => TRUE,
