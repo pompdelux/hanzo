@@ -408,7 +408,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <target><![CDATA[<p><font color="A10000"></font><br>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
                 <ul class="list">
                   <li>Tilføje flere varer</li>
                   <li>Ændre størrelsen og/eller farven på en vare</li>

@@ -404,7 +404,10 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.<br>Voit tehdä tilaukseesi seuraavia muutoksia:
+                <target><![CDATA[<p><font color="A10000"><b>Virhe tilausten muutos vaiheessa</b><br>28. helmikuuta klo. 10.00 - maanantaina 4. maaliskuuta klo. 09.40. Jos olet kyseisen ajan jakson aikana yrittänyt muokata tilaustasi ja olet kokenut teknisiä ongelmia, tapahtuu seuraavaa:<br>1.	POMPdeLUXin täytyy valitettavasti poistaa tekemäsi muutokset, voidaksemme korjata virheen. <br>2.	Kun tilauksesi saa jälleen muodon ”Odottaa” Omilla sivuilla, on virhe korjattu ja voit muokata tilaustasi uudelleen.<br>
+Pahoittelemme tapahtunutta.<br> 
+Ystävällisin terveisin<br>
+POMPdeLUX</font><br>Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.<br>Voit tehdä tilaukseesi seuraavia muutoksia:
                 <ul class="list">
                   <li>Voit lisätä tuotteita</li>
                   <li>Voit muuttaa tuotteen kokoa ja/tai väriä</li>
