@@ -93,7 +93,7 @@ class ByColourController extends CoreController
                 ->useProductsQuery()
                     ->filterByMaster(null, Criteria::ISNULL)
                     ->useProductsToCategoriesQuery()
-                        ->addDescendingOrderByColumn(sprintf(
+                        ->addAscendingOrderByColumn(sprintf(
                             "FIELD(%s, %s)",
                             ProductsToCategoriesPeer::CATEGORIES_ID,
                             implode(',', $includes)
@@ -101,7 +101,7 @@ class ByColourController extends CoreController
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()
-                ->addDescendingOrderByColumn(sprintf(
+                ->addAscendingOrderByColumn(sprintf(
                     "FIELD(%s, %s)",
                     ProductsImagesPeer::COLOR,
                     '\''.implode('\',\'', $color_map).'\''
