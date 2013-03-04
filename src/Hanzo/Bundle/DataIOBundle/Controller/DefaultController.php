@@ -54,20 +54,42 @@ class DefaultController extends CoreController
             $aZ09 = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
             shuffle($aZ09);
             foreach (array_rand($aZ09, 2) as $k) {
-              $uniqid .= $aZ09[$k];
+                $uniqid .= $aZ09[$k];
             }
             $uniqid .= date('is');
         }
 
         return $this->render('DataIOBundle:Default:check.html.twig', [
-          'uniqid' => $uniqid
+           'uniqid' => $uniqid
         ]);
     }
 
 
+    /**
+     * used by nagios/varnish to check uptime
+     *
+     * @return Response
+     */
     public function pingAction()
     {
         return new Response('', 200);
+    }
+
+
+    /**
+     * used for testing HTTP 500 error reporting
+     *
+     * @param  integer $method error method, currently 1 and 2 exists
+     */
+    public function error500Action($method = 1)
+    {
+        // method 1, trigger some invalid php code
+        if (1 == $method){
+            throw new UnknownException('This should trigger a HTTP 500 error.');
+            return new Response('', 200);
+        }
+
+        // method 2, trigger symfony 500 by not returning a Response object
     }
 
 
@@ -111,28 +133,26 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();
 
-        switch ($step)
-        {
-          case 1:
-              $session->set('order_id');
-            break;
+        switch ($step) {
+            case 1:
+                $session->set('order_id');
+                break;
 
-          case 2:
-              $session->remove('order_id');
-              $session->migrate();
-            break;
+            case 2:
+                $session->remove('order_id');
+                $session->migrate();
+                break;
 
-          case 3:
-              $session->remove('order_id');
-              $session->save();
-              $session->migrate();
-              break;
+            case 3:
+                $session->remove('order_id');
+                $session->save();
+                $session->migrate();
+                break;
         }
 
         $orderId = $session->get('order_id');
 
-        if ( $orderId && $step > 1 )
-        {
+        if ( $orderId && $step > 1 ) {
             return new Response( 'Order id is:'.$session->get('order_id'), 500, array('Content-Type' => 'text/plain') );
         }
 
@@ -148,26 +168,19 @@ class DefaultController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        switch ($state)
-        {
+        switch ($state) {
           case 'empty':
-              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0))
-              {
+              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
                   return new Response( 'Empty', 200, array('Content-Type' => 'text/plain') );
-              }
-              else
-              {
+              } else {
                   return new Response( 'Not empty', 500, array('Content-Type' => 'text/plain') );
               }
               break;
 
           case 'full':
-              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0))
-              {
+              if ( ($order->isNew() === true) || ($order->getTotalQuantity(true) == 0)) {
                   return new Response( 'Empty', 500, array('Content-Type' => 'text/plain') );
-              }
-              else
-              {
+              } else {
                   return new Response( 'Not empty', 200, array('Content-Type' => 'text/plain') );
               }
               break;
