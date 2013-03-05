@@ -40,7 +40,7 @@ h1,h2,h3,h4,h5,h6{
 	font-family: $font-sans;
 	font-weight: $font-weight-bold;
 	padding: 0 0 20px 0;
-	letter-spacing: 2px;
+	letter-spacing: 0;
 	a{
 		text-decoration: none;
 		color: inherit;
@@ -172,9 +172,10 @@ a.button,
 	display: inline-block;
 	background: #474749;
 	font-family: $font-sans;
+	font-size: $font-size;
 	text-align: center;
 	padding: 6px;
-	font-weight: bold;
+	font-weight: normal;
 	color: white !important;
 	line-height: 18px;
 	white-space: normal;

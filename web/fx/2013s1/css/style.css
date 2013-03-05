@@ -230,6 +230,7 @@ ul.menu,
   font-size: 14px;
   font-family: "Merriweather", serif;
   color: #444444;
+  letter-spacing: 0;
   z-index: 200;
   position: relative;
 }
@@ -425,6 +426,7 @@ ul.breadcrumb li.last i.arrow-right {
   padding: 0 0 10px;
   font-size: 21px;
   color: white;
+  font-weight: normal;
 }
 .container .main header hgroup h6 {
   font-size: 14px;
@@ -2388,7 +2390,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 900;
   padding: 0 0 20px 0;
-  letter-spacing: 2px;
+  letter-spacing: 0;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   text-decoration: none;
@@ -2542,9 +2544,10 @@ a.button,
   display: inline-block;
   background: #474749;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
   text-align: center;
   padding: 6px;
-  font-weight: bold;
+  font-weight: normal;
   color: white !important;
   line-height: 18px;
   white-space: normal;
