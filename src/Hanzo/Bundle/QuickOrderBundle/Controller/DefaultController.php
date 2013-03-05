@@ -71,8 +71,11 @@ class DefaultController extends CoreController
                 '_overview_01.jpg'
             ;
 
+            $line['url'] = '#';
             $master = ProductsQuery::create()->findOneBySku($line['products_name']);
-            $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+            if ($master) {
+                $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+            }
 
             $products[] = $line;
         }
