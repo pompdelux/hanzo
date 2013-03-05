@@ -81,7 +81,7 @@ class DefaultController extends CoreController
 
             // If there are any colors in the settings to order from, add the order column here.
             // Else order by normal Sort in db
-            if($color_map){
+            if ($color_map) {
                 $result = $result->useProductsImagesQuery()
                     ->addDescendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
@@ -89,13 +89,13 @@ class DefaultController extends CoreController
                         '\''.implode('\',\'', $color_map).'\''
                     ))
                 ->endUse();
-            }else{
+            } else {
                 $result = $result->orderBySort();
             }
 
-            if($pager === 'all'){
+            if ($pager === 'all') {
                 $result = $result->paginate(null, null);
-            }else{
+            } else {
                 $result = $result->paginate($pager, 12);
             }
 
@@ -154,14 +154,14 @@ class DefaultController extends CoreController
                 }
 
                 $data['paginate'] = array(
-                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage()), TRUE)),
-                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage()), TRUE)),
+                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage(), 'show' => $show), TRUE)),
+                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage(), 'show' => $show), TRUE)),
 
                     'pages' => $pages,
                     'index' => $pager,
                     'see_all' => array(
                         'total' => $result->getNbResults(),
-                        'url' => $router->generate($route, array('pager' => 'all'), TRUE)
+                        'url' => $router->generate($route, array('pager' => 'all', 'show' => $show), TRUE)
                     )
                 );
             }
