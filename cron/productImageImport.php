@@ -72,7 +72,7 @@ foreach ($images as $image) {
 
     $product_image = $product_image_stmt->fetchColumn();
 
-    if(empty($product_image)){
+    if(empty($product_image) || empty($index)){
         $failed[] = $image;
         _dbug("Error in picture: {$image}");
         continue;
