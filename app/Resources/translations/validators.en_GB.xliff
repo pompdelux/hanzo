@@ -4,39 +4,39 @@
         <body>
             <trans-unit id="email.exists">
                 <source>email.exists</source>
-                <target>Your E-Mail Address already exists in our records!</target>
+                <target>The e-mail address already exists!</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Password must be a minimum of 5 characters long</target>
+                <target>Your password must contain at least 5 characters</target>
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Telefonnummer skal udfyldes</target>
+                <target>Telephone number must be filled in</target>
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Et telefonnummer består af {{ limit }} tal|Et telefonnummer består af {{ limit }} tal</target>
+                <target>A telephone number contains {{ limit }} digits|A telephone number contains {{ limit }} digits</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Telefonnummeret må kun bestå af tal</target>
+                <target>The telephone number must only contain digits</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
-                <target>Du skal angive E-mailadresse</target>
+                <target>E-mail address must be filled in</target>
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
                 <source>email.invalid.match</source>
-                <target>De to e-mailadresser matcher ikke</target>
+                <target>The two e-mail addresses do not match</target>
             </trans-unit>
             <trans-unit id="address.first_name.required" approved="no">
                 <source>address.first_name.required</source>
-                <target>Du skal udfylde fornavn</target>
+                <target>First name must be filled in</target>
             </trans-unit>
             <trans-unit id="address.last_name.required" approved="no">
                 <source>address.last_name.required</source>
-                <target>Du skal udfylde efternavn</target>
+                <target>Last name must be filled in</target>
             </trans-unit>
             <trans-unit id="host.required" approved="no">
                 <source>host.required</source>
