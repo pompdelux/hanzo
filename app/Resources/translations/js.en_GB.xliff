@@ -266,6 +266,10 @@
                 <source>events.error.email.or.phone</source>
                 <target>Email or phone is required.</target>
             </trans-unit>
+			<trans-unit id="form.buy.choose.first" approved="no">
+                <source>form.buy.choose.first</source>
+                <target>Du skal vælge størrelse og farve først.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
