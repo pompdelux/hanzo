@@ -409,8 +409,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p><font color="A10000"><b>Fout bij het wijzigen van de order<b><br>Is er in de periode van donderdag 28 februari 10.00 uur tot en met 4 maart kl. 09.40 uur bij het wijzigen van je order een technische fout opgetreden, dan gebeurt er nu het volgende:<br>1.   POMPdeLUX is helaas genoodzaakt om de wijzigingen te verwijderen die in je order zijn gedaan, om de fout te kunnen herstellen.<br>
-2.    Zodra je order de status ’Afwachten’ heeft op MIJN PAGINA, is deze fout hersteld en kun je opnieuw de wijzigingen in je order doorvoeren.<br>Onze excuses voor het eventuele ongemak.<br>Met vriendelijke groet<br>POMPdeLUX</font><br>Je kunt de order wijzigen, zo lang deze op ”Afwachten” staat.<br>Je kunt de volgende dingen wijzigen:
+                <target><![CDATA[<p>Je kunt de order wijzigen, zo lang deze op ”Afwachten” staat.<br>Je kunt de volgende dingen wijzigen:
                 <ul class="list">
                   <li>Voeg meer artikelen toe</li>
                   <li>Wijzig de maat of kleur van een artikel</li>

@@ -421,7 +421,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p><font color="A10000"><b>Fejl i redigering af din ordre</b><br>Hvis du i perioden fra torsdag den 28. februar kl. 10.00 til mandag den 4. marts kl. 09.40, har forsøgt at redigere din ordre og oplevet tekniske fejl, sker følgende:<br>1.	POMPdeLUX bliver desværre nød til at fjerne de ændringer du har foretaget i din ordre, for at kunne løse fejlen.<br>2.	Når din ordre får status ”Afventer” på Min side, er fejlen rettet og du kan redigere i din ordre på nyt. <br>Vi beklager ulejligheden. <br>Med venlig hilsen<br>POMPdeLUX</font><br><br>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
                 <ul class="list">
                   <li>Tilføje flere varer</li>
                   <li>Ændre størrelsen og/eller farven på en vare</li>
