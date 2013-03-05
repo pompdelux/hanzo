@@ -6,19 +6,19 @@
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s23707167a9.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-s58a692fae5.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -524px;
+  background-position: 0 -543px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -517px;
+  background-position: 0 -536px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -528px;
+  background-position: 0 -547px;
 }
 
 .icons-basket {
@@ -26,11 +26,11 @@
 }
 
 .icons-button-left {
-  background-position: 0 -411px;
+  background-position: 0 -517px;
 }
 
 .icons-button-right {
-  background-position: 0 -392px;
+  background-position: 0 -498px;
 }
 
 .icons-delete {
@@ -46,15 +46,15 @@
 }
 
 .icons-divider {
-  background-position: 0 -300px;
+  background-position: 0 -255px;
 }
 
 .icons-divider_left {
-  background-position: 0 -217px;
+  background-position: 0 -172px;
 }
 
 .icons-divider_right {
-  background-position: 0 -280px;
+  background-position: 0 -235px;
 }
 
 .icons-edit {
@@ -62,11 +62,11 @@
 }
 
 .icons-facebook {
-  background-position: 0 -430px;
+  background-position: 0 -466px;
 }
 
 .icons-gplus {
-  background-position: 0 -360px;
+  background-position: 0 -320px;
 }
 
 .icons-newsletter {
@@ -74,31 +74,31 @@
 }
 
 .icons-pdf {
-  background-position: 0 -535px;
+  background-position: 0 -554px;
 }
 
 .icons-pinterest {
-  background-position: 0 -459px;
+  background-position: 0 -402px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -237px;
+  background-position: 0 -192px;
 }
 
 .icons-show {
-  background-position: 0 -551px;
+  background-position: 0 -570px;
 }
 
 .icons-twitter {
-  background-position: 0 -488px;
+  background-position: 0 -434px;
 }
 
 .icons-video {
-  background-position: 0 -315px;
+  background-position: 0 -352px;
 }
 
 .icons-zoom {
-  background-position: 0 -172px;
+  background-position: 0 -270px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price {
@@ -585,9 +585,9 @@ div.panes > div {
   text-align: center;
 }
 .zoom .sprite {
-  background-position: 0 -172px;
-  height: 45px;
-  width: 41px;
+  background-position: 0 -270px;
+  height: 50px;
+  width: 45px;
 }
 
 .body-product .breadcrumb {
@@ -599,9 +599,9 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -315px;
-  height: 45px;
-  width: 52px;
+  background-position: 0 -352px;
+  height: 50px;
+  width: 58px;
 }
 
 .body-product .main h1.title,
@@ -1636,16 +1636,16 @@ form.address label {
 | _social
 */
 .social-buttons a.icons-facebook {
-  height: 29px;
-  width: 29px;
+  height: 32px;
+  width: 32px;
 }
 .social-buttons a.icons-twitter {
-  height: 29px;
-  width: 29px;
+  height: 32px;
+  width: 32px;
 }
 .social-buttons a.icons-pinterest {
-  height: 29px;
-  width: 29px;
+  height: 32px;
+  width: 32px;
 }
 
 .facebook-button {
@@ -2286,7 +2286,7 @@ div.dialoug.like-pop li div {
 }
 
 /**
-| _base.
+| _base
 */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -2451,14 +2451,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -300px;
+  background-position: 0 -255px;
   height: 15px;
 }
 hr.left {
-  background-position: 0 -217px;
+  background-position: 0 -172px;
 }
 hr.right {
-  background-position: 0 -280px;
+  background-position: 0 -235px;
 }
 
 strong, b {
@@ -2632,14 +2632,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -528px;
+  background-position: 0 -547px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -517px;
+  background-position: 0 -536px;
   height: 7px;
   width: 4px;
 }
@@ -2798,12 +2798,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -551px;
+  background-position: 0 -570px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -535px;
+  background-position: 0 -554px;
   height: 16px;
   width: 16px;
 }
