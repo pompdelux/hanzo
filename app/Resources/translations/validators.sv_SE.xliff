@@ -12,31 +12,31 @@
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Telefonnummer skal udfyldes</target>
+                <target>Telefonnummer ska fyllas i</target>
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Et telefonnummer består af {{ limit }} tal|Et telefonnummer består af {{ limit }} tal</target>
+                <target>Ett telefonnummer består av  {{ limit }} tal|Ett telefonnummer består av  {{ limit }} tal</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Telefonnummeret må kun bestå af tal</target>
+                <target>Telefonnummret får endast bestå av siffror</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
-                <target>Du skal angive E-mailadresse</target>
+                <target>Du måste ange en E-mailadress</target>
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
                 <source>email.invalid.match</source>
-                <target>De to e-mailadresser matcher ikke</target>
+                <target>E-mailadresserna matchar inte</target>
             </trans-unit>
             <trans-unit id="address.first_name.required" approved="no">
                 <source>address.first_name.required</source>
-                <target>Du skal udfylde fornavn</target>
+                <target>Du måste fylla i förnamn</target>
             </trans-unit>
             <trans-unit id="address.last_name.required" approved="no">
                 <source>address.last_name.required</source>
-                <target>Du skal udfylde efternavn</target>
+                <target>Du måste fylla i efternamn</target>
             </trans-unit>
             <trans-unit id="host.required" approved="no">
                 <source>host.required</source>

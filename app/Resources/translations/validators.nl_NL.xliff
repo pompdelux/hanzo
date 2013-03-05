@@ -8,35 +8,35 @@
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
+                <target>Je wachtwoord moet minstens 5 tekens bevatten</target>
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Telefonnummer skal udfyldes</target>
+                <target>Je moet je telefoonnummer invullen</target>
             </trans-unit>
             <trans-unit id="phone.min.length" approved="no">
                 <source>phone.min.length</source>
-                <target>Et telefonnummer består af {{ limit }} tal|Et telefonnummer består af {{ limit }} tal</target>
+                <target>Een telefoonnummer bestaat uit  {{ limit }} cijfers|Een telefoonnummer bestaat uit {{ limit }} cijfers</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Telefonnummeret må kun bestå af tal</target>
+                <target>Het telefoonnummer mag alleen cijfers bevatten</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
-                <target>Du skal angive E-mailadresse</target>
+                <target>Je moet een e-mailadres vermelden</target>
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
                 <source>email.invalid.match</source>
-                <target>De to e-mailadresser matcher ikke</target>
+                <target>Deze twee e-mailadressen zijn niet hetzelfde</target>
             </trans-unit>
             <trans-unit id="address.first_name.required" approved="no">
                 <source>address.first_name.required</source>
-                <target>Du skal udfylde fornavn</target>
+                <target>Je moet een voornaam invullen</target>
             </trans-unit>
             <trans-unit id="address.last_name.required" approved="no">
                 <source>address.last_name.required</source>
-                <target>Du skal udfylde efternavn</target>
+                <target>Je moet een achternaam invullen</target>
             </trans-unit>
             <trans-unit id="host.required" approved="no">
                 <source>host.required</source>
