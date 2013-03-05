@@ -302,8 +302,10 @@ class CheckoutListener
                 $discount_label = 'discount.private';
                 $discount = $customer->getDiscount();
             } else {
-                $discount_label = 'discount.group';
-                $discount = $customer->getGroups()->getDiscount();
+                if ($customer->getGroups()) {
+                    $discount_label = 'discount.group';
+                    $discount = $customer->getGroups()->getDiscount();
+                }
             }
         }
 
