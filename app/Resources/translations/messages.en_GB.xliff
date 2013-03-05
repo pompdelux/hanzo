@@ -300,7 +300,7 @@
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
-                <target>On stock</target>
+                <target>In stock</target>
             </trans-unit>
             <trans-unit id="on.stock.yes" approved="no">
                 <source>on.stock.yes</source>
