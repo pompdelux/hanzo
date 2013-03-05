@@ -18,3 +18,9 @@ _pc_check:
 _varnish_ping:
     pattern: /varnish-ping
     defaults: { _controller: DataIOBundle:Default:ping }
+
+_error_500:
+    pattern: /error/500/{method}
+    defaults:
+        _controller: DataIOBundle:Default:error500
+        method: 1

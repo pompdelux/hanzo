@@ -185,12 +185,13 @@ class DefaultController extends CoreController
                 'washing' => $washing,
                 'main_image' => $main_image,
                 'images' => $images,
-                'prices' => array(),
+                'prices' => [],
                 'out_of_stock' => $product->getIsOutOfStock(),
                 'colors' => $colors,
                 'all_colors' => $all_colors,
                 'sizes' => $sizes,
-                'images_references' => $images_references
+                'images_references' => $images_references,
+                'has_video' => (bool) $product->getHasVideo()
             );
 
             $this->setCache($cache_id, $data, 60);

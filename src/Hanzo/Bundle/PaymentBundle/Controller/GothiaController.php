@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
+use Propel;
 use Exception;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -50,20 +51,21 @@ class GothiaController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->isNew() )
-        {
+        if ($order->isNew()) {
             return $this->redirect($this->generateUrl('_checkout'));
         }
 
         // hf@bellcom.dk, 18-sep-2012: maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod -->>
-        if ( $order->getState() > Orders::STATE_PRE_PAYMENT )
-        {
+        if ($order->getState() > Orders::STATE_PRE_PAYMENT) {
             $this->get('session')->setFlash('notice', 'order.state_pre_payment.locked');
             return $this->redirect($this->generateUrl('basket_view'));
         }
         // <<-- hf@bellcom.dk, 18-sep-2012: maybe a fix for orders contaning valid dibs info and then is overriden with gothia billingmethod
         //
-        $gothiaAccount = $order->getCustomers()->getGothiaAccounts();
+        $gothiaAccount = $order
+            ->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+            ->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
         // No gothia account has been created and associated with the customer, so lets do that
         $step = 2;
@@ -101,7 +103,7 @@ class GothiaController extends CoreController
 
         // Use form validation?
 
-        if('FI' == str_replace('Sales', '', $domainKey)){
+        if ('FI' == str_replace('Sales', '', $domainKey)) {
             /**
              * Finland uses social security numbers with dash DDMMYY-CCCC
              */
@@ -122,7 +124,7 @@ class GothiaController extends CoreController
                     'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
                 ));
             }
-        }elseif('NO' == str_replace('Sales', '', $domainKey)){
+        } elseif ('NO' == str_replace('Sales', '', $domainKey)) {
             /**
              * Norway uses social security numbers without dash but with 5 digits DDMMYY-CCCCC
              */
@@ -141,8 +143,7 @@ class GothiaController extends CoreController
                     'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
                 ));
             }
-        }elseif('DK' == str_replace('Sales', '', $domainKey) ||
-                'NL' == str_replace('Sales', '', $domainKey)){
+        } elseif (('DK' == str_replace('Sales', '', $domainKey)) || ('NL' == str_replace('Sales', '', $domainKey))) {
             /**
              * Denmark uses birthdate DDMMYYYY
              * Netherland uses birthdate DDMMYYYY
@@ -163,7 +164,7 @@ class GothiaController extends CoreController
                     'message' => $translator->trans('json.ssn.to_long', array(), 'gothia')
                 ));
             }
-        }else{
+        } else {
             /**
              * All others uses social security number without dash DDMMYYCCCC
              */
@@ -193,8 +194,8 @@ class GothiaController extends CoreController
         }
 
         $order         = OrdersPeer::getCurrent();
-        $customer      = $order->getCustomers();
-        $gothiaAccount = $customer->getGothiaAccounts();
+        $customer      = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         if (is_null($gothiaAccount)) {
             $gothiaAccount = new GothiaAccounts();
@@ -227,7 +228,7 @@ class GothiaController extends CoreController
 
         if ( !$response->isError() )
         {
-            $gothiaAccount = $customer->getGothiaAccounts();
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
             $gothiaAccount->setDistributionBy( $response->data['DistributionBy'] )
                 ->setDistributionType( $response->data['DistributionType'] );
 
@@ -269,7 +270,7 @@ class GothiaController extends CoreController
     public function confirmAction(Request $request)
     {
         $order      = OrdersPeer::getCurrent();
-        $customer   = $order->getCustomers();
+        $customer   = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $api        = $this->get('payment.gothiaapi');
         $translator = $this->get('translator');
 
@@ -303,33 +304,21 @@ class GothiaController extends CoreController
                 if ( $paytype == 'gothia' && $order->getTotalPrice() != $oldOrder->getTotalPrice() )
                 {
                     $timer = new Timer('gothia', true);
-
-                    try {
-                        $response = $oldOrder->cancelPayment();
-                    } catch (Exception $e) {
+                    try
+                    {
+                        $response = $api->call()->cancelReservation( $customer, $oldOrder );
+                    }
+                    catch( GothiaApiCallException $g )
+                    {
                         $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
                         Tools::debug('Cancel reservation failed', __METHOD__, array('Message' => $e->getMessage()));
                         return $this->json_response(array(
                             'status' => FALSE,
-                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $e->getMessage()), 'gothia'),
+                            'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
                         ));
                     }
 
-
-                    // ab@bellcom.dk
-                    // try
-                    // {
-                    //     $response = $api->call()->cancelReservation( $customer, $oldOrder );
-                    // }
-                    // catch( GothiaApiCallException $g )
-                    // {
-                    //     $timer->logOne('cancelReservation call failed, orderId #'.$oldOrder->getId());
-
-                    //     return $this->json_response(array(
-                    //         'status' => FALSE,
-                    //         'message' => $translator->trans('json.cancelreservation.failed', array('%msg%' => $g->getMessage()), 'gothia'),
-                    //     ));
-                    // }
+                    $timer->logOne('cancelReservation, orderId #'.$oldOrder->getId());
 
                     if ( $response->isError() )
                     {
@@ -420,13 +409,10 @@ class GothiaController extends CoreController
     {
         $order = OrdersPeer::getCurrent();
 
-        if ( $order->getState() < Orders::STATE_PAYMENT_OK )
-        {
+        if ( $order->getState() < Orders::STATE_PAYMENT_OK ) {
             return $this->redirect($this->generateUrl('_checkout_failed'));
         }
-        else
-        {
-            return $this->redirect($this->generateUrl('_checkout_success'));
-        }
+
+        return $this->redirect($this->generateUrl('_checkout_success'));
     }
 }

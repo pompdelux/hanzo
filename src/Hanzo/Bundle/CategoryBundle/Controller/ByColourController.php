@@ -22,7 +22,7 @@ use Hanzo\Model\ProductsToCategoriesQuery;
 
 class ByColourController extends CoreController
 {
-    public function viewAction($id)
+    public function viewAction($id, $show)
     {
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
@@ -33,7 +33,7 @@ class ByColourController extends CoreController
         $router = $container->get('router');
 
         $cache_id = explode('_', $this->get('request')->get('_route'));
-        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1]);
+        $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show);
 
         // html/normal request
         $cache_id[] = 'html';
@@ -47,6 +47,8 @@ class ByColourController extends CoreController
             $ignores = explode(',', $settings->ignore);
             $color_map = explode(',', $settings->colors);
 
+            $show_by_look = (bool) ($show === 'look');
+
             $categories = array();
             $resultset = CategoriesI18nQuery::create()
                 ->filterByLocale($locale)
@@ -56,6 +58,7 @@ class ByColourController extends CoreController
                 $categories[$category->getId()] = $category->getTitle();
             }
             unset ($resultset);
+
 
             $index = 1;
             $products = array();
@@ -77,21 +80,25 @@ class ByColourController extends CoreController
                 ))
                 ->find()
             ;
-            $skus = array();
+
             $ids = array();
             $products_to_categories = array();
             foreach ($masters as $master) {
-                $skus[$master->getProducts()->getSku()] = $categories[$master->getCategoriesId()];
                 $ids[] = $master->getProducts()->getId();
                 $products_to_categories[$master->getProducts()->getId()] = $master->getCategoriesId();
             }
 
             $variants = ProductsImagesQuery::create()
                 ->joinWithProducts()
+                ->addAscendingOrderByColumn(sprintf(
+                    "FIELD(%s, %s)",
+                    ProductsImagesPeer::COLOR,
+                    '\''.implode('\',\'', $color_map).'\''
+                ))
                 ->useProductsQuery()
                     ->filterByMaster(null, Criteria::ISNULL)
                     ->useProductsToCategoriesQuery()
-                        ->addDescendingOrderByColumn(sprintf(
+                        ->addAscendingOrderByColumn(sprintf(
                             "FIELD(%s, %s)",
                             ProductsToCategoriesPeer::CATEGORIES_ID,
                             implode(',', $includes)
@@ -99,13 +106,8 @@ class ByColourController extends CoreController
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()
-                ->addDescendingOrderByColumn(sprintf(
-                    "FIELD(%s, %s)",
-                    ProductsImagesPeer::COLOR,
-                    '\''.implode('\',\'', $color_map).'\''
-                ))
                 ->filterByColor($color_map)
-                ->filterByType('overview')
+                ->filterByType($show_by_look?'set':'overview')
                 ->groupById()
                 ->find()
             ;
@@ -115,14 +117,22 @@ class ByColourController extends CoreController
             foreach ($variants as $variant) {
                 $product = $variant->getProducts();
 
+                // Always use 01.
+                $image = preg_replace('/_(\d{2})/', '_01', $variant->getImage());
+                $image_overview = str_replace('_set_', '_overview_', $image);
+                $image_set = str_replace('_overview_', '_set_', $image);
+
+                $cid = $products_to_categories[$variant->getProducts()->getId()];
+
                 $products[] = array(
-                    'category_id' => $products_to_categories[$variant->getProducts()->getId()],
+                    'category_id' => $cid,
+                    'category' => $categories[$cid],
                     'sku' => $product->getSku(),
                     'id' => $product->getId(),
                     'title' => $product->getSku(),
                     'color' => $variant->getColor(),
-                    'image' => $variant->getImage(),
-                    'image_flip' => str_replace('_overview_', '_set_', $variant->getImage()),
+                    'image' => ($show_by_look) ? $image_set : $image_overview,
+                    'image_flip' => ($show_by_look) ? $image_overview : $image_set,
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
                         'title' => Tools::stripText($product->getSku()),
@@ -145,9 +155,10 @@ class ByColourController extends CoreController
             }
 
             $this->get('twig')->addGlobal('page_type', 'bycolour-'.$id);
-            $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$id);
+            $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$id.' body-'.$show);
             $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
             $this->get('twig')->addGlobal('cms_id', $page->getParentId());
+            $this->get('twig')->addGlobal('show_by_look', ($show === 'look'));
             $html = $this->renderView('CategoryBundle:ByColour:view.html.twig', array('products' => $products));
             $this->setCache($cache_id, $html, 5);
         }

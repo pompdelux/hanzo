@@ -3,7 +3,7 @@ var account = (function($) {
 
   pub.init = function() {
     nnoInit();
-    zipToCityInit();
+    pub.zipToCityInit();
 
     if($('form.create').length) {
       var $form = $('form.create');
@@ -168,7 +168,7 @@ var account = (function($) {
     });
   }
 
-  function zipToCityInit()
+  pub.zipToCityInit = function ()
   {
     /**
      * auto complete city names when entering zip codes.
@@ -218,7 +218,7 @@ var account = (function($) {
         });
       }
     } catch (e) {}
-  }
+  };
 
   pub.orderHistoryInit = function() {
     $('a.edit').on('click', function(event) {
@@ -247,6 +247,9 @@ var account = (function($) {
 
 if ($("#body-create-account").length) {
   account.init();
+}
+if ($("#body-events-create-customer").length) {
+  account.zipToCityInit();
 }
 
 if ($("table#order-status").length) {

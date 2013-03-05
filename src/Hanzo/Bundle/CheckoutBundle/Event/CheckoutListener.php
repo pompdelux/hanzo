@@ -187,15 +187,13 @@ class CheckoutListener
 
         // hf@bellcom.dk, 04-sep-2012: only show if > 0 -->>
         $payment_fee = $order->getPaymentFee();
-        if ( $payment_fee > 0 )
-        {
+        if ( $payment_fee > 0 ) {
           $params['payment_fee'] = $payment_fee;
         }
         // <<-- hf@bellcom.dk, 04-sep-2012: only show if > 0
 
         // hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia -->>
-        if ( !empty($card_type) )
-        {
+        if ( !empty($card_type) ) {
           $params['card_type'] = $card_type;
         }
         // <<-- hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia
@@ -242,21 +240,18 @@ class CheckoutListener
         }
 
         // Handle payment canceling of old order
-        if ($in_edit) {
+        if ($in_edit && ('gothia' !== $order->getBillingMethod())) {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
             if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
-                $orderAttributes = $oldOrder->getAttributes();
-                // Only cancel if it havent been before.
-                if(!isset($orderAttributes->payment->is_canceled) || (isset($orderAttributes->payment->is_canceled) && $orderAttributes->payment->is_canceled !== 'yes')){
-                    try {
-                        $oldOrder->cancelPayment();
-                    } catch (\Exception $e) {
-                        Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
-                    }
+
+                try {
+                    $oldOrder->cancelPayment();
+                } catch (\Exception $e) {
+                    Tools::log( 'Could not cancel payment for old order, id: '. $oldOrder->getId() .' error was: '. $e->getMessage());
                 }
             }
         }
@@ -307,8 +302,10 @@ class CheckoutListener
                 $discount_label = 'discount.private';
                 $discount = $customer->getDiscount();
             } else {
-                $discount_label = 'discount.group';
-                $discount = $customer->getGroups()->getDiscount();
+                if ($customer->getGroups()) {
+                    $discount_label = 'discount.group';
+                    $discount = $customer->getGroups()->getDiscount();
+                }
             }
         }
 

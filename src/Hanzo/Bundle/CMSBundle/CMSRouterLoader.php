@@ -195,9 +195,11 @@ class CMSRouterLoader implements LoaderInterface
                     break;
 
                 case 'bycolour':
-                    $route = new Route("/".$path, array(
+                    $route = new Route("/{$path}/{show}", array(
                         '_controller' => 'CategoryBundle:ByColour:view',
                         'id' => $id,
+                        'show' => 'look',
+                        'ip_restricted' => true,
                     ));
                     $routes->add('bycolour_'.$id . '_' . $locale_lower, $route);
 

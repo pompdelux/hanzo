@@ -1,0 +1,40 @@
+{% extends '::adminbase.html.twig' %}
+
+{% block content %}
+<nav class="sub">
+  <ul>
+    <li>
+      <a href="{{ path('admin_orders') }}">
+        {{ 'admin.back.button'|trans({}, 'admin') }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<h1>Bulk genseldelse af ordre</h1>
+
+{% if app.session.hasFlash('notice') %}
+<div class="message notice">
+  {{ app.session.flash('notice')|trans({}, 'admin') }}
+</div>
+{% endif %}
+
+<p>Range er eks: 10-20 hvor begge ordreidéer er inklusive i de  der gensendes.</p>
+<p>Husk - det kan godt tage lang tid før siden svare - alt afhængig af hvor mange ordre der gensendes!</p>
+
+<form action="{{ path('admin_orders_bulk_resync_sync') }}" method="post" {{ form_enctype(form) }}>
+  <div>
+    {{ form_widget(form) }}
+    <input class="button right" type="submit" value="Send">
+  </div>
+  {{ form_rest(form) }}
+</form>
+
+{% if status|length > 0 %}
+<h4>Gensend status på ordrene:</h4>
+{% for i,s in status %}
+ - {{ i }}: {{ s }}<br>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

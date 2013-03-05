@@ -405,7 +405,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Du kan ändra i ordern så länge den har statusen “Väntar”.<br>Du kan göra följande ändringar på din order:
+                <target><![CDATA[<p><font color="A10000"><b>Fel i redigering av din Gothia order</b><br>Om du i perioden torsdag den 28 februari kl. 10.00 till måndag den 4 mars kl. 09.40, försökt att redigera i din order och upplevt tekniska fel, kommer följande att ske:<br>1.	POMPdeLUX måste tyvärr ta bort de ändringar du gjort på din order, för att lösa problemet.<br>2. När din original order får statusen ”Väntar”, är felet rättat och det inte står något under handling utan endast ikoner där, du kan göra dina ändringar på nytt igen.<br>Vi beklagar besväret.<br>Med vänlig hälsning<br>POMPdeLUX</font><br><br>Du kan ändra i ordern så länge den har statusen “Väntar”.<br>Du kan göra följande ändringar på din order:
                 <ul class="list">
                   <li>Lägg till fler varor</li>
                   <li>Ändra storlek och/eller färg på en vara</li>

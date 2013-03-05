@@ -66,7 +66,7 @@
       <trans-unit id="Adele SKIRT">
         <source>description.Adele_SKIRT</source>
         <target>
-          <![CDATA[Skjønne Adele! Skjørtet er som en liten klokke i skjønt stoff med gulldetaljer, et feminint paljettbånd ned langs siden, en liten splitt bak og praktiske lommer foran med glidelås som man kan gjemme små skatter i. 
+          <![CDATA[Skjønne Adele! Skjørtet er som en liten klokke i skjønt stoff med gulldetaljer, et feminint paljettbånd ned langs siden, en liten splitt bak og praktiske lommer foran med glidelås som man kan gjemme små skatter i. Merk: Livvidden på Adele SKIRT er dessverre blitt ca. en størrelse mindre enn ønsket. Du bør derfor kjøpe Adele SKIRT i en størrelse større enn du normalt ville gjøre. 
             <br><br>	Fås i: Light Grey Melange (lys gråmelert) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 65% Bomull, 28% Polyamid, 7% Metall-fibre]]>
         </target>
       </trans-unit>
@@ -416,7 +416,7 @@
         <source>description.Carlos_PANTS</source>
         <target>
           <![CDATA[Baggy og sweat, kan det bli mer behagelig å gå i?
-            Kul på hverdager, til sport og deilig til avslapping! Og så gir Cameron god samvittighet, da den har Oeko-Tex-merking.
+            Kul på hverdager, til sport og deilig til avslapping! Og så gir Carlos god samvittighet, da den har Oeko-Tex-merking.
             <br><br>	Fås i: Grey Melange (gråmelert) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
@@ -512,7 +512,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[Oeko-Tex-merket sweat-jakke i en sporty stil. Kjempelekker og kul til det meste.	<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
+          <![CDATA[Oeko-Tex-merket sweat-jakke i en sporty stil. Kjempelekker og kul til det meste.	Merk: Ribbekanten på fargen Wine (vinrød) er ensfarget Wine (vinrød) og ikke stripete som på bildet.<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -1245,13 +1245,13 @@
       <trans-unit id="Lucy Little SS TSHIRT">
         <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Masse kjærlighet til søte myke Lucy! Lucy gir også god samvittighet med sitt Oeko-Tex-merke.	<br><br>	Fås i: Rose (rosa), White (hvit), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 80% Bomull, 20% Lin]]>
+          <![CDATA[All you need is love! Masse kjærlighet til søte myke Lucy! Lucy gir også god samvittighet med sitt Oeko-Tex-merke. <br><b>Viktig informasjon:</b> Liten i størrelsen. Du bør kjøpe en størrelse større.	<br><br>	Fås i: Rose (rosa), White (hvit), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 80% Bomull, 20% Lin]]>
         </target>
       </trans-unit>
       <trans-unit id="Lucy SS TSHIRT">
         <source>description.Lucy_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Masse kjærlighet til søte myke Lucy! Lucy gir også god samvittighet med sitt Oeko-Tex-merke.	<br><br>	Fås i: Rose (rosa), White (hvit), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 80% Bomull, 20% Lin]]>
+          <![CDATA[All you need is love! Masse kjærlighet til søte myke Lucy! Lucy gir også god samvittighet med sitt Oeko-Tex-merke. <br><b>Viktig informasjon:</b> Liten i størrelsen. Du bør kjøpe en størrelse større.	<br><br>	Fås i: Rose (rosa), White (hvit), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 80% Bomull, 20% Lin]]>
         </target>
       </trans-unit>
       <trans-unit id="Madison CARDIGAN">

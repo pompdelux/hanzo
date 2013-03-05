@@ -102,6 +102,8 @@
 
 
       $('> ul > li > a', $menu).click(function(event) {
+        event.stopPropagation();
+
         var $this = $(this).parent();
         var $element = $('> ul', $this);
 
@@ -111,6 +113,10 @@
         if ($('ul', $this).length) {
           event.preventDefault();
         }
+      });
+
+      $('html').click(function(event) {
+        $('.on', $menu).removeClass('on');
       });
     };
 

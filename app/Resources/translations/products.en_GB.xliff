@@ -53,7 +53,7 @@
       <trans-unit id="Adele SKIRT">
         <source>description.Adele_SKIRT</source>
         <target>
-          <![CDATA[Lovely Adele! The skirt is like a little bell, in a very soft fabric with gold metallic fibres, feminine sequin strips along the sides, a small back vent and practical front zipper pockets to hide your favourite treasures.	<br><br>	Available in Light Grey Melange and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 65% Cotton, 28% Polyamide, 7% Metallic Fibre.]]>
+          <![CDATA[Lovely Adele! The skirt is like a little bell, in a very soft fabric with gold metallic fibres, feminine sequin strips along the sides, a small back vent and practical front zipper pockets to hide your favourite treasures.  Important:  The waist on this skirt is tighter than expected. We therefore recommend that you choose one size up.	<br><br>	Available in Light Grey Melange and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 65% Cotton, 28% Polyamide, 7% Metallic Fibre.]]>
         </target>
       </trans-unit>
       <trans-unit id="Alisha SHORTS">
@@ -389,7 +389,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[An Oeko Tex certified sporty sweat jacket. Super soft and looks cool with almost everything.	<br><br>	Available in Blue and Wine.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
+          <![CDATA[An Oeko Tex certified sporty sweat jacket. Super soft and looks cool with almost everything. Please note: The rib trim on the Wine coloured jacket is solid coloured Wine and not striped as shown on the photo.	<br><br>	Available in Blue and Wine.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -1007,13 +1007,13 @@
       <trans-unit id="Lucy Little SS TSHIRT">
         <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! And we just love cute little Lucy! And it will give you a clear conscience, as Lucy is Oeko Tex certified.	<br><br>	Available in Rose, White, Peach and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Linen.]]>
+          <![CDATA[All you need is love! And we just love cute little Lucy! And it will give you a clear conscience, as Lucy is Oeko Tex certified. <br><b>Important:</b>  The T-shirt is smaller than expected. We therefore recommend that you choose one size up.<br><br>	Available in Rose, White, Peach and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Linen.]]>
         </target>
       </trans-unit>
       <trans-unit id="Lucy SS TSHIRT">
         <source>description.Lucy_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! And we just love cute little Lucy! And it will give you a clear conscience, as Lucy is Oeko Tex certified.	<br><br>	Available in Rose, White, Peach and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Linen.]]>
+          <![CDATA[All you need is love! And we just love cute little Lucy! And it will give you a clear conscience, as Lucy is Oeko Tex certified.	<br><b>Important:</b>  The T-shirt is smaller than expected. We therefore recommend that you choose one size up.<br><br>	Available in Rose, White, Peach and Blue.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 80% Cotton, 20% Linen.]]>
         </target>
       </trans-unit>
       <trans-unit id="Madison CARDIGAN">

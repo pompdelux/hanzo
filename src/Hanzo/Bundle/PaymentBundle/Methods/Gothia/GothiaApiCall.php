@@ -2,17 +2,22 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\Gothia;
 
+use Propel;
+use Criteria;
 use Exception;
 
-use Hanzo\Core\Hanzo,
-    Hanzo\Core\Tools,
-    Hanzo\Core\Timer,
-    Hanzo\Model\Orders,
-    Hanzo\Model\Customers,
-    Hanzo\Model\GothiaAccounts,
-    Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface,
-    Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi,
-    Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApiCallResponse;
+use Hanzo\Core\Hanzo;
+use Hanzo\Core\Tools;
+use Hanzo\Core\Timer;
+
+use Hanzo\Model\Orders;
+use Hanzo\Model\Customers;
+use Hanzo\Model\AddressesPeer;
+use Hanzo\Model\GothiaAccounts;
+
+use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApi;
+use Hanzo\Bundle\PaymentBundle\Methods\Gothia\GothiaApiCallResponse;
 
 // Great... fucking oldschool crap code:
 require 'AFWS.php';
@@ -112,7 +117,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             throw new GothiaApiCallException( implode('<br>', $errors) );
         }
 
-        if ( $this->api->getTest() )
+        if ( $this->api->getTest() || Tools::isBellcomRequest() )
         {
           Tools::debug( 'Gothia debug call', __METHOD__, array( 'Function' => $function, 'Callstring' => $request));
           Tools::debug( 'Gothia debug response', __METHOD__, array( 'Response' => $response ));
@@ -142,25 +147,24 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         //     'DK' => 'DKK'
         // );
 
-        $addresses     = $customer->getAddressess();
+        $c = new Criteria;
+        $c->add(AddressesPeer::TYPE, 'payment');
+        $addresses = $customer->getAddressess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
-        if ( !isset($addresses[0]) )
-        {
+        if (!isset($addresses[0])) {
             #Tools::debug( 'Customer is missing an address', __METHOD__ );
             throw new GothiaApiCallException( 'Missing address' );
         }
 
         $address       = $addresses[0];
-        $gothiaAccount = $customer->getGothiaAccounts();
+        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $customerId    = $customer->getId();
 
-        if ( $this->api->getTest() )
-        {
+        if ($this->api->getTest()) {
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
-        if ( empty($customerId) )
-        {
+        if (empty($customerId)) {
             #Tools::debug( 'Missing customer id', __METHOD__ );
             throw new GothiaApiCallException( 'Missing customer id' );
         }
@@ -168,7 +172,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $callString = AFSWS_CheckCustomer(
 	        $this->userString(),
             AFSWS_Customer(
-                $address->getAddressLine1().' '.$address->getAddressLine2(),
+                trim($address->getAddressLine1().' '.$address->getAddressLine2()),
                 $domain_key,
                 $hanzo->get('core.currency'), // $currency_map[$domain_key], ab@bellcom.dk 070213
                 $customerId,
@@ -183,7 +187,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
                 null,
                 $gothiaAccount->getSocialSecurityNum(),
                 $customer->getPhone(),
-                $address->getPostalCode(),
+                str_replace(' ', '', $address->getPostalCode()),
                 $address->getCity(),
                 null
             )
@@ -203,8 +207,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
     {
         $customerId = false;
 
-        switch ($ssn)
-        {
+        switch ($ssn) {
           case 4409291111:
               $customerId = 100010;
             break;
@@ -282,7 +285,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( $this->api->getTest() )
         {
-            $gothiaAccount = $customer->getGothiaAccounts();
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
             #Tools::debug( 'Test Gothia', __METHOD__, array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
         }
@@ -333,7 +336,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( $this->api->getTest() )
         {
-            $gothiaAccount = $customer->getGothiaAccounts();
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
@@ -364,6 +367,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( !$response->isError() )
         {
+          // not used. Didnt work to set attribute?
           $order->setAttribute('is_canceled', 'payment', 'yes')->save();
         }
 

@@ -66,7 +66,7 @@
       <trans-unit id="Adele SKIRT">
         <source>description.Adele_SKIRT</source>
         <target>
-          <![CDATA[Skønne Adele! Nederdelen er som en lille klokke, i det dejligste bløde stof med guld nister, et feminint palliet bånd ned langs siden, en lille slids bagpå, praktiske lommer foran med lynlåse, som kan rumme små fundne skatte og et blødt elastik i taljen med bindebånd.
+          <![CDATA[Skønne Adele! Nederdelen er som en lille klokke, i det dejligste bløde stof med guld nister, et feminint palliet bånd ned langs siden, en lille slids bagpå, praktiske lommer foran med lynlåse, som kan rumme små fundne skatte og et blødt elastik i taljen med bindebånd. Bemærk: Taljemålet på Adele SKIRT er desværre blevet ca. en størrelse mindre end ønsket. Du skal derfor købe Adele SKIRT i en størrelse større end du normalt ville gøre.  
             <br><br>	Fås i: Light Grey Melange (lys gråmeleret) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Bomuld, 28% Polyamid, 7% Metallisk fiber]]>
         </target>
       </trans-unit>
@@ -419,7 +419,7 @@
         <source>description.Carlos_PANTS</source>
         <target>
           <![CDATA[Baggy og sweat, kan det blive mere behageligt at hoppe i?
-            Cool til hverdagen, til sport og skøn til afslapning! Og så er Cameron god for samvittigheden med sin Oeko-Tex mærkning.
+Cool til hverdagen, til sport og skøn til afslapning! Og så er Carlos god for samvittigheden med sin Oeko-Tex mærkning.
             <br><br>	Fås i: Grey Melange (gråmeleret) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
         </target>
       </trans-unit>
@@ -516,7 +516,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[Oeko-Tex mærket sweat-jakke i sporty look. Super lækker og cool til det meste.	<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
+          <![CDATA[Oeko-Tex mærket sweat-jakke i sporty look. Super lækker og cool til det meste. Bemærk: Ribkanten på farven Wine (vinrød) er ensfarvet Wine (vinrød) og ikke stribet som på billedet. <br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -1256,13 +1256,13 @@
       <trans-unit id="Lucy Little SS TSHIRT">
         <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
+          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke.<br><b> Vigtig info:</b> Lille i størrelse. Du bør købe en størrelse større.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
         </target>
       </trans-unit>
       <trans-unit id="Lucy SS TSHIRT">
         <source>description.Lucy_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
+          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke. <br><b> Vigtig info:</b> Lille i størrelse. Du bør købe en størrelse større.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
         </target>
       </trans-unit>
       <trans-unit id="Madison CARDIGAN">

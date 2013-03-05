@@ -81,7 +81,7 @@ class DefaultController extends CoreController
 
             // If there are any colors in the settings to order from, add the order column here.
             // Else order by normal Sort in db
-            if($color_map){
+            if ($color_map) {
                 $result = $result->useProductsImagesQuery()
                     ->addDescendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
@@ -89,13 +89,13 @@ class DefaultController extends CoreController
                         '\''.implode('\',\'', $color_map).'\''
                     ))
                 ->endUse();
-            }else{
+            } else {
                 $result = $result->orderBySort();
             }
 
-            if($pager === 'all'){
+            if ($pager === 'all') {
                 $result = $result->paginate(null, null);
-            }else{
+            } else {
                 $result = $result->paginate($pager, 12);
             }
 
@@ -104,24 +104,30 @@ class DefaultController extends CoreController
             $records = array();
             $product_ids = array();
             foreach ($result as $record) {
-                $product = $record->getProducts();
-                $product_ids[] = $product->getId();
 
-                $image_overview = str_replace('_set_', '_overview_', $record->getProductsImages()->getImage());
-                $image_set = str_replace('_overview_', '_set_', $record->getProductsImages()->getImage());
+                $image = $record->getProductsImages()->getImage();
 
-                $records[] = array(
-                    'sku' => $product->getSku(),
-                    'id' => $product->getId(),
-                    'title' => $product->getSku(),
-                    'image' => ($show_by_look)?$image_set:$image_overview,
-                    'image_flip' => ($show_by_look)?$image_overview:$image_set,
-                    'url' => $router->generate($product_route, array(
-                        'product_id' => $product->getId(),
-                        'title' => Tools::stripText($product->getSku()),
-                        'focus' => $record->getProductsImages()->getId()
-                    )),
-                );
+                // Only use 01.
+                if (preg_match('/_01.jpg/', $image)) {
+                    $product = $record->getProducts();
+                    $product_ids[] = $product->getId();
+
+                    $image_overview = str_replace('_set_', '_overview_', $image);
+                    $image_set = str_replace('_overview_', '_set_', $image);
+
+                    $records[] = array(
+                        'sku' => $product->getSku(),
+                        'id' => $product->getId(),
+                        'title' => $product->getSku(),
+                        'image' => ($show_by_look)?$image_set:$image_overview,
+                        'image_flip' => ($show_by_look)?$image_overview:$image_set,
+                        'url' => $router->generate($product_route, array(
+                            'product_id' => $product->getId(),
+                            'title' => Tools::stripText($product->getSku()),
+                            'focus' => $record->getProductsImages()->getId()
+                        )),
+                    );
+                }
             }
 
             // get product prices
@@ -148,14 +154,14 @@ class DefaultController extends CoreController
                 }
 
                 $data['paginate'] = array(
-                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage()), TRUE)),
-                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage()), TRUE)),
+                    'next' => ($result->getNextPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getNextPage(), 'show' => $show), TRUE)),
+                    'prew' => ($result->getPreviousPage() == $pager ? '' : $router->generate($route, array('pager' => $result->getPreviousPage(), 'show' => $show), TRUE)),
 
                     'pages' => $pages,
                     'index' => $pager,
                     'see_all' => array(
                         'total' => $result->getNbResults(),
-                        'url' => $router->generate($route, array('pager' => 'all'), TRUE)
+                        'url' => $router->generate($route, array('pager' => 'all', 'show' => $show), TRUE)
                     )
                 );
             }

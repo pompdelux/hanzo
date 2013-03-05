@@ -65,7 +65,7 @@
       <trans-unit id="Adele SKIRT">
         <source>description.Adele_SKIRT</source>
         <target>
-          <![CDATA[Kaunis Adele! Alaosa on kuin pieni kello ja ihanan pehmeää kangasta, jossa on kullan kimallusta, tyttömäinen paljettinauha sivulla, pieni halkio takana ja käytännölliset vetoketjutaskut edessä pieniä aarteita varten. 
+          <![CDATA[Kaunis Adele! Alaosa on kuin pieni kello ja ihanan pehmeää kangasta, jossa on kullan kimallusta, tyttömäinen paljettinauha sivulla, pieni halkio takana ja käytännölliset vetoketjutaskut edessä pieniä aarteita varten. Huomautus: Adele SKIRT on valitettavasti noin yhden koon toivottua pienempi. Osta siksi Adele SKIRT yhtä kokoa isompana kuin normaalisti.
             <br><br>	Saatavana: Light Grey Melange (vaalea meleerattu harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 65 % puuvilla, 28 % polyamidi, 7 % metallikuitu]]>
         </target>
       </trans-unit>
@@ -414,7 +414,7 @@
         <source>description.Carlos_PANTS</source>
         <target>
           <![CDATA[Baggy-malli ja collegekangas – voisiko enää mukavampia housuja olla?
-            Sopivat hyvin arkeen, urheiluun ja rentoutumiseen! Cameron sopii myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.
+            Sopivat hyvin arkeen, urheiluun ja rentoutumiseen! Carlos sopii myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.
             <br><br>	Saatavana: Grey Melange (meleerattu harmaa) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
@@ -509,7 +509,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[Urheilullinen Ökö-Tex-hyväksytty collegetakki. Superihana ja cool.	<br><br>	Saatavana: Blue (sininen) ja Wine (viininpunainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
+          <![CDATA[Urheilullinen Ökö-Tex-hyväksytty collegetakki. Superihana ja cool. Huomautus: Värin Wine (viininpunainen) resori on yksivärinen Wine (viininpunainen) eikä raidallinen, kuten kuvassa.	<br><br>	Saatavana: Blue (sininen) ja Wine (viininpunainen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 100 % puuvilla]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -1236,13 +1236,13 @@
       <trans-unit id="Lucy Little SS TSHIRT">
         <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Paljon rakkautta suloisen pehmeälle Lucylle! Lucy on kaunis myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.	<br><br>	Saatavana: Rose (roosa), White (valkoinen), Peach (persikka) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvilla, 20 % pellava]]>
+          <![CDATA[All you need is love! Paljon rakkautta suloisen pehmeälle Lucylle! Lucy on kaunis myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.<br><b> Tärkeää tietoa:</b> Pieni koko. Osta yhtä kokoa suurempi.	<br><br>	Saatavana: Rose (roosa), White (valkoinen), Peach (persikka) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvilla, 20 % pellava]]>
         </target>
       </trans-unit>
       <trans-unit id="Lucy SS TSHIRT">
         <source>description.Lucy_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Paljon rakkautta suloisen pehmeälle Lucylle! Lucy on kaunis myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta.	<br><br>	Saatavana: Rose (roosa), White (valkoinen), Peach (persikka) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvilla, 20 % pellava]]>
+          <![CDATA[All you need is love! Paljon rakkautta suloisen pehmeälle Lucylle! Lucy on kaunis myös omalletunnolle Ökö-Tex-hyväksyntänsä ansiosta. <br><b> Tärkeää tietoa:</b> Pieni koko. Osta yhtä kokoa suurempi.	<br><br>	Saatavana: Rose (roosa), White (valkoinen), Peach (persikka) ja Blue (sininen).	<br><br>	Kokomerkintä tarkoittaa lapsen pituutta senttimetreinä.	<br><br>	Materiaali: 80 % puuvilla, 20 % pellava]]>
         </target>
       </trans-unit>
       <trans-unit id="Madison CARDIGAN">

@@ -16,6 +16,11 @@
   {% render 'CMSBundle:Menu:menu' with {'type': 'breadcrumb', 'thread': 20} %}
 </div>
 
+<div class="grid_8 alpha omega row">
+  <div class="grid_6 push_2 alpha">
+    <a href="{{ url(app.request.attributes.get('_route'), {'show': 'overview'}) }}" class="show-by-overview">{{ 'category.selector.overview'|trans }}</a> / <a href="{{ url(app.request.attributes.get('_route'), {'show': 'look'}) }}" class="show-by-look">{{ 'category.selector.look'|trans }}</a>
+  </div>
+</div>
 <div class="grid_8 alpha omega">
   <div class="grid_2 alpha sub-menu menu">
     {% render 'CMSBundle:Menu:menu' with {'type': 'sub', 'offset': cms_id, 'thread' : 20, 'include_self' : true } %}
@@ -27,6 +32,7 @@
         <div class="grid_6 alpha omega row">
       {% endif %}
           <div class="block block-num-{{ loop.index }} grid_2 {% if loop.index % 3 == 1 and loop.index is not divisibleby(3) %} alpha {% endif %}{% if loop.index is divisibleby(3) %} omega {% endif %}">
+            {#<strong>{{ product.color }} - {{ product.category }}</strong>#}
             <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}" class="product flip-this">
               {{ product_image_tag(product.image, '234x410', {
                 'alt' : product.title,
