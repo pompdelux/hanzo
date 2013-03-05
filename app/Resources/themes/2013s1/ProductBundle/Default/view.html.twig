@@ -57,12 +57,14 @@
             </div>
           {% endif %}
         </div>
+      {% if product.has_video %}
         <div class="grid_2 omega align-right vert-align-middle">
           <a href="{{ url('ws_product_video') }}" data-width="594" data-height="594" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper right">
             <div class="sprite sprite-block centerfy"></div>
             {{ 'click.to.video'|trans }}
           </a>
         </div>
+      {% endif %}
       </div>
 
     {% if product.images is not empty %}
