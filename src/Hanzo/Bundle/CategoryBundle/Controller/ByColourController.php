@@ -47,7 +47,7 @@ class ByColourController extends CoreController
             $ignores = explode(',', $settings->ignore);
             $color_map = explode(',', $settings->colors);
 
-            $show_by_look = (bool)($show === 'look');
+            $show_by_look = (bool) ($show === 'look');
 
             $categories = array();
             $resultset = CategoriesI18nQuery::create()
@@ -58,6 +58,7 @@ class ByColourController extends CoreController
                 $categories[$category->getId()] = $category->getTitle();
             }
             unset ($resultset);
+
 
             $index = 1;
             $products = array();
@@ -79,17 +80,21 @@ class ByColourController extends CoreController
                 ))
                 ->find()
             ;
-            $skus = array();
+
             $ids = array();
             $products_to_categories = array();
             foreach ($masters as $master) {
-                $skus[$master->getProducts()->getSku()] = $categories[$master->getCategoriesId()];
                 $ids[] = $master->getProducts()->getId();
                 $products_to_categories[$master->getProducts()->getId()] = $master->getCategoriesId();
             }
 
             $variants = ProductsImagesQuery::create()
                 ->joinWithProducts()
+                ->addAscendingOrderByColumn(sprintf(
+                    "FIELD(%s, %s)",
+                    ProductsImagesPeer::COLOR,
+                    '\''.implode('\',\'', $color_map).'\''
+                ))
                 ->useProductsQuery()
                     ->filterByMaster(null, Criteria::ISNULL)
                     ->useProductsToCategoriesQuery()
@@ -101,11 +106,6 @@ class ByColourController extends CoreController
                     ->endUse()
                     ->filterById($ids)
                 ->endUse()
-                ->addAscendingOrderByColumn(sprintf(
-                    "FIELD(%s, %s)",
-                    ProductsImagesPeer::COLOR,
-                    '\''.implode('\',\'', $color_map).'\''
-                ))
                 ->filterByColor($color_map)
                 ->filterByType($show_by_look?'set':'overview')
                 ->groupById()
@@ -122,14 +122,17 @@ class ByColourController extends CoreController
                 $image_overview = str_replace('_set_', '_overview_', $image);
                 $image_set = str_replace('_overview_', '_set_', $image);
 
+                $cid = $products_to_categories[$variant->getProducts()->getId()];
+
                 $products[] = array(
-                    'category_id' => $products_to_categories[$variant->getProducts()->getId()],
+                    'category_id' => $cid,
+                    'category' => $categories[$cid],
                     'sku' => $product->getSku(),
                     'id' => $product->getId(),
                     'title' => $product->getSku(),
                     'color' => $variant->getColor(),
-                    'image' => ($show_by_look)?$image_set:$image_overview,
-                    'image_flip' => ($show_by_look)?$image_overview:$image_set,
+                    'image' => ($show_by_look) ? $image_set : $image_overview,
+                    'image_flip' => ($show_by_look) ? $image_overview : $image_set,
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
                         'title' => Tools::stripText($product->getSku()),
