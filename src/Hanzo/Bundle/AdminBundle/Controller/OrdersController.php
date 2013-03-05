@@ -682,7 +682,7 @@ class OrdersController extends CoreController
         $api        = $this->get('payment.gothiaapi');
         $id         = $request->request->get('order-id');
         $order      = OrdersQuery::create()->findPK($id, $this->getDbConnection());
-        $customer   = $order->getCustomers();
+        $customer   = $order->getCustomers($this->getDbConnection());
         $translator = $this->get('translator');
 
         try

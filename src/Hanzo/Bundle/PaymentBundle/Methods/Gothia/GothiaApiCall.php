@@ -157,7 +157,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         }
 
         $address       = $addresses[0];
-        $gothiaAccount = $customer->getGothiaAccounts();
+        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         $customerId    = $customer->getId();
 
         if ($this->api->getTest()) {
@@ -285,7 +285,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( $this->api->getTest() )
         {
-            $gothiaAccount = $customer->getGothiaAccounts();
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
             #Tools::debug( 'Test Gothia', __METHOD__, array('Amount' => $amount, 'customerId' => $customerId, 'currency_code' => $currency_code));
         }
@@ -336,7 +336,7 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
 
         if ( $this->api->getTest() )
         {
-            $gothiaAccount = $customer->getGothiaAccounts();
+            $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
             $customerId = $this->getTestCustomerId($gothiaAccount->getSocialSecurityNum());
         }
 
