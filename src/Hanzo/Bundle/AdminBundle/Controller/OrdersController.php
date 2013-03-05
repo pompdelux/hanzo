@@ -537,7 +537,9 @@ class OrdersController extends CoreController
      **/
     public function gothiaAction()
     {
-        return $this->render('AdminBundle:Orders:gothia.html.twig' );
+        return $this->render('AdminBundle:Orders:gothia.html.twig', [
+            'database' => $this->getRequest()->getSession()->get('database')
+        ] );
     }
 
     /**
@@ -572,7 +574,7 @@ class OrdersController extends CoreController
             }
             else
             {
-                $customer = $order->getCustomers();
+                $customer = $order->getCustomers($this->getDbConnection());
 
                 $return['status'] = true;
                 $return['message'] = 'Ok';
@@ -601,7 +603,7 @@ class OrdersController extends CoreController
         $api        = $this->get('payment.gothiaapi');
         $id         = $request->request->get('order-id');
         $order      = OrdersQuery::create()->findPK($id, $this->getDbConnection());
-        $customer   = $order->getCustomers();
+        $customer   = $order->getCustomers($this->getDbConnection());
         $translator = $this->get('translator');
 
         try
