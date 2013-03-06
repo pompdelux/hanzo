@@ -398,7 +398,7 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Winkelmandje</h1><p>Hulp nodig?<a href="/faq">Veelgestelde vragen</a></p>]]></target>
+        <target><![CDATA[<h1>Winkelmandje</h1><p>Hulp nodig?<a href="/nl_NL/voorpagina/klantenservice/faq">Veelgestelde vragen</a></p>]]></target>
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
