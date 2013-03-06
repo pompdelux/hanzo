@@ -54,6 +54,14 @@
                 <source>city.required</source>
                 <target>Du skal udfylde by</target>
             </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Etunimessä on oltava vähintään {{ limit }} merkkiä|Etunimessä on oltava vähintään {{ limit }} merkkiä</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Sukunimessä on oltava vähintään {{ limit }} merkkiä|Sukunimessä on oltava vähintään {{ limit }} merkkiä</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

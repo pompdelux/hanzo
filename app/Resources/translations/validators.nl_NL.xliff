@@ -54,6 +54,14 @@
                 <source>city.required</source>
                 <target>Du skal udfylde by</target>
             </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Je voornaam moet uit minstens {{ limit }} tekens bestaan|Je voornaam moet uit minstens {{ limit }} tekens bestaan</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Je achternaam moet uit minstens {{ limit }} tekens bestaan|Je achternaam moet uit minstens {{ limit }} tekens bestaan</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
