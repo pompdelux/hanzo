@@ -401,7 +401,7 @@
             </trans-unit>
             <trans-unit id="my.account.%name%" approved="no">
                 <source>my.account.%name%</source>
-                <target>Welcome, %name%!</target>
+                <target>Välkommen, %name%!</target>
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
