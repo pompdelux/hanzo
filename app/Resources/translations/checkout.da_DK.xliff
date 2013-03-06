@@ -416,7 +416,7 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/da_DK/forside/kundeservice/faq">FAQ</a><br>FRI FRAGT for minimum DKK 1400,-</p>]]></target>
+        <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/da_DK/forside/kundeservice/faq">FAQ</a></p>]]></target>
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>
