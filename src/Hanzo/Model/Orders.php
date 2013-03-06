@@ -121,7 +121,7 @@ class Orders extends BaseOrders
         $version->save();
 
         $this->setVersionId($version_id + 1);
-        return $this->save();
+        return $this;
     }
 
 
