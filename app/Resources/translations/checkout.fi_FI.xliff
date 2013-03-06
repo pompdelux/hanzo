@@ -277,7 +277,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia-lasku (PayByBill-maksusta veloitetaan lisämaksu EUR 4,00). Samanaikaisesti tilauksesi postituksen yhteydessä lähetämme laskusi sähköpostitse. Lasku tulee olemaan myös omilla sivuilla 24 tunnin kuluessa.<br><font color="A10000"><b>Teknisestä virheestä johtuen, valitettavasti emme voi tällä hetkellä tarjota mahdollisuutta tilausten muuttamiseen jos olet käyttänyt maksuvaihtoehtona Gothia laskua.</b></target>
+        <target><![CDATA[Gothia-lasku (PayByBill-maksusta veloitetaan lisämaksu EUR 4,00). Samanaikaisesti tilauksesi postituksen yhteydessä lähetämme laskusi sähköpostitse. Lasku tulee olemaan myös omilla sivuilla 24 tunnin kuluessa.<br><font color="A10000"><b>Teknisestä virheestä johtuen, valitettavasti emme voi tällä hetkellä tarjota mahdollisuutta tilausten muuttamiseen jos olet käyttänyt maksuvaihtoehtona Gothia laskua.</b>]]</target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>

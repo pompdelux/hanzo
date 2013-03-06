@@ -285,7 +285,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia factuur<br><font color="A10000"><b>Vanwege een technisch probleem kan er op dit moment niet gewijzigd worden in de order, als er gekozen is voor Gothia factuurbetaling.</b></target>
+        <target><![CDATA[Gothia factuur<br><font color="A10000"><b>Vanwege een technisch probleem kan er op dit moment niet gewijzigd worden in de order, als er gekozen is voor Gothia factuurbetaling.</b>]]</target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
