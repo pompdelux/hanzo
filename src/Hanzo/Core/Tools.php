@@ -253,23 +253,34 @@ class Tools
     /**
      * shortcut for logging data to the error log
      *
-     * @param mixed $data the data to log
-     * @param integer $back how many levels back we dump trace for
+     * @param mixed   $data  the data to log
+     * @param integer $back  how many levels back we dump trace for
+     * @param boolean $trace set to true and the log will get a backtrace dump attached
      */
-    public static function log($data, $back = 0)
+    public static function log($data, $back = 0, $trace = false)
     {
         $bt = debug_backtrace();
         $line = $bt[$back]['line'];
         $root = realpath(__DIR__ . '/../../../');
         $file = str_replace($root, '~', $bt[$back]['file']);
+        $data = print_r($data, 1);
+
+        if ($trace) {
+            $data .= "\ntrace:\n";
+            foreach ($bt as $entry) {
+                if (isset($entry['file']) && isset($entry['line'])) {
+                    $data .= ' '.str_replace($root, '~', $entry['file']).' +'.$entry['line']."\n";
+                }
+            }
+        }
 
         // handle logging when running in fast cgi mode (nginx)
         if ('fpm-fcgi' == php_sapi_name()) {
-            error_log('['.date('r').'] '.$file.' +'.$line.' :: '.print_r($data, 1)."\n", 3, $root.'/app/logs/php.log');
+            error_log('['.date('r').'] '.$file.' +'.$line.' :: '.$data."\n", 3, $root.'/app/logs/php.log');
             return;
         }
 
-        error_log($file.' +'.$line.' :: '.print_r($data, 1));
+        error_log($file.' +'.$line.' :: '.$data);
     }
 
 
