@@ -100,25 +100,18 @@ class Orders extends BaseOrders
         $data['attributes'] = $this->getOrdersAttributess(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
 
         $version_ids = $this->getVersionIds();
-        $version_1_exists = false;
 
         if (count($version_ids)) {
             $version_id = max($version_ids) +1;
-            if (isset($version_ids[1])) {
-                $version_1_exists = true;
-            }
         } else {
             $version_id = 1;
         }
 
-        $now = time();
-        $data = serialize($data);
-
         $version = new OrdersVersions();
         $version->setOrdersId($this->getId());
         $version->setVersionId($version_id);
-        $version->setContent($data);
-        $version->setCreatedAt($now);
+        $version->setContent(serialize($data));
+        $version->setCreatedAt(time());
         $version->save();
 
         $this->setVersionId($version_id + 1);
@@ -141,8 +134,6 @@ class Orders extends BaseOrders
             ->orderByVersionId('desc')
             ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
         ;
-
-        $id = $this->getVersionId();
 
         $ids = [];
         foreach ($versions as $version) {
@@ -297,8 +288,6 @@ class Orders extends BaseOrders
         if (count($this->getVersionIds()) < 1) {
             return $this;
         }
-
-        $current_version = $this->getVersionId();
 
         $version = OrdersVersionsQuery::create()
             ->select('VersionId')
