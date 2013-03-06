@@ -171,7 +171,8 @@
           return false;
         }
 
-        dialoug.loading($('a#checkout-execute', '', 'before'));
+        $(this).hide();
+        dialoug.loading($('a#checkout-execute', '', 'after'));
 
         $('#main form').each(function(index, form) {
           var $form = $(form);
