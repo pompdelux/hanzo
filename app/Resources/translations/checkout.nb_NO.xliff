@@ -265,9 +265,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
-        <target><![CDATA[
-          <p>Din ordre inneholder vare(r) som vi ikke har på lager for øyeblikket. Ordren pakkes når vi har alle varene på lager. Vi forventer å sende hele ordren fra lageret senest: <strong>%date%</strong>.</p>
-        ]]></target>
+        <target><![CDATA[<p>Din ordre inneholder vare(r) som vi ikke har på lager for øyeblikket. Ordren pakkes når vi har alle varene på lager. Vi forventer å sende hele ordren fra lageret senest: <strong>%date%</strong>.</p>]]></target>
       </trans-unit>
       <trans-unit id="status.20" approved="no">
         <source>status.20</source>
