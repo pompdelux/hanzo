@@ -365,7 +365,7 @@
             </trans-unit>
 			<trans-unit id="form.buy.choose.first" approved="no">
                 <source>form.buy.choose.first</source>
-                <target>Du skal vælge størrelse og farve først.</target>
+                <target>Du skal først velge en farge.</target>
             </trans-unit>
         </body>
     </file>
