@@ -61,17 +61,6 @@
   <nav id="secondary-links">
     <ul class="horizontal menu right first">
       <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
-      <li id="select-domain">
-        <a class="open-menu" href="#">Change Country</a>
-        <div class="dropdown" style="display: none">
-          <a href="{{ baseurl }}/da_DK/">Denmark</a><br><br>
-        <a href="{{ baseurl }}/fi_FI/">Finland</a><br><br>
-          <a href="{{ baseurl }}/en_GB/">International</a><br><br>
-          <a href="{{ baseurl }}/nl_NL/">Netherlands</a><br><br>
-        <a href="{{ baseurl }}/nb_NO/">Norway</a><br><br>
-          <a href="{{ baseurl }}/sv_SE/">Sweden</a><br>
-        </div>
-      </li>
       <li class="last">
         <form action="{{ path('_search', {'_locale' : app.request.locale}) }}" class="search-form">
           <input type="submit" class="text-button button" value="{{ "button.label"|trans({}, 'search') }}">
