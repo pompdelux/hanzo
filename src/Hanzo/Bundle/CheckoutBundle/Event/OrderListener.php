@@ -45,8 +45,7 @@ class OrderListener
 
         // first we create the edit version.
         $order->createNewVersion();
-
-        $order->setSessionId(session_id());
+        $order->setSessionId($this->session->getId());
         $order->setState( Orders::STATE_BUILDING ); // Old order state is probably payment ok
         $order->clearFees();
         $order->clearPaymentAttributes();

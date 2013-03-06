@@ -95,8 +95,8 @@ class Orders extends BaseOrders
         $data['order'] = $this->toArray();
         unset($data['order']['Id']);
 
-        $data['products'] = $this->getOrdersLiness()->toArray();
-        $data['attributes'] = $this->getOrdersAttributess()->toArray();
+        $data['products'] = $this->getOrdersLiness(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
+        $data['attributes'] = $this->getOrdersAttributess(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
 
         $version_ids = $this->getVersionIds();
         $version_1_exists = false;
@@ -121,6 +121,8 @@ class Orders extends BaseOrders
         $version->save();
 
         $this->setVersionId($version_id + 1);
+        $this->save();
+
         return $this;
     }
 

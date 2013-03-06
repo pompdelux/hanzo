@@ -501,7 +501,7 @@ class AxService
         $lock->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
 
         // NICETO, would be nice if this was not static..
-        switch (strtoupper($lock->endpointDomain)) {
+        switch ($lock->endpointDomain) {
             case 'COM':
                 $lock->endpointDomain = 'DK';
                 break;
