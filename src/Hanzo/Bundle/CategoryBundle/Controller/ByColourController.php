@@ -115,6 +115,10 @@ class ByColourController extends CoreController
             $product_route = str_replace('bycolour_', 'product_', $route);
 
             foreach ($variants as $variant) {
+                if (!preg_match("/_01/", $variant->getImage())) {
+                    continue;
+                }
+
                 $product = $variant->getProducts();
 
                 // Always use 01.
