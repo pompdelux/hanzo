@@ -408,7 +408,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <target><![CDATA[<p><font color="A10000"><b>Viktig informasjon til kunder som har benyttet Gothia fakturabetaling:</b><br>På grunn av en teknisk feil kan vi for øyeblikket  ikke tilby deg å redigere din ordre hvis du har benyttet Gothia fakturabetaling.<br>Vi jobber på å løse feilen og informerer her på siden når feilen er rettet. Vi beklager de problemene dette gir deg.<br>Med vennlig hilsen<br>POMPdeLUX</font><br><br>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
                 <ul class="list">
                   <li>Tilføje flere varer</li>
                   <li>Ændre størrelsen og/eller farven på en vare</li>
