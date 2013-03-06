@@ -293,7 +293,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min side som en pdf fil innen 24 timer.<br><font color="A10000"><b>På grunn av en teknisk feil kan vi for øyeblikket  ikke tilby deg å redigere din ordre hvis du har benyttet Gothia fakturabetaling.</b>]]</target>
+        <target><![CDATA[Gothia faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min side som en pdf fil innen 24 timer.<br><font color="A10000"><b>På grunn av en teknisk feil kan vi for øyeblikket  ikke tilby deg å redigere din ordre hvis du har benyttet Gothia fakturabetaling.</b></font>]]</target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
