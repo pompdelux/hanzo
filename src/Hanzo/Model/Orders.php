@@ -8,6 +8,7 @@ use Criteria;
 use Propel;
 use PropelPDO;
 use PropelCollection;
+use PropelException;
 use OutOfBoundsException;
 
 use Hanzo\Core\Hanzo;
@@ -225,7 +226,14 @@ class Orders extends BaseOrders
         $this->setOrdersAttributess($collection);
 
         // save and return the version
-        return $this->save();
+        try {
+            $this->save();
+        } catch (PropelException $e) {
+            Tools::log($e->getMessage()."\n\n".$this->toArray(), 0, true);
+            throw $e;
+        }
+
+        return $this;
     }
 
     /**
