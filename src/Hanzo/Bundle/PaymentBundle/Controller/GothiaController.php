@@ -217,6 +217,9 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
+            if (Tools::isBellcomRequest()) {
+                Tools::debug('Check Customer Failed', __METHOD__, array('Message' => $e->getMessage()));
+            }
             $timer->logOne('checkCustomer call failed orderId #'.$order->getId());
             return $this->json_response(array(
                 'status' => FALSE,
@@ -339,6 +342,9 @@ class GothiaController extends CoreController
         }
         catch( GothiaApiCallException $g )
         {
+            if (Tools::isBellcomRequest()) {
+                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $g->getMessage()));
+            }
             $api->updateOrderFailed( $request, $order );
             return $this->json_response(array(
                 'status' => FALSE,
@@ -371,6 +377,9 @@ class GothiaController extends CoreController
         }
         catch (Exception $e)
         {
+            if (Tools::isBellcomRequest()) {
+                Tools::debug('Place Reservation Exception', __METHOD__, array('Message' => $g->getMessage()));
+            }
             #Tools::debug( $e->getMessage(), __METHOD__);
             $api->updateOrderFailed( $request, $order );
 
