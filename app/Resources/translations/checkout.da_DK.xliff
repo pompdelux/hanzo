@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min side som en pdf indenfor 24 timer.</target>
+        <target>Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min side som en pdf indenfor 24 timer.<br><font color="A10000"><b>På grund af en teknisk fejl, kan vi for øjeblikket ikke tilbyde dig at redigere din ordre hvis du har anvendt Gothia fakturabetaling.</b></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
