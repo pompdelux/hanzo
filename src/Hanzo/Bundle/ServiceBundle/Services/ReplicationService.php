@@ -100,6 +100,8 @@ class ReplicationService
                 $i->setId($image->getId());
                 $i->setProductsId($image->getProductsId());
                 $i->setImage($image->getImage());
+                $i->setColor($image->getColor());
+                $i->setType($image->getType());
                 $i->save($conn);
             }
         }
