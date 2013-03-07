@@ -445,6 +445,7 @@ ul.breadcrumb li.last i.arrow-right {
 }
 
 #body-basket .main header,
+#body-checkout .main header,
 #body-event .main header,
 #body-create-account .main header,
 #body-login .main header,
@@ -453,6 +454,14 @@ ul.breadcrumb li.last i.arrow-right {
   background: url("/fx/images/headers/Kategori_Min_side_960x100.jpg") no-repeat top center;
 }
 #body-basket .main header hgroup h1, #body-basket .main header hgroup h2, #body-basket .main header hgroup h3, #body-basket .main header hgroup h4, #body-basket .main header hgroup h5, #body-basket .main header hgroup h6, #body-basket .main header hgroup a, #body-basket .main header hgroup p,
+#body-checkout .main header hgroup h1,
+#body-checkout .main header hgroup h2,
+#body-checkout .main header hgroup h3,
+#body-checkout .main header hgroup h4,
+#body-checkout .main header hgroup h5,
+#body-checkout .main header hgroup h6,
+#body-checkout .main header hgroup a,
+#body-checkout .main header hgroup p,
 #body-event .main header hgroup h1,
 #body-event .main header hgroup h2,
 #body-event .main header hgroup h3,
