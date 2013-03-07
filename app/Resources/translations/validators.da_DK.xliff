@@ -54,6 +54,14 @@
                 <source>city.required</source>
                 <target>Du skal udfylde by</target>
             </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Fornavn skal være min {{ limit }} tegn|Fornavn skal være min {{ limit }} tegn</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Efternavn skal være min {{ limit }} tegn|Efternavn skal være min {{ limit }} tegn</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

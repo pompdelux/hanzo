@@ -1510,6 +1510,10 @@ form.create label.required:after {
   content: ": *";
 }
 
+#body-events-create-customer input.button.off {
+  display: none;
+}
+
 .checkout-block {
   overflow: hidden;
   padding: 3px;
@@ -1554,6 +1558,9 @@ form.address label {
 #body-checkout #main form.address > h3 {
   margin-top: 0;
   margin-bottom: 5px;
+}
+#body-checkout #checkout-buttons .dialoug-loading {
+  float: right;
 }
 
 #address-block > label {
