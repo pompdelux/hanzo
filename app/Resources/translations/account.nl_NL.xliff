@@ -409,7 +409,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p><font color="A10000"><b>Belangrijke informatie voor klanten die voor Gothia factuurbetaling hebben gekozen:</b><br>Vanwege een technisch probleem kan er op dit moment niet gewijzigd worden in de order, als er gekozen is voor Gothia factuurbetaling.<br>We zijn bezig met het oplossen van dit probleem en laten via de website weten als er weer gewijzigd kan worden in de order. Onze excuses voor het ongemak.<br>Met vriendelijke groeten <br>POMPdeLUX</font><br><br>Je kunt de order wijzigen, zo lang deze op ”Afwachten” staat.<br>Je kunt de volgende dingen wijzigen:
+                <target><![CDATA[Je kunt de order wijzigen, zo lang deze op ”Afwachten” staat.<br>Je kunt de volgende dingen wijzigen:
                 <ul class="list">
                   <li>Voeg meer artikelen toe</li>
                   <li>Wijzig de maat of kleur van een artikel</li>

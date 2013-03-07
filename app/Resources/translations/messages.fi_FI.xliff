@@ -292,7 +292,7 @@
             </trans-unit>
             <trans-unit id="pager.pages.%total%" approved="no">
                 <source>pager.pages.%total%</source>
-                <target>summasta %total %</target>
+                <target>/ %total%</target>
             </trans-unit>
             <trans-unit id="pager.see_all.%total%" approved="no">
                 <source>pager.see_all.%total%</source>
