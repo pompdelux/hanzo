@@ -56,21 +56,6 @@ class OrderListener
             $this->session->migrate();
         }
 
-        // try to catch duplicate payment gateway id's
-        while (true) {
-            $pgw_id = Tools::getPaymentGatewayId();
-            $o = OrdersQuery::create()->findOneByPaymentGatewayId(
-                $pgw_id,
-                Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_WRITE)
-            );
-
-            if (!$o instanceof Orders) {
-                goto while_end;
-            }
-        }
-        while_end: // yes, labeled break...
-
-
         // first we create the edit version.
         $order->createNewVersion();
 
@@ -81,7 +66,7 @@ class OrderListener
         $order->clearPaymentAttributes();
         $order->setInEdit(true);
         $order->setBillingMethod(null);
-        $order->setPaymentGatewayId($pgw_id);
+        $order->setPaymentGatewayId(Tools::getPaymentGatewayId());
         $order->setUpdatedAt(time());
         $order->save();
 

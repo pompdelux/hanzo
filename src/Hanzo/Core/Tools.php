@@ -2,12 +2,14 @@
 
 namespace Hanzo\Core;
 
-use \Propel;
-use \BasePeer;
+use Propel;
+use BasePeer;
 
 use Hanzo\Core\Hanzo;
+
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Sequences;
 use Hanzo\Model\SequencesPeer;
@@ -224,6 +226,16 @@ class Tools
         }
 
         $sequence_id = $item->getId();
+
+        while (true) {
+            $o = OrdersQuery::create()->findOneByPaymentGatewayId($sequence_id, $con);
+            if ($o instanceof Orders) {
+                $sequence_id++;
+            } else {
+                goto while_end;
+            }
+        }
+        while_end: // yes labeled break...
 
         $item->setId($sequence_id + 1);
         $item->save($con);
