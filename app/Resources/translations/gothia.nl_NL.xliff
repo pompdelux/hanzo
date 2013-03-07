@@ -20,7 +20,8 @@
       </trans-unit>
       <trans-unit id="json_err35">
         <source>json.checkcustomer.error</source>
-        <target>Kon geen gebruikersaccount aanmaken bij Gothia</target>
+        <target><![CDATA[<b>De order kan niet ingevoerd worden</b><br>Het kan zijn dat het kredietmaximum van EUR 400,- is bereikt.
+Neem graag contact op met Gothia B.V. Klantenservice: 078 – 751 80 22<br>Bij andere goedkeuringsfouten – neem contact op met POMdeLUX Klantenservice: 085-3001100]]></target>
       </trans-unit>
       <trans-unit id="json_err40">
         <source>json.checkcustomer.purchasestop</source>

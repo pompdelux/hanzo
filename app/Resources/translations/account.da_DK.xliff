@@ -421,7 +421,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p><font color="A10000"><b>Vigtig information til kunder der har anvendt Gothia fakturabetaling:</b><br>På grund af en teknisk fejl, kan vi for øjeblikket ikke tilbyde dig at redigere din ordre hvis du har anvendt Gothia fakturabetaling.<br>Vi arbejder på at løse fejlen og informerer her på siden når fejlen er rettet og beklager den ulejlighed det giver dig.<br>Med venlig hilsen<br>POMPdeLUX</font><br><br>Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
+                <target><![CDATA[Du kan ændre i ordren, sålænge den står som Afventer under status.<br>På din ordre, kan du foretage følgende ændringer:
                 <ul class="list">
                   <li>Tilføje flere varer</li>
                   <li>Ændre størrelsen og/eller farven på en vare</li>

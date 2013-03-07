@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target><![CDATA[Gothia faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 29,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min sida som pdf fil inom 24 timmar.<br><font color="A10000"><b>På grund av ett tekniskt fel kan du för tillfället tyvärr inte redigera i din order om du har valt fakturabetalning på din order.</b></font>]]></target>
+        <target><![CDATA[Gothia faktura (Väljer du att betala med PayByBill så tillkommer en avgift på SEK 29,00). I samband med att vi skickar dina varor från vårt lager, skickar vi din faktura per mail. Fakturan blir även tillgänglig på Min sida som pdf fil inom 24 timmar.]]></target>
       </trans-unit>
       <trans-unit id="payment.dibs.title">
         <source>payment.dibs.title</source>

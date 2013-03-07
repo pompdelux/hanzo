@@ -404,7 +404,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p><font color="A10000"><b>Tärkeää tietoa  Gothia lasku asiakkaille:</b><br>Teknisestä virheestä johtuen, valitettavasti emme voi tällä hetkellä tarjota mahdollisuutta tilausten muuttamiseen jos olet käyttänyt maksuvaihtoehtona Gothia laskua.<br>Työskentelemme vian korjaamiseksi ja ilmoitamme täällä sivuillamme kun virhe on korjaantunut. Pahoittelemme syvästi teille aiheutuneita ongelmia.<br>Ystävällisin terveisin<br>POMPdeLUX</font><br><br>Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.<br>Voit tehdä tilaukseesi seuraavia muutoksia:
+                <target><![CDATA[Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.<br>Voit tehdä tilaukseesi seuraavia muutoksia:
                 <ul class="list">
                   <li>Voit lisätä tuotteita</li>
                   <li>Voit muuttaa tuotteen kokoa ja/tai väriä</li>
