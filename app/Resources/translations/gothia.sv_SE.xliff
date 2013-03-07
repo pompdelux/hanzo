@@ -20,7 +20,8 @@
       </trans-unit>
       <trans-unit id="json_err35">
         <source>json.checkcustomer.error</source>
-        <target>Kunde inte upprätta din användare hos Gothia</target>
+        <target><![CDATA[<b>Ordern kunde tyvärr inte upprättas.</b><br>Detta kan bero på att beloppet överskrider din maxkredit. 
+Vänligen kontakta Gothia kundservice på: 0340-664444<br>I övriga fall där ett fel uppstår i betalningen – kontakta POMPdeLUX Kundservice på: 08-6117103]]></target>
       </trans-unit>
       <trans-unit id="json_err40">
         <source>json.checkcustomer.purchasestop</source>

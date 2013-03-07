@@ -401,11 +401,11 @@
             </trans-unit>
             <trans-unit id="my.account.%name%" approved="no">
                 <source>my.account.%name%</source>
-                <target>Welcome, %name%!</target>
+                <target>Välkommen, %name%!</target>
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p><font color="A10000"><b>Viktig information till kunder som har använt Gothia faktura betalning:</b><br>På grund av ett tekniskt fel kan du för tillfället tyvärr inte redigera i din order om du har valt fakturabetalning på din order.<br>Vi arbetar hårt på att lösa det och informerar här på sidan, så snart det är rättat.<br>Med vänlig hälsning<br>POMPdeLUX</font><br><br>Du kan ändra i ordern så länge den har statusen “Väntar”.<br>Du kan göra följande ändringar på din order:
+                <target><![CDATA[Du kan ändra i ordern så länge den har statusen “Väntar”.<br>Du kan göra följande ändringar på din order:
                 <ul class="list">
                   <li>Lägg till fler varor</li>
                   <li>Ändra storlek och/eller färg på en vara</li>

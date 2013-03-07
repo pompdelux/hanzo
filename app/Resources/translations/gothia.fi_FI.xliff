@@ -20,7 +20,8 @@
       </trans-unit>
       <trans-unit id="json_err35">
         <source>json.checkcustomer.error</source>
-        <target>Ei voi perustaa käyttäjäksi Gothia</target>
+        <target><![CDATA[<b>Tilauksesi maksuvaraus ei valitettavasti onnistunut.</b><br>Syynä voi olla luottorajasi ylittyminen.
+Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun puh. 0207 229 462<br>Muissa virheissä maksun yhteydessä – ota yhteyttä POMPdeLUX asiakaspalveluumme puh. 09 34870870]]></target>
       </trans-unit>
       <trans-unit id="json_err40">
         <source>json.checkcustomer.purchasestop</source>
