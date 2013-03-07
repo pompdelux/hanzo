@@ -188,13 +188,9 @@ class Orders extends BaseOrders
         }
 
         $data = unserialize($version->getContent());
-        $session_id = $this->getSessionId();
 
         // start by setting the order.
         $this->fromArray($data['order']);
-
-        // update with correct session id
-        $this->setSessionId($session_id);
 
         // set product lines
         $collection = new PropelCollection();
