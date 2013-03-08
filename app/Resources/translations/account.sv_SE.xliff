@@ -405,21 +405,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[Du kan ändra i ordern så länge den har statusen “Väntar”.<br>Du kan göra följande ändringar på din order:
-                <ul class="list">
-                  <li>Lägg till fler varor</li>
-                  <li>Ändra storlek och/eller färg på en vara</li>
-                  <li>Radera en vara</li>
-                </ul>
-                </p>
-                <p>Om du vill lägga till, ändra eller radera en vara på din order, ska du göra följande:
-                <ol class="list">
-                  <li>Lägg till fler varor</li>
-                  <li>Ändra storlek och/eller färg på en vara</li>
-                  <li>Radera en vara</li>
-                </ol>
-                </p>
-                ]]></target>
+                <target><![CDATA[<p>Du kan ändra i ordern så länge den har statusen “Väntar”.</p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>

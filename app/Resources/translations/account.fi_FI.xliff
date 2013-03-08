@@ -404,21 +404,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.<br>Voit tehdä tilaukseesi seuraavia muutoksia:
-                <ul class="list">
-                  <li>Voit lisätä tuotteita</li>
-                  <li>Voit muuttaa tuotteen kokoa ja/tai väriä</li>
-                  <li>Voit poistaa ostamasi tuotteen, jota et sittenkään halua</li>
-                </ul>
-                </p>
-                <p>Jos haluat lisätä, vaihtaa tai poistaa tuotteen, toimi seuraavasti:
-                <ol class="list">
-                  <li>Lisää tuotteita</li>
-                  <li>Muuta tuotteen kokoa ja/tai väriä</li>
-                  <li>Poista ostamasi tuote, jota et sittenkään halua</li>
-                </ol>
-                </p>
-                ]]></target>
+                <target><![CDATA[<p>Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.</p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>
