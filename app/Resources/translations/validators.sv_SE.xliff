@@ -6,10 +6,6 @@
                 <source>email.exists</source>
                 <target>E-mailadressen existerar redan!</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
-                <source>password.min.length</source>
-                <target>Ditt lösenord ska bestå av minst 5 tecken</target>
-            </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
                 <target>Telefonnummer ska fyllas i</target>
@@ -24,6 +20,10 @@
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
+                <target>Du måste ange en E-mailadress</target>
+            </trans-unit>
+            <trans-unit id="email.not.valid" approved="no">
+                <source>email.not.valid</source>
                 <target>Du måste ange en E-mailadress</target>
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
@@ -61,6 +61,18 @@
             <trans-unit id="address.last_name.min.length" approved="no">
                 <source>address.last_name.min.length</source>
                 <target>Ditt efternamn måste innehålla minst {{ limit }} bokstäver|Ditt efternamn måste innehålla minst {{ limit }} bokstäver</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Adgangskode skal være min 5 tegn</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Ditt lösenord ska bestå av minst {{ limit }} tecken|Ditt lösenord ska bestå av minst {{ limit }} tecken</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match" approved="no">
+                <source>password.invalid.match</source>
+                <target>Du ska skriva samma lösenord i båda fälten.</target>
             </trans-unit>
         </body>
     </file>

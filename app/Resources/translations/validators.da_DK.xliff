@@ -6,10 +6,6 @@
                 <source>email.exists</source>
                 <target>E-mailadressen eksisterer allerede!</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
-                <source>password.min.length</source>
-                <target>Dit kodeord skal bestå af minimum 5 tegn</target>
-            </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
                 <target>Telefonnummer skal udfyldes</target>
@@ -29,6 +25,10 @@
             <trans-unit id="email.invalid.match" approved="no">
                 <source>email.invalid.match</source>
                 <target>De to e-mailadresser matcher ikke</target>
+            </trans-unit>
+            <trans-unit id="email.not.valid">
+                <source>email.not.valid</source>
+                <target>Du skal indtaste samme e-mailadresse i begge felter.</target>
             </trans-unit>
             <trans-unit id="address.first_name.required" approved="no">
                 <source>address.first_name.required</source>
@@ -61,6 +61,18 @@
             <trans-unit id="address.last_name.min.length" approved="no">
                 <source>address.last_name.min.length</source>
                 <target>Efternavn skal være min {{ limit }} tegn|Efternavn skal være min {{ limit }} tegn</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Adgangskode skal være min 5 tegn</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Dit kodeord skal bestå af minimum {{ limit }} tegn|Dit kodeord skal bestå af minimum {{ limit }} tegn</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match">
+                <source>password.invalid.match</source>
+                <target>Adgangskode bekræftigelsen skal være den samme som dit adgangskoden.</target>
             </trans-unit>
         </body>
     </file>
