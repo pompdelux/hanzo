@@ -512,7 +512,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[Oeko-Tex-merket sweat-jakke i en sporty stil. Kjempelekker og kul til det meste.	Merk: Ribbekanten på fargen Wine (vinrød) er ensfarget Wine (vinrød) og ikke stripete som på bildet.<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
+          <![CDATA[Oeko-Tex-merket sweat-jakke i en sporty stil. Kjempelekker og kul til det meste.	<br><b>Merk:</b> Ribbekanten på fargen Wine (vinrød) er ensfarget Wine (vinrød) og ikke stripete som på bildet.<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">

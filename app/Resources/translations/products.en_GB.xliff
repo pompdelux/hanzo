@@ -389,7 +389,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[An Oeko Tex certified sporty sweat jacket. Super soft and looks cool with almost everything. Please note: The rib trim on the Wine coloured jacket is solid coloured Wine and not striped as shown on the photo.	<br><br>	Available in Blue and Wine.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
+          <![CDATA[An Oeko Tex certified sporty sweat jacket. Super soft and looks cool with almost everything. <br><b>Please note:</b> The rib trim on the Wine coloured jacket is solid coloured Wine and not striped as shown on the photo.	<br><br>	Available in Blue and Wine.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
