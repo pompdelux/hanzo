@@ -90,7 +90,7 @@ class AxService
     public function sendOrder(Orders $order, $return = false, $con = null)
     {
         if (null === $con) {
-            Propel::setForceMasterConnection(true);
+            $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
         }
 
         $attributes = $order->getAttributes($con);
@@ -227,7 +227,7 @@ class AxService
         switch ($order->getBillingMethod())
         {
             case 'dibs':
-                switch (strtoupper($attributes->payment->paytype)) {
+                switch (trim(strtoupper($attributes->payment->paytype))) {
                     case 'VISA':
                     case 'VISA(DK)':
                     case 'VISA(SE)':
@@ -350,10 +350,6 @@ class AxService
 
         // log ax transaction result
         $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, $state, $comment, $con);
-
-        if (null === $con) {
-            Propel::setForceMasterConnection(false);
-        }
 
         if ($state == 'ok') {
             return true;
