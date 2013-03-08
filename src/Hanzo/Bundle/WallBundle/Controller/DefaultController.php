@@ -22,7 +22,6 @@ class DefaultController extends CoreController
             return $this->redirect($this->generateUrl('login', ['_locale' => $this->get('request')->getLocale()]));
         }
 
-        // $code = explode('_', $this->get('session')->getLocale());
         $locale = explode('_', Hanzo::getInstance()->get('core.locale'));
         $code = array_pop($locale);
 
@@ -40,22 +39,27 @@ class DefaultController extends CoreController
         }
 
         $wall_posts = WallQuery::create()
-            ->join('Customers')
+            ->joinWithCustomers()
             ->useCustomersQuery()
-                ->join('Addresses')
+                ->useAddressesQuery()
+                    ->filterByType('payment')
+                    ->_or()
+                    ->filterByType('shipping')
+                    ->orderByType('ASC')
+                ->endUse()
             ->endUse()
             ->groupById()
-            ->withColumn('addresses.city', 'city')
             ->filterByStatus(true)
-            ->where('wall.parent_id IS NULL')
+            ->filterByParentId(NULL, \Criteria::ISNULL)
             ->orderByCreatedAt('DESC')
             ->paginate($pager, 10)
         ;
+
         $posts = array();
         foreach ($wall_posts as $wall_post) {
 
             $likes = WallLikesQuery::create()
-                ->join('Customers')
+                ->joinWithCustomers()
                 ->filterByWallId($wall_post->getId())
                 ->orderByStatus('DESC')
                 ->find()
@@ -88,12 +92,16 @@ class DefaultController extends CoreController
             }
 
             $sub_posts = WallQuery::create()
-                ->joinWith('Customers')
+                ->joinWithCustomers()
                 ->useCustomersQuery()
-                    ->join('Addresses')
+                    ->useAddressesQuery()
+                        ->filterByType('payment')
+                        ->_or()
+                        ->filterByType('shipping')
+                        ->orderByType('ASC')
+                    ->endUse()
                 ->endUse()
                 ->groupById()
-                ->withColumn('addresses.city', 'city')
                 ->filterByStatus(true)
                 ->filterByParentId($wall_post->getId())
                 ->orderByCreatedAt('ASC')
@@ -108,7 +116,7 @@ class DefaultController extends CoreController
                     'clean_message' => $sub_post->getMessate(),
                     'created_at' => date('j. M Y - H:i', strtotime($sub_post->getCreatedAt())),
                     'author' => $sub_post->getCustomers()->getFirstName().' '.$sub_post->getCustomers()->getLastName(),
-                    'city' => $sub_post->getCity(),
+                    'city' => $sub_post->getCustomers()->getAddresses()->getFirst()->getCity(),
                     'customers_id' => $sub_post->getCustomersId(),
                     'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $sub_post->getCustomersId()) ? true : false,
                     'is_first' => $sub_posts->isFirst(),
@@ -122,7 +130,7 @@ class DefaultController extends CoreController
                 'clean_message' => $wall_post->getMessate(),
                 'created_at' => date('j. M Y - H:i', strtotime($wall_post->getCreatedAt())),
                 'author' => $wall_post->getCustomers()->getFirstName().' '.$wall_post->getCustomers()->getLastName(),
-                'city' => $wall_post->getCity(),
+                'city' => $wall_post->getCustomers()->getAddresses()->getFirst()->getCity(),
                 'customers_id' => $wall_post->getCustomersId(),
                 'is_liked' => ($is_liked instanceof WallLikes) ? $is_liked->getStatus() : null,
                 'is_author' => ($this->get('security.context')->getToken()->getUser()->getPrimaryKey() == $wall_post->getCustomersId()) ? true : false,
