@@ -45,7 +45,7 @@ class RestGoogleController extends CoreController
         $query = rawurlencode($query);
         $country = rawurlencode($country);
 
-        $request = sprintf('http://maps.google.com/maps/geo?q=%s&output=json&oe=utf8', ($query.','.$country));
+        $request = sprintf('http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false', ($query.','.$country));
         $response = array(
             'status' => TRUE,
             'data' => json_decode(file_get_contents($request))
@@ -118,7 +118,7 @@ class RestGoogleController extends CoreController
         }
 
         $radius = 100;
-        $num_items = 10;
+        $num_items = 12;
 
         $filter = '';
         if ($type == 'hus') {
@@ -142,6 +142,8 @@ class RestGoogleController extends CoreController
                 c.phone,
                 a.postal_code,
                 a.city,
+                a.latitude,
+                a.longitude,
                 cn.info,
                 cn.event_notes
             FROM
@@ -163,7 +165,7 @@ class RestGoogleController extends CoreController
                 AND
                     c.email NOT LIKE ('%@bellcom.dk')
                 AND
-                    c.email NOT IN ('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk')
+                    c.email NOT IN ('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk','pd@pompdelux.dk')
             {$filter}
             HAVING
                 distance < {$radius}
@@ -198,6 +200,8 @@ class RestGoogleController extends CoreController
                 'city' => $record['city'],
                 'email' => $record['email'],
                 'phone' => $record['phone'],
+                'latitude' => $record['latitude'],
+                'longitude' => $record['longitude'],
                 'info' => $info,
             );
         }
@@ -214,7 +218,7 @@ class RestGoogleController extends CoreController
     {
         $consultants = CustomersQuery::create()
             ->filterByEmail('%@bellcom.dk', \Criteria::NOT_LIKE)
-            ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk'), \Criteria::NOT_IN)
+            ->filterByEmail(array('hdkon@pompdelux.dk','mail@pompdelux.dk','hd@pompdelux.dk','kk@pompdelux.dk','sj@pompdelux.dk','ak@pompdelux.dk','test@pompdelux.dk','pd@pompdelux.dk'), \Criteria::NOT_IN)
             ->filterByGroupsId(2)
             ->filterByIsActive(TRUE)
             ->useAddressesQuery()

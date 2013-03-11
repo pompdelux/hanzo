@@ -2,7 +2,7 @@
 | _sprites
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price {
-  background: url('/fx/2013s1/../images/icons/da-sface9107c5.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/da-s108dc2efea.png') no-repeat;
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
@@ -102,117 +102,117 @@
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price {
-  background: url('/fx/2013s1/../images/icons/fi-sec0815cf5c.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/fi-s9c67d08aa7.png') no-repeat;
 }
 
 .nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price {
-  background: url('/fx/2013s1/../images/icons/nl-s030a8906ce.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/nl-sffc453cabb.png') no-repeat;
 }
 
 .no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price {
-  background: url('/fx/2013s1/../images/icons/no-sf32cb30fcf.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/no-s6b225244c3.png') no-repeat;
 }
 
 .se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price {
-  background: url('/fx/2013s1/../images/icons/se-se58d7d38cd.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/se-s5e0c64e46d.png') no-repeat;
 }
 
 .en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price {
-  background: url('/fx/2013s1/../images/icons/en-sfa91a3521a.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/en-se06a0d064c.png') no-repeat;
 }
 
 body.da form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 87px;
 }
 body.da .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 87px;
 }
 body.da .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.en form.buy .submit-button {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.en .buy-set {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.en .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.fi form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.fi .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.fi .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.nb form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.nb .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.nb .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.nl form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.nl .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.nl .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.sv form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.sv .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.sv .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
@@ -264,7 +264,7 @@ ul.menu .dropdown,
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
   padding: 9px;
   max-height: 400px;
   overflow-y: auto;
@@ -608,12 +608,12 @@ footer .menu {
 */
 .bordered,
 .bordered-bottom {
-  border-bottom: 1px solid #888888;
+  border-bottom: 1px solid #888;
 }
 
 .bordered,
 .bordered-top {
-  border-top: 1px solid #888888;
+  border-top: 1px solid #888;
   margin-top: 6px;
 }
 
@@ -737,7 +737,7 @@ form.buy .submit-button {
 .productimage-small a:hover img,
 .style-guide a:hover img {
   padding: 0px;
-  border: 1px solid #888888;
+  border: 1px solid #888;
 }
 .latest-seen-poducts a.buy-set,
 .productimage-small a.buy-set,
@@ -1539,7 +1539,7 @@ form.create label.required:after {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
   clear: both;
 }
 
@@ -1573,7 +1573,7 @@ form.address label {
 #address-block .confirm {
   margin-top: 20px;
   padding: 20px;
-  border: 2px solid red;
+  border: 2px solid #f00;
   clear: both;
 }
 
@@ -1584,7 +1584,7 @@ form.address label {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
 }
 
 .payment-methods label {
@@ -1602,14 +1602,14 @@ form.address label {
   padding-left: 26px;
   background-color: #CCC;
   padding-top: 9px;
-  border: 1px solid #7b7577;
+  border: 1px solid #7B7577;
 }
 
 #coupon-block form {
   overflow: hidden;
   padding: 20px;
   margin: 10px;
-  border: 1px solid #7b7577;
+  border: 1px solid #7B7577;
 }
 #coupon-block form div.clearfix {
   float: left;
@@ -1679,7 +1679,7 @@ form.address label {
 }
 
 #cart-edit-element {
-  border: 5px solid black;
+  border: 5px solid #000;
   position: absolute;
   z-index: 9999;
   -webkit-border-radius: 5px;
@@ -1804,7 +1804,7 @@ nav.main-menu > ul > li > ul.on {
   padding: 3px;
 }
 .inject-notice-box .inner {
-  border: 1px solid black;
+  border: 1px solid #000;
   padding: 6px;
   color: #444444;
 }
@@ -1828,7 +1828,7 @@ nav.main-menu > ul > li > ul.on {
 }
 
 #dialoug-message {
-  border: 2px solid #d3c2a2;
+  border: 2px solid #D3C2A2;
   color: #231f20;
   margin: 10px 0;
   display: none;
@@ -1900,7 +1900,7 @@ nav.main-menu > ul > li > ul.on {
 }
 
 .tx-irfaq-pi1 dd div {
-  border-top: 1px solid #4b3a47;
+  border-top: 1px solid #4B3A47;
   margin-top: 10px;
 }
 
@@ -2035,7 +2035,7 @@ div.dialoug.like-pop ul {
   padding: 0;
 }
 div.dialoug.like-pop li {
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
   padding-top: 20px;
 }
 div.dialoug.like-pop li.like {
@@ -2210,7 +2210,7 @@ div.dialoug.like-pop li div {
   margin: 1px 0 0;
   list-style: none;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   *border-right-width: 2px;
   *border-bottom-width: 2px;
@@ -2250,7 +2250,7 @@ div.dialoug.like-pop li div {
   width: 216px;
 }
 .near-you-container .row {
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 1px solid whiteSmoke;
 }
 .near-you-container .row:last-child {
   border-bottom: none;
@@ -2300,7 +2300,7 @@ div.dialoug.like-pop li div {
 }
 
 .oldie nav.main-menu > ul > li > ul.on {
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
 }
 .oldie #secondary-links .menu.horizontal {
   float: right;
@@ -2827,7 +2827,7 @@ button.right {
 }
 
 .msg, .message {
-  border: 2px solid black;
+  border: 2px solid #000;
   background-color: #fff;
   color: #231f20;
   padding: 0.5em;
@@ -2850,7 +2850,7 @@ button.right {
   -webkit-box-shadow: #c9c9c9 -1px 1px 2px;
   -moz-box-shadow: #c9c9c9 -1px 1px 2px;
   box-shadow: #c9c9c9 -1px 1px 2px;
-  border: #f0f0f0 1px solid;
+  border: #F0F0F0 1px solid;
 }
 
 .to-top {
