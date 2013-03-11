@@ -22,6 +22,9 @@ var maps = (function($) {
           var map = getMap('consultants-map-canvas-2');
           if (result.data.length) {
             populateMap(map, result.data, true);
+            $('#consultants-map-canvas-2').show();
+          } else {
+            $('#consultants-map-canvas-2').hide();
           }
         });
 
@@ -33,7 +36,7 @@ var maps = (function($) {
 
   pub.initContainer = function() {
     dialoug.loading('#near-you-container', Translator.get('js:loading.std'), 'prepend');
-    $('#near-you-container').after('<div id="consultants-map-canvas-2" style="width:100%; height:300px;"></div>');
+    $('#near-you-container').after('<div id="consultants-map-canvas-2" style="width:100%; height:300px; display:none;"></div>');
 
     var req = '/'+near_you_params.type+'/0/0';
     $.getJSON(base_url + 'rest/v1/gm/near_you' + req, function(result) {
@@ -42,6 +45,7 @@ var maps = (function($) {
       var map = getMap('consultants-map-canvas-2');
       if (result.data.length) {
         populateMap(map, result.data, true);
+        $('#consultants-map-canvas-2').show();
       }
     });
   };
