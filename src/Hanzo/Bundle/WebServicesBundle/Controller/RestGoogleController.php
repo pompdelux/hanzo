@@ -200,6 +200,7 @@ class RestGoogleController extends CoreController
                 'city' => $record['city'],
                 'email' => $record['email'],
                 'phone' => $record['phone'],
+                'notes' => '',
                 'latitude' => $record['latitude'],
                 'longitude' => $record['longitude'],
                 'info' => $info,
@@ -238,12 +239,12 @@ class RestGoogleController extends CoreController
             $info = str_replace('src="/', 'src="'.$cdn, $info);
 
             $data[] = array(
-                'fullname' => $consultant->getName(),
+                'name' => $consultant->getName(),
                 'email' => $consultant->getEmail(),
                 'phone' => $consultant->getPhone(),
-                'notes' => $info,
+                'info' => $info,
                 'address' => $address->getAddressLine1(),
-                'postcode' => $address->getPostalCode(),
+                'zip' => $address->getPostalCode(),
                 'city' => $address->getCity(),
                 'countryname' => $address->getCountry(),
                 'latitude' => $address->getLatitude(),
