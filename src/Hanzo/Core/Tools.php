@@ -490,11 +490,11 @@ class Tools
      */
     public static function isBellcomRequest()
     {
-        return in_array($_SERVER['REMOTE_ADDR'], [
+        return (empty($_SERVER['REMOTE_ADDR']) || in_array($_SERVER['REMOTE_ADDR'], [
             '127.0.0.1',      // localhost
             '90.185.206.100', // office@kolding
             '87.104.21.83',   // un@home
-        ]);
+        ]));
     }
 
 
