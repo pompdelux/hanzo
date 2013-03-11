@@ -117,12 +117,12 @@ class DefaultController extends CoreController
         $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => $validation_groups));
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
+            $data = $form->getData();
 
+            // verify that the email is not already in use.
             if (!$customer->isNew() && $email) {
-                $data = $form->getData();
                 $form_email = $data->getEmail();
 
-                // verify that the email is not already in use.
                 if ($email != $form_email) {
                     $c = CustomersQuery::create()
                         ->filterById($customer->getId(), Criteria::NOT_EQUAL)
@@ -131,6 +131,20 @@ class DefaultController extends CoreController
                     if ($c instanceof Customers) {
                         $form->addError(new FormError('email.exists'));
                     }
+                }
+            }
+
+            // extra phone and zipcode constrints for .fi
+            // TODO: figure out how to make this part of the validation process.
+            if ('FI' == substr($domainKey, -2)) {
+                // zip codes are always 5 digits in finland.
+                if (!preg_match('/^[0-9]{5}$/', $address->getPostalCode())) {
+                    $form->addError(new FormError('postal_code.required'));
+                }
+
+                // phonenumber must start with a 0 (zero)
+                if (!preg_match('/^0[0-9]+$/', $customer->getPhone())) {
+                    $form->addError(new FormError('phone.required'));
                 }
             }
 
