@@ -23,6 +23,7 @@ var maps = (function($) {
           if (result.data.length) {
             populateMap(map, result.data, true);
             $('#consultants-map-canvas-2').show();
+            google.maps.event.trigger(map, 'resize');
           } else {
             $('#consultants-map-canvas-2').hide();
           }
@@ -46,6 +47,7 @@ var maps = (function($) {
       if (result.data.length) {
         populateMap(map, result.data, true);
         $('#consultants-map-canvas-2').show();
+        google.maps.event.trigger(map, 'resize');
       }
     });
   };
