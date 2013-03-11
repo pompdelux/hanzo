@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Criteria;
 
+use Symfony\Component\Form\FormError;
+
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -110,9 +112,27 @@ class DefaultController extends CoreController
 
         }
 
+        $email = $customer->getEmail();
+
         $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => $validation_groups));
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
+
+            if (!$customer->isNew() && $email) {
+                $data = $form->getData();
+                $form_email = $data->getEmail();
+
+                // verify that the email is not already in use.
+                if ($email != $form_email) {
+                    $c = CustomersQuery::create()
+                        ->filterById($customer->getId(), Criteria::NOT_EQUAL)
+                        ->findOneByEmail($form_email)
+                    ;
+                    if ($c instanceof Customers) {
+                        $form->addError(new FormError('email.exists'));
+                    }
+                }
+            }
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
