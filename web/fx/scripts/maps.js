@@ -20,7 +20,9 @@ var maps = (function($) {
           dataToContainer(result.data);
 
           var map = getMap('consultants-map-canvas-2');
-          populateMap(map, result.data, true);
+          if (result.data.length) {
+            populateMap(map, result.data, true);
+          }
         });
 
       });
@@ -38,7 +40,9 @@ var maps = (function($) {
       dataToContainer(result.data);
 
       var map = getMap('consultants-map-canvas-2');
-      populateMap(map, result.data, true);
+      if (result.data.length) {
+        populateMap(map, result.data, true);
+      }
     });
   };
 
