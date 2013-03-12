@@ -10,6 +10,7 @@
 namespace Hanzo\Bundle\PaymentBundle\Controller;
 
 use Exception;
+use Propel;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -124,8 +125,8 @@ class PensioController extends CoreController
             }
 
             if ('ok' === $status) {
-Tools::log('should redirect to: '.$this->generateUrl('_checkout_success'));
-                return $this->redirect($this->generateUrl('_checkout_success'));
+Tools::log($this->generateUrl('_checkout_success', [], true));
+                return $this->redirect($this->generateUrl('_checkout_success', [], true));
             }
 
             $api->updateOrderStatus(Orders::STATE_ERROR_PAYMENT, $request, $order);

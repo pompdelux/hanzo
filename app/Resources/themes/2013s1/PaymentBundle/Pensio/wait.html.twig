@@ -6,7 +6,7 @@
     <div class="description">
         {{ 'wait.description'|trans({
             '%server%' : app.server.HTTP_HOST,
-            '%goto%' : url('_pensio_status', {'success': 'ok'})
+            '%goto%' : url('_payment_cancel')
         }, 'pensio') }}
     </div>
 
