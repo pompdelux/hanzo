@@ -7,6 +7,6 @@ services:
         factory_service: service_factory
         factory_method:  get
         arguments:
-            service:     shipping.shippingapi 
+            service:     shipping.shippingapi
             parameters:  ~
             class:       %shipping.shippingapi.class%

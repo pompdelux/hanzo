@@ -2,26 +2,32 @@ Hanzo\Model\Events:
     properties:
         host:
             - NotBlank:
-                message: events.host.required.error
+                message: host.required
             - MinLength: 2
         address_line_1:
             - NotBlank:
-                message: events.address_line_1.required.error
+                message: address_line_1.required
             - MinLength: 2
         postal_code:
             - NotBlank:
-                message: events.postal_code.required.error
+                message: postal_code.required
             - MinLength: 2
         city:
             - NotBlank:
-                message: events.city.required.error
+                message: city.required
             - MinLength: 2
         phone:
             - NotBlank:
-                message: events.phone.required.error
-            - MinLength: 6
+                message: phone.required
+            - MinLength:
+                limit: 8
+                message: phone.min.length
+            - Regex:
+                pattern: "/^\d+$/"
+                match:   true
+                message: phone.not.valid
         email:
             - NotBlank:
-                message: events.email.required.error
+                message: email.required
             - Email:
-                message: events.email.required.error
+                message: email.required

@@ -73,7 +73,7 @@ body.fi{
     }
 }
 
-body.no{
+body.nb{
     form.buy .submit-button{
         @include no-sprite(put-to-basket);
         height: no-sprite-height(put-to-basket);
@@ -109,7 +109,7 @@ body.nl{
     }
 }
 
-body.se{
+body.sv{
     form.buy .submit-button{
         @include se-sprite(put-to-basket);
         height: se-sprite-height(put-to-basket);

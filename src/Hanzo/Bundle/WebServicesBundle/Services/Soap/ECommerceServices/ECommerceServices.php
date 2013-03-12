@@ -1063,6 +1063,10 @@ class ECommerceServices extends SoapService
     {
         $error = array();
 
+        if ('paybybill' == $order->getBillingMethod()) {
+            return true;
+        }
+
         try {
             $tmpAmount = str_replace(',', '.', $data->amount);
             list($large, $small) = explode('.', $tmpAmount);

@@ -74,6 +74,17 @@ class HanzoBoot
             $clean = str_replace('//', '/', str_replace('app_dev.php', '', $uri));
             $params = $this->router->match($clean);
 
+            $blacklist = [
+                'basket_view',
+                'ws_stock',
+                'basket_add',
+                '_checkout',
+            ];
+
+            if ($params && isset($params['_route']) && in_array($params['_route'], $blacklist)) {
+                $params['ip_restricted'] = 1;
+            }
+
             // if the route is ip restricted, redirect if not from an approved ip
             if (isset($params['ip_restricted']) && $params['ip_restricted'] == 1 ) {
                 $ips = explode("\n", str_replace("\r", '', $hanzo->get('webshop.closed.allowed_ips', '')));

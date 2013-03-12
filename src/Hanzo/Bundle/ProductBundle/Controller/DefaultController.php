@@ -100,12 +100,17 @@ class DefaultController extends CoreController
             $current_color = $main_image['color'];
             $current_type  = $main_image['type'];
 
-            $colors = $sizes = array();
+            $all_colors = $colors = $sizes = array();
             $product_ids = array();
+            $variants = ProductsQuery::create()->findByMaster($product->getSku());
+
+            // All colors are used for colorbuttons
+            foreach ($variants as $v) {
+                $all_colors[$v->getColor()] = $v->getColor();
+            }
 
             // find the sizes and colors on stock
             if (!$product->getIsOutOfStock()) {
-                $variants = ProductsQuery::create()->findByMaster($product->getSku());
 
                 foreach ($variants as $v) {
                     $product_ids[] = $v->getId();
@@ -180,11 +185,13 @@ class DefaultController extends CoreController
                 'washing' => $washing,
                 'main_image' => $main_image,
                 'images' => $images,
-                'prices' => array(),
+                'prices' => [],
                 'out_of_stock' => $product->getIsOutOfStock(),
                 'colors' => $colors,
+                'all_colors' => $all_colors,
                 'sizes' => $sizes,
-                'images_references' => $images_references
+                'images_references' => $images_references,
+                'has_video' => (bool) $product->getHasVideo()
             );
 
             $this->setCache($cache_id, $data, 60);

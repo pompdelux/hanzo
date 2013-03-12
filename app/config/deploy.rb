@@ -35,7 +35,10 @@ set :dump_assetic_assets,   true
 set :deploy_via,  :rsync_with_remote_cache
 # use other rsync_options. Default is: -az --delete
 #set :rsync_options, "-rltoDzO --delete"
-set :rsync_options, "-rltzO --delete"
+#set :rsync_options, "-rltzO --delete"
+set :rsync_options, "-rltzO --delete --exclude=.git"
+
+set :group_writable, true
 
 #set :deployed_user, "www-data"
 set :deployed_group, "www-data"

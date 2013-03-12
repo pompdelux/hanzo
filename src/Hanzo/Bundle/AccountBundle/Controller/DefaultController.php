@@ -91,7 +91,22 @@ class DefaultController extends CoreController
         );
 
         if ( 'POST' === $request->getMethod() ) {
-            $form->bindRequest($request);
+            $form->bind($request);
+            $data = $form->getData();
+
+            // extra phone and zipcode constrints for .fi
+            // TODO: figure out how to make this part of the validation process.
+            if ('FI' == substr($domainKey, -2)) {
+                // zip codes are always 5 digits in finland.
+                if (!preg_match('/^[0-9]{5}$/', $address->getPostalCode())) {
+                    $form->addError(new FormError('postal_code.required'));
+                }
+
+                // phonenumber must start with a 0 (zero)
+                if (!preg_match('/^0[0-9]+$/', $customer->getPhone())) {
+                    $form->addError(new FormError('phone.required'));
+                }
+            }
 
             if ($form->isValid()) {
                 $customer->setPasswordClear($customer->getPassword());

@@ -9,13 +9,14 @@
 namespace Hanzo\Core;
 
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
-use Symfony\Component\HttpFoundation\Response;
-
 use Predis\Network\ConnectionException as PredisConnectionException;
+
+use Symfony\Component\HttpFoundation\Response;
 
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -61,32 +62,20 @@ class ExceptionHandler
                 $event->setResponse($response);
             }
 
-            // try to map old shop ulr's to new ones
-            if (substr($path, 6, 3) == '/p/') {
-                $page = CmsI18nQuery::create()
-                    ->filterByLocale($request->getLocale())
-                    ->findOneByOldPath(substr($path, 6))
-                ;
-                if ($page instanceof CmsI18n) {
-                    $response = new Response('', 301, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/'.$page->getPath()));
-                    $event->setResponse($response);
-                }
-            } else {
-                // test for redirects
-                $redirect = RedirectsQuery::create()
-                    ->filterByDomainKey($hanzo->get('core.domain_key'))
-                    ->findOneBySource($path)
-                ;
+            // test for redirects
+            $redirect = RedirectsQuery::create()
+                ->filterByDomainKey($hanzo->get('core.domain_key'))
+                ->findOneBySource($path)
+            ;
 
-                if ($redirect instanceof Redirects) {
-                    $url = $redirect->getTarget();
-                    if (substr($url, 0, 4) != 'http') {
-                        $url = $request->getBaseUrl().''.$url;
-                    }
-
-                    $response = new Response('', 302, array('Location' => $url));
-                    $event->setResponse($response);
+            if ($redirect instanceof Redirects) {
+                $url = $redirect->getTarget();
+                if (substr($url, 0, 4) != 'http') {
+                    $url = $request->getBaseUrl().''.$url;
                 }
+
+                $response = new Response('', 302, array('Location' => $url));
+                $event->setResponse($response);
             }
 
             // if webshop is offline, then set another message than "not found"
@@ -95,20 +84,28 @@ class ExceptionHandler
                 $twig->addGlobal('webshop_closed', true);
             }
 
-        } elseif (($exception instanceof RouteNotFoundException) || ($exception instanceof ResourceNotFoundException)) {
-            Tools::log($exception->getMessage() . ' :: ' . $request->getPathInfo());
+        } elseif (
+            ($exception instanceof RouteNotFoundException) ||
+            ($exception instanceof ResourceNotFoundException) ||
+            ($exception instanceof MethodNotAllowedException)
+        ) {
+            //Tools::log($exception->getMessage() . ' :: ' . $request->getPathInfo());
+
+            $code = 404;
+            if ($exception instanceof MethodNotAllowedException) {
+                $code = 405;
+            }
 
             $response = new Response($this->service_container->get('templating')->render('TwigBundle:Exception:error404.html.twig', array(
                 'exception' => $exception
-            )));
+            )), $code);
 
             $event->setResponse($response);
 
         } elseif ($exception instanceof AccessDeniedHttpException) {
             $request = $this->service_container->get('request');
-            $pathWithNoLocale = substr($request->getPathInfo(),6);
 
-            switch ( $pathWithNoLocale ) {
+            switch (substr($request->getPathInfo(), 6)) {
                 case '/account': // The customer probably tried to created an account on the wrong locale
                     $response = new Response('', 302, array('Location' => $request->getBaseUrl().'/'.$request->getLocale().'/login'));
                     $event->setResponse($response);

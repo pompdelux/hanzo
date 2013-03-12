@@ -137,7 +137,7 @@
                     <strong>Customer service</strong><br>
                     Phone.: +45 8736 1000<br>
                     E-mail: <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a><br>
-                    Monday - Thursday: 9 am - 4 pm<br>
+                    Monday - Thursday: 9 am - 6 pm<br>
                     Friday: 9 am - 2 pm<br>
                     <!--Lunch break 12 pm - 12.45 pm<br>-->
                     Saturday, Sunday and holidays closed.
@@ -227,9 +227,11 @@
             <trans-unit id="delivery.info" approved="no">
                 <source>delivery.info</source>
                 <target><![CDATA[
-                    <p>Alle ordrer sendes med Post Danmark som pakkepost. Det vil sige, at både vi og vores kunder har muligged for at følge pakken med track & trace tuk deb bkuver leveret. Du kan også vælge at få din ordre sendt til din arbejdsplads - så koster det dig istedet 39,00 DKK.</p>
-                    <p>Bemærk: Hvis du til et Home shopping arrangement køber for min. 1.400,00 DKK sender vi din ordre fragtfrit.</p>
-                    <p>Leveringstid: %delivery.date%</p>
+                    <p>Shipping charge, regardless of size and weight, is for EU countries EUR 15 and for non-EU countries EUR 20.
+      <br>
+      All orders are sent through the <a href="http://www.postdanmark.dk" target="_blank">Danish National Postal Service</a> as parcel post. Track and trace numbers are generated, allowing both you and us to follow the parcel until delivery takes place. <br>
+      <br>
+      We recommend that you carefully inspect your items when the parcel arrives. Please contact our Customer Service or Post Denmark immediately if any of the items are damaged upon arrival. </p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
@@ -239,7 +241,9 @@
             <trans-unit id="return.info" approved="no">
                 <source>return.info</source>
                 <target><![CDATA[
-                    <p>Varerne skal være ubrugte og returneres i original emballage, med hængemærker osv. Strømper, leggings og strømpebukser kan kun returneres i ubrudt emballage. Postposen, som du modtager dine varer i, er lavet, så den kan bruges to gange. På posen kan du se, hvor du skal klippe, så du kan anvende den igen. Vi refunderer derfor ikke penge for returemballage, ligesom vi ikke refunderer penge for porto, hvis du kun sender dele af din ordre retur. Vi modtager ikke returvarer, der bliver sendt pr. efterkrav.</p>
+                    <p>The returned items must be in unused and original packaging with hangtags etc. Socks, leggings and pantyhose can only be returned in unbroken packaging. The post bag, in which you receive your items, can be reused - see instructions on the bag. Therefore we do not refund any package or postage charges if you only return part of your order. <br>
+      <br>
+      Return the items with a <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel_Eng.pdf" target="_blank">returns form</a>. Enter your personal details on the form and post the items to us. You will find our address on the form.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_1" approved="no">
@@ -296,7 +300,7 @@
             </trans-unit>
             <trans-unit id="on.stock" approved="no">
                 <source>on.stock</source>
-                <target>On stock</target>
+                <target>In stock</target>
             </trans-unit>
             <trans-unit id="on.stock.yes" approved="no">
                 <source>on.stock.yes</source>
@@ -320,7 +324,7 @@
             </trans-unit>
             <trans-unit id="goto.top.link" approved="no">
                 <source>goto.top.link</source>
-                <target>Goto top</target>
+                <target>Go to top</target>
             </trans-unit>
         </body>
     </file>

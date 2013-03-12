@@ -66,7 +66,7 @@
       <trans-unit id="Adele SKIRT">
         <source>description.Adele_SKIRT</source>
         <target>
-          <![CDATA[Skønne Adele! Nederdelen er som en lille klokke, i det dejligste bløde stof med guld nister, et feminint palliet bånd ned langs siden, en lille slids bagpå, praktiske lommer foran med lynlåse, som kan rumme små fundne skatte og et blødt elastik i taljen med bindebånd.
+          <![CDATA[Skønne Adele! Nederdelen er som en lille klokke, i det dejligste bløde stof med guld nister, et feminint palliet bånd ned langs siden, en lille slids bagpå, praktiske lommer foran med lynlåse, som kan rumme små fundne skatte og et blødt elastik i taljen med bindebånd. Bemærk: Taljemålet på Adele SKIRT er desværre blevet ca. en størrelse mindre end ønsket. Du skal derfor købe Adele SKIRT i en størrelse større end du normalt ville gøre.  
             <br><br>	Fås i: Light Grey Melange (lys gråmeleret) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 65% Bomuld, 28% Polyamid, 7% Metallisk fiber]]>
         </target>
       </trans-unit>
@@ -419,7 +419,7 @@
         <source>description.Carlos_PANTS</source>
         <target>
           <![CDATA[Baggy og sweat, kan det blive mere behageligt at hoppe i?
-            Cool til hverdagen, til sport og skøn til afslapning! Og så er Cameron god for samvittigheden med sin Oeko-Tex mærkning.
+Cool til hverdagen, til sport og skøn til afslapning! Og så er Carlos god for samvittigheden med sin Oeko-Tex mærkning.
             <br><br>	Fås i: Grey Melange (gråmeleret) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
         </target>
       </trans-unit>
@@ -481,21 +481,21 @@
             <br><br>	Fås i: Grey (grå), Brown (brun), Blue (blå) og Black (sort).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Viskose, 5% Elastan]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer Little SS TSHIRT">
-        <source>description.Christoffer_Little_SS_TSHIRT</source>
+      <trans-unit id="Christopher Little SS TSHIRT">
+        <source>description.Christopher_Little_SS_TSHIRT</source>
         <target>
           <![CDATA[Navy style! 
-            En varm sommerdag, på med Christoffer t-shirt, hop i yndlingsshortsene, sko på og spring ud i verden
+            En varm sommerdag, på med Christopher t-shirt, hop i yndlingsshortsene, sko på og spring ud i verden
             og leg for fuld drøn med samvittigheden i orden, for Christoffer er Oeko-Tex mærket.
             <br><br>	Fås i: Grey Melange (gråmeleret) og Navy (marine).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
         </target>
       </trans-unit>
-      <trans-unit id="Christoffer TANKTOP">
-        <source>description.Christoffer_TANKTOP</source>
+      <trans-unit id="Christopher TANKTOP">
+        <source>description.Christopher_TANKTOP</source>
         <target>
           <![CDATA[Navy style! 
-            En varm sommerdag, på med Christoffer TANKTOP, hop i yndlingsshortsene, sko på og spring ud i verden
-            og leg for fuld drøn med samvittigheden i orden, for Christoffer er Oeko-Tex mærket.
+            En varm sommerdag, på med Christopher TANKTOP, hop i yndlingsshortsene, sko på og spring ud i verden
+            og leg for fuld drøn med samvittigheden i orden, for Christopher er Oeko-Tex mærket.
             <br><br>	Fås i: Grey Melange (gråmeleret) og Navy (marine).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
         </target>
       </trans-unit>
@@ -516,7 +516,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[Oeko-Tex mærket sweat-jakke i sporty look. Super lækker og cool til det meste.	<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
+          <![CDATA[Oeko-Tex mærket sweat-jakke i sporty look. Super lækker og cool til det meste. <br><b>Bemærk:</b> Ribkanten på farven Wine (vinrød) er ensfarvet Wine (vinrød) og ikke stribet som på billedet. <br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -777,7 +777,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Emma PANTS">
-        <source>description.Emma_PANTS_</source>
+        <source>description.Emma_PANTS</source>
         <target>
           <![CDATA[Helt igennem vidunderlige bukser i blød hør med baggy pasform og blød elastik ved anklerne.	<br><br>	Fås i: Khaki og Grey (grå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Hør]]>
         </target>
@@ -879,7 +879,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Finley Little PULLOVER">
-        <source>description.Finley_Little_PULLOVER</source>
+        <source>description.Finley_Little_SLIPOVER</source>
         <target>
           <![CDATA[Finley er en lækker stribet vest med søde strik detaljer. Style med en neutral bluse, et par fede chinos eller jeans og sørg for at ha den med i tasken til de kølige stunder. 
             
@@ -1073,14 +1073,14 @@
         </target>
       </trans-unit>
       <trans-unit id="James Little LS GRANDDAD">
-        <source>description.James_Little_LS_GRANDDAD_</source>
+        <source>description.James_Little_LS_GRANDDAD</source>
         <target>
           <![CDATA[Ta bedstefars tøfler på, stik dagens avis under armen og træk i James sammen med et par fede jeans og ta en morfar. 
             Tshirten er Oeko-Tex produceret, har seje striber og klassisk granddad knaplukning ned foran.<br><br>	Fås i: Grey Melange/White (gråmeleret/hvid), Blue/Grey Melange (blå/gråmeleret), Blue (blå) og Navy/Honey (marine/gul).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 95% Bomuld, 5% Elastan]]>
         </target>
       </trans-unit>
       <trans-unit id="James Little SS GRANDDAD">
-        <source>description.James_Little_SS_GRANDDAD_</source>
+        <source>description.James_Little_SS_GRANDDAD</source>
         <target>
           <![CDATA[Ta bedstefars tøfler på, stik dagens avis under armen og træk i James sammen med et par fede jeans og ta en morfar. 
             Tshirten er Oeko-Tex produceret, har seje striber og klassisk granddad knaplukning ned foran.
@@ -1088,7 +1088,7 @@
         </target>
       </trans-unit>
       <trans-unit id="James LS GRANDDAD">
-        <source>description.James_LS_GRANDDAD_</source>
+        <source>description.James_LS_GRANDDAD</source>
         <target>
           <![CDATA[Ta bedstefars tøfler på, stik dagens avis under armen og træk i James sammen med et par fede jeans og ta en morfar. 
             Tshirten er Oeko-Tex produceret, har seje striber og klassisk granddad knaplukning ned foran.
@@ -1096,7 +1096,7 @@
         </target>
       </trans-unit>
       <trans-unit id="James SS GRANDDAD">
-        <source>description.James_SS_GRANDDAD_</source>
+        <source>description.James_SS_GRANDDAD</source>
         <target>
           <![CDATA[Ta bedstefars tøfler på, stik dagens avis under armen og træk i James sammen med et par fede jeans og ta en morfar. 
             Tshirten er Oeko-Tex produceret, har seje striber og klassisk granddad knaplukning ned foran.
@@ -1253,16 +1253,16 @@
             En fin nutidig kjole med overskæring og bindebånd i taljen. Let og luftig til leg og latter. Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke.<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy Little TSHIRT">
-        <source>description.Lucy_Little_TSHIRT</source>
+      <trans-unit id="Lucy Little SS TSHIRT">
+        <source>description.Lucy_Little_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
+          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke.<br><b> Vigtig info:</b> Lille i størrelse. Du bør købe en størrelse større.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
         </target>
       </trans-unit>
-      <trans-unit id="Lucy TSHIRT">
-        <source>description.Lucy_TSHIRT</source>
+      <trans-unit id="Lucy SS TSHIRT">
+        <source>description.Lucy_SS_TSHIRT</source>
         <target>
-          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
+          <![CDATA[All you need is love! Masser af kærlighed til søde bløde Lucy! Lucy er også skøn for samvittigheden med sit Oeko-Tex mærke. <br><b> Vigtig info:</b> Lille i størrelse. Du bør købe en størrelse større.	<br><br>	Fås i: Rose (rosa), White (hvid), Peach (fersken) og Blue (blå).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 80% Bomuld, 20% Hør]]>
         </target>
       </trans-unit>
       <trans-unit id="Madison CARDIGAN">
@@ -1336,7 +1336,7 @@
       <trans-unit id="Morgan SS TSHIRT">
         <source>description.Morgan_SS_TSHIRT</source>
         <target>
-          <![CDATA[I lækker fodboldstil er Morgan skøn til drenge med gang i. Og samvittigheden kan også spille med for Morgan er Oeko-Tex mærket.	<br><br>	Fås i: Blue (blå) og Red (rød).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Bomuld]]>
+          <![CDATA[I lækker fodboldstil er Morgan skøn til drenge med gang i. Og samvittigheden kan også spille med for Morgan er Oeko-Tex mærket.	<br><br>	Fås i: Blue (blå) og Red (rød).	<br><br>	Størrelsen er barnets højde angivet i cm.	<br><br>	Kvalitet: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Nola LEGGINGS">
@@ -1581,7 +1581,7 @@
         </target>
       </trans-unit>
       <trans-unit id="Sophia Little PANTS">
-        <source>description.Sophia_Little_PANTS_</source>
+        <source>description.Sophia_Little_PANTS</source>
         <target>
           <![CDATA[Sødt prikket mønster, haremsbuks mikset med baggy -  en genganger vi elsker. 
             Et par bukser som du ikke bare tager på, men flytter ind i og bor blødt og smukt.

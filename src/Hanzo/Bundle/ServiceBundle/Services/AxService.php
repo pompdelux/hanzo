@@ -90,7 +90,7 @@ class AxService
     public function sendOrder(Orders $order, $return = false, $con = null)
     {
         if (null === $con) {
-            Propel::setForceMasterConnection(true);
+            $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
         }
 
         $attributes = $order->getAttributes($con);
@@ -201,7 +201,7 @@ class AxService
             }
 
             $line = new stdClass();
-            $line->ItemId = 'POMP BIG BAG One Size Khaki';
+            $line->ItemId = 'POMP BIG BAG';
             $line->SalesPrice = $bag_price;
             $line->LineDiscPercent = 100;
             $line->SalesQty = 1;
@@ -227,7 +227,7 @@ class AxService
         switch ($order->getBillingMethod())
         {
             case 'dibs':
-                switch (strtoupper($attributes->payment->paytype)) {
+                switch (trim(strtoupper($attributes->payment->paytype))) {
                     case 'VISA':
                     case 'VISA(DK)':
                     case 'VISA(SE)':
@@ -277,12 +277,12 @@ class AxService
         $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
         $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
         $salesTable->InvoiceAccount          = $order->getCustomersId();
-        $salesTable->FreightFeeAmt           = (float) number_format($shipping_cost, 4, '.', '');
+        $salesTable->FreightFeeAmt           = number_format((float) $shipping_cost, 4, '.', '');
         $salesTable->FreightType             = $freight_type;
         $salesTable->HandlingFeeType         = 90;
-        $salesTable->HandlingFeeAmt          = (float) number_format($handeling_fee, 4, '.', '');
+        $salesTable->HandlingFeeAmt          = number_format((float) $handeling_fee, 4, '.', '');
         $salesTable->PayByBillFeeType        = 91;
-        $salesTable->PayByBillFeeAmt         = (float) number_format($payment_cost, 4, '.', ''); // TODO: only for gothia?
+        $salesTable->PayByBillFeeAmt         = number_format((float) $payment_cost, 4, '.', ''); // TODO: only for gothia?
         $salesTable->Completed               = 1;
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
@@ -350,10 +350,6 @@ class AxService
 
         // log ax transaction result
         $this->logOrderSyncStatus($order->getId(), $syncSalesOrder, $state, $comment, $con);
-
-        if (null === $con) {
-            Propel::setForceMasterConnection(false);
-        }
 
         if ($state == 'ok') {
             return true;
@@ -501,7 +497,7 @@ class AxService
         $lock->endpointDomain = str_replace('SALES', '', strtoupper($attributes->global->domain_key));
 
         // NICETO, would be nice if this was not static..
-        switch (strtoupper($lock->endpointDomain)) {
+        switch ($lock->endpointDomain) {
             case 'COM':
                 $lock->endpointDomain = 'DK';
                 break;
@@ -552,7 +548,6 @@ class AxService
      */
     protected function Send($service, $request)
     {
-        Tools::debug( 'AX Send:', __METHOD__, array( 'Service' => $service, 'Request' => json_encode($request), 'Skip Send' => $this->skip_send));
         if ($this->skip_send) {
             return true;
         }

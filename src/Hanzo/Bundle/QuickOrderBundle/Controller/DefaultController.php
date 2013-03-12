@@ -67,15 +67,20 @@ class DefaultController extends CoreController
             $line['basket_image'] =
                 preg_replace('/[^a-z0-9]/i', '-', $line['products_name']) .
                 '_' .
-                preg_replace('/[^a-z0-9]/i', '-', $line['products_color']) .
-                '_set_01.jpg'
+                preg_replace('/[^a-z0-9]/i', '-', str_replace('/', '9', $line['products_color'])) .
+                '_overview_01.jpg'
             ;
 
+            $line['url'] = '#';
             $master = ProductsQuery::create()->findOneBySku($line['products_name']);
-            $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+            if ($master) {
+                $line['url'] = $router->generate('product_info', array('product_id' => $master->getId()));
+            }
 
             $products[] = $line;
         }
+
+        Tools::setCookie('basket', '('.$order->getTotalQuantity(true).') '.Tools::moneyFormat($order->getTotalPrice(true)), 0, false);
 
         return $this->render('QuickOrderBundle:Default:index.html.twig',
             array(
@@ -86,7 +91,7 @@ class DefaultController extends CoreController
                 'delivery_date' => $delivery_date
             )
         );
-        }
+    }
 
     public function getSkuAction()
     {

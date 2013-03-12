@@ -2,8 +2,12 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
+use Propel;
+
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
 use Hanzo\Bundle\ServiceBundle\Services\AxService;
 
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -43,10 +47,20 @@ class OrderListener
             return;
         }
 
+        // ensure that we do not have session clashes.
+        $o = OrdersQuery::create()->findOneBySessionId(
+            $this->session->getId(),
+            Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_WRITE)
+        );
+        if ($o instanceof Orders) {
+            $this->session->migrate();
+        }
+
         // first we create the edit version.
         $order->createNewVersion();
 
-        $order->setSessionId(session_id());
+        // then we set edit stuff on the order.
+        $order->setSessionId($this->session->getId());
         $order->setState( Orders::STATE_BUILDING ); // Old order state is probably payment ok
         $order->clearFees();
         $order->clearPaymentAttributes();

@@ -171,7 +171,8 @@
           return false;
         }
 
-        dialoug.loading($('a#checkout-execute', '', 'before'));
+        $(this).hide();
+        dialoug.loading($('a#checkout-execute', '', 'after'));
 
         $('#main form').each(function(index, form) {
           var $form = $(form);
@@ -226,11 +227,11 @@
 
       $('#address-copy').on('change',function(e){
         $copied = $('#address-block form:nth-child(2)');
-        if($(this).attr('checked')){
+        if ($(this).attr('checked')) {
           $('#address-block form:first input[type=text]').each(function(i){
             $copied.find('#'+$(this).attr('id')).val($(this).val());
           });
-        }else{
+        } else {
           $copied.each(function(){
             this.reset();
           });
@@ -252,11 +253,14 @@
       if (response.response.status) {
         $('#address-block form:nth-child(2)').replaceWith(response.response.data.html);
         $(document).trigger('shipping.address.changed');
-        if($('input[name=method]:checked').val() === "10"){ // Private postal
+
+        var m = $('input[name=method]:checked').val();
+        if ((m === "10") || (m === "30") || (m === "70") || (m === "500")) { // Private postal
           $('#address-copy').prop('checked', false).parent().removeClass('off');
-        }else{
+        } else {
           $('#address-copy').parent().addClass('off');
         }
+
         $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
         pub.setStepStatus('shipping', true);
       } else {

@@ -2,12 +2,14 @@
 
 namespace Hanzo\Core;
 
-use \Propel;
-use \BasePeer;
+use Propel;
+use BasePeer;
 
 use Hanzo\Core\Hanzo;
+
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
+use Hanzo\Model\OrdersQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\Sequences;
 use Hanzo\Model\SequencesPeer;
@@ -225,6 +227,16 @@ class Tools
 
         $sequence_id = $item->getId();
 
+        while (true) {
+            $o = OrdersQuery::create()->findOneByPaymentGatewayId($sequence_id, $con);
+            if ($o instanceof Orders) {
+                $sequence_id++;
+            } else {
+                goto while_end;
+            }
+        }
+        while_end: // yes labeled break...
+
         $item->setId($sequence_id + 1);
         $item->save($con);
 
@@ -253,23 +265,34 @@ class Tools
     /**
      * shortcut for logging data to the error log
      *
-     * @param mixed $data the data to log
-     * @param integer $back how many levels back we dump trace for
+     * @param mixed   $data  the data to log
+     * @param integer $back  how many levels back we dump trace for
+     * @param boolean $trace set to true and the log will get a backtrace dump attached
      */
-    public static function log($data, $back = 0)
+    public static function log($data, $back = 0, $trace = false)
     {
         $bt = debug_backtrace();
         $line = $bt[$back]['line'];
         $root = realpath(__DIR__ . '/../../../');
         $file = str_replace($root, '~', $bt[$back]['file']);
+        $data = print_r($data, 1);
+
+        if ($trace) {
+            $data .= "\ntrace:\n";
+            foreach ($bt as $entry) {
+                if (isset($entry['file']) && isset($entry['line'])) {
+                    $data .= ' '.str_replace($root, '~', $entry['file']).' +'.$entry['line']."\n";
+                }
+            }
+        }
 
         // handle logging when running in fast cgi mode (nginx)
         if ('fpm-fcgi' == php_sapi_name()) {
-            error_log('['.date('r').'] '.$file.' +'.$line.' :: '.print_r($data, 1)."\n", 3, $root.'/app/logs/php.log');
+            error_log('['.date('r').'] '.$file.' +'.$line.' :: '.$data."\n", 3, $root.'/app/logs/php.log');
             return;
         }
 
-        error_log($file.' +'.$line.' :: '.print_r($data, 1));
+        error_log($file.' +'.$line.' :: '.$data);
     }
 
 
@@ -291,6 +314,11 @@ class Tools
      **/
     public static function debug( $msg, $context, $data = array())
     {
+        // we do not have access to session data here...
+        if (('cli' === PHP_SAPI)) {
+            return;
+        }
+
         $order    = OrdersPeer::getCurrent();
         $customer = CustomersPeer::getCurrent();
 
@@ -462,11 +490,11 @@ class Tools
      */
     public static function isBellcomRequest()
     {
-        return in_array($_SERVER['REMOTE_ADDR'], [
+        return (empty($_SERVER['REMOTE_ADDR']) || in_array($_SERVER['REMOTE_ADDR'], [
             '127.0.0.1',      // localhost
             '90.185.206.100', // office@kolding
             '87.104.21.83',   // un@home
-        ]);
+        ]));
     }
 
 

@@ -70,8 +70,9 @@
         xhr.done(function (response) {
           $.each(response.data, function (i, element) {
             if (undefined !== element.mtime) {
-              var date = new Date(element.mtime);
-              date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes();
+              var date = element.mtime;
+              // var date = new Date(element.mtime);
+              // date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes();
               var $elm = $('a.media_file.index-'+element.index);
               var $em = $elm.next('em');
               var label = $elm.data('datelabel');
@@ -86,19 +87,23 @@
       var menu_width = 0;
       $('li li.heading', $menu).each(function(index, element) {
         var $element = $(element);
-        if (menu_width < $element.width()) {
-          menu_width = $element.width() - 40;
+        var tmp_width = $element.width() - 40;
+        if (menu_width < tmp_width) {
+          menu_width = tmp_width;
         }
+
         $element.addClass('floaded');
       });
       $('li li.heading').closest('ul').each(function(index, element) {
         var $element = $(element);
         var count = $('> li', $element).length;
-        $element.css('width', (menu_width * count));
+        $element.css('width', (menu_width * count) + 5);
       });
 
 
       $('> ul > li > a', $menu).click(function(event) {
+        event.stopPropagation();
+
         var $this = $(this).parent();
         var $element = $('> ul', $this);
 
@@ -108,6 +113,10 @@
         if ($('ul', $this).length) {
           event.preventDefault();
         }
+      });
+
+      $('html').click(function(event) {
+        $('.on', $menu).removeClass('on');
       });
     };
 

@@ -2,23 +2,23 @@
 | _sprites
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price {
-  background: url('/fx/2013s1/../images/icons/da-sface9107c5.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/da-s108dc2efea.png') no-repeat;
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s23707167a9.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-s58a692fae5.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -524px;
+  background-position: 0 -543px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -517px;
+  background-position: 0 -536px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -528px;
+  background-position: 0 -547px;
 }
 
 .icons-basket {
@@ -26,11 +26,11 @@
 }
 
 .icons-button-left {
-  background-position: 0 -411px;
+  background-position: 0 -517px;
 }
 
 .icons-button-right {
-  background-position: 0 -392px;
+  background-position: 0 -498px;
 }
 
 .icons-delete {
@@ -46,15 +46,15 @@
 }
 
 .icons-divider {
-  background-position: 0 -300px;
+  background-position: 0 -255px;
 }
 
 .icons-divider_left {
-  background-position: 0 -217px;
+  background-position: 0 -172px;
 }
 
 .icons-divider_right {
-  background-position: 0 -280px;
+  background-position: 0 -235px;
 }
 
 .icons-edit {
@@ -62,11 +62,11 @@
 }
 
 .icons-facebook {
-  background-position: 0 -430px;
+  background-position: 0 -466px;
 }
 
 .icons-gplus {
-  background-position: 0 -360px;
+  background-position: 0 -320px;
 }
 
 .icons-newsletter {
@@ -74,145 +74,145 @@
 }
 
 .icons-pdf {
-  background-position: 0 -535px;
+  background-position: 0 -554px;
 }
 
 .icons-pinterest {
-  background-position: 0 -459px;
+  background-position: 0 -402px;
 }
 
 .icons-shopping-bag {
-  background-position: 0 -237px;
+  background-position: 0 -192px;
 }
 
 .icons-show {
-  background-position: 0 -551px;
+  background-position: 0 -570px;
 }
 
 .icons-twitter {
-  background-position: 0 -488px;
+  background-position: 0 -434px;
 }
 
 .icons-video {
-  background-position: 0 -315px;
+  background-position: 0 -352px;
 }
 
 .icons-zoom {
-  background-position: 0 -172px;
+  background-position: 0 -270px;
 }
 
 .fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price {
-  background: url('/fx/2013s1/../images/icons/fi-sec0815cf5c.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/fi-s9c67d08aa7.png') no-repeat;
 }
 
 .nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price {
-  background: url('/fx/2013s1/../images/icons/nl-s030a8906ce.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/nl-sffc453cabb.png') no-repeat;
 }
 
-.no-sprite, body.no form.buy .submit-button, body.no .buy-set, body.no .new-price {
-  background: url('/fx/2013s1/../images/icons/no-sf32cb30fcf.png') no-repeat;
+.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price {
+  background: url('/fx/2013s1/../images/icons/no-s6b225244c3.png') no-repeat;
 }
 
-.se-sprite, body.se form.buy .submit-button, body.se .buy-set, body.se .new-price {
-  background: url('/fx/2013s1/../images/icons/se-se58d7d38cd.png') no-repeat;
+.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price {
+  background: url('/fx/2013s1/../images/icons/se-s5e0c64e46d.png') no-repeat;
 }
 
 .en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price {
-  background: url('/fx/2013s1/../images/icons/en-sfa91a3521a.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/en-se06a0d064c.png') no-repeat;
 }
 
 body.da form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 87px;
 }
 body.da .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 87px;
 }
 body.da .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.en form.buy .submit-button {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.en .buy-set {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.en .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.fi form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.fi .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.fi .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
-body.no form.buy .submit-button {
-  background-position: 0 -494px;
+body.nb form.buy .submit-button {
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
-body.no .buy-set {
-  background-position: 0 -410px;
+body.nb .buy-set {
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
-body.no .new-price {
-  background-position: 0 0;
+body.nb .new-price {
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
 body.nl form.buy .submit-button {
-  background-position: 0 -494px;
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
 body.nl .buy-set {
-  background-position: 0 -410px;
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
 body.nl .new-price {
-  background-position: 0 0;
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
 
-body.se form.buy .submit-button {
-  background-position: 0 -494px;
+body.sv form.buy .submit-button {
+  background-position: 0 -2164px;
   height: 84px;
   width: 84px;
 }
-body.se .buy-set {
-  background-position: 0 -410px;
+body.sv .buy-set {
+  background-position: 0 -2080px;
   height: 84px;
   width: 84px;
 }
-body.se .new-price {
-  background-position: 0 0;
+body.sv .new-price {
+  background-position: 0 -1670px;
   height: 410px;
   width: 234px;
 }
@@ -230,6 +230,7 @@ ul.menu,
   font-size: 14px;
   font-family: "Merriweather", serif;
   color: #444444;
+  letter-spacing: 0;
   z-index: 200;
   position: relative;
 }
@@ -425,6 +426,7 @@ ul.breadcrumb li.last i.arrow-right {
   padding: 0 0 10px;
   font-size: 21px;
   color: white;
+  font-weight: normal;
 }
 .container .main header hgroup h6 {
   font-size: 14px;
@@ -442,7 +444,70 @@ ul.breadcrumb li.last i.arrow-right {
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
 
+#body-basket .main header,
+#body-checkout .main header,
+#body-event .main header,
+#body-create-account .main header,
+#body-login .main header,
+#body-account .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Kategori_Min_side_960x100.jpg") no-repeat top center;
+}
+#body-basket .main header hgroup h1, #body-basket .main header hgroup h2, #body-basket .main header hgroup h3, #body-basket .main header hgroup h4, #body-basket .main header hgroup h5, #body-basket .main header hgroup h6, #body-basket .main header hgroup a, #body-basket .main header hgroup p,
+#body-checkout .main header hgroup h1,
+#body-checkout .main header hgroup h2,
+#body-checkout .main header hgroup h3,
+#body-checkout .main header hgroup h4,
+#body-checkout .main header hgroup h5,
+#body-checkout .main header hgroup h6,
+#body-checkout .main header hgroup a,
+#body-checkout .main header hgroup p,
+#body-event .main header hgroup h1,
+#body-event .main header hgroup h2,
+#body-event .main header hgroup h3,
+#body-event .main header hgroup h4,
+#body-event .main header hgroup h5,
+#body-event .main header hgroup h6,
+#body-event .main header hgroup a,
+#body-event .main header hgroup p,
+#body-create-account .main header hgroup h1,
+#body-create-account .main header hgroup h2,
+#body-create-account .main header hgroup h3,
+#body-create-account .main header hgroup h4,
+#body-create-account .main header hgroup h5,
+#body-create-account .main header hgroup h6,
+#body-create-account .main header hgroup a,
+#body-create-account .main header hgroup p,
+#body-login .main header hgroup h1,
+#body-login .main header hgroup h2,
+#body-login .main header hgroup h3,
+#body-login .main header hgroup h4,
+#body-login .main header hgroup h5,
+#body-login .main header hgroup h6,
+#body-login .main header hgroup a,
+#body-login .main header hgroup p,
+#body-account .main header hgroup h1,
+#body-account .main header hgroup h2,
+#body-account .main header hgroup h3,
+#body-account .main header hgroup h4,
+#body-account .main header hgroup h5,
+#body-account .main header hgroup h6,
+#body-account .main header hgroup a,
+#body-account .main header hgroup p {
+  color: #444;
+}
+
 .category-17 .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
+}
+
+.category-boy .main header {
+  background: #d2c3c6;
+  background: url("/fx/images/headers/Kategori_Boy_Top_960x100.jpg") no-repeat top center;
+}
+
+.category-girl .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Top_Kjoler_955x200.jpg") no-repeat top center;
 }
@@ -585,9 +650,9 @@ div.panes > div {
   text-align: center;
 }
 .zoom .sprite {
-  background-position: 0 -172px;
-  height: 45px;
-  width: 41px;
+  background-position: 0 -270px;
+  height: 50px;
+  width: 45px;
 }
 
 .body-product .breadcrumb {
@@ -599,9 +664,9 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -315px;
-  height: 45px;
-  width: 52px;
+  background-position: 0 -352px;
+  height: 50px;
+  width: 58px;
 }
 
 .body-product .main h1.title,
@@ -693,232 +758,275 @@ form.buy .submit-button {
   display: none;
 }
 
-.colorbuttons-sprite, .colorbuttons-black, .colorbuttons-black9rose, .colorbuttons-blue, .colorbuttons-blue9grey-melange, .colorbuttons-camel, .colorbuttons-gold, .colorbuttons-green, .colorbuttons-green9grey, .colorbuttons-grey-melange, .colorbuttons-grey, .colorbuttons-grey9off-white, .colorbuttons-khaki, .colorbuttons-light-blue, .colorbuttons-light-grey-melange, .colorbuttons-navy-melange, .colorbuttons-navy, .colorbuttons-navy9camel, .colorbuttons-navy9honey, .colorbuttons-navy9off-white, .colorbuttons-navy9white, .colorbuttons-off-white, .colorbuttons-off-white9blue, .colorbuttons-peach, .colorbuttons-peach9grey-melange, .colorbuttons-red, .colorbuttons-rose, .colorbuttons-sand, .colorbuttons-turquoise, .colorbuttons-white, .colorbuttons-white9off-white, .colorbuttons-yellow, a.product-color .colorbuttons-black9rose, a.product-color.current .colorbuttons-black9rose, a.product-color:hover .colorbuttons-black9rose, a.product-color .colorbuttons-black, a.product-color.current .colorbuttons-black, a.product-color:hover .colorbuttons-black, a.product-color .colorbuttons-blue9grey-melange, a.product-color.current .colorbuttons-blue9grey-melange, a.product-color:hover .colorbuttons-blue9grey-melange, a.product-color .colorbuttons-blue, a.product-color.current .colorbuttons-blue, a.product-color:hover .colorbuttons-blue, a.product-color .colorbuttons-camel, a.product-color.current .colorbuttons-camel, a.product-color:hover .colorbuttons-camel, a.product-color .colorbuttons-gold, a.product-color.current .colorbuttons-gold, a.product-color:hover .colorbuttons-gold, a.product-color .colorbuttons-green9grey, a.product-color.current .colorbuttons-green9grey, a.product-color:hover .colorbuttons-green9grey, a.product-color .colorbuttons-green, a.product-color.current .colorbuttons-green, a.product-color:hover .colorbuttons-green, a.product-color .colorbuttons-grey9off-white, a.product-color.current .colorbuttons-grey9off-white, a.product-color:hover .colorbuttons-grey9off-white, a.product-color .colorbuttons-grey-melange, a.product-color.current .colorbuttons-grey-melange, a.product-color:hover .colorbuttons-grey-melange, a.product-color .colorbuttons-grey, a.product-color.current .colorbuttons-grey, a.product-color:hover .colorbuttons-grey, a.product-color .colorbuttons-khaki, a.product-color.current .colorbuttons-khaki, a.product-color:hover .colorbuttons-khaki, a.product-color .colorbuttons-light-blue, a.product-color.current .colorbuttons-light-blue, a.product-color:hover .colorbuttons-light-blue, a.product-color .colorbuttons-light-grey-melange, a.product-color.current .colorbuttons-light-grey-melange, a.product-color:hover .colorbuttons-light-grey-melange, a.product-color .colorbuttons-navy9camel, a.product-color.current .colorbuttons-navy9camel, a.product-color:hover .colorbuttons-navy9camel, a.product-color .colorbuttons-navy9honey, a.product-color.current .colorbuttons-navy9honey, a.product-color:hover .colorbuttons-navy9honey, a.product-color .colorbuttons-navy9off-white, a.product-color.current .colorbuttons-navy9off-white, a.product-color:hover .colorbuttons-navy9off-white, a.product-color .colorbuttons-navy9white, a.product-color.current .colorbuttons-navy9white, a.product-color:hover .colorbuttons-navy9white, a.product-color .colorbuttons-navy-melange, a.product-color.current .colorbuttons-navy-melange, a.product-color:hover .colorbuttons-navy-melange, a.product-color .colorbuttons-navy, a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy, a.product-color .colorbuttons-off-white9blue, a.product-color.current .colorbuttons-off-white9blue, a.product-color:hover .colorbuttons-off-white9blue, a.product-color .colorbuttons-off-white, a.product-color.current .colorbuttons-off-white, a.product-color:hover .colorbuttons-off-white, a.product-color .colorbuttons-peach9grey-melange, a.product-color.current .colorbuttons-peach9grey-melange, a.product-color:hover .colorbuttons-peach9grey-melange, a.product-color .colorbuttons-peach, a.product-color.current .colorbuttons-peach, a.product-color:hover .colorbuttons-peach, a.product-color .colorbuttons-red, a.product-color.current .colorbuttons-red, a.product-color:hover .colorbuttons-red, a.product-color .colorbuttons-rose, a.product-color.current .colorbuttons-rose, a.product-color:hover .colorbuttons-rose, a.product-color .colorbuttons-sand, a.product-color.current .colorbuttons-sand, a.product-color:hover .colorbuttons-sand, a.product-color .colorbuttons-turquoise, a.product-color.current .colorbuttons-turquoise, a.product-color:hover .colorbuttons-turquoise, a.product-color .colorbuttons-white9off-white, a.product-color.current .colorbuttons-white9off-white, a.product-color:hover .colorbuttons-white9off-white, a.product-color .colorbuttons-white, a.product-color.current .colorbuttons-white, a.product-color:hover .colorbuttons-white, a.product-color .colorbuttons-yellow, a.product-color.current .colorbuttons-yellow, a.product-color:hover .colorbuttons-yellow {
-  background: url('/fx/2013s1/../images/colorbuttons-s683aaed4ca.png') no-repeat;
+.colorbuttons-sprite, .colorbuttons-black, .colorbuttons-black9rose, .colorbuttons-blue-denim, .colorbuttons-blue, .colorbuttons-blue9grey-melange, .colorbuttons-brown, .colorbuttons-camel, .colorbuttons-camel9navy, .colorbuttons-gold, .colorbuttons-green, .colorbuttons-green9grey, .colorbuttons-grey-melange, .colorbuttons-grey-melange9white, .colorbuttons-grey, .colorbuttons-grey9off-white, .colorbuttons-honey, .colorbuttons-khaki, .colorbuttons-light-blue, .colorbuttons-light-grey-melange, .colorbuttons-navy-melange, .colorbuttons-navy, .colorbuttons-navy9camel, .colorbuttons-navy9honey, .colorbuttons-navy9off-white, .colorbuttons-navy9white, .colorbuttons-off-white, .colorbuttons-off-white9blue, .colorbuttons-peach, .colorbuttons-peach9grey-melange, .colorbuttons-red, .colorbuttons-rose, .colorbuttons-sand, .colorbuttons-turquoise, .colorbuttons-white, .colorbuttons-white9off-white, .colorbuttons-wine, .colorbuttons-yellow, a.product-color .colorbuttons-black9rose, a.product-color.current .colorbuttons-black9rose, a.product-color:hover .colorbuttons-black9rose, a.product-color .colorbuttons-black, a.product-color.current .colorbuttons-black, a.product-color:hover .colorbuttons-black, a.product-color .colorbuttons-blue-denim, a.product-color.current .colorbuttons-blue-denim, a.product-color:hover .colorbuttons-blue-denim, a.product-color .colorbuttons-blue9grey-melange, a.product-color.current .colorbuttons-blue9grey-melange, a.product-color:hover .colorbuttons-blue9grey-melange, a.product-color .colorbuttons-blue, a.product-color.current .colorbuttons-blue, a.product-color:hover .colorbuttons-blue, a.product-color .colorbuttons-brown, a.product-color.current .colorbuttons-brown, a.product-color:hover .colorbuttons-brown, a.product-color .colorbuttons-camel, a.product-color.current .colorbuttons-camel, a.product-color:hover .colorbuttons-camel, a.product-color .colorbuttons-gold, a.product-color.current .colorbuttons-gold, a.product-color:hover .colorbuttons-gold, a.product-color .colorbuttons-green9grey, a.product-color.current .colorbuttons-green9grey, a.product-color:hover .colorbuttons-green9grey, a.product-color .colorbuttons-green, a.product-color.current .colorbuttons-green, a.product-color:hover .colorbuttons-green, a.product-color .colorbuttons-grey9off-white, a.product-color.current .colorbuttons-grey9off-white, a.product-color:hover .colorbuttons-grey9off-white, a.product-color .colorbuttons-grey-melange, a.product-color.current .colorbuttons-grey-melange, a.product-color:hover .colorbuttons-grey-melange, a.product-color .colorbuttons-grey-melange9white, a.product-color.current .colorbuttons-grey-melange9white, a.product-color:hover .colorbuttons-grey-melange9white, a.product-color .colorbuttons-grey, a.product-color.current .colorbuttons-grey, a.product-color:hover .colorbuttons-grey, a.product-color .colorbuttons-honey, a.product-color.current .colorbuttons-honey, a.product-color:hover .colorbuttons-honey, a.product-color .colorbuttons-khaki, a.product-color.current .colorbuttons-khaki, a.product-color:hover .colorbuttons-khaki, a.product-color .colorbuttons-light-blue, a.product-color.current .colorbuttons-light-blue, a.product-color:hover .colorbuttons-light-blue, a.product-color .colorbuttons-light-grey-melange, a.product-color.current .colorbuttons-light-grey-melange, a.product-color:hover .colorbuttons-light-grey-melange, a.product-color .colorbuttons-navy9camel, a.product-color.current .colorbuttons-navy9camel, a.product-color:hover .colorbuttons-navy9camel, a.product-color .colorbuttons-navy9honey, a.product-color.current .colorbuttons-navy9honey, a.product-color:hover .colorbuttons-navy9honey, a.product-color .colorbuttons-navy9off-white, a.product-color.current .colorbuttons-navy9off-white, a.product-color:hover .colorbuttons-navy9off-white, a.product-color .colorbuttons-navy9white, a.product-color.current .colorbuttons-navy9white, a.product-color:hover .colorbuttons-navy9white, a.product-color .colorbuttons-navy-melange, a.product-color.current .colorbuttons-navy-melange, a.product-color:hover .colorbuttons-navy-melange, a.product-color .colorbuttons-navy, a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy, a.product-color .colorbuttons-off-white9blue, a.product-color.current .colorbuttons-off-white9blue, a.product-color:hover .colorbuttons-off-white9blue, a.product-color .colorbuttons-off-white, a.product-color.current .colorbuttons-off-white, a.product-color:hover .colorbuttons-off-white, a.product-color .colorbuttons-peach9grey-melange, a.product-color.current .colorbuttons-peach9grey-melange, a.product-color:hover .colorbuttons-peach9grey-melange, a.product-color .colorbuttons-peach, a.product-color.current .colorbuttons-peach, a.product-color:hover .colorbuttons-peach, a.product-color .colorbuttons-red, a.product-color.current .colorbuttons-red, a.product-color:hover .colorbuttons-red, a.product-color .colorbuttons-rose, a.product-color.current .colorbuttons-rose, a.product-color:hover .colorbuttons-rose, a.product-color .colorbuttons-sand, a.product-color.current .colorbuttons-sand, a.product-color:hover .colorbuttons-sand, a.product-color .colorbuttons-turquoise, a.product-color.current .colorbuttons-turquoise, a.product-color:hover .colorbuttons-turquoise, a.product-color .colorbuttons-white9off-white, a.product-color.current .colorbuttons-white9off-white, a.product-color:hover .colorbuttons-white9off-white, a.product-color .colorbuttons-white, a.product-color.current .colorbuttons-white, a.product-color:hover .colorbuttons-white, a.product-color .colorbuttons-wine, a.product-color.current .colorbuttons-wine, a.product-color:hover .colorbuttons-wine, a.product-color .colorbuttons-yellow, a.product-color.current .colorbuttons-yellow, a.product-color:hover .colorbuttons-yellow {
+  background: url('/fx/2013s1/../images/colorbuttons-s853225ead6.png') no-repeat;
 }
 
 .colorbuttons-black {
-  background-position: 0 -1222px;
+  background-position: 0 -1534px;
 }
 .colorbuttons-black:active, .colorbuttons-black.black_active, .colorbuttons-black.black-active {
-  background-position: 0 -572px;
+  background-position: 0 -754px;
 }
 
 .colorbuttons-black9rose {
-  background-position: 0 -1040px;
+  background-position: 0 -1274px;
 }
 .colorbuttons-black9rose:active, .colorbuttons-black9rose.black9rose_active, .colorbuttons-black9rose.black9rose-active {
-  background-position: 0 -208px;
+  background-position: 0 -260px;
+}
+
+.colorbuttons-blue-denim {
+  background-position: 0 -624px;
+}
+.colorbuttons-blue-denim:active, .colorbuttons-blue-denim.blue-denim_active, .colorbuttons-blue-denim.blue-denim-active {
+  background-position: 0 -52px;
 }
 
 .colorbuttons-blue {
-  background-position: 0 -1170px;
+  background-position: 0 -1456px;
 }
 .colorbuttons-blue:active, .colorbuttons-blue.blue_active, .colorbuttons-blue.blue-active {
-  background-position: 0 -338px;
+  background-position: 0 -468px;
 }
 
 .colorbuttons-blue9grey-melange {
-  background-position: 0 -390px;
+  background-position: 0 -520px;
 }
 .colorbuttons-blue9grey-melange:active, .colorbuttons-blue9grey-melange.blue9grey-melange_active, .colorbuttons-blue9grey-melange.blue9grey-melange-active {
   background-position: 0 -26px;
 }
 
+.colorbuttons-brown {
+  background-position: 0 -1508px;
+}
+.colorbuttons-brown:active, .colorbuttons-brown.brown_active, .colorbuttons-brown.brown-active {
+  background-position: 0 -598px;
+}
+
 .colorbuttons-camel {
-  background-position: 0 -1118px;
+  background-position: 0 -1378px;
 }
 .colorbuttons-camel:active, .colorbuttons-camel.camel_active, .colorbuttons-camel.camel-active {
-  background-position: 0 -312px;
-}
-
-.colorbuttons-gold {
-  background-position: 0 -1274px;
-}
-.colorbuttons-gold:active, .colorbuttons-gold.gold_active, .colorbuttons-gold.gold-active {
-  background-position: 0 -494px;
-}
-
-.colorbuttons-green {
-  background-position: 0 -1326px;
-}
-.colorbuttons-green:active, .colorbuttons-green.green_active, .colorbuttons-green.green-active {
-  background-position: 0 -546px;
-}
-
-.colorbuttons-green9grey {
-  background-position: 0 -1196px;
-}
-.colorbuttons-green9grey:active, .colorbuttons-green9grey.green9grey_active, .colorbuttons-green9grey.green9grey-active {
   background-position: 0 -416px;
 }
 
-.colorbuttons-grey-melange {
-  background-position: 0 -832px;
+.colorbuttons-camel9navy {
+  background-position: 0 -988px;
 }
-.colorbuttons-grey-melange:active, .colorbuttons-grey-melange.grey-melange_active, .colorbuttons-grey-melange.grey-melange-active {
+.colorbuttons-camel9navy:active, .colorbuttons-camel9navy.camel9navy_active, .colorbuttons-camel9navy.camel9navy-active {
   background-position: 0 -130px;
 }
 
+.colorbuttons-gold {
+  background-position: 0 -1586px;
+}
+.colorbuttons-gold:active, .colorbuttons-gold.gold_active, .colorbuttons-gold.gold-active {
+  background-position: 0 -676px;
+}
+
+.colorbuttons-green {
+  background-position: 0 -1638px;
+}
+.colorbuttons-green:active, .colorbuttons-green.green_active, .colorbuttons-green.green-active {
+  background-position: 0 -728px;
+}
+
+.colorbuttons-green9grey {
+  background-position: 0 -1482px;
+}
+.colorbuttons-green9grey:active, .colorbuttons-green9grey.green9grey_active, .colorbuttons-green9grey.green9grey-active {
+  background-position: 0 -546px;
+}
+
+.colorbuttons-grey-melange {
+  background-position: 0 -1040px;
+}
+.colorbuttons-grey-melange:active, .colorbuttons-grey-melange.grey-melange_active, .colorbuttons-grey-melange.grey-melange-active {
+  background-position: 0 -182px;
+}
+
+.colorbuttons-grey-melange9white {
+  background-position: 0 -1196px;
+}
+.colorbuttons-grey-melange9white:active, .colorbuttons-grey-melange9white.grey-melange9white_active, .colorbuttons-grey-melange9white.grey-melange9white-active {
+  background-position: 0 -286px;
+}
+
 .colorbuttons-grey {
-  background-position: 0 -1378px;
+  background-position: 0 -1690px;
 }
 .colorbuttons-grey:active, .colorbuttons-grey.grey_active, .colorbuttons-grey.grey-active {
-  background-position: 0 -702px;
+  background-position: 0 -884px;
 }
 
 .colorbuttons-grey9off-white {
-  background-position: 0 -1430px;
+  background-position: 0 -1742px;
 }
 .colorbuttons-grey9off-white:active, .colorbuttons-grey9off-white.grey9off-white_active, .colorbuttons-grey9off-white.grey9off-white-active {
-  background-position: 0 -780px;
+  background-position: 0 -962px;
+}
+
+.colorbuttons-honey {
+  background-position: 0 -1430px;
+}
+.colorbuttons-honey:active, .colorbuttons-honey.honey_active, .colorbuttons-honey.honey-active {
+  background-position: 0 -390px;
 }
 
 .colorbuttons-khaki {
-  background-position: 0 -1248px;
+  background-position: 0 -1560px;
 }
 .colorbuttons-khaki:active, .colorbuttons-khaki.khaki_active, .colorbuttons-khaki.khaki-active {
-  background-position: 0 -468px;
+  background-position: 0 -650px;
 }
 
 .colorbuttons-light-blue {
-  background-position: 0 -1560px;
+  background-position: 0 -1872px;
 }
 .colorbuttons-light-blue:active, .colorbuttons-light-blue.light-blue_active, .colorbuttons-light-blue.light-blue-active {
-  background-position: 0 -858px;
+  background-position: 0 -1066px;
 }
 
 .colorbuttons-light-grey-melange {
-  background-position: 0 -988px;
+  background-position: 0 -1222px;
 }
 .colorbuttons-light-grey-melange:active, .colorbuttons-light-grey-melange.light-grey-melange_active, .colorbuttons-light-grey-melange.light-grey-melange-active {
-  background-position: 0 -234px;
+  background-position: 0 -312px;
 }
 
 .colorbuttons-navy-melange {
-  background-position: 0 -650px;
+  background-position: 0 -832px;
 }
 .colorbuttons-navy-melange:active, .colorbuttons-navy-melange.navy-melange_active, .colorbuttons-navy-melange.navy-melange-active {
-  background-position: 0 -78px;
-}
-
-.colorbuttons-navy {
-  background-position: 0 -1092px;
-}
-.colorbuttons-navy:active, .colorbuttons-navy.navy_active, .colorbuttons-navy.navy-active {
-  background-position: 0 -260px;
-}
-
-.colorbuttons-navy9camel {
-  background-position: 0 -806px;
-}
-.colorbuttons-navy9camel:active, .colorbuttons-navy9camel.navy9camel_active, .colorbuttons-navy9camel.navy9camel-active {
   background-position: 0 -104px;
 }
 
+.colorbuttons-navy {
+  background-position: 0 -1352px;
+}
+.colorbuttons-navy:active, .colorbuttons-navy.navy_active, .colorbuttons-navy.navy-active {
+  background-position: 0 -338px;
+}
+
+.colorbuttons-navy9camel {
+  background-position: 0 -1014px;
+}
+.colorbuttons-navy9camel:active, .colorbuttons-navy9camel.navy9camel_active, .colorbuttons-navy9camel.navy9camel-active {
+  background-position: 0 -156px;
+}
+
 .colorbuttons-navy9honey {
-  background-position: 0 -364px;
+  background-position: 0 -494px;
 }
 .colorbuttons-navy9honey:active, .colorbuttons-navy9honey.navy9honey_active, .colorbuttons-navy9honey.navy9honey-active {
   background-position: 0 0;
 }
 
 .colorbuttons-navy9off-white {
-  background-position: 0 -910px;
+  background-position: 0 -1118px;
 }
 .colorbuttons-navy9off-white:active, .colorbuttons-navy9off-white.navy9off-white_active, .colorbuttons-navy9off-white.navy9off-white-active {
-  background-position: 0 -182px;
+  background-position: 0 -234px;
 }
 
 .colorbuttons-navy9white {
-  background-position: 0 -1066px;
+  background-position: 0 -1300px;
 }
 .colorbuttons-navy9white:active, .colorbuttons-navy9white.navy9white_active, .colorbuttons-navy9white.navy9white-active {
-  background-position: 0 -442px;
+  background-position: 0 -572px;
 }
 
 .colorbuttons-off-white {
-  background-position: 0 -1586px;
+  background-position: 0 -1898px;
 }
 .colorbuttons-off-white:active, .colorbuttons-off-white.off-white_active, .colorbuttons-off-white.off-white-active {
-  background-position: 0 -1014px;
+  background-position: 0 -1248px;
 }
 
 .colorbuttons-off-white9blue {
-  background-position: 0 -936px;
+  background-position: 0 -1144px;
 }
 .colorbuttons-off-white9blue:active, .colorbuttons-off-white9blue.off-white9blue_active, .colorbuttons-off-white9blue.off-white9blue-active {
-  background-position: 0 -156px;
+  background-position: 0 -208px;
 }
 
 .colorbuttons-peach {
-  background-position: 0 -1534px;
+  background-position: 0 -1846px;
 }
 .colorbuttons-peach:active, .colorbuttons-peach.peach_active, .colorbuttons-peach.peach-active {
-  background-position: 0 -754px;
+  background-position: 0 -936px;
 }
 
 .colorbuttons-peach9grey-melange {
-  background-position: 0 -598px;
+  background-position: 0 -780px;
 }
 .colorbuttons-peach9grey-melange:active, .colorbuttons-peach9grey-melange.peach9grey-melange_active, .colorbuttons-peach9grey-melange.peach9grey-melange-active {
-  background-position: 0 -52px;
+  background-position: 0 -78px;
 }
 
 .colorbuttons-red {
-  background-position: 0 -1144px;
+  background-position: 0 -1404px;
 }
 .colorbuttons-red:active, .colorbuttons-red.red_active, .colorbuttons-red.red-active {
-  background-position: 0 -286px;
+  background-position: 0 -364px;
 }
 
 .colorbuttons-rose {
-  background-position: 0 -1482px;
+  background-position: 0 -1794px;
 }
 .colorbuttons-rose:active, .colorbuttons-rose.rose_active, .colorbuttons-rose.rose-active {
-  background-position: 0 -728px;
+  background-position: 0 -910px;
 }
 
 .colorbuttons-sand {
-  background-position: 0 -1404px;
+  background-position: 0 -1716px;
 }
 .colorbuttons-sand:active, .colorbuttons-sand.sand_active, .colorbuttons-sand.sand-active {
-  background-position: 0 -676px;
+  background-position: 0 -858px;
 }
 
 .colorbuttons-turquoise {
-  background-position: 0 -1300px;
+  background-position: 0 -1612px;
 }
 .colorbuttons-turquoise:active, .colorbuttons-turquoise.turquoise_active, .colorbuttons-turquoise.turquoise-active {
-  background-position: 0 -520px;
+  background-position: 0 -702px;
 }
 
 .colorbuttons-white {
-  background-position: 0 -1352px;
+  background-position: 0 -1664px;
 }
 .colorbuttons-white:active, .colorbuttons-white.white_active, .colorbuttons-white.white-active {
-  background-position: 0 -884px;
+  background-position: 0 -1092px;
 }
 
 .colorbuttons-white9off-white {
-  background-position: 0 -1508px;
+  background-position: 0 -1820px;
 }
 .colorbuttons-white9off-white:active, .colorbuttons-white9off-white.white9off-white_active, .colorbuttons-white9off-white.white9off-white-active {
-  background-position: 0 -962px;
+  background-position: 0 -1170px;
+}
+
+.colorbuttons-wine {
+  background-position: 0 -1326px;
+}
+.colorbuttons-wine:active, .colorbuttons-wine.wine_active, .colorbuttons-wine.wine-active {
+  background-position: 0 -442px;
 }
 
 .colorbuttons-yellow {
-  background-position: 0 -1456px;
+  background-position: 0 -1768px;
 }
 .colorbuttons-yellow:active, .colorbuttons-yellow.yellow_active, .colorbuttons-yellow.yellow-active {
-  background-position: 0 -624px;
+  background-position: 0 -806px;
 }
 
 a.product-color {
   margin: 3px;
   display: inline-block;
   text-align: center;
-  width: 50px;
+  width: 65px;
+  font-size: 12px;
   vertical-align: top;
 }
 a.product-color .colorbuttons {
@@ -926,29 +1034,40 @@ a.product-color .colorbuttons {
   margin: 0 auto;
 }
 a.product-color .colorbuttons-black9rose {
-  background-position: 0 -1040px;
+  background-position: 0 -1274px;
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-black9rose:active, a.product-color .colorbuttons-black9rose.black9rose_active, a.product-color .colorbuttons-black9rose.black9rose-active {
-  background-position: 0 -208px;
+  background-position: 0 -260px;
 }
 a.product-color.current .colorbuttons-black9rose, a.product-color:hover .colorbuttons-black9rose {
-  background-position: 0 -208px;
+  background-position: 0 -260px;
 }
 a.product-color .colorbuttons-black {
-  background-position: 0 -1222px;
+  background-position: 0 -1534px;
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-black:active, a.product-color .colorbuttons-black.black_active, a.product-color .colorbuttons-black.black-active {
-  background-position: 0 -572px;
+  background-position: 0 -754px;
 }
 a.product-color.current .colorbuttons-black, a.product-color:hover .colorbuttons-black {
-  background-position: 0 -572px;
+  background-position: 0 -754px;
+}
+a.product-color .colorbuttons-blue-denim {
+  background-position: 0 -624px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-blue-denim:active, a.product-color .colorbuttons-blue-denim.blue-denim_active, a.product-color .colorbuttons-blue-denim.blue-denim-active {
+  background-position: 0 -52px;
+}
+a.product-color.current .colorbuttons-blue-denim, a.product-color:hover .colorbuttons-blue-denim {
+  background-position: 0 -52px;
 }
 a.product-color .colorbuttons-blue9grey-melange {
-  background-position: 0 -390px;
+  background-position: 0 -520px;
   height: 26px;
   width: 26px;
 }
@@ -959,139 +1078,172 @@ a.product-color.current .colorbuttons-blue9grey-melange, a.product-color:hover .
   background-position: 0 -26px;
 }
 a.product-color .colorbuttons-blue {
-  background-position: 0 -1170px;
+  background-position: 0 -1456px;
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-blue:active, a.product-color .colorbuttons-blue.blue_active, a.product-color .colorbuttons-blue.blue-active {
-  background-position: 0 -338px;
+  background-position: 0 -468px;
 }
 a.product-color.current .colorbuttons-blue, a.product-color:hover .colorbuttons-blue {
-  background-position: 0 -338px;
+  background-position: 0 -468px;
+}
+a.product-color .colorbuttons-brown {
+  background-position: 0 -1508px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-brown:active, a.product-color .colorbuttons-brown.brown_active, a.product-color .colorbuttons-brown.brown-active {
+  background-position: 0 -598px;
+}
+a.product-color.current .colorbuttons-brown, a.product-color:hover .colorbuttons-brown {
+  background-position: 0 -598px;
 }
 a.product-color .colorbuttons-camel {
-  background-position: 0 -1118px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-camel:active, a.product-color .colorbuttons-camel.camel_active, a.product-color .colorbuttons-camel.camel-active {
-  background-position: 0 -312px;
-}
-a.product-color.current .colorbuttons-camel, a.product-color:hover .colorbuttons-camel {
-  background-position: 0 -312px;
-}
-a.product-color .colorbuttons-gold {
-  background-position: 0 -1274px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-gold:active, a.product-color .colorbuttons-gold.gold_active, a.product-color .colorbuttons-gold.gold-active {
-  background-position: 0 -494px;
-}
-a.product-color.current .colorbuttons-gold, a.product-color:hover .colorbuttons-gold {
-  background-position: 0 -494px;
-}
-a.product-color .colorbuttons-green9grey {
-  background-position: 0 -1196px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-green9grey:active, a.product-color .colorbuttons-green9grey.green9grey_active, a.product-color .colorbuttons-green9grey.green9grey-active {
-  background-position: 0 -416px;
-}
-a.product-color.current .colorbuttons-green9grey, a.product-color:hover .colorbuttons-green9grey {
-  background-position: 0 -416px;
-}
-a.product-color .colorbuttons-green {
-  background-position: 0 -1326px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-green:active, a.product-color .colorbuttons-green.green_active, a.product-color .colorbuttons-green.green-active {
-  background-position: 0 -546px;
-}
-a.product-color.current .colorbuttons-green, a.product-color:hover .colorbuttons-green {
-  background-position: 0 -546px;
-}
-a.product-color .colorbuttons-grey9off-white {
-  background-position: 0 -1430px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-grey9off-white:active, a.product-color .colorbuttons-grey9off-white.grey9off-white_active, a.product-color .colorbuttons-grey9off-white.grey9off-white-active {
-  background-position: 0 -780px;
-}
-a.product-color.current .colorbuttons-grey9off-white, a.product-color:hover .colorbuttons-grey9off-white {
-  background-position: 0 -780px;
-}
-a.product-color .colorbuttons-grey-melange {
-  background-position: 0 -832px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-grey-melange:active, a.product-color .colorbuttons-grey-melange.grey-melange_active, a.product-color .colorbuttons-grey-melange.grey-melange-active {
-  background-position: 0 -130px;
-}
-a.product-color.current .colorbuttons-grey-melange, a.product-color:hover .colorbuttons-grey-melange {
-  background-position: 0 -130px;
-}
-a.product-color .colorbuttons-grey {
   background-position: 0 -1378px;
   height: 26px;
   width: 26px;
 }
-a.product-color .colorbuttons-grey:active, a.product-color .colorbuttons-grey.grey_active, a.product-color .colorbuttons-grey.grey-active {
-  background-position: 0 -702px;
+a.product-color .colorbuttons-camel:active, a.product-color .colorbuttons-camel.camel_active, a.product-color .colorbuttons-camel.camel-active {
+  background-position: 0 -416px;
 }
-a.product-color.current .colorbuttons-grey, a.product-color:hover .colorbuttons-grey {
-  background-position: 0 -702px;
+a.product-color.current .colorbuttons-camel, a.product-color:hover .colorbuttons-camel {
+  background-position: 0 -416px;
 }
-a.product-color .colorbuttons-khaki {
-  background-position: 0 -1248px;
+a.product-color .colorbuttons-gold {
+  background-position: 0 -1586px;
   height: 26px;
   width: 26px;
 }
-a.product-color .colorbuttons-khaki:active, a.product-color .colorbuttons-khaki.khaki_active, a.product-color .colorbuttons-khaki.khaki-active {
-  background-position: 0 -468px;
+a.product-color .colorbuttons-gold:active, a.product-color .colorbuttons-gold.gold_active, a.product-color .colorbuttons-gold.gold-active {
+  background-position: 0 -676px;
 }
-a.product-color.current .colorbuttons-khaki, a.product-color:hover .colorbuttons-khaki {
-  background-position: 0 -468px;
+a.product-color.current .colorbuttons-gold, a.product-color:hover .colorbuttons-gold {
+  background-position: 0 -676px;
 }
-a.product-color .colorbuttons-light-blue {
+a.product-color .colorbuttons-green9grey {
+  background-position: 0 -1482px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-green9grey:active, a.product-color .colorbuttons-green9grey.green9grey_active, a.product-color .colorbuttons-green9grey.green9grey-active {
+  background-position: 0 -546px;
+}
+a.product-color.current .colorbuttons-green9grey, a.product-color:hover .colorbuttons-green9grey {
+  background-position: 0 -546px;
+}
+a.product-color .colorbuttons-green {
+  background-position: 0 -1638px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-green:active, a.product-color .colorbuttons-green.green_active, a.product-color .colorbuttons-green.green-active {
+  background-position: 0 -728px;
+}
+a.product-color.current .colorbuttons-green, a.product-color:hover .colorbuttons-green {
+  background-position: 0 -728px;
+}
+a.product-color .colorbuttons-grey9off-white {
+  background-position: 0 -1742px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-grey9off-white:active, a.product-color .colorbuttons-grey9off-white.grey9off-white_active, a.product-color .colorbuttons-grey9off-white.grey9off-white-active {
+  background-position: 0 -962px;
+}
+a.product-color.current .colorbuttons-grey9off-white, a.product-color:hover .colorbuttons-grey9off-white {
+  background-position: 0 -962px;
+}
+a.product-color .colorbuttons-grey-melange {
+  background-position: 0 -1040px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-grey-melange:active, a.product-color .colorbuttons-grey-melange.grey-melange_active, a.product-color .colorbuttons-grey-melange.grey-melange-active {
+  background-position: 0 -182px;
+}
+a.product-color.current .colorbuttons-grey-melange, a.product-color:hover .colorbuttons-grey-melange {
+  background-position: 0 -182px;
+}
+a.product-color .colorbuttons-grey-melange9white {
+  background-position: 0 -1196px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-grey-melange9white:active, a.product-color .colorbuttons-grey-melange9white.grey-melange9white_active, a.product-color .colorbuttons-grey-melange9white.grey-melange9white-active {
+  background-position: 0 -286px;
+}
+a.product-color.current .colorbuttons-grey-melange9white, a.product-color:hover .colorbuttons-grey-melange9white {
+  background-position: 0 -286px;
+}
+a.product-color .colorbuttons-grey {
+  background-position: 0 -1690px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-grey:active, a.product-color .colorbuttons-grey.grey_active, a.product-color .colorbuttons-grey.grey-active {
+  background-position: 0 -884px;
+}
+a.product-color.current .colorbuttons-grey, a.product-color:hover .colorbuttons-grey {
+  background-position: 0 -884px;
+}
+a.product-color .colorbuttons-honey {
+  background-position: 0 -1430px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-honey:active, a.product-color .colorbuttons-honey.honey_active, a.product-color .colorbuttons-honey.honey-active {
+  background-position: 0 -390px;
+}
+a.product-color.current .colorbuttons-honey, a.product-color:hover .colorbuttons-honey {
+  background-position: 0 -390px;
+}
+a.product-color .colorbuttons-khaki {
   background-position: 0 -1560px;
   height: 26px;
   width: 26px;
 }
+a.product-color .colorbuttons-khaki:active, a.product-color .colorbuttons-khaki.khaki_active, a.product-color .colorbuttons-khaki.khaki-active {
+  background-position: 0 -650px;
+}
+a.product-color.current .colorbuttons-khaki, a.product-color:hover .colorbuttons-khaki {
+  background-position: 0 -650px;
+}
+a.product-color .colorbuttons-light-blue {
+  background-position: 0 -1872px;
+  height: 26px;
+  width: 26px;
+}
 a.product-color .colorbuttons-light-blue:active, a.product-color .colorbuttons-light-blue.light-blue_active, a.product-color .colorbuttons-light-blue.light-blue-active {
-  background-position: 0 -858px;
+  background-position: 0 -1066px;
 }
 a.product-color.current .colorbuttons-light-blue, a.product-color:hover .colorbuttons-light-blue {
-  background-position: 0 -858px;
+  background-position: 0 -1066px;
 }
 a.product-color .colorbuttons-light-grey-melange {
-  background-position: 0 -988px;
+  background-position: 0 -1222px;
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-light-grey-melange:active, a.product-color .colorbuttons-light-grey-melange.light-grey-melange_active, a.product-color .colorbuttons-light-grey-melange.light-grey-melange-active {
-  background-position: 0 -234px;
+  background-position: 0 -312px;
 }
 a.product-color.current .colorbuttons-light-grey-melange, a.product-color:hover .colorbuttons-light-grey-melange {
-  background-position: 0 -234px;
+  background-position: 0 -312px;
 }
 a.product-color .colorbuttons-navy9camel {
-  background-position: 0 -806px;
+  background-position: 0 -1014px;
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-navy9camel:active, a.product-color .colorbuttons-navy9camel.navy9camel_active, a.product-color .colorbuttons-navy9camel.navy9camel-active {
-  background-position: 0 -104px;
+  background-position: 0 -156px;
 }
 a.product-color.current .colorbuttons-navy9camel, a.product-color:hover .colorbuttons-navy9camel {
-  background-position: 0 -104px;
+  background-position: 0 -156px;
 }
 a.product-color .colorbuttons-navy9honey {
-  background-position: 0 -364px;
+  background-position: 0 -494px;
   height: 26px;
   width: 26px;
 }
@@ -1102,169 +1254,180 @@ a.product-color.current .colorbuttons-navy9honey, a.product-color:hover .colorbu
   background-position: 0 0;
 }
 a.product-color .colorbuttons-navy9off-white {
-  background-position: 0 -910px;
+  background-position: 0 -1118px;
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-navy9off-white:active, a.product-color .colorbuttons-navy9off-white.navy9off-white_active, a.product-color .colorbuttons-navy9off-white.navy9off-white-active {
-  background-position: 0 -182px;
+  background-position: 0 -234px;
 }
 a.product-color.current .colorbuttons-navy9off-white, a.product-color:hover .colorbuttons-navy9off-white {
-  background-position: 0 -182px;
+  background-position: 0 -234px;
 }
 a.product-color .colorbuttons-navy9white {
-  background-position: 0 -1066px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-navy9white:active, a.product-color .colorbuttons-navy9white.navy9white_active, a.product-color .colorbuttons-navy9white.navy9white-active {
-  background-position: 0 -442px;
-}
-a.product-color.current .colorbuttons-navy9white, a.product-color:hover .colorbuttons-navy9white {
-  background-position: 0 -442px;
-}
-a.product-color .colorbuttons-navy-melange {
-  background-position: 0 -650px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-navy-melange:active, a.product-color .colorbuttons-navy-melange.navy-melange_active, a.product-color .colorbuttons-navy-melange.navy-melange-active {
-  background-position: 0 -78px;
-}
-a.product-color.current .colorbuttons-navy-melange, a.product-color:hover .colorbuttons-navy-melange {
-  background-position: 0 -78px;
-}
-a.product-color .colorbuttons-navy {
-  background-position: 0 -1092px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-navy:active, a.product-color .colorbuttons-navy.navy_active, a.product-color .colorbuttons-navy.navy-active {
-  background-position: 0 -260px;
-}
-a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy {
-  background-position: 0 -260px;
-}
-a.product-color .colorbuttons-off-white9blue {
-  background-position: 0 -936px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-off-white9blue:active, a.product-color .colorbuttons-off-white9blue.off-white9blue_active, a.product-color .colorbuttons-off-white9blue.off-white9blue-active {
-  background-position: 0 -156px;
-}
-a.product-color.current .colorbuttons-off-white9blue, a.product-color:hover .colorbuttons-off-white9blue {
-  background-position: 0 -156px;
-}
-a.product-color .colorbuttons-off-white {
-  background-position: 0 -1586px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-off-white:active, a.product-color .colorbuttons-off-white.off-white_active, a.product-color .colorbuttons-off-white.off-white-active {
-  background-position: 0 -1014px;
-}
-a.product-color.current .colorbuttons-off-white, a.product-color:hover .colorbuttons-off-white {
-  background-position: 0 -1014px;
-}
-a.product-color .colorbuttons-peach9grey-melange {
-  background-position: 0 -598px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-peach9grey-melange:active, a.product-color .colorbuttons-peach9grey-melange.peach9grey-melange_active, a.product-color .colorbuttons-peach9grey-melange.peach9grey-melange-active {
-  background-position: 0 -52px;
-}
-a.product-color.current .colorbuttons-peach9grey-melange, a.product-color:hover .colorbuttons-peach9grey-melange {
-  background-position: 0 -52px;
-}
-a.product-color .colorbuttons-peach {
-  background-position: 0 -1534px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-peach:active, a.product-color .colorbuttons-peach.peach_active, a.product-color .colorbuttons-peach.peach-active {
-  background-position: 0 -754px;
-}
-a.product-color.current .colorbuttons-peach, a.product-color:hover .colorbuttons-peach {
-  background-position: 0 -754px;
-}
-a.product-color .colorbuttons-red {
-  background-position: 0 -1144px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-red:active, a.product-color .colorbuttons-red.red_active, a.product-color .colorbuttons-red.red-active {
-  background-position: 0 -286px;
-}
-a.product-color.current .colorbuttons-red, a.product-color:hover .colorbuttons-red {
-  background-position: 0 -286px;
-}
-a.product-color .colorbuttons-rose {
-  background-position: 0 -1482px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-rose:active, a.product-color .colorbuttons-rose.rose_active, a.product-color .colorbuttons-rose.rose-active {
-  background-position: 0 -728px;
-}
-a.product-color.current .colorbuttons-rose, a.product-color:hover .colorbuttons-rose {
-  background-position: 0 -728px;
-}
-a.product-color .colorbuttons-sand {
-  background-position: 0 -1404px;
-  height: 26px;
-  width: 26px;
-}
-a.product-color .colorbuttons-sand:active, a.product-color .colorbuttons-sand.sand_active, a.product-color .colorbuttons-sand.sand-active {
-  background-position: 0 -676px;
-}
-a.product-color.current .colorbuttons-sand, a.product-color:hover .colorbuttons-sand {
-  background-position: 0 -676px;
-}
-a.product-color .colorbuttons-turquoise {
   background-position: 0 -1300px;
   height: 26px;
   width: 26px;
 }
-a.product-color .colorbuttons-turquoise:active, a.product-color .colorbuttons-turquoise.turquoise_active, a.product-color .colorbuttons-turquoise.turquoise-active {
-  background-position: 0 -520px;
+a.product-color .colorbuttons-navy9white:active, a.product-color .colorbuttons-navy9white.navy9white_active, a.product-color .colorbuttons-navy9white.navy9white-active {
+  background-position: 0 -572px;
 }
-a.product-color.current .colorbuttons-turquoise, a.product-color:hover .colorbuttons-turquoise {
-  background-position: 0 -520px;
+a.product-color.current .colorbuttons-navy9white, a.product-color:hover .colorbuttons-navy9white {
+  background-position: 0 -572px;
 }
-a.product-color .colorbuttons-white9off-white {
-  background-position: 0 -1508px;
+a.product-color .colorbuttons-navy-melange {
+  background-position: 0 -832px;
   height: 26px;
   width: 26px;
 }
-a.product-color .colorbuttons-white9off-white:active, a.product-color .colorbuttons-white9off-white.white9off-white_active, a.product-color .colorbuttons-white9off-white.white9off-white-active {
-  background-position: 0 -962px;
+a.product-color .colorbuttons-navy-melange:active, a.product-color .colorbuttons-navy-melange.navy-melange_active, a.product-color .colorbuttons-navy-melange.navy-melange-active {
+  background-position: 0 -104px;
 }
-a.product-color.current .colorbuttons-white9off-white, a.product-color:hover .colorbuttons-white9off-white {
-  background-position: 0 -962px;
+a.product-color.current .colorbuttons-navy-melange, a.product-color:hover .colorbuttons-navy-melange {
+  background-position: 0 -104px;
 }
-a.product-color .colorbuttons-white {
+a.product-color .colorbuttons-navy {
   background-position: 0 -1352px;
   height: 26px;
   width: 26px;
 }
+a.product-color .colorbuttons-navy:active, a.product-color .colorbuttons-navy.navy_active, a.product-color .colorbuttons-navy.navy-active {
+  background-position: 0 -338px;
+}
+a.product-color.current .colorbuttons-navy, a.product-color:hover .colorbuttons-navy {
+  background-position: 0 -338px;
+}
+a.product-color .colorbuttons-off-white9blue {
+  background-position: 0 -1144px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-off-white9blue:active, a.product-color .colorbuttons-off-white9blue.off-white9blue_active, a.product-color .colorbuttons-off-white9blue.off-white9blue-active {
+  background-position: 0 -208px;
+}
+a.product-color.current .colorbuttons-off-white9blue, a.product-color:hover .colorbuttons-off-white9blue {
+  background-position: 0 -208px;
+}
+a.product-color .colorbuttons-off-white {
+  background-position: 0 -1898px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-off-white:active, a.product-color .colorbuttons-off-white.off-white_active, a.product-color .colorbuttons-off-white.off-white-active {
+  background-position: 0 -1248px;
+}
+a.product-color.current .colorbuttons-off-white, a.product-color:hover .colorbuttons-off-white {
+  background-position: 0 -1248px;
+}
+a.product-color .colorbuttons-peach9grey-melange {
+  background-position: 0 -780px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-peach9grey-melange:active, a.product-color .colorbuttons-peach9grey-melange.peach9grey-melange_active, a.product-color .colorbuttons-peach9grey-melange.peach9grey-melange-active {
+  background-position: 0 -78px;
+}
+a.product-color.current .colorbuttons-peach9grey-melange, a.product-color:hover .colorbuttons-peach9grey-melange {
+  background-position: 0 -78px;
+}
+a.product-color .colorbuttons-peach {
+  background-position: 0 -1846px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-peach:active, a.product-color .colorbuttons-peach.peach_active, a.product-color .colorbuttons-peach.peach-active {
+  background-position: 0 -936px;
+}
+a.product-color.current .colorbuttons-peach, a.product-color:hover .colorbuttons-peach {
+  background-position: 0 -936px;
+}
+a.product-color .colorbuttons-red {
+  background-position: 0 -1404px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-red:active, a.product-color .colorbuttons-red.red_active, a.product-color .colorbuttons-red.red-active {
+  background-position: 0 -364px;
+}
+a.product-color.current .colorbuttons-red, a.product-color:hover .colorbuttons-red {
+  background-position: 0 -364px;
+}
+a.product-color .colorbuttons-rose {
+  background-position: 0 -1794px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-rose:active, a.product-color .colorbuttons-rose.rose_active, a.product-color .colorbuttons-rose.rose-active {
+  background-position: 0 -910px;
+}
+a.product-color.current .colorbuttons-rose, a.product-color:hover .colorbuttons-rose {
+  background-position: 0 -910px;
+}
+a.product-color .colorbuttons-sand {
+  background-position: 0 -1716px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-sand:active, a.product-color .colorbuttons-sand.sand_active, a.product-color .colorbuttons-sand.sand-active {
+  background-position: 0 -858px;
+}
+a.product-color.current .colorbuttons-sand, a.product-color:hover .colorbuttons-sand {
+  background-position: 0 -858px;
+}
+a.product-color .colorbuttons-turquoise {
+  background-position: 0 -1612px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-turquoise:active, a.product-color .colorbuttons-turquoise.turquoise_active, a.product-color .colorbuttons-turquoise.turquoise-active {
+  background-position: 0 -702px;
+}
+a.product-color.current .colorbuttons-turquoise, a.product-color:hover .colorbuttons-turquoise {
+  background-position: 0 -702px;
+}
+a.product-color .colorbuttons-white9off-white {
+  background-position: 0 -1820px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-white9off-white:active, a.product-color .colorbuttons-white9off-white.white9off-white_active, a.product-color .colorbuttons-white9off-white.white9off-white-active {
+  background-position: 0 -1170px;
+}
+a.product-color.current .colorbuttons-white9off-white, a.product-color:hover .colorbuttons-white9off-white {
+  background-position: 0 -1170px;
+}
+a.product-color .colorbuttons-white {
+  background-position: 0 -1664px;
+  height: 26px;
+  width: 26px;
+}
 a.product-color .colorbuttons-white:active, a.product-color .colorbuttons-white.white_active, a.product-color .colorbuttons-white.white-active {
-  background-position: 0 -884px;
+  background-position: 0 -1092px;
 }
 a.product-color.current .colorbuttons-white, a.product-color:hover .colorbuttons-white {
-  background-position: 0 -884px;
+  background-position: 0 -1092px;
+}
+a.product-color .colorbuttons-wine {
+  background-position: 0 -1326px;
+  height: 26px;
+  width: 26px;
+}
+a.product-color .colorbuttons-wine:active, a.product-color .colorbuttons-wine.wine_active, a.product-color .colorbuttons-wine.wine-active {
+  background-position: 0 -442px;
+}
+a.product-color.current .colorbuttons-wine, a.product-color:hover .colorbuttons-wine {
+  background-position: 0 -442px;
 }
 a.product-color .colorbuttons-yellow {
-  background-position: 0 -1456px;
+  background-position: 0 -1768px;
   height: 26px;
   width: 26px;
 }
 a.product-color .colorbuttons-yellow:active, a.product-color .colorbuttons-yellow.yellow_active, a.product-color .colorbuttons-yellow.yellow-active {
-  background-position: 0 -624px;
+  background-position: 0 -806px;
 }
 a.product-color.current .colorbuttons-yellow, a.product-color:hover .colorbuttons-yellow {
-  background-position: 0 -624px;
+  background-position: 0 -806px;
 }
 
 /**
@@ -1347,6 +1510,10 @@ form.create label.required:after {
   content: ": *";
 }
 
+#body-events-create-customer input.button.off {
+  display: none;
+}
+
 .checkout-block {
   overflow: hidden;
   padding: 3px;
@@ -1391,6 +1558,9 @@ form.address label {
 #body-checkout #main form.address > h3 {
   margin-top: 0;
   margin-bottom: 5px;
+}
+#body-checkout #checkout-buttons .dialoug-loading {
+  float: right;
 }
 
 #address-block > label {
@@ -1547,16 +1717,16 @@ form.address label {
 | _social
 */
 .social-buttons a.icons-facebook {
-  height: 29px;
-  width: 29px;
+  height: 32px;
+  width: 32px;
 }
 .social-buttons a.icons-twitter {
-  height: 29px;
-  width: 29px;
+  height: 32px;
+  width: 32px;
 }
 .social-buttons a.icons-pinterest {
-  height: 29px;
-  width: 29px;
+  height: 32px;
+  width: 32px;
 }
 
 .facebook-button {
@@ -1653,7 +1823,7 @@ nav.main-menu > ul > li > ul.on {
 
 .slide-notice-box {
   position: absolute;
-  top: 63px;
+  top: 55px;
   right: 0;
   padding: 8px 8px 19px 8px;
   text-align: center;
@@ -2299,7 +2469,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 900;
   padding: 0 0 20px 0;
-  letter-spacing: 2px;
+  letter-spacing: 0;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   text-decoration: none;
@@ -2362,14 +2532,14 @@ hr {
   clear: both;
   margin: 0;
   width: 100%;
-  background-position: 0 -300px;
+  background-position: 0 -255px;
   height: 15px;
 }
 hr.left {
-  background-position: 0 -217px;
+  background-position: 0 -172px;
 }
 hr.right {
-  background-position: 0 -280px;
+  background-position: 0 -235px;
 }
 
 strong, b {
@@ -2453,9 +2623,10 @@ a.button,
   display: inline-block;
   background: #474749;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
   text-align: center;
   padding: 6px;
-  font-weight: bold;
+  font-weight: normal;
   color: white !important;
   line-height: 18px;
   white-space: normal;
@@ -2543,14 +2714,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -528px;
+  background-position: 0 -547px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -517px;
+  background-position: 0 -536px;
   height: 7px;
   width: 4px;
 }
@@ -2709,12 +2880,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -551px;
+  background-position: 0 -570px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -535px;
+  background-position: 0 -554px;
   height: 16px;
   width: 16px;
 }
@@ -2877,4 +3048,9 @@ ol.list {
 .main > .grid_4-5,
 .container_8 .row {
   margin-bottom: 6px;
+}
+
+form ul.form-errors li {
+  color: red;
+  padding: 5px 0;
 }

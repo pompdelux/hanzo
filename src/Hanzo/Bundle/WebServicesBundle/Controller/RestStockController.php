@@ -104,6 +104,7 @@ class RestStockController extends CoreController
                 // Be sure to order by size as a number(192) not text(192-198)
                 ->withColumn('CONVERT(SUBSTRING_INDEX(products.SIZE,\'-\',1),UNSIGNED INTEGER)','size_num')
                 ->orderBy('size_num')
+                ->orderBy('color')
                 ->groupById()
             ;
 

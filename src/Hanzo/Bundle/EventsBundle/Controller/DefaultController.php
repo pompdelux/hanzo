@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\EventsBundle\Controller;
 
 use Criteria;
 
+use Symfony\Component\Form\FormError;
+
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
@@ -99,9 +101,10 @@ class DefaultController extends CoreController
         if (empty($address)) {
             $customer = new Customers();
             $address = new Addresses();
-            if ( count( $countries ) == 1 ) {
-                $address->setCountry( $countries[0]->getLocalName() );
-                $address->setCountriesId( $countries[0]->getId() );
+
+            if (count($countries) == 1) {
+                $address->setCountry($countries[0]->getLocalName());
+                $address->setCountriesId($countries[0]->getId());
             }
 
             $customer->addAddresses($address);
@@ -109,11 +112,41 @@ class DefaultController extends CoreController
 
         }
 
+        $email = $customer->getEmail();
 
         $form = $this->createForm(new CustomersType(true, new AddressesType($countries)), $customer, array('validation_groups' => $validation_groups));
-
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
+            $data = $form->getData();
+
+            // verify that the email is not already in use.
+            if (!$customer->isNew() && $email) {
+                $form_email = $data->getEmail();
+
+                if ($email != $form_email) {
+                    $c = CustomersQuery::create()
+                        ->filterById($customer->getId(), Criteria::NOT_EQUAL)
+                        ->findOneByEmail($form_email)
+                    ;
+                    if ($c instanceof Customers) {
+                        $form->addError(new FormError('email.exists'));
+                    }
+                }
+            }
+
+            // extra phone and zipcode constrints for .fi
+            // TODO: figure out how to make this part of the validation process.
+            if ('FI' == substr($domainKey, -2)) {
+                // zip codes are always 5 digits in finland.
+                if (!preg_match('/^[0-9]{5}$/', $address->getPostalCode())) {
+                    $form->addError(new FormError('postal_code.required'));
+                }
+
+                // phonenumber must start with a 0 (zero)
+                if (!preg_match('/^0[0-9]+$/', $customer->getPhone())) {
+                    $form->addError(new FormError('phone.required'));
+                }
+            }
 
             if ($form->isValid()) {
                 if (!$customer->getPassword()) {
@@ -194,6 +227,8 @@ class DefaultController extends CoreController
                         'payment',
                         'shipping'
                     ));
+                    $c->add(AddressesPeer::TYPE, 'payment');
+                    $c->addOr(AddressesPeer::TYPE, 'shipping');
                     $c->setLimit(1);
 
                     $address = $customer->getAddressess($c);
@@ -225,25 +260,16 @@ class DefaultController extends CoreController
                     break;
                 }
 
-                $lookup = new SearchQuestion();
-                $lookup->phone = $value;
-                $lookup->username = 'delux';
+                $result = $this->get('nno')->findOne($value);
 
-                $nno = new NNO();
-                $result = $nno->lookupSubscribers($lookup);
-
-                if (($result instanceof nnoSubscriberResult) &&
-                  (count($result->subscribers) == 1) &&
-                  ($result->subscribers[0] instanceof nnoSubscriber)
-                ) {
-                    $record = $result->subscribers[0];
+                if ($result) {
                     $data = array(
-                        'first_name' => $record->christianname,
-                        'last_name'  => $record->surname,
-                        'phone' => $record->phone,
-                        'address_line_1' => $record->address,
-                        'postal_code' => $record->zipcode,
-                        'city' => $record->district,
+                        'first_name' => $result['christianname'],
+                        'last_name'  => $result['surname'],
+                        'phone' => $result['phone'],
+                        'address_line_1' => $result['address'],
+                        'postal_code' => $result['zipcode'],
+                        'city' => $result['district'],
                         'countries_id' => 58,
                         'country' => 'Denmark',
                     );

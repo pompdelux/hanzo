@@ -2,7 +2,6 @@
 | _account
 */
 #body-login .main{}
-
 form.create {
 	label{
 		&:after {
@@ -12,4 +11,9 @@ form.create {
 			content: ": *";
 		}
 	}
+}
+#body-events-create-customer{
+    input.button.off{
+        display: none;
+    }
 }

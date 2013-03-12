@@ -293,13 +293,17 @@
         <source>status.neg.50</source>
         <target>Ordreredigering</target>
       </trans-unit>
+      <trans-unit id="status.neg.20">
+        <source>status.neg.20</source>
+        <target>Ordre mangler betaling</target>
+      </trans-unit>
       <trans-unit id="payment.gothia.title">
         <source>payment.gothia.title</source>
         <target>Gothia faktura</target>
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min side som en pdf indenfor 24 timer.</target>
+        <target><![CDATA[Gothia faktura (Gebyr DKK 39,00). Fakturaen sendes pr. email når vi sender dine varer fra vores lager. Fakturaen vil være tilgængelig på Min side som en pdf indenfor 24 timer.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -412,7 +416,13 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/faq">FAQ</a><br>FRI FRAGT for minimum DKK 1400,-</p>]]></target>
+        <target><![CDATA[<h1>Din Kurv</h1><p>Brug for hjælp? <a href="/da_DK/forside/kundeservice/faq">FAQ</a></p>]]></target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low" approved="no">
+        <source>order.amount.to.low</source>
+        <target>Din værtinderabat overstiger dit samlede køb.
+Du skal tilføje flere varer.
+</target>
       </trans-unit>
     </body>
   </file>

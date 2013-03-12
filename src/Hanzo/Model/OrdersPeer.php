@@ -16,8 +16,6 @@ use Hanzo\Core\Tools;
 /**
  * Skeleton subclass for performing query and update operations on the 'orders' table.
  *
- *
- *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
@@ -26,50 +24,43 @@ use Hanzo\Core\Tools;
  */
 class OrdersPeer extends BaseOrdersPeer
 {
-    static $current;
-
-    public static function getCurrent($flush = FALSE)
+    public static function getCurrent()
     {
-        if ((FALSE === $flush) && (!empty(self::$current))) {
-            return self::$current;
-        }
-
         $hanzo = Hanzo::getInstance();
         $session = $hanzo->getSession();
+        $order = null;
 
         if ($session->has('order_id')) {
-            $query = OrdersQuery::create()
+            $order = OrdersQuery::create()
                 ->useOrdersLinesQuery()
                     ->orderByType()
                     ->orderByProductsName()
                     ->orderByPrice()
                 ->endUse()
                 ->leftJoinWithOrdersLines()
+                ->findPk(
+                    $session->get('order_id'),
+                    Propel::getConnection(null, Propel::CONNECTION_WRITE)
+                )
             ;
 
-            self::$current = $query->findPk(
-                $session->get('order_id'),
-                Propel::getConnection(null, Propel::CONNECTION_WRITE)
-            );
-
             // attach the customer to the order.
-            if ((self::$current instanceOf Orders) && !self::$current->getCustomersId()) {
+            if (($order instanceOf Orders) && !$order->getCustomersId()) {
                 $security = $hanzo->container->get('security.context');
 
                 if ($security->isGranted('ROLE_USER')) {
                     $user = $security->getToken()->getUser();
 
-                    self::$current->setCustomersId($user->getId());
-                    self::$current->setEmail($user->getEmail());
-                    self::$current->setFirstName($user->getFirstName());
-                    self::$current->setLastName($user->getLastName());
-                    self::$current->save();
+                    $order->setCustomersId($user->getId());
+                    $order->setEmail($user->getEmail());
+                    $order->setFirstName($user->getFirstName());
+                    $order->setLastName($user->getLastName());
+                    $order->save();
                 }
             }
         }
 
-        self::$current = self::$current ?: new Orders;
-        return self::$current;
+        return ($order instanceOf Orders) ? $order : new Orders();
     }
 
 
@@ -81,8 +72,11 @@ class OrdersPeer extends BaseOrdersPeer
      */
     public static function retriveByPaymentGatewayId($gateway_id)
     {
-        $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
-        return OrdersQuery::create()->findOneByPaymentGatewayId($gateway_id, $con);
+        return OrdersQuery::create()
+            ->findOneByPaymentGatewayId(
+                $gateway_id,
+                Propel::getConnection(null, Propel::CONNECTION_WRITE)
+        );
     }
 
 

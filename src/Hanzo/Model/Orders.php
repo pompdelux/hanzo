@@ -8,6 +8,7 @@ use Criteria;
 use Propel;
 use PropelPDO;
 use PropelCollection;
+use PropelException;
 use OutOfBoundsException;
 
 use Hanzo\Core\Hanzo;
@@ -15,8 +16,10 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\om\BaseOrders;
 use Hanzo\Model\OrdersLines;
+use Hanzo\Model\OrdersLinesPeer;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersAttributes;
+use Hanzo\Model\OrdersAttributesPeer;
 use Hanzo\Model\OrdersAttributesQuery;
 use Hanzo\Model\OrdersVersions;
 use Hanzo\Model\OrdersVersionsQuery;
@@ -95,33 +98,28 @@ class Orders extends BaseOrders
         $data['order'] = $this->toArray();
         unset($data['order']['Id']);
 
-        $data['products'] = $this->getOrdersLiness()->toArray();
-        $data['attributes'] = $this->getOrdersAttributess()->toArray();
+        $data['products'] = $this->getOrdersLiness(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
+        $data['attributes'] = $this->getOrdersAttributess(Propel::getConnection(null, Propel::CONNECTION_WRITE))->toArray();
 
         $version_ids = $this->getVersionIds();
-        $version_1_exists = false;
 
         if (count($version_ids)) {
             $version_id = max($version_ids) +1;
-            if (isset($version_ids[1])) {
-                $version_1_exists = true;
-            }
         } else {
             $version_id = 1;
         }
 
-        $now = time();
-        $data = serialize($data);
-
         $version = new OrdersVersions();
         $version->setOrdersId($this->getId());
         $version->setVersionId($version_id);
-        $version->setContent($data);
-        $version->setCreatedAt($now);
+        $version->setContent(serialize($data));
+        $version->setCreatedAt(time());
         $version->save();
 
         $this->setVersionId($version_id + 1);
-        return $this->save();
+        $this->save();
+
+        return $this;
     }
 
 
@@ -138,8 +136,6 @@ class Orders extends BaseOrders
             ->orderByVersionId('desc')
             ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
         ;
-
-        $id = $this->getVersionId();
 
         $ids = [];
         foreach ($versions as $version) {
@@ -223,7 +219,14 @@ class Orders extends BaseOrders
         $this->setOrdersAttributess($collection);
 
         // save and return the version
-        return $this->save();
+        try {
+            $this->save();
+        } catch (PropelException $e) {
+            Tools::log($e->getMessage()."\n\n".print_r($this->toArray(), 1), 0, true);
+            throw $e;
+        }
+
+        return $this;
     }
 
     /**
@@ -287,8 +290,6 @@ class Orders extends BaseOrders
         if (count($this->getVersionIds()) < 1) {
             return $this;
         }
-
-        $current_version = $this->getVersionId();
 
         $version = OrdersVersionsQuery::create()
             ->select('VersionId')
@@ -528,7 +529,7 @@ class Orders extends BaseOrders
     public function preSave(PropelPDO $con = null)
     {
         if (!$this->getSessionId()) {
-            $this->setSessionId(session_id());
+            $this->setSessionId(Hanzo::getInstance()->getSession()->getId());
         }
 
         return true;
@@ -536,8 +537,7 @@ class Orders extends BaseOrders
 
     public function postSave(PropelPDO $con = null)
     {
-        if ( PHP_SAPI == 'cli' )
-        {
+        if ( PHP_SAPI == 'cli' ) {
             return true;
         }
 
@@ -546,6 +546,8 @@ class Orders extends BaseOrders
         if(FALSE === $session->has('order_id')) {
             $session->set('order_id', $this->getId());
         }
+
+        return true;
     }
 
     /**
@@ -903,14 +905,12 @@ class Orders extends BaseOrders
      **/
     public function clearFees()
     {
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $c = new Criteria();
+        $c->add(OrdersLinesPeer::TYPE, 'payment.fee', Criteria::EQUAL);
+        $lines = $this->getOrdersLiness($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
-        foreach ($lines as $line)
-        {
-            if( $line->getType() == 'payment.fee' )
-            {
-                $line->delete();
-            }
+        foreach ($lines as $line) {
+            $line->delete();
         }
     }
 
@@ -922,12 +922,12 @@ class Orders extends BaseOrders
      **/
     public function clearAttributesByKey( $key )
     {
-        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $c = new Criteria();
+        $c->add(OrdersAttributesPeer::C_KEY, $key, Criteria::EQUAL);
+        $attributes = $this->getOrdersAttributess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         foreach ($attributes as $index => $attribute) {
-            if ( $attribute->getCKey() == $key ) {
-                $attribute->delete();
-            }
+            $attribute->delete();
         }
     }
 
@@ -939,12 +939,12 @@ class Orders extends BaseOrders
      **/
     public function clearAttributesByNS( $ns )
     {
-        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $c = new Criteria();
+        $c->add(OrdersAttributesPeer::NS, $ns, Criteria::EQUAL);
+        $attributes = $this->getOrdersAttributess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         foreach ($attributes as $index => $attribute) {
-            if ( $attribute->getNs() == $ns ) {
-                $attribute->delete();
-            }
+            $attribute->delete();
         }
     }
 
@@ -981,13 +981,13 @@ class Orders extends BaseOrders
      */
     public function getAttachments()
     {
-        $attributes = $this->getOrdersAttributess(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $c = new Criteria();
+        $c->add(OrdersAttributesPeer::NS, 'attachment', Criteria::EQUAL);
+        $attributes = $this->getOrdersAttributess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $attachments = array();
         foreach ($attributes as $attribute) {
-            if ($attribute->getNs() == 'attachment') {
-                $attachments[$attribute->getCKey()] = $attribute->getCValue();
-            }
+            $attachments[$attribute->getCKey()] = $attribute->getCValue();
         }
 
         return $attachments;

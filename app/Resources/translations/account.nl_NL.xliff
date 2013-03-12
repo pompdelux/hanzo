@@ -409,21 +409,7 @@
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Je kunt de order wijzigen, zo lang deze op ”Afwachten” staat.<br>Je kunt de volgende dingen wijzigen:
-                <ul class="list">
-                  <li>Voeg meer artikelen toe</li>
-                  <li>Wijzig de maat of kleur van een artikel</li>
-                  <li>Verwijder een artikel dat je hebt gekocht, maar dat je toch niet wilt hebben</li>
-                </ul>
-                </p>
-                <p>Wil je een artikel toevoegen, wijzigen of verwijderen, dan moet je het volgende doen:
-                <ol class="list">
-                  <li>Voeg meer artikelen toe</li>
-                  <li>Wijzig de maat en/of kleur van een artikel</li>
-                  <li>Verwijder een artikel dat je hebt gekocht, maar dat je toch niet wilt hebben</li>
-                </ol>
-                </p>
-                ]]></target>
+                <target><![CDATA[<p>Je kunt de order wijzigen, zo lang deze op ”Afwachten” staat.</p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>

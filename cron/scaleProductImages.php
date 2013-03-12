@@ -9,12 +9,17 @@ require_once __DIR__ . '/config.php';
 $source_dir = __DIR__ . '/../web/images/products/';
 $target_dir = __DIR__ . '/../web/images/products/thumb/';
 
-$images_found = glob($source_dir.'*.{jpg,gif,png}',  GLOB_BRACE);
-if (empty($images_found)) {
-    exit;
+if (empty($product_images)) {
+    $images_found = glob($source_dir.'*.{jpg,gif,png}',  GLOB_BRACE);
+    if (empty($images_found)) {
+        exit;
+    }
+} else {
+    // product images - from image import
+    $images_found = $product_images;
 }
 
-_dbug(date('Y-m-d H:i:s')." :: resizing images: ", false);
+_dbug(date('Y-m-d H:i:s')." :: resizing ".count($images_found)." images: ", false);
 $counter = 0;
 foreach ($images_found as $file) {
     $image = basename($file);
@@ -50,4 +55,5 @@ foreach ($images_found as $file) {
     }
     $counter++;
 }
-_dbug("{$counter} images resized to these sizes: ".implode(', ', $_sizes));
+_dbug("\n", false);
+_dbug("images resized to these presets: ".implode(', ', $_sizes));

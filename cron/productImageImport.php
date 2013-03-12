@@ -30,7 +30,7 @@ foreach ($images_found as $file) {
 
     // skip unchanged files
     if (($srcmd5 === $tgdmd5) || (false !== strpos($image, '('))) {
-        continue;
+        #continue;
     }
 
     $images[$image] = $image;
@@ -40,6 +40,8 @@ if (0 === count($images)) {
     _dbug("no images to import, we stop here.");
     exit;
 }
+_dbug("importing ".count($images)." images");
+
 
 // make sure the images are sorted
 ksort($images, SORT_REGULAR);
@@ -53,6 +55,7 @@ $failed = array();
 $pdo = $_databases['vip'];
 $products_stmt = $pdo->prepare('SELECT id FROM products WHERE sku = :master and master IS NULL', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $categories_stmt = $pdo->prepare('SELECT categories_id FROM products_to_categories WHERE products_id = :products_id', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$product_image_stmt = $pdo->prepare('SELECT id FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 _dbug("finding images product and category reference.");
 foreach ($images as $image) {
@@ -60,6 +63,20 @@ foreach ($images as $image) {
     // Luna-LS-Tshirt_Dark-Grey-Melange_overview_01.jpg
     // master         color             type     index
     @list($master, $color, $type, $index) = explode('_', str_replace(['9', '-'], ['/', ' '], pathinfo($image, PATHINFO_FILENAME)));
+
+    // See if any product with master and color even exists
+    $product_image_stmt->execute(array(
+        ':master' => $master,
+        ':color' => $color
+    ));
+
+    $product_image = $product_image_stmt->fetchColumn();
+
+    if(empty($product_image) || empty($index)){
+        $failed[] = $image;
+        _dbug("Error in picture: {$image}");
+        continue;
+    }
 
     if (empty($product_ids[$master])) {
         $products_stmt->execute(array(
@@ -271,12 +288,25 @@ foreach ($product_images as $pid => $images) {
 // clear file cache to prevent errors.
 clearstatcache();
 
-$images_stmt = $pdo->prepare('SELECT id, image FROM products_images', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$images_stmt = $pdo->prepare('SELECT i.id as id, i.image as image, i.color as color, p.sku as master FROM products_images i left JOIN products p on(p.id = i.products_id)', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 $images_stmt->execute();
+
+$product_stmt = $pdo->prepare('SELECT COUNT(id) FROM products WHERE color = :color and master = :master', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 $image_records_to_delete = array();
 while ($record = $images_stmt->fetchObject()) {
+
     if (!file_exists($target_dir.$record->image)) {
+        $image_records_to_delete[$record->id] = $record->image;
+        continue;
+    }
+    // Find the master with correct color
+    $product_stmt->execute(array(
+        ':master' => $record->master,
+        ':color' => $record->color
+    ));
+    $image_master = $product_stmt->fetchColumn();
+    if (!$image_master > 0) {
         $image_records_to_delete[$record->id] = $record->image;
     }
 }
@@ -301,6 +331,14 @@ if (count($image_records_to_delete)) {
         $conn->exec('DELETE FROM products_images_product_references WHERE products_images_id IN('.$ids.')');
     }
 
+    // Be sure that if the image should be deleted, it doesnt exist in products image dir
+    // Otherwise it will never get deleted. I think.
+    foreach ($image_records_to_delete as $image) {
+        if (file_exists($target_dir.$image)) {
+            @unlink($target_dir.$image);
+        }
+    }
+
     $txt = "Hey der!\n\nFølgende produktbilleder er slettet fra databasen da de ikke længere var i filsystemet:\n\n";
     foreach ($image_records_to_delete as $k => $image) {
         $txt .= " - {$image}\n";
@@ -308,7 +346,7 @@ if (count($image_records_to_delete)) {
     $txt .= "\nbum og sov godt!\n";
 
     mail(
-        'hd@pompdelux.dk,un@bellcom.dk',
+        'hd@pompdelux.dk,un@bellcom.dk,ab@bellcom.dk',
         'slettede billeder i billedeimporten',
         $txt,
         "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
@@ -324,7 +362,7 @@ if (count($failed)) {
     $txt .= "\nFix dem, nu!\n";
 
     mail(
-        'hd@pompdelux.dk,un@bellcom.dk',
+        'hd@pompdelux.dk,un@bellcom.dk,ab@bellcom.dk',
         'fejl i billedeimporten',
         $txt,
         "Reply-To: hd@pompdelux.dk\r\nReturn-Path: hd@pompdelux.dk\r\nErrors-To: hd@pompdelux.dk\r\n",
@@ -333,7 +371,16 @@ if (count($failed)) {
 }
 
 // rescale all images
-if (count($products_images)) {
+if (count($product_images)) {
+    $tmp = [];
+    foreach ($product_images as $master => $images) {
+        foreach($images as $image) {
+            $tmp[] = $image;
+        }
+    }
+    $product_images = $tmp;
+    unset($tmp);
+
     require __DIR__ . '/scaleProductImages.php';
 }
 _dbug("- done");

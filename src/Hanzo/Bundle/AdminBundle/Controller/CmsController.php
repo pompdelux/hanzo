@@ -4,7 +4,7 @@ namespace Hanzo\Bundle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Locale\Locale;
-
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Symfony\Component\Console\Input\ArrayInput;
@@ -342,7 +342,17 @@ class CmsController extends CoreController
 
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
+            $form->bind($request);
+
+            $data = $form->getData();
+
+            // validate settings, must be json encodable data
+            if ($s = $data->getSettings()) {
+                $s = json_decode($s);
+                if (!$s) {
+                    $form->addError(new FormError('Formatet på Indstillinger er ikke korrekt'));
+                }
+            }
 
             if ($form->isValid()) {
                 $path = trim($node->getPath(),'/');

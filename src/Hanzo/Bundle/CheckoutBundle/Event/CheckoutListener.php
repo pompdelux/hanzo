@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\CheckoutBundle\Event;
 
+use Propel;
 use PropelCollection;
 
 use Hanzo\Core\Hanzo;
@@ -9,6 +10,7 @@ use Hanzo\Core\Tools;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersLinesQuery;
+use Hanzo\Model\OrdersSyncLogQuery;
 use Hanzo\Model\ProductsDomainsPricesPeer;
 
 use Hanzo\Bundle\ServiceBundle\Services\MailService;
@@ -98,10 +100,25 @@ class CheckoutListener
         $order->setUpdatedAt(time());
         $order->save();
 
+        // trigger ax sync
+        $this->ax->sendOrder($order);
+
+        // ONLY send email and cancel payments if the order is logged !
+        $logged = OrdersSyncLogQuery::create()
+            ->select('State')
+            ->filterByOrdersId($order->getId())
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
+        if (!$logged) {
+            return;
+        }
+
+        // build and send order confirmation.
+
         $attributes = $order->getAttributes();
         $email = $order->getEmail();
         $name  = trim($order->getFirstName() . ' ' . $order->getLastName());
-        $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), array(), 'shipping');
+        $shipping_title = $this->translator->trans('shipping_method.name.' . $order->getDeliveryMethod(), [], 'shipping');
 
         $shipping_cost = 0.00;
         $shipping_fee = 0.00;
@@ -170,15 +187,13 @@ class CheckoutListener
 
         // hf@bellcom.dk, 04-sep-2012: only show if > 0 -->>
         $payment_fee = $order->getPaymentFee();
-        if ( $payment_fee > 0 )
-        {
+        if ( $payment_fee > 0 ) {
           $params['payment_fee'] = $payment_fee;
         }
         // <<-- hf@bellcom.dk, 04-sep-2012: only show if > 0
 
         // hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia -->>
-        if ( !empty($card_type) )
-        {
+        if ( !empty($card_type) ) {
           $params['card_type'] = $card_type;
         }
         // <<-- hf@bellcom.dk, 04-sep-2012: order confirmation checks if card_type is defined, if not, it will use payment_method, e.g. Gothia
@@ -225,13 +240,14 @@ class CheckoutListener
         }
 
         // Handle payment canceling of old order
-        if ($in_edit) {
+        if ($in_edit && ('gothia' !== $order->getBillingMethod())) {
             $currentVersion = $order->getVersionId();
 
             // If the version number is less than 2 there is no previous version
             if (!($currentVersion < 2)) {
                 $oldOrderVersion = ( $currentVersion - 1);
                 $oldOrder = $order->getOrderAtVersion($oldOrderVersion);
+
                 try {
                     $oldOrder->cancelPayment();
                 } catch (\Exception $e) {
@@ -252,9 +268,6 @@ class CheckoutListener
         } catch (\Swift_TransportException $e) {
             Tools::log($e->getMessage());
         }
-
-        // trigger ax sync
-        $this->ax->sendOrder($order);
     }
 
 
@@ -289,8 +302,10 @@ class CheckoutListener
                 $discount_label = 'discount.private';
                 $discount = $customer->getDiscount();
             } else {
-                $discount_label = 'discount.group';
-                $discount = $customer->getGroups()->getDiscount();
+                if ($customer->getGroups()) {
+                    $discount_label = 'discount.group';
+                    $discount = $customer->getGroups()->getDiscount();
+                }
             }
         }
 

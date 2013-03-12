@@ -43,7 +43,7 @@ Hanzo\Model\Customers:
             - NotBlank:
                 message: address.first_name.required
                 groups: [customer, customer_edit]
-            - MinLength: 
+            - MinLength:
                 limit: 2
                 message: address.first_name.min.length
                 groups: [customer, customer_edit]
@@ -63,8 +63,9 @@ Hanzo\Model\Customers:
                 limit: 8
                 message: phone.min.length
                 groups: [customer, customer_edit]
-            - Type:
-                type: numeric
+            - Regex:
+                pattern: "/^\d+$/"
+                match:   true
                 message: phone.not.valid
                 groups: [customer, customer_edit]
         email:

@@ -265,9 +265,7 @@
       </trans-unit>
       <trans-unit id="late.delivery.date.notice">
         <source>late.delivery.date.notice</source>
-        <target><![CDATA[
-          <p>Din ordre inneholder vare(r) som vi ikke har på lager for øyeblikket. Ordren pakkes når vi har alle varene på lager. Vi forventer å sende hele ordren fra lageret senest: <strong>%date%</strong>.</p>
-        ]]></target>
+        <target><![CDATA[<p>Din ordre inneholder vare(r) som vi ikke har på lager for øyeblikket. Ordren pakkes når vi har alle varene på lager. Vi forventer å sende hele ordren fra lageret senest: <strong>%date%</strong>.</p>]]></target>
       </trans-unit>
       <trans-unit id="status.20" approved="no">
         <source>status.20</source>
@@ -295,7 +293,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min side som en pdf fil innen 24 timer.</target>
+        <target><![CDATA[Gothia faktura (Hvis du velger å betale med PayByBill Faktura, vil det i tillegg påløpe et gebyr på NOK 39,00). Fakturaen sendes pr. e-post når vi sender dine varer fra vårt lager. Fakturaen vil være tilgjengelig på Min side som en pdf fil innen 24 timer.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -408,7 +406,13 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Basket</h1><p>Need help? <a href="/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Basket</h1><p>Need help? <a href="/nb_NO/forside/kundeservice/fakta">FAQ</a></p>]]></target>
+      </trans-unit>
+      <trans-unit id="order.amount.to.low" approved="no">
+        <source>order.amount.to.low</source>
+        <target>Vertinnerabatten overstiger ditt samlede kjøp. 
+Du må tilføye flere varer.
+</target>
       </trans-unit>
     </body>
   </file>

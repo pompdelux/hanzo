@@ -157,7 +157,8 @@ a.product-color{
 	margin: 3px;
 	display: inline-block;
 	text-align: center;
-	width: 50px;
+	width: 65px;
+	font-size: $product-size;
 	vertical-align: top;
 	.colorbuttons {
 		display: block;
@@ -165,15 +166,19 @@ a.product-color{
 	}
 	@include colorbutton(black9rose);
 	@include colorbutton(black);
+	@include colorbutton(blue-denim);
 	@include colorbutton(blue9grey-melange);
 	@include colorbutton(blue);
+	@include colorbutton(brown);
 	@include colorbutton(camel);
 	@include colorbutton(gold);
 	@include colorbutton(green9grey);
 	@include colorbutton(green);
 	@include colorbutton(grey9off-white);
 	@include colorbutton(grey-melange);
+	@include colorbutton(grey-melange9white);
 	@include colorbutton(grey);
+	@include colorbutton(honey);
 	@include colorbutton(khaki);
 	@include colorbutton(light-blue);
 	@include colorbutton(light-grey-melange);
@@ -193,6 +198,7 @@ a.product-color{
 	@include colorbutton(turquoise);
 	@include colorbutton(white9off-white);
 	@include colorbutton(white);
+	@include colorbutton(wine);
 	@include colorbutton(yellow);
 
 	// .colorbuttons {

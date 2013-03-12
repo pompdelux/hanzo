@@ -18,6 +18,15 @@ form #cms-edit textarea{
 form #cms-edit{
   margin:20px 0px;
 }
+form .form-errors {
+  background-color: #fff;
+  border: 2px solid #f00;
+  padding: 10px;
+}
+form .form-errors li {
+  list-style: none !important;
+  padding: 2px;
+}
 
 nav.sub li {
   float: right;

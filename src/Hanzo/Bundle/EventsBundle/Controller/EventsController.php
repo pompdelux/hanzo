@@ -145,43 +145,36 @@ class EventsController extends CoreController
                     'attr' => array('class' => 'datetimepicker'),
                     'label' => 'events.event_date.label',
                     'translation_domain' => 'events',
-                    'error_bubbling' => true,
                 )
             )->add('host', 'text',
                 array(
                     'label' => 'events.host.label',
                     'translation_domain' => 'events',
-                    'error_bubbling' => true,
                 )
             )->add('address_line_1', 'text',
                 array(
                     'label' => 'events.address_line_1.label',
                     'translation_domain' => 'events',
-                    'error_bubbling' => true,
                 )
             )->add('postal_code', 'text',
                 array(
                     'label' => 'events.postal_code.label',
                     'translation_domain' => 'events',
-                    'error_bubbling' => true,
                 )
             )->add('city', 'text',
                 array(
                     'label' => 'events.city.label',
                     'translation_domain' => 'events',
-                    'error_bubbling' => true,
                 )
             )->add('phone', 'text',
                 array(
                     'label' => 'events.phone.label',
                     'translation_domain' => 'events',
-                    'error_bubbling' => true,
                 )
             )->add('email', 'text',
                 array(
                     'label' => 'events.email.label',
                     'translation_domain' => 'events',
-                    'error_bubbling' => true,
                 )
             )->add('description', 'textarea',
                 array(
@@ -216,7 +209,7 @@ class EventsController extends CoreController
                 $old_event = $event->copy(); // Keep a copy of the old data before we bind the request
             }
 
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
                 $consultant = CustomersPeer::getCurrent();

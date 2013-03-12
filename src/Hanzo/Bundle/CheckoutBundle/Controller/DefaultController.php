@@ -38,7 +38,6 @@ class DefaultController extends CoreController
         // trigger event, handles discounts and other stuff.
         $this->get('event_dispatcher')->dispatch('order.summery.finalize', new FilterOrderEvent($order));
 
-
         if ($order->isHostessOrder() && ($order->getTotalPrice() < 0)) {
             $this->get('session')->setFlash('notice', $this->get('translator')->trans('order.amount.to.low', [], 'checkout'));
             return $this->redirect($this->generateUrl('basket_view'));
@@ -140,8 +139,24 @@ class DefaultController extends CoreController
             $order->setAttribute('domain_key', 'global', $domain_key);
         }
 
-        $order->save();
+        // sometimes free shipping is ignored, we try to handle errors here
+        $free_limit = $hanzo->get('shipping.free_shipping', 0);
+        if ($free_limit > 0) {
+            $total = $order->getTotalPrice(true);
 
+            if ($free_limit && ($total > $free_limit)) {
+                foreach ($order->getOrderLineShipping() as $line) {
+                    if ($line->getPrice() > 0) {
+                        $line->setPrice(0.00);
+                        $line->save();
+                    }
+                }
+            }
+        }
+
+
+        /* ------------------------------------------------- */
+        $order->save();
         /* ------------------------------------------------- */
 
         $attributes = array();
@@ -188,13 +203,13 @@ class DefaultController extends CoreController
         // the order is now complete, so we remove it from the session
         $session = $hanzo->getSession();
         $session->remove('order_id');
-        $session->save();
 
         if ($session->has('in_edit')) {
             $this->get('event_dispatcher')->dispatch('order.edit.done', new FilterOrderEvent($order));
         }
 
         // one-to-one, we can only have one session_id or order in the database....
+        $session->save();
         $session->migrate();
 
         // hf@bellcom.dk: used to avoid user pressing back on success page to get back to process, which then sends the customer to failed

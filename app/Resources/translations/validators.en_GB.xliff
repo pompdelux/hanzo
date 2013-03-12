@@ -4,11 +4,75 @@
         <body>
             <trans-unit id="email.exists">
                 <source>email.exists</source>
-                <target>Your E-Mail Address already exists in our records!</target>
+                <target>The e-mail address already exists!</target>
+            </trans-unit>
+            <trans-unit id="phone.required" approved="no">
+                <source>phone.required</source>
+                <target>Telephone number must be filled in</target>
+            </trans-unit>
+            <trans-unit id="phone.min.length" approved="no">
+                <source>phone.min.length</source>
+                <target>A telephone number contains {{ limit }} digits|A telephone number contains {{ limit }} digits</target>
+            </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>The telephone number must only contain digits</target>
+            </trans-unit>
+            <trans-unit id="email.required" approved="no">
+                <source>email.required</source>
+                <target>E-mail address must be filled in</target>
+            </trans-unit>
+            <trans-unit id="email.invalid.match" approved="no">
+                <source>email.invalid.match</source>
+                <target>The two e-mail addresses do not match</target>
+            </trans-unit>
+            <trans-unit id="email.not.valid">
+                <source>email.not.valid</source>
+                <target>The email fields must match.</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.required" approved="no">
+                <source>address.first_name.required</source>
+                <target>First name must be filled in</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required" approved="no">
+                <source>address.last_name.required</source>
+                <target>Last name must be filled in</target>
+            </trans-unit>
+            <trans-unit id="host.required" approved="no">
+                <source>host.required</source>
+                <target>Du skal angive værtinde</target>
+            </trans-unit>
+            <trans-unit id="address_line_1.required" approved="no">
+                <source>address_line_1.required</source>
+                <target>Du skal udfylde adressen</target>
+            </trans-unit>
+            <trans-unit id="postal_code.required" approved="no">
+                <source>postal_code.required</source>
+                <target>Du skal udfylde postnummer</target>
+            </trans-unit>
+            <trans-unit id="city.required" approved="no">
+                <source>city.required</source>
+                <target>Du skal udfylde by</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Your first name muist be at least {{ limit }} characters long|Your first name muist be at least {{ limit }} characters long</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Your last name must be at least {{ limit }} characters long|Your last name must be at least {{ limit }} characters long</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Password, minimum 5 characters</target>
             </trans-unit>
             <trans-unit id="password.min.length" approved="no">
                 <source>password.min.length</source>
-                <target>Password must be a minimum of 5 characters long</target>
+                <target>Password must be a minimum of {{ limit }} characters long|Password must be a minimum of {{ limit }} characters long</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match">
+                <source>password.invalid.match</source>
+                <target>The password fields must match.</target>
             </trans-unit>
         </body>
     </file>
