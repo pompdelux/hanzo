@@ -230,15 +230,12 @@
                 <source>footer.menu_1</source>
                 <target><![CDATA[
                 <br />
-                <!--<h2>KUNDESERVICE</h2>
+                <!--<h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/fi_FI/koti/home-shopping" target="_blank">Tietoa Home shopping</a></li>
+                    <li><a href="/fi_FI/koti/home-shopping/etsi-myyntiedustaja" target="_blank">Etsi myyntiedustaja</a></li>
+                    <li><a href="/fi_FI/forside/home-shopping/etsi-myyntiedustaja-kartalta" target="_blank">Etsi myyntiedustaja kartalta</a></li>
+                    <li><a href="/fi_FI/koti/home-shopping/avoimet-ovet" target="_blank">Avoimet ovet</a></li>         
                 </ul>-->
                 ]]></target>
             </trans-unit>
@@ -246,12 +243,19 @@
                 <source>footer.menu_2</source>
                 <target><![CDATA[
                 <br />
-                <!--<h2>HOME SHOPPING</h2>
+                <!--<h2>Lisää POMPdeLUXista</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+                    <li><a href="/fi_FI/koti/kuvasto" target="_blank">Online kuvasto</a></li>
+                    <li><a href="/fi_FI/koti/kuvasto/image-video" target="_blank">Image Video</a></li>
+                    <li><a href="/fi_FI/koti/tietoa-pompdeluxista" target="_blank">Tietoa POMPdeLUXista</a></li>
+                    <li><a href="/fi_FI/koti/uutiset" target="_blank">Uutiset</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/konsepti" target="_blank">Konsepti</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/sosiaalinen-vastuullisuus" target="_blank">Sosiaalinen vastuullisuus</a></li>
+					<li><a href="/fi_FI/koti/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
+					<li><a href="/fi_FI/koti/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
+					<li><a href="/fi_FI/koti/webshop/info/kiitokset" target="_blank">Kiitokset</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/tyopaikat" target="_blank">Työpaikat</a></li>
+					<li><a href="/fi_FI/koti/tietoa-pompdeluxista/yhteystiedot" target="_blank">Yhteystiedot</a></li>
                 </ul>-->
                 ]]></target>
             </trans-unit>
@@ -259,7 +263,7 @@
                 <source>footer.menu_3</source>
                 <target><![CDATA[
                 <br />
-                <!--<h2>MERE POMPdeLUX</h2>
+                <!--<h2>Kundeservice</h2>
                 <ul class="menu">
                     <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
                     <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
