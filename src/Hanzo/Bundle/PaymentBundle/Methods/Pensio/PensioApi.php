@@ -226,6 +226,6 @@ class PensioApi implements PaymentMethodApiInterface
         $fields .= '<input type="hidden" name="transaction_info[Email]" value="'.$order->getEmail().'">';
         $fields .= '<input type="hidden" name="transaction_info[OrderId]" value="'.$order->getId().'">';
 
-        return ['form' => '<form name="payment-dibs" id="payment-process-form" action="https://'.$this->settings['gateway'].'.pensio.com/" method="post" class="hidden">'.$fields.'</form>'];
+        return ['form' => '<form name="payment-dibs" id="payment-process-form" action="https://'.$this->settings['gateway'].'.pensio.com/API/createPaymentRequest" method="post" class="hidden">'.$fields.'</form>'];
     }
 }
