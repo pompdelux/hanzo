@@ -206,6 +206,58 @@ class PensioApi implements PaymentMethodApiInterface
     {
         $language = LanguagesQuery::create()->select('iso2')->findOneById($order->getLanguagesId());
 
+        $cookie = [];
+        foreach ($_SERVER['HTTP_COOKIE'] as $key => $value) {
+            $cookie[] = $key.'='.rawurlencode($value).'; ';
+        }
+        $cookie = implode('; ', $cookie);
+
+        $data = [
+            'terminal' => $this->settings['terminal'],
+            'shop_orderid' => $order->getPaymentGatewayId(),
+            'amount' => number_format($order->getTotalPrice(), 2, '.', ''),
+            'currency' => $order->getCurrencyCode(),
+            'language' => $language,
+            'transaction_info' => [
+                'Firstname' => $order->getBillingFirstName(),
+                'Lastname' => $order->getBillingLastName(),
+                'Company' => $order->getBillingCompanyName(),
+                'Address1' => $order->getBillingAddressLine1(),
+                'Address2' => $order->getBillingAddressLine2(),
+                'City' => $order->getBillingCity(),
+                'Postalcode' => $order->getBillingPostalCode(),
+                'StateProvince' => $order->getBillingStateProvince(),
+                'Country' => $order->getBillingCountry(),
+                'Phone' => $order->getPhone(),
+                'Email' => $order->getEmail(),
+                'OrderId' => $order->getId(),
+            ],
+            'cookie' => $cookie,
+        ];
+
+
+
+$content = http_build_query($data);
+$request = array(
+    'http' => array(
+        'header' => 'Content-type: application/x-www-form-urlencoded; charset=utf-8',
+        'method' => 'POST',
+        'max_redirects' => 0,
+        'timeout' => 5,
+        'content' => $content,
+    )
+);
+$context = stream_context_create($request);
+$response = trim(file_get_contents('https://testgateway.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));
+
+\Hanzo\Core\Tools::log($data);
+\Hanzo\Core\Tools::log($request);
+\Hanzo\Core\Tools::log($response);
+
+
+return ['url' => 'payment/cancel'];
+
+
         $fields  = '<input type="hidden" name="terminal" value="'.$this->settings['terminal'].'">';
         $fields .= '<input type="hidden" name="shop_orderid" value="'.$order->getPaymentGatewayId().'">';
         $fields .= '<input type="hidden" name="amount" value="'.number_format($order->getTotalPrice(), 2, '.', '').'">';
