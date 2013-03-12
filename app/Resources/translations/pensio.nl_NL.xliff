@@ -3,7 +3,7 @@
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="payment.title" approved="no">
-        <source>payment.pensio.title</source>
+        <source>payment.title</source>
         <target>Pensio</target>
       </trans-unit>
       <trans-unit id="ideal.desc" approved="no">
@@ -21,6 +21,10 @@
       <trans-unit id="form.order_id" approved="no">
         <source>form.order_id</source>
         <target>Order ID: %order_id%</target>
+      </trans-unit>
+      <trans-unit id="form.payment_id" approved="no">
+        <source>form.payment_id</source>
+        <target>Payment ID: %payment_id%</target>
       </trans-unit>
       <trans-unit id="form.amount" approved="no">
         <source>form.amount</source>
