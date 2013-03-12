@@ -22,6 +22,7 @@ INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pen
 namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 
 use Exception;
+use SimpleXMLElement;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\LanguagesQuery;
@@ -207,8 +208,8 @@ class PensioApi implements PaymentMethodApiInterface
         $language = LanguagesQuery::create()->select('iso2')->findOneById($order->getLanguagesId());
 
         $cookie = [];
-        foreach ($_SERVER['HTTP_COOKIE'] as $key => $value) {
-            $cookie[] = $key.'='.rawurlencode($value).'; ';
+        foreach ($_COOKIE as $key => $value) {
+            $cookie[] = $key.'='.rawurlencode($value);
         }
         $cookie = implode('; ', $cookie);
 
@@ -235,55 +236,36 @@ class PensioApi implements PaymentMethodApiInterface
             'cookie' => $cookie,
         ];
 
+        $headers = [
+            'Authorization: Basic '.base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']),
+            'Content-type: application/x-www-form-urlencoded; charset=utf-8',
+        ];
 
 
-$headers = [
-    'Authorization: Basic '.base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']),
-    'Content-type: application/x-www-form-urlencoded; charset=utf-8',
-];
-
-
-$content = http_build_query($data);
-$request = array(
-    'http' => array(
-        'header' => implode("\r\n", $headers),
-        'method' => 'POST',
-        'max_redirects' => 0,
-        'timeout' => 5,
-        'ignore_errors' => false,
-        'content' => $content,
-    )
-);
-$context = stream_context_create($request);
-$response = trim(file_get_contents('https://testgateway.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));
+        $content = http_build_query($data);
+        $request = array(
+            'http' => array(
+                'header' => implode("\r\n", $headers),
+                'method' => 'POST',
+                'max_redirects' => 0,
+                'timeout' => 5,
+                'ignore_errors' => false,
+                'content' => $content,
+            )
+        );
+        $context = stream_context_create($request);
+        $response = trim(file_get_contents('https://testgateway.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));
 
 \Hanzo\Core\Tools::log($data);
-\Hanzo\Core\Tools::log($request);
-\Hanzo\Core\Tools::log($response);
 
-return ['url' => 'payment/cancel'];
+        $goto = 'payment/cancel';
+        if ($response && ($xml = new SimpleXMLElement($response))) {
+            $code = (string) $xml->Header->ErrorCode;
+            if (0 == $code) {
+                $goto = (string) $xml->Body->Url;
+            }
+        }
 
-
-        $fields  = '<input type="hidden" name="terminal" value="'.$this->settings['terminal'].'">';
-        $fields .= '<input type="hidden" name="shop_orderid" value="'.$order->getPaymentGatewayId().'">';
-        $fields .= '<input type="hidden" name="amount" value="'.number_format($order->getTotalPrice(), 2, '.', '').'">';
-        $fields .= '<input type="hidden" name="currency" value="'.$order->getCurrencyCode().'">';
-        $fields .= '<input type="hidden" name="language" value="'.$language.'">';
-
-        // extra info
-        $fields .= '<input type="hidden" name="transaction_info[Firstname]" value="'.$order->getBillingFirstName().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Lastname]" value="'.$order->getBillingLastName().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Company]" value="'.$order->getBillingCompanyName().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Address1]" value="'.$order->getBillingAddressLine1().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Address2]" value="'.$order->getBillingAddressLine2().'">';
-        $fields .= '<input type="hidden" name="transaction_info[City]" value="'.$order->getBillingCity().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Postalcode]" value="'.$order->getBillingPostalCode().'">';
-        $fields .= '<input type="hidden" name="transaction_info[StateProvince]" value="'.$order->getBillingStateProvince().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Country]" value="'.$order->getBillingCountry().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Phone]" value="'.$order->getPhone().'">';
-        $fields .= '<input type="hidden" name="transaction_info[Email]" value="'.$order->getEmail().'">';
-        $fields .= '<input type="hidden" name="transaction_info[OrderId]" value="'.$order->getId().'">';
-
-        return ['form' => '<form name="payment-dibs" id="payment-process-form" action="https://'.$this->settings['gateway'].'.pensio.com/eCommerce/API/form" method="post" class="hidden">'.$fields.'</form>'];
+        return ['url' => $goto];
     }
 }

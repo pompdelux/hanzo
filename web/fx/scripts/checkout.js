@@ -324,10 +324,14 @@
       ) {
         // payment-process-form
         if (undefined !== response.response.data.url) {
-          if ('/' == response.response.data.url.substring(0, 1)) {
-            response.response.data.url = response.response.data.url.substring(1);
+          if ('http' == response.response.data.url.substring(0, 4)) {
+            document.location.href = response.response.data.url;
+          } else {
+            if ('/' == response.response.data.url.substring(0, 1)) {
+              response.response.data.url = response.response.data.url.substring(1);
+            }
+            document.location.href = base_url+response.response.data.url;
           }
-          document.location.href = base_url+response.response.data.url;
         } else if (undefined !== response.response.data.form) {
           $('#checkout-buttons').append(response.response.data.form);
           $('#checkout-buttons form').submit();
