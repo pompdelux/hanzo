@@ -45,7 +45,10 @@ class PensioController extends CoreController
         }
 
         $order = OrdersQuery::create()
-            ->findOneByPaymentGatewayId($request->get('shop_orderid'))
+            ->findOneByPaymentGatewayId(
+                $request->get('shop_orderid'),
+                Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            )
         ;
 
         return [
@@ -101,16 +104,18 @@ class PensioController extends CoreController
         }
 
         $order = OrdersQuery::create()
-            ->findOneByPaymentGatewayId($request->get('shop_orderid'))
+            ->findOneByPaymentGatewayId(
+                $request->get('shop_orderid'),
+                Propel::getConnection(null, Propel::CONNECTION_WRITE)
+            )
         ;
 
         if ($order instanceof Orders) {
-
             $api = $this->get('payment.pensioapi');
 
             try {
                 $api->verifyCallback($request, $order);
-                $api->updateOrderSatus(Orders::STATE_PAYMENT_OK, $request, $order);
+                $api->updateOrderStatus(Orders::STATE_PAYMENT_OK, $request, $order);
 
                 $this->get('event_dispatcher')->dispatch('order.payment.collected', new FilterOrderEvent($order));
             } catch (Exception $e) {
@@ -119,10 +124,11 @@ class PensioController extends CoreController
             }
 
             if ('ok' === $status) {
+Tools::log('should redirect to: '.$this->generateUrl('_checkout_success'));
                 return $this->redirect($this->generateUrl('_checkout_success'));
             }
 
-            $api->updateOrderSatus(Orders::STATE_ERROR_PAYMENT, $request, $order);
+            $api->updateOrderStatus(Orders::STATE_ERROR_PAYMENT, $request, $order);
 
             return $this->render('PaymentBundle:Pensio:failed.html.twig', [
                 'message'    => $request->get('error_message'),

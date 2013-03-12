@@ -183,7 +183,7 @@ class PensioApi implements PaymentMethodApiInterface
             throw new InvalidOrderStateException('The order is not in the correct state "'. $order->getState() .'"');
         }
 
-        if ('succeeded' !== $request->get('status')) {
+        if ('succeeded' !== $_POST['status']) {
             throw new PaymentFailedException('Payment failed: '.$request->get('error_message').' ('.$request->get('merchant_error_message').')');
         }
 
@@ -255,8 +255,6 @@ class PensioApi implements PaymentMethodApiInterface
         );
         $context = stream_context_create($request);
         $response = trim(file_get_contents('https://testgateway.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));
-
-\Hanzo\Core\Tools::log($data);
 
         $goto = 'payment/cancel';
         if ($response && ($xml = new SimpleXMLElement($response))) {

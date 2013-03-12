@@ -70,7 +70,7 @@ _pensio_form:
 _pensio_wait:
     pattern:  /payment/pensio/wait
     defaults:
-        _controller: PaymentBundle:Pensio:form
+        _controller: PaymentBundle:Pensio:wait
 _pensio_callback:
     pattern:  /payment/pensio/callback/{status}
     defaults:
