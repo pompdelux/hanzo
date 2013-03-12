@@ -237,13 +237,20 @@ class PensioApi implements PaymentMethodApiInterface
 
 
 
+$headers = [
+    'Authorization: Basic '.base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']),
+    'Content-type: application/x-www-form-urlencoded; charset=utf-8',
+];
+
+
 $content = http_build_query($data);
 $request = array(
     'http' => array(
-        'header' => 'Content-type: application/x-www-form-urlencoded; charset=utf-8',
+        'header' => implode("\r\n", $headers),
         'method' => 'POST',
         'max_redirects' => 0,
         'timeout' => 5,
+        'ignore_errors' => false,
         'content' => $content,
     )
 );
@@ -253,7 +260,6 @@ $response = trim(file_get_contents('https://testgateway.pensio.com/merchant/API/
 \Hanzo\Core\Tools::log($data);
 \Hanzo\Core\Tools::log($request);
 \Hanzo\Core\Tools::log($response);
-
 
 return ['url' => 'payment/cancel'];
 
