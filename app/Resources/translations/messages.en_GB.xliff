@@ -250,7 +250,7 @@
                 <source>footer.menu_1</source>
                 <target><![CDATA[
                 <br />
-                <!--<h2>More POMPdeLUX</h2>
+                <h2>More POMPdeLUX</h2>
                 <ul class="menu">
 				    <li><a href="/en_GB/home/catalogue" target="_blank">Online catalogue</a></li>
 					<li><a href="/en_GB/home/catalogue/image-video" target="_blank">Image Video</a></li>
@@ -263,7 +263,7 @@
                     <li><a href="/en_GB/home/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
 					<li><a href="/en_GB/home/webshop/info/credits" target="_blank">Credits</a></li>
 					<li><a href="/en_GB/home/about-pompdelux/contact" target="_blank">Contact</a></li>
-                </ul>-->
+                </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_2" approved="no">
@@ -283,9 +283,9 @@
                 <source>footer.menu_3</source>
                 <target><![CDATA[
                 <br />
-                <!--<h2>Customer service</h2>
+                <h2>Customer service</h2>
                 <ul class="menu">
-    			    <li><a href="/en_GB/customer%20service/telephone-times" target="_blank">Telephone times</a></li>
+    			    <li><a href="/en_GB/customer-service/telephone-times" target="_blank">Telephone times</a></li>
                     <li><a href="/en_GB/home/customer-service/faq" target="_blank">FAQ</a></li>
                     <li><a href="/en_GB/home/customer-service/returns" target="_blank">Returns</a></li>
                     <li><a href="/en_GB/home/customer-service/exchange" target="_blank">Exchange</a></li>
@@ -294,7 +294,7 @@
                     <li><a href="/en_GB/home/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
 					<li><a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">Terms and conditions</a></li>
 					<li><a href="/en_GB/home/customer-service/about-the-webshop" target="_blank">About the online shop</a></li>
-                </ul>-->
+                </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
