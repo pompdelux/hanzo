@@ -2,7 +2,12 @@
 {% set page_type = 'pensio-wait' %}
 {% extends layout %}
 {% block content %}
-    <h1>{{ 'wait.heading'|trans({}, 'pensio') }}</h1>
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            <h1>{{ 'wait.heading'|trans({}, 'pensio') }}</h1>
+        </hgroup>
+    </header>
+
     <div class="description">
         {{ 'wait.description'|trans({
             '%server%' : app.server.HTTP_HOST,

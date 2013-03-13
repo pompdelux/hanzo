@@ -2,7 +2,11 @@
 {% set page_type = 'pensio-payment-form' %}
 {% extends layout %}
 {% block content %}
-    <h1>{{ 'form.heading'|trans({}, 'pensio') }}</h1>
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            <h1>{{ 'form.heading'|trans({}, 'pensio') }}</h1>
+        </hgroup>
+    </header>
     <div class="description">{{ 'form.description'|trans({}, 'pensio') }}</div>
 
     <ul>

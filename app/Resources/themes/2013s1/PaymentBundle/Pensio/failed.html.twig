@@ -1,7 +1,12 @@
 {% set page_type = 'pensio-payment-failed' %}
 {% extends layout %}
 {% block content %}
-    <h1>{{ 'failed.heading'|trans({}, 'pensio') }}</h1>
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            <h1>{{ 'failed.heading'|trans({}, 'pensio') }}</h1>
+        </hgroup>
+    </header>
+
     <div class="description">{{ 'failed.description'|trans({'%message%': message}, 'pensio') }}</div>
 
     <ul>
