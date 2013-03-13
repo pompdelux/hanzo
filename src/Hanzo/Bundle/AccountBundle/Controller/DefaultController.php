@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-use Hanzo\Core\FormErrors;
+use Hanzo\Core\FormError;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
@@ -93,12 +93,11 @@ class DefaultController extends CoreController
         if ( 'POST' === $request->getMethod() ) {
             $form->bind($request);
             $data = $form->getData();
-
             // extra phone and zipcode constrints for .fi
             // TODO: figure out how to make this part of the validation process.
             if ('FI' == substr($domainKey, -2)) {
                 // zip codes are always 5 digits in finland.
-                if (!preg_match('/^[0-9]{5}$/', $data['Addressess']['Addressess_0']['PostalCode'])) {
+                if (!preg_match('/^[0-9]{5}$/', $customer->getAddresses()->toArray()[0]['PostalCode'])) {
                     $form->addError(new FormError('postal_code.required'));
                 }
 
