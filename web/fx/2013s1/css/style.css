@@ -554,7 +554,7 @@ footer {
   line-height: 14px;
 }
 footer h2 {
-  font-size: 12px;
+  font-size: 14px;
   font-family: "Merriweather", serif;
   letter-spacing: 0;
 }
@@ -618,7 +618,7 @@ footer .copy a {
   text-decoration: none;
 }
 footer .menu {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /**
