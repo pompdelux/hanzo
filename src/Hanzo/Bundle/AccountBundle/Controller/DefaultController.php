@@ -98,7 +98,7 @@ class DefaultController extends CoreController
             // TODO: figure out how to make this part of the validation process.
             if ('FI' == substr($domainKey, -2)) {
                 // zip codes are always 5 digits in finland.
-                if (!preg_match('/^[0-9]{5}$/', $address->getPostalCode())) {
+                if (!preg_match('/^[0-9]{5}$/', $customer->getAddresses()->getPostalCode())) {
                     $form->addError(new FormError('postal_code.required'));
                 }
 
