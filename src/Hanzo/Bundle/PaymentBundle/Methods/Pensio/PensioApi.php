@@ -18,7 +18,6 @@ INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pen
 
 */
 
-
 namespace Hanzo\Bundle\PaymentBundle\Methods\Pensio;
 
 use Exception;
@@ -26,7 +25,6 @@ use SimpleXMLElement;
 
 use Hanzo\Model\Orders;
 use Hanzo\Model\LanguagesQuery;
-use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\Customers;
 
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
@@ -121,11 +119,10 @@ class PensioApi implements PaymentMethodApiInterface
         return $this->settings['fee.id'];
     }
 
-
     /**
      * these must be here or the interface get's angry...
-     * @param  Request $request
-     * @param  Orders  $order
+     * @param Request $request
+     * @param Orders  $order
      */
     public function updateOrderSuccess(Request $request, Orders $order)
     {
@@ -140,9 +137,9 @@ class PensioApi implements PaymentMethodApiInterface
     /**
      * set order status and attributes based on pament status
      *
-     * @param  Integer $status  Status id
-     * @param  Request $request
-     * @param  Orders  $order
+     * @param Integer $status  Status id
+     * @param Request $request
+     * @param Orders  $order
      */
     public function updateOrderStatus($status, Request $request, Orders $order)
     {
@@ -174,8 +171,8 @@ class PensioApi implements PaymentMethodApiInterface
     /**
      * validate the callback before processing the order.
      *
-     * @param  Request $request
-     * @param  Orders  $order
+     * @param Request $request
+     * @param Orders  $order
      */
     public function verifyCallback(Request $request, Orders $order)
     {
@@ -201,7 +198,7 @@ class PensioApi implements PaymentMethodApiInterface
      * Build and return the form used in the checkout flow.
      *
      * @param  Orders $order The order object
-     * @return string        The form used to proceed to the Pensio payment window
+     * @return string The form used to proceed to the Pensio payment window
      */
     public function getProcessButton(Orders $order)
     {
