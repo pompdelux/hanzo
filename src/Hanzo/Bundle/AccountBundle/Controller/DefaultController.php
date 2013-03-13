@@ -99,7 +99,7 @@ class DefaultController extends CoreController
             if ('FI' == substr($domainKey, -2)) {
                 // zip codes are always 5 digits in finland.
                 if (!preg_match('/^[0-9]{5}$/', $customer->getAddresses()->toArray()[0]['PostalCode'])) {
-                    //$form->addError(new FormError('postal_code.required'));
+                    $form->addError(new FormError('postal_code.required'));
                 }
 
                 // phonenumber must start with a 0 (zero)
