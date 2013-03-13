@@ -4,11 +4,12 @@ namespace Hanzo\Bundle\AccountBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormError;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
-use Hanzo\Core\FormError;
+use Hanzo\Core\FormErrors;
 
 use Hanzo\Model\Customers;
 use Hanzo\Model\CustomersPeer;
@@ -98,7 +99,7 @@ class DefaultController extends CoreController
             if ('FI' == substr($domainKey, -2)) {
                 // zip codes are always 5 digits in finland.
                 if (!preg_match('/^[0-9]{5}$/', $customer->getAddresses()->toArray()[0]['PostalCode'])) {
-                    $form->addError(new FormError('postal_code.required'));
+                    //$form->addError(new FormError('postal_code.required'));
                 }
 
                 // phonenumber must start with a 0 (zero)
