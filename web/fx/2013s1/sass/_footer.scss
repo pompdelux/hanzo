@@ -12,7 +12,7 @@ footer{
 	font-weight:$footer-weight;
 	line-height:$footer-line-height;
 	h2{
-		font-size: 12px;
+		font-size: $footer-heading-size;
 		font-family: $font-serif;
 		letter-spacing: 0;
 	}
@@ -78,6 +78,6 @@ footer{
 		}
 	}
 	.menu {
-		font-size:10px;
+		font-size:$footer-size;
 	}
 }

@@ -83,7 +83,7 @@ class DefaultController extends CoreController
             // Else order by normal Sort in db
             if ($color_map) {
                 $result = $result->useProductsImagesQuery()
-                    ->addDescendingOrderByColumn(sprintf(
+                    ->addAscendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         ProductsImagesPeer::COLOR,
                         '\''.implode('\',\'', $color_map).'\''

@@ -233,7 +233,7 @@
                 <target><![CDATA[
                     <p> Alla varor skickas som paketpost med Post Danmark och <a href="http://www.posten.se" target="_blank">www.posten.se</a>. Du har d&auml;rf&ouml;r m&ouml;jlighet att f&ouml;lja ditt paket via ett kollinummer fr&aring;n det att det skickas fr&aring;n oss till att det blir levererat hos ditt postombud. Om du best&auml;ller dina varor via ett <a href="/sv_SE/forside/home-shopping">Home shopping</a> arrangemang kostar frakten SEK 49,00. Om du best&auml;ller varor i v&aring;r Webshop kostar frakten SEK 69,00. <br />
       <br />
-      N&auml;r du har mottagit ditt paket, b&ouml;r du kontrollera varorna. Om paketet och/eller inneh&aring;llet &auml;r skadat, ska du snarast kontakta v&aring;r <a href="/sv_SE/forside/kundservice">Kundservice</a> eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.</p>
+      N&auml;r du har mottagit ditt paket, b&ouml;r du kontrollera varorna. Om paketet och/eller inneh&aring;llet &auml;r skadat, ska du snarast kontakta v&aring;r Kundservice eller <a href="http://www.posten.se" target="_blank">www.posten.se</a>.</p>
                 ]]></target>
             </trans-unit>
             <trans-unit id="return.title" approved="no">
@@ -249,45 +249,49 @@
             <trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <br />
-                <!--<h2>KUNDESERVICE</h2>
+                <h2>Home shopping</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                </ul>-->
+                    <li><a href="/sv_SE/forside/home-shopping" target="_blank">Om Home Shopping</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare" target="_blank">Hitta säljare</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/hitta-saljare-via-kartan" target="_blank">Hitta säljare via kartan</a></li>
+                    <li><a href="/sv_SE/forside/home-shopping/appet-hus" target="_blank">Öppet hus</a></li>
+                </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_2" approved="no">
                 <source>footer.menu_2</source>
                 <target><![CDATA[
-                <br />
-                <!--<h2>HOME SHOPPING</h2>
+                <h2>Mer POMPdeLUX</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                </ul>-->
+                    <li><a href="/sv_SE/forside/katalog" target="_blank">Online katalog</a></li>
+                    <li><a href="/sv_SE/forside/katalog/image-video" target="_blank">Image Video</a></li>
+                    <li><a href="/sv_SE/forside/om-pompdelux" target="_blank">Om POMPdeLUX</a></li>
+                    <li><a href="/sv_SE/forside/nyheter" target="_blank">Nyheter</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/konceptet" target="_blank">Konceptet</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/socialt-ansvar" target="_blank">Socialt ansvar</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/jobb" target="_blank">Jobb</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/credits" target="_blank">Credits</a></li>
+					<li><a href="/sv_SE/forside/om-pompdelux/kontakt" target="_blank">Kontakt</a></li>
+                </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_3" approved="no">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
-                <br />
-                <!--<h2>MERE POMPdeLUX</h2>
+                <h2>Kundservice</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                </ul>-->
+                    <li><a href="/sv_SE/kundservice/telefontider" target="_blank">Telefontider</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/fragor-och-svar" target="_blank">Frågor och Svar</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/returnering" target="_blank">Returnering</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/byte" target="_blank">Byte</a></li>
+                    <li><a href="/sv_SE/forside/kundservice/retursedel" target="_blank">Retursedel</a></li>
+                    <li><a href="/sv_SE/forside/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
+					<li><a href="/sv_SE/forside/webshop/info/tvattrad" target="_blank">Tvättråd</a></li>
+					<li><a href="/sv_SE/forside/kundservice/villkor" target="_blank">Villkor</a></li>
+					<li><a href="/sv_SE/forside/kundservice/om-webshopen" target="_blank">Om webshopen</a></li>
+                </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="share.to.%method%" approved="no">
