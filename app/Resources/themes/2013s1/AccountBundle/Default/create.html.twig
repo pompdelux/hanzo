@@ -40,8 +40,6 @@
           {{ form_row(form.addresses.0.countries_id) }}
         {% endif %}
         {{ form_row(form.addresses.0.country) }}
-      </div>
-      <div class="grid_3 omega">
         {{ form_row(form.phone) }}
         {{ form_row(form.email) }}
         {{ form_row(form.password) }}
@@ -56,9 +54,9 @@
         {{ form_row(form.addresses.0.type) }}
         {{ form_row(form._token) }}
       </div>
+      <input class="button button-black button-right" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
+      {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
     </div>
-    <input class="button button-black button-right" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
-    {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
   </form>
 </div>
 
