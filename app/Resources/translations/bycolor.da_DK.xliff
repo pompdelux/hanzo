@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="rose">
+                <source>rose</source>
+                <target><![CDATA[
+                    {
+                        "category_ids" : "14,20,19,13,17,18,16,15,21,56,12",
+                        "colorsheme" : "",
+                        "colors" : "Rose,Black/Rose,Black,Off White,White,White/Off White,Khaki,Sand,Brown,Camel,Gold,Blue Denim",
+                        "ignore" : ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="khaki">
+                <source>khaki</source>
+                <target><![CDATA[
+                    {
+                        "category_ids" : "14,20,19,13,17,18,16,15,21,56,12",
+                        "colorsheme" : "",
+                        "colors" : "Khaki,Sand,Brown ,Camel,Gold",
+                        "ignore" : ""
+                    }
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="demo-farve-xxx-hvor-alle-tossetegn-er-erstattet-af-bindestreger">
+                <source>demo-farve-xxx-hvor-alle-tossetegn-er-erstattet-af-bindestreger</source>
+                <target><![CDATA[
+                    {
+                        "category_ids" : "14,20,19,13,17,18,16,15,21,56,12",
+                        "colorsheme" : "",
+                        "colors" : "Khaki,Sand,Brown,Camel,Gold",
+                        "ignore" : ""
+                    }
+                ]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
