@@ -51,6 +51,8 @@ class PensioApi implements PaymentMethodApiInterface
         'api_pass' => '',
     ];
 
+    protected $router;
+
     /**
      * __construct
      *
@@ -59,6 +61,8 @@ class PensioApi implements PaymentMethodApiInterface
      */
     public function __construct( $params, $settings )
     {
+        $this->router = $parameters[0];
+
         foreach ($settings as $key => $value) {
             $this->settings[$key] = $value;
         }
@@ -216,6 +220,12 @@ class PensioApi implements PaymentMethodApiInterface
             'amount' => number_format($order->getTotalPrice(), 2, '.', ''),
             'currency' => $order->getCurrencyCode(),
             'language' => $language,
+            'config' => [
+                'callback_form' => $this->router->generate('_pensio_form', [], true),
+                'callback_redirect' => $this->router->generate('_pensio_wait', [], true),
+                'callback_ok' => $this->router->generate('_pensio_callback', ['status' => 'ok'], true),
+                'callback_fail' => $this->router->generate('_pensio_callback', ['status' => 'failed'], true),
+            ],
             'transaction_info' => [
                 'Firstname' => $order->getBillingFirstName(),
                 'Lastname' => $order->getBillingLastName(),
@@ -232,14 +242,12 @@ class PensioApi implements PaymentMethodApiInterface
             ],
             'cookie' => $cookie,
         ];
-
+Tools::log($data);
         $headers = [
             'Authorization: Basic '.base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']),
             'Content-type: application/x-www-form-urlencoded; charset=utf-8',
         ];
 
-
-        $content = http_build_query($data);
         $request = array(
             'http' => array(
                 'header' => implode("\r\n", $headers),
@@ -247,7 +255,7 @@ class PensioApi implements PaymentMethodApiInterface
                 'max_redirects' => 0,
                 'timeout' => 5,
                 'ignore_errors' => false,
-                'content' => $content,
+                'content' => http_build_query($data),
             )
         );
         $context = stream_context_create($request);

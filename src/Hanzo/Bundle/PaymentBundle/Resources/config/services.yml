@@ -48,5 +48,5 @@ services:
         factory_method:  get
         arguments:
             service:     pensioapi
-            parameters:  ~
+            parameters:  [@router]
             class:       %payment.pensio.class%
