@@ -45,7 +45,7 @@ class PensioCallResponse
     public function debug()
     {
         return [
-            'status' => $this->is_error,
+            'status' => !$this->is_error,
             'reason' => $this->error_message,
             'status_is_error' => $this->is_error,
             'status_description' => $this->error_message,

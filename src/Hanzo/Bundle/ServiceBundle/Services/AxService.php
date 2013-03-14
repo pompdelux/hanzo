@@ -243,8 +243,10 @@ class AxService
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
-                    case 'ABN':
-                        $custPaymMode = 'ABN';
+                    case 'PENSIO':
+                        if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
+                            $custPaymMode = 'iDEAL';
+                        }
                         break;
                 }
                 break;

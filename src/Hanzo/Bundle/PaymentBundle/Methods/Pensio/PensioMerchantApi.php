@@ -9,6 +9,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\Customers;
 use Hanzo\Model\Orders;
 
+use Hanzo\Bundle\PaymentBundle\PaymentApiCallException;
 use Hanzo\Bundle\PaymentBundle\PaymentMethodApiCallInterface;
 
 class PensioMerchantApi implements PaymentMethodApiCallInterface
@@ -75,7 +76,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new DibsApiCallException('Pensio api capture action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api capture action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
         return $this->callAPIMethod(
@@ -101,7 +102,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new DibsApiCallException('Pensio api refund action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api refund action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
         return $this->callAPIMethod(
@@ -127,7 +128,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new DibsApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
         return $this->callAPIMethod(
@@ -151,7 +152,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         $attributes = $order->getAttributes();
 
         if (!isset($attributes->payment->transaction_id)) {
-            throw new DibsApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );
+            throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
         $body = $this->callAPIMethod(
