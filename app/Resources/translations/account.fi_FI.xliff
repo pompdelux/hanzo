@@ -180,7 +180,7 @@
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
-                <target>Welcome - Create your account</target>
+                <target>Luo tili</target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
@@ -312,7 +312,7 @@
             </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
-                <target>Postinumero on annettava</target>
+                <target>Postinumero on annettavamuista edessä olevat nollat</target>
             </trans-unit>
             <trans-unit id="address.city.required">
                 <source>address.city.required</source>
@@ -356,7 +356,7 @@
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Puhelinnumero on annettava</target>
+                <target>Puhelinnumero on annettava, muista nolla mukaan</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
