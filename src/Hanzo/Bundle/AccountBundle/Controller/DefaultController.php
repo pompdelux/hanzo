@@ -4,6 +4,7 @@ namespace Hanzo\Bundle\AccountBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormError;
 
 use Hanzo\Core\CoreController;
 use Hanzo\Core\Hanzo;
@@ -93,12 +94,11 @@ class DefaultController extends CoreController
         if ( 'POST' === $request->getMethod() ) {
             $form->bind($request);
             $data = $form->getData();
-
             // extra phone and zipcode constrints for .fi
             // TODO: figure out how to make this part of the validation process.
             if ('FI' == substr($domainKey, -2)) {
                 // zip codes are always 5 digits in finland.
-                if (!preg_match('/^[0-9]{5}$/', $address->getPostalCode())) {
+                if (!preg_match('/^[0-9]{5}$/', $customer->getAddresses()->toArray()[0]['PostalCode'])) {
                     $form->addError(new FormError('postal_code.required'));
                 }
 
