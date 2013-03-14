@@ -58,7 +58,7 @@ class PensioApi
      * @return void
      * @author Ulrik Nielsen <un@bellcom.dk>
      */
-    public function __construct( $params, $settings )
+    public function __construct($parameters, $settings)
     {
         $this->router = $parameters[0];
 
