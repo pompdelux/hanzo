@@ -104,7 +104,7 @@
             </trans-unit>
             <trans-unit id="consultant">
                 <source>consultant</source>
-                <target>Consulente</target>
+                <target>Consulent</target>
             </trans-unit>
             <trans-unit id="phone">
                 <source>phone</source>
