@@ -3059,7 +3059,7 @@ ol.list {
   margin-bottom: 6px;
 }
 
-form ul.form-errors li {
+ul.form-errors li {
   color: red;
   padding: 5px 0;
 }

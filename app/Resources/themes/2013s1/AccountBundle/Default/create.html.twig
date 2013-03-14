@@ -30,6 +30,7 @@
 
   <form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
     <div id="customers" class="">
+      {{ form_errors(form) }}
       <div class="grid_3 alpha">
         {{ form_row(form.first_name) }}
         {{ form_row(form.last_name) }}
