@@ -125,8 +125,9 @@ class PensioController extends CoreController
             }
 
             if ('ok' === $status) {
-Tools::log($this->generateUrl('_checkout_success', [], true));
-                return $this->redirect($this->generateUrl('_checkout_success', [], true));
+                // pensio fails when returning a body in the redirect, so we custom build the response header and exit
+                header('Location: '.$this->generateUrl('_checkout_success', [], true), 302);
+                exit;
             }
 
             $api->updateOrderStatus(Orders::STATE_ERROR_PAYMENT, $request, $order);

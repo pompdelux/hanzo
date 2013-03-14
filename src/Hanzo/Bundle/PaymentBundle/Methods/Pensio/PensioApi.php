@@ -27,12 +27,11 @@ use Hanzo\Model\Orders;
 use Hanzo\Model\LanguagesQuery;
 use Hanzo\Model\Customers;
 
-use Hanzo\Bundle\PaymentBundle\PaymentMethodApiInterface;
 use Hanzo\Bundle\PaymentBundle\Methods\Pensio\PensioCallResponse;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class PensioApi implements PaymentMethodApiInterface
+class PensioApi
 {
     /**
      * api settings
@@ -73,6 +72,7 @@ class PensioApi implements PaymentMethodApiInterface
         if ($this->settings['active'] && (!$this->settings['terminal'] || !$this->settings['gateway'])) {
             $this->settings['active'] = false;
         }
+
     }
 
     /**
@@ -81,17 +81,7 @@ class PensioApi implements PaymentMethodApiInterface
      */
     public function call()
     {
-        return $this;
-    }
-
-    /**
-     * cancel
-     *
-     * @return PensioCallResponse
-     */
-    public function cancel(Customers $customer, Orders $order)
-    {
-        return new PensioCallResponse();
+        return PensioMerchantApi::getInstance($this->settings);
     }
 
     /**
@@ -188,7 +178,6 @@ class PensioApi implements PaymentMethodApiInterface
             throw new PaymentFailedException('Payment failed: '.$request->get('error_message').' ('.$request->get('merchant_error_message').')');
         }
 
-
         if ($request->get('checksum') && $this->settings['secret']) {
             $md5 = md5($order->getTotalPrice().$order->getCurrencyCode().$order->getPaymentGatewayId().$this->settings['secret']);
             if (0 !== strcmp($md5, $request->get('checksum'))) {
@@ -242,24 +231,23 @@ class PensioApi implements PaymentMethodApiInterface
             ],
             'cookie' => $cookie,
         ];
-Tools::log($data);
+
         $headers = [
             'Authorization: Basic '.base64_encode($this->settings['api_user'].':'.$this->settings['api_pass']),
             'Content-type: application/x-www-form-urlencoded; charset=utf-8',
         ];
 
-        $request = array(
-            'http' => array(
-                'header' => implode("\r\n", $headers),
-                'method' => 'POST',
-                'max_redirects' => 0,
-                'timeout' => 5,
-                'ignore_errors' => false,
-                'content' => http_build_query($data),
-            )
-        );
+        $request = ['http' => [
+            'header' => implode("\r\n", $headers),
+            'method' => 'POST',
+            'max_redirects' => 0,
+            'timeout' => 5,
+            'ignore_errors' => false,
+            'content' => http_build_query($data),
+        ]];
+
         $context = stream_context_create($request);
-        $response = trim(file_get_contents('https://testgateway.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));
+        $response = trim(file_get_contents('https://'.$this->settings['gateway'].'.pensio.com/merchant/API/createPaymentRequest', FALSE, $context));
 
         $goto = 'payment/cancel';
         if ($response && ($xml = new SimpleXMLElement($response))) {
