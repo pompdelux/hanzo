@@ -496,7 +496,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[Ecotex gecertificeerd sweatjasje met een sportieve look. Leuk en cool bij bijna alles. NB: het ribboord in de kleur Wine (wijnrood) is effen Wine (wijnrood) en niet gestreept, zoals op de foto.	<br><br>	Verkrijgbaar in: Blue (blauw) en Wine (wijnrood).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
+          <![CDATA[Ecotex gecertificeerd sweatjasje met een sportieve look. Leuk en cool bij bijna alles. <br><b>NB:</b> het ribboord in de kleur Wine (wijnrood) is effen Wine (wijnrood) en niet gestreept, zoals op de foto.	<br><br>	Verkrijgbaar in: Blue (blauw) en Wine (wijnrood).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal: 100% katoen]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -1516,7 +1516,7 @@
         <source>description.Shelly_DRESS</source>
         <target>
           <![CDATA[Mooie Shelly! Deze jurk is gewoonweg een must have in elke prinsessengarderobe. 
-            Met 1000 laagjes tule - of in elk geval bijna 1000 - en een grote strik in het middel, word je in deze jurk bij toverslag meegevoerd naar je favoriete sprookje. <br><br>	Verkrijgbaar in: Off White, Green (groen) en Rose (roze).	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 50% katoen, 47% polyester, 3% elastaan             Materiaal 2: 100% polyester]]>
+            Met 1000 laagjes tule - of in elk geval bijna 1000 - en een grote strik in het middel, word je in deze jurk bij toverslag meegevoerd naar je favoriete sprookje. <br><br>	Verkrijgbaar in: Off White, Green (groen) en Rose (roze).<br><b>Riem apart wassen.</b>	<br><br>	De maat is de lengte van het kind in cm.	<br><br>	Materiaal 1: 50% katoen, 47% polyester, 3% elastaan             Materiaal 2: 100% polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little DRESS">

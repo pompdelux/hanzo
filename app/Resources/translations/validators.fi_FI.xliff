@@ -6,10 +6,6 @@
                 <source>email.exists</source>
                 <target>Sähköpostiosoite on jo olemassa!</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
-                <source>password.min.length</source>
-                <target>Salasanassa on oltava vähintään 5 merkkiä</target>
-            </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
                 <target>Puhelinnumero on annettava</target>
@@ -28,6 +24,10 @@
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
                 <source>email.invalid.match</source>
+                <target>Sähköpostiosoitteet eivät vastaa toisiaan</target>
+            </trans-unit>
+            <trans-unit id="email.not.valid" approved="no">
+                <source>email.not.valid</source>
                 <target>Sähköpostiosoitteet eivät vastaa toisiaan</target>
             </trans-unit>
             <trans-unit id="address.first_name.required" approved="no">
@@ -53,6 +53,26 @@
             <trans-unit id="city.required" approved="no">
                 <source>city.required</source>
                 <target>Du skal udfylde by</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Etunimessä on oltava vähintään {{ limit }} merkkiä|Etunimessä on oltava vähintään {{ limit }} merkkiä</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Sukunimessä on oltava vähintään {{ limit }} merkkiä|Sukunimessä on oltava vähintään {{ limit }} merkkiä</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Adgangskode skal være min 5 tegn</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Salasanassa on oltava vähintään {{ limit }} merkkiä|Salasanassa on oltava vähintään {{ limit }} merkkiä</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match">
+                <source>password.invalid.match</source>
+                <target>Vahvista salasana kirjoittamalla se uudelleen.</target>
             </trans-unit>
         </body>
     </file>

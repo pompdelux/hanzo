@@ -23,7 +23,7 @@
         <target><![CDATA[
           <h2>E-tilausnumero</h2> <p>E-tilausnumero: <b>%id%</b></p>
           <h2>Toimitusaika</h2> <p>Odotettu toimitusaika: %date%.</p>
-          <h2>Yhteystiedot</h2> <p>Tarvittaessa voit ottaa yhteyttä meihin.</p> <p>Puhelin +45-86-78 7871</p> <p>Sähköposti: <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+          <h2>Yhteystiedot</h2> <p>Tarvittaessa voit ottaa yhteyttä meihin.</p> <p>Puhelin 09 34870870</p> <p>Sähköposti: <a href="mailto:mailfi@pompdelux.com">mailfi@pompdelux.com</a></p>
           <h2>Oma sivu</h2> <p> Tilausten tarkastelu ja paljon muuta<br> <a href="%account%">» Omat Sivut</a> </p>
           <h2>FAQ</h2> <p> Tästä löydät yleisimmät kysymykset ja vastaukset POMPdeLUXista.<br> <a href="/fi_FI/koti/asiakaspalvelu/faq">» FAQ</a> </p>
           <h2>Uutiset</h2> <p> Uutiset-valikosta löydät uusimmat uutiset POMPdeLUXilta.<br> <a href="/fi_FI/koti/uutiset">» Uutiset</a> </p>
@@ -277,7 +277,7 @@
       </trans-unit>
       <trans-unit id="payment.gothia.desc">
         <source>payment.gothia.desc</source>
-        <target>Gothia-lasku (PayByBill-maksusta veloitetaan lisämaksu EUR 4,00). Samanaikaisesti tilauksesi postituksen yhteydessä lähetämme laskusi sähköpostitse. Lasku tulee olemaan myös omilla sivuilla 24 tunnin kuluessa.</target>
+        <target><![CDATA[Gothia-lasku (PayByBill-maksusta veloitetaan lisämaksu EUR 4,00). Samanaikaisesti tilauksesi postituksen yhteydessä lähetämme laskusi sähköpostitse. Lasku tulee olemaan myös omilla sivuilla 24 tunnin kuluessa.]]></target>
       </trans-unit>
       <trans-unit id="payment.fee.gothia.title">
         <source>payment.fee.gothia.title</source>
@@ -386,7 +386,7 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Ostoskori</h1><p>Tarvitsetko apua? <a href="/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Ostoskori</h1><p>Tarvitsetko apua? <a href="/fi_FI/koti/asiakaspalvelu/faq">FAQ</a></p>]]></target>
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>

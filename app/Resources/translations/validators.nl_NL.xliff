@@ -6,10 +6,6 @@
                 <source>email.exists</source>
                 <target>Dit e-mailadres bestaat al!</target>
             </trans-unit>
-            <trans-unit id="password.min.length" approved="no">
-                <source>password.min.length</source>
-                <target>Je wachtwoord moet minstens 5 tekens bevatten</target>
-            </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
                 <target>Je moet je telefoonnummer invullen</target>
@@ -24,6 +20,10 @@
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
+                <target>Je moet een e-mailadres vermelden</target>
+            </trans-unit>
+            <trans-unit id="email.not.valid" approved="no">
+                <source>email.not.valid</source>
                 <target>Je moet een e-mailadres vermelden</target>
             </trans-unit>
             <trans-unit id="email.invalid.match" approved="no">
@@ -53,6 +53,26 @@
             <trans-unit id="city.required" approved="no">
                 <source>city.required</source>
                 <target>Du skal udfylde by</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Je voornaam moet uit minstens {{ limit }} tekens bestaan|Je voornaam moet uit minstens {{ limit }} tekens bestaan</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Je achternaam moet uit minstens {{ limit }} tekens bestaan|Je achternaam moet uit minstens {{ limit }} tekens bestaan</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Je wachtwoord moet uit minimaal 5 tekens bestaan</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Je wachtwoord moet minstens {{ limit }} tekens bevatten|Je wachtwoord moet minstens {{ limit }} tekens bevatten</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match" approved="no">
+                <source>password.invalid.match</source>
+                <target>Je moet in beide velden hetzelfde wachtwoord invullen.</target>
             </trans-unit>
         </body>
     </file>

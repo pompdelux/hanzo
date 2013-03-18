@@ -69,7 +69,7 @@ class HistoryController extends CoreController
             ->findOneById($order_id)
         ;
 
-        if (!$order instanceof Orders) {
+        if (!$order instanceof Orders || $order->isNew()) {
             return $this->redirect($this->generateUrl('_account'));
         }
 

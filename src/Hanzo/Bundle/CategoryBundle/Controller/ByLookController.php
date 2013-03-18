@@ -55,11 +55,17 @@ class ByLookController extends CoreController
         if (!$html) {
 
             $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager);
-
             $cms_page = CmsQuery::create()->findOneById($cms_id);
 
+
+            $classes = 'bylook-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
+            if(preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())){
+                $classes .= ' category-girl';
+            }elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())){
+                $classes .= ' category-boy';
+            }
             $this->get('twig')->addGlobal('page_type', 'bylook-'.$category_id);
-            $this->get('twig')->addGlobal('body_classes', 'body-bylook bylook-'.$category_id);
+            $this->get('twig')->addGlobal('body_classes', 'body-bylook bylook-'.$category_id.' '.$classes);
             $this->get('twig')->addGlobal('cms_id', $cms_page->getParentId());
             $html = $this->renderView('CategoryBundle:ByLook:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);

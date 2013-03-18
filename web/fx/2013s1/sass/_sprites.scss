@@ -18,7 +18,6 @@
 @import "icons/en/*.png";
 //@include all-en-sprites; // Generates a sprite from all images inside the folder
 
-
 body.da{
     form.buy .submit-button{
         @include da-sprite(put-to-basket);

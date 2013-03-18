@@ -86,9 +86,10 @@ class Customers extends BaseCustomers implements UserInterface
             if (!$customer instanceof Customers) {
                 return true;
             }
+            return false;
         }
 
-        return false;
+        return true;
     }
 
 

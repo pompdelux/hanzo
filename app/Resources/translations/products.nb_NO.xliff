@@ -512,7 +512,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[Oeko-Tex-merket sweat-jakke i en sporty stil. Kjempelekker og kul til det meste.	Merk: Ribbekanten på fargen Wine (vinrød) er ensfarget Wine (vinrød) og ikke stripete som på bildet.<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
+          <![CDATA[Oeko-Tex-merket sweat-jakke i en sporty stil. Kjempelekker og kul til det meste.	<br><b>Merk:</b> Ribbekanten på fargen Wine (vinrød) er ensfarget Wine (vinrød) og ikke stripete som på bildet.<br><br>	Fås i: Blue (blå) og Wine (vinrød).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet: 100 % Bomull]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -1540,7 +1540,7 @@
       <trans-unit id="Shelly DRESS">
         <source>description.Shelly_DRESS</source>
         <target>
-          <![CDATA[Skjønne Shelly! Kjolen som rett og slett et must i en prinsessegarderobe. Med 1000 lag tyll - i hvert fall nesten - og en stor sløyfe i livet, blir du med et trylleslag dratt med inn i ditt favoritteventyr, når du har på deg denne kjolen. 	<br><br>	Fås i: Off White, Green (grønn) og Rose (rosa).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet 1: 50% Bomull, 47% Polyester, 3% Elastan             Kvalitet 2: 100% Polyester]]>
+          <![CDATA[Skjønne Shelly! Kjolen som rett og slett et must i en prinsessegarderobe. Med 1000 lag tyll - i hvert fall nesten - og en stor sløyfe i livet, blir du med et trylleslag dratt med inn i ditt favoritteventyr, når du har på deg denne kjolen.<br><b>Beltet må vaskes for seg.</b> 	<br><br>	Fås i: Off White, Green (grønn) og Rose (rosa).	<br><br>	Størrelsen er barnets høyde angitt i cm.	<br><br>	Kvalitet 1: 50% Bomull, 47% Polyester, 3% Elastan             Kvalitet 2: 100% Polyester]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little DRESS">

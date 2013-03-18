@@ -1,7 +1,11 @@
 {% extends layout %}
 
 {% block content %}
-<h1>{{ 'page.heading'|trans({},'gothia') }}</h1>
+<header class="grid_8 alpha omega">
+    <hgroup>
+        <h1>{{ 'page.heading'|trans({},'gothia') }}</h1>
+    </hgroup>
+</header>
 
 <div id="gothia-payment-step-1" style="display: none">
   <h2>{{ 'page.heading_step1'|trans({},'gothia') }}</h2>

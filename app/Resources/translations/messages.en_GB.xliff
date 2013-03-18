@@ -137,7 +137,7 @@
                     <strong>Customer service</strong><br>
                     Phone.: +45 8736 1000<br>
                     E-mail: <a href="mailto:mail@pompdelux.com">mail@pompdelux.com</a><br>
-                    Monday - Thursday: 9 am - 4 pm<br>
+                    Monday - Thursday: 9 am - 6 pm<br>
                     Friday: 9 am - 2 pm<br>
                     <!--Lunch break 12 pm - 12.45 pm<br>-->
                     Saturday, Sunday and holidays closed.
@@ -249,40 +249,43 @@
             <trans-unit id="footer.menu_1" approved="no">
                 <source>footer.menu_1</source>
                 <target><![CDATA[
-                <br />
-                <!--<h2>KUNDESERVICE</h2>
+                <h2>More POMPdeLUX</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                </ul>-->
-                ]]></target>
-            </trans-unit>
-            <trans-unit id="footer.menu_2" approved="no">
-                <source>footer.menu_2</source>
-                <target><![CDATA[
-                <br />
-                <!--<h2>HOME SHOPPING</h2>
-                <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                </ul>-->
+				    <li><a href="/en_GB/home/catalogue" target="_blank">Online catalogue</a></li>
+					<li><a href="/en_GB/home/catalogue/image-video" target="_blank">Image Video</a></li>
+                    <li><a href="/en_GB/home/about-pompdelux/about-pompdelux" target="_blank">About POMPdeLUX</a></li>
+                    <li><a href="/en_GB/home/news" target="_blank">News</a></li>
+                    <li><a href="/en_GB/home/about-pompdelux/the-concept" target="_blank">The concept</a></li>
+                    <li><a href="/en_GB/home/about-pompdelux/social-responsibility" target="_blank">Social responsibility</a></li>
+                    <li><a href="/en_GB/home/webshop/info/gots-organic" target="_blank">GOTS (Organic)</a></li>
+                    <li><a href="/en_GB/home/webshop/info/oeko-tex" target="_blank">Oeko-Tex</a></li>
+					<li><a href="/en_GB/home/webshop/info/credits" target="_blank">Credits</a></li>
+					<li><a href="/en_GB/home/about-pompdelux/contact" target="_blank">Contact</a></li>
+                </ul>
                 ]]></target>
             </trans-unit>
             <trans-unit id="footer.menu_3" approved="no">
                 <source>footer.menu_3</source>
                 <target><![CDATA[
-                <br />
-                <!--<h2>MERE POMPdeLUX</h2>
+                <h2>Customer service</h2>
                 <ul class="menu">
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
-                    <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
+    			    <li><a href="/en_GB/customer-service/telephone-times" target="_blank">Telephone times</a></li>
+                    <li><a href="/en_GB/home/customer-service/faq" target="_blank">FAQ</a></li>
+                    <li><a href="/en_GB/home/customer-service/returns" target="_blank">Returns</a></li>
+                    <li><a href="/en_GB/home/customer-service/exchange" target="_blank">Exchange</a></li>
+                    <li><a href="/en_GB/home/customer-service/returns-form" target="_blank">Returns form</a></li>
+                    <li><a href="/en_GB/home/webshop/info/care-instructions" target="_blank">Care instructions</a></li>
+                    <li><a href="/en_GB/home/webshop/info/sizeguide" target="_blank">Sizeguide</a></li>
+					<li><a href="/en_GB/home/customer-service/terms-and-conditions" target="_blank">Terms and conditions</a></li>
+					<li><a href="/en_GB/home/customer-service/about-the-webshop" target="_blank">About the online shop</a></li>
+                </ul>
+                ]]></target>
+            </trans-unit>
+			<trans-unit id="footer.menu_2" approved="no">
+                <source>footer.menu_2</source>
+                <target><![CDATA[
+                <!--<h2>HOME SHOPPING</h2>
+                <ul class="menu">
                     <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
                     <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>
                     <li><a href="/da_DK/forside/kundeservice/vilkaar" target="_blank">POMPdeLUX vilkår.</a></li>

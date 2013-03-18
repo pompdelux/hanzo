@@ -169,10 +169,23 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
             throw new GothiaApiCallException( 'Missing customer id' );
         }
 
+        $street = trim($address->getAddressLine1().' '.$address->getAddressLine2());
+
+        // nl hacks
+        if ('NL' == substr($domain_key, -2)) {
+            $pcs = preg_split('/ ([0-9]+)/', $text, 2, PREG_SPLIT_DELIM_CAPTURE);
+
+            if (count($pcs) == 3) {
+                $street = $pcs[0].' '.$pcs[1].str_replace(' ', '', $pcs[2]);
+            } else {
+                $street = implode('', $pcs);
+            }
+        }
+
         $callString = AFSWS_CheckCustomer(
 	        $this->userString(),
             AFSWS_Customer(
-                trim($address->getAddressLine1().' '.$address->getAddressLine2()),
+                $street,
                 $domain_key,
                 $hanzo->get('core.currency'), // $currency_map[$domain_key], ab@bellcom.dk 070213
                 $customerId,
@@ -364,12 +377,6 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $response = $this->call('CancelReservation', $callString);
 
         $timer->logOne('cancelReservation, orderId #'.$order->getId());
-
-        if ( !$response->isError() )
-        {
-          // not used. Didnt work to set attribute?
-          $order->setAttribute('is_canceled', 'payment', 'yes')->save();
-        }
 
         return $response;
     }

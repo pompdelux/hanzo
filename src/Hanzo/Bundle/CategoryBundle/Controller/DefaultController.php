@@ -50,7 +50,7 @@ class DefaultController extends CoreController
          */
         if(!$html){
             $cms_page = CmsPeer::getByPK($cms_id, $locale);
-            $settings = json_decode($cms_page->getSettings());
+            $settings = $cms_page->getSettings(null, false);
 
             $color_map = null;
             if(!empty($settings->colors)){
@@ -83,7 +83,7 @@ class DefaultController extends CoreController
             // Else order by normal Sort in db
             if ($color_map) {
                 $result = $result->useProductsImagesQuery()
-                    ->addDescendingOrderByColumn(sprintf(
+                    ->addAscendingOrderByColumn(sprintf(
                         "FIELD(%s, %s)",
                         ProductsImagesPeer::COLOR,
                         '\''.implode('\',\'', $color_map).'\''
@@ -176,8 +176,15 @@ class DefaultController extends CoreController
                 $this->setCache($cache_id, $data, 5);
                 $html = $data; // Use the json data as the html returned to call
             }else{
+
+                $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
+                if(preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())){
+                    $classes .= ' category-girl';
+                }elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())){
+                    $classes .= ' category-boy';
+                }
                 $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
-                $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show);
+                $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show.' '.$classes);
                 $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
                 $this->get('twig')->addGlobal('cms_id', $cms_page->getParentId());
                 $this->get('twig')->addGlobal('show_by_look', ($show === 'look'));

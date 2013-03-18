@@ -212,7 +212,7 @@
             </trans-unit>
             <trans-unit id="checkout.choose.shipping.method" approved="no">
                 <source>checkout.choose.shipping.method</source>
-                <target>Du skal vælge en leveringsmetode.</target>
+                <target></target>
             </trans-unit>
             <trans-unit id="checkout.choose.payment.method" approved="no">
                 <source>checkout.choose.payment.method</source>
@@ -265,6 +265,10 @@
             <trans-unit id="events.error.email.or.phone" approved="no">
                 <source>events.error.email.or.phone</source>
                 <target>Email or phone is required.</target>
+            </trans-unit>
+			<trans-unit id="form.buy.choose.first" approved="no">
+                <source>form.buy.choose.first</source>
+                <target>Please choose both size and colour.</target>
             </trans-unit>
         </body>
     </file>

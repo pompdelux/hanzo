@@ -215,13 +215,14 @@ class ProductsController extends CoreController
                 }
             }
 
-            $product_images_list[] = array(
+            $product_images_list[$record->getId()] = array(
                 'id' => $record->getProductsId(),
                 'image' => $record->getImage(),
                 'image_id' => $record->getId(),
                 'product_ref_ids' => $products_refs_list,
                 'image_categories' => $image_categories_list
-            );        }
+            );
+        }
 
 
         $form_hasVideo = $this->createFormBuilder($current_product)

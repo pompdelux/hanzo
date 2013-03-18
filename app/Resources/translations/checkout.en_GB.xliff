@@ -388,7 +388,7 @@
       </trans-unit>
       <trans-unit id="basket.header" approved="no">
         <source>basket.header</source>
-        <target><![CDATA[<h1>Basket</h1><p>Need help? <a href="/faq">FAQ</a></p>]]></target>
+        <target><![CDATA[<h1>Basket</h1><p>Need help? <a href="/en_GB/home/customer-service/faq">FAQ</a></p>]]></target>
       </trans-unit>
       <trans-unit id="order.amount.to.low" approved="no">
         <source>order.amount.to.low</source>

@@ -289,7 +289,7 @@
         }
 
         $.each(data.images, function(index, data) {
-          $('.latest-seen-poducts').append('<a href="'+data.url+'"><img src="'+data.image+'" alt="'+data.title+'"></a> ');
+          $('.latest-seen-poducts').append('<a href="'+data.url+'"><img src="'+data.image+'" alt="'+data.title+'"></a>');
         });
 
         // fallback option, hide container if empty

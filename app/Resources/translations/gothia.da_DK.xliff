@@ -20,7 +20,8 @@
       </trans-unit>
       <trans-unit id="json_err35">
         <source>json.checkcustomer.error</source>
-        <target>Kunne ikke oprette din bruger ved Gothia</target>
+        <target><![CDATA[<b>Reservationen kunne ikke oprettes</b><br>Dette kan skyldes at dit kreditmaksimum på DKK 3.000,- er nået.
+Kontakt venligst Gothia Kundeservice: 7027 2795<br>Ved andre godkendelsesfejl – kontakt POMPdeLUX Kundeservice: 8678 7871]]></target>
       </trans-unit>
       <trans-unit id="json_err40">
         <source>json.checkcustomer.purchasestop</source>

@@ -180,7 +180,7 @@
             </trans-unit>
             <trans-unit id="create.account.header" approved="no">
                 <source>create.account.header</source>
-                <target>Welcome - Create your account</target>
+                <target>Luo tili</target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>
@@ -312,7 +312,7 @@
             </trans-unit>
             <trans-unit id="address.postal_code.required">
                 <source>address.postal_code.required</source>
-                <target>Postinumero on annettava</target>
+                <target>Postinumero on annettavamuista edessä olevat nollat</target>
             </trans-unit>
             <trans-unit id="address.city.required">
                 <source>address.city.required</source>
@@ -356,7 +356,7 @@
             </trans-unit>
             <trans-unit id="phone.required" approved="no">
                 <source>phone.required</source>
-                <target>Puhelinnumero on annettava</target>
+                <target>Puhelinnumero on annettava, muista nolla mukaan</target>
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
@@ -400,25 +400,12 @@
             </trans-unit>
             <trans-unit id="my.account.%name%" approved="no">
                 <source>my.account.%name%</source>
-                <target>Tervetuloa, %name%!</target>
+                <target>Tervetuloa %name%!</target>
             </trans-unit>
             <trans-unit id="my.account.description" approved="no">
                 <source>my.account.description</source>
-                <target><![CDATA[<p>Voit muuttaa tilausta, kun sen tilana on ”Odottaa”.<br>Voit tehdä tilaukseesi seuraavia muutoksia:
-                <ul class="list">
-                  <li>Voit lisätä tuotteita</li>
-                  <li>Voit muuttaa tuotteen kokoa ja/tai väriä</li>
-                  <li>Voit poistaa ostamasi tuotteen, jota et sittenkään halua</li>
-                </ul>
-                </p>
-                <p>Jos haluat lisätä, vaihtaa tai poistaa tuotteen, toimi seuraavasti:
-                <ol class="list">
-                  <li>Lisää tuotteita</li>
-                  <li>Muuta tuotteen kokoa ja/tai väriä</li>
-                  <li>Poista ostamasi tuote, jota et sittenkään halua</li>
-                </ol>
-                </p>
-                ]]></target>
+                 <target><![CDATA[<p>Omilla sivuilla voit muuttaa tietojasi sekä tilata uutiskirjeen tai perua sen tilauksen. Voit myös muokata tilaustasi.<br><br>Tilauksellasi voi olla seuraavat tilat:<br><br><b>Odottaa</b><br>Tilaustasi ei ole vielä toimitettu, ja sinulla on vähintään 24 tuntia aikaa muokata tilaustasi.
+Voit muuttaa tilaustasi, lisätä siihen tuotteita tai poistaa tuotteita. Napsauta kynän kuvaa, jos haluat muokata tilausta. Huomaa: Sinun tulee suorittaa maksu – aiempi maksuvaraus poistuu automaattisesti. Jos haluat poistaa koko tilauksen, napsauta X-kohtaa.<br><br><b>Keskeytä muokkaus</b><br>Voit halutessasi keskeyttää muokkauksen. Napsauta ”Keskeytä muokkaus” -painiketta ja voit aloittaa tilauksen muokkaamisen alusta.<br><br><b>Käsittelyssä</b><br>Tilaus on nyt käsittelyssä ja lähetetään sinulle 1–2 päivän kuluessa. Tilausta ei voi enää muokata/viivästyttää.<br><br><b>Laskutettu</b><br>Tilauksesi on lähetetty varastostamme. Lasku näkyy PDF-tiedostona Lasku-sarakkeessa 24 tunnin kuluessa tilauksen lähettämisestä.<br><br>Jos haluat palauttaa tuotteen, löydät<a href="http://static.pompdelux.com/images/pdf/POMPdeLUX_Returseddel_FI.pdf" target="_blank">palautuslomakkeemme täältä</a>.<br><br></p>]]></target>
             </trans-unit>
             <trans-unit id="newsletter" approved="no">
                 <source>newsletter</source>

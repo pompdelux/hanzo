@@ -30,6 +30,7 @@
 
   <form action="{{ path('_account_create') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
     <div id="customers" class="">
+      {{ form_errors(form) }}
       <div class="grid_3 alpha">
         {{ form_row(form.first_name) }}
         {{ form_row(form.last_name) }}
@@ -40,8 +41,6 @@
           {{ form_row(form.addresses.0.countries_id) }}
         {% endif %}
         {{ form_row(form.addresses.0.country) }}
-      </div>
-      <div class="grid_3 omega">
         {{ form_row(form.phone) }}
         {{ form_row(form.email) }}
         {{ form_row(form.password) }}
@@ -55,14 +54,11 @@
         </div>
         {{ form_row(form.addresses.0.type) }}
         {{ form_row(form._token) }}
+        <input class="button button-black button-right" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
+        {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
       </div>
     </div>
-    <input class="button button-black button-right" type="submit" value="{{ 'create.account'|trans({}, 'account') }}">
-    {{ 'create.account.vilkaar.link'|trans({}, 'messages')|raw }}
   </form>
-</div>
-<div class="grid_2 omega">
-  {{ fx_image_tag('images/splash_bg.jpg','354x450') }}
 </div>
 
 {% endblock %}

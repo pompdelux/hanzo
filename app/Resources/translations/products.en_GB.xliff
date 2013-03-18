@@ -389,7 +389,7 @@
       <trans-unit id="Connor JACKET">
         <source>description.Connor_JACKET</source>
         <target>
-          <![CDATA[An Oeko Tex certified sporty sweat jacket. Super soft and looks cool with almost everything. Please note: The rib trim on the Wine coloured jacket is solid coloured Wine and not striped as shown on the photo.	<br><br>	Available in Blue and Wine.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
+          <![CDATA[An Oeko Tex certified sporty sweat jacket. Super soft and looks cool with almost everything. <br><b>Please note:</b> The rib trim on the Wine coloured jacket is solid coloured Wine and not striped as shown on the photo.	<br><br>	Available in Blue and Wine.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality: 100% Cotton.]]>
         </target>
       </trans-unit>
       <trans-unit id="Cooper Little LS GRANDDAD">
@@ -1253,7 +1253,7 @@
       <trans-unit id="Shelly DRESS">
         <source>description.Shelly_DRESS</source>
         <target>
-          <![CDATA[Gorgeous Shelly! The must-have dress in any princess wardrobe. With 1,000 layers of tulle - almost - and a pretty ribbon around the waist, with this dress on you will, as if by magic, be drawn into your favourite fairytale.	<br><br>	Available in Off White, Green and Rose.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality 1: 50% Cotton, 47% Polyester, 3% Elasthane. Quality 2: 100% Polyester.]]>
+          <![CDATA[Gorgeous Shelly! The must-have dress in any princess wardrobe. With 1,000 layers of tulle - almost - and a pretty ribbon around the waist, with this dress on you will, as if by magic, be drawn into your favourite fairytale.<br><b>The belt should be washed separately.</b>	<br><br>	Available in Off White, Green and Rose.	<br><br>	Size labeling is based on height measurement of the child in cm.	<br><br>	Quality 1: 50% Cotton, 47% Polyester, 3% Elasthane. Quality 2: 100% Polyester.]]>
         </target>
       </trans-unit>
       <trans-unit id="Shelly Little DRESS">

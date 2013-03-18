@@ -9,6 +9,7 @@ use Hanzo\Core\Hanzo;
 use Hanzo\Core\Timer;
 
 use Hanzo\Model\ProductsDomainsPrices;
+use Hanzo\Model\ProductsDomainsPricesQuery;
 use Hanzo\Model\ProductsI18n;
 use Hanzo\Model\Products;
 use Hanzo\Model\ProductsQuery;
@@ -398,6 +399,12 @@ class ECommerceServices extends SoapService
             if (!$product instanceof Products) {
                 continue;
             }
+
+            ProductsDomainsPricesQuery::create()
+                ->findByProductsId($product->getId(), Propel::getConnection(null, Propel::CONNECTION_WRITE))
+                ->delete()
+            ;
+            $product->clearProductsDomainsPricess();
 
             // products 2 domain
             $collection = new PropelCollection();
@@ -1062,6 +1069,10 @@ class ECommerceServices extends SoapService
     protected function SalesOrderCapture($data, Orders $order)
     {
         $error = array();
+
+        if ('paybybill' == $order->getBillingMethod()) {
+            return true;
+        }
 
         try {
             $tmpAmount = str_replace(',', '.', $data->amount);

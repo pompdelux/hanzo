@@ -37,9 +37,13 @@ div.panes > div {
 	margin-bottom: 18px;
 }
 
+.history-link {
+	margin-bottom:5px;
+}
 .zoom{
 	display: inline-block;
 	text-align: center;
+	margin-right: 5px;
 
 	.sprite{
 		@include icons-sprite(zoom);
@@ -160,6 +164,7 @@ a.product-color{
 	width: 65px;
 	font-size: $product-size;
 	vertical-align: top;
+	white-space: nowrap;
 	.colorbuttons {
 		display: block;
 		margin: 0 auto;

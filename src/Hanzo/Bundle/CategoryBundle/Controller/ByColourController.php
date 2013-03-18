@@ -41,7 +41,7 @@ class ByColourController extends CoreController
 
         if (!$html) {
             $page = CmsPeer::getByPK($id, $locale);
-            $settings = json_decode($page->getSettings());
+            $settings = $page->getSettings(null, false);
 
             $includes = explode(',', $settings->category_ids);
             $ignores = explode(',', $settings->ignore);
@@ -115,6 +115,10 @@ class ByColourController extends CoreController
             $product_route = str_replace('bycolour_', 'product_', $route);
 
             foreach ($variants as $variant) {
+                if (!preg_match("/_01/", $variant->getImage())) {
+                    continue;
+                }
+
                 $product = $variant->getProducts();
 
                 // Always use 01.
@@ -154,8 +158,14 @@ class ByColourController extends CoreController
                 }
             }
 
+            $classes = 'bycolour-'.preg_replace('/[^a-z]/', '-', strtolower($page->getTitle()));
+            if(preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())){
+                $classes .= ' category-girl';
+            }elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())){
+                $classes .= ' category-boy';
+            }
             $this->get('twig')->addGlobal('page_type', 'bycolour-'.$id);
-            $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$id.' body-'.$show);
+            $this->get('twig')->addGlobal('body_classes', 'body-bycolour bycolour-'.$id.' body-'.$show.' '.$classes);
             $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));
             $this->get('twig')->addGlobal('cms_id', $page->getParentId());
             $this->get('twig')->addGlobal('show_by_look', ($show === 'look'));
