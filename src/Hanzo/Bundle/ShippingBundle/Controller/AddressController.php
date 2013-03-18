@@ -106,7 +106,7 @@ class AddressController extends CoreController
                 $address = new Addresses();
                 $address->setType($type);
                 $address->setCustomersId($customer_id);
-                $address->setAddressLine1(trim($order->getFirstName().' '.$order->getLastName()));
+                $address->setAddressLine2(trim($order->getFirstName().' '.$order->getLastName()));
             }
         }
 
