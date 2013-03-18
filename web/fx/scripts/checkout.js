@@ -90,7 +90,6 @@
         jaiks.exec();
       });
 
-
       $(document).on('payment.method.changed', function(event, element) {
         /**
          * 1: opdater ordre med betalingsmetode
@@ -237,6 +236,7 @@
           });
         }
       });
+
     };
 
     pub.setStepStatus = function(step, status) {
@@ -251,7 +251,7 @@
       if (stop) { return; }
 
       if (response.response.status) {
-        $('#address-block form:nth-child(2)').replaceWith(response.response.data.html);
+        $('#address-block > div:nth-child(2)').replaceWith(response.response.data.html);
         $(document).trigger('shipping.address.changed');
 
         var m = $('input[name=method]:checked').val();
@@ -261,11 +261,47 @@
           $('#address-copy').parent().addClass('off');
         }
 
+        var $form = $('#address-block form.location-locator');
+        $form.on('submit', function(event) {
+
+          if ($('.locator-result', $form).length) {
+            $('.locator-result', $form).remove();
+          }
+
+          event.preventDefault();
+          dialoug.loading($('.button', $(this)));
+          jaiks.add('/location/locator', checkout.handleLocationLocatorUpdates, $form.formParams());
+          jaiks.exec();
+        });
+
         $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
         pub.setStepStatus('shipping', true);
       } else {
         pub.handleCallbackErrors(response);
       }
+    };
+
+    pub.handleLocationLocatorUpdates = function(response) {
+      var $form = $('#address-block form.location-locator');
+      if (response.response.status) {
+        if ($('.locator-result', $form).length) {
+          $('.locator-result', $form).remove();
+        }
+        $form.append(response.response.data.html);
+
+        $('input.droppoint-locator', $form).on('change', function(event) {
+          var $this = $(this);
+          var data = $this.data('entry');
+
+          var $address = $form.next('form');
+
+          $('input#form_first_name', $address).val(data.name);
+          $('input#form_address_line_2', $address).val(data.address);
+          $('input#form_postal_code', $address).val(data.postal_code);
+          $('input#form_city', $address).val(data.city);
+        });
+      }
+      dialoug.stopLoading();
     };
 
     pub.handleSummeryUpdates = function(response) {

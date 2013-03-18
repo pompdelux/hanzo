@@ -1600,6 +1600,10 @@ form.address label {
   border: 2px solid #f00;
   clear: both;
 }
+#address-block .block {
+  overflow: hidden;
+  float: left;
+}
 
 .shipping-method,
 .payment-module {
@@ -1640,6 +1644,20 @@ form.address label {
 }
 #coupon-block #form_code {
   margin: 0 10px;
+}
+
+form.location-locator input.button.button-right {
+  float: none;
+}
+form.location-locator table.locator-result {
+  margin-top: 20px;
+  width: auto;
+}
+form.location-locator table.locator-result tbody td {
+  padding: 4px 6px;
+}
+form.location-locator table.locator-result .opening-hours {
+  width: auto;
 }
 
 /**

@@ -61,6 +61,10 @@ form.address {
 		border: 2px solid #f00;
 		clear: both;
 	}
+	.block{
+		overflow: hidden;
+		float: left;
+	}
 }
 .shipping-method,
 .payment-module {
@@ -101,5 +105,20 @@ form.address {
 	}
 	#form_code {
 		margin: 0 10px;
+	}
+}
+form.location-locator {
+	input.button.button-right{
+		float: none;
+	}
+	table.locator-result{
+		margin-top: 20px;
+		width: auto;
+		tbody td{
+			padding: 4px 6px;
+		}
+		.opening-hours{
+			width: auto;
+		}
 	}
 }

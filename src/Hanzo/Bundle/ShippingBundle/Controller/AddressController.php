@@ -68,7 +68,7 @@ class AddressController extends CoreController
                 }
             } else {
                 $type = 'shipping';
-                $form = '<form action="" method="post" class="address"></form>';
+                $form = '<div class="block"><form action="" method="post" class="address"></form></div>';
 
                 if ('json' === $this->getFormat()) {
                     return $this->json_response(array(
@@ -94,8 +94,19 @@ class AddressController extends CoreController
             $address->setCustomersId($customer_id);
 
             if ($order->getFirstName()) {
-                $address->setFirstName($order->getFirstName());
-                $address->setLastName($order->getLastName());
+                if ('overnightbox' === $type) {
+                    $address->setAddressLine2(trim($order->getFirstName().' '.$order->getLastName()));
+                } else {
+                    $address->setFirstName($order->getFirstName());
+                    $address->setLastName($order->getLastName());
+                }
+            }
+        } else {
+            if ('overnightbox' === $type) {
+                $address = new Addresses();
+                $address->setType($type);
+                $address->setCustomersId($customer_id);
+                $address->setAddressLine1(trim($order->getFirstName().' '.$order->getLastName()));
             }
         }
 
@@ -111,11 +122,25 @@ class AddressController extends CoreController
             ));
         }
 
-        $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
-        $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
+        if ('overnightbox' === $type) {
+            $builder->add('first_name', null, array(
+                'label' => 'overnightbox.name',
+                'required' => true,
+                'translation_domain' => 'account'
+            ));
+        } else {
+            $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
+            $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
+        }
 
         if ('overnightbox' === $type) {
             $builder->add('address_line_1', null, array(
+                'label' => 'att.label',
+                'required' => true,
+                'translation_domain' => 'account',
+                'max_length' => 150
+            ));
+            $builder->add('address_line_2', null, array(
                 'label' => 'overnightbox.label',
                 'required' => true,
                 'translation_domain' => 'account',
@@ -177,11 +202,14 @@ class AddressController extends CoreController
             'form' => $form->createView(),
         ));
 
+
         if ('json' === $this->getFormat()) {
+            $html = $response->getContent();
+
             return $this->json_response(array(
                 'status' => true,
                 'message' => '',
-                'data' => array('html' => $response->getContent()),
+                'data' => array('html' => $html),
             ));
         }
 
@@ -207,6 +235,7 @@ class AddressController extends CoreController
             $order = OrdersPeer::getCurrent();
             $data  = $request->get('form');
 
+            $validation_fields = ['first_name', 'last_name', 'address_line_1', 'postal_code', 'city'];
             if ($type == 'shipping') {
                 switch ($order->getDeliveryMethod()) {
                     case 11:
@@ -214,6 +243,7 @@ class AddressController extends CoreController
                         break;
                     case 12:
                         $method = 'overnightbox';
+                        $validation_fields = ['first_name', 'address_line_1', 'address_line_2', 'postal_code', 'city'];
                         break;
                     default:
                         $method = 'shipping';
@@ -224,7 +254,7 @@ class AddressController extends CoreController
             }
 
             $missing = array();
-            foreach (['first_name', 'last_name', 'address_line_1', 'postal_code', 'city'] as $field) {
+            foreach ($validation_fields as $field) {
                 if (!isset($data[$field])) {
                     $missing[] = $field;
                 }
@@ -250,8 +280,13 @@ class AddressController extends CoreController
             }
 
             $address->setFirstName($data['first_name']);
-            $address->setLastName($data['last_name']);
+            if (!empty($data['last_name'])) {
+                $address->setLastName($data['last_name']);
+            }
             $address->setAddressLine1($data['address_line_1']);
+            if (!empty($data['address_line_2'])) {
+                $address->setAddressLine2($data['address_line_2']);
+            }
             $address->setPostalCode($data['postal_code']);
             $address->setCity($data['city']);
             $address->setStateProvince(null);
