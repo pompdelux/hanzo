@@ -2,6 +2,8 @@
 
 namespace Hanzo\Model;
 
+use BasePeer;
+use Hanzo\Model\CmsPeer;
 use Hanzo\Model\om\BaseCms;
 
 
@@ -35,5 +37,26 @@ class Cms extends BaseCms
         }
 
         return $settings;
+    }
+
+
+    /**
+     * allow us to override all fields on a cms_i18n object with data in a translation file
+     *
+     * @param  Translator $translator
+     * @return Cms
+     */
+    public function sourceObject($translator)
+    {
+        $id = $this->getId();
+        foreach (CmsPeer::getFieldNames(BasePeer::TYPE_FIELDNAME) as $key) {
+            $k = $id.'.'.$key;
+            $trans = $translator->trans($k, [], 'cms');
+            if ($trans !== $k) {
+                $this->setByName($key, $trans, BasePeer::TYPE_FIELDNAME);
+            }
+        }
+
+        return $this;
     }
 } // Cms
