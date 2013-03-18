@@ -41,7 +41,6 @@ class ByColourController extends CoreController
 
         if (!$html) {
             $page = CmsPeer::getByPK($id, $locale);
-            $page->sourceObject($this->get('translator'));
             $settings = $page->getSettings(null, false);
 
             $includes = explode(',', $settings->category_ids);

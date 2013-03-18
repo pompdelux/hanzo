@@ -50,7 +50,6 @@ class DefaultController extends CoreController
          */
         if(!$html){
             $cms_page = CmsPeer::getByPK($cms_id, $locale);
-            $cms_page->sourceObject($this->get('translator'));
             $settings = $cms_page->getSettings(null, false);
 
             $color_map = null;

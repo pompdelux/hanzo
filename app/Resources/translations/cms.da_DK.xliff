@@ -2,8 +2,8 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="id.611">
-                <source>id.611</source>
+            <trans-unit id="611.settings">
+                <source>611.settings</source>
                 <target><![CDATA[
                     {
                         "category_id" : "14",
@@ -11,8 +11,8 @@
                     }
                 ]]></target>
             </trans-unit>
-            <trans-unit id="id.xxx">
-                <source>id.xxx</source>
+            <trans-unit id="xxx.settings">
+                <source>xxx.settings</source>
                 <target><![CDATA[
                     {
                         "category_ids" : "14,20,19,13,17,18,16,15,21,56,12",
