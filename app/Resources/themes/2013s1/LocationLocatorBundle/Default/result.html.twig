@@ -3,16 +3,16 @@
 <table class="locator-result">
     <thead>
         <tr>
-            <th colspan="2">{{ 'point.header'|trans({}, 'locator') }}</th>
+            <th colspan="2">{{ 'point.header'|trans({}, 'locator') }}:</th>
             <th>{{ 'distance.header'|trans({}, 'locator') }}</th>
         </tr>
     </thead>
     <tbody>
     {% endif %}
         <tr>
-            <td valign="top"><input type="radio" name="{{ service }}_locator" value="{{ entry.id }}" data-entry="{{ entry|json_encode()|raw }}"></td>
+            <td valign="top"><input type="radio" class="droppoint-locator" name="{{ service }}_locator" value="{{ entry.id }}" data-entry='{{ entry|json_encode()|raw }}'></td>
             <td>
-                {{ loop.index }}. {{ entry.name }}, {{ entry.address }}
+                {{ loop.index }}. {{ entry.name }}, {{ entry.address }}, {{ entry.postal_code }} {{ entry.city }}
     {% if entry.opening_hours is defined %}
         {% for hour, days in entry.opening_hours %}
             {% if loop.first %}
