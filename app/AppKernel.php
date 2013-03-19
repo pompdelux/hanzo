@@ -141,7 +141,10 @@ class AppKernel extends Kernel
 
         $mode = $this->getStoreMode();
 
+        $loader->load($base_dir.'parameters.ini');
+        $loader->load($base_dir.'parameters.php');
         $loader->load($base_dir.'firewall_'.$mode.'.yml');
+        $loader->load($base_dir.'config.yml');
         $loader->load($config_dir.'config.yml');
         $loader->load($config_dir.'_'.$lang.'.yml');
 
