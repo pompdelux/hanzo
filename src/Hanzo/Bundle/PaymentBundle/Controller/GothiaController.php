@@ -195,8 +195,15 @@ class GothiaController extends CoreController
 
         $order         = OrdersPeer::getCurrent();
         $customer      = $order->getCustomers(Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
+        if (!$customer instanceof Customers) {
+            return $this->json_response(array(
+                'status' => FALSE,
+                'message' => $translator->trans('json.checkcustomer.failed', ['%msg%' => 'no customer'], 'gothia'),
+            ));
+        }
+
+        $gothiaAccount = $customer->getGothiaAccounts(Propel::getConnection(null, Propel::CONNECTION_WRITE));
         if (is_null($gothiaAccount)) {
             $gothiaAccount = new GothiaAccounts();
         }
