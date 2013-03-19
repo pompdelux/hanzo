@@ -1647,6 +1647,7 @@ form.address label {
 }
 
 form.location-locator input.button.button-right {
+  margin-left: 5px;
   float: none;
 }
 form.location-locator table.locator-result {
@@ -1656,8 +1657,23 @@ form.location-locator table.locator-result {
 form.location-locator table.locator-result tbody td {
   padding: 4px 6px;
 }
+form.location-locator table.locator-result tbody td label {
+  width: auto;
+  margin-top: 0;
+}
 form.location-locator table.locator-result .opening-hours {
   width: auto;
+}
+form.location-locator label {
+  display: inline-block;
+  width: 110px;
+}
+form.location-locator div.error {
+  margin: 10px;
+}
+form.location-locator div.error p {
+  border: 1px solid red;
+  padding: 10px;
 }
 
 /**

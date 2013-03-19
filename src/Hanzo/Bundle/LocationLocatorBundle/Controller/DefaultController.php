@@ -62,14 +62,24 @@ class DefaultController extends CoreController
                 ]);
 
                 if ($this->getFormat() == 'json') {
-                    return $this->json_response([
-                        'status' => true,
-                        'message' => '',
-                        'data' => ['html' => $this->renderView('LocationLocatorBundle:Default:result.html.twig', [
-                            'service' => 'postnord',
-                            'records' => $records,
-                        ])]
-                    ]);
+
+                    if (count($records)) {
+                        $response = [
+                            'status' => true,
+                            'message' => '',
+                            'data' => ['html' => $this->renderView('LocationLocatorBundle:Default:result.html.twig', [
+                                'service' => 'postnord',
+                                'records' => $records,
+                            ])]
+                        ];
+                    } else {
+                        $response = [
+                            'status' => false,
+                            'message' => $this->get('translator')->trans('no.records.found', [], 'locator'),
+                        ];
+                    }
+
+                    return $this->json_response($response);
                 }
             }
         }

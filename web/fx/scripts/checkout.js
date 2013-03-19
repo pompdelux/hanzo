@@ -283,6 +283,8 @@
 
     pub.handleLocationLocatorUpdates = function(response) {
       var $form = $('#address-block form.location-locator');
+      $('table.locator-result, div.error', $form).remove();
+
       if (response.response.status) {
         if ($('.locator-result', $form).length) {
           $('.locator-result', $form).remove();
@@ -300,6 +302,9 @@
           $('input#form_postal_code', $address).val(data.postal_code);
           $('input#form_city', $address).val(data.city);
         });
+      } else {
+        console.log('here');
+        $form.append('<div class="error"><p>'+response.response.message+'</p></div>');
       }
       dialoug.stopLoading();
     };

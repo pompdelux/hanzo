@@ -1,10 +1,15 @@
 <form action="{{ path('hanzo_location_locator') }}" method="post" {{ form_enctype(form) }} class="location-locator">
     {{ form_errors(form) }}
+
+    <p>{{ 'description'|trans({}, 'locator')|raw }}</p>
+
     <div class="wrapper">
+        {% spaceless %}
         {{ form_label(form.q) }}
         {{ form_errors(form.q) }}
         {{ form_widget(form.q) }}
         <input type="submit" value="{{ 'submit.label'|trans([], 'locator') }}" class="button button-right">
+        {% endspaceless %}
     </div>
     {{ form_rest(form) }}
 </form>

@@ -39,12 +39,12 @@
     <div class="grid_3 alpha omega bottom-space">
         <h3>{{ 'existing.customer'|trans({}, 'account') }}</h3>
         <form action="{{ path('login_check') }}" method="post" class="full-width">
-            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'email'|trans({}, 'account') }}">
+            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'email'|trans({}, 'account') }}" autofocus tabindex="1">
 
-            <input type="password" id="password" name="_password" placeholder="{{ 'password'|trans({}, 'account') }}">
+            <input type="password" id="password" name="_password" placeholder="{{ 'password'|trans({}, 'account') }}" tabindex="2">
 
             <input type="hidden" name="_target_path" value="{{ url(target) }}">
-            <input type="submit" name="login" value="{{ 'my.account.login'|trans({}, 'account') }}" class="button button-black button-right">
+            <input type="submit" name="login" value="{{ 'my.account.login'|trans({}, 'account') }}" class="button button-black button-right" tabindex="3">
         </form>
     </div>
 
@@ -55,12 +55,4 @@
 
 </div>
 
-{% endblock %}
-
-{% block javascript %}
-<script type="text/javascript">
-(function($) {
-  $('#username').focus();
-})(jQuery);
-</script>
 {% endblock %}

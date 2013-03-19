@@ -109,6 +109,7 @@ form.address {
 }
 form.location-locator {
 	input.button.button-right{
+		margin-left: 5px;
 		float: none;
 	}
 	table.locator-result{
@@ -116,9 +117,24 @@ form.location-locator {
 		width: auto;
 		tbody td{
 			padding: 4px 6px;
+			label{
+				width: auto;
+				margin-top: 0;
+			}
 		}
 		.opening-hours{
 			width: auto;
+		}
+	}
+	label{
+		display: inline-block;
+		width: 110px;
+	}
+	div.error{
+		margin: 10px;
+		p{
+			border: 1px solid $form-error-color;
+			padding: 10px;
 		}
 	}
 }

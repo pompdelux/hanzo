@@ -10,9 +10,9 @@
     <tbody>
     {% endif %}
         <tr>
-            <td valign="top"><input type="radio" class="droppoint-locator" name="{{ service }}_locator" value="{{ entry.id }}" data-entry='{{ entry|json_encode()|raw }}'></td>
+            <td valign="top"><input type="radio" class="droppoint-locator" name="{{ service }}_locator" id="{{ service }}_locator_{{ loop.index }}" value="{{ entry.id }}" data-entry='{{ entry|json_encode()|raw }}'></td>
             <td>
-                {{ loop.index }}. {{ entry.name }}, {{ entry.address }}, {{ entry.postal_code }} {{ entry.city }}
+                <label for="{{ service }}_locator_{{ loop.index }}">{{ loop.index }}. {{ entry.name }}, {{ entry.address }}, {{ entry.postal_code }} {{ entry.city }}</label>
     {% if entry.opening_hours is defined %}
         {% for hour, days in entry.opening_hours %}
             {% if loop.first %}
