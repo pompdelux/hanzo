@@ -1,6 +1,3 @@
-parameters:
-#    events.example.class: Hanzo\Bundle\EventsBundle\Example
-
 services:
     hanzo.event.checkout.listener:
         class: Hanzo\Bundle\EventsBundle\Event\CheckoutListener
