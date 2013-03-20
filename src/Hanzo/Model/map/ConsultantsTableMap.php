@@ -42,7 +42,7 @@ class ConsultantsTableMap extends TableMap
         $this->setPackage('src.Hanzo.Model');
         $this->setUseIdGenerator(false);
         // columns
-        $this->addColumn('INITIALS', 'Initials', 'VARCHAR', false, 12, null);
+        $this->addColumn('INITIALS', 'Initials', 'VARCHAR', false, 10, null);
         $this->addColumn('INFO', 'Info', 'LONGVARCHAR', false, null, null);
         $this->addColumn('EVENT_NOTES', 'EventNotes', 'LONGVARCHAR', false, null, null);
         $this->addColumn('HIDE_INFO', 'HideInfo', 'BOOLEAN', true, 1, false);
