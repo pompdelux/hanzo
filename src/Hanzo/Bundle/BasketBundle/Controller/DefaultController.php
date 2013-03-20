@@ -4,6 +4,8 @@ namespace Hanzo\Bundle\BasketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use PropelException;
+
 use Hanzo\Core\Hanzo;
 use Hanzo\Core\Tools;
 use Hanzo\Core\Stock;
@@ -73,7 +75,26 @@ class DefaultController extends CoreController
 
             if ($order->validate()) {
                 $order->setUpdatedAt(time());
-                $order->save();
+                try {
+                    $order->save();
+                } catch(PropelException $e) {
+                    // if the session is expired, we issue the user a new session and send him on his way
+                    $session = $request->getSession();
+                    $test = "Integrity constraint violation: 1062 Duplicate entry '".$session->getId()."' for key";
+                    if (false !== strpos($e->getMessage(), $test)) {
+                        $session->migrate();
+                        $session->save();
+
+                        Tools::setCookie('basket', '(0) '.Tools::moneyFormat(0.00), 0, false);
+                        return $this->json_response(array(
+                            'status' => FALSE,
+                            'message' => 'session.died',
+                            'data' => [
+                                'location' => $this->generateUrl('_homepage')
+                            ]
+                        ));
+                    }
+                }
 
                 $price = ProductsDomainsPricesPeer::getProductsPrices(array($product->getId()));
 
