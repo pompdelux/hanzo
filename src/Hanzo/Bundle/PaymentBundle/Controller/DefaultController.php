@@ -106,7 +106,7 @@ class DefaultController extends CoreController
         // It also only supports one order line with payment fee, as all others are deleted
 
         if ('DOWN' !== $this->get('redis.permanent')->hget('service.status', 'dibs')) {
-            $order->setOrderLinePaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
+            $order->setPaymentFee($method, $api->getFee(), 0, $api->getFeeExternalId());
         }
 
         $order->setUpdatedAt(time());
