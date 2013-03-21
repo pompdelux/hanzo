@@ -326,30 +326,6 @@ class Orders extends BaseOrders
             $this->setState(self::STATE_BUILDING);
         }
 
-        // add meta info to the order
-        if (0 == $lines->count()) {
-            $hanzo = Hanzo::getInstance();
-            $this->setCurrencyCode($hanzo->get('core.currency'));
-            $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
-            $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
-            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
-        }
-
-        // set billing address - if not already set.
-        if ('' == $this->getBillingFirstName()) {
-            $customer = CustomersPeer::getCurrent();
-            if (!$customer->isNew()) {
-                $c = new Criteria;
-                $c->add(AddressesPeer::TYPE, 'payment');
-                $address = $customer->getAddressess($c)->getFirst();
-                if ($address) {
-                    $this->setBillingAddress($address);
-                } else {
-                    Tools::log('Missing payment address: '.$customer->getId());
-                }
-            }
-        }
-
         foreach ($lines as $index => $line) {
             if ($product->getId() == $line->getProductsId()) {
                 $offset = 0;
@@ -404,45 +380,38 @@ class Orders extends BaseOrders
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function setOrderLineShipping( ShippingMethods $shippingMethod, $isFee = false )
+    public function setShipping(ShippingMethods $shippingMethod, $isFee = false)
     {
-        if ( $isFee ) {
+        $sku = $shippingMethod->getFeeExternalId();
+        $name = $shippingMethod->getName();
+
+        if ($isFee) {
             $price = $shippingMethod->getFee();
-            $name  = $shippingMethod->getName();
-            $sku    = $shippingMethod->getFeeExternalId();
             $type  = 'shipping.fee';
         } else {
             $price = $shippingMethod->getPrice();
-            $name  = $shippingMethod->getName();
-            $sku   = $shippingMethod->getExternalId();
             $type  = 'shipping';
         }
 
-        // first update existing product lines, if any
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $line = OrdersLinesQuery::create()
+            ->filterByType($type)
+            ->filterByOrdersId($this->getId())
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
-        foreach ($lines as $index => $line) {
-            if ( $line->getType() == $type ) {
-                $line->setProductsSku( $sku );
-                $line->setProductsName( $name );
-                $line->setPrice( $price );
-                $line->setVat( 0.00 );
-                $lines[$index] = $line;
-                $this->setOrdersLiness($lines);
-
-                return;
-            }
+        if (!$line instanceof OrdersLines) {
+            $line = new OrdersLines;
+            $line->setOrdersId($this->getId());
+            $line->setType($type);
+            $line->setQuantity(1);
+            $line->setVat(0.00);
         }
 
-        $line = new OrdersLines;
-        $line->setOrdersId($this->getId());
         $line->setProductsSku( $sku );
         $line->setProductsName( $name );
-        $line->setQuantity(1);
         $line->setPrice( $price );
         $line->setVat( 0.00 );
-        $line->setType( $type );
-        $this->addOrdersLines($line);
+        $line->save();
     }
 
     /**
@@ -450,14 +419,11 @@ class Orders extends BaseOrders
      */
     public function getOrderLineShipping()
     {
-        $shipping = array();
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $index => $line) {
-            if (in_array($line->getType(), array('shipping', 'shipping.fee'))) {
-                $shipping[] = $line;
-            }
-        }
-
-        return $shipping;
+        return OrdersLinesQuery::create()
+            ->filterByType(['shipping', 'shipping.fee'], Criteria::IN)
+            ->filterByOrdersId($this->getId())
+            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
     }
 
     /**
@@ -468,14 +434,11 @@ class Orders extends BaseOrders
      **/
     public function getOrderLineDiscount()
     {
-        $discounts = array();
-        foreach ($this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE)) as $index => $line) {
-            if (in_array($line->getType(), array('discount' ))) {
-                $discounts[] = $line;
-            }
-        }
-
-        return $discounts;
+        return OrdersLinesQuery::create()
+            ->filterByType('discount')
+            ->filterByOrdersId($this->getId())
+            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
     }
 
     /**
@@ -526,31 +489,6 @@ class Orders extends BaseOrders
         return $this;
     }
 
-
-    public function preSave(PropelPDO $con = null)
-    {
-        if (!$this->getSessionId()) {
-            $this->setSessionId(Hanzo::getInstance()->getSession()->getId());
-        }
-
-        return true;
-    }
-
-    public function postSave(PropelPDO $con = null)
-    {
-        if ( PHP_SAPI == 'cli' ) {
-            return true;
-        }
-
-        $session = Hanzo::getInstance()->getSession();
-
-        if(FALSE === $session->has('order_id')) {
-            $session->set('order_id', $this->getId());
-        }
-
-        return true;
-    }
-
     /**
      * getTotalProductPrice
      * @return float
@@ -563,14 +501,16 @@ class Orders extends BaseOrders
 
     public function getTotalPrice($products_only = false)
     {
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
+
+        if ($products_only) {
+            $query->filterByType('product');
+        }
+
+        $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $total = 0;
         foreach ($lines as $line) {
-            if ($products_only && $line->getType() != 'product') {
-                continue;
-            }
-
             $total += ($line->getPrice() * $line->getQuantity());
         }
 
@@ -591,14 +531,16 @@ class Orders extends BaseOrders
 
     public function getTotalQuantity($products_only = false)
     {
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $query = OrdersLinesQuery::create()->filterByOrdersId($this->getId());
+
+        if ($products_only) {
+            $query->filterByType('product');
+        }
+
+        $lines = $query->find(Propel::getConnection(null, Propel::CONNECTION_WRITE));
 
         $total = 0;
         foreach ($lines as $line) {
-            if ($products_only && $line->getType() != 'product') {
-                continue;
-            }
-
             $total += $line->getQuantity();
         }
 
@@ -677,37 +619,26 @@ class Orders extends BaseOrders
      * @return void
      * @author Henrik Farre <hf@bellcom.dk>
      **/
-    public function setOrderLinePaymentFee( $name, $price, $vat, $sku )
+    public function setPaymentFee( $name, $price, $vat, $sku )
     {
-        $type = 'payment.fee';
+        $fee = OrdersLinesQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->filterByType('payment.fee')
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
-        // Payment fee should always be set by the payment modules, so we can just update it
-        // First update existing product lines, if any
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        foreach ($lines as $index => $line)
-        {
-            // No check on sku, because it might be different, only look for type
-            if ( $line->getType() == $type ) {
-                $line->setProductsName( $name );
-                $line->setProductsSku( $sku );
-                $line->setPrice( $price );
-                $line->setVat( $vat );
-                $lines[$index] = $line;
-                $this->setOrdersLiness($lines);
-
-                return;
-            }
+        if (!$fee instanceof OrdersLines) {
+            $fee = new OrdersLines;
+            $fee->setOrdersId($this->getId());
+            $fee->setQuantity(1);
+            $fee->setType('payment.fee');
         }
 
-        $line = new OrdersLines;
-        $line->setOrdersId($this->getId());
-        $line->setProductsSku( $sku );
-        $line->setProductsName( $name );
-        $line->setQuantity(1);
-        $line->setPrice( $price );
-        $line->setVat( $vat );
-        $line->setType( $type );
-        $this->addOrdersLines($line);
+        $fee->setProductsName($name);
+        $fee->setProductsSku($sku);
+        $fee->setPrice($price);
+        $fee->setVat($vat);
+        $fee->save();
     }
 
     /**
@@ -720,15 +651,14 @@ class Orders extends BaseOrders
      **/
     public function getPaymentFee()
     {
-        $type = 'payment.fee';
+        $line = OrdersLinesQuery::create()
+            ->filterByType('payment.fee')
+            ->filterByOrdersId($this->getId())
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        foreach ($lines as $index => $line)
-        {
-            if ( $line->getType() == $type )
-            {
-                return $line->getPrice();
-            }
+        if ($line instanceof OrdersLines) {
+            return $line->getPrice();
         }
 
         return 0.00;
@@ -744,15 +674,14 @@ class Orders extends BaseOrders
      **/
     public function getShippingFee()
     {
-        $type = 'shipping.fee';
+        $line = OrdersLinesQuery::create()
+            ->filterByType('shipping.fee')
+            ->filterByOrdersId($this->getId())
+            ->findOne(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
-        $lines = $this->getOrdersLiness(null, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-        foreach ($lines as $index => $line)
-        {
-            if ( $line->getType() == $type )
-            {
-                return $line->getPrice();
-            }
+        if ($line instanceof OrdersLines) {
+            return $line->getPrice();
         }
 
         return 0.00;
@@ -825,8 +754,7 @@ class Orders extends BaseOrders
      **/
     public function setBillingAddress( Addresses $address )
     {
-        if ( $address->getType() != 'payment' )
-        {
+        if ( $address->getType() != 'payment' ) {
             throw new Exception( 'Address is not of type payment' );
         }
 
@@ -906,13 +834,11 @@ class Orders extends BaseOrders
      **/
     public function clearFees()
     {
-        $c = new Criteria();
-        $c->add(OrdersLinesPeer::TYPE, 'payment.fee', Criteria::EQUAL);
-        $lines = $this->getOrdersLiness($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-
-        foreach ($lines as $line) {
-            $line->delete();
-        }
+        return OrdersLinesQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->filterByType('payment.fee')
+            ->delete(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
     }
 
     /**
@@ -923,13 +849,11 @@ class Orders extends BaseOrders
      **/
     public function clearAttributesByKey( $key )
     {
-        $c = new Criteria();
-        $c->add(OrdersAttributesPeer::C_KEY, $key, Criteria::EQUAL);
-        $attributes = $this->getOrdersAttributess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-
-        foreach ($attributes as $index => $attribute) {
-            $attribute->delete();
-        }
+        return OrdersAttributesQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->filterByCKey($key)
+            ->delete()
+        ;
     }
 
     /**
@@ -940,13 +864,11 @@ class Orders extends BaseOrders
      **/
     public function clearAttributesByNS( $ns )
     {
-        $c = new Criteria();
-        $c->add(OrdersAttributesPeer::NS, $ns, Criteria::EQUAL);
-        $attributes = $this->getOrdersAttributess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
-
-        foreach ($attributes as $index => $attribute) {
-            $attribute->delete();
-        }
+        return OrdersAttributesQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->filterByNs($ns)
+            ->delete()
+        ;
     }
 
     /**
@@ -982,9 +904,11 @@ class Orders extends BaseOrders
      */
     public function getAttachments()
     {
-        $c = new Criteria();
-        $c->add(OrdersAttributesPeer::NS, 'attachment', Criteria::EQUAL);
-        $attributes = $this->getOrdersAttributess($c, Propel::getConnection(null, Propel::CONNECTION_WRITE));
+        $attributes = OrdersAttributesQuery::create()
+            ->filterByOrdersId($this->getId())
+            ->filterByNs('attachment')
+            ->find(Propel::getConnection(null, Propel::CONNECTION_WRITE))
+        ;
 
         $attachments = array();
         foreach ($attributes as $attribute) {
@@ -1166,6 +1090,123 @@ class Orders extends BaseOrders
     }
 
 
+    public function recalculate()
+    {
+        $hanzo = Hanzo::getInstance();
+
+        if ('' == $this->getBillingFirstName()) {
+            // $customer = CustomersPeer::getCurrent();
+            $customer = $this->getCustomers();
+            $c = new Criteria;
+            $c->add(AddressesPeer::TYPE, 'payment');
+            $this->setBillingAddress($customer->getAddressess($c)->getFirst());
+        }
+
+        if ('COM' == $hanzo->get('core.domain_key')) {
+            $country = $this->getCountriesRelatedByBillingCountriesId();
+            if ($country && $country->getVat()) {
+                return;
+            }
+
+            $lines = $this->getOrdersLiness();
+
+            $product_ids = array();
+            foreach ($lines as $line) {
+                if('product' == $line->getType()) {
+                    $product_ids[] = $line->getProductsId();
+                }
+            }
+
+            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
+            $collection = new PropelCollection();
+
+            foreach ($lines as $line) {
+                if('product' == $line->getType()) {
+                    $price = $prices[$line->getProductsId()];
+
+                    $sales = $price['normal'];
+                    if (isset($price['sales'])) {
+                        $sales = $price['sales'];
+                    }
+
+                    $line->setPrice($sales['price']);
+                    $line->setVat(0);
+                    $line->setOriginalPrice($price['normal']['price']);
+                }
+
+                $collection->prepend($line);
+            }
+
+            $this->setOrdersLiness($collection);
+        }
+
+        return $this;
+    }
+
+    /**
+     * figure out if the order is for a hostess or not
+     *
+     * @return boolean
+     */
+    public function isHostessOrder()
+    {
+        $attributes = $this->getAttributes();
+        if (isset($attributes->event->is_hostess_order)) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public function preSave(PropelPDO $con = null)
+    {
+        if (!$this->getSessionId()) {
+            $this->setSessionId(Hanzo::getInstance()->getSession()->getId());
+        }
+
+        if ($this->isNew()) {
+            $hanzo = Hanzo::getInstance();
+            $this->setCurrencyCode($hanzo->get('core.currency'));
+            $this->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
+            $this->setAttribute('domain_key', 'global', $hanzo->get('core.domain_key'));
+            $this->setPaymentGatewayId(Tools::getPaymentGatewayId());
+        }
+
+        // set billing address - if not already set.
+        if ('' == $this->getBillingFirstName()) {
+            $customer = CustomersPeer::getCurrent();
+            if (!$customer->isNew()) {
+                $c = new Criteria;
+                $c->add(AddressesPeer::TYPE, 'payment');
+                $address = $customer->getAddressess($c)->getFirst();
+                if ($address) {
+                    $this->setBillingAddress($address);
+                } else {
+                    Tools::log('Missing payment address: '.$customer->getId());
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public function postSave(PropelPDO $con = null)
+    {
+        if ( PHP_SAPI == 'cli' ) {
+            return true;
+        }
+
+        $session = Hanzo::getInstance()->getSession();
+
+        if(FALSE === $session->has('order_id')) {
+            $session->set('order_id', $this->getId());
+        }
+
+        return true;
+    }
+
+
     /**
      * wrap delete() to cleanup payment and ax
      */
@@ -1243,74 +1284,4 @@ class Orders extends BaseOrders
 
         return parent::preDelete($con);
     }
-
-
-    public function recalculate()
-    {
-        $hanzo = Hanzo::getInstance();
-
-        if ('' == $this->getBillingFirstName()) {
-            // $customer = CustomersPeer::getCurrent();
-            $customer = $this->getCustomers();
-            $c = new Criteria;
-            $c->add(AddressesPeer::TYPE, 'payment');
-            $this->setBillingAddress($customer->getAddressess($c)->getFirst());
-        }
-
-        if ('COM' == $hanzo->get('core.domain_key')) {
-            $country = $this->getCountriesRelatedByBillingCountriesId();
-            if ($country && $country->getVat()) {
-                return;
-            }
-
-            $lines = $this->getOrdersLiness();
-
-            $product_ids = array();
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $product_ids[] = $line->getProductsId();
-                }
-            }
-
-            $prices = ProductsDomainsPricesPeer::getProductsPrices($product_ids);
-            $collection = new PropelCollection();
-
-            foreach ($lines as $line) {
-                if('product' == $line->getType()) {
-                    $price = $prices[$line->getProductsId()];
-
-                    $sales = $price['normal'];
-                    if (isset($price['sales'])) {
-                        $sales = $price['sales'];
-                    }
-
-                    $line->setPrice($sales['price']);
-                    $line->setVat(0);
-                    $line->setOriginalPrice($price['normal']['price']);
-                }
-
-                $collection->prepend($line);
-            }
-
-            $this->setOrdersLiness($collection);
-        }
-
-        return $this;
-    }
-
-    /**
-     * figure out if the order is for a hostess or not
-     *
-     * @return boolean
-     */
-    public function isHostessOrder()
-    {
-        $attributes = $this->getAttributes();
-        if (isset($attributes->event->is_hostess_order)) {
-            return true;
-        }
-
-        return false;
-    }
-
 } // Orders
