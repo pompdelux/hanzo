@@ -243,11 +243,6 @@ class AxService
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
-                    case 'PENSIO':
-                        if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
-                            $custPaymMode = 'iDEAL';
-                        }
-                        break;
                 }
                 break;
 
@@ -257,6 +252,12 @@ class AxService
 
             case 'paybybill': // Should be COD, is _not_ Gothia
                 $custPaymMode = 'Bank';
+                break;
+
+            case 'pensio':
+                if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
+                    $custPaymMode = 'iDEAL';
+                }
                 break;
         }
 
