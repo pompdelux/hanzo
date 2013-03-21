@@ -95,7 +95,7 @@ class AddressController extends CoreController
 
             if ($order->getFirstName()) {
                 if ('overnightbox' === $type) {
-                    $address->setAddressLine2(trim($order->getFirstName().' '.$order->getLastName()));
+                    $address->setAddressLine1(trim($order->getFirstName().' '.$order->getLastName()));
                 } else {
                     $address->setFirstName($order->getFirstName());
                     $address->setLastName($order->getLastName());
@@ -106,7 +106,7 @@ class AddressController extends CoreController
                 $address = new Addresses();
                 $address->setType($type);
                 $address->setCustomersId($customer_id);
-                $address->setAddressLine2(trim($order->getFirstName().' '.$order->getLastName()));
+                $address->setAddressLine1(trim($order->getFirstName().' '.$order->getLastName()));
             }
         }
 
