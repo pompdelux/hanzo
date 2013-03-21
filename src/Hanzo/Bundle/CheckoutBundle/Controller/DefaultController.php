@@ -151,11 +151,11 @@ class DefaultController extends CoreController
         }
 
         // make sure to remove doubble discount
-        // if (isset($attributes->purchase) &&
-        //     isset($attributes->purchase->type) &&
-        //     ($attributes->purchase->type !== 'private')) {
-        //     $order->removeDiscountLine('discount.private');
-        // }
+        if (isset($attributes->purchase) &&
+            isset($attributes->purchase->type) &&
+            ($attributes->purchase->type !== 'private')) {
+            $order->removeDiscountLine('discount.private');
+        }
 
         /* ------------------------------------------------- */
         $order->save();
