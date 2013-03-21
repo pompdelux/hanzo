@@ -38,7 +38,7 @@ class OrdersPeer extends BaseOrdersPeer
                     ->orderByPrice()
                 ->endUse()
                 ->leftJoinWithOrdersLines()
-                ->findPk(
+                ->findOneById(
                     $session->get('order_id'),
                     Propel::getConnection(null, Propel::CONNECTION_WRITE)
                 )

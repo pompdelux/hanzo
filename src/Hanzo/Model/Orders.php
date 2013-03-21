@@ -17,6 +17,7 @@ use Hanzo\Core\Tools;
 use Hanzo\Model\om\BaseOrders;
 use Hanzo\Model\OrdersLines;
 use Hanzo\Model\OrdersLinesPeer;
+use Hanzo\Model\OrdersLinesQuery;
 use Hanzo\Model\OrdersStateLog;
 use Hanzo\Model\OrdersAttributes;
 use Hanzo\Model\OrdersAttributesPeer;
