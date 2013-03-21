@@ -150,8 +150,16 @@ class DefaultController extends CoreController
             }
         }
 
+        // make sure to remove doubble discount
+        // if (isset($attributes->purchase) &&
+        //     isset($attributes->purchase->type) &&
+        //     ($attributes->purchase->type !== 'private')) {
+        //     $order->removeDiscountLine('discount.private');
+        // }
+
         /* ------------------------------------------------- */
         $order->save();
+        $order->reload(true, Propel::getConnection(OrdersPeer::DATABASE_NAME, Propel::CONNECTION_READ));
         /* ------------------------------------------------- */
 
         $attributes = array();
