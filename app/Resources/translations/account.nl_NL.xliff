@@ -289,7 +289,15 @@
             </trans-unit>
             <trans-unit id="overnightbox.label">
                 <source>overnightbox.label</source>
-                <target>Postbus adres</target>
+                <target>Address</target>
+            </trans-unit>
+            <trans-unit id="overnightbox.name">
+                <source>overnightbox.name</source>
+                <target>Pickup</target>
+            </trans-unit>
+            <trans-unit id="att.label">
+                <source>att.label</source>
+                <target>Att</target>
             </trans-unit>
             <trans-unit id="address.first_name.required">
                 <source>address.first_name.required</source>

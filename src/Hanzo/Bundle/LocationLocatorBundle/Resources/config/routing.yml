@@ -1,0 +1,4 @@
+hanzo_location_locator:
+    pattern:  /location/locator
+    defaults:
+        _controller: LocationLocatorBundle:Default:lookup
