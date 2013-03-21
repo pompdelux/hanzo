@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="description" approved="no">
                 <source>description</source>
-                <target><![CDATA[en eller anden lang beskrivelse wrappet i p tags.]]></target>
+                <target><![CDATA[Angiv adresse, postnummer, by eller sted.]]></target>
             </trans-unit>
             <trans-unit id="lookup.label" approved="no">
                 <source>lookup.label</source>
@@ -16,11 +16,11 @@
             </trans-unit>
             <trans-unit id="lookup.placeholder" approved="no">
                 <source>lookup.placeholder</source>
-                <target>Addresse gadenummer, Postnummer By</target>
+                <target>Adresse, postnummer</target>
             </trans-unit>
             <trans-unit id="point.header" approved="no">
                 <source>point.header</source>
-                <target>Opsamlingssteder</target>
+                <target>Døgnpoststed</target>
             </trans-unit>
             <trans-unit id="distance.header" approved="no">
                 <source>distance.header</source>
@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="no.records.found" approved="no">
                 <source>no.records.found</source>
-                <target>Der blev ikke fundet nogen opsamlingssteder der matcher din søgning.</target>
+                <target>Der blev ikke fundet nogen døgnpoststeder der matcher din søgning.</target>
             </trans-unit>
         </body>
     </file>
