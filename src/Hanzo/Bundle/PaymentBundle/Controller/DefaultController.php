@@ -98,7 +98,6 @@ class DefaultController extends CoreController
             return $this->json_response($response);
         }
 
-
         $order->setPaymentMethod( $provider );
         $order->setPaymentPaytype( $method );
 
