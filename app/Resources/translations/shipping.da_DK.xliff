@@ -41,8 +41,7 @@
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
         <target><![CDATA[
-          For at du kan få sendt pakker til Døgnposten, skal du oplyse dit navn og det ID, du valgte ved tilmeldingen til Døgnposten. Oplys Døgnpostens nummer og adresse som leveringsadresse og din egen adresse som betalingsadresse.<br>
-          <a href="http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx" rel="external">» Læs mere om Døgnpost</a>
+          Du kan frit vælge, hvilken Døgnpost du vil hente din pakke i. Skal det være den, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge den samme Døgnpost hver gang. Døgnpoststederne finder du fx hos din Brugs, tankstation eller lign..
       ]]></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
