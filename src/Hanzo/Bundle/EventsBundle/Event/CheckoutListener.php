@@ -34,8 +34,8 @@ class CheckoutListener
 
     public function onFinalize(FilterOrderEvent $event)
     {
+Tools::log(__METHOD__);
         $order = $event->getOrder();
-
         $attributes = $order->getAttributes();
 
         // calculate hostess discount if nessesary
