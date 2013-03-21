@@ -234,6 +234,11 @@
 
           lookup.done(function(response) {
             if (false === response.status) {
+              if (undefined !== response.data.location) {
+                window.location.reload(true);
+                return false;
+              }
+
               if (response.message) {
                 dialoug.alert(Translator.get('js:notice'), response.message);
               }

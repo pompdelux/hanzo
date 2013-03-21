@@ -177,7 +177,7 @@ DROP TABLE IF EXISTS `consultants`;
 
 CREATE TABLE `consultants`
 (
-    `initials` VARCHAR(6),
+    `initials` VARCHAR(10),
     `info` TEXT,
     `event_notes` TEXT,
     `hide_info` TINYINT(1) DEFAULT 0 NOT NULL,

@@ -36,15 +36,11 @@ class CheckoutListener
     {
         $order = $event->getOrder();
 
-        // we do not change event discounts for edits
-        if ($order->getInEdit()) {
-            return;
-        }
-
         $attributes = $order->getAttributes();
 
         // calculate hostess discount if nessesary
-        if ($order->getEventsId()) {
+        // we do not change event discounts for edits
+        if ($order->getEventsId() && (false === $order->getInEdit())) {
             $customer = $order->getCustomers();
             $hanzo = Hanzo::getInstance();
 
@@ -103,19 +99,18 @@ class CheckoutListener
             $order->setAttribute('SalesResponsible', 'global', $event->getCustomersRelatedByConsultantsId()->getConsultants()->getInitials());
 
         } elseif (isset($attributes->purchase->type)) {
-            $initials = CustomersPeer::getCurrent()->getConsultants()->getInitials();
-            $discount = 0;
             $label = '';
+            $discount = 0;
 
             // TODO: not hardcoded
             switch ($attributes->purchase->type) {
                 case 'friend':
-                    $discount = -15.00;
                     $label = 'Veninde køb';
+                    $discount = -15.00;
                     break;
                 case 'gift':
-                    $discount = -20.00;
                     $label = 'Gave køb';
+                    $discount = -20.00;
                     break;
                 case 'other':
                     $label = 'Udenfor arrangement';
@@ -135,8 +130,11 @@ class CheckoutListener
                 }
             }
 
-            $order->setAttribute('HomePartyId', 'global', $label);
-            $order->setAttribute('SalesResponsible', 'global', $initials);
+            if (false === $order->getInEdit()) {
+                $initials = CustomersPeer::getCurrent()->getConsultants()->getInitials();
+                $order->setAttribute('HomePartyId', 'global', $label);
+                $order->setAttribute('SalesResponsible', 'global', $initials);
+            }
         }
     }
 }
