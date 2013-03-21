@@ -20,7 +20,6 @@ class CheckoutListener
 
     public function onFinalize(FilterOrderEvent $event)
     {
-Tools::log(__METHOD__);
         $order = $event->getOrder();
 
         $customer = $order->getCustomers();
