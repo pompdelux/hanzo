@@ -36,13 +36,11 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.12">
         <source>shipping_method.name.12</source>
-        <target>Døgnpost</target>
+        <target>Valgfri udlevering - døgnpost</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
-        <target><![CDATA[
-          Du kan frit vælge, hvilken Døgnpost du vil hente din pakke i. Skal det være den, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge den samme Døgnpost hver gang. Døgnpoststederne finder du fx hos din Brugs, tankstation eller lign..
-      ]]></target>
+        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Døgnpost, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang. Udleveringssteder finder du hos dit Posthus, Brugs eller lign..]]></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
         <source>shipping_method.label.12</source>

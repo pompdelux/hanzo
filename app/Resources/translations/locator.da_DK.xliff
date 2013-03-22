@@ -20,7 +20,7 @@
             </trans-unit>
             <trans-unit id="point.header" approved="no">
                 <source>point.header</source>
-                <target>Døgnpoststed</target>
+                <target>Valgfri udleveringssted</target>
             </trans-unit>
             <trans-unit id="distance.header" approved="no">
                 <source>distance.header</source>
@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="no.records.found" approved="no">
                 <source>no.records.found</source>
-                <target>Der blev ikke fundet nogen døgnpoststeder der matcher din søgning.</target>
+                <target>Der blev ikke fundet nogen steder der matcher din søgning.</target>
             </trans-unit>
         </body>
     </file>
