@@ -13,6 +13,7 @@ use Hanzo\Model\AddressesQuery;
 use Hanzo\Model\CustomersPeer;
 use Hanzo\Model\CountriesPeer;
 use Hanzo\Model\CountriesQuery;
+use Hanzo\Model\Orders;
 use Hanzo\Model\OrdersPeer;
 use Hanzo\Model\ShippingMethods;
 
@@ -349,6 +350,10 @@ class AddressController extends CoreController
             }
 
             if (count($errors)) {
+                // needed or we cannot continue in the checkout
+                $order->setAttribute('not_valid', 'global', 1);
+                $order->save();
+
                 $message = '<ul class="error"><li>'.implode('</li><li>', $errors).'</li></ul>';
                 return $this->json_response(array(
                     'status' => false,
@@ -364,6 +369,7 @@ class AddressController extends CoreController
                 $order->setDeliveryAddress($address);
             }
 
+            $order->clearAttributesByKey('not_valid');
             $order->save();
             $status = true;
         }

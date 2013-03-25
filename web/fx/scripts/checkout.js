@@ -393,6 +393,8 @@
       } else {
         dialoug.stopLoading();
         $('a#checkout-execute').show();
+        // reset address validation
+        pub.setStepStatus('address', true);
       }
     };
 
