@@ -133,6 +133,7 @@ class ByColourController extends CoreController
                     'category' => $categories[$cid],
                     'sku' => $product->getSku(),
                     'id' => $product->getId(),
+                    'out_of_stock' => $product->getIsOutOfStock(),
                     'title' => $product->getSku(),
                     'color' => $variant->getColor(),
                     'image' => ($show_by_look) ? $image_set : $image_overview,
