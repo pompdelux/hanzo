@@ -172,8 +172,8 @@ class GothiaApiCall implements PaymentMethodApiCallInterface
         $street = trim($address->getAddressLine1().' '.$address->getAddressLine2());
 
         // nl hacks
-        if ('NL' == substr($domain_key, -2)) {
-            $pcs = preg_split('/ ([0-9]+)/', $text, 2, PREG_SPLIT_DELIM_CAPTURE);
+        if ('NL' === $domain_key) {
+            $pcs = preg_split('/ ([0-9]+)/', $street, 2, PREG_SPLIT_DELIM_CAPTURE);
 
             if (count($pcs) == 3) {
                 $street = $pcs[0].' '.$pcs[1].str_replace(' ', '', $pcs[2]);
