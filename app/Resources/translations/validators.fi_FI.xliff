@@ -48,7 +48,11 @@
             </trans-unit>
             <trans-unit id="postal_code.required" approved="no">
                 <source>postal_code.required</source>
-                <target>Du skal udfylde postnummer</target>
+                <target>Du skal udfylde postnummer|Du skal udfylde postnummer</target>
+            </trans-unit>
+            <trans-unit id="postal_code.length" approved="no">
+                <source>postal_code.length</source>
+                <target>Dit postnummer skal bestå af {{ limit }} tal|Dit postnummer skal bestå af {{ limit }} tal</target>
             </trans-unit>
             <trans-unit id="city.required" approved="no">
                 <source>city.required</source>

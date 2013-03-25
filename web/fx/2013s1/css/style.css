@@ -1578,6 +1578,11 @@ form.address label {
   vertical-align: top;
   margin-top: 0 0 12px;
 }
+form.address .error {
+  border: 2px solid red;
+  margin: 10px 0;
+  padding: 10px;
+}
 
 #body-checkout #main form.address > h3 {
   margin-top: 0;

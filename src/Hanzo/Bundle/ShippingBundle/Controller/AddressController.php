@@ -220,6 +220,7 @@ class AddressController extends CoreController
     public function processAction(Request $request, $type)
     {
         $status = false;
+        $short_domain_key = strtolower(substr(Hanzo::getInstance()->get('core.domain_key'), -2));
 
         if ('POST' === $request->getMethod()) {
             // TODO: not hardcoded
@@ -256,9 +257,17 @@ class AddressController extends CoreController
             $missing = array();
             foreach ($validation_fields as $field) {
                 if (!isset($data[$field])) {
-                    $missing[] = $field;
+                    $missing[$field] = $field;
                 }
             }
+
+            // // extra zipcode constraints for .fi
+            // // TODO: figure out how to make this part of the validation process.
+            // if ('fi' == $short_domain_key) {
+            //     if (!preg_match('/^[0-9]{5}$/', $data['postal_code'])) {
+            //         $missing[$field] = $field;
+            //     }
+            // }
 
             if (count($missing)) {
                 return $this->json_response(array(
@@ -307,6 +316,44 @@ class AddressController extends CoreController
                     $data['company_name'] = 'N/A';
                 }
                 $address->setCompanyName($data['company_name']);
+            }
+
+            // validate the address
+            $validator = $this->get('validator');
+            $translator = $this->get('translator');
+
+            // fi uses different validation group to support different rules
+            $validation_group = $method;
+            if ('fi' === $short_domain_key) {
+                $validation_group = $method.'_'.$short_domain_key;
+            }
+
+            $object_errors = $validator->validate($address, [$validation_group]);
+
+            $errors = [];
+            foreach ($object_errors->getIterator() as $error) {
+                if (null === $error->getMessagePluralization()) {
+                    $errors[] = $translator->trans(
+                        $error->getMessageTemplate(),
+                        $error->getMessageParameters(),
+                        'validators'
+                    );
+                } else {
+                    $errors[] = $translator->transChoice(
+                        $error->getMessageTemplate(),
+                        $error->getMessagePluralization(),
+                        $error->getMessageParameters(),
+                        'validators'
+                    );
+                }
+            }
+
+            if (count($errors)) {
+                $message = '<ul class="error"><li>'.implode('</li><li>', $errors).'</li></ul>';
+                return $this->json_response(array(
+                    'status' => false,
+                    'message' => $message,
+                ));
             }
 
             $address->save();
