@@ -1,5 +1,5 @@
 /**
-| _sprites
+| _sprites.
 */
 
 @import "icons/da/*.png";
@@ -34,6 +34,11 @@ body.da{
         height: da-sprite-height(new-price);
         width: da-sprite-width(new-price);
     }
+    .out-of-stock{
+        @include da-sprite(out-of-stock);
+        height: da-sprite-height(out-of-stock);
+        width: da-sprite-width(out-of-stock);
+    }
 }
 
 body.en{
@@ -51,6 +56,11 @@ body.en{
         @include en-sprite(new-price);
         height: en-sprite-height(new-price);
         width: en-sprite-width(new-price);
+    }
+    .out-of-stock{
+        @include en-sprite(out-of-stock);
+        height: en-sprite-height(out-of-stock);
+        width: en-sprite-width(out-of-stock);
     }
 }
 
@@ -70,6 +80,11 @@ body.fi{
         height: fi-sprite-height(new-price);
         width: fi-sprite-width(new-price);
     }
+    .out-of-stock{
+        @include fi-sprite(out-of-stock);
+        height: fi-sprite-height(out-of-stock);
+        width: fi-sprite-width(out-of-stock);
+    }
 }
 
 body.nb{
@@ -87,6 +102,11 @@ body.nb{
         @include no-sprite(new-price);
         height: no-sprite-height(new-price);
         width: no-sprite-width(new-price);
+    }
+    .out-of-stock{
+        @include no-sprite(out-of-stock);
+        height: no-sprite-height(out-of-stock);
+        width: no-sprite-width(out-of-stock);
     }
 }
 
@@ -106,6 +126,11 @@ body.nl{
         height: nl-sprite-height(new-price);
         width: nl-sprite-width(new-price);
     }
+    .out-of-stock{
+        @include nl-sprite(out-of-stock);
+        height: nl-sprite-height(out-of-stock);
+        width: nl-sprite-width(out-of-stock);
+    }
 }
 
 body.sv{
@@ -124,4 +149,10 @@ body.sv{
         height: se-sprite-height(new-price);
         width: se-sprite-width(new-price);
     }
+    .out-of-stock{
+        @include se-sprite(out-of-stock);
+        height: se-sprite-height(out-of-stock);
+        width: se-sprite-width(out-of-stock);
+    }
+
 }

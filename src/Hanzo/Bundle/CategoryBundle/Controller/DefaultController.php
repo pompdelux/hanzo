@@ -65,7 +65,7 @@ class DefaultController extends CoreController
             $result = ProductsImagesCategoriesSortQuery::create()
                 ->useProductsQuery()
                     ->where('products.MASTER IS NULL')
-                    ->filterByIsOutOfStock(FALSE)
+                    // ->filterByIsOutOfStock(FALSE)
                     ->useProductsDomainsPricesQuery()
                         ->filterByDomainsId($domain_id)
                     ->endUse()
@@ -117,6 +117,7 @@ class DefaultController extends CoreController
 
                     $records[] = array(
                         'sku' => $product->getSku(),
+                        'out_of_stock' => $product->getIsOutOfStock(),
                         'id' => $product->getId(),
                         'title' => $product->getSku(),
                         'image' => ($show_by_look)?$image_set:$image_overview,
