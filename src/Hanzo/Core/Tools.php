@@ -479,6 +479,10 @@ class Tools
     {
         static $path;
 
+        if (PHP_SAPI == 'cli') {
+            return;
+        }
+
         if (empty($path)) {
             $path = $_SERVER['SCRIPT_NAME'];
 
@@ -592,7 +596,7 @@ class Tools
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
-            $url['host'] = $_SERVER['HTTP_HOST'];
+            $url['host'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
         }
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];
