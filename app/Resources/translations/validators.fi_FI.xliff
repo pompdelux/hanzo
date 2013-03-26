@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="postal_code.length" approved="no">
                 <source>postal_code.length</source>
-                <target>Dit postnummer skal bestå af {{ limit }} tal|Dit postnummer skal bestå af {{ limit }} tal</target>
+                <target>Postinumeron on oltava {{ limit }} numeroa.|Postinumeron on oltava {{ limit }} numeroa.</target>
             </trans-unit>
             <trans-unit id="city.required" approved="no">
                 <source>city.required</source>
