@@ -297,8 +297,8 @@
 
           var $address = $form.next('form');
 
-          $('input#form_first_name', $address).val(data.name);
-          $('input#form_address_line_2', $address).val(data.address);
+          $('input#form_company_name', $address).val(data.name);
+          $('input#form_address_line_1', $address).val(data.address);
           $('input#form_postal_code', $address).val(data.postal_code);
           $('input#form_city', $address).val(data.city);
         });

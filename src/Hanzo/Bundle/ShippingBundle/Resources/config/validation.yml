@@ -48,22 +48,18 @@ Hanzo\Model\Addresses:
             - NotBlank:
                 groups:
                     - company_shipping
-                    - overnightbox
                     - shipping
                     - payment
                     - company_shipping_fi
-                    - overnightbox_fi
                     - shipping_fi
                     - payment_fi
                 message: address.last_name.required
             - MinLength:
                 groups:
                     - company_shipping
-                    - overnightbox
                     - shipping
                     - payment
                     - company_shipping_fi
-                    - overnightbox_fi
                     - shipping_fi
                     - payment_fi
                 limit:  2
@@ -168,6 +164,4 @@ Hanzo\Model\Addresses:
                 message: address.company_name.required
                 groups:
                     - company_shipping
-                    - overnightbox
                     - company_shipping_fi
-                    - overnightbox_fi
