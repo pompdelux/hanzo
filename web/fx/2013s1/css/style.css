@@ -2,7 +2,7 @@
 | _sprites.
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/da-s3dafbbb1ae.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/da-scdc681b511.png') no-repeat;
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
@@ -122,24 +122,24 @@
 }
 
 body.da form.buy .submit-button {
-  background-position: 0 -904px;
+  background-position: 0 -579px;
   height: 84px;
   width: 87px;
 }
 body.da .buy-set {
-  background-position: 0 -820px;
+  background-position: 0 -495px;
   height: 84px;
   width: 87px;
 }
 body.da .new-price {
-  background-position: 0 -410px;
+  background-position: 0 -85px;
   height: 410px;
   width: 234px;
 }
 body.da .out-of-stock {
   background-position: 0 0;
-  height: 410px;
-  width: 234px;
+  height: 85px;
+  width: 86px;
 }
 
 body.en form.buy .submit-button {

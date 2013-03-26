@@ -37,14 +37,18 @@
         <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
           {{ product_image_tag(product.image, '114x200', { 'alt' : product.title }) }}
           <span class="title">{{ product.title }}</span>
-          <span class="prices">
-          {% if product.prices.sales is defined %}
-            <span class="normal strike">{{ product.prices.normal.price|money }}</span>
-            <span class="discount">{{ product.prices.sales.price|money }}</span>
+          {% if product.out_of_stock %}
+          <div class="out-of-stock"></div>
           {% else %}
-            <span class="normal">{{ product.prices.normal.price|money }}</span>
+            <span class="prices">
+            {% if product.prices.sales is defined %}
+              <span class="normal strike">{{ product.prices.normal.price|money }}</span>
+              <span class="discount">{{ product.prices.sales.price|money }}</span>
+            {% else %}
+              <span class="normal">{{ product.prices.normal.price|money }}</span>
+            {% endif %}
+            </span>
           {% endif %}
-          </span>
         </a>
       </div>
 
