@@ -134,6 +134,10 @@ class AddressController extends CoreController
             $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
         }
 
+        if ($type == 'payment') {
+            $builder->add('phone', null, array('required' => true, 'translation_domain' => 'account'));
+        }
+
         if ('overnightbox' === $type) {
             $builder->add('address_line_1', null, array(
                 'label' => 'att.label',
@@ -262,14 +266,6 @@ class AddressController extends CoreController
                 }
             }
 
-            // // extra zipcode constraints for .fi
-            // // TODO: figure out how to make this part of the validation process.
-            // if ('fi' == $short_domain_key) {
-            //     if (!preg_match('/^[0-9]{5}$/', $data['postal_code'])) {
-            //         $missing[$field] = $field;
-            //     }
-            // }
-
             if (count($missing)) {
                 return $this->json_response(array(
                     'status' => false,
@@ -319,6 +315,11 @@ class AddressController extends CoreController
                 $address->setCompanyName($data['company_name']);
             }
 
+            if ('payment' == $method) {
+                $customer = $address->setPhone($data['phone']);
+            }
+
+
             // validate the address
             $validator = $this->get('validator');
             $translator = $this->get('translator');
@@ -362,6 +363,11 @@ class AddressController extends CoreController
             }
 
             $address->save();
+
+            // change phone number
+            if (isset($customer) && ('payment' == $method)) {
+                $customer->save();
+            }
 
             if ($type == 'payment') {
                 $order->setBillingAddress($address);

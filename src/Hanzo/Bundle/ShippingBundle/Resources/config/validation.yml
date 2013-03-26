@@ -1,5 +1,25 @@
+# Hanzo\Model\Customers:
+#     properties:
 Hanzo\Model\Addresses:
     properties:
+        phone:
+            - NotBlank:
+                message: phone.required
+                groups:
+                    - payment
+                    - payment_fi
+            - Regex:
+                pattern: "/^\d+$/"
+                match:   true
+                message: phone.not.valid
+                groups:
+                    - payment
+            - Regex:
+                pattern: "/^0[0-9]+$/"
+                match:   true
+                message: phone.not.valid
+                groups:
+                    - payment_fi
         first_name:
             - NotBlank:
                 groups:
