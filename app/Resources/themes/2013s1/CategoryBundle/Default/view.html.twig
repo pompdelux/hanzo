@@ -49,6 +49,9 @@
                   {% if product.prices.sales is defined and show_new_price_badge %}
                   <div class="new-price"></div>
                   {% endif %}
+                  {% if product.out_of_stock %}
+                  <div class="out-of-stock"></div>
+                  {% endif %}
                 </a>
                 <a href="{{ product.url }}" title="{{ "more.product.info"|trans({'%name%' : product.title}) }}">
                   <span class="title">{{ product.title }}</span>
@@ -100,6 +103,9 @@
             <div class="new-price"></div>
             <? }?>
           {% endif %}
+          <? if(data[i].out_of_stock) {?>
+          <div class="out-of-stock"></div>
+          <? }?>
         </a>
         <a href="<?=data[i].url?>" title="<?=Translator.get('js:more.product.info', {'%name%' : data[i].title})?>">
           <span class="title"><?=data[i].title?></span>
@@ -119,6 +125,5 @@
     <? }?>
   </div>
 </script>
-
 
 {% endblock %}

@@ -2,8 +2,11 @@
 
 namespace Hanzo\Core\Tests;
 
+use PropelCollection;
+
 use Hanzo\Core\Tools;
 use Hanzo\Model\Orders;
+use Hanzo\Model\OrdersAttributes;
 
 class ToolsTest extends \PHPUnit_Framework_TestCase
 {
@@ -104,5 +107,43 @@ country name', $address);
 
         setlocale(LC_ALL, 'en_US');
         $this->assertEquals('USD 2,100.25', Tools::moneyFormat($number));
+    }
+
+
+    public function testGetBccEmailAddress()
+    {
+        $order = new Orders();
+        $order->setId(1);
+
+        $attr = new OrdersAttributes();
+        $attr->setOrdersId($order->getId());
+        $attr->setNs('global');
+        $attr->setCKey('domain_key');
+        $attr->setCValue('DK');
+
+        $c = new PropelCollection();
+        $c->prepend($attr);
+
+        $order->setOrdersAttributess($c);
+
+        $this->assertEquals('order@pompdelux.dk', Tools::getBccEmailAddress('order', $order));
+        $this->assertEquals('retur@pompdelux.dk', Tools::getBccEmailAddress('retur', $order));
+
+        $order = new Orders();
+        $order->setId(2);
+
+        $attr = new OrdersAttributes();
+        $attr->setOrdersId($order->getId());
+        $attr->setNs('global');
+        $attr->setCKey('domain_key');
+        $attr->setCValue('SalesFI');
+
+        $c = new PropelCollection();
+        $c->prepend($attr);
+
+        $order->setOrdersAttributess($c);
+
+        $this->assertEquals('orderfi@pompdelux.com', Tools::getBccEmailAddress('order', $order));
+        $this->assertEquals('returfi@pompdelux.dk', Tools::getBccEmailAddress('retur', $order));
     }
 }
