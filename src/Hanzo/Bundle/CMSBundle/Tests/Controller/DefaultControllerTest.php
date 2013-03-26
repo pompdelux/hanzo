@@ -30,10 +30,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $crawler = $this->getClient()->request('GET', '/da_DK/');
 
-        $this->assertGreaterThan(0,
-            $crawler->filter('html:contains("POMPdeLUX ApS")')->count()
-        );
-
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("POMPdeLUX ApS")')->count());
         $this->assertEquals('http://www.pompdelux.com/da_DK/account', $crawler->selectLink('Min side')->link()->getUri());
     }
 }
