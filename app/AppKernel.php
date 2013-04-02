@@ -76,7 +76,7 @@ class AppKernel extends Kernel
     public function getEnvironment()
     {
         $env = parent::getEnvironment();
-        if (false === strpos('_', $env)) {
+        if (false === strpos($env, '_')) {
             $env = $env.'_dk';
         }
 
@@ -170,17 +170,6 @@ class AppKernel extends Kernel
         }
 
         return $mode;
-    }
-
-    /**
-     * allow us to override cache dir for the consultants section
-     *
-     * @see http://blog.amalraghav.com/manipulating-config-files/
-     * @return string
-     */
-    public function getCacheDir()
-    {
-        return parent::getCacheDir();
     }
 
     public function setSetting($key, $value)
