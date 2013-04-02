@@ -104,7 +104,7 @@ class Hanzo
                 $this->ns_settings[$key.'.'.$ns] = $data;
             }
         }
-Tools::log($this->settings);
+
         $locale = $this->get('core.locale');
         list($lang, ) = explode('_', $locale, 2);
         $this->container->get('twig')->addGlobal('locale', $locale);
