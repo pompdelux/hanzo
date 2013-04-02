@@ -1,3 +1,0 @@
-edi_soft_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EdiSoftBundle:Default:index }

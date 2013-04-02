@@ -1,7 +1,0 @@
-parameters:
-#    edi_soft.example.class: Hanzo\Bundle\EdiSoftBundle\Example
-
-services:
-#    edi_soft.example:
-#        class: %edi_soft.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
