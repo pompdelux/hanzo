@@ -62,7 +62,6 @@ class DefaultController extends CoreController
                 ]);
 
                 if ($this->getFormat() == 'json') {
-
                     if (count($records)) {
                         $response = [
                             'status' => true,

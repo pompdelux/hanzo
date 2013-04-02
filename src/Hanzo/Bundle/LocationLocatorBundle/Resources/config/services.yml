@@ -1,7 +1,10 @@
 parameters:
     hanzo_location_locator.class: Hanzo\Bundle\LocationLocatorBundle\LocationLocator
+    hanzo_location_provider_postnord.class: Hanzo\Bundle\LocationLocatorBundle\Providers\PostNordProvider
 
 services:
     hanzo_location_locator:
         class: %hanzo_location_locator.class%
-        arguments: [%postnord_api_key%, @translator]
+        arguments: [@service_container]
+    hanzo_location_provider_postnord:
+        class: %hanzo_location_provider_postnord.class%

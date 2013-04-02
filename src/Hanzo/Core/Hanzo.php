@@ -222,6 +222,7 @@ class Hanzo
         if (isset($this->settings[$ns])) {
             return $this->settings[$ns];
         }
+
         return array();
     }
 

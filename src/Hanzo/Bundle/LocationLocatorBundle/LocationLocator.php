@@ -2,13 +2,13 @@
 
 namespace Hanzo\Bundle\LocationLocatorBundle;
 
-use Hanzo\Core\hanzo;
+use Hanzo\Core\Hanzo;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\FormBuilder;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
-
+/**
+ * Location locator
+ *
+ * @author Ulrik Nielsen <un@bellcom.dk>
+ */
 class LocationLocator
 {
     /**
@@ -23,29 +23,48 @@ class LocationLocator
      *
      * @var array
      */
-    protected $settings;
+    protected $settings = [];
+
+    /**
+     * service container
+     *
+     * @var object
+     */
+    protected $container;
 
     /**
      * __construct
      *
-     * @param string     $settings
-     * @param Translator $translator
+     * @param ServiceContainer $container
      */
-    public function __construct($settings, Translator $translator)
+    public function __construct($container)
     {
-        $this->settings = $settings;
-        $this->translator = $translator;
+        $this->container  = $container;
+        $this->logger     = $container->get('logger');
+        $this->translator = $container->get('translator');
     }
 
     /**
      * Provider wrapper
      *
-     * @param  string $name      Name of the method
-     * @param  array  $arguments Method arguments
+     * @param  string $method_name Name of the method
+     * @param  array  $arguments   Method arguments
      * @return mixed
      */
-    public function __call($name, array $arguments = [])
+    public function __call($method_name, array $arguments = [])
     {
-        $settings = Hanzo::getInstance()->getByNs('locator');
+        $settings = array_merge_recursive(
+            $this->settings,
+            Hanzo::getInstance()->getByNs('locator')
+        );
+
+        $provider = $this->container->get('hanzo_location_provider_'.$settings['provider']);
+
+        if (!method_exists($provider, $method_name)) {
+            throw new InvalidArgumentException("Method ('{$method_name}') not supported", 1);
+        }
+
+        $provider->setup($settings, $this->translator, $this->logger);
+        return call_user_func_array([$provider, $method_name], $arguments);
     }
 }
