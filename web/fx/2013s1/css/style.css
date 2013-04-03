@@ -1,5 +1,5 @@
 /**
-| _sprites
+| _sprites.
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
   background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
@@ -118,7 +118,7 @@
 }
 
 .en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock {
-  background: url('/fx/2013s1/../images/icons/en-s2c73102a41.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/en-s9d987caa83.png') no-repeat;
 }
 
 body.da form.buy .submit-button {
@@ -143,24 +143,24 @@ body.da .out-of-stock {
 }
 
 body.en form.buy .submit-button {
-  background-position: 0 -747px;
+  background-position: 0 -496px;
   height: 84px;
   width: 84px;
 }
 body.en .buy-set {
-  background-position: 0 -831px;
+  background-position: 0 -580px;
   height: 84px;
   width: 84px;
 }
 body.en .new-price {
-  background-position: 0 -337px;
+  background-position: 0 -86px;
   height: 410px;
   width: 234px;
 }
 body.en .out-of-stock {
   background-position: 0 0;
-  height: 337px;
-  width: 333px;
+  height: 86px;
+  width: 85px;
 }
 
 body.fi form.buy .submit-button {
