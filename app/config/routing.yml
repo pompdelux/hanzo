@@ -1,7 +1,3 @@
-edi_soft:
-    resource: "@EdiSoftBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/
-
 LocationLocatorBundle:
     resource: "@LocationLocatorBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

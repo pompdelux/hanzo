@@ -32,8 +32,16 @@ class EdiSoftProvider extends BaseProvider
     protected $settings = [
         'username' => '',
         'password' => '',
-        'installationID' => ''
+        'installationID' => '',
+        'productConceptID' => ''
     ];
+
+    /**
+     * max number of records to return
+     *
+     * @var integer
+     */
+    protected $limit = 5;
 
     /**
      * webservice api endpoint
@@ -48,8 +56,10 @@ class EdiSoftProvider extends BaseProvider
      */
     public function findByAddress(array $address_parts = [], $limit = 5)
     {
+        $this->limit = $limit;
+
         return $this->lookup('SearchForDropPoints', [
-            'productConceptID' => 1,
+            'productConceptID' => $this->settings['productConceptID'],
             'installationID'   => $this->settings['installationID'],
             'country'          => $address_parts['countryCode'],
             'address'          => $address_parts['streetName'],
@@ -65,8 +75,10 @@ class EdiSoftProvider extends BaseProvider
      */
     public function findByPostalCode($country_code, $postal_code, $limit = 5)
     {
+        $this->limit = $limit;
+
         return $this->lookup('GetClosestDropPoint', [
-            'productConceptID' => 1,
+            'productConceptID' => $this->settings['productConceptID'],
             'installationID'   => $this->settings['installationID'],
             'country'          => $country_code,
             'postCode'         => $postal_code,
@@ -80,10 +92,12 @@ class EdiSoftProvider extends BaseProvider
      */
     public function findByLocation($latitude, $longitude, $country_code, $limit = 5)
     {
+        $this->limit = $limit;
+
         return $this->lookup('GetChODAllDropPointsOnMap', [
-            'webShopId'         => 1,
-            'productConceptIds' => 1,
-            'customConceptIds'  => 1,
+            'webShopId'         => 1, // ??
+            'productConceptIds' => 1, // ??
+            'webshopProductIds' => 1, // ??
             'installationId'    => $this->settings['installationID'],
             'postCode'          => $postal_code, // FIXME ! needs to get injected somehow - without breaking the interface contract
             'country'           => $country_code,

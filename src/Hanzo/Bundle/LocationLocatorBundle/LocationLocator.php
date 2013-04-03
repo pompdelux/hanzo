@@ -2,6 +2,9 @@
 
 namespace Hanzo\Bundle\LocationLocatorBundle;
 
+use Exception;
+use InvalidArgumentException;
+
 use Hanzo\Core\Hanzo;
 
 /**
@@ -47,8 +50,9 @@ class LocationLocator
     /**
      * Provider wrapper
      *
-     * @param  string $method_name Name of the method
-     * @param  array  $arguments   Method arguments
+     * @param  string $method_name      Name of the method
+     * @param  array  $arguments        Method arguments
+     * @throws InvalidArgumentException If there are problems with the arguments
      * @return mixed
      */
     public function __call($method_name, array $arguments = [])
@@ -58,10 +62,14 @@ class LocationLocator
             Hanzo::getInstance()->getByNs('locator')
         );
 
-        $provider = $this->container->get('hanzo_location_provider_'.$settings['provider']);
+        try {
+            $provider = $this->container->get('hanzo_location_provider_'.$settings['provider']);
+        } catch (Exception $e) {
+            throw new InvalidArgumentException('Service "hanzo_location_provider_'.$settings['provider'].'" not found');
+        }
 
         if (!method_exists($provider, $method_name)) {
-            throw new InvalidArgumentException("Method ('{$method_name}') not supported", 1);
+            throw new InvalidArgumentException('Method ('.$method_name.') not supported');
         }
 
         $provider->setup($settings, $this->translator, $this->logger);
