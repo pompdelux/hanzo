@@ -1,5 +1,5 @@
 /**
-| _sprites
+| _sprites.
 */
 
 @import "icons/da/*.png";
@@ -18,7 +18,6 @@
 @import "icons/en/*.png";
 //@include all-en-sprites; // Generates a sprite from all images inside the folder
 
-
 body.da{
     form.buy .submit-button{
         @include da-sprite(put-to-basket);
@@ -34,6 +33,11 @@ body.da{
         @include da-sprite(new-price);
         height: da-sprite-height(new-price);
         width: da-sprite-width(new-price);
+    }
+    .out-of-stock{
+        @include da-sprite(out-of-stock);
+        height: da-sprite-height(out-of-stock);
+        width: da-sprite-width(out-of-stock);
     }
 }
 
@@ -53,6 +57,11 @@ body.en{
         height: en-sprite-height(new-price);
         width: en-sprite-width(new-price);
     }
+    .out-of-stock{
+        @include en-sprite(out-of-stock);
+        height: en-sprite-height(out-of-stock);
+        width: en-sprite-width(out-of-stock);
+    }
 }
 
 body.fi{
@@ -70,6 +79,11 @@ body.fi{
         @include fi-sprite(new-price);
         height: fi-sprite-height(new-price);
         width: fi-sprite-width(new-price);
+    }
+    .out-of-stock{
+        @include fi-sprite(out-of-stock);
+        height: fi-sprite-height(out-of-stock);
+        width: fi-sprite-width(out-of-stock);
     }
 }
 
@@ -89,6 +103,11 @@ body.nb{
         height: no-sprite-height(new-price);
         width: no-sprite-width(new-price);
     }
+    .out-of-stock{
+        @include no-sprite(out-of-stock);
+        height: no-sprite-height(out-of-stock);
+        width: no-sprite-width(out-of-stock);
+    }
 }
 
 body.nl{
@@ -107,6 +126,11 @@ body.nl{
         height: nl-sprite-height(new-price);
         width: nl-sprite-width(new-price);
     }
+    .out-of-stock{
+        @include nl-sprite(out-of-stock);
+        height: nl-sprite-height(out-of-stock);
+        width: nl-sprite-width(out-of-stock);
+    }
 }
 
 body.sv{
@@ -124,5 +148,10 @@ body.sv{
         @include se-sprite(new-price);
         height: se-sprite-height(new-price);
         width: se-sprite-width(new-price);
+    }
+    .out-of-stock{
+        @include se-sprite(out-of-stock);
+        height: se-sprite-height(out-of-stock);
+        width: se-sprite-width(out-of-stock);
     }
 }

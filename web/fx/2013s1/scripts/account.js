@@ -14,6 +14,7 @@ var account = (function($) {
       $('#customers_email_email_address', $form).blur(function() {
         $form.removeClass('hasError');
         var $element = $('#customers_email_email_address', $form);
+        $element.removeClass('error');
 
         // regex source: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
         var email_regex = RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
@@ -22,11 +23,7 @@ var account = (function($) {
         }else if(!email_regex.test($element.val())){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:email.invalid'), 'error', 4800, $element.parent());
-            $element
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .focus();
+            $element.css({borderColor : '#f00' });
         }
 
         $.ajax({
@@ -40,11 +37,7 @@ var account = (function($) {
             if (response.status === false) {
               $form.addClass('hasError');
               dialoug.notice(response.message, 'error', 4800, $form);
-              $element
-                .fadeOut(100).fadeIn(100)
-                .fadeOut(100).fadeIn(100)
-                .fadeOut(100).fadeIn(100)
-                .focus();
+              $element.addClass('error');
             }
           }
         });
@@ -58,11 +51,7 @@ var account = (function($) {
         if($element.val() && $email.val() !== $element.val()){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:email.repeat.invalid'), 'error', 4800, $form);
-            $element
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .focus();
+            $element.addClass('error');
         }
 
       });
@@ -70,15 +59,12 @@ var account = (function($) {
       $('#customers_password_pass', $form).blur(function() {
         $form.removeClass('hasError');
         $element = $('#customers_password_pass', $form);
+        $element.removeClass('error');
 
         if($element.val() && $element.val().length < 5){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:password.min.length'), 'error', 4800, $form);
-            $element
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .focus();
+            $element.addClass('error');
         }
 
       });
@@ -87,29 +73,25 @@ var account = (function($) {
         $form.removeClass('hasError');
         $password = $('#customers_password_pass', $form);
         $element = $('#customers_password_pass_repeated', $form);
+        $element.removeClass('error');
 
         if($element.val() && $password.val() !== $element.val()){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:password.invalid.match'), 'error', 4800, $form);
-            $element
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .focus();
+            $element.addClass('error');
         }
 
       });
+
       $('#customers_phone', $form).blur(function() {
         $form.removeClass('hasError');
         $element = $('#customers_phone', $form);
+        $element.removeClass('error');
+
         if($element.val() && (/^\d+$/.test($element.val()) !== true || $element.val().length < 8)){
             $form.addClass('hasError');
             dialoug.notice(Translator.get('js:phone.invalid'), 'error', 4800, $form);
-            $element
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .fadeOut(100).fadeIn(100)
-              .focus();
+            $element.addClass('error');
         }
       });
 
@@ -186,11 +168,11 @@ var account = (function($) {
           this.value = '';
           if ($('#customers_addresses_0_postal_code').val() === '') {
             $('#customers_addresses_0_postal_code')
-            .css('border-color', '#a10000')
-            .fadeOut(100).fadeIn(100)
-            .fadeOut(100).fadeIn(100)
-            .fadeOut(100).fadeIn(100)
-            .focus();
+              .css('border-color', '#a10000')
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .fadeOut(100).fadeIn(100)
+              .focus();
             dialoug.stopLoading();
             return;
           }

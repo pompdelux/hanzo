@@ -70,12 +70,9 @@
 					lastPart;
 
 				if ( convert ) {
-					if ( isNumber(value) ) {
-						value = parseFloat(value);
-					} else if ( value === 'true' || value === 'false' ) {
+					if ( value === 'true' || value === 'false' ) {
 						value = Boolean(value);
 					}
-
 				}
 
 				// go through and create nested objects

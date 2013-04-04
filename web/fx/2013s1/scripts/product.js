@@ -234,6 +234,11 @@
 
           lookup.done(function(response) {
             if (false === response.status) {
+              if (undefined !== response.data.location) {
+                window.location.reload(true);
+                return false;
+              }
+
               if (response.message) {
                 dialoug.alert(Translator.get('js:notice'), response.message);
               }
@@ -289,7 +294,7 @@
         }
 
         $.each(data.images, function(index, data) {
-          $('.latest-seen-poducts').append('<a href="'+data.url+'"><img src="'+data.image+'" alt="'+data.title+'"></a> ');
+          $('.latest-seen-poducts').append('<a href="'+data.url+'"><img src="'+data.image+'" alt="'+data.title+'"></a>');
         });
 
         // fallback option, hide container if empty

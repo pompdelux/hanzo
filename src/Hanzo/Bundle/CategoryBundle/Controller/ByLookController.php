@@ -55,7 +55,6 @@ class ByLookController extends CoreController
         if (!$html) {
 
             $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager);
-
             $cms_page = CmsQuery::create()->findOneById($cms_id);
 
 

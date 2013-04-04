@@ -46,9 +46,12 @@ class Tools
         $v = str_replace(' ', $with, trim($v));
         $v = str_replace($search, $replace, $v);
 
-        $v = preg_replace('/[^a-z0-9_-]+/i', '', $v);
-        $v = preg_replace('/['.$with.']+/', $with, $v);
-        $v = preg_replace('/^'.$with.'|'.$with.'$/', '', $v);
+        $quoted = preg_quote($with);
+        $v = preg_replace('/[^a-z0-9_\-'.$quoted.']+/i', '', $v);
+        $v = preg_replace('/['.$quoted.']+/', '€', $v);
+        $v = preg_replace('/^'.$quoted.'|'.$quoted.'|€$/', '', $v);
+        $v = preg_replace('/[€-]+/', $with, $v);
+
 
         if ($lower) {
             return strtolower($v);
@@ -66,7 +69,9 @@ class Tools
      */
     public static function stripTags($text)
     {
-        return preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', '', $text);
+        $v = preg_replace('/<+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^>]*\/*\s*>+/i', ' ', $text);
+        $v = preg_replace('/[ ]+/', ' ', trim($v));
+        return $v;
     }
 
 
@@ -81,7 +86,7 @@ class Tools
     {
         static $cache = array();
 
-        $id = $order->getId();
+        $id = $order->getId().$part;
         if (empty($cache[$id])) {
             $cache[$id] = $order->toArray(BasePeer::TYPE_FIELDNAME);
         }
@@ -92,6 +97,8 @@ class Tools
         $skip = array(
             'billing_countries_id',
             'billing_method',
+            'billing_company_name',
+            'billing_state_province',
             'billing_first_name',
             'billing_last_name',
 
@@ -106,7 +113,12 @@ class Tools
         switch ($part) {
             case 'billing':
             case 'payment':
-                $address[] = trim($fields['first_name'] . ' ' . $fields['last_name']);
+                if ($fields['billing_company_name']) {
+                    $address[] = $fields['billing_company_name'];
+                    $address[] = 'Att: ' . trim($fields['billing_first_name'] . ' ' . $fields['billing_last_name']);
+                } else {
+                    $address[] = trim($fields['billing_first_name'] . ' ' . $fields['billing_last_name']);
+                }
                 foreach ($fields as $key => $value) {
                     if (!in_array($key, $skip) && $value && is_scalar($value) && (substr($key, 0, 8) == 'billing_')) {
                         $address[$key] = $value;
@@ -343,7 +355,7 @@ class Tools
     /**
      * Wrapper for php's money_format function
      *
-     * @see http://dk.php.net/manual/en/function.number-format.php
+     * @see http://dk.php.net/manual/en/function.money-format.php
      *
      * @param float $numner
      * @param string $format see php.net for format documentation
@@ -467,6 +479,10 @@ class Tools
     {
         static $path;
 
+        if (PHP_SAPI == 'cli') {
+            return;
+        }
+
         if (empty($path)) {
             $path = $_SERVER['SCRIPT_NAME'];
 
@@ -580,7 +596,7 @@ class Tools
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
-            $url['host'] = $_SERVER['HTTP_HOST'];
+            $url['host'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
         }
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];

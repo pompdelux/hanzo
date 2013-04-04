@@ -73,7 +73,7 @@ Pyydämme teitä ottamaan ystävällisesti yhteyttä Gothian asiakaspalveluun pu
       </trans-unit>
       <trans-unit id="form_txt30">
         <source>form.cancel</source>
-        <target>Afbryd betaling</target>
+        <target>Keskeytä maksu</target>
       </trans-unit>
       <trans-unit id="social_security_num">
         <source>social_security_num</source>

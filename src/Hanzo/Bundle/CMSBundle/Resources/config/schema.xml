@@ -138,7 +138,7 @@
   </table>
 
   <table name="consultants">
-    <column name="initials" type="VARCHAR" size="6" required="false"/>
+    <column name="initials" type="VARCHAR" size="10" required="false"/>
     <column name="info" type="LONGVARCHAR" defaultValue="null" required="false"/>
     <column name="event_notes" type="LONGVARCHAR" defaultValue="null" required="false"/>
     <column name="hide_info" type="BOOLEAN" size="1" required="true" defaultValue="false"/>

@@ -2,6 +2,9 @@
 
 namespace Hanzo\Model;
 
+use BasePeer;
+use \Hanzo\Core\Hanzo;
+use Hanzo\Model\CmsPeer;
 use Hanzo\Model\om\BaseCms;
 
 
@@ -20,7 +23,13 @@ class Cms extends BaseCms
 {
     public function getSettings($key = NULL, $raw = true)
     {
-        $settings = parent::getSettings();
+        $translator = Hanzo::getInstance()->container->get('translator');
+        $test = $this->getId().'.settings';
+        $settings = trim($translator->trans($test, [], 'cms'));
+
+        if ($test == $settings) {
+            $settings = parent::getSettings();
+        }
 
         if ($raw) {
             return $settings;
@@ -35,5 +44,27 @@ class Cms extends BaseCms
         }
 
         return $settings;
+    }
+
+
+    /**
+     * allow us to override all fields on a cms_i18n object with data in a translation file
+     *
+     * @param  Translator $translator
+     * @return Cms
+     */
+    public function sourceObject($translator)
+    {
+        $id = $this->getId();
+        foreach (CmsPeer::getFieldNames(BasePeer::TYPE_FIELDNAME) as $key) {
+            $k = $id.'.'.$key;
+
+            $trans = $translator->trans($k, [], 'cms');
+            if ($trans !== $k) {
+                $this->setByName($key, $trans, BasePeer::TYPE_FIELDNAME);
+            }
+        }
+
+        return $this;
     }
 } // Cms

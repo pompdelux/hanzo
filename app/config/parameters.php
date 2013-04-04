@@ -11,7 +11,7 @@ $db_prefix = '';
 $env = explode('_', $container->getParameter('kernel.environment'));
 
 if (empty($env[1])) {
-    $lang = 'dk';
+    $env[1] = $lang = 'dk';
 } else {
     $lang = $env[1];
 }

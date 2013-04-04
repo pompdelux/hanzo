@@ -15,7 +15,6 @@ services:
     service_factory:
         class:           %service_factory.class%
         arguments:
-            - %kernel.environment%
             - @service_container
 
     mail_manager:

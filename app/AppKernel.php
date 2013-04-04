@@ -55,6 +55,7 @@ class AppKernel extends Kernel
             new Hanzo\Bundle\VarnishBundle\VarnishBundle(),
             new Hanzo\Bundle\RedisBundle\RedisBundle(),
             new Hanzo\Bundle\NnoBundle\NnoBundle(),
+            new Hanzo\Bundle\LocationLocatorBundle\LocationLocatorBundle(),
         );
 
         if (preg_match('/^(test|dev)_/', $this->getEnvironment())) {
@@ -75,7 +76,7 @@ class AppKernel extends Kernel
     public function getEnvironment()
     {
         $env = parent::getEnvironment();
-        if (false === strpos('_', $env)) {
+        if (false === strpos($env, '_')) {
             $env = $env.'_dk';
         }
 
@@ -140,7 +141,10 @@ class AppKernel extends Kernel
 
         $mode = $this->getStoreMode();
 
+        $loader->load($base_dir.'parameters.ini');
+        $loader->load($base_dir.'parameters.php');
         $loader->load($base_dir.'firewall_'.$mode.'.yml');
+        $loader->load($base_dir.'config.yml');
         $loader->load($config_dir.'config.yml');
         $loader->load($config_dir.'_'.$lang.'.yml');
 
@@ -166,17 +170,6 @@ class AppKernel extends Kernel
         }
 
         return $mode;
-    }
-
-    /**
-     * allow us to override cache dir for the consultants section
-     *
-     * @see http://blog.amalraghav.com/manipulating-config-files/
-     * @return string
-     */
-    public function getCacheDir()
-    {
-        return parent::getCacheDir();
     }
 
     public function setSetting($key, $value)

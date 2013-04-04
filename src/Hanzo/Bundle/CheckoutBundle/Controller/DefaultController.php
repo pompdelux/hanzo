@@ -131,10 +131,6 @@ class DefaultController extends CoreController
             $order->setAttribute('SalesResponsible', 'global', 'WEB ' . $key);
         }
 
-        if (empty($attributes->global->domain_name)) {
-            $order->setAttribute('domain_name', 'global', $_SERVER['HTTP_HOST']);
-        }
-
         if (empty($attributes->global->domain_key)) {
             $order->setAttribute('domain_key', 'global', $domain_key);
         }
@@ -153,7 +149,6 @@ class DefaultController extends CoreController
                 }
             }
         }
-
 
         /* ------------------------------------------------- */
         $order->save();

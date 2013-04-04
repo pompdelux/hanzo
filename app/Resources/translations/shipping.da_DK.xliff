@@ -36,14 +36,11 @@
       </trans-unit>
       <trans-unit id="shipping_method.name.12">
         <source>shipping_method.name.12</source>
-        <target>Døgnpost</target>
+        <target>Valgfri udlevering - døgnpost</target>
       </trans-unit>
       <trans-unit id="shipping_method.desc.12">
         <source>shipping_method.desc.12</source>
-        <target><![CDATA[
-          For at du kan få sendt pakker til Døgnposten, skal du oplyse dit navn og det ID, du valgte ved tilmeldingen til Døgnposten. Oplys Døgnpostens nummer og adresse som leveringsadresse og din egen adresse som betalingsadresse.<br>
-          <a href="http://www.postdanmark.dk/da/Privat/Selvbetjening/D%C3%B8gnpost/Sider/Selvbetjening%20D%C3%B8gnposten.aspx" rel="external">» Læs mere om Døgnpost</a>
-      ]]></target>
+        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Døgnpost, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang. Udleveringssteder finder du hos dit Posthus, Brugs eller lign..]]></target>
       </trans-unit>
       <trans-unit id="shipping_method.label.12">
         <source>shipping_method.label.12</source>

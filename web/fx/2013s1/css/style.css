@@ -1,24 +1,24 @@
 /**
-| _sprites
+| _sprites.
 */
-.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price {
-  background: url('/fx/2013s1/../images/icons/da-s108dc2efea.png') no-repeat;
+.da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-s58a692fae5.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-sd048972234.png') no-repeat;
 }
 
 .icons-arrow_down {
-  background-position: 0 -543px;
+  background-position: 0 -507px;
 }
 
 .icons-arrow_left {
-  background-position: 0 -536px;
+  background-position: 0 -500px;
 }
 
 .icons-arrow_right {
-  background-position: 0 -547px;
+  background-position: 0 -511px;
 }
 
 .icons-basket {
@@ -26,11 +26,11 @@
 }
 
 .icons-button-left {
-  background-position: 0 -517px;
+  background-position: 0 -481px;
 }
 
 .icons-button-right {
-  background-position: 0 -498px;
+  background-position: 0 -462px;
 }
 
 .icons-delete {
@@ -62,11 +62,11 @@
 }
 
 .icons-facebook {
-  background-position: 0 -466px;
+  background-position: 0 -398px;
 }
 
 .icons-gplus {
-  background-position: 0 -320px;
+  background-position: 0 -270px;
 }
 
 .icons-newsletter {
@@ -74,11 +74,11 @@
 }
 
 .icons-pdf {
-  background-position: 0 -554px;
+  background-position: 0 -518px;
 }
 
 .icons-pinterest {
-  background-position: 0 -402px;
+  background-position: 0 -302px;
 }
 
 .icons-shopping-bag {
@@ -86,135 +86,165 @@
 }
 
 .icons-show {
-  background-position: 0 -570px;
+  background-position: 0 -534px;
 }
 
 .icons-twitter {
-  background-position: 0 -434px;
+  background-position: 0 -366px;
 }
 
 .icons-video {
-  background-position: 0 -352px;
+  background-position: 0 -430px;
 }
 
 .icons-zoom {
-  background-position: 0 -270px;
+  background-position: 0 -334px;
 }
 
-.fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price {
-  background: url('/fx/2013s1/../images/icons/fi-s9c67d08aa7.png') no-repeat;
+.fi-sprite, body.fi form.buy .submit-button, body.fi .buy-set, body.fi .new-price, body.fi .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/fi-s32736d1a36.png') no-repeat;
 }
 
-.nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price {
-  background: url('/fx/2013s1/../images/icons/nl-sffc453cabb.png') no-repeat;
+.nl-sprite, body.nl form.buy .submit-button, body.nl .buy-set, body.nl .new-price, body.nl .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/nl-s3d8b2e4fd8.png') no-repeat;
 }
 
-.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price {
-  background: url('/fx/2013s1/../images/icons/no-s6b225244c3.png') no-repeat;
+.no-sprite, body.nb form.buy .submit-button, body.nb .buy-set, body.nb .new-price, body.nb .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/no-s82054f548a.png') no-repeat;
 }
 
-.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price {
-  background: url('/fx/2013s1/../images/icons/se-s5e0c64e46d.png') no-repeat;
+.se-sprite, body.sv form.buy .submit-button, body.sv .buy-set, body.sv .new-price, body.sv .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/se-s0c9b635c7c.png') no-repeat;
 }
 
-.en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price {
-  background: url('/fx/2013s1/../images/icons/en-se06a0d064c.png') no-repeat;
+.en-sprite, body.en form.buy .submit-button, body.en .buy-set, body.en .new-price, body.en .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/en-s9d987caa83.png') no-repeat;
 }
 
 body.da form.buy .submit-button {
-  background-position: 0 -2164px;
+  background-position: 0 -579px;
   height: 84px;
   width: 87px;
 }
 body.da .buy-set {
-  background-position: 0 -2080px;
+  background-position: 0 -495px;
   height: 84px;
   width: 87px;
 }
 body.da .new-price {
-  background-position: 0 -1670px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
+body.da .out-of-stock {
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
+}
 
 body.en form.buy .submit-button {
-  background-position: 0 -2080px;
+  background-position: 0 -496px;
   height: 84px;
   width: 84px;
 }
 body.en .buy-set {
-  background-position: 0 -2164px;
+  background-position: 0 -580px;
   height: 84px;
   width: 84px;
 }
 body.en .new-price {
-  background-position: 0 -1670px;
+  background-position: 0 -86px;
   height: 410px;
   width: 234px;
 }
+body.en .out-of-stock {
+  background-position: 0 0;
+  height: 86px;
+  width: 85px;
+}
 
 body.fi form.buy .submit-button {
-  background-position: 0 -2164px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.fi .buy-set {
-  background-position: 0 -2080px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.fi .new-price {
-  background-position: 0 -1670px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
+body.fi .out-of-stock {
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
+}
 
 body.nb form.buy .submit-button {
-  background-position: 0 -2164px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.nb .buy-set {
-  background-position: 0 -2080px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.nb .new-price {
-  background-position: 0 -1670px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
+body.nb .out-of-stock {
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
+}
 
 body.nl form.buy .submit-button {
-  background-position: 0 -2164px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.nl .buy-set {
-  background-position: 0 -2080px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.nl .new-price {
-  background-position: 0 -1670px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
 }
+body.nl .out-of-stock {
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
+}
 
 body.sv form.buy .submit-button {
-  background-position: 0 -2164px;
+  background-position: 0 -579px;
   height: 84px;
   width: 84px;
 }
 body.sv .buy-set {
-  background-position: 0 -2080px;
+  background-position: 0 -495px;
   height: 84px;
   width: 84px;
 }
 body.sv .new-price {
-  background-position: 0 -1670px;
+  background-position: 0 0;
   height: 410px;
   width: 234px;
+}
+body.sv .out-of-stock {
+  background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
 }
 
 /**
@@ -690,14 +720,19 @@ div.panes > div {
   margin-bottom: 18px;
 }
 
+.history-link {
+  margin-bottom: 5px;
+}
+
 .zoom {
   display: inline-block;
   text-align: center;
+  margin-right: 5px;
 }
 .zoom .sprite {
-  background-position: 0 -270px;
-  height: 50px;
-  width: 45px;
+  background-position: 0 -334px;
+  height: 32px;
+  width: 29px;
 }
 
 .body-product .breadcrumb {
@@ -709,9 +744,9 @@ a.video-popper, #video-player-container a.video {
   text-align: center;
 }
 a.video-popper .sprite, #video-player-container a.video .sprite {
-  background-position: 0 -352px;
-  height: 50px;
-  width: 58px;
+  background-position: 0 -430px;
+  height: 32px;
+  width: 37px;
 }
 
 .body-product .main h1.title,
@@ -1073,6 +1108,7 @@ a.product-color {
   width: 65px;
   font-size: 12px;
   vertical-align: top;
+  white-space: nowrap;
 }
 a.product-color .colorbuttons {
   display: block;
@@ -1503,6 +1539,12 @@ a.product-color.current .colorbuttons-yellow, a.product-color:hover .colorbutton
   right: 0;
   text-indent: -999px;
 }
+.product-list .block a .out-of-stock {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-indent: -999px;
+}
 .product-list .block.look .buy-set {
   display: none;
   position: absolute;
@@ -1621,6 +1663,10 @@ form.address label {
   border: 2px solid #f00;
   clear: both;
 }
+#address-block .block {
+  overflow: hidden;
+  float: left;
+}
 
 .shipping-method,
 .payment-module {
@@ -1697,6 +1743,35 @@ form.address label {
 }
 #body-pensio-payment-form .pensio_payment_form_table td {
   vertical-align: normal;
+}
+form.location-locator input.button.button-right {
+  margin-left: 5px;
+  float: none;
+}
+form.location-locator table.locator-result {
+  margin-top: 20px;
+  width: auto;
+}
+form.location-locator table.locator-result tbody td {
+  padding: 4px 6px;
+}
+form.location-locator table.locator-result tbody td label {
+  width: auto;
+  margin-top: 0;
+}
+form.location-locator table.locator-result .opening-hours {
+  width: auto;
+}
+form.location-locator label {
+  display: inline-block;
+  width: 110px;
+}
+form.location-locator div.error {
+  margin: 10px;
+}
+form.location-locator div.error p {
+  border: 1px solid red;
+  padding: 10px;
 }
 
 /**
@@ -2786,14 +2861,14 @@ a.button.button-full-width,
 
 .arrow-right {
   margin-left: 6px;
-  background-position: 0 -547px;
+  background-position: 0 -511px;
   height: 7px;
   width: 4px;
 }
 
 .arrow-left {
   margin-right: 6px;
-  background-position: 0 -536px;
+  background-position: 0 -500px;
   height: 7px;
   width: 4px;
 }
@@ -2952,12 +3027,12 @@ button.right {
   width: 23px;
 }
 .sprite.show {
-  background-position: 0 -570px;
+  background-position: 0 -534px;
   height: 16px;
   width: 16px;
 }
 .sprite.pdf {
-  background-position: 0 -554px;
+  background-position: 0 -518px;
   height: 16px;
   width: 16px;
 }

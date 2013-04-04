@@ -170,6 +170,10 @@
 <script>
   if (1 == $('#shipping-block input').length) {
     $('#shipping-block input').first().click();
+    {# ie7 has some issues with click, apparently #}
+    if ($('html').hasClass('ie7')) {
+      $('#shipping-block input').first().click();
+    }
   }
 </script>
 {% endif %}

@@ -115,8 +115,6 @@ class DefaultController extends CoreController
                         p.id = pdp.products_id
                     )
                 WHERE
-                    p.is_out_of_stock = 0
-                AND
                     p.size IN ('".implode("','", $sizes[$size])."')
                 AND
                     pdp.domains_id = {$domain_id}
@@ -165,8 +163,6 @@ class DefaultController extends CoreController
                         p.id = pdp.products_id
                     )
                 WHERE
-                    p.is_out_of_stock = 0
-                AND
                     pdp.domains_id = {$domain_id}
                 AND
                     ci.locale = '{$locale}'
@@ -216,6 +212,7 @@ class DefaultController extends CoreController
                                 $category_map[$category][$id] = array(
                                     'sku' => $product->getSku(),
                                     'id' => $product->getId(),
+                                    'out_of_stock' => $product->getIsOutOfStock(),
                                     'title' => $product->getSku(),
                                     'image' => $image_set,
                                     'image_flip' => $image_overview,
@@ -308,7 +305,6 @@ class DefaultController extends CoreController
             ->endUse()
             ->joinWithProductsImages()
             ->joinWithProductsToCategories()
-            ->filterByIsOutOfStock(false)
             ->filterBySku($q)
             ->_or()
             ->filterBySize($q)
@@ -337,10 +333,10 @@ class DefaultController extends CoreController
             }
 
             $image = $product->getProductsImagess()->getFirst();
-
             $result[] = array(
                 'sku' => $product->getSku(),
                 'id' => $product->getId(),
+                'out_of_stock' => $product->getIsOutOfStock(),
                 'title' => $product->getSku(),
                 'image' => $image->getImage(),
                 'url' => $router->generate($product_route, array(

@@ -28,7 +28,7 @@
 {% endif %}
 
 {% for line in order.getOrderLineDiscount %}
-  <tr>
+  <tr data-is="{{ line.productsSku }}">
     <td>{{ line.productsSku|trans({},'checkout') }}</td>
     <td class="right">{{ line.price|money }}</td>
   </tr>
