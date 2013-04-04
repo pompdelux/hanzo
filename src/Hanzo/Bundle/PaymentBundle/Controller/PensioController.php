@@ -136,13 +136,13 @@ class PensioController extends CoreController
                 'message'    => $request->get('error_message'),
                 'order_id'   => $order->getId(),
                 'amount'     => $order->getTotalPrice(),
-                'payment_id' => $order->getPaymentGatewayId()
+                'payment_id' => $order->getPaymentGatewayId(),
+                'back_url'   => $this->generateUrl('_checkout', [], true),
             ]);
         }
 
         return new Response('FAILED', 500, array('Content-Type' => 'text/plain'));
     }
-
 
     public function processAction(Request $request){}
 

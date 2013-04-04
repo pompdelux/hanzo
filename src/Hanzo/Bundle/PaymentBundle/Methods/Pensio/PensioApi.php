@@ -204,30 +204,31 @@ class PensioApi
         $cookie = implode('; ', $cookie);
 
         $data = [
-            'terminal' => $this->settings['terminal'],
+            'terminal'     => $this->settings['terminal'],
             'shop_orderid' => $order->getPaymentGatewayId(),
-            'amount' => number_format($order->getTotalPrice(), 2, '.', ''),
-            'currency' => $order->getCurrencyCode(),
-            'language' => $language,
-            'config' => [
-                'callback_form' => $this->router->generate('_pensio_form', [], true),
-                'callback_redirect' => $this->router->generate('_pensio_wait', [], true),
-                'callback_ok' => $this->router->generate('_pensio_callback', ['status' => 'ok'], true),
-                'callback_fail' => $this->router->generate('_pensio_callback', ['status' => 'failed'], true),
+            'amount'       => number_format($order->getTotalPrice(), 2, '.', ''),
+            'currency'     => $order->getCurrencyCode(),
+            'language'     => $language,
+            'config'       => [
+                'callback_fail'         => $this->router->generate('_pensio_callback', ['status' => 'failed'], true),
+                'callback_form'         => $this->router->generate('_pensio_form', [], true),
+                'callback_notification' => $this->router->generate('_pensio_callback', ['status' => 'ok'], true),
+                'callback_ok'           => $this->router->generate('_pensio_callback', ['status' => 'ok'], true),
+                'callback_redirect'     => $this->router->generate('_pensio_wait', [], true),
             ],
             'transaction_info' => [
-                'Firstname' => $order->getBillingFirstName(),
-                'Lastname' => $order->getBillingLastName(),
-                'Company' => $order->getBillingCompanyName(),
-                'Address1' => $order->getBillingAddressLine1(),
-                'Address2' => $order->getBillingAddressLine2(),
-                'City' => $order->getBillingCity(),
-                'Postalcode' => $order->getBillingPostalCode(),
+                'Firstname'     => $order->getBillingFirstName(),
+                'Lastname'      => $order->getBillingLastName(),
+                'Company'       => $order->getBillingCompanyName(),
+                'Address1'      => $order->getBillingAddressLine1(),
+                'Address2'      => $order->getBillingAddressLine2(),
+                'City'          => $order->getBillingCity(),
+                'Postalcode'    => $order->getBillingPostalCode(),
                 'StateProvince' => $order->getBillingStateProvince(),
-                'Country' => $order->getBillingCountry(),
-                'Phone' => $order->getPhone(),
-                'Email' => $order->getEmail(),
-                'OrderId' => $order->getId(),
+                'Country'       => $order->getBillingCountry(),
+                'Phone'         => $order->getPhone(),
+                'Email'         => $order->getEmail(),
+                'OrderId'       => $order->getId(),
             ],
             'cookie' => $cookie,
         ];
@@ -238,12 +239,12 @@ class PensioApi
         ];
 
         $request = ['http' => [
-            'header' => implode("\r\n", $headers),
-            'method' => 'POST',
+            'header'        => implode("\r\n", $headers),
+            'method'        => 'POST',
             'max_redirects' => 0,
-            'timeout' => 5,
+            'timeout'       => 5,
             'ignore_errors' => false,
-            'content' => http_build_query($data),
+            'content'       => http_build_query($data),
         ]];
 
         $context = stream_context_create($request);

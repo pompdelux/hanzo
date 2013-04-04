@@ -18,6 +18,12 @@
         <source>failed.description</source>
         <target>Payment via Pensio Failed for some reason: %message%</target>
       </trans-unit>
+      <trans-unit id="failed.go.back.description" approved="no">
+        <source>failed.go.back.description</source>
+        <target><![CDATA[
+          Go <a href="%back_url%">back</a> the checkout page and choose another payment method.
+        ]]></target>
+      </trans-unit>
       <trans-unit id="form.order_id" approved="no">
         <source>form.order_id</source>
         <target>Order ID: %order_id%</target>
