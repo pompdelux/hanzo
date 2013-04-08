@@ -462,6 +462,8 @@ class ECommerceServices extends SoapService
      */
     public function SyncInventoryOnHand($data)
     {
+#Tools::log($this->request->getLocale().' -> SyncInventoryOnHand');
+
         //Tools::log($data);
         $now = date('Ymd');
         $errors = array();
