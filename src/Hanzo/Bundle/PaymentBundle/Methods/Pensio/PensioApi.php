@@ -9,6 +9,13 @@ INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pen
 INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'api_user', 'un@bellcom.dk');
 INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'api_pass', 'y2etx3@vz5Jc');
 
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'method_enabled', '0');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'gateway', 'pompdelux');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'terminal', 'POMPdeLUX iDEAL');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'secret', '');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'api_user', 'pensioapi@pompdelux.com');
+INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('DK', 'pensioapi', 'api_pass', '');
+
 INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'method_enabled', '1');
 INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'gateway', 'testgateway');
 INSERT INTO domains_settings (domain_key, ns, c_key, c_value) VALUES ('NL', 'pensioapi', 'terminal', 'Pomp De Lux iDEAL Test Terminal');
