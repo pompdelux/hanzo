@@ -839,7 +839,8 @@ class Orders extends BaseOrders
             ->setBillingCompanyName( $address->getCompanyName() )
             ->setBillingFirstName( $address->getFirstName() )
             ->setBillingLastName( $address->getLastName() )
-            ;
+            ->setBillingExternalAddressId( $address->getExternalAddressId() )
+        ;
     }
 
     /**
@@ -971,6 +972,7 @@ class Orders extends BaseOrders
             ->setDeliveryCompanyName( $address->getCompanyName() )
             ->setDeliveryFirstName( $address->getFirstName() )
             ->setDeliveryLastName( $address->getLastName() )
+            ->setDeliveryExternalAddressId( $address->getExternalAddressId() )
         ;
     }
 
