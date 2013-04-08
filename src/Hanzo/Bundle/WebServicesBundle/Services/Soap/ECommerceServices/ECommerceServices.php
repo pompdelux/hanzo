@@ -462,6 +462,8 @@ class ECommerceServices extends SoapService
      */
     public function SyncInventoryOnHand($data)
     {
+#Tools::log(__METHOD__);
+
         //Tools::log($data);
         $now = date('Ymd');
         $errors = array();
