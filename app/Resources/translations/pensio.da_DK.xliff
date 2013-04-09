@@ -54,6 +54,10 @@
           We are about to redirect you back to %server%, if for some reason this does not happen click <a href="%url%">here</a>.
         ]]></target>
       </trans-unit>
+      <trans-unit id="cancel.payment">
+        <source>cancel.payment</source>
+        <target>Afbryd betalingen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -15,6 +15,11 @@
         <li class="total">{{ 'form.amount'|trans({'%amount%': amount|money}, 'pensio') }}</li>
     </ul>
 
-    {# NOTE: DO NOT, UNDER ANY CIRCUMSTANCE, CHANGE THE FORM TAG IN ANY WAY ! #}
+    {# NOTE: DO NOT, UNDER ANY CIRCUMSTANCE, CHANGE THIS FORM TAG IN ANY WAY ! #}
     <form id="PensioPaymentForm"></form>
+    {# ----------------------------------------------------------------------- #}
+
+    <p>
+        <a href="{{ url('_payment_cancel') }}">{{ 'cancel.payment'|trans({}, 'pensio') }}</a>
+    </p>
 {% endblock %}
