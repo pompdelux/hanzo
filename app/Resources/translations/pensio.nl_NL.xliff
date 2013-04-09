@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file original="file.ext" datatype="plaintext" source-language="en">
+        <body>
+            <trans-unit id="payment.title">
+                <source>payment.title</source>
+                <target>Pensio</target>
+            </trans-unit>
+            <trans-unit id="ideal.desc">
+                <source>ideal.desc</source>
+                <target>iDeal</target>
+            </trans-unit>
+            <trans-unit id="failed.heading">
+                <source>failed.heading</source>
+                <target>De betaling is mislukt</target>
+            </trans-unit>
+            <trans-unit id="failed.description">
+                <source>failed.description</source>
+                <target>De betaling via Pensio is mislukt: %message%</target>
+            </trans-unit>
+            <trans-unit id="failed.go.back.description">
+                <source>failed.go.back.description</source>
+                <target><![CDATA[
+                    Ga <a href="%back_url%">back</a> naar de check-out pagina en kies een andere betaalmethode.
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="form.order_id">
+                <source>form.order_id</source>
+                <target>Order ID: %order_id%</target>
+            </trans-unit>
+            <trans-unit id="form.payment_id">
+                <source>form.payment_id</source>
+                <target>Betaal ID: %payment_id%</target>
+            </trans-unit>
+            <trans-unit id="form.amount">
+                <source>form.amount</source>
+                <target>Bedrag: %amount%</target>
+            </trans-unit>
+            <trans-unit id="form.heading">
+                <source>form.heading</source>
+                <target>Betaling</target>
+            </trans-unit>
+            <trans-unit id="form.description">
+                <source>form.description</source>
+                <target>Betaalkenmerk</target>
+            </trans-unit>
+            <trans-unit id="wait.heading">
+                <source>wait.heading</source>
+                <target>Even geduld ajb</target>
+            </trans-unit>
+            <trans-unit id="wait.description">
+                <source>wait.description</source>
+                <target><![CDATA[
+                    We gaan je terugleiden naar %server%, als dit niet gebeurt, klik dan <a href="%url%">hier</a>.
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="cancel.payment">
+                <source>cancel.payment</source>
+                <target>Annuleer</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -2,8 +2,6 @@
 
 namespace Hanzo\Bundle\PaymentBundle\Methods\Gothia;
 
-use Exception;
+use Hanzo\Bundle\PaymentBundle\PaymentApiCallException;
 
-class GothiaApiCallException extends Exception
-{
-}
+class GothiaApiCallException extends PaymentApiCallException {}

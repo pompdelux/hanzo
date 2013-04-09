@@ -51,9 +51,12 @@
     <a href="{{ path('_homepage', {'_locale' : app.request.locale}) }}" title="{{ "home"|trans }}">
       {{ fx_image_tag('images/POMPdeLUX_logo_SS12.png', '0x100', {'id':'logo', 'alt':'POMPdeLUX'}) }}
     </a>
+
+  {% if simple_layout is not defined %}
     <nav class="menu main-menu">
       {% render 'CMSBundle:Menu:menu' with {'type': left_menu.type, 'thread': left_menu.thread, 'from': left_menu.from } %}
     </nav><!-- /nav.main -->
+  {% endif %}
     <hr class="right">
   </header>
 
@@ -61,6 +64,7 @@
     {% block content %}{% endblock %}
   </div><!-- /div#main -->
 
+{% if simple_layout is not defined %}
   <nav id="secondary-links">
     <ul class="horizontal menu right first">
       <li><a href="{{ path('_account', {'_locale' : app.request.locale}) }}">{{ "my.account"|trans({}, 'account') }}</a></li>
@@ -90,7 +94,10 @@
       <li class="last"><a href="{{ path('basket_view', {'_locale' : app.request.locale}) }}">{{ "show.basket"|trans }}</a></li>
     </ul>
   </nav>
+{% endif %}
+
   <footer class="container container_8">
+  {% if simple_layout is not defined %}
     <div class="grid_8 row">
       <hr class="right">
     </div>
@@ -122,7 +129,7 @@
         </form>
       </div>
     </div>
-
+  {% endif %}
     <div class="grid_8">
       <hr class="left row">
     </div>
