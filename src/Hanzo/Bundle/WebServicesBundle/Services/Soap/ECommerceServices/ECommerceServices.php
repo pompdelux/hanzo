@@ -38,7 +38,7 @@ use Hanzo\Model\OrdersLinesQuery;
 
 use Hanzo\Bundle\NewsletterBundle\NewsletterApi;
 use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCall;
-use Hanzo\Bundle\PaymentBundle\Dibs\DibsApiCallException;
+use Hanzo\Bundle\PaymentBundle\PaymentApiCallException;
 
 use Hanzo\Bundle\AdminBundle\Event\FilterCategoryEvent;
 
@@ -1072,7 +1072,8 @@ class ECommerceServices extends SoapService
     {
         $error = array();
 
-        if ('paybybill' == $order->getBillingMethod()) {
+        $provider = strtolower($order->getBillingMethod());
+        if ('paybybill' == $provider) {
             return true;
         }
 
@@ -1081,22 +1082,22 @@ class ECommerceServices extends SoapService
             list($large, $small) = explode('.', $tmpAmount);
 
             $amount = $large . sprintf('%02d', $small);
-            $gateway = $this->hanzo->container->get('payment.dibsapi');
+            $gateway = $this->hanzo->container->get('payment.'.$provider.'api');
 
             $this->timer->reset();
             try {
                 $response = $gateway->call()->capture($order, $amount);
                 $result = $response->debug();
-            } catch (DibsApiCallException $e) {
+            } catch (PaymentApiCallException $e) {
                 $error = array(
                     'cound not capture order #' . $data->eOrderNumber,
                     'error: ' . $e->getMessage(),
                     'line : ' . __LINE__
                 );
             }
-            $this->timer->lap('time in gateway');
+            $this->timer->lap('time in '.$provider.' gateway');
 
-            if ( empty($result['status']) || ($result['status'] != 'ACCEPTED') ) {
+            if ( empty($result['status']) || (!in_array($result['status'], [true, 'ACCEPTED'])) ) {
                 $error = array(
                     'cound not capture order #' . $data->eOrderNumber,
                     'error: '.(empty($result['status_description']) ? 'unknown error' : $result['status_description'])
@@ -1131,7 +1132,8 @@ class ECommerceServices extends SoapService
         list($large, $small) = explode('.', $amount);
         $amount = $large . sprintf('%02d', $small);
 
-        $gateway = $this->hanzo->container->get('payment.dibsapi');
+        $provider = strtolower($order->getBillingMethod());
+        $gateway = $this->hanzo->container->get('payment.'.$provider.'api');
         $domain = strtoupper($order->getAttributes()->global->domain_key);
 
         $doSendError = false;
@@ -1139,7 +1141,7 @@ class ECommerceServices extends SoapService
             $this->timer->reset();
             $response = $gateway->call()->refund($order, ($amount * -1));
             $result = $response->debug();
-            $this->timer->lap('time in gateway');
+            $this->timer->lap('time in '.$provider.' gateway');
 
 // un: 2012.11.29 - test logging all refunds.
 Tools::log('->->->->->->->->->-');
@@ -1147,7 +1149,7 @@ Tools::log($data);
 Tools::log($result);
 Tools::log('-<-<-<-<-<-<-<-<-<-');
 
-            if ($result['status'] != 0) {
+            if (!in_array($result['status'], [0, true])) {
                 $doSendError = true;
                 $errors = array(
                     'cound not refund order #' . $data->eOrderNumber,

@@ -1,0 +1,21 @@
+{% set page_type = 'pensio-payment-failed' %}
+{% extends layout %}
+{% block content %}
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            <h1>{{ 'failed.heading'|trans({}, 'pensio') }}</h1>
+        </hgroup>
+    </header>
+    <div class="description">
+        {{ 'failed.description'|trans({'%message%': message}, 'pensio') }}
+    </div>
+    <ul>
+        <li>{{ 'form.order_id'|trans({'%order_id%': order_id}, 'pensio') }}</li>
+        <li class="total">{{ 'form.amount'|trans({'%amount%': amount|money}, 'pensio') }}</li>
+    </ul>
+    <div class="description">
+        {{ 'failed.go.back.description'|trans({'%back_url%': back_url}, 'pensio') }}
+    </div>
+
+{% endblock %}
+

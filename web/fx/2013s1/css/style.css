@@ -481,7 +481,10 @@ ul.breadcrumb li.last i.arrow-right {
 #body-create-account .main header,
 #body-event .main header,
 #body-gothia .main header,
-#body-login .main header {
+#body-login .main header,
+#body-pensio-payment-failed .main header,
+#body-pensio-pensio-payment-form .main header,
+#body-pensio-wait .main header {
   background: #d2c3c6;
   background: url("/fx/images/headers/Kategori_Min_side_960x100.jpg") no-repeat top center;
 }
@@ -541,7 +544,31 @@ ul.breadcrumb li.last i.arrow-right {
 #body-login .main header hgroup h5,
 #body-login .main header hgroup h6,
 #body-login .main header hgroup a,
-#body-login .main header hgroup p {
+#body-login .main header hgroup p,
+#body-pensio-payment-failed .main header hgroup h1,
+#body-pensio-payment-failed .main header hgroup h2,
+#body-pensio-payment-failed .main header hgroup h3,
+#body-pensio-payment-failed .main header hgroup h4,
+#body-pensio-payment-failed .main header hgroup h5,
+#body-pensio-payment-failed .main header hgroup h6,
+#body-pensio-payment-failed .main header hgroup a,
+#body-pensio-payment-failed .main header hgroup p,
+#body-pensio-pensio-payment-form .main header hgroup h1,
+#body-pensio-pensio-payment-form .main header hgroup h2,
+#body-pensio-pensio-payment-form .main header hgroup h3,
+#body-pensio-pensio-payment-form .main header hgroup h4,
+#body-pensio-pensio-payment-form .main header hgroup h5,
+#body-pensio-pensio-payment-form .main header hgroup h6,
+#body-pensio-pensio-payment-form .main header hgroup a,
+#body-pensio-pensio-payment-form .main header hgroup p,
+#body-pensio-wait .main header hgroup h1,
+#body-pensio-wait .main header hgroup h2,
+#body-pensio-wait .main header hgroup h3,
+#body-pensio-wait .main header hgroup h4,
+#body-pensio-wait .main header hgroup h5,
+#body-pensio-wait .main header hgroup h6,
+#body-pensio-wait .main header hgroup a,
+#body-pensio-wait .main header hgroup p {
   color: #444;
 }
 
@@ -1682,6 +1709,41 @@ form.address label {
   margin: 0 10px;
 }
 
+#body-pensio-payment-form ul,
+#body-pensio-payment-form form {
+  margin: 20px 0;
+}
+#body-pensio-payment-form li.total {
+  padding-top: 10px;
+  font-weight: bold;
+}
+#body-pensio-payment-form .pensio_payment_form_submit_cell input {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  background: #474749;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 6px;
+  font-weight: normal;
+  color: white !important;
+  line-height: 18px;
+  white-space: normal;
+  -webkit-appearance: none;
+  background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
+  border-right: 6px solid #474749;
+  padding: 6px 24px;
+}
+#body-pensio-payment-form .pensio_payment_form_submit_cell input:hover {
+  text-decoration: none;
+}
+#body-pensio-payment-form .pensio_payment_form_table {
+  width: auto;
+}
+#body-pensio-payment-form .pensio_payment_form_table td {
+  vertical-align: normal;
+}
 form.location-locator input.button.button-right {
   margin-left: 5px;
   float: none;
