@@ -294,7 +294,6 @@
         $('input.droppoint-locator', $form).on('change', function(event) {
           var $this = $(this);
           var data = $this.data('entry');
-
           var $address = $form.next('form');
 
           $('input#form_first_name', $address).val(data.name);
