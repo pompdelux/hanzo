@@ -301,7 +301,7 @@
           $('input#form_address_line_2', $address).val(data.address);
           $('input#form_postal_code', $address).val(data.postal_code);
           $('input#form_city', $address).val(data.city);
-          $('input#form_external_id', $address).val(data.id);
+          $('input#form_external_address_id', $address).val(data.id);
         });
       } else {
         console.log('here');
