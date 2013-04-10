@@ -190,6 +190,7 @@ class DefaultController extends CoreController
 
         return $this->render('EventsBundle:Default:create_customer.html.twig', array(
             'page_type' => 'events-create-customer',
+            'is_hostess' => $is_hostess,
             'form' => $form->createView(),
             'errors' => $errors,
             'domain_key' => $domainKey
