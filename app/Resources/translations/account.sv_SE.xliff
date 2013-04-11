@@ -169,7 +169,7 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>create.account</source>
-                <target>Upprätta konto</target>
+                <target>Fortsätt</target>
             </trans-unit>
             <trans-unit id="edit.account">
                 <source>edit.account</source>

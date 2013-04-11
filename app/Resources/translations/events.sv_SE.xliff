@@ -12,11 +12,11 @@
             </trans-unit>
             <trans-unit id="events.calendar.description.text">
                 <source>events.calendar.description.text</source>
-                <target>Här kan du se alla dina upprättade arrangemang. Grön betyder öppna arrangemang och röd betyder avslutade arrangemang. Klicka på ett arrangemang för att få en detaljerad beskrivning.</target>
+                <target>Här kan du se alla dina upprättade arrangemang. Grön betyder att Home shopping arrangemanget ännu inte blivit avhållt, blå betyder att det är ett Öppet hus arrangemang som inte blivit avhållt och röd betyder att arrangemanget är avslutat. Klicka på ett arrangemang för att få en detaljerad beskrivning.</target>
             </trans-unit>
             <trans-unit id="events.calendar.archived.header.text">
                 <source>events.calendar.archived.header.text</source>
-                <target>Arkiverede arrangementer</target>
+                <target>Arkiverade arrangemang</target>
             </trans-unit>
             <trans-unit id="events.view_event.header.text">
                 <source>events.view_event.header.text</source>
@@ -225,7 +225,7 @@
             </trans-unit>
             <trans-unit id="events.notify_hostess.label">
                 <source>events.notify_hostess.label</source>
-                <target>Meddela värdinnan?</target>
+                <target>Skicka bekräftelse till värdinnan?</target>
             </trans-unit>
             <trans-unit id="events.customer.found">
                 <source>events.customer.found</source>
