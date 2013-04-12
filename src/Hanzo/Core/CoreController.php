@@ -30,6 +30,7 @@ class CoreController extends Controller
         4 => 'NO',
         5 => 'NL',
         6 => 'FI',
+        7 => 'DE',
     );
 
     protected function getFormat()
