@@ -293,7 +293,6 @@
           $('input#form_external_address_id', $address).val(data.id);
         });
       } else {
-        console.log('here');
         $form.append('<div class="error"><p>'+response.response.message+'</p></div>');
       }
       dialoug.stopLoading();
