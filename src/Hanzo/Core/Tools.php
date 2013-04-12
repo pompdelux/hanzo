@@ -101,13 +101,14 @@ class Tools
             'billing_state_province',
             'billing_first_name',
             'billing_last_name',
-
+            'billing_external_address_id',
             'delivery_countries_id',
             'delivery_state_province',
             'delivery_company_name',
             'delivery_method',
             'delivery_first_name',
             'delivery_last_name',
+            'delivery_external_address_id',
         );
 
         switch ($part) {

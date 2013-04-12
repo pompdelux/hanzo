@@ -15,6 +15,7 @@
       $('#body-checkout form input:checked').each(function (index, element) {
         if (element.name == 'method') {
           checkout.setStepStatus('shipping', true);
+          attachLocationForm($('#address-block form.location-locator'));
         } else if (element.name == 'paytype') {
           checkout.setStepStatus('payment', true);
           $('#coupon-block').removeClass('hidden');
@@ -261,18 +262,7 @@
           $('#address-copy').parent().addClass('off');
         }
 
-        var $form = $('#address-block form.location-locator');
-        $form.on('submit', function(event) {
-
-          if ($('.locator-result', $form).length) {
-            $('.locator-result', $form).remove();
-          }
-
-          event.preventDefault();
-          dialoug.loading($('.button', $(this)));
-          jaiks.add('/location/locator', checkout.handleLocationLocatorUpdates, $form.formParams());
-          jaiks.exec();
-        });
+        attachLocationForm($('#address-block form.location-locator'));
 
         $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
         pub.setStepStatus('shipping', true);
@@ -296,8 +286,8 @@
           var data = $this.data('entry');
           var $address = $form.next('form');
 
-          $('input#form_first_name', $address).val(data.name);
-          $('input#form_address_line_2', $address).val(data.address);
+          $('input#form_company_name', $address).val(data.name);
+          $('input#form_address_line_1', $address).val(data.address);
           $('input#form_postal_code', $address).val(data.postal_code);
           $('input#form_city', $address).val(data.city);
           $('input#form_external_address_id', $address).val(data.id);
@@ -395,6 +385,20 @@
         dialoug.notice(response.response.message, 'error');
         $(document).scrollTop(50);
       }
+    };
+
+    attachLocationForm = function($form) {
+      $form.on('submit', function(event) {
+
+        if ($('.locator-result', $form).length) {
+          $('.locator-result', $form).remove();
+        }
+
+        event.preventDefault();
+        dialoug.loading($('.button', $(this)));
+        jaiks.add('/location/locator', checkout.handleLocationLocatorUpdates, $form.formParams());
+        jaiks.exec();
+      });
     };
 
     return pub;

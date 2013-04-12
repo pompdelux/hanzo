@@ -305,7 +305,7 @@
             </trans-unit>
             <trans-unit id="overnightbox.label">
                 <source>overnightbox.label</source>
-                <target>Adresse</target>
+                <target>Opsamlingssted</target>
             </trans-unit>
             <trans-unit id="overnightbox.name">
                 <source>overnightbox.name</source>
