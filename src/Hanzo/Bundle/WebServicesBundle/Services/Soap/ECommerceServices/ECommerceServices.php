@@ -1138,16 +1138,24 @@ class ECommerceServices extends SoapService
 
         $doSendError = false;
         try {
-            $this->timer->reset();
-            $response = $gateway->call()->refund($order, ($amount * -1));
-            $result = $response->debug();
-            $this->timer->lap('time in '.$provider.' gateway');
+            $call = $gateway->call();
+
+            if (method_exists($call, 'refund'))  {
+                $this->timer->reset();
+                $response = $call->refund($order, ($amount * -1));
+                $result = $response->debug();
+                $this->timer->lap('time in '.$provider.' gateway');
 
 // un: 2012.11.29 - test logging all refunds.
 Tools::log('->->->->->->->->->-');
 Tools::log($data);
 Tools::log($result);
 Tools::log('-<-<-<-<-<-<-<-<-<-');
+
+            } else {
+                // if no refund method is implemented, we just have to accept that the refund succeded
+                $result = ['status' => true];
+            }
 
             if (!in_array($result['status'], [0, true])) {
                 $doSendError = true;
