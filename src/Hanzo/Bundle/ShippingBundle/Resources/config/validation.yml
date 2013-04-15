@@ -9,6 +9,7 @@ Hanzo\Model\Addresses:
                     - payment
                     - payment_fi
                     - payment_se
+                    - payment_nl
             - Regex:
                 pattern: "/^\d+$/"
                 match:   true
@@ -16,6 +17,7 @@ Hanzo\Model\Addresses:
                 groups:
                     - payment
                     - payment_se
+                    - payment_nl
             - Regex:
                 pattern: "/^0[0-9]+$/"
                 match:   true
@@ -37,6 +39,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
                 message: address.first_name.required
             - MinLength:
                 groups:
@@ -52,6 +58,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
                 limit:  2
                 message: address.first_name.min.length
         last_name:
@@ -66,6 +76,9 @@ Hanzo\Model\Addresses:
                     - company_shipping_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - shipping_nl
+                    - payment_nl
                 message: address.last_name.required
             - MinLength:
                 groups:
@@ -78,6 +91,9 @@ Hanzo\Model\Addresses:
                     - company_shipping_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - shipping_nl
+                    - payment_nl
                 limit:  2
                 message: address.last_name.min.length
         address_line_1:
@@ -95,6 +111,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
                 message: address_line_1.required
             - MinLength:
                 groups:
@@ -110,6 +130,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
                 limit:  2
                 message: address_line_1.required
             - MaxLength:
@@ -126,6 +150,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
                 message: address_line_1.required
                 limit:  150
         postal_code:
@@ -153,6 +181,15 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+            - Length:
+                min: 6
+                max: 7
+                exactMessage: postal_code.length
+                groups:
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
         city:
             - NotBlank:
                 message: address.city.required
@@ -169,6 +206,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
             - MinLength:
                 groups:
                     - company_shipping
@@ -183,6 +224,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
                 limit:  2
                 message: address.city.required
         countries_id:
@@ -201,6 +246,10 @@ Hanzo\Model\Addresses:
                     - overnightbox_se
                     - shipping_se
                     - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
             - Type:
                 type: integer
         company_name:
@@ -210,3 +259,4 @@ Hanzo\Model\Addresses:
                     - company_shipping
                     - company_shipping_fi
                     - company_shipping_se
+                    - company_shipping_nl

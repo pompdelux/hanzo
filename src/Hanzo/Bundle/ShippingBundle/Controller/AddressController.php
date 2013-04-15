@@ -102,7 +102,7 @@ class AddressController extends CoreController
             $address->setFirstName($order->getFirstName());
             $address->setLastName($order->getLastName());
         }
-
+Tools::log($address->toArray());
         $builder = $this->createFormBuilder($address, array(
             'validation_groups' => $type
         ));
@@ -288,33 +288,33 @@ class AddressController extends CoreController
 
             // validate the address
             $validator = $this->get('validator');
-            $translator = $this->get('translator');
+            // $translator = $this->get('translator');
 
-            // fi uses different validation group to support different rules
-            $validation_group = $method;
-            if ('fi' === $short_domain_key) {
-                $validation_group = $method.'_'.$short_domain_key;
-            }
+            // // fi uses different validation group to support different rules
+            // $validation_group = $method;
+            // if (in_array($short_domain_key, ['fi', 'se'])) {
+            //     $validation_group = $method.'_'.$short_domain_key;
+            // }
 
-            $object_errors = $validator->validate($address, [$validation_group]);
+            // $object_errors = $validator->validate($address, [$validation_group]);
 
             $errors = [];
-            foreach ($object_errors->getIterator() as $error) {
-                if (null === $error->getMessagePluralization()) {
-                    $errors[] = $translator->trans(
-                        $error->getMessageTemplate(),
-                        $error->getMessageParameters(),
-                        'validators'
-                    );
-                } else {
-                    $errors[] = $translator->transChoice(
-                        $error->getMessageTemplate(),
-                        $error->getMessagePluralization(),
-                        $error->getMessageParameters(),
-                        'validators'
-                    );
-                }
-            }
+            // foreach ($object_errors->getIterator() as $error) {
+            //     if (null === $error->getMessagePluralization()) {
+            //         $errors[] = $translator->trans(
+            //             $error->getMessageTemplate(),
+            //             $error->getMessageParameters(),
+            //             'validators'
+            //         );
+            //     } else {
+            //         $errors[] = $translator->transChoice(
+            //             $error->getMessageTemplate(),
+            //             $error->getMessagePluralization(),
+            //             $error->getMessageParameters(),
+            //             'validators'
+            //         );
+            //     }
+            // }
 
             if (count($errors)) {
                 // needed or we cannot continue in the checkout
