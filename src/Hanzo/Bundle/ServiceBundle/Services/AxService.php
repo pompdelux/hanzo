@@ -93,6 +93,8 @@ class AxService
             $con = Propel::getConnection(null, Propel::CONNECTION_WRITE);
         }
 
+        // we reload to make sure we have the latest edition :)
+        $order->reload(true, $con);
         $attributes = $order->getAttributes($con);
         $lines = $order->getOrdersLiness(null, $con);
 
