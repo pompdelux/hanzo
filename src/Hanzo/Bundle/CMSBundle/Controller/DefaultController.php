@@ -73,20 +73,4 @@ class DefaultController extends CoreController
         }
         return $this->render('CMSBundle:Default:view.html.twig', array('page_type' => $type, 'page' => $page), $response);
     }
-
-    public function testAction()
-    {
-        // if all variants is out of stock, set it on the master product.
-        $result = \Hanzo\Model\ProductsStockQuery::create()
-          ->withColumn('SUM('.ProductsStockPeer::QUANTITY.')', 'total_stock')
-          ->select(array('total_stock'))
-          ->useProductsQuery()
-            ->filterByMaster('Todd Little SLEEPER')
-          ->endUse()
-          ->findOne()
-        ;
-        Tools::log($result);
-
-        return $this->response('1.2.3 ... test');
-    }
 }

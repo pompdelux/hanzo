@@ -31,6 +31,7 @@ use Hanzo\Model\Customers;
  * @method AddressesQuery orderByCountriesId($order = Criteria::ASC) Order by the countries_id column
  * @method AddressesQuery orderByStateProvince($order = Criteria::ASC) Order by the state_province column
  * @method AddressesQuery orderByCompanyName($order = Criteria::ASC) Order by the company_name column
+ * @method AddressesQuery orderByExternalAddressId($order = Criteria::ASC) Order by the external_address_id column
  * @method AddressesQuery orderByLatitude($order = Criteria::ASC) Order by the latitude column
  * @method AddressesQuery orderByLongitude($order = Criteria::ASC) Order by the longitude column
  * @method AddressesQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
@@ -48,6 +49,7 @@ use Hanzo\Model\Customers;
  * @method AddressesQuery groupByCountriesId() Group by the countries_id column
  * @method AddressesQuery groupByStateProvince() Group by the state_province column
  * @method AddressesQuery groupByCompanyName() Group by the company_name column
+ * @method AddressesQuery groupByExternalAddressId() Group by the external_address_id column
  * @method AddressesQuery groupByLatitude() Group by the latitude column
  * @method AddressesQuery groupByLongitude() Group by the longitude column
  * @method AddressesQuery groupByCreatedAt() Group by the created_at column
@@ -80,6 +82,7 @@ use Hanzo\Model\Customers;
  * @method Addresses findOneByCountriesId(int $countries_id) Return the first Addresses filtered by the countries_id column
  * @method Addresses findOneByStateProvince(string $state_province) Return the first Addresses filtered by the state_province column
  * @method Addresses findOneByCompanyName(string $company_name) Return the first Addresses filtered by the company_name column
+ * @method Addresses findOneByExternalAddressId(string $external_address_id) Return the first Addresses filtered by the external_address_id column
  * @method Addresses findOneByLatitude(double $latitude) Return the first Addresses filtered by the latitude column
  * @method Addresses findOneByLongitude(double $longitude) Return the first Addresses filtered by the longitude column
  * @method Addresses findOneByCreatedAt(string $created_at) Return the first Addresses filtered by the created_at column
@@ -97,6 +100,7 @@ use Hanzo\Model\Customers;
  * @method array findByCountriesId(int $countries_id) Return Addresses objects filtered by the countries_id column
  * @method array findByStateProvince(string $state_province) Return Addresses objects filtered by the state_province column
  * @method array findByCompanyName(string $company_name) Return Addresses objects filtered by the company_name column
+ * @method array findByExternalAddressId(string $external_address_id) Return Addresses objects filtered by the external_address_id column
  * @method array findByLatitude(double $latitude) Return Addresses objects filtered by the latitude column
  * @method array findByLongitude(double $longitude) Return Addresses objects filtered by the longitude column
  * @method array findByCreatedAt(string $created_at) Return Addresses objects filtered by the created_at column
@@ -189,7 +193,7 @@ abstract class BaseAddressesQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `CUSTOMERS_ID`, `TYPE`, `FIRST_NAME`, `LAST_NAME`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `COUNTRY`, `COUNTRIES_ID`, `STATE_PROVINCE`, `COMPANY_NAME`, `LATITUDE`, `LONGITUDE`, `CREATED_AT`, `UPDATED_AT` FROM `addresses` WHERE `CUSTOMERS_ID` = :p0 AND `TYPE` = :p1';
+        $sql = 'SELECT `CUSTOMERS_ID`, `TYPE`, `FIRST_NAME`, `LAST_NAME`, `ADDRESS_LINE_1`, `ADDRESS_LINE_2`, `POSTAL_CODE`, `CITY`, `COUNTRY`, `COUNTRIES_ID`, `STATE_PROVINCE`, `COMPANY_NAME`, `EXTERNAL_ADDRESS_ID`, `LATITUDE`, `LONGITUDE`, `CREATED_AT`, `UPDATED_AT` FROM `addresses` WHERE `CUSTOMERS_ID` = :p0 AND `TYPE` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -650,6 +654,35 @@ abstract class BaseAddressesQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(AddressesPeer::COMPANY_NAME, $companyName, $comparison);
+    }
+
+    /**
+     * Filter the query on the external_address_id column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByExternalAddressId('fooValue');   // WHERE external_address_id = 'fooValue'
+     * $query->filterByExternalAddressId('%fooValue%'); // WHERE external_address_id LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $externalAddressId The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return AddressesQuery The current query, for fluid interface
+     */
+    public function filterByExternalAddressId($externalAddressId = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($externalAddressId)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $externalAddressId)) {
+                $externalAddressId = str_replace('*', '%', $externalAddressId);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(AddressesPeer::EXTERNAL_ADDRESS_ID, $externalAddressId, $comparison);
     }
 
     /**

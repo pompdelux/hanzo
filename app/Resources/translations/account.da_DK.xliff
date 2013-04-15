@@ -456,7 +456,7 @@ Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver 
             </trans-unit>
             <trans-unit id="my.account.my.events" approved="no">
                 <source>my.account.my.events</source>
-                <target>Mine events</target>
+                <target>Mine arrangementer</target>
             </trans-unit>
             <trans-unit id="account.history.see.all.orders" approved="no">
                 <source>account.history.see.all.orders</source>

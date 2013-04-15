@@ -1,0 +1,20 @@
+{% set simple_layout = true %}
+{% set page_type = 'pensio-wait' %}
+{% extends layout %}
+{% block content %}
+    <header class="grid_8 alpha omega">
+        <hgroup>
+            <h1>{{ 'wait.heading'|trans({}, 'pensio') }}</h1>
+        </hgroup>
+    </header>
+
+    <div class="description">
+        {{ 'wait.description'|trans({
+            '%server%' : app.server.HTTP_HOST,
+            '%goto%' : url('_payment_cancel')
+        }, 'pensio') }}
+    </div>
+
+    {# NOTE: DO NOT, UNDER ANY CIRCUMSTANCE, CHANGE THE FORM TAG IN ANY WAY ! #}
+    <div id="PensioRedirectForm"></div>
+{% endblock %}

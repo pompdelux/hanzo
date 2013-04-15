@@ -116,6 +116,12 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     protected $company_name;
 
     /**
+     * The value for the external_address_id field.
+     * @var        string
+     */
+    protected $external_address_id;
+
+    /**
      * The value for the latitude field.
      * @var        double
      */
@@ -302,6 +308,16 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     public function getCompanyName()
     {
         return $this->company_name;
+    }
+
+    /**
+     * Get the [external_address_id] column value.
+     *
+     * @return string
+     */
+    public function getExternalAddressId()
+    {
+        return $this->external_address_id;
     }
 
     /**
@@ -663,6 +679,27 @@ abstract class BaseAddresses extends BaseObject implements Persistent
     } // setCompanyName()
 
     /**
+     * Set the value of [external_address_id] column.
+     *
+     * @param string $v new value
+     * @return Addresses The current object (for fluent API support)
+     */
+    public function setExternalAddressId($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->external_address_id !== $v) {
+            $this->external_address_id = $v;
+            $this->modifiedColumns[] = AddressesPeer::EXTERNAL_ADDRESS_ID;
+        }
+
+
+        return $this;
+    } // setExternalAddressId()
+
+    /**
      * Set the value of [latitude] column.
      *
      * @param double $v new value
@@ -798,10 +835,11 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             $this->countries_id = ($row[$startcol + 9] !== null) ? (int) $row[$startcol + 9] : null;
             $this->state_province = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
             $this->company_name = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-            $this->latitude = ($row[$startcol + 12] !== null) ? (double) $row[$startcol + 12] : null;
-            $this->longitude = ($row[$startcol + 13] !== null) ? (double) $row[$startcol + 13] : null;
-            $this->created_at = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-            $this->updated_at = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+            $this->external_address_id = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->latitude = ($row[$startcol + 13] !== null) ? (double) $row[$startcol + 13] : null;
+            $this->longitude = ($row[$startcol + 14] !== null) ? (double) $row[$startcol + 14] : null;
+            $this->created_at = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+            $this->updated_at = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -810,7 +848,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
 
-            return $startcol + 16; // 16 = AddressesPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 17; // 17 = AddressesPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Addresses object", $e);
@@ -1092,6 +1130,9 @@ abstract class BaseAddresses extends BaseObject implements Persistent
         if ($this->isColumnModified(AddressesPeer::COMPANY_NAME)) {
             $modifiedColumns[':p' . $index++]  = '`COMPANY_NAME`';
         }
+        if ($this->isColumnModified(AddressesPeer::EXTERNAL_ADDRESS_ID)) {
+            $modifiedColumns[':p' . $index++]  = '`EXTERNAL_ADDRESS_ID`';
+        }
         if ($this->isColumnModified(AddressesPeer::LATITUDE)) {
             $modifiedColumns[':p' . $index++]  = '`LATITUDE`';
         }
@@ -1150,6 +1191,9 @@ abstract class BaseAddresses extends BaseObject implements Persistent
                         break;
                     case '`COMPANY_NAME`':
                         $stmt->bindValue($identifier, $this->company_name, PDO::PARAM_STR);
+                        break;
+                    case '`EXTERNAL_ADDRESS_ID`':
+                        $stmt->bindValue($identifier, $this->external_address_id, PDO::PARAM_STR);
                         break;
                     case '`LATITUDE`':
                         $stmt->bindValue($identifier, $this->latitude, PDO::PARAM_STR);
@@ -1345,15 +1389,18 @@ abstract class BaseAddresses extends BaseObject implements Persistent
                 return $this->getCompanyName();
                 break;
             case 12:
-                return $this->getLatitude();
+                return $this->getExternalAddressId();
                 break;
             case 13:
-                return $this->getLongitude();
+                return $this->getLatitude();
                 break;
             case 14:
-                return $this->getCreatedAt();
+                return $this->getLongitude();
                 break;
             case 15:
+                return $this->getCreatedAt();
+                break;
+            case 16:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1397,10 +1444,11 @@ abstract class BaseAddresses extends BaseObject implements Persistent
             $keys[9] => $this->getCountriesId(),
             $keys[10] => $this->getStateProvince(),
             $keys[11] => $this->getCompanyName(),
-            $keys[12] => $this->getLatitude(),
-            $keys[13] => $this->getLongitude(),
-            $keys[14] => $this->getCreatedAt(),
-            $keys[15] => $this->getUpdatedAt(),
+            $keys[12] => $this->getExternalAddressId(),
+            $keys[13] => $this->getLatitude(),
+            $keys[14] => $this->getLongitude(),
+            $keys[15] => $this->getCreatedAt(),
+            $keys[16] => $this->getUpdatedAt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aCustomers) {
@@ -1480,15 +1528,18 @@ abstract class BaseAddresses extends BaseObject implements Persistent
                 $this->setCompanyName($value);
                 break;
             case 12:
-                $this->setLatitude($value);
+                $this->setExternalAddressId($value);
                 break;
             case 13:
-                $this->setLongitude($value);
+                $this->setLatitude($value);
                 break;
             case 14:
-                $this->setCreatedAt($value);
+                $this->setLongitude($value);
                 break;
             case 15:
+                $this->setCreatedAt($value);
+                break;
+            case 16:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1527,10 +1578,11 @@ abstract class BaseAddresses extends BaseObject implements Persistent
         if (array_key_exists($keys[9], $arr)) $this->setCountriesId($arr[$keys[9]]);
         if (array_key_exists($keys[10], $arr)) $this->setStateProvince($arr[$keys[10]]);
         if (array_key_exists($keys[11], $arr)) $this->setCompanyName($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setLatitude($arr[$keys[12]]);
-        if (array_key_exists($keys[13], $arr)) $this->setLongitude($arr[$keys[13]]);
-        if (array_key_exists($keys[14], $arr)) $this->setCreatedAt($arr[$keys[14]]);
-        if (array_key_exists($keys[15], $arr)) $this->setUpdatedAt($arr[$keys[15]]);
+        if (array_key_exists($keys[12], $arr)) $this->setExternalAddressId($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setLatitude($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setLongitude($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setCreatedAt($arr[$keys[15]]);
+        if (array_key_exists($keys[16], $arr)) $this->setUpdatedAt($arr[$keys[16]]);
     }
 
     /**
@@ -1554,6 +1606,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
         if ($this->isColumnModified(AddressesPeer::COUNTRIES_ID)) $criteria->add(AddressesPeer::COUNTRIES_ID, $this->countries_id);
         if ($this->isColumnModified(AddressesPeer::STATE_PROVINCE)) $criteria->add(AddressesPeer::STATE_PROVINCE, $this->state_province);
         if ($this->isColumnModified(AddressesPeer::COMPANY_NAME)) $criteria->add(AddressesPeer::COMPANY_NAME, $this->company_name);
+        if ($this->isColumnModified(AddressesPeer::EXTERNAL_ADDRESS_ID)) $criteria->add(AddressesPeer::EXTERNAL_ADDRESS_ID, $this->external_address_id);
         if ($this->isColumnModified(AddressesPeer::LATITUDE)) $criteria->add(AddressesPeer::LATITUDE, $this->latitude);
         if ($this->isColumnModified(AddressesPeer::LONGITUDE)) $criteria->add(AddressesPeer::LONGITUDE, $this->longitude);
         if ($this->isColumnModified(AddressesPeer::CREATED_AT)) $criteria->add(AddressesPeer::CREATED_AT, $this->created_at);
@@ -1640,6 +1693,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
         $copyObj->setCountriesId($this->getCountriesId());
         $copyObj->setStateProvince($this->getStateProvince());
         $copyObj->setCompanyName($this->getCompanyName());
+        $copyObj->setExternalAddressId($this->getExternalAddressId());
         $copyObj->setLatitude($this->getLatitude());
         $copyObj->setLongitude($this->getLongitude());
         $copyObj->setCreatedAt($this->getCreatedAt());
@@ -1820,6 +1874,7 @@ abstract class BaseAddresses extends BaseObject implements Persistent
         $this->countries_id = null;
         $this->state_province = null;
         $this->company_name = null;
+        $this->external_address_id = null;
         $this->latitude = null;
         $this->longitude = null;
         $this->created_at = null;

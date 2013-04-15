@@ -51,6 +51,9 @@
                   <span class="normal">{{ product.prices.normal.price|money }}</span>
                 {% endif %}
                 </span>
+                {% if product.out_of_stock %}
+                <div class="out-of-stock"></div>
+                {% endif %}
               </a>
             </div>
             {% if loop.index is divisibleby(3) or loop.last %}

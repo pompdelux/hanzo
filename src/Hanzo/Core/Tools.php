@@ -162,6 +162,10 @@ class Tools
         switch ($type) {
             case 'order':
                 switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'orderde@pompdelux.com';
+                        break;
                     case 'FI':
                     case 'SalesFI':
                         $to = 'orderfi@pompdelux.com';
@@ -186,6 +190,10 @@ class Tools
                 break;
             case 'retur':
                 switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'returde@pompdelux.dk';
+                        break;
                     case 'FI':
                     case 'SalesFI':
                         $to = 'returfi@pompdelux.dk';
@@ -382,6 +390,7 @@ class Tools
         // we use environments to switch domain configurations.
         $env_map = array(
             'da_dk' => 'dk',
+            'de_de' => 'de',
             'en_gb' => 'com',
             'fi_fi' => 'fi',
             'nb_no' => 'no',
@@ -478,6 +487,10 @@ class Tools
     public static function setCookie($name, $value, $ttl = 0, $http_only = true)
     {
         static $path;
+
+        if (PHP_SAPI == 'cli') {
+            return;
+        }
 
         if (empty($path)) {
             $path = $_SERVER['SCRIPT_NAME'];
@@ -592,7 +605,7 @@ class Tools
 
         if (empty($url['scheme'])) {
             $url['scheme'] = 'http';
-            $url['host'] = $_SERVER['HTTP_HOST'];
+            $url['host'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
         }
 
         return $url['scheme'].'://'.$url['host'].$url['path'].'?'.$url['query'];

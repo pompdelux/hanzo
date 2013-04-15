@@ -243,9 +243,6 @@ class AxService
                     case 'DK':
                         $custPaymMode = 'DanKort';
                         break;
-                    case 'ABN':
-                        $custPaymMode = 'ABN';
-                        break;
                 }
                 break;
 
@@ -255,6 +252,12 @@ class AxService
 
             case 'paybybill': // Should be COD, is _not_ Gothia
                 $custPaymMode = 'Bank';
+                break;
+
+            case 'pensio':
+                if ('IDEALPAYMENT' == strtoupper($attributes->payment->nature)) {
+                    $custPaymMode = 'iDEAL';
+                }
                 break;
         }
 
@@ -281,6 +284,8 @@ class AxService
         $salesTable->TransactionType         = 'Write';
         $salesTable->CustPaymMode            = $custPaymMode;
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
+
+        $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
         $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
         $salesTable->DeliveryCity            = $order->getDeliveryCity();
         $salesTable->DeliveryName            = $order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName();

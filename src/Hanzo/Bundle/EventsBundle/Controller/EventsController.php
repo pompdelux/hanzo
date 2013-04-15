@@ -74,6 +74,9 @@ class EventsController extends CoreController
             $color = 'red';
             if (1 == $event->getIsOpen()) {
                 $color = 'green';
+                if ('HUS' == strtoupper($event->getType())) {
+                    $color = 'blue';
+                }
             }
 
             $events_array[] = array(

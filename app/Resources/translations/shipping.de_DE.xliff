@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="shipping_10">
+        <source>page.heading</source>
+        <target>Fragttype</target>
+      </trans-unit>
+      <trans-unit id="shipping_20">
+        <source>page.desc</source>
+        <target>Vælg den rigtige fragttype.</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.10">
+        <source>shipping_method.name.10</source>
+        <target>Privatpakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.10">
+        <source>shipping_method.desc.10</source>
+        <target>Din ordre bliver sendt til din privatadresse. Ønsker du at sende din ordre til en anden privatadresse (f.eks. naboens) skal du ændre leveringsadressen ved at klikke på "Ret leveringsadresse".</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.10">
+        <source>shipping_method.label.10</source>
+        <target>Post Danmark Privat %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.11">
+        <source>shipping_method.name.11</source>
+        <target>Erhvervspakke</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.11">
+        <source>shipping_method.desc.11</source>
+        <target>Har du mulighed for at få din ordre leveret på din arbejdsplads, kan du vælge erhvervspakke. Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.11">
+        <source>shipping_method.label.11</source>
+        <target>Post Danmark Erhverv %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.name.12">
+        <source>shipping_method.name.12</source>
+        <target>Valgfri udlevering - døgnpost</target>
+      </trans-unit>
+      <trans-unit id="shipping_method.desc.12">
+        <source>shipping_method.desc.12</source>
+        <target><![CDATA[Du kan frit vælge hvor i Danmark du vil hente din pakke. Skal det være det Posthus, PostButik eller den Døgnpost, der er tættest på dit hjem, dit arbejde, din fritidsinteresse eller...? Det er helt op til dig, og du behøver ikke bruge det samme udleveringssted hver gang. Udleveringssteder finder du hos dit Posthus, Brugs eller lign..]]></target>
+      </trans-unit>
+      <trans-unit id="shipping_method.label.12">
+        <source>shipping_method.label.12</source>
+        <target>Døgnpost %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.name">
+        <source>shipping_fee.name</source>
+        <target>Ekspeditionsgebyr</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.desc">
+        <source>shipping_fee.desc</source>
+        <target>Alle ordrer pålægges et ekspeditionsgebyr på %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping_fee.label">
+        <source>shipping_fee.label</source>
+        <target>Ekspeditionsgebyr %price%</target>
+      </trans-unit>
+      <trans-unit id="shipping.fee">
+        <source>shipping.fee</source>
+        <target>Ekspeditionsgebyr</target>
+      </trans-unit>
+      <trans-unit id="page.desc.after_methods"><!-- Vises efter de mulige fragt typer -->
+        <source>page.desc.after_methods</source>
+        <target>Alle ordre pålægges et ekspeditionsgebyr på 0 DKK</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

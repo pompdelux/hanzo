@@ -11,9 +11,9 @@ class ServiceFactory
 {
     protected $hanzo;
 
-    public function __construct($environment, $container)
+    public function __construct($container)
     {
-        $this->hanzo = Hanzo::initialize($container, $environment);
+        $this->hanzo = Hanzo::initialize($container);
     }
 
     public function get($service, $parameters = NULL, $class = NULL)

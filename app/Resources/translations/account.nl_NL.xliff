@@ -427,7 +427,7 @@ Let op: de betaling moet uitgevoerd worden – eerdere betalingen worden automat
             </trans-unit>
             <trans-unit id="my.account.my.events" approved="no">
                 <source>my.account.my.events</source>
-                <target>Mijn events</target>
+                <target>Mijn arrangementen</target>
             </trans-unit>
             <trans-unit id="account.history.see.all.orders" approved="no">
                 <source>account.history.see.all.orders</source>

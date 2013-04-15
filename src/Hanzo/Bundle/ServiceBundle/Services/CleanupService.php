@@ -39,7 +39,7 @@ class CleanupService
     {
         Propel::setForceMasterConnection(true);
         $orders = OrdersQuery::create()
-            ->filterByBillingMethod('dibs', Criteria::NOT_EQUAL)
+            ->filterByBillingMethod(['dibs', 'pensio'], Criteria::NOT_IN)
             ->_or()
             ->filterByBillingMethod(null, Criteria::ISNULL)
             ->filterByState(0, Criteria::LESS_THAN)
@@ -84,7 +84,7 @@ class CleanupService
         // extended to include records where billing_method is null
         $orders = OrdersQuery::create()
             ->filterByInEdit(true)
-            ->filterByBillingMethod('dibs', Criteria::NOT_EQUAL)
+            ->filterByBillingMethod(['dibs', 'pensio'], Criteria::NOT_IN)
             ->_or()
             ->filterByBillingMethod(null, Criteria::ISNULL)
             ->filterByState(Orders::STATE_PENDING, Criteria::LESS_THAN)

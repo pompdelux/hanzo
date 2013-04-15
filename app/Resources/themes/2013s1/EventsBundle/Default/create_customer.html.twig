@@ -3,7 +3,11 @@
 {% block content %}
 
 <div class="grid_8 alpha omega">
+{% if is_hostess %}
+  <h1>{{ 'events.hostess.header.text'|trans({}, 'events') }}</h1>
+{% else %}
   <h1>{{ 'events.create_customer.header.text'|trans({}, 'events') }}</h1>
+{% endif %}
 
   {% if app.session.hasFlash('notice') %}
   <div class="message notice">
@@ -11,6 +15,8 @@
   </div>
   {% endif %}
   <div class="grid_4 alpha">
+
+  {% if is_hostess == false %}
     <p>{{ 'events.create_customer.description.text'|trans({}, 'events')|raw }}</p>
     <div id="fetch-customer">
       <form id="fetch-customer-form">
@@ -18,6 +24,7 @@
         <input type="submit" value="{{ 'events.fetch_customer.button'|trans({}, 'events') }}" class="button">
       </form>
     </div>
+  {% endif %}
 
     <form action="{{ path('events_create_customer') }}" method="post" {{ form_enctype(form) }} class="create full-width" novalidate>
       <input type="hidden" name="id" id="customers_id" value="{{ form.vars.value.id }}">

@@ -303,7 +303,8 @@ class CustomersController extends CoreController
             )->add('state_province', 'text',
                 array(
                     'label' => 'admin.customers.addresses.state_province',
-                    'translation_domain' => 'admin'
+                    'translation_domain' => 'admin',
+                    'required' => false,
                 )
             )->add('company_name', 'text',
                 array(

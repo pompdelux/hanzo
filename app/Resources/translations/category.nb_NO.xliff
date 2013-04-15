@@ -4,37 +4,37 @@
         <body>
             <trans-unit id="headers.category-14" approved="no">
                 <source>headers.category-14</source>
-                <target><![CDATA[<h1>Dresses</h1>
+                <target><![CDATA[<h1>Kjoler</h1>
                 <p></p>]]></target>
             </trans-unit>
              <trans-unit id="headers.category-20" approved="no">
                 <source>headers.category-20</source>
-                <target><![CDATA[<h1>T-Shirts</h1>
+                <target><![CDATA[<h1>T-skjorter</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-19" approved="no">
                 <source>headers.category-19</source>
-                <target><![CDATA[<h1>Tunics-Blouses-Tops</h1>
+                <target><![CDATA[<h1>Tunikaer-Bluser-Topper</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-13" approved="no">
                 <source>headers.category-13</source>
-                <target><![CDATA[<h1>Cardigans-Vests</h1>
+                <target><![CDATA[<h1>Cardigans-Vester</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-17" approved="no">
                 <source>headers.category-17</source>
-                <target><![CDATA[<h1>Pants</h1>
+                <target><![CDATA[<h1>Bukser</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-18" approved="no">
                 <source>headers.category-18</source>
-                <target><![CDATA[<h1>Shorts-Skirts</h1>
+                <target><![CDATA[<h1>Shorts-Skjørt</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-16" approved="no">
                 <source>headers.category-16</source>
-                <target><![CDATA[<h1>Outerwear-Fleece</h1>
+                <target><![CDATA[<h1>Ytterklær-Fleece</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-15" approved="no">
@@ -44,72 +44,72 @@
             </trans-unit>
 			<trans-unit id="headers.category-21" approved="no">
                 <source>headers.category-21</source>
-                <target><![CDATA[<h1>Underwear-Nightwear</h1>
+                <target><![CDATA[<h1>Undertøy-Nattøy</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-56" approved="no">
                 <source>headers.category-56</source>
-                <target><![CDATA[<h1>Swimwear</h1>
+                <target><![CDATA[<h1>Badetøy</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-12" approved="no">
                 <source>headers.category-12</source>
-                <target><![CDATA[<h1>Accessories</h1>
+                <target><![CDATA[<h1>Tilbehør</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-10" approved="no">
                 <source>headers.category-10</source>
-                <target><![CDATA[<h1>T-Shirts</h1>
+                <target><![CDATA[<h1>T-skjorter</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-8" approved="no">
                 <source>headers.category-8</source>
-                <target><![CDATA[<h1>Shirts-Polos</h1>
+                <target><![CDATA[<h1>Skjorter-Poloer</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-9" approved="no">
                 <source>headers.category-9</source>
-                <target><![CDATA[<h1>Sweat-Cardigangs-Pullovers</h1>
+                <target><![CDATA[<h1>Sweats-Cardigans-Pullovers</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-7" approved="no">
                 <source>headers.category-7</source>
-                <target><![CDATA[<h1>Pants</h1>
+                <target><![CDATA[<h1>Bukser</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-55" approved="no">
                 <source>headers.category-55</source>
-                <target><![CDATA[<h1>Shorts-Long Shorts</h1>
+                <target><![CDATA[<h1>Shorts-Lange shorts</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-6" approved="no">
                 <source>headers.category-6</source>
-                <target><![CDATA[<h1>Outerwear-Fleece</h1>
+                <target><![CDATA[<h1>Ytterklær-fleece</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-11" approved="no">
                 <source>headers.category-11</source>
-                <target><![CDATA[<h1>Underwear-Nightwear</h1>
+                <target><![CDATA[<h1>Undertøy-Nattøy</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-5" approved="no">
                 <source>headers.category-5</source>
-                <target><![CDATA[<h1>Accessories</h1>
+                <target><![CDATA[<h1>Tilbehør</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-31" approved="no">
                 <source>headers.category-31</source>
-                <target><![CDATA[<h1>Dresses</h1>
+                <target><![CDATA[<h1>Kjoler</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-36" approved="no">
                 <source>headers.category-36</source>
-                <target><![CDATA[<h1>T-Shirts-Tops</h1>
+                <target><![CDATA[<h1>T-skjorter-Topper</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-37" approved="no">
                 <source>headers.category-37</source>
-                <target><![CDATA[<h1>Tunics</h1>
+                <target><![CDATA[<h1>Tunikaer</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-30" approved="no">
@@ -119,17 +119,17 @@
             </trans-unit>
 			<trans-unit id="headers.category-34" approved="no">
                 <source>headers.category-34</source>
-                <target><![CDATA[<h1>Pants-Pantsuits</h1>
+                <target><![CDATA[<h1>Bukser-Buksedrakter</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-35" approved="no">
                 <source>headers.category-35</source>
-                <target><![CDATA[<h1>Shorts-Skirts</h1>
+                <target><![CDATA[<h1>Shorts-Skjørt</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-33" approved="no">
                 <source>headers.category-33</source>
-                <target><![CDATA[<h1>Outerwear-Fleece</h1>
+                <target><![CDATA[<h1>Ytterklær-fleece</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-32" approved="no">
@@ -139,37 +139,37 @@
             </trans-unit>
 			<trans-unit id="headers.category-38" approved="no">
                 <source>headers.category-38</source>
-                <target><![CDATA[<h1>Underwear-Nightwear</h1>
+                <target><![CDATA[<h1>Undertøy-Nattøy</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-58" approved="no">
                 <source>headers.category-58</source>
-                <target><![CDATA[<h1>Swimwear</h1>
+                <target><![CDATA[<h1>Badetøy</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-29" approved="no">
                 <source>headers.category-29</source>
-                <target><![CDATA[<h1>Accessories</h1>
+                <target><![CDATA[<h1>Tilbehør</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-27" approved="no">
                 <source>headers.category-27</source>
-                <target><![CDATA[<h1>T-Shirts</h1>
+                <target><![CDATA[<h1>T-skjorter</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-26" approved="no">
                 <source>headers.category-26</source>
-                <target><![CDATA[<h1>Shirts-Polos</h1>
+                <target><![CDATA[<h1>Skjorter-Poloer</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-23" approved="no">
                 <source>headers.category-23</source>
-                <target><![CDATA[<h1>Sweat-Cardigans-Pullovers</h1>
+                <target><![CDATA[<h1>Sweats-Cardigans-Pullovers</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-25" approved="no">
                 <source>headers.category-25</source>
-                <target><![CDATA[<h1>Pants</h1>
+                <target><![CDATA[<h1>Bukser</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-57" approved="no">
@@ -179,17 +179,17 @@
             </trans-unit>
 			<trans-unit id="headers.category-24" approved="no">
                 <source>headers.category-24</source>
-                <target><![CDATA[<h1>Outerwear-Fleece</h1>
+                <target><![CDATA[<h1>Ytterklær-fleece</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-28" approved="no">
                 <source>headers.category-28</source>
-                <target><![CDATA[<h1>Underwear-Nightwear</h1>
+                <target><![CDATA[<h1>Undertøy-Nattøy</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.category-22" approved="no">
                 <source>headers.category-22</source>
-                <target><![CDATA[<h1>Accessories</h1>
+                <target><![CDATA[<h1>Tilbehør</h1>
                 <p></p>]]></target>
             </trans-unit>
 			<trans-unit id="headers.bycolour-673" approved="no">

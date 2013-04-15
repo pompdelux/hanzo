@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="update">
+                <source>update</source>
+                <target>Opdater</target>
+            </trans-unit>
+            <trans-unit id="forward">
+                <source>forward</source>
+                <target>Videre</target>
+            </trans-unit>
+            <trans-unit id="hide.all">
+                <source>hide.all</source>
+                <target>Skjul alle</target>
+            </trans-unit>
+            <trans-unit id="show.all">
+                <source>show.all</source>
+                <target>Vis alle</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Luk</target>
+            </trans-unit>
+            <trans-unit id="ok">
+                <source>ok</source>
+                <target>Ok</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Annuller</target>
+            </trans-unit>
+            <trans-unit id="notice">
+                <source>notice</source>
+                <target>Bemærk!</target>
+            </trans-unit>
+            <trans-unit id="choose">
+                <source>choose</source>
+                <target>Vælg</target>
+            </trans-unit>
+            <trans-unit id="quantity">
+                <source>quantity</source>
+                <target>Antal</target>
+            </trans-unit>
+            <trans-unit id="please.wait">
+                <source>please.wait</source>
+                <target>Vent venligst</target>
+            </trans-unit>
+            <trans-unit id="action.completed">
+                <source>action.completed</source>
+                <target>Din handling blev udført</target>
+            </trans-unit>
+            <trans-unit id="an.error.occurred">
+                <source>an.error.occurred</source>
+                <target>Der opstod en fejl</target>
+            </trans-unit>
+            <trans-unit id="countdown.date">
+                <source>countdown.date</source>
+                <target>March 7, 2013 10:00:00</target>
+            </trans-unit>
+            <trans-unit id="countdown.format">
+                <source>countdown.format</source>
+                <target><![CDATA[{d<}{dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery.notice">
+                <source>late.delivery.notice</source>
+                <target><![CDATA[<p>Din ordre indeholder vare(r) vi ikke har på lager i øjeblikket. Ordren pakkes når vi har alle varer på vores lager.</p><p>Hele din ordre forventes afsendt fra vores lager senest: <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="delete.from.basket.warning">
+                <source>delete.from.basket.warning</source>
+                <target><![CDATA[Er du sikker på du vil slette <strong>%product%</strong> fra din kurv ?]]></target>
+            </trans-unit>
+            <trans-unit id="late.delivery">
+                <source>late.delivery</source>
+                <target><![CDATA[<h2>Bemærk</h2><strong>"%product%"</strong> har vi ikke på lager i øjeblikket.<br>Hele din ordre forventes afsendt fra vores lager senest <strong>%date%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="not.filled.correctly">
+                <source>not.filled.correctly</source>
+                <target>Ikke udfyldt korrekt</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_business">
+                <source>checkout.shipping_business</source>
+                <target>Du har valgt "Post Danmark Erhverv". Husk at ændre leveringsadressen ved at klikke på "Ret leveringsadresse" (leveringsadressen skal ved denne fragttype være en erhvervsadresse).</target>
+            </trans-unit>
+            <trans-unit id="checkout.shipping_overnightbox">
+                <source>checkout.shipping_overnightbox</source>
+                <target>Du har valgt døgnpost som leveringsmetode, men du har ikke oprettet nogen døgnpost adresse. Opret den ved at klikke på "Ret døgnpostadresse".</target>
+            </trans-unit>
+            <trans-unit id="loading.std">
+                <source>loading.std</source>
+                <target>Indlæser ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search">
+                <source>loading.search</source>
+                <target>Søger ...</target>
+            </trans-unit>
+            <trans-unit id="loading.search.products">
+                <source>loading.search.products</source>
+                <target>Finder produkter ...</target>
+            </trans-unit>
+            <trans-unit id="edit.order.notice">
+                <source>edit.order.notice</source>
+                <target><![CDATA[For at redigere din ordre skal du gøre følgende:<br><br>1) Klik på "Rediger" for at redigere ordren. Dine varer vil herefter blive lagt tilbage i kurven.<br><br>2) Ønsker du at ændre en farve eller en størrelse, skal du klikke på blyanten i kurven. Ønsker du at tilføje varer, skal du klikke på menuen Girl, Boy, Little Girl eller Little Boy<br><br>3) Når du er færdig med dine ændringer, skal du klikke på "Vis kurv" og følge trin 1 til 5. Når du har gennemført din ordre med ny kreditkortbetaling, vil den gamle betaling automatisk blive slettet.<br><br><b>Bemærk:</b> Hvis du anvender Visa Electron eller MasterCard skal du være opmærksom på følgende:<ul><li>Der foretages endnu en reservation af det fulde købs beløb når du redigerer din ordre. </li><li>Reservationen på din oprindelige ordre bliver straks annulleret af POMPdeLUX og vi har således kun reserveret købs beløbet på din redigerede ordre. Hos dit pengeinstitut kan der imidlertid gå op til 6 uger inden reservationen ophæves. </li></ul>]]></target>
+            </trans-unit>
+            <trans-unit id="delete.order.notice">
+                <source>delete.order.notice</source>
+                <target><![CDATA[Du er ved at slette din ordre. Er du helt sikker på at du vil slette hele ordren?<br><br>Hvis du sletter din ordre, vil din kreditkortbetaling automatisk blive slettet.<br><br>Klik på "Ok" for at slette ordren.]]></target>
+            </trans-unit>
+            <trans-unit id="consultant">
+                <source>consultant</source>
+                <target>Konsulent</target>
+            </trans-unit>
+            <trans-unit id="phone">
+                <source>phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="mannequin.empty">
+                <source>mannequin.empty</source>
+                <target>Der er ikke valgt produkter</target>
+            </trans-unit>
+            <trans-unit id="out.of.stock">
+                <source>out.of.stock</source>
+                <target>Udsolgt</target>
+            </trans-unit>
+            <trans-unit id="wall.add.response">
+                <source>wall.add.response</source>
+                <target>Besvar indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.share">
+                <source>wall.share</source>
+                <target>Del</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.like.link">
+                <source>wall.remove.like.link</source>
+                <target>Fjern Like fra indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.add.like.link">
+                <source>wall.add.like.link</source>
+                <target>Like indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.remove.dislike.link">
+                <source>wall.remove.dislike.link</source>
+                <target>Fjern Dislike fra indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.add.dislike.link">
+                <source>wall.add.dislike.link</source>
+                <target>Dislike indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.edit.entry">
+                <source>wall.edit.entry</source>
+                <target>Rediger indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.update">
+                <source>wall.update</source>
+                <target>Opdater</target>
+            </trans-unit>
+            <trans-unit id="wall.show.all">
+                <source>wall.show.all</source>
+                <target>Vis alle besvarelser</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.plural.%likes%">
+                <source>wall.likes.plural.%likes%</source>
+                <target>%likes% syntes godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.likes.single.%likes%">
+                <source>wall.likes.single.%likes%</source>
+                <target>Én syntes godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.plural.%likes%">
+                <source>wall.dislikes.plural.%likes%</source>
+                <target>%likes% syntes ikke godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.dislikes.single.%likes%">
+                <source>wall.dislikes.single.%likes%</source>
+                <target>Én syntes ikke godt om dette indlæg.</target>
+            </trans-unit>
+            <trans-unit id="wall.like.popup.header">
+                <source>wall.like.popup.header</source>
+                <target>Disse personer synes godt om eller kan ikke lide opslaget.</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.link">
+                <source>wall.delete.entry.link</source>
+                <target>Slet indlæg</target>
+            </trans-unit>
+            <trans-unit id="wall.delete.entry.confirm">
+                <source>wall.delete.entry.confirm</source>
+                <target>Er du sikker på du vil slette dette indlæg?</target>
+            </trans-unit>
+            <trans-unit id="BC_TEXT_NEWSLETTER_USER_NOT_EXISTS" approved="no">
+                <source>BC_TEXT_NEWSLETTER_USER_NOT_EXISTS</source>
+                <target>E-mail adressen "%email%" er ikke tilmeldt</target>
+            </trans-unit>
+            <trans-unit id="month.Januar">
+                <source>month.Januar</source>
+                <target>Januar</target>
+            </trans-unit>
+            <trans-unit id="today">
+                <source>today</source>
+                <target>I dag</target>
+            </trans-unit>
+            <trans-unit id="month.February">
+                <source>month.February</source>
+                <target>Februar</target>
+            </trans-unit>
+            <trans-unit id="month.March">
+                <source>month.March</source>
+                <target>Marts</target>
+            </trans-unit>
+            <trans-unit id="month.April">
+                <source>month.April</source>
+                <target>April</target>
+            </trans-unit>
+            <trans-unit id="month.May">
+                <source>month.May</source>
+                <target>Maj</target>
+            </trans-unit>
+            <trans-unit id="month.June">
+                <source>month.June</source>
+                <target>Juni</target>
+            </trans-unit>
+            <trans-unit id="month.July">
+                <source>month.July</source>
+                <target>Juli</target>
+            </trans-unit>
+            <trans-unit id="month.August">
+                <source>month.August</source>
+                <target>August</target>
+            </trans-unit>
+            <trans-unit id="month.September">
+                <source>month.September</source>
+                <target>September</target>
+            </trans-unit>
+            <trans-unit id="month.October">
+                <source>month.October</source>
+                <target>Oktober</target>
+            </trans-unit>
+            <trans-unit id="month.November">
+                <source>month.November</source>
+                <target>November</target>
+            </trans-unit>
+            <trans-unit id="month.December">
+                <source>month.December</source>
+                <target>December</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sun">
+                <source>day.short.Sun</source>
+                <target>Søn</target>
+            </trans-unit>
+            <trans-unit id="day.short.Mon">
+                <source>day.short.Mon</source>
+                <target>Man</target>
+            </trans-unit>
+            <trans-unit id="day.short.Tue">
+                <source>day.short.Tue</source>
+                <target>Tir</target>
+            </trans-unit>
+            <trans-unit id="day.short.Wed">
+                <source>day.short.Wed</source>
+                <target>Ons</target>
+            </trans-unit>
+            <trans-unit id="day.short.Thu">
+                <source>day.short.Thu</source>
+                <target>Tor</target>
+            </trans-unit>
+            <trans-unit id="day.short.Fri">
+                <source>day.short.Fri</source>
+                <target>Fre</target>
+            </trans-unit>
+            <trans-unit id="day.short.Sat">
+                <source>day.short.Sat</source>
+                <target>Lør</target>
+            </trans-unit>
+            <trans-unit id="event.confirm.delete.participant">
+                <source>event.confirm.delete.participant</source>
+                <target>Er du sikker på, du vil slette denne deltager?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.draft">
+                <source>consultant.newsletter.delete.draft</source>
+                <target>Er du sikker på du vil slette denne kladde?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.delete.user">
+                <source>consultant.newsletter.delete.user</source>
+                <target>Er du sikker på du vil slette denne bruger fra listen?</target>
+            </trans-unit>
+            <trans-unit id="consultant.newsletter.confirm.send">
+                <source>consultant.newsletter.confirm.send</source>
+                <target>Er du sikker på du vil sende nyhedsbrevet?</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.size">
+                <source>quickorder.choose.size</source>
+                <target>Size</target>
+            </trans-unit>
+            <trans-unit id="quickorder.choose.color">
+                <source>quickorder.choose.color</source>
+                <target>Color</target>
+            </trans-unit>
+            <trans-unit id="event.user.email.not.found">
+                <source>event.user.email.not.found</source>
+                <target>Der er ikke oprettet nogen kunde med den indtastede emailadresse.</target>
+            </trans-unit>
+            <trans-unit id="size">
+                <source>size</source>
+                <target>Størrelse</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>color</source>
+                <target>Farve</target>
+            </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Fortsæt</target>
+            </trans-unit>
+            <trans-unit id="checkout.choose.shipping.method" approved="no">
+                <source>checkout.choose.shipping.method</source>
+                <target>Du skal vælge en leveringsmetode.</target>
+            </trans-unit>
+            <trans-unit id="checkout.choose.payment.method" approved="no">
+                <source>checkout.choose.payment.method</source>
+                <target>Du skal vælge en betalingsmetode.</target>
+            </trans-unit>
+            <trans-unit id="form.buy.choose.first" approved="no">
+                <source>form.buy.choose.first</source>
+                <target>Du skal vælge størrelse og farve først.</target>
+            </trans-unit>
+            <trans-unit id="email.invalid" approved="no">
+                <source>email.invalid</source>
+                <target>Ugyldig email</target>
+            </trans-unit>
+            <trans-unit id="email.repeat.invalid" approved="no">
+                <source>email.repeat.invalid</source>
+                <target>Email er ikke ens</target>
+            </trans-unit>
+            <trans-unit id="phone.invalid" approved="no">
+                <source>phone.invalid</source>
+                <target>Ugyldig telefonnummer. Må kun indeholde tal og skal være mindst 8 tegn.</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match" approved="no">
+                <source>password.invalid.match</source>
+                <target>Adgangskode bekræftigelsen skal være den samme som dit adgangskoden.</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Adgangskode skal være min 5 tegn</target>
+            </trans-unit>
+            <trans-unit id="field.required" approved="no">
+                <source>field.required</source>
+                <target>Alle felter med (*) er nødvendige.</target>
+            </trans-unit>
+            <trans-unit id="approve.conditions.required" approved="no">
+                <source>approve.conditions.required</source>
+                <target>Du skal godkende POMPdeLUX betingelser først</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.progress.alert.title" approved="no">
+                <source>checkout.payment.progress.alert.title</source>
+                <target>Betalingsvinduet hentes</target>
+            </trans-unit>
+            <trans-unit id="checkout.payment.progress.alert.message" approved="no">
+                <source>checkout.payment.progress.alert.message</source>
+                <target><![CDATA[Vent venligst på at betalingsvinduet bliver hentet. Det kan tage op til 30 sekunder at hente betalingsvinduet. Går der mere end 30 sekunder, skal du klikke på Afbryd betaling knappen herunder og prøve igen.<br><br>På forhånd tak.<br><br><a href="%url%">» Afbryde betaling</a>]]></target>
+            </trans-unit>
+            <trans-unit id="more.product.info" approved="no">
+                <source>more.product.info</source>
+                <target>Klik her for at mere information om %name%.</target>
+            </trans-unit>
+            <trans-unit id="more.bundle.info" approved="no">
+                <source>more.bundle.info</source>
+                <target>Klik her for at mere information.</target>
+            </trans-unit>
+            <trans-unit id="events.error.email.or.phone" approved="no">
+                <source>events.error.email.or.phone</source>
+                <target>Email eller telefon er krævet.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

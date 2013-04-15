@@ -155,6 +155,7 @@ class AddressController extends CoreController
             $address->setCountry($country_name);
 
             $builder->add('countries_id', 'hidden', array('data' => $country_id));
+            $builder->add('external_address_id', 'hidden', array('data' => $address->getExternalAddressId()));
         } else {
             if (count($countries) > 1) {
                 $builder->add('countries_id', 'choice', array(
@@ -268,6 +269,7 @@ class AddressController extends CoreController
             if ($method == 'overnightbox') {
                 $address->setCountry('Denmark');
                 $address->setCountriesId(58);
+                $address->setExternalAddressId($data['external_address_id']);
             } else {
                 $country = CountriesQuery::create()->findOneById($data['countries_id']);
                 $address->setCountry($country->getName());

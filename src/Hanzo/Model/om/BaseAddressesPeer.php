@@ -31,13 +31,13 @@ abstract class BaseAddressesPeer
     const TM_CLASS = 'AddressesTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 16;
+    const NUM_COLUMNS = 17;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 16;
+    const NUM_HYDRATE_COLUMNS = 17;
 
     /** the column name for the CUSTOMERS_ID field */
     const CUSTOMERS_ID = 'addresses.CUSTOMERS_ID';
@@ -74,6 +74,9 @@ abstract class BaseAddressesPeer
 
     /** the column name for the COMPANY_NAME field */
     const COMPANY_NAME = 'addresses.COMPANY_NAME';
+
+    /** the column name for the EXTERNAL_ADDRESS_ID field */
+    const EXTERNAL_ADDRESS_ID = 'addresses.EXTERNAL_ADDRESS_ID';
 
     /** the column name for the LATITUDE field */
     const LATITUDE = 'addresses.LATITUDE';
@@ -120,12 +123,12 @@ abstract class BaseAddressesPeer
      * e.g. AddressesPeer::$fieldNames[AddressesPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('CustomersId', 'Type', 'FirstName', 'LastName', 'AddressLine1', 'AddressLine2', 'PostalCode', 'City', 'Country', 'CountriesId', 'StateProvince', 'CompanyName', 'Latitude', 'Longitude', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('customersId', 'type', 'firstName', 'lastName', 'addressLine1', 'addressLine2', 'postalCode', 'city', 'country', 'countriesId', 'stateProvince', 'companyName', 'latitude', 'longitude', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (AddressesPeer::CUSTOMERS_ID, AddressesPeer::TYPE, AddressesPeer::FIRST_NAME, AddressesPeer::LAST_NAME, AddressesPeer::ADDRESS_LINE_1, AddressesPeer::ADDRESS_LINE_2, AddressesPeer::POSTAL_CODE, AddressesPeer::CITY, AddressesPeer::COUNTRY, AddressesPeer::COUNTRIES_ID, AddressesPeer::STATE_PROVINCE, AddressesPeer::COMPANY_NAME, AddressesPeer::LATITUDE, AddressesPeer::LONGITUDE, AddressesPeer::CREATED_AT, AddressesPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID', 'TYPE', 'FIRST_NAME', 'LAST_NAME', 'ADDRESS_LINE_1', 'ADDRESS_LINE_2', 'POSTAL_CODE', 'CITY', 'COUNTRY', 'COUNTRIES_ID', 'STATE_PROVINCE', 'COMPANY_NAME', 'LATITUDE', 'LONGITUDE', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('customers_id', 'type', 'first_name', 'last_name', 'address_line_1', 'address_line_2', 'postal_code', 'city', 'country', 'countries_id', 'state_province', 'company_name', 'latitude', 'longitude', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+        BasePeer::TYPE_PHPNAME => array ('CustomersId', 'Type', 'FirstName', 'LastName', 'AddressLine1', 'AddressLine2', 'PostalCode', 'City', 'Country', 'CountriesId', 'StateProvince', 'CompanyName', 'ExternalAddressId', 'Latitude', 'Longitude', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('customersId', 'type', 'firstName', 'lastName', 'addressLine1', 'addressLine2', 'postalCode', 'city', 'country', 'countriesId', 'stateProvince', 'companyName', 'externalAddressId', 'latitude', 'longitude', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (AddressesPeer::CUSTOMERS_ID, AddressesPeer::TYPE, AddressesPeer::FIRST_NAME, AddressesPeer::LAST_NAME, AddressesPeer::ADDRESS_LINE_1, AddressesPeer::ADDRESS_LINE_2, AddressesPeer::POSTAL_CODE, AddressesPeer::CITY, AddressesPeer::COUNTRY, AddressesPeer::COUNTRIES_ID, AddressesPeer::STATE_PROVINCE, AddressesPeer::COMPANY_NAME, AddressesPeer::EXTERNAL_ADDRESS_ID, AddressesPeer::LATITUDE, AddressesPeer::LONGITUDE, AddressesPeer::CREATED_AT, AddressesPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID', 'TYPE', 'FIRST_NAME', 'LAST_NAME', 'ADDRESS_LINE_1', 'ADDRESS_LINE_2', 'POSTAL_CODE', 'CITY', 'COUNTRY', 'COUNTRIES_ID', 'STATE_PROVINCE', 'COMPANY_NAME', 'EXTERNAL_ADDRESS_ID', 'LATITUDE', 'LONGITUDE', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('customers_id', 'type', 'first_name', 'last_name', 'address_line_1', 'address_line_2', 'postal_code', 'city', 'country', 'countries_id', 'state_province', 'company_name', 'external_address_id', 'latitude', 'longitude', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
     );
 
     /**
@@ -135,12 +138,12 @@ abstract class BaseAddressesPeer
      * e.g. AddressesPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('CustomersId' => 0, 'Type' => 1, 'FirstName' => 2, 'LastName' => 3, 'AddressLine1' => 4, 'AddressLine2' => 5, 'PostalCode' => 6, 'City' => 7, 'Country' => 8, 'CountriesId' => 9, 'StateProvince' => 10, 'CompanyName' => 11, 'Latitude' => 12, 'Longitude' => 13, 'CreatedAt' => 14, 'UpdatedAt' => 15, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('customersId' => 0, 'type' => 1, 'firstName' => 2, 'lastName' => 3, 'addressLine1' => 4, 'addressLine2' => 5, 'postalCode' => 6, 'city' => 7, 'country' => 8, 'countriesId' => 9, 'stateProvince' => 10, 'companyName' => 11, 'latitude' => 12, 'longitude' => 13, 'createdAt' => 14, 'updatedAt' => 15, ),
-        BasePeer::TYPE_COLNAME => array (AddressesPeer::CUSTOMERS_ID => 0, AddressesPeer::TYPE => 1, AddressesPeer::FIRST_NAME => 2, AddressesPeer::LAST_NAME => 3, AddressesPeer::ADDRESS_LINE_1 => 4, AddressesPeer::ADDRESS_LINE_2 => 5, AddressesPeer::POSTAL_CODE => 6, AddressesPeer::CITY => 7, AddressesPeer::COUNTRY => 8, AddressesPeer::COUNTRIES_ID => 9, AddressesPeer::STATE_PROVINCE => 10, AddressesPeer::COMPANY_NAME => 11, AddressesPeer::LATITUDE => 12, AddressesPeer::LONGITUDE => 13, AddressesPeer::CREATED_AT => 14, AddressesPeer::UPDATED_AT => 15, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID' => 0, 'TYPE' => 1, 'FIRST_NAME' => 2, 'LAST_NAME' => 3, 'ADDRESS_LINE_1' => 4, 'ADDRESS_LINE_2' => 5, 'POSTAL_CODE' => 6, 'CITY' => 7, 'COUNTRY' => 8, 'COUNTRIES_ID' => 9, 'STATE_PROVINCE' => 10, 'COMPANY_NAME' => 11, 'LATITUDE' => 12, 'LONGITUDE' => 13, 'CREATED_AT' => 14, 'UPDATED_AT' => 15, ),
-        BasePeer::TYPE_FIELDNAME => array ('customers_id' => 0, 'type' => 1, 'first_name' => 2, 'last_name' => 3, 'address_line_1' => 4, 'address_line_2' => 5, 'postal_code' => 6, 'city' => 7, 'country' => 8, 'countries_id' => 9, 'state_province' => 10, 'company_name' => 11, 'latitude' => 12, 'longitude' => 13, 'created_at' => 14, 'updated_at' => 15, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+        BasePeer::TYPE_PHPNAME => array ('CustomersId' => 0, 'Type' => 1, 'FirstName' => 2, 'LastName' => 3, 'AddressLine1' => 4, 'AddressLine2' => 5, 'PostalCode' => 6, 'City' => 7, 'Country' => 8, 'CountriesId' => 9, 'StateProvince' => 10, 'CompanyName' => 11, 'ExternalAddressId' => 12, 'Latitude' => 13, 'Longitude' => 14, 'CreatedAt' => 15, 'UpdatedAt' => 16, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('customersId' => 0, 'type' => 1, 'firstName' => 2, 'lastName' => 3, 'addressLine1' => 4, 'addressLine2' => 5, 'postalCode' => 6, 'city' => 7, 'country' => 8, 'countriesId' => 9, 'stateProvince' => 10, 'companyName' => 11, 'externalAddressId' => 12, 'latitude' => 13, 'longitude' => 14, 'createdAt' => 15, 'updatedAt' => 16, ),
+        BasePeer::TYPE_COLNAME => array (AddressesPeer::CUSTOMERS_ID => 0, AddressesPeer::TYPE => 1, AddressesPeer::FIRST_NAME => 2, AddressesPeer::LAST_NAME => 3, AddressesPeer::ADDRESS_LINE_1 => 4, AddressesPeer::ADDRESS_LINE_2 => 5, AddressesPeer::POSTAL_CODE => 6, AddressesPeer::CITY => 7, AddressesPeer::COUNTRY => 8, AddressesPeer::COUNTRIES_ID => 9, AddressesPeer::STATE_PROVINCE => 10, AddressesPeer::COMPANY_NAME => 11, AddressesPeer::EXTERNAL_ADDRESS_ID => 12, AddressesPeer::LATITUDE => 13, AddressesPeer::LONGITUDE => 14, AddressesPeer::CREATED_AT => 15, AddressesPeer::UPDATED_AT => 16, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('CUSTOMERS_ID' => 0, 'TYPE' => 1, 'FIRST_NAME' => 2, 'LAST_NAME' => 3, 'ADDRESS_LINE_1' => 4, 'ADDRESS_LINE_2' => 5, 'POSTAL_CODE' => 6, 'CITY' => 7, 'COUNTRY' => 8, 'COUNTRIES_ID' => 9, 'STATE_PROVINCE' => 10, 'COMPANY_NAME' => 11, 'EXTERNAL_ADDRESS_ID' => 12, 'LATITUDE' => 13, 'LONGITUDE' => 14, 'CREATED_AT' => 15, 'UPDATED_AT' => 16, ),
+        BasePeer::TYPE_FIELDNAME => array ('customers_id' => 0, 'type' => 1, 'first_name' => 2, 'last_name' => 3, 'address_line_1' => 4, 'address_line_2' => 5, 'postal_code' => 6, 'city' => 7, 'country' => 8, 'countries_id' => 9, 'state_province' => 10, 'company_name' => 11, 'external_address_id' => 12, 'latitude' => 13, 'longitude' => 14, 'created_at' => 15, 'updated_at' => 16, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
     );
 
     /**
@@ -226,6 +229,7 @@ abstract class BaseAddressesPeer
             $criteria->addSelectColumn(AddressesPeer::COUNTRIES_ID);
             $criteria->addSelectColumn(AddressesPeer::STATE_PROVINCE);
             $criteria->addSelectColumn(AddressesPeer::COMPANY_NAME);
+            $criteria->addSelectColumn(AddressesPeer::EXTERNAL_ADDRESS_ID);
             $criteria->addSelectColumn(AddressesPeer::LATITUDE);
             $criteria->addSelectColumn(AddressesPeer::LONGITUDE);
             $criteria->addSelectColumn(AddressesPeer::CREATED_AT);
@@ -243,6 +247,7 @@ abstract class BaseAddressesPeer
             $criteria->addSelectColumn($alias . '.COUNTRIES_ID');
             $criteria->addSelectColumn($alias . '.STATE_PROVINCE');
             $criteria->addSelectColumn($alias . '.COMPANY_NAME');
+            $criteria->addSelectColumn($alias . '.EXTERNAL_ADDRESS_ID');
             $criteria->addSelectColumn($alias . '.LATITUDE');
             $criteria->addSelectColumn($alias . '.LONGITUDE');
             $criteria->addSelectColumn($alias . '.CREATED_AT');
