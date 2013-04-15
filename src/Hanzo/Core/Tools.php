@@ -163,6 +163,10 @@ class Tools
         switch ($type) {
             case 'order':
                 switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'orderde@pompdelux.com';
+                        break;
                     case 'FI':
                     case 'SalesFI':
                         $to = 'orderfi@pompdelux.com';
@@ -187,6 +191,10 @@ class Tools
                 break;
             case 'retur':
                 switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'returde@pompdelux.dk';
+                        break;
                     case 'FI':
                     case 'SalesFI':
                         $to = 'returfi@pompdelux.dk';
@@ -383,6 +391,7 @@ class Tools
         // we use environments to switch domain configurations.
         $env_map = array(
             'da_dk' => 'dk',
+            'de_de' => 'de',
             'en_gb' => 'com',
             'fi_fi' => 'fi',
             'nb_no' => 'no',

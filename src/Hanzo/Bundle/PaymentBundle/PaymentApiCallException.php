@@ -2,4 +2,4 @@
 
 namespace Hanzo\Bundle\PaymentBundle;
 
-class PaymentApiCallException extends Exception {};
+class PaymentApiCallException extends \Exception {};
