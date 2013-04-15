@@ -289,7 +289,7 @@ class AxService
 
         switch ($freight_type) {
             case 12:
-                $salesTable->DeliveryDroppointId     = $order->getDeliveryExternalAddressId();
+                $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
                 $salesTable->DeliveryCompanyName     = $order->getDeliveryFirstName();
                 $salesTable->DeliveryCity            = $order->getDeliveryCity();
                 $salesTable->DeliveryName            = $order->getDeliveryAddressLine1();
