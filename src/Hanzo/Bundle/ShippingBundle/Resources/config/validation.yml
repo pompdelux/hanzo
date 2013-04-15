@@ -162,7 +162,8 @@ Hanzo\Model\Addresses:
             - Length:
                 min: 2
                 max: 4
-                exactMessage: postal_code.length
+                minMessage: postal_code.length
+                maxMessage: postal_code.length
                 groups:
                     - company_shipping
                     - overnightbox
@@ -182,9 +183,10 @@ Hanzo\Model\Addresses:
                     - shipping_se
                     - payment_se
             - Length:
-                min: 6
+                min: 4
                 max: 7
-                exactMessage: postal_code.length
+                minMessage: postal_code.length
+                maxMessage: postal_code.length
                 groups:
                     - company_shipping_nl
                     - overnightbox_nl
