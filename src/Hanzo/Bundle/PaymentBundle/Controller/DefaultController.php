@@ -131,8 +131,18 @@ class DefaultController extends CoreController
         ];
 
         $order = OrdersPeer::getCurrent();
+        $order->reload();
+        $attributes = $order->getAttributes();
 
         // validation
+
+        // if the order has validation issues, we just return false to halt the checkout process
+        if (isset($attributes->global->not_valid)) {
+            return $this->json_response([
+                'status'  => false,
+                'message' => '',
+            ]);
+        }
 
         if ($order->getState() >= Orders::STATE_PRE_PAYMENT) {
             return $this->json_response([

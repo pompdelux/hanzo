@@ -287,26 +287,13 @@ class AxService
         $salesTable->CustPaymMode            = $custPaymMode;
         $salesTable->SmoreContactInfo        = ''; // NICETO, når s-more kommer på banen igen
 
-        switch ($freight_type) {
-            case 12:
-                $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
-                $salesTable->DeliveryCompanyName     = $order->getDeliveryFirstName();
-                $salesTable->DeliveryCity            = $order->getDeliveryCity();
-                $salesTable->DeliveryName            = $order->getDeliveryAddressLine1();
-                $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine2();
-                $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
-                $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
-                break;
-
-            default:
-                $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
-                $salesTable->DeliveryCity            = $order->getDeliveryCity();
-                $salesTable->DeliveryName            = $order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName();
-                $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine1();
-                $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
-                $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
-                break;
-        }
+        $salesTable->DeliveryDropPointId     = $order->getDeliveryExternalAddressId();
+        $salesTable->DeliveryCompanyName     = $order->getDeliveryCompanyName();
+        $salesTable->DeliveryCity            = $order->getDeliveryCity();
+        $salesTable->DeliveryName            = $order->getDeliveryFirstName() . ' ' . $order->getDeliveryLastName();
+        $salesTable->DeliveryStreet          = $order->getDeliveryAddressLine1();
+        $salesTable->DeliveryZipCode         = $order->getDeliveryPostalCode();
+        $salesTable->DeliveryCountryRegionId = $this->getIso2CountryCode($order->getDeliveryCountriesId());
 
         $salesTable->SalesGroup = '';
         if ($event = $order->getEvents($con)) {
@@ -336,7 +323,7 @@ class AxService
                 $syncSalesOrder->endpointDomain = 'DK';
                 break;
         }
-
+Tools::log($syncSalesOrder);
         if ($return) {
             return $syncSalesOrder;
         }

@@ -343,6 +343,15 @@
       if (true === pub.getStepStatus('address')) {
         pub.setStepStatus('address', response.response.status);
       }
+
+      if (!pub.getStepStatus('address') && response.response.message) {
+        var $form = $("form[action$='"+response.action+"']");
+        $('ul.error', $form).remove();
+        $form.prepend(response.response.message);
+        $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
+      } else {
+        $('form.address .error').remove();
+      }
     };
 
     pub.processPaymentButton = function(response) {
@@ -374,6 +383,11 @@
             Translator.get('js:checkout.payment.progress.alert.message', {'url' : base_url+'payment/cancel'})
           );
         }, 3000);
+      } else {
+        dialoug.stopLoading();
+        $('a#checkout-execute').show();
+        // reset address validation
+        pub.setStepStatus('address', true);
       }
     };
 
