@@ -99,7 +99,7 @@ span.flag{
   display:inline-block;
   width: 16px;
   height: 11px;
-  background:url(/fx/images/flags.png) no-repeat
+  background:url(/fx/images/flags.png?1) no-repeat
 }
 
 span.flag.da_DK, span.flag.DK, span.flag.pdldbda, span.flag.default {background-position: -64px -11px}
