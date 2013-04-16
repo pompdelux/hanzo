@@ -24,7 +24,6 @@ use Hanzo\Model\CmsThread;
  * @method CmsQuery orderByCmsThreadId($order = Criteria::ASC) Order by the cms_thread_id column
  * @method CmsQuery orderBySort($order = Criteria::ASC) Order by the sort column
  * @method CmsQuery orderByType($order = Criteria::ASC) Order by the type column
- * @method CmsQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  * @method CmsQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method CmsQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -33,7 +32,6 @@ use Hanzo\Model\CmsThread;
  * @method CmsQuery groupByCmsThreadId() Group by the cms_thread_id column
  * @method CmsQuery groupBySort() Group by the sort column
  * @method CmsQuery groupByType() Group by the type column
- * @method CmsQuery groupByIsActive() Group by the is_active column
  * @method CmsQuery groupByCreatedAt() Group by the created_at column
  * @method CmsQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -65,7 +63,6 @@ use Hanzo\Model\CmsThread;
  * @method Cms findOneByCmsThreadId(int $cms_thread_id) Return the first Cms filtered by the cms_thread_id column
  * @method Cms findOneBySort(int $sort) Return the first Cms filtered by the sort column
  * @method Cms findOneByType(string $type) Return the first Cms filtered by the type column
- * @method Cms findOneByIsActive(boolean $is_active) Return the first Cms filtered by the is_active column
  * @method Cms findOneByCreatedAt(string $created_at) Return the first Cms filtered by the created_at column
  * @method Cms findOneByUpdatedAt(string $updated_at) Return the first Cms filtered by the updated_at column
  *
@@ -74,7 +71,6 @@ use Hanzo\Model\CmsThread;
  * @method array findByCmsThreadId(int $cms_thread_id) Return Cms objects filtered by the cms_thread_id column
  * @method array findBySort(int $sort) Return Cms objects filtered by the sort column
  * @method array findByType(string $type) Return Cms objects filtered by the type column
- * @method array findByIsActive(boolean $is_active) Return Cms objects filtered by the is_active column
  * @method array findByCreatedAt(string $created_at) Return Cms objects filtered by the created_at column
  * @method array findByUpdatedAt(string $updated_at) Return Cms objects filtered by the updated_at column
  */
@@ -164,7 +160,7 @@ abstract class BaseCmsQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `PARENT_ID`, `CMS_THREAD_ID`, `SORT`, `TYPE`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `cms` WHERE `ID` = :p0';
+        $sql = 'SELECT `ID`, `PARENT_ID`, `CMS_THREAD_ID`, `SORT`, `TYPE`, `CREATED_AT`, `UPDATED_AT` FROM `cms` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -434,33 +430,6 @@ abstract class BaseCmsQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CmsPeer::TYPE, $type, $comparison);
-    }
-
-    /**
-     * Filter the query on the is_active column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByIsActive(true); // WHERE is_active = true
-     * $query->filterByIsActive('yes'); // WHERE is_active = true
-     * </code>
-     *
-     * @param     boolean|string $isActive The value to use as filter.
-     *              Non-boolean arguments are converted using the following rules:
-     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return CmsQuery The current query, for fluid interface
-     */
-    public function filterByIsActive($isActive = null, $comparison = null)
-    {
-        if (is_string($isActive)) {
-            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-        }
-
-        return $this->addUsingAlias(CmsPeer::IS_ACTIVE, $isActive, $comparison);
     }
 
     /**

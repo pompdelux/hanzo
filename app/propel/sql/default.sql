@@ -50,7 +50,6 @@ CREATE TABLE `cms`
     `cms_thread_id` INTEGER NOT NULL,
     `sort` INTEGER DEFAULT 1 NOT NULL,
     `type` VARCHAR(255) DEFAULT 'cms' NOT NULL,
-    `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
     `created_at` DATETIME,
     `updated_at` DATETIME,
     PRIMARY KEY (`id`),
@@ -1108,6 +1107,7 @@ CREATE TABLE `cms_i18n`
     `content` TEXT,
     `settings` TEXT,
     `is_restricted` TINYINT(1) DEFAULT 0 NOT NULL,
+    `is_active` TINYINT(1) DEFAULT 1 NOT NULL,
     PRIMARY KEY (`id`,`locale`),
     CONSTRAINT `cms_i18n_FK_1`
         FOREIGN KEY (`id`)

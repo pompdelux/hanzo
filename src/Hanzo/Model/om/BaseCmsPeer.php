@@ -31,13 +31,13 @@ abstract class BaseCmsPeer
     const TM_CLASS = 'CmsTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 8;
+    const NUM_COLUMNS = 7;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 8;
+    const NUM_HYDRATE_COLUMNS = 7;
 
     /** the column name for the ID field */
     const ID = 'cms.ID';
@@ -53,9 +53,6 @@ abstract class BaseCmsPeer
 
     /** the column name for the TYPE field */
     const TYPE = 'cms.TYPE';
-
-    /** the column name for the IS_ACTIVE field */
-    const IS_ACTIVE = 'cms.IS_ACTIVE';
 
     /** the column name for the CREATED_AT field */
     const CREATED_AT = 'cms.CREATED_AT';
@@ -89,12 +86,12 @@ abstract class BaseCmsPeer
      * e.g. CmsPeer::$fieldNames[CmsPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'ParentId', 'CmsThreadId', 'Sort', 'Type', 'IsActive', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'parentId', 'cmsThreadId', 'sort', 'type', 'isActive', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (CmsPeer::ID, CmsPeer::PARENT_ID, CmsPeer::CMS_THREAD_ID, CmsPeer::SORT, CmsPeer::TYPE, CmsPeer::IS_ACTIVE, CmsPeer::CREATED_AT, CmsPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'PARENT_ID', 'CMS_THREAD_ID', 'SORT', 'TYPE', 'IS_ACTIVE', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'parent_id', 'cms_thread_id', 'sort', 'type', 'is_active', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'ParentId', 'CmsThreadId', 'Sort', 'Type', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'parentId', 'cmsThreadId', 'sort', 'type', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (CmsPeer::ID, CmsPeer::PARENT_ID, CmsPeer::CMS_THREAD_ID, CmsPeer::SORT, CmsPeer::TYPE, CmsPeer::CREATED_AT, CmsPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'PARENT_ID', 'CMS_THREAD_ID', 'SORT', 'TYPE', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'parent_id', 'cms_thread_id', 'sort', 'type', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
     );
 
     /**
@@ -104,12 +101,12 @@ abstract class BaseCmsPeer
      * e.g. CmsPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ParentId' => 1, 'CmsThreadId' => 2, 'Sort' => 3, 'Type' => 4, 'IsActive' => 5, 'CreatedAt' => 6, 'UpdatedAt' => 7, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'parentId' => 1, 'cmsThreadId' => 2, 'sort' => 3, 'type' => 4, 'isActive' => 5, 'createdAt' => 6, 'updatedAt' => 7, ),
-        BasePeer::TYPE_COLNAME => array (CmsPeer::ID => 0, CmsPeer::PARENT_ID => 1, CmsPeer::CMS_THREAD_ID => 2, CmsPeer::SORT => 3, CmsPeer::TYPE => 4, CmsPeer::IS_ACTIVE => 5, CmsPeer::CREATED_AT => 6, CmsPeer::UPDATED_AT => 7, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'PARENT_ID' => 1, 'CMS_THREAD_ID' => 2, 'SORT' => 3, 'TYPE' => 4, 'IS_ACTIVE' => 5, 'CREATED_AT' => 6, 'UPDATED_AT' => 7, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'parent_id' => 1, 'cms_thread_id' => 2, 'sort' => 3, 'type' => 4, 'is_active' => 5, 'created_at' => 6, 'updated_at' => 7, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ParentId' => 1, 'CmsThreadId' => 2, 'Sort' => 3, 'Type' => 4, 'CreatedAt' => 5, 'UpdatedAt' => 6, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'parentId' => 1, 'cmsThreadId' => 2, 'sort' => 3, 'type' => 4, 'createdAt' => 5, 'updatedAt' => 6, ),
+        BasePeer::TYPE_COLNAME => array (CmsPeer::ID => 0, CmsPeer::PARENT_ID => 1, CmsPeer::CMS_THREAD_ID => 2, CmsPeer::SORT => 3, CmsPeer::TYPE => 4, CmsPeer::CREATED_AT => 5, CmsPeer::UPDATED_AT => 6, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'PARENT_ID' => 1, 'CMS_THREAD_ID' => 2, 'SORT' => 3, 'TYPE' => 4, 'CREATED_AT' => 5, 'UPDATED_AT' => 6, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'parent_id' => 1, 'cms_thread_id' => 2, 'sort' => 3, 'type' => 4, 'created_at' => 5, 'updated_at' => 6, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, )
     );
 
     /**
@@ -188,7 +185,6 @@ abstract class BaseCmsPeer
             $criteria->addSelectColumn(CmsPeer::CMS_THREAD_ID);
             $criteria->addSelectColumn(CmsPeer::SORT);
             $criteria->addSelectColumn(CmsPeer::TYPE);
-            $criteria->addSelectColumn(CmsPeer::IS_ACTIVE);
             $criteria->addSelectColumn(CmsPeer::CREATED_AT);
             $criteria->addSelectColumn(CmsPeer::UPDATED_AT);
         } else {
@@ -197,7 +193,6 @@ abstract class BaseCmsPeer
             $criteria->addSelectColumn($alias . '.CMS_THREAD_ID');
             $criteria->addSelectColumn($alias . '.SORT');
             $criteria->addSelectColumn($alias . '.TYPE');
-            $criteria->addSelectColumn($alias . '.IS_ACTIVE');
             $criteria->addSelectColumn($alias . '.CREATED_AT');
             $criteria->addSelectColumn($alias . '.UPDATED_AT');
         }

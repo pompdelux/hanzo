@@ -44,7 +44,6 @@ class CmsPeer extends BaseCmsPeer
 
         $result = CmsQuery::create()
             ->joinWithI18n($locale)
-            // ->filterByType('frontpage')
             ->filterById($frontpage_id)
             ->findOne()
         ;
