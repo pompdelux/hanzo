@@ -121,6 +121,10 @@
   background: url('/fx/2013s1/../images/icons/en-s9d987caa83.png') no-repeat;
 }
 
+.de-sprite, body.de form.buy .submit-button, body.de .buy-set, body.de .new-price, body.de .out-of-stock {
+  background: url('/fx/2013s1/../images/icons/de-s5694c04f28.png') no-repeat;
+}
+
 body.da form.buy .submit-button {
   background-position: 0 -579px;
   height: 84px;
@@ -138,6 +142,27 @@ body.da .new-price {
 }
 body.da .out-of-stock {
   background-position: 0 -410px;
+  height: 85px;
+  width: 86px;
+}
+
+body.de form.buy .submit-button {
+  background-position: 0 -254px;
+  height: 84px;
+  width: 84px;
+}
+body.de .buy-set {
+  background-position: 0 -170px;
+  height: 84px;
+  width: 84px;
+}
+body.de .new-price {
+  background-position: 0 0;
+  height: 85px;
+  width: 86px;
+}
+body.de .out-of-stock {
+  background-position: 0 -85px;
   height: 85px;
   width: 86px;
 }
