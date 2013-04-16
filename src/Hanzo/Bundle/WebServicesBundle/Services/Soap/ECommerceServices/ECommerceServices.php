@@ -1070,11 +1070,42 @@ class ECommerceServices extends SoapService
      */
     protected function SalesOrderCapture($data, Orders $order)
     {
-        $error = array();
+        $error = [];
 
         $provider = strtolower($order->getBillingMethod());
         if ('paybybill' == $provider) {
             return true;
+        }
+
+        $attributes = $order->getAttributes();
+
+        // work arround for iDEAL payments not supporting capture
+        if ((isset($attributes->payment)) &&
+            (isset($attributes->payment->paytype)) &&
+            ('ideal' == $attributes->payment->paytype)
+        ) {
+            $this->timer->reset();
+            $status = true;
+            $total  = $order->getTotalPrice();
+            $amount = str_replace(',', '.', $data->amount);
+
+            if ($amount < $total) {
+                $gateway = $this->hanzo->container->get('payment.'.$provider.'api');
+                $diff = $total - $amount;
+
+                try{
+                    $gateway->call()->refund($order, $diff);
+                } catch (PaymentApiCallException $e) {
+                    $error = [
+                        'cound not refund "'.$diff.'" to order #'.$data->eOrderNumber,
+                        'error: ' . $e->getMessage(),
+                        'line : ' . __LINE__
+                    ];
+                }
+            }
+            $this->timer->lap('time in '.$provider.' gateway');
+
+            return count($error) ? $error : true;
         }
 
         try {
