@@ -101,13 +101,55 @@ span.flag{
   height: 11px;
   background:url(/fx/images/flags.png) no-repeat
 }
-span.flag.da_DK, span.flag.DK, span.flag.pdldbda, span.flag.default {background-position: -16px 0;}
-span.flag.fi_FI, span.flag.FI, span.flag.pdldbfi1 {background-position: -33px 0;}
-span.flag.en_GB, span.flag.UK {background-position: 0 -11px;}
-span.flag.en_EN, span.flag.COM {background-position: 0 -11px;}
-span.flag.nl_NL, span.flag.NL, span.flag.pdldbnl1 {background-position: -16px -12px;}
-span.flag.no_NB, span.flag.NO, span.flag.pdldbno1 {background-position: -33px -12px;}
-span.flag.sv_SE, span.flag.SE, span.flag.pdldbse1 {background-position: 0 -22px;}
+
+span.flag.da_DK, span.flag.DK, span.flag.pdldbda, span.flag.default {background-position: -64px -11px}
+span.flag.de_DE, span.flag.DE, span.flag.pdldbde1 {background-position: -48px -11px}
+span.flag.fi_FI, span.flag.FI, span.flag.pdldbfi1 {background-position: 0 -22px}
+span.flag.en_GB, span.flag.UK {background-position: -48px -22px}
+span.flag.en_EN, span.flag.COM {background-position:  -48px -22px}
+span.flag.nl_NL, span.flag.NL, span.flag.pdldbnl1 {background-position: -96px -44px}
+span.flag.no_NB, span.flag.NO, span.flag.pdldbno1 {background-position: 0 -55px}
+span.flag.sv_SE, span.flag.SE, span.flag.pdldbse1 {background-position: -96px -55px}
+
+/*span.flag.AD {background-position: -16px 0}
+span.flag.AL {background-position: -32px 0}
+span.flag.AT {background-position: -48px 0}
+span.flag.BA {background-position: -64px 0}
+span.flag.BE {background-position: -80px 0}
+span.flag.BG {background-position: -96px 0}
+span.flag.BY {background-position: 0 -11px}
+span.flag.CH {background-position: -16px -11px}
+span.flag.CZ {background-position: -32px -11px}
+span.flag.EE {background-position: -80px -11px}
+span.flag.ES {background-position: -96px -11px}
+span.flag.FO {background-position: -16px -22px}
+span.flag.FR {background-position: -32px -22px}
+span.flag.GI {background-position: -64px -22px}
+span.flag.GR {background-position: -80px -22px}
+span.flag.HR {background-position: -96px -22px}
+span.flag.HU {background-position: 0 -33px}
+span.flag.IE {background-position: -16px -33px}
+span.flag.IS {background-position: -32px -33px}
+span.flag.IT {background-position: -48px -33px}
+span.flag.LI {background-position: -64px -33px}
+span.flag.LT {background-position: -80px -33px}
+span.flag.LU {background-position: -96px -33px}
+span.flag.LV {background-position: 0 -44px}
+span.flag.MC {background-position: -16px -44px}
+span.flag.MD {background-position: -32px -44px}
+span.flag.ME {background-position: -48px -44px}
+span.flag.MK {background-position: -64px -44px}
+span.flag.MT {background-position: -80px -44px}
+span.flag.PL {background-position: -16px -55px}
+span.flag.PT {background-position: -32px -55px}
+span.flag.RO {background-position: -48px -55px}
+span.flag.RS {background-position: -64px -55px}
+span.flag.RU {background-position: -80px -55px}
+span.flag.SI {background-position: 0 -66px}
+span.flag.SK {background-position: -16px -66px}
+span.flag.SM {background-position: -32px -66px}
+span.flag.UA {background-position: -48px -66px}
+*/
 
 nav.sub li.dropdown-menu a span.cat-id,
 #categories-list a span.cat-id{

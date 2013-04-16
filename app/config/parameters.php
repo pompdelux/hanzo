@@ -28,11 +28,11 @@ if ('dev' != $env[0]) {
         case 'no':
             $db_prefix = $env[0].'_no_';
             break;
+        case 'de':
+            $db_prefix = $env[0].'_de_';
+            break;
       // case 'nl':
       //   $db_prefix = $env[0].'_se_';
-      //   break;
-      // case 'de':
-      //   $db_prefix = $env[0].'_de_';
       //   break;
     }
 }
