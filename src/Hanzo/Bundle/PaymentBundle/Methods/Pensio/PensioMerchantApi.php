@@ -18,7 +18,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      * gateway url
      * @var string
      */
-    protected $base_url = 'http://%s.pensio.com';
+    protected $base_url = 'https://%s.pensio.com';
 
     /**
      * connection state
@@ -253,12 +253,10 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
     protected function callAPIMethod($method, array $args = [])
     {
         $context = $this->createContext($args);
+        $result = @file_get_contents($this->base_url."/merchant/API/".$method, false , $context);
 
-        $xmlResult = @file_get_contents(
-        $this->base_url."/merchant/API/".$method, false , $context);
-
-        if ($xmlResult !== false) {
-            return new PensioCallResponse(new SimpleXMLElement($xmlResult));
+        if ($result !== false) {
+            return new PensioCallResponse($http_response_header, new SimpleXMLElement($result));
         }
 
         return false;
