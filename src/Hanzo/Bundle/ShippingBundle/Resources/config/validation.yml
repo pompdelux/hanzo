@@ -161,7 +161,7 @@ Hanzo\Model\Addresses:
                 message: postal_code.required
             - Length:
                 min: 2
-                max: 4
+                max: 10
                 minMessage: postal_code.length
                 maxMessage: postal_code.length
                 groups:
