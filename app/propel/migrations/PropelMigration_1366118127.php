@@ -47,6 +47,8 @@ ALTER TABLE `cms` DROP `is_active`;
 ALTER TABLE `cms_i18n`
     ADD `is_active` TINYINT(1) DEFAULT 1 NOT NULL AFTER `is_restricted`;
 
+UPDATE `cms_i18n` SET `is_active` = 0 WHERE `title` = "" AND `path` = "" AND `content` IS NULL;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
 ',
