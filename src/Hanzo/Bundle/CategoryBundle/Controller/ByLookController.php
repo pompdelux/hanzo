@@ -45,6 +45,9 @@ class ByLookController extends CoreController
             foreach ($data['products'] as $k => $product) {
                 $data['products'][$k]['image'] = Tools::productImageUrl($product['image'], '234x410');
             }
+
+            $data['products'] = $this->setAlt($data['products'], $category_id);
+
             return $this->json_response($data);
         }
 
@@ -55,22 +58,36 @@ class ByLookController extends CoreController
         if (!$html) {
 
             $data = CategoriesPeer::getStylesByCategoryId($category_id, $pager);
+            $data['products'] = $this->setAlt($data['products'], $category_id);
             $cms_page = CmsQuery::create()->findOneById($cms_id);
 
 
             $classes = 'bylook-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-            if(preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())){
+            if (preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-girl';
-            }elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())){
+            } elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())) {
                 $classes .= ' category-boy';
             }
+
             $this->get('twig')->addGlobal('page_type', 'bylook-'.$category_id);
             $this->get('twig')->addGlobal('body_classes', 'body-bylook bylook-'.$category_id.' '.$classes);
             $this->get('twig')->addGlobal('cms_id', $cms_page->getParentId());
+
             $html = $this->renderView('CategoryBundle:ByLook:view.html.twig', $data);
             $this->setCache($cache_id, $html, 5);
         }
 
         return $this->response($html);
+    }
+
+    protected function setAlt($products, $category_id)
+    {
+        $translator = $this->get('translator');
+
+        foreach ($products as $k => $product) {
+            $data['products'][$k]['alt'] = trim(Tools::stripTags($translator->trans('headers.bylook-'.$category_id, [], 'category'))).': '.$product['sku'];
+        }
+
+        return $products;
     }
 }

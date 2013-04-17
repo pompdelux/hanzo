@@ -114,10 +114,12 @@ class BundleController extends CoreController
                 $key = '_' . $locale . '_' . $products2category->getCategoriesId();
                 $product_route = $router_keys[$key];
 
+                $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
                     'id' => $product->getId(),
                     'master' => $product->getSku(),
-                    'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                    'color' => $image->getColor(),
+                    'image' => $image->getImage(),
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
                         'title' => Tools::stripText($product->getSku()),
@@ -137,6 +139,7 @@ class BundleController extends CoreController
         }
 
         foreach ($products as $id => $product) {
+
             $stock = $this->forward('WebServicesBundle:RestStock:check', array(
                 'version' => 'v1',
                 'master' => $product['master'],
@@ -173,7 +176,7 @@ class BundleController extends CoreController
         $router = $this->get('router');
 
         $cache_id = array('product.bundle.custom', str_replace(',', '-', $set));
-        $products = $this->getCache($cache_id);
+        //$products = $this->getCache($cache_id);
 
         if (empty($products)) {
             $product_ids = explode(',', $set);
@@ -196,7 +199,6 @@ class BundleController extends CoreController
             ;
 
             foreach ($result as $product) {
-
                 $products2category = ProductsToCategoriesQuery::create()
                     ->useProductsQuery()
                     ->filterBySku($product->getSku())
@@ -207,10 +209,12 @@ class BundleController extends CoreController
                 $key = '_' . $locale . '_' . $products2category->getCategoriesId();
                 $product_route = $router_keys[$key];
 
+                $image = $product->getProductsImagess()->getFirst();
                 $products[$product->getId()] = array(
                     'id' => $product->getId(),
                     'master' => $product->getSku(),
-                    'image' => $product->getProductsImagess()->getFirst()->getImage(),
+                    'color' => $image->getColor(),
+                    'image' => $image->getImage(),
                     'url' => $router->generate($product_route, array(
                         'product_id' => $product->getId(),
                         'title' => Tools::stripText($product->getSku()),
@@ -230,6 +234,7 @@ class BundleController extends CoreController
         }
 
         foreach ($products as $id => $product) {
+
             $stock = $this->forward('WebServicesBundle:RestStock:check', array(
                 'version' => 'v1',
                 'master' => $product['master'],
