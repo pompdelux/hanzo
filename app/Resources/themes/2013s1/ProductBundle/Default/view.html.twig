@@ -30,12 +30,10 @@
     {% if product.has_video %}
         <a href="{{ url('ws_product_video') }}" title="{{ 'click.to.video'|trans }}" data-width="594" data-height="594" data-src="{{ product.title|replace(' ', '_') }}" data-banner="video_bg" class="video video-popper right">
           <div class="sprite sprite-block centerfy"></div>
-          {# 'click.to.video'|trans #}
         </a>
     {% endif %}
       <a href="{{ product_image_url(product.main_image.name, '0x0') }}" title="{{ 'click.to.zoom'|trans }}" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" class="picture-zoom zoom">
         <div class="sprite sprite-block centerfy"></div>
-        {# 'click.to.zoom'|trans #}
       </a>
     </div>
 

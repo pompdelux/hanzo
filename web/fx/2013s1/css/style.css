@@ -2053,6 +2053,9 @@ nav.main-menu > ul > li > ul.on {
   padding: 6px 0 0;
   letter-spacing: 0;
 }
+.body-pages #main .social-buttons {
+  float: right;
+}
 
 /**
 | _faq
