@@ -54,7 +54,10 @@ class CustomersType extends AbstractType
                 'label' => 'create.newsletter',
                 'required' => false,
                 'property_path' => false,
-                'attr' => array('autocomplete' => 'off'),
+                'attr' => array(
+                    'autocomplete' => 'off',
+                    'checked' => 'checked'
+                ),
             ));
 
             $builder->add('accept', 'checkbox', array(

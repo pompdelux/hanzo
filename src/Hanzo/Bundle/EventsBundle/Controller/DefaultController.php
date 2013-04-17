@@ -194,7 +194,7 @@ class DefaultController extends CoreController
             'form' => $form->createView(),
             'errors' => $errors,
             'domain_key' => $domainKey
-            ));
+        ));
     }
 
     /**
