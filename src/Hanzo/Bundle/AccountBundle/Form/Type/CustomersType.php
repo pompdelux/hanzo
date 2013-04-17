@@ -2,6 +2,7 @@
 
 namespace Hanzo\Bundle\AccountBundle\Form\Type;
 
+use Hanzo\Core\Hanzo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -50,14 +51,22 @@ class CustomersType extends AbstractType
         ));
 
         if ($this->is_new) {
+            $attr = [
+                'autocomplete' => 'off',
+                'checked' => 'checked'
+            ];
+
+            // ugly hack to disable default choice for NL
+            // TODO: find a better solution
+            if ('NL' == substr(Hanzo::getInstance()->get('core.domain_key'), -2)) {
+                unset($attr['checked']);
+            }
+
             $builder->add('newsletter', 'checkbox', array(
                 'label' => 'create.newsletter',
                 'required' => false,
                 'property_path' => false,
-                'attr' => array(
-                    'autocomplete' => 'off',
-                    'checked' => 'checked'
-                ),
+                'attr' => $attr,
             ));
 
             $builder->add('accept', 'checkbox', array(
