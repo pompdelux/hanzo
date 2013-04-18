@@ -102,9 +102,9 @@ class AddressController extends CoreController
             $address->setFirstName($order->getFirstName());
             $address->setLastName($order->getLastName());
         }
-Tools::log($address->toArray());
+
         $builder = $this->createFormBuilder($address, array(
-            'validation_groups' => $type
+            'validation_groups' => 'shipping_bundle_'.$type
         ));
 
         if (in_array($type, ['company_shipping', 'overnightbox'])) {
@@ -291,10 +291,10 @@ Tools::log($address->toArray());
             $translator = $this->get('translator');
 
             // fi uses different validation group to support different rules
-            $validation_group = $method;
-            if (in_array($short_domain_key, ['fi', 'se', 'nl'])) {
-                $validation_group = $method.'_'.$short_domain_key;
-            }
+            $validation_group = 'shipping_bundle_'.$method;
+            // if (in_array($short_domain_key, ['fi', 'se', 'nl'])) {
+            //     $validation_group = $method.'_'.$short_domain_key;
+            // }
 
             $object_errors = $validator->validate($address, [$validation_group]);
 
