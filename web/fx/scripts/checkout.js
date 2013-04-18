@@ -173,6 +173,7 @@
 
         $(this).hide();
         dialoug.loading($('a#checkout-execute', '', 'after'));
+        $('form.address .error').remove();
 
         $('#main form').each(function(index, form) {
           var $form = $(form);
@@ -349,8 +350,6 @@
         $('ul.error', $form).remove();
         $form.prepend(response.response.message);
         $('html,body').animate({scrollTop: $('#address-block').prev('h2').offset().top - 20});
-      } else {
-        $('form.address .error').remove();
       }
     };
 
