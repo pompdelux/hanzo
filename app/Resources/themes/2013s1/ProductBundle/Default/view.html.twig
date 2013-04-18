@@ -42,7 +42,8 @@
         <a href="{{ product_image_url(product.main_image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ product.main_image.id }}" data-src="{{ product_image_url(product.main_image.name, '114x200') }}" data-color="{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }}" data-number="{{ product.main_image.number }}" data-type="{{ product.main_image.type }}" class="color-{{ product.main_image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ product.main_image.number }} type-{{ product.main_image.type }}">
           {{ product_image_tag(
               product.main_image.name,
-              '234x410'
+              '234x410',
+              {'alt': product.title ~ ', ' ~ product.main_image.color}
             )
           }}
         </a>
@@ -73,7 +74,8 @@
         <a href="{{ product_image_url(image.name, '0x0') }}" rel="full-image" data-id="image-id-{{ image.id }}" data-src="{{ product_image_url(image.name, '234x410') }}" class="color-{{ image.color|lower|replace({' ':'-', '/':'9'}) }} number-{{ image.number }} type-{{ image.type }}{% if loop.last %} last{% endif %}" data-number="{{ image.number }}" data-color="{{ image.color|lower|replace({' ':'-', '/':'9'}) }}" data-type="{{ image.type }}">
           {{ product_image_tag(
               image.name,
-              '114x200'
+              '114x200',
+              {'alt': product.title ~ ', ' ~ image.color}
             )
           }}
         </a>
@@ -91,7 +93,8 @@
         <div class="element image-id-{{ id }}">
         {% spaceless %}
         {% for item in references.references %}
-          <a href="{{ item.url }}" title="{{ item.image }}">{{ product_image_tag(item.image, '114x200') }}</a>
+          <a href="{{ item.url }}" title="{{ item.image }}">{{ product_image_tag(item.image, '114x200',
+              {'alt': product.title ~ ' ' ~ item.color}) }}</a>
         {% endfor %}
         {% endspaceless %}
         <a href="{{ path('product_set', {'image_id': id}) }}" class="buy-set last">» {{ 'buy.set'|trans }}</a>
