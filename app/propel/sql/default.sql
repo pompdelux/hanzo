@@ -150,6 +150,7 @@ CREATE TABLE `customers`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `groups_id` INTEGER DEFAULT 1 NOT NULL,
+    `title` VARCHAR(12),
     `first_name` VARCHAR(128) NOT NULL,
     `last_name` VARCHAR(128) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
@@ -200,6 +201,7 @@ CREATE TABLE `addresses`
 (
     `customers_id` INTEGER NOT NULL,
     `type` VARCHAR(32) DEFAULT 'payment' NOT NULL,
+    `title` VARCHAR(12),
     `first_name` VARCHAR(128) NOT NULL,
     `last_name` VARCHAR(128) NOT NULL,
     `address_line_1` VARCHAR(255) NOT NULL,

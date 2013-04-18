@@ -44,6 +44,7 @@ class CustomersTableMap extends TableMap
         // columns
         $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
         $this->addForeignKey('GROUPS_ID', 'GroupsId', 'INTEGER', 'groups', 'ID', true, null, 1);
+        $this->addColumn('TITLE', 'Title', 'VARCHAR', false, 12, null);
         $this->addColumn('FIRST_NAME', 'FirstName', 'VARCHAR', true, 128, null);
         $this->addColumn('LAST_NAME', 'LastName', 'VARCHAR', true, 128, null);
         $this->addColumn('EMAIL', 'Email', 'VARCHAR', true, 255, null);

@@ -117,6 +117,7 @@
   <table name="customers" allowPkInsert="true">
     <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
     <column name="groups_id" type="INTEGER" required="true" defaultValue="1"/>
+    <column name="title" type="VARCHAR" size="12" required="false"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
     <column name="email" type="VARCHAR" size="255" required="true"/>
@@ -148,6 +149,7 @@
   <table name="addresses">
     <column name="customers_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="type" type="VARCHAR" size="32" primaryKey="true" required="true" defaultValue="payment"/>
+    <column name="title" type="VARCHAR" size="12" required="false"/>
     <column name="first_name" type="VARCHAR" size="128" required="true"/>
     <column name="last_name" type="VARCHAR" size="128" required="true"/>
     <column name="address_line_1" type="VARCHAR" size="255" required="true"/>

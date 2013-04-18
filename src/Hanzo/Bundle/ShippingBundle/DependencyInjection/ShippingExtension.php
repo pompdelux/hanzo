@@ -30,15 +30,14 @@ class ShippingExtension extends Extension
         $file = realpath(__DIR__.'/../Resources/config/validation.'.$container->getParameterBag()->get('locale').'.yml');
 
         if (file_exists($file)) {
-            // $remove = realpath(__DIR__.'/../Resources/config/validation.yml');
-            // $k = array_flip($validation_files);
-            // unset($k[$remove]);
-            // $validation_files = array_flip($k);
+            // sf validation stacks not overrides, so we remove the default
+            $k = array_flip($validation_files);
+            unset($k[realpath(__DIR__.'/../Resources/config/validation.yml')]);
+            $validation_files = array_flip($k);
             $validation_files[] = $file;
         }
 
         $container->setParameter('validator.mapping.loader.yaml_files_loader.mapping_files', $validation_files);
-
-        \Hanzo\Core\Tools::log($container->getParameter('validator.mapping.loader.yaml_files_loader.mapping_files'));
+        // \Hanzo\Core\Tools::log($container->getParameter('validator.mapping.loader.yaml_files_loader.mapping_files'));
     }
 }

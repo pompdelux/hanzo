@@ -34,9 +34,9 @@ class DefaultController extends CoreController
         $route = $this->get('request')->get('_route');
         $focus = $this->get('request')->get('focus', FALSE);
         $cache_id = array('product', $product_id, $focus);
-        $data = $this->getCache($cache_id);
+//        $data = $this->getCache($cache_id);
 
-        if (!$data) {
+        if (empty($data)) {
             $products = ProductsI18nQuery::create()
                 ->joinWithProducts()
                 ->filterByLocale($hanzo->get('core.locale'))
@@ -131,6 +131,7 @@ class DefaultController extends CoreController
 
             $references = ProductsImagesProductReferencesQuery::create()
                 ->withColumn('products_images.ID') // Terrible way to do it.!
+                ->withColumn('products_images.COLOR') // Terrible way to do it.!
                 ->withColumn('ref.IMAGE') // But it works!
                 ->filterByProductsImagesId($image_ids)
                 ->useProductsQuery()
@@ -148,6 +149,7 @@ class DefaultController extends CoreController
                 $images_references[$ref->getProductsImagesId()]['references'][] = array(
                     'title' => $ref->getProducts()->getSku(),
                     'image' => $ref->getRefIMAGE(),
+                    'color' => $ref->getVirtualColumn('products_imagesCOLOR'),
                     'url' => $router->generate($route, array(
                         'product_id' => $ref->getProductsId(),
                         'title'=> Tools::stripText($ref->getProducts()->getSku()),

@@ -28,6 +28,7 @@ use Hanzo\Model\WallLikes;
 /**
  * @method CustomersQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CustomersQuery orderByGroupsId($order = Criteria::ASC) Order by the groups_id column
+ * @method CustomersQuery orderByTitle($order = Criteria::ASC) Order by the title column
  * @method CustomersQuery orderByFirstName($order = Criteria::ASC) Order by the first_name column
  * @method CustomersQuery orderByLastName($order = Criteria::ASC) Order by the last_name column
  * @method CustomersQuery orderByEmail($order = Criteria::ASC) Order by the email column
@@ -41,6 +42,7 @@ use Hanzo\Model\WallLikes;
  *
  * @method CustomersQuery groupById() Group by the id column
  * @method CustomersQuery groupByGroupsId() Group by the groups_id column
+ * @method CustomersQuery groupByTitle() Group by the title column
  * @method CustomersQuery groupByFirstName() Group by the first_name column
  * @method CustomersQuery groupByLastName() Group by the last_name column
  * @method CustomersQuery groupByEmail() Group by the email column
@@ -101,6 +103,7 @@ use Hanzo\Model\WallLikes;
  *
  * @method Customers findOneById(int $id) Return the first Customers filtered by the id column
  * @method Customers findOneByGroupsId(int $groups_id) Return the first Customers filtered by the groups_id column
+ * @method Customers findOneByTitle(string $title) Return the first Customers filtered by the title column
  * @method Customers findOneByFirstName(string $first_name) Return the first Customers filtered by the first_name column
  * @method Customers findOneByLastName(string $last_name) Return the first Customers filtered by the last_name column
  * @method Customers findOneByEmail(string $email) Return the first Customers filtered by the email column
@@ -114,6 +117,7 @@ use Hanzo\Model\WallLikes;
  *
  * @method array findById(int $id) Return Customers objects filtered by the id column
  * @method array findByGroupsId(int $groups_id) Return Customers objects filtered by the groups_id column
+ * @method array findByTitle(string $title) Return Customers objects filtered by the title column
  * @method array findByFirstName(string $first_name) Return Customers objects filtered by the first_name column
  * @method array findByLastName(string $last_name) Return Customers objects filtered by the last_name column
  * @method array findByEmail(string $email) Return Customers objects filtered by the email column
@@ -211,7 +215,7 @@ abstract class BaseCustomersQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `GROUPS_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `PASSWORD`, `PASSWORD_CLEAR`, `DISCOUNT`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
+        $sql = 'SELECT `ID`, `GROUPS_ID`, `TITLE`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `PHONE`, `PASSWORD`, `PASSWORD_CLEAR`, `DISCOUNT`, `IS_ACTIVE`, `CREATED_AT`, `UPDATED_AT` FROM `customers` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -368,6 +372,35 @@ abstract class BaseCustomersQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CustomersPeer::GROUPS_ID, $groupsId, $comparison);
+    }
+
+    /**
+     * Filter the query on the title column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByTitle('fooValue');   // WHERE title = 'fooValue'
+     * $query->filterByTitle('%fooValue%'); // WHERE title LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $title The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CustomersQuery The current query, for fluid interface
+     */
+    public function filterByTitle($title = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($title)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $title)) {
+                $title = str_replace('*', '%', $title);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(CustomersPeer::TITLE, $title, $comparison);
     }
 
     /**
