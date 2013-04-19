@@ -79,7 +79,7 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_payment
         city:
             - NotBlank:
-                message: address.city.required
+                message: city.required
                 groups:
                     - shipping_bundle_company_shipping
                     - shipping_bundle_overnightbox
@@ -92,7 +92,7 @@ Hanzo\Model\Addresses:
                     - shipping_bundle_shipping
                     - shipping_bundle_payment
                 limit:  2
-                message: address.city.required
+                message: city.required
         countries_id:
             - NotBlank:
                 message: address.countries_id.required
