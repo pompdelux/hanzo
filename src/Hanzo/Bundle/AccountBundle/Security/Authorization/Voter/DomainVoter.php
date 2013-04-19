@@ -64,6 +64,7 @@ class DomainVoter implements VoterInterface
         $translator = $this->container->get('translator');
 
         $countryIdToLocaleMap = array(
+            80  => array( 'de_DE' ), // Germany
             58  => array( 'da_DK' ), // Denmark
             72  => array( 'fi_FI', 'sv_FI' ), // Finland
             151 => array( 'nl_NL' ), // Netherlands

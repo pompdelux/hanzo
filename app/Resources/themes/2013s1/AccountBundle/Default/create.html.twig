@@ -32,6 +32,10 @@
     <div id="customers" class="">
       {{ form_errors(form) }}
       <div class="grid_3 alpha">
+        {% if form.title is defined %}
+          {{ form_row(form.title) }}
+        {% endif %}
+
         {{ form_row(form.first_name) }}
         {{ form_row(form.last_name) }}
         {{ form_row(form.addresses.0.address_line_1) }}

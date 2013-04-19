@@ -21,6 +21,7 @@ class AddressController extends CoreController
 {
     public function formAction(Request $request, $type = 'payment', $customer_id = null)
     {
+        $short_domain_key = substr(Hanzo::getInstance()->get('core.domain_key'), -2);
         $order = OrdersPeer::getCurrent();
 
         if (null === $customer_id) {
@@ -119,6 +120,19 @@ class AddressController extends CoreController
             ));
         }
 
+        if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
+            $builder->add('title', 'choice', [
+                'choices' => [
+                    'k' => 'title.female',
+                    'm' => 'title.male',
+                ],
+                'label' => 'title',
+                'required' => true,
+                'trim' => true,
+                'translation_domain' => 'account',
+            ]);
+        }
+
         $builder->add('first_name', null, array('required' => true, 'translation_domain' => 'account'));
         $builder->add('last_name', null, array('required' => true, 'translation_domain' => 'account'));
 
@@ -129,7 +143,7 @@ class AddressController extends CoreController
         $builder->add('address_line_1', null, array('required' => true, 'translation_domain' => 'account', 'max_length' => 150));
 
         $attr = [];
-        if (in_array(Hanzo::getInstance()->get('core.domain_key'), ['DK', 'NO', 'SE'])) {
+        if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
             $attr = ['class' => 'auto-city'];
         }
 
@@ -244,6 +258,10 @@ class AddressController extends CoreController
                 $address->setType($method);
             }
 
+            if (!empty($data['title'])) {
+                $address->setTitle($data['title']);
+            }
+
             $address->setFirstName($data['first_name']);
             if (!empty($data['last_name'])) {
                 $address->setLastName($data['last_name']);
@@ -292,9 +310,6 @@ class AddressController extends CoreController
 
             // fi uses different validation group to support different rules
             $validation_group = 'shipping_bundle_'.$method;
-            // if (in_array($short_domain_key, ['fi', 'se', 'nl'])) {
-            //     $validation_group = $method.'_'.$short_domain_key;
-            // }
 
             $object_errors = $validator->validate($address, [$validation_group]);
 
