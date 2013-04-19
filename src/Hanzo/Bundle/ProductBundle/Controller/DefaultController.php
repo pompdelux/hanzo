@@ -173,9 +173,6 @@ class DefaultController extends CoreController
                 $washing = stripslashes($result->getDescription());
                 $washing = preg_replace($find, $replace, $washing);
             }
-            //print_r(get_class_methods($product->getProductsToCategoriess()));
-            //$cms_page = CmsQuery::create()->joinWithI18n($hanzo->get('core.locale'))->findOneById($product->getProductsToCategoriess()->getFirst()->getCategoriesId()); // Find this cms' parent. category
-            //$parent_page = CmsQuery::create()->joinWithI18n($hanzo->get('core.locale'))->filterById($cms_page->getParentId())->findOne(); // 's parent
 
             $data = array(
                 'id' => $product->getId(),

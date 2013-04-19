@@ -36,6 +36,7 @@ class DefaultController extends CoreController
         $hanzo = Hanzo::getInstance();
         $container = $hanzo->container;
         $locale = $hanzo->get('core.locale');
+        $translator = $this->get('translator');
 
         $cache_id = explode('_', $this->get('request')->get('_route'));
         $cache_id = array($cache_id[0], $cache_id[2], $cache_id[1], $show, $pager);
@@ -115,13 +116,16 @@ class DefaultController extends CoreController
                     $image_overview = str_replace('_set_', '_overview_', $image);
                     $image_set = str_replace('_overview_', '_set_', $image);
 
+                    $alt = trim(Tools::stripTags($translator->trans('headers.category-'.$category_id, [], 'category'))).': '.$product->getSku();
+
                     $records[] = array(
                         'sku' => $product->getSku(),
                         'out_of_stock' => $product->getIsOutOfStock(),
                         'id' => $product->getId(),
                         'title' => $product->getSku(),
-                        'image' => ($show_by_look)?$image_set:$image_overview,
-                        'image_flip' => ($show_by_look)?$image_overview:$image_set,
+                        'image' => ($show_by_look) ? $image_set : $image_overview,
+                        'image_flip' => ($show_by_look) ? $image_overview : $image_set,
+                        'alt' => $alt,
                         'url' => $router->generate($product_route, array(
                             'product_id' => $product->getId(),
                             'title' => Tools::stripText($product->getSku()),
@@ -176,14 +180,14 @@ class DefaultController extends CoreController
                 }
                 $this->setCache($cache_id, $data, 5);
                 $html = $data; // Use the json data as the html returned to call
-            }else{
-
+            } else {
                 $classes = 'category-'.preg_replace('/[^a-z]/', '-', strtolower($cms_page->getTitle()));
-                if(preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())){
+                if (preg_match('/(little-girl|girl)/', $container->get('request')->getPathInfo())) {
                     $classes .= ' category-girl';
-                }elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())){
+                } elseif (preg_match('/(little-boy|boy)/', $container->get('request')->getPathInfo())) {
                     $classes .= ' category-boy';
                 }
+
                 $this->get('twig')->addGlobal('page_type', 'category-'.$category_id);
                 $this->get('twig')->addGlobal('body_classes', 'body-category category-'.$category_id.' body-'.$show.' '.$classes);
                 $this->get('twig')->addGlobal('show_new_price_badge', $hanzo->get('webshop.show_new_price_badge'));

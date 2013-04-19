@@ -615,9 +615,10 @@ class Tools
 
     protected static function generateImageTag($src, array $params = array())
     {
-        if (empty($params['title']) && !empty($params['alt'])) {
-            $params['title'] = $params['alt'];
-        }
+        // title and alt should never be the same...
+        // if (empty($params['title']) && !empty($params['alt'])) {
+        //     $params['title'] = $params['alt'];
+        // }
         if (empty($params['alt']) && !empty($params['title'])) {
             $params['alt'] = $params['title'];
         }

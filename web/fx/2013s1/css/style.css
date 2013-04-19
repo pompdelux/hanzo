@@ -6,7 +6,7 @@
 }
 
 .icons-sprite, .icons-arrow_down, .icons-arrow_left, .icons-arrow_right, .icons-basket, .icons-button-left, .icons-button-right, .icons-delete, .icons-delete_black, .icons-delete_white, .icons-divider, .icons-divider_left, .icons-divider_right, .icons-edit, .icons-facebook, .icons-gplus, .icons-newsletter, .icons-pdf, .icons-pinterest, .icons-shopping-bag, .icons-show, .icons-twitter, .icons-video, .icons-zoom, #secondary-links li.basket .sprite, footer .footer-menu.footer-menu-4 .sprite, .zoom .sprite, a.video-popper .sprite, #video-player-container a.video .sprite, hr, hr.left, hr.right, .arrow-right, .arrow-left, .sprite.delete, .sprite.edit, .sprite.show, .sprite.pdf {
-  background: url('/fx/2013s1/../images/icons/icons-sd048972234.png') no-repeat;
+  background: url('/fx/2013s1/../images/icons/icons-s09df4e31f9.png') no-repeat;
 }
 
 .icons-arrow_down {
@@ -2052,6 +2052,9 @@ nav.main-menu > ul > li > ul.on {
   text-transform: none;
   padding: 6px 0 0;
   letter-spacing: 0;
+}
+.body-pages #main .social-buttons {
+  float: right;
 }
 
 /**
