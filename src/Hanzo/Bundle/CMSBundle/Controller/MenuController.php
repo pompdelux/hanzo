@@ -153,9 +153,11 @@ class MenuController extends CoreController
     protected function generateTree($parent_id = NULL, $type = 'main')
     {
         $query = CmsQuery::create()
+            ->useCmsI18nQuery()
+                ->filterByIsActive(TRUE)
+            ->endUse()
             ->joinWithI18n($this->locale)
             ->filterByCmsThreadId($this->cms_thread)
-            ->filterByIsActive(TRUE)
             ->orderBySort()
         ;
 
@@ -240,9 +242,11 @@ class MenuController extends CoreController
     protected function generateFlat($parent_id = null, $type, $include_self = false)
     {
         $query = CmsQuery::create()
+            ->useCmsI18nQuery()
+                ->filterByIsActive(TRUE)
+            ->endUse()
             ->joinWithI18n($this->locale)
             ->filterByCmsThreadId($this->cms_thread)
-            ->filterByIsActive(TRUE)
             ->orderBySort()
         ;
 
@@ -325,8 +329,10 @@ class MenuController extends CoreController
     protected function generateFull($parent_id = NULL, $type, $from = NULL, $css_id = null)
     {
         $query = CmsQuery::create()
+            ->useCmsI18nQuery()
+                ->filterByIsActive(TRUE)
+            ->endUse()
             ->joinWithI18n($this->locale)
-            ->filterByIsActive(TRUE)
             ->orderBySort()
             ->filterByParentId($parent_id)
         ;

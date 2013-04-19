@@ -49,7 +49,9 @@ class CmsController extends CoreController
         }
 
         $inactive_nodes = CmsQuery::create()
-            ->filterByIsActive(FALSE)
+            ->useCmsI18nQuery()
+                ->filterByIsActive(false)
+            ->endUse()
             ->joinWithI18n($locale)
             ->groupById()
             ->orderById()
@@ -209,7 +211,6 @@ class CmsController extends CoreController
                         break;
                 }
 
-                $node->setIsActive(FALSE);
                 $node->save($this->getDbConnection());
 
                 try {
@@ -218,6 +219,7 @@ class CmsController extends CoreController
                         $trans->setPath('#');
                     }
                     $trans->setCms($node);
+                    $trans->setIsActive(false);
                     $trans->setLocale($locale);
                     $trans->setSettings(json_encode($settings));
                     $trans->save($this->getDbConnection());
@@ -361,10 +363,10 @@ class CmsController extends CoreController
                 if($path !== '#' AND !empty($path)){
                     $urls = CmsQuery::create()
                         ->useCmsI18nQuery()
+                            ->filterByIsActive(TRUE)
                             ->filterByPath($path)
                         ->endUse()
                         ->joinCmsI18n(NULL, 'INNER JOIN')
-                        ->filterByIsActive(TRUE)
                         ->where('cms.id <> ?', $node->getId())
                         ->findOne($this->getDbConnection())
                     ;
