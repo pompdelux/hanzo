@@ -488,6 +488,7 @@
     <column name="phone" type="VARCHAR" size="32" required="false"/>
     <column name="languages_id" type="INTEGER" required="true"/>
     <column name="currency_code" type="VARCHAR" size="12" required="true" defaultValue=""/>
+    <column name="billing_title" type="VARCHAR" size="12" required="false"/>
     <column name="billing_first_name" type="VARCHAR" size="128" required="true"/>
     <column name="billing_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="billing_address_line_1" type="VARCHAR" size="255" required="false"/>
@@ -500,6 +501,7 @@
     <column name="billing_company_name" type="VARCHAR" size="128" required="false"/>
     <column name="billing_method" type="VARCHAR" size="64" required="false"/>
     <column name="billing_external_address_id" type="VARCHAR" size="128" required="false"/>
+    <column name="delivery_title" type="VARCHAR" size="12" required="false"/>
     <column name="delivery_first_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>

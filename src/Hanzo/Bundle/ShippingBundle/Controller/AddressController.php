@@ -120,11 +120,11 @@ class AddressController extends CoreController
             ));
         }
 
-        if (in_array($short_domain_key, ['DK', 'NO', 'SE'])) {
+        if (in_array($short_domain_key, ['DE'])) {
             $builder->add('title', 'choice', [
                 'choices' => [
-                    'k' => 'title.female',
-                    'm' => 'title.male',
+                    'female' => 'title.female',
+                    'male' => 'title.male',
                 ],
                 'label' => 'title',
                 'required' => true,
