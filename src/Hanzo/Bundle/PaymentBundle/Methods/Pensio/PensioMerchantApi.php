@@ -252,8 +252,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      */
     protected function callAPIMethod($method, array $args = [])
     {
-        $context = $this->createContext($args);
-        $result = @file_get_contents($this->base_url."/merchant/API/".$method, false , $context);
+        $result = @file_get_contents($this->base_url."/merchant/API/".$method, false, $this->createContext($args));
 
         if ($result !== false) {
             return new PensioCallResponse($http_response_header, new SimpleXMLElement($result));
