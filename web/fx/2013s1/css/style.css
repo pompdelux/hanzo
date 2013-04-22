@@ -1,5 +1,5 @@
 /**
-| _sprites.
+| _sprites
 */
 .da-sprite, body.da form.buy .submit-button, body.da .buy-set, body.da .new-price, body.da .out-of-stock {
   background: url('/fx/2013s1/../images/icons/da-sd69e9a5d05.png') no-repeat;
@@ -1910,6 +1910,10 @@ form.location-locator div.error p {
 .social-buttons a.icons-pinterest {
   height: 32px;
   width: 32px;
+}
+
+html.consultant .social-buttons {
+  display: none;
 }
 
 .facebook-button {
