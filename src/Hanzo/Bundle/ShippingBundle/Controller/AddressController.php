@@ -102,7 +102,7 @@ class AddressController extends CoreController
             $address->setFirstName($order->getFirstName());
             $address->setLastName($order->getLastName());
         }
-Tools::log($address->toArray());
+
         $builder = $this->createFormBuilder($address, array(
             'validation_groups' => $type
         ));
