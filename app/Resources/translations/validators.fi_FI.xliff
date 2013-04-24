@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="phone.not.valid" approved="no">
                 <source>phone.not.valid</source>
-                <target>Puhelinnumerossa on oltava vain numeroita</target>
+                <target>Matkapuhelinnumero ilman väliviivaa esim. 0401234567</target>
             </trans-unit>
             <trans-unit id="email.required" approved="no">
                 <source>email.required</source>
