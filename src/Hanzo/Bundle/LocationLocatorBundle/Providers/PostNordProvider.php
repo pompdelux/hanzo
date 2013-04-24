@@ -113,6 +113,7 @@ class PostNordProvider extends BaseProvider
              * record:
              *     post [
              *         'id' => 123,
+             *         'custom_id' => '123abc',
              *         'name' => 'some name',
              *         'address' => 'address line',
              *         'postal_code' => 'postal code',
@@ -160,5 +161,13 @@ class PostNordProvider extends BaseProvider
         }
 
         return $records;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getProviderName()
+    {
+        return 'postnord';
     }
 }

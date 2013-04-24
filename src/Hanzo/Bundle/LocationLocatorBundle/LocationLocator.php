@@ -40,11 +40,12 @@ class LocationLocator
      *
      * @param ServiceContainer $container
      */
-    public function __construct($container)
+    public function __construct($container, $environment)
     {
-        $this->container  = $container;
-        $this->logger     = $container->get('logger');
-        $this->translator = $container->get('translator');
+        $this->container   = $container;
+        $this->logger      = $container->get('logger');
+        $this->translator  = $container->get('translator');
+        $this->environment = $environment;
     }
 
     /**
@@ -57,6 +58,7 @@ class LocationLocator
      */
     public function __call($method_name, array $arguments = [])
     {
+        // TODO: better implementation of settings - do not use Hanzo here!
         $settings = array_merge_recursive(
             $this->settings,
             Hanzo::getInstance()->getByNs('locator')
@@ -72,7 +74,7 @@ class LocationLocator
             throw new InvalidArgumentException('Method ('.$method_name.') not supported');
         }
 
-        $provider->setup($settings, $this->translator, $this->logger);
+        $provider->setup($settings, $this->translator, $this->logger, $this->environment);
         return call_user_func_array([$provider, $method_name], $arguments);
     }
 }

@@ -50,6 +50,13 @@ abstract class BaseProvider
      */
     abstract public function findByLocation($latitude, $longitude, $country_code, $limit = 5);
 
+    /**
+     * Must return the provider name
+     *
+     * @return string
+     */
+    abstract protected function getProviderName();
+
 
     /**
      * Translator instance
@@ -74,11 +81,15 @@ abstract class BaseProvider
      * @param  Logger     $logger       Logger object
      * @throws InvalidArgumentException If there are problems with the arguments
      */
-    public function setup(array $settings = [], Translator $translator, Logger $logger)
+    public function setup(array $settings = [], Translator $translator, Logger $logger, $environment)
     {
-        $this->settings   = $settings;
-        $this->translator = $translator;
-        $this->logger     = $logger;
+        foreach ($settings as $key => $value) {
+            $this->settings[$key] = $value;
+        }
+
+        $this->translator  = $translator;
+        $this->logger      = $logger;
+        $this->environment = $environment;
     }
 
 
@@ -102,7 +113,7 @@ abstract class BaseProvider
                 ]
             ])
             ->add('countryCode', 'hidden', ['data' => substr($request->getLocale(), -2)])
-            ->add('provider',    'hidden', ['data' => 'postnord'])
+            ->add('provider',    'hidden', ['data' => $this->getProviderName()])
             ->getForm()
         ;
 
