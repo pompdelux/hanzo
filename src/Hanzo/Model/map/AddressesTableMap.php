@@ -54,6 +54,7 @@ class AddressesTableMap extends TableMap
         $this->addForeignKey('COUNTRIES_ID', 'CountriesId', 'INTEGER', 'countries', 'ID', true, null, null);
         $this->addColumn('STATE_PROVINCE', 'StateProvince', 'VARCHAR', false, 64, null);
         $this->addColumn('COMPANY_NAME', 'CompanyName', 'VARCHAR', false, 128, null);
+        $this->addColumn('EXTERNAL_ADDRESS_ID', 'ExternalAddressId', 'VARCHAR', false, 128, null);
         $this->addColumn('LATITUDE', 'Latitude', 'DOUBLE', false, null, null);
         $this->addColumn('LONGITUDE', 'Longitude', 'DOUBLE', false, null, null);
         $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);

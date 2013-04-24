@@ -1,0 +1,38 @@
+#body-pensio-payment-form {
+    ul,
+    form{
+        margin: 20px 0;
+    }
+    li.total {
+        padding-top: 10px;
+        font-weight: bold;
+    }
+    .pensio_payment_form_submit_cell input{
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        background: #474749;
+        font-family: $font-sans;
+        font-size: $font-size;
+        text-align: center;
+        padding: 6px;
+        font-weight: normal;
+        color: white !important;
+        line-height: 18px;
+        white-space: normal;
+        -webkit-appearance: none;
+        &:hover{
+            text-decoration: none;
+        }
+        background: url(/fx/images/icons/icons/button-right.png) right no-repeat #474749;
+        border-right: 6px solid #474749;
+        padding: 6px 24px;
+    }
+    .pensio_payment_form_table{
+        width: auto;
+
+        td{
+            vertical-align: normal;
+        }
+    }
+}

@@ -55,7 +55,7 @@
       <index-column name="old_path" />
     </index>
     <behavior name="i18n">
-      <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted" />
+      <parameter name="i18n_columns" value="title, path, old_path, content, settings, is_restricted, is_active" />
       <parameter name="default_locale" value="da_DK" />
     </behavior>
     <behavior name="timestampable" />
@@ -158,6 +158,7 @@
     <column name="countries_id" type="INTEGER" required="true"/>
     <column name="state_province" type="VARCHAR" size="64" required="false"/>
     <column name="company_name" type="VARCHAR" size="128" required="false"/>
+    <column name="external_address_id" type="VARCHAR" size="128" required="false"/>
     <foreign-key foreignTable="customers" onDelete="CASCADE">
       <reference local="customers_id" foreign="id"/>
     </foreign-key>
@@ -496,6 +497,7 @@
     <column name="billing_state_province" type="VARCHAR" size="64" required="false"/>
     <column name="billing_company_name" type="VARCHAR" size="128" required="false"/>
     <column name="billing_method" type="VARCHAR" size="64" required="false"/>
+    <column name="billing_external_address_id" type="VARCHAR" size="128" required="false"/>
     <column name="delivery_first_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_last_name" type="VARCHAR" size="128" required="true"/>
     <column name="delivery_address_line_1" type="VARCHAR" size="255" required="false"/>
@@ -507,6 +509,7 @@
     <column name="delivery_state_province" type="VARCHAR" size="64" required="false"/>
     <column name="delivery_company_name" type="VARCHAR" size="128" required="false"/>
     <column name="delivery_method" type="VARCHAR" size="64" required="false"/>
+    <column name="delivery_external_address_id" type="VARCHAR" size="128" required="false"/>
     <column name="events_id" type="INTEGER" required="false" defaultValue="NULL"/>
     <column name="finished_at" type="TIMESTAMP" required="false"/>
     <unique name="index2">

@@ -17,6 +17,8 @@
 //@include all-se-sprites; // Generates a sprite from all images inside the folder
 @import "icons/en/*.png";
 //@include all-en-sprites; // Generates a sprite from all images inside the folder
+@import "icons/de/*.png";
+//@include all-de-sprites; // Generates a sprite from all images inside the folder
 
 body.da{
     form.buy .submit-button{
@@ -38,6 +40,29 @@ body.da{
         @include da-sprite(out-of-stock);
         height: da-sprite-height(out-of-stock);
         width: da-sprite-width(out-of-stock);
+    }
+}
+
+body.de{
+    form.buy .submit-button{
+        @include de-sprite(put-to-basket);
+        height: de-sprite-height(put-to-basket);
+        width: de-sprite-width(put-to-basket);
+    }
+    .buy-set{
+        @include de-sprite(buy-set);
+        height: de-sprite-height(buy-set);
+        width: de-sprite-width(buy-set);
+    }
+    .new-price{
+        @include de-sprite(new-price);
+        height: de-sprite-height(new-price);
+        width: de-sprite-width(new-price);
+    }
+    .out-of-stock{
+        @include de-sprite(out-of-stock);
+        height: de-sprite-height(out-of-stock);
+        width: de-sprite-width(out-of-stock);
     }
 }
 

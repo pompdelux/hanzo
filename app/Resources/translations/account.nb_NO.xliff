@@ -425,7 +425,7 @@ Du har mulighet for å endre/tilføye/slette i ordren. Du skal klikke på blyant
             </trans-unit>
             <trans-unit id="my.account.my.events" approved="no">
                 <source>my.account.my.events</source>
-                <target>My events</target>
+                <target>Mine arrangementer</target>
             </trans-unit>
             <trans-unit id="account.history.see.all.orders" approved="no">
                 <source>account.history.see.all.orders</source>

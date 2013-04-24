@@ -51,6 +51,7 @@ class CmsI18nTableMap extends TableMap
         $this->addColumn('CONTENT', 'Content', 'LONGVARCHAR', false, null, null);
         $this->addColumn('SETTINGS', 'Settings', 'LONGVARCHAR', false, null, null);
         $this->addColumn('IS_RESTRICTED', 'IsRestricted', 'BOOLEAN', true, 1, false);
+        $this->addColumn('IS_ACTIVE', 'IsActive', 'BOOLEAN', true, 1, true);
         // validators
     } // initialize()
 

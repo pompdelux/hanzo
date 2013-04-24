@@ -18,8 +18,11 @@
 	}
 }
 
-.facebook-button{
+html.consultant .social-buttons{
+	display: none;
+}
 
+.facebook-button{
 	background: #eceef5;
 	-webkit-border-radius: 3px;
 	border: 1px solid #cad4e7;

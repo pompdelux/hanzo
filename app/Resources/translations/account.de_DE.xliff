@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="The presented password is invalid.">
+                <source>The presented password is invalid.</source>
+                <target>Adgangskoden er ikke gyldig. </target>
+            </trans-unit>
+            <trans-unit id="The presented password cannot be empty.">
+                <source>The presented password cannot be empty.</source>
+                <target>Adgangskoden kan ikke være tom.</target>
+            </trans-unit>
+            <trans-unit id="User account is disabled." approved="no">
+                <source>User account is disabled.</source>
+                <target>Din konto er deaktiveret.</target>
+            </trans-unit>
+            <trans-unit id="fetch.invoice">
+                <source>fetch.invoice</source>
+                <target>Hent faktura som pdf</target>
+            </trans-unit>
+            <trans-unit id="fetch.credit_note">
+                <source>fetch.credit_note</source>
+                <target>Hent kreditnota som pdf</target>
+            </trans-unit>
+            <trans-unit id="previous.orders" approved="no">
+                <source>previous.orders</source>
+                <target>Tidligere ordrer</target>
+            </trans-unit>
+            <trans-unit id="account.details">
+                <source>account.details</source>
+                <target>Se eller ret kontoinformationer.</target>
+            </trans-unit>
+            <trans-unit id="my.account.order.view" approved="no">
+                <source>my.account.order.view</source>
+                <target>Min konto - ordre nummer #%order_id%</target>
+            </trans-unit>
+            <trans-unit id="address.delivery">
+                <source>address.delivery</source>
+                <target>Leveringsadresse</target>
+            </trans-unit>
+            <trans-unit id="address.billing">
+                <source>address.billing</source>
+                <target>Fakturaadresse</target>
+            </trans-unit>
+            <trans-unit id="create.account.link">
+                <source>create.account.link</source>
+                <target>Ny kunde</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten">
+                <source>password.forgotten</source>
+                <target>Jeg har glemt min adgangskode</target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.text">
+                <source>password.forgotten.text</source>
+                <target><![CDATA[
+                    <h2>Har du har glemt din adgangskode?</h2>
+                    <p>Indtast din e-mailadresse herunder og klik på knappen ”Fortsæt”. I løbet af få minutter vil du modtage en mail fra POMPdeLUX med din adgangskode.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.not_found">
+                <source>password.forgotten.not_found</source>
+                <target><![CDATA[
+                    <p>Vi kunne desværre ikke finde den indtastede e-mailadresse. Prøv igen og kontroller at du har indtastet korrekt e-mailadresse.</p>
+                    <p>Har du indtastet din e-mailadresse korrekt og denne besked bliver ved med at komme frem, findes du ikke i vores system. Du skal kontakte kundeservice, da det er muligt, at du er blevet oprettet forkert.</p>
+                    <a href="/da_DK/forside/kundeservice">» Kundeservice</a>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="password.forgotten.resend">
+                <source>password.forgotten.resend</source>
+                <target><![CDATA[
+                    <p>Din adgangskode er sendt til den indtastede e-mailadresse.</p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="proceed">
+                <source>proceed</source>
+                <target>Fortsæt</target>
+            </trans-unit>
+            <trans-unit id="back">
+                <source>back</source>
+                <target>Tilbage</target>
+            </trans-unit>
+            <trans-unit id="retrive.password">
+                <source>retrive.password</source>
+                <target>» Få din adgangskode tilsendt pr. e-post</target>
+            </trans-unit>
+            <trans-unit id="new.customer">
+                <source>new.customer</source>
+                <target>Ny kunde</target>
+            </trans-unit>
+            <trans-unit id="existing.customer">
+                <source>existing.customer</source>
+                <target>Eksisterende kunde</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>E-mailadresse</target>
+            </trans-unit>
+            <trans-unit id="password">
+                <source>password</source>
+                <target>Adgangskode</target>
+            </trans-unit>
+            <trans-unit id="my.account">
+                <source>my.account</source>
+                <target>Min side</target>
+            </trans-unit>
+            <trans-unit id="my.account.header" approved="no">
+                <source>my.account.header</source>
+                <target><![CDATA[<h1>Velkommen!</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.logout">
+                <source>my.account.logout</source>
+                <target>Log ud</target>
+            </trans-unit>
+            <trans-unit id="my.account.login">
+                <source>my.account.login</source>
+                <target>Log ind</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>First name</source>
+                <target>Fornavn</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Last name</source>
+                <target>Efternavn</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>Initials</source>
+                <target>Initialer</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>Phone</source>
+                <target>Telefonnummer</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>Address line 1</source>
+                <target>Gade (husk husnummer og etage/dør)</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>Address line 2</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Postal code</source>
+                <target>Postnr.</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>City</source>
+                <target>By</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Password repeated</source>
+                <target>Bekræft adgangskode</target>
+            </trans-unit>
+            <trans-unit id="password.invalid.match">
+                <source>password.invalid.match</source>
+                <target>Adgangskode bekræftigelsen skal være den samme som dit adgangskoden.</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>Email repeated</source>
+                <target>Gentag e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="email.invalid.match">
+                <source>email.invalid.match</source>
+                <target>Du skal indtaste samme e-mailadresse i begge felter.</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>Country</source>
+                <target>Land</target>
+            </trans-unit>
+            <trans-unit id="countries_id">
+                <source>Countries id</source>
+                <target>Land</target>
+            </trans-unit>
+            <trans-unit id="choose.country">
+                <source>choose.country</source>
+                <target>Vælg land</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>account.created</source>
+                <target>Din konto er nu oprettet.</target>
+            </trans-unit>
+            <trans-unit id="account_newsletter_warning">
+                <source>account.newsletter.warning</source>
+                <target>Din e-mail blev ikke tilmeldt nyhedsbrevet</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>create.account</source>
+                <target>Opret konto</target>
+            </trans-unit>
+            <trans-unit id="create.account.header" approved="no">
+                <source>create.account.header</source>
+                <target><![CDATA[<h1>Velkommen - Opret dig som kunde</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="edit.account">
+                <source>edit.account</source>
+                <target>Ret konto</target>
+            </trans-unit>
+            <trans-unit id="update.account">
+                <source>update.account</source>
+                <target>Opdatér konto</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Email repeated</source>
+                <target>Gentag e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>create.notice</source>
+                <target><![CDATA[<strong>Bemærk:</strong> Hvis du allerede har en konto hos os, skal du logge ind på <a href="%url%">Min side</a>]]></target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>nno.title</source>
+                <target>Hent dine adresseoplysninger fra De Gule Sider (TDC).</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>nno.description</source>
+                <target>Indtast dit telefonnummer og få autoudfyldt din adresse.</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>nno.fetch</source>
+                <target>Hent</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>create.accept</source>
+                <target>Jeg bestiller hermed overstående og bekræfter, at jeg har læst og accepterer </target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>create.newsletter</source>
+                <target>Tilmeld nyhedsbrev</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>create.terms</source>
+                <target>POMPdeLUX vilkår.</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>create.nno.address_found</source>
+                <target>Adressen der matcher det indtastede telefonnummer er indsat i formen herunder.</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>create.nno.no_address_found</source>
+                <target>Der blev ikke fundet nogen adresse på det indtastede telefonnummer.</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>The password fields must match.</source>
+                <target>De to felter med kodeord skal være ens.</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>The email fields must match.</source>
+                <target>De to felter med e-mailadresser skal være ens.</target>
+            </trans-unit>
+            <trans-unit id="order.number">
+                <source>order.number</source>
+                <target>Ordre nr.</target>
+            </trans-unit>
+            <trans-unit id="order.date">
+                <source>order.date</source>
+                <target>Dato</target>
+            </trans-unit>
+            <trans-unit id="order.status">
+                <source>order.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="order.total">
+                <source>order.total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="order.invoice">
+                <source>order.invoice</source>
+                <target>Faktura</target>
+            </trans-unit>
+            <trans-unit id="order.invoice.title">
+                <source>order.invoice.title</source>
+                <target>Vis detaljer</target>
+            </trans-unit>
+            <trans-unit id="order.edit.title">
+                <source>order.edit.title</source>
+                <target>Redigér ordre</target>
+            </trans-unit>
+            <trans-unit id="order.delete.title">
+                <source>order.delete.title</source>
+                <target>Slet ordre</target>
+            </trans-unit>
+            <trans-unit id="order.actions">
+                <source>order.actions</source>
+                <target>Handlinger</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Annuller</target>
+            </trans-unit>
+            <trans-unit id="company.name">
+                <source>company.name</source>
+                <target>Firmanavn</target>
+            </trans-unit>
+            <trans-unit id="edit.address">
+                <source>edit.address</source>
+                <target>Ret adresse</target>
+            </trans-unit>
+            <trans-unit id="add.address">
+                <source>add.address</source>
+                <target>Opret ny adresse</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>save</source>
+                <target>Gem</target>
+            </trans-unit>
+            <trans-unit id="overnightbox.label">
+                <source>overnightbox.label</source>
+                <target>Adresse</target>
+            </trans-unit>
+            <trans-unit id="overnightbox.name">
+                <source>overnightbox.name</source>
+                <target>Opsamlingssted</target>
+            </trans-unit>
+            <trans-unit id="att.label">
+                <source>att.label</source>
+                <target>Att</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.required">
+                <source>address.first_name.required</source>
+                <target>Fornavn skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.required">
+                <source>address.last_name.required</source>
+                <target>Efternavn skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.first_name.min.length" approved="no">
+                <source>address.first_name.min.length</source>
+                <target>Fornavn skal være min 2 tegn</target>
+            </trans-unit>
+            <trans-unit id="address.last_name.min.length" approved="no">
+                <source>address.last_name.min.length</source>
+                <target>Efternavn skal være min 2 tegn</target>
+            </trans-unit>
+            <trans-unit id="address.address_line_1.required">
+                <source>address.address_line_1.required</source>
+                <target>Du skal udfylde din adresse</target>
+            </trans-unit>
+            <trans-unit id="address.postal_code.required">
+                <source>address.postal_code.required</source>
+                <target>Postnummer skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.city.required">
+                <source>address.city.required</source>
+                <target>By skal udfyldes</target>
+            </trans-unit>
+            <trans-unit id="address.countries_id.required">
+                <source>address.countries_id.required</source>
+                <target>Du skal vælge et land</target>
+            </trans-unit>
+            <trans-unit id="address.company_name.required">
+                <source>address.company_name.required</source>
+                <target>Du skal angive firmanavn</target>
+            </trans-unit>
+            <trans-unit id="Bad credentials">
+                <source>Bad credentials</source>
+                <target>Kan ikke finde e-mailadressen og/eller adgangskode.</target>
+            </trans-unit>
+            <trans-unit id="update.notice" approved="no">
+                <source>update.notice</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="update.password_notice" approved="no">
+                <source>update.password_notice</source>
+                <target>Skal kun udfyldes hvis du ønsker at ændre dit nuværende kodeord.</target>
+            </trans-unit>
+            <trans-unit id="history.empty" approved="no">
+                <source>history.empty</source>
+                <target>Din indkøbshistorik er tom.</target>
+            </trans-unit>
+            <trans-unit id="account.updated" approved="no">
+                <source>account.updated</source>
+                <target>Dine kontoinformationer er blevet opdateret.</target>
+            </trans-unit>
+            <trans-unit id="create.account.error.title" approved="no">
+                <source>create.account.error.title</source>
+                <target>Der opstod en fejl</target>
+            </trans-unit>
+            <trans-unit id="create.account.error" approved="no">
+                <source>create.account.error</source>
+                <target>Du har ikke udfyldt formularen korrekt, se detaljer herunder:</target>
+            </trans-unit>
+            <trans-unit id="phone.required" approved="no">
+                <source>phone.required</source>
+                <target>Du skal angive dit telefonnummer</target>
+            </trans-unit>
+            <trans-unit id="phone.not.valid" approved="no">
+                <source>phone.not.valid</source>
+                <target>Telefonnummer må kun indeholder tal</target>
+            </trans-unit>
+            <trans-unit id="phone.min.length" approved="no">
+                <source>phone.min.length</source>
+                <target>Dit telefonnummer skal bestå af minimum 8 tegn</target>
+            </trans-unit>
+            <trans-unit id="email.required" approved="no">
+                <source>email.required</source>
+                <target>Du skal angive din e-mailadresse</target>
+            </trans-unit>
+            <trans-unit id="password.required">
+                <source>password.required</source>
+                <target>Adgangskode skal være min 5 tegn</target>
+            </trans-unit>
+            <trans-unit id="password.min.length" approved="no">
+                <source>password.min.length</source>
+                <target>Dit kodeord skal bestå af minimum 5 tegn</target>
+            </trans-unit>
+            <trans-unit id="email.already.in.use">
+                <source>email.already.in.use</source>
+                <target>E-mailadressen eksisterer allerede!</target>
+            </trans-unit>
+            <trans-unit id="login.restricted.other_locale">
+                <source>login.restricted.other_locale</source>
+                <target><![CDATA[Your profile has been set up in %site_name%. You should therefore use: <a href="%url%">%site_name%</a> webshop.<br>If you have any further questions, please contact our Customer Service.]]></target>
+            </trans-unit>
+            <trans-unit id="login.restricted.only.customers" approved="no">
+                <source>login.restricted.only.customers</source>
+                <target><![CDATA[Your profile is set up to be an consultant or employee. You should therefore use: <a href="%url%">this login form</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="stop.editing.order">
+                <source>stop.editing.order</source>
+                <target>Stop ordreredigering</target>
+            </trans-unit>
+            <trans-unit id="unable.to.lock.order" approved="no">
+                <source>unable.to.lock.order</source>
+                <target>Ordren kan ikke redigeres i øjeblikket. Prøv igen senere.</target>
+            </trans-unit>
+            <trans-unit id="my.account.%name%" approved="no">
+                <source>my.account.%name%</source>
+                <target>Velkommen %name%!</target>
+            </trans-unit>
+            <trans-unit id="my.account.description" approved="no">
+                <source>my.account.description</source>
+                <target><![CDATA[<p>På Min side kan du rette dine informationer og til- og afmelde nyhedsbrev. Du har ligeledes mulighed for at redigere i din ordre.<br><br>Din ordre kan have følgende status:<br><br><b>Afventer</b><br>Din ordre er endnu ikke ekspederet, og du har som minimum 24 timer til at redigere i din ordre.
+Du har mulighed for at ændre/tilføje/slette på din ordre. Du skal klikke på blyanten ved redigering.
+Bemærk: Betalingen skal gennemføres – tidligere betalingsreservation bliver automatisk slettet.
+Ønsker du at slette hele din ordre, klikker du på X.<br><br><b>Stop editering</b><br>Du er eventuelt kommet til at afbryde din redigering. Tryk på knappen ”Stop editering”, og du kan efterfølgende redigere din ordre på ny.<br><br><b>Under behandling</b><br>Din ordre er nu i gang med at blive behandlet på vores lager og bliver afsendt til dig inden for 1-2 dage. Det er ikke muligt at redigere/bremse din ordre.<br><br><b>Faktureret</b><br>Din ordre er afsendt fra vores lager. Fakturaen finder du vedhæftet som PDF fil, under kolonnen faktura, i løbet af 24 timer efter afsendelsen.<br><br>Ønsker du at returnere en vare, finder du vores <a href="http://static.pompdelux.dk/images/pdf/POMPdeLUX_Returseddel.pdf" target="_blank">returseddel her</a>.<br><br></p>]]></target>
+            </trans-unit>
+            <trans-unit id="newsletter" approved="no">
+                <source>newsletter</source>
+                <target>Nyhedsbreve</target>
+            </trans-unit>
+            <trans-unit id="acc.1">
+                <source>Email address</source>
+                <target>E-mailadresse</target>
+            </trans-unit>
+            <trans-unit id="acc.2">
+                <source>Email address repeated</source>
+                <target>Gentag e-mailadressen</target>
+            </trans-unit>
+            <trans-unit id="acc.3">
+                <source>Pass</source>
+                <target>Valgfrit adgangskode</target>
+            </trans-unit>
+            <trans-unit id="acc.4">
+                <source>Pass repeated</source>
+                <target>Gentag adgangskode</target>
+            </trans-unit>
+            <trans-unit id="my.account.my.events" approved="no">
+                <source>my.account.my.events</source>
+                <target>Mine events</target>
+            </trans-unit>
+            <trans-unit id="account.history.see.all.orders" approved="no">
+                <source>account.history.see.all.orders</source>
+                <target>Se alle ordrer</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.notice" approved="no">
+                <source>my.account.login.notice</source>
+                <target><![CDATA[<p>Velkommen til - opret dig som kunde!</p>]]></target>
+            </trans-unit>
+            <trans-unit id="my.account.login.text" approved="no">
+                <source>my.account.login.text</source>
+                <target><![CDATA[<h3>Min side - Log in</h3><p>Når du handler hos POMPdeLUX, skal du være oprettet som kunde her på siden. Det giver dig blandt andet mulighed for at tjekke og rette din ordre, indtil den bliver pakket og sendt fra vores lager. Du kan ændre farver og størrelser på de varer, du har bestilt, og du kan tilføje eller slette varer, så længe der står "Afventer" ud for din ordre, det vil sige i minimum 24 timer efter, du har bestilt varerne.<br><br>Som kunde hos POMPdeLUX  kan du på denne side også se dine tidligere bestillinger og finde gamle fakturaer.</p>]]></target>
+            </trans-unit>
+
+            <trans-unit id="my.account.login.title">
+                <source>my.account.login.title</source>
+                <target>Min side - Log in</target>
+            </trans-unit>
+            <trans-unit id="my.account.login.header" approved="no">
+                <source>my.account.login.header</source>
+                <target><![CDATA[<h1>Velkommen til min side</h1>]]></target>
+            </trans-unit>
+            <trans-unit id="create.pre-notice" approved="no">
+                <source>create.pre-notice</source>
+                <target><![CDATA[På denne side skal du udfylde dine privatoplysninger (og <u>ikke</u> evt. firmaoplysninger).]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

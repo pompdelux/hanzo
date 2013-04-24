@@ -62,6 +62,30 @@ _coupon_callback:
     pattern:  /payment/coupon/callback
     defaults: { _controller: PaymentBundle:Coupon:callback }
 
+# Pensio }-------------------------
+_pensio_form:
+    pattern:  /payment/pensio/form
+    defaults:
+        _controller: PaymentBundle:Pensio:form
+_pensio_wait:
+    pattern:  /payment/pensio/wait
+    defaults:
+        _controller: PaymentBundle:Pensio:wait
+_pensio_callback:
+    pattern:  /payment/pensio/callback/{status}
+    defaults:
+        _controller: PaymentBundle:Pensio:callback
+        status: failed
+    requirements:
+        status: (ok|failed)
+        _method: POST
+_pensio_process:
+    pattern:  /payment/pensio/process
+    defaults:
+        _controller: PaymentBundle:Pensio:process
+    requirements:
+        _method: POST
+
 
 # ALL }-------------------------
 _payment_set_method:

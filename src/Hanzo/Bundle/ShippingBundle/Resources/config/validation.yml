@@ -1,0 +1,264 @@
+# Hanzo\Model\Customers:
+#     properties:
+Hanzo\Model\Addresses:
+    properties:
+        phone:
+            - NotBlank:
+                message: phone.required
+                groups:
+                    - payment
+                    - payment_fi
+                    - payment_se
+                    - payment_nl
+            - Regex:
+                pattern: "/^\d+$/"
+                match:   true
+                message: phone.not.valid
+                groups:
+                    - payment
+                    - payment_se
+                    - payment_nl
+            - Regex:
+                pattern: "/^0[0-9]+$/"
+                match:   true
+                message: phone.not.valid
+                groups:
+                    - payment_fi
+        first_name:
+            - NotBlank:
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+                message: address.first_name.required
+            - MinLength:
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+                limit:  2
+                message: address.first_name.min.length
+        last_name:
+            - NotBlank:
+                groups:
+                    - company_shipping
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - shipping_nl
+                    - payment_nl
+                message: address.last_name.required
+            - MinLength:
+                groups:
+                    - company_shipping
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - shipping_nl
+                    - payment_nl
+                limit:  2
+                message: address.last_name.min.length
+        address_line_1:
+            - NotBlank:
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+                message: address_line_1.required
+            - MinLength:
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+                limit:  2
+                message: address_line_1.required
+            - MaxLength:
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+                message: address_line_1.required
+                limit:  150
+        postal_code:
+            - NotBlank:
+                message: postal_code.required
+            - Length:
+                min: 2
+                max: 10
+                minMessage: postal_code.length
+                maxMessage: postal_code.length
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+            - Length:
+                min: 5
+                max: 5
+                exactMessage: postal_code.length
+                groups:
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+            - Length:
+                min: 4
+                max: 7
+                minMessage: postal_code.length
+                maxMessage: postal_code.length
+                groups:
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+        city:
+            - NotBlank:
+                message: address.city.required
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+            - MinLength:
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+                limit:  2
+                message: address.city.required
+        countries_id:
+            - NotBlank:
+                message: address.countries_id.required
+                groups:
+                    - company_shipping
+                    - overnightbox
+                    - shipping
+                    - payment
+                    - company_shipping_fi
+                    - overnightbox_fi
+                    - shipping_fi
+                    - payment_fi
+                    - company_shipping_se
+                    - overnightbox_se
+                    - shipping_se
+                    - payment_se
+                    - company_shipping_nl
+                    - overnightbox_nl
+                    - shipping_nl
+                    - payment_nl
+            - Type:
+                type: integer
+        company_name:
+            - NotBlank:
+                message: address.company_name.required
+                groups:
+                    - company_shipping
+                    - company_shipping_fi
+                    - company_shipping_se
+                    - company_shipping_nl

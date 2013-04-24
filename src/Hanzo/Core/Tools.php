@@ -101,13 +101,14 @@ class Tools
             'billing_state_province',
             'billing_first_name',
             'billing_last_name',
-
+            'billing_external_address_id',
             'delivery_countries_id',
             'delivery_state_province',
             'delivery_company_name',
             'delivery_method',
             'delivery_first_name',
             'delivery_last_name',
+            'delivery_external_address_id',
         );
 
         switch ($part) {
@@ -162,6 +163,10 @@ class Tools
         switch ($type) {
             case 'order':
                 switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'orderde@pompdelux.com';
+                        break;
                     case 'FI':
                     case 'SalesFI':
                         $to = 'orderfi@pompdelux.com';
@@ -186,6 +191,10 @@ class Tools
                 break;
             case 'retur':
                 switch ($attributes->global->domain_key) {
+                    case 'DE':
+                    case 'SalesDE':
+                        $to = 'returde@pompdelux.dk';
+                        break;
                     case 'FI':
                     case 'SalesFI':
                         $to = 'returfi@pompdelux.dk';
@@ -382,6 +391,7 @@ class Tools
         // we use environments to switch domain configurations.
         $env_map = array(
             'da_dk' => 'dk',
+            'de_de' => 'de',
             'en_gb' => 'com',
             'fi_fi' => 'fi',
             'nb_no' => 'no',
@@ -424,7 +434,8 @@ class Tools
                 die("User-agent: *\nDisallow: /\n");
             }
 
-            die("User-agent: *\nDisallow:\n");
+            //die("User-agent: *\nDisallow:\n");
+            die("User-agent: *\nDisallow: /de_DE/\n");
         }
     }
 
@@ -604,9 +615,10 @@ class Tools
 
     protected static function generateImageTag($src, array $params = array())
     {
-        if (empty($params['title']) && !empty($params['alt'])) {
-            $params['title'] = $params['alt'];
-        }
+        // title and alt should never be the same...
+        // if (empty($params['title']) && !empty($params['alt'])) {
+        //     $params['title'] = $params['alt'];
+        // }
         if (empty($params['alt']) && !empty($params['title'])) {
             $params['alt'] = $params['title'];
         }

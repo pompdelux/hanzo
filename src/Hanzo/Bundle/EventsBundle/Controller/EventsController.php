@@ -74,6 +74,9 @@ class EventsController extends CoreController
             $color = 'red';
             if (1 == $event->getIsOpen()) {
                 $color = 'green';
+                if ('HUS' == strtoupper($event->getType())) {
+                    $color = 'blue';
+                }
             }
 
             $events_array[] = array(
@@ -963,39 +966,39 @@ class EventsController extends CoreController
             if ($event instanceof Events) {
                 $myEvents[$event->getId()] = array(
                     'data' => $event,
-                    'form' =>   $this->createFormBuilder()
-                                    ->add('first_name', 'text',
-                                        array(
-                                            'label' => 'events.participants.first_name.label',
-                                            'translation_domain' => 'events'
-                                        )
-                                    )->add('last_name', 'text',
-                                        array(
-                                            'label' => 'events.participants.last_name.label',
-                                            'translation_domain' => 'events'
-                                        )
-                                    )->add('email', 'email',
-                                        array(
-                                            'label' => 'events.participants.email.label',
-                                            'translation_domain' => 'events',
-                                            'required' => false,
-                                            'error_bubbling' => true
-                                        )
-                                    )->add('phone', 'text',
-                                        array(
-                                            'label' => 'events.participants.phone.label',
-                                            'translation_domain' => 'events',
-                                            'required' => false,
-                                            'error_bubbling' => true
-                                        )
-                                    )->add('tell_a_friend', 'checkbox',
-                                        array(
-                                            'label' => 'events.participants.tell_a_friend.label',
-                                            'translation_domain' => 'events',
-                                            'required' => false
-                                        )
-                                    )->add('event_id', 'hidden', array('data' => $event->getId()))
-                                    ->getForm()
+                    'form' => $this->createFormBuilder()
+                        ->add('first_name', 'text',
+                            array(
+                                'label' => 'events.participants.first_name.label',
+                                'translation_domain' => 'events'
+                            )
+                        )->add('last_name', 'text',
+                            array(
+                                'label' => 'events.participants.last_name.label',
+                                'translation_domain' => 'events'
+                            )
+                        )->add('email', 'email',
+                            array(
+                                'label' => 'events.participants.email.label',
+                                'translation_domain' => 'events',
+                                'required' => false,
+                                'error_bubbling' => true
+                            )
+                        )->add('phone', 'text',
+                            array(
+                                'label' => 'events.participants.phone.label',
+                                'translation_domain' => 'events',
+                                'required' => false,
+                                'error_bubbling' => true
+                            )
+                        )->add('tell_a_friend', 'checkbox',
+                            array(
+                                'label' => 'events.participants.tell_a_friend.label',
+                                'translation_domain' => 'events',
+                                'required' => false
+                            )
+                        )->add('event_id', 'hidden', array('data' => $event->getId()))
+                        ->getForm()
                 );
                 $myEvents[$event->getId()]['form_view'] = $myEvents[$event->getId()]['form']->createView();
             }

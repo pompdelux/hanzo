@@ -26,6 +26,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery orderByContent($order = Criteria::ASC) Order by the content column
  * @method CmsI18nQuery orderBySettings($order = Criteria::ASC) Order by the settings column
  * @method CmsI18nQuery orderByIsRestricted($order = Criteria::ASC) Order by the is_restricted column
+ * @method CmsI18nQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  *
  * @method CmsI18nQuery groupById() Group by the id column
  * @method CmsI18nQuery groupByLocale() Group by the locale column
@@ -35,6 +36,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18nQuery groupByContent() Group by the content column
  * @method CmsI18nQuery groupBySettings() Group by the settings column
  * @method CmsI18nQuery groupByIsRestricted() Group by the is_restricted column
+ * @method CmsI18nQuery groupByIsActive() Group by the is_active column
  *
  * @method CmsI18nQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CmsI18nQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -55,6 +57,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method CmsI18n findOneByContent(string $content) Return the first CmsI18n filtered by the content column
  * @method CmsI18n findOneBySettings(string $settings) Return the first CmsI18n filtered by the settings column
  * @method CmsI18n findOneByIsRestricted(boolean $is_restricted) Return the first CmsI18n filtered by the is_restricted column
+ * @method CmsI18n findOneByIsActive(boolean $is_active) Return the first CmsI18n filtered by the is_active column
  *
  * @method array findById(int $id) Return CmsI18n objects filtered by the id column
  * @method array findByLocale(string $locale) Return CmsI18n objects filtered by the locale column
@@ -64,6 +67,7 @@ use Hanzo\Model\CmsI18nQuery;
  * @method array findByContent(string $content) Return CmsI18n objects filtered by the content column
  * @method array findBySettings(string $settings) Return CmsI18n objects filtered by the settings column
  * @method array findByIsRestricted(boolean $is_restricted) Return CmsI18n objects filtered by the is_restricted column
+ * @method array findByIsActive(boolean $is_active) Return CmsI18n objects filtered by the is_active column
  */
 abstract class BaseCmsI18nQuery extends ModelCriteria
 {
@@ -152,7 +156,7 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `PATH`, `OLD_PATH`, `CONTENT`, `SETTINGS`, `IS_RESTRICTED` FROM `cms_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
+        $sql = 'SELECT `ID`, `LOCALE`, `TITLE`, `PATH`, `OLD_PATH`, `CONTENT`, `SETTINGS`, `IS_RESTRICTED`, `IS_ACTIVE` FROM `cms_i18n` WHERE `ID` = :p0 AND `LOCALE` = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -481,6 +485,33 @@ abstract class BaseCmsI18nQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CmsI18nPeer::IS_RESTRICTED, $isRestricted, $comparison);
+    }
+
+    /**
+     * Filter the query on the is_active column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIsActive(true); // WHERE is_active = true
+     * $query->filterByIsActive('yes'); // WHERE is_active = true
+     * </code>
+     *
+     * @param     boolean|string $isActive The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CmsI18nQuery The current query, for fluid interface
+     */
+    public function filterByIsActive($isActive = null, $comparison = null)
+    {
+        if (is_string($isActive)) {
+            $is_active = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(CmsI18nPeer::IS_ACTIVE, $isActive, $comparison);
     }
 
     /**

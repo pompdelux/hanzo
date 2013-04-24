@@ -28,6 +28,9 @@ if ('dev' != $env[0]) {
         case 'no':
             $db_prefix = $env[0].'_no_';
             break;
+        case 'de':
+            $db_prefix = $env[0].'_de_';
+            break;
       // case 'nl':
       //   $db_prefix = $env[0].'_se_';
       //   break;
@@ -38,6 +41,7 @@ if ('dev' != $env[0]) {
 $locale_map = [
     'com' => 'en_GB',
     'dk'  => 'da_DK',
+    'de'  => 'de_DE',
     'fi'  => 'fi_FI',
     'nl'  => 'nl_NL',
     'no'  => 'nb_NO',

@@ -152,6 +152,7 @@ class CategoriesPeer extends BaseCategoriesPeer
             $product = $record->getProducts();
 
             $records[] = array(
+                'sku' => $product->getSku(),
                 'image' => $record->getProductsImages()->getImage(),
                 'url' => $router->generate('product_set', array(
                     'image_id' => $record->getProductsImages()->getId()

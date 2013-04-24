@@ -36,10 +36,35 @@
         </article>
     {% endif %}
     </div>
+
+    <div class="grid_8 alpha omega">
+      {% include 'CMSBundle:Social:share.html.twig' with {
+        'url': app.request.uri,
+        'image': '',
+        'description': page.title }
+      %}
+    </div>
 {% else %}{# Frontpages #}
     <article>
         {{ parse(page.content) }}
     </article>
 {% endif %}
 
+{% endblock %}
+
+{% block javascript %}
+<script>
+var $pinterest = $('.social-buttons .pinterest');
+if ($pinterest.length) {
+    var image = $('#main article img');
+    if (image.length) {
+        image = image.last();
+        var url = $pinterest.attr('href');
+        url = url.replace('=&', '='+encodeURIComponent(image.attr('src'))+'&');
+        $pinterest.attr('href', url);
+    } else {
+        $pinterest.hide();
+    }
+}
+</script>
 {% endblock %}
