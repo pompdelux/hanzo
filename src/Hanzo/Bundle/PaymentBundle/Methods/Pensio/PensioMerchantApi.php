@@ -95,7 +95,7 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
      * @param  float $amount
      * @return PensioCallResponse
      */
-    public function refund(Orders $order, $amount)
+    public function refund(Orders $order, $amount = 0)
     {
         $this->checkConnection();
 
@@ -105,11 +105,14 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
             throw new PaymentApiCallException('Pensio api refund action: order contains no transaction id, order id was: '.$order->getId() );
         }
 
+        $params = ['transaction_id' => $attributes->payment->transaction_id];
+
+        if (0 != $amount) {
+            $params['amount'] = number_format($amount, 2, '.', '');
+        }
+
         return $this->callAPIMethod(
-            'refundCapturedReservation', [
-                'transaction_id' => $attributes->payment->transaction_id,
-                'amount' => number_format($amount, 2, '.', '')
-            ]
+            'refundCapturedReservation', $params
         );
     }
 
@@ -126,6 +129,13 @@ class PensioMerchantApi implements PaymentMethodApiCallInterface
         $this->checkConnection();
 
         $attributes = $order->getAttributes();
+
+        // when you cancel an order of type "paymentAndCapture" we need to refund, not cancel
+        if (($attributes->payment->nature == 'IdealPayment') &&
+            ($attributes->payment->type == 'paymentAndCapture')
+        ) {
+            return $this->refund($order);
+        }
 
         if (!isset($attributes->payment->transaction_id)) {
             throw new PaymentApiCallException('Pensio api cancel action: order contains no transaction id, order id was: '.$order->getId() );
